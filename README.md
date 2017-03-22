@@ -1,7 +1,7 @@
 meanTorrent is Based on [meanjs/mean](https://github.com/meanjs/mean)
 
 
-funciton is coming,please wait...
+funciton is coming, please wait...
 ==================================
 
 ## License
