@@ -1,7 +1,7 @@
 {
-  "name": "meanjs",
-  "description": "Fullstack JavaScript with MongoDB, Express, AngularJS, and Node.js.",
-  "homepage": "http://meanjs.org/",
+  "name": "meanTorrent",
+  "description": "MEAN.JS BitTorrent - Full-Stack JavaScript Using MongoDB, Express, AngularJS, and Node.js, a Private BitTorrent Tracker CMS",
+  "homepage": "https://github.com/taobataoma/meanTorrent.git",
   "license": "MIT",
   "dependencies": {
     "angular": "~1.5.0",
