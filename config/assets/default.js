@@ -24,6 +24,7 @@ module.exports = {
         'public/lib/angular-ui-notification/dist/angular-ui-notification.js',
         'public/lib/angular-ui-router/release/angular-ui-router.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+        'public/lib/angular-translate/angular-translate.js'
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
@@ -40,6 +41,8 @@ module.exports = {
     js: [
       'modules/core/client/app/config.js',
       'modules/core/client/app/init.js',
+      'modules/core/client/app/trans-string-cn.js',
+      'modules/core/client/app/trans-string-en.js',
       'modules/*/client/*.js',
       'modules/*/client/**/*.js'
     ],
