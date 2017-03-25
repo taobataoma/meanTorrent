@@ -28,7 +28,13 @@ var ArticleSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
+  },
+  test: {
+    type: String,
+    default: 'def'
   }
 });
+
+ArticleSchema.index({user: -1, created: -1});
 
 mongoose.model('Article', ArticleSchema);
