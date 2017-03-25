@@ -24,11 +24,14 @@ const FAILURE_REASONS = {
   101: 'Missing info_hash',
   102: 'Missing peer_id',
   103: 'Missing port',
+  104: 'Missing passkey',
   150: 'Invalid infohash: infohash is not 20 bytes long',
   151: 'Invalid peerid: peerid is not 20 bytes long',
   152: 'Invalid numwant. Client requested more peers than allowed by tracker',
+  153: 'Invalid passkey',
   200: 'info_hash not found in the database. Sent only by trackers that do not automatically include new hashes into the database',
   500: 'Client sent an eventless request before the specified time',
+  600: 'This tracker only supports compact mode',
   900: 'Generic error'
 };
 
@@ -71,11 +74,17 @@ function validateRequest(method, query) {
   if (typeof query.port === 'undefined')
     throw new Failure(103);
 
+  if (typeof query.passkey === 'undefined')
+    throw new Failure(104);
+
   if (query.info_hash.length !== 20)
     throw new Failure(150);
 
   if (query.peer_id.length !== 20)
     throw new Failure(151);
+
+  if (query.passkey.length !== 32)
+    throw new Failure(153);
 
   for (i = 0; i < PARAMS_INTEGER.length; i++) {
     p = PARAMS_INTEGER[i];
@@ -90,13 +99,14 @@ function validateRequest(method, query) {
   }
 
   if (typeof query.compact === 'undefined' || query.compact !== 1)
-    throw new Failure(null, 'This tracker only supports compact mode');
+    throw new Failure(600);
 }
 /**
  * Create an article
  */
 exports.info = function (req, res) {
   console.log('----------------------------');
+  console.log(req.url);
 
   var parts = url.parse(req.url, true);
   var query = parts.query;
@@ -138,5 +148,7 @@ exports.info = function (req, res) {
 
     res.end(respc);
   }
+
+  res.end('OK');
 };
 
