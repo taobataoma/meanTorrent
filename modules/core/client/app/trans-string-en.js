@@ -13,7 +13,16 @@
   // **************************************************
 
   var stringen = {
-    COMINGSOON: 'coming soon...'
+    COMINGSOON: 'coming soon...',
+
+    //client menu
+    SIGNOUT: 'Signout',
+    SIGNIN: 'Sign In',
+    SIGNUP: 'Sign Up',
+    EDIT_PROFILE: 'Edit Profile',
+    EDIT_PROFILE_PIC: 'Edit Profile Picture',
+    CHANGE_PASSWORD: 'Change Password',
+    MANAGE_SOCIAL_ACCOUNTS: 'Manage Social Accounts'
   };
 
   // **************************************************
@@ -24,8 +33,6 @@
   transConfig.$inject = ['$translateProvider'];
   function transConfig($translateProvider) {
     $translateProvider.translations('en', stringen);
-    $translateProvider.preferredLanguage('cn');
-    $translateProvider.fallbackLanguage('cn');
   }
 
 }(ApplicationConfiguration));

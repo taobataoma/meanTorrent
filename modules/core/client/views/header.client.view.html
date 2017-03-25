@@ -22,11 +22,11 @@
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
       <li ui-sref-active="active">
-        <a ui-sref="authentication.signup">Sign Up</a>
+        <a ui-sref="authentication.signup">{{'SIGNUP' | translate}}</a>
       </li>
       <li class="divider-vertical"></li>
       <li ui-sref-active="active">
-        <a ui-sref="authentication.signin">Sign In</a>
+        <a ui-sref="authentication.signin">{{'SIGNIN' | translate}}</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
@@ -41,7 +41,7 @@
           </li>
           <li class="divider"></li>
           <li>
-            <a href="/api/auth/signout" target="_self">Signout</a>
+            <a href="/api/auth/signout" target="_self">{{'SIGNOUT' | translate}}</a>
           </li>
         </ul>
       </li>

@@ -8,7 +8,8 @@
   // Setting HTML5 Location Mode
   angular
     .module(app.applicationModuleName)
-    .config(bootstrapConfig);
+    .config(bootstrapConfig)
+    .config(transConfig);
 
   bootstrapConfig.$inject = ['$compileProvider', '$locationProvider', '$httpProvider', '$logProvider'];
 
@@ -26,6 +27,12 @@
     $logProvider.debugEnabled(app.applicationEnvironment !== 'production');
   }
 
+  transConfig.$inject = ['$translateProvider'];
+  function transConfig($translateProvider) {
+    $translateProvider.useSanitizeValueStrategy('escape');
+    $translateProvider.preferredLanguage('en');
+    //$translateProvider.fallbackLanguage('cn');
+  }
 
   // Then define the init function for starting up the application
   angular.element(document).ready(init);

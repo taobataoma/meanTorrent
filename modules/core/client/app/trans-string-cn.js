@@ -13,7 +13,16 @@
   // **************************************************
 
   var stringcn = {
-    COMINGSOON: '开发中，请稍候...'
+    COMINGSOON: '开发中，请稍候...',
+
+    //client menu
+    SIGNOUT: '退出登录',
+    SIGNIN: '登录',
+    SIGNUP: '注册',
+    EDIT_PROFILE: '修改个人信息',
+    EDIT_PROFILE_PIC: '修改个人头像',
+    CHANGE_PASSWORD: '修改登录密码',
+    MANAGE_SOCIAL_ACCOUNTS: '管理社交帐号'
   };
 
   // **************************************************
@@ -23,7 +32,6 @@
   // config $translateProvider
   transConfig.$inject = ['$translateProvider'];
   function transConfig($translateProvider) {
-    $translateProvider.useSanitizeValueStrategy('escape');
     $translateProvider.translations('cn', stringcn);
   }
 
