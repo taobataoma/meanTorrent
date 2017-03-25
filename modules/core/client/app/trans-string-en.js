@@ -16,6 +16,11 @@
     COMINGSOON: 'coming soon...',
 
     //client menu
+    MENU_CHAT: 'Chat',
+    MENU_TORRENTS: 'Torrents',
+    MENU_FORUMS: 'Forums',
+
+    //client menu
     SIGNOUT: 'Signout',
     SIGNIN: 'Sign In',
     SIGNUP: 'Sign Up',

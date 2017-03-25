@@ -12,7 +12,8 @@
       title: 'Admin',
       state: 'admin',
       type: 'dropdown',
-      roles: ['admin']
+      roles: ['admin'],
+      position: 11
     });
   }
 }());

@@ -5,7 +5,7 @@
     .module('core')
     .run(menuConfig);
 
-  menuConfig.$inject = ['menuService', '$translate', '$filter'];
+  menuConfig.$inject = ['menuService', '$translate'];
 
   function menuConfig(menuService, $translate) {
     menuService.addMenu('account', {

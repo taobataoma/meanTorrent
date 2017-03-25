@@ -15,7 +15,12 @@
   var stringcn = {
     COMINGSOON: '开发中，请稍候...',
 
-    //client menu
+    //topbar menu
+    MENU_CHAT: '聊天室',
+    MENU_TORRENTS: '种子',
+    MENU_FORUMS: '论坛',
+
+    //client account menu
     SIGNOUT: '退出登录',
     SIGNIN: '登录',
     SIGNUP: '注册',
