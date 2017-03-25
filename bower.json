@@ -1,5 +1,5 @@
 {
-  "name": "meanTorrent",
+  "name": "meantorrent",
   "description": "MEAN.JS BitTorrent - Full-Stack JavaScript Using MongoDB, Express, AngularJS, and Node.js, a Private BitTorrent Tracker CMS",
   "homepage": "https://github.com/taobataoma/meanTorrent.git",
   "license": "MIT",
@@ -14,7 +14,8 @@
     "angular-ui-router": "~0.2.18",
     "bootstrap": "~3.3.6",
     "ng-file-upload": "~12.1.0",
-    "owasp-password-strength-test": "~1.3.0"
+    "owasp-password-strength-test": "~1.3.0",
+    "angular-translate": "^2.15.1"
   },
   "overrides": {
     "bootstrap": {
