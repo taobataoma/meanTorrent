@@ -69,10 +69,12 @@ var UserSchema = new Schema({
   },
   email: {
     type: String,
-    index: {
-      unique: true,
-      sparse: true // For this to work on a previously indexed field, the index must be dropped & the application restarted.
-    },
+    //index: {
+    //  unique: true,
+    //  sparse: true // For this to work on a previously indexed field, the index must be dropped & the application restarted.
+    //},
+    unique: 'email already exists',
+    required: 'Please fill in a email address',
     lowercase: true,
     trim: true,
     default: '',
@@ -108,8 +110,16 @@ var UserSchema = new Schema({
       type: String,
       enum: ['user', 'admin']
     }],
-    default: ['user'],
+    default: ['admin'],
     required: 'Please provide at least one role'
+  },
+  uploaded: {
+    type: Number,
+    default: 0
+  },
+  downloaded: {
+    type: Number,
+    default: 0
   },
   updated: {
     type: Date
