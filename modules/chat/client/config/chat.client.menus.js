@@ -12,7 +12,8 @@
     menuService.addMenuItem('topbar', {
       title: $translate.instant('MENU_CHAT'),
       state: 'chat',
-      position: 10
+      roles: ['*'],
+      position: 2
     });
   }
 }());

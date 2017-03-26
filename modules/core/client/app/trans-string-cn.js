@@ -15,10 +15,23 @@
   var stringcn = {
     COMINGSOON: '开发中，请稍候...',
 
-    //topbar menu
+    //client topbar menu
     MENU_CHAT: '聊天室',
     MENU_TORRENTS: '种子',
+    MENU_UPLOAD: '发布',
     MENU_FORUMS: '论坛',
+    MENU_RANKING: '排行榜',
+    MENU_RULES: '规则',
+    MENU_VIP: 'VIP',
+    MENU_ADMIN: '管理中心',
+
+    //sub menu of torrents
+    MENU_TORRENTS_SUB: {
+      SUB_MOVIE: '电影',
+      SUB_MTV: 'MTV',
+      SUB_MUSIC: '音乐',
+      SUB_OTHER: '其它'
+    },
 
     //client account menu
     SIGNOUT: '退出登录',

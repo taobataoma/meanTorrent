@@ -12,6 +12,7 @@
     menuService.addMenuItem('topbar', {
       title: $translate.instant('MENU_FORUMS'),
       state: 'forums',
+      roles: ['*'],
       position: 1
     });
   }
