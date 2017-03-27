@@ -1,0 +1,13 @@
+<section ng-controller="TorrentsUploadsController as vm">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-11 col-md-offset-1 col-sm-11 col-sm-offset-1 col-xs-12">
+                <h4 translate="UPLOADS_RULES"></h4>
+                <ol>
+                    <li ng-repeat="r in vm.rule_items" translate="UPLOADS_RULES_CONTENT.{{r}}"
+                        translate-values='{ url: vm.announce.url, admin: vm.announce.admin}' style="line-height: 1.6;"></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>

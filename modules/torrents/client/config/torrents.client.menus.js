@@ -39,8 +39,8 @@
     });
 
     menuService.addMenuItem('topbar', {
-      title: $translate.instant('MENU_UPLOAD'),
-      state: 'torrents.upload',
+      title: $translate.instant('MENU_UPLOADS'),
+      state: 'torrents.uploads',
       roles: ['*'],
       position: 3
     });
