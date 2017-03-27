@@ -22,6 +22,7 @@ coverage/
 public/dist/
 uploads
 modules/users/client/img/profile/uploads
+modules/torrents/client/uploads
 config/env/local.js
 config/env/local-*.js
 *.pem
