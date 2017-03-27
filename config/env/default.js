@@ -7,6 +7,11 @@ module.exports = {
     keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
+  //announce config
+  announce: {
+    url: 'http://localhost:3000/announce',
+    admin: 'admin@imean.io'
+  },
   db: {
     promise: global.Promise
   },
@@ -49,6 +54,14 @@ module.exports = {
     profile: {
       image: {
         dest: './modules/users/client/img/profile/uploads/',
+        limits: {
+          fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
+        }
+      }
+    },
+    torrent: {
+      file: {
+        dest: './modules/torrents/client/uploads/',
         limits: {
           fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
         }
