@@ -18,7 +18,7 @@
     //client topbar menu
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',
-    MENU_UPLOAD: 'Upload',
+    MENU_UPLOADS: 'Uploads',
     MENU_FORUMS: 'Forums',
     MENU_RANKING: 'Ranking',
     MENU_RULES: 'Rules',
@@ -40,7 +40,19 @@
     EDIT_PROFILE: 'Edit Profile',
     EDIT_PROFILE_PIC: 'Edit Profile Picture',
     CHANGE_PASSWORD: 'Change Password',
-    MANAGE_SOCIAL_ACCOUNTS: 'Manage Social Accounts'
+    MANAGE_SOCIAL_ACCOUNTS: 'Manage Social Accounts',
+
+    //发种规则
+    UPLOADS_RULES: 'Uploads Rules:',
+    UPLOADS_RULES_COUNT: '6',
+    UPLOADS_RULES_CONTENT: [
+      'The torrent file`s Tracker URL must be: <mark><strong>{{url}}</strong></mark>',
+      'The torrent file`s TMDB_ID must be TheMovieDB resources ID, <strong><a href="https://www.themoviedb.org/">you can find the ID from here</a></strong>',
+      'The resources detail info can be autoload, if it`s fine, then you can submit it',
+      'Select one or more tags that match the resources, which will play a significant role in your search results',
+      'After the submission of documents, may be approved by the management, the rules do not meet the seeds will be deleted directly',
+      'For additional assistance, please contact our administrator: <strong><a href="mailto:#">{{admin}}</a></strong>'
+    ]
   };
 
   // **************************************************
