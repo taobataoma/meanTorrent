@@ -24,7 +24,8 @@ module.exports = {
         'public/lib/angular-ui-router/release/angular-ui-router.min.js',
         'public/lib/ng-file-upload/ng-file-upload.min.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
-        'public/lib/angular-translate/angular-translate.min.js'
+        'public/lib/angular-translate/angular-translate.min.js',
+        'public/lib/bootstrap-filestyle/src/bootstrap-filestyle.min.js'
         // endbower
       ]
     },
