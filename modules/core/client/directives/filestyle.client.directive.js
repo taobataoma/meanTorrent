@@ -17,19 +17,20 @@
     return directive;
 
     function link(scope, element, attrs) {
+      //console.log(attrs);
       var options = {
         'input': attrs.input === 'false' ? false : true,
         'icon': attrs.icon === 'false' ? false : true,
-        'buttonBefore': attrs.buttonBefore === 'true' ? true : false,
+        'buttonBefore': attrs.buttonbefore === 'true' ? true : false,
         'disabled': attrs.disabled === 'true' ? true : false,
         'size': attrs.size,
-        'buttonText': attrs.buttonText,
-        'buttonName': attrs.buttonName,
-        'iconName': attrs.iconName,
+        'buttonText': attrs.buttontext,
+        'buttonName': attrs.buttonname,
+        'iconName': attrs.iconname,
         'badge': attrs.badge === 'false' ? false : true,
         'placeholder': attrs.placeholder
       };
-      $(element).filestyle(options);
+      element.filestyle(options);
     }
   }
 }());
