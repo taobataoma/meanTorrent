@@ -9,3 +9,13 @@ module.exports.imageFileFilter = function (req, file, callback) {
   callback(null, true);
 };
 
+module.exports.torrentFileFilter = function (req, file, callback) {
+  var ext = file.originalname.replace(/^.+\./, '');
+  if (file.mimetype !== 'application/x-bittorrent' && ext !== 'torrent') {
+    var err = new Error();
+    err.code = 'UNSUPPORTED_MEDIA_TYPE';
+    return callback(err, false);
+  }
+  callback(null, true);
+};
+
