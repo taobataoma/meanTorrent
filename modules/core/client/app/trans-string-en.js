@@ -61,7 +61,14 @@
 
     SELECT_TORRENT_FILE: 'Please select the torrent file',
     SELECT_FILE: 'Select file',
-    DO_UPLOADS: 'Uploads'
+    DO_UPLOADS: 'Uploads',
+    ENTER_TMDB_ID: 'Please enter theMovieDB id 　<span style="font-size: 10pt;">[<a href="https://www.themoviedb.org/" target="_blank">find id on themofiedb.org</a>]</span>',
+    LOAD_TMDB_INFO: 'Load info',
+    TMDB_ID: 'TMDB ID',
+    TMDB_ID_OK: 'MDB ID is ok! Get info successfully',
+    TMDB_ID_ERROR: 'MDB ID is error! Get info failed',
+    TMDB_ID_REQUIRED: 'Please enter TMDB ID',
+    TMDB_MOVIE_INFO: 'The movie info from TMDB'
   };
 
   // **************************************************

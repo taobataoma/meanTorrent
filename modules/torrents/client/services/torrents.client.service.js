@@ -12,6 +12,14 @@
     var Torrents = $resource('/api/torrents', {}, {
       update: {
         method: 'POST'
+      },
+      getTMDBInfo: {
+        method: 'GET',
+        url: '/api/movieinfo/:tmdbid/:language',
+        params: {
+          tmdbid: '@tmdbid',
+          language: '@language'
+        }
       }
     });
 

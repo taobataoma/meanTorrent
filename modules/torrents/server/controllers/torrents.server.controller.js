@@ -18,10 +18,14 @@ var path = require('path'),
  */
 exports.movieinfo = function (req, res) {
   console.log('------- API: movieinfo --------------------');
+  console.log(req.params);
 
-  tmdb.movieInfo({id: 263115, language: 'zh'}, function (err, info) {
+  tmdb.movieInfo({
+    id: req.params.tmdbid,
+    language: req.params.language
+  }, function (err, info) {
     if (err) {
-      console.log(err);
+      res.status(900).send(err);
     } else {
       res.json(info);
     }

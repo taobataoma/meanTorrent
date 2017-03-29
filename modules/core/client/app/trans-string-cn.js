@@ -61,7 +61,14 @@
 
     SELECT_TORRENT_FILE: '请选择种子文件',
     SELECT_FILE: '选择文件',
-    DO_UPLOADS: '上传'
+    DO_UPLOADS: '上传',
+    ENTER_TMDB_ID: '请输入TMDB_ID',
+    LOAD_TMDB_INFO: '检索信息',
+    TMDB_ID: 'TMDB ID',
+    TMDB_ID_OK: 'MDB ID 正确，检索信息成功!',
+    TMDB_ID_ERROR: 'MDB ID 错误，检索信息失败!',
+    TMDB_ID_REQUIRED: '请输入 TMDB ID',
+    TMDB_MOVIE_INFO: 'TMDB 视频信息'
   };
 
   // **************************************************

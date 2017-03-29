@@ -12,7 +12,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <legend class="small-legend" translate="SELECT_TORRENT_FILE"></legend>
             <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="input-group">
@@ -21,6 +21,7 @@
                     <div class="input-group-btn">
                         <button class="btn btn-primary btn-file" ngf-select="vm.fileSelected = true; vm.successfully = undefined; vm.progress = 0;"
                                 ng-model="tFile"
+                                accept="application/x-bittorrent"
                                 ngf-resize="{width: 400}"
                                 ngf-resize-if="$width > 400 || $height > 400"
                                 ng-disabled="vm.successfully">{{ 'SELECT_FILE' | translate}}
@@ -31,14 +32,56 @@
             <div ng-show="vm.fileSelected" class="col-md-4 col-sm-4 col-xs-12">
                 <button class="btn btn-success" ng-click="vm.upload(tFile)">{{ 'DO_UPLOADS' | translate}} ({{vm.progress}}%)</button>
             </div>
-            <div ng-show="vm.successfully == true" class="col-md-4 col-sm-4 col-xs-12" style="margin-top: 8px">
+            <div ng-show="vm.successfully == true" class="col-md-4 col-sm-4 col-xs-12" style="margin-top: 7px">
                 <label class="text-success control-label" translate="TORRENTS_UPLOAD_SUCCESSFULLY"></label>
             </div>
-            <div ng-show="vm.successfully == false" class="col-md-4 col-sm-4 col-xs-12" style="margin-top: 8px">
+            <div ng-show="vm.successfully == false" class="col-md-4 col-sm-4 col-xs-12" style="margin-top: 7px">
                 <label class="text-danger control-label" translate="TORRENTS_UPLOAD_FAILED"></label>
             </div>
         </div>
     </div>
 
+    <div class="row" style="margin-top: 40px;">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <legend class="small-legend" translate="ENTER_TMDB_ID"></legend>
+            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-ac ng-model="tmdbid"
+                           id="tmdbid"
+                           ng-change="vm.tmbd_info_ok = undefined"
+                           ng-disabled="vm.tmbd_info_ok"
+                           ng-focus="vm.onTextClick($event)"
+                           placeholder="{{ 'TMDB_ID' | translate}}" autofocus>
+
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" ng-click="vm.getInfo(tmdbid)"
+                                ng-disabled="vm.tmbd_info_ok">{{ 'LOAD_TMDB_INFO' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="vm.tmbd_info_ok == true" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                <label class="text-success control-label" translate="TMDB_ID_OK"></label>
+            </div>
+            <div ng-show="vm.tmbd_info_ok == false" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                <label class="text-danger control-label" translate="TMDB_ID_ERROR"></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 40px;">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <legend class="small-legend" translate="TMDB_MOVIE_INFO"></legend>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <img src="http://image.tmdb.org/t/p/w500/{{vm.movieinfo.poster_path}}" width="100%">
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div ng-repeat="d in vm.movieinfoarray" class="row">
+                    <div class="col-md-4"><strong>{{d.key}}：</strong></div>
+                    <div class="col-md-8">{{d.value}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>

@@ -24,7 +24,7 @@
   // Angular-ui-notification configuration
   angular.module('ui-notification').config(function(NotificationProvider) {
     NotificationProvider.setOptions({
-      delay: 2000,
+      delay: 4000,
       startTop: 20,
       startRight: 10,
       verticalSpacing: 20,
