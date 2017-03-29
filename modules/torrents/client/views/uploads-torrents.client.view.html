@@ -10,4 +10,35 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+            <legend class="small-legend" translate="SELECT_TORRENT_FILE"></legend>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="tFile.name" disabled>
+
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary btn-file" ngf-select="vm.fileSelected = true; vm.successfully = undefined; vm.progress = 0;"
+                                ng-model="tFile"
+                                ngf-resize="{width: 400}"
+                                ngf-resize-if="$width > 400 || $height > 400"
+                                ng-disabled="vm.successfully">{{ 'SELECT_FILE' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="vm.fileSelected" class="col-md-4 col-sm-4 col-xs-12">
+                <button class="btn btn-success" ng-click="vm.upload(tFile)">{{ 'DO_UPLOADS' | translate}} ({{vm.progress}}%)</button>
+            </div>
+            <div ng-show="vm.successfully == true" class="col-md-4 col-sm-4 col-xs-12" style="margin-top: 8px">
+                <label class="text-success control-label" translate="TORRENTS_UPLOAD_SUCCESSFULLY"></label>
+            </div>
+            <div ng-show="vm.successfully == false" class="col-md-4 col-sm-4 col-xs-12" style="margin-top: 8px">
+                <label class="text-danger control-label" translate="TORRENTS_UPLOAD_FAILED"></label>
+            </div>
+        </div>
+    </div>
+
+
 </section>

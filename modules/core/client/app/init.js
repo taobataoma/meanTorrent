@@ -29,7 +29,7 @@
 
   transConfig.$inject = ['$translateProvider'];
   function transConfig($translateProvider) {
-    $translateProvider.useSanitizeValueStrategy('escape');
+    //$translateProvider.useSanitizeValueStrategy('escape');
     $translateProvider.preferredLanguage('en');
     //$translateProvider.fallbackLanguage('cn');
   }
