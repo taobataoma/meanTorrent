@@ -10,4 +10,7 @@ module.exports = function (app) {
   app.route('/api/movieinfo')
     .get(torrents.movieinfo);
 
+  app.route('/api/torrents/upload')
+    .post(torrents.upload);
+
 };
