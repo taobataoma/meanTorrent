@@ -46,15 +46,16 @@
             <legend class="small-legend" translate="ENTER_TMDB_ID"></legend>
             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                 <div class="input-group">
-                    <input type="text" class="form-control" ng-ac ng-model="tmdbid"
+                    <input type="text" class="form-control" ng-ac ng-model="vm.tmdbid"
                            id="tmdbid"
                            ng-change="vm.tmbd_info_ok = undefined"
                            ng-disabled="vm.tmbd_info_ok"
                            ng-focus="vm.onTextClick($event)"
+                           ng-keydown="vm.onTMDBIDKeyDown($event);"
                            placeholder="{{ 'TMDB_ID' | translate}}" autofocus>
 
                     <div class="input-group-btn">
-                        <button class="btn btn-primary" ng-click="vm.getInfo(tmdbid)"
+                        <button class="btn btn-primary" ng-click="vm.getInfo(vm.tmdbid)"
                                 ng-disabled="vm.tmbd_info_ok">{{ 'LOAD_TMDB_INFO' | translate}}
                         </button>
                     </div>
@@ -69,7 +70,7 @@
         </div>
     </div>
 
-    <div class="row" style="margin-top: 40px;">
+    <div class="row" ng-show="vm.tmbd_info_ok == true" style="margin-top: 40px;">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <legend class="small-legend" translate="TMDB_MOVIE_INFO"></legend>
             <div class="col-md-4 col-sm-4 col-xs-12">

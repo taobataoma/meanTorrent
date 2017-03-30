@@ -79,6 +79,12 @@
     }
 
     //************** begin get tmdb info ***********************************
+    vm.onTMDBIDKeyDown = function (evt) {
+      if (evt.keyCode === 13) {
+        vm.getInfo(vm.tmdbid);
+      }
+    };
+
     vm.onTextClick = function ($event) {
       $event.target.select();
     };
@@ -105,7 +111,7 @@
         console.log(res);
         vm.movieinfo = res;
         for (var item in res) {
-          if(item[0]!=='$' && item!=='toJSON') {
+          if (item[0] !== '$' && item !== 'toJSON') {
             var value = res[item];
             var nv = {
               key: item,
