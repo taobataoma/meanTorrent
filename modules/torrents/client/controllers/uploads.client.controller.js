@@ -17,7 +17,7 @@
     vm.user = Authentication.user;
     vm.progress = 0;
     vm.successfully = undefined;
-    vm.tmbd_info_ok = undefined;
+    vm.tmdb_info_ok = undefined;
 
     for (var i = 0; i < $translate.instant('UPLOADS_RULES_COUNT'); i++) {
       vm.rule_items[i] = i;
@@ -99,30 +99,33 @@
         return;
       }
 
+      vm.tmdb_isloading = true;
       TorrentsService.getTMDBInfo({
         tmdbid: tmdbid,
-        language: 'zh'
+        language: 'en'
       }, function (res) {
-        vm.tmbd_info_ok = true;
+        vm.tmdb_info_ok = true;
+        vm.tmdb_isloading = false;
         Notification.success({
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_ID_OK')
         });
 
         console.log(res);
         vm.movieinfo = res;
-        for (var item in res) {
-          if (item[0] !== '$' && item !== 'toJSON') {
-            var value = res[item];
-            var nv = {
-              key: item,
-              value: value
-            };
-            vm.movieinfoarray.push(nv);
-          }
-        }
+        //for (var item in res) {
+        //  if (item[0] !== '$' && item !== 'toJSON') {
+        //    var value = res[item];
+        //    var nv = {
+        //      key: item,
+        //      value: value
+        //    };
+        //    vm.movieinfoarray.push(nv);
+        //  }
+        //}
         console.log(vm.movieinfo);
       }, function (err) {
-        vm.tmbd_info_ok = false;
+        vm.tmdb_info_ok = false;
+        vm.tmdb_isloading = false;
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_ID_ERROR')
         });

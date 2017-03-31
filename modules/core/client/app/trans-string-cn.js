@@ -47,7 +47,7 @@
     UPLOADS_RULES_COUNT: '6',
     UPLOADS_RULES_CONTENT: [
       '种子文件的Tracker地址必须为：<mark><strong>{{url}}</strong></mark>.',
-      '种子文件的 TMDB_ID 必须是 The Movie DB 相对应的资源ID号，<strong><a href="https://www.themoviedb.org/">您可以从这里找到ID号</a></strong>.',
+      '种子文件的 TMDB_ID 必须是 The Movie DB 相对应的资源ID号，<strong><a href="https://www.themoviedb.org/" target="_blank">您可以从这里找到ID号</a></strong>.',
       '资源的详细信息，系统会自动载入，如无误可直接提交.',
       '请为资源选择匹配的一个或多个标签，它会在您的搜索结果中发挥重大作用.',
       '种子文件提交后，可能会由后台管理人员进行审批，不符合规则的种子会被直接删除.',
@@ -62,13 +62,49 @@
     SELECT_TORRENT_FILE: '请选择种子文件',
     SELECT_FILE: '选择文件',
     DO_UPLOADS: '上传',
-    ENTER_TMDB_ID: '请输入TMDB_ID',
+    ENTER_TMDB_ID: '请输入TMDB_ID 　<span style="font-size: 10pt;">[<a href="https://www.themoviedb.org/" target="_blank">在 themofiedb.org 上查找</a>]</span>',
     LOAD_TMDB_INFO: '检索信息',
     TMDB_ID: 'TMDB ID',
     TMDB_ID_OK: 'MDB ID 正确，检索信息成功!',
     TMDB_ID_ERROR: 'MDB ID 错误，检索信息失败!',
     TMDB_ID_REQUIRED: '请输入 TMDB ID',
-    TMDB_MOVIE_INFO: 'TMDB 视频信息'
+    TMDB_MOVIE_INFO: 'TMDB 视频信息',
+    TMDB_IS_LOADING: '正在检索视频信息，请稍候...',
+
+
+    ///////////////////////the movie db fields////////////////////////////////
+    TMDB_FIELDS: {
+      ID: 'id',
+      IMDB_ID: 'imdb_id',
+      IMDB_LINK: 'IMDB链接',
+      TMDB_LINK: 'TMDB链接',
+      HOMEPAGE: '主页',
+      ADULT: '成人级别',
+      BUDGET: '制作预算',
+      REVENUE: '票房收入',
+      ORIGINAL_LANGUAGE: '原语言',
+      ORIGINAL_TITLE: '原片名',
+      TITLE: '译名',
+      BELONGS_TO_COLLECTION: '集合',
+      GENRES: '类型',
+      OVERVIEW: '剧情',
+      POPULARITY: 'popularity',
+      PRODUCTION_COMPANIES: '制作',
+      PRODUCTION_COUNTRIES: '国家',
+      RELEASE_DATE: '上映',
+      RUNTIME: '片长',
+      SPOKEN_LANGUAGES: '语言',
+      STATUS: '状态',
+      TAGLINE: '推广语',
+      VIDEO: 'video',
+      VOTE_AVERAGE: 'IMDB评分',
+      VOTE_COUNT: '参评人数',
+      VOTE_UNIT: '人',
+      BACKDROP_PATH: '背景海报',
+      POSTER_PATH: '海报',
+
+      CAST: '主演：'
+    }
   };
 
   // **************************************************

@@ -47,7 +47,7 @@
     UPLOADS_RULES_COUNT: '6',
     UPLOADS_RULES_CONTENT: [
       'The torrent file`s Tracker URL must be: <mark><strong>{{url}}</strong></mark>.',
-      'The torrent file`s TMDB_ID must be TheMovieDB resources ID, <strong><a href="https://www.themoviedb.org/">you can find the ID from here</a></strong>.',
+      'The torrent file`s TMDB_ID must be TheMovieDB resources ID, <strong><a href="https://www.themoviedb.org/" target="_blank">you can find the ID from here</a></strong>.',
       'The resources detail info can be autoload, if it`s fine, then you can submit it.',
       'Select one or more tags that match the resources, which will play a significant role in your search results.',
       'After the submission of documents, may be approved by the management, the rules do not meet the seeds will be deleted directly.',
@@ -68,7 +68,43 @@
     TMDB_ID_OK: 'MDB ID is ok! Get info successfully',
     TMDB_ID_ERROR: 'MDB ID is error! Get info failed',
     TMDB_ID_REQUIRED: 'Please enter TMDB ID',
-    TMDB_MOVIE_INFO: 'The movie info from TMDB'
+    TMDB_MOVIE_INFO: 'The movie info from TMDB',
+    TMDB_IS_LOADING: 'Loading the movie info, please wait...',
+
+
+    ///////////////////////the movie db fields////////////////////////////////
+    TMDB_FIELDS: {
+      ID: 'id',
+      IMDB_ID: 'imdb_id',
+      IMDB_LINK: 'IMDB Link',
+      TMDB_LINK: 'TMDB Link',
+      HOMEPAGE: 'homepage',
+      ADULT: 'adult',
+      BUDGET: 'budget',
+      REVENUE: 'revenue',
+      ORIGINAL_LANGUAGE: 'original_language',
+      ORIGINAL_TITLE: 'original_title',
+      TITLE: 'title',
+      BELONGS_TO_COLLECTION: 'belongs_to_collection',
+      GENRES: 'genres',
+      OVERVIEW: 'overview',
+      POPULARITY: 'popularity',
+      PRODUCTION_COMPANIES: 'production_companies',
+      PRODUCTION_COUNTRIES: 'production_countries',
+      RELEASE_DATE: 'release_date',
+      RUNTIME: 'runtime',
+      SPOKEN_LANGUAGES: 'spoken_languages',
+      STATUS: 'status',
+      TAGLINE: 'tagline',
+      VIDEO: 'video',
+      VOTE_AVERAGE: 'vote_average',
+      VOTE_COUNT: 'vote_count',
+      VOTE_UNIT: 'users',
+      BACKDROP_PATH: 'backdrop_path',
+      POSTER_PATH: 'poster_path',
+
+      CAST: 'cast:'
+    }
   };
 
   // **************************************************

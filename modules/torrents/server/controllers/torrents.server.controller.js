@@ -27,7 +27,15 @@ exports.movieinfo = function (req, res) {
     if (err) {
       res.status(900).send(err);
     } else {
-      res.json(info);
+      tmdb.movieCredits({
+        id: req.params.tmdbid,
+        language: req.params.language
+      }, function (err, cinfo) {
+        if (!err) {
+          info.credits = cinfo;
+        }
+        res.json(info);
+      });
     }
   });
 };
