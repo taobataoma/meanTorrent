@@ -8,52 +8,78 @@ module.exports = {
   },
   resourcesTags: {
     movie: {
-      type: [
-        {name: 'Blu-ray', icon: ''},
-        {name: 'REMUX', icon: ''},
-        {name: 'Encode', icon: ''}
+      radio: [
+        {
+          name: 'TYPE',
+          value: [
+            {name: 'BLU_RAY', icon: ''},
+            {name: 'REMUX', icon: ''},
+            {name: 'ENCODE', icon: ''}
+          ]
+        },
+        {
+          name: 'RESOLUTION',
+          value: [
+            {name: 'S4K', icon: ''},
+            {name: 'S1080P', icon: ''},
+            {name: 'S720P', icon: ''}
+          ]
+        },
+        {
+          name: 'VIDEO',
+          value: [
+            {name: 'AVC', icon: ''},
+            {name: 'X265', icon: ''},
+            {name: 'X264', icon: ''}
+          ]
+        },
+        {
+          name: 'AUDIO',
+          value: [
+            {name: 'AAC', icon: ''},
+            {name: 'DTS', icon: ''},
+            {name: 'DTS_HD', icon: ''},
+            {name: 'ATMOS_TRUEHD', icon: ''}
+          ]
+        },
+        {
+          name: 'THREED',
+          value: [
+            {name: 'T3D', icon: ''},
+            {name: 'T2D', icon: ''},
+            {name: 'T2D_3D', icon: ''}
+          ]
+        },
+        {
+          name: 'REGION',
+          value: [
+            {name: 'CHINA', icon: ''},
+            {name: 'JAPAN', icon: ''},
+            {name: 'KOREA', icon: ''},
+            {name: 'INDIA', icon: ''},
+            {name: 'ARAB', icon: ''}
+          ]
+        },
       ],
-      size: [
-        {name: '4K', icon: ''},
-        {name: '1080p', icon: ''},
-        {name: '720p', icon: ''}
-      ],
-      video: [
-        {name: 'AVC', icon: ''},
-        {name: 'x265', icon: ''},
-        {name: 'x264', icon: ''}
-      ],
-      audio: [
-        {name: 'AAC', icon: ''},
-        {name: 'DTS', icon: ''},
-        {name: 'DTS-HD', icon: ''},
-        {name: 'Atmos-TrueHD', icon: ''}
-      ],
-      threed: [
-        {name: '3D', icon: ''},
-        {name: '2D', icon: ''},
-        {name: '2D-3D', icon: ''}
-      ],
-      top: [
-        {name: 'IMDB-top100', icon: ''},
-        {name: 'IMDB-top250', icon: ''},
-        {name: 'DOUBAN-top100', icon: ''},
-        {name: 'DOUBAN-top250', icon: ''}
-      ],
-      region: [
-        {name: 'china', icon: ''},
-        {name: 'Japan', icon: ''},
-        {name: 'Korea', icon: ''},
-        {name: 'India', icon: ''},
-        {name: 'Arab', icon: ''}
-      ],
-      modify: [
-        {name: 'DIY', icon: ''},
-        {name: 'GUOYU', icon: ''},
-        {name: 'ZHONGZI', icon: ''}
+      checkbox: [
+        {
+          name: 'RANKING',
+          value: [
+            {name: 'IMDB_TOP100', icon: ''},
+            {name: 'IMDB_TOP250', icon: ''},
+            {name: 'DOUBAN_TOP100', icon: ''},
+            {name: 'DOUBAN_TOP250', icon: ''}
+          ]
+        },
+        {
+          name: 'MODIFY',
+          value: [
+            {name: 'DIY', icon: ''},
+            {name: 'GUOPEI', icon: ''},
+            {name: 'ZHONGZI', icon: ''}
+          ]
+        }
       ]
-    },
-    mtv: {},
-    music: {}
+    }
   }
 };

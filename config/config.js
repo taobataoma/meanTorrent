@@ -187,11 +187,14 @@ var initGlobalConfig = function () {
   // Get the default config
   var defaultConfig = require(path.join(process.cwd(), 'config/env/default'));
 
+  // Get the torrent config
+  var torrentConfig = require(path.join(process.cwd(), 'config/env/torrents'));
+
   // Get the current config
   var environmentConfig = require(path.join(process.cwd(), 'config/env/', process.env.NODE_ENV)) || {};
 
   // Merge config files
-  var config = _.merge(defaultConfig, environmentConfig);
+  var config = _.merge(defaultConfig, environmentConfig, torrentConfig);
 
   // read package.json for MEAN.JS project information
   var pkg = require(path.resolve('./package.json'));

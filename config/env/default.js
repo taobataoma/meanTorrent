@@ -7,11 +7,6 @@ module.exports = {
     keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
-  //announce config
-  announce: {
-    url: 'http://localhost:3000/announce',
-    admin: 'admin@imean.io'
-  },
   db: {
     promise: global.Promise
   },
