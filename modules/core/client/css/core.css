@@ -67,6 +67,32 @@ a:hover .header-profile-image {
     line-height: 2;
 }
 
+.dl-horizontal .h-line .tradio {
+    margin-top: 6px;
+}
+
+.dl-horizontal .h-line .radio-inline {
+    min-width: 100px;
+}
+
+.dl-horizontal .h-line .tcheckbox {
+    margin-top: 8px;
+}
+
+.dl-horizontal .h-line .checkbox-inline {
+    min-width: 150px;
+}
+
 .cast-xs-info {
     font-size: 10px;
+}
+
+.view-footer{
+    color: #aaa;
+    font-size: 12px;
+}
+
+.view-footer .icon {
+    font-size: 20px;
+    margin-right: 15px;
 }

@@ -20,6 +20,17 @@ var TorrentSchema = new Schema({
     trim: true,
     required: 'info_hash cannot be blank'
   },
+  torrent_tmdb_id: {
+    type: String,
+    default: '',
+    trim: true,
+    required: 'tmdb id cannot be blank'
+  },
+  torrent_imdb_id: {
+    type: String,
+    default: '',
+    trim: true
+  },
   torrent_title: {
     type: String,
     default: '',
@@ -32,12 +43,7 @@ var TorrentSchema = new Schema({
     trim: true
   },
   torrent_tags: {
-    type: String,
-    default: '[0]',
-    trim: true
-  },
-  torrent_desc: {
-    type: String,
+    type: [String],
     default: '',
     trim: true
   },
@@ -45,6 +51,10 @@ var TorrentSchema = new Schema({
     type: String,
     default: '',
     trim: true
+  },
+  torrent_imdb_votes: {
+    type: Number,
+    default: 0
   },
   torrent_seeds: {
     type: Number,
@@ -66,6 +76,10 @@ var TorrentSchema = new Schema({
     type: String,
     default: '',
     trim: true
+  },
+  torrent_release: {
+    type: Date,
+    default: null
   },
   last_scrape: {
     type: Date,

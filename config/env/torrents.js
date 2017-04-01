@@ -59,7 +59,7 @@ module.exports = {
             {name: 'INDIA', icon: ''},
             {name: 'ARAB', icon: ''}
           ]
-        },
+        }
       ],
       checkbox: [
         {

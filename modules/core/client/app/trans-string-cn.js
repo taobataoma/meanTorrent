@@ -70,7 +70,14 @@
     TMDB_ID_REQUIRED: '请输入 TMDB ID',
     TMDB_MOVIE_INFO: 'TMDB 视频信息',
     TMDB_IS_LOADING: '正在检索视频信息，请稍候...',
+    SELECT_TAGS: '请为资源选择合适的标签',
+    TORRENTS_SUBMIT_UPLOADS: '同意上传协议，并提交',
+    SUBMIT_BUTTON: '已备妥，现在提交',
+    AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="#">协议条款</a>',
 
+    //footer view
+    MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',
+    GIT_REPO: 'Power by &copy;meanTottent，<a href="https://github.com/taobataoma/meanTorrent" target="_blank">GitHub 源码仓库</a>',
 
     ///////////////////////the movie db fields////////////////////////////////
     TMDB_FIELDS: {
@@ -102,8 +109,70 @@
       VOTE_UNIT: '人',
       BACKDROP_PATH: '背景海报',
       POSTER_PATH: '海报',
-
       CAST: '主演：'
+    },
+
+    /////////////////////////resources tag fields///////////////////////////////////
+    RESOURCESTAGS: {
+      TYPE: {
+        SELF: '类型',
+        BLU_RAY: 'BLU_RAY',
+        REMUX: 'REMUX',
+        ENCODE: 'ENCODE'
+      },
+
+      RESOLUTION: {
+        SELF: '解析度',
+        S4K: '4K',
+        S1080P: '1080P',
+        S720P: '720P'
+      },
+
+      VIDEO: {
+        SELF: '视频编码',
+        AVC: 'AVC',
+        X265: 'X265',
+        X264: 'X264'
+      },
+
+      AUDIO: {
+        SELF: '音频编码',
+        AAC: 'AAC',
+        DTS: 'DTS',
+        DTS_HD: 'DTS HD',
+        ATMOS_TRUEHD: 'Atmos TrueHD'
+      },
+
+      THREED: {
+        SELF: '2D/3D',
+        T2D: '2D',
+        T3D: '3D',
+        T2D_3D: '2D-3D'
+      },
+
+      RANKING: {
+        SELF: '排行榜',
+        IMDB_TOP100: 'IMDB TOP100',
+        IMDB_TOP250: 'IMDB TOP250',
+        DOUBAN_TOP100: '豆瓣 TOP100',
+        DOUBAN_TOP250: '豆瓣 TOP250'
+      },
+
+      REGION: {
+        SELF: '地区',
+        CHINA: '中国',
+        JAPAN: '日本',
+        KOREA: '韩国',
+        INDIA: '印度',
+        ARAB: '阿拉伯'
+      },
+
+      MODIFY: {
+        SELF: '后期编辑',
+        DIY: 'DIY',
+        GUOPEI: '国配',
+        ZHONGZI: '中字'
+      }
     }
   };
 

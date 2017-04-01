@@ -6,12 +6,13 @@
     .controller('TorrentsUploadsController', TorrentsUploadsController);
 
   TorrentsUploadsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'AnnounceConfig', 'Upload', 'Notification',
-    'TorrentsService'];
+    'TorrentsService', 'ResourcesTagsConfig'];
 
   function TorrentsUploadsController($scope, $state, $translate, $timeout, Authentication, AnnounceConfig, Upload, Notification,
-                                     TorrentsService) {
+                                     TorrentsService, ResourcesTagsConfig) {
     var vm = this;
     vm.announce = AnnounceConfig.announce;
+    vm.resourcesTags = ResourcesTagsConfig.resourcesTags;
     vm.rule_items = [];
     vm.movieinfoarray = [];
     vm.user = Authentication.user;
@@ -122,7 +123,7 @@
         //    vm.movieinfoarray.push(nv);
         //  }
         //}
-        console.log(vm.movieinfo);
+        //console.log(vm.movieinfo);
       }, function (err) {
         vm.tmdb_info_ok = false;
         vm.tmdb_isloading = false;

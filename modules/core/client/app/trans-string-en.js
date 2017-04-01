@@ -70,7 +70,14 @@
     TMDB_ID_REQUIRED: 'Please enter TMDB ID',
     TMDB_MOVIE_INFO: 'The movie info from TMDB',
     TMDB_IS_LOADING: 'Loading the movie info, please wait...',
+    SELECT_TAGS: 'Please select any tags for the resources',
+    TORRENTS_SUBMIT_UPLOADS: 'Agree the rules and submit your resources',
+    SUBMIT_BUTTON: 'OK, SUBMIT NOW',
+    AGREE_RULES: 'I agree and already read all the rules, <a href="#">read here</a>',
 
+    //footer view
+    MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',
+    GIT_REPO: 'Power by &copy;meanTottent，<a href="https://github.com/taobataoma/meanTorrent" target="_blank">view on GitHub</a>',
 
     ///////////////////////the movie db fields////////////////////////////////
     TMDB_FIELDS: {
@@ -102,8 +109,70 @@
       VOTE_UNIT: 'users',
       BACKDROP_PATH: 'backdrop_path',
       POSTER_PATH: 'poster_path',
-
       CAST: 'cast:'
+    },
+
+    /////////////////////////resources tag fields///////////////////////////////////
+    RESOURCESTAGS: {
+      TYPE: {
+        SELF: 'Type',
+        BLU_RAY: 'BLU_RAY',
+        REMUX: 'REMUX',
+        ENCODE: 'ENCODE'
+      },
+
+      RESOLUTION: {
+        SELF: 'Resolution',
+        S4K: '4K',
+        S1080P: '1080P',
+        S720P: '720P'
+      },
+
+      VIDEO: {
+        SELF: 'Video Codec',
+        AVC: 'AVC',
+        X265: 'X265',
+        X264: 'X264'
+      },
+
+      AUDIO: {
+        SELF: 'Audio Codec',
+        AAC: 'AAC',
+        DTS: 'DTS',
+        DTS_HD: 'DTS HD',
+        ATMOS_TRUEHD: 'Atmos TrueHD'
+      },
+
+      THREED: {
+        SELF: '2D/3D',
+        T2D: '2D',
+        T3D: '3D',
+        T2D_3D: '2D-3D'
+      },
+
+      RANKING: {
+        SELF: 'Ranking',
+        IMDB_TOP100: 'IMDB TOP100',
+        IMDB_TOP250: 'IMDB TOP250',
+        DOUBAN_TOP100: 'Douban TOP100',
+        DOUBAN_TOP250: 'Douban TOP250'
+      },
+
+      REGION: {
+        SELF: 'Region',
+        CHINA: 'China',
+        JAPAN: 'Japan',
+        KOREA: 'Korea',
+        INDIA: 'India',
+        ARAB: 'Arab'
+      },
+
+      MODIFY: {
+        SELF: 'Modify',
+        DIY: 'DIY',
+        GUOPEI: 'Mandarin',
+        ZHONGZI: 'Chinese Subtitle'
+      }
     }
   };
 

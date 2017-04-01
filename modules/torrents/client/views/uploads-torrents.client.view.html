@@ -97,7 +97,8 @@
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
                     <dd class="h-line">
-                        <span ng-repeat="item in vm.movieinfo.production_countries">{{item.iso_3166_1}} <span ng-show="$index < vm.movieinfo.production_countries.length - 1">|</span> </span>
+                        <span ng-repeat="item in vm.movieinfo.production_countries">{{item.iso_3166_1}} <span
+                                ng-show="$index < vm.movieinfo.production_countries.length - 1">|</span> </span>
                     </dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
@@ -116,10 +117,12 @@
                     <dd class="h-line">{{vm.movieinfo.vote_average}} / {{vm.movieinfo.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>
-                    <dd class="h-line"><a href="https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}" target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}</a></dd>
+                    <dd class="h-line"><a href="https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}"
+                                          target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}</a></dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>
-                    <dd class="h-line"><a href="https://www.themoviedb.org/movie/{{vm.movieinfo.id}}" target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.id}}</a></dd>
+                    <dd class="h-line"><a href="https://www.themoviedb.org/movie/{{vm.movieinfo.id}}"
+                                          target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.id}}</a></dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                     <dd class="h-line">{{vm.movieinfo.overview}}</dd>
@@ -127,38 +130,94 @@
                 <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
                 <div class="row">
                     <div class="col-xs-4 col-md-2 text-center">
-                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[0].profile_path}}" class="img-circle img-responsive">
+                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[0].profile_path}}"
+                             class="img-circle img-responsive">
                         <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[0].name}}</strong></span>
-                        <span class="cast-xs-info">{{vm.movieinfo.credits.cast[0].character}}</span>
+
+                        <p class="cast-xs-info">{{vm.movieinfo.credits.cast[0].character}}</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[1].profile_path}}" class="img-circle img-responsive">
+                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[1].profile_path}}"
+                             class="img-circle img-responsive">
                         <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[1].name}}</strong></span>
-                        <span class="cast-xs-info">{{vm.movieinfo.credits.cast[1].character}}</span>
+
+                        <p class="cast-xs-info">{{vm.movieinfo.credits.cast[1].character}}</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[2].profile_path}}" class="img-circle img-responsive">
+                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[2].profile_path}}"
+                             class="img-circle img-responsive">
                         <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[2].name}}</strong></span>
-                        <span class="cast-xs-info">{{vm.movieinfo.credits.cast[2].character}}</span>
+
+                        <p class="cast-xs-info">{{vm.movieinfo.credits.cast[2].character}}</p>
                     </div>
+                    <div class="clearfix visible-xs-block visible-sm-block"></div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[3].profile_path}}" class="img-circle img-responsive">
+                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[3].profile_path}}"
+                             class="img-circle img-responsive">
                         <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[3].name}}</strong></span>
-                        <span class="cast-xs-info">{{vm.movieinfo.credits.cast[3].character}}</span>
+
+                        <p class="cast-xs-info">{{vm.movieinfo.credits.cast[3].character}}</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[4].profile_path}}" class="img-circle img-responsive">
+                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[4].profile_path}}"
+                             class="img-circle img-responsive">
                         <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[4].name}}</strong></span>
-                        <span class="cast-xs-info">{{vm.movieinfo.credits.cast[4].character}}</span>
+
+                        <p class="cast-xs-info">{{vm.movieinfo.credits.cast[4].character}}</p>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center">
-                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[5].profile_path}}" class="img-circle img-responsive">
+                        <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[5].profile_path}}"
+                             class="img-circle img-responsive">
                         <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[5].name}}</strong></span>
-                        <span class="cast-xs-info">{{vm.movieinfo.credits.cast[5].character}}</span>
+
+                        <p class="cast-xs-info">{{vm.movieinfo.credits.cast[5].character}}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="row" ng-show="vm.tmdb_info_ok == true" style="margin-top: 40px;">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <legend class="small-legend" translate="SELECT_TAGS"></legend>
+            <dl class="dl-horizontal">
+                <div ng-repeat="item in vm.resourcesTags.movie.radio">
+                    <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                    <dd class="h-line">
+                        <label class="radio-inline" ng-repeat="sitem in item.value">
+                            <input type="radio" class="tradio" name="tag_{{item.name}}" id="radio_{{item.name}}{{$index}}"
+                                   value="{{sitem.name}}"> {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                        </label>
+                    </dd>
+                </div>
+
+                <div style="margin-top: 30px;"></div>
+
+                <div ng-repeat="item in vm.resourcesTags.movie.checkbox">
+                    <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                    <dd class="h-line">
+                        <label class="checkbox-inline" ng-repeat="sitem in item.value">
+                            <input type="checkbox" class="tcheckbox" id="checkbox_{{item.name}}_{{sitem.name}}"
+                                   value="{{sitem.name}}"> {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                        </label>
+                    </dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+
+    <div class="row" ng-show="vm.tmdb_info_ok == true" style="margin-top: 60px;">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <legend class="small-legend" translate="TORRENTS_SUBMIT_UPLOADS"></legend>
+            <div class="col-sm-6 col-sm-offset-3 text-center">
+                <label class="checkbox text-uppercase">
+                    <input type="checkbox" id="agreeCheckbox" ng-model="vm.agreeRules">
+                    <span translate="AGREE_RULES"></span>
+                </label>
+            </div>
+            <div class="col-sm-4 col-sm-offset-4">
+                <button class="btn btn-lg btn-block btn-success" ng-class="{'disabled': !vm.agreeRules}">{{ 'SUBMIT_BUTTON' | translate}}</button>
+            </div>
+        </div>
+    </div>
 </section>
