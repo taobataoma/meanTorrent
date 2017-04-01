@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <legend class="small-legend" translate="SELECT_TORRENT_FILE"></legend>
-            <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="col-sm-7">
                 <div class="input-group">
                     <input type="text" class="form-control" ng-model="tFile.name" disabled>
 
@@ -29,13 +29,13 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="vm.fileSelected" class="col-md-4 col-sm-4 col-xs-12">
+            <div ng-show="vm.fileSelected" class="col-sm-5">
                 <button class="btn btn-success" ng-click="vm.upload(tFile)">{{ 'DO_UPLOADS' | translate}} ({{vm.progress}}%)</button>
             </div>
-            <div ng-show="vm.successfully == true" class="col-md-4 col-sm-4 col-xs-12" style="margin-top: 7px">
+            <div ng-show="vm.successfully == true" class="col-sm-5" style="margin-top: 7px">
                 <label class="text-success control-label" translate="TORRENTS_UPLOAD_SUCCESSFULLY"></label>
             </div>
-            <div ng-show="vm.successfully == false" class="col-md-4 col-sm-4 col-xs-12" style="margin-top: 7px">
+            <div ng-show="vm.successfully == false" class="col-sm-5" style="margin-top: 7px">
                 <label class="text-danger control-label" translate="TORRENTS_UPLOAD_FAILED"></label>
             </div>
         </div>

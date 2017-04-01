@@ -19,6 +19,7 @@
     vm.progress = 0;
     vm.successfully = undefined;
     vm.tmdb_info_ok = undefined;
+    vm.info_hash = '';
 
     for (var i = 0; i < $translate.instant('UPLOADS_RULES_COUNT'); i++) {
       vm.rule_items[i] = i;
@@ -31,7 +32,7 @@
 
     //******************** begin upload torrent file *********************
     vm.upload = function (dataUrl) {
-      console.log(dataUrl);
+      //console.log(dataUrl);
 
       if (dataUrl === null || dataUrl === undefined) {
         vm.fileSelected = false;
@@ -63,6 +64,8 @@
       vm.fileSelected = false;
       vm.successfully = true;
       // Show success message
+      console.log(response);
+      vm.info_hash = response.data;
       Notification.success({
         message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENTS_UPLOAD_SUCCESSFULLY')
       });
@@ -72,6 +75,7 @@
       vm.fileSelected = false;
       vm.successfully = false;
       vm.tFile = undefined;
+      vm.error_msg = response.data;
       // Show error message
       Notification.error({
         message: response.data,

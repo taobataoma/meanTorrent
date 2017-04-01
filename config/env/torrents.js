@@ -3,8 +3,9 @@
 module.exports = {
   //announce config
   announce: {
-    url: 'http://localhost:3000/announce',
-    admin: 'admin@imean.io'
+    url: 'http://127.0.0.1:3000/announce',
+    admin: 'admin@imean.io',
+    open_tracker: false
   },
   resourcesTags: {
     movie: {

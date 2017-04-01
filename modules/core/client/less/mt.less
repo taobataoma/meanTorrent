@@ -7,7 +7,7 @@
     //filter: blur(1px);
     .filter {
         background-color: #2a2730;
-        background-color: rgba(0, 0, 0, .55);
+        background-color: rgba(0, 0, 0, .6);
         //opacity: 0.5;
         padding-top: 30px;
         padding-bottom: 30px;
@@ -19,11 +19,27 @@
     .topone {
         color: #ccc;
         img {
+            opacity:0;
+            transition-property: transform,opacity;
+            transition-duration: 1s;
+            transition-timing-function: ease;
+
+            cursor: pointer;
             max-height: 400px;
+            //transition: transform .5s ease-in-out;
+            &:hover {
+                transform: scale(1.1);
+            }
         }
         legend {
             color: #ccc;
         }
+        .img-circle {
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+
         .down-torrent {
             margin-top: 10px;
             margin-left: 40px;

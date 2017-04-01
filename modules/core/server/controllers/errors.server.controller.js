@@ -54,6 +54,9 @@ exports.getErrorMessage = function (err) {
       case 'LIMIT_UNEXPECTED_FILE':
         message = 'Missing `newProfilePicture` field';
         break;
+      case 'FILE_ALREADY_EXISTS':
+        message = 'File already exists';
+        break;
       default:
         message = 'Something went wrong';
     }

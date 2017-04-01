@@ -10,6 +10,7 @@ var path = require('path'),
   multer = require('multer'),
   User = mongoose.model('User'),
   fs = require('fs'),
+  nt = require('nt'),
   validator = require('validator'),
   tmdb = require('moviedb')('7888f0042a366f63289ff571b68b7ce0');
 
@@ -42,18 +43,24 @@ exports.movieinfo = function (req, res) {
 
 exports.upload = function (req, res) {
   var user = req.user;
-  //var existingFileUrl;
+  var createUploadFilename = require(path.resolve('./config/lib/multer')).createUploadFilename;
+  var getUploadDestination = require(path.resolve('./config/lib/multer')).getUploadDestination;
+  var fileFiletr = require(path.resolve('./config/lib/multer')).torrentFileFilter;
+  var info_hash = '';
 
-  // Filtering to upload only images
-  var multerConfig = config.uploads.torrent.file;
-  multerConfig.fileFilter = require(path.resolve('./config/lib/multer')).torrentFileFilter;
-  var upload = multer(multerConfig).single('newTorrentFile');
+  var storage = multer.diskStorage({
+    destination: getUploadDestination,
+    filename: createUploadFilename
+  });
+
+  var upload = multer({storage: storage}).single('newTorrentFile');
+  upload.fileFilter = fileFiletr;
 
   if (user) {
-    //existingFileUrl = user.profileImageURL;
     uploadFile()
+      .then(checkAnnounce)
       .then(function () {
-        res.json(user);
+        res.status(200).send(info_hash);
       })
       .catch(function (err) {
         res.status(422).send(err);
@@ -77,6 +84,38 @@ exports.upload = function (req, res) {
           //reject(errorHandler.getErrorMessage(uploadError));
           reject(message);
         } else {
+          resolve();
+        }
+      });
+    });
+  }
+
+  function checkAnnounce() {
+    return new Promise(function (resolve, reject) {
+      var newfile = config.uploads.torrent.file.dest + req.file.filename;
+      nt.read(newfile, function (err, torrent) {
+        var message = '';
+
+        if (err) {
+          message = 'Read torrent file faild';
+          reject(message);
+        } else {
+          if (!config.announce.open_tracker) {
+            if (torrent.metadata.announce !== config.announce.url) {
+              console.log(torrent.metadata.announce);
+              message = 'The private tracker announce url must be: ' + config.announce.url;
+
+              fs.unlink(newfile, function (unlinkError) {
+                if (unlinkError) {
+                  console.log(unlinkError);
+                  message = 'Error occurred while deleting old profile picture';
+                  reject(message);
+                }
+              });
+              reject(message);
+            }
+          }
+          info_hash = torrent.infoHash();
           resolve();
         }
       });

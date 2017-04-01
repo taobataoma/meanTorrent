@@ -5,9 +5,10 @@
                 <div ng-show="!vm.info_is_ready" class="text-center loading">
                     <h3 translate="LOADING_TOP" class="text-capitalize"></h3>
                 </div>
-                <div class="topone" ng-show="vm.info_is_ready">
+                <div class="topone fadein" ng-show="vm.info_is_ready">
                     <div class="col-md-4">
-                        <img src="http://image.tmdb.org/t/p/w500{{vm.movieinfo.poster_path}}" class=" img-thumbnail center-block">
+                        <img src="http://image.tmdb.org/t/p/w500{{vm.movieinfo.poster_path}}" class="img-thumbnail center-block"
+                                onload="this.style.opacity='1';">
                         <div class="down-torrent">
                             <button class="btn btn-success btn-block" translate="DOWNLOAD_TORRENT"></button>
                         </div>
@@ -65,21 +66,21 @@
                         <div class="row">
                             <div class="col-xs-4 col-md-2 text-center">
                                 <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[0].profile_path}}"
-                                     class="img-circle img-responsive center-block">
+                                     class="img-circle img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[0].name}}</strong></span>
 
                                 <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[0].character}}</p>-->
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
                                 <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[1].profile_path}}"
-                                     class="img-circle img-responsive center-block">
+                                     class="img-circle img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[1].name}}</strong></span>
 
                                 <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[1].character}}</p>-->
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
                                 <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[2].profile_path}}"
-                                     class="img-circle img-responsive center-block">
+                                     class="img-circle img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[2].name}}</strong></span>
 
                                 <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[2].character}}</p>-->
@@ -87,21 +88,21 @@
                             <div class="clearfix visible-xs-block visible-sm-block"></div>
                             <div class="col-xs-4 col-md-2 text-center">
                                 <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[3].profile_path}}"
-                                     class="img-circle img-responsive center-block">
+                                     class="img-circle img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[3].name}}</strong></span>
 
                                 <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[3].character}}</p>-->
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
                                 <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[4].profile_path}}"
-                                     class="img-circle img-responsive center-block">
+                                     class="img-circle img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[4].name}}</strong></span>
 
                                 <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[4].character}}</p>-->
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
                                 <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[5].profile_path}}"
-                                     class="img-circle img-responsive center-block">
+                                     class="img-circle img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[5].name}}</strong></span>
 
                                 <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[5].character}}</p>-->
