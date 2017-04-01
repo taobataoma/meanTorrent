@@ -2,7 +2,10 @@
     <div class="backdrop">
         <div class="filter">
             <div class="container">
-                <div class="topone">
+                <div ng-show="!vm.info_is_ready" class="text-center loading">
+                    <h3 translate="LOADING_TOP" class="text-capitalize"></h3>
+                </div>
+                <div class="topone" ng-show="vm.info_is_ready">
                     <div class="col-md-4">
                         <img src="http://image.tmdb.org/t/p/w500{{vm.movieinfo.poster_path}}" class=" img-thumbnail center-block">
                         <div class="down-torrent">

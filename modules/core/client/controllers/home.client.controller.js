@@ -9,7 +9,7 @@
 
   function HomeController($scope, $translate, TorrentsService, Notification) {
     var vm = this;
-
+    vm.info_is_ready = false;
     //$translate.use('en');
 
     vm.COMING = 'coming soon...';
@@ -24,6 +24,7 @@
         });
 
         vm.movieinfo = res;
+        vm.info_is_ready = true;
         $('.backdrop').css('backgroundImage', 'url(http://image.tmdb.org/t/p/w500' + res.backdrop_path + ')');
       }, function (err) {
         Notification.error({
