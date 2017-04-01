@@ -1,9 +1,116 @@
-<section>
-  <div class="jumbotron text-center">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <h1 translate="COMINGSOON"></h1>
-      </div>
+<section ng-controller="HomeController as vm" ng-init="vm.initInfo();">
+    <div class="backdrop">
+        <div class="filter">
+            <div class="container">
+                <div class="topone">
+                    <div class="col-md-4">
+                        <img src="http://image.tmdb.org/t/p/w500{{vm.movieinfo.poster_path}}" class=" img-thumbnail center-block">
+                        <div class="down-torrent">
+                            <button class="btn btn-success btn-block" translate="DOWNLOAD_TORRENT"></button>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <dl class="dl-horizontal">
+                            <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_TITLE' | translate}}：</dt>
+                            <dd class="h-line">{{vm.movieinfo.original_title}}</dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
+                            <dd class="h-line">{{vm.movieinfo.title}}</dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_LANGUAGE' | translate}}：</dt>
+                            <dd class="h-line">{{vm.movieinfo.original_language}}</dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.GENRES' | translate}}：</dt>
+                            <dd class="h-line">
+                                <span ng-repeat="item in vm.movieinfo.genres">{{item.name}} <span
+                                        ng-show="$index < vm.movieinfo.genres.length - 1">|</span> </span>
+                            </dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
+                            <dd class="h-line">
+                                    <span ng-repeat="item in vm.movieinfo.production_countries">{{item.iso_3166_1}} <span
+                                            ng-show="$index < vm.movieinfo.production_countries.length - 1">|</span> </span>
+                            </dd>
+
+                            <!--<dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>-->
+                            <!--<dd class="h-line">{{vm.movieinfo.release_date}}</dd>-->
+
+                            <!--<dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>-->
+                            <!--<dd class="h-line">{{vm.movieinfo.runtime}}</dd>-->
+
+                            <!--<dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>-->
+                            <!--<dd class="h-line">${{vm.movieinfo.budget}}</dd>-->
+
+                            <!--<dt class="h-line">{{ 'TMDB_FIELDS.REVENUE' | translate}}：</dt>-->
+                            <!--<dd class="h-line">${{vm.movieinfo.revenue}}</dd>-->
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
+                            <dd class="h-line">{{vm.movieinfo.vote_average}} / {{vm.movieinfo.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</dd>
+
+                            <!--<dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>-->
+                            <!--<dd class="h-line"><a href="https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}"-->
+                                                  <!--target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}</a></dd>-->
+
+                            <!--<dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>-->
+                            <!--<dd class="h-line"><a href="https://www.themoviedb.org/movie/{{vm.movieinfo.id}}"-->
+                                                  <!--target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.id}}</a></dd>-->
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
+                            <dd class="h-line">{{vm.movieinfo.overview}}</dd>
+                        </dl>
+                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
+                        <div class="row">
+                            <div class="col-xs-4 col-md-2 text-center">
+                                <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[0].profile_path}}"
+                                     class="img-circle img-responsive center-block">
+                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[0].name}}</strong></span>
+
+                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[0].character}}</p>-->
+                            </div>
+                            <div class="col-xs-4 col-md-2 text-center">
+                                <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[1].profile_path}}"
+                                     class="img-circle img-responsive center-block">
+                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[1].name}}</strong></span>
+
+                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[1].character}}</p>-->
+                            </div>
+                            <div class="col-xs-4 col-md-2 text-center">
+                                <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[2].profile_path}}"
+                                     class="img-circle img-responsive center-block">
+                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[2].name}}</strong></span>
+
+                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[2].character}}</p>-->
+                            </div>
+                            <div class="clearfix visible-xs-block visible-sm-block"></div>
+                            <div class="col-xs-4 col-md-2 text-center">
+                                <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[3].profile_path}}"
+                                     class="img-circle img-responsive center-block">
+                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[3].name}}</strong></span>
+
+                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[3].character}}</p>-->
+                            </div>
+                            <div class="col-xs-4 col-md-2 text-center">
+                                <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[4].profile_path}}"
+                                     class="img-circle img-responsive center-block">
+                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[4].name}}</strong></span>
+
+                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[4].character}}</p>-->
+                            </div>
+                            <div class="col-xs-4 col-md-2 text-center">
+                                <img src="http://image.tmdb.org/t/p/w132_and_h132_bestv2/{{vm.movieinfo.credits.cast[5].profile_path}}"
+                                     class="img-circle img-responsive center-block">
+                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[5].name}}</strong></span>
+
+                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[5].character}}</p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div class="container" style="background-color: #efefef;">
+
+    </div>
 </section>

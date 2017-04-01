@@ -10,13 +10,11 @@ module.exports = {
         'public/lib/angular-ui-notification/dist/angular-ui-notification.min.css',
         'public/lib/bootstrap/dist/css/bootstrap.min.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-        'public/lib/Ionicons/css/ionicons.min.css'
+        'public/lib/Ionicons/css/ionicons.min.css',
         // endbower
       ],
       js: [
         // bower:js
-        'public/lib/jquery/dist/jquery.min.js',
-        'public/lib/bootstrap/dist/js/bootstrap.min.js',
         'public/lib/angular/angular.min.js',
         'public/lib/angular-animate/angular-animate.min.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
@@ -28,7 +26,7 @@ module.exports = {
         'public/lib/ng-file-upload/ng-file-upload.min.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         'public/lib/angular-translate/angular-translate.min.js',
-        'public/lib/bootstrap-filestyle/src/bootstrap-filestyle.min.js'
+        'public/lib/bootstrap-filestyle/src/bootstrap-filestyle.min.js',
         // endbower
       ]
     },

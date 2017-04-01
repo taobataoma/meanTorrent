@@ -74,6 +74,7 @@
     TORRENTS_SUBMIT_UPLOADS: 'Agree the rules and submit your resources',
     SUBMIT_BUTTON: 'OK, SUBMIT NOW',
     AGREE_RULES: 'I agree and already read all the rules, <a href="#">read here</a>',
+    DOWNLOAD_TORRENT: 'Download Torrent',
 
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',
