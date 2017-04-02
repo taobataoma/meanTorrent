@@ -20,6 +20,12 @@ var TorrentSchema = new Schema({
     trim: true,
     required: 'info_hash cannot be blank'
   },
+  torrent_filename: {
+    type: String,
+    default: '',
+    trim: true,
+    required: 'filename cannot be blank'
+  },
   torrent_tmdb_id: {
     type: String,
     default: '',

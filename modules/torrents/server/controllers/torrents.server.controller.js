@@ -52,7 +52,7 @@ exports.upload = function (req, res) {
   var createUploadFilename = require(path.resolve('./config/lib/multer')).createUploadFilename;
   var getUploadDestination = require(path.resolve('./config/lib/multer')).getUploadDestination;
   var fileFiletr = require(path.resolve('./config/lib/multer')).torrentFileFilter;
-  var info_hash = '';
+  var torrentinfo = null;
 
   var storage = multer.diskStorage({
     destination: getUploadDestination,
@@ -67,7 +67,7 @@ exports.upload = function (req, res) {
       .then(checkAnnounce)
       .then(checkHash)
       .then(function () {
-        res.status(200).send(info_hash);
+        res.status(200).send(torrentinfo);
       })
       .catch(function (err) {
         res.status(422).send(err);
@@ -122,7 +122,8 @@ exports.upload = function (req, res) {
               reject(message);
             }
           }
-          info_hash = torrent.infoHash();
+          torrentinfo = torrent.metadata;
+          torrentinfo.info_hash = torrent.infoHash();
           resolve();
         }
       });
@@ -134,12 +135,12 @@ exports.upload = function (req, res) {
       var newfile = config.uploads.torrent.file.dest + req.file.filename;
       var message = '';
 
-      if (info_hash === '') {
+      if (torrentinfo.info_hash === '' || !torrentinfo.info_hash) {
         message = 'INFO_HASH_IS_EMPTY';
         reject(message);
       } else {
         Torrent.findOne({
-          info_hash: info_hash
+          info_hash: torrentinfo.info_hash
         }).exec(function (err, torrent) {
           if (err) {
             reject(err);

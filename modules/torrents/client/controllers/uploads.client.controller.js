@@ -20,7 +20,8 @@
     vm.progress = 0;
     vm.successfully = undefined;
     vm.tmdb_info_ok = undefined;
-    vm.info_hash = '';
+    vm.torrentInfo = null;
+    vm.tags = [];
 
     for (var i = 0; i < $translate.instant('UPLOADS_RULES_COUNT'); i++) {
       vm.rule_items[i] = i;
@@ -66,7 +67,7 @@
       vm.successfully = true;
       // Show success message
       console.log(response);
-      vm.info_hash = response.data;
+      vm.torrentInfo = response.data;
       Notification.success({
         message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENTS_UPLOAD_SUCCESSFULLY')
       });
@@ -76,7 +77,6 @@
       vm.fileSelected = false;
       vm.successfully = false;
       vm.tFile = undefined;
-      vm.error_msg = response.data;
       // Show error message
       Notification.error({
         message: response.data,
@@ -87,7 +87,7 @@
     //************** begin get tmdb info ***********************************
     vm.onTMDBIDKeyDown = function (evt) {
       if (evt.keyCode === 13) {
-        vm.getInfo(vm.tmdbid);
+        vm.getInfo(vm.tmdb_id);
       }
     };
 
@@ -118,17 +118,6 @@
 
         console.log(res);
         vm.movieinfo = res;
-        //for (var item in res) {
-        //  if (item[0] !== '$' && item !== 'toJSON') {
-        //    var value = res[item];
-        //    var nv = {
-        //      key: item,
-        //      value: value
-        //    };
-        //    vm.movieinfoarray.push(nv);
-        //  }
-        //}
-        //console.log(vm.movieinfo);
       }, function (err) {
         vm.tmdb_info_ok = false;
         vm.tmdb_isloading = false;
@@ -139,5 +128,68 @@
       });
     };
 
+    vm.create = function () {
+      var d = new Date(vm.movieinfo.release_date);
+      var l = 0;
+
+      //console.log(vm.torrentInfo);
+
+      angular.forEach(vm.torrentInfo.info.files, function (item) {
+        l = l + item.length;
+      });
+
+      var t = [];
+      angular.forEach(vm.resourcesTags.movie.radio, function (item) {
+        if (vm.tags['tag_' + item.name]) {
+          t.push(vm.tags['tag_' + item.name]);
+        }
+      });
+      angular.forEach(vm.resourcesTags.movie.checkbox, function (item) {
+        angular.forEach(item.value, function (sitem) {
+          if (vm.tags['tag_' + item.name + '_' + sitem.name]) {
+            t.push(sitem.name);
+          }
+        });
+      });
+
+      var torrent = new TorrentsService({
+        info_hash: vm.torrentInfo.info_hash,
+        torrent_filename: vm.tFile.name,
+        torrent_tmdb_id: vm.tmdb_id,
+        torrent_imdb_id: vm.movieinfo.imdb_id,
+        torrent_title: vm.movieinfo.title,
+        torrent_type: 'movie',
+        torrent_tags: t,
+        torrent_announce: vm.torrentInfo.announce,
+        torrent_imdb_votes: vm.movieinfo.vote_average,
+        torrent_size: l,
+        torrent_img: vm.movieinfo.poster_path,
+        torrent_release: d.getFullYear()
+      });
+
+      console.log(torrent);
+
+      torrent.$save(function (response) {
+        successCallback(response);
+      }, function (errorResponse) {
+        errorCallback(errorResponse);
+      });
+
+      function successCallback(res) {
+        $state.reload('torrents.uploads');
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
+      }
+
+      function errorCallback(res) {
+        vm.error_msg = res.data.message;
+        Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Torrent created error!'});
+      }
+    };
+
+    vm.cancel = function () {
+      $state.reload('torrents.uploads');
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+    };
   }
 }());

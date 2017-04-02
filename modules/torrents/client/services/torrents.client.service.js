@@ -9,7 +9,7 @@
   TorrentsService.$inject = ['$resource'];
 
   function TorrentsService($resource) {
-    var Torrents = $resource('/api/torrents', {}, {
+    var Torrents = $resource('/api/torrents/:torrentId', {}, {
       update: {
         method: 'POST'
       },

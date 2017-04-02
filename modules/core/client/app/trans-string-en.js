@@ -73,6 +73,7 @@
     SELECT_TAGS: 'Please select any tags for the resources',
     TORRENTS_SUBMIT_UPLOADS: 'Agree the rules and submit your resources',
     SUBMIT_BUTTON: 'OK, SUBMIT NOW',
+    CANCEL_BUTTON: 'NO, CANCEL IT',
     AGREE_RULES: 'I agree and already read all the rules, <a href="#">read here</a>',
     DOWNLOAD_TORRENT: 'Download Torrent',
     LOADING_TOP: 'Loading recommended info, please waiting...',

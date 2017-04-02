@@ -73,6 +73,7 @@
     SELECT_TAGS: '请为资源选择合适的标签',
     TORRENTS_SUBMIT_UPLOADS: '同意上传协议，并提交',
     SUBMIT_BUTTON: '已备妥，现在提交',
+    CANCEL_BUTTON: '算了，以后再说',
     AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="#">协议条款</a>',
     DOWNLOAD_TORRENT: '下载种子',
     LOADING_TOP: '正在推荐资源，请稍候...',
