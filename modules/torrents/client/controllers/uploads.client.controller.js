@@ -6,12 +6,13 @@
     .controller('TorrentsUploadsController', TorrentsUploadsController);
 
   TorrentsUploadsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'AnnounceConfig', 'Upload', 'Notification',
-    'TorrentsService', 'ResourcesTagsConfig'];
+    'TorrentsService', 'ResourcesTagsConfig', 'TMDBConfig'];
 
   function TorrentsUploadsController($scope, $state, $translate, $timeout, Authentication, AnnounceConfig, Upload, Notification,
-                                     TorrentsService, ResourcesTagsConfig) {
+                                     TorrentsService, ResourcesTagsConfig, TMDBConfig) {
     var vm = this;
     vm.announce = AnnounceConfig.announce;
+    vm.tmdbConfig = TMDBConfig.tmdbConfig;
     vm.resourcesTags = ResourcesTagsConfig.resourcesTags;
     vm.rule_items = [];
     vm.movieinfoarray = [];
