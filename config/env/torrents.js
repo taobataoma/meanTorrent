@@ -7,6 +7,10 @@ module.exports = {
     admin: 'admin@imean.io',
     open_tracker: false
   },
+  tmdb_api: {
+    //please change it to your api key from themoviedb.org
+    key: '7888f0042a366f63289ff571b68b7ce0'
+  },
   resourcesTags: {
     movie: {
       radio: [
