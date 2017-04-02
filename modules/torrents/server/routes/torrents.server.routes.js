@@ -13,4 +13,14 @@ module.exports = function (app) {
   app.route('/api/torrents/upload')
     .post(torrents.upload);
 
+  app.route('/api/torrents')
+    .get(torrents.list)
+    .post(torrents.create);
+
+  app.route('/api/torrents/:torrentId')
+    .get(torrents.read)
+    .put(torrents.update)
+    .delete(torrents.delete);
+
+  app.param('torrentId', torrents.torrentByID);
 };

@@ -42,6 +42,11 @@ exports.movieinfo = function (req, res) {
   });
 };
 
+/**
+ * upload torrent file
+ * @param req
+ * @param res
+ */
 exports.upload = function (req, res) {
   var user = req.user;
   var createUploadFilename = require(path.resolve('./config/lib/multer')).createUploadFilename;
@@ -135,11 +140,11 @@ exports.upload = function (req, res) {
       } else {
         Torrent.findOne({
           info_hash: info_hash
-        }).exec(function (err, torr) {
+        }).exec(function (err, torrent) {
           if (err) {
             reject(err);
           } else {
-            if (torr) {
+            if (torrent) {
               message = 'INFO_HASH_ALREADY_EXISTS';
 
               fs.unlink(newfile, function (unlinkError) {
@@ -160,5 +165,125 @@ exports.upload = function (req, res) {
     });
   }
 
+};
+
+/**
+ * create a torrent
+ * @param req
+ * @param res
+ */
+exports.create = function (req, res) {
+  var torrent = new Torrent(req.body);
+  torrent.user = req.user;
+
+  torrent.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(torrent);
+    }
+  });
+};
+
+/**
+ * read a torrent
+ * @param req
+ * @param res
+ */
+exports.read = function (req, res) {
+  // convert mongoose document to JSON
+  var torrent = req.torrent ? req.torrent.toJSON() : {};
+
+  // Add a custom field to the Article, for determining if the current User is the "owner".
+  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
+  torrent.isCurrentUserOwner = !!(req.user && torrent.user && torrent.user._id.toString() === req.user._id.toString());
+
+  res.json(torrent);
+};
+
+/**
+ * update a torrent
+ * @param req
+ * @param res
+ */
+exports.update = function (req, res) {
+  var torrent = req.torrent;
+
+  torrent.info_hash = req.body.info_hash;
+  torrent.tmdb_id = req.body.tmdb_id;
+
+  // ********** add other fileds value ***************
+
+  torrent.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(torrent);
+    }
+  });
+};
+
+/**
+ * delete a torrent
+ * @param req
+ * @param res
+ */
+exports.delete = function (req, res) {
+  var torrent = req.torrent;
+
+  torrent.remove(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(torrent);
+    }
+  });
+};
+
+/**
+ * list all torrents
+ * @param req
+ * @param res
+ */
+exports.list = function (req, res) {
+  Torrent.find().sort('-createdat').populate('user', 'displayName').exec(function (err, torrents) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(torrents);
+    }
+  });
+};
+
+/**
+ * Torrent middleware
+ */
+exports.torrentByID = function (req, res, next, id) {
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'TORRENT_ID_INVALID'
+    });
+  }
+
+  Torrent.findById(id).populate('user', 'displayName').exec(function (err, torrent) {
+    if (err) {
+      return next(err);
+    } else if (!torrent) {
+      return res.status(404).send({
+        message: 'No torrent with that id has been found'
+      });
+    }
+    req.torrent = torrent;
+    next();
+  });
 };
 
