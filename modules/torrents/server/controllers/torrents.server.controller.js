@@ -13,7 +13,7 @@ var path = require('path'),
   fs = require('fs'),
   nt = require('nt'),
   validator = require('validator'),
-  tmdb = require('moviedb')(config.tmdb_api.key);
+  tmdb = require('moviedb')(config.tmdbConfig.key);
 
 /**
  * Create an article

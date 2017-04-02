@@ -28,6 +28,7 @@ exports.renderIndex = function (req, res) {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared),
     announce: JSON.stringify(config.announce),
+    tmdbConfig: JSON.stringify(config.tmdbConfig),
     resourcesTags: JSON.stringify(config.resourcesTags)
   });
 };
