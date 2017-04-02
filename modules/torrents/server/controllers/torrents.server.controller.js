@@ -9,10 +9,11 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   multer = require('multer'),
   User = mongoose.model('User'),
+  Torrent = mongoose.model('Torrent'),
   fs = require('fs'),
   nt = require('nt'),
   validator = require('validator'),
-  tmdb = require('moviedb')('7888f0042a366f63289ff571b68b7ce0');
+  tmdb = require('moviedb')(config.tmdb_api.key);
 
 /**
  * Create an article
@@ -59,6 +60,7 @@ exports.upload = function (req, res) {
   if (user) {
     uploadFile()
       .then(checkAnnounce)
+      .then(checkHash)
       .then(function () {
         res.status(200).send(info_hash);
       })
@@ -103,12 +105,12 @@ exports.upload = function (req, res) {
           if (!config.announce.open_tracker) {
             if (torrent.metadata.announce !== config.announce.url) {
               console.log(torrent.metadata.announce);
-              message = 'The private tracker announce url must be: ' + config.announce.url;
+              message = 'ANNOUNCE_URL_ERROR';
 
               fs.unlink(newfile, function (unlinkError) {
                 if (unlinkError) {
                   console.log(unlinkError);
-                  message = 'Error occurred while deleting old profile picture';
+                  message = 'Error occurred while deleting torrent file';
                   reject(message);
                 }
               });
@@ -119,6 +121,42 @@ exports.upload = function (req, res) {
           resolve();
         }
       });
+    });
+  }
+
+  function checkHash() {
+    return new Promise(function (resolve, reject) {
+      var newfile = config.uploads.torrent.file.dest + req.file.filename;
+      var message = '';
+
+      if (info_hash === '') {
+        message = 'INFO_HASH_IS_EMPTY';
+        reject(message);
+      } else {
+        Torrent.findOne({
+          info_hash: info_hash
+        }).exec(function (err, torr) {
+          if (err) {
+            reject(err);
+          } else {
+            if (torr) {
+              message = 'INFO_HASH_ALREADY_EXISTS';
+
+              fs.unlink(newfile, function (unlinkError) {
+                if (unlinkError) {
+                  console.log(unlinkError);
+                  message = 'Error occurred while deleting torrent file';
+                  reject(message);
+                }
+              });
+
+              reject(message);
+            } else {
+              resolve();
+            }
+          }
+        });
+      }
     });
   }
 
