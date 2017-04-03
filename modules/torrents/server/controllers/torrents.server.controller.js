@@ -253,7 +253,17 @@ exports.delete = function (req, res) {
  * @param res
  */
 exports.list = function (req, res) {
-  Torrent.find().sort('-createdat').populate('user', 'displayName').exec(function (err, torrents) {
+  var skip = 0;
+  var limit = 0;
+
+  if (req.query.skip !== undefined) {
+    skip = req.query.skip;
+  }
+  if (req.query.limit !== undefined) {
+    limit = req.query.limit;
+  }
+
+  Torrent.find().sort('-createdat').populate('user', 'displayName').skip(skip).limit(limit).exec(function (err, torrents) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
