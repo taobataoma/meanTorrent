@@ -84,8 +84,9 @@ var TorrentSchema = new Schema({
     trim: true
   },
   torrent_release: {
-    type: Date,
-    default: null
+    type: String,
+    default: '2017',
+    trim: true
   },
   last_scrape: {
     type: Date,

@@ -4,8 +4,9 @@ module.exports = {
   //announce config
   announce: {
     url: 'http://127.0.0.1:3000/announce',
+    announce_prefix: '[CHD.im].',
     admin: 'admin@imean.io',
-    open_tracker: false
+    open_tracker: true
   },
   tmdbConfig: {
     //please change it to your api key from themoviedb.org

@@ -10,6 +10,7 @@
   function HomeController($scope, $translate, TorrentsService, Notification, TMDBConfig) {
     var vm = this;
     vm.tmdbConfig = TMDBConfig.tmdbConfig;
+    vm.movieTopList = undefined;
 
     vm.info_is_ready = false;
     //$translate.use('en');
@@ -31,6 +32,23 @@
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_ID_ERROR')
+        });
+      });
+    };
+
+    vm.getTopInfo = function () {
+      vm.getMovieTopInfo();
+    };
+
+    vm.getMovieTopInfo = function () {
+      vm.moviesInfo = TorrentsService.query({
+        skip: 0,
+        limit: 8
+      }, function (items) {
+        vm.movieTopList = items;
+      }, function (err) {
+        Notification.error({
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_MOVIE_INFO_ERROR')
         });
       });
     };

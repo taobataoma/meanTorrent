@@ -1,14 +1,15 @@
-<section ng-controller="HomeController as vm" ng-init="vm.initInfo();">
+<section ng-controller="HomeController as vm" ng-init="vm.initInfo();vm.getTopInfo();">
     <div class="backdrop">
         <div class="filter">
             <div class="container">
                 <div ng-show="!vm.info_is_ready" class="text-center loading">
                     <h3 translate="LOADING_TOP" class="text-capitalize"></h3>
                 </div>
-                <div class="topone fadein" ng-show="vm.info_is_ready">
+                <div class="topone" ng-show="vm.info_is_ready">
                     <div class="col-md-4">
                         <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{vm.movieinfo.poster_path}}" class="img-thumbnail center-block"
-                                onload="this.style.opacity='1';">
+                             onload="this.style.opacity='1';">
+
                         <div class="down-torrent">
                             <button class="btn btn-success btn-block" translate="DOWNLOAD_TORRENT"></button>
                         </div>
@@ -53,11 +54,11 @@
 
                             <!--<dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>-->
                             <!--<dd class="h-line"><a href="https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}"-->
-                                                  <!--target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}</a></dd>-->
+                            <!--target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}</a></dd>-->
 
                             <!--<dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>-->
                             <!--<dd class="h-line"><a href="https://www.themoviedb.org/movie/{{vm.movieinfo.id}}"-->
-                                                  <!--target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.id}}</a></dd>-->
+                            <!--target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.id}}</a></dd>-->
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                             <dd class="h-line">{{vm.movieinfo.overview}}</dd>
@@ -120,7 +121,35 @@
         </div>
     </div>
 
-    <div class="container" style="background-color: #efefef;">
+    <div class="container">
+        <div class="row">
+            <legend class="xsmall-legend strong-legend text-uppercase" translate="MENU_TORRENTS_SUB.SUB_MOVIE"></legend>
+            <div class="col-xs-4 col-sm-2">
 
+            </div>
+            <div class="col-xs-8 col-sm-10">
+                <div class="row">
+                    <div ng-repeat="item in vm.movieTopList">
+                        <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
+                        <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                        <div class="col-sm-6 col-md-3">
+                            <div class="thumbnail post-info-img">
+                                <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.torrent_img}}" alt="{{item.torrent_title}}"
+                                     class="img-responsive">
+
+                                <div class="caption">
+                                    <ul class="list-unstyled">
+                                        </li>
+                                        <li style="white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
+                                            <strong>{{item.torrent_title}}</strong>
+                                        <li><span class="glyphicon glyphicon-star star-votes"></span><span>{{item.torrent_imdb_votes}}</span><span class="pull-right release-date">{{item.torrent_release}}</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

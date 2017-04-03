@@ -54,6 +54,9 @@
       'For additional assistance, please contact our administrator: <strong><a href="mailto:#">{{admin}}</a></strong>.'
     ],
 
+    //HomeController & home views
+    TOP_MOVIE_INFO_ERROR: 'Get movie top info faild',
+
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',
     TORRENTS_UPLOAD_FAILED: 'Failed to uploads file',

@@ -54,6 +54,9 @@
       '如需其它帮助，请与我们的管理员联系：<strong><a href="mailto:#">{{admin}}</a></strong>.'
     ],
 
+    //HomeController & home views
+    TOP_MOVIE_INFO_ERROR: '获取电影Top列表失败',
+
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',
     TORRENTS_UPLOAD_FAILED: '文件上传失败',

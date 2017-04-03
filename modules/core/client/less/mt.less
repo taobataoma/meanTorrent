@@ -24,8 +24,8 @@
     .topone {
         color: #ccc;
         img {
-            opacity:0;
-            transition-property: transform,opacity;
+            opacity: 0;
+            transition-property: transform, opacity;
             transition-duration: 1s;
             transition-timing-function: ease;
 
@@ -58,3 +58,29 @@
         padding: 1px !important;
     }
 }
+
+.post-info-img {
+    > img {
+        opacity: 0.8;
+        &:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+    }
+    .caption {
+        padding: 5px 3px;
+        ul {
+            margin-bottom: 0;
+        }
+    }
+    .star-votes {
+        color: #FF6600;
+        + span {
+            color: #FF6600;
+        }
+    }
+    .release-date {
+        color: #FF6600;
+    }
+}
+
