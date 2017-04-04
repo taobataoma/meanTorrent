@@ -55,7 +55,12 @@
     ],
 
     //HomeController & home views
+    LOADING_TOP: '正在推荐资源，请稍候...',
     TOP_MOVIE_INFO_ERROR: '获取电影Top列表失败',
+    TITLE_SEEDS: '做种用户数',
+    TITLE_LEECHERS: '正在下载数',
+    TITLE_FINISHED: '完成下载数',
+    TITLE_IMDB_VOTES: 'IMDB 评分',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',
@@ -79,7 +84,6 @@
     CANCEL_BUTTON: '算了，以后再说',
     AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="#">协议条款</a>',
     DOWNLOAD_TORRENT: '下载种子',
-    LOADING_TOP: '正在推荐资源，请稍候...',
 
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',

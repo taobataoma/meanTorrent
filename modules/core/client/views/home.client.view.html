@@ -50,7 +50,7 @@
                             <!--<dd class="h-line">${{vm.movieinfo.revenue}}</dd>-->
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieinfo.vote_average}} / {{vm.movieinfo.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</dd>
+                            <dd class="h-line"><span class="torrent-votes"><kbd>IMDB</kbd></span> {{vm.movieinfo.vote_average}} / {{vm.movieinfo.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</dd>
 
                             <!--<dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>-->
                             <!--<dd class="h-line"><a href="https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}"-->
@@ -137,12 +137,21 @@
                                 <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.torrent_img}}" alt="{{item.torrent_title}}"
                                      class="img-responsive">
 
+                                <div class="torrent-user-info">
+                                    <ul class="list-unstyled list-inline">
+                                        <li title="{{ 'TITLE_SEEDS' | translate}}"><span class="glyphicon glyphicon-arrow-up torrent-up"></span><span>356</span></li>
+                                        <li title="{{ 'TITLE_LEECHERS' | translate}}"><span class="glyphicon glyphicon-arrow-down torrent-down"></span><span>24</span></li>
+                                        <li title="{{ 'TITLE_FINISHED' | translate}}" class="pull-right"><span
+                                                class="glyphicon glyphicon-ok torrent-finished"></span><span>1622</span></li>
+                                    </ul>
+                                </div>
+
                                 <div class="caption">
                                     <ul class="list-unstyled">
-                                        </li>
                                         <li style="white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
                                             <strong>{{item.torrent_title}}</strong>
-                                        <li><span class="glyphicon glyphicon-star star-votes"></span><span>{{item.torrent_imdb_votes}}</span><span class="pull-right release-date">{{item.torrent_release}}</span></li>
+                                        <li><span class="release-date">{{item.torrent_release}}</span><span title="{{ 'TITLE_IMDB_VOTES' | translate}}"
+                                                class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.torrent_imdb_votes}}</span></li>
                                     </ul>
                                 </div>
                             </div>

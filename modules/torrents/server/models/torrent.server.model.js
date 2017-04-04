@@ -88,6 +88,17 @@ var TorrentSchema = new Schema({
     default: '2017',
     trim: true
   },
+  torrent_status: {
+    type: [{
+      type: String,
+      enum: ['new', 'reviewed', 'deleted']
+    }],
+    default: ['newer']
+  },
+  torrent_recommended: {
+    type: Number,
+    default: 0
+  },
   last_scrape: {
     type: Date,
     default: Date.now

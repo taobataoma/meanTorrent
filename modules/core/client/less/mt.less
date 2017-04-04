@@ -60,11 +60,18 @@
 }
 
 .post-info-img {
+    cursor: pointer;
+    &:hover {
+        background-color: rgba(224, 224, 224, .3);
+    }
     > img {
         opacity: 0.8;
         &:hover {
-            cursor: pointer;
             opacity: 1;
+            + .torrent-user-info {
+                opacity: 1;
+                color: #fff;
+            }
         }
     }
     .caption {
@@ -73,14 +80,45 @@
             margin-bottom: 0;
         }
     }
-    .star-votes {
-        color: #FF6600;
-        + span {
-            color: #FF6600;
-        }
-    }
     .release-date {
-        color: #FF6600;
+        color: #000;
     }
 }
 
+.torrent-votes {
+    color: #FF6600;
+    > kbd {
+        background-color: #FF6600;
+    }
+}
+
+.torrent-user-info {
+    display: table-cell;
+    position: absolute;
+    top: 4px;
+    left: 20px;
+    right: 20px;
+    padding: 8px 0;
+
+    background-color: #2a2730;
+    background-color: rgba(0, 0, 0, .8);
+    color: #ddd;
+    opacity: 0.8;
+    &:hover {
+        opacity: 1;
+        color: #fff;
+    }
+    > ul {
+        margin-left: 0;
+        margin-bottom: 0;
+    }
+    .torrent-up {
+        color: #33CC00;
+    }
+    .torrent-down {
+        color: #FF3300;
+    }
+    .torrent-finished {
+        color: #33FFFF;
+    }
+}
