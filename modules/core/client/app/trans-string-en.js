@@ -56,6 +56,10 @@
 
     //HomeController & home views
     TOP_MOVIE_INFO_ERROR: 'Get movie top info faild',
+    TITLE_SEEDS: 'Seeds users',
+    TITLE_LEECHERS: 'Leechers users',
+    TITLE_FINISHED: 'Finished users',
+    TITLE_IMDB_VOTES: 'IMDB Votes',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',
