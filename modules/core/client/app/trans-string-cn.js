@@ -18,6 +18,7 @@
     //client topbar menu
     MENU_CHAT: '聊天室',
     MENU_TORRENTS: '种子',
+    MENU_TORRENTS_ADMIN: '种子管理',
     MENU_UPLOADS: '发布',
     MENU_FORUMS: '论坛',
     MENU_RANKING: '排行榜',

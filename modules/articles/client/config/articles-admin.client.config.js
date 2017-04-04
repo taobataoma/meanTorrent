@@ -9,9 +9,10 @@
   menuConfig.$inject = ['menuService'];
 
   function menuConfig(Menus) {
-    Menus.addSubMenuItem('topbar', 'admin', {
-      title: 'Manage Articles',
-      state: 'admin.articles.list'
-    });
+    //Menus.addSubMenuItem('topbar', 'admin', {
+    //  title: 'Manage Articles',
+    //  state: 'admin.articles.list',
+    //  position: 50
+    //});
   }
 }());

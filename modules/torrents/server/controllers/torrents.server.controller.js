@@ -255,6 +255,7 @@ exports.delete = function (req, res) {
 exports.list = function (req, res) {
   var skip = 0;
   var limit = 0;
+  var status = 'reviewed';
 
   if (req.query.skip !== undefined) {
     skip = req.query.skip;
@@ -263,7 +264,7 @@ exports.list = function (req, res) {
     limit = req.query.limit;
   }
 
-  Torrent.find().sort('-createdat').populate('user', 'displayName').skip(skip).limit(limit).exec(function (err, torrents) {
+  Torrent.find({'torrent_status': status}).sort('-createdat').populate('user', 'displayName').skip(skip).limit(limit).exec(function (err, torrents) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)

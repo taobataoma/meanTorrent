@@ -18,6 +18,7 @@
     //client topbar menu
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',
+    MENU_TORRENTS_ADMIN: 'Manage Torrents',
     MENU_UPLOADS: 'Uploads',
     MENU_FORUMS: 'Forums',
     MENU_RANKING: 'Ranking',
