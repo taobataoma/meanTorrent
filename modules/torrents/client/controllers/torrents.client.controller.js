@@ -5,12 +5,15 @@
     .module('torrents')
     .controller('TorrentsController', TorrentsController);
 
-  TorrentsController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'Notification', 'TorrentsService', 'TMDBConfig'];
+  TorrentsController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'Notification', 'TorrentsService', 'TMDBConfig',
+    'ResourcesTagsConfig'];
 
-  function TorrentsController($scope, $state, $translate, Authentication, Notification, TorrentsService, TMDBConfig) {
+  function TorrentsController($scope, $state, $translate, Authentication, Notification, TorrentsService, TMDBConfig, ResourcesTagsConfig) {
     var vm = this;
     vm.user = Authentication.user;
     vm.tmdbConfig = TMDBConfig.tmdbConfig;
+    vm.resourcesTags = ResourcesTagsConfig.resourcesTags;
+
     vm.topNumber = 6;
     vm.pageNumber = 50;
 

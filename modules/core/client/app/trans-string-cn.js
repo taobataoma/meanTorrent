@@ -65,6 +65,7 @@
 
     //TorrentsController & views
     MOVIE_PAGE_INFO_ERROR: '获取电影分页列表失败',
+    TAGS_SEARCH: '-=标签检索=-',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',

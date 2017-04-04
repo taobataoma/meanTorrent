@@ -65,6 +65,7 @@
 
     //TorrentsController & views
     MOVIE_PAGE_INFO_ERROR: 'Get movie page info faild',
+    TAGS_SEARCH: '-=Tags Search=-',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',

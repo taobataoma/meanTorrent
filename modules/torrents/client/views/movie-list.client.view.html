@@ -31,4 +31,42 @@
             </div>
         </div>
     </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">
+            <h3 class="panel-title" translate="TAGS_SEARCH"></h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-10 col-md-offset-1">
+                <dl class="dl-horizontal">
+                    <div ng-repeat="item in vm.resourcesTags.movie.radio">
+                        <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                        <dd class="h-line">
+                            <div class="btn-group btn-group-xs" role="group">
+                                <button ng-repeat="sitem in item.value"
+                                        class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
+                                        onclick="$(this).addClass('btn-danger').removeClass('btn-default').siblings().removeClass('btn-danger').addClass('btn-default'); $(this).blur();">
+                                    {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                                </button>
+                                </span>
+                            </div>
+                        </dd>
+                    </div>
+
+                    <div ng-repeat="item in vm.resourcesTags.movie.checkbox">
+                        <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                        <dd class="h-line">
+                            <div class="btn-group btn-group-xs" role="group">
+                                <button ng-repeat="sitem in item.value"
+                                        class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
+                                        toggle-class="btn-danger" base-class="btn-default" onclick="this.blur();">
+                                    {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                                </button>
+                            </div>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
 </section>
