@@ -45,7 +45,14 @@
                             <div class="btn-group btn-group-xs" role="group">
                                 <button ng-repeat="sitem in item.value"
                                         class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
-                                        onclick="$(this).addClass('btn-danger').removeClass('btn-default').siblings().removeClass('btn-danger').addClass('btn-default'); $(this).blur();">
+                                        onclick="
+                                        if($(this).hasClass('btn-danger')){
+                                            $(this).removeClass('btn-danger').addClass('btn-default');
+                                        }else{
+                                            $(this).addClass('btn-danger').removeClass('btn-default').siblings().removeClass('btn-danger').addClass('btn-default');
+                                        }
+                                        $(this).blur();
+                                        ">
                                     {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
                                 </button>
                                 </span>
