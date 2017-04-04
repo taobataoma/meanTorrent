@@ -1,3 +1,5 @@
+@import (reference) "../../../../public/lib/bootstrap/less/variables.less";
+
 .bodysize {
     background-color: #fff;
     min-height: 600px;
@@ -59,9 +61,10 @@
     }
 }
 
-.post-info-img {
+.torrent-post-info {
     cursor: pointer;
     &:hover {
+        background-color: #efefef;
         background-color: rgba(224, 224, 224, .3);
     }
     > img {
@@ -120,5 +123,16 @@
     }
     .torrent-finished {
         color: #33FFFF;
+    }
+
+    &.small-info {
+        @media (min-width: @screen-md-min) {
+            padding: 5px 0;
+            font-size: 12px;
+            .list-inline > li {
+                padding-left: 1px;
+                padding-right: 1px;
+            }
+        }
     }
 }

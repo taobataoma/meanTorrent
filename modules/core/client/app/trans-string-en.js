@@ -63,6 +63,9 @@
     TITLE_FINISHED: 'Finished users',
     TITLE_IMDB_VOTES: 'IMDB Votes',
 
+    //TorrentsController & views
+    MOVIE_PAGE_INFO_ERROR: 'Get movie page info faild',
+
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',
     TORRENTS_UPLOAD_FAILED: 'Failed to uploads file',

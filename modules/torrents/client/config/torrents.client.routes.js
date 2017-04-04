@@ -14,6 +14,10 @@
         url: '/torrents',
         template: '<ui-view/>'
       })
+      .state('torrents.movie', {
+        url: '/torrents/movie',
+        templateUrl: '/modules/torrents/client/views/movie-list.client.view.html'
+      })
       .state('torrents.uploads', {
         url: '/torrents/uploads',
         templateUrl: '/modules/torrents/client/views/uploads-torrents.client.view.html'

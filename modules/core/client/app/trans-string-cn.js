@@ -63,6 +63,9 @@
     TITLE_FINISHED: '完成下载数',
     TITLE_IMDB_VOTES: 'IMDB 评分',
 
+    //TorrentsController & views
+    MOVIE_PAGE_INFO_ERROR: '获取电影分页列表失败',
+
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',
     TORRENTS_UPLOAD_FAILED: '文件上传失败',

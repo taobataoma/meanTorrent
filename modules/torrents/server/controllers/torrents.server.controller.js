@@ -263,6 +263,9 @@ exports.list = function (req, res) {
   if (req.query.limit !== undefined) {
     limit = req.query.limit;
   }
+  if (req.query.status !== undefined) {
+    status = req.query.status;
+  }
 
   Torrent.find({'torrent_status': status}).sort('-createdat').populate('user', 'displayName').skip(skip).limit(limit).exec(function (err, torrents) {
     if (err) {
