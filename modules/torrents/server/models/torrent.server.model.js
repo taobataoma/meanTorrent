@@ -48,6 +48,11 @@ var TorrentSchema = new Schema({
     default: 'movie',
     trim: true
   },
+  torrent_genres: {
+    type: [String],
+    default: '',
+    trim: true
+  },
   torrent_tags: {
     type: [String],
     default: '',
@@ -93,7 +98,7 @@ var TorrentSchema = new Schema({
       type: String,
       enum: ['new', 'reviewed', 'deleted']
     }],
-    default: ['newer']
+    default: ['new']
   },
   torrent_recommended: {
     type: Number,

@@ -15,7 +15,6 @@
     vm.tmdbConfig = TMDBConfig.tmdbConfig;
     vm.resourcesTags = ResourcesTagsConfig.resourcesTags;
     vm.rule_items = [];
-    vm.movieinfoarray = [];
     vm.user = Authentication.user;
     vm.progress = 0;
     vm.successfully = undefined;
@@ -152,6 +151,11 @@
         });
       });
 
+      var g = [];
+      angular.forEach(vm.movieinfo.genres, function (item) {
+        g.push(item.name);
+      });
+
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
         torrent_filename: vm.tFile.name,
@@ -159,6 +163,7 @@
         torrent_imdb_id: vm.movieinfo.imdb_id,
         torrent_title: vm.movieinfo.title,
         torrent_type: 'movie',
+        torrent_genres: g,
         torrent_tags: t,
         torrent_announce: vm.torrentInfo.announce,
         torrent_imdb_votes: vm.movieinfo.vote_average,
