@@ -6,7 +6,8 @@
   var service = {
     applicationEnvironment: window.env,
     applicationModuleName: applicationModuleName,
-    applicationModuleVendorDependencies: ['ngResource', 'ngAnimate', 'ngMessages', 'ui.router', 'ui.bootstrap', 'ngFileUpload', 'ui-notification', 'pascalprecht.translate'],
+    applicationModuleVendorDependencies: ['ngResource', 'ngAnimate', 'ngMessages', 'ui.router', 'ui.bootstrap', 'ngFileUpload', 'ui-notification',
+      'pascalprecht.translate', 'angularMoment'],
     registerModule: registerModule
   };
 
@@ -22,7 +23,7 @@
   }
 
   // Angular-ui-notification configuration
-  angular.module('ui-notification').config(function(NotificationProvider) {
+  angular.module('ui-notification').config(function (NotificationProvider) {
     NotificationProvider.setOptions({
       delay: 5000,
       startTop: 20,
