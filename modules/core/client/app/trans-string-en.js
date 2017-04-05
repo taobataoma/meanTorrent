@@ -58,14 +58,28 @@
     //HomeController & home views
     LOADING_TOP: 'Loading recommended info, please waiting...',
     TOP_MOVIE_INFO_ERROR: 'Get movie top info faild',
-    TITLE_SEEDS: 'Seeds users',
-    TITLE_LEECHERS: 'Leechers users',
-    TITLE_FINISHED: 'Finished users',
-    TITLE_IMDB_VOTES: 'IMDB Votes',
+
+    //element title/alt
+    TITLE_ALT: {
+      SEEDS: 'Seeds users',
+      LEECHERS: 'Leechers users',
+      FINISHED: 'Finished users',
+      IMDB_VOTES: 'IMDB Votes'
+    },
+
+    //table fields
+    TABLE_FIELDS: {
+      INFO: 'Torrent info',
+      SIZE: 'Size',
+      SEEDS_LEECHERS_FINISHED: 'S/L/F',
+      PUBLISHER: 'Publisher',
+      LIFETIME: 'Life',
+      VOTES: 'Votes'
+    },
 
     //TorrentsController & views
     MOVIE_PAGE_INFO_ERROR: 'Get movie page info faild',
-    TAGS_SEARCH: '-=Tags Search=-',
+    TAGS_SEARCH: 'Movie - Tags Search',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',

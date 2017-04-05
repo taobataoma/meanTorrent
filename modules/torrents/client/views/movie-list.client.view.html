@@ -9,20 +9,20 @@
                     <div class="torrent-user-info small-info">
                         <ul class="list-unstyled list-inline">
                             <li title="{{ 'TITLE_SEEDS' | translate}}"><span
-                                    class="glyphicon glyphicon-arrow-up torrent-up"></span><span>666</span></li>
+                                    class="glyphicon glyphicon-arrow-up torrent-up"></span><span>{{item.torrent_seeds}}</span></li>
                             <li title="{{ 'TITLE_LEECHERS' | translate}}"><span
-                                    class="glyphicon glyphicon-arrow-down torrent-down"></span><span>666</span></li>
+                                    class="glyphicon glyphicon-arrow-down torrent-down"></span><span>{{item.torrent_leechers}}</span></li>
                             <li title="{{ 'TITLE_FINISHED' | translate}}" class="pull-right"><span
-                                    class="glyphicon glyphicon-ok torrent-finished"></span><span>6666</span></li>
+                                    class="glyphicon glyphicon-ok torrent-finished"></span><span>{{item.torrent_finished}}</span></li>
                         </ul>
                     </div>
 
                     <div class="caption">
                         <ul class="list-unstyled">
-                            <li style="white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
+                            <li class="text-long">
                                 <strong>{{item.torrent_title}}</strong>
                             <li><span class="release-date">{{item.torrent_release}}</span>
-                                <span title="{{ 'TITLE_IMDB_VOTES' | translate}}"
+                                <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                       class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.torrent_imdb_votes}}</span>
                             </li>
                         </ul>
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading text-center">
             <h3 class="panel-title" translate="TAGS_SEARCH"></h3>
         </div>
@@ -46,10 +46,10 @@
                                 <button ng-repeat="sitem in item.value"
                                         class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
                                         onclick="
-                                        if($(this).hasClass('btn-danger')){
-                                            $(this).removeClass('btn-danger').addClass('btn-default');
+                                        if($(this).hasClass('btn-success')){
+                                            $(this).removeClass('btn-success').addClass('btn-default');
                                         }else{
-                                            $(this).addClass('btn-danger').removeClass('btn-default').siblings().removeClass('btn-danger').addClass('btn-default');
+                                            $(this).addClass('btn-success').removeClass('btn-default').siblings().removeClass('btn-success').addClass('btn-default');
                                         }
                                         $(this).blur();
                                         ">
@@ -66,7 +66,7 @@
                             <div class="btn-group btn-group-xs" role="group">
                                 <button ng-repeat="sitem in item.value"
                                         class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
-                                        toggle-class="btn-danger" base-class="btn-default" onclick="this.blur();">
+                                        toggle-class="btn-success" base-class="btn-default" onclick="this.blur();">
                                     {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
                                 </button>
                             </div>
@@ -75,5 +75,62 @@
                 </dl>
             </div>
         </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover tb-v-middle">
+            <thead>
+                <tr>
+                    <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
+                    <th>{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
+                    <th>{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
+                    <th>{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
+                    <th>{{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}</th>
+                    <th>{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="torrent-list-info" ng-repeat="item in vm.moviePageInfo">
+                    <td class="col-md-7 td-text-overflow">
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="media-object" ng-src="{{vm.tmdbConfig.poster_list_base_url}}{{item.torrent_img}}" alt="...">
+                            </div>
+                            <div class="media-body">
+                                <h5 class="media-heading">{{item.torrent_title}}</h5>
+
+                                <div class="list-all-genres">
+                                    <span class="genres-item" ng-repeat="t in item.torrent_genres">{{t}}</span>
+                                </div>
+
+                                <div class="text-long">{{item.torrent_filename}}</div>
+
+                                <div class="list-all-tags">
+                                    <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
+                                    <span class="label label-warning">{{ item.torrent_release}}</span>
+                                    <span ng-repeat="t in item.torrent_tags">
+                                        <span class="label label-info">{{ 'RESOURCESTAGS.' + vm.getTagTitle(t) + '.' + t | translate}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-1 td-v-middle">
+                        <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
+                              class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.torrent_imdb_votes | number : 1}}</span>
+                    </td>
+                    <td class="col-md-1 td-v-middle">{{item.createdat | life}}</td>
+                    <td class="col-md-1 td-v-middle">{{item.torrent_size | bytes:2}}</td>
+                    <td class="col-md-1 td-v-middle">
+                        <p class="no-margin-p">{{item.torrent_seeds}}</p>
+
+                        <p class="no-margin-p">{{item.torrent_leechers}}</p>
+
+                        <p class="no-margin-p">{{item.torrent_finished}}</p>
+                    </td>
+                    <td class="col-md-1 td-v-middle">{{item.user.displayName}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </section>

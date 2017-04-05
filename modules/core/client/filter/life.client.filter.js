@@ -19,7 +19,7 @@
         h = h - d * 24;
         return d + 'D' + h + 'H';
       } else {
-        m = m - h + 60;
+        m = m - h * 60;
         return h + 'H' + m + 'M';
       }
     };

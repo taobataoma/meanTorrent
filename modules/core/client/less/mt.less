@@ -151,3 +151,69 @@
         margin-bottom: 0;
     }
 }
+
+.text-long {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.no-margin-p {
+    margin-bottom: 0 !important;
+}
+
+.tb-v-middle {
+    > tbody {
+        > tr {
+            cursor: pointer;
+            &:hover {
+                .media-object {
+                    opacity: 1;
+                }
+            }
+            > .td-v-middle {
+                vertical-align: middle;
+            }
+            > .td-text-overflow {
+                .text-long {
+                    @media (min-width: @screen-lg-min) {
+                        max-width: 620px;
+                    }
+                    @media (max-width: @screen-lg-min) {
+                        max-width: 500px;
+                    }
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+}
+
+.torrent-list-info {
+    .media-object {
+        max-height: 100px;
+        opacity: 0.8;
+    }
+    .media-body {
+        position: relative;
+        .list-all-tags {
+            position: absolute;
+            bottom: 1px;
+            .label {
+                padding: .3em .6em .3em;
+                font-weight: normal;
+                display: inline-block;
+            }
+        }
+        .list-all-genres {
+            .genres-item:not(:first-child) {
+                &::before {
+                    content: " | ";
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

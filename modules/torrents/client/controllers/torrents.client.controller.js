@@ -36,16 +36,40 @@
 
     vm.getMoviePageInfo = function (p) {
       TorrentsService.query({
-        skip: (p - 1) * vm.pageNumber + vm.topNumber,
+        skip: (p - 1) * vm.pageNumber + 0,
         limit: p * vm.pageNumber
       }, function (items) {
-        vm.moviesPageInfo = items;
+        vm.moviePageInfo = items;
+        console.log(items);
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('MOVIE_PAGE_INFO_ERROR')
         });
       });
+    };
 
+    vm.getTagTitle = function (tag) {
+      var tmp = tag;
+      var find = false;
+      angular.forEach(vm.resourcesTags.movie.radio, function (item) {
+        angular.forEach(item.value, function (sitem) {
+          if (sitem.name === tag) {
+            tmp = item.name;
+            find = true;
+          }
+        });
+      });
+
+      if(!find){
+        angular.forEach(vm.resourcesTags.movie.checkbox, function (item) {
+          angular.forEach(item.value, function (sitem) {
+            if (sitem.name === tag) {
+              tmp = item.name;
+            }
+          });
+        });
+      }
+      return tmp;
     };
   }
 }());

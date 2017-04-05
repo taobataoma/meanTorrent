@@ -58,14 +58,27 @@
     //HomeController & home views
     LOADING_TOP: '正在推荐资源，请稍候...',
     TOP_MOVIE_INFO_ERROR: '获取电影Top列表失败',
-    TITLE_SEEDS: '做种用户数',
-    TITLE_LEECHERS: '正在下载数',
-    TITLE_FINISHED: '完成下载数',
-    TITLE_IMDB_VOTES: 'IMDB 评分',
+
+    //element title/alt
+    TITLE_ALT: {
+      SEEDS: '做种用户数',
+      LEECHERS: '正在下载数',
+      FINISHED: '完成下载数',
+      IMDB_VOTES: 'IMDB 评分'
+    },
+
+    //table fields
+    TABLE_FIELDS: {
+      INFO: '种子信息',
+      SIZE: '大小',
+      SEEDS_LEECHERS_FINISHED: '做种/下载/完成',
+      LIFETIME: '存活时间',
+      VOTES: '评分'
+    },
 
     //TorrentsController & views
     MOVIE_PAGE_INFO_ERROR: '获取电影分页列表失败',
-    TAGS_SEARCH: '-=标签检索=-',
+    TAGS_SEARCH: '电影 - 标签检索',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',

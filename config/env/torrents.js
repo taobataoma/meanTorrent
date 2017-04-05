@@ -13,6 +13,7 @@ module.exports = {
     key: '7888f0042a366f63289ff571b68b7ce0',
     backdrop_img_base_url: 'http://image.tmdb.org/t/p/w1280',
     poster_img_base_url: 'http://image.tmdb.org/t/p/w500',
+    poster_list_base_url: 'http://image.tmdb.org/t/p/w92',
     cast_img_base_url: 'http://image.tmdb.org/t/p/w132_and_h132_bestv2'
   },
   resourcesTags: {
