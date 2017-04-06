@@ -72,6 +72,7 @@
       INFO: '种子信息',
       SIZE: '大小',
       SEEDS_LEECHERS_FINISHED: '做种/下载/完成',
+      PUBLISHER: 'Publisher',
       LIFETIME: '存活时间',
       VOTES: '评分'
     },
@@ -79,6 +80,8 @@
     //TorrentsController & views
     MOVIE_PAGE_INFO_ERROR: '获取电影分页列表失败',
     TAGS_SEARCH: '电影 - 标签检索',
+    CA_KEYWORD: '关键字',
+    PH_KEYWORD: '搜索关键字',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',

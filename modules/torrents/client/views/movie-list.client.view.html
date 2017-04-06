@@ -39,6 +39,14 @@
         <div class="panel-body">
             <div class="col-md-10 col-md-offset-1">
                 <dl class="dl-horizontal">
+                    <dt class="h-line">{{ 'CA_KEYWORD' | translate}}:</dt>
+                    <dd class="h-line">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="{{ 'PH_KEYWORD' | translate}}">
+                            </div>
+                        </div>
+                    </dd>
                     <div ng-repeat="item in vm.resourcesTags.movie.radio">
                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                         <dd class="h-line">
@@ -109,7 +117,7 @@
                                     <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
                                     <span class="label label-warning">{{ item.torrent_release}}</span>
                                     <span ng-repeat="t in item.torrent_tags">
-                                        <span class="label label-info">{{ 'RESOURCESTAGS.' + vm.getTagTitle(t) + '.' + t | translate}}</span>
+                                        <span class="label label-tag">{{ 'RESOURCESTAGS.' + vm.getTagTitle(t) + '.' + t | translate}}</span>
                                     </span>
                                 </div>
                             </div>

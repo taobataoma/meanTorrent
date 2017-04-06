@@ -177,10 +177,10 @@
             > .td-text-overflow {
                 .text-long {
                     @media (min-width: @screen-lg-min) {
-                        max-width: 620px;
+                        max-width: 600px;
                     }
                     @media (max-width: @screen-lg-min) {
-                        max-width: 500px;
+                        max-width: 580px;
                     }
                     white-space: nowrap;
                     overflow: hidden;
@@ -205,6 +205,13 @@
                 padding: .3em .6em .3em;
                 font-weight: normal;
                 display: inline-block;
+            }
+            .label-tag {
+                color: #0366d6;
+                background-color: #f1f8ff;
+                &:hover {
+                    color: #f00;
+                }
             }
         }
         .list-all-genres {

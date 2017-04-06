@@ -80,6 +80,8 @@
     //TorrentsController & views
     MOVIE_PAGE_INFO_ERROR: 'Get movie page info faild',
     TAGS_SEARCH: 'Movie - Tags Search',
+    CA_KEYWORD: 'Keyword',
+    PH_KEYWORD: 'Search keyword',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',

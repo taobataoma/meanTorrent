@@ -36,8 +36,10 @@
 
     vm.getMoviePageInfo = function (p) {
       TorrentsService.query({
-        skip: (p - 1) * vm.pageNumber + 0,
-        limit: p * vm.pageNumber
+        skip: (p - 1) * vm.pageNumber + vm.topNumber,
+        limit: p * vm.pageNumber,
+        torrent_status: 'reviewed',
+        torrent_type: 'movie'
       }, function (items) {
         vm.moviePageInfo = items;
         console.log(items);
@@ -60,7 +62,7 @@
         });
       });
 
-      if(!find){
+      if (!find) {
         angular.forEach(vm.resourcesTags.movie.checkbox, function (item) {
           angular.forEach(item.value, function (sitem) {
             if (sitem.name === tag) {
