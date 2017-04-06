@@ -43,6 +43,11 @@ var TorrentSchema = new Schema({
     trim: true,
     required: 'title cannot be blank'
   },
+  torrent_original_title: {
+    type: String,
+    default: '',
+    trim: true
+  },
   torrent_type: {
     type: [{
       type: String,

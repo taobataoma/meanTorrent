@@ -43,7 +43,9 @@
                     <dd class="h-line">
                         <div class="row">
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" placeholder="{{ 'PH_KEYWORD' | translate}}">
+                                <input type="text" class="form-control" ng-model="vm.searchKey"
+                                       ng-keydown="vm.onKeysKeyDown($event);"
+                                       placeholder="{{ 'PH_KEYWORD' | translate}}">
                             </div>
                         </div>
                     </dd>
@@ -77,7 +79,8 @@
 
                     <div class="margin-top-10">
                         <dt class="h-line"></dt>
-                        <dd class="h-line"><span class="label label-tag">{{ 'CLEAR_ALL_CONDITION' | translate}}</span></dd>
+                        <dd class="h-line"><span class="label label-tag text-uppercase"
+                                                 ng-click="vm.clearAllCondition();">{{ 'CLEAR_ALL_CONDITION' | translate}}</span></dd>
                     </div>
                 </dl>
             </div>
@@ -104,7 +107,8 @@
                                 <img class="media-object" ng-src="{{vm.tmdbConfig.poster_list_base_url}}{{item.torrent_img}}" alt="...">
                             </div>
                             <div class="media-body">
-                                <h5 class="media-heading">{{item.torrent_title}}</h5>
+                                <h5 class="media-heading">{{item.torrent_original_title}}<span
+                                        ng-show="item.torrent_original_title!=item.torrent_title"> / {{item.torrent_title}}</span></h5>
 
                                 <div class="list-all-genres">
                                     <span class="genres-item" ng-repeat="t in item.torrent_genres">{{t}}</span>

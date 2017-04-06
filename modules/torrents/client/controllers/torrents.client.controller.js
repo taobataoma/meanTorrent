@@ -15,6 +15,7 @@
     vm.resourcesTags = ResourcesTagsConfig.resourcesTags;
 
     vm.searchTags = [];
+    vm.searchKey = '';
     vm.currPageNumber = 1;
     vm.topNumber = 6;
     vm.pageNumber = 50;
@@ -54,8 +55,6 @@
       }
       e.blur();
       vm.getMoviePageInfo(1);
-
-      console.log(vm.searchTags);
     };
 
     vm.onCheckboxTagClicked = function (event, n) {
@@ -67,9 +66,14 @@
         vm.searchTags.splice(vm.searchTags.indexOf(n), 1);
       }
       vm.getMoviePageInfo(1);
-
-      console.log(vm.searchTags);
     };
+
+    vm.onKeysKeyDown = function (evt) {
+      if (evt.keyCode === 13) {
+        vm.getMoviePageInfo(1);
+      }
+    };
+
 
     vm.getMoviePageInfo = function (p) {
       vm.currPageNumber = p;
@@ -77,8 +81,10 @@
       TorrentsService.query({
         skip: (p - 1) * vm.pageNumber + 0, //vm.topNumber,
         limit: p * vm.pageNumber,
+        keys: vm.searchKey,
         torrent_status: 'reviewed',
         torrent_type: 'movie',
+        //torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags
       }, function (items) {
         vm.moviePageInfo = items;
@@ -112,6 +118,14 @@
         });
       }
       return tmp;
+    };
+
+    vm.clearAllCondition = function () {
+      vm.searchKey = '';
+      vm.searchTags = [];
+      $('.btn-tag').removeClass('btn-success').addClass('btn-default');
+
+      vm.getMoviePageInfo(1);
     };
   }
 }());

@@ -162,6 +162,7 @@
         torrent_tmdb_id: vm.tmdb_id,
         torrent_imdb_id: vm.movieinfo.imdb_id,
         torrent_title: vm.movieinfo.title,
+        torrent_original_title: vm.movieinfo.original_title,
         torrent_type: 'movie',
         torrent_genres: g,
         torrent_tags: t,

@@ -257,7 +257,9 @@ exports.list = function (req, res) {
   var limit = 0;
   var status = 'reviewed';
   var stype = 'movie';
+  var release = undefined;
   var tagsA = [];
+  var keysA = [];
 
   if (req.query.skip !== undefined) {
     skip = req.query.skip;
@@ -271,6 +273,9 @@ exports.list = function (req, res) {
   if (req.query.torrent_type !== undefined) {
     stype = req.query.torrent_type;
   }
+  if (req.query.torrent_release !== undefined) {
+    release = req.query.torrent_release;
+  }
   if (req.query.torrent_tags !== undefined) {
     var tagsS = req.query.torrent_tags + '';
     var tagsT = tagsS.split(',');
@@ -278,6 +283,24 @@ exports.list = function (req, res) {
     tagsT.forEach(function (it) {
       tagsA.push(it + '');
     });
+  }
+  if (req.query.keys !== undefined && req.query.keys.length > 0) {
+    //console.log('keys:' + req.query.keys);
+    var keysS = req.query.keys + '';
+    var keysT = keysS.split(' ');
+
+    keysT.forEach(function (it) {
+      if (!isNaN(it)) {
+        if (it > 1900 && it < 2050) {
+          release = it;
+        }
+      } else {
+        var ti = new RegExp(it, 'i');
+        keysA.push(ti);
+      }
+    });
+    //keysA = keysS;
+    //console.log(keysA);
   }
 
   var condition = {};
@@ -287,8 +310,25 @@ exports.list = function (req, res) {
   if (tagsA.length > 0) {
     condition.torrent_tags = {$all: tagsA};
   }
+  if (release !== undefined) {
+    condition.torrent_release = release;
+  }
+  if (keysA.length > 0) {
+    condition.$or = [
+      {torrent_filename: {'$all': keysA}},
+      {torrent_title: {'$all': keysA}},
+      {torrent_original_title: {'$all': keysA}}
+      //{torrent_filename: new RegExp(keysA, 'i')},
+      //{torrent_title: new RegExp(keysA, 'i')},
+      //{torrent_original_title: new RegExp(keysA, 'i')}
+    ];
+    //condition.torrent_title = {
+    //  '$regex': keysA,
+    //  '$options': 'i'
+    //};
+  }
 
-  //console.log(condition);
+  console.log(JSON.stringify(condition));
 
   Torrent.find(condition)
     .sort('-createdat')
