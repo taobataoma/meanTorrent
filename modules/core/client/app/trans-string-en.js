@@ -79,6 +79,7 @@
 
     //TorrentsController & views
     MOVIE_PAGE_INFO_ERROR: 'Get movie page info faild',
+    MOVIE_PAGE_INFO_EMPTY: 'No movie founded, please change some new tags to research',
     TAGS_SEARCH: 'Movie - Tags Search',
     CA_KEYWORD: 'Keyword',
     PH_KEYWORD: 'Search keyword',

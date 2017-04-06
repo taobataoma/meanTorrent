@@ -79,6 +79,7 @@
 
     //TorrentsController & views
     MOVIE_PAGE_INFO_ERROR: '获取电影分页列表失败',
+    MOVIE_PAGE_INFO_EMPTY: '没有找到信息，请更换标签重新检索',
     TAGS_SEARCH: '电影 - 标签检索',
     CA_KEYWORD: '关键字',
     PH_KEYWORD: '搜索关键字',

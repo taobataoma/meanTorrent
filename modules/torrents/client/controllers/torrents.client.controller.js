@@ -114,6 +114,11 @@
         torrent_tags: vm.searchTags
       }, function (items) {
         vm.moviePageInfo = items;
+        if (items.length == 0) {
+          Notification.error({
+            message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('MOVIE_PAGE_INFO_EMPTY')
+          });
+        }
         console.log(items);
       }, function (err) {
         Notification.error({
