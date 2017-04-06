@@ -100,6 +100,13 @@ var TorrentSchema = new Schema({
     }],
     default: ['new']
   },
+  torrent_sale_status: {
+    type: [{
+      type: String,
+      enum: ['FREE', '1/30%', '1/50%', '1/100%', '2/30%', '2/50%', '2/100%', '3/50%', '3/100%']
+    }],
+    default: ['1/100%']
+  },
   torrent_recommended: {
     type: Number,
     default: 0
