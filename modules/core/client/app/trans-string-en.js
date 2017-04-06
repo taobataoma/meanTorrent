@@ -82,6 +82,7 @@
     TAGS_SEARCH: 'Movie - Tags Search',
     CA_KEYWORD: 'Keyword',
     PH_KEYWORD: 'Search keyword',
+    CLEAR_ALL_CONDITION: 'Clear All Condition',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',

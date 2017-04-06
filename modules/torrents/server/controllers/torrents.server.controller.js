@@ -257,6 +257,7 @@ exports.list = function (req, res) {
   var limit = 0;
   var status = 'reviewed';
   var stype = 'movie';
+  var tagsA = [];
 
   if (req.query.skip !== undefined) {
     skip = req.query.skip;
@@ -264,17 +265,32 @@ exports.list = function (req, res) {
   if (req.query.limit !== undefined) {
     limit = req.query.limit;
   }
-  if (req.query.status !== undefined) {
-    status = req.query.status;
+  if (req.query.torrent_status !== undefined) {
+    status = req.query.torrent_status;
   }
-  if (req.query.stype !== undefined) {
-    stype = req.query.stype;
+  if (req.query.torrent_type !== undefined) {
+    stype = req.query.torrent_type;
+  }
+  if (req.query.torrent_tags !== undefined) {
+    var tagsS = req.query.torrent_tags + '';
+    var tagsT = tagsS.split(',');
+
+    tagsT.forEach(function (it) {
+      tagsA.push(it + '');
+    });
   }
 
-  Torrent.find({
-    'torrent_status': status,
-    'torrent_type': stype
-  })
+  var condition = {};
+  condition.torrent_status = status;
+  condition.torrent_type = stype;
+
+  if (tagsA.length > 0) {
+    condition.torrent_tags = {$all: tagsA};
+  }
+
+  //console.log(condition);
+
+  Torrent.find(condition)
     .sort('-createdat')
     .populate('user', 'displayName')
     .skip(skip)

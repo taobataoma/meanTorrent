@@ -44,9 +44,11 @@ var TorrentSchema = new Schema({
     required: 'title cannot be blank'
   },
   torrent_type: {
-    type: String,
-    default: 'movie',
-    trim: true
+    type: [{
+      type: String,
+      enum: ['movie', 'MTV', 'music', 'other']
+    }],
+    default: ['movie']
   },
   torrent_genres: {
     type: [String],

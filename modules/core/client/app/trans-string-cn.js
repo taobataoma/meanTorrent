@@ -82,6 +82,7 @@
     TAGS_SEARCH: '电影 - 标签检索',
     CA_KEYWORD: '关键字',
     PH_KEYWORD: '搜索关键字',
+    CLEAR_ALL_CONDITION: '清空所有条件',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',

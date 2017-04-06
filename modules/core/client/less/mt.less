@@ -201,18 +201,6 @@
         .list-all-tags {
             position: absolute;
             bottom: 1px;
-            .label {
-                padding: .3em .6em .3em;
-                font-weight: normal;
-                display: inline-block;
-            }
-            .label-tag {
-                color: #0366d6;
-                background-color: #f1f8ff;
-                &:hover {
-                    color: #f00;
-                }
-            }
         }
         .list-all-genres {
             .genres-item:not(:first-child) {
@@ -222,5 +210,20 @@
                 }
             }
         }
+    }
+}
+
+.label {
+    padding: .3em .6em .3em;
+    font-weight: normal;
+    display: inline-block;
+}
+
+.label-tag {
+    color: #0366d6;
+    background-color: #f1f8ff;
+    &:hover {
+        cursor: pointer;
+        color: #f00;
     }
 }
