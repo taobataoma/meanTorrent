@@ -5,10 +5,10 @@
     .module('torrents')
     .controller('TorrentsController', TorrentsController);
 
-  TorrentsController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'Notification', 'TorrentsService', 'TMDBConfig',
+  TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService', 'TMDBConfig',
     'ResourcesTagsConfig'];
 
-  function TorrentsController($scope, $state, $translate, Authentication, Notification, TorrentsService, TMDBConfig, ResourcesTagsConfig) {
+  function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, TMDBConfig, ResourcesTagsConfig) {
     var vm = this;
     vm.user = Authentication.user;
     vm.tmdbConfig = TMDBConfig.tmdbConfig;
@@ -25,6 +25,9 @@
       $state.go('authentication.signin');
     }
 
+    /**
+     * getMovieTopInfo
+     */
     vm.getMovieTopInfo = function () {
       TorrentsService.query({
         limit: vm.topNumber
@@ -37,6 +40,11 @@
       });
     };
 
+    /**
+     * onRadioTagClicked
+     * @param event
+     * @param n: tag name
+     */
     vm.onRadioTagClicked = function (event, n) {
       var e = angular.element(event.currentTarget);
 
@@ -57,6 +65,11 @@
       vm.getMoviePageInfo(1);
     };
 
+    /**
+     * onCheckboxTagClicked
+     * @param event
+     * @param n: tag name
+     */
     vm.onCheckboxTagClicked = function (event, n) {
       var e = angular.element(event.currentTarget);
 
@@ -68,13 +81,20 @@
       vm.getMoviePageInfo(1);
     };
 
+    /**
+     * onKeysKeyDown
+     * @param evt
+     */
     vm.onKeysKeyDown = function (evt) {
       if (evt.keyCode === 13) {
         vm.getMoviePageInfo(1);
       }
     };
 
-
+    /**
+     * getMoviePageInfo
+     * @param p: page number
+     */
     vm.getMoviePageInfo = function (p) {
       vm.currPageNumber = p;
 
@@ -85,7 +105,7 @@
       }
 
       TorrentsService.query({
-        skip: (p - 1) * vm.pageNumber + skip,
+        skip: (p - 1) * vm.pageNumber + 0,
         limit: p * vm.pageNumber,
         keys: vm.searchKey,
         torrent_status: 'reviewed',
@@ -102,6 +122,11 @@
       });
     };
 
+    /**
+     * getTagTitle
+     * @param tag: tag name
+     * @returns {*}
+     */
     vm.getTagTitle = function (tag) {
       var tmp = tag;
       var find = false;
@@ -126,12 +151,25 @@
       return tmp;
     };
 
+    /**
+     * clearAllCondition
+     */
     vm.clearAllCondition = function () {
       vm.searchKey = '';
       vm.searchTags = [];
       $('.btn-tag').removeClass('btn-success').addClass('btn-default');
 
       vm.getMoviePageInfo(1);
+    };
+
+    /**
+     * onTagClicked
+     * @param tag: tag name
+     */
+    vm.onTagClicked = function (tag) {
+      $timeout(function () {
+        angular.element('#tag_' + tag).trigger('click');
+      }, 100);
     };
   }
 }());

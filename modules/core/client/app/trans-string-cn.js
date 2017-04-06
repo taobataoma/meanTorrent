@@ -71,8 +71,8 @@
     TABLE_FIELDS: {
       INFO: '种子信息',
       SIZE: '大小',
-      SEEDS_LEECHERS_FINISHED: '做种/下载/完成',
-      PUBLISHER: 'Publisher',
+      SEEDS_LEECHERS_FINISHED: '上/下/完',
+      PUBLISHER: '发布者',
       LIFETIME: '存活时间',
       VOTES: '评分'
     },

@@ -31,7 +31,10 @@
       $state.go('authentication.signin');
     }
 
-    //******************** begin upload torrent file *********************
+    /**
+     * upload
+     * @param dataUrl
+     */
     vm.upload = function (dataUrl) {
       //console.log(dataUrl);
 
@@ -61,6 +64,10 @@
       });
     };
 
+    /**
+     * onSuccessItem
+     * @param response
+     */
     function onSuccessItem(response) {
       vm.fileSelected = false;
       vm.successfully = true;
@@ -72,6 +79,10 @@
       });
     }
 
+    /**
+     * onErrorItem
+     * @param response
+     */
     function onErrorItem(response) {
       vm.fileSelected = false;
       vm.successfully = false;
@@ -83,17 +94,28 @@
       });
     }
 
-    //************** begin get tmdb info ***********************************
+    /**
+     * onTMDBIDKeyDown
+     * @param evt
+     */
     vm.onTMDBIDKeyDown = function (evt) {
       if (evt.keyCode === 13) {
         vm.getInfo(vm.tmdb_id);
       }
     };
 
+    /**
+     * onTextClick
+     * @param $event
+     */
     vm.onTextClick = function ($event) {
       $event.target.select();
     };
 
+    /**
+     * getInfo
+     * @param tmdbid
+     */
     vm.getInfo = function (tmdbid) {
       console.log(tmdbid);
       if (tmdbid === null || tmdbid === undefined) {
@@ -127,6 +149,9 @@
       });
     };
 
+    /**
+     * create
+     */
     vm.create = function () {
       var d = new Date(vm.movieinfo.release_date);
       var l = 0;
@@ -193,11 +218,17 @@
       }
     };
 
+    /**
+     * cancel
+     */
     vm.cancel = function () {
       $state.reload('torrents.uploads');
       document.body.scrollTop = document.documentElement.scrollTop = 0;
     };
 
+    /**
+     * clearAllCondition
+     */
     vm.clearAllCondition = function () {
       vm.tags = [];
     };
