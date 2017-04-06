@@ -78,8 +78,14 @@
     vm.getMoviePageInfo = function (p) {
       vm.currPageNumber = p;
 
+      //if searchKey or searchTags has value, the skip=0
+      var skip = vm.topNumber;
+      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0) {
+        skip = 0;
+      }
+
       TorrentsService.query({
-        skip: (p - 1) * vm.pageNumber + 0, //vm.topNumber,
+        skip: (p - 1) * vm.pageNumber + skip,
         limit: p * vm.pageNumber,
         keys: vm.searchKey,
         torrent_status: 'reviewed',

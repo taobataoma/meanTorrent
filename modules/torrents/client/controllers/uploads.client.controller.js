@@ -197,5 +197,9 @@
       $state.reload('torrents.uploads');
       document.body.scrollTop = document.documentElement.scrollTop = 0;
     };
+
+    vm.clearAllCondition = function () {
+      vm.tags = [];
+    };
   }
 }());

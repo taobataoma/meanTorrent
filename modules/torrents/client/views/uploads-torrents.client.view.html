@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div ng-show="vm.successfully == true" class="row" style="margin-top: 40px;">
+    <div class="row" style="margin-top: 40px;">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <legend class="small-legend" translate="ENTER_TMDB_ID"></legend>
             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -209,6 +209,11 @@
                                    value="{{sitem.name}}"> {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
                         </label>
                     </dd>
+                </div>
+                <div class="margin-top-10">
+                    <dt class="h-line"></dt>
+                    <dd class="h-line"><span class="label label-tag text-uppercase"
+                                             ng-click="vm.clearAllCondition();">{{ 'CLEAR_ALL_CONDITION' | translate}}</span></dd>
                 </div>
             </dl>
         </div>
