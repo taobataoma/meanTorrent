@@ -114,7 +114,7 @@
         torrent_tags: vm.searchTags
       }, function (items) {
         vm.moviePageInfo = items;
-        if (items.length == 0) {
+        if (items.length === 0) {
           Notification.error({
             message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('MOVIE_PAGE_INFO_EMPTY')
           });
@@ -176,5 +176,23 @@
         angular.element('#tag_' + tag).trigger('click');
       }, 100);
     };
+
+    /**
+     * onMoreTagsClicked
+     */
+    vm.onMoreTagsClicked = function () {
+      var e = $('.more-tags');
+      var i = $('#more-tags-icon');
+
+      if (!e.hasClass('panel-collapsed')) {
+        e.slideUp();
+        e.addClass('panel-collapsed');
+        i.removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+      } else {
+        e.slideDown();
+        e.removeClass('panel-collapsed');
+        i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+      }
+    }
   }
 }());

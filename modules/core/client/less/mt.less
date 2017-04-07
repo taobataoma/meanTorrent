@@ -154,7 +154,7 @@
     &,
     &:active,
     &:focus {
-        outline: none;
+        outline: 0;
     }
 }
 
@@ -189,7 +189,7 @@
             > .td-text-overflow {
                 .text-long {
                     @media (min-width: @screen-lg-min) {
-                        max-width: 600px;
+                        max-width: 580px;
                     }
                     @media (max-width: @screen-lg-min) {
                         max-width: 460px;
@@ -244,4 +244,9 @@
     &.used {
         background-color: #c9e4ff !important;
     }
+}
+
+.incline-block-valign {
+    display: inline-block;
+    vertical-align: middle;
 }

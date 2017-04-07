@@ -64,7 +64,9 @@
       SEEDS: '做种用户数',
       LEECHERS: '正在下载数',
       FINISHED: '完成下载数',
-      IMDB_VOTES: 'IMDB 评分'
+      IMDB_VOTES: 'IMDB 评分',
+      MORE_TAGS: '显示更多检索标签',
+      RESET_TAGS: '重置检索条件与标签'
     },
 
     //table fields
@@ -80,10 +82,12 @@
     //TorrentsController & views
     MOVIE_PAGE_INFO_ERROR: '获取电影分页列表失败',
     MOVIE_PAGE_INFO_EMPTY: '没有找到信息，请更换标签重新检索',
-    TAGS_SEARCH: '电影 - 标签检索',
+    TAGS_SEARCH: '标签检索',
     CA_KEYWORD: '关键字',
     PH_KEYWORD: '搜索关键字',
     CLEAR_ALL_CONDITION: '清空所有条件',
+    MORE_TAGS: '显示更多标签',
+    CA_RESET: '重置条件',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',

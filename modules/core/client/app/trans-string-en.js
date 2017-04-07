@@ -64,7 +64,9 @@
       SEEDS: 'Seeds users',
       LEECHERS: 'Leechers users',
       FINISHED: 'Finished users',
-      IMDB_VOTES: 'IMDB Votes'
+      IMDB_VOTES: 'IMDB Votes',
+      MORE_TAGS: 'Show More Search Tags',
+      RESET_TAGS: 'Reset All Search Tags'
     },
 
     //table fields
@@ -80,10 +82,12 @@
     //TorrentsController & views
     MOVIE_PAGE_INFO_ERROR: 'Get movie page info faild',
     MOVIE_PAGE_INFO_EMPTY: 'No movie founded, please change some new tags to research',
-    TAGS_SEARCH: 'Movie - Tags Search',
+    TAGS_SEARCH: 'Tags Search',
     CA_KEYWORD: 'Keyword',
     PH_KEYWORD: 'Search keyword',
     CLEAR_ALL_CONDITION: 'Clear All Condition',
+    MORE_TAGS: 'More Tags',
+    CA_RESET: 'Reset',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',

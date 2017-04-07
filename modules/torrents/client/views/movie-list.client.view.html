@@ -41,46 +41,56 @@
                 <dl class="dl-horizontal">
                     <dt class="h-line">{{ 'CA_KEYWORD' | translate}}:</dt>
                     <dd class="h-line">
-                        <div class="row">
+                        <div class="row" style="">
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" ng-model="vm.searchKey"
                                        ng-keydown="vm.onKeysKeyDown($event);"
                                        placeholder="{{ 'PH_KEYWORD' | translate}}">
                             </div>
+                            <div class="col-sm-5">
+                                <span class="label label-tag text-uppercase margin-left-m-20 incline-block-valign"
+                                      title="{{ 'TITLE_ALT.MORE_TAGS' | translate}}"
+                                      ng-click="vm.onMoreTagsClicked();">
+                                    <i class="glyphicon glyphicon-chevron-down" id="more-tags-icon"></i> {{ 'MORE_TAGS' | translate}}
+                                </span>
+                                <span class="label label-tag text-uppercase incline-block-valign"
+                                      title="{{ 'TITLE_ALT.RESET_TAGS' | translate}}"
+                                      ng-click="vm.clearAllCondition();">
+                                    <i class="glyphicon glyphicon-repeat"></i> {{ 'CA_RESET' | translate}}
+                                </span>
+
+                            </div>
                         </div>
                     </dd>
-                    <div ng-repeat="item in vm.resourcesTags.movie.radio">
-                        <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
-                        <dd class="h-line">
-                            <div class="btn-group btn-group-xs" role="group">
-                                <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
-                                        class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
-                                        ng-click="vm.onRadioTagClicked($event, sitem.name)">
-                                    {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
-                                </button>
-                                </span>
-                            </div>
-                        </dd>
-                    </div>
 
-                    <div ng-repeat="item in vm.resourcesTags.movie.checkbox">
-                        <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
-                        <dd class="h-line">
-                            <div class="btn-group btn-group-xs" role="group">
-                                <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
-                                        class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
-                                        ng-click="vm.onCheckboxTagClicked($event, sitem.name)"
-                                        toggle-class="btn-success" base-class="btn-default" onclick="this.blur();">
-                                    {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
-                                </button>
-                            </div>
-                        </dd>
-                    </div>
+                    <div class="more-tags panel-collapsed" style="display: none;">
+                        <div ng-repeat="item in vm.resourcesTags.movie.radio">
+                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                            <dd class="h-line">
+                                <div class="btn-group btn-group-xs" role="group">
+                                    <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
+                                            class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
+                                            ng-click="vm.onRadioTagClicked($event, sitem.name)">
+                                        {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                                    </button>
+                                    </span>
+                                </div>
+                            </dd>
+                        </div>
 
-                    <div class="margin-top-10">
-                        <dt class="h-line"></dt>
-                        <dd class="h-line"><span class="label label-tag text-uppercase"
-                                                 ng-click="vm.clearAllCondition();">{{ 'CLEAR_ALL_CONDITION' | translate}}</span></dd>
+                        <div ng-repeat="item in vm.resourcesTags.movie.checkbox">
+                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                            <dd class="h-line">
+                                <div class="btn-group btn-group-xs" role="group">
+                                    <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
+                                            class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
+                                            ng-click="vm.onCheckboxTagClicked($event, sitem.name)"
+                                            toggle-class="btn-success" base-class="btn-default" onclick="this.blur();">
+                                        {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                                    </button>
+                                </div>
+                            </dd>
+                        </div>
                     </div>
                 </dl>
             </div>
@@ -120,7 +130,8 @@
                                     <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
                                     <span class="label label-warning">{{ item.torrent_release}}</span>
                                     <span ng-repeat="t in item.torrent_tags">
-                                        <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}" ng-click="vm.onTagClicked(t)">
+                                        <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}"
+                                              ng-click="vm.onTagClicked(t)">
                                             {{ 'RESOURCESTAGS.' + vm.getTagTitle(t) + '.' + t | translate}}
                                         </span>
                                     </span>
