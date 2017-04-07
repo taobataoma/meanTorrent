@@ -1,5 +1,15 @@
 @import (reference) "../../../../public/lib/bootstrap/less/variables.less";
 
+.brand-title {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #FF6600;
+    &:hover {
+        color: #fff;
+    }
+}
+
 .bodysize {
     background-color: #fff;
     min-height: 600px;
@@ -177,10 +187,17 @@
 .tb-v-middle {
     > tbody {
         > tr {
+            .label-download {
+                display: none;
+            }
             cursor: pointer;
             &:hover {
                 .media-object {
                     opacity: 1;
+                }
+                .label-download {
+                    padding: 2px 4px;
+                    display: inline;
                 }
             }
             > .td-v-middle {
@@ -243,6 +260,18 @@
     }
     &.used {
         background-color: #c9e4ff !important;
+    }
+}
+
+.label-download {
+    color: #fff;
+    font-size: 12px;
+    background-color: #FF6600;
+    //border-bottom:2px solid darken(#f1f8ff, 10%);
+    //border-color: darken(#f1f8ff, 10%);;
+    &:hover {
+        cursor: pointer;
+        background-color: darken(#FF6600, 10%);
     }
 }
 

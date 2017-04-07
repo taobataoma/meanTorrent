@@ -66,7 +66,8 @@
       FINISHED: '完成下载数',
       IMDB_VOTES: 'IMDB 评分',
       MORE_TAGS: '显示更多检索标签',
-      RESET_TAGS: '重置检索条件与标签'
+      RESET_TAGS: '重置检索条件与标签',
+      DOWNLOAD_TORRENT: 'Doanload the torrent'
     },
 
     //table fields
@@ -88,6 +89,7 @@
     CLEAR_ALL_CONDITION: '清空所有条件',
     MORE_TAGS: '显示更多标签',
     CA_RESET: '重置条件',
+    CA_DOWNLOAD: '下载种子',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',

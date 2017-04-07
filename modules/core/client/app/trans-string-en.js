@@ -66,7 +66,8 @@
       FINISHED: 'Finished users',
       IMDB_VOTES: 'IMDB Votes',
       MORE_TAGS: 'Show More Search Tags',
-      RESET_TAGS: 'Reset All Search Tags'
+      RESET_TAGS: 'Reset All Search Tags',
+      DOWNLOAD_TORRENT: 'Doanload the torrent'
     },
 
     //table fields
@@ -88,6 +89,7 @@
     CLEAR_ALL_CONDITION: 'Clear All Condition',
     MORE_TAGS: 'More Tags',
     CA_RESET: 'Reset',
+    CA_DOWNLOAD: 'Download',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',

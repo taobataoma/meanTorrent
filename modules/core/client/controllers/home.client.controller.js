@@ -5,11 +5,11 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', '$translate', 'TorrentsService', 'Notification', 'TMDBConfig'];
+  HomeController.$inject = ['$scope', '$translate', 'TorrentsService', 'Notification', 'MeanTorrentConfig'];
 
-  function HomeController($scope, $translate, TorrentsService, Notification, TMDBConfig) {
+  function HomeController($scope, $translate, TorrentsService, Notification, MeanTorrentConfig) {
     var vm = this;
-    vm.tmdbConfig = TMDBConfig.tmdbConfig;
+    vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.movieTopList = undefined;
 
     vm.info_is_ready = false;

@@ -117,8 +117,14 @@
                                 <img class="media-object" ng-src="{{vm.tmdbConfig.poster_list_base_url}}{{item.torrent_img}}" alt="...">
                             </div>
                             <div class="media-body">
-                                <h5 class="media-heading">{{item.torrent_original_title}}<span
-                                        ng-show="item.torrent_original_title!=item.torrent_title"> / {{item.torrent_title}}</span></h5>
+                                <h5 class="media-heading">{{item.torrent_original_title}}
+                                    <span ng-show="item.torrent_original_title!=item.torrent_title"> / {{item.torrent_title}}</span>
+                                    <span class="label label-download text-uppercase"
+                                      title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                      ng-click="vm.downloadTorrent();">
+                                        <i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}
+                                    </span>
+                                </h5>
 
                                 <div class="list-all-genres">
                                     <span class="genres-item" ng-repeat="t in item.torrent_genres">{{t}}</span>

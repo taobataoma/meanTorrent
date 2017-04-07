@@ -5,14 +5,14 @@
     .module('torrents')
     .controller('TorrentsController', TorrentsController);
 
-  TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService', 'TMDBConfig',
-    'ResourcesTagsConfig'];
+  TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
+    'MeanTorrentConfig'];
 
-  function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, TMDBConfig, ResourcesTagsConfig) {
+  function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig) {
     var vm = this;
     vm.user = Authentication.user;
-    vm.tmdbConfig = TMDBConfig.tmdbConfig;
-    vm.resourcesTags = ResourcesTagsConfig.resourcesTags;
+    vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+    vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
 
     vm.searchTags = [];
     vm.searchKey = '';
@@ -193,6 +193,6 @@
         e.removeClass('panel-collapsed');
         i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
       }
-    }
+    };
   }
 }());

@@ -49,11 +49,9 @@ var TorrentSchema = new Schema({
     trim: true
   },
   torrent_type: {
-    type: [{
-      type: String,
-      enum: ['movie', 'MTV', 'music', 'other']
-    }],
-    default: ['movie']
+    type: String,
+    default: 'movie',
+    trim: true
   },
   torrent_genres: {
     type: [String],
@@ -101,18 +99,14 @@ var TorrentSchema = new Schema({
     trim: true
   },
   torrent_status: {
-    type: [{
-      type: String,
-      enum: ['new', 'reviewed', 'deleted']
-    }],
-    default: ['new']
+    type: String,
+    default: 'new',
+    trim: true
   },
   torrent_sale_status: {
-    type: [{
-      type: String,
-      enum: ['FREE', '1/30%', '1/50%', '1/100%', '2/30%', '2/50%', '2/100%', '3/50%', '3/100%']
-    }],
-    default: ['1/100%']
+    type: String,
+    default: 'U1/D1',
+    trim: true
   },
   torrent_recommended: {
     type: Number,

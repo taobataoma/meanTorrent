@@ -5,15 +5,15 @@
     .module('torrents')
     .controller('TorrentsUploadsController', TorrentsUploadsController);
 
-  TorrentsUploadsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'AnnounceConfig', 'Upload', 'Notification',
-    'TorrentsService', 'ResourcesTagsConfig', 'TMDBConfig'];
+  TorrentsUploadsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
+    'TorrentsService'];
 
-  function TorrentsUploadsController($scope, $state, $translate, $timeout, Authentication, AnnounceConfig, Upload, Notification,
-                                     TorrentsService, ResourcesTagsConfig, TMDBConfig) {
+  function TorrentsUploadsController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
+                                     TorrentsService) {
     var vm = this;
-    vm.announce = AnnounceConfig.announce;
-    vm.tmdbConfig = TMDBConfig.tmdbConfig;
-    vm.resourcesTags = ResourcesTagsConfig.resourcesTags;
+    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+    vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.rule_items = [];
     vm.user = Authentication.user;
     vm.progress = 0;
