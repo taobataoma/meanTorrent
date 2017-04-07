@@ -130,7 +130,7 @@
                                     <span class="genres-item" ng-repeat="t in item.torrent_genres">{{t}}</span>
                                 </div>
 
-                                <div class="text-long">{{item.torrent_filename}}</div>
+                                <div class="text-long">{{item.torrent_filename | filename}}</div>
 
                                 <div class="list-all-tags">
                                     <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
