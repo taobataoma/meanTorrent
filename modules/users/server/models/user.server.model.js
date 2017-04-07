@@ -92,6 +92,10 @@ var UserSchema = new Schema({
     type: String,
     default: ''
   },
+  passkey: {
+    type: String,
+    default: ''
+  },
   salt: {
     type: String
   },
