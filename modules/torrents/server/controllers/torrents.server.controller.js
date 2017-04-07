@@ -12,6 +12,7 @@ var path = require('path'),
   Torrent = mongoose.model('Torrent'),
   fs = require('fs'),
   nt = require('nt'),
+  benc = require('bncode'),
   validator = require('validator'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key);
 
@@ -99,6 +100,7 @@ exports.upload = function (req, res) {
 
   function checkAnnounce() {
     return new Promise(function (resolve, reject) {
+      console.log(req.file.filename);
       var newfile = config.uploads.torrent.file.dest + req.file.filename;
       nt.read(newfile, function (err, torrent) {
         var message = '';
@@ -107,8 +109,8 @@ exports.upload = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          if (!config.announce.open_tracker) {
-            if (torrent.metadata.announce !== config.announce.url) {
+          if (!config.meanTorrentConfig.announce.open_tracker) {
+            if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
               console.log(torrent.metadata.announce);
               message = 'ANNOUNCE_URL_ERROR';
 
@@ -124,6 +126,7 @@ exports.upload = function (req, res) {
           }
           torrentinfo = torrent.metadata;
           torrentinfo.info_hash = torrent.infoHash();
+          torrentinfo.filename = req.file.filename;
           resolve();
         }
       });
@@ -174,33 +177,67 @@ exports.upload = function (req, res) {
  * @param res
  */
 exports.download = function (req, res) {
+  var torrent_data = null;
   var filePath = config.uploads.torrent.file.dest + req.torrent.torrent_filename;
   var stat = fs.statSync(filePath);
 
   fs.exists(filePath, function (exists) {
     if (exists) {
-      var options = {
-        root: path.join(__dirname, '../../../../'),
-        headers: {
-          'Content-Type': 'application/x-bittorrent',
-          'Content-Disposition': 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename,
-          'Content-Length': stat.size
-        }
-      };
-      res.sendFile(filePath, options);
+      getTorrentFileData(filePath)
+        .then(function () {
+          //var options = {
+          //  root: path.join(__dirname, '../../../../'),
+          //  headers: {
+          //    'Content-Type': 'application/x-bittorrent',
+          //    'Content-Disposition': 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename,
+          //    'Content-Length': stat.size
+          //  }
+          //};
+          //res.sendFile(filePath, options);
 
-      //res.writeHead(200, {
-      //  'Content-Type': 'application/octet-stream',
-      //  'Content-Disposition': 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename,
-      //  'Content-Length': stat.size
-      //});
-      //fs.createReadStream(filePath).pipe(res);
+          res.set('Content-Type', 'application/x-bittorrent');
+          res.set('Content-Disposition', 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename);
+          res.set('Content-Length', stat.size);
+
+          console.log(torrent_data);
+          res.send(benc.encode(torrent_data));
+
+          //res.writeHead(200, {
+          //  'Content-Type': 'application/octet-stream',
+          //  'Content-Disposition': 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename,
+          //  'Content-Length': stat.size
+          //});
+          //fs.createReadStream(filePath).pipe(res);
+        })
+        .catch(function (err) {
+          res.status(422).send(err);
+        });
     } else {
       res.status(401).send({
         message: 'FILE_DOES_NOT_EXISTS'
       });
     }
   });
+
+  function getTorrentFileData(file) {
+    return new Promise(function (resolve, reject) {
+      nt.read(file, function (err, torrent) {
+        var message = '';
+
+        if (err) {
+          message = 'Read torrent file faild';
+          reject(message);
+        } else {
+          if (!config.meanTorrentConfig.announce.open_tracker) {
+            var announce = config.meanTorrentConfig.announce.url + '/' + req.user.passkey;
+            torrent.metadata.announce = announce;
+          }
+          torrent_data = torrent.metadata;
+          resolve();
+        }
+      });
+    });
+  }
 };
 
 /**

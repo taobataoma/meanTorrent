@@ -15,11 +15,11 @@
         template: '<ui-view/>'
       })
       .state('torrents.movie', {
-        url: '/torrents/movie',
+        url: '/movie',
         templateUrl: '/modules/torrents/client/views/movie-list.client.view.html'
       })
       .state('torrents.uploads', {
-        url: '/torrents/uploads',
+        url: '/uploads',
         templateUrl: '/modules/torrents/client/views/uploads-torrents.client.view.html'
       });
   }

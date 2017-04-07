@@ -209,10 +209,10 @@
           });
         }
       }, function (err) {
-        Notification.error({
-          message: err.data.message,
-          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
-        });
+        //Notification.error({
+        //  message: 'ERROR',
+        //  title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
+        //});
       });
     };
   }

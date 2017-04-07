@@ -183,7 +183,7 @@
 
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
-        torrent_filename: vm.tFile.name,
+        torrent_filename: vm.torrentInfo.filename,
         torrent_tmdb_id: vm.tmdb_id,
         torrent_imdb_id: vm.movieinfo.imdb_id,
         torrent_title: vm.movieinfo.title,
