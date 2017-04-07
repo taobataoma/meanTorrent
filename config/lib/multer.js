@@ -24,12 +24,15 @@ module.exports.torrentFileFilter = function (req, file, callback) {
 };
 
 module.exports.createUploadFilename = function (req, file, cb) {
-  if (fs.existsSync(config.uploads.torrent.file.dest + file.originalname)) {
+  var regex = new RegExp(',', 'g');
+  var filename = file.originalname.replace(regex, ' ');
+
+  if (fs.existsSync(config.uploads.torrent.file.dest + filename)) {
     var err = new Error();
     err.code = 'FILE_ALREADY_EXISTS';
     cb(err, null);
   } else {
-    cb(null, file.originalname);
+    cb(null, filename);
   }
 };
 
