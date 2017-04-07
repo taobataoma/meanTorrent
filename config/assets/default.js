@@ -31,7 +31,9 @@ module.exports = {
         'public/lib/bootstrap-filestyle/src/bootstrap-filestyle.js',
         //moment
         'public/lib/moment/min/moment-with-locales.js',
-        'public/lib/angular-moment/angular-moment.js'
+        'public/lib/angular-moment/angular-moment.js',
+        'public/lib/angular-file-saver/dist/angular-file-saver.js',
+        'public/lib/angular-file-saver/dist/angular-file-saver.bundle.js'
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

@@ -29,7 +29,9 @@ module.exports = {
         'public/lib/bootstrap-filestyle/src/bootstrap-filestyle.min.js',
         //moment
         'public/lib/moment/min/moment-with-locales.min.js',
-        'public/lib/angular-moment/angular-moment.min.js'
+        'public/lib/angular-moment/angular-moment.min.js',
+        'public/lib/angular-file-saver/dist/angular-file-saver.min.js',
+        'public/lib/angular-file-saver/dist/angular-file-saver.bundle.min.js'
         // endbower
       ]
     },
