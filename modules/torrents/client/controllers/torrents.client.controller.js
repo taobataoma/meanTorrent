@@ -6,9 +6,10 @@
     .controller('TorrentsController', TorrentsController);
 
   TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig'];
+    'MeanTorrentConfig', 'DownloadService'];
 
-  function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig) {
+  function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
+                              DownloadService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -193,6 +194,26 @@
         e.removeClass('panel-collapsed');
         i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
       }
+    };
+
+    /**
+     * downloadTorrent
+     * @param id
+     */
+    vm.downloadTorrent = function (id) {
+      var url = '/api/torrents/download/' + id;
+      DownloadService.downloadTorrentFile(url, null, function (status) {
+        if (status === 200) {
+          Notification.success({
+            message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENTS_DOWNLOAD_SUCCESSFULLY')
+          });
+        }
+      }, function (err) {
+        Notification.error({
+          message: err.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
+        });
+      });
     };
   }
 }());

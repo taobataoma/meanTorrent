@@ -121,7 +121,7 @@
                                     <span ng-show="item.torrent_original_title!=item.torrent_title"> / {{item.torrent_title}}</span>
                                     <span class="label label-download text-uppercase"
                                       title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
-                                      ng-click="vm.downloadTorrent();">
+                                      ng-click="vm.downloadTorrent(item._id);">
                                         <i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}
                                     </span>
                                 </h5>

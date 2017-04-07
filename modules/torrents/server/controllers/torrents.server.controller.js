@@ -169,6 +169,41 @@ exports.upload = function (req, res) {
 };
 
 /**
+ * download a torrent file
+ * @param req
+ * @param res
+ */
+exports.download = function (req, res) {
+  var filePath = config.uploads.torrent.file.dest + req.torrent.torrent_filename;
+  var stat = fs.statSync(filePath);
+
+  fs.exists(filePath, function (exists) {
+    if (exists) {
+      var options = {
+        root: path.join(__dirname, '../../../../'),
+        headers: {
+          'Content-Type': 'application/x-bittorrent',
+          'Content-Disposition': 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename,
+          'Content-Length': stat.size
+        }
+      };
+      res.sendFile(filePath, options);
+
+      //res.writeHead(200, {
+      //  'Content-Type': 'application/octet-stream',
+      //  'Content-Disposition': 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename,
+      //  'Content-Length': stat.size
+      //});
+      //fs.createReadStream(filePath).pipe(res);
+    } else {
+      res.status(401).send({
+        message: 'FILE_DOES_NOT_EXISTS'
+      });
+    }
+  });
+};
+
+/**
  * create a torrent
  * @param req
  * @param res

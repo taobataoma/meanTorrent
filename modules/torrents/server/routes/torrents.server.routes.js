@@ -13,6 +13,9 @@ module.exports = function (app) {
   app.route('/api/torrents/upload')
     .post(torrents.upload);
 
+  app.route('/api/torrents/download/:torrentId')
+    .get(torrents.download);
+
   app.route('/api/torrents')
     .get(torrents.list)
     .post(torrents.create);
