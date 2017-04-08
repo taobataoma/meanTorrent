@@ -80,6 +80,13 @@
       VOTES: 'Votes'
     },
 
+    //page title
+    PAGETITLE: {
+      UPLOADS: 'Uploads',
+      MOVIE_LIST: 'Movie List',
+      TORRENT_INFO: 'Torrent Info'
+    },
+
     //TorrentsController & views
     MOVIE_PAGE_INFO_ERROR: 'Get movie page info faild',
     MOVIE_PAGE_INFO_EMPTY: 'No movie founded, please change some new tags to research',

@@ -5,10 +5,10 @@
     .module('torrents')
     .controller('TorrentsController', TorrentsController);
 
-  TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
+  TorrentsController.$inject = ['$scope', '$state', '$stateParams', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService'];
 
-  function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
+  function TorrentsController($scope, $state, $stateParams, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                               DownloadService) {
     var vm = this;
     vm.user = Authentication.user;
@@ -214,6 +214,15 @@
         //  title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
         //});
       });
+    };
+
+    /**
+     * getTorrentInfo
+     */
+    vm.getTorrentInfo = function () {
+      vm.torrentLocalInfo = TorrentsService.get({
+        torrentId: $stateParams.torrentId
+      }).$promise;
     };
   }
 }());

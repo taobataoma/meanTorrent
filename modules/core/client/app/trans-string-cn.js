@@ -67,7 +67,7 @@
       IMDB_VOTES: 'IMDB 评分',
       MORE_TAGS: '显示更多检索标签',
       RESET_TAGS: '重置检索条件与标签',
-      DOWNLOAD_TORRENT: 'Doanload the torrent'
+      DOWNLOAD_TORRENT: '下载种子文件'
     },
 
     //table fields
@@ -78,6 +78,13 @@
       PUBLISHER: '发布者',
       LIFETIME: '存活时间',
       VOTES: '评分'
+    },
+
+    //page title
+    PAGETITLE: {
+      UPLOADS: '上传',
+      MOVIE_LIST: '电影列表',
+      TORRENT_INFO: '种子信息'
     },
 
     //TorrentsController & views
