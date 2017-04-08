@@ -91,14 +91,13 @@
                     <dd class="h-line">{{vm.movieinfo.original_language}}</dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.GENRES' | translate}}：</dt>
-                    <dd class="h-line">
-                        <span ng-repeat="item in vm.movieinfo.genres">{{item.name}} <span ng-show="$index < vm.movieinfo.genres.length - 1">|</span> </span>
+                    <dd class="h-line list-all-genres">
+                        <span class="genres-item" ng-repeat="item in vm.movieinfo.genres">{{item.name}}</span>
                     </dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
-                    <dd class="h-line">
-                        <span ng-repeat="item in vm.movieinfo.production_countries">{{item.iso_3166_1}} <span
-                                ng-show="$index < vm.movieinfo.production_countries.length - 1">|</span> </span>
+                    <dd class="h-line list-all-countries">
+                        <span class="country-item" ng-repeat="item in vm.movieinfo.production_countries">{{item.iso_3166_1}}</span>
                     </dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
@@ -108,10 +107,10 @@
                     <dd class="h-line">{{vm.movieinfo.runtime}}</dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
-                    <dd class="h-line">${{vm.movieinfo.budget}}</dd>
+                    <dd class="h-line">${{vm.movieinfo.budget | dollar:2}}</dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.REVENUE' | translate}}：</dt>
-                    <dd class="h-line">${{vm.movieinfo.revenue}}</dd>
+                    <dd class="h-line">${{vm.movieinfo.revenue | dollar:2}}</dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
                     <dd class="h-line">{{vm.movieinfo.vote_average}} / {{vm.movieinfo.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</dd>

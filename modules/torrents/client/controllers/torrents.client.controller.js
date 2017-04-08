@@ -222,9 +222,51 @@
     vm.getTorrentInfo = function () {
       vm.torrentLocalInfo = TorrentsService.get({
         torrentId: $stateParams.torrentId
+      }, function (res) {
+        if (res.torrent_backdrop_img) {
+          $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + res.torrent_backdrop_img + ')');
+        }
+        vm.initInfo(res.torrent_tmdb_id);
       });
 
       console.log(vm.torrentLocalInfo);
+    };
+
+    /**
+     * initInfo
+     */
+    vm.initInfo = function (tmdb_id) {
+      TorrentsService.getTMDBInfo({
+        tmdbid: tmdb_id,
+        language: 'en'
+      }, function (res) {
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_INFO_OK')
+        });
+
+        vm.movieinfo = res;
+      }, function (err) {
+        Notification.error({
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_INFO_FAILD')
+        });
+      });
+    };
+
+    /**
+     * getDirector
+     * @returns {string}
+     */
+    vm.getDirector = function () {
+      var n = '-';
+
+      if (vm.movieinfo) {
+        angular.forEach(vm.movieinfo.credits.crew, function (item) {
+          if (item.job === 'Director') {
+            n = item.name;
+          }
+        })
+      }
+      return n;
     };
 
     /**
@@ -233,7 +275,7 @@
      */
     vm.openTorrentInfo = function (id) {
       var url = $state.href('torrents.view', {torrentId: id});
-      window.open(url,'_blank');
-    }
+      window.open(url, '_blank');
+    };
   }
 }());

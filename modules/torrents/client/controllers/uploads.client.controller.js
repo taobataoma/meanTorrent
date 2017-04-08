@@ -195,6 +195,7 @@
         torrent_imdb_votes: vm.movieinfo.vote_average,
         torrent_size: l,
         torrent_img: vm.movieinfo.poster_path,
+        torrent_backdrop_img: vm.movieinfo.backdrop_path,
         torrent_release: d.getFullYear()
       });
 

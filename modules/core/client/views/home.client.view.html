@@ -26,15 +26,13 @@
                             <dd class="h-line">{{vm.movieinfo.original_language}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.GENRES' | translate}}：</dt>
-                            <dd class="h-line">
-                                <span ng-repeat="item in vm.movieinfo.genres">{{item.name}} <span
-                                        ng-show="$index < vm.movieinfo.genres.length - 1">|</span> </span>
+                            <dd class="h-line list-all-genres">
+                                <span class="genres-item" ng-repeat="item in vm.movieinfo.genres">{{item.name}}</span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
-                            <dd class="h-line">
-                                    <span ng-repeat="item in vm.movieinfo.production_countries">{{item.iso_3166_1}} <span
-                                            ng-show="$index < vm.movieinfo.production_countries.length - 1">|</span> </span>
+                            <dd class="h-line list-all-countries">
+                                    <span class="country-item" ng-repeat="item in vm.movieinfo.production_countries">{{item.iso_3166_1}}</span>
                             </dd>
 
                             <!--<dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>-->
@@ -73,7 +71,6 @@
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[0].name}}</strong></span>
 
-                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[0].character}}</p>-->
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
                                 <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieinfo.credits.cast[1].profile_path}}"
@@ -81,7 +78,6 @@
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[1].name}}</strong></span>
 
-                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[1].character}}</p>-->
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
                                 <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieinfo.credits.cast[2].profile_path}}"
@@ -89,7 +85,6 @@
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[2].name}}</strong></span>
 
-                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[2].character}}</p>-->
                             </div>
                             <div class="clearfix visible-xs-block visible-sm-block"></div>
                             <div class="col-xs-4 col-md-2 text-center">
@@ -98,7 +93,6 @@
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[3].name}}</strong></span>
 
-                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[3].character}}</p>-->
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
                                 <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieinfo.credits.cast[4].profile_path}}"
@@ -106,7 +100,6 @@
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[4].name}}</strong></span>
 
-                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[4].character}}</p>-->
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
                                 <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieinfo.credits.cast[5].profile_path}}"
@@ -114,7 +107,6 @@
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[5].name}}</strong></span>
 
-                                <!--<p class="cast-xs-info">{{vm.movieinfo.credits.cast[5].character}}</p>-->
                             </div>
                         </div>
                     </div>

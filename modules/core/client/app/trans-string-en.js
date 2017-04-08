@@ -100,6 +100,12 @@
     TORRENT_DOWNLOAD_ERROR: 'Torrent file download faild',
     TORRENTS_DOWNLOAD_SUCCESSFULLY: 'Torrents file download successfully',
 
+    //torrent info
+    UNIT_MILLION: 'million',
+    UNIT_MITUTE: 'min',
+    TMDB_INFO_OK: 'Load TMDB movie info OK',
+    TMDB_INFO_FAILD: 'Load TMDB movie info ERROR',
+
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',
     TORRENTS_UPLOAD_FAILED: 'Failed to uploads file',
@@ -157,7 +163,8 @@
       VOTE_UNIT: 'users',
       BACKDROP_PATH: 'backdrop_path',
       POSTER_PATH: 'poster_path',
-      CAST: 'cast:'
+      CAST: 'cast:',
+      DIRECTOR: 'Director'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

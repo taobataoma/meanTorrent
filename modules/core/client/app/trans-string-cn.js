@@ -100,6 +100,12 @@
     TORRENT_DOWNLOAD_ERROR: '种子文件下载失败',
     TORRENTS_DOWNLOAD_SUCCESSFULLY: '种子文件下载成功',
 
+    //torrent info
+    UNIT_MILLION: '百万美元',
+    UNIT_MITUTE: '分钟',
+    TMDB_INFO_OK: '装载 TMDB 电影信息成功',
+    TMDB_INFO_FAILD: '装载 TMDB 电影信息失败',
+
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',
     TORRENTS_UPLOAD_FAILED: '文件上传失败',
@@ -157,7 +163,8 @@
       VOTE_UNIT: '人',
       BACKDROP_PATH: '背景海报',
       POSTER_PATH: '海报',
-      CAST: '主演：'
+      CAST: '主演：',
+      DIRECTOR: '导演'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////
