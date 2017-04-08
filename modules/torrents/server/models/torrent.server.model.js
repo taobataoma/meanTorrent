@@ -93,6 +93,11 @@ var TorrentSchema = new Schema({
     default: '',
     trim: true
   },
+  torrent_backdrop_img: {
+    type: String,
+    default: '',
+    trim: true
+  },
   torrent_release: {
     type: String,
     default: '2017',
