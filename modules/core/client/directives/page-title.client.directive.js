@@ -4,9 +4,9 @@
   angular.module('core')
     .directive('pageTitle', pageTitle);
 
-  pageTitle.$inject = ['$rootScope', '$interpolate', '$state'];
+  pageTitle.$inject = ['$rootScope', '$interpolate', '$state', '$translate'];
 
-  function pageTitle($rootScope, $interpolate, $state) {
+  function pageTitle($rootScope, $interpolate, $state, $translate) {
     var directive = {
       restrict: 'A',
       link: link
@@ -22,7 +22,7 @@
           separeteBy = ' - ';
         if (toState.data && toState.data.pageTitle) {
           var stateTitle = $interpolate(toState.data.pageTitle)($state.$current.locals.globals);
-          element.html(applicationCoreTitle + separeteBy + stateTitle);
+          element.html(applicationCoreTitle + separeteBy + $translate.instant(stateTitle));
         } else {
           element.html(applicationCoreTitle);
         }
