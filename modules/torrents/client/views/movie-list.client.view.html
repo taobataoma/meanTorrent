@@ -2,7 +2,7 @@
     <div class="row">
         <div ng-repeat="item in vm.movieTopInfo">
             <div class="col-sm-4 col-md-2">
-                <div class="thumbnail torrent-post-info" ui-sref="torrents.view({ torrentId: item._id })">
+                <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
                     <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.torrent_img}}" alt="{{item.torrent_title}}"
                          class="img-responsive">
 
@@ -110,7 +110,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="torrent-list-info" ng-repeat="item in vm.moviePageInfo" ui-sref="torrents.view({ torrentId: item._id })">
+                <tr class="torrent-list-info" ng-repeat="item in vm.moviePageInfo" ng-click="vm.openTorrentInfo(item._id);">
                     <td class="col-md-7 td-text-overflow">
                         <div class="media">
                             <div class="media-left">

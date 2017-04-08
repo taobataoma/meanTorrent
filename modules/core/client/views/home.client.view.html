@@ -135,7 +135,7 @@
                         <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
                         <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                         <div class="col-sm-6 col-md-3">
-                            <div class="thumbnail torrent-post-info">
+                            <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
                                 <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.torrent_img}}" alt="{{item.torrent_title}}"
                                      class="img-responsive">
 

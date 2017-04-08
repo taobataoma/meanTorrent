@@ -5,9 +5,9 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', '$translate', 'TorrentsService', 'Notification', 'MeanTorrentConfig'];
+  HomeController.$inject = ['$scope', '$state', '$translate', 'TorrentsService', 'Notification', 'MeanTorrentConfig'];
 
-  function HomeController($scope, $translate, TorrentsService, Notification, MeanTorrentConfig) {
+  function HomeController($scope, $state, $translate, TorrentsService, Notification, MeanTorrentConfig) {
     var vm = this;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.movieTopList = undefined;
@@ -17,6 +17,9 @@
 
     vm.COMING = 'coming soon...';
 
+    /**
+     * initInfo
+     */
     vm.initInfo = function () {
       TorrentsService.getTMDBInfo({
         tmdbid: '329865',
@@ -36,10 +39,16 @@
       });
     };
 
+    /**
+     * getTopInfo
+     */
     vm.getTopInfo = function () {
       vm.getMovieTopInfo();
     };
 
+    /**
+     * getMovieTopInfo
+     */
     vm.getMovieTopInfo = function () {
       vm.moviesInfo = TorrentsService.query({
         limit: 8
@@ -51,5 +60,14 @@
         });
       });
     };
+
+    /**
+     * openTorrentInfo
+     * @param id
+     */
+    vm.openTorrentInfo = function (id) {
+      var url = $state.href('torrents.view', {torrentId: id});
+      window.open(url,'_blank');
+    }
   }
 }());

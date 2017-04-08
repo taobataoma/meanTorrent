@@ -6,10 +6,10 @@
     .controller('TorrentsController', TorrentsController);
 
   TorrentsController.$inject = ['$scope', '$state', '$stateParams', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService'];
+    'MeanTorrentConfig', 'DownloadService', '$window'];
 
   function TorrentsController($scope, $state, $stateParams, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                              DownloadService) {
+                              DownloadService, $window) {
     var vm = this;
     vm.user = Authentication.user;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -222,7 +222,18 @@
     vm.getTorrentInfo = function () {
       vm.torrentLocalInfo = TorrentsService.get({
         torrentId: $stateParams.torrentId
-      }).$promise;
+      });
+
+      console.log(vm.torrentLocalInfo);
     };
+
+    /**
+     * openTorrentInfo
+     * @param id
+     */
+    vm.openTorrentInfo = function (id) {
+      var url = $state.href('torrents.view', {torrentId: id});
+      window.open(url,'_blank');
+    }
   }
 }());
