@@ -104,13 +104,13 @@
                     <dd class="h-line">{{vm.movieinfo.release_date}}</dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>
-                    <dd class="h-line">{{vm.movieinfo.runtime}}</dd>
+                    <dd class="h-line">{{vm.movieinfo.runtime | runtime}}</dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
-                    <dd class="h-line">${{vm.movieinfo.budget | dollar:2}}</dd>
+                    <dd class="h-line">{{vm.movieinfo.budget | dollar:2}}</dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.REVENUE' | translate}}：</dt>
-                    <dd class="h-line">${{vm.movieinfo.revenue | dollar:2}}</dd>
+                    <dd class="h-line">{{vm.movieinfo.revenue | dollar:2}}</dd>
 
                     <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
                     <dd class="h-line">{{vm.movieinfo.vote_average}} / {{vm.movieinfo.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</dd>
@@ -215,6 +215,13 @@
                                              ng-click="vm.clearAllCondition();">{{ 'CLEAR_ALL_CONDITION' | translate}}</span></dd>
                 </div>
             </dl>
+        </div>
+    </div>
+
+    <div class="row" ng-show="vm.tmdb_info_ok == true" style="margin-top: 40px;">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <legend class="small-legend" translate="ENTER_VIDEO_NFO"></legend>
+            <textarea class="form-control" rows="10" ng-model="vm.videoNfo"></textarea>
         </div>
     </div>
 

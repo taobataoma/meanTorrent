@@ -21,6 +21,7 @@
     vm.tmdb_info_ok = undefined;
     vm.torrentInfo = null;
     vm.tags = [];
+    vm.videoNfo = '';
 
     for (var i = 0; i < $translate.instant('UPLOADS_RULES_COUNT'); i++) {
       vm.rule_items[i] = i;
@@ -191,6 +192,7 @@
         torrent_type: 'movie',
         torrent_genres: g,
         torrent_tags: t,
+        torrent_nfo: vm.videoNfo,
         torrent_announce: vm.torrentInfo.announce,
         torrent_imdb_votes: vm.movieinfo.vote_average,
         torrent_size: l,
