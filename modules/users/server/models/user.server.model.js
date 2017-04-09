@@ -138,7 +138,11 @@ var UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date
-  }
+  },
+  _torrents: [{
+    type: Schema.ObjectId,
+    ref: 'Torrent'
+  }]
 });
 
 /**

@@ -121,6 +121,10 @@ var TorrentSchema = new Schema({
     type: Number,
     default: 0
   },
+  _subtitles: [{
+    type: Schema.ObjectId,
+    ref: 'Subtitle'
+  }],
   last_scrape: {
     type: Date,
     default: Date.now
