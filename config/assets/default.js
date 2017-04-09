@@ -29,6 +29,7 @@ module.exports = {
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         'public/lib/angular-translate/angular-translate.js',
         'public/lib/bootstrap-filestyle/src/bootstrap-filestyle.js',
+        'public/lib/angular-sanitize/angular-sanitize.js',
         //moment
         'public/lib/moment/min/moment-with-locales.js',
         'public/lib/angular-moment/angular-moment.js',
