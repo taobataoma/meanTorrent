@@ -399,6 +399,7 @@ exports.list = function (req, res) {
   Torrent.find(condition)
     .sort('-createdat')
     .populate('user', 'displayName')
+    .populate('subtitles')
     .skip(skip)
     .limit(limit)
     .exec(function (err, torrents) {
@@ -423,16 +424,19 @@ exports.torrentByID = function (req, res, next, id) {
     });
   }
 
-  Torrent.findById(id).populate('user', 'displayName').exec(function (err, torrent) {
-    if (err) {
-      return next(err);
-    } else if (!torrent) {
-      return res.status(404).send({
-        message: 'No torrent with that id has been found'
-      });
-    }
-    req.torrent = torrent;
-    next();
-  });
+  Torrent.findById(id)
+    .populate('user', 'displayName')
+    .populate('subtitles')
+    .exec(function (err, torrent) {
+      if (err) {
+        return next(err);
+      } else if (!torrent) {
+        return res.status(404).send({
+          message: 'No torrent with that id has been found'
+        });
+      }
+      req.torrent = torrent;
+      next();
+    });
 };
 
