@@ -20,6 +20,7 @@
     vm.currPageNumber = 1;
     vm.topNumber = 6;
     vm.pageNumber = 50;
+    vm.releaseYear = undefined;
 
     vm.torrentTabs = [
       {title: $translate.instant('TAB_VIDEO_INFO'), templateUrl: 'videoInfo.html'},
@@ -120,7 +121,7 @@
         keys: vm.searchKey,
         torrent_status: 'reviewed',
         torrent_type: 'movie',
-        //torrent_release: vm.releaseYear,
+        torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags
       }, function (items) {
         vm.moviePageInfo = items;
@@ -185,6 +186,19 @@
       $timeout(function () {
         angular.element('#tag_' + tag).trigger('click');
       }, 100);
+    };
+
+    /**
+     * onReleaseClicked
+     * @param y
+     */
+    vm.onReleaseClicked = function (y) {
+      if (vm.releaseYear === y) {
+        vm.releaseYear = undefined;
+      } else {
+        vm.releaseYear = y;
+      }
+      vm.getMoviePageInfo(1);
     };
 
     /**
@@ -289,10 +303,10 @@
     };
 
     vm.getVideoNfoHtml = function () {
-      if(vm.torrentLocalInfo.torrent_nfo){
+      if (vm.torrentLocalInfo.torrent_nfo) {
         var info = $filter('videoNfo')(vm.torrentLocalInfo.torrent_nfo);
         return $sce.trustAsHtml(info);
       }
-    }
+    };
   }
 }());

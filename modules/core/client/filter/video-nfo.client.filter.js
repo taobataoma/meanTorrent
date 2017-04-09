@@ -9,9 +9,9 @@
 
   function videoNfo() {
     return function (nfo) {
-      if(nfo){
+      if (nfo) {
         return nfo.replace(/\n/g, '<br />');
-      }else{
+      } else {
         return '';
       }
     };

@@ -134,7 +134,9 @@
 
                                 <div class="list-all-tags">
                                     <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
-                                    <span class="label label-warning">{{ item.torrent_release}}</span>
+                                    <span class="label label-warning" ng-click="vm.onReleaseClicked(item.torrent_release); $event.stopPropagation();">
+                                        {{ item.torrent_release}}
+                                    </span>
                                     <span ng-repeat="t in item.torrent_tags">
                                         <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}"
                                               ng-click="vm.onTagClicked(t); $event.stopPropagation();">
