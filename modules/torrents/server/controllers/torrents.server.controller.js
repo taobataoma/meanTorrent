@@ -25,20 +25,14 @@ exports.movieinfo = function (req, res) {
 
   tmdb.movieInfo({
     id: req.params.tmdbid,
-    language: req.params.language
+    language: req.params.language,
+    append_to_response: 'credits,images,alternative_titles,release_dates',
+    include_image_language: req.params.language + ',null'
   }, function (err, info) {
     if (err) {
       res.status(900).send(err);
     } else {
-      tmdb.movieCredits({
-        id: req.params.tmdbid,
-        language: req.params.language
-      }, function (err, cinfo) {
-        if (!err) {
-          info.credits = cinfo;
-        }
-        res.json(info);
-      });
+      res.json(info);
     }
   });
 };
