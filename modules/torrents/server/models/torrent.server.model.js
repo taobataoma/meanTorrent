@@ -64,7 +64,7 @@ var TorrentSchema = new Schema({
     trim: true
   },
   torrent_nfo: {
-    type: [String],
+    type: String,
     default: ''
   },
   torrent_announce: {

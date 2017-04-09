@@ -105,8 +105,18 @@
     UNIT_MITUTE: 'min',
     TMDB_INFO_OK: 'Load TMDB movie info OK',
     TMDB_INFO_FAILD: 'Load TMDB movie info ERROR',
+    TAB_VIDEO_INFO: 'Video Info',
+    TAB_USER_SUBTITLE: 'Subtitle Info',
+    TAB_USER_INFO: 'User Info',
+    TAB_OTHER_TORRENTS: 'Other Torrents',
+    TAB_MY_PANEL: 'My Pannel',
+    TAB_ADMIN_PANEL: 'Admin Panel',
 
-    //TorrentsUploadsController & views
+    TRANCKER_URL: 'Tracker Url',
+    ATTRIBUTE_TAGS: 'Video Attribute (tags)',
+    VIDEO_NFO: 'Video NFO',
+
+  //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',
     TORRENTS_UPLOAD_FAILED: 'Failed to uploads file',
     TORRENTS_NO_FILE_SELECTED: 'No file selected',
@@ -128,6 +138,7 @@
     CANCEL_BUTTON: 'NO, CANCEL IT',
     AGREE_RULES: 'I agree and already read all the rules, <a href="#">read here</a>',
     DOWNLOAD_TORRENT: 'Download Torrent',
+    ENTER_VIDEO_NFO: 'Please enter video NFO',
 
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',

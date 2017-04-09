@@ -6,10 +6,10 @@
     .controller('TorrentsController', TorrentsController);
 
   TorrentsController.$inject = ['$scope', '$state', '$stateParams', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$window'];
+    'MeanTorrentConfig', 'DownloadService', '$window', '$sce', '$filter'];
 
   function TorrentsController($scope, $state, $stateParams, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                              DownloadService, $window) {
+                              DownloadService, $window, $sce, $filter) {
     var vm = this;
     vm.user = Authentication.user;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -20,6 +20,15 @@
     vm.currPageNumber = 1;
     vm.topNumber = 6;
     vm.pageNumber = 50;
+
+    vm.torrentTabs = [
+      {title: $translate.instant('TAB_VIDEO_INFO'), templateUrl: 'videoInfo.html'},
+      {title: $translate.instant('TAB_USER_SUBTITLE'), templateUrl: 'subtitleInfo.html'},
+      {title: $translate.instant('TAB_USER_INFO'), templateUrl: 'userInfo.html'},
+      {title: $translate.instant('TAB_OTHER_TORRENTS'), templateUrl: 'otherTorrents.html'},
+      {title: $translate.instant('TAB_MY_PANEL'), templateUrl: 'myPanel.html'},
+      {title: $translate.instant('TAB_ADMIN_PANEL'), templateUrl: 'adminPanel.html'}
+    ];
 
     // If user is not signed in then redirect back home
     if (!Authentication.user) {
@@ -244,6 +253,7 @@
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_INFO_OK')
         });
 
+        console.log(res);
         vm.movieinfo = res;
       }, function (err) {
         Notification.error({
@@ -264,7 +274,7 @@
           if (item.job === 'Director') {
             n = item.name;
           }
-        })
+        });
       }
       return n;
     };
@@ -275,7 +285,14 @@
      */
     vm.openTorrentInfo = function (id) {
       var url = $state.href('torrents.view', {torrentId: id});
-      window.open(url, '_blank');
+      $window.open(url, '_blank');
     };
+
+    vm.getVideoNfoHtml = function () {
+      if(vm.torrentLocalInfo.torrent_nfo){
+        var info = $filter('videoNfo')(vm.torrentLocalInfo.torrent_nfo);
+        return $sce.trustAsHtml(info);
+      }
+    }
   }
 }());

@@ -105,6 +105,16 @@
     UNIT_MITUTE: '分钟',
     TMDB_INFO_OK: '装载 TMDB 电影信息成功',
     TMDB_INFO_FAILD: '装载 TMDB 电影信息失败',
+    TAB_VIDEO_INFO: '视频信息',
+    TAB_USER_SUBTITLE: '字幕信息',
+    TAB_USER_INFO: '用户信息',
+    TAB_OTHER_TORRENTS: '其它种子',
+    TAB_MY_PANEL: '我的面板',
+    TAB_ADMIN_PANEL: '管理员面板',
+
+    TRANCKER_URL: 'Tracker 地址',
+    ATTRIBUTE_TAGS: '视频属性(标签)',
+    VIDEO_NFO: '视频 NFO',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',
@@ -128,6 +138,7 @@
     CANCEL_BUTTON: '算了，以后再说',
     AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="#">协议条款</a>',
     DOWNLOAD_TORRENT: '下载种子',
+    ENTER_VIDEO_NFO: '请输入视频NFO信息',
 
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',
