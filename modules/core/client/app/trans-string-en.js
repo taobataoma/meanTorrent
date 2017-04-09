@@ -115,8 +115,14 @@
     TRANCKER_URL: 'Tracker Url',
     ATTRIBUTE_TAGS: 'Video Attribute (tags)',
     VIDEO_NFO: 'Video NFO',
+    UPLOAD_SUBTITLE: 'Upload Subtitle files',
+    SUBTITLE_LIST: 'Subtitle list',
+    SUBTITLE_RULES: {
+      0: 'If the torrent has no subtitle files, you can uploads here.',
+      1: 'Please note the filename format, such as: <mark>Sing.2016.3D.HKG.BluRay.1080p.AVC.Atmos.TrueHD7.1-MTeam.chs&eng.srt</mark>'
+    },
 
-  //TorrentsUploadsController & views
+    //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',
     TORRENTS_UPLOAD_FAILED: 'Failed to uploads file',
     TORRENTS_NO_FILE_SELECTED: 'No file selected',

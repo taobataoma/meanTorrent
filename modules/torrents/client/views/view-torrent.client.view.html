@@ -143,7 +143,7 @@
     </div>
 
     <script type="text/ng-template" id="videoInfo.html">
-        <div class="row padding-top-30">
+        <div class="padding-top-30">
             <dl class="dl-horizontal">
                 <dt class="h-line">{{ 'TRANCKER_URL' | translate}}：</dt>
                 <dd class="h-line">{{vm.torrentLocalInfo.torrent_announce}}</dd>
@@ -162,7 +162,12 @@
 
                 <dt class="h-line">{{ 'VIDEO_NFO' | translate}}：</dt>
                 <dd class="h-line">
-                    <textarea class="form-control video-nfo margin-top-10" rows="15" ng-bind="vm.torrentLocalInfo.torrent_nfo" readonly></textarea>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <textarea class="form-control video-nfo margin-top-10" rows="15" ng-bind="vm.torrentLocalInfo.torrent_nfo"
+                                      readonly></textarea>
+                        </div>
+                    </div>
                 </dd>
             </dl>
         </div>
@@ -170,7 +175,48 @@
 
     <script type="text/ng-template" id="subtitleInfo.html">
         <div>
-            <p>building</p>
+            <div class="padding-top-30">
+                <dl class="dl-horizontal">
+                    <dt class="h-line"></dt>
+                    <dd class="h-line margin-bottom-30">
+                        <ul>
+                            <li translate="SUBTITLE_RULES.0"></li>
+                            <li translate="SUBTITLE_RULES.1"></li>
+                        </ul>
+                    </dd>
+
+                    <dt class="h-line">{{ 'UPLOAD_SUBTITLE' | translate}}：</dt>
+                    <dd class="h-line">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" ng-model="vm.sFile.name" disabled>
+
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-primary btn-file"
+                                                ngf-select="vm.fileSelected = true; vm.successfully = undefined; vm.progress = 0;"
+                                                ng-model="vm.sFile"
+                                                accept="application/x-bittorrent"
+                                                ngf-resize="{width: 400}"
+                                                ngf-resize-if="$width > 400 || $height > 400"
+                                                ng-disabled="vm.successfully">{{ 'SELECT_FILE' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-success inline-block"
+                                        ng-click="vm.upload(vm.sFile)">{{ 'DO_UPLOADS' | translate}} ({{vm.progress}}%)
+                                </button>
+                            </div>
+                        </div>
+                    </dd>
+
+                    <dt class="h-line" ng-show="vm.torrentLocalInfo.subtitles.length>0">{{ 'SUBTITLE_LIST' | translate}}：</dt>
+                    <dd class="h-line" ng-show="vm.torrentLocalInfo.subtitles.length>0">
+                    </dd>
+                </dl>
+            </div>
         </div>
     </script>
 

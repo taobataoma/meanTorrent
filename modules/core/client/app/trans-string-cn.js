@@ -115,6 +115,12 @@
     TRANCKER_URL: 'Tracker 地址',
     ATTRIBUTE_TAGS: '视频属性(标签)',
     VIDEO_NFO: '视频 NFO',
+    UPLOAD_SUBTITLE: '上传字幕文件',
+    SUBTITLE_LIST: '字幕列表',
+    SUBTITLE_RULES: {
+      0: '如果你有该种子的字幕文件，你可以在这里上传.',
+      1: '请注意字幕文件名的正确格式，比如: Sing.2016.3D.HKG.BluRay.1080p.AVC.Atmos.TrueHD7.1-MTeam.chs&eng.srt'
+    },
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',

@@ -302,6 +302,10 @@
       $window.open(url, '_blank');
     };
 
+    /**
+     * getVideoNfoHtml
+     * @returns {*}
+     */
     vm.getVideoNfoHtml = function () {
       if (vm.torrentLocalInfo.torrent_nfo) {
         var info = $filter('videoNfo')(vm.torrentLocalInfo.torrent_nfo);
