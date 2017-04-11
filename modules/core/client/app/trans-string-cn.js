@@ -121,6 +121,13 @@
       0: '如果你有该种子的字幕文件，你可以在这里上传.',
       1: '请注意字幕文件名的正确格式，比如: Sing.2016.3D.HKG.BluRay.1080p.AVC.Atmos.TrueHD7.1-MTeam.chs&eng.srt'
     },
+    MY_TORRENT_RULES: {
+      0: '这个种子文件是由你自己上传的，你可以对其做如下操作.',
+      1: '如需其它帮助，请与我们的管理员联系：<strong><a href="mailto:#">{{admin}}</a></strong>.'
+    },
+    ENTER_VIDEO_NFO: '请输入视频NFO信息',
+    TORRENT_SEED_USERS: '做种用户列表',
+    TORRENT_LEECHER_USERS: '下载用户列表',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',
@@ -144,7 +151,6 @@
     CANCEL_BUTTON: '算了，以后再说',
     AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="#">协议条款</a>',
     DOWNLOAD_TORRENT: '下载种子',
-    ENTER_VIDEO_NFO: '请输入视频NFO信息',
 
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',

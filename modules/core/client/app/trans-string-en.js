@@ -118,9 +118,16 @@
     UPLOAD_SUBTITLE: 'Upload Subtitle files',
     SUBTITLE_LIST: 'Subtitle list',
     SUBTITLE_RULES: {
-      0: 'If the torrent has no subtitle files, you can uploads here.',
+      0: 'If the torrent has no subtitle files, you have the following actions.',
       1: 'Please note the filename format, such as: <mark>Sing.2016.3D.HKG.BluRay.1080p.AVC.Atmos.TrueHD7.1-MTeam.chs&eng.srt</mark>'
     },
+    MY_TORRENT_RULES: {
+      0: 'This torrent file is uploaded by yourself, you have actions bellow.',
+      1: 'For additional assistance, please contact our administrator: <strong><a href="mailto:#">{{admin}}</a></strong>'
+    },
+    ENTER_VIDEO_NFO: 'Please enter video NFO',
+    TORRENT_SEED_USERS: 'Seed Users',
+    TORRENT_LEECHER_USERS: 'Leecher Users',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',
@@ -144,7 +151,6 @@
     CANCEL_BUTTON: 'NO, CANCEL IT',
     AGREE_RULES: 'I agree and already read all the rules, <a href="#">read here</a>',
     DOWNLOAD_TORRENT: 'Download Torrent',
-    ENTER_VIDEO_NFO: 'Please enter video NFO',
 
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',

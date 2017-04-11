@@ -12,6 +12,7 @@
                               DownloadService, $window, $sce, $filter) {
     var vm = this;
     vm.user = Authentication.user;
+    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
 

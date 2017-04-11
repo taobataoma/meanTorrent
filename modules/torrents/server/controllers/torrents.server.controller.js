@@ -399,7 +399,8 @@ exports.list = function (req, res) {
   Torrent.find(condition)
     .sort('-createdat')
     .populate('user', 'displayName')
-    .populate('subtitles')
+    .populate('_subtitles')
+    .populate('_peers')
     .skip(skip)
     .limit(limit)
     .exec(function (err, torrents) {
@@ -426,7 +427,8 @@ exports.torrentByID = function (req, res, next, id) {
 
   Torrent.findById(id)
     .populate('user', 'displayName')
-    .populate('subtitles')
+    .populate('_subtitles')
+    .populate('_peers')
     .exec(function (err, torrent) {
       if (err) {
         return next(err);
