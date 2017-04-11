@@ -19,9 +19,9 @@ var PeerSchema = new Schema({
     default: '',
     trim: true
   },
-  info_hash: {
-    type: Buffer,
-    default: ''
+  torrent: {
+    type: Schema.ObjectId,
+    ref: 'Torrent'
   },
   peer_id: {
     type: Buffer,

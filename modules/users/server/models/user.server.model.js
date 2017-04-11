@@ -142,6 +142,10 @@ var UserSchema = new Schema({
   _torrents: [{
     type: Schema.ObjectId,
     ref: 'Torrent'
+  }],
+  _peers: [{
+    type: Schema.ObjectId,
+    ref: 'Peer'
   }]
 });
 
