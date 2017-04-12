@@ -14,6 +14,7 @@
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+    vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
 
     vm.searchTags = [];

@@ -13,6 +13,7 @@
     var vm = this;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+    vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.rule_items = [];
     vm.user = Authentication.user;

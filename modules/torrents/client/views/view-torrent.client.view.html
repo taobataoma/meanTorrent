@@ -63,12 +63,12 @@
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>
-                            <dd class="h-line"><a href="https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}"
-                                                  target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.imdb_id}}</a></dd>
+                            <dd class="h-line"><a href="{{vm.imdbConfig.imdb_link_url}}{{vm.movieinfo.imdb_id}}"
+                                                  target="_blank">{{vm.imdbConfig.imdb_link_url}}{{vm.movieinfo.imdb_id}}</a></dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>
-                            <dd class="h-line"><a href="https://www.themoviedb.org/movie/{{vm.movieinfo.id}}"
-                                                  target="_blank">https://www.themoviedb.org/movie/{{vm.movieinfo.id}}</a></dd>
+                            <dd class="h-line"><a href="{{vm.tmdbConfig.tmdb_link_url}}{{vm.movieinfo.id}}"
+                                                  target="_blank">{{vm.tmdbConfig.tmdb_link_url}}{{vm.movieinfo.id}}</a></dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                             <dd class="h-line">{{vm.movieinfo.overview}}</dd>
