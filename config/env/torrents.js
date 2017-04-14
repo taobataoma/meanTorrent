@@ -6,7 +6,8 @@ module.exports = {
       url: 'http://127.0.0.1:3000/announce',
       announce_prefix: '[CHD.im].',
       admin: 'admin@chd.im',
-      open_tracker: true
+      base_url: 'http://www.chd.im',
+      open_tracker: false
     },
     torrentType: {
       name: 'TYPE',
@@ -41,6 +42,7 @@ module.exports = {
         {name: 'U3/D1'}
       ]
     },
+    torrentGlobalSalesValue: null,
     tmdbConfig: {
       tmdb_link_url: 'https://www.themoviedb.org/movie/',
       //please change it to your api key from themoviedb.org

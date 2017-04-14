@@ -23,13 +23,15 @@ var PeerSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'Torrent'
   },
-  peer_id: {
-    type: Buffer,
-    default: ''
+  info_hash: {
+    type: String,
+    default: '',
+    trim: true
   },
-  peer_compact: {
-    type: Buffer,
-    default: ''
+  peer_id: {
+    type: String,
+    default: '',
+    trim: true
   },
   peer_ip: {
     type: String,
@@ -55,13 +57,6 @@ var PeerSchema = new Schema({
     }],
     default: 'no'
   },
-  peer_connectable: {
-    type: [{
-      type: String,
-      enum: ['yes', 'no']
-    }],
-    default: 'no'
-  },
   startedat: {
     type: Date,
     default: Date.now
@@ -74,6 +69,7 @@ var PeerSchema = new Schema({
 
 PeerSchema.index({user: -1, startedat: -1});
 PeerSchema.index({info_hash: -1, startedat: -1});
+PeerSchema.index({torrent: -1, startedat: -1});
 PeerSchema.index({passkey: -1, startedat: -1});
 
 mongoose.model('Peer', PeerSchema);
