@@ -117,6 +117,10 @@ var UserSchema = new Schema({
     default: ['admin'],
     required: 'Please provide at least one role'
   },
+  status: {
+    type: String,
+    default: ['normal']
+  },
   uploaded: {
     type: Number,
     default: 0

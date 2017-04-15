@@ -33,6 +33,9 @@ const FAILURE_REASONS = {
   161: 'No torrent with that info_hash has been found',
   162: 'ip length error',
 
+  170: 'your account is banned',
+  171: 'your account is sealed',
+
   200: 'info_hash not found in the database. Sent only by trackers that do not automatically include new hashes into the database',
   500: 'Client sent an eventless request before the specified time',
   600: 'This tracker only supports compact mode',
@@ -103,49 +106,6 @@ Failure.prototype = {
 };
 
 /**
- * validateRequest
- * @param method
- * @param query
- */
-function validateRequest(method, query) {
-  var i = 0;
-  var p;
-
-  if (method !== 'GET')
-    throw new Failure(100);
-
-  if (typeof query.info_hash === 'undefined')
-    throw new Failure(101);
-
-  if (typeof query.peer_id === 'undefined')
-    throw new Failure(102);
-
-  if (typeof query.port === 'undefined')
-    throw new Failure(103);
-
-  if (query.info_hash.length !== 20)
-    throw new Failure(150);
-
-  if (query.peer_id.length !== 20)
-    throw new Failure(151);
-
-  if (typeof query.compact === 'undefined' || query.compact !== '1')
-    throw new Failure(600);
-
-  for (i = 0; i < PARAMS_INTEGER.length; i++) {
-    p = PARAMS_INTEGER[i];
-    if (typeof query[p] !== 'undefined')
-      query[p] = parseInt(query[p].toString(), 10);
-  }
-
-  for (i = 0; i < PARAMS_STRING.length; i++) {
-    p = PARAMS_STRING[i];
-    if (typeof query[p] !== 'undefined')
-      query[p] = query[p].toString();
-  }
-}
-
-/**
  * info api
  * @param req
  * @param res
@@ -153,8 +113,7 @@ function validateRequest(method, query) {
 exports.announce = function (req, res) {
   var torrent;
 
-  console.log('----------------------------');
-  //console.log(req.url);
+  console.log('------------ Announce request ----------------');
 
   var parts = url.parse(req.url, true);
   var query = parts.query;
@@ -165,11 +124,36 @@ exports.announce = function (req, res) {
      validateQueryCheck
      */
     function (done) {
-      try {
-        validateRequest(req.method, query);
+      var i = 0;
+      var p;
+
+      if (req.method !== 'GET') {
+        done(100);
+      } else if (typeof query.info_hash === 'undefined') {
+        done(101);
+      } else if (typeof query.peer_id === 'undefined') {
+        done(102);
+      } else if (typeof query.port === 'undefined') {
+        done(103);
+      } else if (query.info_hash.length !== 20) {
+        done(150);
+      } else if (query.peer_id.length !== 20) {
+        done(151);
+      } else if (typeof query.compact === 'undefined' || query.compact !== '1') {
+        done(600);
+      } else {
+        for (i = 0; i < PARAMS_INTEGER.length; i++) {
+          p = PARAMS_INTEGER[i];
+          if (typeof query[p] !== 'undefined')
+            query[p] = parseInt(query[p].toString(), 10);
+        }
+
+        for (i = 0; i < PARAMS_STRING.length; i++) {
+          p = PARAMS_STRING[i];
+          if (typeof query[p] !== 'undefined')
+            query[p] = query[p].toString();
+        }
         done(null);
-      } catch (failure) {
-        sendError(failure);
       }
     },
 
@@ -184,10 +168,35 @@ exports.announce = function (req, res) {
         if (passkey.length !== 32) {
           done(153);
         }
-        if (req.pkuser === undefined) {
+        if (req.passkeyuser === undefined) {
           done(154);
         }
       }
+      done(null);
+    },
+
+    /*
+     validateUserCheck
+     check normal,banned,sealed
+     */
+    function (done) {
+      switch (req.passkeyuser.status) {
+        case 'banned':
+          done(170);
+          break;
+        case 'sealed':
+          done(171);
+          break;
+        default:
+          done(null);
+      }
+    },
+
+    /*
+     validateClientCheck
+     check client blacklist
+     */
+    function (done) {
       done(null);
     },
 
@@ -210,22 +219,6 @@ exports.announce = function (req, res) {
             done(null);
           }
         });
-    },
-
-    /*
-     validateUserCheck
-     check banned
-     */
-    function (done) {
-      done(null);
-    },
-
-    /*
-     validateClientCheck
-     check client blacklist
-     */
-    function (done) {
-      done(null);
     },
 
     /*
@@ -299,7 +292,8 @@ exports.announce = function (req, res) {
     }
   ], function (err) {
     if (err) {
-      throw new Failure(err);
+      console.log('--------done err : ' + err + '---------');
+      sendError(new Failure(err));
     }
   });
 
@@ -379,9 +373,9 @@ exports.userByPasskey = function (req, res, next, pk) {
   User.findOne({passkey: pk})
     .exec(function (err, u) {
       if (u) {
-        req.pkuser = u;
+        req.passkeyuser = u;
       } else {
-        req.pkuser = undefined;
+        req.passkeyuser = undefined;
       }
       next();
     });

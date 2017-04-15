@@ -26,6 +26,14 @@ module.exports = {
         {name: 'DELETED', value: 'deleted'}
       ]
     },
+    userStatus: {
+      name: 'STATUS',
+      value: [
+        {name: 'NORMAL', value: 'normal'},
+        {name: 'BANNED', value: 'banned'},
+        {name: 'SEALED', value: 'sealed'}
+      ]
+    },
     torrentSalesType: {
       name: 'SALESTYPE',
       value: [
