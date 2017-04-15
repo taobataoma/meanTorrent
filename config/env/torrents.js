@@ -7,6 +7,7 @@ module.exports = {
       announce_prefix: '[CHD.im].',
       admin: 'admin@chd.im',
       base_url: 'http://www.chd.im',
+      client_black_list_url: 'http://www.chd.im/client_black_list',
       open_tracker: false
     },
     torrentType: {
@@ -34,6 +35,9 @@ module.exports = {
         {name: 'SEALED', value: 'sealed'}
       ]
     },
+    clientBlackList: [
+      {name: 'Transmission/2.92'}
+    ],
     torrentSalesType: {
       name: 'SALESTYPE',
       value: [

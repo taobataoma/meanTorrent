@@ -27,7 +27,7 @@ const FAILURE_REASONS = {
   151: 'Invalid peerid: peerid is not 20 bytes long',
   152: 'Invalid numwant. Client requested more peers than allowed by tracker',
   153: 'Passkey length error (length=32)',
-  154: 'Invalid passkey, if you changed you passkey, please redownload the torrent file from ' + config.meanTorrentConfig.announce.base_url,
+  154: 'Invalid passkey, if you changed you passkey, please re-download the torrent file from ' + config.meanTorrentConfig.announce.base_url,
 
   160: 'Invalid torrent info_hash',
   161: 'No torrent with that info_hash has been found',
@@ -35,6 +35,7 @@ const FAILURE_REASONS = {
 
   170: 'your account is banned',
   171: 'your account is sealed',
+  172: 'your client is not allowed, here is the blacklist: ' + config.meanTorrentConfig.announce.client_black_list_url,
 
   200: 'info_hash not found in the database. Sent only by trackers that do not automatically include new hashes into the database',
   500: 'Client sent an eventless request before the specified time',
@@ -197,7 +198,20 @@ exports.announce = function (req, res) {
      check client blacklist
      */
     function (done) {
-      done(null);
+      var ua = req.get('User-Agent');
+      var inlist = false;
+      if (ua) {
+        config.meanTorrentConfig.clientBlackList.forEach(function (client) {
+          if (client.name.toUpperCase() === ua.toUpperCase()) {
+            inlist = true;
+          }
+        });
+      }
+      if (inlist) {
+        done(172);
+      } else {
+        done(null);
+      }
     },
 
     /*

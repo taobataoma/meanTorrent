@@ -57,6 +57,11 @@ var PeerSchema = new Schema({
     }],
     default: 'no'
   },
+  user_agent: {
+    type: String,
+    default: '',
+    trim: true
+  },
   startedat: {
     type: Date,
     default: Date.now
