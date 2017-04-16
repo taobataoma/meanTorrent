@@ -36,7 +36,7 @@ module.exports = {
       ]
     },
     clientBlackList: [
-      {name: 'Transmission/2.92'}
+      {name: 'Transmission/2.93'}
     ],
     torrentSalesType: {
       name: 'SALESTYPE',

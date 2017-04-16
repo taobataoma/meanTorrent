@@ -14,19 +14,9 @@ var PeerSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  passkey: {
-    type: String,
-    default: '',
-    trim: true
-  },
   torrent: {
     type: Schema.ObjectId,
     ref: 'Torrent'
-  },
-  info_hash: {
-    type: String,
-    default: '',
-    trim: true
   },
   peer_id: {
     type: String,
@@ -50,12 +40,10 @@ var PeerSchema = new Schema({
     type: Number,
     default: 0
   },
-  peer_seeder: {
-    type: [{
-      type: String,
-      enum: ['yes', 'no']
-    }],
-    default: 'no'
+  peer_status: {
+    type: String,
+    default: 'leecher',
+    trim: true
   },
   user_agent: {
     type: String,
