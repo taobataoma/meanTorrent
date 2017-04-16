@@ -249,6 +249,9 @@ exports.create = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      req.user._torrents.push(torrent);
+      req.user.save();
+
       res.json(torrent);
     }
   });
@@ -308,6 +311,9 @@ exports.delete = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      req.user._torrents.pull(torrent);
+      req.user.save();
+
       res.json(torrent);
     }
   });
