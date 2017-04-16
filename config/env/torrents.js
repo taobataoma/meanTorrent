@@ -44,17 +44,20 @@ module.exports = {
         {name: 'U1/FREE'},
         {name: 'U1/D.3'},
         {name: 'U1/D.5'},
+        {name: 'U1/D.8'},
         {name: 'U1/D1'},
         {name: 'U2/FREE'},
         {name: 'U2/D.3'},
         {name: 'U2/D.5'},
+        {name: 'U2/D.8'},
         {name: 'U2/D1'},
         {name: 'U3/FREE'},
         {name: 'U3/D.5'},
+        {name: 'U3/D.8'},
         {name: 'U3/D1'}
       ]
     },
-    torrentGlobalSalesValue: null,
+    torrentGlobalSalesValue: undefined,
     tmdbConfig: {
       tmdb_link_url: 'https://www.themoviedb.org/movie/',
       //please change it to your api key from themoviedb.org

@@ -350,6 +350,7 @@ exports.announce = function (req, res) {
         req.selfpeer.forEach(function (p) {
           if (p.user.str === req.passkeyuser._id.str && p.peer_id === query.peer_id) {
             p.peer_status = PEERSTATE_SEEDER;
+            p.finishedat = Date.now();
             p.save();
 
             req.torrent.torrent_seeds++;
@@ -367,6 +368,24 @@ exports.announce = function (req, res) {
      uploaded,downloaded
      ---------------------------------------------------------------*/
     function (done) {
+      console.log('---------------writeUpDownData----------------');
+
+      var udr = getUDRatio();
+      var u = Math.round(query.uploaded * udr.ur);
+      var d = Math.round(query.downloaded * udr.dr);
+
+      req.selfpeer.forEach(function (p) {
+        if (p.user.str === req.passkeyuser._id.str && p.peer_id === query.peer_id) {
+          p.peer_uploaded += query.uploaded;
+          p.peer_downloaded += query.downloaded;
+          p.save();
+        }
+      });
+
+      req.passkeyuser.uploaded += u;
+      req.passkeyuser.downloaded += d;
+      req.passkeyuser.save();
+
       done(null);
     },
 
@@ -445,6 +464,74 @@ exports.announce = function (req, res) {
 
       return i;
     }
+  }
+
+  function getUDRatio() {
+    var udr = {};
+    var sale = req.torrent.torrent_sale_status;
+
+    if (config.meanTorrentConfig.torrentGlobalSalesValue !== undefined) {
+      sale = config.meanTorrentConfig.torrentGlobalSalesValue;
+    }
+
+    switch (sale) {
+      case 'U1/FREE':
+        udr.ur = 1;
+        udr.dr = 0;
+        break;
+      case 'U1/D.3':
+        udr.ur = 1;
+        udr.dr = 0.3;
+        break;
+      case 'U1/D.5':
+        udr.ur = 1;
+        udr.dr = 0.5;
+        break;
+      case 'U1/D.8':
+        udr.ur = 1;
+        udr.dr = 0.8;
+        break;
+      case 'U2/FREE':
+        udr.ur = 2;
+        udr.dr = 0;
+        break;
+      case 'U2/D.3':
+        udr.ur = 2;
+        udr.dr = 0.3;
+        break;
+      case 'U2/D.5':
+        udr.ur = 2;
+        udr.dr = 0.5;
+        break;
+      case 'U2/D.8':
+        udr.ur = 2;
+        udr.dr = 0.8;
+        break;
+      case 'U2/D1':
+        udr.ur = 2;
+        udr.dr = 1;
+        break;
+      case 'U3/FREE':
+        udr.ur = 3;
+        udr.dr = 0;
+        break;
+      case 'U3/D.5':
+        udr.ur = 3;
+        udr.dr = 0.5;
+        break;
+      case 'U3/D.8':
+        udr.ur = 3;
+        udr.dr = 0.8;
+        break;
+      case 'U3/D1':
+        udr.ur = 3;
+        udr.dr = 1;
+        break;
+      default: //U1D1
+        udr.ur = 1;
+        udr.dr = 1;
+    }
+    return udr;
   }
 
   /**
