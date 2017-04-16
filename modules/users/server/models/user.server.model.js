@@ -26,7 +26,7 @@ var validateLocalStrategyProperty = function (property) {
  * A Validation function for local strategy email
  */
 var validateLocalStrategyEmail = function (email) {
-  return ((this.provider !== 'local' && !this.updated) || validator.isEmail(email, { require_tld: false }));
+  return ((this.provider !== 'local' && !this.updated) || validator.isEmail(email, {require_tld: false}));
 };
 
 /**
@@ -39,7 +39,7 @@ var validateLocalStrategyEmail = function (email) {
  * - not begin or end with "."
  */
 
-var validateUsername = function(username) {
+var validateUsername = function (username) {
   var usernameRegex = /^(?=[\w.-]+$)(?!.*[._-]{2})(?!\.)(?!.*\.$).{3,34}$/;
   return (
     this.provider !== 'local' ||
@@ -199,6 +199,45 @@ UserSchema.methods.authenticate = function (password) {
 };
 
 /**
+ * create randomString
+ * @param length
+ * @param chars
+ * @returns {string}
+ */
+UserSchema.methods.randomString = function (length, chars) {
+  if (!chars) {
+    throw new Error('Argument \'chars\' is undefined');
+  }
+
+  var charsLength = chars.length;
+  if (charsLength > 256) {
+    throw new Error('Argument \'chars\' should not have more than 256 characters'
+      + ', otherwise unpredictability will be broken');
+  }
+
+  var randomBytes = crypto.randomBytes(length);
+  var result = new Array(length);
+
+  var cursor = 0;
+  for (var i = 0; i < length; i++) {
+    cursor += randomBytes[i];
+    result[i] = chars[cursor % charsLength];
+  }
+
+  return result.join('');
+};
+
+/**
+ * create randomAsciiString
+ * @param length
+ * @param chars
+ * @returns {string}
+ */
+UserSchema.methods.randomAsciiString = function (length) {
+  return this.randomString(length, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
+};
+
+/**
  * Find possible not used username
  */
 UserSchema.statics.findUniqueUsername = function (username, suffix, callback) {
@@ -221,10 +260,10 @@ UserSchema.statics.findUniqueUsername = function (username, suffix, callback) {
 };
 
 /**
-* Generates a random passphrase that passes the owasp test
-* Returns a promise that resolves with the generated passphrase, or rejects with an error if something goes wrong.
-* NOTE: Passphrases are only tested against the required owasp strength tests, and not the optional tests.
-*/
+ * Generates a random passphrase that passes the owasp test
+ * Returns a promise that resolves with the generated passphrase, or rejects with an error if something goes wrong.
+ * NOTE: Passphrases are only tested against the required owasp strength tests, and not the optional tests.
+ */
 UserSchema.statics.generateRandomPassphrase = function () {
   return new Promise(function (resolve, reject) {
     var password = '';
