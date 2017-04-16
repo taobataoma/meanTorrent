@@ -321,6 +321,9 @@ exports.announce = function (req, res) {
             req.torrent._peers.pull(p);
             req.torrent.save();
 
+            req.passkeyuser._peers.pull(p);
+            req.passkeyuser.save();
+
             p.remove();
             //Peer.remove({
             //  user: p.user,
