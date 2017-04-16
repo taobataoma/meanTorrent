@@ -287,11 +287,14 @@ exports.announce = function (req, res) {
 
               if (req.seeder) {
                 req.torrent.torrent_seeds++;
-                req.torrent.save();
               } else {
                 req.torrent.torrent_leechers++;
-                req.torrent.save();
               }
+              req.torrent.save();
+
+              //save peer to users _peers
+              req.passkeyuser._peers.push(peer);
+              req.passkeyuser.save();
 
               done(null);
             }
