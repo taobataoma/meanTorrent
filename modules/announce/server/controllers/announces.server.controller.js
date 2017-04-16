@@ -346,6 +346,18 @@ exports.announce = function (req, res) {
     function (done) {
       if (event(query.event) === EVENT_COMPLETED) {
         console.log('---------------EVENT_COMPLETED----------------');
+
+        req.selfpeer.forEach(function (p) {
+          if (p.user.str === req.passkeyuser._id.str && p.peer_id === query.peer_id) {
+            p.peer_status = PEERSTATE_SEEDER;
+            p.save();
+
+            req.torrent.torrent_seeds++;
+            req.torrent.torrent_leechers--;
+            req.torrent.torrent_finished++;
+            req.torrent.save();
+          }
+        });
       }
       done(null);
     },
