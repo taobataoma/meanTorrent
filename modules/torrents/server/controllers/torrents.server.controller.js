@@ -334,10 +334,10 @@ exports.list = function (req, res) {
   var keysA = [];
 
   if (req.query.skip !== undefined) {
-    skip = req.query.skip;
+    skip = parseInt(req.query.skip, 10);
   }
   if (req.query.limit !== undefined) {
-    limit = req.query.limit;
+    limit = parseInt(req.query.limit, 10);
   }
   if (req.query.torrent_status !== undefined) {
     status = req.query.torrent_status;
@@ -357,7 +357,6 @@ exports.list = function (req, res) {
     });
   }
   if (req.query.keys !== undefined && req.query.keys.length > 0) {
-    //console.log('keys:' + req.query.keys);
     var keysS = req.query.keys + '';
     var keysT = keysS.split(' ');
 
@@ -371,8 +370,6 @@ exports.list = function (req, res) {
         keysA.push(ti);
       }
     });
-    //keysA = keysS;
-    //console.log(keysA);
   }
 
   var condition = {};
@@ -390,14 +387,7 @@ exports.list = function (req, res) {
       {torrent_filename: {'$all': keysA}},
       {torrent_title: {'$all': keysA}},
       {torrent_original_title: {'$all': keysA}}
-      //{torrent_filename: new RegExp(keysA, 'i')},
-      //{torrent_title: new RegExp(keysA, 'i')},
-      //{torrent_original_title: new RegExp(keysA, 'i')}
     ];
-    //condition.torrent_title = {
-    //  '$regex': keysA,
-    //  '$options': 'i'
-    //};
   }
 
   console.log(JSON.stringify(condition));

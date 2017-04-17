@@ -11,11 +11,11 @@ var mongoose = require('mongoose'),
  */
 var PeerSchema = new Schema({
   user: {
-    type: Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User'
   },
   torrent: {
-    type: Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Torrent'
   },
   peer_id: {
@@ -53,6 +53,10 @@ var PeerSchema = new Schema({
   startedat: {
     type: Date,
     default: Date.now
+  },
+  last_announce_at: {
+    type: Date,
+    default: ''
   },
   finishedat: {
     type: Date,

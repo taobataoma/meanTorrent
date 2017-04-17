@@ -11,11 +11,11 @@ var mongoose = require('mongoose'),
  */
 var SubtitleSchema = new Schema({
   user: {
-    type: Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User'
   },
   torrent: {
-    type: Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Torrent'
   },
   subtitle_filename: {

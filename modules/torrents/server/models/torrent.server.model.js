@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  */
 var TorrentSchema = new Schema({
   user: {
-    type: Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User'
   },
   info_hash: {
@@ -122,11 +122,11 @@ var TorrentSchema = new Schema({
     default: 0
   },
   _subtitles: [{
-    type: Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Subtitle'
   }],
   _peers: [{
-    type: Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Peer'
   }],
   last_scrape: {

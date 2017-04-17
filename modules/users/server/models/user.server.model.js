@@ -144,11 +144,11 @@ var UserSchema = new Schema({
     type: Date
   },
   _torrents: [{
-    type: Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Torrent'
   }],
   _peers: [{
-    type: Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Peer'
   }]
 });
