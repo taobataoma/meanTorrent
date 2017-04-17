@@ -214,7 +214,7 @@ exports.announce = function (req, res) {
       var inlist = false;
       if (ua) {
         config.meanTorrentConfig.clientBlackList.forEach(function (client) {
-          if (client.name.toUpperCase() === ua.toUpperCase()) {
+          if (ua.toUpperCase().indexOf(client.name.toUpperCase()) >= 0) {
             inlist = true;
           }
         });
