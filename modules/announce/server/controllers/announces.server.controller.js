@@ -7,16 +7,13 @@ var path = require('path'),
   config = require(path.resolve('./config/config')),
   mongoose = require('mongoose'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  querystring = require('querystring'),
-  tracker = require('./common/tracker'),
   User = mongoose.model('User'),
   Torrent = mongoose.model('Torrent'),
   Peer = mongoose.model('Peer'),
   moment = require('moment'),
-  assert = require('assert'),
   async = require('async'),
-  url = require('url'),
-  util = require('util');
+  querystring = require('querystring'),
+  url = require('url');
 
 const FAILURE_REASONS = {
   100: 'Invalid request type: client request was not a HTTP GET',
@@ -124,8 +121,8 @@ exports.announce = function (req, res) {
 
   console.log('------------ Announce request ----------------');
 
-  var parts = url.parse(req.url, true);
-  var query = parts.query;
+  var s = req.url.split('?');
+  var query = querystringParse(s[1]);
   var passkey = req.params.passkey || query.passkey || undefined;
 
   async.waterfall([
@@ -163,6 +160,7 @@ exports.announce = function (req, res) {
             query[p] = query[p].toString();
         }
 
+        query.info_hash = binaryToHex(query.info_hash);
         req.seeder = (query.left === 0) ? true : false;
 
         done(null);
@@ -234,7 +232,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       Torrent.findOne({
-        info_hash: '5d8063667a23648d693665426f649140362db88e'
+        info_hash: query.info_hash
       })
         .populate('user')
         .populate('_peers')
@@ -295,12 +293,6 @@ exports.announce = function (req, res) {
         } else {
           if (req.currentPeer === undefined) {
             createCurrentPeer();
-          }
-
-          if (req.seeder) {
-            req.torrent.torrent_seeds++;
-          } else {
-            req.torrent.torrent_leechers++;
           }
 
           done(null);
@@ -482,7 +474,14 @@ exports.announce = function (req, res) {
     peer.user_agent = req.get('User-Agent');
 
     req.selfpeer.push(peer);
+
     req.torrent._peers.push(peer);
+    if (req.seeder) {
+      req.torrent.torrent_seeds++;
+    } else {
+      req.torrent.torrent_leechers++;
+    }
+
     req.passkeyuser._peers.push(peer);
 
     req.currentPeer = peer;
@@ -661,6 +660,17 @@ exports.announce = function (req, res) {
 
       return b;
     }
+  }
+
+  function binaryToHex(str) {
+    if (typeof str !== 'string') {
+      str = String(str);
+    }
+    return Buffer.from(str, 'binary').toString('hex');
+  }
+
+  function querystringParse(q) {
+    return querystring.parse(q, null, null, {decodeURIComponent: unescape});
   }
 };
 
