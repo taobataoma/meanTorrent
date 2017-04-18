@@ -115,6 +115,7 @@
     TRANCKER_URL: 'Tracker Url',
     ATTRIBUTE_TAGS: 'Video Attribute (tags)',
     VIDEO_NFO: 'Video NFO',
+    VIDEO_SIZE: 'Video Size',
     UPLOAD_SUBTITLE: 'Upload Subtitle files',
     SUBTITLE_LIST: 'Subtitle list',
     SUBTITLE_RULES: {

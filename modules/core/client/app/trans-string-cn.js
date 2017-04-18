@@ -115,6 +115,7 @@
     TRANCKER_URL: 'Tracker 地址',
     ATTRIBUTE_TAGS: '视频属性(标签)',
     VIDEO_NFO: '视频 NFO',
+    VIDEO_SIZE: '视频文件大小',
     UPLOAD_SUBTITLE: '上传字幕文件',
     SUBTITLE_LIST: '字幕列表',
     SUBTITLE_RULES: {
