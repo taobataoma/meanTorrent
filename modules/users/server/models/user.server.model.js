@@ -112,14 +112,26 @@ var UserSchema = new Schema({
   roles: {
     type: [{
       type: String,
-      enum: ['user', 'admin']
+      enum: config.meanTorrentConfig.userRoles
     }],
-    default: ['admin'],
+    default: ['user'],
     required: 'Please provide at least one role'
   },
   status: {
     type: String,
-    default: ['normal']
+    default: 'normal'
+  },
+  vip_start_at: {
+    type: Date,
+    default: ''
+  },
+  vip_end_at: {
+    type: Date,
+    default: ''
+  },
+  score: {
+    type: Number,
+    default: 0
   },
   uploaded: {
     type: Number,
