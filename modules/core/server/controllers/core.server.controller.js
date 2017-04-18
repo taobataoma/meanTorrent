@@ -21,7 +21,7 @@ exports.renderIndex = function (req, res) {
       vip_start_at: req.user.vip_start_at,
       vip_end_at: req.user.vip_end_at,
       is_vip: isVip(req.user),
-      score: req.score,
+      score: req.user.score,
       profileImageURL: req.user.profileImageURL,
       email: validator.escape(req.user.email),
       lastName: validator.escape(req.user.lastName),

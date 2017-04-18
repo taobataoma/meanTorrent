@@ -365,14 +365,19 @@ exports.announce = function (req, res) {
       console.log('---------------WRITE_UP_DOWN_DATA----------------');
 
       var udr = getUDRatio();
-      var curru = query.uploaded - req.currentPeer.peer_uploaded;
-      var currd = query.downloaded - req.currentPeer.peer_downloaded;
-      var u = Math.round(curru * udr.ur);
-      var d = Math.round(currd * udr.dr);
 
-      if (req.passkeyuser.is_vip) {
-        u = u * config.meanTorrentConfig.torrentSalesValue.vip.Ur;
-        d = d * config.meanTorrentConfig.torrentSalesValue.vip.Dr;
+      if (req.currentPeer !== undefined) {
+        var curru = query.uploaded - req.currentPeer.peer_uploaded;
+        var currd = query.downloaded - req.currentPeer.peer_downloaded;
+        var u = Math.round(curru * udr.ur);
+        var d = Math.round(currd * udr.dr);
+
+        if (req.passkeyuser.is_vip) {
+          u = u * config.meanTorrentConfig.torrentSalesValue.vip.Ur;
+          d = d * config.meanTorrentConfig.torrentSalesValue.vip.Dr;
+        }
+        req.passkeyuser.uploaded += u;
+        req.passkeyuser.downloaded += d;
       }
 
       if (event(query.event) !== EVENT_STOPPED) {
@@ -383,9 +388,6 @@ exports.announce = function (req, res) {
         req.currentPeer.peer_downloaded = query.downloaded;
         req.currentPeer.last_announce_at = Date.now();
       }
-
-      req.passkeyuser.uploaded += u;
-      req.passkeyuser.downloaded += d;
 
       done(null);
     },
@@ -728,7 +730,7 @@ exports.userByPasskey = function (req, res, next, pk) {
     .exec(function (err, u) {
       if (u) {
         req.passkeyuser = u;
-        req.passkeyuser.is_vip = isVip(req.user);
+        req.passkeyuser.is_vip = isVip(u);
       } else {
         req.passkeyuser = undefined;
       }
