@@ -160,9 +160,13 @@
 
       //console.log(vm.torrentInfo);
 
-      angular.forEach(vm.torrentInfo.info.files, function (item) {
-        l = l + item.length;
-      });
+      if (vm.torrentInfo.length !== undefined) {
+        l = vm.torrentInfo.length;
+      } else {
+        angular.forEach(vm.torrentInfo.info.files, function (item) {
+          l = l + item.length;
+        });
+      }
 
       var t = [];
       angular.forEach(vm.resourcesTags.movie.radio, function (item) {
