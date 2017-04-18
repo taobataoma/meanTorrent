@@ -5,13 +5,15 @@
     .module('core')
     .factory('menuService', menuService);
 
-  function menuService() {
+  menuService.$inject = ['MeanTorrentConfig'];
+
+  function menuService(MeanTorrentConfig) {
     var shouldRender;
     var service = {
       addMenu: addMenu,
       addMenuItem: addMenuItem,
       addSubMenuItem: addSubMenuItem,
-      defaultRoles: ['user', 'admin'],
+      defaultRoles: MeanTorrentConfig.meanTorrentConfig.userRoles,
       getMenu: getMenu,
       menus: {},
       removeMenu: removeMenu,

@@ -2,6 +2,7 @@
 
 var validator = require('validator'),
   path = require('path'),
+  moment = require('moment'),
   config = require(path.resolve('./config/config'));
 
 /**
@@ -17,6 +18,10 @@ exports.renderIndex = function (req, res) {
       created: req.user.created.toString(),
       roles: req.user.roles,
       passkey: req.user.passkey,
+      vip_start_at: req.user.vip_start_at,
+      vip_end_at: req.user.vip_end_at,
+      is_vip: isVip(req.user),
+      score: req.score,
       profileImageURL: req.user.profileImageURL,
       email: validator.escape(req.user.email),
       lastName: validator.escape(req.user.lastName),
@@ -31,6 +36,21 @@ exports.renderIndex = function (req, res) {
     meanTorrentConfig: JSON.stringify(config.meanTorrentConfig)
   });
 };
+
+/**
+ * get user isVip status
+ * @param u
+ * @returns {boolean}
+ */
+function isVip(u) {
+  if (!u.vip_start_at || !u.vip_end_at) {
+    return false;
+  } else if (moment(Date.now()) > moment(u.vip_end_at)) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
 /**
  * Render the server error page

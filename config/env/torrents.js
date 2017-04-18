@@ -35,6 +35,7 @@ module.exports = {
         {name: 'SEALED', value: 'sealed'}
       ]
     },
+    userRoles: ['user', 'uploader', 'op', 'admin'],
     clientBlackList: [
       {name: 'Transmission/2.93'},
       {name: 'Mozilla'},
@@ -61,7 +62,13 @@ module.exports = {
         {name: 'U3/D1'}
       ]
     },
-    torrentGlobalSalesValue: undefined,
+    torrentSalesValue: {
+      global: undefined,
+      vip: {
+        Ur: 1.25,
+        Dr: 0
+      }
+    },
     tmdbConfig: {
       tmdb_link_url: 'https://www.themoviedb.org/movie/',
       //please change it to your api key from themoviedb.org

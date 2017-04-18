@@ -370,6 +370,11 @@ exports.announce = function (req, res) {
       var u = Math.round(curru * udr.ur);
       var d = Math.round(currd * udr.dr);
 
+      if (req.passkeyuser.is_vip) {
+        u = u * config.meanTorrentConfig.torrentSalesValue.vip.Ur;
+        d = d * config.meanTorrentConfig.torrentSalesValue.vip.Dr;
+      }
+
       if (event(query.event) !== EVENT_STOPPED) {
         if (req.currentPeer === undefined) {
           createCurrentPeer();
@@ -537,8 +542,8 @@ exports.announce = function (req, res) {
     var udr = {};
     var sale = req.torrent.torrent_sale_status;
 
-    if (config.meanTorrentConfig.torrentGlobalSalesValue !== undefined) {
-      sale = config.meanTorrentConfig.torrentGlobalSalesValue;
+    if (config.meanTorrentConfig.torrentSalesValue.global !== undefined) {
+      sale = config.meanTorrentConfig.torrentSalesValue.global;
     }
 
     switch (sale) {
@@ -696,6 +701,21 @@ exports.announce = function (req, res) {
 };
 
 /**
+ * get user isVip status
+ * @param u
+ * @returns {boolean}
+ */
+function isVip(u) {
+  if (!u.vip_start_at || !u.vip_end_at) {
+    return false;
+  } else if (moment(Date.now()) > moment(u.vip_end_at)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+/**
  * userByPasskey
  * @param req
  * @param res
@@ -708,6 +728,7 @@ exports.userByPasskey = function (req, res, next, pk) {
     .exec(function (err, u) {
       if (u) {
         req.passkeyuser = u;
+        req.passkeyuser.is_vip = isVip(req.user);
       } else {
         req.passkeyuser = undefined;
       }
