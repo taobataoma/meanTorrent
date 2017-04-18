@@ -57,6 +57,7 @@ const PEERSTATE_LEECHER = 'leecher';
 
 const PEER_COMPACT_SIZE = 6;
 const ANNOUNCE_INTERVAL = 60;
+const ANNOUNCE_GHOST = 2;
 
 const PARAMS_INTEGER = [
   'port', 'uploaded', 'downloaded', 'left', 'compact', 'numwant'
@@ -244,12 +245,15 @@ exports.announce = function (req, res) {
           } else {
             req.torrent = t;
 
-            //find my peers
+            /*
+             find myself peers
+             if the peer is ghost, deleted it
+             */
             if (req.torrent._peers.length > 0) {
               req.torrent._peers.forEach(function (p) {
                 if (p.user.str === req.passkeyuser._id.str) {
                   var diff = moment(Date.now()).diff(moment(p.last_announce_at), 'seconds');
-                  if (diff > ANNOUNCE_INTERVAL * 2) {   //ghost peer, delete
+                  if (diff > ANNOUNCE_INTERVAL * ANNOUNCE_GHOST) {
                     console.log('---------------DELETE_GHOST---------------');
 
                     req.torrent._peers.pull(p);
@@ -361,15 +365,17 @@ exports.announce = function (req, res) {
       console.log('---------------WRITE_UP_DOWN_DATA----------------');
 
       var udr = getUDRatio();
-      var u = Math.round(query.uploaded * udr.ur);
-      var d = Math.round(query.downloaded * udr.dr);
+      var curru = query.uploaded - req.currentPeer.peer_uploaded;
+      var currd = query.downloaded - req.currentPeer.peer_downloaded;
+      var u = Math.round(curru * udr.ur);
+      var d = Math.round(currd * udr.dr);
 
       if (event(query.event) !== EVENT_STOPPED) {
         if (req.currentPeer === undefined) {
           createCurrentPeer();
         }
-        req.currentPeer.peer_uploaded += query.uploaded;
-        req.currentPeer.peer_downloaded += query.downloaded;
+        req.currentPeer.peer_uploaded = query.uploaded;
+        req.currentPeer.peer_downloaded = query.downloaded;
         req.currentPeer.last_announce_at = Date.now();
       }
 
@@ -423,10 +429,6 @@ exports.announce = function (req, res) {
       var peerBuffer = new Buffer(want * PEER_COMPACT_SIZE);
       var len = writePeers(peerBuffer, want, req.torrent._peers);
       peerBuffer = peerBuffer.slice(0, len);
-
-      //req.torrent.torrent_seeds = 77;
-      //req.torrent.torrent_leechers = 88;
-      //req.torrent.torrent_finished = 99;
 
       var resp = 'd8:intervali' + ANNOUNCE_INTERVAL + 'e8:completei' + req.torrent.torrent_seeds + 'e10:incompletei' + req.torrent.torrent_leechers + 'e10:downloadedi' + req.torrent.torrent_finished + 'e5:peers' + len + ':';
       console.log(resp);
@@ -592,7 +594,7 @@ exports.announce = function (req, res) {
         udr.ur = 3;
         udr.dr = 1;
         break;
-      default: //U1D1
+      default: /* U1D1 */
         udr.ur = 1;
         udr.dr = 1;
     }
@@ -662,6 +664,10 @@ exports.announce = function (req, res) {
     }
   }
 
+  /**
+   * binaryToHex
+   * @param str
+   */
   function binaryToHex(str) {
     if (typeof str !== 'string') {
       str = String(str);
@@ -669,6 +675,21 @@ exports.announce = function (req, res) {
     return Buffer.from(str, 'binary').toString('hex');
   }
 
+  /**
+   * hexToBinary
+   * @param str
+   */
+  function hexToBinary(str) {
+    if (typeof str !== 'string') {
+      str = String(str);
+    }
+    return Buffer.from(str, 'hex').toString('binary');
+  }
+
+  /**
+   * querystringParse
+   * @param q
+   */
   function querystringParse(q) {
     return querystring.parse(q, null, null, {decodeURIComponent: unescape});
   }
