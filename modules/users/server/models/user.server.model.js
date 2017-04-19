@@ -141,6 +141,18 @@ var UserSchema = new Schema({
     type: Number,
     default: 0
   },
+  seeded: {
+    type: Number,
+    default: 0
+  },
+  leeched: {
+    type: Number,
+    default: 0
+  },
+  finished: {
+    type: Number,
+    default: 0
+  },
   updated: {
     type: Date
   },
@@ -154,15 +166,7 @@ var UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date
-  },
-  _torrents: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Torrent'
-  }],
-  _peers: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Peer'
-  }]
+  }
 });
 
 /**
