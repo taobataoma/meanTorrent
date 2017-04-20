@@ -14,13 +14,26 @@
       var d = moment().diff(moment(created), 'days');
       var h = moment().diff(moment(created), 'hours');
       var m = moment().diff(moment(created), 'minutes');
+      var s = moment().diff(moment(created), 'seconds');
+
+      if (!created) {
+        d = 0;
+        h = 0;
+        m = 0;
+        s = 0;
+      }
 
       if (d > 0) {
         h = h - d * 24;
-        return d + 'D' + h + 'H';
-      } else {
+        return d + 'd' + h + 'h';
+      } else if (h > 0) {
         m = m - h * 60;
-        return h + 'H' + m + 'M';
+        return h + 'h' + m + 'm';
+      } else if (m > 0) {
+        s = s - m * 60;
+        return m + 'm' + s + 's';
+      } else {
+        return s + 's';
       }
     };
   }

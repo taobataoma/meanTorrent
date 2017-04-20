@@ -33,11 +33,13 @@
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COMPANIES' | translate}}：</dt>
                             <dd class="h-line list-all-companies">
-                                <p class="company-item" ng-repeat="item in vm.movieinfo.production_companies">{{item.name}}</p>
+                                <span ng-show="vm.movieinfo.production_companies.length ==0">-</span>
+                                <span class="company-item" ng-repeat="item in vm.movieinfo.production_companies">{{item.name}}</span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
                             <dd class="h-line list-all-countries">
+                                <span ng-show="vm.movieinfo.production_countries.length ==0">-</span>
                                 <span class="country-item" ng-repeat="item in vm.movieinfo.production_countries">{{item.iso_3166_1}}</span>
                             </dd>
 
@@ -235,14 +237,82 @@
     </script>
 
     <script type="text/ng-template" id="userInfo.html">
-        <div class="padding-top-30">
+        <div class="padding-top-30 peer-dlist">
             <dl class="dl-horizontal">
-                <dt class="h-line">{{ 'TORRENT_SEED_USERS' | translate}}：</dt>
-                <dd class="h-line">{{vm.torrentLocalInfo.torrent_seeds}}</dd>
-
-                <dt class="h-line">{{ 'TORRENT_LEECHER_USERS' | translate}}：</dt>
-                <dd class="h-line">{{vm.torrentLocalInfo.torrent_leechers}}</dd>
+                <dt class="h-line text-left">{{ 'TORRENT_FINISHED_USERS' | translate}}：{{vm.torrentLocalInfo.torrent_finished}}</dt>
+                <dd class="h-line"></dd>
             </dl>
+            <dl class="dl-horizontal">
+                <dt class="h-line">{{ 'TORRENT_SEED_USERS' | translate}}：{{vm.torrentLocalInfo.torrent_seeds}}</dt>
+                <dd class="h-line"></dd>
+            </dl>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-condensed tb-peers">
+                    <thead>
+                        <tr>
+                            <th class="text-center">{{ 'TABLE_FIELDS.USERNAME' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.UPLOADED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.DOWNLOADED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.RATIO' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.FINISHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.STARTED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.ACTIVE' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.CLIENT' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.CONNECTABLE' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_uploaded">
+                            <td class="text-center"></td>
+                            <td class="text-center">{{item.peer_uploaded | bytes:2}}</td>
+                            <td class="text-center">{{item.peer_downloaded | bytes:2}}</td>
+                            <td class="text-center">{{item.peer_downloaded == 0 ? '-' : (item.peer_uploaded/item.peer_downloaded | number:2)}}</td>
+                            <td class="text-center">{{item.peer_left == 0 ? '100%' : ((vm.torrentLocalInfo.torrent_size - item.peer_left)/vm.torrentLocalInfo.torrent_size | percentage:2)}}</td>
+                            <td class="text-center">{{item.startedat | life}}</td>
+                            <td class="text-center">{{item.last_announce_at | life}}</td>
+                            <td class="text-center">{{item.user_agent}}</td>
+                            <td class="text-center">{{item.peer_connectable}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <dl class="dl-horizontal">
+                <dt class="h-line">{{ 'TORRENT_LEECHER_USERS' | translate}}：{{vm.torrentLocalInfo.torrent_leechers}}</dt>
+                <dd class="h-line"></dd>
+            </dl>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-condensed tb-peers">
+                    <thead>
+                        <tr>
+                            <th class="text-center">{{ 'TABLE_FIELDS.USERNAME' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.UPLOADED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.DOWNLOADED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.RATIO' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.FINISHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.STARTED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.ACTIVE' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.CLIENT' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.CONNECTABLE' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_downloaded" ng-if="item.peer_status == 'leecher'">
+                            <td class="text-center"></td>
+                            <td class="text-center">{{item.peer_uploaded | bytes:2}}</td>
+                            <td class="text-center">{{item.peer_downloaded | bytes:2}}</td>
+                            <td class="text-center">{{item.peer_downloaded == 0 ? '-' : (item.peer_uploaded/item.peer_downloaded | number:2)}}</td>
+                            <td class="text-center">{{item.peer_left == 0 ? '100%' : ((vm.torrentLocalInfo.torrent_size - item.peer_left)/vm.torrentLocalInfo.torrent_size | percentage:2)}}</td>
+                            <td class="text-center">{{item.startedat | life}}</td>
+                            <td class="text-center">{{item.last_announce_at | life}}</td>
+                            <td class="text-center">{{item.user_agent}}</td>
+                            <td class="text-center">{{item.peer_connectable}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </script>
 

@@ -72,12 +72,24 @@
 
     //table fields
     TABLE_FIELDS: {
+      //torrent
       INFO: '种子信息',
       SIZE: '大小',
       SEEDS_LEECHERS_FINISHED: '上/下/完',
       PUBLISHER: '发布者',
       LIFETIME: '存活时间',
-      VOTES: '评分'
+      VOTES: '评分',
+
+      //peer
+      USERNAME: '用户',
+      UPLOADED: '已上传/速度',
+      DOWNLOADED: '已下载/速度',
+      RATIO: '分享率',
+      FINISHED: '已完成',
+      STARTED: '开始时间',
+      ACTIVE: '活动状态',
+      CLIENT: '客户端',
+      CONNECTABLE: '可连接'
     },
 
     //page title
@@ -129,6 +141,7 @@
     ENTER_VIDEO_NFO: '请输入视频NFO信息',
     TORRENT_SEED_USERS: '做种用户列表',
     TORRENT_LEECHER_USERS: '下载用户列表',
+    TORRENT_FINISHED_USERS: '完成用户列表',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',

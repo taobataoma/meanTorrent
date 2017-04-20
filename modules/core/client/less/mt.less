@@ -58,11 +58,16 @@
         }
 
         .down-torrent {
-            margin-top: 10px;
+            margin-top: 20px;
             margin-left: 40px;
             margin-right: 40px;
         }
     }
+}
+
+.down-torrent {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .cast-list {
@@ -220,6 +225,25 @@
     }
 }
 
+.tb-peers {
+    thead {
+        tr {
+            th {
+                font-weight: normal;
+                background-color: lighten(@gray-base, 95%);
+            }
+        }
+    }
+}
+
+.peer-dlist {
+    dl {
+        dt {
+            text-align: left;
+        }
+    }
+}
+
 .torrent-list-info {
     .media-object {
         max-height: 100px;
@@ -308,6 +332,7 @@
 .nav {
     padding-left: 15px;
 }
+
 .nav-tabs > li > a {
     margin-right: 5px;
     padding: 10px 30px;

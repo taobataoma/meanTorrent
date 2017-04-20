@@ -9,6 +9,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   multer = require('multer'),
   User = mongoose.model('User'),
+  Peer = mongoose.model('Peer'),
   Torrent = mongoose.model('Torrent'),
   fs = require('fs'),
   nt = require('nt'),
@@ -396,7 +397,11 @@ exports.list = function (req, res) {
     .sort('-createdat')
     .populate('user', 'displayName')
     .populate('_subtitles')
-    .populate('_peers')
+    .populate({
+      path: '_peers',
+      model: Peer,
+      populate: {path: '_peers.user', select: 'displayName', model: User}
+    })
     .skip(skip)
     .limit(limit)
     .exec(function (err, torrents) {

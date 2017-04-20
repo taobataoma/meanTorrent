@@ -72,12 +72,24 @@
 
     //table fields
     TABLE_FIELDS: {
+      //torrent
       INFO: 'Torrent info',
       SIZE: 'Size',
       SEEDS_LEECHERS_FINISHED: 'S/L/F',
       PUBLISHER: 'Publisher',
       LIFETIME: 'Life',
-      VOTES: 'Votes'
+      VOTES: 'Votes',
+
+      //peer
+      USERNAME: 'Username',
+      UPLOADED: 'Uploaded/Speed',
+      DOWNLOADED: 'Downloaded/Speed',
+      RATIO: 'Ratio',
+      FINISHED: 'Finished',
+      STARTED: 'Started',
+      ACTIVE: 'Active',
+      CLIENT: 'Client',
+      CONNECTABLE: 'Connectable'
     },
 
     //page title
@@ -129,6 +141,7 @@
     ENTER_VIDEO_NFO: 'Please enter video NFO',
     TORRENT_SEED_USERS: 'Seed Users',
     TORRENT_LEECHER_USERS: 'Leecher Users',
+    TORRENT_FINISHED_USERS: 'Finished Users',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',
