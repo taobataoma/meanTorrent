@@ -49,6 +49,11 @@ var PeerSchema = new Schema({
     default: 'leecher',
     trim: true
   },
+  peer_connectable: {
+    type: String,
+    enum: ['yes', 'no'],
+    default: 'yes'
+  },
   user_agent: {
     type: String,
     default: '',
