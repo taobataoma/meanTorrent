@@ -356,6 +356,7 @@ exports.announce = function (req, res) {
         var currd = query.downloaded - req.currentPeer.peer_downloaded;
         var u = Math.round(curru * udr.ur);
         var d = Math.round(currd * udr.dr);
+        var l = query.left;
 
         if (req.passkeyuser.is_vip) {
           u = u * config.meanTorrentConfig.torrentSalesValue.vip.Ur;
@@ -371,7 +372,7 @@ exports.announce = function (req, res) {
           createCurrentPeer();
         }
         req.currentPeer.update({
-          $set: {peer_uploaded: query.uploaded, peer_downloaded: query.downloaded, last_announce_at: Date.now()}
+          $set: {peer_uploaded: query.uploaded, peer_downloaded: query.downloaded, peer_left: query.left, last_announce_at: Date.now()}
         }).exec();
       }
 
