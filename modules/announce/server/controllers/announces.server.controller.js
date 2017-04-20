@@ -379,53 +379,6 @@ exports.announce = function (req, res) {
     },
 
     /*---------------------------------------------------------------
-     mongodb write
-     ---------------------------------------------------------------*/
-
-    //function (done) {
-    //  if (req.currentPeer !== undefined) {
-    //    req.currentPeer.save(function (err) {
-    //      if (err) {
-    //        console.error('************ SAVE ERROR: 182');
-    //        console.error(err);
-    //        done(182);
-    //        return;
-    //      } else {
-    //        done(null);
-    //      }
-    //    });
-    //  } else {
-    //    done(null);
-    //  }
-    //},
-    //
-    //function (done) {
-    //  req.torrent.save(function (err) {
-    //    if (err) {
-    //      console.error('************ SAVE ERROR: 183');
-    //      console.error(err);
-    //      done(183);
-    //      return;
-    //    } else {
-    //      done(null);
-    //    }
-    //  });
-    //},
-    //
-    //function (done) {
-    //  req.passkeyuser.save(function (err) {
-    //    if (err) {
-    //      console.error('************ SAVE ERROR: 184');
-    //      console.error(err);
-    //      done(184);
-    //      return;
-    //    } else {
-    //      done(null);
-    //    }
-    //  });
-    //},
-
-    /*---------------------------------------------------------------
      sendPeers
      compact mode
      ---------------------------------------------------------------*/

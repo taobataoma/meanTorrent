@@ -24,14 +24,7 @@
     vm.pageNumber = 50;
     vm.releaseYear = undefined;
 
-    vm.torrentTabs = [
-      {title: $translate.instant('TAB_VIDEO_INFO'), templateUrl: 'videoInfo.html'},
-      {title: $translate.instant('TAB_USER_SUBTITLE'), templateUrl: 'subtitleInfo.html'},
-      {title: $translate.instant('TAB_USER_INFO'), templateUrl: 'userInfo.html'},
-      {title: $translate.instant('TAB_OTHER_TORRENTS'), templateUrl: 'otherTorrents.html'},
-      {title: $translate.instant('TAB_MY_PANEL'), templateUrl: 'myPanel.html'},
-      {title: $translate.instant('TAB_ADMIN_PANEL'), templateUrl: 'adminPanel.html'}
-    ];
+    vm.torrentTabs = [];
 
     // If user is not signed in then redirect back home
     if (!Authentication.user) {
@@ -252,6 +245,55 @@
           $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + res.torrent_backdrop_img + ')');
         }
         vm.initInfo(res.torrent_tmdb_id);
+
+        vm.torrentTabs.push(
+          {
+            title: $translate.instant('TAB_VIDEO_INFO'),
+            templateUrl: 'videoInfo.html',
+            ng_show: true,
+            badges: []
+          },
+          {
+            title: $translate.instant('TAB_USER_SUBTITLE'),
+            templateUrl: 'subtitleInfo.html',
+            ng_show: true,
+            badges: [
+              {
+                value: vm.torrentLocalInfo._subtitles.length,
+                class: 'badge_info'
+              }
+            ]
+          },
+          {
+            title: $translate.instant('TAB_USER_INFO'),
+            templateUrl: 'userInfo.html',
+            ng_show: true,
+            badges: [
+              {
+                value: '↑ ' + vm.torrentLocalInfo.torrent_seeds + '　↓ ' + vm.torrentLocalInfo.torrent_leechers + '　√ ' + vm.torrentLocalInfo.torrent_finished,
+                class: 'badge_info'
+              }
+            ]
+          },
+          {
+            title: $translate.instant('TAB_OTHER_TORRENTS'),
+            templateUrl: 'otherTorrents.html',
+            ng_show: true,
+            badges: []
+          },
+          {
+            title: $translate.instant('TAB_MY_PANEL'),
+            templateUrl: 'myPanel.html',
+            ng_show: vm.torrentLocalInfo.isCurrentUserOwner,
+            badges: []
+          },
+          {
+            title: $translate.instant('TAB_ADMIN_PANEL'),
+            templateUrl: 'adminPanel.html',
+            ng_show: vm.user.roles.indexOf('admin') >= 0,
+            badges: []
+          }
+        );
       });
 
       console.log(vm.torrentLocalInfo);

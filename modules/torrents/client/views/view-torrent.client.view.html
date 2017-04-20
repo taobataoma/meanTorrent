@@ -135,7 +135,10 @@
 
     <div class="container">
         <uib-tabset>
-            <uib-tab index="$index" ng-repeat="tab in vm.torrentTabs" heading="{{tab.title}}" disabled="tab.disabled">
+            <uib-tab index="$index" ng-repeat="tab in vm.torrentTabs" disabled="tab.disabled" ng-show="tab.ng_show">
+                <uib-tab-heading>
+                    {{tab.title}} <span class="badge {{b.class}}" ng-repeat="b in tab.badges">{{b.value}}</span>
+                </uib-tab-heading>
                 <div ng-include="tab.templateUrl">
                 </div>
             </uib-tab>
