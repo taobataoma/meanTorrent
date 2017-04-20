@@ -7,6 +7,26 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
+ * Sub Comment Schema
+ */
+var commentSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  comment: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  _replies: [this],
+  createdat: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+/**
  * Torrent Schema
  */
 var TorrentSchema = new Schema({
@@ -129,6 +149,7 @@ var TorrentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Peer'
   }],
+  _replies: [commentSchema],
   last_scrape: {
     type: Date,
     default: Date.now
