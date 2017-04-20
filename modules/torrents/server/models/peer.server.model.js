@@ -40,6 +40,10 @@ var PeerSchema = new Schema({
     type: Number,
     default: 0
   },
+  peer_left: {
+    type: Number,
+    default: 0
+  },
   peer_status: {
     type: String,
     default: 'leecher',
