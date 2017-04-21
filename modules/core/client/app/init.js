@@ -9,7 +9,8 @@
   angular
     .module(app.applicationModuleName)
     .config(bootstrapConfig)
-    .config(transConfig);
+    .config(transConfig)
+    .config(markedConfig);
 
   bootstrapConfig.$inject = ['$compileProvider', '$locationProvider', '$httpProvider', '$logProvider'];
 
@@ -32,6 +33,11 @@
     //$translateProvider.useSanitizeValueStrategy('escape');
     $translateProvider.preferredLanguage('en');
     //$translateProvider.fallbackLanguage('cn');
+  }
+
+  markedConfig.$inject = ['markedProvider'];
+  function markedConfig(markedProvider) {
+    markedProvider.setOptions({gfm: true});
   }
 
   // Then define the init function for starting up the application

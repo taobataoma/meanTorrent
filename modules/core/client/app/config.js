@@ -7,7 +7,7 @@
     applicationEnvironment: window.env,
     applicationModuleName: applicationModuleName,
     applicationModuleVendorDependencies: ['ngResource', 'ngAnimate', 'ngMessages', 'ui.router', 'ui.bootstrap', 'ngFileUpload', 'ui-notification',
-      'pascalprecht.translate', 'angularMoment', 'ngFileSaver', 'ngSanitize'],
+      'pascalprecht.translate', 'angularMoment', 'ngFileSaver', 'ngSanitize', 'hc.marked'],
     registerModule: registerModule
   };
 

@@ -30,6 +30,9 @@ module.exports = {
         'public/lib/angular-translate/angular-translate.js',
         'public/lib/bootstrap-filestyle/src/bootstrap-filestyle.js',
         'public/lib/angular-sanitize/angular-sanitize.js',
+        //marked
+        'public/lib/marked/lib/marked.js',
+        'public/lib/angular-marked/dist/angular-marked.js',
         //moment
         'public/lib/moment/min/moment-with-locales.js',
         'public/lib/angular-moment/angular-moment.js',
