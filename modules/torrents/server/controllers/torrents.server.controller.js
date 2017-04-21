@@ -250,9 +250,6 @@ exports.create = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      req.user._torrents.push(torrent);
-      req.user.save();
-
       res.json(torrent);
     }
   });
@@ -421,15 +418,21 @@ exports.torrentByID = function (req, res, next, id) {
   }
 
   Torrent.findById(id)
-    .populate('user', 'displayName')
+    .populate('user', 'displayName profileImageURL')
     .populate('_replies')
     .populate({
       path: '_subtitles',
-      populate: {path: 'user', select: 'displayName'}
+      populate: {
+        path: 'user',
+        select: 'displayName profileImageURL'
+      }
     })
     .populate({
       path: '_peers',
-      populate: {path: 'user', select: 'displayName'}
+      populate: {
+        path: 'user',
+        select: 'displayName profileImageURL'
+      }
     })
     .exec(function (err, torrent) {
       if (err) {
@@ -439,8 +442,21 @@ exports.torrentByID = function (req, res, next, id) {
           message: 'No torrent with that id has been found'
         });
       }
-      req.torrent = torrent;
-      next();
+
+      Torrent.populate(torrent._replies, {
+        path: 'user',
+        select: 'displayName profileImageURL uploaded downloaded'
+      }, function (err, t) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          //torrent._replies = t;
+          req.torrent = torrent;
+          next();
+        }
+      });
     });
 };
 

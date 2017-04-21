@@ -154,22 +154,23 @@
                 <div class="panel-heading text-center">{{ 'USER_COMMENT_LIST' | translate}} <span
                         class="badge badge_info">{{vm.torrentLocalInfo._replies.length}}</span></div>
                 <div class="panel-body">
-                    <div class="comment-list">
+                    <div class="comment-list" ng-repeat="item in vm.torrentLocalInfo._replies | orderBy : -_id">
                         <div class="timeline-comment-wrapper">
-                            <a href="/mleanos" class="timeline-comment-avatar">
-                                <img alt="@mleanos" src="https://avatars1.githubusercontent.com/u/5613734?v=3&amp;s=88">
+                            <a href="#" class="timeline-comment-avatar">
+                                <img title="{{item.user.displayName}}" ng-src="/{{item.user.profileImageURL}}">
                             </a>
 
                             <div class="timeline-comment">
                                 <div class="timeline-comment-header">
-                                    <div class="timeline-comment-header-text">aaaaaaaaaaa</div>
+                                    <div class="timeline-comment-header-text">{{item.user.displayName}}</div>
                                 </div>
                                 <div class="timeline-comment-body">
-                                    <div class="timeline-comment-body-text">bbbbbbbbbbb</div>
+                                    <div class="timeline-comment-body-text" marked="item.comment"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="comment-new">
                         <div class="timeline-comment-wrapper">
                             <a href="#" class="timeline-comment-avatar">
@@ -196,7 +197,8 @@
                                             </a>
                                         </div>
                                         <div class="col-sm-3 text-right">
-                                            <button class="btn btn-success" translate="SUBMIT_COMMENT" ng-click="vm.submitComment();"></button>
+                                            <button class="btn btn-success" translate="SUBMIT_COMMENT" ng-click="vm.submitComment();"
+                                                    ng-disabled="!vm.new_comment_content"></button>
                                         </div>
                                     </div>
                                 </div>

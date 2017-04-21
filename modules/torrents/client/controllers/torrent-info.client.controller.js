@@ -6,10 +6,10 @@
     .controller('TorrentsInfoController', TorrentsInfoController);
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$sce', '$filter'];
+    'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                                  DownloadService, $sce, $filter) {
+                                  DownloadService, $sce, $filter, CommentsService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -191,6 +191,28 @@
      *
      */
     vm.submitComment = function () {
+      var comment = new CommentsService({
+        _torrentId: vm.torrentLocalInfo._id,
+        comment: vm.new_comment_content
+      });
+
+      comment.$save(function (response) {
+        successCallback(response);
+      }, function (errorResponse) {
+        errorCallback(errorResponse);
+      });
+
+      function successCallback(res) {
+        console.log(res);
+        vm.new_comment_content = '';
+        vm.torrentLocalInfo = res;
+        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment created successfully!'});
+      }
+
+      function errorCallback(res) {
+        vm.error_msg = res.data.message;
+        Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment created error!'});
+      }
 
     };
   }
