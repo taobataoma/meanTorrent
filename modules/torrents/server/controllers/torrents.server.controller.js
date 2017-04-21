@@ -18,7 +18,7 @@ var path = require('path'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key);
 
 /**
- * Create an article
+ * get movie info from tmdb
  */
 exports.movieinfo = function (req, res) {
   console.log('------- API: movieinfo --------------------');

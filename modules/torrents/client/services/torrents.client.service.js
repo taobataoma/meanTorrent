@@ -13,7 +13,7 @@
       torrentId: '@_torrentId'
     }, {
       update: {
-        method: 'POST'
+        method: 'PUT'
       },
       getTMDBInfo: {
         method: 'GET',
