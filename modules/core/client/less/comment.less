@@ -1,0 +1,119 @@
+@import (reference) "mt-var.less";
+
+.comment-list {
+    background-color: @comment-background-default;
+}
+
+.comment-new {
+    border-top: 2px solid darken(@comment-background-default, 20%);
+}
+
+.panel-comment {
+    .panel-body {
+        background-color: @comment-background-default;
+    }
+}
+
+.tabnav-extra {
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 10px;
+    margin-left: 10px;
+    font-size: 1px;
+    svg {
+        vertical-align: bottom !important;
+    }
+}
+
+.timeline-comment-wrapper {
+    padding-left: 60px;
+    margin: 15px 15px;
+    .timeline-comment {
+        position: relative;
+        background-color: #fff;
+        border: 1px solid #d1d5da;
+        border-radius: 3px;
+        &::before {
+            position: absolute;
+            top: 11px;
+            right: 100%;
+            left: -16px;
+            display: block;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+            content: " ";
+            border-color: transparent;
+            border-style: solid solid outset;
+
+            border-width: 8px;
+            border-right-color: #d1d5da;
+        }
+        &::after {
+            position: absolute;
+            top: 11px;
+            right: 100%;
+            left: -16px;
+            display: block;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+            content: " ";
+            border-color: transparent;
+            border-style: solid solid outset;
+
+            margin-top: 1px;
+            margin-left: 2px;
+            border-width: 7px;
+            border-right-color: lighten(@comment-background-default, 2%);
+        }
+        .timeline-comment-header {
+            padding-right: 15px;
+            padding-left: 15px;
+            color: #586069;
+            background-color: lighten(@comment-background-default, 2%);
+            border-bottom: 1px dashed #d1d5da;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            min-height: 42px;
+            .timeline-comment-header-text {
+                max-width: 70%;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        }
+        .timeline-comment-body {
+            padding-right: 15px;
+            padding-left: 15px;
+            min-height: 42px;
+            .timeline-comment-body-text {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        }
+    }
+    .timeline-new-comment {
+        .timeline-comment-header {
+            background-color: lighten(@comment-background-default, 2%);
+        }
+        .timeline-comment-body {
+            padding: 8px 8px;
+            textarea {
+                resize: vertical;
+                width: 100%;
+                min-height: 200px;
+                max-height: 500px;
+                margin-bottom: 8px;
+            }
+        }
+    }
+    .timeline-comment-avatar {
+        img {
+            float: left;
+            margin-left: -60px;
+            border-radius: 3px;
+            height: 44px;
+            width: 44px;
+        }
+    }
+}
