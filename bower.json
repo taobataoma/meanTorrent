@@ -22,7 +22,9 @@
     "moment": "^2.18.1",
     "angular-file-saver": "^1.1.3",
     "file-saver": "^1.3.3",
-    "angular-sanitize": "1.5.11"
+    "angular-sanitize": "1.5.11",
+    "marked": "^0.3.6",
+    "angular-marked": "^1.2.2"
   },
   "overrides": {
     "bootstrap": {
