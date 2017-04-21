@@ -142,6 +142,10 @@
     TORRENT_SEED_USERS: 'Seed Users',
     TORRENT_LEECHER_USERS: 'Leecher Users',
     TORRENT_FINISHED_USERS: 'Finished Users',
+    USER_COMMENT_LIST: 'User Comments List',
+    POST_NEW_COMMENT: 'Post New Comment',
+    SUBMIT_COMMENT: 'Submit Comment',
+    MARKDOWN_LINK: 'Styling with Markdown is supported',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',

@@ -1,4 +1,4 @@
-@import (reference) "../../../../public/lib/bootstrap/less/variables.less";
+@import (reference) "mt-var.less";
 
 .brand-title {
     font-size: 25px;
@@ -67,7 +67,6 @@
 
 .down-torrent {
     margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 .cast-list {
@@ -226,11 +225,11 @@
 }
 
 .tb-peers {
+    background-color: #fff;
     thead {
         tr {
             th {
                 font-weight: normal;
-                background-color: lighten(@gray-base, 95%);
             }
         }
     }
@@ -241,6 +240,7 @@
         dt {
             text-align: left;
         }
+        margin-bottom: 0;
     }
 }
 
@@ -333,12 +333,34 @@
     padding-left: 15px;
 }
 
-.nav-tabs > li > a {
-    margin-right: 5px;
-    padding: 10px 30px;
+.nav-tabs {
+    > li {
+        > a {
+            margin-right: 5px;
+            padding: 10px 30px;
+        }
+        &.active {
+            > a {
+                background-color: @comment-background-default;
+                &:hover,
+                &:focus {
+                    background-color: @comment-background-default;
+                }
+            }
+        }
+    }
+}
+
+.tab-border-view {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background-color: @comment-background-default;
+    padding: 30px 30px;
 }
 
 .video-nfo {
     font-size: 12px !important;
     background-color: #fff !important;
 }
+

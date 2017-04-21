@@ -1,4 +1,4 @@
-<section ng-controller="TorrentsController as vm" ng-init="vm.getTorrentInfo();">
+<section ng-controller="TorrentsInfoController as vm" ng-init="vm.getTorrentInfo();">
     <div class="backdrop">
         <div class="filter">
             <div class="container">
@@ -33,14 +33,14 @@
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COMPANIES' | translate}}：</dt>
                             <dd class="h-line list-all-companies">
-                                <span ng-show="vm.movieinfo.production_companies.length ==0">-</span>
                                 <span class="company-item" ng-repeat="item in vm.movieinfo.production_companies">{{item.name}}</span>
+                                <span ng-show="vm.movieinfo.production_companies.length ==0">-</span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
                             <dd class="h-line list-all-countries">
-                                <span ng-show="vm.movieinfo.production_countries.length ==0">-</span>
                                 <span class="country-item" ng-repeat="item in vm.movieinfo.production_countries">{{item.iso_3166_1}}</span>
+                                <span ng-show="vm.movieinfo.production_countries.length ==0">-</span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
@@ -141,10 +141,71 @@
                 <uib-tab-heading>
                     {{tab.title}} <span class="badge {{b.class}}" ng-repeat="b in tab.badges">{{b.value}}</span>
                 </uib-tab-heading>
-                <div ng-include="tab.templateUrl">
+                <div class="tab-border-view" ng-include="tab.templateUrl">
                 </div>
             </uib-tab>
         </uib-tabset>
+    </div>
+
+
+    <div class="padding-top-30">
+        <div class="container">
+            <div class="panel panel-default panel-comment">
+                <div class="panel-heading text-center">{{ 'USER_COMMENT_LIST' | translate}} <span
+                        class="badge badge_info">{{vm.torrentLocalInfo._replies.length}}</span></div>
+                <div class="panel-body">
+                    <div class="comment-list">
+                        <div class="timeline-comment-wrapper">
+                            <a href="/mleanos" class="timeline-comment-avatar">
+                                <img alt="@mleanos" src="https://avatars1.githubusercontent.com/u/5613734?v=3&amp;s=88">
+                            </a>
+
+                            <div class="timeline-comment">
+                                <div class="timeline-comment-header">
+                                    <div class="timeline-comment-header-text">aaaaaaaaaaa</div>
+                                </div>
+                                <div class="timeline-comment-body">
+                                    <div class="timeline-comment-body-text">bbbbbbbbbbb</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-new">
+                        <div class="timeline-comment-wrapper">
+                            <a href="#" class="timeline-comment-avatar">
+                                <img title="{{vm.user.displayName}}" ng-src="/{{vm.user.profileImageURL}}">
+                            </a>
+
+                            <div class="timeline-comment timeline-new-comment">
+                                <div class="timeline-comment-header">
+                                    <div class="timeline-comment-header-text">{{ 'POST_NEW_COMMENT' | translate}}</div>
+                                </div>
+                                <div class="timeline-comment-body">
+                                    <textarea class="form-control" ng-model="vm.new_comment_content"></textarea>
+
+                                    <div class="row">
+                                        <div class="col-sm-9" style="display: table;">
+                                            <a class="tabnav-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"
+                                               data-ga-click="Markdown Toolbar, click, help">
+                                                <svg aria-hidden="true" height="16" version="1.1"
+                                                     viewBox="0 0 16 16" width="16">
+                                                    <path fill-rule="evenodd"
+                                                          d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"/>
+                                                </svg>
+                                                {{ 'MARKDOWN_LINK' | translate }}
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-3 text-right">
+                                            <button class="btn btn-success" translate="SUBMIT_COMMENT" ng-click="vm.submitComment();"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script type="text/ng-template" id="videoInfo.html">
@@ -193,15 +254,12 @@
 
     <script type="text/ng-template" id="subtitleInfo.html">
         <div class="padding-top-30">
-            <dl class="dl-horizontal">
-                <dt class="h-line"></dt>
-                <dd class="h-line margin-bottom-30">
-                    <ul>
-                        <li translate="SUBTITLE_RULES.0"></li>
-                        <li translate="SUBTITLE_RULES.1"></li>
-                    </ul>
-                </dd>
+            <ul class="margin-bottom-30">
+                <li class="h-line" translate="SUBTITLE_RULES.0"></li>
+                <li class="h-line" translate="SUBTITLE_RULES.1"></li>
+            </ul>
 
+            <dl class="dl-horizontal">
                 <dt class="h-line">{{ 'UPLOAD_SUBTITLE' | translate}}：</dt>
                 <dd class="h-line">
                     <div class="row">
@@ -263,7 +321,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_uploaded" ng-if="item.peer_status == 'seeder'">
+                        <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_uploaded"
+                            ng-if="item.peer_status == 'seeder'">
                             <td class="text-center">{{item.user.displayName}}</td>
                             <td class="text-center">{{item.peer_uploaded | bytes:2}}</td>
                             <td class="text-center">{{item.peer_downloaded | bytes:2}}</td>
@@ -299,7 +358,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_downloaded" ng-if="item.peer_status == 'leecher'">
+                        <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_downloaded"
+                            ng-if="item.peer_status == 'leecher'">
                             <td class="text-center">{{item.user.displayName}}</td>
                             <td class="text-center">{{item.peer_uploaded | bytes:2}}</td>
                             <td class="text-center">{{item.peer_downloaded | bytes:2}}</td>

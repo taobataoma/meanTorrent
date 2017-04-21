@@ -142,6 +142,10 @@
     TORRENT_SEED_USERS: '做种用户列表',
     TORRENT_LEECHER_USERS: '下载用户列表',
     TORRENT_FINISHED_USERS: '完成用户列表',
+    USER_COMMENT_LIST: '用户评论',
+    POST_NEW_COMMENT: '发表新评论',
+    SUBMIT_COMMENT: '提交评论',
+    MARKDOWN_LINK: '排版支持 Markdown 全部格式',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',

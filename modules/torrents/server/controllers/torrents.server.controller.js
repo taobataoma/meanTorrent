@@ -422,7 +422,11 @@ exports.torrentByID = function (req, res, next, id) {
 
   Torrent.findById(id)
     .populate('user', 'displayName')
-    .populate('_subtitles')
+    .populate('_replies')
+    .populate({
+      path: '_subtitles',
+      populate: {path: 'user', select: 'displayName'}
+    })
     .populate({
       path: '_peers',
       populate: {path: 'user', select: 'displayName'}

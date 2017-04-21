@@ -5,11 +5,11 @@
     .module('torrents')
     .controller('TorrentsController', TorrentsController);
 
-  TorrentsController.$inject = ['$scope', '$state', '$stateParams', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$window', '$sce', '$filter'];
+  TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
+    'MeanTorrentConfig', 'DownloadService', '$window'];
 
-  function TorrentsController($scope, $state, $stateParams, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                              DownloadService, $window, $sce, $filter) {
+  function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
+                              DownloadService, $window) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -235,126 +235,12 @@
     };
 
     /**
-     * getTorrentInfo
-     */
-    vm.getTorrentInfo = function () {
-      vm.torrentLocalInfo = TorrentsService.get({
-        torrentId: $stateParams.torrentId
-      }, function (res) {
-        if (res.torrent_backdrop_img) {
-          $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + res.torrent_backdrop_img + ')');
-        }
-        vm.initInfo(res.torrent_tmdb_id);
-
-        vm.torrentTabs.push(
-          {
-            title: $translate.instant('TAB_VIDEO_INFO'),
-            templateUrl: 'videoInfo.html',
-            ng_show: true,
-            badges: []
-          },
-          {
-            title: $translate.instant('TAB_USER_SUBTITLE'),
-            templateUrl: 'subtitleInfo.html',
-            ng_show: true,
-            badges: [
-              {
-                value: vm.torrentLocalInfo._subtitles.length,
-                class: 'badge_info'
-              }
-            ]
-          },
-          {
-            title: $translate.instant('TAB_USER_INFO'),
-            templateUrl: 'userInfo.html',
-            ng_show: true,
-            badges: [
-              {
-                value: '↑ ' + vm.torrentLocalInfo.torrent_seeds + '　↓ ' + vm.torrentLocalInfo.torrent_leechers + '　√ ' + vm.torrentLocalInfo.torrent_finished,
-                class: 'badge_info'
-              }
-            ]
-          },
-          {
-            title: $translate.instant('TAB_OTHER_TORRENTS'),
-            templateUrl: 'otherTorrents.html',
-            ng_show: true,
-            badges: []
-          },
-          {
-            title: $translate.instant('TAB_MY_PANEL'),
-            templateUrl: 'myPanel.html',
-            ng_show: vm.torrentLocalInfo.isCurrentUserOwner,
-            badges: []
-          },
-          {
-            title: $translate.instant('TAB_ADMIN_PANEL'),
-            templateUrl: 'adminPanel.html',
-            ng_show: vm.user.roles.indexOf('admin') >= 0,
-            badges: []
-          }
-        );
-      });
-
-      console.log(vm.torrentLocalInfo);
-    };
-
-    /**
-     * initInfo
-     */
-    vm.initInfo = function (tmdb_id) {
-      TorrentsService.getTMDBInfo({
-        tmdbid: tmdb_id,
-        language: 'en'
-      }, function (res) {
-        Notification.success({
-          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_INFO_OK')
-        });
-
-        console.log(res);
-        vm.movieinfo = res;
-      }, function (err) {
-        Notification.error({
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_INFO_FAILD')
-        });
-      });
-    };
-
-    /**
-     * getDirector
-     * @returns {string}
-     */
-    vm.getDirector = function () {
-      var n = '-';
-
-      if (vm.movieinfo) {
-        angular.forEach(vm.movieinfo.credits.crew, function (item) {
-          if (item.job === 'Director') {
-            n = item.name;
-          }
-        });
-      }
-      return n;
-    };
-
-    /**
      * openTorrentInfo
      * @param id
      */
     vm.openTorrentInfo = function (id) {
       var url = $state.href('torrents.view', {torrentId: id});
       $window.open(url, '_blank');
-    };
-
-    /**
-     * getVideoNfoHtml
-     * @returns {*}
-     */
-    vm.getVideoNfoHtml = function () {
-      if (vm.torrentLocalInfo.torrent_nfo) {
-        var info = $filter('videoNfo')(vm.torrentLocalInfo.torrent_nfo);
-        return $sce.trustAsHtml(info);
-      }
     };
   }
 }());
