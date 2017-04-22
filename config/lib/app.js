@@ -28,6 +28,27 @@ module.exports.init = function init(callback) {
   });
 };
 
+module.exports.setDatePrototypeToJSON = function setDatePrototypeToJSON() {
+  function f(n) {
+    return n < 10 ? '0' + n : n;
+  }
+
+  Date.prototype.toJSON = function () {
+    return isFinite(this.valueOf()) ? this.getFullYear() + '-' +
+    f(this.getMonth() + 1) + '-' +
+    f(this.getDate()) + ' ' +
+    f(this.getHours()) + ':' +
+    f(this.getMinutes()) + ':' +
+    f(this.getSeconds())
+      : null;
+  };
+  String.prototype.toJSON =
+    Number.prototype.toJSON =
+      Boolean.prototype.toJSON = function () {
+        return this.valueOf();
+      };
+};
+
 module.exports.start = function start(callback) {
   var _this = this;
 
@@ -35,6 +56,7 @@ module.exports.start = function start(callback) {
 
     // Start the app by listening on <port> at <host>
     app.listen(config.port, config.host, function () {
+      _this.setDatePrototypeToJSON();
       // Create server URL
       var server = (process.env.NODE_ENV === 'secure' ? 'https://' : 'http://') + config.host + ':' + config.port;
       // Logging initialization
