@@ -38,6 +38,11 @@
   markedConfig.$inject = ['markedProvider'];
   function markedConfig(markedProvider) {
     markedProvider.setOptions({gfm: true});
+    markedProvider.setRenderer({
+      link: function(href, title, text) {
+        return '<a ng-click="vm.markLinkClick($event, item);" href="' + href + '"' + (title ? ' title="' + title + '"' : '') + ' target="_blank">' + text + '</a>';
+      }
+    });
   }
 
   // Then define the init function for starting up the application
