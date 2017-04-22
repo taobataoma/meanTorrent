@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 /**
  * Sub Comment Schema
  */
-var commentSchema = new Schema({
+var CommentSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -149,7 +149,7 @@ var TorrentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Peer'
   }],
-  _replies: [commentSchema],
+  _replies: [CommentSchema],
   last_scrape: {
     type: Date,
     default: Date.now
@@ -164,3 +164,4 @@ TorrentSchema.index({user: -1, createdat: -1});
 TorrentSchema.index({info_hash: -1, createdat: -1});
 
 mongoose.model('Torrent', TorrentSchema);
+mongoose.model('Comment', CommentSchema);

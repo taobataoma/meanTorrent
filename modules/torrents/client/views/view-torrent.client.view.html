@@ -151,10 +151,10 @@
     <div class="padding-top-30">
         <div class="container">
             <div class="panel panel-default panel-comment">
-                <div class="panel-heading text-center">{{ 'USER_COMMENT_LIST' | translate}} <span
+                <div class="panel-heading text-center"><strong>{{ 'USER_COMMENT_LIST' | translate}}</strong> <span
                         class="badge badge_info">{{vm.torrentLocalInfo._replies.length}}</span></div>
                 <div class="panel-body">
-                    <div class="comment-list" ng-repeat="item in vm.torrentLocalInfo._replies | orderBy : -_id">
+                    <div class="comment-list" id="{{item._id}}" ng-repeat="item in vm.torrentLocalInfo._replies">
                         <div class="timeline-comment-wrapper">
                             <a href="#" class="timeline-comment-avatar">
                                 <img title="{{item.user.displayName}}" ng-src="/{{item.user.profileImageURL}}">
@@ -162,10 +162,34 @@
 
                             <div class="timeline-comment">
                                 <div class="timeline-comment-header">
-                                    <div class="timeline-comment-header-text">{{item.user.displayName}}</div>
+                                    <div class="timeline-comment-header-text">{{item.user.displayName}}　　
+                                        <span class="user-ud-text">
+                                            (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{item.user.uploaded | bytes}}
+                                            <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{item.user.downloaded | bytes}}
+                                            )
+                                        </span>
+                                    </div>
+                                    <span class="timeline-comment-header-time-text">{{item.createdat | date:'yyyy-MM-dd hh:mm:ss'}}</span>
                                 </div>
                                 <div class="timeline-comment-body">
                                     <div class="timeline-comment-body-text" marked="item.comment"></div>
+                                    <div class="row" ng-show="item._replies.length>0">
+                                        <div class="col-sm-10 col-sm-offset-2 timeline-comment-sub-list">
+                                            <div class="timeline-comment-sub-item" ng-repeat="sitem in item._replies">
+                                                <div class="timeline-comment-sub-body" marked="sitem.comment + vm.getSubMarkdown(sitem)" compile="true"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="timeline-comment-footer">
+                                    <div class="timeline-comment-footer-button text-right">
+                                        <button class="btn btn-default btn-xs" ng-if="item.user._id == vm.user._id"
+                                                translate="COMMENT_REPLY_EDIT" ng-click="vm.editComment(item);"></button>
+                                        <button class="btn btn-default btn-xs" ng-if="item.user._id == vm.user._id"
+                                                translate="COMMENT_REPLY_DELETE" ng-click="vm.deleteComment(item);"></button>
+                                        <button class="btn btn-default btn-xs" ng-if="item.user._id == vm.user._id"
+                                                translate="COMMENT_REPLY_BUTTON" ng-click="vm.replyComment(item);"></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +206,7 @@
                                     <div class="timeline-comment-header-text">{{ 'POST_NEW_COMMENT' | translate}}</div>
                                 </div>
                                 <div class="timeline-comment-body">
-                                    <textarea class="form-control" ng-model="vm.new_comment_content"></textarea>
+                                    <textarea class="form-control new_comment_textarea" ng-model="vm.new_comment_content"></textarea>
 
                                     <div class="row">
                                         <div class="col-sm-9" style="display: table;">

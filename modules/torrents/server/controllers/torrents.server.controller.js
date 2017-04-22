@@ -14,6 +14,7 @@ var path = require('path'),
   fs = require('fs'),
   nt = require('nt'),
   benc = require('bncode'),
+  async = require('async'),
   validator = require('validator'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key);
 
@@ -419,7 +420,16 @@ exports.torrentByID = function (req, res, next, id) {
 
   Torrent.findById(id)
     .populate('user', 'displayName profileImageURL')
-    .populate('_replies')
+    .populate({
+      path: '_replies.user',
+      select: 'displayName profileImageURL uploaded downloaded',
+      model: 'User'
+    })
+    .populate({
+      path: '_replies._replies.user',
+      select: 'displayName profileImageURL uploaded downloaded',
+      model: 'User'
+    })
     .populate({
       path: '_subtitles',
       populate: {
@@ -443,20 +453,8 @@ exports.torrentByID = function (req, res, next, id) {
         });
       }
 
-      Torrent.populate(torrent._replies, {
-        path: 'user',
-        select: 'displayName profileImageURL uploaded downloaded'
-      }, function (err, t) {
-        if (err) {
-          return res.status(422).send({
-            message: errorHandler.getErrorMessage(err)
-          });
-        } else {
-          //torrent._replies = t;
-          req.torrent = torrent;
-          next();
-        }
-      });
+      req.torrent = torrent;
+      next();
     });
 };
 

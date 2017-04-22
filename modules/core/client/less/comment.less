@@ -21,6 +21,9 @@
     font-size: 1px;
     svg {
         vertical-align: bottom !important;
+        path {
+            fill: #18a404;
+        }
     }
 }
 
@@ -79,6 +82,17 @@
                 max-width: 70%;
                 padding-top: 10px;
                 padding-bottom: 10px;
+                .user-ud-text {
+                    font-size: 12px;
+                    color: lighten(@gray-base, 60%);
+                }
+            }
+            .timeline-comment-header-time-text {
+                font-size: 12px;
+                color: lighten(@gray-base, 60%);
+                position: absolute;
+                right: 15px;
+                top: 15px;
             }
         }
         .timeline-comment-body {
@@ -88,6 +102,34 @@
             .timeline-comment-body-text {
                 padding-top: 10px;
                 padding-bottom: 10px;
+            }
+            .timeline-comment-sub-list {
+                border-top: 1px solid #d1d5da;
+                //padding-top: 5px;
+                .timeline-comment-sub-item {
+                    &:not(:last-child) {
+                        border-bottom: 1px dashed #d1d5da;
+                    }
+                    .timeline-comment-sub-body {
+                        p {
+                            margin: 5px 0;
+                        }
+                    }
+                }
+            }
+        }
+        .timeline-comment-footer {
+            padding-right: 15px;
+            padding-left: 15px;
+            color: #586069;
+            background-color: lighten(@comment-background-default, 2%);
+            border-top: 1px dashed #d1d5da;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            min-height: 32px;
+            .timeline-comment-footer-button {
+                padding-top: 5px;
+                padding-bottom: 5px;
             }
         }
     }

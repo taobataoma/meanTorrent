@@ -146,6 +146,9 @@
     POST_NEW_COMMENT: 'Post New Comment',
     SUBMIT_COMMENT: 'Submit Comment',
     MARKDOWN_LINK: 'Styling with Markdown is supported',
+    COMMENT_REPLY_BUTTON: '@ & reply',
+    COMMENT_REPLY_DELETE: 'Delete reply',
+    COMMENT_REPLY_EDIT: 'Edit reply',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',

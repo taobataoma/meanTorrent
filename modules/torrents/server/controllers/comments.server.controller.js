@@ -9,7 +9,9 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   User = mongoose.model('User'),
   Peer = mongoose.model('Peer'),
-  Torrent = mongoose.model('Torrent');
+  Torrent = mongoose.model('Torrent'),
+  Comment = mongoose.model('Comment'),
+  async = require('async');
 
 /**
  * create a comment of torrent
@@ -79,7 +81,39 @@ exports.list = function (req, res) {
  * @param res
  */
 exports.SubCreate = function (req, res) {
+  var comment_to = undefined;
+  var torrent = req.torrent;
+  var comment = new Comment();
+  comment.comment = req.body.comment;
+  comment.user = req.user;
 
+  torrent._replies.forEach(function (r) {
+    if (r._id.equals(req.params.commentId)) {
+      r._replies.push(comment);
+      comment_to = r;
+    }
+  });
+
+  torrent.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      Torrent.populate(comment_to._replies, {
+        path: 'user',
+        select: 'displayName profileImageURL uploaded downloaded'
+      }, function (err, t) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.json(torrent);
+        }
+      });
+    }
+  });
 };
 
 /**

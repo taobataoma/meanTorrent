@@ -188,11 +188,12 @@
     };
 
     /**
-     *
+     * submitComment
      */
     vm.submitComment = function () {
       var comment = new CommentsService({
         _torrentId: vm.torrentLocalInfo._id,
+        _commentId: vm.comment_to_id,
         comment: vm.new_comment_content
       });
 
@@ -205,6 +206,8 @@
       function successCallback(res) {
         console.log(res);
         vm.new_comment_content = '';
+        vm.comment_to_id = undefined;
+        vm.comment_to_at = undefined;
         vm.torrentLocalInfo = res;
         Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment created successfully!'});
       }
@@ -214,6 +217,41 @@
         Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment created error!'});
       }
 
+    };
+
+    /**
+     * replyComment
+     * @param citem, comment item
+     */
+    vm.replyComment = function (citem) {
+      vm.comment_to_id = citem._id;
+      vm.comment_to_at = '@' + citem.user.displayName + ' ';
+      vm.new_comment_content = vm.comment_to_at;
+      angular.element('.new_comment_textarea').trigger('focus');
+    };
+
+    /**
+     * getSubMarkdown
+     * @param sitem
+     * @returns {string}
+     */
+    vm.getSubMarkdown = function (sitem) {
+      var mk = '  <span style="font-size: 12px;">' + '- [@' + sitem.user.displayName + '](@' + sitem.user.displayName + ')</span>  ';
+      mk += '<span style="font-size: 12px; color: #999999;">' + $filter('date')(sitem.createdat, 'yyyy-MM-dd hh:mm:ss') + '</span>';
+
+      return mk;
+    };
+
+    vm.markLinkClick = function (evt, citem) {
+      if (evt.originalEvent.srcElement.innerText[0] === '@') {
+        evt.preventDefault();
+        vm.comment_to_id = citem._id;
+        vm.comment_to_at = evt.originalEvent.srcElement.innerText + ' ';
+
+        vm.new_comment_content = vm.comment_to_at;
+        angular.element('.new_comment_textarea').trigger('focus');
+
+      }
     };
   }
 }());

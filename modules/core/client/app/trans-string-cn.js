@@ -146,6 +146,9 @@
     POST_NEW_COMMENT: '发表新评论',
     SUBMIT_COMMENT: '提交评论',
     MARKDOWN_LINK: '排版支持 Markdown 全部格式',
+    COMMENT_REPLY_BUTTON: '@ 楼主并回复',
+    COMMENT_REPLY_DELETE: '删除回复',
+    COMMENT_REPLY_EDIT: '编辑回复',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',
