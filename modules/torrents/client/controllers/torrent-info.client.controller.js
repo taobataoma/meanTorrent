@@ -204,12 +204,15 @@
       });
 
       function successCallback(res) {
-        console.log(res);
+        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment created successfully!'});
+
+        if (vm.comment_to_id) {
+          vm.scrollToId = vm.comment_to_id;
+        }
         vm.new_comment_content = '';
         vm.comment_to_id = undefined;
         vm.comment_to_at = undefined;
         vm.torrentLocalInfo = res;
-        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment created successfully!'});
       }
 
       function errorCallback(res) {
@@ -226,6 +229,17 @@
     vm.replyComment = function (citem) {
       vm.comment_to_id = citem._id;
       vm.comment_to_at = '@' + citem.user.displayName + ' ';
+      vm.new_comment_content = vm.comment_to_at;
+      angular.element('.new_comment_textarea').trigger('focus');
+    };
+
+    /**
+     * replySubComment
+     * @param citem, comment item
+     */
+    vm.replySubComment = function (citem, sitem) {
+      vm.comment_to_id = citem._id;
+      vm.comment_to_at = '@' + sitem.user.displayName + ' ';
       vm.new_comment_content = vm.comment_to_at;
       angular.element('.new_comment_textarea').trigger('focus');
     };
