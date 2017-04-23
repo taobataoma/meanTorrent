@@ -142,13 +142,24 @@
     TORRENT_SEED_USERS: '做种用户列表',
     TORRENT_LEECHER_USERS: '下载用户列表',
     TORRENT_FINISHED_USERS: '完成用户列表',
+
+    //comment
     USER_COMMENT_LIST: '用户评论',
     POST_NEW_COMMENT: '发表新评论',
+    EDIT_COMMENT: '编辑评论',
     SUBMIT_COMMENT: '提交评论',
+    SUBMIT_CANCEL: '取消',
     MARKDOWN_LINK: '排版支持 Markdown 全部格式',
     COMMENT_REPLY_BUTTON: '@ 楼主并回复',
-    COMMENT_REPLY_DELETE: '删除回复',
-    COMMENT_REPLY_EDIT: '编辑回复',
+    COMMENT_REPLY_DELETE: '删除',
+    COMMENT_REPLY_EDIT: '编辑',
+    COMMENT_EDITED_INFO: '编辑于',
+    COMMENT_CONFIRM_OK: '删除',
+    COMMENT_CONFIRM_CANCEL: '取消',
+    COMMENT_CONFIRM_HEADER_TEXT: '删除确认',
+    COMMENT_CONFIRM_BODY_TEXT: '你确定要删除这条评论吗?',
+    COMMENT_EDIT_ICON_TITLE: '编辑回复',
+    COMMENT_DELETE_ICON_TITLE: '删除回复',
 
     //TorrentsUploadsController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',

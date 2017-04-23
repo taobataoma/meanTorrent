@@ -101,7 +101,11 @@
             min-height: 42px;
             .timeline-comment-body-text {
                 padding-top: 10px;
-                padding-bottom: 10px;
+            }
+            .timeline-comment-body-edited-text {
+                font-size: 12px;
+                color: lighten(@gray-base, 60%);
+                margin-right: 15px;
             }
             .timeline-comment-sub-list {
                 border-top: 1px solid #d1d5da;
@@ -113,6 +117,24 @@
                     .timeline-comment-sub-body {
                         p {
                             margin: 5px 0;
+                        }
+                        .edit-button {
+                            font-size: 12px;
+                            margin-left: 10px;
+                            cursor: pointer;
+                            color: @brand-primary;
+                            &:hover {
+                                color: @brand-danger;
+                            }
+                        }
+                        .delete-button {
+                            font-size: 12px;
+                            margin-left: 5px;
+                            cursor: pointer;
+                            color: @brand-primary;
+                            &:hover {
+                                color: @brand-danger;
+                            }
                         }
                     }
                     .timeline-comment-sub-avatar {

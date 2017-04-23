@@ -142,13 +142,25 @@
     TORRENT_SEED_USERS: 'Seed Users',
     TORRENT_LEECHER_USERS: 'Leecher Users',
     TORRENT_FINISHED_USERS: 'Finished Users',
+
+    //comment
     USER_COMMENT_LIST: 'User Comments List',
     POST_NEW_COMMENT: 'Post New Comment',
+    EDIT_COMMENT: 'Edit Comment',
     SUBMIT_COMMENT: 'Submit Comment',
+    SUBMIT_CANCEL: 'Cancel',
     MARKDOWN_LINK: 'Styling with Markdown is supported',
     COMMENT_REPLY_BUTTON: '@ & reply',
-    COMMENT_REPLY_DELETE: 'Delete reply',
-    COMMENT_REPLY_EDIT: 'Edit reply',
+    COMMENT_REPLY_DELETE: 'Delete',
+    COMMENT_REPLY_EDIT: 'Edit',
+    COMMENT_EDITED_INFO: 'Edit at',
+    COMMENT_CONFIRM_OK: 'Delete',
+    COMMENT_CONFIRM_CANCEL: 'Cancel',
+    COMMENT_CONFIRM_HEADER_TEXT: 'Delete Confirm',
+    COMMENT_CONFIRM_BODY_TEXT: 'Are you sure want to delete this comment?',
+    COMMENT_CONFIRM_BODY_TEXT_REPLY: 'Are you sure want to delete this comment reply?',
+    COMMENT_EDIT_ICON_TITLE: 'Edit this reply',
+    COMMENT_DELETE_ICON_TITLE: 'Delete this reply',
 
     //TorrentsUploadsController & views
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',

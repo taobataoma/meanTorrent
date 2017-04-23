@@ -23,6 +23,15 @@ var CommentSchema = new Schema({
   createdat: {
     type: Date,
     default: Date.now
+  },
+  editedby: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  editedat: {
+    type: Date,
+    default: ''
   }
 });
 

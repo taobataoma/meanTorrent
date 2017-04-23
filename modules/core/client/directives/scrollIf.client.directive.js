@@ -19,7 +19,7 @@
         if (value) {
           //element[0].scrollIntoView({block: 'end', behavior: 'smooth'});
           //$uiViewScroll(element);
-          window.scrollTo(0, element[0].offsetTop - 60)
+          window.scrollTo(0, element[0].offsetTop - 60);
         }
       });
     }

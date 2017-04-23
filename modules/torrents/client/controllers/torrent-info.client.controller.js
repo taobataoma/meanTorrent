@@ -6,10 +6,10 @@
     .controller('TorrentsInfoController', TorrentsInfoController);
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService'];
+    'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                                  DownloadService, $sce, $filter, CommentsService) {
+                                  DownloadService, $sce, $filter, CommentsService, ModalConfirmService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -191,6 +191,11 @@
      * submitComment
      */
     vm.submitComment = function () {
+      if (vm.reply_action === 'edit') {
+        vm.submitEditComment();
+        return;
+      }
+
       var comment = new CommentsService({
         _torrentId: vm.torrentLocalInfo._id,
         _commentId: vm.comment_to_id,
@@ -209,17 +214,60 @@
         if (vm.comment_to_id) {
           vm.scrollToId = vm.comment_to_id;
         }
-        vm.new_comment_content = '';
-        vm.comment_to_id = undefined;
-        vm.comment_to_at = undefined;
+        vm.submitInit();
         vm.torrentLocalInfo = res;
       }
 
       function errorCallback(res) {
+        vm.submitInit();
         vm.error_msg = res.data.message;
         Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment created error!'});
       }
+    };
 
+    /**
+     * submitEditComment
+     */
+    vm.submitEditComment = function () {
+      var comment = new CommentsService({
+        _torrentId: vm.torrentLocalInfo._id,
+        _commentId: vm.comment_to_id,
+        _subCommentId: vm.comment_to_sub_id,
+        comment: vm.new_comment_content
+      });
+
+      comment.$update(function (response) {
+        successCallback(response);
+      }, function (errorResponse) {
+        errorCallback(errorResponse);
+      });
+
+      function successCallback(res) {
+        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment edited successfully!'});
+
+        if (vm.comment_to_id) {
+          vm.scrollToId = vm.comment_to_id;
+        }
+        vm.submitInit();
+        vm.torrentLocalInfo = res;
+      }
+
+      function errorCallback(res) {
+        vm.submitInit();
+        vm.error_msg = res.data.message;
+        Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment edited error!'});
+      }
+    };
+
+    /**
+     * submitCancel
+     */
+    vm.submitInit = function () {
+      vm.new_comment_content = '';
+      vm.comment_to_id = undefined;
+      vm.comment_to_sub_id = undefined;
+      vm.comment_to_at = undefined;
+      vm.reply_action = undefined;
     };
 
     /**
@@ -251,11 +299,18 @@
      */
     vm.getSubMarkdown = function (sitem) {
       var mk = '  <span style="font-size: 12px;">' + '- [@' + sitem.user.displayName + '](@' + sitem.user.displayName + ')</span>  ';
-      mk += '<span style="font-size: 12px; color: #999999;">' + $filter('date')(sitem.createdat, 'yyyy-MM-dd hh:mm:ss') + '</span>';
+      mk += '<span style="font-size: 12px; color: #999999;">' + $filter('date')(sitem.createdat, 'yyyy-MM-dd HH:mm:ss') + '</span>';
+      mk += '<span class="glyphicon glyphicon-edit edit-button" title="{{ \'COMMENT_EDIT_ICON_TITLE\' | translate}}" ng-click="vm.editSubComment(item,sitem);"></span>';
+      mk += '<span class="glyphicon glyphicon-remove-circle delete-button" title="{{ \'COMMENT_DELETE_ICON_TITLE\' | translate}}" ng-click="vm.deleteSubComment(item,sitem);"></span>';
 
       return mk;
     };
 
+    /**
+     * markLinkClick
+     * @param evt
+     * @param citem
+     */
     vm.markLinkClick = function (evt, citem) {
       if (evt.originalEvent.srcElement.innerText[0] === '@') {
         evt.preventDefault();
@@ -266,6 +321,111 @@
         angular.element('.new_comment_textarea').trigger('focus');
 
       }
+    };
+
+    /**
+     * editComment
+     * @param citem
+     */
+    vm.editComment = function (citem) {
+      vm.comment_to_id = citem._id;
+      vm.reply_action = 'edit';
+
+      vm.new_comment_content = citem.comment;
+      angular.element('.new_comment_textarea').trigger('focus');
+    };
+
+    /**
+     * editSubComment
+     * @param citem
+     * @param sitem
+     */
+    vm.editSubComment = function (citem, sitem) {
+      vm.comment_to_id = citem._id;
+      vm.comment_to_sub_id = sitem._id;
+      vm.reply_action = 'edit';
+
+      vm.new_comment_content = sitem.comment;
+      angular.element('.new_comment_textarea').trigger('focus');
+    };
+
+    /**
+     * deleteComment
+     * @param citem
+     */
+    vm.deleteComment = function (citem) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('COMMENT_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('COMMENT_CONFIRM_OK'),
+        headerText: $translate.instant('COMMENT_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('COMMENT_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          var comment = new CommentsService({
+            _torrentId: vm.torrentLocalInfo._id,
+            _commentId: citem._id
+          });
+
+          comment.$remove(function (response) {
+            successCallback(response);
+          }, function (errorResponse) {
+            errorCallback(errorResponse);
+          });
+
+          function successCallback(res) {
+            Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment deleted successfully!'});
+
+            vm.submitInit();
+            vm.torrentLocalInfo = res;
+          }
+
+          function errorCallback(res) {
+            vm.error_msg = res.data.message;
+            Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment deleted error!'});
+          }
+        });
+    };
+
+    /**
+     * deleteSubComment
+     * @param citem
+     */
+    vm.deleteSubComment = function (citem, sitem) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('COMMENT_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('COMMENT_CONFIRM_OK'),
+        headerText: $translate.instant('COMMENT_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('COMMENT_CONFIRM_BODY_TEXT_REPLY')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          var comment = new CommentsService({
+            _torrentId: vm.torrentLocalInfo._id,
+            _commentId: citem._id,
+            _subCommentId: sitem._id
+          });
+
+          comment.$remove(function (response) {
+            successCallback(response);
+          }, function (errorResponse) {
+            errorCallback(errorResponse);
+          });
+
+          function successCallback(res) {
+            Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment reply deleted successfully!'});
+
+            vm.submitInit();
+            vm.torrentLocalInfo = res;
+          }
+
+          function errorCallback(res) {
+            vm.error_msg = res.data.message;
+            Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment reply deleted error!'});
+          }
+        });
     };
   }
 }());

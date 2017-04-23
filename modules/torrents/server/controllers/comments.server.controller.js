@@ -54,7 +54,25 @@ exports.create = function (req, res) {
  * @param res
  */
 exports.update = function (req, res) {
+  var torrent = req.torrent;
 
+  torrent._replies.forEach(function (r) {
+    if (r._id.equals(req.params.commentId)) {
+      r.comment = req.body.comment;
+      r.editedat = Date.now();
+      r.editedby = req.user.displayName;
+
+      torrent.save(function (err) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.json(torrent);
+        }
+      });
+    }
+  });
 };
 
 /**
@@ -63,16 +81,22 @@ exports.update = function (req, res) {
  * @param res
  */
 exports.delete = function (req, res) {
+  var torrent = req.torrent;
 
-};
-
-/**
- * list all comment of torrent
- * @param req
- * @param res
- */
-exports.list = function (req, res) {
-
+  torrent._replies.forEach(function (r) {
+    if (r._id.equals(req.params.commentId)) {
+      torrent._replies.pull(r);
+      torrent.save(function (err) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.json(torrent);
+        }
+      });
+    }
+  });
 };
 
 /**
@@ -122,7 +146,29 @@ exports.SubCreate = function (req, res) {
  * @param res
  */
 exports.SubUpdate = function (req, res) {
+  var torrent = req.torrent;
 
+  torrent._replies.forEach(function (r) {
+    if (r._id.equals(req.params.commentId)) {
+      r._replies.forEach(function (s) {
+        if (s._id.equals(req.params.subCommentId)) {
+          s.comment = req.body.comment;
+          s.editedat = Date.now();
+          s.editedby = req.user.displayName;
+
+          torrent.save(function (err) {
+            if (err) {
+              return res.status(422).send({
+                message: errorHandler.getErrorMessage(err)
+              });
+            } else {
+              res.json(torrent);
+            }
+          });
+        }
+      });
+    }
+  });
 };
 
 /**
@@ -131,15 +177,52 @@ exports.SubUpdate = function (req, res) {
  * @param res
  */
 exports.SubDelete = function (req, res) {
+  var torrent = req.torrent;
 
+  for (var i = 0; i < torrent._replies.length; i++) {
+    var c = torrent._replies[i];
+    if (c._id.equals(req.params.commentId)) {
+      for (var j = 0; j < c._replies.length; j++) {
+        var s = c._replies[j];
+        if (s._id.equals(req.params.subCommentId)) {
+          torrent._replies[i]._replies.pull(s);
+          torrent.save(function (err) {
+            if (err) {
+              console.log('save err');
+              return res.status(422).send({
+                message: errorHandler.getErrorMessage(err)
+              });
+            } else {
+              console.log('save ok');
+              res.json(torrent);
+            }
+          });
+        }
+      }
+    }
+  }
+
+
+  //torrent._replies.forEach(function (r) {
+  //  if (r._id.equals(req.params.commentId)) {
+  //    r._replies.forEach(function (s) {
+  //      if (s._id.equals(req.params.subCommentId)) {
+  //        console.log(r._id + '-' + s._id);
+  //        r._replies.pull(s);
+  //
+  //        torrent.save(function (err) {
+  //          if (err) {
+  //            console.log('save err');
+  //            return res.status(422).send({
+  //              message: errorHandler.getErrorMessage(err)
+  //            });
+  //          } else {
+  //            console.log('save ok');
+  //            res.json(torrent);
+  //          }
+  //        });
+  //      }
+  //    });
+  //  }
+  //});
 };
-
-/**
- * list all sub comment of comment
- * @param req
- * @param res
- */
-exports.SubList = function (req, res) {
-
-};
-
