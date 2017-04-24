@@ -189,11 +189,11 @@
                                 </div>
                                 <div class="timeline-comment-footer">
                                     <div class="timeline-comment-footer-button text-right">
-                                        <button class="btn btn-default btn-xs" ng-if="item.user._id == vm.user._id"
+                                        <button class="btn btn-default btn-xs" ng-if="item.user._id.equals(vm.user._id) || vm.user.roles[0] == 'admin'"
                                                 translate="COMMENT_REPLY_EDIT" ng-click="vm.editComment(item);"></button>
-                                        <button class="btn btn-default btn-xs" ng-if="item.user._id == vm.user._id"
+                                        <button class="btn btn-default btn-xs" ng-if="item.user._id.equals(vm.user._id) || vm.user.roles[0] == 'admin'"
                                                 translate="COMMENT_REPLY_DELETE" ng-click="vm.deleteComment(item);"></button>
-                                        <button class="btn btn-default btn-xs" ng-if="item.user._id == vm.user._id"
+                                        <button class="btn btn-default btn-xs"
                                                 translate="COMMENT_REPLY_BUTTON" ng-click="vm.replyComment(item);"></button>
                                     </div>
                                 </div>

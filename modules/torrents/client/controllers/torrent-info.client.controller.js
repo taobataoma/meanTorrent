@@ -300,8 +300,18 @@
     vm.getSubMarkdown = function (sitem) {
       var mk = '  <span style="font-size: 12px;">' + '- [@' + sitem.user.displayName + '](@' + sitem.user.displayName + ')</span>  ';
       mk += '<span style="font-size: 12px; color: #999999;">' + $filter('date')(sitem.createdat, 'yyyy-MM-dd HH:mm:ss') + '</span>';
-      mk += '<span class="glyphicon glyphicon-edit edit-button" title="{{ \'COMMENT_EDIT_ICON_TITLE\' | translate}}" ng-click="vm.editSubComment(item,sitem);"></span>';
-      mk += '<span class="glyphicon glyphicon-remove-circle delete-button" title="{{ \'COMMENT_DELETE_ICON_TITLE\' | translate}}" ng-click="vm.deleteSubComment(item,sitem);"></span>';
+
+      mk += '<span class="glyphicon glyphicon-edit edit-button" ';
+      mk += 'title="{{ \'COMMENT_EDIT_ICON_TITLE\' | translate}}" ';
+      mk += 'ng-if="sitem.user._id.equals(vm.user._id) || vm.user.roles[0] == \'admin\'" ';
+      mk += 'ng-click="vm.editSubComment(item,sitem);">';
+      mk += '</span>';
+
+      mk += '<span class="glyphicon glyphicon-remove-circle delete-button" ';
+      mk += 'title="{{ \'COMMENT_DELETE_ICON_TITLE\' | translate}}" ';
+      mk += 'ng-if="sitem.user._id.equals(vm.user._id) || vm.user.roles[0] == \'admin\'" ';
+      mk += 'ng-click="vm.deleteSubComment(item,sitem);">';
+      mk += '</span>';
 
       return mk;
     };
