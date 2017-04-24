@@ -147,6 +147,7 @@
     USER_COMMENT_LIST: 'User Comments List',
     POST_NEW_COMMENT: 'Post New Comment',
     EDIT_COMMENT: 'Edit Comment',
+    REPLY_COMMENT: 'Reply Comment',
     SUBMIT_COMMENT: 'Submit Comment',
     SUBMIT_CANCEL: 'Cancel',
     MARKDOWN_LINK: 'Styling with Markdown is supported',

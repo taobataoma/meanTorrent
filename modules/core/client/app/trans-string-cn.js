@@ -147,6 +147,7 @@
     USER_COMMENT_LIST: '用户评论',
     POST_NEW_COMMENT: '发表新评论',
     EDIT_COMMENT: '编辑评论',
+    REPLY_COMMENT: '回复评论',
     SUBMIT_COMMENT: '提交评论',
     SUBMIT_CANCEL: '取消',
     MARKDOWN_LINK: '排版支持 Markdown 全部格式',

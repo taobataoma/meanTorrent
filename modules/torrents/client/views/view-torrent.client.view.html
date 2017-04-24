@@ -172,7 +172,7 @@
                                     <span class="timeline-comment-header-time-text">{{item.createdat | date:'yyyy-MM-dd HH:mm:ss'}}</span>
                                 </div>
                                 <div class="timeline-comment-body">
-                                    <div class="timeline-comment-body-text" marked="item.comment"></div>
+                                    <div class="timeline-comment-body-text" ng-bind-html="vm.getCommentMarked(item);" compile="true"></div>
                                     <div class="row text-right" ng-show="item.editedat">
                                         <p class="timeline-comment-body-edited-text">[ {{item.editedby}} {{ 'COMMENT_EDITED_INFO' | translate}} {{item.editedat | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>
                                     </div>
@@ -182,16 +182,39 @@
                                                 <a class="timeline-comment-sub-avatar" ng-click="vm.replySubComment(item, sitem);">
                                                     <img title="{{sitem.user.displayName}}" ng-src="/{{sitem.user.profileImageURL}}">
                                                 </a>
-                                                <div class="timeline-comment-sub-body" marked="sitem.comment + vm.getSubMarkdown(sitem)" compile="true"></div>
+
+                                                <div class="timeline-comment-sub-body">
+                                                    <span>{{sitem.comment}}</span>
+                                                    <span style="font-size: 12px;"> -
+                                                        <a ng-click="vm.markLinkClick($event, item);"
+                                                           ng-href="#sitem.user.displayName">@{{sitem.user.displayName}}</a>
+                                                    </span>
+                                                    <span style="font-size: 12px; color: #999999;">{{sitem.createdat | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+
+                                                    <span class="glyphicon glyphicon-edit edit-button"
+                                                          title="{{ 'COMMENT_EDIT_ICON_TITLE' | translate}}"
+                                                          ng-if="sitem.user._id.toString()==vm.user._id || vm.user.roles[0] == 'admin'"
+                                                          ng-click="vm.editSubComment(item,sitem);">
+                                                    </span>
+
+                                                    <span class="glyphicon glyphicon-remove-circle delete-button"
+                                                          title="{{ 'COMMENT_DELETE_ICON_TITLE' | translate}}"
+                                                          ng-if="sitem.user._id.toString()==vm.user._id || vm.user.roles[0] == 'admin'"
+                                                          ng-click="vm.deleteSubComment(item,sitem);">
+                                                   </span>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="timeline-comment-footer">
                                     <div class="timeline-comment-footer-button text-right">
-                                        <button class="btn btn-default btn-xs" ng-if="item.user._id.equals(vm.user._id) || vm.user.roles[0] == 'admin'"
+                                        <button class="btn btn-default btn-xs"
+                                                ng-if="item.user._id.toString()==vm.user._id || vm.user.roles[0] == 'admin'"
                                                 translate="COMMENT_REPLY_EDIT" ng-click="vm.editComment(item);"></button>
-                                        <button class="btn btn-default btn-xs" ng-if="item.user._id.equals(vm.user._id) || vm.user.roles[0] == 'admin'"
+                                        <button class="btn btn-default btn-xs"
+                                                ng-if="item.user._id.toString()==vm.user._id || vm.user.roles[0] == 'admin'"
                                                 translate="COMMENT_REPLY_DELETE" ng-click="vm.deleteComment(item);"></button>
                                         <button class="btn btn-default btn-xs"
                                                 translate="COMMENT_REPLY_BUTTON" ng-click="vm.replyComment(item);"></button>
@@ -209,7 +232,7 @@
 
                             <div class="timeline-comment timeline-new-comment">
                                 <div class="timeline-comment-header">
-                                    <div class="timeline-comment-header-text">{{ vm.reply_action == 'edit' ? 'EDIT_COMMENT' : 'POST_NEW_COMMENT' | translate}}</div>
+                                    <div class="timeline-comment-header-text">{{ vm.reply_action == 'edit' ? 'EDIT_COMMENT' : (vm.reply_action == 'reply' ? 'REPLY_COMMENT' : 'POST_NEW_COMMENT') | translate}}</div>
                                 </div>
                                 <div class="timeline-comment-body">
                                     <textarea class="form-control new_comment_textarea" ng-model="vm.new_comment_content"></textarea>
@@ -217,6 +240,7 @@
                                     <div class="row">
                                         <div class="col-sm-9" style="display: table;">
                                             <a class="tabnav-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"
+                                               ng-show="!vm.reply_action"
                                                data-ga-click="Markdown Toolbar, click, help">
                                                 <svg aria-hidden="true" height="16" version="1.1"
                                                      viewBox="0 0 16 16" width="16">
@@ -227,7 +251,7 @@
                                             </a>
                                         </div>
                                         <div class="col-sm-3 text-right">
-                                            <button class="btn btn-info" translate="SUBMIT_CANCEL" ng-click="vm.submitInit();"></button>
+                                            <button class="btn btn-warning" translate="SUBMIT_CANCEL" ng-click="vm.submitInit();"></button>
                                             <button class="btn btn-success" translate="SUBMIT_COMMENT" ng-click="vm.submitComment();"
                                                     ng-disabled="!vm.new_comment_content"></button>
                                         </div>

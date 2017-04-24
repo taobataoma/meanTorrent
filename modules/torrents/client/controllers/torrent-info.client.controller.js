@@ -6,10 +6,10 @@
     .controller('TorrentsInfoController', TorrentsInfoController);
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService'];
+    'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                                  DownloadService, $sce, $filter, CommentsService, ModalConfirmService) {
+                                  DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -211,15 +211,12 @@
       function successCallback(res) {
         Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment created successfully!'});
 
-        if (vm.comment_to_id) {
-          vm.scrollToId = vm.comment_to_id;
-        }
+        vm.scrollToId = vm.comment_to_id;
         vm.submitInit();
         vm.torrentLocalInfo = res;
       }
 
       function errorCallback(res) {
-        vm.submitInit();
         vm.error_msg = res.data.message;
         Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment created error!'});
       }
@@ -245,22 +242,19 @@
       function successCallback(res) {
         Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment edited successfully!'});
 
-        if (vm.comment_to_id) {
-          vm.scrollToId = vm.comment_to_id;
-        }
+        vm.scrollToId = vm.comment_to_id;
         vm.submitInit();
         vm.torrentLocalInfo = res;
       }
 
       function errorCallback(res) {
-        vm.submitInit();
         vm.error_msg = res.data.message;
         Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment edited error!'});
       }
     };
 
     /**
-     * submitCancel
+     * submitInit
      */
     vm.submitInit = function () {
       vm.new_comment_content = '';
@@ -270,6 +264,10 @@
       vm.reply_action = undefined;
     };
 
+    vm.getCommentMarked = function (citem) {
+      return marked(citem.comment, {sanitize: true});
+    };
+
     /**
      * replyComment
      * @param citem, comment item
@@ -277,6 +275,8 @@
     vm.replyComment = function (citem) {
       vm.comment_to_id = citem._id;
       vm.comment_to_at = '@' + citem.user.displayName + ' ';
+      vm.reply_action = 'reply';
+
       vm.new_comment_content = vm.comment_to_at;
       angular.element('.new_comment_textarea').trigger('focus');
     };
@@ -288,32 +288,10 @@
     vm.replySubComment = function (citem, sitem) {
       vm.comment_to_id = citem._id;
       vm.comment_to_at = '@' + sitem.user.displayName + ' ';
+      vm.reply_action = 'reply';
+
       vm.new_comment_content = vm.comment_to_at;
       angular.element('.new_comment_textarea').trigger('focus');
-    };
-
-    /**
-     * getSubMarkdown
-     * @param sitem
-     * @returns {string}
-     */
-    vm.getSubMarkdown = function (sitem) {
-      var mk = '  <span style="font-size: 12px;">' + '- [@' + sitem.user.displayName + '](@' + sitem.user.displayName + ')</span>  ';
-      mk += '<span style="font-size: 12px; color: #999999;">' + $filter('date')(sitem.createdat, 'yyyy-MM-dd HH:mm:ss') + '</span>';
-
-      mk += '<span class="glyphicon glyphicon-edit edit-button" ';
-      mk += 'title="{{ \'COMMENT_EDIT_ICON_TITLE\' | translate}}" ';
-      mk += 'ng-if="sitem.user._id.equals(vm.user._id) || vm.user.roles[0] == \'admin\'" ';
-      mk += 'ng-click="vm.editSubComment(item,sitem);">';
-      mk += '</span>';
-
-      mk += '<span class="glyphicon glyphicon-remove-circle delete-button" ';
-      mk += 'title="{{ \'COMMENT_DELETE_ICON_TITLE\' | translate}}" ';
-      mk += 'ng-if="sitem.user._id.equals(vm.user._id) || vm.user.roles[0] == \'admin\'" ';
-      mk += 'ng-click="vm.deleteSubComment(item,sitem);">';
-      mk += '</span>';
-
-      return mk;
     };
 
     /**
@@ -326,10 +304,10 @@
         evt.preventDefault();
         vm.comment_to_id = citem._id;
         vm.comment_to_at = evt.originalEvent.srcElement.innerText + ' ';
+        vm.reply_action = 'reply';
 
         vm.new_comment_content = vm.comment_to_at;
         angular.element('.new_comment_textarea').trigger('focus');
-
       }
     };
 
@@ -388,6 +366,7 @@
             Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment deleted successfully!'});
 
             vm.submitInit();
+            vm.scrollToId = undefined;
             vm.torrentLocalInfo = res;
           }
 
@@ -428,6 +407,7 @@
             Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment reply deleted successfully!'});
 
             vm.submitInit();
+            vm.scrollToId = undefined;
             vm.torrentLocalInfo = res;
           }
 
@@ -438,4 +418,5 @@
         });
     };
   }
+
 }());

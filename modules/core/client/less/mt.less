@@ -338,12 +338,18 @@
         > a {
             margin-right: 5px;
             padding: 10px 30px;
+            border-top: 3px solid #fff;
+            &:hover
+            &:focus{
+                border-top: 3px solid #ddd;
+            }
         }
         &.active {
             > a {
-                background-color: @comment-background-default;
+                &,
                 &:hover,
                 &:focus {
+                    border-top: 3px solid @brand-danger;
                     background-color: @comment-background-default;
                 }
             }
