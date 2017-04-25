@@ -3,12 +3,12 @@
 
   angular
     .module('torrents')
-    .controller('TorrentsUploadsController', TorrentsUploadsController);
+    .controller('TorrentsUploadController', TorrentsUploadController);
 
-  TorrentsUploadsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
+  TorrentsUploadController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
     'TorrentsService'];
 
-  function TorrentsUploadsController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
+  function TorrentsUploadController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
                                      TorrentsService) {
     var vm = this;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -24,7 +24,7 @@
     vm.tags = [];
     vm.videoNfo = '';
 
-    for (var i = 0; i < $translate.instant('UPLOADS_RULES_COUNT'); i++) {
+    for (var i = 0; i < $translate.instant('UPLOAD_RULES_COUNT'); i++) {
       vm.rule_items[i] = i;
     }
 

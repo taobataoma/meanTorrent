@@ -1,10 +1,10 @@
-<section class="container" ng-controller="TorrentsUploadsController as vm">
+<section class="container" ng-controller="TorrentsUploadController as vm">
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-11 col-md-offset-1 col-sm-11 col-sm-offset-1 col-xs-12">
-                <h4 translate="UPLOADS_RULES"></h4>
+                <h4 translate="UPLOAD_RULES"></h4>
                 <ol>
-                    <li ng-repeat="r in vm.rule_items" translate="UPLOADS_RULES_CONTENT.{{r}}"
+                    <li ng-repeat="r in vm.rule_items" translate="UPLOAD_RULES_CONTENT.{{r}}"
                         translate-values='{ url: vm.announce.url, admin: vm.announce.admin}' style="line-height: 1.6;"></li>
                 </ol>
             </div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div ng-show="vm.fileSelected" class="col-sm-5">
-                <button class="btn btn-success" ng-click="vm.upload(vm.tFile)">{{ 'DO_UPLOADS' | translate}} ({{vm.progress}}%)</button>
+                <button class="btn btn-success" ng-click="vm.upload(vm.tFile)">{{ 'DO_UPLOAD' | translate}} ({{vm.progress}}%)</button>
             </div>
             <div ng-show="vm.successfully == true" class="col-sm-5" style="margin-top: 7px">
                 <label class="text-success control-label" translate="TORRENTS_UPLOAD_SUCCESSFULLY"></label>
@@ -227,7 +227,7 @@
 
     <div class="row" ng-show="vm.tmdb_info_ok == true" style="margin-top: 60px;">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <legend class="small-legend" translate="TORRENTS_SUBMIT_UPLOADS"></legend>
+            <legend class="small-legend" translate="TORRENTS_SUBMIT_UPLOAD"></legend>
             <div class="col-sm-6 col-sm-offset-3 text-center">
                 <label class="checkbox text-uppercase">
                     <input type="checkbox" id="agreeCheckbox" ng-model="vm.agreeRules">

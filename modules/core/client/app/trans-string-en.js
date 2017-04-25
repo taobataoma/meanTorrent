@@ -19,7 +19,7 @@
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
-    MENU_UPLOADS: 'Uploads',
+    MENU_UPLOAD: 'Upload',
     MENU_FORUMS: 'Forums',
     MENU_RANKING: 'Ranking',
     MENU_RULES: 'Rules',
@@ -43,10 +43,10 @@
     CHANGE_PASSWORD: 'Change Password',
     MANAGE_SOCIAL_ACCOUNTS: 'Manage Social Accounts',
 
-    //Uploads rules
-    UPLOADS_RULES: 'Uploads Rules:',
-    UPLOADS_RULES_COUNT: '6',
-    UPLOADS_RULES_CONTENT: [
+    //Upload rules
+    UPLOAD_RULES: 'Upload Rules:',
+    UPLOAD_RULES_COUNT: '6',
+    UPLOAD_RULES_CONTENT: [
       'The torrent file`s Tracker URL must be: <mark><strong>{{url}}</strong></mark>.',
       'The torrent file`s TMDB_ID must be TheMovieDB resources ID, <strong><a href="https://www.themoviedb.org/" target="_blank">you can find the ID from here</a></strong>.',
       'The resources detail info can be autoload, if it`s fine, then you can submit it.',
@@ -94,7 +94,7 @@
 
     //page title
     PAGETITLE: {
-      UPLOADS: 'Uploads',
+      UPLOAD: 'Upload',
       MOVIE_LIST: 'Movie List',
       TORRENT_INFO: 'Torrent Info'
     },
@@ -163,14 +163,14 @@
     COMMENT_EDIT_ICON_TITLE: 'Edit this reply',
     COMMENT_DELETE_ICON_TITLE: 'Delete this reply',
 
-    //TorrentsUploadsController & views
-    TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully uploads file',
-    TORRENTS_UPLOAD_FAILED: 'Failed to uploads file',
+    //TorrentsUploadController & views
+    TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully upload file',
+    TORRENTS_UPLOAD_FAILED: 'Failed to upload file',
     TORRENTS_NO_FILE_SELECTED: 'No file selected',
 
     SELECT_TORRENT_FILE: 'Please select the torrent file',
     SELECT_FILE: 'Select file',
-    DO_UPLOADS: 'Uploads',
+    DO_UPLOAD: 'Upload',
     ENTER_TMDB_ID: 'Please enter theMovieDB id 　<span style="font-size: 10pt;">[<a href="https://www.themoviedb.org/" target="_blank">find id on themofiedb.org</a>]</span>',
     LOAD_TMDB_INFO: 'Load info',
     TMDB_ID: 'TMDB ID',
@@ -180,7 +180,7 @@
     TMDB_MOVIE_INFO: 'The movie info from TMDB',
     TMDB_IS_LOADING: 'Loading the movie info, please wait...',
     SELECT_TAGS: 'Please select any tags for the resources',
-    TORRENTS_SUBMIT_UPLOADS: 'Agree the rules and submit your resources',
+    TORRENTS_SUBMIT_UPLOAD: 'Agree the rules and submit your resources',
     SUBMIT_BUTTON: 'OK, SUBMIT NOW',
     CANCEL_BUTTON: 'NO, CANCEL IT',
     AGREE_RULES: 'I agree and already read all the rules, <a href="#">read here</a>',

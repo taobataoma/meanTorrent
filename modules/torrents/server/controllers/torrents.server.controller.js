@@ -82,7 +82,7 @@ exports.upload = function (req, res) {
           var message = errorHandler.getErrorMessage(uploadError);
 
           if (uploadError.code === 'LIMIT_FILE_SIZE') {
-            message = 'Torrent file too large. Maximum size allowed is ' + (config.uploads.torrent.file.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
+            message = 'Torrent file too large. Maximum size allowed is ' + (config.upload.torrent.file.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
           }
 
           //reject(errorHandler.getErrorMessage(uploadError));

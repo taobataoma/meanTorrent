@@ -19,7 +19,7 @@
     MENU_CHAT: '聊天室',
     MENU_TORRENTS: '种子',
     MENU_TORRENTS_ADMIN: '种子管理',
-    MENU_UPLOADS: '发布',
+    MENU_UPLOAD: '发布',
     MENU_FORUMS: '论坛',
     MENU_RANKING: '排行榜',
     MENU_RULES: '规则',
@@ -44,9 +44,9 @@
     MANAGE_SOCIAL_ACCOUNTS: '管理社交帐号',
 
     //发种规则
-    UPLOADS_RULES: '上传规则：',
-    UPLOADS_RULES_COUNT: '6',
-    UPLOADS_RULES_CONTENT: [
+    UPLOAD_RULES: '上传规则：',
+    UPLOAD_RULES_COUNT: '6',
+    UPLOAD_RULES_CONTENT: [
       '种子文件的Tracker地址必须为：<mark><strong>{{url}}</strong></mark>.',
       '种子文件的 TMDB_ID 必须是 The Movie DB 相对应的资源ID号，<strong><a href="https://www.themoviedb.org/" target="_blank">您可以从这里找到ID号</a></strong>.',
       '资源的详细信息，系统会自动载入，如无误可直接提交.',
@@ -94,7 +94,7 @@
 
     //page title
     PAGETITLE: {
-      UPLOADS: '上传',
+      UPLOAD: '上传',
       MOVIE_LIST: '电影列表',
       TORRENT_INFO: '种子信息'
     },
@@ -162,14 +162,14 @@
     COMMENT_EDIT_ICON_TITLE: '编辑回复',
     COMMENT_DELETE_ICON_TITLE: '删除回复',
 
-    //TorrentsUploadsController
+    //TorrentsUploadController
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',
     TORRENTS_UPLOAD_FAILED: '文件上传失败',
     TORRENTS_NO_FILE_SELECTED: '请选择种子文件后再做尝试',
 
     SELECT_TORRENT_FILE: '请选择种子文件',
     SELECT_FILE: '选择文件',
-    DO_UPLOADS: '上传',
+    DO_UPLOAD: '上传',
     ENTER_TMDB_ID: '请输入TMDB_ID 　<span style="font-size: 10pt;">[<a href="https://www.themoviedb.org/" target="_blank">在 themofiedb.org 上查找</a>]</span>',
     LOAD_TMDB_INFO: '检索信息',
     TMDB_ID: 'TMDB ID',
@@ -179,7 +179,7 @@
     TMDB_MOVIE_INFO: 'TMDB 视频信息',
     TMDB_IS_LOADING: '正在检索视频信息，请稍候...',
     SELECT_TAGS: '请为资源选择合适的标签',
-    TORRENTS_SUBMIT_UPLOADS: '同意上传协议，并提交',
+    TORRENTS_SUBMIT_UPLOAD: '同意上传协议，并提交',
     SUBMIT_BUTTON: '已备妥，现在提交',
     CANCEL_BUTTON: '算了，以后再说',
     AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="#">协议条款</a>',

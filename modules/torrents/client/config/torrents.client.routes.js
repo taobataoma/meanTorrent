@@ -25,7 +25,7 @@
         url: '/uploads',
         templateUrl: '/modules/torrents/client/views/uploads-torrents.client.view.html',
         data: {
-          pageTitle: 'PAGETITLE.UPLOADS'
+          pageTitle: 'PAGETITLE.UPLOAD'
         }
       })
       .state('torrents.view', {
