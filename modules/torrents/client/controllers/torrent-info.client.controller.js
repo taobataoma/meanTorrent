@@ -118,7 +118,7 @@
      */
     vm.downloadTorrent = function (id) {
       var url = '/api/torrents/download/' + id;
-      DownloadService.downloadTorrentFile(url, null, function (status) {
+      DownloadService.downloadFile(url, null, function (status) {
         if (status === 200) {
           Notification.success({
             message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENTS_DOWNLOAD_SUCCESSFULLY')
@@ -546,7 +546,7 @@
       //evt.preventDefault();
 
       var url = '/api/subtitles/' + vm.torrentLocalInfo._id.toString() + '/' + sub._id.toString();
-      DownloadService.downloadTorrentFile(url, null, function (status) {
+      DownloadService.downloadFile(url, null, function (status) {
         if (status === 200) {
           Notification.success({
             message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('SUBTITLE_DOWNLOAD_SUCCESSFULLY')

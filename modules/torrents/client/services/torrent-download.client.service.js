@@ -10,10 +10,10 @@
   function DownloadService($http, FileSaver) {
 
     return {
-      downloadTorrentFile: downloadTorrentFile
+      downloadFile: downloadFile
     };
 
-    function downloadTorrentFile(url, request, successcb, errorcb) {
+    function downloadFile(url, request, successcb, errorcb) {
       $http({
         url: url,
         method: 'GET',
