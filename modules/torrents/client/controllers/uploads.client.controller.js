@@ -42,7 +42,6 @@
 
       if (dataUrl === null || dataUrl === undefined) {
         vm.fileSelected = false;
-        // Show success message
         Notification.info({
           message: '<i class="glyphicon glyphicon-info-sign"></i> ' + $translate.instant('TORRENTS_NO_FILE_SELECTED')
         });
