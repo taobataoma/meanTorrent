@@ -6,11 +6,12 @@
     .controller('TorrentsInfoController', TorrentsInfoController);
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
+    'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout', '$uiViewScroll',
     'SubtitlesService'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                                  DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService) {
+                                  DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
+                                  $uiViewScroll) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -20,6 +21,38 @@
 
     vm.torrentTabs = [];
     vm.progress = 0;
+
+    //page init
+    vm.commentBuildPager = commentBuildPager;
+    vm.commentFigureOutItemsToDisplay = commentFigureOutItemsToDisplay;
+    vm.commentPageChanged = commentPageChanged;
+
+    function commentBuildPager() {
+      vm.commentPagedItems = [];
+      vm.commentItemsPerPage = 10;
+      vm.commentCurrentPage = 1;
+      vm.commentFigureOutItemsToDisplay();
+    }
+
+    function commentFigureOutItemsToDisplay() {
+      if (vm.torrentLocalInfo && vm.torrentLocalInfo._replies) {
+        vm.commentFilterLength = vm.torrentLocalInfo._replies.length;
+        var begin = ((vm.commentCurrentPage - 1) * vm.commentItemsPerPage);
+        var end = begin + vm.commentItemsPerPage;
+        vm.commentPagedItems = vm.torrentLocalInfo._replies.slice(begin, end);
+      }
+    }
+
+    function commentPageChanged() {
+      var element = angular.element('#top_of_comments');
+
+      vm.commentFigureOutItemsToDisplay();
+      window.scrollTo(0, element[0].offsetTop - 30);
+    }
+
+    $scope.$watch('vm.torrentLocalInfo', function () {
+      vm.commentFigureOutItemsToDisplay();
+    });
 
     // If user is not signed in then redirect back home
     if (!Authentication.user) {
@@ -37,6 +70,7 @@
           $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + res.torrent_backdrop_img + ')');
         }
         vm.initInfo(res.torrent_tmdb_id);
+        vm.commentBuildPager();
 
         vm.torrentTabs.push(
           {

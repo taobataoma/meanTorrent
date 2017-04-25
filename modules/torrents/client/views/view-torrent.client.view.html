@@ -148,13 +148,18 @@
     </div>
 
 
-    <div class="padding-top-30">
+    <div class="padding-top-30" id="top_of_comments">
         <div class="container">
             <div class="panel panel-default panel-comment">
                 <div class="panel-heading text-center"><strong>{{ 'USER_COMMENT_LIST' | translate}}</strong> <span
                         class="badge badge_info">{{vm.torrentLocalInfo._replies.length}}</span></div>
                 <div class="panel-body">
-                    <div class="comment-list" id="{{item._id}}" scroll-if="item._id==vm.scrollToId" ng-repeat="item in vm.torrentLocalInfo._replies">
+                    <uib-pagination boundary-links="true" max-size="8" items-per-page="vm.commentItemsPerPage" total-items="vm.commentFilterLength"
+                                    ng-model="vm.commentCurrentPage" ng-change="vm.commentPageChanged()"
+                                    ng-if="vm.torrentLocalInfo._replies.length > 0"></uib-pagination>
+
+                    <div class="comment-list" id="{{item._id}}" scroll-if="item._id==vm.scrollToId" offset-top="-60"
+                         ng-repeat="item in vm.commentPagedItems">
                         <div class="timeline-comment-wrapper">
                             <a class="timeline-comment-avatar" ng-click="vm.replyComment(item);">
                                 <img title="{{item.user.displayName}}" ng-src="/{{item.user.profileImageURL}}">
@@ -223,6 +228,11 @@
                             </div>
                         </div>
                     </div>
+
+                    <uib-pagination boundary-links="true" max-size="8" items-per-page="vm.commentItemsPerPage" total-items="vm.commentFilterLength"
+                                    ng-model="vm.commentCurrentPage" ng-change="vm.commentPageChanged()"
+                                    ng-if="vm.torrentLocalInfo._replies.length > 0"></uib-pagination>
+                    <div class="padding-top-20"></div>
 
                     <div class="comment-new">
                         <div class="timeline-comment-wrapper">
