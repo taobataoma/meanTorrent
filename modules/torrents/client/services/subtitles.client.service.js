@@ -9,8 +9,9 @@
   SubtitlesService.$inject = ['$resource'];
 
   function SubtitlesService($resource) {
-    var Subtitles = $resource('/api/subtitles/:torrentId', {
-      torrentId: '@_torrentId'
+    var Subtitles = $resource('/api/subtitles/:torrentId/:subtitleId', {
+      torrentId: '@_torrentId',
+      subtitleId: '@_subtitleId'
     }, {
       update: {
         method: 'PUT'
