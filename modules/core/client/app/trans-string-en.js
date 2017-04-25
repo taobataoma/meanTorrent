@@ -128,7 +128,7 @@
     ATTRIBUTE_TAGS: 'Video Attribute (tags)',
     VIDEO_NFO: 'Video NFO',
     VIDEO_SIZE: 'Video Size',
-    UPLOAD_SUBTITLE: 'Upload Subtitle files',
+    UPLOAD_SUBTITLE: 'Upload Subtitle file',
     SUBTITLE_LIST: 'Subtitle list',
     SUBTITLE_RULES: {
       0: 'If the torrent has no subtitle files, you have the following actions.',
@@ -142,6 +142,12 @@
     TORRENT_SEED_USERS: 'Seed Users',
     TORRENT_LEECHER_USERS: 'Leecher Users',
     TORRENT_FINISHED_USERS: 'Finished Users',
+    SUBTITLE_UPLOAD_FAILED: 'Failed to upload subtitle file',
+    SUBTITLE_DELETE_ICON_TITLE: 'Delete this subtitle',
+    SUBTITLE_CONFIRM_OK: 'Delete',
+    SUBTITLE_CONFIRM_CANCEL: 'Cancel',
+    SUBTITLE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
+    SUBTITLE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this subtitle?',
 
     //comment
     USER_COMMENT_LIST: 'User Comments List',

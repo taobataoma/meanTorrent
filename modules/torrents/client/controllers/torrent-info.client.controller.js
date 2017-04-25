@@ -6,10 +6,11 @@
     .controller('TorrentsInfoController', TorrentsInfoController);
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked'];
+    'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
+    'SubtitlesService'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                                  DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked) {
+                                  DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -18,6 +19,7 @@
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
 
     vm.torrentTabs = [];
+    vm.progress = 0;
 
     // If user is not signed in then redirect back home
     if (!Authentication.user) {
@@ -417,6 +419,107 @@
           }
         });
     };
-  }
 
+    /**
+     * upload
+     * @param dataUrl
+     */
+    vm.upload = function (dataUrl) {
+      //console.log(dataUrl);
+
+      if (dataUrl === null || dataUrl === undefined) {
+        vm.fileSelected = false;
+        return;
+      }
+
+      Upload.upload({
+        url: '/api/subtitles/' + vm.torrentLocalInfo._id,
+        data: {
+          newSubtitleFile: dataUrl
+        }
+      }).then(function (response) {
+        $timeout(function () {
+          onSuccessItem(response);
+        });
+      }, function (response) {
+        console.log(response);
+        if (response.status > 0) onErrorItem(response);
+      }, function (evt) {
+        vm.progress = parseInt(100.0 * evt.loaded / evt.total, 10);
+      });
+    };
+
+    /**
+     * onSuccessItem
+     * @param response
+     */
+    function onSuccessItem(res) {
+      vm.fileSelected = false;
+      vm.sFile = undefined;
+
+      console.log(res);
+      vm.torrentLocalInfo = res.data;
+    }
+
+    /**
+     * onErrorItem
+     * @param response
+     */
+    function onErrorItem(res) {
+      vm.fileSelected = false;
+      vm.sFile = undefined;
+      // Show error message
+      Notification.error({
+        message: res.data,
+        title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('SUBTITLE_UPLOAD_FAILED')
+      });
+    }
+
+    /**
+     * deleteSubtitle
+     * @param sub
+     */
+    vm.deleteSubtitle = function (sub) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('SUBTITLE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('SUBTITLE_CONFIRM_OK'),
+        headerText: $translate.instant('SUBTITLE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('SUBTITLE_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          var subtitle = new SubtitlesService({
+            _torrentId: vm.torrentLocalInfo._id,
+            _subtitleId: sub._id
+          });
+
+          subtitle.$remove(function (response) {
+            successCallback(response);
+          }, function (errorResponse) {
+            errorCallback(errorResponse);
+          });
+
+          function successCallback(res) {
+            Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Subtitle deleted successfully!'});
+
+            vm.torrentLocalInfo = res;
+          }
+
+          function errorCallback(res) {
+            vm.error_msg = res.data.message;
+            Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Subtitle deleted error!'});
+          }
+        });
+    };
+
+    /**
+     * downloadSubtitle
+     * @param sub
+     */
+    vm.downloadSubtitle = function (evt, sub) {
+      evt.preventDefault();
+
+    };
+  }
 }());

@@ -26,33 +26,58 @@ exports.create = function (req, res) {
   var fileFilter = require(path.resolve('./config/lib/multer')).subtitleFileFilter;
 
   var storage = multer.diskStorage({
-    destination: createUploadSubtitleFilename,
-    filename: getUploadSubtitleDestination
+    destination: getUploadSubtitleDestination,
+    filename: createUploadSubtitleFilename
   });
 
-  var upload = multer({storage: storage}).single('newSubtitleFile');
-  upload.fileFilter = fileFilter;
+  var upload = multer({
+    storage: storage,
+    fileFilter: fileFilter,
+    limits: config.uploads.subtitle.file.limits
+  }).single('newSubtitleFile');
 
   if (user) {
     uploadFile()
       .then(function () {
         var torrent = req.torrent;
-        var newfile = config.uploads.subtitles.file.dest + req.file.filename;
+        var newfile = config.uploads.subtitle.file.dest + req.file.filename;
         var stat = fs.statSync(newfile);
         var subfile = new Subtitle();
 
         subfile.user = req.user;
-        subfile.torrent = req.torrent;
+        subfile.torrent = req.torrent._id;
         subfile.subtitle_filename = req.file.filename;
         subfile.subtitle_filesize = stat.size;
 
         subfile.save();
 
-        torrent.update({
-          $addToSet: {_subtitles: subfile}
-        }).exec();
+        //torrent.update({
+        //  $addToSet: {_subtitles: subfile}
+        //}).exec();
 
-        res.json(torrent);
+        torrent._subtitles.push(subfile);
+
+        torrent.save(function (err) {
+          if (err) {
+            return res.status(422).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          } else {
+            Torrent.populate(torrent._subtitles, {
+              path: 'user',
+              select: 'displayName profileImageURL uploaded downloaded'
+            }, function (err, t) {
+              if (err) {
+                return res.status(422).send({
+                  message: errorHandler.getErrorMessage(err)
+                });
+              } else {
+                res.status(200).send(torrent);
+                return;
+              }
+            });
+          }
+        });
       })
       .catch(function (err) {
         res.status(422).send(err);
@@ -67,10 +92,11 @@ exports.create = function (req, res) {
     return new Promise(function (resolve, reject) {
       upload(req, res, function (uploadError) {
         if (uploadError) {
+          console.log(uploadError);
           var message = errorHandler.getErrorMessage(uploadError);
 
           if (uploadError.code === 'LIMIT_FILE_SIZE') {
-            message = 'Subtitle file too large. Maximum size allowed is ' + (config.upload.subtitle.file.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
+            message = 'Subtitle file too large. Maximum size allowed is ' + (config.uploads.subtitle.file.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
           }
           reject(message);
         } else {
@@ -91,9 +117,10 @@ exports.delete = function (req, res) {
 
   torrent._subtitles.forEach(function (r) {
     if (r._id.equals(req.params.subtitleId)) {
-      torrent.update({
-        $pull: {_subtitles: r._id}
-      }).exec();
+      //torrent.update({
+      //  $pull: {_subtitles: r._id}
+      //}).exec();
+      torrent._subtitles.pull(r._id);
 
       r.remove();
       res.json(torrent);

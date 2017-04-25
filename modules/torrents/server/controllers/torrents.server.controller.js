@@ -48,7 +48,7 @@ exports.upload = function (req, res) {
   var user = req.user;
   var createUploadFilename = require(path.resolve('./config/lib/multer')).createUploadFilename;
   var getUploadDestination = require(path.resolve('./config/lib/multer')).getUploadDestination;
-  var fileFiletr = require(path.resolve('./config/lib/multer')).torrentFileFilter;
+  var fileFilter = require(path.resolve('./config/lib/multer')).torrentFileFilter;
   var torrentinfo = null;
 
   var storage = multer.diskStorage({
@@ -56,8 +56,11 @@ exports.upload = function (req, res) {
     filename: createUploadFilename
   });
 
-  var upload = multer({storage: storage}).single('newTorrentFile');
-  upload.fileFilter = fileFiletr;
+  var upload = multer({
+    storage: storage,
+    fileFilter: fileFilter,
+    limits: config.uploads.torrent.file.limits
+  }).single('newTorrentFile');
 
   if (user) {
     uploadFile()
@@ -82,7 +85,7 @@ exports.upload = function (req, res) {
           var message = errorHandler.getErrorMessage(uploadError);
 
           if (uploadError.code === 'LIMIT_FILE_SIZE') {
-            message = 'Torrent file too large. Maximum size allowed is ' + (config.upload.torrent.file.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
+            message = 'Torrent file too large. Maximum size allowed is ' + (config.uploads.torrent.file.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
           }
 
           //reject(errorHandler.getErrorMessage(uploadError));

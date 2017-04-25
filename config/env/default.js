@@ -62,7 +62,7 @@ module.exports = {
         }
       }
     },
-    subtitles: {
+    subtitle: {
       file: {
         dest: './modules/torrents/client/uploads/subtitles/',
         limits: {

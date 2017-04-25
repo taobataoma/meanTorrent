@@ -187,7 +187,7 @@
                                                     <span>{{sitem.comment}}</span>
                                                     <span style="font-size: 12px;"> -
                                                         <a ng-click="vm.markLinkClick($event, item);"
-                                                           ng-href="#sitem.user.displayName">@{{sitem.user.displayName}}</a>
+                                                           ng-href="#">@{{sitem.user.displayName}}</a>
                                                     </span>
                                                     <span style="font-size: 12px; color: #999999;">{{sitem.createdat | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
 
@@ -324,28 +324,43 @@
 
                                 <div class="input-group-btn">
                                     <button class="btn btn-primary btn-file"
-                                            ngf-select="vm.fileSelected = true; vm.successfully = undefined; vm.progress = 0;"
+                                            ngf-select="vm.fileSelected = true; vm.progress = 0;"
                                             ng-model="vm.sFile"
-                                            accept="application/x-bittorrent"
                                             ngf-resize="{width: 400}"
-                                            ngf-resize-if="$width > 400 || $height > 400"
-                                            ng-disabled="vm.successfully">{{ 'SELECT_FILE' | translate}}
+                                            ngf-resize-if="$width > 400 || $height > 400">
+                                        {{ 'SELECT_FILE' | translate}}
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <button class="btn btn-success inline-block"
-                                    ng-click="vm.upload(vm.sFile)">{{ 'DO_UPLOADS' | translate}} ({{vm.progress}}%)
+                                    ng-click="vm.upload(vm.sFile)">{{ 'DO_UPLOAD' | translate}} ({{vm.progress}}%)
                             </button>
                         </div>
                     </div>
                 </dd>
-
-                <dt class="h-line" ng-show="vm.torrentLocalInfo.subtitles.length>0">{{ 'SUBTITLE_LIST' | translate}}：</dt>
-                <dd class="h-line" ng-show="vm.torrentLocalInfo.subtitles.length>0">
-                </dd>
             </dl>
+            <div class="row margin-top-50">
+                <div class="col-md-10 col-md-offset-1">
+                    <ol class="subtitle-list">
+                        <li class="h-line" ng-repeat="s in vm.torrentLocalInfo._subtitles">
+                            <div>
+                                <a ng-href="#{{s.subtitle_filename}}" ng-click="vm.downloadSubtitle($event, s);">{{s.subtitle_filename}}</a>
+                                <span style="font-size: 12px; color: #999999;"> - {{s.createdat | date: 'yyyy-MM-dd HH:mm:ss'}} By </span>
+                                <span style="font-size: 12px;">
+                                    <a ng-click="vm.markLinkClick($event, item);" ng-href="#">{{s.user.displayName}}</a>
+                                </span>
+                                <span class="glyphicon glyphicon-remove-circle delete-button"
+                                      title="{{ 'SUBTITLE_DELETE_ICON_TITLE' | translate}}"
+                                      ng-if="s.user._id.toString()==vm.user._id || vm.user.roles[0] == 'admin'"
+                                      ng-click="vm.deleteSubtitle(s);">
+                                </span>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
         </div>
     </script>
 

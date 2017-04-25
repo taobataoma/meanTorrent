@@ -142,6 +142,12 @@
     TORRENT_SEED_USERS: '做种用户列表',
     TORRENT_LEECHER_USERS: '下载用户列表',
     TORRENT_FINISHED_USERS: '完成用户列表',
+    SUBTITLE_UPLOAD_FAILED: '字幕文件上传失败',
+    SUBTITLE_DELETE_ICON_TITLE: '删除字幕文件',
+    SUBTITLE_CONFIRM_OK: '删除',
+    SUBTITLE_CONFIRM_CANCEL: '取消',
+    SUBTITLE_CONFIRM_HEADER_TEXT: '删除确认',
+    SUBTITLE_CONFIRM_BODY_TEXT: '你确定要删除这条字幕吗?',
 
     //comment
     USER_COMMENT_LIST: '用户评论',

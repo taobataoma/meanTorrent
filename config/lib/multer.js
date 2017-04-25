@@ -23,6 +23,16 @@ module.exports.torrentFileFilter = function (req, file, callback) {
   callback(null, true);
 };
 
+module.exports.subtitleFileFilter = function (req, file, callback) {
+  var ext = file.originalname.replace(/^.+\./, '');
+  if (ext !== 'srt' && ext !== 'ass' && ext !== 'rar' && ext !== 'zip' && ext !== '7z') {
+    var err = new Error();
+    err.code = 'UNSUPPORTED_MEDIA_TYPE';
+    return callback(err, false);
+  }
+  callback(null, true);
+};
+
 module.exports.createUploadFilename = function (req, file, cb) {
   var regex = new RegExp(',', 'g');
   var filename = file.originalname.replace(regex, ' ');
@@ -44,7 +54,7 @@ module.exports.createUploadSubtitleFilename = function (req, file, cb) {
   var regex = new RegExp(',', 'g');
   var filename = file.originalname.replace(regex, ' ');
 
-  if (fs.existsSync(config.uploads.subtitles.file.dest + filename)) {
+  if (fs.existsSync(config.uploads.subtitle.file.dest + filename)) {
     var err = new Error();
     err.code = 'FILE_ALREADY_EXISTS';
     cb(err, null);
@@ -54,5 +64,5 @@ module.exports.createUploadSubtitleFilename = function (req, file, cb) {
 };
 
 module.exports.getUploadSubtitleDestination = function (req, file, cb) {
-  cb(null, config.uploads.subtitles.file.dest);
+  cb(null, config.uploads.subtitle.file.dest);
 };
