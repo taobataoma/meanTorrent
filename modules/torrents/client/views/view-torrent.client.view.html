@@ -326,6 +326,7 @@
                                     <button class="btn btn-primary btn-file"
                                             ngf-select="vm.fileSelected = true; vm.progress = 0;"
                                             ng-model="vm.sFile"
+                                            accept=".srt,.ass,.zip,.rar,.7z"
                                             ngf-resize="{width: 400}"
                                             ngf-resize-if="$width > 400 || $height > 400">
                                         {{ 'SELECT_FILE' | translate}}
@@ -346,7 +347,8 @@
                     <ol class="subtitle-list">
                         <li class="h-line" ng-repeat="s in vm.torrentLocalInfo._subtitles">
                             <div>
-                                <a ng-href="#{{s.subtitle_filename}}" ng-click="vm.downloadSubtitle($event, s);">{{s.subtitle_filename}}</a>
+                                <a ng-href="#" ng-click="vm.downloadSubtitle($event, s);">{{s.subtitle_filename}}</a>
+                                <span style="font-size: 12px;"> - {{s.subtitle_filesize | bytes: 2}}</span>
                                 <span style="font-size: 12px; color: #999999;"> - {{s.createdat | date: 'yyyy-MM-dd HH:mm:ss'}} By </span>
                                 <span style="font-size: 12px;">
                                     <a ng-click="vm.markLinkClick($event, item);" ng-href="#">{{s.user.displayName}}</a>

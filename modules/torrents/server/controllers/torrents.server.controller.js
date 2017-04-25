@@ -198,7 +198,6 @@ exports.download = function (req, res) {
           res.set('Content-Disposition', 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename);
           res.set('Content-Length', stat.size);
 
-          console.log(torrent_data);
           res.send(benc.encode(torrent_data));
 
           //res.writeHead(200, {
@@ -212,7 +211,7 @@ exports.download = function (req, res) {
           res.status(422).send(err);
         });
     } else {
-      res.status(401).send({
+      res.status(422).send({
         message: 'FILE_DOES_NOT_EXISTS'
       });
     }

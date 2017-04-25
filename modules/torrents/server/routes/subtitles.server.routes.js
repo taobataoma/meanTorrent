@@ -9,5 +9,6 @@ module.exports = function (app) {
   app.route('/api/subtitles/:torrentId')
     .post(subtitles.create);
   app.route('/api/subtitles/:torrentId/:subtitleId')
+    .get(subtitles.download)
     .delete(subtitles.delete);
 };

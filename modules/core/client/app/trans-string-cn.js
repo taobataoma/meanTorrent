@@ -116,7 +116,7 @@
     UNIT_MILLION: '百万美元',
     UNIT_MITUTE: '分钟',
     TMDB_INFO_OK: '装载 TMDB 电影信息成功',
-    TMDB_INFO_FAILD: '装载 TMDB 电影信息失败',
+    TMDB_INFO_FAILED: '装载 TMDB 电影信息失败',
     TAB_VIDEO_INFO: '视频信息',
     TAB_USER_SUBTITLE: '字幕信息',
     TAB_USER_INFO: '用户信息',
@@ -148,6 +148,10 @@
     SUBTITLE_CONFIRM_CANCEL: '取消',
     SUBTITLE_CONFIRM_HEADER_TEXT: '删除确认',
     SUBTITLE_CONFIRM_BODY_TEXT: '你确定要删除这条字幕吗?',
+    SUBTITLE_DOWNLOAD_SUCCESSFULLY: '字幕文件下载成功',
+    SUBTITLE_DOWNLOAD_ERROR: '字幕文件下载失败',
+    SUBTITLE_DELETE_SUCCESSFULLY: '字幕文件删除成功',
+    SUBTITLE_DELETE_ERROR: '字幕文件下载失败',
 
     //comment
     USER_COMMENT_LIST: '用户评论',

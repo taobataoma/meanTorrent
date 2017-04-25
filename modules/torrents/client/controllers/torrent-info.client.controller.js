@@ -107,7 +107,7 @@
         vm.movieinfo = res;
       }, function (err) {
         Notification.error({
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_INFO_FAILD')
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_INFO_FAILED')
         });
       });
     };
@@ -125,10 +125,10 @@
           });
         }
       }, function (err) {
-        //Notification.error({
-        //  message: 'ERROR',
-        //  title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
-        //});
+        Notification.error({
+          title: 'ERROR',
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
+        });
       });
     };
 
@@ -211,7 +211,9 @@
       });
 
       function successCallback(res) {
-        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment created successfully!'});
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> Comment created successfully!'
+        });
 
         vm.scrollToId = vm.comment_to_id;
         vm.submitInit();
@@ -220,7 +222,10 @@
 
       function errorCallback(res) {
         vm.error_msg = res.data.message;
-        Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment created error!'});
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> Comment created error!'
+        });
       }
     };
 
@@ -242,7 +247,9 @@
       });
 
       function successCallback(res) {
-        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment edited successfully!'});
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> Comment edited successfully!'
+        });
 
         vm.scrollToId = vm.comment_to_id;
         vm.submitInit();
@@ -251,7 +258,10 @@
 
       function errorCallback(res) {
         vm.error_msg = res.data.message;
-        Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment edited error!'});
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> Comment edited error!'
+        });
       }
     };
 
@@ -365,7 +375,9 @@
           });
 
           function successCallback(res) {
-            Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment deleted successfully!'});
+            Notification.success({
+              message: '<i class="glyphicon glyphicon-ok"></i> Comment deleted successfully!'
+            });
 
             vm.submitInit();
             vm.scrollToId = undefined;
@@ -374,7 +386,10 @@
 
           function errorCallback(res) {
             vm.error_msg = res.data.message;
-            Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment deleted error!'});
+            Notification.error({
+              message: res.data.message,
+              title: '<i class="glyphicon glyphicon-remove"></i> Comment deleted error!'
+            });
           }
         });
     };
@@ -406,7 +421,9 @@
           });
 
           function successCallback(res) {
-            Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Comment reply deleted successfully!'});
+            Notification.success({
+              message: '<i class="glyphicon glyphicon-ok"></i> Comment reply deleted successfully!'
+            });
 
             vm.submitInit();
             vm.scrollToId = undefined;
@@ -415,7 +432,10 @@
 
           function errorCallback(res) {
             vm.error_msg = res.data.message;
-            Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Comment reply deleted error!'});
+            Notification.error({
+              message: res.data.message,
+              title: '<i class="glyphicon glyphicon-remove"></i> Comment reply deleted error!'
+            });
           }
         });
     };
@@ -501,14 +521,19 @@
           });
 
           function successCallback(res) {
-            Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Subtitle deleted successfully!'});
+            Notification.success({
+              message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('SUBTITLE_DELETE_SUCCESSFULLY')
+            });
 
             vm.torrentLocalInfo = res;
           }
 
           function errorCallback(res) {
             vm.error_msg = res.data.message;
-            Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Subtitle deleted error!'});
+            Notification.error({
+              message: res.data.message,
+              title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('SUBTITLE_DELETE_ERROR')
+            });
           }
         });
     };
@@ -518,8 +543,22 @@
      * @param sub
      */
     vm.downloadSubtitle = function (evt, sub) {
-      evt.preventDefault();
+      //evt.preventDefault();
 
+      var url = '/api/subtitles/' + vm.torrentLocalInfo._id.toString() + '/' + sub._id.toString();
+      DownloadService.downloadTorrentFile(url, null, function (status) {
+        if (status === 200) {
+          Notification.success({
+            message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('SUBTITLE_DOWNLOAD_SUCCESSFULLY')
+          });
+        }
+      }, function (err) {
+        console.log(err);
+        Notification.error({
+          title: 'ERROR',
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('SUBTITLE_DOWNLOAD_ERROR')
+        });
+      });
     };
   }
 }());

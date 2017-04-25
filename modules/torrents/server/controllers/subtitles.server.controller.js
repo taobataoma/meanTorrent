@@ -80,7 +80,9 @@ exports.create = function (req, res) {
         });
       })
       .catch(function (err) {
-        res.status(422).send(err);
+        res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
       });
   } else {
     res.status(401).send({
@@ -124,6 +126,43 @@ exports.delete = function (req, res) {
 
       r.remove();
       res.json(torrent);
+    }
+  });
+};
+
+/**
+ * download a subtitle
+ * @param req
+ * @param res
+ */
+exports.download = function (req, res) {
+  var torrent = req.torrent;
+
+  torrent._subtitles.forEach(function (r) {
+    if (r._id.equals(req.params.subtitleId)) {
+      var filePath = config.uploads.subtitle.file.dest + r.subtitle_filename;
+
+      fs.exists(filePath, function (exists) {
+        if (exists) {
+          var stat = fs.statSync(filePath);
+
+          try {
+            //res.set('Content-Type', 'application/x-bittorrent');
+            res.set('Content-Disposition', 'attachment; filename=' + r.subtitle_filename);
+            res.set('Content-Length', stat.size);
+
+            fs.createReadStream(filePath).pipe(res);
+          } catch (err) {
+            res.status(422).send({
+              message: 'DOWNLOAD_FAILED'
+            });
+          }
+        } else {
+          res.status(422).send({
+            message: 'FILE_DOES_NOT_EXISTS'
+          });
+        }
+      });
     }
   });
 };

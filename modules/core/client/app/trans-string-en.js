@@ -57,7 +57,7 @@
 
     //HomeController & home views
     LOADING_TOP: 'Loading recommended info, please waiting...',
-    TOP_MOVIE_INFO_ERROR: 'Get movie top info faild',
+    TOP_MOVIE_INFO_ERROR: 'Get movie top info failed',
 
     //element title/alt
     TITLE_ALT: {
@@ -100,7 +100,7 @@
     },
 
     //TorrentsController & views
-    MOVIE_PAGE_INFO_ERROR: 'Get movie page info faild',
+    MOVIE_PAGE_INFO_ERROR: 'Get movie page info failed',
     MOVIE_PAGE_INFO_EMPTY: 'No movie founded, please change some new tags to research',
     TAGS_SEARCH: 'Tags Search',
     CA_KEYWORD: 'Keyword',
@@ -109,14 +109,14 @@
     MORE_TAGS: 'More Tags',
     CA_RESET: 'Reset',
     CA_DOWNLOAD: 'Download',
-    TORRENT_DOWNLOAD_ERROR: 'Torrent file download faild',
+    TORRENT_DOWNLOAD_ERROR: 'Torrent file download failed',
     TORRENTS_DOWNLOAD_SUCCESSFULLY: 'Torrents file download successfully',
 
     //torrent info
     UNIT_MILLION: 'million',
     UNIT_MITUTE: 'min',
     TMDB_INFO_OK: 'Load TMDB movie info OK',
-    TMDB_INFO_FAILD: 'Load TMDB movie info ERROR',
+    TMDB_INFO_FAILED: 'Load TMDB movie info ERROR',
     TAB_VIDEO_INFO: 'Video Info',
     TAB_USER_SUBTITLE: 'Subtitle Info',
     TAB_USER_INFO: 'User Info',
@@ -148,6 +148,10 @@
     SUBTITLE_CONFIRM_CANCEL: 'Cancel',
     SUBTITLE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
     SUBTITLE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this subtitle?',
+    SUBTITLE_DOWNLOAD_SUCCESSFULLY: 'Subtitle file download successfully',
+    SUBTITLE_DOWNLOAD_ERROR: 'Subtitle file download failed',
+    SUBTITLE_DELETE_SUCCESSFULLY: 'Subtitle file delete successfully',
+    SUBTITLE_DELETE_ERROR: 'Subtitle file delete failed',
 
     //comment
     USER_COMMENT_LIST: 'User Comments List',
