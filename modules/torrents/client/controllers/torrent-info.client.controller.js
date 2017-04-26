@@ -35,12 +35,10 @@
     }
 
     function commentFigureOutItemsToDisplay() {
-      if (vm.torrentLocalInfo && vm.torrentLocalInfo._replies) {
-        vm.commentFilterLength = vm.torrentLocalInfo._replies.length;
-        var begin = ((vm.commentCurrentPage - 1) * vm.commentItemsPerPage);
-        var end = begin + vm.commentItemsPerPage;
-        vm.commentPagedItems = vm.torrentLocalInfo._replies.slice(begin, end);
-      }
+      vm.commentFilterLength = vm.torrentLocalInfo._replies.length;
+      var begin = ((vm.commentCurrentPage - 1) * vm.commentItemsPerPage);
+      var end = begin + vm.commentItemsPerPage;
+      vm.commentPagedItems = vm.torrentLocalInfo._replies.slice(begin, end);
     }
 
     function commentPageChanged() {
@@ -50,8 +48,14 @@
       window.scrollTo(0, element[0].offsetTop - 30);
     }
 
-    $scope.$watch('vm.torrentLocalInfo', function () {
-      vm.commentFigureOutItemsToDisplay();
+    $scope.$watch('vm.torrentLocalInfo', function (newValue, oldValue) {
+      if (vm.torrentLocalInfo && vm.torrentLocalInfo._replies) {
+        if (newValue._replies.length > oldValue._replies.length) {
+          var totalPages = vm.commentItemsPerPage < 1 ? 1 : Math.ceil(newValue._replies.length / vm.commentItemsPerPage);
+          vm.commentCurrentPage = Math.max(totalPages || 0, 1);
+        }
+        vm.commentFigureOutItemsToDisplay();
+      }
     });
 
     // If user is not signed in then redirect back home
