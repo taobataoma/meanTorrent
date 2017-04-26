@@ -393,20 +393,41 @@ exports.list = function (req, res) {
 
   console.log(JSON.stringify(condition));
 
-  Torrent.find(condition)
-    .sort('-createdat')
-    .populate('user', 'displayName')
-    .skip(skip)
-    .limit(limit)
-    .exec(function (err, torrents) {
+
+  var countQuery = function (callback) {
+    Torrent.count(condition, function (err, count) {
       if (err) {
-        return res.status(422).send({
-          message: errorHandler.getErrorMessage(err)
-        });
+        callback(err, null);
       } else {
-        res.json(torrents);
+        callback(null, count);
       }
     });
+  };
+
+  var findQuery = function (callback) {
+    Torrent.find(condition)
+      .sort('-createdat')
+      .populate('user', 'displayName')
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, torrents) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, torrents);
+        }
+      });
+  };
+
+  async.parallel([countQuery, findQuery], function (err, results) {
+    if (err) {
+      return res.status(422).send({
+        message: 'Torrents query error'
+      });
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
+  });
 };
 
 /**

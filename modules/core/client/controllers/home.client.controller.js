@@ -51,7 +51,7 @@
      */
     vm.getMovieTopInfo = function () {
       vm.moviesInfo = TorrentsService.query({
-        limit: 8
+        limit: 16
       }, function (items) {
         vm.movieTopList = items;
       }, function (err) {

@@ -19,10 +19,8 @@
 
     vm.searchTags = [];
     vm.searchKey = '';
-    vm.currPageNumber = 1;
-    vm.topNumber = 6;
-    vm.pageNumber = 50;
     vm.releaseYear = undefined;
+    vm.topItems = 6;
 
     vm.torrentTabs = [];
 
@@ -31,14 +29,40 @@
       $state.go('authentication.signin');
     }
 
+    //page init
+    vm.torrentBuildPager = torrentBuildPager;
+    vm.torrentFigureOutItemsToDisplay = torrentFigureOutItemsToDisplay;
+    vm.torrentPageChanged = torrentPageChanged;
+
+    function torrentBuildPager() {
+      vm.torrentPagedItems = [];
+      vm.torrentItemsPerPage = 8;
+      vm.torrentCurrentPage = 1;
+      vm.torrentFigureOutItemsToDisplay();
+    }
+
+    function torrentFigureOutItemsToDisplay() {
+      vm.getMoviePageInfo(vm.torrentCurrentPage, function (items) {
+        vm.torrentFilterLength = items.total;
+        vm.torrentPagedItems = items.rows;
+      });
+    }
+
+    function torrentPageChanged() {
+      var element = angular.element('#top_of_torrent_list');
+
+      vm.torrentFigureOutItemsToDisplay();
+      window.scrollTo(0, element[0].offsetTop - 60);
+    }
+
     /**
      * getMovieTopInfo
      */
     vm.getMovieTopInfo = function () {
-      TorrentsService.query({
-        limit: vm.topNumber
+      TorrentsService.get({
+        limit: vm.topItems
       }, function (items) {
-        vm.movieTopInfo = items;
+        vm.movieTopInfo = items.rows;
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_MOVIE_INFO_ERROR')
@@ -68,7 +92,7 @@
         });
       }
       e.blur();
-      vm.getMoviePageInfo(1);
+      vm.torrentBuildPager();
     };
 
     /**
@@ -84,7 +108,7 @@
       } else {
         vm.searchTags.splice(vm.searchTags.indexOf(n), 1);
       }
-      vm.getMoviePageInfo(1);
+      vm.torrentBuildPager();
     };
 
     /**
@@ -93,7 +117,7 @@
      */
     vm.onKeysKeyDown = function (evt) {
       if (evt.keyCode === 13) {
-        vm.getMoviePageInfo(1);
+        vm.torrentBuildPager();
       }
     };
 
@@ -101,31 +125,30 @@
      * getMoviePageInfo
      * @param p: page number
      */
-    vm.getMoviePageInfo = function (p) {
-      vm.currPageNumber = p;
-
+    vm.getMoviePageInfo = function (p, callback) {
       //if searchKey or searchTags has value, the skip=0
-      var skip = vm.topNumber;
-      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0) {
+      var skip = vm.topItems;
+      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear) {
         skip = 0;
       }
 
-      TorrentsService.query({
-        skip: (p - 1) * vm.pageNumber + 0,
-        limit: p * vm.pageNumber,
-        keys: vm.searchKey,
+      TorrentsService.get({
+        skip: (p - 1) * vm.torrentItemsPerPage + 0,  //skip
+        limit: vm.torrentItemsPerPage,
+        keys: vm.searchKey.trim(),
         torrent_status: 'reviewed',
         torrent_type: 'movie',
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags
       }, function (items) {
-        vm.moviePageInfo = items;
         if (items.length === 0) {
           Notification.error({
             message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('MOVIE_PAGE_INFO_EMPTY')
           });
+        } else {
+          callback(items);
+          console.log(items);
         }
-        console.log(items);
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('MOVIE_PAGE_INFO_ERROR')
@@ -170,7 +193,7 @@
       vm.searchTags = [];
       $('.btn-tag').removeClass('btn-success').addClass('btn-default');
 
-      vm.getMoviePageInfo(1);
+      vm.torrentBuildPager();
     };
 
     /**
@@ -193,7 +216,7 @@
       } else {
         vm.releaseYear = y;
       }
-      vm.getMoviePageInfo(1);
+      vm.torrentBuildPager();
     };
 
     /**
