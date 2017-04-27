@@ -24,12 +24,17 @@
 
     vm.torrentTabs = [];
 
-    // If user is not signed in then redirect back home
+    /**
+     * If user is not signed in then redirect back home
+     */
     if (!Authentication.user) {
       $state.go('authentication.signin');
     }
 
-    //page init
+    /**
+     * commentBuildPager
+     * pagination init
+     */
     vm.torrentBuildPager = function () {
       vm.torrentPagedItems = [];
       vm.torrentItemsPerPage = 8;
@@ -37,6 +42,10 @@
       vm.torrentFigureOutItemsToDisplay();
     };
 
+    /**
+     * commentFigureOutItemsToDisplay
+     * @param callback
+     */
     vm.torrentFigureOutItemsToDisplay = function (callback) {
       vm.getMoviePageInfo(vm.torrentCurrentPage, function (items) {
         vm.torrentFilterLength = items.total;
@@ -46,6 +55,9 @@
       });
     };
 
+    /**
+     * commentPageChanged
+     */
     vm.torrentPageChanged = function () {
       var element = angular.element('#top_of_torrent_list');
 

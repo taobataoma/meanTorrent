@@ -21,7 +21,17 @@
     vm.torrentTabs = [];
     vm.progress = 0;
 
-    //page init
+    /**
+     * If user is not signed in then redirect back home
+     */
+    if (!Authentication.user) {
+      $state.go('authentication.signin');
+    }
+
+    /**
+     * commentBuildPager
+     * pagination init
+     */
     vm.commentBuildPager = function () {
       vm.commentPagedItems = [];
       vm.commentItemsPerPage = 10;
@@ -29,6 +39,10 @@
       vm.commentFigureOutItemsToDisplay();
     };
 
+    /**
+     * commentFigureOutItemsToDisplay
+     * @param callback
+     */
     vm.commentFigureOutItemsToDisplay = function (callback) {
       vm.commentFilterLength = vm.torrentLocalInfo._replies.length;
       var begin = ((vm.commentCurrentPage - 1) * vm.commentItemsPerPage);
@@ -38,6 +52,10 @@
       if (callback) callback();
     };
 
+    /**
+     * commentPageChanged
+     * @param autoScroll, some time not scroll to top
+     */
     vm.commentPageChanged = function (autoScroll) {
       var element = angular.element('#top_of_comments');
 
@@ -55,6 +73,9 @@
       });
     };
 
+    /**
+     * $watch 'vm.torrentLocalInfo'
+     */
     $scope.$watch('vm.torrentLocalInfo', function (newValue, oldValue) {
       if (vm.torrentLocalInfo && vm.torrentLocalInfo._replies) {
 
@@ -86,11 +107,6 @@
         }
       }
     });
-
-    // If user is not signed in then redirect back home
-    if (!Authentication.user) {
-      $state.go('authentication.signin');
-    }
 
     /**
      * getTorrentInfo

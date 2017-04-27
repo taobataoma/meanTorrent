@@ -163,6 +163,7 @@ var TorrentSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  _other_torrents: [],
   createdat: {
     type: Date,
     default: Date.now
@@ -171,6 +172,7 @@ var TorrentSchema = new Schema({
 
 TorrentSchema.index({user: -1, createdat: -1});
 TorrentSchema.index({info_hash: -1, createdat: -1});
+TorrentSchema.index({torrent_tmdb_id: -1, createdat: -1});
 
 mongoose.model('Torrent', TorrentSchema);
 mongoose.model('Comment', CommentSchema);

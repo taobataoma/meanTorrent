@@ -421,9 +421,7 @@ exports.list = function (req, res) {
 
   async.parallel([countQuery, findQuery], function (err, results) {
     if (err) {
-      return res.status(422).send({
-        message: 'Torrents query error'
-      });
+      return res.status(422).send(err);
     } else {
       res.json({rows: results[1], total: results[0]});
     }
@@ -441,43 +439,77 @@ exports.torrentByID = function (req, res, next, id) {
     });
   }
 
-  Torrent.findById(id)
-    .populate('user', 'displayName profileImageURL')
-    .populate({
-      path: '_replies.user',
-      select: 'displayName profileImageURL uploaded downloaded',
-      model: 'User'
-    })
-    .populate({
-      path: '_replies._replies.user',
-      select: 'displayName profileImageURL uploaded downloaded',
-      model: 'User'
-    })
-    .populate({
-      path: '_subtitles',
-      populate: {
-        path: 'user',
-        select: 'displayName profileImageURL'
-      }
-    })
-    .populate({
-      path: '_peers',
-      populate: {
-        path: 'user',
-        select: 'displayName profileImageURL'
-      }
-    })
-    .exec(function (err, torrent) {
-      if (err) {
-        return next(err);
-      } else if (!torrent) {
-        return res.status(404).send({
-          message: 'No torrent with that id has been found'
-        });
-      }
+  var findTorrents = function (callback) {
+    Torrent.findById(id)
+      .populate('user', 'displayName profileImageURL')
+      .populate({
+        path: '_replies.user',
+        select: 'displayName profileImageURL uploaded downloaded',
+        model: 'User'
+      })
+      .populate({
+        path: '_replies._replies.user',
+        select: 'displayName profileImageURL uploaded downloaded',
+        model: 'User'
+      })
+      .populate({
+        path: '_subtitles',
+        populate: {
+          path: 'user',
+          select: 'displayName profileImageURL'
+        }
+      })
+      .populate({
+        path: '_peers',
+        populate: {
+          path: 'user',
+          select: 'displayName profileImageURL'
+        }
+      })
+      .exec(function (err, torrent) {
+        if (err) {
+          callback(err);
+        } else if (!torrent) {
+          callback(new Error('No torrent with that id has been found'));
+        }
+        callback(null, torrent);
+      });
+  };
 
+  var findOtherTorrents = function (torrent, callback) {
+    var condition = {};
+    condition.torrent_status = 'reviewed';
+    condition.torrent_type = 'movie';
+    condition.torrent_tmdb_id = torrent.torrent_tmdb_id;
+
+    console.log(condition);
+
+    var fields = 'user torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_size torrent_sale_status createdat';
+
+    Torrent.find(condition, fields)
+      .sort('-createdat')
+      .populate('user', 'displayName')
+      .exec(function (err, torrents) {
+        if (err) {
+          callback(err);
+        } else {
+          torrents.forEach(function (t) {
+            if (!t._id.equals(torrent._id)) {
+              torrent._other_torrents.push(t);
+            }
+          });
+          callback(null, torrent);
+        }
+      });
+  };
+
+  async.waterfall([findTorrents, findOtherTorrents], function (err, torrent) {
+    if (err) {
+      next(err);
+    } else {
       req.torrent = torrent;
       next();
-    });
+    }
+  });
 };
 
