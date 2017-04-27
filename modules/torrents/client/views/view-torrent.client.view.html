@@ -485,19 +485,22 @@
                             ng-click="vm.openTorrentInfo(item._id);">
                             <td class="col-md-8 td-v-middle td-text-overflow">
                                 <div class="other-torrent-info">
-                                    <span class="label label-download text-uppercase"
-                                          title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
-                                          ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();">
-                                        <i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}
-                                    </span>
                                     <div class="text-long">{{item.torrent_filename}}</div>
 
                                     <div class="list-all-tags">
+                                        <span class="label label-warning" ng-click="$event.stopPropagation();">
+                                        {{ item.torrent_release}}
+                                        </span>
                                         <span ng-repeat="t in item.torrent_tags">
-                                            <span class="label label-tag">
+                                            <span class="label label-tag" ng-click="$event.stopPropagation();">
                                                 {{ 'RESOURCESTAGS.' + vm.getTagTitle(t) + '.' + t | translate}}
                                             </span>
                                         </span>
+                                        <span class="label label-download text-uppercase"
+                                              title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                              ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();">
+                                        <i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}
+                                    </span>
                                     </div>
                                 </div>
                             </td>

@@ -170,7 +170,7 @@
           {
             title: $translate.instant('TAB_ADMIN_PANEL'),
             templateUrl: 'adminPanel.html',
-            ng_show: vm.user.roles[0] == 'admin',
+            ng_show: vm.user.isOper,
             badges: []
           }
         );

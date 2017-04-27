@@ -18,6 +18,8 @@ exports.renderIndex = function (req, res) {
       username: validator.escape(req.user.username),
       created: req.user.created.toString(),
       roles: req.user.roles,
+      isOper: req.user.roles[0] === 'oper' || req.user.roles[0] === 'admin',
+      isAdmin: req.user.roles[0] === 'admin',
       passkey: req.user.passkey,
       vip_start_at: req.user.vip_start_at,
       vip_end_at: req.user.vip_end_at,

@@ -35,7 +35,7 @@ module.exports = {
         {name: 'SEALED', value: 'sealed'}
       ]
     },
-    userRoles: ['user', 'op', 'admin'],
+    userRoles: ['user', 'oper', 'admin'],
     clientBlackList: [
       {name: 'Transmission/2.93'},
       {name: 'Mozilla'},

@@ -484,7 +484,7 @@ exports.torrentByID = function (req, res, next, id) {
 
     console.log(condition);
 
-    var fields = 'user torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_size torrent_sale_status createdat';
+    var fields = 'user torrent_filename torrent_release torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_size torrent_sale_status createdat';
 
     Torrent.find(condition, fields)
       .sort('-createdat')
