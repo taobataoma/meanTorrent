@@ -180,7 +180,10 @@
 
         <div class="pagination-div">
             <uib-pagination boundary-links="true" max-size="8" items-per-page="vm.torrentItemsPerPage" total-items="vm.torrentFilterLength"
-                            ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"></uib-pagination>
+                            ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+            </uib-pagination>
         </div>
     </div>
 </section>

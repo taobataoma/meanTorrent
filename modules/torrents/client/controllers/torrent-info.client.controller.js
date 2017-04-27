@@ -22,38 +22,68 @@
     vm.progress = 0;
 
     //page init
-    vm.commentBuildPager = commentBuildPager;
-    vm.commentFigureOutItemsToDisplay = commentFigureOutItemsToDisplay;
-    vm.commentPageChanged = commentPageChanged;
-
-    function commentBuildPager() {
+    vm.commentBuildPager = function () {
       vm.commentPagedItems = [];
       vm.commentItemsPerPage = 10;
       vm.commentCurrentPage = 1;
       vm.commentFigureOutItemsToDisplay();
-    }
+    };
 
-    function commentFigureOutItemsToDisplay() {
+    vm.commentFigureOutItemsToDisplay = function (callback) {
       vm.commentFilterLength = vm.torrentLocalInfo._replies.length;
       var begin = ((vm.commentCurrentPage - 1) * vm.commentItemsPerPage);
       var end = begin + vm.commentItemsPerPage;
       vm.commentPagedItems = vm.torrentLocalInfo._replies.slice(begin, end);
-    }
 
-    function commentPageChanged() {
+      if (callback) callback();
+    };
+
+    vm.commentPageChanged = function (autoScroll) {
       var element = angular.element('#top_of_comments');
 
-      vm.commentFigureOutItemsToDisplay();
-      window.scrollTo(0, element[0].offsetTop - 30);
-    }
+      $('#comment-list-div').fadeTo(100, 0.01, function () {
+        vm.commentFigureOutItemsToDisplay(function () {
+          $timeout(function () {
+            $('#comment-list-div').fadeTo(400, 1, function () {
+              if (autoScroll) {
+                //window.scrollTo(0, element[0].offsetTop - 30);
+                $('html,body').animate({scrollTop: element[0].offsetTop - 30}, 200);
+              }
+            });
+          }, 100);
+        });
+      });
+    };
 
     $scope.$watch('vm.torrentLocalInfo', function (newValue, oldValue) {
       if (vm.torrentLocalInfo && vm.torrentLocalInfo._replies) {
+
+        var hasme = false;
+        var meitem = null;
         if (newValue._replies.length > oldValue._replies.length) {
-          var totalPages = vm.commentItemsPerPage < 1 ? 1 : Math.ceil(newValue._replies.length / vm.commentItemsPerPage);
-          vm.commentCurrentPage = Math.max(totalPages || 0, 1);
+
+          angular.forEach(newValue._replies, function (n) {
+            if (oldValue._replies.indexOf(n) < 0) {
+              if (n.user._id.toString() === vm.user._id) {
+                hasme = true;
+                meitem = n;
+              }
+            }
+          });
         }
-        vm.commentFigureOutItemsToDisplay();
+        if (hasme) {
+          var totalPages = vm.commentItemsPerPage < 1 ? 1 : Math.ceil(newValue._replies.length / vm.commentItemsPerPage);
+          var p = Math.max(totalPages || 0, 1);
+          if (vm.commentCurrentPage !== p) {
+            vm.commentCurrentPage = p;
+            vm.commentPageChanged(false);
+            vm.scrollToId = meitem._id;
+          } else {
+            vm.commentFigureOutItemsToDisplay();
+          }
+        } else {
+          vm.commentFigureOutItemsToDisplay();
+        }
       }
     });
 

@@ -30,30 +30,36 @@
     }
 
     //page init
-    vm.torrentBuildPager = torrentBuildPager;
-    vm.torrentFigureOutItemsToDisplay = torrentFigureOutItemsToDisplay;
-    vm.torrentPageChanged = torrentPageChanged;
-
-    function torrentBuildPager() {
+    vm.torrentBuildPager = function () {
       vm.torrentPagedItems = [];
       vm.torrentItemsPerPage = 8;
       vm.torrentCurrentPage = 1;
       vm.torrentFigureOutItemsToDisplay();
-    }
+    };
 
-    function torrentFigureOutItemsToDisplay() {
+    vm.torrentFigureOutItemsToDisplay = function (callback) {
       vm.getMoviePageInfo(vm.torrentCurrentPage, function (items) {
         vm.torrentFilterLength = items.total;
         vm.torrentPagedItems = items.rows;
-      });
-    }
 
-    function torrentPageChanged() {
+        if (callback) callback();
+      });
+    };
+
+    vm.torrentPageChanged = function () {
       var element = angular.element('#top_of_torrent_list');
 
-      vm.torrentFigureOutItemsToDisplay();
-      window.scrollTo(0, element[0].offsetTop - 60);
-    }
+      $('.tb-v-middle').fadeTo(100, 0.01, function () {
+        vm.torrentFigureOutItemsToDisplay(function () {
+          $timeout(function () {
+            $('.tb-v-middle').fadeTo(400, 1, function () {
+              //window.scrollTo(0, element[0].offsetTop - 60);
+              $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
+            });
+          }, 100);
+        });
+      });
+    };
 
     /**
      * getMovieTopInfo

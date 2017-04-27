@@ -153,6 +153,12 @@
     SUBTITLE_DELETE_SUCCESSFULLY: 'Subtitle file delete successfully',
     SUBTITLE_DELETE_ERROR: 'Subtitle file delete failed',
 
+    //page text
+    PAGE_TEXT_FIRST: 'First',
+    PAGE_TEXT_PREVIOUS: 'Previous',
+    PAGE_TEXT_NEXT: 'Next',
+    PAGE_TEXT_LAST: 'Last',
+
     //comment
     USER_COMMENT_LIST: 'User Comments List',
     POST_NEW_COMMENT: 'Post New Comment',

@@ -50,10 +50,10 @@
      * getMovieTopInfo
      */
     vm.getMovieTopInfo = function () {
-      vm.moviesInfo = TorrentsService.query({
+      vm.moviesInfo = TorrentsService.get({
         limit: 16
       }, function (items) {
-        vm.movieTopList = items;
+        vm.movieTopList = items.rows;
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_MOVIE_INFO_ERROR')

@@ -153,6 +153,12 @@
     SUBTITLE_DELETE_SUCCESSFULLY: '字幕文件删除成功',
     SUBTITLE_DELETE_ERROR: '字幕文件下载失败',
 
+    //page text
+    PAGE_TEXT_FIRST: '首页',
+    PAGE_TEXT_PREVIOUS: '上一页',
+    PAGE_TEXT_NEXT: '下一页',
+    PAGE_TEXT_LAST: '尾页',
+
     //comment
     USER_COMMENT_LIST: '用户评论',
     POST_NEW_COMMENT: '发表新评论',
