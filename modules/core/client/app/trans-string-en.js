@@ -152,6 +152,7 @@
     SUBTITLE_DOWNLOAD_ERROR: 'Subtitle file download failed',
     SUBTITLE_DELETE_SUCCESSFULLY: 'Subtitle file delete successfully',
     SUBTITLE_DELETE_ERROR: 'Subtitle file delete failed',
+    OTHER_TORRENT_LIST_TITLE: 'This resources has {{x}} other version torrent, you can view or download from here:',
 
     //page text
     PAGE_TEXT_FIRST: 'First',

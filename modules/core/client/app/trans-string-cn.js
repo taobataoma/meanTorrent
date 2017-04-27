@@ -152,6 +152,7 @@
     SUBTITLE_DOWNLOAD_ERROR: '字幕文件下载失败',
     SUBTITLE_DELETE_SUCCESSFULLY: '字幕文件删除成功',
     SUBTITLE_DELETE_ERROR: '字幕文件下载失败',
+    OTHER_TORRENT_LIST_TITLE: '该资源有 {{x}} 个其它版本的种子, 你可以从下面查看或直接下载:',
 
     //page text
     PAGE_TEXT_FIRST: '首页',

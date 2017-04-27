@@ -153,8 +153,13 @@
           {
             title: $translate.instant('TAB_OTHER_TORRENTS'),
             templateUrl: 'otherTorrents.html',
-            ng_show: true,
-            badges: []
+            ng_show: vm.torrentLocalInfo._other_torrents.length > 0,
+            badges: [
+              {
+                value: vm.torrentLocalInfo._other_torrents.length,
+                class: 'badge_info'
+              }
+            ]
           },
           {
             title: $translate.instant('TAB_MY_PANEL'),
@@ -165,7 +170,7 @@
           {
             title: $translate.instant('TAB_ADMIN_PANEL'),
             templateUrl: 'adminPanel.html',
-            ng_show: vm.user.roles.indexOf('admin') >= 0,
+            ng_show: vm.user.roles[0] == 'admin',
             badges: []
           }
         );
@@ -643,5 +648,16 @@
         });
       });
     };
+
+
+    /**
+     * openTorrentInfo
+     * @param id
+     */
+    vm.openTorrentInfo = function (id) {
+      var url = $state.href('torrents.view', {torrentId: id});
+      window.open(url, '_blank');
+    };
+
   }
 }());

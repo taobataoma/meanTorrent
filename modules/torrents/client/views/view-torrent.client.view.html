@@ -467,7 +467,63 @@
 
     <script type="text/ng-template" id="otherTorrents.html">
         <div>
-            <p>building</p>
+            <p><strong translate="OTHER_TORRENT_LIST_TITLE" translate-values="{x: vm.torrentLocalInfo._other_torrents.length}"></strong></p>
+
+            <div class="table-responsive">
+                <table class="table table-hover tb-v-middle table-bordered tb-other-torrents">
+                    <thead>
+                        <tr>
+                            <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._other_torrents"
+                            ng-click="vm.openTorrentInfo(item._id);">
+                            <td class="col-md-8 td-v-middle td-text-overflow">
+                                <div class="other-torrent-info">
+                                    <span class="label label-download text-uppercase"
+                                          title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                          ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();">
+                                        <i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}
+                                    </span>
+                                    <div class="text-long">{{item.torrent_filename}}</div>
+
+                                    <div class="list-all-tags">
+                                        <span ng-repeat="t in item.torrent_tags">
+                                            <span class="label label-tag">
+                                                {{ 'RESOURCESTAGS.' + vm.getTagTitle(t) + '.' + t | translate}}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col-md-1 td-v-middle text-center">{{item.createdat | life}}</td>
+                            <td class="col-md-1 td-v-middle text-center">{{item.torrent_size | bytes:2}}</td>
+                            <td class="col-md-1 td-v-middle text-center list-user-info">
+                                <p class="no-margin-p" title="{{ 'TITLE_ALT.SEEDS' | translate}}">
+                                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                                    {{item.torrent_seeds}}
+                                </p>
+
+                                <p class="no-margin-p" title="{{ 'TITLE_ALT.LEECHERS' | translate}}">
+                                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                                    {{item.torrent_leechers}}
+                                </p>
+
+                                <p class="no-margin-p" title="{{ 'TITLE_ALT.FINISHED' | translate}}">
+                                    <span class="glyphicon glyphicon-ok torrent-finished"></span>
+                                    {{item.torrent_finished}}
+                                </p>
+                            </td>
+                            <td class="col-md-1 td-v-middle text-center">{{item.user.displayName}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </script>
 
