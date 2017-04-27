@@ -493,6 +493,7 @@ exports.torrentByID = function (req, res, next, id) {
         if (err) {
           callback(err);
         } else {
+          torrent._other_torrents.splice(0, torrent._other_torrents.length);
           torrents.forEach(function (t) {
             if (!t._id.equals(torrent._id)) {
               torrent._other_torrents.push(t);
