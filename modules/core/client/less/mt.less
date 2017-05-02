@@ -410,3 +410,13 @@
         border-bottom: 2px solid lighten(@gray-base, 85%)
     }
 }
+
+.sales-btn-group {
+    > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+        border-radius: 0;
+        margin-left: -1px;
+    }
+    > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+        border-radius: 0;
+    }
+}

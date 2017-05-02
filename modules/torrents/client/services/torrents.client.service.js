@@ -10,7 +10,7 @@
 
   function TorrentsService($resource) {
     var Torrents = $resource('/api/torrents/:torrentId', {
-      torrentId: '@_torrentId'
+      torrentId: '@_id'
     }, {
       update: {
         method: 'PUT'
@@ -21,6 +21,14 @@
         params: {
           tmdbid: '@tmdbid',
           language: '@language'
+        }
+      },
+      setSaleType: {
+        method: 'PUT',
+        url: '/api/torrents/:torrentId/set/saletype/:saleType',
+        params: {
+          torrentId: '@_torrentId',
+          saleType: '@_saleType'
         }
       }
     });

@@ -7,16 +7,18 @@
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
-    'SubtitlesService'];
+    'SubtitlesService', 'uibButtonConfig'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                                  DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService) {
+                                  DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
+                                  uibButtonConfig) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
+    vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
 
     vm.torrentTabs = [];
     vm.progress = 0;
@@ -659,5 +661,76 @@
       window.open(url, '_blank');
     };
 
+    /**
+     * getSaleTypeDesc
+     */
+    vm.getSaleTypeDesc = function () {
+      var desc = '';
+
+      angular.forEach(vm.torrentSalesType.value, function (st) {
+        if (st.name === vm.torrentLocalInfo.torrent_sale_status) {
+          desc = st.desc;
+        }
+      });
+      return desc;
+    };
+
+    /**
+     * deleteTorrent
+     */
+    vm.deleteTorrent = function () {
+      var modalOptions = {
+        closeButtonText: $translate.instant('TORRENT_DELETE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('TORRENT_DELETE_CONFIRM_OK'),
+        headerText: $translate.instant('TORRENT_DELETE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('TORRENT_DELETE_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          vm.torrentLocalInfo.$remove(function (response) {
+            successCallback(response);
+          }, function (errorResponse) {
+            errorCallback(errorResponse);
+          });
+
+          function successCallback(res) {
+            Notification.success({
+              message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_DELETE_SUCCESSFULLY')
+            });
+
+            $state.go('torrents.movie');
+          }
+
+          function errorCallback(res) {
+            vm.error_msg = res.data.message;
+            Notification.error({
+              message: res.data.message,
+              title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DELETE_ERROR')
+            });
+          }
+        });
+    };
+
+    /**
+     * setSaleType
+     */
+    vm.setSaleType = function () {
+      TorrentsService.setSaleType({
+        _torrentId: vm.torrentLocalInfo._id,
+        _saleType: vm.model_salestype
+      }, function (res) {
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETSALETYPE_SUCCESSFULLY')
+        });
+
+        vm.torrentLocalInfo = res;
+      }, function (res) {
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETSALETYPE_ERROR')
+        });
+      });
+    };
   }
 }());

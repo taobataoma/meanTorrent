@@ -549,8 +549,31 @@
     </script>
 
     <script type="text/ng-template" id="adminPanel.html">
-        <div>
-            <p>building</p>
+        <div class="padding-top-30">
+            <dl class="dl-horizontal">
+                <dt class="h-line">{{ 'ADMIN_BASIC_COMMAND' | translate}}:</dt>
+                <dd class="h-line">
+                    <button class="btn btn-default btn-sm" ng-click="vm.deleteTorrent();">{{ 'ADMIN_BASIC_DELETE' | translate}}</button>
+                </dt>
+
+                <div class="margin-top-20"></div>
+
+                <dt class="h-line">{{ 'ADMIN_SALE_TYPE_SET' | translate}}:</dt>
+                <dd class="h-line">
+                    <mark>{{vm.getSaleTypeDesc();}}</mark>
+                </dd>
+
+                <div class="text-center padding-top-10">
+                    <div class="btn-group sales-btn-group text-center">
+                        <label ng-repeat="st in vm.torrentSalesType.value"
+                               class="btn btn-sm" ng-model="vm.model_salestype" uib-btn-radio="'{{st.name}}'" uncheckable
+                               ng-class="{'btn-default':vm.torrentLocalInfo.torrent_sale_status != st.name, 'btn-success':vm.torrentLocalInfo.torrent_sale_status == st.name}"
+                               ng-click="vm.setSaleType();">
+                            <small>{{st.name}}</small>
+                        </label>
+                    </div>
+                </div>
+            </dl>
         </div>
     </script>
 

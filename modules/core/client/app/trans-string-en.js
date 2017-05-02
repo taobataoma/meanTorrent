@@ -154,6 +154,18 @@
     SUBTITLE_DELETE_ERROR: 'Subtitle file delete failed',
     OTHER_TORRENT_LIST_TITLE: 'This resources has {{x}} other version torrent, you can view or download from here:',
 
+    ADMIN_BASIC_COMMAND: 'Basic Command',
+    ADMIN_BASIC_DELETE: 'Delete torrent',
+    ADMIN_SALE_TYPE_SET: 'Sale Type Set',
+
+    TORRENT_DELETE_CONFIRM_OK: 'Delete',
+    TORRENT_DELETE_CONFIRM_CANCEL: 'Cancel',
+    TORRENT_DELETE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
+    TORRENT_DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this torrent?',
+    TORRENT_DELETE_SUCCESSFULLY: 'Torrent delete successfully',
+    TORRENT_DELETE_ERROR: 'Torrent delete failed',
+    TORRENT_SETSALETYPE_SUCCESSFULLY: 'Torrent sale type set successfully',
+    TORRENT_SETSALETYPE_ERROR: 'Torrent sale type set failed',
     //page text
     PAGE_TEXT_FIRST: 'First',
     PAGE_TEXT_PREVIOUS: 'Previous',

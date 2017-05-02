@@ -46,20 +46,21 @@ module.exports = {
     torrentSalesType: {
       name: 'SALESTYPE',
       value: [
-        {name: 'U1/FREE'},
-        {name: 'U1/D.3'},
-        {name: 'U1/D.5'},
-        {name: 'U1/D.8'},
-        {name: 'U1/D1'},
-        {name: 'U2/FREE'},
-        {name: 'U2/D.3'},
-        {name: 'U2/D.5'},
-        {name: 'U2/D.8'},
-        {name: 'U2/D1'},
-        {name: 'U3/FREE'},
-        {name: 'U3/D.5'},
-        {name: 'U3/D.8'},
-        {name: 'U3/D1'}
+        {name: 'U1/FREE', desc: 'Upload * 1, Download Free'},
+        {name: 'U1/D.3', desc: 'Upload * 1, Download * 0.3'},
+        {name: 'U1/D.5', desc: 'Upload * 1, Download * 0.5'},
+        {name: 'U1/D.8', desc: 'Upload * 1, Download * 0.8'},
+        {name: 'U1/D1', desc: 'Upload * 1, Download * 1'},
+        {name: 'U2/FREE', desc: 'Upload * 2, Download Free'},
+        {name: 'U2/D.3', desc: 'Upload * 2, Download * 0.3'},
+        {name: 'U2/D.5', desc: 'Upload * 2, Download * 0.5'},
+        {name: 'U2/D.8', desc: 'Upload * 2, Download * 0.8'},
+        {name: 'U2/D1', desc: 'Upload * 2, Download * 1'},
+        {name: 'U3/FREE', desc: 'Upload * 3, Download Free'},
+        {name: 'U3/D.3', desc: 'Upload * 3, Download * 0.3'},
+        {name: 'U3/D.5', desc: 'Upload * 3, Download * 0.5'},
+        {name: 'U3/D.8', desc: 'Upload * 3, Download * 0.8'},
+        {name: 'U3/D1', desc: 'Upload * 3, Download * 1'}
       ]
     },
     torrentSalesValue: {

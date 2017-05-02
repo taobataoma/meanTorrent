@@ -299,6 +299,33 @@ exports.update = function (req, res) {
 };
 
 /**
+ * setSaleType
+ * @param req
+ * @param res
+ */
+exports.setSaleType = function (req, res) {
+  var torrent = req.torrent;
+
+  if (req.params.saleType) {
+    torrent.torrent_sale_status = req.params.saleType;
+
+    torrent.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(torrent);
+      }
+    });
+  } else {
+    return res.status(422).send({
+      message: 'params saleType error'
+    });
+  }
+};
+
+/**
  * delete a torrent
  * @param req
  * @param res
@@ -312,9 +339,6 @@ exports.delete = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      req.user._torrents.pull(torrent);
-      req.user.save();
-
       res.json(torrent);
     }
   });

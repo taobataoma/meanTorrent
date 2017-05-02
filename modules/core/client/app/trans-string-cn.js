@@ -151,9 +151,21 @@
     SUBTITLE_DOWNLOAD_SUCCESSFULLY: '字幕文件下载成功',
     SUBTITLE_DOWNLOAD_ERROR: '字幕文件下载失败',
     SUBTITLE_DELETE_SUCCESSFULLY: '字幕文件删除成功',
-    SUBTITLE_DELETE_ERROR: '字幕文件下载失败',
+    SUBTITLE_DELETE_ERROR: '字幕文件删除失败',
     OTHER_TORRENT_LIST_TITLE: '该资源有 {{x}} 个其它版本的种子, 你可以从下面查看或直接下载:',
 
+    ADMIN_BASIC_COMMAND: '操作命令',
+    ADMIN_BASIC_DELETE: '删除种子',
+    ADMIN_SALE_TYPE_SET: '种子促销类型',
+
+    TORRENT_DELETE_CONFIRM_OK: '删除',
+    TORRENT_DELETE_CONFIRM_CANCEL: '取消',
+    TORRENT_DELETE_CONFIRM_HEADER_TEXT: '删除确认',
+    TORRENT_DELETE_CONFIRM_BODY_TEXT: '你确定要删除这条种子信息吗?',
+    TORRENT_DELETE_SUCCESSFULLY: '种子信息删除成功',
+    TORRENT_DELETE_ERROR: '种子信息删除失败',
+    TORRENT_SETSALETYPE_SUCCESSFULLY: '种子促销类型设置成功',
+    TORRENT_SETSALETYPE_ERROR: '种子促销类型设置失败',
     //page text
     PAGE_TEXT_FIRST: '首页',
     PAGE_TEXT_PREVIOUS: '上一页',

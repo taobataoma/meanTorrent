@@ -25,5 +25,8 @@ module.exports = function (app) {
     .put(torrents.update)
     .delete(torrents.delete);
 
+  app.route('/api/torrents/:torrentId/set/saletype/:saleType')
+    .put(torrents.setSaleType);
+
   app.param('torrentId', torrents.torrentByID);
 };
