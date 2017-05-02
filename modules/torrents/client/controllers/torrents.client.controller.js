@@ -16,6 +16,7 @@
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
+    vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
 
     vm.searchTags = [];
     vm.searchKey = '';
@@ -235,6 +236,20 @@
         vm.releaseYear = y;
       }
       vm.torrentBuildPager();
+    };
+
+    /**
+     * getSaleTypeDesc
+     */
+    vm.getSaleTypeDesc = function (item) {
+      var desc = '';
+
+      angular.forEach(vm.torrentSalesType.value, function (st) {
+        if (st.name === item.torrent_sale_status) {
+          desc = st.desc;
+        }
+      });
+      return desc;
     };
 
     /**

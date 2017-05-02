@@ -144,8 +144,13 @@
 
                                     <div class="list-all-tags">
                                         <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
-                                    <span class="label label-warning" ng-click="vm.onReleaseClicked(item.torrent_release); $event.stopPropagation();">
+                                    <span class="label label-release label-warning" ng-click="vm.onReleaseClicked(item.torrent_release); $event.stopPropagation();">
                                         {{ item.torrent_release}}
+                                    </span>
+                                    <span class="label label-sale" ng-if="item.isSaling"
+                                          title="{{vm.getSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
+                                          ng-class="{'label-default': !item.isSaling, 'label-success': item.isSaling}">
+                                            {{item.torrent_sale_status}} {{item.torrent_sale_expires | unlife}}
                                     </span>
                                     <span ng-repeat="t in item.torrent_tags">
                                         <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}"
