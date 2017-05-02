@@ -146,6 +146,9 @@ var TorrentSchema = new Schema({
     default: 'U1/D1',
     trim: true
   },
+  torrent_sale_expires: {
+    type: Date
+  },
   torrent_recommended: {
     type: Number,
     default: 0
@@ -169,6 +172,27 @@ var TorrentSchema = new Schema({
     default: Date.now
   }
 });
+
+/**
+ * overwrite toJSON
+ */
+TorrentSchema.methods.toJSON = function (options) {
+  var document = this.toObject(options);
+  document.isSaling = false;
+
+  if (this.torrent_sale_expires > Date.now()) {
+    document.isSaling = true;
+  }
+
+  if (!document.isSaling) {
+    document.torrent_sale_status = 'U1/D1';
+  }
+  if(document.torrent_sale_status === 'U1/D1'){
+    document.isSaling=false;
+  }
+
+  return document;
+};
 
 TorrentSchema.index({user: -1, createdat: -1});
 TorrentSchema.index({info_hash: -1, createdat: -1});

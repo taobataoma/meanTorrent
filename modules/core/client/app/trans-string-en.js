@@ -128,6 +128,8 @@
     ATTRIBUTE_TAGS: 'Video Attribute (tags)',
     VIDEO_NFO: 'Video NFO',
     VIDEO_SIZE: 'Video Size',
+    VIDEO_SALE_INFO: 'Video Sale Info',
+    SALE_EXPIRES_TIME: 'expires',
     UPLOAD_SUBTITLE: 'Upload Subtitle file',
     SUBTITLE_LIST: 'Subtitle list',
     SUBTITLE_RULES: {

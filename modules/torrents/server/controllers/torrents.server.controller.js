@@ -307,7 +307,9 @@ exports.setSaleType = function (req, res) {
   var torrent = req.torrent;
 
   if (req.params.saleType) {
+    var gbit = Math.ceil(torrent.torrent_size / config.meanTorrentConfig.torrentSalesType.expires.size);
     torrent.torrent_sale_status = req.params.saleType;
+    torrent.torrent_sale_expires = Date.now() + gbit * config.meanTorrentConfig.torrentSalesType.expires.time;
 
     torrent.save(function (err) {
       if (err) {

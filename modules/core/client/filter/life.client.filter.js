@@ -37,4 +37,38 @@
       }
     };
   }
+
+  angular.module('core')
+    .filter('unlife', unlife);
+
+  unlife.$inject = ['moment'];
+
+  function unlife(moment) {
+    return function (expires) {
+      var d = moment(expires).diff(moment(), 'days');
+      var h = moment(expires).diff(moment(), 'hours');
+      var m = moment(expires).diff(moment(), 'minutes');
+      var s = moment(expires).diff(moment(), 'seconds');
+
+      if (!expires) {
+        d = 0;
+        h = 0;
+        m = 0;
+        s = 0;
+      }
+
+      if (d > 0) {
+        h = h - d * 24;
+        return d + 'd' + h + 'h';
+      } else if (h > 0) {
+        m = m - h * 60;
+        return h + 'h' + m + 'm';
+      } else if (m > 0) {
+        s = s - m * 60;
+        return m + 'm' + s + 's';
+      } else {
+        return s + 's';
+      }
+    };
+  }
 }());

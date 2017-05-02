@@ -61,7 +61,8 @@ module.exports = {
         {name: 'U3/D.5', desc: 'Upload * 3, Download * 0.5'},
         {name: 'U3/D.8', desc: 'Upload * 3, Download * 0.8'},
         {name: 'U3/D1', desc: 'Upload * 3, Download * 1'}
-      ]
+      ],
+      expires: {size: 1024 * 1024 * 1024, time: 60 * 60 * 1000}
     },
     torrentSalesValue: {
       global: undefined,

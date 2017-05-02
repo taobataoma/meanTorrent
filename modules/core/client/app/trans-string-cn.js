@@ -128,6 +128,8 @@
     ATTRIBUTE_TAGS: '视频属性(标签)',
     VIDEO_NFO: '视频 NFO',
     VIDEO_SIZE: '视频文件大小',
+    VIDEO_SALE_INFO: '视频促销信息',
+    SALE_EXPIRES_TIME: '过期',
     UPLOAD_SUBTITLE: '上传字幕文件',
     SUBTITLE_LIST: '字幕列表',
     SUBTITLE_RULES: {
