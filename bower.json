@@ -24,7 +24,8 @@
     "file-saver": "^1.3.3",
     "angular-sanitize": "1.5.11",
     "marked": "^0.3.6",
-    "angular-marked": "^1.2.2"
+    "angular-marked": "^1.2.2",
+    "ui-cropper": "^1.0.4"
   },
   "overrides": {
     "bootstrap": {
