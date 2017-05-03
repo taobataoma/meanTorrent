@@ -96,7 +96,8 @@
     PAGETITLE: {
       UPLOAD: 'Upload',
       MOVIE_LIST: 'Movie List',
-      TORRENT_INFO: 'Torrent Info'
+      TORRENT_INFO: 'Torrent Info',
+      RANKING: 'Ranking'
     },
 
     //TorrentsController & views
@@ -168,6 +169,7 @@
     TORRENT_DELETE_ERROR: 'Torrent delete failed',
     TORRENT_SETSALETYPE_SUCCESSFULLY: 'Torrent sale type set successfully',
     TORRENT_SETSALETYPE_ERROR: 'Torrent sale type set failed',
+
     //page text
     PAGE_TEXT_FIRST: 'First',
     PAGE_TEXT_PREVIOUS: 'Previous',
@@ -216,6 +218,12 @@
     CANCEL_BUTTON: 'NO, CANCEL IT',
     AGREE_RULES: 'I agree and already read all the rules, <a href="#">read here</a>',
     DOWNLOAD_TORRENT: 'Download Torrent',
+
+    //ranking view
+    PAGE_HEADER_RANKING_UPLOAD: 'Uploaded Ranking',
+    PAGE_HEADER_RANKING_DOWNLOAD: 'Downloaded Ranking',
+    PAGE_HEADER_RANKING_RATIO: 'Ratio Ranking',
+    PAGE_HEADER_RANKING_SCORE: 'Score Ranking',
 
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',

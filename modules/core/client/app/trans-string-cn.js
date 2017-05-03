@@ -96,7 +96,8 @@
     PAGETITLE: {
       UPLOAD: '上传',
       MOVIE_LIST: '电影列表',
-      TORRENT_INFO: '种子信息'
+      TORRENT_INFO: '种子信息',
+      RANKING: '排行榜'
     },
 
     //TorrentsController & views
@@ -168,6 +169,7 @@
     TORRENT_DELETE_ERROR: '种子信息删除失败',
     TORRENT_SETSALETYPE_SUCCESSFULLY: '种子促销类型设置成功',
     TORRENT_SETSALETYPE_ERROR: '种子促销类型设置失败',
+
     //page text
     PAGE_TEXT_FIRST: '首页',
     PAGE_TEXT_PREVIOUS: '上一页',
@@ -190,6 +192,7 @@
     COMMENT_CONFIRM_CANCEL: '取消',
     COMMENT_CONFIRM_HEADER_TEXT: '删除确认',
     COMMENT_CONFIRM_BODY_TEXT: '你确定要删除这条评论吗?',
+    COMMENT_CONFIRM_BODY_TEXT_REPLY: '你确定要删除这条评论回复吗?',
     COMMENT_EDIT_ICON_TITLE: '编辑回复',
     COMMENT_DELETE_ICON_TITLE: '删除回复',
 
@@ -215,6 +218,12 @@
     CANCEL_BUTTON: '算了，以后再说',
     AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="#">协议条款</a>',
     DOWNLOAD_TORRENT: '下载种子',
+
+    //ranking view
+    PAGE_HEADER_RANKING_UPLOAD: '上传量排行榜',
+    PAGE_HEADER_RANKING_DOWNLOAD: '下载量排行榜',
+    PAGE_HEADER_RANKING_RATIO: '分享率排行榜',
+    PAGE_HEADER_RANKING_SCORE: '积分排行榜',
 
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',

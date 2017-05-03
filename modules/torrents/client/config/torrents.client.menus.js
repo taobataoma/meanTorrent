@@ -46,13 +46,6 @@
     });
 
     menuService.addMenuItem('topbar', {
-      title: $translate.instant('MENU_RANKING'),
-      state: 'torrents.ranking',
-      roles: ['*'],
-      position: 4
-    });
-
-    menuService.addMenuItem('topbar', {
       title: $translate.instant('MENU_RULES'),
       state: 'torrents.rules',
       roles: ['*'],
