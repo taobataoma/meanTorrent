@@ -10,7 +10,8 @@ var mongoose = require('mongoose'),
   crypto = require('crypto'),
   validator = require('validator'),
   generatePassword = require('generate-password'),
-  owasp = require('owasp-password-strength-test');
+  owasp = require('owasp-password-strength-test'),
+  moment = require('moment');
 
 owasp.config(config.shared.owasp);
 
@@ -141,6 +142,10 @@ var UserSchema = new Schema({
     type: Number,
     default: 0
   },
+  ratio: {
+    type: Number,
+    default: 0
+  },
   seeded: {
     type: Number,
     default: 0
@@ -170,6 +175,24 @@ var UserSchema = new Schema({
 });
 
 /**
+ * overwrite toJSON
+ */
+UserSchema.methods.toJSON = function (options) {
+  var document = this.toObject(options);
+  document.is_vip = false;
+
+  if (!document.vip_start_at || !document.vip_end_at) {
+    document.is_vip = false;
+  } else if (moment(Date.now()) > moment(document.vip_end_at)) {
+    document.is_vip = false;
+  } else {
+    document.is_vip = true;
+  }
+
+  return document;
+};
+
+/**
  * Hook a pre save method to hash the password
  */
 UserSchema.pre('save', function (next) {
@@ -179,6 +202,17 @@ UserSchema.pre('save', function (next) {
   }
 
   next();
+});
+
+/**
+ * Hook a post save method to set the ratio
+ */
+UserSchema.post('save', function (doc) {
+  if (doc.uploaded === 0 || doc.downloaded === 0) {
+    doc.ratio = 0;
+  } else {
+    doc.ratio = Math.round((doc.uploaded / doc.downloaded) * 100) / 100;
+  }
 });
 
 /**
