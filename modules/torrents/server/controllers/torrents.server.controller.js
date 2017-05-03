@@ -510,7 +510,7 @@ exports.torrentByID = function (req, res, next, id) {
 
     console.log(condition);
 
-    var fields = 'user torrent_filename torrent_release torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_size torrent_sale_status createdat';
+    var fields = 'user torrent_filename torrent_release torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_size torrent_sale_status torrent_sale_expires createdat';
 
     Torrent.find(condition, fields)
       .sort('-createdat')
@@ -522,7 +522,7 @@ exports.torrentByID = function (req, res, next, id) {
           torrent._other_torrents.splice(0, torrent._other_torrents.length);
           torrents.forEach(function (t) {
             if (!t._id.equals(torrent._id)) {
-              torrent._other_torrents.push(t);
+              torrent._other_torrents.push(t.toJSON());
             }
           });
           callback(null, torrent);

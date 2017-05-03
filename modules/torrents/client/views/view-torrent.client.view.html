@@ -294,12 +294,12 @@
                 <dt class="h-line">{{ 'VIDEO_SALE_INFO' | translate}}：</dt>
                 <dd class="h-line">
                     <span class="label label-sale"
-                          title="{{vm.getSaleTypeDesc();}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{vm.torrentLocalInfo.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
+                          title="{{vm.getSaleTypeDesc();}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{vm.torrentLocalInfo.isSaling ? (vm.torrentLocalInfo.torrent_sale_expires | date: 'MM-dd HH:mm') : 'NO'}}"
                           ng-class="{'label-default': !vm.torrentLocalInfo.isSaling, 'label-success': vm.torrentLocalInfo.isSaling}">
-                        {{vm.torrentLocalInfo.torrent_sale_status}} {{vm.torrentLocalInfo.torrent_sale_expires | unlife}}
+                        {{vm.torrentLocalInfo.torrent_sale_status}} {{vm.torrentLocalInfo.isSaling ? (vm.torrentLocalInfo.torrent_sale_expires | unlife) : ''}}
                     </span>
                     <!--<span ng-if="vm.torrentLocalInfo.isSaling">-->
-                         <!--[{{ 'SALE_EXPIRES_TIME' | translate}}: {{vm.torrentLocalInfo.torrent_sale_expires | unlife}}]-->
+                    <!--[{{ 'SALE_EXPIRES_TIME' | translate}}: {{vm.torrentLocalInfo.torrent_sale_expires | unlife}}]-->
                     <!--</span>-->
                 </dd>
 
@@ -502,6 +502,11 @@
                                     <div class="list-all-tags">
                                         <span class="label label-warning" ng-click="$event.stopPropagation();">
                                         {{ item.torrent_release}}
+                                        </span>
+                                        <span class="label label-sale" ng-if="item.isSaling"
+                                              title="{{vm.getSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
+                                              ng-class="{'label-default': !item.isSaling, 'label-success': item.isSaling}">
+                                                {{item.torrent_sale_status}} {{item.torrent_sale_expires | unlife}}
                                         </span>
                                         <span ng-repeat="t in item.torrent_tags">
                                             <span class="label label-tag" ng-click="$event.stopPropagation();">
