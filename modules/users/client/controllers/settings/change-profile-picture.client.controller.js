@@ -16,12 +16,6 @@
     vm.selectedImageUrl = '';
     vm.resultImageURL = '';
 
-
-    Upload.onBeforeUploadItem = function (item) {
-      var blob = vm.dataURItoBlob(vm.resultImageURL);
-      item._file = blob;
-    };
-
     vm.dataURItoBlob = function (dataURI) {
       var binary = atob(dataURI.split(',')[1]);
       var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
@@ -79,7 +73,7 @@
     vm.handleFileSelect = function (evt) {
       vm.loading = false;
 
-      if(evt.currentTarget.files) {
+      if (evt.currentTarget.files) {
         var file = evt.currentTarget.files[0];
 
         var reader = new FileReader();
