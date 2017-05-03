@@ -10,7 +10,9 @@ module.exports = {
         'public/lib/angular-ui-notification/dist/angular-ui-notification.min.css',
         'public/lib/bootstrap/dist/css/bootstrap.min.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-        'public/lib/Ionicons/css/ionicons.min.css'
+        'public/lib/Ionicons/css/ionicons.min.css',
+        //img cropper
+        'public/lib/ui-cropper/compile/minified/ui-cropper.css'
         // endbower
       ],
       js: [
@@ -34,8 +36,11 @@ module.exports = {
         //moment
         'public/lib/moment/min/moment-with-locales.min.js',
         'public/lib/angular-moment/angular-moment.min.js',
+        //file saver
         'public/lib/angular-file-saver/dist/angular-file-saver.min.js',
-        'public/lib/angular-file-saver/dist/angular-file-saver.bundle.min.js'
+        'public/lib/angular-file-saver/dist/angular-file-saver.bundle.min.js',
+        //img cropper
+        'public/lib/ui-cropper/compile/minified/ui-cropper.js'
         // endbower
       ]
     },

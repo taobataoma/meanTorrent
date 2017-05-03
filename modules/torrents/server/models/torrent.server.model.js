@@ -187,8 +187,8 @@ TorrentSchema.methods.toJSON = function (options) {
   if (!document.isSaling) {
     document.torrent_sale_status = 'U1/D1';
   }
-  if(document.torrent_sale_status === 'U1/D1'){
-    document.isSaling=false;
+  if (document.torrent_sale_status === 'U1/D1') {
+    document.isSaling = false;
   }
 
   return document;
