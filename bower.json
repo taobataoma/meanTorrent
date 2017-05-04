@@ -25,7 +25,8 @@
     "angular-sanitize": "1.5.11",
     "marked": "^0.3.6",
     "angular-marked": "^1.2.2",
-    "ui-cropper": "^1.0.4"
+    "ui-cropper": "^1.0.4",
+    "highlightjs": "^9.10.0"
   },
   "overrides": {
     "bootstrap": {

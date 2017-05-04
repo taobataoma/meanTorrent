@@ -12,7 +12,9 @@ module.exports = {
         'public/lib/angular-ui-notification/dist/angular-ui-notification.min.css',
         'public/lib/Ionicons/css/ionicons.min.css',
         //img cropper
-        'public/lib/ui-cropper/compile/minified/ui-cropper.css'
+        'public/lib/ui-cropper/compile/minified/ui-cropper.css',
+        //highlight
+        'public/lib/highlightjs/styles/default.css'
         // endbower
       ],
       js: [
@@ -42,7 +44,9 @@ module.exports = {
         'public/lib/angular-file-saver/dist/angular-file-saver.min.js',
         'public/lib/angular-file-saver/dist/angular-file-saver.bundle.min.js',
         //img cropper
-        'public/lib/ui-cropper/compile/minified/ui-cropper.js'
+        'public/lib/ui-cropper/compile/minified/ui-cropper.js',
+        //highlight
+        'public/lib/highlightjs/highlight.pack.min.js'
         // endbower
       ]
     },
