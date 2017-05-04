@@ -31,7 +31,7 @@
   transConfig.$inject = ['$translateProvider'];
   function transConfig($translateProvider) {
     $translateProvider.useSanitizeValueStrategy(null);
-    $translateProvider.preferredLanguage('en');
+    $translateProvider.preferredLanguage('cn');
     //$translateProvider.fallbackLanguage('cn');
   }
 

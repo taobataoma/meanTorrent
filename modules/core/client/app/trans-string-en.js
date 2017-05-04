@@ -19,6 +19,7 @@
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
+    MENU_USERS_ADMIN: 'Manage Torrents',
     MENU_UPLOAD: 'Upload',
     MENU_FORUMS: 'Forums',
     MENU_RANKING: 'Ranking',
@@ -232,6 +233,26 @@
     PAGE_HEADER_RANKING_DOWNLOAD: 'Downloaded Ranking',
     PAGE_HEADER_RANKING_RATIO: 'Ratio Ranking',
     PAGE_HEADER_RANKING_SCORE: 'Score Ranking',
+
+    //admin views
+    USERS_LIST: 'Users',
+    USERS_UPDATE: 'Update',
+
+    //user settings
+    SETTINGS: 'Settings',
+    BUTTON_SAVE_PROFILE: 'Save Profile',
+    BUTTON_SELECT_PICTURE: 'Select Picture',
+    BUTTON_USE_THIS_PICTURE: 'Use This Picture',
+    BUTTON_CANCEL: 'Cancel',
+    BUTTON_COMPLETE: 'Complete',
+    BUTTON_SAVE_PASSWORD: 'Save Password',
+    CAPTION_CURRENT_PASSWORD: 'Current Password',
+    CAPTION_NEW_PASSWORD: 'New Password',
+    CAPTION_VERIFY_PASSWORD: 'Verify Password',
+    CAPTION_REQUIRED_CURRENT_PASSWORD: 'Your current password is required.',
+    CAPTION_REQUIRED_NEW_PASSWORD: 'Enter a new password.',
+    CAPTION_REQUIRED_VERIFY_PASSWORD: 'Verify your new password.',
+    CAPTION_PASSWORD_NOT_MATCH: 'Passwords do not match.',
 
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',

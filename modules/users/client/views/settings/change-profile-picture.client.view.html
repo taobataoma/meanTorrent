@@ -18,17 +18,17 @@
                 <div ng-show="!vm.fileSelected" class="form-group">
                     <button class="btn btn-default btn-file" ngf-select="vm.handleFileSelect($event)" ng-model="vm.picFile" accept="image/*"
                             ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}"
-                            ngf-resize-if="$width > 400 || $height > 400">Select Picture
+                            ngf-resize-if="$width > 400 || $height > 400">{{'BUTTON_SELECT_PICTURE' | translate}}
                     </button>
                 </div>
                 <div ng-show="vm.fileSelected" class="form-group">
-                    <button class="btn btn-primary" ng-click="vm.upload()">Use This Picture</button>
-                    <button class="btn btn-default" ng-click="vm.cancel()">Cancel</button>
+                    <button class="btn btn-primary" ng-click="vm.upload()">{{'BUTTON_USE_THIS_PICTURE' | translate}}</button>
+                    <button class="btn btn-default" ng-click="vm.cancel()">{{'BUTTON_CANCEL' | translate}}</button>
                 </div>
                 <div ng-show="vm.fileSelected" class="form-group progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="{{vm.progress}}" aria-valuemin="0" aria-valuemax="100"
                          style="width:{{vm.progress}}%" ng-bind="vm.progress + '%'">
-                        <span class="sr-only">{{vm.progress}}% Complete</span>
+                        <span class="sr-only">{{vm.progress}}% {{'BUTTON_COMPLETE' | translate}}</span>
                     </div>
                 </div>
             </fieldset>

@@ -19,6 +19,7 @@
     MENU_CHAT: '聊天室',
     MENU_TORRENTS: '种子',
     MENU_TORRENTS_ADMIN: '种子管理',
+    MENU_USERS_ADMIN: '用户管理',
     MENU_UPLOAD: '发布',
     MENU_FORUMS: '论坛',
     MENU_RANKING: '排行榜',
@@ -232,6 +233,26 @@
     PAGE_HEADER_RANKING_DOWNLOAD: '下载量排行榜',
     PAGE_HEADER_RANKING_RATIO: '分享率排行榜',
     PAGE_HEADER_RANKING_SCORE: '积分排行榜',
+
+    //admin views
+    USERS_LIST: '用户列表',
+    USERS_UPDATE: '修改',
+
+    //user settings
+    SETTINGS: '控制面版',
+    BUTTON_SAVE_PROFILE: '保存',
+    BUTTON_SELECT_PICTURE: '选择图片',
+    BUTTON_USE_THIS_PICTURE: '应用图片',
+    BUTTON_CANCEL: '取消',
+    BUTTON_COMPLETE: '完成',
+    BUTTON_SAVE_PASSWORD: '保存密码',
+    CAPTION_CURRENT_PASSWORD: '当前密码',
+    CAPTION_NEW_PASSWORD: '新密码',
+    CAPTION_VERIFY_PASSWORD: '验证密码',
+    CAPTION_REQUIRED_CURRENT_PASSWORD: '请输入当前密码.',
+    CAPTION_REQUIRED_NEW_PASSWORD: '请输入新密码.',
+    CAPTION_REQUIRED_VERIFY_PASSWORD: '请再输入一次新密码.',
+    CAPTION_PASSWORD_NOT_MATCH: '两次输入的新密码不一致.',
 
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',
