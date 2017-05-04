@@ -2,18 +2,18 @@
   'use strict';
 
   angular
-    .module('ranking.routes')
+    .module('rules.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('ranking', {
-        url: '/ranking',
-        templateUrl: '/modules/ranking/client/views/ranking.client.view.html',
+      .state('rules', {
+        url: '/rules',
+        templateUrl: '/modules/rules/client/views/rules.client.view.html',
         data: {
-          pageTitle: 'PAGETITLE.RANKING'
+          pageTitle: 'PAGETITLE.RULES'
         }
       });
   }

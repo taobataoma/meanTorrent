@@ -31,7 +31,7 @@
   transConfig.$inject = ['$translateProvider'];
   function transConfig($translateProvider) {
     $translateProvider.useSanitizeValueStrategy(null);
-    $translateProvider.preferredLanguage('cn');
+    $translateProvider.preferredLanguage('en');
     //$translateProvider.fallbackLanguage('cn');
   }
 
@@ -57,6 +57,9 @@
     markedProvider.setRenderer({
       link: function (href, title, text) {
         return '<a ng-click="vm.markLinkClick($event, item);" href="' + href + '"' + (title ? ' title="' + title + '"' : '') + ' target="_blank">' + text + '</a>';
+      },
+      table: function (header, body) {
+        return '<table class="table table-hover table-bordered table-condensed margin-bottom-10"><thead>' + header + '</thead><tbody>' + body + '</tbody></table>';
       }
     });
   }

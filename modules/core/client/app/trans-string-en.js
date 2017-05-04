@@ -106,7 +106,8 @@
       UPLOAD: 'Upload',
       MOVIE_LIST: 'Movie List',
       TORRENT_INFO: 'Torrent Info',
-      RANKING: 'Ranking'
+      RANKING: 'Ranking',
+      RULES: 'Rules'
     },
 
     //TorrentsController & views

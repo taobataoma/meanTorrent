@@ -37,21 +37,12 @@
       state: 'torrents.other',
       roles: ['*']
     });
-
     menuService.addMenuItem('topbar', {
       title: $translate.instant('MENU_UPLOAD'),
       state: 'torrents.uploads',
       roles: ['*'],
       position: 3
     });
-
-    menuService.addMenuItem('topbar', {
-      title: $translate.instant('MENU_RULES'),
-      state: 'torrents.rules',
-      roles: ['*'],
-      position: 5
-    });
-
     menuService.addMenuItem('topbar', {
       title: $translate.instant('MENU_VIP'),
       state: 'torrents.vip',

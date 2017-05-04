@@ -106,7 +106,8 @@
       UPLOAD: '上传',
       MOVIE_LIST: '电影列表',
       TORRENT_INFO: '种子信息',
-      RANKING: '排行榜'
+      RANKING: '排行榜',
+      RULES: '规则'
     },
 
     //TorrentsController & views
