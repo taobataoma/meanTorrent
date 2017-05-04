@@ -224,6 +224,16 @@
     }
 }
 
+.table-valign-middle {
+    > tbody {
+        > tr {
+            > td {
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
 .tb-peers {
     background-color: #fff;
     thead {
@@ -359,24 +369,51 @@
     padding-left: 15px;
 }
 
-.nav-tabs {
-    > li {
-        > a {
-            margin-right: 5px;
-            padding: 10px 30px;
-            border-top: 3px solid #fff;
-            &:hover
-            &:focus {
-                border-top: 3px solid #ddd;
+.torrent-info-tabs {
+    .nav-tabs {
+        > li {
+            > a {
+                margin-right: 5px;
+                padding: 10px 30px;
+                border-top: 3px solid #fff;
+                &:hover
+                &:focus {
+                    border-top: 3px solid #ddd;
+                }
+            }
+            &.active {
+                > a {
+                    &,
+                    &:hover,
+                    &:focus {
+                        border-top: 3px solid @brand-danger;
+                        background-color: @comment-background-default;
+                    }
+                }
             }
         }
-        &.active {
+    }
+}
+
+.tab-ranking {
+    .nav-tabs {
+        > li {
             > a {
-                &,
-                &:hover,
+                margin-right: 5px;
+                padding: 10px 30px;
+                border-top: 3px solid #fff;
+                &:hover
                 &:focus {
-                    border-top: 3px solid @brand-danger;
-                    background-color: @comment-background-default;
+                    border-top: 3px solid #ddd;
+                }
+            }
+            &.active {
+                > a {
+                    &,
+                    &:hover,
+                    &:focus {
+                        border-top: 3px solid @brand-danger;
+                    }
                 }
             }
         }
@@ -444,4 +481,15 @@
 
 .page-header {
     padding-bottom: 0;
+}
+
+.ranking-user-img {
+    cursor: pointer;
+    border-radius: 3px;
+    height: 32px;
+    width: 32px;
+}
+
+.ranking-active-col {
+    color: @mt-base-color;
 }

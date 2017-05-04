@@ -89,7 +89,15 @@
       STARTED: '开始时间',
       ACTIVE: '活动状态',
       CLIENT: '客户端',
-      CONNECTABLE: '可连接'
+      CONNECTABLE: '可连接',
+
+      //ranking
+      UPLOAD: '已上传',
+      DOWNLOAD: '已下载',
+      SEEDED: '正在做种',
+      LEECHED: '正在下载',
+      SCORE: '积分',
+      JOINED: '加入时间'
     },
 
     //page title

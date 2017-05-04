@@ -81,7 +81,7 @@
       VOTES: 'Votes',
 
       //peer
-      USERNAME: 'Username',
+      USERNAME: 'DisplayName',
       UPLOADED: 'Uploaded/Speed',
       DOWNLOADED: 'Downloaded/Speed',
       RATIO: 'Ratio',
@@ -89,7 +89,15 @@
       STARTED: 'Started',
       ACTIVE: 'Active',
       CLIENT: 'Client',
-      CONNECTABLE: 'Connectable'
+      CONNECTABLE: 'Connectable',
+
+      //ranking
+      UPLOAD: 'Uploaded',
+      DOWNLOAD: 'Downloaded',
+      SEEDED: 'Seeded',
+      LEECHED: 'Leeched',
+      SCORE: 'Score',
+      JOINED: 'Joined'
     },
 
     //page title

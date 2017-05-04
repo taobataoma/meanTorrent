@@ -1,49 +1,170 @@
 <section class="container padding-top-10" ng-controller="RankingController as vm" ng-init="vm.getRankingList();">
-    <div class="upload-ranking">
-        <div class="panel panel-default">
-            <div class="panel-heading text-center">{{'PAGE_HEADER_RANKING_UPLOAD' | translate}}</div>
-            <div class="panel-body">
-                <p>...</p>
-            </div>
-
-            <table class="table">
-            </table>
-        </div>
+    <div class="tab-ranking margin-top-30">
+        <uib-tabset>
+            <uib-tab index="$index" ng-repeat="tab in vm.rankingTabs">
+                <uib-tab-heading>
+                    {{tab.title}}
+                </uib-tab-heading>
+                <div ng-include="tab.templateUrl">
+                </div>
+            </uib-tab>
+        </uib-tabset>
     </div>
 
-    <div class="upload-ranking">
-        <div class="panel panel-default">
-            <div class="panel-heading text-center">{{'PAGE_HEADER_RANKING_DOWNLOAD' | translate}}</div>
-            <div class="panel-body">
-                <p>...</p>
+
+    <script type="text/ng-template" id="upload_ranking.html">
+        <div class="padding-top-30">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-valign-middle">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center"></th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.USERNAME' | translate}}</th>
+                            <th class="text-center ranking-active-col">{{ 'TABLE_FIELDS.UPLOAD' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.DOWNLOAD' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.RATIO' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SCORE' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SEEDED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.LEECHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.FINISHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.JOINED' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="ranking-list-info" ng-repeat="user in vm.upload_ranking">
+                            <td class="text-center">{{$index + 1}}</td>
+                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
+                            <td class="text-center">{{user.displayName}}</td>
+                            <td class="text-center ranking-active-col">{{user.uploaded | bytes:2}}</td>
+                            <td class="text-center">{{user.downloaded | bytes:2}}</td>
+                            <td class="text-center">{{user.ratio}}</td>
+                            <td class="text-center">{{user.score}}</td>
+                            <td class="text-center">{{user.seeded}}</td>
+                            <td class="text-center">{{user.leeched}}</td>
+                            <td class="text-center">{{user.finished}}</td>
+                            <td class="text-center">{{user.created | life}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <table class="table">
-            </table>
         </div>
-    </div>
+    </script>
 
-    <div class="upload-ranking">
-        <div class="panel panel-default">
-            <div class="panel-heading text-center">{{'PAGE_HEADER_RANKING_RATIO' | translate}}</div>
-            <div class="panel-body">
-                <p>...</p>
+    <script type="text/ng-template" id="download_ranking.html">
+        <div class="padding-top-30">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-valign-middle">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center"></th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.USERNAME' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.UPLOAD' | translate}}</th>
+                            <th class="text-center ranking-active-col">{{ 'TABLE_FIELDS.DOWNLOAD' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.RATIO' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SCORE' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SEEDED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.LEECHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.FINISHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.JOINED' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="ranking-list-info" ng-repeat="user in vm.download_ranking">
+                            <td class="text-center">{{$index + 1}}</td>
+                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
+                            <td class="text-center">{{user.displayName}}</td>
+                            <td class="text-center">{{user.uploaded | bytes:2}}</td>
+                            <td class="text-center ranking-active-col">{{user.downloaded | bytes:2}}</td>
+                            <td class="text-center">{{user.ratio}}</td>
+                            <td class="text-center">{{user.score}}</td>
+                            <td class="text-center">{{user.seeded}}</td>
+                            <td class="text-center">{{user.leeched}}</td>
+                            <td class="text-center">{{user.finished}}</td>
+                            <td class="text-center">{{user.created | life}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <table class="table">
-            </table>
         </div>
-    </div>
+    </script>
 
-    <div class="upload-ranking">
-        <div class="panel panel-default">
-            <div class="panel-heading text-center">{{'PAGE_HEADER_RANKING_SCORE' | translate}}</div>
-            <div class="panel-body">
-                <p>...</p>
+    <script type="text/ng-template" id="ratio_ranking.html">
+        <div class="padding-top-30">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-valign-middle">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center"></th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.USERNAME' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.UPLOAD' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.DOWNLOAD' | translate}}</th>
+                            <th class="text-center ranking-active-col">{{ 'TABLE_FIELDS.RATIO' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SCORE' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SEEDED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.LEECHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.FINISHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.JOINED' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="ranking-list-info" ng-repeat="user in vm.ratio_ranking">
+                            <td class="text-center">{{$index + 1}}</td>
+                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
+                            <td class="text-center">{{user.displayName}}</td>
+                            <td class="text-center">{{user.uploaded | bytes:2}}</td>
+                            <td class="text-center">{{user.downloaded | bytes:2}}</td>
+                            <td class="text-center ranking-active-col">{{user.ratio}}</td>
+                            <td class="text-center">{{user.score}}</td>
+                            <td class="text-center">{{user.seeded}}</td>
+                            <td class="text-center">{{user.leeched}}</td>
+                            <td class="text-center">{{user.finished}}</td>
+                            <td class="text-center">{{user.created | life}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <table class="table">
-            </table>
         </div>
-    </div>
+    </script>
+
+    <script type="text/ng-template" id="score_ranking.html">
+        <div class="padding-top-30">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-valign-middle">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center"></th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.USERNAME' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.UPLOAD' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.DOWNLOAD' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.RATIO' | translate}}</th>
+                            <th class="text-center ranking-active-col">{{ 'TABLE_FIELDS.SCORE' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SEEDED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.LEECHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.FINISHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.JOINED' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="ranking-list-info" ng-repeat="user in vm.score_ranking">
+                            <td class="text-center">{{$index + 1}}</td>
+                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
+                            <td class="text-center">{{user.displayName}}</td>
+                            <td class="text-center">{{user.uploaded | bytes:2}}</td>
+                            <td class="text-center">{{user.downloaded | bytes:2}}</td>
+                            <td class="text-center">{{user.ratio}}</td>
+                            <td class="text-center ranking-active-col">{{user.score}}</td>
+                            <td class="text-center">{{user.seeded}}</td>
+                            <td class="text-center">{{user.leeched}}</td>
+                            <td class="text-center">{{user.finished}}</td>
+                            <td class="text-center">{{user.created | life}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </script>
 </section>

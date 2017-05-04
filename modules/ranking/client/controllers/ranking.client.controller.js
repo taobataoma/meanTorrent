@@ -5,10 +5,17 @@
     .module('users.admin')
     .controller('RankingController', RankingController);
 
-  RankingController.$inject = ['$scope', 'RankingService'];
+  RankingController.$inject = ['$scope', 'RankingService', '$translate'];
 
-  function RankingController($scope, RankingService) {
+  function RankingController($scope, RankingService, $translate) {
     var vm = this;
+
+    vm.rankingTabs = [
+      {title: $translate.instant('PAGE_HEADER_RANKING_UPLOAD'), templateUrl: 'upload_ranking.html'},
+      {title: $translate.instant('PAGE_HEADER_RANKING_DOWNLOAD'), templateUrl: 'download_ranking.html'},
+      {title: $translate.instant('PAGE_HEADER_RANKING_RATIO'), templateUrl: 'ratio_ranking.html'},
+      {title: $translate.instant('PAGE_HEADER_RANKING_SCORE'), templateUrl: 'score_ranking.html'}
+    ];
 
     RankingService.get(function (data) {
       console.log(data);
