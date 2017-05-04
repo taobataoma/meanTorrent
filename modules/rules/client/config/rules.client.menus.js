@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('ranking')
+    .module('rules')
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService', '$translate'];

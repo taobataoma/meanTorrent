@@ -43,12 +43,5 @@
       roles: ['*'],
       position: 3
     });
-    menuService.addMenuItem('topbar', {
-      title: $translate.instant('MENU_VIP'),
-      state: 'torrents.vip',
-      roles: ['*'],
-      position: 6
-    });
-
   }
 }());

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('users.admin')
+    .module('rules')
     .controller('RulesController', RulesController);
 
   RulesController.$inject = ['$scope', '$translate'];
