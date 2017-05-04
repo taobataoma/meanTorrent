@@ -11,12 +11,9 @@
     $stateProvider
       .state('forums', {
         url: '/forums',
-        templateUrl: '',
-        controller: '',
-        controllerAs: '',
+        templateUrl: '/modules/forums/client/views/index.client.view.html',
         data: {
-          //roles: ['user', 'admin'],
-          pageTitle: 'Forums'
+          pageTitle: 'PAGETITLE.FORUM'
         }
       });
   }

@@ -107,7 +107,9 @@
       MOVIE_LIST: 'Movie List',
       TORRENT_INFO: 'Torrent Info',
       RANKING: 'Ranking',
-      RULES: 'Rules'
+      RULES: 'Rules',
+      VIP: 'Vip',
+      FORUM: 'Forum'
     },
 
     //TorrentsController & views

@@ -107,7 +107,9 @@
       MOVIE_LIST: '电影列表',
       TORRENT_INFO: '种子信息',
       RANKING: '排行榜',
-      RULES: '规则'
+      RULES: '规则',
+      VIP: 'Vip',
+      FORUM: '论坛'
     },
 
     //TorrentsController & views
