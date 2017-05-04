@@ -183,7 +183,7 @@
                                         <span class="timeline-comment-header-time-text">{{item.createdat | date:'yyyy-MM-dd HH:mm:ss'}}</span>
                                     </div>
                                     <div class="timeline-comment-body">
-                                        <div class="timeline-comment-body-text" ng-bind-html="vm.getCommentMarked(item);" compile="true"></div>
+                                        <div class="timeline-comment-body-text" ng-bind-html="vm.getCommentMarked(item);"></div>
                                         <div class="row text-right" ng-show="item.editedat">
                                             <p class="timeline-comment-body-edited-text">[ {{item.editedby}} {{ 'COMMENT_EDITED_INFO' | translate}} {{item.editedat | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>
                                         </div>

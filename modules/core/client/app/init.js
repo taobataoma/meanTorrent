@@ -37,9 +37,25 @@
 
   markedConfig.$inject = ['markedProvider'];
   function markedConfig(markedProvider) {
-    markedProvider.setOptions({gfm: true});
+    markedProvider.setOptions({
+      gfm: true,
+      tables: true,
+      breaks: true,
+      pedantic: false,
+      sanitize: true,
+      smartLists: true,
+      smartypants: true,
+      highlight: function (code, lang) {
+        /*global hljs*/
+        if (lang) {
+          return hljs.highlight(lang, code, true).value;
+        } else {
+          return hljs.highlightAuto(code).value;
+        }
+      }
+    });
     markedProvider.setRenderer({
-      link: function(href, title, text) {
+      link: function (href, title, text) {
         return '<a ng-click="vm.markLinkClick($event, item);" href="' + href + '"' + (title ? ' title="' + title + '"' : '') + ' target="_blank">' + text + '</a>';
       }
     });
