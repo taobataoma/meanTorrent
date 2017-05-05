@@ -5,12 +5,12 @@
     .module('users.admin')
     .run(menuConfig);
 
-  menuConfig.$inject = ['menuService', '$translate'];
+  menuConfig.$inject = ['menuService'];
 
   // Configuring the Users module
-  function menuConfig(menuService, $translate) {
+  function menuConfig(menuService) {
     menuService.addSubMenuItem('topbar', 'admin', {
-      title: $translate.instant('MENU_USERS_ADMIN'),
+      title: 'MENU_USERS_ADMIN',
       state: 'admin.users'
     });
   }

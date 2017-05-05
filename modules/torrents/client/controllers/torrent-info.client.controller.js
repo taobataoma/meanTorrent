@@ -7,11 +7,11 @@
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
-    'SubtitlesService', 'uibButtonConfig'];
+    'SubtitlesService', 'getStorageLangService'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
-                                  uibButtonConfig) {
+                                  getStorageLangService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -187,7 +187,7 @@
     vm.initInfo = function (tmdb_id) {
       TorrentsService.getTMDBInfo({
         tmdbid: tmdb_id,
-        language: 'en'
+        language: getStorageLangService.getLang()
       }, function (res) {
         Notification.success({
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_INFO_OK')

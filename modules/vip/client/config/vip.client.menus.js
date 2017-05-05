@@ -5,11 +5,11 @@
     .module('vip')
     .run(menuConfig);
 
-  menuConfig.$inject = ['menuService', '$translate'];
+  menuConfig.$inject = ['menuService'];
 
-  function menuConfig(menuService, $translate) {
+  function menuConfig(menuService) {
     menuService.addMenuItem('topbar', {
-      title: $translate.instant('MENU_VIP'),
+      title: 'MENU_VIP',
       state: 'vip',
       roles: ['*'],
       position: 6

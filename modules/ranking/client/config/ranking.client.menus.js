@@ -5,11 +5,11 @@
     .module('ranking')
     .run(menuConfig);
 
-  menuConfig.$inject = ['menuService', '$translate'];
+  menuConfig.$inject = ['menuService'];
 
-  function menuConfig(menuService, $translate) {
+  function menuConfig(menuService) {
     menuService.addMenuItem('topbar', {
-      title: $translate.instant('MENU_RANKING'),
+      title: 'MENU_RANKING',
       state: 'ranking',
       roles: ['*'],
       position: 4

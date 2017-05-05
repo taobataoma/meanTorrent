@@ -6,10 +6,10 @@
     .controller('TorrentsUploadController', TorrentsUploadController);
 
   TorrentsUploadController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
-    'TorrentsService'];
+    'TorrentsService', 'getStorageLangService'];
 
   function TorrentsUploadController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
-                                     TorrentsService) {
+                                     TorrentsService, getStorageLangService) {
     var vm = this;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -130,7 +130,7 @@
       vm.tmdb_isloading = true;
       TorrentsService.getTMDBInfo({
         tmdbid: tmdbid,
-        language: 'en'
+        language: getStorageLangService.getLang()
       }, function (res) {
         vm.tmdb_info_ok = true;
         vm.tmdb_isloading = false;

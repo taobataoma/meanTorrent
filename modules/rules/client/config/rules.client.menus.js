@@ -5,11 +5,11 @@
     .module('rules')
     .run(menuConfig);
 
-  menuConfig.$inject = ['menuService', '$translate'];
+  menuConfig.$inject = ['menuService'];
 
-  function menuConfig(menuService, $translate) {
+  function menuConfig(menuService) {
     menuService.addMenuItem('topbar', {
-      title: $translate.instant('MENU_RULES'),
+      title: 'MENU_RULES',
       state: 'rules',
       roles: ['*'],
       position: 5

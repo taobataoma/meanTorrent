@@ -6,11 +6,11 @@
     .module('torrents.admin')
     .run(menuConfig);
 
-  menuConfig.$inject = ['menuService', '$translate'];
+  menuConfig.$inject = ['menuService'];
 
-  function menuConfig(menuService, $translate) {
+  function menuConfig(menuService) {
     menuService.addSubMenuItem('topbar', 'admin', {
-      title: $translate.instant('MENU_TORRENTS_ADMIN'),
+      title: 'MENU_TORRENTS_ADMIN',
       state: 'admin.torrents.list',
       position: 1
     });

@@ -5,12 +5,12 @@
     .module('forums')
     .run(menuConfig);
 
-  menuConfig.$inject = ['menuService', '$translate'];
+  menuConfig.$inject = ['menuService'];
 
-  function menuConfig(menuService, $translate) {
+  function menuConfig(menuService) {
     // Set top bar menu items
     menuService.addMenuItem('topbar', {
-      title: $translate.instant('MENU_FORUMS'),
+      title: 'MENU_FORUMS',
       state: 'forums',
       roles: ['*'],
       position: 1

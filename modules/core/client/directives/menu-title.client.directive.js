@@ -21,7 +21,6 @@
         var menu_title = attrs.menuTitle;
         var trans = $translate.instant(menu_title);
 
-        attrs.$set('ng-bind', trans);
         element.html(trans);
       }
     }

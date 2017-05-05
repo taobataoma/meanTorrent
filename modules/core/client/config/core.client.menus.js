@@ -5,9 +5,9 @@
     .module('core')
     .run(menuConfig);
 
-  menuConfig.$inject = ['menuService', '$translate'];
+  menuConfig.$inject = ['menuService'];
 
-  function menuConfig(menuService, $translate) {
+  function menuConfig(menuService) {
     menuService.addMenu('account', {
       roles: ['user']
     });
@@ -20,22 +20,22 @@
     });
 
     menuService.addSubMenuItem('account', 'settings', {
-      title: $translate.instant('EDIT_PROFILE'),
+      title: 'EDIT_PROFILE',
       state: 'settings.profile'
     });
 
     menuService.addSubMenuItem('account', 'settings', {
-      title: $translate.instant('EDIT_PROFILE_PIC'),
+      title: 'EDIT_PROFILE_PIC',
       state: 'settings.picture'
     });
 
     menuService.addSubMenuItem('account', 'settings', {
-      title: $translate.instant('CHANGE_PASSWORD'),
+      title: 'CHANGE_PASSWORD',
       state: 'settings.password'
     });
 
     menuService.addSubMenuItem('account', 'settings', {
-      title: $translate.instant('MANAGE_SOCIAL_ACCOUNTS'),
+      title: 'MANAGE_SOCIAL_ACCOUNTS',
       state: 'settings.accounts'
     });
   }

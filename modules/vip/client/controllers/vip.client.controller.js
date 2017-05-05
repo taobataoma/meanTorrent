@@ -15,8 +15,10 @@
 
       if (o === 'en') {
         localStorageService.set('storage_user_lang', 'zh');
+        $translate.use('zh');
       } else {
         localStorageService.set('storage_user_lang', 'en');
+        $translate.use('en');
       }
     };
   }

@@ -5,13 +5,11 @@
     .module('torrents')
     .run(menuConfig);
 
-  menuConfig.$inject = ['menuService', '$translate'];
+  menuConfig.$inject = ['menuService'];
 
-  function menuConfig(menuService, $translate) {
-    console.log('menuConfig');
-
+  function menuConfig(menuService) {
     menuService.addMenuItem('topbar', {
-      title: $translate.instant('MENU_TORRENTS'),
+      title: 'MENU_TORRENTS',
       state: 'torrents',
       type: 'dropdown',
       roles: ['*'],
@@ -20,27 +18,27 @@
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'torrents', {
-      title: $translate.instant('MENU_TORRENTS_SUB.SUB_MOVIE'),
+      title: 'MENU_TORRENTS_SUB.SUB_MOVIE',
       state: 'torrents.movie',
       roles: ['*']
     });
     menuService.addSubMenuItem('topbar', 'torrents', {
-      title: $translate.instant('MENU_TORRENTS_SUB.SUB_MTV'),
+      title: 'MENU_TORRENTS_SUB.SUB_MTV',
       state: 'torrents.mtv',
       roles: ['*']
     });
     menuService.addSubMenuItem('topbar', 'torrents', {
-      title: $translate.instant('MENU_TORRENTS_SUB.SUB_MUSIC'),
+      title: 'MENU_TORRENTS_SUB.SUB_MUSIC',
       state: 'torrents.music',
       roles: ['*']
     });
     menuService.addSubMenuItem('topbar', 'torrents', {
-      title: $translate.instant('MENU_TORRENTS_SUB.SUB_OTHER'),
+      title: 'MENU_TORRENTS_SUB.SUB_OTHER',
       state: 'torrents.other',
       roles: ['*']
     });
     menuService.addMenuItem('topbar', {
-      title: $translate.instant('MENU_UPLOAD'),
+      title: 'MENU_UPLOAD',
       state: 'torrents.uploads',
       roles: ['*'],
       position: 3

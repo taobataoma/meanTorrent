@@ -32,7 +32,6 @@
 
   localStorageModuleConfig.$inject = ['localStorageServiceProvider'];
   function localStorageModuleConfig(localStorageServiceProvider) {
-    console.log('localStorageModuleConfig');
     localStorageServiceProvider
       .setPrefix('meanTorrent')
       .setStorageType('localStorage')
@@ -42,13 +41,11 @@
 
   transConfig.$inject = ['$translateProvider'];
   function transConfig($translateProvider) {
-    console.log('transConfig');
     $translateProvider.useSanitizeValueStrategy(null);
   }
 
   setDefaultLang.$inject = ['$translate', 'getStorageLangService'];
   function setDefaultLang($translate, getStorageLangService) {
-    console.log('setDefaultLang');
     var user_lang = getStorageLangService.getLang();
 
     $translate.use(user_lang);

@@ -5,9 +5,9 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', '$state', '$translate', 'TorrentsService', 'Notification', 'MeanTorrentConfig'];
+  HomeController.$inject = ['$scope', '$state', '$translate', 'TorrentsService', 'Notification', 'MeanTorrentConfig', 'getStorageLangService'];
 
-  function HomeController($scope, $state, $translate, TorrentsService, Notification, MeanTorrentConfig) {
+  function HomeController($scope, $state, $translate, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService) {
     var vm = this;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.movieTopList = undefined;
@@ -23,7 +23,7 @@
     vm.initInfo = function () {
       TorrentsService.getTMDBInfo({
         tmdbid: '329865',
-        language: 'en'
+        language: getStorageLangService.getLang()
       }, function (res) {
         Notification.success({
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_ID_OK')
