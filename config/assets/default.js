@@ -46,7 +46,9 @@ module.exports = {
         //img cropper
         'public/lib/ui-cropper/compile/unminified/ui-cropper.js',
         //highlight
-        'public/lib/highlightjs/highlight.pack.js'
+        'public/lib/highlightjs/highlight.pack.js',
+        //local-storage
+        'public/lib/angular-local-storage/dist/angular-local-storage.js'
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

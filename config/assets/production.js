@@ -46,7 +46,9 @@ module.exports = {
         //img cropper
         'public/lib/ui-cropper/compile/minified/ui-cropper.js',
         //highlight
-        'public/lib/highlightjs/highlight.pack.min.js'
+        'public/lib/highlightjs/highlight.pack.min.js',
+        //local-storage
+        'public/lib/angular-local-storage/dist/angular-local-storage.min.js'
         // endbower
       ]
     },
