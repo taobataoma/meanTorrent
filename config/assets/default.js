@@ -31,7 +31,6 @@ module.exports = {
         'public/lib/angular-ui-notification/dist/angular-ui-notification.js',
         'public/lib/angular-ui-router/release/angular-ui-router.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
-        'public/lib/angular-translate/angular-translate.js',
         'public/lib/bootstrap-filestyle/src/bootstrap-filestyle.js',
         'public/lib/angular-sanitize/angular-sanitize.js',
         //marked
@@ -48,7 +47,10 @@ module.exports = {
         //highlight
         'public/lib/highlightjs/highlight.pack.js',
         //local-storage
-        'public/lib/angular-local-storage/dist/angular-local-storage.js'
+        'public/lib/angular-local-storage/dist/angular-local-storage.js',
+        //translate
+        'public/lib/angular-translate/angular-translate.js'
+
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

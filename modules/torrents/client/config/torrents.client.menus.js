@@ -8,6 +8,8 @@
   menuConfig.$inject = ['menuService', '$translate'];
 
   function menuConfig(menuService, $translate) {
+    console.log('menuConfig');
+
     menuService.addMenuItem('topbar', {
       title: $translate.instant('MENU_TORRENTS'),
       state: 'torrents',

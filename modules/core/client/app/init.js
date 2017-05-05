@@ -9,8 +9,10 @@
   angular
     .module(app.applicationModuleName)
     .config(bootstrapConfig)
+    .config(localStorageModuleConfig)
     .config(transConfig)
-    .config(markedConfig);
+    .config(markedConfig)
+    .run(setDefaultLang);
 
   bootstrapConfig.$inject = ['$compileProvider', '$locationProvider', '$httpProvider', '$logProvider'];
 
@@ -28,11 +30,28 @@
     $logProvider.debugEnabled(app.applicationEnvironment !== 'production');
   }
 
+  localStorageModuleConfig.$inject = ['localStorageServiceProvider'];
+  function localStorageModuleConfig(localStorageServiceProvider) {
+    console.log('localStorageModuleConfig');
+    localStorageServiceProvider
+      .setPrefix('meanTorrent')
+      .setStorageType('localStorage')
+      .setDefaultToCookie(true)
+      .setNotify(true, true);
+  }
+
   transConfig.$inject = ['$translateProvider'];
   function transConfig($translateProvider) {
+    console.log('transConfig');
     $translateProvider.useSanitizeValueStrategy(null);
-    $translateProvider.preferredLanguage('en');
-    //$translateProvider.fallbackLanguage('cn');
+  }
+
+  setDefaultLang.$inject = ['$translate', 'getStorageLangService'];
+  function setDefaultLang($translate, getStorageLangService) {
+    console.log('setDefaultLang');
+    var user_lang = getStorageLangService.getLang();
+
+    $translate.use(user_lang);
   }
 
   markedConfig.$inject = ['markedProvider'];

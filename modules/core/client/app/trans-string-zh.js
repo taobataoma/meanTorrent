@@ -12,7 +12,7 @@
   // 请不要修改翻译部分之外的代码
   // **************************************************
 
-  var stringcn = {
+  var string_zh = {
     COMINGSOON: '开发中，请稍候...',
 
     //client topbar menu
@@ -366,7 +366,7 @@
   // config $translateProvider
   transConfig.$inject = ['$translateProvider'];
   function transConfig($translateProvider) {
-    $translateProvider.translations('cn', stringcn);
+    $translateProvider.translations('zh', string_zh);
   }
 
 }(ApplicationConfiguration));

@@ -5,9 +5,9 @@
     .module('users.admin')
     .controller('RankingController', RankingController);
 
-  RankingController.$inject = ['$scope', 'RankingService', '$translate'];
+  RankingController.$inject = ['$scope', 'RankingService', '$translate', 'localStorageService'];
 
-  function RankingController($scope, RankingService, $translate) {
+  function RankingController($scope, RankingService, $translate, localStorageService) {
     var vm = this;
 
     vm.rankingTabs = [
@@ -17,13 +17,15 @@
       {title: $translate.instant('PAGE_HEADER_RANKING_SCORE'), templateUrl: 'score_ranking.html'}
     ];
 
-    RankingService.get(function (data) {
-      console.log(data);
+    vm.getRankingList = function () {
+      RankingService.get(function (data) {
+        console.log(data);
 
-      vm.upload_ranking = data.upload_ranking;
-      vm.download_ranking = data.download_ranking;
-      vm.ratio_ranking = data.ratio_ranking;
-      vm.score_ranking = data.score_ranking;
-    });
+        vm.upload_ranking = data.upload_ranking;
+        vm.download_ranking = data.download_ranking;
+        vm.ratio_ranking = data.ratio_ranking;
+        vm.score_ranking = data.score_ranking;
+      });
+    };
   }
 }());

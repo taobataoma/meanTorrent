@@ -12,14 +12,14 @@
   // Don`t change other code
   // **************************************************
 
-  var stringen = {
+  var string_en = {
     COMINGSOON: 'coming soon...',
 
     //client topbar menu
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
-    MENU_USERS_ADMIN: 'Manage Torrents',
+    MENU_USERS_ADMIN: 'Manage User',
     MENU_UPLOAD: 'Upload',
     MENU_FORUMS: 'Forums',
     MENU_RANKING: 'Ranking',
@@ -366,7 +366,7 @@
   // config $translateProvider
   transConfig.$inject = ['$translateProvider'];
   function transConfig($translateProvider) {
-    $translateProvider.translations('en', stringen);
+    $translateProvider.translations('en', string_en);
   }
 
 }(ApplicationConfiguration));
