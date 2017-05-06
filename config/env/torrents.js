@@ -2,6 +2,10 @@
 
 module.exports = {
   meanTorrentConfig: {
+    language: [
+      {name: 'en', css: '.flag-icon-gb'},
+      {name: 'zh', css: '.flag-icon-cn'}
+    ],
     announce: {
       url: 'http://127.0.0.1:3000/announce',
       announce_prefix: '[CHD.im].',
