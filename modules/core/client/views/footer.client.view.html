@@ -1,8 +1,13 @@
-<div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;">
+<div class="container-fluid" style="padding-top: 30px; padding-bottom: 30px;" ng-controller="HeaderController as vm">
     <div class="container">
         <div class="row view-footer">
             <div class="col-sm-7 col-sm-offset-1">
                 <ul>
+                    <li>
+                        <span class="lang-list lang-footer">
+                            <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);" ng-repeat="l in vm.language | orderBy: '-index'"></span>
+                        </span>
+                    </li>
                     <li translate="GIT_REPO"></li>
                     <li translate="MIT_PROTOCOL"></li>
                 </ul>

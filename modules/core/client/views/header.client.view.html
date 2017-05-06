@@ -36,6 +36,12 @@
           <span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" role="menu">
+          <li>
+            <span class="lang-list">
+              <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);" ng-repeat="l in vm.language | orderBy: '-index'"></span>
+            </span>
+          </li>
+          <li class="divider"></li>
           <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
             <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a>
           </li>

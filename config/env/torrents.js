@@ -3,8 +3,8 @@
 module.exports = {
   meanTorrentConfig: {
     language: [
-      {name: 'en', css: '.flag-icon-gb'},
-      {name: 'zh', css: '.flag-icon-cn'}
+      {name: 'en', index: 0, class: 'flag-icon-gb', title: 'English'},
+      {name: 'zh', index: 1, class: 'flag-icon-cn', title: '中文'}
     ],
     announce: {
       url: 'http://127.0.0.1:3000/announce',

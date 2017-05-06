@@ -5,10 +5,11 @@
     .module('core')
     .controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService'];
+  HeaderController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService'];
 
-  function HeaderController($scope, $state, Authentication, menuService) {
+  function HeaderController($scope, $state, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService) {
     var vm = this;
+    vm.language = MeanTorrentConfig.meanTorrentConfig.language;
 
     vm.accountMenu = menuService.getMenu('account').items[0];
     vm.authentication = Authentication;
@@ -21,5 +22,13 @@
       // Collapsing the menu after navigation
       vm.isCollapsed = false;
     }
+
+    vm.changeLanguage = function (langKey) {
+      console.log('langKey=' + langKey);
+      localStorageService.set('storage_user_lang', langKey);
+      $translate.use(langKey);
+
+      $state.reload();
+    };
   }
 }());

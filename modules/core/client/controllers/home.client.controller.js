@@ -13,7 +13,6 @@
     vm.movieTopList = undefined;
 
     vm.info_is_ready = false;
-    //$translate.use('en');
 
     vm.COMING = 'coming soon...';
 
