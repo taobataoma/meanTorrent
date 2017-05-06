@@ -241,6 +241,9 @@
     USERS_LIST: '用户列表',
     USERS_UPDATE: '修改',
 
+    //vip,rules views
+    BUTTON_DNATE: '捐 赠',
+
     //user settings
     SETTINGS: '控制面版',
     BUTTON_SAVE_PROFILE: '保存',

@@ -527,7 +527,37 @@
     margin-left: 0;
     .flag-icon {
         font-size: 15px;
-        margin-left: 0px;
+        margin-left: 0;
         margin-right: 10px;
     }
 }
+
+.btn-donate {
+    @media (min-width: @screen-sm) {
+        position: absolute;
+        width: 70%;
+        top: 50px;
+    }
+    @media (max-width: @screen-sm) {
+        position: relative;
+        width: 95%;
+        margin: 30px 5px;
+    }
+}
+
+.btn-donate-hide {
+    @media (min-width: @screen-xs-max) {
+        display: none;
+    }
+}
+
+.btn-donate-show {
+    @media (max-width: @screen-xs-max) {
+        display: none;
+    }
+}
+
+.btn-mt {
+    .button-variant(@btn-mt-color; @btn-mt-bg; @btn-mt-border);
+}
+

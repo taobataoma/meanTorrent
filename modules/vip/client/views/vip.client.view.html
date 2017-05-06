@@ -1,8 +1,14 @@
 <section class="container padding-top-10" ng-controller="VipController as vm" ng-init="vm.init();">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-sm-2 col-md-2 btn-donate-hide">
+            <button class="btn btn-mt btn-donate center-block">{{'BUTTON_DNATE' | translate}}</button>
+        </div>
+        <div class="col-sm-10 col-md-9 col-md-offset-1">
             <div marked src="'/modules/vip/client/templates/vip-'+vm.lang+'.md'">
             </div>
+        </div>
+        <div class="col-sm-2 col-md-2 btn-donate-show">
+            <button class="btn btn-mt btn-donate center-block">{{'BUTTON_DNATE' | translate}}</button>
         </div>
     </div>
 </section>

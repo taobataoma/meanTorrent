@@ -241,6 +241,9 @@
     USERS_LIST: 'Users',
     USERS_UPDATE: 'Update',
 
+    //vip,rules views
+    BUTTON_DNATE: 'Donate',
+
     //user settings
     SETTINGS: 'Settings',
     BUTTON_SAVE_PROFILE: 'Save Profile',

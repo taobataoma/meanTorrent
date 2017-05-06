@@ -5,3 +5,4 @@
 如果你想修改规则内容, 请编辑 .md 文件, 它存放于 `modules/vip/client/templates/vip-xx.md`.
 
 `xx` 代表语言标识符, 如 `zh`,`en` 等.
+
