@@ -14,7 +14,9 @@ module.exports = {
         //img cropper
         'public/lib/ui-cropper/compile/unminified/ui-cropper.css',
         //highlight
-        'public/lib/highlightjs/styles/default.css'
+        'public/lib/highlightjs/styles/default.css',
+        //flag-icon
+        'public/lib/flag-icon-css/css/flag-icon.css'
         // endbower
       ],
       js: [
