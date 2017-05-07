@@ -78,6 +78,7 @@
       SIZE: 'Size',
       SEEDS_LEECHERS_FINISHED: 'S/L/F',
       PUBLISHER: 'Publisher',
+      ADMIN_TOOLS: 'Admin Tools',
       LIFETIME: 'Life',
       VOTES: 'Votes',
 
@@ -175,6 +176,7 @@
 
     ADMIN_BASIC_COMMAND: 'Basic Command',
     ADMIN_BASIC_DELETE: 'Delete torrent',
+    ADMIN_BASIC_TYPE_SET: 'Sale Type',
     ADMIN_SALE_TYPE_SET: 'Sale Type Set',
 
     TORRENT_DELETE_CONFIRM_OK: 'Delete',

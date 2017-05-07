@@ -112,11 +112,11 @@
                 <thead>
                     <tr>
                         <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
-                        <th>{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
-                        <th>{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
-                        <th>{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
-                        <th>{{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}</th>
-                        <th>{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
+                        <th class="text-center">{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
+                        <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
+                        <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
+                        <th class="text-center">{{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}</th>
+                        <th class="text-center">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -144,7 +144,8 @@
 
                                     <div class="list-all-tags">
                                         <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
-                                    <span class="label label-release label-warning" ng-click="vm.onReleaseClicked(item.torrent_release); $event.stopPropagation();">
+                                    <span class="label label-release label-warning"
+                                          ng-click="vm.onReleaseClicked(item.torrent_release); $event.stopPropagation();">
                                         {{ item.torrent_release}}
                                     </span>
                                     <span class="label label-sale" ng-if="item.isSaling"
@@ -163,12 +164,12 @@
                             </div>
                         </td>
                         <td class="col-md-1 td-v-middle text-center">
-                        <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                              class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.torrent_imdb_votes | number : 1}}</span>
+                            <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
+                                  class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.torrent_imdb_votes | number : 1}}</span>
                         </td>
-                        <td class="col-md-1 td-v-middle">{{item.createdat | life}}</td>
-                        <td class="col-md-1 td-v-middle">{{item.torrent_size | bytes:2}}</td>
-                        <td class="col-md-1 td-v-middle list-user-info">
+                        <td class="col-md-1 td-v-middle text-center">{{item.createdat | life}}</td>
+                        <td class="col-md-1 td-v-middle text-center">{{item.torrent_size | bytes:2}}</td>
+                        <td class="col-md-1 td-v-middle text-center list-user-info">
                             <p class="no-margin-p" title="{{ 'TITLE_ALT.SEEDS' | translate}}">
                                 <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
                                 {{item.torrent_seeds}}
@@ -184,7 +185,7 @@
                                 {{item.torrent_finished}}
                             </p>
                         </td>
-                        <td class="col-md-1 td-v-middle">{{item.user.displayName}}</td>
+                        <td class="col-md-1 td-v-middle text-center">{{item.user.displayName}}</td>
                     </tr>
                 </tbody>
             </table>

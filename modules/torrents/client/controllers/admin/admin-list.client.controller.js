@@ -6,10 +6,10 @@
     .controller('TorrentsAdminController', TorrentsAdminController);
 
   TorrentsAdminController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$window'];
+    'MeanTorrentConfig', 'DownloadService', '$window', 'ModalConfirmService'];
 
   function TorrentsAdminController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                              DownloadService, $window) {
+                                   DownloadService, $window, ModalConfirmService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -274,6 +274,65 @@
     vm.openTorrentInfo = function (id) {
       var url = $state.href('torrents.view', {torrentId: id});
       $window.open(url, '_blank');
+    };
+
+    /**
+     * deleteTorrent
+     */
+    vm.deleteTorrent = function (item) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('TORRENT_DELETE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('TORRENT_DELETE_CONFIRM_OK'),
+        headerText: $translate.instant('TORRENT_DELETE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('TORRENT_DELETE_CONFIRM_BODY_TEXT'),
+        bodyParams: item.torrent_filename
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          item.$remove(function (response) {
+            successCallback(response);
+          }, function (errorResponse) {
+            errorCallback(errorResponse);
+          });
+
+          function successCallback(res) {
+            vm.torrentPagedItems.splice(vm.torrentPagedItems.indexOf(item), 1);
+            Notification.success({
+              message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_DELETE_SUCCESSFULLY')
+            });
+          }
+
+          function errorCallback(res) {
+            vm.error_msg = res.data.message;
+            Notification.error({
+              message: res.data.message,
+              title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DELETE_ERROR')
+            });
+          }
+        });
+    };
+
+
+    /**
+     * setSaleType
+     */
+    vm.setSaleType = function (item, st) {
+      TorrentsService.setSaleType({
+        _torrentId: item._id,
+        _saleType: st.name
+      }, function (res) {
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETSALETYPE_SUCCESSFULLY')
+        });
+
+        vm.torrentPagedItems[vm.torrentPagedItems.indexOf(item)] = res;
+      }, function (res) {
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETSALETYPE_ERROR')
+        });
+      });
     };
   }
 }());

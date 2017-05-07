@@ -78,6 +78,7 @@
       SIZE: '大小',
       SEEDS_LEECHERS_FINISHED: '上/下/完',
       PUBLISHER: '发布者',
+      ADMIN_TOOLS: '管理工具',
       LIFETIME: '存活时间',
       VOTES: '评分',
 
@@ -175,6 +176,7 @@
 
     ADMIN_BASIC_COMMAND: '操作命令',
     ADMIN_BASIC_DELETE: '删除种子',
+    ADMIN_BASIC_TYPE_SET: '设置促销',
     ADMIN_SALE_TYPE_SET: '种子促销类型',
 
     TORRENT_DELETE_CONFIRM_OK: '删除',

@@ -20,7 +20,8 @@
       closeButtonText: 'Close',
       actionButtonText: 'Yes',
       headerText: 'Confirm?',
-      bodyText: 'Confirm this action?'
+      bodyText: 'Confirm this action?',
+      bodyParams: undefined
     };
 
     var showModal = function (customModalDefaults, customModalOptions) {
