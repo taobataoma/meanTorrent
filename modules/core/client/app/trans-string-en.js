@@ -109,7 +109,11 @@
       RANKING: 'Ranking',
       RULES: 'Rules',
       VIP: 'Vip',
-      FORUM: 'Forum'
+      FORUM: 'Forum',
+      ADMIN_USER_LIST: 'User List',
+      ADMIN_USER_VIEW: 'View User',
+      ADMIN_USER_EDIT: 'Edit User',
+      ADMIN_TORRENTS_LIST: 'Torrents LIst'
     },
 
     //TorrentsController & views

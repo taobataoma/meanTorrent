@@ -3,12 +3,12 @@
 
   angular
     .module('torrents')
-    .controller('TorrentsController', TorrentsController);
+    .controller('TorrentsAdminController', TorrentsAdminController);
 
-  TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
+  TorrentsAdminController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$window'];
 
-  function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
+  function TorrentsAdminController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                               DownloadService, $window) {
     var vm = this;
     vm.user = Authentication.user;
@@ -73,21 +73,6 @@
     };
 
     /**
-     * getMovieTopInfo
-     */
-    vm.getMovieTopInfo = function () {
-      TorrentsService.get({
-        limit: vm.topItems
-      }, function (items) {
-        vm.movieTopInfo = items.rows;
-      }, function (err) {
-        Notification.error({
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_MOVIE_INFO_ERROR')
-        });
-      });
-    };
-
-    /**
      * onRadioTagClicked
      * @param event
      * @param n: tag name
@@ -143,14 +128,8 @@
      * @param p: page number
      */
     vm.getMoviePageInfo = function (p, callback) {
-      //if searchKey or searchTags has value, the skip=0
-      var skip = vm.topItems;
-      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear) {
-        skip = 0;
-      }
-
       TorrentsService.get({
-        skip: (p - 1) * vm.torrentItemsPerPage + 0,  //skip
+        skip: (p - 1) * vm.torrentItemsPerPage,
         limit: vm.torrentItemsPerPage,
         keys: vm.searchKey.trim(),
         torrent_status: 'reviewed',

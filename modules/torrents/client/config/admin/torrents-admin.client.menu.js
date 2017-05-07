@@ -11,7 +11,8 @@
   function menuConfig(menuService) {
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_TORRENTS_ADMIN',
-      state: 'admin.torrents.list',
+      state: 'admin.torrents',
+      target: '_blank',
       position: 1
     });
   }

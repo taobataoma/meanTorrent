@@ -109,7 +109,11 @@
       RANKING: '排行榜',
       RULES: '规则',
       VIP: 'Vip',
-      FORUM: '论坛'
+      FORUM: '论坛',
+      ADMIN_USER_LIST: '用户管理',
+      ADMIN_USER_VIEW: '查看用户',
+      ADMIN_USER_EDIT: '编辑用户',
+      ADMIN_TORRENTS_LIST: '种子管理'
     },
 
     //TorrentsController & views
