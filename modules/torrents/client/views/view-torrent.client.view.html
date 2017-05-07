@@ -257,7 +257,7 @@
                                     <textarea class="form-control new_comment_textarea" ng-model="vm.new_comment_content"></textarea>
 
                                     <div class="row">
-                                        <div class="col-sm-9" style="display: table;">
+                                        <div class="col-sm-6" style="display: table;">
                                             <a class="tabnav-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"
                                                ng-show="!vm.reply_action"
                                                data-ga-click="Markdown Toolbar, click, help">
@@ -269,7 +269,7 @@
                                                 {{ 'MARKDOWN_LINK' | translate }}
                                             </a>
                                         </div>
-                                        <div class="col-sm-3 text-right">
+                                        <div class="col-sm-6 text-right">
                                             <button class="btn btn-warning" translate="SUBMIT_CANCEL" ng-click="vm.submitInit();"></button>
                                             <button class="btn btn-success" translate="SUBMIT_COMMENT" ng-click="vm.submitComment();"
                                                     ng-disabled="!vm.new_comment_content"></button>

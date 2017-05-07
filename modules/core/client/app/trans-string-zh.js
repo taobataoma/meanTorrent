@@ -242,7 +242,7 @@
     USERS_UPDATE: '修改',
 
     //vip,rules views
-    BUTTON_DNATE: '捐 赠',
+    BUTTON_DNATE: '捐 赠 Vip',
 
     //user settings
     SETTINGS: '控制面版',

@@ -242,7 +242,7 @@
     USERS_UPDATE: 'Update',
 
     //vip,rules views
-    BUTTON_DNATE: 'Donate',
+    BUTTON_DNATE: 'Donate Vip',
 
     //user settings
     SETTINGS: 'Settings',
