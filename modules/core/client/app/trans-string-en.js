@@ -122,6 +122,7 @@
     MOVIE_PAGE_INFO_EMPTY: 'No movie founded, please change some new tags to research',
     TAGS_SEARCH: 'Tags Search',
     CA_KEYWORD: 'Keyword',
+    CA_TORRENT_STATUS: 'Torrent status',
     PH_KEYWORD: 'Search keyword',
     CLEAR_ALL_CONDITION: 'Clear All Condition',
     MORE_TAGS: 'More Tags',
@@ -175,6 +176,7 @@
     OTHER_TORRENT_LIST_TITLE: 'This resources has {{x}} other version torrent, you can view or download from here:',
 
     ADMIN_BASIC_COMMAND: 'Basic Command',
+    ADMIN_BASIC_REVIEWED: 'Reviewed',
     ADMIN_BASIC_DELETE: 'Delete torrent',
     ADMIN_BASIC_TYPE_SET: 'Sale Type',
     ADMIN_SALE_TYPE_SET: 'Sale Type Set',
@@ -187,6 +189,8 @@
     TORRENT_DELETE_ERROR: 'Torrent delete failed',
     TORRENT_SETSALETYPE_SUCCESSFULLY: 'Torrent sale type set successfully',
     TORRENT_SETSALETYPE_ERROR: 'Torrent sale type set failed',
+    TORRENT_SETREVIEWED_SUCCESSFULLY: 'Torrent status reviewed set successfully',
+    TORRENT_SETREVIEWED_ERROR: 'Torrent status reviewed set failed',
 
     //page text
     PAGE_TEXT_FIRST: 'First',

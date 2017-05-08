@@ -30,6 +30,13 @@
           torrentId: '@_torrentId',
           saleType: '@_saleType'
         }
+      },
+      setReviewedStatus: {
+        method: 'PUT',
+        url: '/api/torrents/:torrentId/set/reviewed',
+        params: {
+          torrentId: '@_torrentId'
+        }
       }
     });
 

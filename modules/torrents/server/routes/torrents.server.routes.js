@@ -28,5 +28,8 @@ module.exports = function (app) {
   app.route('/api/torrents/:torrentId/set/saletype/:saleType')
     .put(torrents.setSaleType);
 
+  app.route('/api/torrents/:torrentId/set/reviewed')
+    .put(torrents.setReviewedStatus);
+
   app.param('torrentId', torrents.torrentByID);
 };

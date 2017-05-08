@@ -30,6 +30,31 @@
                         </div>
                     </dd>
 
+                    <dt class="h-line">{{ 'CA_TORRENT_STATUS' | translate}}:</dt>
+                    <dd class="h-line">
+                        <div class="btn-group btn-group-xs" role="group">
+                            <button id="torrent_status_reviewed"
+                                    class="btn btn-xs btn-tag" value="reviewed"
+                                    ng-class="{'btn-success': vm.torrentStatus == 'reviewed', 'btn-default': vm.torrentStatus != 'reviewed'}"
+                                    ng-click="vm.onTorrentStatusClicked($event, 'reviewed')">
+                                REVIEWED
+                            </button>
+                            <button id="torrent_status_new"
+                                    class="btn btn-xs btn-tag" value="new"
+                                    ng-class="{'btn-success': vm.torrentStatus == 'new', 'btn-default': vm.torrentStatus != 'new'}"
+                                    ng-click="vm.onTorrentStatusClicked($event, 'new')">
+                                NEW
+                            </button>
+                            <button id="torrent_status_all"
+                                    class="btn btn-xs btn-tag" value="all"
+                                    ng-class="{'btn-success': vm.torrentStatus == 'all', 'btn-default': vm.torrentStatus != 'all'}"
+                                    ng-click="vm.onTorrentStatusClicked($event, 'all')">
+                                ALL
+                            </button>
+                            </span>
+                        </div>
+                    </dd>
+
                     <div class="more-tags panel-collapsed" style="display: none;">
                         <div ng-repeat="item in vm.resourcesTags.movie.radio">
                             <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
@@ -94,6 +119,7 @@
                                 <div class="media-body">
                                     <h5 class="media-heading">{{item.torrent_original_title}}
                                         <span ng-show="item.torrent_original_title!=item.torrent_title"> / {{item.torrent_title}}</span>
+                                        <span class="upload-by" ng-show="item.user.displayName"> (By: {{item.user.displayName}})</span>
                                     <span class="label label-download text-uppercase"
                                           title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
                                           ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();">
@@ -115,6 +141,7 @@
                                     </span>
                                     <span class="label label-sale" ng-if="item.isSaling"
                                           title="{{vm.getSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
+                                          ng-click="$event.stopPropagation();"
                                           ng-class="{'label-default': !item.isSaling, 'label-success': item.isSaling}">
                                             {{item.torrent_sale_status}} {{item.torrent_sale_expires | unlife}}
                                     </span>
@@ -152,14 +179,21 @@
                         </td>
                         <td class="col-md-1 td-v-middle text-center">
                             <div>
-                                <button class="btn btn-md btn-default btn-block" ng-click="vm.deleteTorrent(item); $event.stopPropagation();">
+                                <button class="btn btn-xs btn-default btn-block"
+                                        ng-show="item.torrent_status == 'new'"
+                                        ng-click="vm.reviewedTorrentStatus(item); $event.stopPropagation();">
+                                    {{ 'ADMIN_BASIC_REVIEWED' | translate}}
+                                </button>
+                            </div>
+                            <div class="margin-top-2">
+                                <button class="btn btn-xs btn-default btn-block" ng-click="vm.deleteTorrent(item); $event.stopPropagation();">
                                     {{ 'ADMIN_BASIC_DELETE' | translate}}
                                 </button>
                             </div>
-                            <div class="margin-top-10">
+                            <div class="margin-top-2">
                                 <div class="admin-tools-btn-list btn-group" uib-dropdown dropdown-append-to-body>
                                     <button id="btn-append-to-body" type="button"
-                                            class="btn btn-md btn-default btn-block"
+                                            class="btn btn-xs btn-default btn-block"
                                             ng-click="$event.stopPropagation();"
                                             uib-dropdown-toggle>
                                         {{'ADMIN_BASIC_TYPE_SET' | translate }} <span class="caret"></span>
@@ -168,7 +202,7 @@
                                         aria-labelledby="btn-append-to-body">
                                         <li role="menuitem" ng-repeat="st in vm.torrentSalesType.value"
                                             ng-class="{'active': item.torrent_sale_status == st.name, 'divider-item': $index != 0 && $index % 5 == 0}">
-                                            <a href="#" ng-click="vm.setSaleType(item, st);">{{st.name}}</a>
+                                            <a href="#" class="small" ng-click="vm.setSaleType(item, st);">{{st.name}}</a>
                                         </li>
                                     </ul>
                                 </div>

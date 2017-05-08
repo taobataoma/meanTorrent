@@ -22,6 +22,7 @@
     vm.searchKey = '';
     vm.releaseYear = undefined;
     vm.topItems = 6;
+    vm.torrentStatus = 'reviewed';
 
     /**
      * If user is not signed in then redirect back home
@@ -70,6 +71,25 @@
           }, 100);
         });
       });
+    };
+
+    /**
+     * onTorrentStatusClicked
+     * @param event
+     * @param s: status value
+     */
+    vm.onTorrentStatusClicked = function (event, s) {
+      var e = angular.element(event.currentTarget);
+
+      //if (e.hasClass('btn-success')) {
+      //  return;
+      //} else {
+      //  e.addClass('btn-success').removeClass('btn-default').siblings().removeClass('btn-success').addClass('btn-default');
+      //  vm.torrentStatus = s;
+      //}
+      vm.torrentStatus = s;
+      e.blur();
+      vm.torrentBuildPager();
     };
 
     /**
@@ -132,7 +152,7 @@
         skip: (p - 1) * vm.torrentItemsPerPage,
         limit: vm.torrentItemsPerPage,
         keys: vm.searchKey.trim(),
-        torrent_status: 'reviewed',
+        torrent_status: vm.torrentStatus,
         torrent_type: 'movie',
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags
@@ -331,6 +351,27 @@
         Notification.error({
           message: res.data.message,
           title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETSALETYPE_ERROR')
+        });
+      });
+    };
+
+    /**
+     * reviewedTorrentStatus
+     * @param item
+     */
+    vm.reviewedTorrentStatus = function (item) {
+      TorrentsService.setReviewedStatus({
+        _torrentId: item._id
+      }, function (res) {
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETREVIEWED_SUCCESSFULLY')
+        });
+
+        vm.torrentPagedItems[vm.torrentPagedItems.indexOf(item)] = res;
+      }, function (res) {
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETREVIEWED_ERROR')
         });
       });
     };

@@ -328,6 +328,28 @@ exports.setSaleType = function (req, res) {
 };
 
 /**
+ * setReviewedStatus
+ * @param req
+ * @param res
+ * @returns {*}
+ */
+exports.setReviewedStatus = function (req, res) {
+  var torrent = req.torrent;
+
+  torrent.torrent_status = 'reviewed';
+
+  torrent.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(torrent);
+    }
+  });
+};
+
+/**
  * delete a torrent
  * @param req
  * @param res
@@ -400,8 +422,12 @@ exports.list = function (req, res) {
   }
 
   var condition = {};
-  condition.torrent_status = status;
-  condition.torrent_type = stype;
+  if (status !== 'all') {
+    condition.torrent_status = status;
+  }
+  if (stype !== 'all') {
+    condition.torrent_type = stype;
+  }
 
   if (tagsA.length > 0) {
     condition.torrent_tags = {$all: tagsA};
