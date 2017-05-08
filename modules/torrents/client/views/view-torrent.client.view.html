@@ -156,12 +156,12 @@
                 <div class="panel-heading text-center"><strong>{{ 'USER_COMMENT_LIST' | translate}}</strong> <span
                         class="badge badge_info">{{vm.torrentLocalInfo._replies.length}}</span></div>
                 <div class="panel-body">
-                    <uib-pagination boundary-links="true" max-size="8" items-per-page="vm.commentItemsPerPage" total-items="vm.commentFilterLength"
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.commentItemsPerPage" total-items="vm.commentFilterLength"
                                     ng-model="vm.commentCurrentPage" ng-change="vm.commentPageChanged(true)"
                                     ng-if="vm.torrentLocalInfo._replies.length > 0"
                                     first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
                                     next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                    </uib-pagination>
+                    </ul>
 
                     <div id="comment-list-div">
                         <div class="comment-list" id="{{item._id}}" scroll-if="item._id==vm.scrollToId" offset-top="-60"
@@ -235,12 +235,12 @@
                         </div>
                     </div>
 
-                    <uib-pagination boundary-links="true" max-size="8" items-per-page="vm.commentItemsPerPage" total-items="vm.commentFilterLength"
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.commentItemsPerPage" total-items="vm.commentFilterLength"
                                     ng-model="vm.commentCurrentPage" ng-change="vm.commentPageChanged(true)"
                                     ng-if="vm.torrentLocalInfo._replies.length > 0"
                                     first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
                                     next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                    </uib-pagination>
+                    </ul>
                     <div class="padding-top-20"></div>
 
                     <div class="comment-new">

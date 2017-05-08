@@ -101,11 +101,11 @@
 
     <div class="torrent-list" id="top_of_torrent_list">
         <div class="pagination-div-top">
-            <uib-pagination boundary-links="true" max-size="8" items-per-page="vm.torrentItemsPerPage" total-items="vm.torrentFilterLength"
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.torrentItemsPerPage" total-items="vm.torrentFilterLength"
                             ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"
                             first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
                             next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-            </uib-pagination>
+            </ul>
         </div>
         <div class="table-responsive">
             <table class="table table-hover tb-v-middle">
@@ -192,11 +192,11 @@
         </div>
 
         <div class="pagination-div-bottom">
-            <uib-pagination boundary-links="true" max-size="8" items-per-page="vm.torrentItemsPerPage" total-items="vm.torrentFilterLength"
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.torrentItemsPerPage" total-items="vm.torrentFilterLength"
                             ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"
                             first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
                             next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-            </uib-pagination>
+            </ul>
         </div>
     </div>
 </section>
