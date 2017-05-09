@@ -1,29 +1,65 @@
 <!-- The chat view -->
-<section class="container">
-  <div class="page-header">
-    <h1>Chat Example</h1>
-  </div>
-  <!-- The message form -->
-  <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="vm.sendMessage();">
-    <fieldset class="row">
-      <div class="input-group">
-        <input type="text" id="messageText" name="messageText" class="form-control" ng-model="vm.messageText" placeholder="Enter new message" autofocus>
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" ng-disabled="!vm.messageText.length">Submit</button>
-        </span>
-      </div>
-    </fieldset>
-  </form>
-  <ul class="list-unstyled">
-    <!-- List all messages -->
-    <li class="col-xs-12 col-md-offset-4 col-md-4 chat-message" ng-repeat="message in vm.messages">
-      <small class="pull-right text-muted" ng-bind="message.created | date:'mediumTime'"></small>
-      <img ng-src="/{{message.profileImageURL}}" alt="{{message.username}}" class="pull-left chat-profile-image" />
-      <div class="pull-left chat-message-details">
-        <strong ng-bind="message.username"></strong>
-        <br>
-        <span ng-bind="message.text"></span>
-      </div>
-    </li>
-  </ul>
+<section class="container chat-container" ng-init="vm.initChatView();">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="chat-message-list">
+                <div class="chat-title">
+                    <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> <span>{{'CHAT_WELCOME' | translate}}</span>
+                </div>
+
+                <div class="chat-body">
+
+                </div>
+
+                <div class="chat-footer">
+
+                </div>
+
+                <!--<div class="row">-->
+                    <!--<form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="vm.sendMessage();">-->
+                        <!--<fieldset class="row">-->
+                            <!--<div class="input-group">-->
+                                <!--<input type="text" id="messageText" name="messageText" class="form-control" ng-model="vm.messageText"-->
+                                       <!--placeholder="Enter new message"-->
+                                       <!--autofocus>-->
+                            <!--<span class="input-group-btn">-->
+                              <!--<button type="submit" class="btn btn-primary" ng-disabled="!vm.messageText.length">Submit</button>-->
+                            <!--</span>-->
+                            <!--</div>-->
+                        <!--</fieldset>-->
+                    <!--</form>-->
+                    <!--<ul class="list-unstyled">-->
+                        <!--&lt;!&ndash; List all messages &ndash;&gt;-->
+                        <!--<li class="col-xs-12 col-md-offset-4 col-md-4 chat-message" ng-repeat="message in vm.messages">-->
+                            <!--<small class="pull-right text-muted" ng-bind="message.created | date:'mediumTime'"></small>-->
+                            <!--<img ng-src="/{{message.profileImageURL}}" alt="{{message.username}}" class="pull-left chat-profile-image"/>-->
+
+                            <!--<div class="pull-left chat-message-details">-->
+                                <!--<strong ng-bind="message.username"></strong>-->
+                                <!--<br>-->
+                                <!--<span ng-bind="message.text"></span>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="chat-user-list">
+                <div class="user-title">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span>{{'CHAT_USERS_LIST' | translate}}</span>
+                </div>
+
+                <div class="user-body">
+
+                </div>
+
+                <div class="user-footer">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 </section>

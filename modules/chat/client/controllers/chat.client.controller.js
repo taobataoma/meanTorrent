@@ -51,5 +51,13 @@
       // Clear the message text
       vm.messageText = '';
     }
+
+    vm.initChatView = function () {
+      var e = angular.element('.chat-message-list');
+      var u = angular.element('.chat-user-list');
+      var h = document.documentElement.clientHeight - 50 - 88 - 16;
+      e.css('height', h + 'px');
+      u.css('height', h + 'px');
+    };
   }
 }());

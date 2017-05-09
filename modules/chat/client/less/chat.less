@@ -1,0 +1,51 @@
+@import (reference) "../../../core/client/less/mt-var.less";
+
+.chat-message-list {
+    height: 100%;
+    margin: 8px -15px 8px 0;
+    border: solid 1px lighten(@gray-light, 38%);
+    border-radius: 3px;
+    .chat-title {
+        color: @gray-light;
+        height: 40px;
+        padding: 10px 15px 0 15px;
+        background-color: lighten(@gray-light, 48%);
+        border-bottom: solid 1px lighten(@gray-light, 45%);
+        .glyphicon {
+            color: @mt-base-color;
+        }
+    }
+    .chat-body {
+        height: ~"calc(100% - 80px)";
+    }
+    .chat-footer {
+        height: 40px;
+        background-color: lighten(@gray-light, 48%);
+        border-top: solid 1px lighten(@gray-light, 45%);
+    }
+}
+
+.chat-user-list {
+    height: 100%;
+    margin: 8px 0;
+    border: solid 1px lighten(@gray-light, 38%);
+    border-radius: 3px;
+    .user-title {
+        color: @gray-light;
+        height: 40px;
+        padding: 10px 15px 0 15px;
+        background-color: lighten(@gray-light, 48%);
+        border-bottom: solid 1px lighten(@gray-light, 45%);
+        .glyphicon {
+            color: @mt-base-color;
+        }
+    }
+    .user-body {
+        height: ~"calc(100% - 80px)";
+    }
+    .user-footer {
+        height: 40px;
+        background-color: lighten(@gray-light, 48%);
+        border-top: solid 1px lighten(@gray-light, 45%);
+    }
+}

@@ -282,6 +282,10 @@
     RESET_PASSKEY_SUCCESSFULLY: 'Passkey reset successfully',
     RESET_PASSKEY_ERROR: 'Passkey reset failed',
 
+    //chat view
+    CHAT_USERS_LIST: 'Users List',
+    CHAT_WELCOME: 'Welcome to join the chat room, please follow the chat rules, and have a good time!',
+
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',
     GIT_REPO: 'Power by &copy;meanTottent，<a href="https://github.com/taobataoma/meanTorrent" target="_blank">view on GitHub</a>',

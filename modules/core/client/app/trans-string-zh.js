@@ -282,6 +282,10 @@
     RESET_PASSKEY_SUCCESSFULLY: 'Passkey 重置成功',
     RESET_PASSKEY_ERROR: 'Passkey 重置失败',
 
+    //chat view
+    CHAT_USERS_LIST: '用户列表',
+    CHAT_WELCOME: '欢迎进入聊天室，请注意自已的言行，共同维护良好的聊天环境！',
+
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',
     GIT_REPO: 'Power by &copy;meanTottent，<a href="https://github.com/taobataoma/meanTorrent" target="_blank">GitHub 源码仓库</a>',
