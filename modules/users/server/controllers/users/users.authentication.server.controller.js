@@ -172,6 +172,7 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
             // Handles case where no email is supplied.
             // See comment: https://github.com/meanjs/mean/pull/1495#issuecomment-246090193
             user.email = providerUserProfile.email;
+            user.passkey = user.randomAsciiString(32);
 
             // And save the user
             user.save(function (err) {
