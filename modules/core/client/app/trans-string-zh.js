@@ -42,6 +42,7 @@
     EDIT_PROFILE: '修改个人信息',
     EDIT_PROFILE_PIC: '修改个人头像',
     CHANGE_PASSWORD: '修改登录密码',
+    RESET_PASSKEY: '重置 Passkey',
     MANAGE_SOCIAL_ACCOUNTS: '管理社交帐号',
 
     //发种规则
@@ -114,7 +115,9 @@
       ADMIN_USER_LIST: '用户管理',
       ADMIN_USER_VIEW: '查看用户',
       ADMIN_USER_EDIT: '编辑用户',
-      ADMIN_TORRENTS_LIST: '种子管理'
+      ADMIN_TORRENTS_LIST: '种子管理',
+      PASSWORD_FORGOT: '找回密码',
+      PASSWORD_RESET: '重设密码'
     },
 
     //TorrentsController & views
@@ -269,6 +272,15 @@
     CAPTION_REQUIRED_NEW_PASSWORD: '请输入新密码.',
     CAPTION_REQUIRED_VERIFY_PASSWORD: '请再输入一次新密码.',
     CAPTION_PASSWORD_NOT_MATCH: '两次输入的新密码不一致.',
+    CURRENT_PASSKEY: '当前 Passkey: <mark class="text-danger">{{passkey}}</mark>',
+    RESET_PASSKEY_NOTE: '注意：如果你重置了你的 passkey, 你必须重新下载所有种子文件并添加到你的下载客户端，这样才能正确下载上传并统计你的数据。',
+
+    RESET_PASSKEY_CONFIRM_OK: '重置',
+    RESET_PASSKEY_CONFIRM_CANCEL: '取消',
+    RESET_PASSKEY_CONFIRM_HEADER_TEXT: '重置 Passkey',
+    RESET_PASSKEY_CONFIRM_BODY_TEXT: '确要重置你的 passkey?',
+    RESET_PASSKEY_SUCCESSFULLY: 'Passkey 重置成功',
+    RESET_PASSKEY_ERROR: 'Passkey 重置失败',
 
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',

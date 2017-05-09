@@ -42,6 +42,7 @@
     EDIT_PROFILE: 'Edit Profile',
     EDIT_PROFILE_PIC: 'Edit Profile Picture',
     CHANGE_PASSWORD: 'Change Password',
+    RESET_PASSKEY: 'Reset Passkey',
     MANAGE_SOCIAL_ACCOUNTS: 'Manage Social Accounts',
 
     //Upload rules
@@ -114,7 +115,9 @@
       ADMIN_USER_LIST: 'User List',
       ADMIN_USER_VIEW: 'View User',
       ADMIN_USER_EDIT: 'Edit User',
-      ADMIN_TORRENTS_LIST: 'Torrents LIst'
+      ADMIN_TORRENTS_LIST: 'Torrents LIst',
+      PASSWORD_FORGOT: 'Password forgot',
+      PASSWORD_RESET: 'Password reset'
     },
 
     //TorrentsController & views
@@ -269,6 +272,15 @@
     CAPTION_REQUIRED_NEW_PASSWORD: 'Enter a new password.',
     CAPTION_REQUIRED_VERIFY_PASSWORD: 'Verify your new password.',
     CAPTION_PASSWORD_NOT_MATCH: 'Passwords do not match.',
+    CURRENT_PASSKEY: 'Current Passkey: <mark class="text-danger">{{passkey}}</mark>',
+    RESET_PASSKEY_NOTE: 'NOTE: If you reset your passkey, you must re-download all torrent file, and re-add to your download client, it can download or upload.',
+
+    RESET_PASSKEY_CONFIRM_OK: 'Reset',
+    RESET_PASSKEY_CONFIRM_CANCEL: 'Cancel',
+    RESET_PASSKEY_CONFIRM_HEADER_TEXT: 'Reset Passkey',
+    RESET_PASSKEY_CONFIRM_BODY_TEXT: 'Are you sure want to reset your passkey?',
+    RESET_PASSKEY_SUCCESSFULLY: 'Passkey reset successfully',
+    RESET_PASSKEY_ERROR: 'Passkey reset failed',
 
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',

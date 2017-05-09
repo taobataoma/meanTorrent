@@ -1,0 +1,9 @@
+<section class="row margin-top-20">
+    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <button class="btn btn-default btn-block" ng-click="vm.resetPasskey();">{{'RESET_PASSKEY' | translate}}</button>
+    </div>
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <p class="margin-top-40" translate="CURRENT_PASSKEY" translate-values='{passkey: vm.user.passkey}'></p>
+        <strong><p class="margin-top-40" translate="RESET_PASSKEY_NOTE"></p></strong>
+    </div>
+</section>

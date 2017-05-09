@@ -259,3 +259,33 @@ exports.changePassword = function (req, res, next) {
     });
   }
 };
+
+/**
+ * resetPasskey
+ */
+exports.resetPasskey = function (req, res, next) {
+  if (req.user) {
+    var user = req.user;
+    user.passkey = user.randomAsciiString(32);
+
+    user.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        req.login(user, function (err) {
+          if (err) {
+            res.status(400).send(err);
+          } else {
+            res.json(user);
+          }
+        });
+      }
+    });
+  } else {
+    res.status(401).send({
+      message: 'User is not signed in'
+    });
+  }
+};

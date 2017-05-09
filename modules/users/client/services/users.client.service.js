@@ -17,6 +17,10 @@
         method: 'POST',
         url: '/api/users/password'
       },
+      resetPasskey: {
+        method: 'POST',
+        url: '/api/users/passkey'
+      },
       deleteProvider: {
         method: 'DELETE',
         url: '/api/users/accounts',
@@ -45,6 +49,9 @@
     angular.extend(Users, {
       changePassword: function (passwordDetails) {
         return this.updatePassword(passwordDetails).$promise;
+      },
+      changePasskey: function () {
+        return this.resetPasskey().$promise;
       },
       removeSocialAccount: function (provider) {
         return this.deleteProvider({
