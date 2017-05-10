@@ -2,63 +2,66 @@
 <section class="container chat-container" ng-init="vm.initChatView();">
     <div class="row">
         <div class="col-sm-9">
-            <div class="chat-message-list">
+            <div class="chat-messages">
                 <div class="chat-title">
                     <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> <span>{{'CHAT_WELCOME' | translate}}</span>
                 </div>
 
-                <div class="chat-body">
+                <div class="chat-body" id="chat-body" mt-scroll="vm.onMessageScroll($event);">
+                    <div class="chat-message-list" ng-repeat="message in vm.messages" repeat-done="vm.onMessageRepeatDone();">
+                        <div class="chat-message-header">
+                            <div class="chat-message-header-text">{{message.displayName}}　{{message.created | date:'MM-dd HH:mm'}}
+                            </div>
+                        </div>
+                        <div class="chat-wrapper">
+                            <a class="chat-avatar" ng-click="">
+                                <img title="{{message.displayName}}" ng-src="/{{message.profileImageURL}}">
+                            </a>
 
+                            <div class="chat-message-item">
+                                <div class="chat-message-body">
+                                    <div class="chat-message-body-text" ng-bind="message.text"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="chat-footer">
+                    <div class="footer-function">
 
+                    </div>
+                    <div class="footer-input">
+                        <textarea class="form-control" id="messageText" name="messageText" ng-model="vm.messageText"
+                                  placeholder="input new message and press enter"
+                                  ng-keydown="vm.onInputKeyDown($event);"
+                                  autofocus>
+                        </textarea>
+                    </div>
                 </div>
-
-                <!--<div class="row">-->
-                    <!--<form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="vm.sendMessage();">-->
-                        <!--<fieldset class="row">-->
-                            <!--<div class="input-group">-->
-                                <!--<input type="text" id="messageText" name="messageText" class="form-control" ng-model="vm.messageText"-->
-                                       <!--placeholder="Enter new message"-->
-                                       <!--autofocus>-->
-                            <!--<span class="input-group-btn">-->
-                              <!--<button type="submit" class="btn btn-primary" ng-disabled="!vm.messageText.length">Submit</button>-->
-                            <!--</span>-->
-                            <!--</div>-->
-                        <!--</fieldset>-->
-                    <!--</form>-->
-                    <!--<ul class="list-unstyled">-->
-                        <!--&lt;!&ndash; List all messages &ndash;&gt;-->
-                        <!--<li class="col-xs-12 col-md-offset-4 col-md-4 chat-message" ng-repeat="message in vm.messages">-->
-                            <!--<small class="pull-right text-muted" ng-bind="message.created | date:'mediumTime'"></small>-->
-                            <!--<img ng-src="/{{message.profileImageURL}}" alt="{{message.username}}" class="pull-left chat-profile-image"/>-->
-
-                            <!--<div class="pull-left chat-message-details">-->
-                                <!--<strong ng-bind="message.username"></strong>-->
-                                <!--<br>-->
-                                <!--<span ng-bind="message.text"></span>-->
-                            <!--</div>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-
             </div>
         </div>
         <div class="col-sm-3">
-            <div class="chat-user-list">
+            <div class="chat-users">
                 <div class="user-title">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span>{{'CHAT_USERS_LIST' | translate}}</span>
                 </div>
 
                 <div class="user-body">
+                    <ul class="list-unstyled">
+                        <li ng-repeat="u in vm.users">
+                            <div class="user-item-wrapper">
+                                <a class="user-item-avatar" ng-click="">
+                                    <img title="{{u.displayName}}" ng-src="/{{u.profileImageURL}}">
+                                </a>
 
+                                <div class="user-item-body">
+                                    <div class="user-item-text" ng-bind="u.displayName"></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-
-                <div class="user-footer">
-
-                </div>
-
             </div>
         </div>
     </div>
