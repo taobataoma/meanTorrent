@@ -285,6 +285,8 @@
     //chat view
     CHAT_USERS_LIST: '用户列表',
     CHAT_WELCOME: '欢迎进入聊天室，请注意自已的言行，共同维护良好的聊天环境！',
+    CHAT_PLACEHOLDER_INPUT: '输入聊天消息，按回车键发送',
+    CHAT_USER_JOIN: '已加入聊天室~',
 
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',

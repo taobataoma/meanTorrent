@@ -8,23 +8,26 @@
                 </div>
 
                 <div class="chat-body" id="chat-body" mt-scroll="vm.onMessageScroll($event);">
-                    <div class="chat-message-list" ng-repeat="message in vm.messages" repeat-done="vm.onMessageRepeatDone();">
-                        <div class="chat-message-header">
-                            <div class="chat-message-header-text">{{message.displayName}}　{{message.created | date:'MM-dd HH:mm'}}
-                            </div>
-                        </div>
-                        <div class="chat-wrapper">
-                            <a class="chat-avatar" ng-click="">
-                                <img title="{{message.displayName}}" ng-src="/{{message.profileImageURL}}">
-                            </a>
-
-                            <div class="chat-message-item">
-                                <div class="chat-message-body">
-                                    <div class="chat-message-body-text" ng-bind="message.text"></div>
+                    <ul class="list-unstyled">
+                        <li class="chat-message-list" ng-class="{'me': message.username == vm.user.username}"
+                            ng-repeat="message in vm.messages" repeat-done="vm.onMessageRepeatDone();">
+                            <div ng-class="{'chat-message-header-me': message.username == vm.user.username, 'chat-message-header': message.username != vm.user.username}">
+                                <div class="chat-message-header-text">{{message.displayName}}　{{message.created | date:'MM-dd HH:mm'}}
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                            <div ng-class="{'chat-wrapper-me': message.username == vm.user.username, 'chat-wrapper': message.username != vm.user.username}">
+                                <a class="chat-avatar" ng-click="">
+                                    <img title="{{message.displayName}}" ng-src="/{{message.profileImageURL}}">
+                                </a>
+
+                                <div class="chat-message-item">
+                                    <div class="chat-message-body">
+                                        <div class="chat-message-body-text" ng-bind="message.text"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="chat-footer">
@@ -33,7 +36,7 @@
                     </div>
                     <div class="footer-input">
                         <textarea class="form-control" id="messageText" name="messageText" ng-model="vm.messageText"
-                                  placeholder="input new message and press enter"
+                                  placeholder="{{'CHAT_PLACEHOLDER_INPUT' | translate}}"
                                   ng-keydown="vm.onInputKeyDown($event);"
                                   autofocus>
                         </textarea>

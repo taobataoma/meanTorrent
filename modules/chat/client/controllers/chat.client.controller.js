@@ -5,11 +5,12 @@
     .module('chat')
     .controller('ChatController', ChatController);
 
-  ChatController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'Socket'];
+  ChatController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'Socket', '$translate'];
 
-  function ChatController($scope, $state, $timeout, Authentication, Socket) {
+  function ChatController($scope, $state, $timeout, Authentication, Socket, $translate) {
     var vm = this;
 
+    vm.user = Authentication.user;
     vm.messages = [];
     vm.users = [];
     vm.messageText = '';
@@ -145,7 +146,7 @@
     vm.onUsersJoin = function (u) {
       vm.users.push(u);
 
-      u.text = 'Is now connected and join the room.';
+      u.text = $translate.instant('CHAT_USER_JOIN');
       vm.messages.push(u);
     };
 

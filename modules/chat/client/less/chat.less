@@ -27,6 +27,9 @@
         word-break: break-all;
         word-wrap: break-word;
         .chat-message-list {
+            &.me {
+                text-align: right;
+            }
             &:not(:first-child) {
                 margin-top: 10px;
 
@@ -34,12 +37,16 @@
             &:not(:last-child) {
                 margin-bottom: 10px;
             }
-            //&:first-child{
-            //    margin-top: 10px;
-            //}
-
             .chat-message-header {
                 padding-left: 50px;
+                color: #586069;
+                .chat-message-header-text {
+                    font-size: 12px;
+                    color: lighten(@gray-base, 60%);
+                }
+            }
+            .chat-message-header-me {
+                padding-right: 50px;
                 color: #586069;
                 .chat-message-header-text {
                     font-size: 12px;
@@ -52,45 +59,34 @@
                 display: inline-block;
                 .chat-message-item {
                     position: relative;
-                    background-color: #fff;
                     border: 1px solid #d1d5da;
                     border-radius: 3px;
-                    &::before {
+                    &:after {
+                        content: '';
                         position: absolute;
-                        top: 6px;
-                        right: 100%;
-                        left: -14px;
+                        border-style: solid;
+                        border-width: 6px 6px 6px 0;
+                        border-color: transparent lighten(@chat-message-background-default, 2%);;
                         display: block;
                         width: 0;
-                        height: 0;
-                        pointer-events: none;
-                        content: " ";
-                        border-color: transparent;
-                        border-style: solid solid outset;
-
-                        border-width: 7px;
-                        border-right-color: #d1d5da;
+                        z-index: 1;
+                        left: -6px;
+                        top: 6px;
                     }
-                    &::after {
+                    &:before {
+                        content: '';
                         position: absolute;
-                        top: 6px;
-                        right: 100%;
-                        left: -14px;
+                        border-style: solid;
+                        border-width: 6px 6px 6px 0;
+                        border-color: transparent #d1d5da;
                         display: block;
                         width: 0;
-                        height: 0;
-                        pointer-events: none;
-                        content: " ";
-                        border-color: transparent;
-                        border-style: solid solid outset;
-
-                        margin-top: 1px;
-                        margin-left: 2px;
-                        border-width: 6px;
-                        border-right-color: lighten(@chat-message-background-default, 2%);
+                        z-index: 0;
+                        left: -7px;
+                        top: 6px;
                     }
                     .chat-message-body {
-                        padding: 8px 10px;
+                        padding: 6px 10px;
                         background-color: lighten(@chat-message-background-default, 2%);
                         border-radius: 3px;
                     }
@@ -100,6 +96,56 @@
                         cursor: pointer;
                         float: left;
                         margin-left: -50px;
+                        margin-top: -18px;
+                        border-radius: 3px;
+                        height: 38px;
+                        width: 38px;
+                    }
+                }
+            }
+            .chat-wrapper-me {
+                padding-right: 50px;
+                max-width: 75%;
+                display: inline-block;
+                .chat-message-item {
+                    position: relative;
+                    border: 1px solid @chat-message-me-border;
+                    border-radius: 3px;
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        border-style: solid;
+                        border-width: 6px 0 6px 6px;
+                        border-color: transparent @chat-message-me-background;
+                        display: block;
+                        width: 0;
+                        z-index: 1;
+                        right: -6px;
+                        top: 6px;
+                    }
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        border-style: solid;
+                        border-width: 6px 0 6px 6px;
+                        border-color: transparent @chat-message-me-border;
+                        display: block;
+                        width: 0;
+                        z-index: 0;
+                        right: -7px;
+                        top: 6px;
+                    }
+                    .chat-message-body {
+                        padding: 6px 10px;
+                        background-color: @chat-message-me-background;
+                        border-radius: 3px;
+                    }
+                }
+                .chat-avatar {
+                    img {
+                        cursor: pointer;
+                        float: right;
+                        margin-right: -50px;
                         margin-top: -18px;
                         border-radius: 3px;
                         height: 38px;
@@ -164,7 +210,7 @@
             .user-item-body {
                 padding: 6px 10px;
                 border-radius: 3px;
-                background-color: lighten(@chat-message-background-default, 4%);
+                background-color: lighten(@chat-message-background-default, 3.5%);
                 &:hover {
                     cursor: pointer;
                     background-color: lighten(@chat-message-background-default, 1%);
