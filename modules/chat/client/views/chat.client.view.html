@@ -16,13 +16,13 @@
                                 </div>
                             </div>
                             <div ng-class="{'chat-wrapper-me': message.username == vm.user.username, 'chat-wrapper': message.username != vm.user.username}">
-                                <a class="chat-avatar" ng-click="">
-                                    <img title="{{message.displayName}}" ng-src="/{{message.profileImageURL}}">
+                                <a class="chat-avatar" ng-click="vm.onUserImgClicked(message.displayName);">
+                                    <img title="@{{message.displayName}}" ng-src="/{{message.profileImageURL}}">
                                 </a>
 
                                 <div class="chat-message-item">
                                     <div class="chat-message-body">
-                                        <div class="chat-message-body-text" ng-bind-html="message.text"></div>
+                                        <div class="chat-message-body-text" dynamic-html="vm.getMessageText(message);"></div>
                                     </div>
                                 </div>
                             </div>
@@ -47,14 +47,15 @@
         <div class="col-sm-3">
             <div class="chat-users">
                 <div class="user-title">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span>{{'CHAT_USERS_LIST' | translate}}: ({{vm.users.length}})</span>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span>{{'CHAT_USERS_LIST' | translate}}</span>
+                    <span class="pull-right">{{vm.users.length}}</span>
                 </div>
 
                 <div class="user-body">
                     <ul class="list-unstyled">
                         <li ng-repeat="u in vm.users">
-                            <div class="user-item-wrapper">
-                                <a class="user-item-avatar" ng-click="">
+                            <div class="user-item-wrapper" ng-click="vm.onUserListItemClicked(u);">
+                                <a class="user-item-avatar">
                                     <img title="{{u.displayName}}" ng-src="/{{u.profileImageURL}}">
                                 </a>
 

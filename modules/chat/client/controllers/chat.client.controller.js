@@ -5,9 +5,9 @@
     .module('chat')
     .controller('ChatController', ChatController);
 
-  ChatController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'Socket', '$translate'];
+  ChatController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'Socket', '$translate', '$sanitize', '$sce'];
 
-  function ChatController($scope, $state, $timeout, Authentication, Socket, $translate) {
+  function ChatController($scope, $state, $timeout, Authentication, Socket, $translate, $sanitize, $sce) {
     var vm = this;
 
     vm.user = Authentication.user;
@@ -91,7 +91,7 @@
     vm.sendMessage = function () {
       // Create a new message object
       var message = {
-        text: vm.messageText
+        text: sanitizeHTML(vm.messageText)
       };
 
       // Emit a 'chatMessage' message event
@@ -100,6 +100,13 @@
       // Clear the message text
       vm.messageText = '';
     };
+
+    function sanitizeHTML(msg, white, black) {
+      if (!white) white = 'b|i|p|u|img';//allowed tags
+      if (!black) black = 'script|object|embed';//complete remove tags
+      var e = new RegExp('(<(' + black + ')[^>]*>.*</\\2>|(?!<[/]?(' + white + ')(\\s[^<]*>|[/]>|>))<[^<>]*>|(?!<[^<>\\s]+)\\s[^</>]+(?=[/>]))', 'gi');
+      return msg.replace(e, '');
+    }
 
     /**
      * initChatView
@@ -141,32 +148,32 @@
 
     /**
      * onUsersJoin
-     * @param u
+     * @param uobj
      */
-    vm.onUsersJoin = function (u) {
-      vm.users.push(u);
+    vm.onUsersJoin = function (uobj) {
+      vm.users.push(uobj);
 
-      u.text = $translate.instant('CHAT_USER_JOIN');
-      u.text = '*** ' + u.displayName + ' ' + u.text;
-      vm.messages.push(u);
+      uobj.text = $translate.instant('CHAT_USER_JOIN');
+      uobj.text = '*** [@' + uobj.displayName + '] ' + uobj.text;
+      vm.messages.push(uobj);
     };
 
     /**
      * onUsersQuit
-     * @param u
+     * @param uobj
      */
-    vm.onUsersQuit = function (u) {
+    vm.onUsersQuit = function (uobj) {
       var index = -1;
       angular.forEach(vm.users, function (i, x) {
-        if (i.username === u.username) {
+        if (i.username === uobj.username) {
           index = x;
         }
       });
       if (index >= 0) {
         vm.users.splice(index, 1);
-        u.text = $translate.instant('CHAT_USER_QUIT');
-        u.text = '*** ' + u.displayName + ' ' + u.text;
-        vm.messages.push(u);
+        uobj.text = $translate.instant('CHAT_USER_QUIT');
+        uobj.text = '*** [@' + uobj.displayName + '] ' + uobj.text;
+        vm.messages.push(uobj);
       }
     };
 
@@ -182,5 +189,60 @@
         vm.scrollAtBottom = false;
       }
     };
+
+    /**
+     * getMessageText
+     * @param msg
+     * @returns {*}
+     */
+    vm.getMessageText = function (msg) {
+      var newmsg = msg.text;
+
+      var matches = newmsg.match(/\[@(.*?)\]/g);
+      angular.forEach(matches, function (m) {
+        var atu = m.substr(1, m.length - 2);
+        var atulink = makeAtUserLink(atu);
+        newmsg = newmsg.replace(m, atulink);
+      });
+
+      return newmsg || '&nbsp;';
+    };
+
+    /**
+     * makeAtUserLink
+     * @param atu
+     * @returns {string}
+     */
+    function makeAtUserLink(atu) {
+      var s = '';
+      s += '<a href="#" ng-click="vm.atuClicked($event)" title="' + atu + '">';
+      s += atu;
+      s += '</a>';
+      return s;
+    }
+
+    /**
+     * at user link Clicked
+     * @param evt
+     */
+    vm.atuClicked = function (evt) {
+      addAtUserToInput(' [' + evt.currentTarget.innerText + '] ');
+    };
+
+    vm.onUserListItemClicked = function (uitem) {
+      addAtUserToInput(' [@' + uitem.displayName + '] ');
+    };
+
+    vm.onUserImgClicked = function (uname) {
+      addAtUserToInput(' [@' + uname + '] ');
+    };
+    /**
+     * addAtUserToInput
+     * @param atu
+     */
+    function addAtUserToInput(atu) {
+      vm.messageText += atu;
+      angular.element('#messageText').trigger('focus');
+    }
   }
 }());

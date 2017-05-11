@@ -116,7 +116,7 @@
                         top: 6px;
                     }
                     .chat-message-body {
-                        padding: 6px 10px;
+                        padding: 6px;
                         background-color: lighten(@chat-message-background-default, 2%);
                         border-radius: 3px;
                     }
@@ -166,7 +166,8 @@
                         top: 6px;
                     }
                     .chat-message-body {
-                        padding: 6px 10px;
+                        text-align: left;
+                        padding: 6px;
                         background-color: @chat-message-me-background;
                         border-radius: 3px;
                     }
@@ -230,9 +231,9 @@
         word-wrap: break-word;
         .user-item-wrapper {
             padding-left: 35px;
-            margin: 6px 10px;
+            margin: 6px 6px;
             transition-property: transform, opacity;
-            transition-duration: .6s;
+            transition-duration: .5s;
             transition-timing-function: ease;
             &:hover {
                 /* csslint ignore:start */
