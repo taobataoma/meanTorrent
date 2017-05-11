@@ -292,6 +292,8 @@
     CHAT_BOLD_MESSAGE: '粗体字风格',
     CHAT_ITALIC_MESSAGE: '斜体字风格',
     CHAT_MESSAGE_ALREADY_CLEAN: '*** 聊天消息已被清空',
+    CHAT_FONT_BOLD: '粗体字',
+    CHAT_FONT_ITALIC: '斜体字',
 
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',

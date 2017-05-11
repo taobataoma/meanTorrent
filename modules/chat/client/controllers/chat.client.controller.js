@@ -289,6 +289,6 @@
       m.displayName = vm.user.displayName;
 
       vm.messages.push(m);
-    }
+    };
   }
 }());

@@ -292,6 +292,8 @@
     CHAT_BOLD_MESSAGE: 'Bold font style, please use tag: <b>message</b>',
     CHAT_ITALIC_MESSAGE: 'Italic font style, please use tag: <i>message</i>',
     CHAT_MESSAGE_ALREADY_CLEAN: '*** chat messages list already be cleaned',
+    CHAT_FONT_BOLD: 'Font Bold',
+    CHAT_FONT_ITALIC: 'Font Italic',
 
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',
