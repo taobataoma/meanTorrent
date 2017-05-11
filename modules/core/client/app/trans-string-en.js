@@ -288,6 +288,10 @@
     CHAT_PLACEHOLDER_INPUT: 'input new message and press enter',
     CHAT_USER_JOIN: 'is now connected and join the room.',
     CHAT_USER_QUIT: 'is now disconnect and quit the room.',
+    CHAT_CLEAN_MESSAGE: 'Clean message list',
+    CHAT_BOLD_MESSAGE: 'Bold font style, please use tag: <b>message</b>',
+    CHAT_ITALIC_MESSAGE: 'Italic font style, please use tag: <i>message</i>',
+    CHAT_MESSAGE_ALREADY_CLEAN: '*** chat messages list already be cleaned',
 
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',

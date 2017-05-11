@@ -194,6 +194,25 @@
             height: 40px;
             border-bottom: solid 1px lighten(@gray-light, 45%);
             background-color: lighten(@gray-light, 48%);
+            .glyphicon {
+                color: @mt-base-color;
+                margin: 10px 2px;
+                cursor: pointer;
+                &:hover {
+                    color: darken(@mt-base-color, 10%);
+                }
+            }
+            .font-style-list {
+                label {
+                    cursor: pointer;
+                    font-weight: normal;
+                    font-size: 12px;
+                    margin-top: 10px;
+                    &:not(:last-child) {
+                        margin-right: 10px;
+                    }
+                }
+            }
         }
         .footer-input {
             textarea {

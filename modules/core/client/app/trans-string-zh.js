@@ -288,6 +288,10 @@
     CHAT_PLACEHOLDER_INPUT: '输入聊天消息，按回车键发送',
     CHAT_USER_JOIN: '已加入聊天室~',
     CHAT_USER_QUIT: '已退出聊天室~',
+    CHAT_CLEAN_MESSAGE: '清空聊天记录',
+    CHAT_BOLD_MESSAGE: '粗体字风格',
+    CHAT_ITALIC_MESSAGE: '斜体字风格',
+    CHAT_MESSAGE_ALREADY_CLEAN: '*** 聊天消息已被清空',
 
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',

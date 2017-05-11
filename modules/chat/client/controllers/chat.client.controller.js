@@ -34,7 +34,6 @@
 
       // Add an event listener to the 'chatMessage' event
       Socket.on('chatMessage', function (message) {
-        var e = angular.element('#chat-body');
         vm.messages.push(message);
       });
 
@@ -70,6 +69,20 @@
     $scope.$watch('vm.messages.length', function (newValue, oldValue) {
       //console.log('vm.messages changed');
     });
+    $scope.$watch('vm.fontStyleBold', function (newValue, oldValue) {
+      if (newValue) {
+        angular.element('#messageText').css('font-weight', 'bold');
+      } else {
+        angular.element('#messageText').css('font-weight', 'normal');
+      }
+    });
+    $scope.$watch('vm.fontStyleItalic', function (newValue, oldValue) {
+      if (newValue) {
+        angular.element('#messageText').css('font-style', 'italic');
+      } else {
+        angular.element('#messageText').css('font-style', 'normal');
+      }
+    });
 
     /**
      * onMessageRepeatDone
@@ -101,11 +114,27 @@
       vm.messageText = '';
     };
 
+    /**
+     * sanitizeHTML
+     * @param msg
+     * @param white
+     * @param black
+     * @returns {*}
+     */
     function sanitizeHTML(msg, white, black) {
-      if (!white) white = 'b|i|p|u|img';//allowed tags
+      if (!white) white = 'b|i|p|u';//allowed tags
       if (!black) black = 'script|object|embed';//complete remove tags
       var e = new RegExp('(<(' + black + ')[^>]*>.*</\\2>|(?!<[/]?(' + white + ')(\\s[^<]*>|[/]>|>))<[^<>]*>|(?!<[^<>\\s]+)\\s[^</>]+(?=[/>]))', 'gi');
-      return msg.replace(e, '');
+      msg = msg.replace(e, '');
+
+      if (vm.fontStyleBold) {
+        msg = '<b>' + msg + '</b>';
+      }
+      if (vm.fontStyleItalic) {
+        msg = '<i>' + msg + '</i>';
+      }
+
+      return msg;
     }
 
     /**
@@ -243,6 +272,23 @@
     function addAtUserToInput(atu) {
       vm.messageText += atu;
       angular.element('#messageText').trigger('focus');
+    }
+
+    /**
+     * onCleanClicked
+     */
+    vm.onCleanClicked = function () {
+      vm.messages = [];
+
+      var m = {};
+      m.type = 'status';
+      m.text = $translate.instant('CHAT_MESSAGE_ALREADY_CLEAN');
+      m.created = Date.now();
+      m.profileImageURL = vm.user.profileImageURL;
+      m.username = vm.user.username;
+      m.displayName = vm.user.displayName;
+
+      vm.messages.push(m);
     }
   }
 }());

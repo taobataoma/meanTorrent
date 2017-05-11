@@ -32,7 +32,18 @@
 
                 <div class="chat-footer">
                     <div class="footer-function">
-
+                        <div class="pull-right margin-right-20">
+                            <span class="glyphicon glyphicon-refresh" title="{{'CHAT_CLEAN_MESSAGE' | translate}}" aria-hidden="true"
+                                  ng-click="vm.onCleanClicked();"></span>
+                        </div>
+                        <div class="pull-right margin-right-20 font-style-list">
+                            <label title="{{'CHAT_BOLD_MESSAGE' | translate}}">
+                                <input type="checkbox" ng-model="vm.fontStyleBold"> <b>Font Bold</b>
+                            </label>
+                            <label title="{{'CHAT_ITALIC_MESSAGE' | translate}}">
+                                <input type="checkbox" ng-model="vm.fontStyleItalic"> <i>Font Italic</i>
+                            </label>
+                        </div>
                     </div>
                     <div class="footer-input">
                         <textarea class="form-control" id="messageText" name="messageText" ng-model="vm.messageText"
