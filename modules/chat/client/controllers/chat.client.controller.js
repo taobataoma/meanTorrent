@@ -147,6 +147,7 @@
       vm.users.push(u);
 
       u.text = $translate.instant('CHAT_USER_JOIN');
+      u.text = '*** ' + u.displayName + ' ' + u.text;
       vm.messages.push(u);
     };
 
@@ -155,7 +156,18 @@
      * @param u
      */
     vm.onUsersQuit = function (u) {
-      vm.users.splice(vm.users.indexOf(u), 1);
+      var index = -1;
+      angular.forEach(vm.users, function (i, x) {
+        if (i.username === u.username) {
+          index = x;
+        }
+      });
+      if (index >= 0) {
+        vm.users.splice(index, 1);
+        u.text = $translate.instant('CHAT_USER_QUIT');
+        u.text = '*** ' + u.displayName + ' ' + u.text;
+        vm.messages.push(u);
+      }
     };
 
     /**

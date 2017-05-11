@@ -286,7 +286,8 @@
     CHAT_USERS_LIST: 'Users List',
     CHAT_WELCOME: 'Welcome to join the chat room, please follow the chat rules, and have a good time!',
     CHAT_PLACEHOLDER_INPUT: 'input new message and press enter',
-    CHAT_USER_JOIN: 'Is now connected and join the room.',
+    CHAT_USER_JOIN: 'is now connected and join the room.',
+    CHAT_USER_QUIT: 'is now disconnect and quit the room.',
 
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',

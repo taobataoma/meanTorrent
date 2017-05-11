@@ -4,6 +4,7 @@
 module.exports = function (io, socket) {
   // Emit the status event when a new socket client is connected
   io.emit('join', {
+    type: 'status',
     created: Date.now(),
     profileImageURL: socket.request.user.profileImageURL,
     username: socket.request.user.username,
@@ -55,6 +56,7 @@ module.exports = function (io, socket) {
     }
 
     io.emit('quit', {
+      type: 'status',
       created: Date.now(),
       profileImageURL: socket.request.user.profileImageURL,
       username: socket.request.user.username,

@@ -30,6 +30,35 @@
             &.me {
                 text-align: right;
             }
+            &.status {
+                .chat-message-header {
+                    display: none;
+                }
+                .chat-wrapper {
+                    padding-left: 0;
+                    .chat-avatar {
+                        display: none;
+                    }
+                    .chat-message-item {
+                        border: none;
+                        &:after {
+                            content: '';
+                            display: none;
+                        }
+                        &:before {
+                            content: '';
+                            display: none;
+                        }
+                        .chat-message-body {
+                            background-color: transparent;
+                            padding: 0;
+                            .chat-message-body-text {
+                                color: @chat-message-status-color;
+                            }
+                        }
+                    }
+                }
+            }
             &:not(:first-child) {
                 margin-top: 10px;
 

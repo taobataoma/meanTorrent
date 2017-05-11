@@ -9,7 +9,7 @@
 
                 <div class="chat-body" id="chat-body" mt-scroll="vm.onMessageScroll($event);">
                     <ul class="list-unstyled">
-                        <li class="chat-message-list" ng-class="{'me': message.username == vm.user.username}"
+                        <li class="chat-message-list {{message.type}}" ng-class="{'me': message.username == vm.user.username}"
                             ng-repeat="message in vm.messages" repeat-done="vm.onMessageRepeatDone();">
                             <div ng-class="{'chat-message-header-me': message.username == vm.user.username, 'chat-message-header': message.username != vm.user.username}">
                                 <div class="chat-message-header-text">{{message.displayName}}　{{message.created | date:'MM-dd HH:mm'}}
@@ -47,7 +47,7 @@
         <div class="col-sm-3">
             <div class="chat-users">
                 <div class="user-title">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span>{{'CHAT_USERS_LIST' | translate}}</span>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span>{{'CHAT_USERS_LIST' | translate}}: ({{vm.users.length}})</span>
                 </div>
 
                 <div class="user-body">
