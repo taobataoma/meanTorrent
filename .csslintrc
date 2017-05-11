@@ -12,5 +12,6 @@
   "unique-headings": false,
   "universal-selector": false,
   "unqualified-attributes": false,
-  "order-alphabetical": false
+  "order-alphabetical": false,
+  "outline-none": false
 }

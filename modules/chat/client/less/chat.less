@@ -53,6 +53,7 @@
                             background-color: transparent;
                             padding: 0;
                             .chat-message-body-text {
+                                font-size: 12px;
                                 color: @chat-message-status-color;
                             }
                         }
@@ -234,7 +235,9 @@
             transition-duration: .6s;
             transition-timing-function: ease;
             &:hover {
+                /* csslint ignore:start */
                 transform: scale(1.1);
+                /* csslint ignore:end */
             }
             .user-item-body {
                 padding: 6px 10px;
