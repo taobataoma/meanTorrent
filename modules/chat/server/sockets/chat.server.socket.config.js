@@ -6,9 +6,7 @@ module.exports = function (io, socket) {
   io.emit('join', {
     type: 'status',
     created: Date.now(),
-    profileImageURL: socket.request.user.profileImageURL,
-    username: socket.request.user.username,
-    displayName: socket.request.user.displayName
+    user: socket.request.user
   });
 
   //new client, add it to the list
@@ -20,14 +18,10 @@ module.exports = function (io, socket) {
   function getUsersList() {
     var us = [];
     io.chatClients.forEach(function (socket) {
-      var s = {};
-      s.profileImageURL = socket.request.user.profileImageURL;
-      s.username = socket.request.user.username;
-      s.displayName = socket.request.user.displayName;
-
-      us.push(s);
+      us.push(socket.request.user);
     });
 
+    //console.log(us);
     return us;
   }
 
@@ -38,12 +32,38 @@ module.exports = function (io, socket) {
   socket.on('chatMessage', function (message) {
     message.type = 'message';
     message.created = Date.now();
-    message.profileImageURL = socket.request.user.profileImageURL;
-    message.username = socket.request.user.username;
-    message.displayName = socket.request.user.displayName;
+    message.user = socket.request.user;
 
     // Emit the 'chatMessage' event
     io.emit('chatMessage', message);
+  });
+
+  // Send a chat messages to all connected sockets when a message is received
+  socket.on('ban', function (message) {
+    io.chatClients.forEach(function (bsocket) {
+      if (bsocket.request.user.username === message.username) {
+        message.type = 'status';
+        message.created = Date.now();
+        message.user = bsocket.request.user;
+        message.text = message.by.reason || 'you are not grateful';
+
+        message.by.user = socket.request.user;
+        // Emit the 'chatMessage' event
+        io.emit('ban', message);
+
+        //add to ban list
+        var address = bsocket.handshake.address;
+        var buser = {
+          user: bsocket.request.user,
+          ip: address,
+          expires: Date.now() + parseInt((message.by.expires || 60 * 60 * 1000 * 1), 10)
+        };
+        console.log(buser);
+        io.banClients.push(buser);
+        //disconnect user
+        bsocket.disconnect();
+      }
+    });
   });
 
   // When socket disconnects, remove it from the list
@@ -58,9 +78,7 @@ module.exports = function (io, socket) {
     io.emit('quit', {
       type: 'status',
       created: Date.now(),
-      profileImageURL: socket.request.user.profileImageURL,
-      username: socket.request.user.username,
-      displayName: socket.request.user.displayName
+      user: socket.request.user
     });
   });
 };

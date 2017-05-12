@@ -294,6 +294,14 @@
     CHAT_MESSAGE_ALREADY_CLEAN: '*** chat messages list already be cleaned',
     CHAT_FONT_BOLD: 'Font Bold',
     CHAT_FONT_ITALIC: 'Font Italic',
+    CHAT_BAN_KICK: 'Kick out and ban IP',
+    CHAT_BAN_KICK_REASON: 'you are not grateful at here',
+    CHAT_BAN_KICK_MESSAGE: '{{who}} was kicked and ban by {{by}} ({{reason}})',
+
+    CHAT_CONFIRM_BAN_OK: 'Ban & Kick',
+    CHAT_CONFIRM_BAN_CANCEL: 'Cancel',
+    CHAT_CONFIRM_BAN_HEADER_TEXT: 'Ban & Kick Confirm',
+    CHAT_CONFIRM_BAN_BODY_TEXT: 'Are you sure want to kick this user and ban the ip?',
 
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',

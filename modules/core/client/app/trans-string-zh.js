@@ -294,6 +294,14 @@
     CHAT_MESSAGE_ALREADY_CLEAN: '*** 聊天消息已被清空',
     CHAT_FONT_BOLD: '粗体字',
     CHAT_FONT_ITALIC: '斜体字',
+    CHAT_BAN_KICK: '踢出房间并禁止再连接',
+    CHAT_BAN_KICK_REASON: '你在这里是个不受欢迎的人',
+    CHAT_BAN_KICK_MESSAGE: '{{who}} 被 {{by}} 踢出房间并禁止 ({{reason}})',
+
+    CHAT_CONFIRM_BAN_OK: '踢出并禁止',
+    CHAT_CONFIRM_BAN_CANCEL: '取消',
+    CHAT_CONFIRM_BAN_HEADER_TEXT: '踢出确认',
+    CHAT_CONFIRM_BAN_BODY_TEXT: '你确定要把该用户踢出聊天室并禁止他的ip登录吗?',
 
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',

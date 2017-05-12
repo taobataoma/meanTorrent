@@ -11,27 +11,7 @@ var validator = require('validator'),
 exports.renderIndex = function (req, res) {
   var safeUserObject = null;
   if (req.user) {
-    safeUserObject = {
-      _id: req.user._id,
-      displayName: validator.escape(req.user.displayName),
-      provider: validator.escape(req.user.provider),
-      username: validator.escape(req.user.username),
-      created: req.user.created.toString(),
-      roles: req.user.roles,
-      isOper: req.user.roles[0] === 'oper' || req.user.roles[0] === 'admin',
-      isAdmin: req.user.roles[0] === 'admin',
-      passkey: req.user.passkey,
-      vip_start_at: req.user.vip_start_at,
-      vip_end_at: req.user.vip_end_at,
-      is_vip: req.user.is_vip || isVip(req.user),
-      score: req.user.score,
-      ratio: req.user.ratio,
-      profileImageURL: req.user.profileImageURL,
-      email: validator.escape(req.user.email),
-      lastName: validator.escape(req.user.lastName),
-      firstName: validator.escape(req.user.firstName),
-      additionalProvidersData: req.user.additionalProvidersData
-    };
+    safeUserObject = req.user;
   }
 
   res.render('modules/core/server/views/index', {
@@ -40,21 +20,6 @@ exports.renderIndex = function (req, res) {
     meanTorrentConfig: JSON.stringify(config.meanTorrentConfig)
   });
 };
-
-/**
- * get user isVip status
- * @param u
- * @returns {boolean}
- */
-function isVip(u) {
-  if (!u.vip_start_at || !u.vip_end_at) {
-    return false;
-  } else if (moment(Date.now()) > moment(u.vip_end_at)) {
-    return false;
-  } else {
-    return true;
-  }
-}
 
 /**
  * Render the server error page

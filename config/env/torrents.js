@@ -75,6 +75,11 @@ module.exports = {
         Dr: 0
       }
     },
+    chat: {
+      ban: {
+        expires: 60 * 60 * 1000 * 2
+      }
+    },
     tmdbConfig: {
       tmdb_link_url: 'https://www.themoviedb.org/movie/',
       //please change it to your api key from themoviedb.org

@@ -196,7 +196,7 @@
             background-color: lighten(@gray-light, 48%);
             .glyphicon {
                 color: @mt-base-color;
-                margin: 10px 2px;
+                margin: 12px 2px;
                 cursor: pointer;
                 &:hover {
                     color: darken(@mt-base-color, 10%);
@@ -258,6 +258,28 @@
                 /* csslint ignore:start */
                 transform: scale(1.1);
                 /* csslint ignore:end */
+                .ban-kick {
+                    display: inline;
+                }
+            }
+            .ban-kick {
+                background-color: #2a2730;
+                background-color: rgba(0, 0, 0, .5);
+                color: @mt-base-color;
+                display: none;
+                float: right;
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding: 8px 5px;
+                width: 24px;
+                height: 100%;
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+                &:hover {
+                    background-color: #2a2730;
+                    background-color: rgba(0, 0, 0, .7);
+                }
             }
             .user-item-body {
                 padding: 6px 10px;
@@ -266,6 +288,17 @@
                 &:hover {
                     cursor: pointer;
                     background-color: lighten(@chat-message-background-default, 1%);
+                }
+                .user-item-text {
+                    &.user-is-admin {
+                        color: @chat-user-item-admin-color;
+                    }
+                    &.user-is-oper {
+                        color: @chat-user-item-oper-color;
+                    }
+                    &.user-is-vip {
+                        color: @chat-user-item-vip-color;
+                    }
                 }
             }
             .user-item-avatar {

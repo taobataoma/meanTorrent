@@ -179,15 +179,18 @@ var UserSchema = new Schema({
  */
 UserSchema.methods.toJSON = function (options) {
   var document = this.toObject(options);
-  document.is_vip = false;
+  document.isVip = false;
 
   if (!document.vip_start_at || !document.vip_end_at) {
-    document.is_vip = false;
+    document.isVip = false;
   } else if (moment(Date.now()) > moment(document.vip_end_at)) {
-    document.is_vip = false;
+    document.isVip = false;
   } else {
-    document.is_vip = true;
+    document.isVip = true;
   }
+
+  document.isOper = (document.roles[0] === 'oper' || document.roles[0] === 'admin');
+  document.isAdmin = (document.roles[0] === 'admin');
 
   return document;
 };

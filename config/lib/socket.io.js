@@ -69,6 +69,7 @@ module.exports = function (app, db) {
   // Create a new Socket.io server
   var io = socketio.listen(server);
   io.chatClients = [];
+  io.banClients = [];
 
   // Create a MongoDB storage object
   var mongoStore = new MongoStore({
@@ -97,7 +98,33 @@ module.exports = function (app, db) {
         passport.initialize()(socket.request, {}, function () {
           passport.session()(socket.request, {}, function () {
             if (socket.request.user) {
-              next(null, true);
+              // check ban list
+              //console.log(io.banClients);
+              var banned = false;
+              for (var i = io.banClients.length - 1; i >= 0; i--) {
+                var buser = io.banClients[i];
+                //console.log('buser.expires=' + buser.expires);
+                //console.log('Date.now()=' + Date.now());
+                if (buser.expires <= Date.now()) {  //already expires, remove it
+                  io.banClients.splice(io.banClients.indexOf(buser), 1);
+                  continue;
+                } else {
+                  var address = socket.handshake.address;
+                  console.log(address);
+                  console.log(buser.ip);
+                  if (buser.user.username === socket.request.user.username) { //username in ban list
+                    banned = true;
+                    next(new Error('username ' + buser.user.username + ' is banned'), false);
+                  } else if (buser.ip === address) { //ip in ban list
+                    banned = true;
+                    next(new Error('ip ' + buser.ip + ' is banned'), false);
+                  }
+                }
+              }
+
+              if (!banned) {
+                next(null, true);
+              }
             } else {
               next(new Error('User is not authenticated'), false);
             }

@@ -9,15 +9,15 @@
 
                 <div class="chat-body" id="chat-body" mt-scroll="vm.onMessageScroll($event);">
                     <ul class="list-unstyled">
-                        <li class="chat-message-list {{message.type}}" ng-class="{'me': message.username == vm.user.username}"
+                        <li class="chat-message-list {{message.type}}" ng-class="{'me': (message.user.username == vm.user.username) && (message.type == 'message')}"
                             ng-repeat="message in vm.messages" repeat-done="vm.onMessageRepeatDone();">
-                            <div ng-class="{'chat-message-header-me': message.username == vm.user.username, 'chat-message-header': message.username != vm.user.username}">
-                                <div class="chat-message-header-text">{{message.displayName}}　{{message.created | date:'MM-dd HH:mm'}}
+                            <div ng-class="(message.user.username == vm.user.username) && (message.type == 'message') ? 'chat-message-header-me' : 'chat-message-header'">
+                                <div class="chat-message-header-text">{{message.user.displayName}}　{{message.created | date:'MM-dd HH:mm'}}
                                 </div>
                             </div>
-                            <div ng-class="{'chat-wrapper-me': message.username == vm.user.username, 'chat-wrapper': message.username != vm.user.username}">
-                                <a class="chat-avatar" ng-click="vm.onUserImgClicked(message.displayName);">
-                                    <img title="@{{message.displayName}}" ng-src="/{{message.profileImageURL}}">
+                            <div ng-class="(message.user.username == vm.user.username) && (message.type == 'message') ? 'chat-wrapper-me' : 'chat-wrapper'">
+                                <a class="chat-avatar" ng-dblclick="vm.onUserImgDblClicked(message.user.displayName);">
+                                    <img title="@{{message.user.displayName}}" ng-src="/{{message.user.profileImageURL}}">
                                 </a>
 
                                 <div class="chat-message-item">
@@ -64,14 +64,18 @@
 
                 <div class="user-body">
                     <ul class="list-unstyled">
-                        <li ng-repeat="u in vm.users">
-                            <div class="user-item-wrapper" ng-click="vm.onUserListItemClicked(u);">
+                        <li ng-repeat="u in vm.users | orderBy:['-isAdmin', '-isOper', '-isVip', 'username']">
+                            <div class="user-item-wrapper" ng-dblclick="vm.onUserListItemDblClicked(u);">
                                 <a class="user-item-avatar">
-                                    <img title="{{u.displayName}}" ng-src="/{{u.profileImageURL}}">
+                                    <img title="@{{u.displayName}}" ng-src="/{{u.profileImageURL}}">
                                 </a>
 
                                 <div class="user-item-body">
-                                    <div class="user-item-text" ng-bind="u.displayName"></div>
+                                    <div class="user-item-text text-long"
+                                         ng-class="{'user-is-admin': u.isAdmin, 'user-is-oper': !u.isAdmin && u.isOper, 'user-is-vip': u.isVip}"
+                                         ng-bind="u.displayName"></div>
+                                    <span class="glyphicon glyphicon-flash ban-kick" title="{{'CHAT_BAN_KICK' | translate}}" aria-hidden="true"
+                                            ng-click="vm.banKickUser(u);" ng-show="vm.user.isOper && u.username != vm.user.username"></span>
                                 </div>
                             </div>
                         </li>

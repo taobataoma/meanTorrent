@@ -5,12 +5,13 @@
     .module('chat')
     .controller('ChatController', ChatController);
 
-  ChatController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'Socket', '$translate', '$sanitize', '$sce'];
+  ChatController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'Socket', '$translate', 'ModalConfirmService', 'MeanTorrentConfig'];
 
-  function ChatController($scope, $state, $timeout, Authentication, Socket, $translate, $sanitize, $sce) {
+  function ChatController($scope, $state, $timeout, Authentication, Socket, $translate, ModalConfirmService, MeanTorrentConfig) {
     var vm = this;
 
     vm.user = Authentication.user;
+    vm.chatConfig = MeanTorrentConfig.meanTorrentConfig.chat;
     vm.messages = [];
     vm.users = [];
     vm.messageText = '';
@@ -27,10 +28,19 @@
         $state.go('home');
       }
 
-      // Make sure the Socket is connected
-      if (!Socket.socket) {
-        Socket.connect();
-      }
+      // add an event listener to the 'usersList' event
+      Socket.on('connect_error', function (err) {
+        console.log(err);
+      });
+      Socket.on('connect_timeout', function (err) {
+        console.log(err);
+      });
+      Socket.on('reconnect_error', function (err) {
+        console.log(err);
+      });
+      Socket.on('reconnect_failed', function (err) {
+        console.log(err);
+      });
 
       // Add an event listener to the 'chatMessage' event
       Socket.on('chatMessage', function (message) {
@@ -38,20 +48,32 @@
       });
 
       // add an event listener to the 'usersList' event
-      Socket.on('usersList', function (us) {
-        vm.onUsersList(us);
+      Socket.on('usersList', function (message) {
+        vm.onUsersList(message);
       });
 
       // add an event listener to the 'usersList' event
-      Socket.on('join', function (us) {
-        vm.onUsersJoin(us);
+      Socket.on('join', function (message) {
+        vm.onUserJoin(message);
+      });
+
+      // add an event listener to the 'ban' event
+      Socket.on('ban', function (message) {
+        vm.onUserBan(message);
       });
 
       // add an event listener to the 'usersList' event
-      Socket.on('quit', function (us) {
-        vm.onUsersQuit(us);
+      Socket.on('quit', function (message) {
+        vm.onUserQuit(message);
       });
 
+      // Make sure the Socket is connected
+      if (!Socket.socket) {
+        Socket.connect(function (err) {
+          console.log('========server error===========');
+          console.log(err);
+        });
+      }
 
       // Remove the event listener when the controller instance is destroyed
       $scope.$on('$destroy', function () {
@@ -59,6 +81,7 @@
         Socket.removeListener('usersList');
         Socket.removeListener('join');
         Socket.removeListener('quit');
+        Socket.removeListener('ban');
       });
     }
 
@@ -169,42 +192,69 @@
 
     /**
      * onUsersList
-     * @param us
+     * @param message(user lsit)
      */
-    vm.onUsersList = function (us) {
-      vm.users = us;
+    vm.onUsersList = function (message) {
+      vm.users = message;
     };
 
     /**
      * onUsersJoin
-     * @param uobj
+     * @param message
      */
-    vm.onUsersJoin = function (uobj) {
-      vm.users.push(uobj);
+    vm.onUserJoin = function (message) {
+      vm.users.push(message.user);
 
-      uobj.text = $translate.instant('CHAT_USER_JOIN');
-      uobj.text = '*** [@' + uobj.displayName + '] ' + uobj.text;
-      vm.messages.push(uobj);
+      message.text = $translate.instant('CHAT_USER_JOIN');
+      message.text = '*** [@' + message.user.displayName + '] ' + message.text;
+      vm.messages.push(message);
     };
 
     /**
      * onUsersQuit
-     * @param uobj
+     * @param message
      */
-    vm.onUsersQuit = function (uobj) {
+    vm.onUserQuit = function (message) {
       var index = -1;
       angular.forEach(vm.users, function (i, x) {
-        if (i.username === uobj.username) {
+        if (i.username === message.user.username) {
           index = x;
         }
       });
       if (index >= 0) {
         vm.users.splice(index, 1);
-        uobj.text = $translate.instant('CHAT_USER_QUIT');
-        uobj.text = '*** [@' + uobj.displayName + '] ' + uobj.text;
-        vm.messages.push(uobj);
+        message.text = $translate.instant('CHAT_USER_QUIT');
+        message.text = '*** [@' + message.user.displayName + '] ' + message.text;
+        vm.messages.push(message);
       }
     };
+
+    /**
+     * onUsersBan
+     * @param message
+     */
+    vm.onUserBan = function (message) {
+      removeUserFromList(message.user.username);
+
+      var who = '[@' + message.user.displayName + ']';
+      var by = '[@' + message.by.user.displayName + ']';
+
+      message.text = $translate.instant('CHAT_BAN_KICK_MESSAGE', {who: who, by: by, reason: message.text});
+
+      vm.messages.push(message);
+    };
+
+    /**
+     * removeUserFromList
+     * @param uname
+     */
+    function removeUserFromList(uname) {
+      angular.forEach(vm.users, function (u, index) {
+        if (u.username === uname) {
+          vm.users.splice(index, 1);
+        }
+      });
+    }
 
     /**
      * onMessageScroll
@@ -244,25 +294,34 @@
      */
     function makeAtUserLink(atu) {
       var s = '';
-      s += '<a href="#" ng-click="vm.atuClicked($event)" title="' + atu + '">';
+      s += '<a href="#" ng-dblclick="vm.atuDblClicked($event)" title="' + atu + '">';
       s += atu;
       s += '</a>';
       return s;
     }
 
     /**
-     * at user link Clicked
+     * at user link dbl Clicked
      * @param evt
      */
-    vm.atuClicked = function (evt) {
+    vm.atuDblClicked = function (evt) {
       addAtUserToInput(' [' + evt.currentTarget.innerText + '] ');
     };
 
-    vm.onUserListItemClicked = function (uitem) {
+    /**
+     * userlist item dbl clicked
+     * @param uitem
+     */
+    vm.onUserListItemDblClicked = function (uitem) {
+      console.log(uitem);
       addAtUserToInput(' [@' + uitem.displayName + '] ');
     };
 
-    vm.onUserImgClicked = function (uname) {
+    /**
+     * user profile picture dbl clicked
+     * @param uname
+     */
+    vm.onUserImgDblClicked = function (uname) {
       addAtUserToInput(' [@' + uname + '] ');
     };
     /**
@@ -284,11 +343,36 @@
       m.type = 'status';
       m.text = $translate.instant('CHAT_MESSAGE_ALREADY_CLEAN');
       m.created = Date.now();
-      m.profileImageURL = vm.user.profileImageURL;
-      m.username = vm.user.username;
-      m.displayName = vm.user.displayName;
+      m.user = vm.user;
 
       vm.messages.push(m);
+    };
+
+    /**
+     * banKickUser
+     * @param u
+     */
+    vm.banKickUser = function (u) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('CHAT_CONFIRM_BAN_CANCEL'),
+        actionButtonText: $translate.instant('CHAT_CONFIRM_BAN_OK'),
+        headerText: $translate.instant('CHAT_CONFIRM_BAN_HEADER_TEXT'),
+        bodyText: $translate.instant('CHAT_CONFIRM_BAN_BODY_TEXT'),
+        bodyParams: u.displayName
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          var message = {
+            username: u.username,
+            text: $translate.instant('CHAT_BAN_KICK_REASON'),
+            by: {
+              user: vm.user,
+              expires: vm.chatConfig.ban.expires
+            }
+          };
+          Socket.emit('ban', message);
+        });
     };
   }
 }());

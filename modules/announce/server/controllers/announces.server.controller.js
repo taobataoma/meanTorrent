@@ -358,7 +358,7 @@ exports.announce = function (req, res) {
         var d = Math.round(currd * udr.dr);
         var l = query.left;
 
-        if (req.passkeyuser.is_vip) {
+        if (req.passkeyuser.isVip) {
           u = u * config.meanTorrentConfig.torrentSalesValue.vip.Ur;
           d = d * config.meanTorrentConfig.torrentSalesValue.vip.Dr;
         }
@@ -728,7 +728,7 @@ exports.userByPasskey = function (req, res, next, pk) {
     .exec(function (err, u) {
       if (u) {
         req.passkeyuser = u;
-        req.passkeyuser.is_vip = isVip(u);
+        req.passkeyuser.isVip = isVip(u);
       } else {
         req.passkeyuser = undefined;
       }
