@@ -77,7 +77,7 @@ module.exports = {
     },
     chat: {
       ban: {
-        expires: 60 * 60 * 1000 * 2
+        expires: 60 * 60 * 1000 * 1
       }
     },
     tmdbConfig: {

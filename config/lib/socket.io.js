@@ -99,19 +99,14 @@ module.exports = function (app, db) {
           passport.session()(socket.request, {}, function () {
             if (socket.request.user) {
               // check ban list
-              //console.log(io.banClients);
               var banned = false;
               for (var i = io.banClients.length - 1; i >= 0; i--) {
                 var buser = io.banClients[i];
-                //console.log('buser.expires=' + buser.expires);
-                //console.log('Date.now()=' + Date.now());
                 if (buser.expires <= Date.now()) {  //already expires, remove it
                   io.banClients.splice(io.banClients.indexOf(buser), 1);
                   continue;
                 } else {
                   var address = socket.handshake.address;
-                  console.log(address);
-                  console.log(buser.ip);
                   if (buser.user.username === socket.request.user.username) { //username in ban list
                     banned = true;
                     next(new Error('username "' + buser.user.username + '" is banned from the server'), false);

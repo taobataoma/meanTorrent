@@ -64,10 +64,7 @@
 
       // Make sure the Socket is connected
       if (!Socket.socket) {
-        Socket.connect(function (err) {
-          console.log('========server error===========');
-          console.log(err);
-        });
+        Socket.connect();
       }
 
       // Remove the event listener when the controller instance is destroyed
@@ -308,7 +305,6 @@
      * @param uitem
      */
     vm.onUserListItemDblClicked = function (uitem) {
-      console.log(uitem);
       addAtUserToInput(' [@' + uitem.displayName + '] ');
     };
 
