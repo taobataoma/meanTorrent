@@ -12,7 +12,7 @@
       title: 'MENU_ADMIN',
       state: 'admin',
       type: 'dropdown',
-      roles: ['admin'],
+      roles: ['oper', 'admin'],
       position: 10
     });
   }

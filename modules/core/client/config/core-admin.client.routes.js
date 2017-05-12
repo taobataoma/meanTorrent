@@ -14,7 +14,7 @@
         url: '/admin',
         template: '<ui-view/>',
         data: {
-          roles: ['admin']
+          roles: ['oper', 'admin']
         }
       });
   }
