@@ -98,26 +98,37 @@ module.exports = function (app, db) {
         passport.initialize()(socket.request, {}, function () {
           passport.session()(socket.request, {}, function () {
             if (socket.request.user) {
-              // check ban list
+              var logined = false;
               var banned = false;
-              for (var i = io.banClients.length - 1; i >= 0; i--) {
-                var buser = io.banClients[i];
-                if (buser.expires <= Date.now()) {  //already expires, remove it
-                  io.banClients.splice(io.banClients.indexOf(buser), 1);
-                  continue;
-                } else {
-                  var address = socket.handshake.address;
-                  if (buser.user.username === socket.request.user.username) { //username in ban list
-                    banned = true;
-                    next(new Error('username "' + buser.user.username + '" is banned from the server'), false);
-                  } else if (buser.ip === address) { //ip in ban list
-                    banned = true;
-                    next(new Error('ip "' + buser.ip + '" is banned from the server'), false);
+
+              // check user already login
+              io.chatClients.forEach(function (s) {
+                if (s.request.user.username === socket.request.user.username) {
+                  logined = true;
+                  next(new Error('username "' + socket.request.user.username + '" already login from other location'), false);
+                }
+              });
+              // check ban list
+              if (!logined) {
+                for (var i = io.banClients.length - 1; i >= 0; i--) {
+                  var buser = io.banClients[i];
+                  if (buser.expires <= Date.now()) {  //already expires, remove it
+                    io.banClients.splice(io.banClients.indexOf(buser), 1);
+                    continue;
+                  } else {
+                    var address = socket.handshake.address;
+                    if (buser.user.username === socket.request.user.username) { //username in ban list
+                      banned = true;
+                      next(new Error('username "' + buser.user.username + '" is banned from the server'), false);
+                    } else if (buser.ip === address) { //ip in ban list
+                      banned = true;
+                      next(new Error('ip "' + buser.ip + '" is banned from the server'), false);
+                    }
                   }
                 }
               }
 
-              if (!banned) {
+              if (!logined && !banned) {
                 next(null, true);
               }
             } else {
