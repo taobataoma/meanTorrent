@@ -32,8 +32,10 @@
 
     // disconnect to Socket.io server
     function disconnect() {
-      service.socket.disconnect();
-      service.socket = null;
+      if (service.socket) {
+        service.socket.disconnect();
+        service.socket = null;
+      }
     }
 
     // Wrap the Socket.io 'emit' method

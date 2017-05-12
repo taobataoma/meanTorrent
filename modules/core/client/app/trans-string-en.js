@@ -302,6 +302,7 @@
     CHAT_CONFIRM_BAN_CANCEL: 'Cancel',
     CHAT_CONFIRM_BAN_HEADER_TEXT: 'Ban & Kick Confirm',
     CHAT_CONFIRM_BAN_BODY_TEXT: 'Are you sure want to kick this user and ban the ip?',
+    CHAT_DISCONNECT: 'disconnect from server, please check your network or chat server is down',
 
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',

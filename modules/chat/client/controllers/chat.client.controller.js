@@ -81,6 +81,15 @@
       Socket.on('quit', function (message) {
         vm.onUserQuit(message);
       });
+
+      // add an event listener to the 'disconnect' event
+      Socket.on('disconnect', function () {
+        var message = {
+          type: 'status',
+          text: '*** ' + $translate.instant('CHAT_DISCONNECT')
+        };
+        vm.messages.push(message);
+      });
     }
 
     /**
@@ -129,7 +138,9 @@
       };
 
       // Emit a 'chatMessage' message event
-      Socket.emit('chatMessage', message);
+      Socket.emit('chatMessage', message, function (res) {
+        console.log(res);
+      });
 
       // Clear the message text
       vm.messageText = '';

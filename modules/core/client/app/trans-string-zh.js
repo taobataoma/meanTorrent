@@ -302,6 +302,7 @@
     CHAT_CONFIRM_BAN_CANCEL: '取消',
     CHAT_CONFIRM_BAN_HEADER_TEXT: '踢出确认',
     CHAT_CONFIRM_BAN_BODY_TEXT: '你确定要把该用户踢出聊天室并禁止他的ip登录吗?',
+    CHAT_DISCONNECT: '已与服务器断开连接，请检查网络或聊天服务器已关闭',
 
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',
