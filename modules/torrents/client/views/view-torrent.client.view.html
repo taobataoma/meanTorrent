@@ -227,6 +227,7 @@
                                                     ng-if="item.user._id.toString()==vm.user._id || vm.user.roles[0] == 'admin'"
                                                     translate="COMMENT_REPLY_DELETE" ng-click="vm.deleteComment(item);"></button>
                                             <button class="btn btn-default btn-xs"
+                                                    ng-if="vm.user"
                                                     translate="COMMENT_REPLY_BUTTON" ng-click="vm.replyComment(item);"></button>
                                         </div>
                                     </div>
@@ -243,7 +244,7 @@
                     </ul>
                     <div class="padding-top-20"></div>
 
-                    <div class="comment-new">
+                    <div class="comment-new" ng-if="vm.user">
                         <div class="timeline-comment-wrapper">
                             <a href="#" class="timeline-comment-avatar">
                                 <img title="{{vm.user.displayName}}" ng-src="/{{vm.user.profileImageURL}}">
@@ -345,7 +346,7 @@
                 <li class="h-line" translate="SUBTITLE_RULES.1"></li>
             </ul>
 
-            <dl class="dl-horizontal">
+            <dl class="dl-horizontal" ng-if="vm.user">
                 <dt class="h-line">{{ 'UPLOAD_SUBTITLE' | translate}}：</dt>
                 <dd class="h-line">
                     <div class="row">

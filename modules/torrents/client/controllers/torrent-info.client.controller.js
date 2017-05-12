@@ -26,9 +26,9 @@
     /**
      * If user is not signed in then redirect back home
      */
-    if (!Authentication.user) {
-      $state.go('authentication.signin');
-    }
+    //if (!Authentication.user) {
+    //  $state.go('authentication.signin');
+    //}
 
     /**
      * commentBuildPager
@@ -172,7 +172,7 @@
           {
             title: $translate.instant('TAB_ADMIN_PANEL'),
             templateUrl: 'adminPanel.html',
-            ng_show: vm.user.isOper,
+            ng_show: vm.user ? vm.user.isOper : false,
             badges: []
           }
         );

@@ -25,6 +25,7 @@
         url: '/uploads',
         templateUrl: '/modules/torrents/client/views/uploads-torrents.client.view.html',
         data: {
+          roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.UPLOAD'
         }
       })

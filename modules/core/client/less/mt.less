@@ -285,6 +285,9 @@
     }
     .media-body {
         position: relative;
+        .torrent-filename {
+            color: @gray-light;
+        }
         .list-all-tags {
             position: absolute;
             bottom: 1px;
@@ -293,10 +296,13 @@
 }
 
 .list-all-genres {
-    .genres-item:not(:first-child) {
-        &::before {
-            content: " | ";
-            font-weight: bold;
+    .genres-item {
+        color: @gray-light;
+        &:not(:first-child) {
+            &::before {
+                content: " | ";
+                font-weight: bold;
+            }
         }
     }
 }
