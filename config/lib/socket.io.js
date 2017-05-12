@@ -114,10 +114,10 @@ module.exports = function (app, db) {
                   console.log(buser.ip);
                   if (buser.user.username === socket.request.user.username) { //username in ban list
                     banned = true;
-                    next(new Error('username ' + buser.user.username + ' is banned'), false);
+                    next(new Error('username "' + buser.user.username + '" is banned from the server'), false);
                   } else if (buser.ip === address) { //ip in ban list
                     banned = true;
-                    next(new Error('ip ' + buser.ip + ' is banned'), false);
+                    next(new Error('ip "' + buser.ip + '" is banned from the server'), false);
                   }
                 }
               }

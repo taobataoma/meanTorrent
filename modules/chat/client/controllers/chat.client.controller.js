@@ -28,18 +28,13 @@
         $state.go('home');
       }
 
-      // add an event listener to the 'usersList' event
-      Socket.on('connect_error', function (err) {
-        console.log(err);
-      });
-      Socket.on('connect_timeout', function (err) {
-        console.log(err);
-      });
-      Socket.on('reconnect_error', function (err) {
-        console.log(err);
-      });
-      Socket.on('reconnect_failed', function (err) {
-        console.log(err);
+      // add an event listener to the 'error' event
+      Socket.on('error', function (err) {
+        var message = {
+          type: 'status',
+          text: '*** ' + err
+        };
+        vm.messages.push(message);
       });
 
       // Add an event listener to the 'chatMessage' event
@@ -52,7 +47,7 @@
         vm.onUsersList(message);
       });
 
-      // add an event listener to the 'usersList' event
+      // add an event listener to the 'join' event
       Socket.on('join', function (message) {
         vm.onUserJoin(message);
       });
@@ -62,7 +57,7 @@
         vm.onUserBan(message);
       });
 
-      // add an event listener to the 'usersList' event
+      // add an event listener to the 'quit' event
       Socket.on('quit', function (message) {
         vm.onUserQuit(message);
       });
