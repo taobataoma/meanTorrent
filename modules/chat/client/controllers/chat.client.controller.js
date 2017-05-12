@@ -28,6 +28,26 @@
         $state.go('home');
       }
 
+      registerCallback();
+
+      // Make sure the Socket is connected
+      if (!Socket.socket) {
+        Socket.connect();
+        registerCallback();
+      }
+
+      // Remove the event listener when the controller instance is destroyed
+      $scope.$on('$destroy', function () {
+        Socket.disconnect();
+        Socket.removeListener('chatMessage');
+        Socket.removeListener('usersList');
+        Socket.removeListener('join');
+        Socket.removeListener('quit');
+        Socket.removeListener('ban');
+      });
+    }
+
+    function registerCallback() {
       // add an event listener to the 'error' event
       Socket.on('error', function (err) {
         var message = {
@@ -60,20 +80,6 @@
       // add an event listener to the 'quit' event
       Socket.on('quit', function (message) {
         vm.onUserQuit(message);
-      });
-
-      // Make sure the Socket is connected
-      if (!Socket.socket) {
-        Socket.connect();
-      }
-
-      // Remove the event listener when the controller instance is destroyed
-      $scope.$on('$destroy', function () {
-        Socket.removeListener('chatMessage');
-        Socket.removeListener('usersList');
-        Socket.removeListener('join');
-        Socket.removeListener('quit');
-        Socket.removeListener('ban');
       });
     }
 

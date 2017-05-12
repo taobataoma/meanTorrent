@@ -11,6 +11,7 @@
   function Socket(Authentication, $state, $timeout) {
     var service = {
       connect: connect,
+      disconnect: disconnect,
       emit: emit,
       on: on,
       removeListener: removeListener,
@@ -27,6 +28,12 @@
       if (Authentication.user) {
         service.socket = io();
       }
+    }
+
+    // disconnect to Socket.io server
+    function disconnect() {
+      service.socket.disconnect();
+      service.socket = null;
     }
 
     // Wrap the Socket.io 'emit' method
