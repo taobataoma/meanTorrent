@@ -14,10 +14,10 @@
         <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button"><span menu-title="{{item.title}}">{{::item.title}}</span>&nbsp;<span class="caret"></span></a>
         <ul ng-switch-when="dropdown" class="dropdown-menu">
           <li ui-sref-active="active" ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
-            <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title" target="{{subitem.target}}" menu-title="{{subitem.title}}"></a>
+            <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title" mt-target="{{item.target}}" menu-title="{{subitem.title}}"></a>
           </li>
         </ul>
-        <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title" target="{{item.target}}" menu-title="{{item.title}}"></a>
+        <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title" mt-target="{{item.target}}" menu-title="{{item.title}}"></a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
