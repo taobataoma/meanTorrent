@@ -12,7 +12,10 @@
       .state('torrents', {
         abstract: true,
         url: '/torrents',
-        template: '<ui-view/>'
+        template: '<ui-view/>',
+        data: {
+          roles: ['user', 'oper', 'admin']
+        }
       })
       .state('torrents.movie', {
         url: '/movie',
@@ -25,7 +28,6 @@
         url: '/uploads',
         templateUrl: '/modules/torrents/client/views/uploads-torrents.client.view.html',
         data: {
-          roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.UPLOAD'
         }
       })

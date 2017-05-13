@@ -15,7 +15,7 @@
         controller: 'ChatController',
         controllerAs: 'vm',
         data: {
-          //roles: ['user', 'admin'],
+          roles: ['user', 'oper', 'admin'],
           pageTitle: 'Chat'
         }
       });

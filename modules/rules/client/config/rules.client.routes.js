@@ -13,6 +13,7 @@
         url: '/rules',
         templateUrl: '/modules/rules/client/views/rules.client.view.html',
         data: {
+          roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.RULES'
         }
       });

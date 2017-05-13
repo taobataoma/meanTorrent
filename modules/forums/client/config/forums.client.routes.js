@@ -13,6 +13,7 @@
         url: '/forums',
         templateUrl: '/modules/forums/client/views/index.client.view.html',
         data: {
+          roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.FORUM'
         }
       });

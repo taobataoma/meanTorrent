@@ -13,6 +13,7 @@
         url: '/vip',
         templateUrl: '/modules/vip/client/views/vip.client.view.html',
         data: {
+          roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.VIP'
         }
       });

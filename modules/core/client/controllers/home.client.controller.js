@@ -5,9 +5,9 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', '$state', '$translate', 'TorrentsService', 'Notification', 'MeanTorrentConfig', 'getStorageLangService'];
+  HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'Notification', 'MeanTorrentConfig', 'getStorageLangService'];
 
-  function HomeController($scope, $state, $translate, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService) {
+  function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService) {
     var vm = this;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.movieTopList = undefined;
@@ -15,6 +15,13 @@
     vm.info_is_ready = false;
 
     vm.COMING = 'coming soon...';
+
+    /**
+     * If user is not signed in then redirect back signin
+     */
+    if (!Authentication.user) {
+      $state.go('authentication.signin');
+    }
 
     /**
      * initInfo

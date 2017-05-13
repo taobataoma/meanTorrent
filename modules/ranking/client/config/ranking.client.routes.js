@@ -13,6 +13,7 @@
         url: '/ranking',
         templateUrl: '/modules/ranking/client/views/ranking.client.view.html',
         data: {
+          roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.RANKING'
         }
       });
