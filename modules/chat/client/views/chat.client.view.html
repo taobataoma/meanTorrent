@@ -75,7 +75,7 @@
                                          ng-class="{'user-is-admin': u.isAdmin, 'user-is-oper': !u.isAdmin && u.isOper, 'user-is-vip': u.isVip}"
                                          ng-bind="u.displayName"></div>
                                     <span class="glyphicon glyphicon-flash ban-kick" title="{{'CHAT_BAN_KICK' | translate}}" aria-hidden="true"
-                                            ng-click="vm.banKickUser(u);" ng-show="vm.user.isOper && u.username != vm.user.username"></span>
+                                            ng-click="vm.banKickUser(u);" ng-show="vm.user.isOper && !u.isOper && u.username != vm.user.username"></span>
                                 </div>
                             </div>
                         </li>
