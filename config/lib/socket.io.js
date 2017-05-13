@@ -9,6 +9,7 @@ var config = require('../config'),
   cookieParser = require('cookie-parser'),
   passport = require('passport'),
   socketio = require('socket.io'),
+  moment = require('moment'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session);
 
@@ -101,6 +102,9 @@ module.exports = function (app, db) {
               var logined = false;
               var banned = false;
 
+              //init user
+              initUser(socket.request.user);
+
               // check user already login
               io.chatClients.forEach(function (s) {
                 if (s.request.user.username === socket.request.user.username) {
@@ -139,6 +143,23 @@ module.exports = function (app, db) {
       });
     });
   });
+
+  // init user isOper/isAdmin/isVip
+  function initUser(user) {
+    user.isVip = false;
+
+    if (!user.vip_start_at || !user.vip_end_at) {
+      user.isVip = false;
+    } else if (moment(Date.now()) > moment(user.vip_end_at)) {
+      user.isVip = false;
+    } else {
+      user.isVip = true;
+    }
+
+    user.isOper = (user.roles[0] === 'oper' || user.roles[0] === 'admin');
+    user.isAdmin = (user.roles[0] === 'admin');
+
+  }
 
   // Add an event listener to the 'connection' event
   io.on('connection', function (socket) {

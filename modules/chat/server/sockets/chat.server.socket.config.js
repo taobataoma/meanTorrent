@@ -40,30 +40,31 @@ module.exports = function (io, socket) {
 
   // Send a chat messages to all connected sockets when a message is received
   socket.on('ban', function (message) {
-    io.chatClients.forEach(function (bsocket) {
-      if (bsocket.request.user.username === message.username) {
-        message.type = 'status';
-        message.created = Date.now();
-        message.user = bsocket.request.user;
-        message.text = message.by.reason || 'you are not grateful';
+    if (socket.request.user.isOper) {
+      io.chatClients.forEach(function (bsocket) {
+        if (bsocket.request.user.username === message.username) {
+          message.type = 'status';
+          message.created = Date.now();
+          message.user = bsocket.request.user;
+          message.text = message.by.reason || 'you are not grateful';
 
-        message.by.user = socket.request.user;
-        // Emit the 'chatMessage' event
-        io.emit('ban', message);
+          message.by.user = socket.request.user;
+          // Emit the 'chatMessage' event
+          io.emit('ban', message);
 
-        //add to ban list
-        var address = bsocket.handshake.address;
-        var buser = {
-          user: bsocket.request.user,
-          ip: address,
-          expires: Date.now() + parseInt((message.by.expires || 60 * 60 * 1000 * 1), 10)
-        };
-        console.log(buser);
-        io.banClients.push(buser);
-        //disconnect user
-        bsocket.disconnect();
-      }
-    });
+          //add to ban list
+          var address = bsocket.handshake.address;
+          var buser = {
+            user: bsocket.request.user,
+            ip: address,
+            expires: Date.now() + parseInt((message.by.expires || 60 * 60 * 1000 * 1), 10)
+          };
+          io.banClients.push(buser);
+          //disconnect user
+          bsocket.disconnect();
+        }
+      });
+    }
   });
 
   // When socket disconnects, remove it from the list
