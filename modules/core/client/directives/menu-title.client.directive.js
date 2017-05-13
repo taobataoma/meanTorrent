@@ -22,14 +22,13 @@
         element.html(trans);
       });
 
-      //scope.$on('$stateChangeSuccess', listener);
-      //
-      //function listener(event, toState) {
-      //  var menu_title = attrs.menuTitle;
-      //  var trans = $translate.instant(menu_title);
-      //
-      //  element.html(trans);
-      //}
+      scope.$on('$stateChangeSuccess', listener);
+      function listener(event, toState) {
+        var menu_title = attrs.menuTitle;
+        var trans = $translate.instant(menu_title);
+
+        element.html(trans);
+      }
     }
   }
 }());

@@ -5,9 +5,9 @@
     .module('core')
     .controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService'];
+  HeaderController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService'];
 
-  function HeaderController($scope, $state, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService) {
+  function HeaderController($scope, $state, $stateParams, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService) {
     var vm = this;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
 
@@ -24,11 +24,16 @@
     }
 
     vm.changeLanguage = function (langKey) {
-      console.log('langKey=' + langKey);
-      localStorageService.set('storage_user_lang', langKey);
-      $translate.use(langKey);
+      var lang = localStorageService.get('storage_user_lang');
+      if (lang !== langKey) {
+        localStorageService.set('storage_user_lang', langKey);
+        $translate.use(langKey);
 
-      $state.reload();
+        $state.reload();
+        //$state.transitionTo($state.current, $stateParams, {
+        //  reload: true, inherit: false, notify: false
+        //});
+      }
     };
   }
 }());

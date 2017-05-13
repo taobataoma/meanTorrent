@@ -92,6 +92,16 @@
       });
     }
 
+    $scope.$on('$stateChangeSuccess', stateChangeSuccess);
+    function stateChangeSuccess(event, toState, toParams, fromState, fromParams) {
+      var footer = angular.element('footer');
+      if (toState.name === 'chat') {
+        footer.css('display', 'none');
+      } else {
+        footer.css('display', 'block');
+      }
+    }
+
     /**
      * $watch 'vm.messages'
      * when changed, scroll to bottom
@@ -179,9 +189,6 @@
       var h = document.documentElement.clientHeight - 50 - 16;
       e.css('height', h + 'px');
       u.css('height', h + 'px');
-
-      var footer = angular.element('footer');
-      footer.css('display', 'none');
 
       var bodysize = angular.element('.bodysize');
       bodysize.css('backgroundColor', '#f7f7f7');
