@@ -148,9 +148,7 @@
       };
 
       // Emit a 'chatMessage' message event
-      Socket.emit('chatMessage', message, function (res) {
-        console.log(res);
-      });
+      Socket.emit('chatMessage', message);
 
       // Clear the message text
       vm.messageText = '';

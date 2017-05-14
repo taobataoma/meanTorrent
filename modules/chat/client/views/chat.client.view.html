@@ -65,7 +65,7 @@
                 <div class="user-body">
                     <ul class="list-unstyled">
                         <li ng-repeat="u in vm.users | orderBy:['-isAdmin', '-isOper', '-isVip', 'username']">
-                            <div class="user-item-wrapper" ng-dblclick="vm.onUserListItemDblClicked(u);">
+                            <div class="user-item-wrapper" mt-scale="{scale: 1.1, duration: '.5s'}" ng-dblclick="vm.onUserListItemDblClicked(u);">
                                 <a class="user-item-avatar">
                                     <img title="@{{u.displayName}}" ng-src="/{{u.profileImageURL}}">
                                 </a>

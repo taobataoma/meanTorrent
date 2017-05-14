@@ -251,13 +251,7 @@
         .user-item-wrapper {
             padding-left: 35px;
             margin: 6px 6px;
-            transition-property: transform, opacity;
-            transition-duration: .5s;
-            transition-timing-function: ease;
             &:hover {
-                /* csslint ignore:start */
-                transform: scale(1.1);
-                /* csslint ignore:end */
                 .ban-kick {
                     display: inline;
                 }
@@ -268,10 +262,10 @@
                 color: @mt-base-color;
                 display: none;
                 float: right;
-                position: absolute;
-                right: 0;
-                top: 0;
-                padding: 8px 5px;
+                position: relative;
+                right: -10px;
+                top: -26px;
+                padding: 9px 5px;
                 width: 24px;
                 height: 100%;
                 border-top-right-radius: 3px;
