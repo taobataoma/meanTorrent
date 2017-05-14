@@ -9,7 +9,8 @@
 
                 <div class="chat-body" id="chat-body" mt-scroll="vm.onMessageScroll($event);">
                     <ul class="list-unstyled">
-                        <li class="chat-message-list {{message.type}}" ng-class="{'me': (message.user.username == vm.user.username) && (message.type == 'message')}"
+                        <li class="chat-message-list {{message.type}}"
+                            ng-class="{'me': (message.user.username == vm.user.username) && (message.type == 'message')}"
                             ng-repeat="message in vm.messages" repeat-done="vm.onMessageRepeatDone();">
                             <div ng-class="(message.user.username == vm.user.username) && (message.type == 'message') ? 'chat-message-header-me' : 'chat-message-header'">
                                 <div class="chat-message-header-text">{{message.user.displayName}}　{{message.created | date:'MM-dd HH:mm'}}
@@ -44,6 +45,16 @@
                                 <input type="checkbox" ng-model="vm.fontStyleItalic"> <i>{{'CHAT_FONT_ITALIC' | translate}}</i>
                             </label>
                         </div>
+                        <div class="pull-right margin-right-20">
+                            <span class="glyphicon glyphicon-text-color"
+                                  style="color: {{vm.selectedFontColor}}"
+                                  id="font-color-icon"
+                                  title="{{'CHAT_FONT_COLOR' | translate}}" aria-hidden="true"
+                                  uib-popover-template="vm.fontColorPopover.templateUrl"
+                                  popover-trigger="'outsideClick'"
+                                  popover-placement="top" popover-is-open="vm.fontColorPopover.isOpen"
+                                  popover-class="font-color-popover"></span>
+                        </div>
                     </div>
                     <div class="footer-input">
                         <textarea class="form-control" id="messageText" name="messageText" ng-model="vm.messageText"
@@ -75,7 +86,8 @@
                                          ng-class="{'user-is-admin': u.isAdmin, 'user-is-oper': !u.isAdmin && u.isOper, 'user-is-vip': u.isVip}"
                                          ng-bind="u.displayName"></div>
                                     <span class="glyphicon glyphicon-flash ban-kick" title="{{'CHAT_BAN_KICK' | translate}}" aria-hidden="true"
-                                            ng-click="vm.banKickUser(u);" ng-show="vm.user.isOper && !u.isOper && u.username != vm.user.username"></span>
+                                          ng-click="vm.banKickUser(u);"
+                                          ng-show="vm.user.isOper && !u.isOper && u.username != vm.user.username"></span>
                                 </div>
                             </div>
                         </li>
@@ -84,4 +96,17 @@
             </div>
         </div>
     </div>
+
+
+    <script type="text/ng-template" id="fontColor.html">
+        <div class="color-list">
+            <label ng-repeat="c in vm.colorList">
+                <div style="background-color: {{c}}" class="color-item" mt-scale="{scale: 1.2, duration: '.5s'}"
+                     ng-click="vm.onColorItemClicked(c);"
+                     ng-mouseenter="vm.onColorItemMouseEnter(c);"
+                     ng-mouseleave="vm.onColorItemMouseLeave(c);"></div>
+            </label>
+        </div>
+    </script>
+
 </section>

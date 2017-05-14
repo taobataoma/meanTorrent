@@ -17,6 +17,27 @@
     vm.messageText = '';
     vm.scrollAtBottom = true;
 
+    vm.selectedFontColor = '#000';
+    vm.fontColorPopover = {
+      templateUrl: 'fontColor.html',
+      isOpen: false
+    };
+
+    vm.colorList = [
+      '#000000',
+      '#000080',
+      '#0000FF',
+      '#00CC00',
+      '#008000',
+      '#008080',
+      '#800000',
+      '#800080',
+      '#808000',
+      '#DC143C',
+      '#FF1493',
+      '#FF4500'
+    ];
+
     init();
 
     /**
@@ -144,7 +165,8 @@
     vm.sendMessage = function () {
       // Create a new message object
       var message = {
-        text: sanitizeHTML(vm.messageText)
+        text: sanitizeHTML(vm.messageText),
+        fontColor: vm.selectedFontColor
       };
 
       // Emit a 'chatMessage' message event
@@ -298,6 +320,10 @@
         newmsg = newmsg.replace(m, atulink);
       });
 
+      if (msg.fontColor) {
+        newmsg = '<font color="' + msg.fontColor + '">' + newmsg + '</font>'
+      }
+
       return newmsg || '&nbsp;';
     };
 
@@ -386,6 +412,37 @@
           };
           Socket.emit('ban', message);
         });
+    };
+
+    /**
+     * onColorItemClicked
+     * @param c
+     */
+    vm.onColorItemClicked = function (c) {
+      angular.element('#font-color-icon').css('color', c);
+      angular.element('#messageText').css('color', c);
+
+      vm.fontColorPopover.isOpen = false;
+      vm.selectedFontColor = c;
+      angular.element('#messageText').trigger('focus');
+    };
+
+    /**
+     * onColorItemMouseEnter
+     * @param c
+     */
+    vm.onColorItemMouseEnter = function (c) {
+      angular.element('#font-color-icon').css('color', c);
+      angular.element('#messageText').css('color', c);
+    };
+
+    /**
+     * onColorItemMouseLeave
+     * @param c
+     */
+    vm.onColorItemMouseLeave = function (c) {
+      angular.element('#font-color-icon').css('color', vm.selectedFontColor);
+      angular.element('#messageText').css('color', vm.selectedFontColor);
     };
   }
 }());
