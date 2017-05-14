@@ -321,7 +321,7 @@
       });
 
       if (msg.fontColor) {
-        newmsg = '<font color="' + msg.fontColor + '">' + newmsg + '</font>'
+        newmsg = '<font color="' + msg.fontColor + '">' + newmsg + '</font>';
       }
 
       return newmsg || '&nbsp;';
