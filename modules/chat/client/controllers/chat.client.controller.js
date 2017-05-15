@@ -224,10 +224,16 @@
      * @param evt
      */
     vm.onInputKeyDown = function (evt) {
-      if (evt.keyCode === 13 && vm.messageText) {
-        vm.sendMessage();
-        //evt.stopPropagation();
-        evt.preventDefault();
+      if (evt.keyCode === 13) {
+        if (evt.shiftKey) {
+          return;
+        } else {
+          if (vm.messageText) {
+            vm.sendMessage();
+            //evt.stopPropagation();
+            evt.preventDefault();
+          }
+        }
       }
     };
 
@@ -318,6 +324,8 @@
     vm.getMessageText = function (msg) {
       var newmsg = msg.text;
 
+      newmsg = newmsg.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
       var matches = newmsg.match(/\[@(.*?)\]/g);
       angular.forEach(matches, function (m) {
         var atu = m.substr(1, m.length - 2);
@@ -326,7 +334,7 @@
       });
 
       if (msg.fontColor) {
-        newmsg = '<font color="' + msg.fontColor + '">' + newmsg + '</font>';
+        newmsg = '<font color="' + msg.fontColor + '">' + (newmsg || '&nbsp;') + '</font>';
       }
 
       return newmsg || '&nbsp;';

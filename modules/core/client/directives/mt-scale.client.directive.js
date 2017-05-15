@@ -17,10 +17,7 @@
 
         var mtScale = JSON.parse(JSON.stringify(eval('(' + attrs.mtScale + ')')));
 
-        console.log(mtScale);
-
         element.css('transition-property', 'transform, opacity');
-        console.log('mtScale.duration=' + mtScale.duration);
         element.css('transition-duration', mtScale.duration || '.5s');
         element.css('transition-timing-function', mtScale.function || 'ease');
 
