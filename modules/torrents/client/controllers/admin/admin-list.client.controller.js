@@ -23,7 +23,7 @@
     vm.searchKey = '';
     vm.releaseYear = undefined;
     vm.torrentStatus = 'reviewed';
-    vm.torrentRLevel = 'all';
+    vm.torrentRLevel = 'none';
 
     /**
      * If user is not signed in then redirect back home
@@ -102,7 +102,7 @@
       var e = angular.element(event.currentTarget);
 
       if (vm.torrentRLevel === l) {
-        vm.torrentRLevel = 'all';
+        vm.torrentRLevel = 'none';
       } else {
         vm.torrentRLevel = l;
       }
@@ -261,7 +261,7 @@
      */
     vm.onRLevelClicked = function (l) {
       if (vm.torrentRLevel === l) {
-        vm.torrentRLevel = 'all';
+        vm.torrentRLevel = 'none';
       } else {
         vm.torrentRLevel = l;
       }

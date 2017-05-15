@@ -151,7 +151,7 @@
                                     </span>
                                     <span class="label label-rlevel label-danger"
                                           ng-click="vm.onRLevelClicked(item.torrent_recommended); $event.stopPropagation();"
-                                          ng-show="item.torrent_recommended != 'all'">
+                                          ng-show="item.torrent_recommended != 'none'">
                                         {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent_recommended.toUpperCase() | translate}}
                                     </span>
                                     <span class="label label-sale" ng-if="item.isSaling"

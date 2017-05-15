@@ -260,7 +260,7 @@
     TORRENT_STATUS_ALL: '全部',
     TORRENT_RECOMMEND_LEVEL: '推荐级别',
     TORRENT_RECOMMEND_LEVEL_ITEM: {
-      LEVEL0: '全部',
+      LEVEL0: '无',
       LEVEL1: '一级推荐',
       LEVEL2: '二级推荐',
       LEVEL3: '三级推荐'

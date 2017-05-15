@@ -404,7 +404,7 @@ exports.list = function (req, res) {
   var skip = 0;
   var limit = 0;
   var status = 'reviewed';
-  var rlevel = 'all';
+  var rlevel = 'none';
   var stype = 'movie';
   var release = undefined;
   var tagsA = [];
@@ -456,7 +456,7 @@ exports.list = function (req, res) {
   if (status !== 'all') {
     condition.torrent_status = status;
   }
-  if (rlevel !== 'all') {
+  if (rlevel !== 'none') {
     condition.torrent_recommended = rlevel;
   }
   if (stype !== 'all') {
@@ -492,7 +492,7 @@ exports.list = function (req, res) {
 
   var findQuery = function (callback) {
     Torrent.find(condition)
-      .sort('-torrent_recommended -createdat')
+      .sort('torrent_recommended -createdat')
       .populate('user', 'displayName')
       .skip(skip)
       .limit(limit)

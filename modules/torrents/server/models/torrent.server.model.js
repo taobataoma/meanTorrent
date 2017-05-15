@@ -151,7 +151,7 @@ var TorrentSchema = new Schema({
   },
   torrent_recommended: {
     type: String,
-    default: 'all'
+    default: 'none'
   },
   _subtitles: [{
     type: Schema.Types.ObjectId,
