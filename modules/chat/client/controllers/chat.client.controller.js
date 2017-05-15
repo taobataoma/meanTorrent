@@ -124,7 +124,7 @@
 
       if (toState.name === 'chat') {
         footer.css('display', 'none');
-        bodysize.css('backgroundColor', '#f7f7f7');
+        bodysize.css('backgroundColor', '#f1f1f1');
       } else {
         footer.css('display', 'block');
         bodysize.css('backgroundColor', '#fff');

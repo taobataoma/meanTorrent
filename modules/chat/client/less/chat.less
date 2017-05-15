@@ -1,21 +1,21 @@
 @import (reference) "../../../core/client/less/mt-var.less";
 
 .chat-container {
-    background-color: lighten(@gray-light, 50%);
+    background-color: @mt-chat-background-color;
 }
 
 .chat-messages {
     height: 100%;
     margin: 8px -15px 8px 0;
-    border: solid 1px lighten(@gray-light, 38%);
+    border: solid 1px lighten(@gray-light, 35%);
     border-radius: 3px;
     background-color: #fff;
     .chat-title {
-        color: @gray-light;
+        color: @gray-dark;
         height: 40px;
         padding: 10px 15px 0 15px;
-        background-color: lighten(@gray-light, 48%);
-        border-bottom: solid 1px lighten(@gray-light, 45%);
+        background-color: lighten(@gray-light, 43%);
+        border-bottom: solid 1px lighten(@gray-light, 40%);
         .glyphicon {
             color: @mt-base-color;
         }
@@ -188,12 +188,12 @@
     }
     .chat-footer {
         height: 120px;
-        border-top: solid 1px lighten(@gray-light, 45%);
-        background-color: lighten(@gray-light, 48%);
+        border-top: solid 1px lighten(@gray-light, 40%);
+        background-color: lighten(@gray-light, 43%);
         .footer-function {
             height: 40px;
-            border-bottom: solid 1px lighten(@gray-light, 45%);
-            background-color: lighten(@gray-light, 48%);
+            border-bottom: solid 1px lighten(@gray-light, 40%);
+            background-color: lighten(@gray-light, 43%);
             .glyphicon {
                 color: @mt-base-color;
                 margin: 12px 2px;
@@ -229,15 +229,15 @@
 .chat-users {
     height: 100%;
     margin: 8px 0;
-    border: solid 1px lighten(@gray-light, 38%);
+    border: solid 1px lighten(@gray-light, 35%);
     border-radius: 3px;
     background-color: #fff;
     .user-title {
-        color: @gray-light;
+        color: @gray-dark;
         height: 40px;
         padding: 10px 15px 0 15px;
-        background-color: lighten(@gray-light, 48%);
-        border-bottom: solid 1px lighten(@gray-light, 45%);
+        background-color: lighten(@gray-light, 43%);
+        border-bottom: solid 1px lighten(@gray-light, 40%);
         .glyphicon {
             color: @mt-base-color;
         }
@@ -278,10 +278,10 @@
             .user-item-body {
                 padding: 6px 10px;
                 border-radius: 3px;
-                background-color: lighten(@chat-message-background-default, 3.5%);
+                background-color: lighten(@chat-message-background-default, 8%);
                 &:hover {
                     cursor: pointer;
-                    background-color: lighten(@chat-message-background-default, 1%);
+                    background-color: lighten(@chat-message-background-default, 3%);
                 }
                 .user-item-text {
                     &.user-is-admin {
