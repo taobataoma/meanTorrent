@@ -31,6 +31,15 @@ module.exports = {
         {name: 'DELETED', value: 'deleted'}
       ]
     },
+    torrentRecommendLevel: {
+      name: 'RECOMMENDLEVEL',
+      value: [
+        {name: 'LEVEL0', value: 'all'},
+        {name: 'LEVEL1', value: 'level1'},
+        {name: 'LEVEL2', value: 'level2'},
+        {name: 'LEVEL3', value: 'level3'}
+      ]
+    },
     userStatus: {
       name: 'STATUS',
       value: [

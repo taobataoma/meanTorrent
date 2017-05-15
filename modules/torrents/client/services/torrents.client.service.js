@@ -31,6 +31,14 @@
           saleType: '@_saleType'
         }
       },
+      setRecommendLevel: {
+        method: 'PUT',
+        url: '/api/torrents/:torrentId/set/recommendlevel/:rlevel',
+        params: {
+          torrentId: '@_torrentId',
+          rlevel: '@_rlevel'
+        }
+      },
       setReviewedStatus: {
         method: 'PUT',
         url: '/api/torrents/:torrentId/set/reviewed',

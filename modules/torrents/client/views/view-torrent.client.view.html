@@ -157,10 +157,10 @@
                         class="badge badge_info">{{vm.torrentLocalInfo._replies.length}}</span></div>
                 <div class="panel-body">
                     <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.commentItemsPerPage" total-items="vm.commentFilterLength"
-                                    ng-model="vm.commentCurrentPage" ng-change="vm.commentPageChanged(true)"
-                                    ng-if="vm.torrentLocalInfo._replies.length > 0"
-                                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        ng-model="vm.commentCurrentPage" ng-change="vm.commentPageChanged(true)"
+                        ng-if="vm.torrentLocalInfo._replies.length > 0"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
                     </ul>
 
                     <div id="comment-list-div">
@@ -237,10 +237,10 @@
                     </div>
 
                     <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.commentItemsPerPage" total-items="vm.commentFilterLength"
-                                    ng-model="vm.commentCurrentPage" ng-change="vm.commentPageChanged(true)"
-                                    ng-if="vm.torrentLocalInfo._replies.length > 0"
-                                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        ng-model="vm.commentCurrentPage" ng-change="vm.commentPageChanged(true)"
+                        ng-if="vm.torrentLocalInfo._replies.length > 0"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
                     </ul>
                     <div class="padding-top-20"></div>
 
@@ -584,7 +584,7 @@
                     <mark>{{vm.getSaleTypeDesc();}}</mark>
                 </dd>
 
-                <div class="text-center padding-top-10">
+                <div class="padding-top-10 margin-left-50">
                     <div class="btn-group sales-btn-group text-center">
                         <label ng-repeat="st in vm.torrentSalesType.value"
                                class="btn btn-sm" ng-model="vm.model_salestype" uib-btn-radio="'{{st.name}}'" uncheckable
@@ -594,6 +594,25 @@
                         </label>
                     </div>
                 </div>
+
+                <div class="margin-top-20"></div>
+
+                <dt class="h-line">{{ 'ADMIN_RLEVEL_SET' | translate}}:</dt>
+                <dd class="h-line">
+                </dd>
+
+                <div class="padding-top-10 margin-left-50">
+                    <div class="btn-group sales-btn-group text-center">
+                        <label ng-repeat="litem in vm.torrentRLevels.value"
+                               class="btn btn-sm" ng-model="vm.model_rlevel"
+                               uib-btn-radio="'{{litem.value}}'" uncheckable
+                               ng-class="{'btn-default':vm.torrentLocalInfo.torrent_recommended != litem.value, 'btn-success':vm.torrentLocalInfo.torrent_recommended == litem.value}"
+                               ng-click="vm.setRecommendLevel();">
+                            <small>{{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + litem.name | translate}}</small>
+                        </label>
+                    </div>
+                </div>
+
             </dl>
         </div>
     </script>

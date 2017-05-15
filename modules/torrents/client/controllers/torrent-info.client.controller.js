@@ -19,6 +19,7 @@
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
+    vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
 
     vm.torrentTabs = [];
     vm.progress = 0;
@@ -729,6 +730,27 @@
         Notification.error({
           message: res.data.message,
           title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETSALETYPE_ERROR')
+        });
+      });
+    };
+
+    /**
+     * setRecommendLevel
+     */
+    vm.setRecommendLevel = function () {
+      TorrentsService.setRecommendLevel({
+        _torrentId: vm.torrentLocalInfo._id,
+        _rlevel: vm.model_rlevel
+      }, function (res) {
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETRLEVEL_SUCCESSFULLY')
+        });
+
+        vm.torrentLocalInfo = res;
+      }, function (res) {
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETRLEVEL_ERROR')
         });
       });
     };

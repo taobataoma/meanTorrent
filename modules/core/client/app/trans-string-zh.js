@@ -183,6 +183,7 @@
     ADMIN_BASIC_DELETE: '删除种子',
     ADMIN_BASIC_TYPE_SET: '设置促销',
     ADMIN_SALE_TYPE_SET: '种子促销类型',
+    ADMIN_BASIC_RLEVEL_SET: '推荐级别',
 
     TORRENT_DELETE_CONFIRM_OK: '删除',
     TORRENT_DELETE_CONFIRM_CANCEL: '取消',
@@ -253,6 +254,17 @@
     //admin views
     USERS_LIST: '用户列表',
     USERS_UPDATE: '修改',
+    TORRENT_STATUS_NEW: '未审核',
+    TORRENT_STATUS_REVIEWED: '已审核',
+    TORRENT_STATUS_DELETED: '已删除',
+    TORRENT_STATUS_ALL: '全部',
+    TORRENT_RECOMMEND_LEVEL: '推荐级别',
+    TORRENT_RECOMMEND_LEVEL_ITEM: {
+      LEVEL0: '全部',
+      LEVEL1: '一级推荐',
+      LEVEL2: '二级推荐',
+      LEVEL3: '三级推荐'
+    },
 
     //vip,rules views
     BUTTON_DNATE: '捐 赠 Vip',

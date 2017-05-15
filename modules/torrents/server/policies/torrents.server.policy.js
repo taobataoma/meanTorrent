@@ -23,6 +23,7 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/torrents', permissions: '*'},
           {resources: '/api/torrents/:torrentId', permissions: '*'},
           {resources: '/api/torrents/:torrentId/set/saletype/:saleType', permissions: '*'},
+          {resources: '/api/torrents/:torrentId/set/recommendlevel/:rlevel', permissions: '*'},
           {resources: '/api/torrents/:torrentId/set/reviewed', permissions: '*'},
 
           {resources: '/api/subtitles/:torrentId', permissions: '*'},

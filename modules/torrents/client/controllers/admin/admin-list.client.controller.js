@@ -17,12 +17,13 @@
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
+    vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
 
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
-    vm.topItems = 6;
     vm.torrentStatus = 'reviewed';
+    vm.torrentRLevel = 'all';
 
     /**
      * If user is not signed in then redirect back home
@@ -93,6 +94,24 @@
     };
 
     /**
+     * onRecommendLevelClicked
+     * @param event
+     * @param s: status value
+     */
+    vm.onRecommendLevelClicked = function (event, l) {
+      var e = angular.element(event.currentTarget);
+
+      if (vm.torrentRLevel === l) {
+        vm.torrentRLevel = 'all';
+      } else {
+        vm.torrentRLevel = l;
+      }
+
+      e.blur();
+      vm.torrentBuildPager();
+    };
+
+    /**
      * onRadioTagClicked
      * @param event
      * @param n: tag name
@@ -153,6 +172,7 @@
         limit: vm.torrentItemsPerPage,
         keys: vm.searchKey.trim(),
         torrent_status: vm.torrentStatus,
+        torrent_rlevel: vm.torrentRLevel,
         torrent_type: 'movie',
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags
@@ -231,6 +251,19 @@
         vm.releaseYear = undefined;
       } else {
         vm.releaseYear = y;
+      }
+      vm.torrentBuildPager();
+    };
+
+    /**
+     * onRLevelClicked
+     * @param y
+     */
+    vm.onRLevelClicked = function (l) {
+      if (vm.torrentRLevel === l) {
+        vm.torrentRLevel = 'all';
+      } else {
+        vm.torrentRLevel = l;
       }
       vm.torrentBuildPager();
     };
@@ -351,6 +384,27 @@
         Notification.error({
           message: res.data.message,
           title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETSALETYPE_ERROR')
+        });
+      });
+    };
+
+    /**
+     * vm.setRecommendLevel
+     */
+    vm.setRecommendLevel = function (item, rl) {
+      TorrentsService.setRecommendLevel({
+        _torrentId: item._id,
+        _rlevel: rl.value
+      }, function (res) {
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETRLEVEL_SUCCESSFULLY')
+        });
+
+        vm.torrentPagedItems[vm.torrentPagedItems.indexOf(item)] = res;
+      }, function (res) {
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETRLEVEL_ERROR')
         });
       });
     };

@@ -150,8 +150,8 @@ var TorrentSchema = new Schema({
     type: Date
   },
   torrent_recommended: {
-    type: Number,
-    default: 0
+    type: String,
+    default: 'all'
   },
   _subtitles: [{
     type: Schema.Types.ObjectId,

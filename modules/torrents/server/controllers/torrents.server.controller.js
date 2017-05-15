@@ -328,6 +328,33 @@ exports.setSaleType = function (req, res) {
 };
 
 /**
+ * setRecommendLevel
+ * @param req
+ * @param res
+ */
+exports.setRecommendLevel = function (req, res) {
+  var torrent = req.torrent;
+
+  if (req.params.rlevel) {
+    torrent.torrent_recommended = req.params.rlevel;
+
+    torrent.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(torrent);
+      }
+    });
+  } else {
+    return res.status(422).send({
+      message: 'params rlevel error'
+    });
+  }
+};
+
+/**
  * setReviewedStatus
  * @param req
  * @param res
@@ -377,6 +404,7 @@ exports.list = function (req, res) {
   var skip = 0;
   var limit = 0;
   var status = 'reviewed';
+  var rlevel = 'all';
   var stype = 'movie';
   var release = undefined;
   var tagsA = [];
@@ -390,6 +418,9 @@ exports.list = function (req, res) {
   }
   if (req.query.torrent_status !== undefined) {
     status = req.query.torrent_status;
+  }
+  if (req.query.torrent_rlevel !== undefined) {
+    rlevel = req.query.torrent_rlevel;
   }
   if (req.query.torrent_type !== undefined) {
     stype = req.query.torrent_type;
@@ -425,6 +456,9 @@ exports.list = function (req, res) {
   if (status !== 'all') {
     condition.torrent_status = status;
   }
+  if (rlevel !== 'all') {
+    condition.torrent_recommended = rlevel;
+  }
   if (stype !== 'all') {
     condition.torrent_type = stype;
   }
@@ -458,7 +492,7 @@ exports.list = function (req, res) {
 
   var findQuery = function (callback) {
     Torrent.find(condition)
-      .sort('-createdat')
+      .sort('-torrent_recommended -createdat')
       .populate('user', 'displayName')
       .skip(skip)
       .limit(limit)

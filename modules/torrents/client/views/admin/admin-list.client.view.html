@@ -37,21 +37,32 @@
                                     class="btn btn-xs btn-tag" value="reviewed"
                                     ng-class="{'btn-success': vm.torrentStatus == 'reviewed', 'btn-default': vm.torrentStatus != 'reviewed'}"
                                     ng-click="vm.onTorrentStatusClicked($event, 'reviewed')">
-                                REVIEWED
+                                {{'TORRENT_STATUS_REVIEWED' | translate}}
                             </button>
                             <button id="torrent_status_new"
                                     class="btn btn-xs btn-tag" value="new"
                                     ng-class="{'btn-success': vm.torrentStatus == 'new', 'btn-default': vm.torrentStatus != 'new'}"
                                     ng-click="vm.onTorrentStatusClicked($event, 'new')">
-                                NEW
+                                {{'TORRENT_STATUS_NEW' | translate}}
                             </button>
                             <button id="torrent_status_all"
                                     class="btn btn-xs btn-tag" value="all"
                                     ng-class="{'btn-success': vm.torrentStatus == 'all', 'btn-default': vm.torrentStatus != 'all'}"
                                     ng-click="vm.onTorrentStatusClicked($event, 'all')">
-                                ALL
+                                {{'TORRENT_STATUS_ALL' | translate}}
                             </button>
-                            </span>
+                        </div>
+                    </dd>
+
+                    <dt class="h-line">{{ 'TORRENT_RECOMMEND_LEVEL' | translate}}:</dt>
+                    <dd class="h-line">
+                        <div class="btn-group btn-group-xs" role="group">
+                            <button ng-repeat="litem in vm.torrentRLevels.value" id="r_{{litem.name}}"
+                                    class="btn btn-xs btn-tag" value="{{litem.value}}"
+                                    ng-class="{'btn-success': vm.torrentRLevel == litem.value, 'btn-default': vm.torrentRLevel != litem.value}"
+                                    ng-click="vm.onRecommendLevelClicked($event, litem.value)">
+                                {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + litem.name | translate}}
+                            </button>
                         </div>
                     </dd>
 
@@ -65,7 +76,6 @@
                                             ng-click="vm.onRadioTagClicked($event, sitem.name)">
                                         {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
                                     </button>
-                                    </span>
                                 </div>
                             </dd>
                         </div>
@@ -92,9 +102,9 @@
     <div class="torrent-list" id="top_of_torrent_list">
         <div class="pagination-div-top">
             <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.torrentItemsPerPage" total-items="vm.torrentFilterLength"
-                            ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"
-                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
             </ul>
         </div>
         <div class="table-responsive">
@@ -138,6 +148,11 @@
                                     <span class="label label-release label-warning"
                                           ng-click="vm.onReleaseClicked(item.torrent_release); $event.stopPropagation();">
                                         {{ item.torrent_release}}
+                                    </span>
+                                    <span class="label label-rlevel label-danger"
+                                          ng-click="vm.onRLevelClicked(item.torrent_recommended); $event.stopPropagation();"
+                                          ng-show="item.torrent_recommended != 'all'">
+                                        {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent_recommended.toUpperCase() | translate}}
                                     </span>
                                     <span class="label label-sale" ng-if="item.isSaling"
                                           title="{{vm.getSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
@@ -207,6 +222,24 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="margin-top-2">
+                                <div class="admin-tools-btn-list btn-group" uib-dropdown dropdown-append-to-body>
+                                    <button id="btn-append-to-body1" type="button"
+                                            class="btn btn-xs btn-default btn-block"
+                                            ng-click="$event.stopPropagation();"
+                                            uib-dropdown-toggle>
+                                        {{'ADMIN_BASIC_RLEVEL_SET' | translate }} <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu-right" uib-dropdown-menu role="menu"
+                                        aria-labelledby="btn-append-to-body1">
+                                        <li role="menuitem" ng-repeat="l in vm.torrentRLevels.value"
+                                            ng-class="{'active': item.torrent_recommended == l.value}">
+                                            <a href="#" class="small"
+                                               ng-click="vm.setRecommendLevel(item, l);">{{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + l.name | translate}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -215,9 +248,9 @@
 
         <div class="pagination-div-bottom">
             <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.torrentItemsPerPage" total-items="vm.torrentFilterLength"
-                            ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"
-                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
             </ul>
         </div>
     </div>

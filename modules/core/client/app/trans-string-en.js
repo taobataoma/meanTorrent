@@ -183,6 +183,8 @@
     ADMIN_BASIC_DELETE: 'Delete torrent',
     ADMIN_BASIC_TYPE_SET: 'Sale Type',
     ADMIN_SALE_TYPE_SET: 'Sale Type Set',
+    ADMIN_BASIC_RLEVEL_SET: 'Recommend Level',
+    ADMIN_RLEVEL_SET: 'Recommend Level Set',
 
     TORRENT_DELETE_CONFIRM_OK: 'Delete',
     TORRENT_DELETE_CONFIRM_CANCEL: 'Cancel',
@@ -194,6 +196,8 @@
     TORRENT_SETSALETYPE_ERROR: 'Torrent sale type set failed',
     TORRENT_SETREVIEWED_SUCCESSFULLY: 'Torrent status reviewed set successfully',
     TORRENT_SETREVIEWED_ERROR: 'Torrent status reviewed set failed',
+    TORRENT_SETRLEVEL_SUCCESSFULLY: 'Torrent recommend level set successfully',
+    TORRENT_SETRLEVEL_ERROR: 'Torrent recommend level set failed',
 
     //page text
     PAGE_TEXT_FIRST: 'First',
@@ -253,6 +257,17 @@
     //admin views
     USERS_LIST: 'Users',
     USERS_UPDATE: 'Update',
+    TORRENT_STATUS_NEW: 'NEW',
+    TORRENT_STATUS_REVIEWED: 'REVIEWED',
+    TORRENT_STATUS_DELETED: 'DELETED',
+    TORRENT_STATUS_ALL: 'ALL',
+    TORRENT_RECOMMEND_LEVEL: 'Recommend Level',
+    TORRENT_RECOMMEND_LEVEL_ITEM: {
+      LEVEL0: 'ALL',
+      LEVEL1: 'LEVEL1',
+      LEVEL2: 'LEVEL2',
+      LEVEL3: 'LEVEL3'
+    },
 
     //vip,rules views
     BUTTON_DNATE: 'Donate Vip',

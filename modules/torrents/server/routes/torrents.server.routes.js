@@ -30,6 +30,9 @@ module.exports = function (app) {
   app.route('/api/torrents/:torrentId/set/saletype/:saleType').all(torrentsPolicy.isAllowed)
     .put(torrents.setSaleType);
 
+  app.route('/api/torrents/:torrentId/set/recommendlevel/:rlevel').all(torrentsPolicy.isAllowed)
+    .put(torrents.setRecommendLevel);
+
   app.route('/api/torrents/:torrentId/set/reviewed').all(torrentsPolicy.isAllowed)
     .put(torrents.setReviewedStatus);
 
