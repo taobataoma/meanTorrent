@@ -77,6 +77,16 @@ var TorrentSchema = new Schema({
     default: '',
     trim: true
   },
+  torrent_tagline: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  torrent_overview: {
+    type: String,
+    default: '',
+    trim: true
+  },
   torrent_type: {
     type: String,
     default: 'movie',
@@ -102,6 +112,14 @@ var TorrentSchema = new Schema({
     trim: true
   },
   torrent_imdb_votes: {
+    type: Number,
+    default: 0
+  },
+  torrent_imdb_votes_users: {
+    type: Number,
+    default: 0
+  },
+  torrent_runtime: {
     type: Number,
     default: 0
   },

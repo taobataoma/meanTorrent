@@ -200,8 +200,14 @@ body {
 }
 
 .panel-newest-list {
+    height: ~"calc(100% - 20px)";
     @media (max-width: @screen-md-min) {
         display: none;
+    }
+    .hide-more {
+        @media (max-width: @screen-lg-min) {
+            display: none;
+        }
     }
     .h5,
     h5 {

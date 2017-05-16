@@ -11,12 +11,10 @@
     var vm = this;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
 
+    vm.movieTopOne = undefined;
     vm.movieTopList = undefined;
     vm.movieNewList = undefined;
-
-    vm.info_is_ready = false;
-
-    vm.COMING = 'coming soon...';
+    vm.movieTopInfo = undefined;
 
     /**
      * If user is not signed in then redirect back signin
@@ -26,24 +24,16 @@
     }
 
     /**
-     * initInfo
+     * initTopOneInfo
      */
-    vm.initInfo = function () {
+    vm.initTopOneInfo = function () {
+      $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + vm.movieTopOne.torrent_backdrop_img + ')');
+
       TorrentsService.getTMDBInfo({
-        tmdbid: '329865',
+        tmdbid: vm.movieTopOne.torrent_tmdb_id,
         language: getStorageLangService.getLang()
       }, function (res) {
-        Notification.success({
-          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_ID_OK')
-        });
-
-        vm.movieinfo = res;
-        vm.info_is_ready = true;
-        $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + res.backdrop_path + ')');
-      }, function (err) {
-        Notification.error({
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_ID_ERROR')
-        });
+        vm.movieTopInfo = res;
       });
     };
 
@@ -61,9 +51,13 @@
       vm.moviesInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'movie',
-        limit: 8
+        limit: 9
       }, function (items) {
+        vm.movieTopOne = items.rows[0];
+        items.rows.splice(0, 1);
         vm.movieTopList = items.rows;
+
+        vm.initTopOneInfo();
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_MOVIE_INFO_ERROR')
@@ -74,7 +68,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'movie',
         newest: true,
-        limit: 10
+        limit: 14
       }, function (items) {
         vm.movieNewList = items.rows;
         console.log(vm.movieNewList);
