@@ -10,7 +10,9 @@
   function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService) {
     var vm = this;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+
     vm.movieTopList = undefined;
+    vm.movieNewList = undefined;
 
     vm.info_is_ready = false;
 
@@ -57,9 +59,25 @@
      */
     vm.getMovieTopInfo = function () {
       vm.moviesInfo = TorrentsService.get({
-        limit: 16
+        torrent_status: 'reviewed',
+        torrent_type: 'movie',
+        limit: 8
       }, function (items) {
         vm.movieTopList = items.rows;
+      }, function (err) {
+        Notification.error({
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_MOVIE_INFO_ERROR')
+        });
+      });
+
+      vm.moviesInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'movie',
+        newest: true,
+        limit: 10
+      }, function (items) {
+        vm.movieNewList = items.rows;
+        console.log(vm.movieNewList);
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_MOVIE_INFO_ERROR')

@@ -406,9 +406,12 @@ exports.list = function (req, res) {
   var status = 'reviewed';
   var rlevel = 'none';
   var stype = 'movie';
+  var newest = false;
   var release = undefined;
   var tagsA = [];
   var keysA = [];
+
+  var sort = 'torrent_recommended -createdat';
 
   if (req.query.skip !== undefined) {
     skip = parseInt(req.query.skip, 10);
@@ -428,6 +431,10 @@ exports.list = function (req, res) {
   if (req.query.torrent_release !== undefined) {
     release = req.query.torrent_release;
   }
+  if (req.query.newest !== undefined) {
+    newest = (req.query.newest === 'true');
+  }
+
   if (req.query.torrent_tags !== undefined) {
     var tagsS = req.query.torrent_tags + '';
     var tagsT = tagsS.split(',');
@@ -479,6 +486,9 @@ exports.list = function (req, res) {
 
   console.log(JSON.stringify(condition));
 
+  if (newest) {
+    sort = '-createdat';
+  }
 
   var countQuery = function (callback) {
     Torrent.count(condition, function (err, count) {
@@ -492,7 +502,7 @@ exports.list = function (req, res) {
 
   var findQuery = function (callback) {
     Torrent.find(condition)
-      .sort('torrent_recommended -createdat')
+      .sort(sort)
       .populate('user', 'displayName')
       .skip(skip)
       .limit(limit)

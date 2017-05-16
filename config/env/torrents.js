@@ -94,6 +94,7 @@ module.exports = {
       //please change it to your api key from themoviedb.org
       key: '7888f0042a366f63289ff571b68b7ce0',
       backdrop_img_base_url: 'http://image.tmdb.org/t/p/w1280',
+      backdrop_img_base_url_300: 'http://image.tmdb.org/t/p/w300',
       poster_img_base_url: 'http://image.tmdb.org/t/p/w500',
       poster_list_base_url: 'http://image.tmdb.org/t/p/w92',
       cast_img_base_url: 'http://image.tmdb.org/t/p/w132_and_h132_bestv2'

@@ -88,25 +88,26 @@ body {
     &:hover {
         background-color: #efefef;
         background-color: rgba(224, 224, 224, .3);
+        .torrent-user-info {
+            opacity: 1;
+            color: #fff;
+        }
+        .torrent-tmdb-info {
+            opacity: 1;
+            color: #fff;
+        }
+        > img {
+            opacity: 1;
+        }
     }
     > img {
         opacity: 0.8;
-        &:hover {
-            opacity: 1;
-            + .torrent-user-info {
-                opacity: 1;
-                color: #fff;
-            }
-        }
     }
     .caption {
-        padding: 5px 3px;
+        padding: 5px 3px 2px;
         ul {
             margin-bottom: 0;
         }
-    }
-    .release-date {
-        color: #000;
     }
 }
 
@@ -125,25 +126,55 @@ body {
     }
 }
 
-.torrent-user-info {
+.col-small-padding {
+    padding: 0 5px;
+}
+
+.col-no-padding {
+    padding: 0;
+}
+
+.torrent-tmdb-info {
     display: table-cell;
     position: absolute;
-    top: 4px;
-    left: 20px;
-    right: 20px;
-    padding: 8px 0;
+    bottom: 52px;
+    left: 10px;
+    right: 10px;
+    padding: 6px 5px;
 
     background-color: @mt-body-background-color;
     background-color: rgba(0, 0, 0, .7);
     color: #ddd;
     opacity: 0.8;
-    &:hover {
-        opacity: 1;
-        color: #fff;
-    }
     > ul {
         margin-left: 0;
         margin-bottom: 0;
+    }
+    .release-date {
+        color: #ccc;
+    }
+}
+
+.torrent-user-info {
+    font-size: 12px;
+    display: table-cell;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    right: 10px;
+    padding: 6px 5px;
+
+    background-color: @mt-body-background-color;
+    background-color: rgba(0, 0, 0, .7);
+    color: #ddd;
+    opacity: 0.8;
+    table {
+        width: 100%;
+        tr {
+            td {
+                width: auto;
+            }
+        }
     }
     .torrent-up {
         color: #33CC00;
@@ -152,18 +183,7 @@ body {
         color: #FF3300;
     }
     .torrent-finished {
-        color: #33FFFF;
-    }
-
-    &.small-info {
-        @media (min-width: @screen-md-min) {
-            padding: 5px 0;
-            font-size: 12px;
-            .list-inline > li {
-                padding-left: 1px;
-                padding-right: 1px;
-            }
-        }
+        color: #0366d6;
     }
 }
 
@@ -176,6 +196,98 @@ body {
     }
     .torrent-finished {
         color: #0366d6;
+    }
+}
+
+.panel-newest-list {
+    @media (max-width: @screen-md-min) {
+        display: none;
+    }
+    .h5,
+    h5 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    table {
+        width: 100%;
+        tr {
+            &.show-big {
+                .newest-item-big {
+                    display: block;
+                }
+                .newest-item-small {
+                    display: none;
+                }
+            }
+            &.hide-big {
+                .newest-item-big {
+                    display: none;
+                }
+                .newest-item-small {
+                    display: block;
+                }
+            }
+            td {
+                cursor: pointer;
+                max-width: 0;
+                &:hover {
+                    .newest-info {
+                        color: #fff;
+                        opacity: 1;
+                    }
+                    .newest-user-info {
+                        color: #fff;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    .newest-item-small {
+        padding: 0 5px;
+    }
+    .newest-item-big {
+        position: relative;
+        img {
+            width: 100%;
+        }
+        .newest-info {
+            position: absolute;
+            bottom: 32px;
+            left: 0;
+            right: 0;
+            margin-bottom: -32px;
+            padding: 6px 5px;
+
+            background-color: @mt-body-background-color;
+            background-color: rgba(0, 0, 0, .7);
+            color: #ddd;
+            opacity: 0.8;
+        }
+        .newest-user-info {
+            font-size: 12px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin-bottom: -32px;
+            padding: 6px 5px;
+
+            background-color: @mt-body-background-color;
+            background-color: rgba(0, 0, 0, .7);
+            color: #ddd;
+            opacity: 0.8;
+
+            .torrent-up {
+                color: #33CC00;
+            }
+            .torrent-down {
+                color: #FF3300;
+            }
+            .torrent-finished {
+                color: #0366d6;
+            }
+        }
     }
 }
 

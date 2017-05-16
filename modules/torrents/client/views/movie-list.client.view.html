@@ -1,21 +1,40 @@
 <section class="container padding-top-10" ng-controller="TorrentsController as vm" ng-init="vm.getMovieTopInfo();vm.torrentBuildPager();">
-    <div class="row">
+    <div class="row" style="padding: 0 10px;">
         <div ng-repeat="item in vm.movieTopInfo">
+            <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
             <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-sm-block"></div>
             <div data-ng-if="$index != 0 && $index % 6 == 0" class="clearfix visible-md-block visible-lg-block"></div>
-            <div class="col-sm-4 col-md-2">
+            <div class="col-xs-6 col-sm-4 col-md-2 col-small-padding">
                 <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
                     <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.torrent_img}}" alt="{{item.torrent_title}}"
                          class="img-responsive">
 
-                    <div class="torrent-user-info small-info">
-                        <ul class="list-unstyled list-inline">
-                            <li title="{{ 'TITLE_ALT.SEEDS' | translate}}"><span
-                                    class="glyphicon glyphicon-arrow-up torrent-up"></span><span>{{item.torrent_seeds}}</span></li>
-                            <li title="{{ 'TITLE_ALT.LEECHERS' | translate}}"><span
-                                    class="glyphicon glyphicon-arrow-down torrent-down"></span><span>{{item.torrent_leechers}}</span></li>
-                            <li title="{{ 'TITLE_ALT.FINISHED' | translate}}" class="pull-right"><span
-                                    class="glyphicon glyphicon-ok torrent-finished"></span><span>{{item.torrent_finished}}</span></li>
+                    <div class="torrent-user-info">
+                        <table>
+                            <tr>
+                                <td class="text-left">
+                                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                                    <span>{{item.torrent_seeds}}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                                    <span>{{item.torrent_leechers}}</span>
+                                </td>
+                                <td class="text-right">
+                                    <span class="glyphicon glyphicon-ok torrent-finished"></span>
+                                    <span>{{item.torrent_finished}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="torrent-tmdb-info">
+                        <ul class="list-unstyled">
+                            <li>
+                                <span class="release-date">{{item.torrent_release}}</span>
+                                    <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
+                                          class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.torrent_imdb_votes}}</span>
+                            </li>
                         </ul>
                     </div>
 
@@ -23,9 +42,6 @@
                         <ul class="list-unstyled">
                             <li class="text-long">
                                 <strong>{{item.torrent_title}}</strong>
-                            <li><span class="release-date">{{item.torrent_release}}</span>
-                                <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                      class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.torrent_imdb_votes}}</span>
                             </li>
                         </ul>
                     </div>

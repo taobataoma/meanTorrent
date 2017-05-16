@@ -111,44 +111,101 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <!--<legend class="xsmall-legend strong-legend text-uppercase" translate="MENU_TORRENTS_SUB.SUB_MOVIE"></legend>-->
-            <div class="col-xs-4 col-sm-2">
+        <div class="row" style="padding: 0 10px;">
+            <div class="col-md-9 col-no-padding">
+                <div ng-repeat="item in vm.movieTopList">
+                    <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
+                    <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-sm-block"></div>
+                    <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                    <div class="col-xs-6 col-sm-4 col-md-3 col-small-padding">
+                        <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
+                            <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.torrent_img}}" alt="{{item.torrent_title}}"
+                                 class="img-responsive">
 
-            </div>
-            <div class="col-xs-8 col-sm-10">
-                <div class="row">
-                    <div ng-repeat="item in vm.movieTopList">
-                        <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
-                        <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
-                                <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.torrent_img}}" alt="{{item.torrent_title}}"
-                                     class="img-responsive">
+                            <div class="torrent-user-info">
+                                <table>
+                                    <tr>
+                                        <td class="text-left">
+                                            <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                                            <span>{{item.torrent_seeds}}</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                                            <span>{{item.torrent_leechers}}</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="glyphicon glyphicon-ok torrent-finished"></span>
+                                            <span>{{item.torrent_finished}}</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
 
-                                <div class="torrent-user-info">
-                                    <ul class="list-unstyled list-inline">
-                                        <li title="{{ 'TITLE_ALT.SEEDS' | translate}}"><span
-                                                class="glyphicon glyphicon-arrow-up torrent-up"></span><span>{{item.torrent_seeds}}</span></li>
-                                        <li title="{{ 'TITLE_ALT.LEECHERS' | translate}}"><span
-                                                class="glyphicon glyphicon-arrow-down torrent-down"></span><span>{{item.torrent_leechers}}</span></li>
-                                        <li title="{{ 'TITLE_ALT.FINISHED' | translate}}" class="pull-right"><span
-                                                class="glyphicon glyphicon-ok torrent-finished"></span><span>{{item.torrent_finished}}</span></li>
-                                    </ul>
-                                </div>
+                            <div class="torrent-tmdb-info">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <span class="release-date">{{item.torrent_release}}</span>
+                                    <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
+                                          class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.torrent_imdb_votes}}</span>
+                                    </li>
+                                </ul>
+                            </div>
 
-                                <div class="caption">
-                                    <ul class="list-unstyled">
-                                        <li style="white-space: nowrap; overflow:hidden; text-overflow: ellipsis;">
-                                            <strong>{{item.torrent_title}}</strong>
-                                        <li><span class="release-date">{{item.torrent_release}}</span>
-                                            <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                                  class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.torrent_imdb_votes}}</span></li>
-                                    </ul>
-                                </div>
+                            <div class="caption">
+                                <ul class="list-unstyled">
+                                    <li class="text-long">
+                                        <strong>{{item.torrent_title}}</strong>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-3 col-small-padding" style="padding-left: 15px;">
+                <div class="panel panel-default panel-newest-list">
+                    <div class="panel-heading"><h5>Newest Movie Torrents</h5></div>
+                    <table class="table">
+                        <tr ng-repeat="nt in vm.movieNewList" mouse-enter-toggle-class="show-big" base-class="hide-big" ng-class="$index > 0 ? 'hide-big' : 'show-big'">
+                            <td>
+                                <div class="newest-item-big">
+                                    <img ng-src="{{vm.tmdbConfig.backdrop_img_base_url_300}}{{nt.torrent_backdrop_img}}"
+                                         on-error-src="/./modules/torrents/client/img/default_backdrop_300.jpg">
+
+                                    <div class="newest-user-info">
+                                        <table>
+                                            <tr>
+                                                <td class="text-left">
+                                                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                                                    <span>{{nt.torrent_seeds}}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                                                    <span>{{nt.torrent_leechers}}</span>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span class="glyphicon glyphicon-ok torrent-finished"></span>
+                                                    <span>{{nt.torrent_finished}}</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="newest-info">
+                                        <div class="text-long">
+                                            {{$index + 1}}. {{nt.torrent_title}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="newest-item-small text-long">
+                                    {{$index + 1}}. {{nt.torrent_title}}
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
