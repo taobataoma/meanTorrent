@@ -8,7 +8,8 @@
                              onload="this.style.opacity='1';" ng-click="vm.openTorrentInfo(vm.movieTopOne._id);">
 
                         <div class="down-torrent">
-                            <button class="btn btn-success btn-block" translate="DOWNLOAD_TORRENT"></button>
+                            <button class="btn btn-success btn-block" ng-click="vm.downloadTorrent(vm.movieTopOne._id)"
+                                    translate="DOWNLOAD_TORRENT"></button>
                         </div>
                     </div>
                     <div class="col-md-8">

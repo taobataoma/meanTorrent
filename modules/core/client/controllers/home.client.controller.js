@@ -5,9 +5,11 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'Notification', 'MeanTorrentConfig', 'getStorageLangService'];
+  HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'Notification', 'MeanTorrentConfig',
+    'getStorageLangService', 'DownloadService'];
 
-  function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService) {
+  function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService,
+                          DownloadService) {
     var vm = this;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
 
@@ -78,6 +80,26 @@
     vm.openTorrentInfo = function (id) {
       var url = $state.href('torrents.view', {torrentId: id});
       window.open(url, '_blank');
+    };
+
+    /**
+     * downloadTorrent
+     * @param id
+     */
+    vm.downloadTorrent = function (id) {
+      var url = '/api/torrents/download/' + id;
+      DownloadService.downloadFile(url, null, function (status) {
+        if (status === 200) {
+          Notification.success({
+            message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENTS_DOWNLOAD_SUCCESSFULLY')
+          });
+        }
+      }, function (err) {
+        Notification.error({
+          title: 'ERROR',
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
+        });
+      });
     };
   }
 }());

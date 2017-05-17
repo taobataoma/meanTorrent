@@ -165,7 +165,8 @@
                                         {{ item.torrent_release}}
                                     </span>
                                     <span class="label label-rlevel label-info"
-                                          ng-show="item.torrent_recommended != 'none'">
+                                          ng-show="item.torrent_recommended != 'none'"
+                                          ng-click="$event.stopPropagation();">
                                         {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent_recommended.toUpperCase() | translate}}
                                     </span>
                                     <span class="label label-sale" ng-if="item.isSaling"
