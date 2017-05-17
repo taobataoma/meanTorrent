@@ -49,11 +49,15 @@
                             <dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>
                             <dd class="h-line">{{vm.movieinfo.runtime | runtime}}</dd>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieinfo.budget | dollar:2}}</dd>
+                            <div ng-hide="vm.movieTopOne.torrent_budget == 0">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
+                                <dd class="h-line">{{vm.movieinfo.budget | dollar:2}}</dd>
+                            </div>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.REVENUE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieinfo.revenue | dollar:2}}</dd>
+                            <div ng-hide="vm.movieTopOne.torrent_revenue == 0">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.REVENUE' | translate}}：</dt>
+                                <dd class="h-line">{{vm.movieinfo.revenue | dollar:2}}</dd>
+                            </div>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
                             <dd class="h-line">

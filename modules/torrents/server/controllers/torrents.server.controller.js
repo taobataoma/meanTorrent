@@ -247,6 +247,8 @@ exports.create = function (req, res) {
   var torrent = new Torrent(req.body);
   torrent.user = req.user;
 
+  //console.log(torrent);
+
   torrent.save(function (err) {
     if (err) {
       return res.status(422).send({
