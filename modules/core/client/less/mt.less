@@ -202,6 +202,15 @@ body {
     }
 }
 
+.hide-on-sm {
+    @media (max-width: @screen-md-min) {
+        display: none;
+    }
+    @media (max-width: @screen-sm-min) {
+        display: inline;
+    }
+}
+
 .panel-newest-list {
     height: ~"calc(100% - 20px)";
     @media (max-width: @screen-md-min) {
