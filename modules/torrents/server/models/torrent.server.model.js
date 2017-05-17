@@ -35,6 +35,28 @@ var CommentSchema = new Schema({
   }
 });
 
+
+/**
+ * Sub cast Schema
+ */
+var CastSchema = new Schema({
+  name: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  profile_path: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  character: {
+    type: String,
+    default: '',
+    trim: true
+  }
+});
+
 /**
  * Torrent Schema
  */
@@ -77,6 +99,11 @@ var TorrentSchema = new Schema({
     default: '',
     trim: true
   },
+  torrent_original_language: {
+    type: String,
+    default: '',
+    trim: true
+  },
   torrent_tagline: {
     type: String,
     default: '',
@@ -97,6 +124,22 @@ var TorrentSchema = new Schema({
     default: '',
     trim: true
   },
+  torrent_companies: {
+    type: [String],
+    default: '',
+    trim: true
+  },
+  torrent_countries: {
+    type: [String],
+    default: '',
+    trim: true
+  },
+  torrent_director: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  torrent_cast: [CastSchema],
   torrent_tags: {
     type: [String],
     default: '',
@@ -120,6 +163,14 @@ var TorrentSchema = new Schema({
     default: 0
   },
   torrent_runtime: {
+    type: Number,
+    default: 0
+  },
+  torrent_budget: {
+    type: Number,
+    default: 0
+  },
+  torrent_revenue: {
     type: Number,
     default: 0
   },
