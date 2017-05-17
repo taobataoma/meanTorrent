@@ -356,6 +356,7 @@ exports.setRecommendLevel = function (req, res) {
 
   if (req.params.rlevel) {
     torrent.torrent_recommended = req.params.rlevel;
+    torrent.orderedat = Date.now();
 
     torrent.save(function (err) {
       if (err) {
@@ -430,7 +431,7 @@ exports.list = function (req, res) {
   var tagsA = [];
   var keysA = [];
 
-  var sort = 'torrent_recommended -createdat';
+  var sort = 'torrent_recommended -orderedat -createdat';
 
   if (req.query.skip !== undefined) {
     skip = parseInt(req.query.skip, 10);

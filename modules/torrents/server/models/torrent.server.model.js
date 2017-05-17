@@ -239,6 +239,10 @@ var TorrentSchema = new Schema({
   createdat: {
     type: Date,
     default: Date.now
+  },
+  orderedat: {
+    type: Date,
+    default: Date.now
   }
 });
 

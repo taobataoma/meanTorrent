@@ -39,6 +39,12 @@ body {
     }
     .topone {
         color: #ccc;
+        dt {
+            color: lighten(@gray-light, 8%);
+        }
+        legend {
+            color: lighten(@gray-light, 8%);
+        }
         img {
             opacity: 0;
             transition-property: transform, opacity;
@@ -53,9 +59,6 @@ body {
                 transform: scale(1.1);
                 /* csslint ignore:end */
             }
-        }
-        legend {
-            color: #ccc;
         }
         .genres-item {
             color: #fff;
