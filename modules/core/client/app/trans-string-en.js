@@ -60,6 +60,7 @@
     //HomeController & home views
     LOADING_TOP: 'Loading recommended info, please waiting...',
     TOP_MOVIE_INFO_ERROR: 'Get movie top info failed',
+    NEWEST_MOVIE_LIST: 'Newest Movie Torrents',
 
     //element title/alt
     TITLE_ALT: {

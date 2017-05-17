@@ -5,7 +5,7 @@
                 <div class="topone">
                     <div class="col-md-4">
                         <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{vm.movieTopOne.torrent_img}}" class="img-thumbnail center-block"
-                             onload="this.style.opacity='1';">
+                             onload="this.style.opacity='1';" ng-click="vm.openTorrentInfo(vm.movieTopOne._id);">
 
                         <div class="down-torrent">
                             <button class="btn btn-success btn-block" translate="DOWNLOAD_TORRENT"></button>
@@ -178,7 +178,7 @@
                     <div class="fill-height-table">
                         <div class="fill-height-row" style="overflow-y: auto;">
                             <div class="panel panel-default panel-newest-list" ng-show="vm.movieNewList">
-                                <div class="panel-heading"><h5>Newest Movie Torrents</h5></div>
+                                <div class="panel-heading"><h5>{{'NEWEST_MOVIE_LIST' | translate}}</h5></div>
                                 <table class="table">
                                     <tr ng-repeat="nt in vm.movieNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
                                         ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">

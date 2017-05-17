@@ -60,6 +60,7 @@
     //HomeController & home views
     LOADING_TOP: '正在推荐资源，请稍候...',
     TOP_MOVIE_INFO_ERROR: '获取电影Top列表失败',
+    NEWEST_MOVIE_LIST: '最新电影种子文件',
 
     //element title/alt
     TITLE_ALT: {

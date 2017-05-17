@@ -253,23 +253,6 @@
     };
 
     /**
-     * getDirector
-     * @returns {string}
-     */
-    //vm.getDirector = function () {
-    //  var n = '-';
-    //
-    //  if (vm.movieinfo) {
-    //    angular.forEach(vm.movieinfo.credits.crew, function (item) {
-    //      if (item.job === 'Director') {
-    //        n = item.name;
-    //      }
-    //    });
-    //  }
-    //  return n;
-    //};
-
-    /**
      * getVideoNfoHtml
      * @returns {*}
      */

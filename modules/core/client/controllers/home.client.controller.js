@@ -28,13 +28,6 @@
      */
     vm.initTopOneInfo = function () {
       $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + vm.movieTopOne.torrent_backdrop_img + ')');
-
-      //TorrentsService.getTMDBInfo({
-      //  tmdbid: vm.movieTopOne.torrent_tmdb_id,
-      //  language: getStorageLangService.getLang()
-      //}, function (res) {
-      //  vm.movieTopInfo = res;
-      //});
     };
 
     /**
