@@ -23,7 +23,7 @@
                             <dd class="h-line">{{vm.movieTopOne.torrent_director}}</dd>
 
                             <!--<dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_LANGUAGE' | translate}}：</dt>-->
-                            <!--<dd class="h-line">{{vm.movieTopOne.original_language}}</dd>-->
+                            <!--<dd class="h-line">{{vm.movieTopOne.torrent_original_language}}</dd>-->
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.GENRES' | translate}}：</dt>
                             <dd class="h-line list-all-genres">
@@ -183,7 +183,7 @@
                                     <tr ng-repeat="nt in vm.movieNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
                                         ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                         <td>
-                                            <div class="newest-item-big">
+                                            <div class="newest-item-big" ng-click="vm.openTorrentInfo(nt._id);">
                                                 <img ng-src="{{vm.tmdbConfig.backdrop_img_base_url_300}}{{nt.torrent_backdrop_img}}"
                                                      on-error-src="/./modules/torrents/client/img/default_backdrop_300.jpg">
 

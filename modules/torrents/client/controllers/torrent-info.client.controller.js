@@ -121,7 +121,7 @@
         if (res.torrent_backdrop_img) {
           $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + res.torrent_backdrop_img + ')');
         }
-        vm.initInfo(res.torrent_tmdb_id);
+        //vm.initInfo(res.torrent_tmdb_id);
         vm.commentBuildPager();
 
         vm.torrentTabs.push(
@@ -185,23 +185,23 @@
     /**
      * initInfo
      */
-    vm.initInfo = function (tmdb_id) {
-      TorrentsService.getTMDBInfo({
-        tmdbid: tmdb_id,
-        language: getStorageLangService.getLang()
-      }, function (res) {
-        Notification.success({
-          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_INFO_OK')
-        });
-
-        console.log(res);
-        vm.movieinfo = res;
-      }, function (err) {
-        Notification.error({
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_INFO_FAILED')
-        });
-      });
-    };
+    //vm.initInfo = function (tmdb_id) {
+    //  TorrentsService.getTMDBInfo({
+    //    tmdbid: tmdb_id,
+    //    language: getStorageLangService.getLang()
+    //  }, function (res) {
+    //    Notification.success({
+    //      message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_INFO_OK')
+    //    });
+    //
+    //    console.log(res);
+    //    vm.movieinfo = res;
+    //  }, function (err) {
+    //    Notification.error({
+    //      message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_INFO_FAILED')
+    //    });
+    //  });
+    //};
 
     /**
      * downloadTorrent
@@ -256,18 +256,18 @@
      * getDirector
      * @returns {string}
      */
-    vm.getDirector = function () {
-      var n = '-';
-
-      if (vm.movieinfo) {
-        angular.forEach(vm.movieinfo.credits.crew, function (item) {
-          if (item.job === 'Director') {
-            n = item.name;
-          }
-        });
-      }
-      return n;
-    };
+    //vm.getDirector = function () {
+    //  var n = '-';
+    //
+    //  if (vm.movieinfo) {
+    //    angular.forEach(vm.movieinfo.credits.crew, function (item) {
+    //      if (item.job === 'Director') {
+    //        n = item.name;
+    //      }
+    //    });
+    //  }
+    //  return n;
+    //};
 
     /**
      * getVideoNfoHtml

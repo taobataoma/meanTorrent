@@ -15,122 +15,122 @@
                     <div class="col-md-8">
                         <dl class="dl-horizontal">
                             <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_TITLE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieinfo.original_title}}</dd>
+                            <dd class="h-line">{{vm.torrentLocalInfo.torrent_original_title}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieinfo.title}}</dd>
+                            <dd class="h-line">{{vm.torrentLocalInfo.torrent_title}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.DIRECTOR' | translate}}：</dt>
-                            <dd class="h-line">{{vm.getDirector()}}</dd>
+                            <dd class="h-line">{{vm.torrentLocalInfo.torrent_director}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_LANGUAGE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieinfo.original_language}}</dd>
+                            <dd class="h-line">{{vm.torrentLocalInfo.torrent_original_language}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.GENRES' | translate}}：</dt>
                             <dd class="h-line list-all-genres">
-                                <span class="genres-item" ng-repeat="item in vm.movieinfo.genres">{{item.name}}</span>
+                                <span class="genres-item" ng-repeat="item in vm.torrentLocalInfo.torrent_genres">{{item}}</span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COMPANIES' | translate}}：</dt>
                             <dd class="h-line list-all-companies">
-                                <span class="company-item" ng-repeat="item in vm.movieinfo.production_companies">{{item.name}}</span>
-                                <span ng-show="vm.movieinfo.production_companies.length ==0">-</span>
+                                <span class="company-item" ng-repeat="item in vm.torrentLocalInfo.torrent_companies">{{item}}</span>
+                                <span ng-show="vm.torrentLocalInfo.torrent_companies.length ==0">-</span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
                             <dd class="h-line list-all-countries">
-                                <span class="country-item" ng-repeat="item in vm.movieinfo.production_countries">{{item.iso_3166_1}}</span>
-                                <span ng-show="vm.movieinfo.production_countries.length ==0">-</span>
+                                <span class="country-item" ng-repeat="item in vm.torrentLocalInfo.torrent_countries">{{item}}</span>
+                                <span ng-show="vm.torrentLocalInfo.torrent_countries.length ==0">-</span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieinfo.release_date}}</dd>
+                            <dd class="h-line">{{vm.torrentLocalInfo.torrent_release}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieinfo.runtime | runtime}}</dd>
+                            <dd class="h-line">{{vm.torrentLocalInfo.torrent_runtime | runtime}}</dd>
 
-                            <div ng-hide="vm.movieTopOne.torrent_budget == 0">
+                            <div ng-hide="vm.torrentLocalInfo.torrent_budget == 0">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
-                                <dd class="h-line">{{vm.movieinfo.budget | dollar:2}}</dd>
+                                <dd class="h-line">{{vm.torrentLocalInfo.torrent_budget | dollar:2}}</dd>
                             </div>
 
-                            <div ng-hide="vm.movieTopOne.torrent_revenue == 0">
+                            <div ng-hide="vm.torrentLocalInfo.torrent_revenue == 0">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.REVENUE' | translate}}：</dt>
-                                <dd class="h-line">{{vm.movieinfo.revenue | dollar:2}}</dd>
+                                <dd class="h-line">{{vm.torrentLocalInfo.torrent_revenue | dollar:2}}</dd>
                             </div>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
                             <dd class="h-line">
-                                <span ng-show="vm.movieinfo">
+                                <span ng-show="vm.torrentLocalInfo">
                                     <span class="torrent-votes">
                                         <kbd>IMDB</kbd>
-                                    </span> {{vm.movieinfo.vote_average}} / {{vm.movieinfo.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}
+                                    </span> {{vm.torrentLocalInfo.torrent_imdb_votes}} / {{vm.torrentLocalInfo.torrent_imdb_votes_users}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}
                                 </span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>
-                            <dd class="h-line"><a href="{{vm.imdbConfig.imdb_link_url}}{{vm.movieinfo.imdb_id}}"
-                                                  target="_blank">{{vm.imdbConfig.imdb_link_url}}{{vm.movieinfo.imdb_id}}</a></dd>
+                            <dd class="h-line"><a href="{{vm.imdbConfig.imdb_link_url}}{{vm.torrentLocalInfo.torrent_imdb_id}}"
+                                                  target="_blank">{{vm.imdbConfig.imdb_link_url}}{{vm.torrentLocalInfo.torrent_imdb_id}}</a></dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>
-                            <dd class="h-line"><a href="{{vm.tmdbConfig.tmdb_link_url}}{{vm.movieinfo.id}}"
-                                                  target="_blank">{{vm.tmdbConfig.tmdb_link_url}}{{vm.movieinfo.id}}</a></dd>
+                            <dd class="h-line"><a href="{{vm.tmdbConfig.tmdb_link_url}}{{vm.torrentLocalInfo.torrent_tmdb_id}}"
+                                                  target="_blank">{{vm.tmdbConfig.tmdb_link_url}}{{vm.torrentLocalInfo.torrent_tmdb_id}}</a></dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieinfo.overview}}</dd>
+                            <dd class="h-line">{{vm.torrentLocalInfo.torrent_overview}}</dd>
                         </dl>
                         <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
                         <div class="row cast-list">
                             <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieinfo.credits.cast[0].profile_path}}"
+                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.torrentLocalInfo.torrent_cast[0].profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[0].name}}</strong></span>
+                                <span class="cast-xs-info"><strong>{{vm.torrentLocalInfo.torrent_cast[0].name}}</strong></span>
 
-                                <p class="cast-xs-info character">{{vm.movieinfo.credits.cast[0].character}}</p>
+                                <p class="cast-xs-info character">{{vm.torrentLocalInfo.torrent_cast[0].character}}</p>
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieinfo.credits.cast[1].profile_path}}"
+                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.torrentLocalInfo.torrent_cast[1].profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[1].name}}</strong></span>
+                                <span class="cast-xs-info"><strong>{{vm.torrentLocalInfo.torrent_cast[1].name}}</strong></span>
 
-                                <p class="cast-xs-info character">{{vm.movieinfo.credits.cast[1].character}}</p>
+                                <p class="cast-xs-info character">{{vm.torrentLocalInfo.torrent_cast[1].character}}</p>
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieinfo.credits.cast[2].profile_path}}"
+                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.torrentLocalInfo.torrent_cast[2].profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[2].name}}</strong></span>
+                                <span class="cast-xs-info"><strong>{{vm.torrentLocalInfo.torrent_cast[2].name}}</strong></span>
 
-                                <p class="cast-xs-info character">{{vm.movieinfo.credits.cast[2].character}}</p>
+                                <p class="cast-xs-info character">{{vm.torrentLocalInfo.torrent_cast[2].character}}</p>
                             </div>
 
                             <div class="clearfix visible-xs-block visible-sm-block"></div>
 
                             <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieinfo.credits.cast[3].profile_path}}"
+                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.torrentLocalInfo.torrent_cast[3].profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[3].name}}</strong></span>
+                                <span class="cast-xs-info"><strong>{{vm.torrentLocalInfo.torrent_cast[3].name}}</strong></span>
 
-                                <p class="cast-xs-info character">{{vm.movieinfo.credits.cast[3].character}}</p>
+                                <p class="cast-xs-info character">{{vm.torrentLocalInfo.torrent_cast[3].character}}</p>
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieinfo.credits.cast[4].profile_path}}"
+                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.torrentLocalInfo.torrent_cast[4].profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[4].name}}</strong></span>
+                                <span class="cast-xs-info"><strong>{{vm.torrentLocalInfo.torrent_cast[4].name}}</strong></span>
 
-                                <p class="cast-xs-info character">{{vm.movieinfo.credits.cast[4].character}}</p>
+                                <p class="cast-xs-info character">{{vm.torrentLocalInfo.torrent_cast[4].character}}</p>
                             </div>
                             <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieinfo.credits.cast[5].profile_path}}"
+                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.torrentLocalInfo.torrent_cast[5].profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieinfo.credits.cast[5].name}}</strong></span>
+                                <span class="cast-xs-info"><strong>{{vm.torrentLocalInfo.torrent_cast[5].name}}</strong></span>
 
-                                <p class="cast-xs-info character">{{vm.movieinfo.credits.cast[5].character}}</p>
+                                <p class="cast-xs-info character">{{vm.torrentLocalInfo.torrent_cast[5].character}}</p>
                             </div>
                         </div>
                     </div>
