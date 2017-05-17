@@ -39,9 +39,10 @@
                             <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
                             <dd class="h-line">{{vm.movieTopOne.torrent_release}}</dd>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieTopOne.torrent_runtime | runtime}}</dd>
-
+                            <div ng-hide="vm.movieTopOne.torrent_runtime == 0">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>
+                                <dd class="h-line">{{vm.movieTopOne.torrent_runtime | runtime}}</dd>
+                            </div>
                             <div ng-hide="vm.movieTopOne.torrent_budget == 0">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
                                 <dd class="h-line">{{vm.movieTopOne.torrent_budget | dollar:2}}</dd>
@@ -58,7 +59,8 @@
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieTopOne.torrent_overview}}</dd>
+                            <dd class="h-line">{{vm.movieTopOne.torrent_overview | limitTo:300}}<span
+                                    ng-show="vm.movieTopOne.torrent_overview.length > 300">......</span></dd>
                         </dl>
                         <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
                         <div class="row cast-list">

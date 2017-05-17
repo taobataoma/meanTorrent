@@ -46,9 +46,10 @@
                             <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
                             <dd class="h-line">{{vm.torrentLocalInfo.torrent_release}}</dd>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>
-                            <dd class="h-line">{{vm.torrentLocalInfo.torrent_runtime | runtime}}</dd>
-
+                            <div ng-hide="vm.torrentLocalInfo.torrent_runtime == 0">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>
+                                <dd class="h-line">{{vm.torrentLocalInfo.torrent_runtime | runtime}}</dd>
+                            </div>
                             <div ng-hide="vm.torrentLocalInfo.torrent_budget == 0">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
                                 <dd class="h-line">{{vm.torrentLocalInfo.torrent_budget | dollar:2}}</dd>

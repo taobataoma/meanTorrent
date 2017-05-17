@@ -37,6 +37,10 @@ module.exports.createUploadFilename = function (req, file, cb) {
   var regex = new RegExp(',', 'g');
   var filename = file.originalname.replace(regex, ' ');
 
+  if (fs.existsSync(config.uploads.torrent.file.temp + filename)) {
+    fs.unlinkSync(config.uploads.torrent.file.temp + filename);
+  }
+
   if (fs.existsSync(config.uploads.torrent.file.dest + filename)) {
     var err = new Error();
     err.code = 'FILE_ALREADY_EXISTS';
@@ -47,7 +51,7 @@ module.exports.createUploadFilename = function (req, file, cb) {
 };
 
 module.exports.getUploadDestination = function (req, file, cb) {
-  cb(null, config.uploads.torrent.file.dest);
+  cb(null, config.uploads.torrent.file.temp);
 };
 
 module.exports.createUploadSubtitleFilename = function (req, file, cb) {

@@ -57,6 +57,7 @@ module.exports = {
     torrent: {
       file: {
         dest: './modules/torrents/client/uploads/',
+        temp: './modules/torrents/client/uploads/temp/',
         limits: {
           fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
         }

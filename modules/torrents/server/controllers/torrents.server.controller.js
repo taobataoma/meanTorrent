@@ -71,6 +71,15 @@ exports.upload = function (req, res) {
       })
       .catch(function (err) {
         res.status(422).send(err);
+
+        if (req.file && req.file.filename) {
+          var newfile = config.uploads.torrent.file.temp + req.file.filename;
+          if (fs.existsSync(newfile)) {
+            console.log(err);
+            console.log('ERROR: DELETE TEMP TORRENT FILE: ' + newfile);
+            fs.unlinkSync(newfile);
+          }
+        }
       });
   } else {
     res.status(401).send({
@@ -88,7 +97,6 @@ exports.upload = function (req, res) {
             message = 'Torrent file too large. Maximum size allowed is ' + (config.uploads.torrent.file.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
           }
 
-          //reject(errorHandler.getErrorMessage(uploadError));
           reject(message);
         } else {
           resolve();
@@ -100,7 +108,7 @@ exports.upload = function (req, res) {
   function checkAnnounce() {
     return new Promise(function (resolve, reject) {
       console.log(req.file.filename);
-      var newfile = config.uploads.torrent.file.dest + req.file.filename;
+      var newfile = config.uploads.torrent.file.temp + req.file.filename;
       nt.read(newfile, function (err, torrent) {
         var message = '';
 
@@ -113,13 +121,6 @@ exports.upload = function (req, res) {
               console.log(torrent.metadata.announce);
               message = 'ANNOUNCE_URL_ERROR';
 
-              fs.unlink(newfile, function (unlinkError) {
-                if (unlinkError) {
-                  console.log(unlinkError);
-                  message = 'Error occurred while deleting torrent file';
-                  reject(message);
-                }
-              });
               reject(message);
             }
           }
@@ -134,7 +135,6 @@ exports.upload = function (req, res) {
 
   function checkHash() {
     return new Promise(function (resolve, reject) {
-      var newfile = config.uploads.torrent.file.dest + req.file.filename;
       var message = '';
 
       if (torrentinfo.info_hash === '' || !torrentinfo.info_hash) {
@@ -149,14 +149,6 @@ exports.upload = function (req, res) {
           } else {
             if (torrent) {
               message = 'INFO_HASH_ALREADY_EXISTS';
-
-              fs.unlink(newfile, function (unlinkError) {
-                if (unlinkError) {
-                  console.log(unlinkError);
-                  message = 'Error occurred while deleting torrent file';
-                  reject(message);
-                }
-              });
 
               reject(message);
             } else {
@@ -249,15 +241,53 @@ exports.create = function (req, res) {
 
   //console.log(torrent);
 
-  torrent.save(function (err) {
+  //move temp torrent file to dest directory
+  var oldPath = config.uploads.torrent.file.temp + req.body.torrent_filename;
+  var newPath = config.uploads.torrent.file.dest + req.body.torrent_filename;
+  move(oldPath, newPath, function (err) {
     if (err) {
       return res.status(422).send({
-        message: errorHandler.getErrorMessage(err)
+        message: 'MOVE_TORRENT_FILE_ERROR'
       });
     } else {
-      res.json(torrent);
+      torrent.save(function (err) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.json(torrent);
+        }
+      });
     }
   });
+
+  function move(oldPath, newPath, callback) {
+    fs.rename(oldPath, newPath, function (err) {
+      if (err) {
+        if (err.code === 'EXDEV') {
+          copy();
+        } else {
+          callback(err);
+        }
+        return;
+      }
+      callback();
+    });
+
+    function copy() {
+      var readStream = fs.createReadStream(oldPath);
+      var writeStream = fs.createWriteStream(newPath);
+
+      readStream.on('error', callback);
+      writeStream.on('error', callback);
+
+      readStream.on('close', function () {
+        fs.unlink(oldPath, callback);
+      });
+      readStream.pipe(writeStream);
+    }
+  }
 };
 
 /**
@@ -403,6 +433,10 @@ exports.setReviewedStatus = function (req, res) {
  */
 exports.delete = function (req, res) {
   var torrent = req.torrent;
+
+  //DELETE the torrent file
+  var tfile = config.uploads.torrent.file.dest + req.torrent.torrent_filename;
+  fs.unlinkSync(tfile);
 
   torrent.remove(function (err) {
     if (err) {
