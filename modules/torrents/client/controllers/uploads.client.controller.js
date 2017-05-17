@@ -196,7 +196,8 @@
         country.push(item.iso_3166_1);
       });
 
-      var casts = [], i = 0;
+      var casts = [];
+      var i = 0;
       angular.forEach(vm.movieinfo.credits.cast, function (item) {
         if (i < 6) {
           var c = {
@@ -205,7 +206,7 @@
             profile_path: item.profile_path
           };
           casts.push(c);
-          i++
+          i++;
         }
       });
 

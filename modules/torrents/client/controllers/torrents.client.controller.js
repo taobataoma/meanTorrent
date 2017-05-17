@@ -36,7 +36,7 @@
      */
     vm.torrentBuildPager = function () {
       vm.torrentPagedItems = [];
-      vm.torrentItemsPerPage = 8;
+      vm.torrentItemsPerPage = 15;
       vm.torrentCurrentPage = 1;
       vm.torrentFigureOutItemsToDisplay();
     };
@@ -150,7 +150,7 @@
       }
 
       TorrentsService.get({
-        skip: (p - 1) * vm.torrentItemsPerPage + 0,  //skip
+        skip: (p - 1) * vm.torrentItemsPerPage + skip,
         limit: vm.torrentItemsPerPage,
         keys: vm.searchKey.trim(),
         torrent_status: 'reviewed',

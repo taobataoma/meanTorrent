@@ -121,7 +121,6 @@
         if (res.torrent_backdrop_img) {
           $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + res.torrent_backdrop_img + ')');
         }
-        //vm.initInfo(res.torrent_tmdb_id);
         vm.commentBuildPager();
 
         vm.torrentTabs.push(
@@ -183,25 +182,20 @@
     };
 
     /**
-     * initInfo
+     * getMovieInfo
      */
-    //vm.initInfo = function (tmdb_id) {
-    //  TorrentsService.getTMDBInfo({
-    //    tmdbid: tmdb_id,
-    //    language: getStorageLangService.getLang()
-    //  }, function (res) {
-    //    Notification.success({
-    //      message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_INFO_OK')
-    //    });
-    //
-    //    console.log(res);
-    //    vm.movieinfo = res;
-    //  }, function (err) {
-    //    Notification.error({
-    //      message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_INFO_FAILED')
-    //    });
-    //  });
-    //};
+    vm.getMovieInfo = function (tmdb_id) {
+      TorrentsService.getTMDBInfo({
+        tmdbid: tmdb_id,
+        language: getStorageLangService.getLang()
+      }, function (res) {
+        vm.doUpdateTorrentInfo(res);
+      }, function (err) {
+        Notification.error({
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_INFO_FAILED')
+        });
+      });
+    };
 
     /**
      * downloadTorrent
@@ -694,6 +688,107 @@
             });
           }
         });
+    };
+
+    /**
+     * updateTorrent
+     */
+    vm.updateTorrent = function () {
+      var modalOptions = {
+        closeButtonText: $translate.instant('TORRENT_UPDATE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('TORRENT_UPDATE_CONFIRM_OK'),
+        headerText: $translate.instant('TORRENT_UPDATE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('TORRENT_UPDATE_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          vm.getMovieInfo(vm.torrentLocalInfo.torrent_tmdb_id);
+        });
+    };
+
+    /**
+     * doUpdateTorrentInfo
+     * @param minfo
+     */
+    vm.doUpdateTorrentInfo = function (movieinfo) {
+      var d = new Date(movieinfo.release_date);
+
+      var g = [];
+      angular.forEach(movieinfo.genres, function (item) {
+        g.push(item.name);
+      });
+
+      var com = [];
+      angular.forEach(movieinfo.production_companies, function (item) {
+        com.push(item.name);
+      });
+
+      var country = [];
+      angular.forEach(movieinfo.production_countries, function (item) {
+        country.push(item.iso_3166_1);
+      });
+
+      var casts = [];
+      var i = 0;
+      angular.forEach(movieinfo.credits.cast, function (item) {
+        if (i < 6) {
+          var c = {
+            name: item.name,
+            character: item.character,
+            profile_path: item.profile_path
+          };
+          casts.push(c);
+          i++;
+        }
+      });
+
+      var dir = undefined;
+      angular.forEach(movieinfo.credits.crew, function (item) {
+        if (item.job === 'Director') {
+          dir = item.name;
+        }
+      });
+
+      vm.torrentLocalInfo.torrent_title = movieinfo.title;
+      vm.torrentLocalInfo.torrent_original_title = movieinfo.original_title;
+      vm.torrentLocalInfo.torrent_original_language = movieinfo.original_language;
+      vm.torrentLocalInfo.torrent_tagline = movieinfo.tagline;
+      vm.torrentLocalInfo.torrent_overview = movieinfo.overview;
+      vm.torrentLocalInfo.torrent_genres = g;
+      vm.torrentLocalInfo.torrent_companies = com;
+      vm.torrentLocalInfo.torrent_countries = country;
+      vm.torrentLocalInfo.torrent_cast = casts;
+      vm.torrentLocalInfo.torrent_director = dir;
+      vm.torrentLocalInfo.torrent_imdb_votes = movieinfo.vote_average;
+      vm.torrentLocalInfo.torrent_imdb_votes_users = movieinfo.vote_count;
+      vm.torrentLocalInfo.torrent_runtime = movieinfo.runtime;
+      vm.torrentLocalInfo.torrent_budget = movieinfo.budget;
+      vm.torrentLocalInfo.torrent_revenue = movieinfo.revenue;
+      vm.torrentLocalInfo.torrent_img = movieinfo.poster_path;
+      vm.torrentLocalInfo.torrent_backdrop_img = movieinfo.backdrop_path;
+      vm.torrentLocalInfo.torrent_release = d.getFullYear();
+
+      vm.torrentLocalInfo.$update(function (response) {
+        successCallback(response);
+      }, function (errorResponse) {
+        errorCallback(errorResponse);
+      });
+
+      function successCallback(res) {
+        vm.torrentLocalInfo = res;
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_UPDATE_SUCCESSFULLY')
+        });
+      }
+
+      function errorCallback(res) {
+        vm.error_msg = res.data.message;
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_UPDATE_ERROR')
+        });
+      }
     };
 
     /**

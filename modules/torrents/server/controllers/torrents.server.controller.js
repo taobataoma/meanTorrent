@@ -284,10 +284,27 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var torrent = req.torrent;
 
-  torrent.info_hash = req.body.info_hash;
-  torrent.tmdb_id = req.body.tmdb_id;
+  //torrent.info_hash = req.body.info_hash;
+  //torrent.tmdb_id = req.body.tmdb_id;
 
-  // ********** add other fileds value ***************
+  torrent.torrent_title = req.body.torrent_title;
+  torrent.torrent_original_title = req.body.torrent_original_title;
+  torrent.torrent_original_language = req.body.torrent_original_language;
+  torrent.torrent_tagline = req.body.torrent_tagline;
+  torrent.torrent_overview = req.body.torrent_overview;
+  torrent.torrent_genres = req.body.torrent_genres;
+  torrent.torrent_companies = req.body.torrent_companies;
+  torrent.torrent_countries = req.body.torrent_countries;
+  torrent.torrent_cast = req.body.torrent_cast;
+  torrent.torrent_director = req.body.torrent_director;
+  torrent.torrent_imdb_votes = req.body.torrent_imdb_votes;
+  torrent.torrent_imdb_votes_users = req.body.torrent_imdb_votes_users;
+  torrent.torrent_runtime = req.body.torrent_runtime;
+  torrent.torrent_budget = req.body.torrent_budget;
+  torrent.torrent_revenue = req.body.torrent_revenue;
+  torrent.torrent_img = req.body.torrent_img;
+  torrent.torrent_backdrop_img = req.body.torrent_backdrop_img;
+  torrent.torrent_release = req.body.torrent_release;
 
   torrent.save(function (err) {
     if (err) {
