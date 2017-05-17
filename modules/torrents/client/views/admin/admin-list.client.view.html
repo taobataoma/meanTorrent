@@ -149,7 +149,7 @@
                                           ng-click="vm.onReleaseClicked(item.torrent_release); $event.stopPropagation();">
                                         {{ item.torrent_release}}
                                     </span>
-                                    <span class="label label-rlevel label-danger"
+                                    <span class="label label-rlevel label-info"
                                           ng-click="vm.onRLevelClicked(item.torrent_recommended); $event.stopPropagation();"
                                           ng-show="item.torrent_recommended != 'none'">
                                         {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent_recommended.toUpperCase() | translate}}

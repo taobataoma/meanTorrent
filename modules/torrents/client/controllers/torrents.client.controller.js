@@ -47,7 +47,7 @@
      */
     vm.torrentFigureOutItemsToDisplay = function (callback) {
       vm.getMoviePageInfo(vm.torrentCurrentPage, function (items) {
-        vm.torrentFilterLength = items.total;
+        vm.torrentFilterLength = items.total - vm.topItems;
         vm.torrentPagedItems = items.rows;
 
         if (callback) callback();

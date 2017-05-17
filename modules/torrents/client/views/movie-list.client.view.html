@@ -118,9 +118,9 @@
     <div class="torrent-list" id="top_of_torrent_list">
         <div class="pagination-div-top">
             <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.torrentItemsPerPage" total-items="vm.torrentFilterLength"
-                            ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"
-                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
             </ul>
         </div>
         <div class="table-responsive">
@@ -163,6 +163,10 @@
                                     <span class="label label-release label-warning"
                                           ng-click="vm.onReleaseClicked(item.torrent_release); $event.stopPropagation();">
                                         {{ item.torrent_release}}
+                                    </span>
+                                    <span class="label label-rlevel label-info"
+                                          ng-show="item.torrent_recommended != 'none'">
+                                        {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent_recommended.toUpperCase() | translate}}
                                     </span>
                                     <span class="label label-sale" ng-if="item.isSaling"
                                           title="{{vm.getSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
@@ -210,9 +214,9 @@
 
         <div class="pagination-div-bottom">
             <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.torrentItemsPerPage" total-items="vm.torrentFilterLength"
-                            ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"
-                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                ng-model="vm.torrentCurrentPage" ng-change="vm.torrentPageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
             </ul>
         </div>
     </div>
