@@ -27,6 +27,7 @@ $ npm install -g bower
 ## Feature, Function, Screenshots First
 
 - Home page view
+![home](https://cloud.githubusercontent.com/assets/7778550/26185324/d3e3013e-3bbc-11e7-925e-0624c3f54922.jpg)
 - Torrents list page view
 - Torrent detail page view
   - subtitle panel
