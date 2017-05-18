@@ -38,6 +38,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 6. OPer/Admin can manager torrents, can reviewed new torrents, set torrent sale type, set torrent recommend level, and delete torrent.
 7. Global sale set support, It provides convenience for site preferential sales setting.
 8. Client Black List support, user can not use the client of the clientBlackList to connect to the tracker server.
+9. When user to change his profile picture, meanTorrent user [ui-cropper](https://github.com/CrackerakiUA/ui-cropper) to crop the image.
 
 #### Chat room feature:
 1. Users name list
@@ -46,6 +47,23 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 4. Banned user can not connect to chat server with an expires time(default one hour)
 5. User can not repetitive login from another location at one time
 6. Chat message bubble style
+
+## TODO
+- Other type torrent support(like TV serial, Music, Other).
+- Change torrents list orderBy when clicked on table header.
+- torrent more images from [TMDB](https://www.themoviedb.org)
+- New login view UI.
+- New signup view UI(maybe forbidden register, only invite register support).
+- Forums function support.
+- Users messagebox support.
+- Users score system support.
+- Subject support, like region subject, [IMDB](http://www.imdb.com) TOP 100 subject etc.
+- Oper/Admin forbidden user(banned) can not connect to tracker server.
+- VIP Donate function.
+- Movie belongs to collection, user can list all movie torrents of the collection.
+- Cast belongs to collection, user can list all movie torrents of the cast.
+- Business cooperation support(like play box? NAS? etc.)
+- ......more
 
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble a meanTorrent application:
