@@ -31,12 +31,15 @@ $ npm install -g bower
 - __Torrents list page view__
 ![list](https://cloud.githubusercontent.com/assets/7778550/26185492/e56cca24-3bbd-11e7-9f05-0b2f81612947.jpg)
 - __Torrent detail page view__
+![item](https://cloud.githubusercontent.com/assets/7778550/26185530/31757ce0-3bbe-11e7-84aa-fbe2a7c34276.jpg)
   - __subtitle panel__
   - __users list panel__
   - __other torrents panel__
   - __admin panel__
 - __Upload page view__
+![upload](https://cloud.githubusercontent.com/assets/7778550/26185584/7bcd87ba-3bbe-11e7-98ca-4166865b4f8d.jpg)
 - __Chat page view__
+![chat](https://cloud.githubusercontent.com/assets/7778550/26185610/9d921b40-3bbe-11e7-9bcb-9d9520373bdd.jpg)
 
 ## Downloading meanTorrent
 There are several ways you can get the meanTorrent boilerplate:
