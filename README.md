@@ -33,9 +33,13 @@ $ npm install -g bower
 - __Torrent detail page view__
 ![item](https://cloud.githubusercontent.com/assets/7778550/26185530/31757ce0-3bbe-11e7-84aa-fbe2a7c34276.jpg)
   - __subtitle panel__
+  ![subtitle](https://cloud.githubusercontent.com/assets/7778550/26185761/7bf09f24-3bbf-11e7-9113-6356c79e3fe3.jpg)
   - __users list panel__
+  ![ulist](https://cloud.githubusercontent.com/assets/7778550/26185776/8fb4e09c-3bbf-11e7-9c9e-6d2dda59da20.jpg)
   - __other torrents panel__
+  ![other](https://cloud.githubusercontent.com/assets/7778550/26185787/a6fbfc72-3bbf-11e7-82c1-1ea348536cd0.jpg)
   - __admin panel__
+  ![adminpanel](https://cloud.githubusercontent.com/assets/7778550/26185805/bba0d724-3bbf-11e7-9836-a4ac62b621a4.jpg)
 - __Upload page view__
 ![upload](https://cloud.githubusercontent.com/assets/7778550/26185584/7bcd87ba-3bbe-11e7-98ca-4166865b4f8d.jpg)
 - __Chat page view__
