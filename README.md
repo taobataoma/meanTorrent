@@ -172,7 +172,7 @@ Because meanTorrent autoload the movie info from [TMDB](https://www.themoviedb.o
       {name: 'zh', index: 1, class: 'flag-icon-cn', title: '中文'}
     ],
 ```
-Multilingual support, if you add a new translate string file, please add it here. The `name` if value of [ISO_639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes),
+Multilingual support, if you add a new translate string file, please add configuration here. The `name` if value of [ISO_639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes),
 The class is used origin [flag-icon-css](https://github.com/lipis/flag-icon-css), you can find flag icon at `/public/lib/flag-icon-css/flags`.
 
 ```javascript
