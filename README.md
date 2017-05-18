@@ -45,6 +45,16 @@ $ npm install -g bower
 - __Chat page view__
 ![chat](https://cloud.githubusercontent.com/assets/7778550/26185610/9d921b40-3bbe-11e7-9bcb-9d9520373bdd.jpg)
 
+```
+Chat room feature:
+1. users name list
+2. oper/admin can kick user out of room
+3. support chat message font style(Font color, Bold style, Italic style) setting online
+4. Banned user can not connect to chat server with an expires time(default one hour)
+5. User can not repetitive login from another location at one time
+6. Chat message bubble style
+```
+
 ## Downloading meanTorrent
 There are several ways you can get the meanTorrent boilerplate:
 
