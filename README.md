@@ -65,6 +65,11 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 - Business cooperation support(like play box? NAS? etc.)
 - ......more
 
+## Online support
+- Post an [issue](https://github.com/taobataoma/meanTorrent/issues)
+- Email to [taobataoma](mailto:taobataoma@gmail.com)
+- Join [QQ](http://im.qq.com/) Group: 291843550
+
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble a meanTorrent application:
 * MongoDB - Go through [MongoDB Official Website](http://mongodb.org/) and proceed to their [Official Manual](http://docs.mongodb.org/manual/), which should help you understand NoSQL and MongoDB better.
