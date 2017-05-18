@@ -148,10 +148,12 @@ such as:
 ```
 If your tracker is private, please set the `open_tracker` to `false`, then when user to upload torrent file, It will autocheck the announce url Whether matching as `announce.url`.
 
+```javascript
     tmdbConfig: {
       //please change it to your api key from themoviedb.org
       key: '7888f0042a366f63289ff571b68b7ce0',
     },
+```
 
 Because meanTorrent autoload the movie info from [TMDB](https://www.themoviedb.org), so please to register yourself key and replace it to `tmdbConfig.key`.
 
