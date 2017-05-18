@@ -31,12 +31,13 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 #### meanTorrent some feature:
 1. Multilingual support, now English & Chinese, you can Copy a string file `modules/core/client/app/trans-string-en.js` to translate it.
 2. When you want to upload a torrent, Only need to select a source torrent file,
-   and input the movie ID origin TMDB, It can autoload movie detaill info.
+   and input the movie ID origin [TMDB](https://www.themoviedb.org), It can autoload movie detaill info.
 3. One torrent can boundle many attrs tag, It's the key to search filtering.
 4. Torrent comment with full [markdown](https://guides.github.com/features/mastering-markdown/) style support.
 5. Oper/Admin can manager users.
 6. OPer/Admin can manager torrents, can reviewed new torrents, set torrent sale type, set torrent recommend level, and delete torrent.
 7. Global sale set support, It provides convenience for site preferential sales setting.
+8. Client Black List support, user can not use the client of the clientBlackList to connect to the tracker server.
 
 #### Chat room feature:
 1. Users name list
@@ -174,6 +175,17 @@ Because meanTorrent autoload the movie info from [TMDB](https://www.themoviedb.o
 Multilingual support, if you add a new translate string file, please add it here. The `name` if value of [ISO_639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes),
 The class is used origin [flag-icon-css](https://github.com/lipis/flag-icon-css), you can find flag icon at `/public/lib/flag-icon-css/flags`.
 
+```javascript
+    clientBlackList: [
+      {name: 'Transmission/2.93'},
+      {name: 'Mozilla'},
+      {name: 'AppleWebKit'},
+      {name: 'Safari'},
+      {name: 'Chrome'}
+    ],
+```
+This is a client Black List, all the list client can not connect to the tracker server, you can add more if you unlike some client to connect.
+And you can make a list page to tell users witch clients are unpopular.
 
 There is not much comment of `config/env/torrent.js`, because the development time is limited, I'll add more comment in my free time, If you has any question, please post an [issue](https://github.com/taobataoma/meanTorrent/issues), and i will focus it.
 
