@@ -1,5 +1,6 @@
-meanTorrent is Based on [meanjs/mean](https://github.com/meanjs/mean)
+# meanTorrent - a Private BitTorrent Tracker CMS
 
+meanTorrent is Based on [meanjs/mean](https://github.com/meanjs/mean)
 
 more funciton is WIP, please wait...
 ==================================
