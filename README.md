@@ -46,15 +46,23 @@ $ npm install -g bower
 - __Chat page view__
 ![chat](https://cloud.githubusercontent.com/assets/7778550/26185610/9d921b40-3bbe-11e7-9bcb-9d9520373bdd.jpg)
 
-```
-Chat room feature:
-1. users name list
-2. oper/admin can kick user out of room
-3. support chat message font style(Font color, Bold style, Italic style) setting online
+#### meanTorrent some feature:
+1. Multilingual support, now English & Chinese, you can Copy a string file `modules/core/client/app/trans-string-en.js` to translate it.
+2. When you want to upload a torrent, Only need to select a source torrent file,
+   and input the movie ID origin TMDB, It can autoload movie detaill info.
+3. One torrent can boundle many attrs tag, It's the key to search filtering.
+4. Torrent comment with full [markdown](https://guides.github.com/features/mastering-markdown/) style support.
+5. Oper/Admin can manager users.
+6. OPer/Admin can manager torrents, can reviewed new torrents, set torrent sale type, set torrent recommend level, and delete torrent.
+7. Global sale set support, It provides convenience for site preferential sales setting.
+
+#### Chat room feature:
+1. Users name list
+2. Oper/admin can kick user out of room
+3. Support chat message font style(Font color, Bold style, Italic style) setting online
 4. Banned user can not connect to chat server with an expires time(default one hour)
 5. User can not repetitive login from another location at one time
 6. Chat message bubble style
-```
 
 ## Downloading meanTorrent
 There are several ways you can get the meanTorrent boilerplate:
@@ -156,6 +164,16 @@ If your tracker is private, please set the `open_tracker` to `false`, then when 
 ```
 
 Because meanTorrent autoload the movie info from [TMDB](https://www.themoviedb.org), so please to register yourself key and replace it to `tmdbConfig.key`.
+
+```javascript
+    language: [
+      {name: 'en', index: 0, class: 'flag-icon-gb', title: 'English'},
+      {name: 'zh', index: 1, class: 'flag-icon-cn', title: '中文'}
+    ],
+```
+Multilingual support, if you add a new translate string file, please add it here. The `name` if value of [ISO_639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes),
+The class is used origin [flag-icon-css](https://github.com/lipis/flag-icon-css), you can find flag icon at `/public/lib/flag-icon-css/flags`.
+
 
 There is not much comment of `config/env/torrent.js`, because the development time is limited, I'll add more comment in my free time, If you has any question, please post an [issue](https://github.com/taobataoma/meanTorrent/issues), and i will focus it.
 
