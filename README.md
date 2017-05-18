@@ -24,6 +24,18 @@ Make sure you have installed all of the following prerequisites on your developm
 $ npm install -g bower
 ```
 
+## Feature, Function, Screenshots First
+
+- Home page view
+- Torrents list page view
+- Torrent detail page view
+  - subtitle panel
+  - users list panel
+  - other torrents panel
+  - admin panel
+- Upload page view
+- Chat page view
+
 ## Downloading meanTorrent
 There are several ways you can get the meanTorrent boilerplate:
 
@@ -99,6 +111,31 @@ After you've generated the key and certificate, place them in the *config/sslcer
 
 Finally, execute prod task `npm run start:prod`
 * enable/disable SSL mode in production environment change the `secure` option in `config/env/production.js`
+
+## Getting Started With meanTorrent
+Before you to start the meanTorrent application, Please explore `config/env/torrent.js` for many environment configuration options, you can change all  configuration items of you Caring,
+such as:
+
+```javascript
+    announce: {
+      url: 'http://127.0.0.1:3000/announce',
+      announce_prefix: '[CHD.im].',
+      admin: 'admin@chd.im',
+      base_url: 'http://www.chd.im',
+      client_black_list_url: 'http://www.chd.im/client_black_list',
+      open_tracker: true
+    },
+```
+If your tracker is private, please set the `open_tracker` to `false`, then when user to upload torrent file, It will autocheck the announce url Whether matching as `announce.url`.
+
+    tmdbConfig: {
+      //please change it to your api key from themoviedb.org
+      key: '7888f0042a366f63289ff571b68b7ce0',
+    },
+
+Because meanTorrent autoload the movie info from [TMDB](https://www.themoviedb.org), so please to register yourself key and replace it to `tmdbConfig.key`.
+
+There is not much comment of `config/env/torrent.js`, because the development time is limited, I'll add more comment in my free time, If you has any question, please post an [issue](https://github.com/taobataoma/meanTorrent/issues), and i will focus it.
 
 ## License
 [The MIT License](LICENSE.md)
