@@ -54,6 +54,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - New login view UI.
 - New signup view UI(maybe forbidden register, only invite register support).
+- New admin manager(user) UI.
 - Forums function support.
 - Users messagebox support.
 - Users score system support.
