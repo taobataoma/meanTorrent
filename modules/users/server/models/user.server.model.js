@@ -204,6 +204,15 @@ UserSchema.pre('save', function (next) {
     this.password = this.hashPassword(this.password);
   }
 
+  this.constructor.count(function (err, count) {
+    if (err) {
+      return next(err);
+    }
+    if (count === 0) {
+      this.roles = ['admmin'];
+    }
+  });
+
   next();
 });
 
