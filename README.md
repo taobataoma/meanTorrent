@@ -31,20 +31,20 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 #### meanTorrent some feature:
 1. Multilingual support, now English & Chinese, you can Copy a string file `modules/core/client/app/trans-string-en.js` to translate it.
 2. When you want to upload a torrent, Only need to select a source torrent file,
-   and input the movie ID origin [TMDB](https://www.themoviedb.org), It can autoload movie detaill info.
+   and input the movie ID origin [TMDB](https://www.themoviedb.org), the movie detaill info will be autoload.
 3. One torrent can boundle many attrs tag, It's the key to search filtering.
 4. Torrent comment with full [markdown](https://guides.github.com/features/mastering-markdown/) style support.
-5. Oper/Admin can manager users.
+5. Oper/Admin can manager users(edit/delete etc).
 6. OPer/Admin can manager torrents, can reviewed new torrents, set torrent sale type, set torrent recommend level, and delete torrent.
 7. Global sale set support, It provides convenience for site preferential sales setting.
-8. Client Black List support, user can not use the client of the clientBlackList to connect to the tracker server.
-9. When user to change his profile picture, meanTorrent user [ui-cropper](https://github.com/CrackerakiUA/ui-cropper) to crop the image.
+8. Client Black List support, user can not use the client list inside clientBlackList connect to the tracker server.
+9. When user to change profile picture, meanTorrent use [ui-cropper](https://github.com/CrackerakiUA/ui-cropper) to crop the image.
 
 #### Chat room feature:
 1. Users name list
-2. Oper/admin can kick user out of room
+2. Oper/admin can kick(ban) user out of room
 3. Support chat message font style(Font color, Bold style, Italic style) setting online
-4. Banned user can not connect to chat server with an expires time(default one hour)
+4. Banned user can not reconnect to chat server with an expires time(default one hour)
 5. User can not repetitive login from another location at one time
 6. Chat message bubble style
 
@@ -52,8 +52,8 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 - Other type torrent support(like TV serial, Music, Other).
 - Change torrents list orderBy when clicked on table header.
 - torrent more images from [TMDB](https://www.themoviedb.org)
-- New login view UI.
-- New signup view UI(maybe forbidden register, only invite register support).
+- New login UI.
+- New signup UI(maybe forbidden register, only invite register support).
 - New admin manager(user) UI.
 - Forums function support.
 - Users messagebox support.
