@@ -39,6 +39,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 7. Global sale set support, It provides convenience for site preferential sales setting.
 8. Client Black List support, user can not use the client list inside clientBlackList connect to the tracker server.
 9. When user to change profile picture, meanTorrent use [ui-cropper](https://github.com/CrackerakiUA/ui-cropper) to crop the image.
+10. The first sign up user auto be `admin` role.
 
 #### Chat room feature:
 1. Users name list
