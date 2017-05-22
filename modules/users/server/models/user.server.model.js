@@ -199,32 +199,30 @@ UserSchema.methods.toJSON = function (options) {
  * Hook a pre save method to hash the password
  */
 UserSchema.pre('save', function (next) {
+  var user = this;
+
   if (this.password && this.isModified('password')) {
     this.salt = crypto.randomBytes(16).toString('base64');
     this.password = this.hashPassword(this.password);
+  }
+
+  if (this.uploaded === 0 || this.downloaded === 0) {
+    this.ratio = 0;
+  } else {
+    this.ratio = Math.round((this.uploaded / this.downloaded) * 100) / 100;
   }
 
   this.constructor.count(function (err, count) {
     if (err) {
       return next(err);
     }
+
     if (count === 0) {
-      this.roles = ['admmin'];
+      user.roles = ['admin'];
     }
+
+    next();
   });
-
-  next();
-});
-
-/**
- * Hook a post save method to set the ratio
- */
-UserSchema.post('save', function (doc) {
-  if (doc.uploaded === 0 || doc.downloaded === 0) {
-    doc.ratio = 0;
-  } else {
-    doc.ratio = Math.round((doc.uploaded / doc.downloaded) * 100) / 100;
-  }
 });
 
 /**
