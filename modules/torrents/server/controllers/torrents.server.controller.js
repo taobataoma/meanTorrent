@@ -317,24 +317,7 @@ exports.update = function (req, res) {
   //torrent.info_hash = req.body.info_hash;
   //torrent.tmdb_id = req.body.tmdb_id;
 
-  torrent.torrent_title = req.body.torrent_title;
-  torrent.torrent_original_title = req.body.torrent_original_title;
-  torrent.torrent_original_language = req.body.torrent_original_language;
-  torrent.torrent_tagline = req.body.torrent_tagline;
-  torrent.torrent_overview = req.body.torrent_overview;
-  torrent.torrent_genres = req.body.torrent_genres;
-  torrent.torrent_companies = req.body.torrent_companies;
-  torrent.torrent_countries = req.body.torrent_countries;
-  torrent.torrent_cast = req.body.torrent_cast;
-  torrent.torrent_director = req.body.torrent_director;
-  torrent.torrent_imdb_votes = req.body.torrent_imdb_votes;
-  torrent.torrent_imdb_votes_users = req.body.torrent_imdb_votes_users;
-  torrent.torrent_runtime = req.body.torrent_runtime;
-  torrent.torrent_budget = req.body.torrent_budget;
-  torrent.torrent_revenue = req.body.torrent_revenue;
-  torrent.torrent_img = req.body.torrent_img;
-  torrent.torrent_backdrop_img = req.body.torrent_backdrop_img;
-  torrent.torrent_release = req.body.torrent_release;
+  torrent.resource_detail_info = req.body.resource_detail_info;
 
   torrent.save(function (err) {
     if (err) {
@@ -528,13 +511,13 @@ exports.list = function (req, res) {
     condition.torrent_tags = {$all: tagsA};
   }
   if (release !== undefined) {
-    condition.torrent_release = release;
+    condition['resource_detail_info.release_date'] = release;
   }
   if (keysA.length > 0) {
     condition.$or = [
       {torrent_filename: {'$all': keysA}},
-      {torrent_title: {'$all': keysA}},
-      {torrent_original_title: {'$all': keysA}}
+      {'resource_detail_info.title': {'$all': keysA}},
+      {'resource_detail_info.original_title': {'$all': keysA}}
     ];
   }
 
@@ -627,14 +610,15 @@ exports.torrentByID = function (req, res, next, id) {
   };
 
   var findOtherTorrents = function (torrent, callback) {
-    var condition = {};
-    condition.torrent_status = 'reviewed';
-    condition.torrent_type = 'movie';
-    condition.torrent_tmdb_id = torrent.torrent_tmdb_id;
+    var condition = {
+      torrent_status: 'reviewed',
+      torrent_type: 'movie',
+      'resource_detail_info.id': torrent.resource_detail_info.id
+    };
 
     console.log(condition);
 
-    var fields = 'user torrent_filename torrent_release torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_size torrent_sale_status torrent_sale_expires createdat';
+    var fields = 'user torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_size torrent_sale_status torrent_sale_expires createdat';
 
     Torrent.find(condition, fields)
       .sort('-createdat')

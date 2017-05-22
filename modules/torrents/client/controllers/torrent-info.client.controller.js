@@ -118,9 +118,10 @@
       vm.torrentLocalInfo = TorrentsService.get({
         torrentId: $stateParams.torrentId
       }, function (res) {
-        if (res.torrent_backdrop_img) {
-          $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + res.torrent_backdrop_img + ')');
+        if (res.resource_detail_info.backdrop_path) {
+          $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + res.resource_detail_info.backdrop_path + ')');
         }
+
         vm.commentBuildPager();
 
         vm.torrentTabs.push(
@@ -189,6 +190,7 @@
         tmdbid: tmdb_id,
         language: getStorageLangService.getLang()
       }, function (res) {
+        res.release_date = $filter('date')(res.release_date, 'yyyy');
         vm.doUpdateTorrentInfo(res);
       }, function (err) {
         Notification.error({
@@ -244,6 +246,23 @@
         });
       }
       return tmp;
+    };
+
+    /**
+     * getDirector
+     * @returns {string}
+     */
+    vm.getDirector = function () {
+      var n = '-';
+
+      if (vm.torrentLocalInfo.resource_detail_info) {
+        angular.forEach(vm.torrentLocalInfo.resource_detail_info.credits.crew, function (item) {
+          if (item.job === 'Director') {
+            n = item.name;
+          }
+        });
+      }
+      return n;
     };
 
     /**
@@ -558,7 +577,7 @@
       vm.sFile = undefined;
       // Show error message
       Notification.error({
-        message: res.data,
+        message: res.data.message,
         title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('SUBTITLE_UPLOAD_FAILED')
       });
     }
@@ -703,7 +722,7 @@
 
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
-          vm.getMovieInfo(vm.torrentLocalInfo.torrent_tmdb_id);
+          vm.getMovieInfo(vm.torrentLocalInfo.resource_detail_info.id);
         });
     };
 
@@ -712,62 +731,7 @@
      * @param minfo
      */
     vm.doUpdateTorrentInfo = function (movieinfo) {
-      var d = new Date(movieinfo.release_date);
-
-      var g = [];
-      angular.forEach(movieinfo.genres, function (item) {
-        g.push(item.name);
-      });
-
-      var com = [];
-      angular.forEach(movieinfo.production_companies, function (item) {
-        com.push(item.name);
-      });
-
-      var country = [];
-      angular.forEach(movieinfo.production_countries, function (item) {
-        country.push(item.iso_3166_1);
-      });
-
-      var casts = [];
-      var i = 0;
-      angular.forEach(movieinfo.credits.cast, function (item) {
-        if (i < 6) {
-          var c = {
-            name: item.name,
-            character: item.character,
-            profile_path: item.profile_path
-          };
-          casts.push(c);
-          i++;
-        }
-      });
-
-      var dir = undefined;
-      angular.forEach(movieinfo.credits.crew, function (item) {
-        if (item.job === 'Director') {
-          dir = item.name;
-        }
-      });
-
-      vm.torrentLocalInfo.torrent_title = movieinfo.title;
-      vm.torrentLocalInfo.torrent_original_title = movieinfo.original_title;
-      vm.torrentLocalInfo.torrent_original_language = movieinfo.original_language;
-      vm.torrentLocalInfo.torrent_tagline = movieinfo.tagline;
-      vm.torrentLocalInfo.torrent_overview = movieinfo.overview;
-      vm.torrentLocalInfo.torrent_genres = g;
-      vm.torrentLocalInfo.torrent_companies = com;
-      vm.torrentLocalInfo.torrent_countries = country;
-      vm.torrentLocalInfo.torrent_cast = casts;
-      vm.torrentLocalInfo.torrent_director = dir;
-      vm.torrentLocalInfo.torrent_imdb_votes = movieinfo.vote_average;
-      vm.torrentLocalInfo.torrent_imdb_votes_users = movieinfo.vote_count;
-      vm.torrentLocalInfo.torrent_runtime = movieinfo.runtime;
-      vm.torrentLocalInfo.torrent_budget = movieinfo.budget;
-      vm.torrentLocalInfo.torrent_revenue = movieinfo.revenue;
-      vm.torrentLocalInfo.torrent_img = movieinfo.poster_path;
-      vm.torrentLocalInfo.torrent_backdrop_img = movieinfo.backdrop_path;
-      vm.torrentLocalInfo.torrent_release = d.getFullYear();
+      vm.torrentLocalInfo.resource_detail_info = movieinfo;
 
       vm.torrentLocalInfo.$update(function (response) {
         successCallback(response);

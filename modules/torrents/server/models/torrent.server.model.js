@@ -37,27 +37,6 @@ var CommentSchema = new Schema({
 
 
 /**
- * Sub cast Schema
- */
-var CastSchema = new Schema({
-  name: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  profile_path: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  character: {
-    type: String,
-    default: '',
-    trim: true
-  }
-});
-
-/**
  * Torrent Schema
  */
 var TorrentSchema = new Schema({
@@ -77,69 +56,11 @@ var TorrentSchema = new Schema({
     trim: true,
     required: 'filename cannot be blank'
   },
-  torrent_tmdb_id: {
-    type: String,
-    default: '',
-    trim: true,
-    required: 'tmdb id cannot be blank'
-  },
-  torrent_imdb_id: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  torrent_title: {
-    type: String,
-    default: '',
-    trim: true,
-    required: 'title cannot be blank'
-  },
-  torrent_original_title: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  torrent_original_language: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  torrent_tagline: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  torrent_overview: {
-    type: String,
-    default: '',
-    trim: true
-  },
   torrent_type: {
     type: String,
     default: 'movie',
     trim: true
   },
-  torrent_genres: {
-    type: [String],
-    default: '',
-    trim: true
-  },
-  torrent_companies: {
-    type: [String],
-    default: '',
-    trim: true
-  },
-  torrent_countries: {
-    type: [String],
-    default: '',
-    trim: true
-  },
-  torrent_director: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  torrent_cast: [CastSchema],
   torrent_tags: {
     type: [String],
     default: '',
@@ -154,23 +75,7 @@ var TorrentSchema = new Schema({
     default: '',
     trim: true
   },
-  torrent_imdb_votes: {
-    type: Number,
-    default: 0
-  },
-  torrent_imdb_votes_users: {
-    type: Number,
-    default: 0
-  },
-  torrent_runtime: {
-    type: Number,
-    default: 0
-  },
-  torrent_budget: {
-    type: Number,
-    default: 0
-  },
-  torrent_revenue: {
+  torrent_size: {
     type: Number,
     default: 0
   },
@@ -185,25 +90,6 @@ var TorrentSchema = new Schema({
   torrent_finished: {
     type: Number,
     default: 0
-  },
-  torrent_size: {
-    type: Number,
-    default: 0
-  },
-  torrent_img: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  torrent_backdrop_img: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  torrent_release: {
-    type: String,
-    default: '2017',
-    trim: true
   },
   torrent_status: {
     type: String,
@@ -236,6 +122,10 @@ var TorrentSchema = new Schema({
     default: Date.now
   },
   _other_torrents: [],
+
+  //resource info
+  resource_detail_info: Object,
+
   createdat: {
     type: Date,
     default: Date.now

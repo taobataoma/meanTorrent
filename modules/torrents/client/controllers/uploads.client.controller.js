@@ -6,10 +6,10 @@
     .controller('TorrentsUploadController', TorrentsUploadController);
 
   TorrentsUploadController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
-    'TorrentsService', 'getStorageLangService'];
+    'TorrentsService', 'getStorageLangService', '$filter'];
 
   function TorrentsUploadController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
-                                    TorrentsService, getStorageLangService) {
+                                    TorrentsService, getStorageLangService, $filter) {
     var vm = this;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -140,6 +140,8 @@
 
         console.log(res);
         vm.movieinfo = res;
+
+        vm.movieinfo.release_date = $filter('date')(vm.movieinfo.release_date, 'yyyy');
       }, function (err) {
         vm.tmdb_info_ok = false;
         vm.tmdb_isloading = false;
@@ -154,13 +156,15 @@
      * create
      */
     vm.create = function () {
-      var d = new Date(vm.movieinfo.release_date);
+      //var d = new Date(vm.movieinfo.release_date);
       var l = 0;
 
       //console.log(vm.torrentInfo);
 
       if (vm.torrentInfo.length !== undefined) {
         l = vm.torrentInfo.length;
+      } else if (vm.torrentInfo.info.length !== undefined) {
+        l = vm.torrentInfo.info.length;
       } else {
         angular.forEach(vm.torrentInfo.info.files, function (item) {
           l = l + item.length;
@@ -181,71 +185,53 @@
         });
       });
 
-      var g = [];
-      angular.forEach(vm.movieinfo.genres, function (item) {
-        g.push(item.name);
-      });
-
-      var com = [];
-      angular.forEach(vm.movieinfo.production_companies, function (item) {
-        com.push(item.name);
-      });
-
-      var country = [];
-      angular.forEach(vm.movieinfo.production_countries, function (item) {
-        country.push(item.iso_3166_1);
-      });
-
-      var casts = [];
-      var i = 0;
-      angular.forEach(vm.movieinfo.credits.cast, function (item) {
-        if (i < 6) {
-          var c = {
-            name: item.name,
-            character: item.character,
-            profile_path: item.profile_path
-          };
-          casts.push(c);
-          i++;
-        }
-      });
-
-      var dir = undefined;
-      angular.forEach(vm.movieinfo.credits.crew, function (item) {
-        if (item.job === 'Director') {
-          dir = item.name;
-        }
-      });
+      //var g = [];
+      //angular.forEach(vm.movieinfo.genres, function (item) {
+      //  g.push(item.name);
+      //});
+      //
+      //var com = [];
+      //angular.forEach(vm.movieinfo.production_companies, function (item) {
+      //  com.push(item.name);
+      //});
+      //
+      //var country = [];
+      //angular.forEach(vm.movieinfo.production_countries, function (item) {
+      //  country.push(item.iso_3166_1);
+      //});
+      //
+      //var casts = [];
+      //var i = 0;
+      //angular.forEach(vm.movieinfo.credits.cast, function (item) {
+      //  if (i < 6) {
+      //    var c = {
+      //      name: item.name,
+      //      character: item.character,
+      //      profile_path: item.profile_path
+      //    };
+      //    casts.push(c);
+      //    i++;
+      //  }
+      //});
+      //
+      //var dir = undefined;
+      //angular.forEach(vm.movieinfo.credits.crew, function (item) {
+      //  if (item.job === 'Director') {
+      //    dir = item.name;
+      //  }
+      //});
 
 
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
         torrent_filename: vm.torrentInfo.filename,
-        torrent_tmdb_id: vm.tmdb_id,
-        torrent_imdb_id: vm.movieinfo.imdb_id,
-        torrent_title: vm.movieinfo.title,
-        torrent_original_title: vm.movieinfo.original_title,
-        torrent_original_language: vm.movieinfo.original_language,
-        torrent_tagline: vm.movieinfo.tagline,
-        torrent_overview: vm.movieinfo.overview,
         torrent_type: 'movie',
-        torrent_genres: g,
-        torrent_companies: com,
-        torrent_countries: country,
-        torrent_cast: casts,
-        torrent_director: dir,
         torrent_tags: t,
         torrent_nfo: vm.videoNfo,
         torrent_announce: vm.torrentInfo.announce,
-        torrent_imdb_votes: vm.movieinfo.vote_average,
-        torrent_imdb_votes_users: vm.movieinfo.vote_count,
-        torrent_runtime: vm.movieinfo.runtime,
-        torrent_budget: vm.movieinfo.budget,
-        torrent_revenue: vm.movieinfo.revenue,
         torrent_size: l,
-        torrent_img: vm.movieinfo.poster_path,
-        torrent_backdrop_img: vm.movieinfo.backdrop_path,
-        torrent_release: d.getFullYear()
+
+        resource_detail_info: vm.movieinfo
       });
 
       torrent.$save(function (response) {

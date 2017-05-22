@@ -81,7 +81,7 @@ exports.create = function (req, res) {
       })
       .catch(function (err) {
         res.status(422).send({
-          message: errorHandler.getErrorMessage(err)
+          message: err
         });
       });
   } else {

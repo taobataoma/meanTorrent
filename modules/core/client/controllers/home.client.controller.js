@@ -29,7 +29,9 @@
      * initTopOneInfo
      */
     vm.initTopOneInfo = function () {
-      $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + vm.movieTopOne.torrent_backdrop_img + ')');
+      if (vm.movieTopOne.resource_detail_info.backdrop_path) {
+        $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + vm.movieTopOne.resource_detail_info.backdrop_path + ')');
+      }
     };
 
     /**
@@ -48,11 +50,13 @@
         torrent_type: 'movie',
         limit: 9
       }, function (items) {
-        vm.movieTopOne = items.rows[0];
-        items.rows.splice(0, 1);
-        vm.movieTopList = items.rows;
+        if (items.rows.length > 0) {
+          vm.movieTopOne = items.rows[0];
+          items.rows.splice(0, 1);
+          vm.movieTopList = items.rows;
 
-        vm.initTopOneInfo();
+          vm.initTopOneInfo();
+        }
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_MOVIE_INFO_ERROR')
@@ -65,7 +69,9 @@
         newest: true,
         limit: 14
       }, function (items) {
-        vm.movieNewList = items.rows;
+        if (items.rows.length > 0) {
+          vm.movieNewList = items.rows;
+        }
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_MOVIE_INFO_ERROR')
@@ -80,6 +86,23 @@
     vm.openTorrentInfo = function (id) {
       var url = $state.href('torrents.view', {torrentId: id});
       window.open(url, '_blank');
+    };
+
+    /**
+     * getDirector
+     * @returns {string}
+     */
+    vm.getDirector = function () {
+      var n = '-';
+
+      if (vm.movieTopOne.resource_detail_info) {
+        angular.forEach(vm.movieTopOne.resource_detail_info.credits.crew, function (item) {
+          if (item.job === 'Director') {
+            n = item.name;
+          }
+        });
+      }
+      return n;
     };
 
     /**

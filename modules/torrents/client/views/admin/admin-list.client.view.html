@@ -124,11 +124,12 @@
                         <td class="col-md-7 td-text-overflow">
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" ng-src="{{vm.tmdbConfig.poster_list_base_url}}{{item.torrent_img}}" alt="...">
+                                    <img class="media-object" ng-src="{{vm.tmdbConfig.poster_list_base_url}}{{item.resource_detail_info.poster_path}}"
+                                         alt="...">
                                 </div>
                                 <div class="media-body">
-                                    <h5 class="media-heading">{{item.torrent_original_title}}
-                                        <span ng-show="item.torrent_original_title!=item.torrent_title"> / {{item.torrent_title}}</span>
+                                    <h5 class="media-heading">{{item.resource_detail_info.original_title}}
+                                        <span ng-show="item.resource_detail_info.original_title!=item.resource_detail_info.title"> / {{item.resource_detail_info.title}}</span>
                                         <span class="upload-by" ng-show="item.user.displayName"> (By: {{item.user.displayName}})</span>
                                     <span class="label label-download text-uppercase"
                                           title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
@@ -138,7 +139,7 @@
                                     </h5>
 
                                     <div class="list-all-genres">
-                                        <span class="genres-item" ng-repeat="t in item.torrent_genres">{{t}}</span>
+                                        <span class="genres-item" ng-repeat="t in item.resource_detail_info.genres">{{t.name}}</span>
                                     </div>
 
                                     <div class="torrent-filename text-long">{{item.torrent_filename | filename}}</div>
@@ -146,8 +147,8 @@
                                     <div class="list-all-tags">
                                         <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
                                     <span class="label label-release label-warning"
-                                          ng-click="vm.onReleaseClicked(item.torrent_release); $event.stopPropagation();">
-                                        {{ item.torrent_release}}
+                                          ng-click="vm.onReleaseClicked(item.resource_detail_info.release_date); $event.stopPropagation();">
+                                        {{ item.resource_detail_info.release_date}}
                                     </span>
                                     <span class="label label-rlevel label-info"
                                           ng-click="vm.onRLevelClicked(item.torrent_recommended); $event.stopPropagation();"
@@ -172,7 +173,7 @@
                         </td>
                         <td class="col-md-1 td-v-middle">
                             <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                  class="torrent-votes"><kbd>IMDB</kbd> {{item.torrent_imdb_votes | number : 1}}</span>
+                                  class="torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                         </td>
                         <td class="col-md-1 td-v-middle text-center">{{item.createdat | life}}</td>
                         <td class="col-md-1 td-v-middle text-center">{{item.torrent_size | bytes:2}}</td>

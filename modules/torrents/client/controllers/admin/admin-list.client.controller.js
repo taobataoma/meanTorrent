@@ -343,7 +343,8 @@
 
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
-          item.$remove(function (response) {
+          var dt = new TorrentsService(item);
+          dt.$remove(function (response) {
             successCallback(response);
           }, function (errorResponse) {
             errorCallback(errorResponse);

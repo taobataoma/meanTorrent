@@ -4,7 +4,8 @@
             <div class="container">
                 <div class="topone">
                     <div class="col-md-4">
-                        <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{vm.movieTopOne.torrent_img}}" class="img-thumbnail center-block"
+                        <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{vm.movieTopOne.resource_detail_info.poster_path}}"
+                             class="img-thumbnail center-block"
                              onload="this.style.opacity='1';" ng-click="vm.openTorrentInfo(vm.movieTopOne._id);">
 
                         <div class="down-torrent">
@@ -15,106 +16,71 @@
                     <div class="col-md-8">
                         <dl class="dl-horizontal">
                             <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_TITLE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieTopOne.torrent_original_title}}</dd>
+                            <dd class="h-line">{{vm.movieTopOne.resource_detail_info.original_title}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieTopOne.torrent_title}}</dd>
+                            <dd class="h-line">{{vm.movieTopOne.resource_detail_info.title}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.DIRECTOR' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieTopOne.torrent_director}}</dd>
+                            <dd class="h-line">{{vm.getDirector();}}</dd>
 
                             <!--<dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_LANGUAGE' | translate}}：</dt>-->
                             <!--<dd class="h-line">{{vm.movieTopOne.torrent_original_language}}</dd>-->
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.GENRES' | translate}}：</dt>
                             <dd class="h-line list-all-genres">
-                                <span class="genres-item" ng-repeat="item in vm.movieTopOne.torrent_genres">{{item}}</span>
+                                <span class="genres-item" ng-repeat="item in vm.movieTopOne.resource_detail_info.genres">{{item.name}}</span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
                             <dd class="h-line list-all-countries">
-                                <span class="country-item" ng-repeat="item in vm.movieTopOne.torrent_countries">{{item}}</span>
-                                <span ng-show="vm.movieTopOne.torrent_countries.length ==0">-</span>
+                                <span class="country-item"
+                                      ng-repeat="item in vm.movieTopOne.resource_detail_info.production_companies">{{item.name}}</span>
+                                <span ng-show="vm.movieTopOne.resource_detail_info.production_companies.length ==0">-</span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieTopOne.torrent_release}}</dd>
+                            <dd class="h-line">{{vm.movieTopOne.resource_detail_info.release_date}}</dd>
 
-                            <div ng-hide="vm.movieTopOne.torrent_runtime == 0">
+                            <div ng-hide="vm.movieTopOne.resource_detail_info.runtime == 0">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>
-                                <dd class="h-line">{{vm.movieTopOne.torrent_runtime | runtime}}</dd>
-                            </div>
-                            <div ng-hide="vm.movieTopOne.torrent_budget == 0">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
-                                <dd class="h-line">{{vm.movieTopOne.torrent_budget | dollar:2}}</dd>
+                                <dd class="h-line">{{vm.movieTopOne.resource_detail_info.runtime | runtime}}</dd>
                             </div>
 
-                            <div ng-hide="vm.movieTopOne.torrent_revenue == 0">
+                            <div ng-hide="vm.movieTopOne.resource_detail_info.budget == 0">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
+                                <dd class="h-line">{{vm.movieTopOne.resource_detail_info.budget | dollar:2}}</dd>
+                            </div>
+
+                            <div ng-hide="vm.movieTopOne.resource_detail_info.revenue == 0">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.REVENUE' | translate}}：</dt>
-                                <dd class="h-line">{{vm.movieTopOne.torrent_revenue | dollar:2}}</dd>
+                                <dd class="h-line">{{vm.movieTopOne.resource_detail_info.revenue | dollar:2}}</dd>
                             </div>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
-                            <dd class="h-line"><span
-                                    class="torrent-votes"><kbd>IMDB</kbd></span> {{vm.movieTopOne.torrent_imdb_votes}} / {{vm.movieTopOne.torrent_imdb_votes_users}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}
+                            <dd class="h-line">
+                                <span ng-show="vm.movieTopOne">
+                                    <span class="torrent-votes">
+                                        <kbd>IMDB</kbd>
+                                    </span> {{vm.movieTopOne.resource_detail_info.vote_average}} / {{vm.movieTopOne.resource_detail_info.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}
+                                </span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
-                            <dd class="h-line">{{vm.movieTopOne.torrent_overview | limitTo:300}}<span
-                                    ng-show="vm.movieTopOne.torrent_overview.length > 300">......</span></dd>
+                            <dd class="h-line">{{vm.movieTopOne.resource_detail_info.overview | limitTo:300}}
+                                <span ng-show="vm.movieTopOne.resource_detail_info.overview.length > 300">......</span>
+                            </dd>
                         </dl>
                         <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
                         <div class="row cast-list">
-                            <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieTopOne.torrent_cast[0].profile_path}}"
+                            <div class="col-xs-4 col-md-2 text-center"
+                                 ng-repeat="cast in vm.movieTopOne.resource_detail_info.credits.cast | limitTo: 6">
+                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{cast.profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieTopOne.torrent_cast[0].name}}</strong></span>
+                                <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
 
-                                <p class="cast-xs-info character">{{vm.movieTopOne.torrent_cast[0].character}}</p>
-                            </div>
-                            <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieTopOne.torrent_cast[1].profile_path}}"
-                                     on-error-src="/./modules/core/client/img/default_face.jpg"
-                                     class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieTopOne.torrent_cast[1].name}}</strong></span>
-
-                                <p class="cast-xs-info character">{{vm.movieTopOne.torrent_cast[1].character}}</p>
-                            </div>
-                            <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieTopOne.torrent_cast[2].profile_path}}"
-                                     on-error-src="/./modules/core/client/img/default_face.jpg"
-                                     class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieTopOne.torrent_cast[2].name}}</strong></span>
-
-                                <p class="cast-xs-info character">{{vm.movieTopOne.torrent_cast[2].character}}</p>
-                            </div>
-
-                            <div class="clearfix visible-xs-block visible-sm-block"></div>
-
-                            <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieTopOne.torrent_cast[3].profile_path}}"
-                                     on-error-src="/./modules/core/client/img/default_face.jpg"
-                                     class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieTopOne.torrent_cast[3].name}}</strong></span>
-
-                                <p class="cast-xs-info character">{{vm.movieTopOne.torrent_cast[3].character}}</p>
-                            </div>
-                            <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieTopOne.torrent_cast[4].profile_path}}"
-                                     on-error-src="/./modules/core/client/img/default_face.jpg"
-                                     class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieTopOne.torrent_cast[4].name}}</strong></span>
-
-                                <p class="cast-xs-info character">{{vm.movieTopOne.torrent_cast[4].character}}</p>
-                            </div>
-                            <div class="col-xs-4 col-md-2 text-center">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{vm.movieTopOne.torrent_cast[5].profile_path}}"
-                                     on-error-src="/./modules/core/client/img/default_face.jpg"
-                                     class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                <span class="cast-xs-info"><strong>{{vm.movieTopOne.torrent_cast[5].name}}</strong></span>
-
-                                <p class="cast-xs-info character">{{vm.movieTopOne.torrent_cast[5].character}}</p>
+                                <p class="cast-xs-info character">{{cast.character}}</p>
                             </div>
                         </div>
                     </div>
@@ -132,7 +98,7 @@
                         <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                         <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
                             <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
-                                <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.torrent_img}}" alt="{{item.torrent_title}}"
+                                <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.resource_detail_info.poster_path}}" alt="{{item.resource_detail_info.title}}"
                                      class="img-responsive">
 
                                 <div class="torrent-user-info">
@@ -157,9 +123,9 @@
                                 <div class="torrent-tmdb-info">
                                     <ul class="list-unstyled">
                                         <li>
-                                            <span class="release-date">{{item.torrent_release}}</span>
+                                            <span class="release-date">{{item.resource_detail_info.release_date}}</span>
                                             <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                                  class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.torrent_imdb_votes}}</span>
+                                                  class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average}}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -167,7 +133,7 @@
                                 <div class="caption">
                                     <ul class="list-unstyled">
                                         <li class="text-long">
-                                            <strong>{{item.torrent_title}}</strong>
+                                            <strong>{{item.resource_detail_info.title}}</strong>
                                         </li>
                                     </ul>
                                 </div>
@@ -187,7 +153,7 @@
                                         ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                         <td>
                                             <div class="newest-item-big" ng-click="vm.openTorrentInfo(nt._id);">
-                                                <img ng-src="{{vm.tmdbConfig.backdrop_img_base_url_300}}{{nt.torrent_backdrop_img}}"
+                                                <img ng-src="{{vm.tmdbConfig.backdrop_img_base_url_300}}{{nt.resource_detail_info.backdrop_path}}"
                                                      on-error-src="/./modules/torrents/client/img/default_backdrop_300.jpg">
 
                                                 <div class="newest-user-info">
@@ -211,13 +177,13 @@
 
                                                 <div class="newest-info">
                                                     <div class="text-long">
-                                                        {{$index + 1}}. {{nt.torrent_title}}
+                                                        {{$index + 1}}. {{nt.resource_detail_info.title}}
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="newest-item-small text-long">
-                                                {{$index + 1}}. {{nt.torrent_title}}
+                                                {{$index + 1}}. {{nt.resource_detail_info.title}}
                                             </div>
                                         </td>
                                     </tr>
