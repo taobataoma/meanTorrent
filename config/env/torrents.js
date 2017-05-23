@@ -18,7 +18,7 @@ module.exports = {
       name: 'TYPE',
       value: [
         {name: 'MOVIE', value: 'movie'},
-        {name: 'MTV', value: 'MTV'},
+        {name: 'TVSERIES', value: 'tvseries'},
         {name: 'MUSIC', value: 'music'},
         {name: 'OTHER', value: 'other'}
       ]
@@ -90,7 +90,9 @@ module.exports = {
       }
     },
     tmdbConfig: {
-      tmdb_link_url: 'https://www.themoviedb.org/movie/',
+      tmdb_home: 'https://www.themoviedb.org',
+      tmdb_movie_link_url: 'https://www.themoviedb.org/movie/',
+      tmdb_tv_link_url: 'https://www.themoviedb.org/tv/',
       //please change it to your api key from themoviedb.org
       key: '7888f0042a366f63289ff571b68b7ce0',
       backdrop_img_base_url: 'http://image.tmdb.org/t/p/w1280',
@@ -176,7 +178,76 @@ module.exports = {
             ]
           }
         ]
-      }
+      },
+      tv: {
+        radio: [
+          {
+            name: 'TYPE',
+            value: [
+              {name: 'BLU_RAY', icon: ''},
+              {name: 'REMUX', icon: ''},
+              {name: 'ENCODE', icon: ''}
+            ]
+          },
+          {
+            name: 'RESOLUTION',
+            value: [
+              {name: 'S4K', icon: ''},
+              {name: 'S1080P', icon: ''},
+              {name: 'S720P', icon: ''}
+            ]
+          },
+          {
+            name: 'VIDEO',
+            value: [
+              {name: 'AVC', icon: ''},
+              {name: 'X265', icon: ''},
+              {name: 'X264', icon: ''}
+            ]
+          },
+          {
+            name: 'AUDIO',
+            value: [
+              {name: 'AAC', icon: ''},
+              {name: 'DTS', icon: ''},
+              {name: 'DTS_HD', icon: ''},
+              {name: 'ATMOS_TRUEHD', icon: ''}
+            ]
+          },
+          {
+            name: 'REGION',
+            value: [
+              {name: 'USA', icon: ''},
+              {name: 'CHINA', icon: ''},
+              {name: 'JAPAN', icon: ''},
+              {name: 'KOREA', icon: ''},
+              {name: 'INDIA', icon: ''},
+              {name: 'ARAB', icon: ''}
+            ]
+          }
+        ],
+        checkbox: [
+          {
+            name: 'RANKING',
+            value: [
+              {name: 'IMDB_TOP100', icon: ''},
+              {name: 'IMDB_TOP250', icon: ''},
+              {name: 'DOUBAN_TOP100', icon: ''},
+              {name: 'DOUBAN_TOP250', icon: ''}
+            ]
+          },
+          {
+            name: 'MODIFY',
+            value: [
+              {name: 'DIY', icon: ''},
+              {name: 'GUOPEI', icon: ''},
+              {name: 'ZHONGZI', icon: ''}
+            ]
+          }
+        ]
+      },
+      music: {},
+      other: {}
     }
   }
 };

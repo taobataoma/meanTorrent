@@ -16,7 +16,10 @@
     vm.movieTopOne = undefined;
     vm.movieTopList = undefined;
     vm.movieNewList = undefined;
-    vm.movieTopInfo = undefined;
+
+    vm.TVTopOne = undefined;
+    vm.TVTopList = undefined;
+    vm.TVNewList = undefined;
 
     /**
      * If user is not signed in then redirect back signin
@@ -28,9 +31,18 @@
     /**
      * initTopOneInfo
      */
-    vm.initTopOneInfo = function () {
+    vm.initTopOneMovieInfo = function () {
       if (vm.movieTopOne.resource_detail_info.backdrop_path) {
-        $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + vm.movieTopOne.resource_detail_info.backdrop_path + ')');
+        $('.movie-backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + vm.movieTopOne.resource_detail_info.backdrop_path + ')');
+      }
+    };
+
+    /**
+     * initTopOneTVInfo
+     */
+    vm.initTopOneTVInfo = function () {
+      if (vm.TVTopOne.resource_detail_info.backdrop_path) {
+        $('.tv-backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + vm.TVTopOne.resource_detail_info.backdrop_path + ')');
       }
     };
 
@@ -39,6 +51,7 @@
      */
     vm.getTopInfo = function () {
       vm.getMovieTopInfo();
+      vm.getTVTopInfo();
     };
 
     /**
@@ -55,7 +68,7 @@
           items.rows.splice(0, 1);
           vm.movieTopList = items.rows;
 
-          vm.initTopOneInfo();
+          vm.initTopOneMovieInfo();
         }
       }, function (err) {
         Notification.error({
@@ -80,6 +93,36 @@
     };
 
     /**
+     * getTVTopInfo
+     */
+    vm.getTVTopInfo = function () {
+      vm.tvsInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'tvseries',
+        limit: 9
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.TVTopOne = items.rows[0];
+          items.rows.splice(0, 1);
+          vm.TVTopList = items.rows;
+
+          vm.initTopOneTVInfo();
+        }
+      });
+
+      vm.moviesInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'tvseries',
+        newest: true,
+        limit: 14
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.TVNewList = items.rows;
+        }
+      });
+    };
+
+    /**
      * openTorrentInfo
      * @param id
      */
@@ -95,7 +138,7 @@
     vm.getDirector = function () {
       var n = '-';
 
-      if (vm.movieTopOne.resource_detail_info) {
+      if (vm.movieTopOne && vm.movieTopOne.resource_detail_info) {
         angular.forEach(vm.movieTopOne.resource_detail_info.credits.crew, function (item) {
           if (item.job === 'Director') {
             n = item.name;

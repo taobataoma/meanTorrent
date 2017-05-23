@@ -40,6 +40,27 @@ exports.movieinfo = function (req, res) {
 };
 
 /**
+ * get tv info from tmdb
+ */
+exports.tvinfo = function (req, res) {
+  console.log('------- API: tvinfo --------------------');
+  console.log(req.params);
+
+  tmdb.tvInfo({
+    id: req.params.tmdbid,
+    language: req.params.language,
+    append_to_response: 'credits,images,alternative_titles',
+    include_image_language: req.params.language + ',null'
+  }, function (err, info) {
+    if (err) {
+      res.status(900).send(err);
+    } else {
+      res.json(info);
+    }
+  });
+};
+
+/**
  * upload torrent file
  * @param req
  * @param res

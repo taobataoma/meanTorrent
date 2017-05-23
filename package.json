@@ -57,7 +57,7 @@
     "mocha": "~3.1.0",
     "mongoose": "^4.9.5",
     "morgan": "~1.7.0",
-    "moviedb": "^0.2.7",
+    "moviedb": "^0.2.8",
     "multer": "~1.2.0",
     "nodemailer": "~2.6.4",
     "nt": "^0.5.3",

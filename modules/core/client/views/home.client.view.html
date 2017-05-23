@@ -1,5 +1,5 @@
 <section ng-controller="HomeController as vm" ng-init="vm.getTopInfo();">
-    <div class="backdrop" ng-show="vm.movieTopOne">
+    <div class="backdrop movie-backdrop" ng-show="vm.movieTopOne">
         <div class="filter">
             <div class="container">
                 <div class="topone">
@@ -184,6 +184,194 @@
 
                                             <div class="newest-item-small text-long">
                                                 {{$index + 1}}. {{nt.resource_detail_info.title}}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="backdrop tv-backdrop" ng-show="vm.TVTopOne">
+        <div class="filter">
+            <div class="container">
+                <div class="topone">
+                    <div class="col-md-4">
+                        <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{vm.TVTopOne.resource_detail_info.poster_path}}"
+                             class="img-thumbnail center-block"
+                             onload="this.style.opacity='1';" ng-click="vm.openTorrentInfo(vm.TVTopOne._id);">
+
+                        <div class="down-torrent">
+                            <button class="btn btn-success btn-block" ng-click="vm.downloadTorrent(vm.TVTopOne._id)"
+                                    translate="DOWNLOAD_TORRENT"></button>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <dl class="dl-horizontal">
+                            <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_NAME' | translate}}：</dt>
+                            <dd class="h-line">{{vm.TVTopOne.resource_detail_info.original_name}}</dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.NAME' | translate}}：</dt>
+                            <dd class="h-line">{{vm.TVTopOne.resource_detail_info.name}}</dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_LANGUAGE' | translate}}：</dt>
+                            <dd class="h-line">{{vm.TVTopOne.resource_detail_info.original_language}}</dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.GENRES' | translate}}：</dt>
+                            <dd class="h-line list-all-genres">
+                                <span class="genres-item" ng-repeat="item in vm.TVTopOne.resource_detail_info.genres">{{item.name}}</span>
+                            </dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COMPANIES' | translate}}：</dt>
+                            <dd class="h-line list-all-countries">
+                                <span class="country-item"
+                                      ng-repeat="item in vm.TVTopOne.resource_detail_info.production_companies">{{item.name}}</span>
+                                <span ng-show="vm.TVTopOne.resource_detail_info.production_companies.length ==0">-</span>
+                            </dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
+                            <dd class="h-line list-all-countries">
+                                <span class="country-item" ng-repeat="item in vm.TVTopOne.resource_detail_info.origin_country">{{item}}</span>
+                                <span ng-show="vm.TVTopOne.resource_detail_info.origin_country.length ==0">-</span>
+                            </dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.FIRST_AIR_DATE' | translate}}：</dt>
+                            <dd class="h-line">{{vm.TVTopOne.resource_detail_info.first_air_date}}</dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.LAST_AIR_DATE' | translate}}：</dt>
+                            <dd class="h-line">{{vm.TVTopOne.resource_detail_info.last_air_date}}</dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
+                            <dd class="h-line">
+                                <span ng-show="vm.TVTopOne">
+                                    <span class="torrent-votes">
+                                        <kbd>IMDB</kbd>
+                                    </span> {{vm.TVTopOne.resource_detail_info.vote_average}} / {{vm.TVTopOne.resource_detail_info.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}
+                                </span>
+                            </dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
+                            <dd class="h-line">{{vm.TVTopOne.resource_detail_info.overview | limitTo:300}}
+                                <span ng-show="vm.TVTopOne.resource_detail_info.overview.length > 300">......</span>
+                            </dd>
+                        </dl>
+                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
+                        <div class="row cast-list">
+                            <div class="col-xs-4 col-md-2 text-center"
+                                 ng-repeat="cast in vm.TVTopOne.resource_detail_info.credits.cast | limitTo: 6">
+                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{cast.profile_path}}"
+                                     on-error-src="/./modules/core/client/img/default_face.jpg"
+                                     class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
+                                <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
+
+                                <p class="cast-xs-info character">{{cast.character}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row" style="padding: 0 10px;">
+            <div class="row-md-height">
+                <div class="col-md-9 col-md-height col-no-padding">
+                    <div ng-repeat="item in vm.TVTopList">
+                        <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
+                        <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                        <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
+                            <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
+                                <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.resource_detail_info.poster_path}}" alt="{{item.resource_detail_info.name}}"
+                                     class="img-responsive">
+
+                                <div class="torrent-user-info">
+                                    <table>
+                                        <tr>
+                                            <td class="text-left">
+                                                <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                                                <span>{{item.torrent_seeds}}</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                                                <span>{{item.torrent_leechers}}</span>
+                                            </td>
+                                            <td class="text-right">
+                                                <span class="glyphicon glyphicon-ok torrent-finished"></span>
+                                                <span>{{item.torrent_finished}}</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="torrent-tmdb-info">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <!--<span class="release-date">{{item.resource_detail_info.release_date}}</span>-->
+                                            <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
+                                                  class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="caption">
+                                    <ul class="list-unstyled">
+                                        <li class="text-long">
+                                            <strong>{{item.resource_detail_info.name}}</strong>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-md-height col-small-padding" style="padding-left: 15px;">
+                    <div class="fill-height-table">
+                        <div class="fill-height-row" style="overflow-y: auto;">
+                            <div class="panel panel-default panel-newest-list" ng-show="vm.TVNewList">
+                                <div class="panel-heading"><h5>{{'NEWEST_MOVIE_LIST' | translate}}</h5></div>
+                                <table class="table">
+                                    <tr ng-repeat="nt in vm.TVNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
+                                        ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
+                                        <td>
+                                            <div class="newest-item-big" ng-click="vm.openTorrentInfo(nt._id);">
+                                                <img ng-src="{{vm.tmdbConfig.backdrop_img_base_url_300}}{{nt.resource_detail_info.backdrop_path}}"
+                                                     on-error-src="/./modules/torrents/client/img/default_backdrop_300.jpg">
+
+                                                <div class="newest-user-info">
+                                                    <table>
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                                                                <span>{{nt.torrent_seeds}}</span>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                                                                <span>{{nt.torrent_leechers}}</span>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <span class="glyphicon glyphicon-ok torrent-finished"></span>
+                                                                <span>{{nt.torrent_finished}}</span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+
+                                                <div class="newest-info">
+                                                    <div class="text-long">
+                                                        {{$index + 1}}. {{nt.resource_detail_info.name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="newest-item-small text-long">
+                                                {{$index + 1}}. {{nt.resource_detail_info.name}}
                                             </div>
                                         </td>
                                     </tr>

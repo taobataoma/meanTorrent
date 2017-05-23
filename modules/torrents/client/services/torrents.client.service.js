@@ -15,9 +15,17 @@
       update: {
         method: 'PUT'
       },
-      getTMDBInfo: {
+      getTMDBMovieInfo: {
         method: 'GET',
         url: '/api/movieinfo/:tmdbid/:language',
+        params: {
+          tmdbid: '@tmdbid',
+          language: '@language'
+        }
+      },
+      getTMDBTVInfo: {
+        method: 'GET',
+        url: '/api/tvinfo/:tmdbid/:language',
         params: {
           tmdbid: '@tmdbid',
           language: '@language'

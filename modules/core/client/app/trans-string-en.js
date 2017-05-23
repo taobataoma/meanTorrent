@@ -29,10 +29,10 @@
 
     //sub menu of torrents
     MENU_TORRENTS_SUB: {
-      SUB_MOVIE: 'Movie',
-      SUB_MTV: 'MTV',
-      SUB_MUSIC: 'Music',
-      SUB_OTHER: 'Other'
+      MOVIE: 'Movie',
+      TVSERIES: 'TVSeries',
+      MUSIC: 'Music',
+      OTHER: 'Other'
     },
 
     //client menu
@@ -47,15 +47,6 @@
 
     //Upload rules
     UPLOAD_RULES: 'Upload Rules:',
-    UPLOAD_RULES_COUNT: '6',
-    UPLOAD_RULES_CONTENT: [
-      'The torrent file`s Tracker URL must be: <mark><strong>{{url}}</strong></mark>.',
-      'The torrent file`s TMDB_ID must be TheMovieDB resources ID, <strong><a href="https://www.themoviedb.org/" target="_blank">you can find the ID from here</a></strong>.',
-      'The resources detail info can be autoload, if it`s fine, then you can submit it.',
-      'Select one or more tags that match the resources, which will play a significant role in your search results.',
-      'After the submission of documents, may be approved by the management, the rules do not meet the seeds will be deleted directly.',
-      'For additional assistance, please contact our administrator: <strong><a href="mailto:#">{{admin}}</a></strong>.'
-    ],
 
     //HomeController & home views
     LOADING_TOP: 'Loading recommended info, please waiting...',
@@ -127,6 +118,7 @@
     TAGS_SEARCH: 'Tags Search',
     CA_KEYWORD: 'Keyword',
     CA_TORRENT_STATUS: 'Torrent status',
+    CA_RESOURCE_TYPE: 'Resource type',
     PH_KEYWORD: 'Search keyword',
     CLEAR_ALL_CONDITION: 'Clear All Condition',
     MORE_TAGS: 'More Tags',
@@ -163,7 +155,6 @@
       0: 'This torrent file is uploaded by yourself, you have actions bellow.',
       1: 'For additional assistance, please contact our administrator: <strong><a href="mailto:#">{{admin}}</a></strong>'
     },
-    ENTER_VIDEO_NFO: 'Please enter video NFO',
     TORRENT_SEED_USERS: 'Seed Users',
     TORRENT_LEECHER_USERS: 'Leecher Users',
     TORRENT_FINISHED_USERS: 'Finished Users',
@@ -238,19 +229,21 @@
     TORRENTS_UPLOAD_FAILED: 'Failed to upload file',
     TORRENTS_NO_FILE_SELECTED: 'No file selected',
 
-    SELECT_TORRENT_FILE: 'Please select the torrent file',
+    SELECT_RESOURCE_TYPE: '1. Please select the resource type',
+    SELECT_TORRENT_FILE: '2. Please select the torrent file',
     SELECT_FILE: 'Select file',
     DO_UPLOAD: 'Upload',
-    ENTER_TMDB_ID: 'Please enter theMovieDB id 　<span style="font-size: 10pt;">[<a href="https://www.themoviedb.org/" target="_blank">find id on themofiedb.org</a>]</span>',
+    ENTER_TMDB_ID: '3. Please enter theMovieDB id</span>',
     LOAD_TMDB_INFO: 'Load info',
     TMDB_ID: 'TMDB ID',
     TMDB_ID_OK: 'TMDB ID is ok! Get info successfully',
     TMDB_ID_ERROR: 'TMDB ID is error! Get info failed',
     TMDB_ID_REQUIRED: 'Please enter TMDB ID',
-    TMDB_MOVIE_INFO: 'The movie info from TMDB',
+    TMDB_RESOURCE_INFO: '4. The resource info from TMDB',
     TMDB_IS_LOADING: 'Loading the movie info, please wait...',
-    SELECT_TAGS: 'Please select any tags for the resources',
-    TORRENTS_SUBMIT_UPLOAD: 'Agree the rules and submit your resources',
+    SELECT_TAGS: '5. Please select any tags for the resources',
+    ENTER_VIDEO_NFO: '6. Please enter video NFO',
+    TORRENTS_SUBMIT_UPLOAD: '7. Agree the rules and submit your resources',
     SUBMIT_BUTTON: 'OK, SUBMIT NOW',
     CANCEL_BUTTON: 'NO, CANCEL IT',
     AGREE_RULES: 'I agree and already read all the rules, <a href="#">read here</a>',
@@ -363,7 +356,12 @@
       BACKDROP_PATH: 'backdrop_path',
       POSTER_PATH: 'poster_path',
       CAST: 'cast:',
-      DIRECTOR: 'Director'
+      DIRECTOR: 'Director',
+
+      ORIGINAL_NAME: 'original_name',
+      NAME: 'name',
+      FIRST_AIR_DATE: 'first air date',
+      LAST_AIR_DATE: 'last air date'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////
@@ -415,6 +413,7 @@
       REGION: {
         SELF: 'Region',
         CHINA: 'China',
+        USA: 'USA',
         JAPAN: 'Japan',
         KOREA: 'Korea',
         INDIA: 'India',

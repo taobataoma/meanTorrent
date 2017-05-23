@@ -18,7 +18,9 @@
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
     vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
+    vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
 
+    vm.selectedType = 'movie';
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
@@ -44,11 +46,19 @@
     };
 
     /**
+     * onTorrentTypeChanged
+     */
+    vm.onTorrentTypeChanged = function () {
+      vm.searchTags = [];
+      vm.torrentBuildPager();
+    };
+
+    /**
      * commentFigureOutItemsToDisplay
      * @param callback
      */
     vm.torrentFigureOutItemsToDisplay = function (callback) {
-      vm.getMoviePageInfo(vm.torrentCurrentPage, function (items) {
+      vm.getTorrentPageInfo(vm.torrentCurrentPage, function (items) {
         vm.torrentFilterLength = items.total;
         vm.torrentPagedItems = items.rows;
 
@@ -163,17 +173,17 @@
     };
 
     /**
-     * getMoviePageInfo
+     * getTorrentPageInfo
      * @param p: page number
      */
-    vm.getMoviePageInfo = function (p, callback) {
+    vm.getTorrentPageInfo = function (p, callback) {
       TorrentsService.get({
         skip: (p - 1) * vm.torrentItemsPerPage,
         limit: vm.torrentItemsPerPage,
         keys: vm.searchKey.trim(),
         torrent_status: vm.torrentStatus,
         torrent_rlevel: vm.torrentRLevel,
-        torrent_type: 'movie',
+        torrent_type: vm.selectedType,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags
       }, function (items) {
@@ -200,7 +210,24 @@
     vm.getTagTitle = function (tag) {
       var tmp = tag;
       var find = false;
-      angular.forEach(vm.resourcesTags.movie.radio, function (item) {
+      var r = undefined;
+
+      switch (vm.selectedType) {
+        case 'tvseries':
+          r = vm.resourcesTags.tv;
+          break;
+        case 'music':
+          r = vm.resourcesTags.music;
+          break;
+        case 'other':
+          r = vm.resourcesTags.other;
+          break;
+        default:
+          r = vm.resourcesTags.movie;
+      }
+
+
+      angular.forEach(r.radio, function (item) {
         angular.forEach(item.value, function (sitem) {
           if (sitem.name === tag) {
             tmp = item.name;
@@ -210,7 +237,7 @@
       });
 
       if (!find) {
-        angular.forEach(vm.resourcesTags.movie.checkbox, function (item) {
+        angular.forEach(r.checkbox, function (item) {
           angular.forEach(item.value, function (sitem) {
             if (sitem.name === tag) {
               tmp = item.name;

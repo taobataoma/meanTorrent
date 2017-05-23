@@ -15,18 +15,16 @@
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
-    vm.rule_items = [];
+    vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.lang = getStorageLangService.getLang();
     vm.user = Authentication.user;
     vm.progress = 0;
+    vm.selectedType = 'movie';
     vm.successfully = undefined;
     vm.tmdb_info_ok = undefined;
     vm.torrentInfo = null;
     vm.tags = [];
     vm.videoNfo = '';
-
-    for (var i = 0; i < $translate.instant('UPLOAD_RULES_COUNT'); i++) {
-      vm.rule_items[i] = i;
-    }
 
     // If user is not signed in then redirect back home
     if (!Authentication.user) {
@@ -114,11 +112,56 @@
     };
 
     /**
+     * getIncludeInfoTemplate
+     * @returns {*}
+     */
+    vm.getIncludeInfoTemplate = function () {
+      switch (vm.selectedType) {
+        case 'tvseries':
+          return 'tvinfo.html';
+        case 'music':
+          return 'musicinfo.html';
+        case 'other':
+          return 'otherinfo.html';
+        default:
+          return 'movieinfo.html';
+      }
+    };
+
+    /**
+     * onTorrentTypeChanged
+     */
+    vm.onTorrentTypeChanged = function () {
+      vm.tmdb_info_ok = undefined;
+      vm.tmdb_isloading = false;
+      vm.movieinfo = undefined;
+      vm.tvinfo = undefined;
+      vm.tmdb_id = undefined;
+    };
+
+    /**
      * getInfo
      * @param tmdbid
      */
     vm.getInfo = function (tmdbid) {
-      console.log(tmdbid);
+      switch (vm.selectedType) {
+        case 'tvseries':
+          vm.getTVInfo(tmdbid);
+          break;
+        case 'music':
+          break;
+        case 'other':
+          break;
+        default:
+          vm.getMovieInfo(tmdbid);
+      }
+    };
+
+    /**
+     * getMovieInfo
+     * @param tmdbid
+     */
+    vm.getMovieInfo = function (tmdbid) {
       if (tmdbid === null || tmdbid === undefined) {
         Notification.info({
           message: '<i class="glyphicon glyphicon-info-sign"></i> ' + $translate.instant('TMDB_ID_REQUIRED')
@@ -128,7 +171,7 @@
       }
 
       vm.tmdb_isloading = true;
-      TorrentsService.getTMDBInfo({
+      TorrentsService.getTMDBMovieInfo({
         tmdbid: tmdbid,
         language: getStorageLangService.getLang()
       }, function (res) {
@@ -153,74 +196,68 @@
     };
 
     /**
+     * getTVInfo
+     * @param tmdbid
+     */
+    vm.getTVInfo = function (tmdbid) {
+      if (tmdbid === null || tmdbid === undefined) {
+        Notification.info({
+          message: '<i class="glyphicon glyphicon-info-sign"></i> ' + $translate.instant('TMDB_ID_REQUIRED')
+        });
+        angular.element('#tmdbid').focus();
+        return;
+      }
+
+      vm.tmdb_isloading = true;
+      TorrentsService.getTMDBTVInfo({
+        tmdbid: tmdbid,
+        language: getStorageLangService.getLang()
+      }, function (res) {
+        vm.tmdb_info_ok = true;
+        vm.tmdb_isloading = false;
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_ID_OK')
+        });
+
+        console.log(res);
+        vm.tvinfo = res;
+      }, function (err) {
+        vm.tmdb_info_ok = false;
+        vm.tmdb_isloading = false;
+        Notification.error({
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_ID_ERROR')
+        });
+        angular.element('#tmdbid').focus();
+      });
+    };
+
+    /**
      * create
      */
     vm.create = function () {
-      //var d = new Date(vm.movieinfo.release_date);
-      var l = 0;
-
       //console.log(vm.torrentInfo);
 
-      if (vm.torrentInfo.length !== undefined) {
-        l = vm.torrentInfo.length;
-      } else if (vm.torrentInfo.info.length !== undefined) {
-        l = vm.torrentInfo.info.length;
-      } else {
-        angular.forEach(vm.torrentInfo.info.files, function (item) {
-          l = l + item.length;
-        });
+      switch (vm.selectedType) {
+        case 'tvseries':
+          vm.createTVTorrent();
+          break;
+        case 'music':
+          vm.createMusicTorrent();
+          break;
+        case 'other':
+          vm.createOtherTorrent();
+          break;
+        default:
+          vm.createMovieTorrent();
       }
+    };
 
-      var t = [];
-      angular.forEach(vm.resourcesTags.movie.radio, function (item) {
-        if (vm.tags['tag_' + item.name]) {
-          t.push(vm.tags['tag_' + item.name]);
-        }
-      });
-      angular.forEach(vm.resourcesTags.movie.checkbox, function (item) {
-        angular.forEach(item.value, function (sitem) {
-          if (vm.tags['tag_' + item.name + '_' + sitem.name]) {
-            t.push(sitem.name);
-          }
-        });
-      });
-
-      //var g = [];
-      //angular.forEach(vm.movieinfo.genres, function (item) {
-      //  g.push(item.name);
-      //});
-      //
-      //var com = [];
-      //angular.forEach(vm.movieinfo.production_companies, function (item) {
-      //  com.push(item.name);
-      //});
-      //
-      //var country = [];
-      //angular.forEach(vm.movieinfo.production_countries, function (item) {
-      //  country.push(item.iso_3166_1);
-      //});
-      //
-      //var casts = [];
-      //var i = 0;
-      //angular.forEach(vm.movieinfo.credits.cast, function (item) {
-      //  if (i < 6) {
-      //    var c = {
-      //      name: item.name,
-      //      character: item.character,
-      //      profile_path: item.profile_path
-      //    };
-      //    casts.push(c);
-      //    i++;
-      //  }
-      //});
-      //
-      //var dir = undefined;
-      //angular.forEach(vm.movieinfo.credits.crew, function (item) {
-      //  if (item.job === 'Director') {
-      //    dir = item.name;
-      //  }
-      //});
-
+    /**
+     * createMovieTorrent
+     */
+    vm.createMovieTorrent = function () {
+      var l = vm.getTorrentSize();
+      var t = vm.getResourceTag();
 
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
@@ -250,6 +287,101 @@
         vm.error_msg = res.data.message;
         Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Torrent created error!'});
       }
+    };
+
+    /**
+     * createTvTorrent
+     */
+    vm.createTVTorrent = function () {
+      var l = vm.getTorrentSize();
+      var t = vm.getResourceTag();
+
+      var torrent = new TorrentsService({
+        info_hash: vm.torrentInfo.info_hash,
+        torrent_filename: vm.torrentInfo.filename,
+        torrent_type: 'tvseries',
+        torrent_tags: t,
+        torrent_nfo: vm.videoNfo,
+        torrent_announce: vm.torrentInfo.announce,
+        torrent_size: l,
+
+        resource_detail_info: vm.tvinfo
+      });
+
+      torrent.$save(function (response) {
+        successCallback(response);
+      }, function (errorResponse) {
+        errorCallback(errorResponse);
+      });
+
+      function successCallback(res) {
+        $state.reload('torrents.uploads');
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
+      }
+
+      function errorCallback(res) {
+        vm.error_msg = res.data.message;
+        Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Torrent created error!'});
+      }
+    };
+
+    /**
+     * getTorrentSize
+     * @returns {number}
+     */
+    vm.getTorrentSize = function () {
+      var l = 0;
+
+      if (vm.torrentInfo.length !== undefined) {
+        l = vm.torrentInfo.length;
+      } else if (vm.torrentInfo.info.length !== undefined) {
+        l = vm.torrentInfo.info.length;
+      } else {
+        angular.forEach(vm.torrentInfo.info.files, function (item) {
+          l = l + item.length;
+        });
+      }
+
+      return l;
+    };
+
+    /**
+     * getResourceTag
+     * @returns {Array}
+     */
+    vm.getResourceTag = function () {
+      var t = [];
+      var r = undefined;
+
+      switch (vm.selectedType) {
+        case 'tvseries':
+          r = vm.resourcesTags.tv;
+          break;
+        case 'music':
+          r = vm.resourcesTags.music;
+          break;
+        case 'other':
+          r = vm.resourcesTags.other;
+          break;
+        default:
+          r = vm.resourcesTags.movie;
+      }
+
+      angular.forEach(r.radio, function (item) {
+        if (vm.tags['tag_' + item.name]) {
+          t.push(vm.tags['tag_' + item.name]);
+        }
+      });
+      angular.forEach(r.checkbox, function (item) {
+        angular.forEach(item.value, function (sitem) {
+          if (vm.tags['tag_' + item.name + '_' + sitem.name]) {
+            t.push(sitem.name);
+          }
+        });
+      });
+
+      return t;
     };
 
     /**

@@ -18,6 +18,7 @@ exports.invokeRolesPolicies = function () {
         roles: ['admin', 'oper'],
         allows: [
           {resources: '/api/movieinfo/:tmdbid/:language', permissions: '*'},
+          {resources: '/api/tvinfo/:tmdbid/:language', permissions: '*'},
           {resources: '/api/torrents/upload', permissions: '*'},
           {resources: '/api/torrents/download/:torrentId', permissions: '*'},
           {resources: '/api/torrents', permissions: '*'},
@@ -38,6 +39,7 @@ exports.invokeRolesPolicies = function () {
         roles: ['user'],
         allows: [
           {resources: '/api/movieinfo/:tmdbid/:language', permissions: ['get']},
+          {resources: '/api/tvinfo/:tmdbid/:language', permissions: ['get']},
           {resources: '/api/torrents/upload', permissions: ['post']},
           {resources: '/api/torrents/download/:torrentId', permissions: ['get']},
           {resources: '/api/torrents', permissions: ['get', 'post']},
@@ -55,6 +57,7 @@ exports.invokeRolesPolicies = function () {
         roles: ['guest'],
         allows: [
           {resources: '/api/movieinfo/:tmdbid/:language', permissions: ['get']},
+          {resources: '/api/tvinfo/:tmdbid/:language', permissions: ['get']},
           {resources: '/api/torrents', permissions: ['get']},
           {resources: '/api/torrents/:torrentId', permissions: ['get']}
         ]

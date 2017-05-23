@@ -18,22 +18,22 @@
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'torrents', {
-      title: 'MENU_TORRENTS_SUB.SUB_MOVIE',
+      title: 'MENU_TORRENTS_SUB.MOVIE',
       state: 'torrents.movie',
       roles: ['*']
     });
     menuService.addSubMenuItem('topbar', 'torrents', {
-      title: 'MENU_TORRENTS_SUB.SUB_MTV',
-      state: 'torrents.mtv',
+      title: 'MENU_TORRENTS_SUB.TVSERIES',
+      state: 'torrents.tvseries',
       roles: ['*']
     });
     menuService.addSubMenuItem('topbar', 'torrents', {
-      title: 'MENU_TORRENTS_SUB.SUB_MUSIC',
+      title: 'MENU_TORRENTS_SUB.MUSIC',
       state: 'torrents.music',
       roles: ['*']
     });
     menuService.addSubMenuItem('topbar', 'torrents', {
-      title: 'MENU_TORRENTS_SUB.SUB_OTHER',
+      title: 'MENU_TORRENTS_SUB.OTHER',
       state: 'torrents.other',
       roles: ['*']
     });
