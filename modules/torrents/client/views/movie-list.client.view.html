@@ -1,13 +1,13 @@
-<section class="container padding-top-10" ng-controller="TorrentsController as vm" ng-init="vm.getMovieTopInfo();vm.torrentBuildPager();">
+<section class="container padding-top-10" ng-controller="TorrentsController as vm" ng-init="vm.getResourceTopInfo();vm.torrentBuildPager();">
     <div class="row" style="padding: 0 10px;">
-        <div ng-repeat="item in vm.movieTopInfo">
+        <div ng-repeat="item in vm.listTopInfo">
             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
             <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-sm-block"></div>
             <div data-ng-if="$index != 0 && $index % 6 == 0" class="clearfix visible-md-block visible-lg-block"></div>
             <div class="col-xs-6 col-sm-4 col-md-2 col-small-padding">
                 <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
                     <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.resource_detail_info.poster_path}}"
-                         alt="{{item.resource_detail_info.title}}"
+                         alt="{{item.resource_detail_info.title || item.resource_detail_info.name}}"
                          class="img-responsive">
 
                     <div class="torrent-user-info">
@@ -32,7 +32,7 @@
                     <div class="torrent-tmdb-info">
                         <ul class="list-unstyled">
                             <li>
-                                <span class="release-date">{{item.resource_detail_info.release_date}}</span>
+                                <span class="release-date">{{(item.resource_detail_info.release_date || item.resource_detail_info.last_air_date) | date: 'yyyy'}}</span>
                                     <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                           class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average}}</span>
                             </li>
@@ -42,7 +42,7 @@
                     <div class="caption">
                         <ul class="list-unstyled">
                             <li class="text-long">
-                                <strong>{{item.resource_detail_info.title}}</strong>
+                                <strong>{{item.resource_detail_info.title || item.resource_detail_info.name}}</strong>
                             </li>
                         </ul>
                     </div>
@@ -82,33 +82,67 @@
                         </div>
                     </dd>
 
-                    <div class="more-tags panel-collapsed" style="display: none;">
-                        <div ng-repeat="item in vm.resourcesTags.movie.radio">
-                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
-                            <dd class="h-line">
-                                <div class="btn-group btn-group-xs" role="group">
-                                    <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
-                                            class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
-                                            ng-click="vm.onRadioTagClicked($event, sitem.name)">
-                                        {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
-                                    </button>
-                                    </span>
-                                </div>
-                            </dd>
-                        </div>
+                    <div ng-if="vm.torrentType == 'movie'">
+                        <div class="more-tags panel-collapsed" style="display: none;">
+                            <div ng-repeat="item in vm.resourcesTags.movie.radio">
+                                <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                                <dd class="h-line">
+                                    <div class="btn-group btn-group-xs" role="group">
+                                        <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
+                                                class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
+                                                ng-click="vm.onRadioTagClicked($event, sitem.name)">
+                                            {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                                        </button>
+                                        </span>
+                                    </div>
+                                </dd>
+                            </div>
 
-                        <div ng-repeat="item in vm.resourcesTags.movie.checkbox">
-                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
-                            <dd class="h-line">
-                                <div class="btn-group btn-group-xs" role="group">
-                                    <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
-                                            class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
-                                            ng-click="vm.onCheckboxTagClicked($event, sitem.name)"
-                                            toggle-class="btn-success" base-class="btn-default" onclick="this.blur();">
-                                        {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
-                                    </button>
-                                </div>
-                            </dd>
+                            <div ng-repeat="item in vm.resourcesTags.movie.checkbox">
+                                <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                                <dd class="h-line">
+                                    <div class="btn-group btn-group-xs" role="group">
+                                        <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
+                                                class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
+                                                ng-click="vm.onCheckboxTagClicked($event, sitem.name)"
+                                                toggle-class="btn-success" base-class="btn-default" onclick="this.blur();">
+                                            {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                                        </button>
+                                    </div>
+                                </dd>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="vm.torrentType == 'tvseries'">
+                        <div class="more-tags panel-collapsed" style="display: none;">
+                            <div ng-repeat="item in vm.resourcesTags.tv.radio">
+                                <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                                <dd class="h-line">
+                                    <div class="btn-group btn-group-xs" role="group">
+                                        <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
+                                                class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
+                                                ng-click="vm.onRadioTagClicked($event, sitem.name)">
+                                            {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                                        </button>
+                                        </span>
+                                    </div>
+                                </dd>
+                            </div>
+
+                            <div ng-repeat="item in vm.resourcesTags.tv.checkbox">
+                                <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                                <dd class="h-line">
+                                    <div class="btn-group btn-group-xs" role="group">
+                                        <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
+                                                class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
+                                                ng-click="vm.onCheckboxTagClicked($event, sitem.name)"
+                                                toggle-class="btn-success" base-class="btn-default" onclick="this.blur();">
+                                            {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                                        </button>
+                                    </div>
+                                </dd>
+                            </div>
                         </div>
                     </div>
                 </dl>
@@ -145,13 +179,23 @@
                                          alt="...">
                                 </div>
                                 <div class="media-body">
-                                    <h5 class="media-heading">{{item.resource_detail_info.original_title}}
+                                    <h5 ng-if="vm.torrentType == 'movie'" class="media-heading">
+                                        {{item.resource_detail_info.original_title}}
                                         <span ng-show="item.resource_detail_info.original_title!=item.resource_detail_info.title"> / {{item.resource_detail_info.title}}</span>
-                                    <span class="label label-download text-uppercase"
-                                          title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
-                                          ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();">
-                                        <i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}
-                                    </span>
+                                        <span class="label label-download text-uppercase"
+                                              title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                              ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();">
+                                            <i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}
+                                        </span>
+                                    </h5>
+                                    <h5 ng-if="vm.torrentType == 'tvseries'" class="media-heading">
+                                        {{item.resource_detail_info.original_name}}
+                                        <span ng-show="item.resource_detail_info.original_name!=item.resource_detail_info.name"> / {{item.resource_detail_info.name}}</span>
+                                        <span class="label label-download text-uppercase"
+                                              title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                              ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();">
+                                            <i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}
+                                        </span>
                                     </h5>
 
                                     <div class="list-all-genres">
@@ -162,7 +206,7 @@
 
                                     <div class="list-all-tags">
                                         <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
-                                    <span class="label label-release label-warning"
+                                    <span class="label label-release label-warning" ng-show="item.resource_detail_info.release_date"
                                           ng-click="vm.onReleaseClicked(item.resource_detail_info.release_date); $event.stopPropagation();">
                                         {{ item.resource_detail_info.release_date}}
                                     </span>

@@ -32,10 +32,20 @@ body {
         //opacity: 0.5;
         padding-top: 30px;
         padding-bottom: 20px;
+        position: relative;
     }
     .loading {
         color: #ccc;
         margin: 150px 0;
+    }
+    .type-flag {
+        position: absolute;
+        right: 10px;
+        top: -20px;
+        font-size: 100px;
+        font-weight: bold;
+        text-shadow: 2px 0 0 #222, -2px 0 0 #222, 0 2px 0 #222, 0 -2px 0 #222;
+        filter: Glow(color=#f00, strength=100);
     }
     .topone {
         color: #ccc;
@@ -456,7 +466,13 @@ body {
 
 .list-all-companies {
     .company-item {
-        margin: 0 0 0;
+        //margin: 20px 0 20px;
+        &:not(:first-child) {
+            &::before {
+                content: ' ';
+                display: block;
+            }
+        }
     }
 }
 

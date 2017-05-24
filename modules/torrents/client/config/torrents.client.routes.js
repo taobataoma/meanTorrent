@@ -21,7 +21,32 @@
         url: '/movie',
         templateUrl: '/modules/torrents/client/views/movie-list.client.view.html',
         data: {
-          pageTitle: 'PAGETITLE.MOVIE_LIST'
+          pageTitle: 'PAGETITLE.MOVIE_LIST',
+          torrentType: 'movie'
+        }
+      })
+      .state('torrents.tvseries', {
+        url: '/tv',
+        templateUrl: '/modules/torrents/client/views/movie-list.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.TV_LIST',
+          torrentType: 'tvseries'
+        }
+      })
+      .state('torrents.music', {
+        url: '/music',
+        templateUrl: '/modules/torrents/client/views/movie-list.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.MUSIC_LIST',
+          torrentType: 'music'
+        }
+      })
+      .state('torrents.other', {
+        url: '/other',
+        templateUrl: '/modules/torrents/client/views/movie-list.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.OTHER_LIST',
+          torrentType: 'other'
         }
       })
       .state('torrents.uploads', {

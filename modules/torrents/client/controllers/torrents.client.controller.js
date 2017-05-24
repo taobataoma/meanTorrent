@@ -23,6 +23,8 @@
     vm.releaseYear = undefined;
     vm.topItems = 6;
 
+    vm.torrentType = $state.current.data.torrentType;
+
     /**
      * If user is not signed in then redirect back home
      */
@@ -46,7 +48,7 @@
      * @param callback
      */
     vm.torrentFigureOutItemsToDisplay = function (callback) {
-      vm.getMoviePageInfo(vm.torrentCurrentPage, function (items) {
+      vm.getResourcePageInfo(vm.torrentCurrentPage, function (items) {
         vm.torrentFilterLength = items.total - vm.topItems;
         vm.torrentPagedItems = items.rows;
 
@@ -73,16 +75,18 @@
     };
 
     /**
-     * getMovieTopInfo
+     * getResourceTopInfo
      */
-    vm.getMovieTopInfo = function () {
+    vm.getResourceTopInfo = function () {
       TorrentsService.get({
-        limit: vm.topItems
+        limit: vm.topItems,
+        torrent_status: 'reviewed',
+        torrent_type: vm.torrentType
       }, function (items) {
-        vm.movieTopInfo = items.rows;
+        vm.listTopInfo = items.rows;
       }, function (err) {
         Notification.error({
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_MOVIE_INFO_ERROR')
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_LIST_INFO_ERROR')
         });
       });
     };
@@ -139,10 +143,10 @@
     };
 
     /**
-     * getMoviePageInfo
+     * getResourcePageInfo
      * @param p: page number
      */
-    vm.getMoviePageInfo = function (p, callback) {
+    vm.getResourcePageInfo = function (p, callback) {
       //if searchKey or searchTags has value, the skip=0
       var skip = vm.topItems;
       if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear) {
@@ -154,13 +158,13 @@
         limit: vm.torrentItemsPerPage,
         keys: vm.searchKey.trim(),
         torrent_status: 'reviewed',
-        torrent_type: 'movie',
+        torrent_type: vm.torrentType,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags
       }, function (items) {
         if (items.length === 0) {
           Notification.error({
-            message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('MOVIE_PAGE_INFO_EMPTY')
+            message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('LIST_PAGE_INFO_EMPTY')
           });
         } else {
           callback(items);
@@ -168,7 +172,7 @@
         }
       }, function (err) {
         Notification.error({
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('MOVIE_PAGE_INFO_ERROR')
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('LIST_PAGE_INFO_ERROR')
         });
       });
     };
@@ -181,7 +185,24 @@
     vm.getTagTitle = function (tag) {
       var tmp = tag;
       var find = false;
-      angular.forEach(vm.resourcesTags.movie.radio, function (item) {
+      var r = undefined;
+
+      switch (vm.torrentType) {
+        case 'tvseries':
+          r = vm.resourcesTags.tv;
+          break;
+        case 'music':
+          r = vm.resourcesTags.music;
+          break;
+        case 'other':
+          r = vm.resourcesTags.other;
+          break;
+        default:
+          r = vm.resourcesTags.movie;
+      }
+
+
+      angular.forEach(r.radio, function (item) {
         angular.forEach(item.value, function (sitem) {
           if (sitem.name === tag) {
             tmp = item.name;
@@ -191,7 +212,7 @@
       });
 
       if (!find) {
-        angular.forEach(vm.resourcesTags.movie.checkbox, function (item) {
+        angular.forEach(r.checkbox, function (item) {
           angular.forEach(item.value, function (sitem) {
             if (sitem.name === tag) {
               tmp = item.name;

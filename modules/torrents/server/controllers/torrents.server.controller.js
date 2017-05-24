@@ -633,7 +633,6 @@ exports.torrentByID = function (req, res, next, id) {
   var findOtherTorrents = function (torrent, callback) {
     var condition = {
       torrent_status: 'reviewed',
-      torrent_type: 'movie',
       'resource_detail_info.id': torrent.resource_detail_info.id
     };
 

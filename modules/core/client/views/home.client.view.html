@@ -1,6 +1,7 @@
 <section ng-controller="HomeController as vm" ng-init="vm.getTopInfo();">
     <div class="backdrop movie-backdrop" ng-show="vm.movieTopOne">
         <div class="filter">
+            <div class="type-flag">{{'MENU_TORRENTS_SUB.MOVIE' | translate}}</div>
             <div class="container">
                 <div class="topone">
                     <div class="col-md-4">
@@ -32,12 +33,12 @@
                                 <span class="genres-item" ng-repeat="item in vm.movieTopOne.resource_detail_info.genres">{{item.name}}</span>
                             </dd>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
-                            <dd class="h-line list-all-countries">
-                                <span class="country-item"
-                                      ng-repeat="item in vm.movieTopOne.resource_detail_info.production_companies">{{item.name}}</span>
-                                <span ng-show="vm.movieTopOne.resource_detail_info.production_companies.length ==0">-</span>
-                            </dd>
+                            <!--<dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COMPANIES' | translate}}：</dt>-->
+                            <!--<dd class="h-line list-all-companies">-->
+                            <!--<span class="company-item"-->
+                            <!--ng-repeat="item in vm.movieTopOne.resource_detail_info.production_companies">{{item.name}}</span>-->
+                            <!--<span ng-show="vm.movieTopOne.resource_detail_info.production_companies.length ==0">-</span>-->
+                            <!--</dd>-->
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
                             <dd class="h-line">{{vm.movieTopOne.resource_detail_info.release_date}}</dd>
@@ -98,7 +99,8 @@
                         <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                         <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
                             <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
-                                <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.resource_detail_info.poster_path}}" alt="{{item.resource_detail_info.title}}"
+                                <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.resource_detail_info.poster_path}}"
+                                     alt="{{item.resource_detail_info.title}}"
                                      class="img-responsive">
 
                                 <div class="torrent-user-info">
@@ -198,6 +200,7 @@
 
     <div class="backdrop tv-backdrop" ng-show="vm.TVTopOne">
         <div class="filter">
+            <div class="type-flag">{{'MENU_TORRENTS_SUB.TVSERIES' | translate}}</div>
             <div class="container">
                 <div class="topone">
                     <div class="col-md-4">
@@ -226,12 +229,12 @@
                                 <span class="genres-item" ng-repeat="item in vm.TVTopOne.resource_detail_info.genres">{{item.name}}</span>
                             </dd>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COMPANIES' | translate}}：</dt>
-                            <dd class="h-line list-all-countries">
-                                <span class="country-item"
-                                      ng-repeat="item in vm.TVTopOne.resource_detail_info.production_companies">{{item.name}}</span>
-                                <span ng-show="vm.TVTopOne.resource_detail_info.production_companies.length ==0">-</span>
-                            </dd>
+                            <!--<dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COMPANIES' | translate}}：</dt>-->
+                            <!--<dd class="h-line list-all-companies">-->
+                            <!--<span class="company-item"-->
+                            <!--ng-repeat="item in vm.TVTopOne.resource_detail_info.production_companies">{{item.name}}</span>-->
+                            <!--<span ng-show="vm.TVTopOne.resource_detail_info.production_companies.length ==0">-</span>-->
+                            <!--</dd>-->
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
                             <dd class="h-line list-all-countries">
@@ -286,7 +289,8 @@
                         <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                         <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
                             <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
-                                <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.resource_detail_info.poster_path}}" alt="{{item.resource_detail_info.name}}"
+                                <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.resource_detail_info.poster_path}}"
+                                     alt="{{item.resource_detail_info.name}}"
                                      class="img-responsive">
 
                                 <div class="torrent-user-info">
@@ -311,7 +315,7 @@
                                 <div class="torrent-tmdb-info">
                                     <ul class="list-unstyled">
                                         <li>
-                                            <!--<span class="release-date">{{item.resource_detail_info.release_date}}</span>-->
+                                            <span class="release-date">{{item.resource_detail_info.last_air_date | date: 'yyyy'}}</span>
                                             <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                   class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average}}</span>
                                         </li>
@@ -335,7 +339,7 @@
                     <div class="fill-height-table">
                         <div class="fill-height-row" style="overflow-y: auto;">
                             <div class="panel panel-default panel-newest-list" ng-show="vm.TVNewList">
-                                <div class="panel-heading"><h5>{{'NEWEST_MOVIE_LIST' | translate}}</h5></div>
+                                <div class="panel-heading"><h5>{{'NEWEST_TV_LIST' | translate}}</h5></div>
                                 <table class="table">
                                     <tr ng-repeat="nt in vm.TVNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
                                         ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">

@@ -52,6 +52,7 @@
     LOADING_TOP: 'Loading recommended info, please waiting...',
     TOP_MOVIE_INFO_ERROR: 'Get movie top info failed',
     NEWEST_MOVIE_LIST: 'Newest Movie Torrents',
+    NEWEST_TV_LIST: 'Newest TV Series Torrents',
 
     //element title/alt
     TITLE_ALT: {
@@ -99,6 +100,9 @@
     PAGETITLE: {
       UPLOAD: 'Upload',
       MOVIE_LIST: 'Movie List',
+      TV_LIST: 'TV List',
+      MUSIC_LIST: 'Music List',
+      OTHER_LIST: 'Other List',
       TORRENT_INFO: 'Torrent Info',
       RANKING: 'Ranking',
       RULES: 'Rules',
@@ -113,8 +117,9 @@
     },
 
     //TorrentsController & views
-    MOVIE_PAGE_INFO_ERROR: 'Get movie page info failed',
-    MOVIE_PAGE_INFO_EMPTY: 'No movie founded, please change some new tags to research',
+    TOP_LIST_INFO_ERROR: 'Get top list info failed',
+    LIST_PAGE_INFO_ERROR: 'Get resources page info failed',
+    LIST_PAGE_INFO_EMPTY: 'No resources founded, please change some new tags to research',
     TAGS_SEARCH: 'Tags Search',
     CA_KEYWORD: 'Keyword',
     CA_TORRENT_STATUS: 'Torrent status',
@@ -233,7 +238,7 @@
     SELECT_TORRENT_FILE: '2. Please select the torrent file',
     SELECT_FILE: 'Select file',
     DO_UPLOAD: 'Upload',
-    ENTER_TMDB_ID: '3. Please enter theMovieDB id</span>',
+    ENTER_TMDB_ID: '3. Please enter theMovieDB id',
     LOAD_TMDB_INFO: 'Load info',
     TMDB_ID: 'TMDB ID',
     TMDB_ID_OK: 'TMDB ID is ok! Get info successfully',

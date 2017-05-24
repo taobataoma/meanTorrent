@@ -51,7 +51,8 @@
     //HomeController & home views
     LOADING_TOP: '正在推荐资源，请稍候...',
     TOP_MOVIE_INFO_ERROR: '获取电影Top列表失败',
-    NEWEST_MOVIE_LIST: '最新电影种子文件',
+    NEWEST_MOVIE_LIST: '最新电影种子',
+    NEWEST_TV_LIST: '最新电视剧种子',
 
     //element title/alt
     TITLE_ALT: {
@@ -99,6 +100,9 @@
     PAGETITLE: {
       UPLOAD: '上传',
       MOVIE_LIST: '电影列表',
+      TV_LIST: '电视剧列表',
+      MUSIC_LIST: '音乐列表',
+      OTHER_LIST: '其它列表',
       TORRENT_INFO: '种子信息',
       RANKING: '排行榜',
       RULES: '规则',
@@ -113,8 +117,9 @@
     },
 
     //TorrentsController & views
-    MOVIE_PAGE_INFO_ERROR: '获取电影分页列表失败',
-    MOVIE_PAGE_INFO_EMPTY: '没有找到信息，请更换标签重新检索',
+    TOP_LIST_INFO_ERROR: '获取推荐列表失败',
+    LIST_PAGE_INFO_ERROR: '获取资源分页列表失败',
+    LIST_PAGE_INFO_EMPTY: '没有找到信息，请更换标签重新检索',
     TAGS_SEARCH: '标签检索',
     CA_KEYWORD: '关键字',
     CA_TORRENT_STATUS: '种子状态',
@@ -233,7 +238,7 @@
     SELECT_TORRENT_FILE: '2. 请选择种子文件',
     SELECT_FILE: '选择文件',
     DO_UPLOAD: '上传',
-    ENTER_TMDB_ID: '3. 请输入TMDB_ID</span>',
+    ENTER_TMDB_ID: '3. 请输入TMDB_ID',
     LOAD_TMDB_INFO: '检索信息',
     TMDB_ID: 'TMDB ID',
     TMDB_ID_OK: 'MDB ID 正确，检索信息成功!',

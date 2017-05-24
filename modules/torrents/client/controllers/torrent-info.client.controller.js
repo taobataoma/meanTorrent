@@ -183,20 +183,34 @@
     };
 
     /**
-     * getMovieInfo
+     * getResourceInfo
      */
-    vm.getMovieInfo = function (tmdb_id) {
-      TorrentsService.getTMDBInfo({
-        tmdbid: tmdb_id,
-        language: getStorageLangService.getLang()
-      }, function (res) {
-        res.release_date = $filter('date')(res.release_date, 'yyyy');
-        vm.doUpdateTorrentInfo(res);
-      }, function (err) {
-        Notification.error({
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_INFO_FAILED')
+    vm.getResourceInfo = function (tmdb_id) {
+      if (vm.torrentLocalInfo.torrent_type === 'movie') {
+        TorrentsService.getTMDBMovieInfo({
+          tmdbid: tmdb_id,
+          language: getStorageLangService.getLang()
+        }, function (res) {
+          res.release_date = $filter('date')(res.release_date, 'yyyy');
+          vm.doUpdateTorrentInfo(res);
+        }, function (err) {
+          Notification.error({
+            message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_INFO_FAILED')
+          });
         });
-      });
+      }
+      if (vm.torrentLocalInfo.torrent_type === 'tvseries') {
+        TorrentsService.getTMDBTVInfo({
+          tmdbid: tmdb_id,
+          language: getStorageLangService.getLang()
+        }, function (res) {
+          vm.doUpdateTorrentInfo(res);
+        }, function (err) {
+          Notification.error({
+            message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TMDB_INFO_FAILED')
+          });
+        });
+      }
     };
 
     /**
@@ -722,7 +736,7 @@
 
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
-          vm.getMovieInfo(vm.torrentLocalInfo.resource_detail_info.id);
+          vm.getResourceInfo(vm.torrentLocalInfo.resource_detail_info.id);
         });
     };
 
@@ -730,8 +744,8 @@
      * doUpdateTorrentInfo
      * @param minfo
      */
-    vm.doUpdateTorrentInfo = function (movieinfo) {
-      vm.torrentLocalInfo.resource_detail_info = movieinfo;
+    vm.doUpdateTorrentInfo = function (resinfo) {
+      vm.torrentLocalInfo.resource_detail_info = resinfo;
 
       vm.torrentLocalInfo.$update(function (response) {
         successCallback(response);

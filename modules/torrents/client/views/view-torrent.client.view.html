@@ -2,7 +2,7 @@
     <div class="backdrop" ng-show="vm.torrentLocalInfo">
         <div class="filter">
             <div class="container">
-                <div class="topone" ng-show="vm.torrentLocalInfo">
+                <div class="topone">
                     <div class="col-md-4">
                         <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{vm.torrentLocalInfo.resource_detail_info.poster_path}}"
                              class="img-thumbnail center-block"
@@ -15,14 +15,30 @@
                     </div>
                     <div class="col-md-8">
                         <dl class="dl-horizontal">
-                            <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_TITLE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.original_title}}</dd>
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.original_title">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_TITLE' | translate}}：</dt>
+                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.original_title}}</dd>
+                            </div>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.title}}</dd>
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.title">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
+                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.title}}</dd>
+                            </div>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.DIRECTOR' | translate}}：</dt>
-                            <dd class="h-line">{{vm.getDirector();}}</dd>
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.original_name">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_NAME' | translate}}：</dt>
+                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.original_name}}</dd>
+                            </div>
+
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.name">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.NAME' | translate}}：</dt>
+                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.name}}</dd>
+                            </div>
+
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.title">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.DIRECTOR' | translate}}：</dt>
+                                <dd class="h-line">{{vm.getDirector();}}</dd>
+                            </div>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_LANGUAGE' | translate}}：</dt>
                             <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.original_language}}</dd>
@@ -39,27 +55,50 @@
                                 <span ng-show="vm.torrentLocalInfo.resource_detail_info.production_companies.length ==0">-</span>
                             </dd>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
-                            <dd class="h-line list-all-countries">
-                                <span class="country-item"
-                                      ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.production_countries">{{item.iso_3166_1}}</span>
-                                <span ng-show="vm.torrentLocalInfo.resource_detail_info.production_countries.length ==0">-</span>
-                            </dd>
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.production_countries">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
+                                <dd class="h-line list-all-countries">
+                                    <span class="country-item"
+                                          ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.production_countries">{{item.iso_3166_1}}</span>
+                                    <span ng-show="vm.torrentLocalInfo.resource_detail_info.production_countries.length ==0">-</span>
+                                </dd>
+                            </div>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
-                            <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.release_date}}</dd>
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.origin_country">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
+                                <dd class="h-line list-all-countries">
+                                    <span class="country-item"
+                                          ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.origin_country">{{item}}</span>
+                                    <span ng-show="vm.torrentLocalInfo.resource_detail_info.origin_country.length ==0">-</span>
+                                </dd>
+                            </div>
 
-                            <div ng-hide="vm.torrentLocalInfo.resource_detail_info.runtime == 0">
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.release_date">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
+                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.release_date}}</dd>
+                            </div>
+
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.first_air_date">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.FIRST_AIR_DATE' | translate}}：</dt>
+                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.first_air_date}}</dd>
+                            </div>
+
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.last_air_date">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.LAST_AIR_DATE' | translate}}：</dt>
+                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.last_air_date}}</dd>
+                            </div>
+
+                            <div ng-hide="!vm.torrentLocalInfo.resource_detail_info.runtime || vm.torrentLocalInfo.resource_detail_info.runtime == 0">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>
                                 <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.runtime | runtime}}</dd>
                             </div>
 
-                            <div ng-hide="vm.torrentLocalInfo.resource_detail_info.budget == 0">
+                            <div ng-hide="!vm.torrentLocalInfo.resource_detail_info.budget || vm.torrentLocalInfo.resource_detail_info.budget == 0">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
                                 <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.budget | dollar:2}}</dd>
                             </div>
 
-                            <div ng-hide="vm.torrentLocalInfo.resource_detail_info.revenue == 0">
+                            <div ng-hide="!vm.torrentLocalInfo.resource_detail_info.revenue || vm.torrentLocalInfo.resource_detail_info.revenue == 0">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.REVENUE' | translate}}：</dt>
                                 <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.revenue | dollar:2}}</dd>
                             </div>
@@ -73,15 +112,20 @@
                                 </span>
                             </dd>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>
-                            <dd class="h-line"><a href="{{vm.imdbConfig.imdb_link_url}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}"
-                                                  target="_blank">{{vm.imdbConfig.imdb_link_url}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}</a>
-                            </dd>
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.imdb_id">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>
+                                <dd class="h-line">
+                                    <a href="{{vm.imdbConfig.imdb_link_url}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}"
+                                       target="_blank">{{vm.imdbConfig.imdb_link_url}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}</a>
+                                </dd>
+                            </div>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>
-                            <dd class="h-line"><a href="{{vm.tmdbConfig.tmdb_movie_link_url}}{{vm.torrentLocalInfo.resource_detail_info.id}}"
-                                                  target="_blank">{{vm.tmdbConfig.tmdb_movie_link_url}}{{vm.torrentLocalInfo.resource_detail_info.id}}</a>
-                            </dd>
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.id">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>
+                                <dd class="h-line"><a href="{{vm.tmdbConfig.tmdb_movie_link_url}}{{vm.torrentLocalInfo.resource_detail_info.id}}"
+                                                      target="_blank">{{vm.tmdbConfig.tmdb_movie_link_url}}{{vm.torrentLocalInfo.resource_detail_info.id}}</a>
+                                </dd>
+                            </div>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                             <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.overview}}</dd>
@@ -481,9 +525,11 @@
                                     <div class="text-long">{{item.torrent_filename}}</div>
 
                                     <div class="list-all-tags">
-                                        <span class="label label-warning" ng-click="$event.stopPropagation();">
-                                        {{ vm.torrentLocalInfo.resource_detail_info.release_date}}
-                                        </span>
+                                        <div ng-show="vm.torrentLocalInfo.resource_detail_info.release_date">
+                                            <span class="label label-warning" ng-click="$event.stopPropagation();">
+                                            {{ vm.torrentLocalInfo.resource_detail_info.release_date}}
+                                            </span>
+                                        </div>
                                         <span class="label label-sale" ng-if="item.isSaling"
                                               title="{{vm.getSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
                                               ng-click="$event.stopPropagation();"
@@ -552,7 +598,11 @@
             <dl class="dl-horizontal">
                 <dt class="h-line">{{ 'ADMIN_BASIC_COMMAND' | translate}}:</dt>
                 <dd class="h-line">
-                    <button class="btn btn-default btn-sm" ng-click="vm.updateTorrent();">{{ 'ADMIN_BASIC_UPDATE' | translate}}</button>
+                    <button class="btn btn-default btn-sm"
+                            ng-show="vm.torrentLocalInfo.resource_detail_info.id"
+                            ng-click="vm.updateTorrent();">
+                        {{ 'ADMIN_BASIC_UPDATE' | translate}}
+                    </button>
                     <button class="btn btn-default btn-sm" ng-click="vm.deleteTorrent();">{{ 'ADMIN_BASIC_DELETE' | translate}}</button>
                 </dt>
 
