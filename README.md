@@ -10,7 +10,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 ## Feature, Function, Screenshots First
 
 - __Home page view__
-![home](https://cloud.githubusercontent.com/assets/7778550/26185324/d3e3013e-3bbc-11e7-925e-0624c3f54922.jpg)
+![home](https://cloud.githubusercontent.com/assets/7778550/26386334/add8e1f0-4078-11e7-9925-a450603fdca3.jpg)
 - __Torrents list page view__
 ![list](https://cloud.githubusercontent.com/assets/7778550/26185492/e56cca24-3bbd-11e7-9f05-0b2f81612947.jpg)
 - __Torrent detail page view__
