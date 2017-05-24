@@ -246,6 +246,7 @@
     TMDB_ID_REQUIRED: '请输入 TMDB ID',
     TMDB_RESOURCE_INFO: '4. TMDB 资源信息',
     TMDB_IS_LOADING: '正在检索视频信息，请稍候...',
+    SELECT_SE: '4.1. 请选择电视剧季数并输入本资源为本剧第几集',
     SELECT_TAGS: '5. 请为资源选择合适的标签',
     ENTER_VIDEO_NFO: '6. 请输入视频NFO信息',
     TORRENTS_SUBMIT_UPLOAD: '7. 同意上传协议，并提交',
@@ -370,9 +371,11 @@
       NETWORK: '网络',
       NUMBER_OF_SEASONS: '总季数',
       NUMBER_OF_EPISODES: '总集数',
-      EPISODES_SEASONS: '总集/季数',
+      TOTAL_SE: '总季集',
+      THIS_SE: '本资源季集',
       UNIT_EPISODES: '集',
-      UNIT_SEASONS: '季'
+      UNIT_SEASONS: '季',
+      EPISODES_INPUT_TIP: '提示：输入只接受0-9的数字以及减号字符，如 9 表示第9集，1-30 表示1到30集集合，像 001 12 01-30 12-45 45-127 等.'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

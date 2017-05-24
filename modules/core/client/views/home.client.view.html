@@ -255,10 +255,15 @@
                             <dt class="h-line">{{ 'TMDB_FIELDS.LAST_AIR_DATE' | translate}}：</dt>
                             <dd class="h-line">{{vm.TVTopOne.resource_detail_info.last_air_date}}</dd>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.EPISODES_SEASONS' | translate}}：</dt>
+                            <dt class="h-line">{{ 'TMDB_FIELDS.TOTAL_SE' | translate}}：</dt>
                             <dd class="h-line">
                                 {{vm.TVTopOne.resource_detail_info.number_of_episodes}} {{ 'TMDB_FIELDS.UNIT_EPISODES' | translate}} /
                                 {{vm.TVTopOne.resource_detail_info.number_of_seasons}} {{ 'TMDB_FIELDS.UNIT_SEASONS' | translate}}
+                            </dd>
+
+                            <dt class="h-line">{{ 'TMDB_FIELDS.THIS_SE' | translate}}：</dt>
+                            <dd class="h-line">
+                                <span class="se-info">S{{vm.TVTopOne.torrent_seasons}}E{{vm.TVTopOne.torrent_episodes}}</span>
                             </dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
@@ -328,7 +333,7 @@
                                 <div class="torrent-tmdb-info">
                                     <ul class="list-unstyled">
                                         <li>
-                                            <span class="release-date">{{item.resource_detail_info.last_air_date | date: 'yyyy'}}</span>
+                                            <span class="se-info">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
                                             <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                   class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average}}</span>
                                         </li>
@@ -383,12 +388,14 @@
                                                 <div class="newest-info">
                                                     <div class="text-long">
                                                         {{$index + 1}}. {{nt.resource_detail_info.name}}
+                                                        <span class="se-info">S{{nt.torrent_seasons}}E{{nt.torrent_episodes}}</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="newest-item-small text-long">
                                                 {{$index + 1}}. {{nt.resource_detail_info.name}}
+                                                <span class="se-info">S{{nt.torrent_seasons}}E{{nt.torrent_episodes}}</span>
                                             </div>
                                         </td>
                                     </tr>

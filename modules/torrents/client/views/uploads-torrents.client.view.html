@@ -90,7 +90,7 @@
 
     <div ng-if="vm.tmdb_info_ok == true" ng-include="vm.getIncludeInfoTemplate();"></div>
 
-    <div class="row margin-bottom-40" ng-show="vm.tmdb_info_ok == true">
+    <div class="row margin-bottom-40" ng-show="vm.tmdb_info_ok == true && vm.inputedEpisodesOK == true">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <legend class="small-legend" translate="ENTER_VIDEO_NFO"></legend>
             <div class="col-xs-12">
@@ -99,7 +99,7 @@
         </div>
     </div>
 
-    <div class="row margin-bottom-40" ng-show="vm.tmdb_info_ok == true" style="margin-top: 60px;">
+    <div class="row margin-bottom-40 margin-top-50" ng-show="vm.tmdb_info_ok == true && vm.inputedEpisodesOK == true">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <legend class="small-legend" translate="TORRENTS_SUBMIT_UPLOAD"></legend>
             <div class="col-sm-6 col-sm-offset-3 text-center">
@@ -290,10 +290,10 @@
                             <dd class="h-line">{{vm.tvinfo.last_air_date}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.NUMBER_OF_SEASONS' | translate}}：</dt>
-                            <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.number_of_seasons}} {{ 'TMDB_FIELDS.UNIT_SEASONS' | translate}}</dd>
+                            <dd class="h-line">{{vm.tvinfo.number_of_seasons}} {{ 'TMDB_FIELDS.UNIT_SEASONS' | translate}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.NUMBER_OF_EPISODES' | translate}}：</dt>
-                            <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.number_of_episodes}} {{ 'TMDB_FIELDS.UNIT_EPISODES' | translate}}</dd>
+                            <dd class="h-line">{{vm.tvinfo.number_of_episodes}} {{ 'TMDB_FIELDS.UNIT_EPISODES' | translate}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
                             <dd class="h-line">{{vm.tvinfo.vote_average}} / {{vm.tvinfo.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</dd>
@@ -320,7 +320,48 @@
                 </div>
             </div>
 
-            <div class="row margin-bottom-40">
+            <div class="row margin-bottom-20">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <legend class="small-legend" translate="SELECT_SE"></legend>
+                    <dl class="dl-horizontal">
+                        <dt class="h-line">{{ 'TMDB_FIELDS.UNIT_SEASONS' | translate}}：</dt>
+                        <dd class="h-line">
+                            <div class="col-sm-4 col-md-3">
+                                <select class="form-control" ng-model="vm.selectedSeasons">
+                                    <option ng-repeat="n in [] | mtRange:vm.tvinfo.number_of_seasons" value="{{n+1}}">{{n+1}}</option>
+                                </select>
+                            </div>
+                        </dd>
+
+                        <div class="margin-top-5">
+                            <form name="vm.episodesForm" ng-submit="vm.tvContinue(vm.episodesForm.$valid)" novalidate>
+                                <dt class="h-line">{{ 'TMDB_FIELDS.UNIT_EPISODES' | translate}}：</dt>
+                                <dd class="h-line">
+                                    <div class="form-group" show-errors>
+                                        <div class="col-sm-4 col-md-3">
+                                            <input class="form-control" id="inputedEpisodes" name="inputedEpisodes"
+                                                   ng-pattern="/(^[0-9]{1,4}$)|(^[0-9]{1,2}[\-]{1}[0-9]{1,4}$)/"
+                                                   ng-model="vm.inputedEpisodes" ng-disabled="vm.inputedEpisodesOK" required>
+                                        </div>
+                                        <div class="col-sm-4 col-md-3">
+                                            <button type="submit" class="btn btn-primary">continue</button>
+                                        </div>
+                                        <div class="col-xs-12" ng-messages="vm.episodesForm.inputedEpisodes.$error" role="alert">
+                                            <p class="help-block error-text" ng-message="required">{{'TMDB_FIELDS.EPISODES_INPUT_TIP' | translate}}</p>
+                                            <p class="help-block error-text" ng-message="pattern">{{'TMDB_FIELDS.EPISODES_INPUT_TIP' | translate}}</p>
+                                        </div>
+                                        <div class="col-xs-12" ng-hide="vm.inputedEpisodesError">
+                                            <p class="episodes_input_tip">{{ 'TMDB_FIELDS.EPISODES_INPUT_TIP' | translate}}</p>
+                                        </div>
+                                    </div>
+                                </dd>
+                            </form>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="row margin-bottom-40" ng-show="vm.inputedEpisodesOK">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <legend class="small-legend" translate="SELECT_TAGS"></legend>
                     <dl class="dl-horizontal">

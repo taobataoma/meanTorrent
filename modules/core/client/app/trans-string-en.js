@@ -246,6 +246,7 @@
     TMDB_ID_REQUIRED: 'Please enter TMDB ID',
     TMDB_RESOURCE_INFO: '4. The resource info from TMDB',
     TMDB_IS_LOADING: 'Loading the movie info, please wait...',
+    SELECT_SE: '4.1. Please select number of seasons and input number of episodes',
     SELECT_TAGS: '5. Please select any tags for the resources',
     ENTER_VIDEO_NFO: '6. Please enter video NFO',
     TORRENTS_SUBMIT_UPLOAD: '7. Agree the rules and submit your resources',
@@ -370,9 +371,11 @@
       NETWORK: 'Network',
       NUMBER_OF_SEASONS: 'total seasons',
       NUMBER_OF_EPISODES: 'total episodes',
-      EPISODES_SEASONS: 'episodes/seasons',
+      TOTAL_SE: 'total S.E',
+      THIS_SE: 'this S.E',
       UNIT_EPISODES: 'episodes',
-      UNIT_SEASONS: 'seasons'
+      UNIT_SEASONS: 'seasons',
+      EPISODES_INPUT_TIP: 'tip: Only accepts numbers 0-9 and characters minus, for example：9 is 9th episode, 1-30 is first to thirty episode, like 001 12 01-30 12-45 45-127 etc.'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

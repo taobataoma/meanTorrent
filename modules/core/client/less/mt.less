@@ -75,6 +75,9 @@ body {
         .network-item {
             color: #ccc;
         }
+        .se-info {
+            color: @mt-base-color;
+        }
         .img-circle {
             &:hover {
                 /* csslint ignore:start */
@@ -169,6 +172,9 @@ body {
         margin-bottom: 0;
     }
     .release-date {
+        color: #ccc;
+    }
+    .se-info {
         color: #ccc;
     }
 }
@@ -321,6 +327,20 @@ body {
                 color: #0366d6;
             }
         }
+        .se-info {
+            right: 5px;
+        }
+    }
+    .se-info {
+        background-color: #eee;
+        padding: 0 5px;
+        border-radius: 3px;
+        border: solid 1px #aaa;
+        position: absolute;
+        right: 15px;
+        color: #555;
+        margin-top: 2px;
+        font-size: 10px;
     }
 }
 
@@ -555,6 +575,10 @@ body {
     &.character {
         color: #888;
     }
+}
+
+.episodes_input_tip {
+    color: #aaa;
 }
 
 .nav {

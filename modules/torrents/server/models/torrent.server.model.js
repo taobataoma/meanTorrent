@@ -75,6 +75,14 @@ var TorrentSchema = new Schema({
     default: '',
     trim: true
   },
+  torrent_seasons: {
+    type: Number,
+    default: 0
+  },
+  torrent_episodes: {
+    type: String,
+    default: '0'
+  },
   torrent_size: {
     type: Number,
     default: 0

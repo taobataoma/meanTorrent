@@ -22,7 +22,10 @@
     vm.selectedType = 'movie';
     vm.successfully = undefined;
     vm.tmdb_info_ok = undefined;
+    vm.selectedSeasons = undefined;
     vm.torrentInfo = null;
+    vm.inputedEpisodesError = undefined;
+    vm.inputedEpisodesOK = false;
     vm.tags = [];
     vm.videoNfo = '';
 
@@ -133,6 +136,8 @@
      */
     vm.onTorrentTypeChanged = function () {
       vm.tmdb_info_ok = undefined;
+      vm.inputedEpisodesError = undefined;
+      vm.inputedEpisodesOK = false;
       vm.tmdb_isloading = false;
       vm.movieinfo = undefined;
       vm.tvinfo = undefined;
@@ -177,6 +182,7 @@
       }, function (res) {
         vm.tmdb_info_ok = true;
         vm.tmdb_isloading = false;
+        vm.inputedEpisodesOK = true;
         Notification.success({
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_ID_OK')
         });
@@ -221,6 +227,9 @@
 
         console.log(res);
         vm.tvinfo = res;
+        if (parseInt(vm.tvinfo.number_of_seasons, 10) > 0) {
+          vm.selectedSeasons = '1';
+        }
       }, function (err) {
         vm.tmdb_info_ok = false;
         vm.tmdb_isloading = false;
@@ -229,6 +238,23 @@
         });
         angular.element('#tmdbid').focus();
       });
+    };
+
+    /**
+     * tvContinue
+     * @param isValid
+     * @returns {boolean}
+     */
+    vm.tvContinue = function (isValid) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.episodesForm');
+
+        vm.inputedEpisodesError = true;
+        return false;
+      }else{
+        vm.inputedEpisodesError = false;
+        vm.inputedEpisodesOK = true;
+      }
     };
 
     /**
@@ -300,6 +326,8 @@
         info_hash: vm.torrentInfo.info_hash,
         torrent_filename: vm.torrentInfo.filename,
         torrent_type: 'tvseries',
+        torrent_seasons: vm.selectedSeasons,
+        torrent_episodes: vm.inputedEpisodes,
         torrent_tags: t,
         torrent_nfo: vm.videoNfo,
         torrent_announce: vm.torrentInfo.announce,
