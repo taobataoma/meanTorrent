@@ -366,7 +366,13 @@
       ORIGINAL_NAME: 'original_name',
       NAME: 'name',
       FIRST_AIR_DATE: 'first air date',
-      LAST_AIR_DATE: 'last air date'
+      LAST_AIR_DATE: 'last air date',
+      NETWORK: 'Network',
+      NUMBER_OF_SEASONS: 'total seasons',
+      NUMBER_OF_EPISODES: 'total episodes',
+      EPISODES_SEASONS: 'episodes/seasons',
+      UNIT_EPISODES: 'episodes',
+      UNIT_SEASONS: 'seasons'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

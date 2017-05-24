@@ -44,8 +44,6 @@ body {
         top: -20px;
         font-size: 100px;
         font-weight: bold;
-        text-shadow: 2px 0 0 #222, -2px 0 0 #222, 0 2px 0 #222, 0 -2px 0 #222;
-        filter: Glow(color=#f00, strength=100);
     }
     .topone {
         color: #ccc;
@@ -72,6 +70,9 @@ body {
             }
         }
         .genres-item {
+            color: #ccc;
+        }
+        .network-item {
             color: #ccc;
         }
         .img-circle {
@@ -445,6 +446,18 @@ body {
 
 .list-all-genres {
     .genres-item {
+        color: @gray-light;
+        &:not(:first-child) {
+            &::before {
+                content: " | ";
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.list-all-network {
+    .network-item {
         color: @gray-light;
         &:not(:first-child) {
             &::before {

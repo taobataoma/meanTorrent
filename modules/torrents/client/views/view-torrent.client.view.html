@@ -40,6 +40,14 @@
                                 <dd class="h-line">{{vm.getDirector();}}</dd>
                             </div>
 
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.networks.length > 0">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.NETWORK' | translate}}：</dt>
+                                <dd class="h-line list-all-network">
+                                    <span class="network-item"
+                                          ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.networks">{{item.name}}</span>
+                                </dd>
+                            </div>
+
                             <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_LANGUAGE' | translate}}：</dt>
                             <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.original_language}}</dd>
 
@@ -48,23 +56,23 @@
                                 <span class="genres-item" ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.genres">{{item.name}}</span>
                             </dd>
 
-                            <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COMPANIES' | translate}}：</dt>
-                            <dd class="h-line list-all-companies">
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.production_companies.length > 0">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COMPANIES' | translate}}：</dt>
+                                <dd class="h-line list-all-companies">
                                 <span class="company-item"
                                       ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.production_companies">{{item.name}}</span>
-                                <span ng-show="vm.torrentLocalInfo.resource_detail_info.production_companies.length ==0">-</span>
-                            </dd>
+                                </dd>
+                            </div>
 
-                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.production_countries">
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.production_countries.length > 0">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
                                 <dd class="h-line list-all-countries">
                                     <span class="country-item"
                                           ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.production_countries">{{item.iso_3166_1}}</span>
-                                    <span ng-show="vm.torrentLocalInfo.resource_detail_info.production_countries.length ==0">-</span>
                                 </dd>
                             </div>
 
-                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.origin_country">
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.origin_country.length > 0">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
                                 <dd class="h-line list-all-countries">
                                     <span class="country-item"
@@ -86,6 +94,16 @@
                             <div ng-show="vm.torrentLocalInfo.resource_detail_info.last_air_date">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.LAST_AIR_DATE' | translate}}：</dt>
                                 <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.last_air_date}}</dd>
+                            </div>
+
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.number_of_seasons">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.NUMBER_OF_SEASONS' | translate}}：</dt>
+                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.number_of_seasons}} {{ 'TMDB_FIELDS.UNIT_SEASONS' | translate}}</dd>
+                            </div>
+
+                            <div ng-show="vm.torrentLocalInfo.resource_detail_info.number_of_episodes">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.NUMBER_OF_EPISODES' | translate}}：</dt>
+                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.number_of_episodes}} {{ 'TMDB_FIELDS.UNIT_EPISODES' | translate}}</dd>
                             </div>
 
                             <div ng-hide="!vm.torrentLocalInfo.resource_detail_info.runtime || vm.torrentLocalInfo.resource_detail_info.runtime == 0">

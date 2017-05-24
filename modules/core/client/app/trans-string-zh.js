@@ -366,7 +366,13 @@
       ORIGINAL_NAME: '原剧名',
       NAME: '剧名',
       FIRST_AIR_DATE: '首次上演时间',
-      LAST_AIR_DATE: '最近上演时间'
+      LAST_AIR_DATE: '最近上演时间',
+      NETWORK: '网络',
+      NUMBER_OF_SEASONS: '总季数',
+      NUMBER_OF_EPISODES: '总集数',
+      EPISODES_SEASONS: '总集/季数',
+      UNIT_EPISODES: '集',
+      UNIT_SEASONS: '季'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////
