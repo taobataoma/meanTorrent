@@ -251,7 +251,7 @@
 
         vm.inputedEpisodesError = true;
         return false;
-      }else{
+      } else {
         vm.inputedEpisodesError = false;
         vm.inputedEpisodesOK = true;
       }

@@ -36,9 +36,11 @@
     },
 
     //client menu
-    SIGNOUT: 'Signout',
+    SIGNOUT: 'Sign out',
     SIGNIN: 'Sign In',
     SIGNUP: 'Sign Up',
+    MENU_MESSAGE_INBOX: 'Message Inbox',
+    MENU_ACCOUNT_STATUS: 'Account Status',
     EDIT_PROFILE: 'Edit Profile',
     EDIT_PROFILE_PIC: 'Edit Profile Picture',
     CHANGE_PASSWORD: 'Change Password',
@@ -303,6 +305,10 @@
     RESET_PASSKEY_CONFIRM_BODY_TEXT: 'Are you sure want to reset your passkey?',
     RESET_PASSKEY_SUCCESSFULLY: 'Passkey reset successfully',
     RESET_PASSKEY_ERROR: 'Passkey reset failed',
+
+    //user account status
+    ACCOUNT_STATUS: 'Account Status',
+    MESSAGES_INBOX: 'Messages Inbox',
 
     //chat view
     CHAT_USERS_LIST: 'Users List',

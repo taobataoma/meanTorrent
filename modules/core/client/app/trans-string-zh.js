@@ -39,6 +39,8 @@
     SIGNOUT: '退出登录',
     SIGNIN: '登录',
     SIGNUP: '注册',
+    MENU_MESSAGE_INBOX: '消息收件箱',
+    MENU_ACCOUNT_STATUS: '帐户状态',
     EDIT_PROFILE: '修改个人信息',
     EDIT_PROFILE_PIC: '修改个人头像',
     CHANGE_PASSWORD: '修改登录密码',
@@ -303,6 +305,10 @@
     RESET_PASSKEY_CONFIRM_BODY_TEXT: '确要重置你的 passkey?',
     RESET_PASSKEY_SUCCESSFULLY: 'Passkey 重置成功',
     RESET_PASSKEY_ERROR: 'Passkey 重置失败',
+
+    //user account status
+    ACCOUNT_STATUS: '帐户状态',
+    MESSAGES_INBOX: '消息收件箱',
 
     //chat view
     CHAT_USERS_LIST: '用户列表',
