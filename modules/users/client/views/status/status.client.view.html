@@ -1,11 +1,23 @@
-<section class="container">
+<section class="container" ng-controller="StatusController as vm" ng-init="vm.initIsActive = false;">
     <div class="tab-status margin-top-40">
-        <uib-tabset>
-            <uib-tab index="0" ui-sref="status.account" heading="{{'STATUS_ACCOUNT' | translate}}"></uib-tab>
-            <uib-tab index="1" ui-sref="status.uploaded" heading="{{'STATUS_UPLOADED' | translate}}"></uib-tab>
-            <uib-tab index="2" ui-sref="status.seeding" heading="{{'STATUS_SEEDING' | translate}}"></uib-tab>
-            <uib-tab index="3" ui-sref="status.downloading" heading="{{'STATUS_DOWNLOADING' | translate}}"></uib-tab>
-        </uib-tabset>
+        <!--<uib-tabset>-->
+        <!--<uib-tab index="0" ui-sref-active="active" active="vm.initIsActive" ui-sref="status.account"-->
+        <!--heading="{{'STATUS_ACCOUNT' | translate}}"></uib-tab>-->
+        <!--<uib-tab index="1" ui-sref-active="active" active="vm.initIsActive" ui-sref="status.uploaded"-->
+        <!--heading="{{'STATUS_UPLOADED' | translate}}"></uib-tab>-->
+        <!--<uib-tab index="2" ui-sref-active="active" active="vm.initIsActive" ui-sref="status.seeding"-->
+        <!--heading="{{'STATUS_SEEDING' | translate}}"></uib-tab>-->
+        <!--<uib-tab index="3" ui-sref-active="active" active="vm.initIsActive" ui-sref="status.downloading"-->
+        <!--heading="{{'STATUS_DOWNLOADING' | translate}}"></uib-tab>-->
+        <!--</uib-tabset>-->
+
+        <ul class="nav nav-tabs">
+            <li ui-sref="status.account" ui-sref-active="active"><a>{{'STATUS_ACCOUNT' | translate}}</a></li>
+            <li ui-sref="status.uploaded" ui-sref-active="active"><a>{{'STATUS_UPLOADED' | translate}}</a></li>
+            <li ui-sref="status.seeding" ui-sref-active="active"><a>{{'STATUS_SEEDING' | translate}}</a></li>
+            <li ui-sref="status.downloading" ui-sref-active="active"><a>{{'STATUS_DOWNLOADING' | translate}}</a></li>
+        </ul>
+
     </div>
     <div ui-view></div>
 </section>

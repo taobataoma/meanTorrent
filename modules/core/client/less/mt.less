@@ -223,6 +223,16 @@ body {
     }
 }
 
+.torrent-up {
+    color: #33CC00;
+}
+.torrent-down {
+    color: #FF3300;
+}
+.torrent-finished {
+    color: #0366d6;
+}
+
 .hide-on-sm {
     @media (max-width: @screen-md-min) {
         display: none;
@@ -631,6 +641,7 @@ body {
 .tab-status {
     .nav-tabs {
         > li {
+            cursor: pointer;
             > a {
                 margin-right: 5px;
                 padding: 10px 30px;
@@ -796,4 +807,25 @@ body {
 .upload-by {
     color: #888;
     font-size: 12px;
+}
+
+.status-avatar {
+    border-radius: 3px;
+    height: 44px;
+    width: 44px;
+}
+
+.status-divider {
+    height: 1px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    margin: 8px 0;
+}
+
+.ratio-normal {
+    color: #0000cc;
+}
+
+.ratio-warning {
+    color: #FF0000;
 }

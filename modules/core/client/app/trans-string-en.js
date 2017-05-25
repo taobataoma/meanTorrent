@@ -306,11 +306,31 @@
     RESET_PASSKEY_SUCCESSFULLY: 'Passkey reset successfully',
     RESET_PASSKEY_ERROR: 'Passkey reset failed',
 
-    //user account status
+    //user status
     STATUS_ACCOUNT: 'Account Status',
     STATUS_UPLOADED: 'Uploaded torrents',
     STATUS_SEEDING: 'Seeding torrents',
     STATUS_DOWNLOADING: 'Downloading torrents',
+    STATUS_FIELD: {
+      PICTURE: 'Profile picture',
+      USERNAME: 'Username',
+      FIRST_NAME: 'First name',
+      LAST_NAME: 'Last name',
+      DISPLAY_NAME: 'Display name',
+      EMAIL: 'Email',
+      PASSKEY: 'Passkey',
+      VIP_START_AT: 'Vip start at',
+      VIP_END_AT: 'Vip end at',
+      UPLOADED: 'Total uploaded',
+      DOWNLOADED: 'Total downloaded',
+      RATIO: 'Total ratio',
+      SCORE: 'Total score',
+      SEEDED: 'Seeded',
+      LEECHED: 'Leeched',
+      FINISHED: 'Finished',
+      DETAIL: 'Detail'
+    },
+    //user message box
     MESSAGES_INBOX: 'Messages Inbox',
 
     //chat view

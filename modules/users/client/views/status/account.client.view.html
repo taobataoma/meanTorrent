@@ -1,7 +1,79 @@
-<section>
-    <div class="row">
+<section ng-controller="StatusController as vm">
+    <div class="row margin-top-30 margin-bottom-30">
         <div class="col-md-10 col-md-offset-1">
+            <dl class="dl-horizontal">
+                <dt class="h-line">{{ 'STATUS_FIELD.PICTURE' | translate}}：</dt>
+                <dd class="h-line">
+                    <img class="status-avatar" ng-src="/{{vm.user.profileImageURL}}">
+                </dd>
 
+                <dt class="h-line">{{ 'STATUS_FIELD.USERNAME' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.username }}</dd>
+
+                <!--<dt class="h-line">{{ 'STATUS_FIELD.FIRST_NAME' | translate}}：</dt>-->
+                <!--<dd class="h-line">{{ vm.user.firstName }}</dd>-->
+
+                <!--<dt class="h-line">{{ 'STATUS_FIELD.LAST_NAME' | translate}}：</dt>-->
+                <!--<dd class="h-line">{{ vm.user.lastName }}</dd>-->
+
+                <dt class="h-line">{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.displayName }}</dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.EMAIL' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.email }}</dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.PASSKEY' | translate}}：</dt>
+                <dd class="h-line"><mark>{{ vm.user.passkey }}</mark></dd>
+
+                <dt class="h-line"></dt>
+                <dd class="h-line">
+                    <a ui-sref="settings.profile">{{ 'EDIT_PROFILE' | translate }}</a> |
+                    <a ui-sref="vip">{{ 'BUTTON_DNATE' | translate }}</a>
+                </dd>
+
+                <li class="status-divider"></li>
+
+                <div ng-show="vm.user.isVip">
+                    <dt class="h-line">{{ 'STATUS_FIELD.VIP_START_AT' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.vip_start_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.VIP_END_AT' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.vip_end_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+
+                    <li class="status-divider"></li>
+                </div>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
+                <dd class="h-line">
+                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                    {{ vm.user.uploaded | bytes:2 }}
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
+                <dd class="h-line">
+                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                    {{ vm.user.downloaded | bytes:2 }}
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
+                <dd class="h-line"><span ng-class="vm.user.ratio > 1 ? 'ratio-normal' : 'ratio-warning' ">{{ vm.user.ratio }}</span></dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.score }}</dd>
+
+                <li class="status-divider"></li>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.seeded }} <a ui-sref="status.seeding">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.leeched }}  <a ui-sref="status.downloading">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.finished }}</span></dd>
+
+                <li class="status-divider"></li>
+            </dl>
         </div>
     </div>
 </section>

@@ -306,11 +306,32 @@
     RESET_PASSKEY_SUCCESSFULLY: 'Passkey 重置成功',
     RESET_PASSKEY_ERROR: 'Passkey 重置失败',
 
-    //user account status
+    //user status
     STATUS_ACCOUNT: '帐户状态',
     STATUS_UPLOADED: '我上传的种子',
     STATUS_SEEDING: '正在做种的种子',
     STATUS_DOWNLOADING: '正在下载的种子',
+    STATUS_FIELD: {
+      PICTURE: '头像',
+      USERNAME: '用户名',
+      FIRST_NAME: '姓',
+      LAST_NAME: '名',
+      DISPLAY_NAME: '显示昵称',
+      EMAIL: '邮箱',
+      PASSKEY: 'Passkey',
+      VIP_START_AT: 'Vip 资格开始于',
+      VIP_END_AT: 'Vip 资格结束于',
+      UPLOADED: '总上传量',
+      DOWNLOADED: '总下载量',
+      RATIO: '总分享率',
+      SCORE: '总积分',
+      SEEDED: '正在做种',
+      LEECHED: '正在下载',
+      FINISHED: '下载完成',
+      DETAIL: '详情'
+    },
+
+    //user message box
     MESSAGES_INBOX: '消息收件箱',
 
     //chat view
