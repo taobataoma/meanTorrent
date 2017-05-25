@@ -307,7 +307,10 @@
     RESET_PASSKEY_ERROR: 'Passkey reset failed',
 
     //user account status
-    ACCOUNT_STATUS: 'Account Status',
+    STATUS_ACCOUNT: 'Account Status',
+    STATUS_UPLOADED: 'Uploaded torrents',
+    STATUS_SEEDING: 'Seeding torrents',
+    STATUS_DOWNLOADING: 'Downloading torrents',
     MESSAGES_INBOX: 'Messages Inbox',
 
     //chat view

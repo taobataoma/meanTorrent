@@ -307,7 +307,10 @@
     RESET_PASSKEY_ERROR: 'Passkey 重置失败',
 
     //user account status
-    ACCOUNT_STATUS: '帐户状态',
+    STATUS_ACCOUNT: '帐户状态',
+    STATUS_UPLOADED: '我上传的种子',
+    STATUS_SEEDING: '正在做种的种子',
+    STATUS_DOWNLOADING: '正在下载的种子',
     MESSAGES_INBOX: '消息收件箱',
 
     //chat view

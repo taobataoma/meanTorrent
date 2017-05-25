@@ -628,6 +628,27 @@ body {
     }
 }
 
+.tab-status {
+    .nav-tabs {
+        > li {
+            > a {
+                margin-right: 5px;
+                padding: 10px 30px;
+                border-top: 3px solid transparent;
+            }
+            &.active {
+                > a {
+                    &,
+                    &:hover,
+                    &:focus {
+                        border-top: 3px solid @brand-danger;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .tab-border-view {
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;

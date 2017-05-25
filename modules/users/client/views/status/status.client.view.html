@@ -1,3 +1,11 @@
 <section class="container">
+    <div class="tab-status margin-top-40">
+        <uib-tabset>
+            <uib-tab index="0" ui-sref="status.account" heading="{{'STATUS_ACCOUNT' | translate}}"></uib-tab>
+            <uib-tab index="1" ui-sref="status.uploaded" heading="{{'STATUS_UPLOADED' | translate}}"></uib-tab>
+            <uib-tab index="2" ui-sref="status.seeding" heading="{{'STATUS_SEEDING' | translate}}"></uib-tab>
+            <uib-tab index="3" ui-sref="status.downloading" heading="{{'STATUS_DOWNLOADING' | translate}}"></uib-tab>
+        </uib-tabset>
+    </div>
     <div ui-view></div>
 </section>

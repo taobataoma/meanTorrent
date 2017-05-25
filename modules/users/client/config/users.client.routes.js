@@ -66,6 +66,27 @@
           pageTitle: 'EDIT_PROFILE_PIC'
         }
       })
+      .state('status', {
+        abstract: true,
+        url: '/status',
+        templateUrl: '/modules/users/client/views/status/status.client.view.html'
+      })
+      .state('status.account', {
+        url: '/account',
+        templateUrl: '/modules/users/client/views/status/account.client.view.html'
+      })
+      .state('status.uploaded', {
+        url: '/uploaded',
+        templateUrl: '/modules/users/client/views/status/uploaded.client.view.html'
+      })
+      .state('status.seeding', {
+        url: '/seeding',
+        templateUrl: '/modules/users/client/views/status/seeding.client.view.html'
+      })
+      .state('status.downloading', {
+        url: '/downloading',
+        templateUrl: '/modules/users/client/views/status/downloading.client.view.html'
+      })
       .state('authentication', {
         abstract: true,
         url: '/authentication',

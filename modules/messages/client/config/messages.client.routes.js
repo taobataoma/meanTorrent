@@ -19,15 +19,6 @@
       .state('messages.inbox', {
         url: '/inbox',
         templateUrl: '/modules/messages/client/views/inbox.client.view.html'
-      })
-      .state('status', {
-        abstract: true,
-        url: '/status',
-        templateUrl: '/modules/users/client/views/status/status.client.view.html'
-      })
-      .state('status.account', {
-        url: '/account',
-        templateUrl: '/modules/users/client/views/status/account.client.view.html'
       });
   }
 }());
