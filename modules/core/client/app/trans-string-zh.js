@@ -319,6 +319,7 @@
       DISPLAY_NAME: '显示昵称',
       EMAIL: '邮箱',
       PASSKEY: 'Passkey',
+      ROLE: '用户角色',
       VIP_START_AT: 'Vip 资格开始于',
       VIP_END_AT: 'Vip 资格结束于',
       UPLOADED: '总上传量',
@@ -328,7 +329,12 @@
       SEEDED: '正在做种',
       LEECHED: '正在下载',
       FINISHED: '下载完成',
-      DETAIL: '详情'
+      DETAIL: '详情',
+      SIGNUP_DATE: '注册时间',
+      LATEST_SIGNED_TIME: '最近一次登录时间',
+      SIGNED_IP: '登录过网站的IP列表',
+      LEECHED_IP: '下载过的IP列表',
+      BT_CLIENT: '下载过的BT客户端'
     },
 
     //user message box

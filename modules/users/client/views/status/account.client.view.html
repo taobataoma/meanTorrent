@@ -23,7 +23,14 @@
                 <dd class="h-line">{{ vm.user.email }}</dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.PASSKEY' | translate}}：</dt>
-                <dd class="h-line"><mark>{{ vm.user.passkey }}</mark></dd>
+                <dd class="h-line">
+                    <mark>{{ vm.user.passkey }}</mark>
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.ROLE' | translate}}：</dt>
+                <dd class="h-line">
+                    <mark>{{ vm.user.roles[0] }}</mark>
+                </dd>
 
                 <dt class="h-line"></dt>
                 <dd class="h-line">
@@ -42,6 +49,35 @@
 
                     <li class="status-divider"></li>
                 </div>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.SIGNUP_DATE' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.created | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.LATEST_SIGNED_TIME' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.last_signed | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.SIGNED_IP' | translate}}：</dt>
+                <dd class="h-line">
+                    <div class="list-all-ips">
+                        <span class="ip-item" ng-repeat="t in vm.user.signed_ip">{{t}}</span>
+                    </div>
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.LEECHED_IP' | translate}}：</dt>
+                <dd class="h-line">
+                    <div class="list-all-ips">
+                        <span class="ip-item" ng-repeat="t in vm.user.leeched_ip">{{t}}</span>
+                    </div>
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.BT_CLIENT' | translate}}：</dt>
+                <dd class="h-line">
+                    <div class="list-all-clients">
+                        <span class="client-item" ng-repeat="t in vm.user.client_agent">{{t}}</span>
+                    </div>
+                </dd>
+
+                <li class="status-divider"></li>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
                 <dd class="h-line">
@@ -67,7 +103,7 @@
                 <dd class="h-line">{{ vm.user.seeded }} <a ui-sref="status.seeding">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.leeched }}  <a ui-sref="status.downloading">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+                <dd class="h-line">{{ vm.user.leeched }} <a ui-sref="status.downloading">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.finished }}</span></dd>

@@ -486,6 +486,28 @@ body {
     }
 }
 
+.list-all-ips {
+    .ip-item {
+        &:not(:first-child) {
+            &::before {
+                content: " | ";
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.list-all-clients {
+    .client-item {
+        &:not(:first-child) {
+            &::before {
+                content: " | ";
+                font-weight: bold;
+            }
+        }
+    }
+}
+
 .list-all-network {
     .network-item {
         color: @gray-light;

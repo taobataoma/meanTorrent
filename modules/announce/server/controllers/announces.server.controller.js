@@ -432,7 +432,8 @@ exports.announce = function (req, res) {
     peer.user = req.passkeyuser;
     peer.torrent = req.torrent;
     peer.peer_id = query.peer_id;
-    peer.peer_ip = req.connection.remoteAddress;
+    //peer.peer_ip = req.connection.remoteAddress;
+    peer.peer_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     peer.peer_port = query.port;
     peer.peer_status = req.seeder ? PEERSTATE_SEEDER : PEERSTATE_LEECHER;
     peer.user_agent = req.get('User-Agent');
@@ -459,6 +460,10 @@ exports.announce = function (req, res) {
     req.torrent.update({
       $addToSet: {_peers: peer}
     }).exec();
+
+    //save ip to user
+    req.passkeyuser.addLeechedIp(peer.peer_ip);
+    req.passkeyuser.addClientAgent(peer.user_agent);
 
     req.currentPeer = peer;
     console.log('---------------createCurrentPeer()----------------');

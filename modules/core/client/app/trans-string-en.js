@@ -319,6 +319,7 @@
       DISPLAY_NAME: 'Display name',
       EMAIL: 'Email',
       PASSKEY: 'Passkey',
+      ROLE: 'Role',
       VIP_START_AT: 'Vip start at',
       VIP_END_AT: 'Vip end at',
       UPLOADED: 'Total uploaded',
@@ -328,7 +329,12 @@
       SEEDED: 'Seeded',
       LEECHED: 'Leeched',
       FINISHED: 'Finished',
-      DETAIL: 'Detail'
+      DETAIL: 'Detail',
+      SIGNUP_DATE: 'Sign up time',
+      LATEST_SIGNED_TIME: 'Latest signed time',
+      SIGNED_IP: 'Signed IP list',
+      LEECHED_IP: 'Leeched IP list',
+      BT_CLIENT: 'Leeched BT Client list'
     },
     //user message box
     MESSAGES_INBOX: 'Messages Inbox',

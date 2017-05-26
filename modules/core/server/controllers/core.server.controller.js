@@ -12,6 +12,9 @@ exports.renderIndex = function (req, res) {
   var safeUserObject = null;
   if (req.user) {
     safeUserObject = req.user;
+
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    req.user.addSignedIp(ip);
   }
 
   res.render('modules/core/server/views/index', {

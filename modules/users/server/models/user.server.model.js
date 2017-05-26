@@ -161,6 +161,12 @@ var UserSchema = new Schema({
   updated: {
     type: Date
   },
+  last_signed: {
+    type: Date
+  },
+  signed_ip: [String],
+  leeched_ip: [String],
+  client_agent: [String],
   created: {
     type: Date,
     default: Date.now
@@ -248,6 +254,47 @@ UserSchema.methods.hashPassword = function (password) {
     return crypto.pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000, 64, 'SHA1').toString('base64');
   } else {
     return password;
+  }
+};
+
+/**
+ * update user last signed time
+ */
+UserSchema.methods.updateSignedTime = function () {
+  this.last_signed = Date.now();
+  this.save();
+};
+
+/**
+ * update user last signed ip
+ * @param ip
+ */
+UserSchema.methods.addSignedIp = function (ip) {
+  if (this.signed_ip.indexOf(ip) < 0) {
+    this.signed_ip.push(ip);
+    this.save();
+  }
+};
+
+/**
+ * update user last leeched ip
+ * @param ip
+ */
+UserSchema.methods.addLeechedIp = function (ip) {
+  if (this.leeched_ip.indexOf(ip) < 0) {
+    this.leeched_ip.push(ip);
+    this.save();
+  }
+};
+
+/**
+ * update user last client_agent
+ * @param ip
+ */
+UserSchema.methods.addClientAgent = function (ca) {
+  if (this.client_agent.indexOf(ip) < 0) {
+    this.client_agent.push(ip);
+    this.save();
   }
 };
 

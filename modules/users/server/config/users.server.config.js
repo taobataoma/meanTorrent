@@ -14,6 +14,7 @@ var passport = require('passport'),
 module.exports = function (app, db) {
   // Serialize sessions
   passport.serializeUser(function (user, done) {
+    user.updateSignedTime();
     done(null, user.id);
   });
 
