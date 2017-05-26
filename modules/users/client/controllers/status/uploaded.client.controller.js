@@ -91,12 +91,12 @@
      * @param tag: tag name
      * @returns {*}
      */
-    vm.getTagTitle = function (tag) {
+    vm.getTagTitle = function (tag, item) {
       var tmp = tag;
       var find = false;
       var r = undefined;
 
-      switch (vm.torrentType) {
+      switch (item.torrent_type) {
         case 'tvserial':
           r = vm.resourcesTags.tv;
           break;
