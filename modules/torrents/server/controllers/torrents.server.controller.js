@@ -466,6 +466,7 @@ exports.list = function (req, res) {
   var stype = 'movie';
   var newest = false;
   var release = undefined;
+  var userid = undefined;
   var tagsA = [];
   var keysA = [];
 
@@ -491,6 +492,9 @@ exports.list = function (req, res) {
   }
   if (req.query.newest !== undefined) {
     newest = (req.query.newest === 'true');
+  }
+  if (req.query.userid !== undefined) {
+    userid = req.query.userid;
   }
 
   if (req.query.torrent_tags !== undefined) {
@@ -540,6 +544,9 @@ exports.list = function (req, res) {
       {'resource_detail_info.title': {'$all': keysA}},
       {'resource_detail_info.original_title': {'$all': keysA}}
     ];
+  }
+  if (userid !== undefined) {
+    condition.user = userid;
   }
 
   console.log(JSON.stringify(condition));

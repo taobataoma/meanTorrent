@@ -5,11 +5,9 @@
     .module('users')
     .controller('StatusController', StatusController);
 
-  StatusController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', '$window'];
+  StatusController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$window'];
 
-  function StatusController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                              $window) {
+  function StatusController($scope, $state, $translate, $timeout, Authentication, $window) {
     var vm = this;
     vm.user = Authentication.user;
 

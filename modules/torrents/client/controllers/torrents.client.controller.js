@@ -201,7 +201,6 @@
           r = vm.resourcesTags.movie;
       }
 
-
       angular.forEach(r.radio, function (item) {
         angular.forEach(item.value, function (sitem) {
           if (sitem.name === tag) {

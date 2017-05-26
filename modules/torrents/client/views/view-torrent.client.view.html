@@ -553,11 +553,11 @@
                                     <div class="text-long">{{item.torrent_filename}}</div>
 
                                     <div class="list-all-tags">
-                                        <div ng-show="vm.torrentLocalInfo.resource_detail_info.release_date">
+                                        <span ng-show="vm.torrentLocalInfo.resource_detail_info.release_date">
                                             <span class="label label-warning" ng-click="$event.stopPropagation();">
                                             {{ vm.torrentLocalInfo.resource_detail_info.release_date}}
                                             </span>
-                                        </div>
+                                        </span>
                                         <span class="label label-sale" ng-if="item.isSaling"
                                               title="{{vm.getSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
                                               ng-click="$event.stopPropagation();"

@@ -311,6 +311,7 @@
     STATUS_UPLOADED: 'Uploaded torrents',
     STATUS_SEEDING: 'Seeding torrents',
     STATUS_DOWNLOADING: 'Downloading torrents',
+    UPLOADED_LIST_ERROR: 'Get uploaded list info failed',
     STATUS_FIELD: {
       PICTURE: 'Profile picture',
       USERNAME: 'Username',
@@ -335,6 +336,12 @@
       SIGNED_IP: 'Signed IP list',
       LEECHED_IP: 'Leeched IP list',
       BT_CLIENT: 'Leeched BT Client list'
+    },
+    TORRENT_TYPE_LABEL: {
+      MOVIE: 'Movie',
+      TVSERIAL: 'TVSerial',
+      MUSIC: 'Music',
+      OTHER: 'Other'
     },
     //user message box
     MESSAGES_INBOX: 'Messages Inbox',

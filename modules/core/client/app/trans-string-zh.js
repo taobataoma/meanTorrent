@@ -311,6 +311,7 @@
     STATUS_UPLOADED: '我上传的种子',
     STATUS_SEEDING: '正在做种的种子',
     STATUS_DOWNLOADING: '正在下载的种子',
+    UPLOADED_LIST_ERROR: '获取我的上传列表失败',
     STATUS_FIELD: {
       PICTURE: '头像',
       USERNAME: '用户名',
@@ -335,6 +336,12 @@
       SIGNED_IP: '登录过网站的IP列表',
       LEECHED_IP: '下载过的IP列表',
       BT_CLIENT: '下载过的BT客户端'
+    },
+    TORRENT_TYPE_LABEL: {
+      MOVIE: '电影',
+      TVSERIAL: '电视剧',
+      MUSIC: '音乐',
+      OTHER: '其它'
     },
 
     //user message box
