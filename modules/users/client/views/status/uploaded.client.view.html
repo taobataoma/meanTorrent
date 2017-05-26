@@ -59,6 +59,10 @@
                                     <span class="label label-ttype label-primary" ng-click="$event.stopPropagation();">
                                         {{'TORRENT_TYPE_LABEL.' + item.torrent_type.toUpperCase() | translate}}
                                     </span>
+                                    <span class="label label-tstatus label-danger" ng-show="item.torrent_status == 'new'"
+                                          ng-click="$event.stopPropagation();">
+                                        {{'TORRENT_STATUS_LABEL.' + item.torrent_status.toUpperCase() | translate}}
+                                    </span>
                                     <span class="label label-release label-warning" ng-show="item.resource_detail_info.release_date"
                                           ng-click="$event.stopPropagation();">
                                         {{ item.resource_detail_info.release_date}}

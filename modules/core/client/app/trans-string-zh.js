@@ -343,6 +343,10 @@
       MUSIC: '音乐',
       OTHER: '其它'
     },
+    TORRENT_STATUS_LABEL: {
+      NEW: '未审核',
+      REVIEWED: '已审核',
+    },
 
     //user message box
     MESSAGES_INBOX: '消息收件箱',

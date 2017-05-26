@@ -343,6 +343,11 @@
       MUSIC: 'Music',
       OTHER: 'Other'
     },
+    TORRENT_STATUS_LABEL: {
+      NEW: 'New',
+      REVIEWED: 'Reviewed',
+    },
+
     //user message box
     MESSAGES_INBOX: 'Messages Inbox',
 

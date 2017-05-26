@@ -74,7 +74,8 @@
     vm.getUploadedTorrend = function () {
       TorrentsService.get({
         userid: vm.user._id,
-        torrent_type: 'all'
+        torrent_type: 'all',
+        torrent_status: 'all'
       }, function (items) {
         vm.uploadedList = items.rows;
         vm.buildPager();
