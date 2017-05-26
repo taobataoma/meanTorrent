@@ -2,7 +2,7 @@
 
 meanTorrent is Based on [meanjs/mean](https://github.com/meanjs/mean)
 
-more funciton is WIP, please wait...
+more function is WIP, please wait...
 ==================================
 
 meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support__ and a full-stack JavaScript open-source solution, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
