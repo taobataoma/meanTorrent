@@ -330,8 +330,8 @@
       LEECHED: 'Leeched',
       FINISHED: 'Finished',
       DETAIL: 'Detail',
-      SIGNUP_DATE: 'Sign up time',
-      LATEST_SIGNED_TIME: 'Latest signed time',
+      SIGNUP_DATE: 'Sign up at',
+      LATEST_SIGNED_TIME: 'Latest signed at',
       SIGNED_IP: 'Signed IP list',
       LEECHED_IP: 'Leeched IP list',
       BT_CLIENT: 'Leeched BT Client list'

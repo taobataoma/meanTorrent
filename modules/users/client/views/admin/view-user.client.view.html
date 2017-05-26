@@ -1,10 +1,10 @@
 <section class="container">
     <div class="page-header">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5 col-md-offset-1">
                 <h3 ng-bind="vm.user.username"></h3>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <a class="btn btn-primary pull-right margin-left-10" ui-sref="admin.user-edit({userId: vm.user._id})">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
@@ -15,37 +15,111 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-12 admin-user-info">
-            <div class="row">
-                <div class="col-md-3"><strong>First Name</strong></div>
-                <div class="col-md-9" ng-bind="vm.user.firstName"></div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col-md-3"><strong>Last Name</strong></div>
-                <div class="col-md-9" ng-bind="vm.user.lastName"></div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col-md-3"><strong>Email</strong></div>
-                <div class="col-md-9" ng-bind="vm.user.email"></div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col-md-3"><strong>Provider</strong></div>
-                <div class="col-md-9" ng-bind="vm.user.provider"></div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col-md-3"><strong>Created</strong></div>
-                <div class="col-md-9" ng-bind="vm.user.created"></div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col-md-3"><strong>Roles</strong></div>
-                <div class="col-md-9" ng-bind="vm.user.roles"></div>
-            </div>
+    <div class="row margin-bottom-30">
+        <div class="col-md-10 col-md-offset-1 admin-user-info">
+            <dl class="dl-horizontal">
+                <dt class="h-line">{{ 'STATUS_FIELD.PICTURE' | translate}}：</dt>
+                <dd class="h-line">
+                    <img class="status-avatar" ng-src="/{{vm.user.profileImageURL}}">
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.USERNAME' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.username }}</dd>
+
+                <!--<dt class="h-line">{{ 'STATUS_FIELD.FIRST_NAME' | translate}}：</dt>-->
+                <!--<dd class="h-line">{{ vm.user.firstName }}</dd>-->
+
+                <!--<dt class="h-line">{{ 'STATUS_FIELD.LAST_NAME' | translate}}：</dt>-->
+                <!--<dd class="h-line">{{ vm.user.lastName }}</dd>-->
+
+                <dt class="h-line">{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.displayName }}</dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.EMAIL' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.email }}</dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.PASSKEY' | translate}}：</dt>
+                <dd class="h-line">
+                    <mark>{{ vm.user.passkey }}</mark>
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.ROLE' | translate}}：</dt>
+                <dd class="h-line">
+                    <mark>{{ vm.user.roles[0] }}</mark>
+                </dd>
+
+                <li class="status-divider"></li>
+
+                <div ng-show="vm.user.isVip">
+                    <dt class="h-line">{{ 'STATUS_FIELD.VIP_START_AT' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.vip_start_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.VIP_END_AT' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.vip_end_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+
+                    <li class="status-divider"></li>
+                </div>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.SIGNUP_DATE' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.created | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.LATEST_SIGNED_TIME' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.last_signed | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.SIGNED_IP' | translate}}：</dt>
+                <dd class="h-line">
+                    <div class="list-all-ips">
+                        <span class="ip-item" ng-repeat="t in vm.user.signed_ip">{{t}}</span>
+                    </div>
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.LEECHED_IP' | translate}}：</dt>
+                <dd class="h-line">
+                    <div class="list-all-ips">
+                        <span class="ip-item" ng-repeat="t in vm.user.leeched_ip">{{t}}</span>
+                    </div>
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.BT_CLIENT' | translate}}：</dt>
+                <dd class="h-line">
+                    <div class="list-all-clients">
+                        <span class="client-item" ng-repeat="t in vm.user.client_agent">{{t}}</span>
+                    </div>
+                </dd>
+
+                <li class="status-divider"></li>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
+                <dd class="h-line">
+                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                    {{ vm.user.uploaded | bytes:2 }}
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
+                <dd class="h-line">
+                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                    {{ vm.user.downloaded | bytes:2 }}
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
+                <dd class="h-line"><span ng-class="vm.user.ratio > 1 ? 'ratio-normal' : 'ratio-warning' ">{{ vm.user.ratio }}</span></dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.score }}</dd>
+
+                <li class="status-divider"></li>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.seeded }}</dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.leeched }}</dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.finished }}</span></dd>
+
+                <li class="status-divider"></li>
+            </dl>
         </div>
     </div>
 </section>
