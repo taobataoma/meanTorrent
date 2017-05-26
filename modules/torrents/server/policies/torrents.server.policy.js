@@ -32,7 +32,12 @@ exports.invokeRolesPolicies = function () {
 
           {resources: '/api/comments/:torrentId', permissions: '*'},
           {resources: '/api/comments/:torrentId/:commentId', permissions: '*'},
-          {resources: '/api/comments/:torrentId/:commentId/:subCommentId', permissions: '*'}
+          {resources: '/api/comments/:torrentId/:commentId/:subCommentId', permissions: '*'},
+
+          {resources: '/api/my/seeding', permissions: '*'},
+          {resources: '/api/my/downloading', permissions: '*'},
+          {resources: '/api/:userId/seeding', permissions: '*'},
+          {resources: '/api/:userId/downloading', permissions: '*'}
         ]
       },
       {
@@ -50,7 +55,10 @@ exports.invokeRolesPolicies = function () {
 
           {resources: '/api/comments/:torrentId', permissions: ['post']},
           {resources: '/api/comments/:torrentId/:commentId', permissions: ['post', 'put', 'delete']},
-          {resources: '/api/comments/:torrentId/:commentId/:subCommentId', permissions: ['put', 'delete']}
+          {resources: '/api/comments/:torrentId/:commentId/:subCommentId', permissions: ['put', 'delete']},
+
+          {resources: '/api/my/seeding', permissions: ['get']},
+          {resources: '/api/my/downloading', permissions: ['get']}
         ]
       },
       {

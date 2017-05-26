@@ -270,10 +270,9 @@ UserSchema.methods.updateSignedTime = function () {
  * @param ip
  */
 UserSchema.methods.addSignedIp = function (ip) {
-  if (this.signed_ip.indexOf(ip) < 0) {
-    this.signed_ip.push(ip);
-    this.save();
-  }
+  this.update({
+    $addToSet: {signed_ip: ip}
+  }).exec();
 };
 
 /**
@@ -281,10 +280,9 @@ UserSchema.methods.addSignedIp = function (ip) {
  * @param ip
  */
 UserSchema.methods.addLeechedIp = function (ip) {
-  if (this.leeched_ip.indexOf(ip) < 0) {
-    this.leeched_ip.push(ip);
-    this.save();
-  }
+  this.update({
+    $addToSet: {leeched_ip: ip}
+  }).exec();
 };
 
 /**
@@ -292,10 +290,9 @@ UserSchema.methods.addLeechedIp = function (ip) {
  * @param ip
  */
 UserSchema.methods.addClientAgent = function (ca) {
-  if (this.client_agent.indexOf(ca) < 0) {
-    this.client_agent.push(ca);
-    this.save();
-  }
+  this.update({
+    $addToSet: {client_agent: ca}
+  }).exec();
 };
 
 /**

@@ -312,6 +312,8 @@
     STATUS_SEEDING: 'Seeding torrents',
     STATUS_DOWNLOADING: 'Downloading torrents',
     UPLOADED_LIST_ERROR: 'Get uploaded list info failed',
+    SEEDING_LIST_ERROR: 'Get seeding list info failed',
+    DOWNLOADING_LIST_ERROR: 'Get downloading list info failed',
     STATUS_FIELD: {
       PICTURE: 'Profile picture',
       USERNAME: 'Username',
@@ -345,7 +347,7 @@
     },
     TORRENT_STATUS_LABEL: {
       NEW: 'New',
-      REVIEWED: 'Reviewed',
+      REVIEWED: 'Reviewed'
     },
 
     //user message box

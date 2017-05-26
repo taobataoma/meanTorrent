@@ -311,7 +311,9 @@
     STATUS_UPLOADED: '我上传的种子',
     STATUS_SEEDING: '正在做种的种子',
     STATUS_DOWNLOADING: '正在下载的种子',
-    UPLOADED_LIST_ERROR: '获取我的上传列表失败',
+    UPLOADED_LIST_ERROR: '获取我上传的种子列表失败',
+    SEEDING_LIST_ERROR: '获取我正做种的列表失败',
+    DOWNLOADING_LIST_ERROR: '获取我正下载的列表失败',
     STATUS_FIELD: {
       PICTURE: '头像',
       USERNAME: '用户名',
@@ -345,7 +347,7 @@
     },
     TORRENT_STATUS_LABEL: {
       NEW: '未审核',
-      REVIEWED: '已审核',
+      REVIEWED: '已审核'
     },
 
     //user message box

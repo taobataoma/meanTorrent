@@ -192,15 +192,17 @@ exports.announce = function (req, res) {
      check normal,banned,sealed
      ---------------------------------------------------------------*/
     function (done) {
-      switch (req.passkeyuser.status) {
-        case 'banned':
-          done(170);
-          break;
-        case 'sealed':
-          done(171);
-          break;
-        default:
-          done(null);
+      if (!config.meanTorrentConfig.announce.open_tracker) {
+        switch (req.passkeyuser.status) {
+          case 'banned':
+            done(170);
+            break;
+          case 'sealed':
+            done(171);
+            break;
+          default:
+            done(null);
+        }
       }
     },
 
