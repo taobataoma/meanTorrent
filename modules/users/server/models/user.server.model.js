@@ -292,8 +292,8 @@ UserSchema.methods.addLeechedIp = function (ip) {
  * @param ip
  */
 UserSchema.methods.addClientAgent = function (ca) {
-  if (this.client_agent.indexOf(ip) < 0) {
-    this.client_agent.push(ip);
+  if (this.client_agent.indexOf(ca) < 0) {
+    this.client_agent.push(ca);
     this.save();
   }
 };

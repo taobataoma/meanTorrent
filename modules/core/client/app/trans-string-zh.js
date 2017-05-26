@@ -30,7 +30,7 @@
     //sub menu of torrents
     MENU_TORRENTS_SUB: {
       MOVIE: '电影',
-      TVSERIES: '电视剧',
+      TVSERIAL: '电视剧',
       MUSIC: '音乐',
       OTHER: '其它'
     },

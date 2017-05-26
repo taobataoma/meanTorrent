@@ -188,7 +188,7 @@
       var r = undefined;
 
       switch (vm.torrentType) {
-        case 'tvseries':
+        case 'tvserial':
           r = vm.resourcesTags.tv;
           break;
         case 'music':

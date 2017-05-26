@@ -199,7 +199,7 @@
           });
         });
       }
-      if (vm.torrentLocalInfo.torrent_type === 'tvseries') {
+      if (vm.torrentLocalInfo.torrent_type === 'tvserial') {
         TorrentsService.getTMDBTVInfo({
           tmdbid: tmdb_id,
           language: getStorageLangService.getLang()

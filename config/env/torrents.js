@@ -18,7 +18,7 @@ module.exports = {
       name: 'TYPE',
       value: [
         {name: 'MOVIE', value: 'movie'},
-        {name: 'TVSERIES', value: 'tvseries'},
+        {name: 'TVSERIAL', value: 'tvserial'},
         {name: 'MUSIC', value: 'music'},
         {name: 'OTHER', value: 'other'}
       ]

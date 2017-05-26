@@ -120,7 +120,7 @@
      */
     vm.getIncludeInfoTemplate = function () {
       switch (vm.selectedType) {
-        case 'tvseries':
+        case 'tvserial':
           return 'tvinfo.html';
         case 'music':
           return 'musicinfo.html';
@@ -150,7 +150,7 @@
      */
     vm.getInfo = function (tmdbid) {
       switch (vm.selectedType) {
-        case 'tvseries':
+        case 'tvserial':
           vm.getTVInfo(tmdbid);
           break;
         case 'music':
@@ -264,7 +264,7 @@
       //console.log(vm.torrentInfo);
 
       switch (vm.selectedType) {
-        case 'tvseries':
+        case 'tvserial':
           vm.createTVTorrent();
           break;
         case 'music':
@@ -325,7 +325,7 @@
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
         torrent_filename: vm.torrentInfo.filename,
-        torrent_type: 'tvseries',
+        torrent_type: 'tvserial',
         torrent_seasons: vm.selectedSeasons,
         torrent_episodes: vm.inputedEpisodes,
         torrent_tags: t,
@@ -383,7 +383,7 @@
       var r = undefined;
 
       switch (vm.selectedType) {
-        case 'tvseries':
+        case 'tvserial':
           r = vm.resourcesTags.tv;
           break;
         case 'music':

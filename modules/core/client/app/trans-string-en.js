@@ -30,7 +30,7 @@
     //sub menu of torrents
     MENU_TORRENTS_SUB: {
       MOVIE: 'Movie',
-      TVSERIES: 'TVSeries',
+      TVSERIAL: 'TVSerial',
       MUSIC: 'Music',
       OTHER: 'Other'
     },
@@ -54,7 +54,7 @@
     LOADING_TOP: 'Loading recommended info, please waiting...',
     TOP_MOVIE_INFO_ERROR: 'Get movie top info failed',
     NEWEST_MOVIE_LIST: 'Newest Movie Torrents',
-    NEWEST_TV_LIST: 'Newest TV Series Torrents',
+    NEWEST_TV_LIST: 'Newest TV Serial Torrents',
 
     //element title/alt
     TITLE_ALT: {

@@ -98,7 +98,7 @@
     vm.getTVTopInfo = function () {
       vm.tvsInfo = TorrentsService.get({
         torrent_status: 'reviewed',
-        torrent_type: 'tvseries',
+        torrent_type: 'tvserial',
         limit: 9
       }, function (items) {
         if (items.rows.length > 0) {
@@ -112,7 +112,7 @@
 
       vm.moviesInfo = TorrentsService.get({
         torrent_status: 'reviewed',
-        torrent_type: 'tvseries',
+        torrent_type: 'tvserial',
         newest: true,
         limit: 14
       }, function (items) {

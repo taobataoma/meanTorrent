@@ -23,8 +23,8 @@
       roles: ['*']
     });
     menuService.addSubMenuItem('topbar', 'torrents', {
-      title: 'MENU_TORRENTS_SUB.TVSERIES',
-      state: 'torrents.tvseries',
+      title: 'MENU_TORRENTS_SUB.TVSERIAL',
+      state: 'torrents.tvserial',
       roles: ['*']
     });
     menuService.addSubMenuItem('topbar', 'torrents', {

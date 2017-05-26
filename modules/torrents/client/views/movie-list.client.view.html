@@ -114,7 +114,7 @@
                         </div>
                     </div>
 
-                    <div ng-if="vm.torrentType == 'tvseries'">
+                    <div ng-if="vm.torrentType == 'tvserial'">
                         <div class="more-tags panel-collapsed" style="display: none;">
                             <div ng-repeat="item in vm.resourcesTags.tv.radio">
                                 <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
@@ -188,7 +188,7 @@
                                             <i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}
                                         </span>
                                     </h5>
-                                    <h5 ng-if="vm.torrentType == 'tvseries'" class="media-heading">
+                                    <h5 ng-if="vm.torrentType == 'tvserial'" class="media-heading">
                                         {{item.resource_detail_info.original_name}}
                                         <span ng-show="item.resource_detail_info.original_name!=item.resource_detail_info.name"> / {{item.resource_detail_info.name}}</span>
                                         <span class="label label-download text-uppercase"

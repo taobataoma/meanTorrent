@@ -25,12 +25,12 @@
           torrentType: 'movie'
         }
       })
-      .state('torrents.tvseries', {
+      .state('torrents.tvserial', {
         url: '/tv',
         templateUrl: '/modules/torrents/client/views/movie-list.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.TV_LIST',
-          torrentType: 'tvseries'
+          torrentType: 'tvserial'
         }
       })
       .state('torrents.music', {
