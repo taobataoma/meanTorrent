@@ -40,6 +40,8 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 8. Client Black List support, user can not use the client list inside clientBlackList connect to the tracker server.
 9. When user to change profile picture, meanTorrent use [ui-cropper](https://github.com/CrackerakiUA/ui-cropper) to crop the image.
 10. The first sign up user auto be `admin` role.
+11. User signed ip / leeched ip all in db, admin can forbid user if user`s ip too many.
+12. Detailed user stats info, include account status, uploaded torrents list, seeding list, downloading list.
 
 #### Chat room feature:
 1. Users name list
