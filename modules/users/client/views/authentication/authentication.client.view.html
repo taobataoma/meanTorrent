@@ -1,14 +1,55 @@
 <section class="container">
-  <div class="row">
-    <h3 class="col-md-12 text-center">Sign in using your social accounts</h3>
-    <div class="col-md-12 text-center">
-      <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/facebook')" ng-src="/modules/users/client/img/buttons/facebook.png"></a></div>
-      <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/twitter')" ng-src="/modules/users/client/img/buttons/twitter.png"></a></div>
-      <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/google')" ng-src="/modules/users/client/img/buttons/google.png"></a></div>
-      <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/linkedin')" ng-src="/modules/users/client/img/buttons/linkedin.png"></a></div>
-      <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/github')" ng-src="/modules/users/client/img/buttons/github.png"></a></div>
-      <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/paypal')"  ng-src="/modules/users/client/img/buttons/paypal.png"></a></div>
+    <div class="row">
+        <div class="col-sm-5">
+        </div>
+        <div class="col-sm-7">
+            <div ui-view></div>
+            <legend class="col-sm-10 col-sm-offset-1 small-legend margin-top-40">Or sign in using your social accounts</legend>
+
+            <div class="col-md-12 text-center social-list margin-bottom-40">
+                <div class="social-account-container social-button">
+                    <a class="btn">
+                        <img class="img-responsive"
+                             ng-click="vm.callOauthProvider('/api/auth/facebook')"
+                             ng-src="/modules/users/client/img/buttons/facebook.png">
+                    </a>
+                </div>
+                <div class="social-account-container social-button">
+                    <a class="btn">
+                        <img class="img-responsive"
+                             ng-click="vm.callOauthProvider('/api/auth/twitter')"
+                             ng-src="/modules/users/client/img/buttons/twitter.png">
+                    </a>
+                </div>
+                <div class="social-account-container social-button">
+                    <a class="btn">
+                        <img class="img-responsive"
+                             ng-click="vm.callOauthProvider('/api/auth/google')"
+                             ng-src="/modules/users/client/img/buttons/google.png">
+                    </a>
+                </div>
+                <div class="social-account-container social-button">
+                    <a class="btn">
+                        <img class="img-responsive"
+                             ng-click="vm.callOauthProvider('/api/auth/linkedin')"
+                             ng-src="/modules/users/client/img/buttons/linkedin.png">
+                    </a>
+                </div>
+                <div class="social-account-container social-button">
+                    <a class="btn">
+                        <img class="img-responsive"
+                             ng-click="vm.callOauthProvider('/api/auth/github')"
+                             ng-src="/modules/users/client/img/buttons/github.png">
+                    </a>
+                </div>
+                <div class="social-account-container social-button">
+                    <a class="btn">
+                        <img class="img-responsive"
+                             ng-click="vm.callOauthProvider('/api/auth/paypal')"
+                             ng-src="/modules/users/client/img/buttons/paypal.png">
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div ui-view></div>
-  </div>
 </section>
