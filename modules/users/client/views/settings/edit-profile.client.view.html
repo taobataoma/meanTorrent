@@ -1,40 +1,52 @@
 <section class="row">
-  <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
-    <form name="vm.userForm" ng-submit="vm.updateUserProfile(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
-      <fieldset>
-        <div class="form-group" show-errors>
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName" placeholder="First Name" required autofocus>
-          <div ng-messages="vm.userForm.firstName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">First name is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName" placeholder="Last Name" required>
-          <div ng-messages="vm.userForm.lastName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Last name is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" class="form-control" ng-model="vm.user.email" placeholder="Email" lowercase required>
-          <div ng-messages="vm.userForm.email.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Email address is required.</p>
-            <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username" placeholder="Username" lowercase required>
-          <div ng-messages="vm.userForm.username.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Username is required.</p>
-          </div>
-        </div>
-        <div class="text-center form-group">
-          <button type="submit" class="btn btn-primary">{{'BUTTON_SAVE_PROFILE' | translate}}</button>
-        </div>
-      </fieldset>
-    </form>
-  </div>
+    <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+        <form name="vm.userForm" ng-submit="vm.updateUserProfile(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
+            <fieldset>
+                <div class="form-group" show-errors>
+                    <label for="firstName">{{ 'STATUS_FIELD.FIRST_NAME' | translate}}</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName"
+                           placeholder="{{ 'STATUS_FIELD.FIRST_NAME' | translate}}"
+                           required autofocus>
+
+                    <div ng-messages="vm.userForm.firstName.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">{{ 'SIGN.FN_REQUIRED' | translate}}</p>
+                    </div>
+                </div>
+                <div class="form-group" show-errors>
+                    <label for="lastName">{{ 'STATUS_FIELD.LAST_NAME' | translate}}</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName"
+                           placeholder="{{ 'STATUS_FIELD.LAST_NAME' | translate}}"
+                           required>
+
+                    <div ng-messages="vm.userForm.lastName.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">{{ 'SIGN.LN_REQUIRED' | translate}}</p>
+                    </div>
+                </div>
+                <div class="form-group" show-errors>
+                    <label for="email">{{ 'STATUS_FIELD.EMAIL' | translate}}</label>
+                    <input type="email" id="email" name="email" class="form-control" ng-model="vm.user.email"
+                           placeholder="{{ 'STATUS_FIELD.EMAIL' | translate}}" lowercase required>
+
+                    <div ng-messages="vm.userForm.email.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">{{ 'SIGN.E_REQUIRED' | translate}}</p>
+
+                        <p class="help-block error-text" ng-message="email">{{ 'SIGN.E_INVALID' | translate}}</p>
+                    </div>
+                </div>
+                <div class="form-group" show-errors>
+                    <label for="username">{{ 'STATUS_FIELD.USERNAME' | translate}}</label>
+                    <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username"
+                           placeholder="{{ 'STATUS_FIELD.USERNAME' | translate}}" lowercase
+                           required>
+
+                    <div ng-messages="vm.userForm.username.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">{{ 'SIGN.U_REQUIRED' | translate}}</p>
+                    </div>
+                </div>
+                <div class="text-center form-group">
+                    <button type="submit" class="btn btn-primary">{{'BUTTON_SAVE_PROFILE' | translate}}</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
 </section>

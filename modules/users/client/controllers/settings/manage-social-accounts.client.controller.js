@@ -36,12 +36,12 @@
 
     function onRemoveSocialAccountSuccess(response) {
       // If successful show success message and clear form
-      Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Removed successfully!' });
+      Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Removed successfully!'});
       vm.user = Authentication.user = response;
     }
 
     function onRemoveSocialAccountError(response) {
-      Notification.error({ message: response.message, title: '<i class="glyphicon glyphicon-remove"></i> Remove failed!' });
+      Notification.error({message: response.message, title: '<i class="glyphicon glyphicon-remove"></i> Remove failed!'});
     }
 
     // OAuth provider request

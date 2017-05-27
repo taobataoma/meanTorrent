@@ -332,13 +332,14 @@
     CAPTION_PASSWORD_NOT_MATCH: 'Passwords do not match.',
     CURRENT_PASSKEY: 'Current Passkey: <mark class="text-danger">{{passkey}}</mark>',
     RESET_PASSKEY_NOTE: 'NOTE: If you reset your passkey, you must re-download all torrent file, and re-add to your download client, it can download or upload.',
-
     RESET_PASSKEY_CONFIRM_OK: 'Reset',
     RESET_PASSKEY_CONFIRM_CANCEL: 'Cancel',
     RESET_PASSKEY_CONFIRM_HEADER_TEXT: 'Reset Passkey',
     RESET_PASSKEY_CONFIRM_BODY_TEXT: 'Are you sure want to reset your passkey?',
     RESET_PASSKEY_SUCCESSFULLY: 'Passkey reset successfully',
     RESET_PASSKEY_ERROR: 'Passkey reset failed',
+    CONNECTED_SOCIAL: 'Connected social accounts::',
+    UNCONNECTED_SOCIAL: 'Unconnected social accounts:',
 
     //user status
     STATUS_ACCOUNT: 'Account Status',

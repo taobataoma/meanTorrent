@@ -325,20 +325,21 @@
     BUTTON_SAVE_PASSWORD: '保存密码',
     CAPTION_CURRENT_PASSWORD: '当前密码',
     CAPTION_NEW_PASSWORD: '新密码',
-    CAPTION_VERIFY_PASSWORD: '验证密码',
+    CAPTION_VERIFY_PASSWORD: '再输一次新密码',
     CAPTION_REQUIRED_CURRENT_PASSWORD: '请输入当前密码.',
     CAPTION_REQUIRED_NEW_PASSWORD: '请输入新密码.',
     CAPTION_REQUIRED_VERIFY_PASSWORD: '请再输入一次新密码.',
     CAPTION_PASSWORD_NOT_MATCH: '两次输入的新密码不一致.',
     CURRENT_PASSKEY: '当前 Passkey: <mark class="text-danger">{{passkey}}</mark>',
     RESET_PASSKEY_NOTE: '注意：如果你重置了你的 passkey, 你必须重新下载所有种子文件并添加到你的下载客户端，这样才能正确下载上传并统计你的数据。',
-
     RESET_PASSKEY_CONFIRM_OK: '重置',
     RESET_PASSKEY_CONFIRM_CANCEL: '取消',
     RESET_PASSKEY_CONFIRM_HEADER_TEXT: '重置 Passkey',
     RESET_PASSKEY_CONFIRM_BODY_TEXT: '确要重置你的 passkey?',
     RESET_PASSKEY_SUCCESSFULLY: 'Passkey 重置成功',
     RESET_PASSKEY_ERROR: 'Passkey 重置失败',
+    CONNECTED_SOCIAL: '已绑定的社交平台帐号:',
+    UNCONNECTED_SOCIAL: '还未绑定的部分社交平台帐号:',
 
     //user status
     STATUS_ACCOUNT: '帐户状态',
