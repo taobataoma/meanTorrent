@@ -47,9 +47,6 @@
     RESET_PASSKEY: 'Reset Passkey',
     MANAGE_SOCIAL_ACCOUNTS: 'Manage Social Accounts',
 
-    //Upload rules
-    UPLOAD_RULES: 'Upload Rules:',
-
     //HomeController & home views
     LOADING_TOP: 'Loading recommended info, please waiting...',
     TOP_MOVIE_INFO_ERROR: 'Get movie top info failed',
@@ -116,6 +113,39 @@
       ADMIN_TORRENTS_LIST: 'Torrents LIst',
       PASSWORD_FORGOT: 'Password forgot',
       PASSWORD_RESET: 'Password reset'
+    },
+
+    //sign in, sign up, password
+    SIGN: {
+      BTN_SIGN_IN: 'Sign in',
+      BTN_SIGN_UP: 'Sign up',
+      BTN_SUBMIT: 'Submit',
+      SIGN_IN: 'Sign in with your account',
+      SIGN_SOCIAL: 'Or sign in using your social accounts',
+      SIGN_UP: 'Sign up using your email',
+      RESET_PASSWORD: 'Reset your password',
+      RESTORE_PASSWORD: 'Restore your password',
+      USERNAME_OR_EMAIL: 'Username or Email',
+      U_PATTERN: 'Please enter a valid username: 3+ characters long, non restricted word, characters "_-.", no consecutive dots, does not begin or end with dots, letters a-z and numbers 0-9.',
+      U_TOOLTIP: 'Please enter a passphrase or password with {{minLength}} or more characters, numbers, lowercase, uppercase, and special characters.',
+      U_E_REQUIRED: 'Username or Email is required.',
+      U_REQUIRED: 'Username is required.',
+      E_REQUIRED: 'Email address is required.',
+      E_INVALID: 'Email address is invalid.',
+      PASSWORD: 'Password',
+      PASSWORD_REQ: 'Password Requirements',
+      P_REQUIRED: 'Password is required.',
+      FORGOT_PASSWORD: 'Forgot your password?',
+      FN_REQUIRED: 'First name is required.',
+      LN_REQUIRED: 'Last name is required.',
+
+      NEW_PASSWORD: 'New Password',
+      NP_REQUIRED: 'Enter a new password.',
+      VERIFY_PASSWORD: 'Verify Password',
+      VP_REQUIRED: 'Enter the password again to verify.',
+      NP_VP_NOTMATCH: 'Passwords do not match.',
+      BTN_UPDATE_PASSWORD: 'Update Password',
+      ENTER_USERNAME: 'Enter your account username.'
     },
 
     //TorrentsController & views
@@ -232,6 +262,7 @@
     COMMENT_DELETE_ICON_TITLE: 'Delete this reply',
 
     //TorrentsUploadController & views
+    UPLOAD_RULES: 'Upload Rules:',
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully upload file',
     TORRENTS_UPLOAD_FAILED: 'Failed to upload file',
     TORRENTS_NO_FILE_SELECTED: 'No file selected',

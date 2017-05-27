@@ -879,3 +879,15 @@ body {
 .ratio-warning {
     color: #FF0000;
 }
+
+.left-icon {
+    color: lighten(@mt-base-color, 40%);
+    line-height: 1.4;
+    font-size: 300px;
+    @media (max-width: @screen-md-min) {
+        font-size: 220px;
+    }
+    @media (max-width: @screen-sm-min) {
+        display: none;
+    }
+}

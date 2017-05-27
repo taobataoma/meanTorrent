@@ -47,9 +47,6 @@
     RESET_PASSKEY: '重置 Passkey',
     MANAGE_SOCIAL_ACCOUNTS: '管理社交帐号',
 
-    //发种规则
-    UPLOAD_RULES: '上传规则：',
-
     //HomeController & home views
     LOADING_TOP: '正在推荐资源，请稍候...',
     TOP_MOVIE_INFO_ERROR: '获取电影Top列表失败',
@@ -116,6 +113,39 @@
       ADMIN_TORRENTS_LIST: '种子管理',
       PASSWORD_FORGOT: '找回密码',
       PASSWORD_RESET: '重设密码'
+    },
+
+    //sign in, sign up, password
+    SIGN: {
+      BTN_SIGN_IN: '登录',
+      BTN_SIGN_UP: '注册',
+      BTN_SUBMIT: '提交',
+      SIGN_IN: '使用你的注册帐号登录',
+      SIGN_SOCIAL: '或使用你的社交帐户登录',
+      SIGN_UP: '使用你的邮箱注册',
+      RESET_PASSWORD: '重设密码',
+      RESTORE_PASSWORD: '找回密码',
+      USERNAME_OR_EMAIL: '用户名或邮箱地址',
+      U_PATTERN: '请输入有效的用户名, 长度不小于3字符, 由字母数字下划线组成',
+      U_TOOLTIP: '请输入有效的密码，长度不小于 {{minLength}} 字符, 且必须包含有数字, 小写字母, 大写字母以及一个特殊的标点符号.',
+      U_E_REQUIRED: '用户名或邮箱地址不能为空.',
+      U_REQUIRED: '用户名不能为空.',
+      E_REQUIRED: '邮箱地址不能为空.',
+      E_INVALID: '无效的邮箱地址.',
+      PASSWORD: '密码',
+      PASSWORD_REQ: '密码强度检测',
+      P_REQUIRED: '密码不能为空.',
+      FORGOT_PASSWORD: '忘记了密码?',
+      FN_REQUIRED: '姓氏不能为空.',
+      LN_REQUIRED: '名字不能为空.',
+
+      NEW_PASSWORD: '新密码',
+      NP_REQUIRED: '新密码不能为空.',
+      VERIFY_PASSWORD: '再输入一次新密码',
+      VP_REQUIRED: '验证新密码不能为空.',
+      NP_VP_NOTMATCH: '两次输入的密码不一致.',
+      BTN_UPDATE_PASSWORD: '修改密码',
+      ENTER_USERNAME: '请输入你的帐号用户名'
     },
 
     //TorrentsController & views
@@ -232,6 +262,7 @@
     COMMENT_DELETE_ICON_TITLE: '删除回复',
 
     //TorrentsUploadController
+    UPLOAD_RULES: '上传规则：',
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',
     TORRENTS_UPLOAD_FAILED: '文件上传失败',
     TORRENTS_NO_FILE_SELECTED: '请选择种子文件后再做尝试',

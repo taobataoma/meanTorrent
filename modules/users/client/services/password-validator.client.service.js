@@ -6,9 +6,9 @@
     .module('users.services')
     .factory('PasswordValidator', PasswordValidator);
 
-  PasswordValidator.$inject = ['$window'];
+  PasswordValidator.$inject = ['$window', '$translate'];
 
-  function PasswordValidator($window) {
+  function PasswordValidator($window, $translate) {
     var owaspPasswordStrengthTest = $window.owaspPasswordStrengthTest;
 
     var service = {
@@ -24,7 +24,8 @@
     }
 
     function getPopoverMsg() {
-      var popoverMsg = 'Please enter a passphrase or password with ' + owaspPasswordStrengthTest.configs.minLength + ' or more characters, numbers, lowercase, uppercase, and special characters.';
+      //var popoverMsg = 'Please enter a passphrase or password with ' + owaspPasswordStrengthTest.configs.minLength + ' or more characters, numbers, lowercase, uppercase, and special characters.';
+      var popoverMsg = $translate.instant('SIGN.U_TOOLTIP', {minLength: owaspPasswordStrengthTest.configs.minLength});
 
       return popoverMsg;
     }

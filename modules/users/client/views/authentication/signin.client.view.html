@@ -1,5 +1,5 @@
 <div>
-    <legend class="col-sm-10 col-sm-offset-1 small-legend margin-top-40">Sign in with your account</legend>
+    <legend class="col-sm-10 col-sm-offset-1 small-legend margin-top-40">{{ 'SIGN.SIGN_IN' | translate}}</legend>
 
     <div class="col-sm-8 col-sm-offset-2">
         <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
@@ -8,30 +8,28 @@
                     <uib-alert type="danger" ng-show="vm.error" class="text-center text-danger">
                         <span ng-bind="vm.error"></span>
                     </uib-alert>
-                    <label for="usernameOrEmail">Username or Email</label>
                     <input type="text" id="usernameOrEmail" name="usernameOrEmail" class="form-control" ng-model="vm.credentials.usernameOrEmail"
-                           required autofocus>
+                           placeholder="{{ 'SIGN.USERNAME_OR_EMAIL' | translate}}" required autofocus>
 
                     <div ng-messages="vm.userForm.usernameOrEmail.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Username or Email is required.</p>
+                        <p class="help-block error-text" ng-message="required">{{ 'SIGN.U_E_REQUIRED' | translate}}</p>
                     </div>
                 </div>
                 <div class="form-group" show-errors>
-                    <label for="password">Password</label>
                     <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password"
-                           required>
+                           placeholder="{{ 'SIGN.PASSWORD' | translate}}" required>
 
                     <div ng-messages="vm.userForm.password.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Password is required.</p>
+                        <p class="help-block error-text" ng-message="required">{{ 'SIGN.P_REQUIRED' | translate}}</p>
                     </div>
                 </div>
                 <div class="text-center form-group">
-                    <button type="submit" class="btn btn-primary">Sign in</button>
+                    <button type="submit" class="btn btn-primary">{{ 'SIGN.BTN_SIGN_IN' | translate}}</button>
                     &nbsp; or&nbsp;
-                    <a ui-sref="authentication.signup">Sign up</a>
+                    <a ui-sref="authentication.signup">{{ 'SIGN.BTN_SIGN_UP' | translate}}</a>
                 </div>
                 <div class="text-center forgot-password">
-                    <a ui-sref="password.forgot">Forgot your password?</a>
+                    <a ui-sref="password.forgot">{{ 'SIGN.FORGOT_PASSWORD' | translate}}</a>
                 </div>
                 <br/>
             </fieldset>

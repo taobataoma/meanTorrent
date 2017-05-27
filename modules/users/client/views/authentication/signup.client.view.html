@@ -1,57 +1,54 @@
 <div>
-    <legend class="col-sm-10 col-sm-offset-1 small-legend margin-top-40">Sign up using your email</legend>
+    <legend class="col-sm-10 col-sm-offset-1 small-legend margin-top-40">{{ 'SIGN.SIGN_UP' | translate}}</legend>
 
     <div class="col-sm-8 col-sm-offset-2">
         <form name="vm.userForm" ng-submit="vm.signup(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
             <fieldset>
                 <div class="form-group" show-errors>
-                    <label for="firstName">First Name</label>
                     <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.credentials.firstName"
-                           required autofocus>
+                           placeholder="{{ 'STATUS_FIELD.FIRST_NAME' | translate}}" required autofocus>
 
                     <div ng-messages="vm.userForm.firstName.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">First name is required.</p>
+                        <p class="help-block error-text" ng-message="required">{{ 'SIGN.FN_REQUIRED' | translate}}</p>
                     </div>
                 </div>
                 <div class="form-group" show-errors>
-                    <label for="lastName">Last Name</label>
                     <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.credentials.lastName"
-                           required>
+                           placeholder="{{ 'STATUS_FIELD.LAST_NAME' | translate}}" required>
 
                     <div ng-messages="vm.userForm.lastName.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Last name is required.</p>
+                        <p class="help-block error-text" ng-message="required">{{ 'SIGN.LN_REQUIRED' | translate}}</p>
                     </div>
                 </div>
                 <div class="form-group" show-errors>
-                    <label for="email">Email</label>
                     <input type="email" id="email" name="email" class="form-control" ng-model="vm.credentials.email" lowercase
-                           required>
+                           placeholder="{{ 'STATUS_FIELD.EMAIL' | translate}}" required>
 
                     <div ng-messages="vm.userForm.email.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Email address is required.</p>
+                        <p class="help-block error-text" ng-message="required">{{ 'SIGN.E_REQUIRED' | translate}}</p>
 
-                        <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
+                        <p class="help-block error-text" ng-message="email">{{ 'SIGN.E_INVALID' | translate}}</p>
                     </div>
                 </div>
                 <div class="form-group" show-errors>
-                    <label for="username">Username</label>
                     <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username"
-                           ng-pattern="vm.usernameRegex" lowercase required>
+                           placeholder="{{ 'STATUS_FIELD.USERNAME' | translate}}" ng-pattern="vm.usernameRegex" lowercase required>
 
                     <div ng-messages="vm.userForm.username.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Username is required.</p>
+                        <p class="help-block error-text" ng-message="required">{{ 'SIGN.U_REQUIRED' | translate}}</p>
 
                         <p class="help-block error-text"
-                           ng-message="pattern">Please enter a valid username: 3+ characters long, non restricted word, characters "_-.", no consecutive dots, does not begin or end with dots, letters a-z and numbers 0-9.</p>
+                           ng-message="pattern">{{ 'SIGN.U_PATTERN' | translate}}</p>
                     </div>
                 </div>
                 <div class="form-group" show-errors>
-                    <label for="password">Password</label>
                     <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password"
-                           uib-popover="{{vm.getPopoverMsg()}}" popover-trigger="outsideClick" password-validator required>
+                           placeholder="{{ 'SIGN.PASSWORD' | translate}}"
+                           uib-popover="{{vm.getPopoverMsg()}}" popover-trigger="'outsideClick'"
+                           popover-placement="top-right" password-validator required>
 
                     <div ng-messages="vm.userForm.password.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Password is required.</p>
+                        <p class="help-block error-text" ng-message="required">{{ 'SIGN.P_REQUIRED' | translate}}</p>
 
                         <div ng-repeat="passwordError in passwordErrors">
                             <p class="help-block error-text" ng-show="vm.userForm.password.$error.requirements">{{passwordError}}</p>
@@ -59,14 +56,14 @@
                     </div>
                 </div>
                 <div class="form-group" ng-show="!vm.userForm.password.$error.required">
-                    <label>Password Requirements</label>
+                    <label>{{ 'SIGN.PASSWORD_REQ' | translate}}</label>
                     <uib-progressbar value="requirementsProgress" type="{{requirementsColor}}"><span
                             style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></uib-progressbar>
                 </div>
                 <div class="text-center form-group">
-                    <button type="submit" class="btn btn-primary">Sign up</button>
+                    <button type="submit" class="btn btn-primary">{{ 'SIGN.BTN_SIGN_UP' | translate}}</button>
                     &nbsp; or&nbsp;
-                    <a ui-sref="authentication.signin" class="show-signup">Sign in</a>
+                    <a ui-sref="authentication.signin" class="show-signup">{{ 'SIGN.BTN_SIGN_IN' | translate}}</a>
                 </div>
             </fieldset>
         </form>
