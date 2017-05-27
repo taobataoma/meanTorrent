@@ -3,12 +3,20 @@
         <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.pagedItems">
 
             <div class="pagination-div-top">
-                <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                    ng-model="vm.currentPage"
-                    ng-change="vm.pageChanged()"
-                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                </ul>
+                <div class="row">
+                    <div class="col-sm-12 col-md-9">
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                            ng-model="vm.currentPage"
+                            ng-change="vm.pageChanged()"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <input class="form-control margin-top-20" type="text" ng-model="vm.search" placeholder="Search"
+                               ng-change="vm.figureOutItemsToDisplay()"/>
+                    </div>
+                </div>
             </div>
 
             <div class="table-responsive">
