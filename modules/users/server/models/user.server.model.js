@@ -261,8 +261,9 @@ UserSchema.methods.hashPassword = function (password) {
  * update user last signed time
  */
 UserSchema.methods.updateSignedTime = function () {
-  this.last_signed = Date.now();
-  this.save();
+  this.update({
+    $set: {last_signed: Date.now()}
+  }).exec();
 };
 
 /**
