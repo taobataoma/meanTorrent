@@ -9,10 +9,8 @@ var validator = require('validator'),
  * Render the main application page
  */
 exports.renderIndex = function (req, res) {
-  var safeUserObject = null;
+  var safeUserObject = req.user || null;
   if (req.user) {
-    safeUserObject = req.user;
-
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     req.user.addSignedIp(ip);
   }
@@ -28,7 +26,12 @@ exports.renderIndex = function (req, res) {
  * Render the server error page
  */
 exports.renderServerError = function (req, res) {
+  var safeUserObject = req.user || null;
+
   res.status(500).render('modules/core/server/views/500', {
+    user: JSON.stringify(safeUserObject),
+    sharedConfig: JSON.stringify(config.shared),
+    meanTorrentConfig: JSON.stringify(config.meanTorrentConfig),
     error: 'Oops! Something went wrong...'
   });
 };
@@ -38,10 +41,14 @@ exports.renderServerError = function (req, res) {
  * Performs content-negotiation on the Accept HTTP header
  */
 exports.renderNotFound = function (req, res) {
+  var safeUserObject = req.user || null;
 
   res.status(404).format({
     'text/html': function () {
       res.render('modules/core/server/views/404', {
+        user: JSON.stringify(safeUserObject),
+        sharedConfig: JSON.stringify(config.shared),
+        meanTorrentConfig: JSON.stringify(config.meanTorrentConfig),
         url: req.originalUrl
       });
     },
