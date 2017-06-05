@@ -11,6 +11,7 @@
     var vm = this;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
 
+    vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.accountMenu = menuService.getMenu('account').items[0];
     vm.messagesMenu = menuService.getMenu('mt').items[0];
     vm.statusMenu = menuService.getMenu('mt').items[1];
