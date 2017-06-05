@@ -564,6 +564,8 @@
                                               ng-class="{'label-default': !item.isSaling, 'label-success': item.isSaling}">
                                                 {{item.torrent_sale_status}} {{item.torrent_sale_expires | unlife}}
                                         </span>
+                                        <span class="label label-se-info" ng-if="item.torrent_type == 'tvserial'"
+                                              ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
                                         <span ng-repeat="t in item.torrent_tags">
                                             <span class="label label-tag" ng-click="$event.stopPropagation();">
                                                 {{ 'RESOURCESTAGS.' + vm.getTagTitle(t) + '.' + t | translate}}
