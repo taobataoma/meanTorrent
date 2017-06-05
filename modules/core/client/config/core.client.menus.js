@@ -38,10 +38,10 @@
       title: 'RESET_PASSKEY',
       state: 'settings.passkey'
     });
-
-    menuService.addSubMenuItem('account', 'settings', {
-      title: 'MANAGE_SOCIAL_ACCOUNTS',
-      state: 'settings.accounts'
-    });
+    //
+    //menuService.addSubMenuItem('account', 'settings', {
+    //  title: 'MANAGE_SOCIAL_ACCOUNTS',
+    //  state: 'settings.accounts'
+    //});
   }
 }());

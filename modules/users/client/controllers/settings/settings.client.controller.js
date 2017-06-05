@@ -5,11 +5,12 @@
     .module('users')
     .controller('SettingsController', SettingsController);
 
-  SettingsController.$inject = ['$scope', 'Authentication'];
+  SettingsController.$inject = ['$scope', 'Authentication', 'MeanTorrentConfig'];
 
-  function SettingsController($scope, Authentication) {
+  function SettingsController($scope, Authentication, MeanTorrentConfig) {
     var vm = this;
 
     vm.user = Authentication.user;
+    vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
   }
 }());
