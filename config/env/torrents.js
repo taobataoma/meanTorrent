@@ -14,6 +14,16 @@ module.exports = {
       client_black_list_url: 'http://www.chd.im/client_black_list',
       open_tracker: false
     },
+    sign: {
+      open_signin: false,
+      show_open_message: true,
+      open_message: 'SIGN_OPEN_MESSAGE'
+    },
+    invite: {
+      open_invite: true,
+      score_exchange: 10000,
+      expires: 60 * 60 * 1000 * 24
+    },
     torrentType: {
       name: 'TYPE',
       value: [
