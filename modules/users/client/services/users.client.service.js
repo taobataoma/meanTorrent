@@ -98,12 +98,23 @@
           userId: '@userId',
           userRole: '@userRole'
         }
+      },
+      updateUserStatus: {
+        method: 'POST',
+        url: '/api/users/:userId/status',
+        params: {
+          userId: '@userId',
+          userStatus: '@userStatus'
+        }
       }
     });
 
     angular.extend(Users, {
       setUserRole: function (params) {
         return this.updateUserRole(params).$promise;
+      },
+      setUserStatus: function (params) {
+        return this.updateUserStatus(params).$promise;
       }
     });
 

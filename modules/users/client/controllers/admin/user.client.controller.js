@@ -94,5 +94,28 @@
         NotifycationService.showErrorNotify(response.data.message, 'SET_ROLE_FAILED');
       }
     };
+
+    /**
+     * setUserStatus
+     */
+    vm.setUserStatus = function () {
+      var user = vm.user;
+      AdminService.setUserStatus({
+        userId: user._id,
+        userStatus: user.status === 'banned' ? 'normal' : 'banned'
+      })
+        .then(onSetRoleSuccess)
+        .catch(onSetRoleError);
+
+      function onSetRoleSuccess(response) {
+        vm.user = response;
+
+        NotifycationService.showSuccessNotify('SET_STATUS_SUCCESSFULLY');
+      }
+
+      function onSetRoleError(response) {
+        NotifycationService.showErrorNotify(response.data.message, 'SET_STATUS_FAILED');
+      }
+    };
   }
 }());

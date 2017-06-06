@@ -70,6 +70,11 @@ exports.list = function (req, res) {
   });
 };
 
+/**
+ * updateUserRole
+ * @param req
+ * @param res
+ */
 exports.updateUserRole = function (req, res) {
   var user = req.model;
 
@@ -82,6 +87,28 @@ exports.updateUserRole = function (req, res) {
       });
     } else {
       user.roles = req.body.userRole;
+      res.json(user);
+    }
+  });
+};
+
+/**
+ * updateUserStatus
+ * @param req
+ * @param res
+ */
+exports.updateUserStatus = function (req, res) {
+  var user = req.model;
+
+  user.update({
+    $set: {status: req.body.userStatus}
+  }).exec(function (err, result) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      user.status = req.body.userStatus;
       res.json(user);
     }
   });

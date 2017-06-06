@@ -314,6 +314,8 @@
 
     SET_ROLE_SUCCESSFULLY: '用户角色权限设置成功',
     SET_ROLE_FAILED: '用户角色权限设置失败',
+    SET_STATUS_SUCCESSFULLY: '用户帐号状态设置成功',
+    SET_STATUS_FAILED: '用户帐号状态设置失败',
 
     //vip,rules views
     BUTTON_DNATE: '捐 赠 Vip',
@@ -361,6 +363,11 @@
       EMAIL: '邮箱',
       PASSKEY: 'Passkey',
       ROLE: '用户角色',
+      STATUS: '帐号状态',
+      NORMAL: '正常',
+      BANNED: '禁止',
+      UNBANNED: '解禁',
+      SEALED: '冻结',
       VIP_START_AT: 'Vip 资格开始于',
       VIP_END_AT: 'Vip 资格结束于',
       UPLOADED: '总上传量',

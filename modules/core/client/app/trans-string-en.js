@@ -314,6 +314,8 @@
 
     SET_ROLE_SUCCESSFULLY: 'set user role successfully',
     SET_ROLE_FAILED: 'set user role failed',
+    SET_STATUS_SUCCESSFULLY: 'set user status successfully',
+    SET_STATUS_FAILED: 'set user status failed',
 
     //vip,rules views
     BUTTON_DNATE: 'Donate Vip',
@@ -361,6 +363,11 @@
       EMAIL: 'Email',
       PASSKEY: 'Passkey',
       ROLE: 'Role',
+      STATUS: 'Status',
+      NORMAL: 'normal',
+      BANNED: 'banned',
+      UNBANNED: 'unbanned',
+      SEALED: 'sealed',
       VIP_START_AT: 'Vip start at',
       VIP_END_AT: 'Vip end at',
       UPLOADED: 'Total uploaded',

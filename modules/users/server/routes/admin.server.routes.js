@@ -23,6 +23,8 @@ module.exports = function (app) {
   //admin set single user
   app.route('/api/users/:userId/role')
     .post(adminPolicy.isAllowed, admin.updateUserRole);
+  app.route('/api/users/:userId/status')
+    .post(adminPolicy.isAllowed, admin.updateUserStatus);
 
   // Finish by binding the user middleware
   app.param('userId', admin.userByID);
