@@ -70,6 +70,23 @@ exports.list = function (req, res) {
   });
 };
 
+exports.updateUserRole = function (req, res) {
+  var user = req.model;
+
+  user.update({
+    $set: {roles: req.body.userRole}
+  }).exec(function (err, result) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      user.roles = req.body.userRole;
+      res.json(user);
+    }
+  });
+};
+
 /**
  * User middleware
  */

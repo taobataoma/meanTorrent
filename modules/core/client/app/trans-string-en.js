@@ -312,6 +312,9 @@
       LEVEL3: 'LEVEL3'
     },
 
+    SET_ROLE_SUCCESSFULLY: 'set user role successfully',
+    SET_ROLE_FAILED: 'set user role failed',
+
     //vip,rules views
     BUTTON_DNATE: 'Donate Vip',
 

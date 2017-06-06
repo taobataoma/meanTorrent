@@ -312,6 +312,9 @@
       LEVEL3: '三级推荐'
     },
 
+    SET_ROLE_SUCCESSFULLY: '用户角色权限设置成功',
+    SET_ROLE_FAILED: '用户角色权限设置失败',
+
     //vip,rules views
     BUTTON_DNATE: '捐 赠 Vip',
 

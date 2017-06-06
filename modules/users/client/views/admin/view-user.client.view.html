@@ -46,6 +46,12 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.ROLE' | translate}}：</dt>
                 <dd class="h-line">
                     <mark>{{ vm.user.roles[0] }}</mark>
+                    <div class="pull-right" ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isAdmin">
+                        <select class="form-control" ng-model="vm.selectedRole" ng-change="vm.onUserRoleChanged();">
+                            <option ng-repeat="r in vm.userRolesConfig" value="{{r}}">{{ r }}
+                            </option>
+                        </select>
+                    </div>
                 </dd>
 
                 <li class="status-divider"></li>
