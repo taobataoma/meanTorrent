@@ -11,7 +11,9 @@
   function NotifycationService($translate, Notification) {
 
     var service = {
-      showNotify: showNotify
+      showNotify: showNotify,
+      showSuccessNotify: showSuccessNotify,
+      showErrorNotify: showErrorNofity
     };
 
     return service;
@@ -48,6 +50,29 @@
           Notification.info({
             message: '<i class="glyphicon ' + icon + '"></i> ' + msg
           });
+      }
+    }
+
+    function showSuccessNotify(msgId) {
+      var msg = $translate.instant(msgId);
+
+      Notification.success({
+        message: '<i class="glyphicon glyphicon-ok"></i> ' + msg
+      });
+    }
+
+    function showErrorNofity(msg, titleMsgId) {
+      var title_msg = $translate.instant(titleMsgId);
+
+      if (msg) {
+        Notification.error({
+          message: msg,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + title_msg
+        });
+      } else {
+        Notification.error({
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + title_msg
+        });
       }
     }
   }
