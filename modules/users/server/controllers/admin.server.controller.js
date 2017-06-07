@@ -123,6 +123,55 @@ exports.updateUserScore = function (req, res) {
   var user = req.model;
 
   user.score = user.score + parseInt(req.body.userScore, 10);
+  if (user.score < 0) {
+    user.score = 0;
+  }
+  user.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(user);
+  });
+};
+
+/**
+ * updateUserUploaded
+ * @param req
+ * @param res
+ */
+exports.updateUserUploaded = function (req, res) {
+  var user = req.model;
+
+  user.uploaded = user.uploaded + parseInt(req.body.userUploaded, 10);
+  if (user.uploaded < 0) {
+    user.uploaded = 0;
+  }
+  user.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(user);
+  });
+};
+
+/**
+ * updateUserDownloaded
+ * @param req
+ * @param res
+ */
+exports.updateUserDownloaded = function (req, res) {
+  var user = req.model;
+
+  user.downloaded = user.downloaded + parseInt(req.body.userDownloaded, 10);
+  if (user.downloaded < 0) {
+    user.downloaded = 0;
+  }
   user.save(function (err) {
     if (err) {
       return res.status(422).send({

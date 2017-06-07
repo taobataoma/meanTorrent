@@ -26,7 +26,9 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/users', permissions: '*'},
           {resources: '/api/users/:userId', permissions: '*'},
           {resources: '/api/users/:userId/status', permissions: '*'},
-          {resources: '/api/users/:userId/score', permissions: '*'}
+          {resources: '/api/users/:userId/score', permissions: '*'},
+          {resources: '/api/users/:userId/uploaded', permissions: '*'},
+          {resources: '/api/users/:userId/downloaded', permissions: '*'}
         ]
       }
     ]

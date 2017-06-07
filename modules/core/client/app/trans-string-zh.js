@@ -318,8 +318,19 @@
     SET_STATUS_FAILED: '用户帐号状态设置失败',
 
     SCORE_NUMBER: '积分数',
+    SCORE_TITLE: '修改积分',
     SET_SCORE_SUCCESSFULLY: '用户积分设置成功',
     SET_SCORE_FAILED: '用户积分设置失败',
+
+    UPLOADED_NUMBER: '上传量',
+    UPLOADED_TITLE: '修改上传量 (单位: GB)',
+    SET_UPLOADED_SUCCESSFULLY: '用户上传量设置成功',
+    SET_UPLOADED_FAILED: '用户上传量设置失败',
+
+    DOWNLOADED_NUMBER: '下载量',
+    DOWNLOADED_TITLE: '修改下载量 (单位: GB)',
+    SET_DOWNLOADED_SUCCESSFULLY: '用户下载量设置成功',
+    SET_DOWNLOADED_FAILED: '用户下载量设置成功',
 
     //vip,rules views
     BUTTON_DNATE: '捐 赠 Vip',

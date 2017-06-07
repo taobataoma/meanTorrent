@@ -20,8 +20,20 @@
     vm.isContextUserSelf = isContextUserSelf;
 
     vm.setUserScorePopover = {
-      title: 'Edit user score',
+      title: 'SCORE_TITLE',
       templateUrl: 'set-user-score.html',
+      isOpen: false
+    };
+
+    vm.setUserUploadedPopover = {
+      title: 'UPLOADED_TITLE',
+      templateUrl: 'set-user-uploaded.html',
+      isOpen: false
+    };
+
+    vm.setUserDownloadedPopover = {
+      title: 'DOWNLOADED_TITLE',
+      templateUrl: 'set-user-downloaded.html',
       isOpen: false
     };
 
@@ -136,20 +148,78 @@
           userId: user._id,
           userScore: vm.setUserScorePopover.number
         })
-          .then(onSetRoleSuccess)
-          .catch(onSetRoleError);
+          .then(onSetScoreSuccess)
+          .catch(onSetScoreError);
 
         vm.setUserScorePopover.isOpen = false;
       }
 
-      function onSetRoleSuccess(response) {
+      function onSetScoreSuccess(response) {
         vm.user = response;
 
         NotifycationService.showSuccessNotify('SET_SCORE_SUCCESSFULLY');
       }
 
-      function onSetRoleError(response) {
+      function onSetScoreError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'SET_SCORE_FAILED');
+      }
+    };
+
+    /**
+     * setUserUploaded
+     */
+    vm.setUserUploaded = function () {
+      if (isNaN(vm.setUserUploadedPopover.number)) {
+        return false;
+      } else {
+        var user = vm.user;
+        AdminService.setUserUploaded({
+          userId: user._id,
+          userUploaded: vm.setUserUploadedPopover.number * 1024 * 1024 * 1024
+        })
+          .then(onSetUploadedSuccess)
+          .catch(onSetUploadedError);
+
+        vm.setUserUploadedPopover.isOpen = false;
+      }
+
+      function onSetUploadedSuccess(response) {
+        vm.user = response;
+
+        NotifycationService.showSuccessNotify('SET_UPLOADED_SUCCESSFULLY');
+      }
+
+      function onSetUploadedError(response) {
+        NotifycationService.showErrorNotify(response.data.message, 'SET_UPLOADED_FAILED');
+      }
+    };
+
+    /**
+     * setUserDownloaded
+     */
+    vm.setUserDownloaded = function () {
+      if (isNaN(vm.setUserDownloadedPopover.number)) {
+        return false;
+      } else {
+        var user = vm.user;
+        AdminService.setUserDownloaded({
+          userId: user._id,
+          userDownloaded: vm.setUserDownloadedPopover.number * 1024 * 1024 * 1024
+        })
+          .then(onSetDownloadedSuccess)
+          .catch(onSetDownloadedError);
+
+        vm.setUserDownloadedPopover.isOpen = false;
+      }
+
+      function onSetDownloadedSuccess(response) {
+        vm.user = response;
+
+        NotifycationService.showSuccessNotify('SET_DOWNLOADED_SUCCESSFULLY');
+      }
+
+      function onSetDownloadedError(response) {
+        NotifycationService.showErrorNotify(response.data.message, 'SET_DOWNLOADED_FAILED');
       }
     };
   }

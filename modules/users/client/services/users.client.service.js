@@ -114,6 +114,22 @@
           userId: '@userId',
           userScore: '@userScore'
         }
+      },
+      updateUserUploaded: {
+        method: 'POST',
+        url: '/api/users/:userId/uploaded',
+        params: {
+          userId: '@userId',
+          userUploaded: '@userUploaded'
+        }
+      },
+      updateUserDownloaded: {
+        method: 'POST',
+        url: '/api/users/:userId/downloaded',
+        params: {
+          userId: '@userId',
+          userDownloaded: '@userDownloaded'
+        }
       }
     });
 
@@ -126,6 +142,12 @@
       },
       setUserScore: function (params) {
         return this.updateUserScore(params).$promise;
+      },
+      setUserUploaded: function (params) {
+        return this.updateUserUploaded(params).$promise;
+      },
+      setUserDownloaded: function (params) {
+        return this.updateUserDownloaded(params).$promise;
       }
     });
 

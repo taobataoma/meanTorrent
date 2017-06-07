@@ -112,7 +112,14 @@
                     <span>{{ vm.user.uploaded | bytes:2 }}</span>
 
                     <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
-                        <button class="btn btn-default btn-xs" style="width: 64px;" ng-click="vm.setUserUploaded();">
+                        <button class="btn btn-default btn-xs" style="width: 64px;"
+                                uib-popover-template="vm.setUserUploadedPopover.templateUrl"
+                                popover-title="{{vm.setUserUploadedPopover.title | translate}}"
+                                popover-trigger="'outsideClick'"
+                                popover-placement="top-right"
+                                popover-is-open="vm.setUserUploadedPopover.isOpen"
+                                popover-class="set-uploaded-popover"
+                                ng-click="vm.setUserUploadedPopover.number = undefined;">
                             +/-
                         </button>
                     </div>
@@ -124,7 +131,14 @@
                     <span>{{ vm.user.downloaded | bytes:2 }}</span>
 
                     <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
-                        <button class="btn btn-default btn-xs" style="width: 64px;" ng-click="vm.setUserDownloaded();">
+                        <button class="btn btn-default btn-xs" style="width: 64px;"
+                                uib-popover-template="vm.setUserDownloadedPopover.templateUrl"
+                                popover-title="{{vm.setUserDownloadedPopover.title | translate}}"
+                                popover-trigger="'outsideClick'"
+                                popover-placement="top-right"
+                                popover-is-open="vm.setUserDownloadedPopover.isOpen"
+                                popover-class="set-downloaded-popover"
+                                ng-click="vm.setUserDownloadedPopover.number = undefined;">
                             +/-
                         </button>
                     </div>
@@ -140,7 +154,7 @@
                     <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
                         <button class="btn btn-default btn-xs" style="width: 64px;"
                                 uib-popover-template="vm.setUserScorePopover.templateUrl"
-                                popover-title="{{vm.setUserScorePopover.title}}"
+                                popover-title="{{vm.setUserScorePopover.title | translate}}"
                                 popover-trigger="'outsideClick'"
                                 popover-placement="top-right"
                                 popover-is-open="vm.setUserScorePopover.isOpen"
@@ -173,6 +187,24 @@
                 <input type="number" ng-model="vm.setUserScorePopover.number" class="form-control" placeholder="{{ 'SCORE_NUMBER' | translate }}" autofocus>
             </div>
             <button class="btn btn-default" ng-click="vm.setUserScore();">{{ 'BUTTON_SET' | translate }}</button>
+        </form>
+    </script>
+
+    <script type="text/ng-template" id="set-user-uploaded.html">
+        <form class="form-inline set-uploaded-popover-form text-center">
+            <div class="form-group">
+                <input type="number" ng-model="vm.setUserUploadedPopover.number" class="form-control" placeholder="{{ 'UPLOADED_NUMBER' | translate }}" autofocus>
+            </div>
+            <button class="btn btn-default" ng-click="vm.setUserUploaded();">{{ 'BUTTON_SET' | translate }}</button>
+        </form>
+    </script>
+
+    <script type="text/ng-template" id="set-user-downloaded.html">
+        <form class="form-inline set-downloaded-popover-form text-center">
+            <div class="form-group">
+                <input type="number" ng-model="vm.setUserDownloadedPopover.number" class="form-control" placeholder="{{ 'DOWNLOADED_NUMBER' | translate }}" autofocus>
+            </div>
+            <button class="btn btn-default" ng-click="vm.setUserDownloaded();">{{ 'BUTTON_SET' | translate }}</button>
         </form>
     </script>
 

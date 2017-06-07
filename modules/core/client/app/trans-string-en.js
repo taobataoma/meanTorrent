@@ -318,8 +318,19 @@
     SET_STATUS_FAILED: 'set user status failed',
 
     SCORE_NUMBER: 'Score number',
+    SCORE_TITLE: 'Edit user score',
     SET_SCORE_SUCCESSFULLY: 'set user score successfully',
     SET_SCORE_FAILED: 'set user score failed',
+
+    UPLOADED_NUMBER: 'Uploaded number',
+    UPLOADED_TITLE: 'Edit user uploaded (unit: GB)',
+    SET_UPLOADED_SUCCESSFULLY: 'set user uploaded successfully',
+    SET_UPLOADED_FAILED: 'set user uploaded failed',
+
+    DOWNLOADED_NUMBER: 'Downloaded number',
+    DOWNLOADED_TITLE: 'Edit user downloaded (unit: GB)',
+    SET_DOWNLOADED_SUCCESSFULLY: 'set user downloaded successfully',
+    SET_DOWNLOADED_FAILED: 'set user downloaded failed',
 
     //vip,rules views
     BUTTON_DNATE: 'Donate Vip',
