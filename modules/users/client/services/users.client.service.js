@@ -106,6 +106,14 @@
           userId: '@userId',
           userStatus: '@userStatus'
         }
+      },
+      updateUserScore: {
+        method: 'POST',
+        url: '/api/users/:userId/score',
+        params: {
+          userId: '@userId',
+          userScore: '@userScore'
+        }
       }
     });
 
@@ -115,6 +123,9 @@
       },
       setUserStatus: function (params) {
         return this.updateUserStatus(params).$promise;
+      },
+      setUserScore: function (params) {
+        return this.updateUserScore(params).$promise;
       }
     });
 

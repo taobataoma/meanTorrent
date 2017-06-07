@@ -19,6 +19,12 @@
     vm.update = update;
     vm.isContextUserSelf = isContextUserSelf;
 
+    vm.setUserScorePopover = {
+      title: 'Edit user score',
+      templateUrl: 'set-user-score.html',
+      isOpen: false
+    };
+
     /**
      * remove
      * @param user
@@ -115,6 +121,35 @@
 
       function onSetRoleError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'SET_STATUS_FAILED');
+      }
+    };
+
+    /**
+     * setUserScore
+     */
+    vm.setUserScore = function () {
+      if (isNaN(vm.setUserScorePopover.number)) {
+        return false;
+      } else {
+        var user = vm.user;
+        AdminService.setUserScore({
+          userId: user._id,
+          userScore: vm.setUserScorePopover.number
+        })
+          .then(onSetRoleSuccess)
+          .catch(onSetRoleError);
+
+        vm.setUserScorePopover.isOpen = false;
+      }
+
+      function onSetRoleSuccess(response) {
+        vm.user = response;
+
+        NotifycationService.showSuccessNotify('SET_SCORE_SUCCESSFULLY');
+      }
+
+      function onSetRoleError(response) {
+        NotifycationService.showErrorNotify(response.data.message, 'SET_SCORE_FAILED');
       }
     };
   }

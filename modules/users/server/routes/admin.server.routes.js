@@ -25,6 +25,8 @@ module.exports = function (app) {
     .post(adminPolicy.isAllowed, admin.updateUserRole);
   app.route('/api/users/:userId/status')
     .post(adminPolicy.isAllowed, admin.updateUserStatus);
+  app.route('/api/users/:userId/score')
+    .post(adminPolicy.isAllowed, admin.updateUserScore);
 
   // Finish by binding the user middleware
   app.param('userId', admin.userByID);

@@ -317,6 +317,10 @@
     SET_STATUS_SUCCESSFULLY: '用户帐号状态设置成功',
     SET_STATUS_FAILED: '用户帐号状态设置失败',
 
+    SCORE_NUMBER: '积分数',
+    SET_SCORE_SUCCESSFULLY: '用户积分设置成功',
+    SET_SCORE_FAILED: '用户积分设置失败',
+
     //vip,rules views
     BUTTON_DNATE: '捐 赠 Vip',
 
@@ -326,6 +330,7 @@
     BUTTON_SELECT_PICTURE: '选择图片',
     BUTTON_USE_THIS_PICTURE: '应用图片',
     BUTTON_CANCEL: '取消',
+    BUTTON_SET: '设置',
     BUTTON_COMPLETE: '完成',
     BUTTON_SAVE_PASSWORD: '保存密码',
     CAPTION_CURRENT_PASSWORD: '当前密码',

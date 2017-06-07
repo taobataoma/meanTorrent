@@ -317,6 +317,10 @@
     SET_STATUS_SUCCESSFULLY: 'set user status successfully',
     SET_STATUS_FAILED: 'set user status failed',
 
+    SCORE_NUMBER: 'Score number',
+    SET_SCORE_SUCCESSFULLY: 'set user score successfully',
+    SET_SCORE_FAILED: 'set user score failed',
+
     //vip,rules views
     BUTTON_DNATE: 'Donate Vip',
 
@@ -326,6 +330,7 @@
     BUTTON_SELECT_PICTURE: 'Select Picture',
     BUTTON_USE_THIS_PICTURE: 'Use This Picture',
     BUTTON_CANCEL: 'Cancel',
+    BUTTON_SET: 'Set',
     BUTTON_COMPLETE: 'Complete',
     BUTTON_SAVE_PASSWORD: 'Save Password',
     CAPTION_CURRENT_PASSWORD: 'Current Password',

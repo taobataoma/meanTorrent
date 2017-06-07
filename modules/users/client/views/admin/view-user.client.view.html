@@ -57,6 +57,7 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.STATUS' | translate}}：</dt>
                 <dd class="h-line">
                     <span ng-class="{'span-banned': vm.user.status == 'banned'}">{{ 'STATUS_FIELD.' + vm.user.status.toUpperCase() | translate }}</span>
+
                     <div class="pull-right" ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isOper">
                         <button class="btn btn-default btn-xs" style="width: 64px;" ng-click="vm.setUserStatus();">
                             {{ vm.user.status == 'banned' ? ('STATUS_FIELD.UNBANNED' | translate) : ('STATUS_FIELD.BANNED' | translate)}}
@@ -108,20 +109,47 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
                 <dd class="h-line">
                     <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
-                    {{ vm.user.uploaded | bytes:2 }}
+                    <span>{{ vm.user.uploaded | bytes:2 }}</span>
+
+                    <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
+                        <button class="btn btn-default btn-xs" style="width: 64px;" ng-click="vm.setUserUploaded();">
+                            +/-
+                        </button>
+                    </div>
                 </dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
                 <dd class="h-line">
                     <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
-                    {{ vm.user.downloaded | bytes:2 }}
+                    <span>{{ vm.user.downloaded | bytes:2 }}</span>
+
+                    <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
+                        <button class="btn btn-default btn-xs" style="width: 64px;" ng-click="vm.setUserDownloaded();">
+                            +/-
+                        </button>
+                    </div>
                 </dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
                 <dd class="h-line"><span ng-class="vm.user.ratio > 1 ? 'ratio-normal' : 'ratio-warning' ">{{ vm.user.ratio }}</span></dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.score }}</dd>
+                <dd class="h-line">
+                    <span>{{ vm.user.score }}</span>
+
+                    <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
+                        <button class="btn btn-default btn-xs" style="width: 64px;"
+                                uib-popover-template="vm.setUserScorePopover.templateUrl"
+                                popover-title="{{vm.setUserScorePopover.title}}"
+                                popover-trigger="'outsideClick'"
+                                popover-placement="top-right"
+                                popover-is-open="vm.setUserScorePopover.isOpen"
+                                popover-class="set-score-popover"
+                                ng-click="vm.setUserScorePopover.number = undefined;">
+                            +/-
+                        </button>
+                    </div>
+                </dd>
 
                 <li class="status-divider"></li>
 
@@ -138,4 +166,14 @@
             </dl>
         </div>
     </div>
+
+    <script type="text/ng-template" id="set-user-score.html">
+        <form class="form-inline set-score-popover-form text-center">
+            <div class="form-group">
+                <input type="number" ng-model="vm.setUserScorePopover.number" class="form-control" placeholder="{{ 'SCORE_NUMBER' | translate }}" autofocus>
+            </div>
+            <button class="btn btn-default" ng-click="vm.setUserScore();">{{ 'BUTTON_SET' | translate }}</button>
+        </form>
+    </script>
+
 </section>

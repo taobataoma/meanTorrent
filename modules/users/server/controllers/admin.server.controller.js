@@ -115,6 +115,26 @@ exports.updateUserStatus = function (req, res) {
 };
 
 /**
+ * updateUserScore
+ * @param req
+ * @param res
+ */
+exports.updateUserScore = function (req, res) {
+  var user = req.model;
+
+  user.score = user.score + parseInt(req.body.userScore, 10);
+  user.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(user);
+  });
+};
+
+/**
  * User middleware
  */
 exports.userByID = function (req, res, next, id) {
