@@ -390,6 +390,7 @@
       DOWNLOADED: '总下载量',
       RATIO: '总分享率',
       SCORE: '总积分',
+      SCORE_DETAIL: '积分详情',
       SEEDED: '正在做种',
       LEECHED: '正在下载',
       FINISHED: '下载完成',

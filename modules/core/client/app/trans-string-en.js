@@ -390,6 +390,7 @@
       DOWNLOADED: 'Total downloaded',
       RATIO: 'Total ratio',
       SCORE: 'Total score',
+      SCORE_DETAIL: 'Detail',
       SEEDED: 'Seeded',
       LEECHED: 'Leeched',
       FINISHED: 'Finished',
