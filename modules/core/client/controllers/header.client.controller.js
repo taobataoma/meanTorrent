@@ -15,6 +15,7 @@
     vm.accountMenu = menuService.getMenu('account').items[0];
     vm.messagesMenu = menuService.getMenu('mt').items[0];
     vm.statusMenu = menuService.getMenu('mt').items[1];
+    vm.scoreMenu = menuService.getMenu('mt').items[2];
     vm.authentication = Authentication;
     vm.isCollapsed = false;
     vm.menu = menuService.getMenu('topbar');

@@ -48,6 +48,9 @@
           <li ui-sref-active="active" ng-repeat="item in vm.statusMenu.items">
             <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a>
           </li>
+          <li ui-sref-active="active" ng-repeat="item in vm.scoreMenu.items">
+            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a>
+          </li>
           <li class="divider"></li>
           <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
             <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a>

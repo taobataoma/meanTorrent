@@ -40,6 +40,7 @@
     SIGNIN: 'Sign In',
     SIGNUP: 'Sign Up',
     MENU_MESSAGE_INBOX: 'Message Inbox',
+    MENU_SCORE_LEVEL: 'Score Level',
     MENU_ACCOUNT_STATUS: 'Account Status',
     EDIT_PROFILE: 'Edit Profile',
     EDIT_PROFILE_PIC: 'Edit Profile Picture',

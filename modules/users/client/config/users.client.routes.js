@@ -87,6 +87,15 @@
         url: '/downloading',
         templateUrl: '/modules/users/client/views/status/downloading.client.view.html'
       })
+      .state('score', {
+        abstract: true,
+        url: '/score',
+        templateUrl: '/modules/users/client/views/score/score.client.view.html'
+      })
+      .state('score.detail', {
+        url: '/detail',
+        templateUrl: '/modules/users/client/views/score/detail.client.view.html'
+      })
       .state('authentication', {
         abstract: true,
         url: '/authentication',

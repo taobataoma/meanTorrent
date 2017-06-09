@@ -40,6 +40,7 @@
     SIGNIN: '登录',
     SIGNUP: '注册',
     MENU_MESSAGE_INBOX: '消息收件箱',
+    MENU_SCORE_LEVEL: '积分等级',
     MENU_ACCOUNT_STATUS: '帐户状态',
     EDIT_PROFILE: '修改个人信息',
     EDIT_PROFILE_PIC: '修改个人头像',
