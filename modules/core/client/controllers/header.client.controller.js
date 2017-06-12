@@ -5,10 +5,12 @@
     .module('core')
     .controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService'];
+  HeaderController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
+  'ScoreLevelService'];
 
-  function HeaderController($scope, $state, $stateParams, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService) {
+  function HeaderController($scope, $state, $stateParams, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService) {
     var vm = this;
+    vm.user = Authentication.user;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
 
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
@@ -19,6 +21,7 @@
     vm.authentication = Authentication;
     vm.isCollapsed = false;
     vm.menu = menuService.getMenu('topbar');
+    vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
