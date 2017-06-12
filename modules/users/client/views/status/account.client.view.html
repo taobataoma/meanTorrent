@@ -34,7 +34,7 @@
 
                 <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
                 <dd class="h-line">
-                    <span class="text-score">{{ vm.user.score }}</span> <span score-level="{{vm.scoreLevelData.currLevel}}"></span> <a ui-sref="score.detail">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                    <span class="text-score">{{ vm.user.score }}</span> <span score-level="vm.scoreLevelData.currLevel"></span> <a ui-sref="score.detail">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
                 </dd>
 
                 <div class="margin-top-10">

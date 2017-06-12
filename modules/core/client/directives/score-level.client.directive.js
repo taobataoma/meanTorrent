@@ -7,6 +7,7 @@
   function scoreLevel() {
     var directive = {
       restrict: 'A',
+      replace: true,
       link: link
     };
 
@@ -14,7 +15,7 @@
 
     function link(scope, element, attrs) {
       scope.$watch(attrs.scoreLevel, function (level) {
-        var l = 'L' + attrs.scoreLevel;
+        var l = 'L' + level;
         l = '<kbd>' + l + '</kbd>';
 
         element.addClass('score-level');

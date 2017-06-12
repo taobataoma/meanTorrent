@@ -6,9 +6,10 @@
     .controller('UserController', UserController);
 
   UserController.$inject = ['$scope', '$state', '$window', 'Authentication', 'userResolve', 'Notification', 'NotifycationService', 'MeanTorrentConfig',
-    'AdminService'];
+    'AdminService', 'ScoreLevelService'];
 
-  function UserController($scope, $state, $window, Authentication, user, Notification, NotifycationService, MeanTorrentConfig, AdminService) {
+  function UserController($scope, $state, $window, Authentication, user, Notification, NotifycationService, MeanTorrentConfig, AdminService,
+                          ScoreLevelService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -18,6 +19,7 @@
     vm.remove = remove;
     vm.update = update;
     vm.isContextUserSelf = isContextUserSelf;
+    vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
 
     vm.setUserScorePopover = {
       title: 'SCORE_TITLE',
@@ -156,6 +158,9 @@
 
       function onSetScoreSuccess(response) {
         vm.user = response;
+        console.log(vm.scoreLevelData);
+        vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
+        console.log(vm.scoreLevelData);
 
         NotifycationService.showSuccessNotify('SET_SCORE_SUCCESSFULLY');
       }

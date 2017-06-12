@@ -49,7 +49,7 @@
             <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a>
           </li>
           <li ui-sref-active="active" ng-repeat="item in vm.scoreMenu.items" class="menu-score-parent">
-            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="menu-score" score-level="{{vm.scoreLevelData.currLevel}}"></span>
+            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="menu-score" score-level="vm.scoreLevelData.currLevel"></span>
           </li>
           <li class="divider"></li>
           <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
