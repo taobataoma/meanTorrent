@@ -161,15 +161,25 @@ body {
 }
 
 .score-level {
+    cursor: pointer;
     color: #FF6600;
     > kbd {
         background-color: #FF6600;
     }
 }
 
+.score-level-default {
+    cursor: pointer;
+    color: #333 !important;
+    > kbd {
+        color: #333 !important;
+        background-color: #eee !important;
+    }
+}
+
 .menu-score {
     position: absolute;
-    right: 5px;
+    right: 20px;
     top: 3px;
 }
 
@@ -923,6 +933,15 @@ body {
 
 .text-score {
     color: @mt-base-color;
+}
+
+.curr-score {
+    color: @mt-base-color;
+    font-size: 48px;
+}
+
+.score-progress {
+    margin-bottom: 2px;
 }
 
 .left-icon {

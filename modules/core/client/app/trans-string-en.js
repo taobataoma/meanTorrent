@@ -412,6 +412,11 @@
       REVIEWED: 'Reviewed'
     },
 
+    //user score
+    SCORE: {
+      CURRENT_SCORE: 'Current score:'
+    },
+
     //user message box
     MESSAGES_INBOX: 'Messages Inbox',
 

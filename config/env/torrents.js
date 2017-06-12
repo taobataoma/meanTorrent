@@ -23,6 +23,9 @@ module.exports = {
       score_exchange: 10000,
       expires: 60 * 60 * 1000 * 24
     },
+    score: {
+      level_step: 500
+    },
     torrentType: {
       name: 'TYPE',
       value: [

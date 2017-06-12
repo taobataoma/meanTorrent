@@ -412,6 +412,11 @@
       REVIEWED: '已审核'
     },
 
+    //user score
+    SCORE: {
+      CURRENT_SCORE: '当前积分:'
+    },
+
     //user message box
     MESSAGES_INBOX: '消息收件箱',
 

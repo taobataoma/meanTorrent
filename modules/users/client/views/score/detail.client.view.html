@@ -1,5 +1,26 @@
-<section>
+<section ng-controller="ScoreController as vm" ng-init="vm.init();">
     <div class="margin-top-40">
-        <h3>Score Detail</h3>
+        <div class="text-center">
+            <span>{{ 'SCORE.CURRENT_SCORE' | translate }}</span> <span class="curr-score">{{ vm.scoreLevelData.score }}</span> <span
+                score-level="vm.scoreLevelData.currLevel"></span>
+        </div>
+
+        <div class="row margin-top-30">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div>
+                    <span>{{ vm.scoreLevelData.currLevelValue }}</span>
+                    <span class="pull-right">{{ vm.scoreLevelData.nextLevelValue }}</span>
+                </div>
+                <div class="progress score-progress">
+                    <div class="progress-bar progress-bar-success" style="width: {{ vm.scoreLevelData.currPercentString }}">
+                        <span>{{ vm.scoreLevelData.currPercentString }}</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="score-level-default" score-level="vm.scoreLevelData.currLevel"></span>
+                    <span class="score-level-default pull-right" score-level="vm.scoreLevelData.nextLevel"></span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
