@@ -414,7 +414,9 @@
 
     //user score
     SCORE: {
-      CURRENT_SCORE: 'Current score:'
+      CURRENT_SCORE: 'Current score:',
+      HOW_TO_GET_LEVEL: 'How to count user level?',
+      HOW_TO_GET_SCORE: 'How to get score number?'
     },
 
     //user message box

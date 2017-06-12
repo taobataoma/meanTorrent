@@ -414,7 +414,9 @@
 
     //user score
     SCORE: {
-      CURRENT_SCORE: '当前积分:'
+      CURRENT_SCORE: '当前积分:',
+      HOW_TO_GET_LEVEL: '怎么计算用户级别？',
+      HOW_TO_GET_SCORE: '怎么取得用户积分？'
     },
 
     //user message box
