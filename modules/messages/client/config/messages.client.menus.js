@@ -8,44 +8,20 @@
   menuConfig.$inject = ['menuService'];
 
   function menuConfig(menuService) {
-    menuService.addMenu('mt', {
+    menuService.addMenu('mt-message', {
       roles: ['user']
     });
 
-    menuService.addMenuItem('mt', {
+    menuService.addMenuItem('mt-message', {
       title: '',
       state: 'messages',
       type: 'dropdown',
       roles: ['user']
     });
 
-    menuService.addMenuItem('mt', {
-      title: '',
-      state: 'status',
-      type: 'dropdown',
-      roles: ['user']
-    });
-
-    menuService.addMenuItem('mt', {
-      title: '',
-      state: 'score',
-      type: 'dropdown',
-      roles: ['user']
-    });
-
-    menuService.addSubMenuItem('mt', 'messages', {
+    menuService.addSubMenuItem('mt-message', 'messages', {
       title: 'MENU_MESSAGE_INBOX',
       state: 'messages.inbox'
-    });
-
-    menuService.addSubMenuItem('mt', 'status', {
-      title: 'MENU_ACCOUNT_STATUS',
-      state: 'status.account'
-    });
-
-    menuService.addSubMenuItem('mt', 'score', {
-      title: 'MENU_SCORE_LEVEL',
-      state: 'score.detail'
     });
   }
 }());
