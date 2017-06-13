@@ -41,6 +41,7 @@
     SIGNUP: 'Sign Up',
     MENU_MESSAGE_INBOX: 'Message Inbox',
     MENU_SCORE_LEVEL: 'Score Level',
+    MENU_MY_INVITE: 'My Invitations',
     MENU_ACCOUNT_STATUS: 'Account Status',
     EDIT_PROFILE: 'Edit Profile',
     EDIT_PROFILE_PIC: 'Edit Profile Picture',

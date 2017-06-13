@@ -27,8 +27,6 @@
      */
     vm.init = function () {
       vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
-
-      console.log(vm.scoreLevelData);
     };
   }
 }());
