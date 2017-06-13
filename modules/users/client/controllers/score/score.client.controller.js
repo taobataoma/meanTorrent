@@ -6,7 +6,7 @@
     .controller('ScoreController', ScoreController);
 
   ScoreController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$window', 'ScoreLevelService', 'getStorageLangService',
-  'MeanTorrentConfig'];
+    'MeanTorrentConfig'];
 
   function ScoreController($scope, $state, $translate, $timeout, Authentication, $window, ScoreLevelService, getStorageLangService, MeanTorrentConfig) {
     var vm = this;

@@ -21,7 +21,7 @@
     vm.authentication = Authentication;
     vm.isCollapsed = false;
     vm.menu = menuService.getMenu('topbar');
-    vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
+    vm.scoreLevelData = vm.user ? ScoreLevelService.getScoreLevelJson(vm.user.score) : undefined;
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
