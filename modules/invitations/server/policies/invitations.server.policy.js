@@ -9,7 +9,7 @@ var acl = require('acl');
 acl = new acl(new acl.memoryBackend());
 
 /**
- * Invoke Articles Permissions
+ * Invoke Invitations Permissions
  */
 exports.invokeRolesPolicies = function () {
   acl.allow(
@@ -17,7 +17,8 @@ exports.invokeRolesPolicies = function () {
       {
         roles: ['admin', 'oper', 'user'],
         allows: [
-          {resources: '/api/invitations', permissions: '*'}
+          {resources: '/api/invitations', permissions: '*'},
+          {resources: '/api/invitations/:invitationId', permissions: '*'}
         ]
       }
     ]
@@ -25,7 +26,7 @@ exports.invokeRolesPolicies = function () {
 };
 
 /**
- * Check If Articles Policy Allows
+ * Check If Invitations Policy Allows
  */
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];

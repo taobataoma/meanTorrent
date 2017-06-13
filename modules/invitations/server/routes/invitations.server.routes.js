@@ -10,4 +10,9 @@ module.exports = function (app) {
   app.route('/api/invitations').all(invitationsPolicy.isAllowed)
     .get(invitations.list)
     .post(invitations.create);
+
+  app.route('/api/invitations/:invitationId').all(invitationsPolicy.isAllowed)
+    .delete(invitations.delete);
+
+  app.param('invitationId', invitations.invitationByID);
 };

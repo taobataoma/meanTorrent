@@ -40,7 +40,8 @@ var InvitationSchema = new Schema({
     default: 0    //0 is unregistered invitation, 1 already invite friend, 2 is already registered
   },
   token: {
-    type: String
+    type: String,
+    default: ''
   },
   expiresat: {
     type: Date

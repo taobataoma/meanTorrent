@@ -48,3 +48,46 @@ exports.list = function (req, res) {
   });
 };
 
+
+/**
+ * Delete an invitation
+ */
+exports.delete = function (req, res) {
+  var invitation = req.invitation;
+
+  invitation.remove(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(invitation);
+    }
+  });
+};
+
+
+/**
+ * Invitation middleware
+ */
+exports.invitationByID = function (req, res, next, id) {
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Invitation is invalid'
+    });
+  }
+
+  Invitation.findById(id).populate('user', 'displayName').exec(function (err, invitation) {
+    if (err) {
+      return next(err);
+    } else if (!invitation) {
+      return res.status(404).send({
+        message: 'No invitation with that identifier has been found'
+      });
+    }
+    req.invitation = invitation;
+    next();
+  });
+};
+
