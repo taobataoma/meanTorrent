@@ -8,13 +8,6 @@ var mongoose = require('mongoose'),
   validator = require('validator');
 
 /**
- * A Validation function for local strategy email
- */
-var validateLocalStrategyEmail = function (email) {
-  return validator.isEmail(email, {require_tld: false});
-};
-
-/**
  * Peer Schema
  */
 var InvitationSchema = new Schema({
@@ -28,12 +21,11 @@ var InvitationSchema = new Schema({
   },
   to_email: {
     type: String,
-    unique: 'email already exists',
-    required: 'Please fill in a email address',
+    //unique: 'email already exists',
+    //required: 'Please fill in a email address',
     lowercase: true,
     trim: true,
-    default: '',
-    validate: [validateLocalStrategyEmail, 'Please fill a valid email address']
+    default: ''
   },
   status: {
     type: Number,

@@ -419,6 +419,13 @@
       HOW_TO_GET_LEVEL: '怎么计算用户级别？',
       HOW_TO_GET_SCORE: '怎么取得用户积分？'
     },
+    EXCHANGE_INVITATION: '兑换一个邀请 ({{score}} 积分)',
+    EXCHANGE_INVITATION_CONFIRM_OK: '兑换',
+    EXCHANGE_INVITATION_CONFIRM_CANCEL: '取消',
+    EXCHANGE_INVITATION_CONFIRM_HEADER_TEXT: '兑换确认',
+    EXCHANGE_INVITATION_CONFIRM_BODY_TEXT: '您确定要花 {{score}} 积分来兑换一个限时邀请么?',
+    EXCHANGE_INVITATION_SUCCESSFULLY: '限时邀请兑换成功',
+    EXCHANGE_INVITATION_ERROR: '限时邀请兑换失败',
 
     //user message box
     MESSAGES_INBOX: '消息收件箱',

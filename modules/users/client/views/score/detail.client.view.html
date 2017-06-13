@@ -23,6 +23,15 @@
             </div>
         </div>
 
+        <div class="row margin-top-30">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <button class="btn btn-default" ng-disabled="vm.user.score < vm.inviteConfig.score_exchange"
+                        translate="EXCHANGE_INVITATION" translate-values='{ score: vm.inviteConfig.score_exchange}'
+                        ng-click="vm.exchangeInvitation();">
+                </button>
+            </div>
+        </div>
+
         <div class="row margin-top-30 padding-top-30">
             <div class="col-sm-8 col-sm-offset-2">
                 <legend class="small-legend" translate="SCORE.HOW_TO_GET_LEVEL"></legend>

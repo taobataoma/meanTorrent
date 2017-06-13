@@ -27,7 +27,21 @@ exports.create = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(invitation);
+      //res.json(invitation);
+      var user = req.user;
+      user.update({
+        $set: {score: user.score - config.meanTorrentConfig.invite.score_exchange}
+      }).exec(function (err, result) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          user.score = user.score - config.meanTorrentConfig.invite.score_exchange;
+          res.json(user);
+        }
+      });
+
     }
   });
 };

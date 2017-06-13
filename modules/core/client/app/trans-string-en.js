@@ -419,6 +419,13 @@
       HOW_TO_GET_LEVEL: 'How to count user level?',
       HOW_TO_GET_SCORE: 'How to get score number?'
     },
+    EXCHANGE_INVITATION: 'Exchange an invitation ({{score}} scores)',
+    EXCHANGE_INVITATION_CONFIRM_OK: 'Exchange',
+    EXCHANGE_INVITATION_CONFIRM_CANCEL: 'Cancel',
+    EXCHANGE_INVITATION_CONFIRM_HEADER_TEXT: 'Exchange Confirm',
+    EXCHANGE_INVITATION_CONFIRM_BODY_TEXT: 'Are you sure want to exchange an invitation with {{score}} scores?',
+    EXCHANGE_INVITATION_SUCCESSFULLY: 'Exchange invitation successfully',
+    EXCHANGE_INVITATION_ERROR: 'Exchange invitation failed',
 
     //user message box
     MESSAGES_INBOX: 'Messages Inbox',
