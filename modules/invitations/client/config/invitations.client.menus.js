@@ -21,7 +21,7 @@
 
     menuService.addSubMenuItem('mt-invite', 'invite', {
       title: 'MENU_MY_INVITE',
-      state: 'invitations.list'
+      state: 'invitations.detail'
     });
   }
 }());

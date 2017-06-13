@@ -8,7 +8,7 @@
   InvitationsService.$inject = ['$resource'];
 
   function InvitationsService($resource) {
-    return $resource('/api/invitations', {
+    return $resource('/api/invitations/:invitationId', {
       userId: '@_id'
     }, {
       update: {
