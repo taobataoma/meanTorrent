@@ -427,7 +427,21 @@
     EXCHANGE_INVITATION_SUCCESSFULLY: 'Exchange invitation successfully',
     EXCHANGE_INVITATION_ERROR: 'Exchange invitation failed',
     INVITE_CLOSED: 'The invitation function is closed and you cannot exchange an invitations ...',
+    INVITE_INFO: 'The invitation function is closed and only admin/oper can use it ...',
     NOTE_CAPTION: 'Note!',
+    NOTE_TIP: 'Tip:',
+
+    //invitation
+    INVITATION: {
+      MY_INVITATION: 'My invitations',
+      INVITE_NOTE: 'Please attention to the expiration time of the time limit invitation.',
+      TITLE_CREATEDAT: 'CreatedAt',
+      TITLE_EXPIRESAT: 'ExpiresAt',
+      TITLE_OPERATION: 'Operation',
+      TITLE_TOKEN: 'Token',
+      TITLE_SEND: 'Send an invitation'
+    },
+    GET_INVITATIONS_ERROR: 'Get invitations failed',
 
     //user message box
     MESSAGES_INBOX: 'Messages Inbox',

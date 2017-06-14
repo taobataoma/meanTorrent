@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('core')
+    .module('invitations')
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService'];

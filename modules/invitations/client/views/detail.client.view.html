@@ -1,5 +1,50 @@
-<section class="container">
-    <div class="margin-top-50">
-        <h2>invitations detail</h2>
+<section class="container" ng-controller="InviteController as vm" ng-init="vm.getMyInvitations();">
+    <div class="margin-top-30">
+        <div class="row" ng-hide="vm.inviteConfig.open_invite">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <div class="alert alert-warning" role="alert">
+                    <strong>{{ 'NOTE_CAPTION' | translate }}</strong> {{ 'INVITE_INFO' | translate }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-hide="vm.my_invitations.length<=0">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">{{ 'INVITATION.MY_INVITATION' | translate }} (<strong
+                            class="color-mt-base">{{vm.my_invitations.length}}</strong>)
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-danger"><strong>{{ 'NOTE_TIP' | translate }}</strong> {{ 'INVITATION.INVITE_NOTE' | translate }}</p>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-valign-middle">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th class="text-center">{{'INVITATION.TITLE_TOKEN' | translate}}</th>
+                                    <th class="text-center">{{'INVITATION.TITLE_CREATEDAT' | translate}}</th>
+                                    <th class="text-center">{{'INVITATION.TITLE_EXPIRESAT' | translate}}</th>
+                                    <th class="text-center">{{'INVITATION.TITLE_OPERATION' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="r in vm.my_invitations">
+                                    <th scope="row">{{$index+1}}</th>
+                                    <td class="text-center">{{r.token}}</td>
+                                    <td class="text-center">{{r.createdat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                    <td class="text-center">{{r.expiresat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                    <td class="text-center">
+                                        <a href="#">{{'INVITATION.TITLE_SEND' | translate}}</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

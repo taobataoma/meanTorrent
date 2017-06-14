@@ -427,7 +427,21 @@
     EXCHANGE_INVITATION_SUCCESSFULLY: '限时邀请兑换成功',
     EXCHANGE_INVITATION_ERROR: '限时邀请兑换失败',
     INVITE_CLOSED: '邀请功能已关闭, 现在不能使用积分兑换邀请 ...',
+    INVITE_INFO: '邀请功能已关闭, 现在只有系统管理员可发送邀请 ...',
     NOTE_CAPTION: '请注意!',
+    NOTE_TIP: '提示:',
+
+    //invitation
+    INVITATION: {
+      MY_INVITATION: '我的邀请',
+      INVITE_NOTE: '请注意限时邀请的过期时间.',
+      TITLE_CREATEDAT: '创建时间',
+      TITLE_EXPIRESAT: '过期时间',
+      TITLE_OPERATION: '操作',
+      TITLE_TOKEN: '哈希码',
+      TITLE_SEND: '发送邀请'
+    },
+    GET_INVITATIONS_ERROR: '获取邀请列表失败',
 
     //user message box
     MESSAGES_INBOX: '消息收件箱',

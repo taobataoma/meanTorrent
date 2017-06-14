@@ -20,6 +20,7 @@ exports.create = function (req, res) {
   var invitation = new Invitation();
   invitation.expiresat = Date.now() + config.meanTorrentConfig.invite.expires;
   invitation.user = req.user;
+  invitation.token = req.user.randomAsciiString(32);
 
   invitation.save(function (err) {
     if (err) {
@@ -51,13 +52,49 @@ exports.create = function (req, res) {
  * List of Invitations
  */
 exports.list = function (req, res) {
-  Invitation.find().sort('-created').populate('user', 'displayName').exec(function (err, invitations) {
-    if (err) {
-      return res.status(422).send({
-        message: errorHandler.getErrorMessage(err)
+  var findMyInvitations = function (callback) {
+    Invitation.find({
+      user: req.user._id,
+      status: 0,
+      expiresat: {$gt: Date.now()}
+    })
+      .sort('createdat')
+      .populate('user')
+      .exec(function (err, invitations) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, invitations);
+        }
       });
+  };
+
+  var findUsedInvitations = function (callback) {
+    Invitation.find({
+      where: {
+        user: req.user._id,
+        status: 2
+      }
+    })
+      .sort('registeredat')
+      .populate('user')
+      .exec(function (err, invitations) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, invitations);
+        }
+      });
+  };
+
+  async.parallel([findMyInvitations, findUsedInvitations], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
     } else {
-      res.json(invitations);
+      res.json({
+        my_invitations: results[0],
+        used_invitations: results[1]
+      });
     }
   });
 };

@@ -5,10 +5,10 @@
     .module('invitations')
     .controller('InviteController', InviteController);
 
-  InviteController.$inject = ['$rootScope', '$scope', '$state', '$translate', '$timeout', 'Authentication', '$window', 'MeanTorrentConfig',
-    'NotifycationService', 'InvitationsService'];
+  InviteController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$window', 'MeanTorrentConfig', 'NotifycationService',
+    'InvitationsService'];
 
-  function InviteController($rootScope, $scope, $state, $translate, $timeout, Authentication, $window, MeanTorrentConfig, NotifycationService,
+  function InviteController($scope, $state, $translate, $timeout, Authentication, $window, MeanTorrentConfig, NotifycationService,
                             InvitationsService) {
     var vm = this;
     vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
@@ -22,9 +22,15 @@
     }
 
     /**
-     * init
+     * getMyInvitations
      */
-    vm.init = function () {
+    vm.getMyInvitations = function () {
+      InvitationsService.get({}, function (items) {
+        vm.my_invitations = items.my_invitations;
+        vm.used_invitations = items.used_invitations;
+      }, function (res) {
+        NotifycationService.showErrorNotify('GET_INVITATIONS_ERROR');
+      });
     };
   }
 }());
