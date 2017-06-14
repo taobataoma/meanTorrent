@@ -23,7 +23,7 @@
       $state.go('authentication.signin');
     }
 
-    $scope.$on('auth-user-score-changed', function(event, args) {
+    $scope.$on('auth-user-changed', function(event, args) {
       vm.user = Authentication.user;
       vm.scoreLevelData = vm.user ? ScoreLevelService.getScoreLevelJson(vm.user.score) : undefined;
     });
@@ -59,7 +59,7 @@
           function successCallback(res) {
             if (res._id === vm.user._id) {
               vm.user = Authentication.user = res;
-              $rootScope.$broadcast('auth-user-score-changed');
+              $rootScope.$broadcast('auth-user-changed');
             }
             NotifycationService.showSuccessNotify('EXCHANGE_INVITATION_SUCCESSFULLY');
           }

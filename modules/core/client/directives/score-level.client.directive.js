@@ -15,7 +15,7 @@
 
     function link(scope, element, attrs) {
       scope.$watch(attrs.scoreLevel, function (level) {
-        console.log('level changed to ' + level);
+        //console.log('level changed to ' + level);
 
         var l = 'L' + (level ? level : 0);
         l = '<kbd>' + l + '</kbd>';

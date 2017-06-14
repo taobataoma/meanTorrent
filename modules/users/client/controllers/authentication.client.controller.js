@@ -6,10 +6,10 @@
     .controller('AuthenticationController', AuthenticationController);
 
   AuthenticationController.$inject = ['$scope', '$state', 'UsersService', '$location', '$window', 'Authentication', 'PasswordValidator', 'Notification',
-    'MeanTorrentConfig', 'getStorageLangService'];
+    'MeanTorrentConfig', 'getStorageLangService', '$rootScope'];
 
   function AuthenticationController($scope, $state, UsersService, $location, $window, Authentication, PasswordValidator, Notification, MeanTorrentConfig,
-                                    getStorageLangService) {
+                                    getStorageLangService, $rootScope) {
     var vm = this;
 
     vm.lang = getStorageLangService.getLang();
@@ -89,6 +89,7 @@
     function onUserSignupSuccess(response) {
       // If successful we assign the response to the global user model
       vm.authentication.user = response;
+      $rootScope.$broadcast('auth-user-changed');
       Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Signup successful!'});
       // And redirect to the previous or home page
       $state.go($state.previous.state.name || 'home', $state.previous.params);
@@ -109,6 +110,7 @@
     function onUserSigninSuccess(response) {
       // If successful we assign the response to the global user model
       vm.authentication.user = response;
+      $rootScope.$broadcast('auth-user-changed');
       Notification.info({message: 'Welcome ' + response.firstName});
       // And redirect to the previous or home page
       $state.go($state.previous.state.name || 'home', $state.previous.params);

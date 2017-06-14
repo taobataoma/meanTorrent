@@ -26,7 +26,7 @@
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
-    $scope.$on('auth-user-score-changed', function(event, args) {
+    $scope.$on('auth-user-changed', function(event, args) {
       vm.user = Authentication.user;
       vm.scoreLevelData = vm.user ? ScoreLevelService.getScoreLevelJson(vm.user.score) : undefined;
     });
