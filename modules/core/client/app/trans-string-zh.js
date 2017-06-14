@@ -426,6 +426,8 @@
     EXCHANGE_INVITATION_CONFIRM_BODY_TEXT: '您确定要花 {{score}} 积分来兑换一个限时邀请么?',
     EXCHANGE_INVITATION_SUCCESSFULLY: '限时邀请兑换成功',
     EXCHANGE_INVITATION_ERROR: '限时邀请兑换失败',
+    INVITE_CLOSED: '邀请功能已关闭, 现在不能使用积分兑换邀请 ...',
+    NOTE_CAPTION: '请注意!',
 
     //user message box
     MESSAGES_INBOX: '消息收件箱',

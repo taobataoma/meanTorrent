@@ -426,6 +426,8 @@
     EXCHANGE_INVITATION_CONFIRM_BODY_TEXT: 'Are you sure want to exchange an invitation with {{score}} scores?',
     EXCHANGE_INVITATION_SUCCESSFULLY: 'Exchange invitation successfully',
     EXCHANGE_INVITATION_ERROR: 'Exchange invitation failed',
+    INVITE_CLOSED: 'The invitation function is closed and you cannot exchange an invitations ...',
+    NOTE_CAPTION: 'Note!',
 
     //user message box
     MESSAGES_INBOX: 'Messages Inbox',
