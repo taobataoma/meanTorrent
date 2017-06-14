@@ -36,7 +36,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
    and input the movie ID origin [TMDB](https://www.themoviedb.org), the movie detaill info will be autoload.
 3. One torrent can boundle many attrs tag, It's the key to search filtering.
 4. Torrent comment with full [markdown](https://guides.github.com/features/mastering-markdown/) style support.
-5. Oper/Admin can manager users(edit/delete etc).
+5. Oper/Admin can manager users(edit/delete etc), forbidden user(banned).
 6. OPer/Admin can manager torrents, can reviewed new torrents, set torrent sale type, set torrent recommend level, and delete torrent.
 7. Global sale set support, It provides convenience for site preferential sales setting.
 8. Client Black List support, user can not use the client list inside clientBlackList connect to the tracker server.
@@ -44,6 +44,9 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 10. The first sign up user auto be `admin` role.
 11. User signed ip / leeched ip all in db, admin can forbid user if user`s ip too many.
 12. Detailed user stats info, include account status, uploaded torrents list, seeding list, downloading list.
+13. Complete user score system, user can use score exchange an invitation to invite friend register join.
+14. Invitations manager, user can keep track of invited friends registration progress.
+15. Admin/Oper can manual management the user`s uploaded/downloaded/score data.
 
 #### Chat room feature:
 1. Users name list
@@ -57,14 +60,9 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 - Other type torrent support(like TV serial, Music, Other).
 - Change torrents list orderBy when clicked on table header.
 - torrent more images from [TMDB](https://www.themoviedb.org)
-- New login UI.
-- New signup UI(maybe forbidden register, only invite register support).
-- New admin manager(user) UI.
 - Forums function support.
 - Users messagebox support.
-- Users score system support.
 - Subject support, like region subject, [IMDB](http://www.imdb.com) TOP 100 subject etc.
-- Oper/Admin forbidden user(banned) can not connect to tracker server.
 - VIP Donate function.
 - Movie belongs to collection, user can list all movie torrents of the collection.
 - Cast belongs to collection, user can list all movie torrents of the cast.
@@ -215,6 +213,14 @@ The class is used origin [flag-icon-css](https://github.com/lipis/flag-icon-css)
 ```
 This is a client Black List, all the list client can not connect to the tracker server, you can add more if you unlike some client to connect.
 And you can make a list page to tell users witch clients are unpopular.
+
+```javascript
+    sign: {
+      open_signin: true,
+      allow_social_sign: true
+    },
+```
+If your site do not accept user free register, please set `open_signin` to `false`, then user only can register through friend invitation or system(admin/oper) invitation.
 
 There is not much comment of `config/env/torrent.js`, because the development time is limited, I'll add more comment in my free time, If you has any question, please post an [issue](https://github.com/taobataoma/meanTorrent/issues), and i will focus it.
 
