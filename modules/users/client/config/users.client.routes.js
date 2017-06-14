@@ -73,19 +73,31 @@
       })
       .state('status.account', {
         url: '/account',
-        templateUrl: '/modules/users/client/views/status/account.client.view.html'
+        templateUrl: '/modules/users/client/views/status/account.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.STATUS_ACCOUNT'
+        }
       })
       .state('status.uploaded', {
         url: '/uploaded',
-        templateUrl: '/modules/users/client/views/status/uploaded.client.view.html'
+        templateUrl: '/modules/users/client/views/status/uploaded.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.STATUS_UPLOADED'
+        }
       })
       .state('status.seeding', {
         url: '/seeding',
-        templateUrl: '/modules/users/client/views/status/seeding.client.view.html'
+        templateUrl: '/modules/users/client/views/status/seeding.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.STATUS_SEEDING'
+        }
       })
       .state('status.downloading', {
         url: '/downloading',
-        templateUrl: '/modules/users/client/views/status/downloading.client.view.html'
+        templateUrl: '/modules/users/client/views/status/downloading.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.STATUS_DOWNLOADING'
+        }
       })
       .state('score', {
         abstract: true,
@@ -94,7 +106,10 @@
       })
       .state('score.detail', {
         url: '/detail',
-        templateUrl: '/modules/users/client/views/score/detail.client.view.html'
+        templateUrl: '/modules/users/client/views/score/detail.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.SCORE_DETAIL'
+        }
       })
       .state('authentication', {
         abstract: true,

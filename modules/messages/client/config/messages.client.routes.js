@@ -18,7 +18,10 @@
       })
       .state('messages.inbox', {
         url: '/inbox',
-        templateUrl: '/modules/messages/client/views/inbox.client.view.html'
+        templateUrl: '/modules/messages/client/views/inbox.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.MESSAGES_LIST'
+        }
       });
   }
 }());

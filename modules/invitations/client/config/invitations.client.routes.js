@@ -18,7 +18,10 @@
       })
       .state('invitations.detail', {
         url: '/detail',
-        templateUrl: '/modules/invitations/client/views/detail.client.view.html'
+        templateUrl: '/modules/invitations/client/views/detail.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.INVITATIONS'
+        }
       });
   }
 }());

@@ -114,7 +114,14 @@
       ADMIN_USER_EDIT: '编辑用户',
       ADMIN_TORRENTS_LIST: '种子管理',
       PASSWORD_FORGOT: '找回密码',
-      PASSWORD_RESET: '重设密码'
+      PASSWORD_RESET: '重设密码',
+      MESSAGES_LIST: '站内消息',
+      STATUS_ACCOUNT: '帐户状态',
+      STATUS_UPLOADED: '我的种子',
+      STATUS_SEEDING: '正在做种',
+      STATUS_DOWNLOADING: '正在下载',
+      SCORE_DETAIL: '积分详情',
+      INVITATIONS: '我的邀请'
     },
 
     //sign in, sign up, password

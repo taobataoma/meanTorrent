@@ -114,7 +114,14 @@
       ADMIN_USER_EDIT: 'Edit User',
       ADMIN_TORRENTS_LIST: 'Torrents LIst',
       PASSWORD_FORGOT: 'Password forgot',
-      PASSWORD_RESET: 'Password reset'
+      PASSWORD_RESET: 'Password reset',
+      MESSAGES_LIST: 'messages',
+      STATUS_ACCOUNT: 'Account Status',
+      STATUS_UPLOADED: 'Uploaded',
+      STATUS_SEEDING: 'Seeding',
+      STATUS_DOWNLOADING: 'Downloading',
+      SCORE_DETAIL: 'Score detail',
+      INVITATIONS: 'Invitations'
     },
 
     //sign in, sign up, password
