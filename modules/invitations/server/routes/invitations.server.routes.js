@@ -12,6 +12,7 @@ module.exports = function (app) {
     .post(invitations.create);
 
   app.route('/api/invitations/:invitationId').all(invitationsPolicy.isAllowed)
+    .put(invitations.update)
     .delete(invitations.delete);
 
   app.param('invitationId', invitations.invitationByID);

@@ -450,12 +450,17 @@
       TITLE_SIGNINAT: 'SigninAt',
       TITLE_OPERATION: 'Operation',
       TITLE_TOKEN: 'Token',
+      TITLE_EMAIL: 'Email',
       TITLE_SEND: 'Send an invitation',
       TITLE_STATUS: 'Status',
       TITLE_STATUS_REGED: 'Signed',
       TITLE_STATUS_UNREGED: 'Unsigned'
     },
     GET_INVITATIONS_ERROR: 'Get invitations failed',
+    BUTTON_INVITE: 'Send',
+    INPUT_EMAIL: 'email',
+    SEND_INVITE_SUCCESSFULLY: 'Send invitation successfully',
+    SEND_INVITE_ERROR: 'Send invitation failed',
 
     //user message box
     MESSAGES_INBOX: 'Messages Inbox',

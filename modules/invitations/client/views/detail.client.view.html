@@ -25,7 +25,7 @@
                         <table class="table table-hover table-valign-middle">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th></th>
                                     <th class="text-center">{{'INVITATION.TITLE_TOKEN' | translate}}</th>
                                     <th class="text-center">{{'INVITATION.TITLE_CREATEDAT' | translate}}</th>
                                     <th class="text-center">{{'INVITATION.TITLE_EXPIRESAT' | translate}}</th>
@@ -39,7 +39,16 @@
                                     <td class="text-center">{{r.createdat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                     <td class="text-center">{{r.expiresat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                     <td class="text-center">
-                                        <a href="#">{{'INVITATION.TITLE_SEND' | translate}}</a>
+                                        <button class="btn btn-default btn-xs" js-popover
+                                                uib-popover-template="vm.invitePopover.templateUrl"
+                                                popover-title="{{vm.invitePopover.title | translate}}"
+                                                popover-trigger="'outsideClick'"
+                                                popover-placement="top-right"
+                                                popover-is-open="vm.invitePopover.items[$index].isOpen"
+                                                popover-class="invite-popover"
+                                                ng-click="vm.sendClicked($index);">
+                                            {{'INVITATION.TITLE_SEND' | translate}}
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -66,8 +75,9 @@
                         <table class="table table-hover table-valign-middle">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th></th>
                                     <th class="text-center">{{'INVITATION.TITLE_TOKEN' | translate}}</th>
+                                    <th class="text-center">{{'INVITATION.TITLE_EMAIL' | translate}}</th>
                                     <th class="text-center">{{'INVITATION.TITLE_INVITEDAT' | translate}}</th>
                                     <th class="text-center">{{'INVITATION.TITLE_SIGNINAT' | translate}}</th>
                                     <th class="text-center">{{'INVITATION.TITLE_STATUS' | translate}}</th>
@@ -77,6 +87,7 @@
                                 <tr ng-repeat="r in vm.used_invitations">
                                     <th scope="row">{{$index+1}}</th>
                                     <td class="text-center">{{r.token}}</td>
+                                    <td class="text-center">{{r.to_email}}</td>
                                     <td class="text-center">{{r.invitedat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                     <td class="text-center">{{r.registeredat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                     <td class="text-center" ng-class="r.status == 2 ? 'text-success' : 'text-danger'">
@@ -90,4 +101,14 @@
             </div>
         </div>
     </div>
+
+
+    <script type="text/ng-template" id="invite.html">
+        <form class="form-inline invite-popover-form text-center">
+            <div class="form-group">
+                <input type="email" ng-disabled="vm.invitePopover.sending" ng-model="vm.invitePopover.email" class="form-control" placeholder="{{ 'INPUT_EMAIL' | translate }}" autofocus>
+            </div>
+            <button class="btn btn-default" ng-disabled="vm.invitePopover.sending" ng-click="vm.invite(vm.invitePopover.selected);">{{ 'BUTTON_INVITE' | translate }}</button>
+        </form>
+    </script>
 </section>

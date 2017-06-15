@@ -450,12 +450,17 @@
       TITLE_SIGNINAT: '注册时间',
       TITLE_OPERATION: '操作',
       TITLE_TOKEN: '哈希码',
+      TITLE_EMAIL: '邮箱',
       TITLE_SEND: '发送邀请',
       TITLE_STATUS: '状态',
       TITLE_STATUS_REGED: '已注册',
       TITLE_STATUS_UNREGED: '未注册'
     },
     GET_INVITATIONS_ERROR: '获取邀请列表失败',
+    BUTTON_INVITE: '发送',
+    INPUT_EMAIL: '邮箱地址',
+    SEND_INVITE_SUCCESSFULLY: '发送邀请成功',
+    SEND_INVITE_ERROR: '发送邀请失败',
 
     //user message box
     MESSAGES_INBOX: '消息收件箱',

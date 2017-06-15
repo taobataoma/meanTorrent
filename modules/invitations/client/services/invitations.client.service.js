@@ -9,7 +9,7 @@
 
   function InvitationsService($resource) {
     return $resource('/api/invitations/:invitationId', {
-      userId: '@_id'
+      invitationId: '@_id'
     }, {
       update: {
         method: 'PUT'
