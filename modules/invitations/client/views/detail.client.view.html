@@ -91,7 +91,16 @@
                                     <td class="text-center">{{r.to_email}}</td>
                                     <td class="text-center">{{r.invitedat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                     <td class="text-center">{{r.registeredat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                                    <td class="text-center">{{r.to_user.username}}</td>
+                                    <td class="text-center" ng-if="r.to_user"
+                                        uib-popover-template="vm.subuserPopover.templateUrl"
+                                        popover-append-to-body="true"
+                                        popover-trigger="'mouseenter'"
+                                        popover-placement="top-right"
+                                        ng-mouseenter="vm.selectedUser=r.to_user">
+                                        <abbr title="user detail">{{r.to_user.username}}</abbr>
+                                    </td>
+                                    <td class="text-center" ng-if="!r.to_user">
+                                    </td>
                                     <td class="text-center" ng-class="r.status == 2 ? 'text-success' : 'text-danger'">
                                         {{ r.status == 2 ? ('INVITATION.TITLE_STATUS_REGED' | translate) : ('INVITATION.TITLE_STATUS_UNREGED' | translate) }}
                                     </td>
@@ -104,13 +113,31 @@
         </div>
     </div>
 
-
     <script type="text/ng-template" id="invite.html">
         <form class="form-inline invite-popover-form text-center">
             <div class="form-group">
-                <input type="email" ng-disabled="vm.invitePopover.sending" ng-model="vm.invitePopover.email" class="form-control" placeholder="{{ 'INPUT_EMAIL' | translate }}" autofocus>
+                <input type="email" ng-disabled="vm.invitePopover.sending" ng-model="vm.invitePopover.email" class="form-control"
+                       placeholder="{{ 'INPUT_EMAIL' | translate }}" autofocus>
             </div>
-            <button class="btn btn-default" ng-disabled="vm.invitePopover.sending" ng-click="vm.invite(vm.invitePopover.selected);">{{ 'BUTTON_INVITE' | translate }}</button>
+            <button class="btn btn-default" ng-disabled="vm.invitePopover.sending"
+                    ng-click="vm.invite(vm.invitePopover.selected);">{{ 'BUTTON_INVITE' | translate }}
+            </button>
         </form>
+    </script>
+
+    <script type="text/ng-template" id="userinfo.html">
+        <div>
+            <ul class="list-unstyled margin-left-10 margin-right-10">
+                <li>{{ 'STATUS_FIELD.UPLOADED' | translate}}：<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{ vm.selectedUser.uploaded | bytes:2 }}</li>
+                <li>{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：<span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{ vm.selectedUser.downloaded | bytes:2 }}</li>
+                <li>{{ 'STATUS_FIELD.RATIO' | translate}}：<span ng-class="vm.selectedUser.ratio > 1 ? 'ratio-normal' : 'ratio-warning' ">{{ vm.selectedUser.ratio }}</span></li>
+
+                <li class="status-divider"></li>
+
+                <li>{{ 'STATUS_FIELD.SEEDED' | translate}}：{{ vm.selectedUser.seeded }}</li>
+                <li>{{ 'STATUS_FIELD.LEECHED' | translate}}：{{ vm.selectedUser.leeched }}</li>
+                <li>{{ 'STATUS_FIELD.FINISHED' | translate}}：{{ vm.selectedUser.finished }}</li>
+            </ul>
+        </div>
     </script>
 </section>

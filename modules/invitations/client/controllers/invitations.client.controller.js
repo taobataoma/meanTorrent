@@ -21,6 +21,10 @@
       sending: false
     };
 
+    vm.subuserPopover = {
+      templateUrl: 'userinfo.html'
+    };
+
     /**
      * If user is not signed in then redirect back home
      */
