@@ -22,7 +22,7 @@
         $timeout(function () {
           var el = element[0];
           el.focus();
-          if (attrs.type !== 'number') {
+          if (attrs.type !== 'number' && attrs.type !== 'email') {
             el.selectionStart = el.selectionEnd = el.value.length;
           }
         }, 100);
