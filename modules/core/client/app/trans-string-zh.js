@@ -449,6 +449,7 @@
       TITLE_EXPIRESAT: '过期时间',
       TITLE_INVITEDAT: '发邀时间',
       TITLE_SIGNINAT: '注册时间',
+      TITLE_SIGNINID: '注册ID',
       TITLE_OPERATION: '操作',
       TITLE_TOKEN: '哈希码',
       TITLE_EMAIL: '邮箱',

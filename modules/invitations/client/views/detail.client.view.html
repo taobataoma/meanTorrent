@@ -80,6 +80,7 @@
                                     <th class="text-center">{{'INVITATION.TITLE_EMAIL' | translate}}</th>
                                     <th class="text-center">{{'INVITATION.TITLE_INVITEDAT' | translate}}</th>
                                     <th class="text-center">{{'INVITATION.TITLE_SIGNINAT' | translate}}</th>
+                                    <th class="text-center">{{'INVITATION.TITLE_SIGNINID' | translate}}</th>
                                     <th class="text-center">{{'INVITATION.TITLE_STATUS' | translate}}</th>
                                 </tr>
                             </thead>
@@ -90,6 +91,7 @@
                                     <td class="text-center">{{r.to_email}}</td>
                                     <td class="text-center">{{r.invitedat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                     <td class="text-center">{{r.registeredat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                    <td class="text-center">{{r.to_user.username}}</td>
                                     <td class="text-center" ng-class="r.status == 2 ? 'text-success' : 'text-danger'">
                                         {{ r.status == 2 ? ('INVITATION.TITLE_STATUS_REGED' | translate) : ('INVITATION.TITLE_STATUS_UNREGED' | translate) }}
                                     </td>

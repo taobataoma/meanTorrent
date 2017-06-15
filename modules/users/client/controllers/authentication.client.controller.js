@@ -48,6 +48,7 @@
         });
       }
     };
+
     /**
      * signup
      * @param isValid
@@ -59,6 +60,10 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.userForm');
 
         return false;
+      }
+
+      if ($stateParams.token) {
+        vm.credentials.inviteToken = $stateParams.token;
       }
 
       UsersService.userSignup(vm.credentials)

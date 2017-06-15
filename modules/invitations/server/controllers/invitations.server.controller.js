@@ -79,6 +79,7 @@ exports.list = function (req, res) {
     })
       .sort('invitedat')
       .populate('user')
+      .populate('to_user')
       .exec(function (err, invitations) {
         if (err) {
           callback(err, null);

@@ -7,7 +7,8 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   mongoose = require('mongoose'),
   passport = require('passport'),
-  User = mongoose.model('User');
+  User = mongoose.model('User'),
+  Invitation = mongoose.model('Invitation');
 
 // URLs for which user can't be redirected on signin
 var noReturnUrls = [
@@ -35,6 +36,9 @@ exports.signup = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      //if is invited, update invite data
+      Invitation.update({token: req.body.inviteToken}, {$set: {status: 2, to_user: user._id, registeredat: Date.now()}}, function (err) {
+      });
       // Remove sensitive data before login
       user.password = undefined;
       user.salt = undefined;

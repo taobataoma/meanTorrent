@@ -125,6 +125,7 @@ exports.validateResetToken = function (req, res) {
 exports.invite = function (req, res, next) {
   Invitation.findOne({
     token: req.params.token,
+    status: 1,
     expiresat: {
       $gt: Date.now()
     }
