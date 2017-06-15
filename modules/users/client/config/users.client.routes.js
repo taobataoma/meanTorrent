@@ -119,7 +119,7 @@
         controllerAs: 'vm'
       })
       .state('authentication.signup', {
-        url: '/signup',
+        url: '/signup?token',
         templateUrl: '/modules/users/client/views/authentication/signup.client.view.html',
         controller: 'AuthenticationController',
         controllerAs: 'vm',
@@ -134,6 +134,18 @@
         controllerAs: 'vm',
         data: {
           pageTitle: 'SIGNIN'
+        }
+      })
+      .state('authentication.invite', {
+        abstract: true,
+        url: '/invite',
+        template: '<ui-view/>'
+      })
+      .state('authentication.invite.invalid', {
+        url: '/invalid',
+        templateUrl: '/modules/users/client/views/authentication/invite-invalid.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.INVITE_INVALID'
         }
       })
       .state('password', {

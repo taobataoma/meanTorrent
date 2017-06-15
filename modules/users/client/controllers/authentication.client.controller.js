@@ -6,10 +6,10 @@
     .controller('AuthenticationController', AuthenticationController);
 
   AuthenticationController.$inject = ['$scope', '$state', 'UsersService', '$location', '$window', 'Authentication', 'PasswordValidator', 'Notification',
-    'MeanTorrentConfig', 'getStorageLangService', '$rootScope'];
+    'MeanTorrentConfig', 'getStorageLangService', '$rootScope', '$stateParams', 'InvitationsService'];
 
   function AuthenticationController($scope, $state, UsersService, $location, $window, Authentication, PasswordValidator, Notification, MeanTorrentConfig,
-                                    getStorageLangService, $rootScope) {
+                                    getStorageLangService, $rootScope, $stateParams, InvitationsService) {
     var vm = this;
 
     vm.lang = getStorageLangService.getLang();
@@ -20,6 +20,7 @@
     vm.signin = signin;
     vm.callOauthProvider = callOauthProvider;
     vm.usernameRegex = /^(?=[\w.-]+$)(?!.*[._-]{2})(?!\.)(?!.*\.$).{3,34}$/;
+    vm.credentials = {};
 
     // Get an eventual error defined in the URL query string:
     if ($location.search().err) {
@@ -31,6 +32,22 @@
       $location.path('/');
     }
 
+    /**
+     * verifyToken
+     */
+    vm.verifyToken = function () {
+      if ($stateParams.token) {
+        InvitationsService.verifyToken({
+          token: $stateParams.token
+        }, function (res) {
+          vm.validToken = res;
+          vm.credentials.email = res.to_email;
+          vm.emailReadonly = true;
+        }, function (res) {
+          vm.validToken = undefined;
+        });
+      }
+    };
     /**
      * signup
      * @param isValid

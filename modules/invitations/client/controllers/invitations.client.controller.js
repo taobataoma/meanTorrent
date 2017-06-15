@@ -48,7 +48,7 @@
       vm.invitePopover.email = undefined;
       vm.invitePopover.items[idx].isOpen = true;
       vm.invitePopover.selected = idx;
-      vm.invitePopover.sending=false;
+      vm.invitePopover.sending = false;
     };
 
     /**

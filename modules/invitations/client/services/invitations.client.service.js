@@ -13,6 +13,13 @@
     }, {
       update: {
         method: 'PUT'
+      },
+      verifyToken: {
+        method: 'GET',
+        url: '/api/invitations/token/:token',
+        params: {
+          token: '@token'
+        }
       }
     });
   }

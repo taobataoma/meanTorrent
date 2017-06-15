@@ -201,6 +201,28 @@ exports.delete = function (req, res) {
   });
 };
 
+/**
+ * verifyToken
+ * @param req
+ * @param res
+ */
+exports.verifyToken = function (req, res) {
+  var t = req.params.token;
+
+  Invitation.findOne({token: t}).exec(function (err, invitation) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else if (!invitation) {
+      return res.status(404).send({
+        message: 'No invitation with that token has been found'
+      });
+    }
+    res.json(invitation);
+  });
+
+};
 
 /**
  * Invitation middleware

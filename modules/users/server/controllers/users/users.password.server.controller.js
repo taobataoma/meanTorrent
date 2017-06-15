@@ -8,6 +8,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
+  Invitation = mongoose.model('Invitation'),
   nodemailer = require('nodemailer'),
   async = require('async'),
   crypto = require('crypto');
@@ -114,6 +115,25 @@ exports.validateResetToken = function (req, res) {
     }
 
     res.redirect('/password/reset/' + req.params.token);
+  });
+};
+
+
+/**
+ * invite sign up from email token
+ */
+exports.invite = function (req, res, next) {
+  Invitation.findOne({
+    token: req.params.token,
+    expiresat: {
+      $gt: Date.now()
+    }
+  }, function (err, invitation) {
+    if (err || !invitation) {
+      return res.redirect('/authentication/invite/invalid');
+    }
+
+    res.redirect('/authentication/signup?token=' + req.params.token);
   });
 };
 

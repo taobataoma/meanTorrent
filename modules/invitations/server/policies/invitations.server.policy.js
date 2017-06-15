@@ -18,7 +18,14 @@ exports.invokeRolesPolicies = function () {
         roles: ['admin', 'oper', 'user'],
         allows: [
           {resources: '/api/invitations', permissions: '*'},
-          {resources: '/api/invitations/:invitationId', permissions: '*'}
+          {resources: '/api/invitations/:invitationId', permissions: '*'},
+          {resources: '/api/invitations/token/:token', permissions: '*'}
+        ]
+      },
+      {
+        roles: ['guest'],
+        allows: [
+          {resources: '/api/invitations/token/:token', permissions: ['get']}
         ]
       }
     ]

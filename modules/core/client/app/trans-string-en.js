@@ -121,7 +121,8 @@
       STATUS_SEEDING: 'Seeding',
       STATUS_DOWNLOADING: 'Downloading',
       SCORE_DETAIL: 'Score detail',
-      INVITATIONS: 'Invitations'
+      INVITATIONS: 'Invitations',
+      INVITE_INVALID: 'invalid invitation'
     },
 
     //sign in, sign up, password
@@ -461,6 +462,7 @@
     INPUT_EMAIL: 'email',
     SEND_INVITE_SUCCESSFULLY: 'Send invitation successfully',
     SEND_INVITE_ERROR: 'Send invitation failed',
+    INVALID_INVITATION_TIP: 'Invalid invitation, maybe the invitation is expired.',
 
     //user message box
     MESSAGES_INBOX: 'Messages Inbox',

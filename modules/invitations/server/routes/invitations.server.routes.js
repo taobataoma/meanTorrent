@@ -15,5 +15,8 @@ module.exports = function (app) {
     .put(invitations.update)
     .delete(invitations.delete);
 
+  app.route('/api/invitations/token/:token').all(invitationsPolicy.isAllowed)
+    .get(invitations.verifyToken);
+
   app.param('invitationId', invitations.invitationByID);
 };

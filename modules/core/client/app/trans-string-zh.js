@@ -121,7 +121,8 @@
       STATUS_SEEDING: '正在做种',
       STATUS_DOWNLOADING: '正在下载',
       SCORE_DETAIL: '积分详情',
-      INVITATIONS: '我的邀请'
+      INVITATIONS: '我的邀请',
+      INVITE_INVALID: '无效的邀请'
     },
 
     //sign in, sign up, password
@@ -461,6 +462,7 @@
     INPUT_EMAIL: '邮箱地址',
     SEND_INVITE_SUCCESSFULLY: '发送邀请成功',
     SEND_INVITE_ERROR: '发送邀请失败',
+    INVALID_INVITATION_TIP: '无效的邀请, 该邀请可能已过期.',
 
     //user message box
     MESSAGES_INBOX: '消息收件箱',
