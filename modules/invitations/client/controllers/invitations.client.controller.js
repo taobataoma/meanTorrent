@@ -26,6 +26,7 @@
      */
     vm.getMyInvitations = function () {
       InvitationsService.get({}, function (items) {
+        console.log(items);
         vm.my_invitations = items.my_invitations;
         vm.used_invitations = items.used_invitations;
       }, function (res) {

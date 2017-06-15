@@ -71,12 +71,10 @@ exports.list = function (req, res) {
 
   var findUsedInvitations = function (callback) {
     Invitation.find({
-      where: {
         user: req.user._id,
-        status: 2
-      }
+        status: {$gt: 0}
     })
-      .sort('registeredat')
+      .sort('invitedat')
       .populate('user')
       .exec(function (err, invitations) {
         if (err) {

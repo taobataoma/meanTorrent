@@ -38,6 +38,9 @@ var InvitationSchema = new Schema({
   expiresat: {
     type: Date
   },
+  invitedat: {
+    type: Date
+  },
   registeredat: {
     type: Date
   },

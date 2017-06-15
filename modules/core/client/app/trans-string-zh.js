@@ -441,12 +441,19 @@
     //invitation
     INVITATION: {
       MY_INVITATION: '我的邀请',
-      INVITE_NOTE: '请注意限时邀请的过期时间.',
+      USED_INVITATION: '已发送的邀请',
+      INVITE_NOTE: '请注意限时邀请的过期时间为 {{hours}} 小时.',
+      SIGN_NOTE: '请注意邀请注册的有效期为 {{hours}} 小时.',
       TITLE_CREATEDAT: '创建时间',
       TITLE_EXPIRESAT: '过期时间',
+      TITLE_INVITEDAT: '发邀时间',
+      TITLE_SIGNINAT: '注册时间',
       TITLE_OPERATION: '操作',
       TITLE_TOKEN: '哈希码',
-      TITLE_SEND: '发送邀请'
+      TITLE_SEND: '发送邀请',
+      TITLE_STATUS: '状态',
+      TITLE_STATUS_REGED: '已注册',
+      TITLE_STATUS_UNREGED: '未注册'
     },
     GET_INVITATIONS_ERROR: '获取邀请列表失败',
 

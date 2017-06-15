@@ -441,12 +441,19 @@
     //invitation
     INVITATION: {
       MY_INVITATION: 'My invitations',
-      INVITE_NOTE: 'Please attention to the expiration time of the time limit invitation.',
+      USED_INVITATION: 'Used invitations',
+      INVITE_NOTE: 'Please attention to the expiration time of the time limit invitation is {{hours}} hours.',
+      SIGN_NOTE: 'Please attention to the expiration time of sign in with the invitation is {{hours}} hours.',
       TITLE_CREATEDAT: 'CreatedAt',
       TITLE_EXPIRESAT: 'ExpiresAt',
+      TITLE_INVITEDAT: 'InvitedAt',
+      TITLE_SIGNINAT: 'SigninAt',
       TITLE_OPERATION: 'Operation',
       TITLE_TOKEN: 'Token',
-      TITLE_SEND: 'Send an invitation'
+      TITLE_SEND: 'Send an invitation',
+      TITLE_STATUS: 'Status',
+      TITLE_STATUS_REGED: 'Signed',
+      TITLE_STATUS_UNREGED: 'Unsigned'
     },
     GET_INVITATIONS_ERROR: 'Get invitations failed',
 
