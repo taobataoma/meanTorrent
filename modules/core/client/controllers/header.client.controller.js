@@ -6,9 +6,10 @@
     .controller('HeaderController', HeaderController);
 
   HeaderController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
-    'ScoreLevelService'];
+    'ScoreLevelService', 'InvitationsService'];
 
-  function HeaderController($scope, $state, $stateParams, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService) {
+  function HeaderController($scope, $state, $stateParams, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
+                            InvitationsService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
@@ -26,10 +27,33 @@
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
-    $scope.$on('auth-user-changed', function(event, args) {
+    /**
+     * auth-user-changed
+     */
+    $scope.$on('auth-user-changed', function (event, args) {
       vm.user = Authentication.user;
       vm.scoreLevelData = vm.user ? ScoreLevelService.getScoreLevelJson(vm.user.score) : undefined;
     });
+
+    /**
+     * user-invitations-changed
+     */
+    $scope.$on('user-invitations-changed', function (event, args) {
+      vm.getInvitationsCount();
+    });
+
+    /**
+     * getInvitationsCount
+     */
+    vm.getInvitationsCount = function () {
+      InvitationsService.countInvitations({}, function (res) {
+        if (res.countMyInvitations > 0) {
+          vm.countMyInvitations = res.countMyInvitations;
+        } else {
+          vm.countMyInvitations = undefined;
+        }
+      });
+    };
 
     function stateChangeSuccess() {
       // Collapsing the menu after navigation

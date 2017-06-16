@@ -20,6 +20,10 @@
         params: {
           token: '@token'
         }
+      },
+      countInvitations: {
+        method: 'GET',
+        url: '/api/invitations/count'
       }
     });
   }

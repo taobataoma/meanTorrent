@@ -6,10 +6,10 @@
     .controller('InviteController', InviteController);
 
   InviteController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$window', 'MeanTorrentConfig', 'NotifycationService',
-    'InvitationsService'];
+    'InvitationsService', '$rootScope'];
 
   function InviteController($scope, $state, $translate, $timeout, Authentication, $window, MeanTorrentConfig, NotifycationService,
-                            InvitationsService) {
+                            InvitationsService, $rootScope) {
     var vm = this;
     vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
     vm.user = Authentication.user;
@@ -31,6 +31,13 @@
     if (!Authentication.user) {
       $state.go('authentication.signin');
     }
+
+    /**
+     * user-invitations-changed
+     */
+    $scope.$on('user-invitations-changed', function (event, args) {
+      vm.getMyInvitations();
+    });
 
     /**
      * getMyInvitations
@@ -69,7 +76,7 @@
           NotifycationService.showSuccessNotify('SEND_INVITE_SUCCESSFULLY');
           vm.invitePopover.items[idx].isOpen = false;
           vm.invitePopover.sending = false;
-          vm.getMyInvitations();
+          $rootScope.$broadcast('user-invitations-changed');
         }, function (res) {
           NotifycationService.showErrorNotify(res.data.message, 'SEND_INVITE_ERROR');
           vm.invitePopover.sending = false;

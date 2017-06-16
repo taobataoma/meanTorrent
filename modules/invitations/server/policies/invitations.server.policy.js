@@ -19,7 +19,8 @@ exports.invokeRolesPolicies = function () {
         allows: [
           {resources: '/api/invitations', permissions: '*'},
           {resources: '/api/invitations/:invitationId', permissions: '*'},
-          {resources: '/api/invitations/token/:token', permissions: '*'}
+          {resources: '/api/invitations/token/:token', permissions: '*'},
+          {resources: '/api/invitations/count', permissions: '*'}
         ]
       },
       {

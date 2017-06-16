@@ -19,7 +19,7 @@ module.exports = {
       allow_social_sign: false
     },
     invite: {
-      open_invite: false,
+      open_invite: true,
       score_exchange: 10000,
       expires: 60 * 60 * 1000 * 24
     },

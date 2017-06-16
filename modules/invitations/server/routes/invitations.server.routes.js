@@ -11,12 +11,15 @@ module.exports = function (app) {
     .get(invitations.list)
     .post(invitations.create);
 
+  app.route('/api/invitations/token/:token').all(invitationsPolicy.isAllowed)
+    .get(invitations.verifyToken);
+
+  app.route('/api/invitations/count').all(invitationsPolicy.isAllowed)
+    .get(invitations.countInvitations);
+
   app.route('/api/invitations/:invitationId').all(invitationsPolicy.isAllowed)
     .put(invitations.update)
     .delete(invitations.delete);
-
-  app.route('/api/invitations/token/:token').all(invitationsPolicy.isAllowed)
-    .get(invitations.verifyToken);
 
   app.param('invitationId', invitations.invitationByID);
 };

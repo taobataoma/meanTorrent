@@ -1,4 +1,4 @@
-<div class="container" ng-controller="HeaderController as vm">
+<div class="container" ng-controller="HeaderController as vm" ng-init="vm.getInvitationsCount()">
   <div class="navbar-header">
     <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
       <span class="sr-only">Toggle navigation</span>
@@ -51,8 +51,8 @@
           <li ui-sref-active="active" ng-repeat="item in vm.scoreMenu.items" class="menu-score-parent">
             <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="menu-score" score-level="vm.scoreLevelData.currLevel"></span>
           </li>
-          <li ui-sref-active="active" ng-repeat="item in vm.inviteMenu.items">
-            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a>
+          <li ui-sref-active="active" ng-repeat="item in vm.inviteMenu.items" class="menu-invitation-parent">
+            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="badge menu-badge badge_danger">{{vm.countMyInvitations}}</span>
           </li>
           <li class="divider"></li>
           <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">

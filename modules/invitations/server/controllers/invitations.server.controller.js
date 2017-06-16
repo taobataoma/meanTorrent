@@ -107,8 +107,6 @@ exports.list = function (req, res) {
 exports.update = function (req, res) {
   var invitation = req.invitation;
 
-  console.log(req.query);
-
   var countRegisteredEmail = function (callback) {
     User.count({email: req.query.to_email}, function (err, count) {
       if (err) {
@@ -223,6 +221,50 @@ exports.verifyToken = function (req, res) {
     res.json(invitation);
   });
 
+};
+
+/**
+ * countInvitations
+ * @param req
+ * @param res
+ */
+exports.countInvitations = function (req, res) {
+  var countMyInvitations = function (callback) {
+    Invitation.count({
+      user: req.user._id,
+      status: 0,
+      expiresat: {$gt: Date.now()}
+    }, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+  var countUsedInvitations = function (callback) {
+    Invitation.count({
+      user: req.user._id,
+      status: 2
+    }, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  async.parallel([countMyInvitations, countUsedInvitations], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({
+        countMyInvitations: results[0],
+        countUsedInvitations: results[1]
+      });
+    }
+  });
 };
 
 /**
