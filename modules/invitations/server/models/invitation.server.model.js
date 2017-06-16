@@ -4,11 +4,10 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema,
-  validator = require('validator');
+  Schema = mongoose.Schema;
 
 /**
- * Peer Schema
+ * Invitation Schema
  */
 var InvitationSchema = new Schema({
   user: {

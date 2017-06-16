@@ -26,6 +26,17 @@ module.exports = {
     score: {
       level_step: 500
     },
+    messages: {
+      type: {
+        name: 'TYPE',
+        value: [
+          {name: 'USER', value: 'user'},
+          {name: 'SYSTEM', value: 'system'},
+          {name: 'ADVERT', value: 'advert'},
+          {name: 'NOTICE', value: 'notice'}
+        ]
+      }
+    },
     torrentType: {
       name: 'TYPE',
       value: [
