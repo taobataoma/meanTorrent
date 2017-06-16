@@ -112,6 +112,7 @@
       // If successful we assign the response to the global user model
       vm.authentication.user = response;
       $rootScope.$broadcast('auth-user-changed');
+      $rootScope.$broadcast('user-invitations-changed');
       Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Signup successful!'});
       // And redirect to the previous or home page
       $state.go($state.previous.state.name || 'home', $state.previous.params);
@@ -133,6 +134,7 @@
       // If successful we assign the response to the global user model
       vm.authentication.user = response;
       $rootScope.$broadcast('auth-user-changed');
+      $rootScope.$broadcast('user-invitations-changed');
       Notification.info({message: 'Welcome ' + response.firstName});
       // And redirect to the previous or home page
       $state.go($state.previous.state.name || 'home', $state.previous.params);

@@ -46,13 +46,17 @@
      * getInvitationsCount
      */
     vm.getInvitationsCount = function () {
-      InvitationsService.countInvitations({}, function (res) {
-        if (res.countMyInvitations > 0) {
-          vm.countMyInvitations = res.countMyInvitations;
-        } else {
-          vm.countMyInvitations = undefined;
-        }
-      });
+      console.log(Authentication.user);
+
+      if (Authentication.user) {
+        InvitationsService.countInvitations({}, function (res) {
+          if (res.countMyInvitations > 0) {
+            vm.countMyInvitations = res.countMyInvitations;
+          } else {
+            vm.countMyInvitations = undefined;
+          }
+        });
+      }
     };
 
     function stateChangeSuccess() {
