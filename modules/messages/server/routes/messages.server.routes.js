@@ -12,8 +12,13 @@ module.exports = function (app) {
     .post(messages.create);
 
   app.route('/api/messages/:messageId').all(messagesPolicy.isAllowed)
+    .get(messages.listReply)
     .put(messages.update)
-    .delete(messages.delete);
+    .delete(messages.delete)
+    .post(message.createReply);
+
+  app.route('/api/messages/:messageId/:replyId').all(messagesPolicy.isAllowed)
+    .delete(messages.deleteReply);
 
   app.param('messageId', messages.messageByID);
 };
