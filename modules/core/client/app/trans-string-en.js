@@ -39,7 +39,7 @@
     SIGNOUT: 'Sign out',
     SIGNIN: 'Sign In',
     SIGNUP: 'Sign Up',
-    MENU_MESSAGE_INBOX: 'Message Inbox',
+    MENU_MESSAGE_BOX: 'Message Box',
     MENU_SCORE_LEVEL: 'Score Level',
     MENU_MY_INVITE: 'My Invitations',
     MENU_ACCOUNT_STATUS: 'Account Status',
@@ -115,7 +115,7 @@
       ADMIN_TORRENTS_LIST: 'Torrents LIst',
       PASSWORD_FORGOT: 'Password forgot',
       PASSWORD_RESET: 'Password reset',
-      MESSAGES_LIST: 'messages',
+      MESSAGES_LIST: 'MessageBox',
       STATUS_ACCOUNT: 'Account Status',
       STATUS_UPLOADED: 'Uploaded',
       STATUS_SEEDING: 'Seeding',
@@ -467,7 +467,7 @@
     INVALID_INVITATION_TIP: 'Invalid invitation, maybe the invitation is expired.',
 
     //user message box
-    MESSAGES_INBOX: 'Messages Inbox',
+    MESSAGES_BOX: 'Messages Box',
 
     //chat view
     CHAT_USERS_LIST: 'Users List',

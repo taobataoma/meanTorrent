@@ -39,7 +39,7 @@
     SIGNOUT: '退出登录',
     SIGNIN: '登录',
     SIGNUP: '注册',
-    MENU_MESSAGE_INBOX: '消息收件箱',
+    MENU_MESSAGE_BOX: '站内消息',
     MENU_SCORE_LEVEL: '积分等级',
     MENU_MY_INVITE: '我的邀请',
     MENU_ACCOUNT_STATUS: '帐户状态',
@@ -467,7 +467,7 @@
     INVALID_INVITATION_TIP: '无效的邀请, 该邀请可能已过期.',
 
     //user message box
-    MESSAGES_INBOX: '消息收件箱',
+    MESSAGES_BOX: '站内消息',
 
     //chat view
     CHAT_USERS_LIST: '用户列表',

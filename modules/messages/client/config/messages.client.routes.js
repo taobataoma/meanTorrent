@@ -16,9 +16,9 @@
         url: '/messages',
         templateUrl: '/modules/messages/client/views/messages.client.view.html'
       })
-      .state('messages.inbox', {
-        url: '/inbox',
-        templateUrl: '/modules/messages/client/views/inbox.client.view.html',
+      .state('messages.box', {
+        url: '/box',
+        templateUrl: '/modules/messages/client/views/box.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.MESSAGES_LIST'
         }

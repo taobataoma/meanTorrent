@@ -20,8 +20,8 @@
     });
 
     menuService.addSubMenuItem('mt-message', 'messages', {
-      title: 'MENU_MESSAGE_INBOX',
-      state: 'messages.inbox'
+      title: 'MENU_MESSAGE_BOX',
+      state: 'messages.box'
     });
   }
 }());
