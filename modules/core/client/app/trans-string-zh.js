@@ -456,7 +456,8 @@
       TITLE_SEND: '发送邀请',
       TITLE_STATUS: '状态',
       TITLE_STATUS_REGED: '已注册',
-      TITLE_STATUS_UNREGED: '未注册'
+      TITLE_STATUS_UNREGED: '未注册',
+      TITLE_STATUS_EXPIRED: '已失效'
     },
     GET_INVITATIONS_ERROR: '获取邀请列表失败',
     BUTTON_INVITE: '发送',

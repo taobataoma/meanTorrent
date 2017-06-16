@@ -456,7 +456,8 @@
       TITLE_SEND: 'Send an invitation',
       TITLE_STATUS: 'Status',
       TITLE_STATUS_REGED: 'Signed',
-      TITLE_STATUS_UNREGED: 'Unsigned'
+      TITLE_STATUS_UNREGED: 'Unsigned',
+      TITLE_STATUS_EXPIRED: 'Expired'
     },
     GET_INVITATIONS_ERROR: 'Get invitations failed',
     BUTTON_INVITE: 'Send',

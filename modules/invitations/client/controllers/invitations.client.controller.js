@@ -83,5 +83,21 @@
         });
       }
     };
+
+    /**
+     * getInvitationStatus
+     * @param invitation
+     */
+    vm.getInvitationStatus = function (invitation) {
+      if(invitation.status == 2) {
+        return $translate.instant('INVITATION.TITLE_STATUS_REGED');
+      }else {
+        if(invitation.expiresat>Date.now()){
+          return $translate.instant('INVITATION.TITLE_STATUS_UNREGED');
+        }else{
+          return $translate.instant('INVITATION.TITLE_STATUS_EXPIRED');
+        }
+      }
+    };
   }
 }());

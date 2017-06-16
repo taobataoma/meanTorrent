@@ -102,7 +102,7 @@
                                     <td class="text-center" ng-if="!r.to_user">
                                     </td>
                                     <td class="text-center" ng-class="r.status == 2 ? 'text-success' : 'text-danger'">
-                                        {{ r.status == 2 ? ('INVITATION.TITLE_STATUS_REGED' | translate) : ('INVITATION.TITLE_STATUS_UNREGED' | translate) }}
+                                        {{vm.getInvitationStatus(r);}}
                                     </td>
                                 </tr>
                             </tbody>
