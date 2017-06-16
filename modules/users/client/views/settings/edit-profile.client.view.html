@@ -25,7 +25,7 @@
                 <div class="form-group" show-errors>
                     <label for="email">{{ 'STATUS_FIELD.EMAIL' | translate}}</label>
                     <input type="email" id="email" name="email" class="form-control" ng-model="vm.user.email"
-                           placeholder="{{ 'STATUS_FIELD.EMAIL' | translate}}" lowercase required>
+                           placeholder="{{ 'STATUS_FIELD.EMAIL' | translate}}" lowercase required readonly>
 
                     <div ng-messages="vm.userForm.email.$error" role="alert">
                         <p class="help-block error-text" ng-message="required">{{ 'SIGN.E_REQUIRED' | translate}}</p>
@@ -37,7 +37,7 @@
                     <label for="username">{{ 'STATUS_FIELD.USERNAME' | translate}}</label>
                     <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username"
                            placeholder="{{ 'STATUS_FIELD.USERNAME' | translate}}" lowercase
-                           required>
+                           required readonly>
 
                     <div ng-messages="vm.userForm.username.$error" role="alert">
                         <p class="help-block error-text" ng-message="required">{{ 'SIGN.U_REQUIRED' | translate}}</p>
