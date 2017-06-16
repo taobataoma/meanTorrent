@@ -1,8 +1,61 @@
 <section>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>{{'MESSAGES_BOX' | translate}}</h3>
+    <div class="row margin-top-20">
+        <div class="col-md-12 messages-list" id="top_of_messages_list">
+
+            <div class="row margin-bottom-20">
+                <div class="col-xs-12 col-md-3">
+                    <h4>{{'MESSAGES_BOX' | translate}}</h4>
+                </div>
+                <div class="col-xs-7 col-md-3 col-md-offset-4">
+                    <input class="form-control" type="text" ng-model="vm.search" placeholder="Search"
+                           ng-change="vm.figureOutItemsToDisplay()"/>
+                </div>
+                <div class="col-xs-5 col-md-2">
+                    <button class="btn btn-success btn-block">New Message</button>
+                </div>
+            </div>
+
+            <div class="pagination-div-top">
+                <div class="row">
+                    <div class="col-sm-12 col-md-7">
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                            ng-model="vm.currentPage"
+                            ng-change="vm.pageChanged()"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive margin-top-50 margin-bottom-50 text-center" ng-if="!vm.pagedItems.length">
+                <h3>{{ 'MESSAGES_IS_EMPTY' | translate }}</h3>
+            </div>
+            <div class="table-responsive" ng-if="vm.pagedItems.length">
+                <table class="table table-hover tb-v-middle">
+                    <thead>
+                        <tr>
+                            <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination-div-bottom">
+                <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                    ng-model="vm.currentPage"
+                    ng-change="vm.pageChanged()"
+                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                </ul>
             </div>
         </div>
     </div>

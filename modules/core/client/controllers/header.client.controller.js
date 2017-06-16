@@ -46,8 +46,6 @@
      * getInvitationsCount
      */
     vm.getInvitationsCount = function () {
-      console.log(Authentication.user);
-
       if (Authentication.user) {
         InvitationsService.countInvitations({}, function (res) {
           if (res.countMyInvitations > 0) {

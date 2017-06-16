@@ -468,6 +468,7 @@
 
     //user message box
     MESSAGES_BOX: '站内消息',
+    MESSAGES_IS_EMPTY: '消息盒子为空!',
 
     //chat view
     CHAT_USERS_LIST: '用户列表',

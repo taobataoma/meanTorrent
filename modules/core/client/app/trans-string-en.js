@@ -468,6 +468,7 @@
 
     //user message box
     MESSAGES_BOX: 'Messages Box',
+    MESSAGES_IS_EMPTY: 'Messages Box is empty!',
 
     //chat view
     CHAT_USERS_LIST: 'Users List',
