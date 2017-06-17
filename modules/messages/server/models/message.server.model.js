@@ -45,7 +45,11 @@ var MessageSchema = new Schema({
   createdat: {
     type: Date,
     default: Date.now
-  }});
+  },
+  updatedat: {
+    type: Date
+  }
+});
 
 
 mongoose.model('Message', MessageSchema);

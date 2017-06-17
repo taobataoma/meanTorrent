@@ -11,19 +11,19 @@
                 <form name="vm.messageForm" ng-submit="vm.sendMessage(vm.messageForm.$valid)" novalidate autocomplete="off">
                     <dl class="dl-horizontal">
                         <div class="margin-bottom-10 form-group" show-errors>
-                            <dt class="h-line">{{ 'MESSAGES_FIELD.SEND_TO' | translate}}：</dt>
+                            <dt class="h-line">{{ 'MESSAGES_FIELD.TO' | translate}}：</dt>
                             <dd class="h-line">
                                 <input type="text" class="form-control" id="sendTo" name="sendTo"
                                        ng-model="vm.messageFields.sendTo" required autofocus ng-readonly="vm.sendToReadonly">
 
                                 <div ng-messages="vm.messageForm.sendTo.$error" role="alert">
-                                    <p class="help-block error-text" ng-message="required">{{ 'MESSAGES_FIELD.ST_REQUIRED' | translate}}</p>
+                                    <p class="help-block error-text" ng-message="required">{{ 'MESSAGES_FIELD.TO_REQUIRED' | translate}}</p>
                                 </div>
                             </dd>
                         </div>
 
                         <div class="margin-bottom-10 form-group" show-errors>
-                            <dt class="h-line">{{ 'MESSAGES_FIELD.SEND_TITLE' | translate}}：</dt>
+                            <dt class="h-line">{{ 'MESSAGES_FIELD.TITLE' | translate}}：</dt>
                             <dd class="h-line">
                                 <input type="text" class="form-control" id="title" name="title"
                                        ng-model="vm.messageFields.title" required>
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="margin-bottom-10 form-group" show-errors>
-                            <dt class="h-line">{{ 'MESSAGES_FIELD.SEND_CONTENT' | translate}}：</dt>
+                            <dt class="h-line">{{ 'MESSAGES_FIELD.CONTENT' | translate}}：</dt>
                             <dd class="h-line">
                                 <textarea class="form-control message-textarea" id="content" name="content"
                                           ng-model="vm.messageFields.content" required></textarea>

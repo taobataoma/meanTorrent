@@ -45,7 +45,23 @@ exports.create = function (req, res) {
  * @param res
  */
 exports.list = function (req, res) {
-
+  Message.find({
+    $or: [
+      {from_user: req.user._id},
+      {to_user: req.user._id}
+    ]
+  })
+    .sort('-updatedat, -createdat')
+    .populate('from_user')
+    .populate('to_user')
+    .exec(function (err, messages) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      res.json(messages);
+    });
 };
 
 /**
