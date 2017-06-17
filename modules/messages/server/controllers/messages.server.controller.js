@@ -17,7 +17,26 @@ var path = require('path'),
  * @param res
  */
 exports.create = function (req, res) {
+  var msg = new Message(req.body);
+  msg.from_user = req.user._id;
+  msg.from_status = 1;
+  msg.to_status = 0;
 
+  if (!msg.to_user || !mongoose.Types.ObjectId.isValid(msg.to_user)) {
+    return res.status(400).send({
+      message: 'Receiver user id is invalid'
+    });
+  }
+
+  msg.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(msg);
+    }
+  });
 };
 
 /**

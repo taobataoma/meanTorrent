@@ -11,7 +11,7 @@
                            ng-change="vm.figureOutItemsToDisplay()"/>
                 </div>
                 <div class="col-xs-5 col-md-2">
-                    <button class="btn btn-success btn-block">New Message</button>
+                    <a ui-sref="messages.send" class="btn btn-success btn-block">New Message</a>
                 </div>
             </div>
 
@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <div class="table-responsive margin-top-50 margin-bottom-50 text-center" ng-if="!vm.pagedItems.length">
+            <div class="table-responsive margin-top-50 margin-bottom-50 padding-top-40 padding-bottom-50 text-center" ng-if="!vm.pagedItems.length">
                 <h3>{{ 'MESSAGES_IS_EMPTY' | translate }}</h3>
             </div>
             <div class="table-responsive" ng-if="vm.pagedItems.length">

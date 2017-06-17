@@ -20,7 +20,14 @@
         url: '/box',
         templateUrl: '/modules/messages/client/views/box.client.view.html',
         data: {
-          pageTitle: 'PAGETITLE.MESSAGES_LIST'
+          pageTitle: 'PAGETITLE.MESSAGES_BOX'
+        }
+      })
+      .state('messages.send', {
+        url: '/send?to',
+        templateUrl: '/modules/messages/client/views/send.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.MESSAGES_SEND'
         }
       });
   }

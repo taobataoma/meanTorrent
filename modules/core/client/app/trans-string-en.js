@@ -115,7 +115,8 @@
       ADMIN_TORRENTS_LIST: 'Torrents LIst',
       PASSWORD_FORGOT: 'Password forgot',
       PASSWORD_RESET: 'Password reset',
-      MESSAGES_LIST: 'MessageBox',
+      MESSAGES_BOX: 'Message Box',
+      MESSAGES_SEND: 'Send Message',
       STATUS_ACCOUNT: 'Account Status',
       STATUS_UPLOADED: 'Uploaded',
       STATUS_SEEDING: 'Seeding',
@@ -468,7 +469,20 @@
 
     //user message box
     MESSAGES_BOX: 'Messages Box',
+    MESSAGES_SEND: 'Send Messages',
+    MESSAGES_SEND_BUTTON: '　　Send　　',
     MESSAGES_IS_EMPTY: 'Messages Box is empty!',
+    MESSAGES_FIELD: {
+      SEND_TO: 'Send to:',
+      SEND_TYPE: 'Message type:',
+      SEND_TITLE: 'Title:',
+      SEND_CONTENT: 'Content:',
+      ST_REQUIRED: 'Please enter message receiver',
+      TT_REQUIRED: 'Please enter message title',
+      CT_REQUIRED: 'Please enter message content'
+    },
+    MESSAGE_SEND_SUCCESSFULLY: 'Message send successfully',
+    MESSAGE_SEND_FAILED: 'Message send failed',
 
     //chat view
     CHAT_USERS_LIST: 'Users List',

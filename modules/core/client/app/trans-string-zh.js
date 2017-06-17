@@ -115,7 +115,8 @@
       ADMIN_TORRENTS_LIST: '种子管理',
       PASSWORD_FORGOT: '找回密码',
       PASSWORD_RESET: '重设密码',
-      MESSAGES_LIST: '站内消息',
+      MESSAGES_BOX: '站内消息',
+      MESSAGES_SEND: '发送消息',
       STATUS_ACCOUNT: '帐户状态',
       STATUS_UPLOADED: '我的种子',
       STATUS_SEEDING: '正在做种',
@@ -468,7 +469,20 @@
 
     //user message box
     MESSAGES_BOX: '站内消息',
+    MESSAGES_SEND: '发送消息',
+    MESSAGES_SEND_BUTTON: '　　发送　　',
     MESSAGES_IS_EMPTY: '消息盒子为空!',
+    MESSAGES_FIELD: {
+      SEND_TO: '发送至:',
+      SEND_TYPE: '消息类型:',
+      SEND_TITLE: '标题:',
+      SEND_CONTENT: '内容:',
+      ST_REQUIRED: '请输入消息接收者',
+      TT_REQUIRED: '请输入消息标题',
+      CT_REQUIRED: '请输入消息内容'
+    },
+    MESSAGE_SEND_SUCCESSFULLY: '消息发送成功',
+    MESSAGE_SEND_FAILED: '消息发送失败',
 
     //chat view
     CHAT_USERS_LIST: '用户列表',
