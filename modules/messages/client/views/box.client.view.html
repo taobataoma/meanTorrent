@@ -1,17 +1,14 @@
 <section ng-controller="MessageController as vm" ng-init="vm.getMessageList()">
     <div class="row margin-top-20">
-        <div class="col-md-10 col-md-offset-1 messages-list" id="top_of_messages_list">
+        <div class="messages-list">
 
             <div class="row margin-bottom-20">
-                <div class="col-xs-12 col-md-3">
+                <div class="col-xs-8 col-md-9">
                     <h4>{{'MESSAGES_BOX' | translate}}</h4>
                 </div>
-                <div class="col-xs-7 col-md-3 col-md-offset-4">
+                <div class="col-xs-4 col-md-3">
                     <input class="form-control" type="text" ng-model="vm.search" placeholder="Search"
                            ng-change="vm.figureOutItemsToDisplay()"/>
-                </div>
-                <div class="col-xs-5 col-md-2">
-                    <button class="btn btn-success btn-block" ng-click="vm.figureOutItemsToDisplay()">{{ 'BUTTON_SEARCH' | translate }}</button>
                 </div>
             </div>
 

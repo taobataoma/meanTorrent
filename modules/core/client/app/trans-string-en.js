@@ -495,6 +495,14 @@
     MESSAGE_TYPE_NOTICE: 'Notice message',
     MESSAGE_SEND_SUCCESSFULLY: 'Message send successfully',
     MESSAGE_SEND_FAILED: 'Message send failed',
+    MESSAGE_DELETED_SUCCESSFULLY: 'Message deleted successfully',
+    MESSAGE_DELETED_ERROR: 'Message deleted failed',
+
+    MESSAGE_DELETE_CONFIRM_OK: 'Delete',
+    MESSAGE_DELETE_CONFIRM_CANCEL: 'Cancel',
+    MESSAGE_DELETE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
+    MESSAGE_DELETE_CONFIRM_BODY_TEXT_MANY: 'Are you sure want to delete these messages?',
+    MESSAGE_DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this message?',
 
     //chat view
     CHAT_USERS_LIST: 'Users List',

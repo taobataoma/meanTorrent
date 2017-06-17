@@ -79,7 +79,35 @@ exports.update = function (req, res) {
  * @param res
  */
 exports.delete = function (req, res) {
+  if (req.params.messageId) {
+    var message = req.message;
+    message.remove(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(message);
+      }
+    });
 
+  } else {
+    if (req.query.ids) {
+      Message.remove({
+        _id: {$in: req.query.ids}
+      }, function (err) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          return res.status(200).send({
+            message: 'delete successfully'
+          });
+        }
+      });
+    }
+  }
 };
 
 /**

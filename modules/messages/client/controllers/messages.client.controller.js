@@ -6,14 +6,15 @@
     .controller('MessageController', MessageController);
 
   MessageController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$filter', 'NotifycationService', '$stateParams', 'MessagesService',
-    'MeanTorrentConfig'];
+    'MeanTorrentConfig', 'ModalConfirmService'];
 
   function MessageController($scope, $state, $translate, $timeout, Authentication, $filter, NotifycationService, $stateParams, MessagesService,
-                             MeanTorrentConfig) {
+                             MeanTorrentConfig, ModalConfirmService) {
     var vm = this;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.user = Authentication.user;
     vm.messageFields = {};
+    vm.deleteList = [];
 
     /**
      * If user is not signed in then redirect back home
@@ -83,7 +84,7 @@
      */
     vm.buildPager = function () {
       vm.pagedItems = [];
-      vm.itemsPerPage = 15;
+      vm.itemsPerPage = 10;
       vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     };
@@ -112,9 +113,45 @@
      * deleteSelected
      */
     vm.deleteSelected = function () {
+      vm.deleteList = [];
+      var modalOptions = {
+        closeButtonText: $translate.instant('MESSAGE_DELETE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('MESSAGE_DELETE_CONFIRM_OK'),
+        headerText: $translate.instant('MESSAGE_DELETE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('MESSAGE_DELETE_CONFIRM_BODY_TEXT')
+      };
+
       angular.forEach(vm.selected, function (item, id) {
-        console.log(id + '-' + item);
+        if (item) {
+          vm.deleteList.push(id);
+        }
       });
+
+      if (vm.deleteList.length > 0) {
+        ModalConfirmService.showModal({}, modalOptions)
+          .then(function (result) {
+            MessagesService.remove({
+              ids: vm.deleteList
+            }, function (res) {
+              //$state.reload();
+              var s = [];
+              angular.forEach(vm.messages, function (m) {
+                if (vm.deleteList.indexOf(m._id) !== -1) {
+                  s.push(m);
+                }
+              });
+
+              angular.forEach(s, function (m) {
+                vm.messages.splice(vm.messages.indexOf(m), 1);
+              });
+              vm.figureOutItemsToDisplay();
+
+              NotifycationService.showSuccessNotify('MESSAGE_DELETED_SUCCESSFULLY');
+            }, function (res) {
+              NotifycationService.showErrorNotify(res.data.message, 'MESSAGE_DELETED_ERROR');
+            });
+          });
+      }
     };
   }
 }());
