@@ -65,15 +65,6 @@ exports.list = function (req, res) {
 };
 
 /**
- * update Message
- * @param req
- * @param res
- */
-exports.update = function (req, res) {
-
-};
-
-/**
  * delete Message
  * @param req
  * @param res
@@ -116,15 +107,6 @@ exports.delete = function (req, res) {
  * @param res
  */
 exports.createReply = function (req, res) {
-
-};
-
-/**
- * listReply
- * @param req
- * @param res
- */
-exports.listReply = function (req, res) {
 
 };
 

@@ -13,8 +13,6 @@ module.exports = function (app) {
     .delete(messages.delete);
 
   app.route('/api/messages/:messageId').all(messagesPolicy.isAllowed)
-    .get(messages.listReply)
-    .put(messages.update)
     .delete(messages.delete)
     .post(messages.createReply);
 
