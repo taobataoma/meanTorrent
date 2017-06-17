@@ -181,7 +181,7 @@
       var e = $('.popup-overlay');
       if (e.hasClass('popup-visible')) {
         e.removeClass('popup-visible');
-      }else{
+      } else {
         e.addClass('popup-visible');
       }
     };

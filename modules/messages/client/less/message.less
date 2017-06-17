@@ -56,9 +56,10 @@
     right: 0;
     overflow: auto;
     z-index: 10000;
-    //display:none;
     transition: all 0.3s ease-out;
+    /* csslint ignore:start */
     transform: translateX(101%) translateY(0);
+    /* csslint ignore:end */
     @media (min-width: @screen-sm-min) {
         min-width: 450px;
     }
@@ -68,7 +69,9 @@
 }
 
 .popup-visible {
+    /* csslint ignore:start */
     transform: translateX(0) translateY(0);
+    /* csslint ignore:end */
 }
 
 .bottom-control {
