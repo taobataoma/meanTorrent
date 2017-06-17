@@ -51,7 +51,8 @@ module.exports = {
         //local-storage
         'public/lib/angular-local-storage/dist/angular-local-storage.min.js',
         //translate
-        'public/lib/angular-translate/angular-translate.min.js',
+        'public/lib/angular-translate/angular-translate.min.js'
+
         // endbower
       ]
     },

@@ -23,6 +23,8 @@
       $state.go('authentication.signin');
     }
 
+    document.getElementById('popupSlide').addEventListener('transitionend', onTransitionEnd, false);
+
     /**
      * checkSendTo
      */
@@ -118,7 +120,7 @@
         closeButtonText: $translate.instant('MESSAGE_DELETE_CONFIRM_CANCEL'),
         actionButtonText: $translate.instant('MESSAGE_DELETE_CONFIRM_OK'),
         headerText: $translate.instant('MESSAGE_DELETE_CONFIRM_HEADER_TEXT'),
-        bodyText: $translate.instant('MESSAGE_DELETE_CONFIRM_BODY_TEXT')
+        bodyText: $translate.instant('MESSAGE_DELETE_CONFIRM_BODY_TEXT_MANY')
       };
 
       angular.forEach(vm.selected, function (item, id) {
@@ -151,6 +153,48 @@
               NotifycationService.showErrorNotify(res.data.message, 'MESSAGE_DELETED_ERROR');
             });
           });
+      }
+    };
+
+    /**
+     * onTransitionEnd
+     * @param event
+     */
+    function onTransitionEnd(event) {
+      console.log('end');
+
+      var e = $('.popup-overlay');
+      if (vm.selectedMessage) {
+        if (!e.hasClass('popup-visible')) {
+          e.addClass('popup-visible');
+        }
+      }
+    }
+
+    /**
+     * viewMessage
+     * @param msg
+     */
+    vm.showMessage = function (msg) {
+      vm.selectedMessage = msg;
+
+      var e = $('.popup-overlay');
+      if (e.hasClass('popup-visible')) {
+        e.removeClass('popup-visible');
+      }else{
+        e.addClass('popup-visible');
+      }
+    };
+
+    /**
+     * hideMessage
+     */
+    vm.hideMessage = function () {
+      vm.selectedMessage = undefined;
+
+      var e = $('.popup-overlay');
+      if (e.hasClass('popup-visible')) {
+        e.removeClass('popup-visible');
       }
     };
   }
