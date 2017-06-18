@@ -286,5 +286,36 @@
     function toIsMe(m) {
       return (m.to_user._id === vm.user._id) ? true : false;
     }
+
+    /**
+     * delete
+     * @param m
+     */
+    vm.delete = function (m) {
+      vm.deleteList = [];
+      var modalOptions = {
+        closeButtonText: $translate.instant('MESSAGE_DELETE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('MESSAGE_DELETE_CONFIRM_OK'),
+        headerText: $translate.instant('MESSAGE_DELETE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('MESSAGE_DELETE_CONFIRM_BODY_TEXT')
+      };
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          var rmsg = new MessagesService({
+            _messageId: m._id
+          });
+
+          rmsg.$remove(function (res) {
+            vm.messages.splice(vm.messages.indexOf(m), 1);
+            vm.figureOutItemsToDisplay();
+            vm.hideMessage();
+
+            NotifycationService.showSuccessNotify('MESSAGE_DELETED_SUCCESSFULLY');
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'MESSAGE_DELETED_ERROR');
+          });
+        });
+
+    };
   }
 }());

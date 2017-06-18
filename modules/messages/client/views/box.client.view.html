@@ -117,7 +117,7 @@
             <textarea class="form-control reply-textarea" id="reply-content" name="reply-content"
                       ng-model="vm.replyContent" autofocus></textarea>
             <button class="btn btn-default" ng-click="vm.hideMessage();">{{ 'BUTTON_CLOSE' | translate }}</button>
-            <button class="btn btn-default">{{ 'BUTTON_DELETE' | translate }}</button>
+            <button class="btn btn-default" ng-click="vm.delete(vm.selectedMessage);">{{ 'BUTTON_DELETE' | translate }}</button>
             <button class="btn btn-success pull-right" ng-disabled="!vm.replyContent" ng-click="vm.replyMessage(vm.selectedMessage);">{{ 'BUTTON_REPLY' | translate }}</button>
         </div>
     </div>
