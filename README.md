@@ -227,7 +227,18 @@ And you can make a list page to tell users witch clients are unpopular.
       allow_social_sign: true
     },
 ```
+```javascript
+    invite: {
+      open_invite: true,
+      score_exchange: 10000,
+      expires: 60 * 60 * 1000 * 24
+    },
+
+```
 If your site do not accept user free register, please set `open_signin` to `false`, then user only can register through friend invitation or system(admin/oper) invitation.
+if you set `open_invite` to `true`, the normal user can invite friends to join, if `false` only oper/admin can invite users.
+
+
 
 There is not much comment of `config/env/torrent.js`, because the development time is limited, I'll add more comment in my free time, If you has any question, please post an [issue](https://github.com/taobataoma/meanTorrent/issues), and i will focus it.
 
