@@ -185,7 +185,6 @@
      * @param msg
      */
     vm.showMessage = function (msg) {
-      console.log(msg);
       vm.selectedMessage = msg;
       var e = $('.popup-overlay');
       if (e.hasClass('popup-visible')) {
@@ -212,7 +211,6 @@
       if (toIsMe(m)) {
         msg.to_status = 1;
       }
-      console.log(msg);
 
       msg.$update(function (res) {
         vm.selectedMessage = res;
@@ -230,7 +228,6 @@
      */
     vm.getCountUnread = function () {
       MessagesService.countUnread(function (data) {
-        console.log(data);
         vm.unreadCount = data.countFrom + data.countTo;
       });
     };
@@ -299,7 +296,6 @@
       });
 
       function successCallback(res) {
-        console.log(res);
         vm.selectedMessage = res;
 
         vm.messages.splice(vm.messages.indexOf(m), 0, res);

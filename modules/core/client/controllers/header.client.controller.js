@@ -73,7 +73,6 @@
 
     vm.getCountUnread = function () {
       MessagesService.countUnread(function (data) {
-        console.log(data);
         vm.unreadCount = data.countFrom + data.countTo;
       });
     };
