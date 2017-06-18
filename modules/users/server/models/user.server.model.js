@@ -195,8 +195,10 @@ UserSchema.methods.toJSON = function (options) {
     document.isVip = true;
   }
 
-  document.isOper = (document.roles[0] === 'oper' || document.roles[0] === 'admin');
-  document.isAdmin = (document.roles[0] === 'admin');
+  if (document.roles) {
+    document.isOper = (document.roles[0] === 'oper' || document.roles[0] === 'admin');
+    document.isAdmin = (document.roles[0] === 'admin');
+  }
 
   return document;
 };
