@@ -55,7 +55,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 13. Complete user score system, user can use score exchange an invitation to invite friend register join.
 14. Invitations manager, user can keep track of invited friends registration progress.
 15. Admin/Oper can manual management the user`s uploaded/downloaded/score data.
-16. Complete messageBox, include message list, read status, keys search, reply detail and markdown style support.
+16. Complete messageBox, include message list, read status, keys search, reply detail and [markdown](https://guides.github.com/features/mastering-markdown/) style support.
 
 #### Chat room feature:
 1. Users name list
