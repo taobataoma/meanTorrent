@@ -112,6 +112,26 @@ exports.delete = function (req, res) {
 };
 
 /**
+ * Update
+ */
+exports.update = function (req, res) {
+  var message = req.message;
+
+  message.from_status = req.body.from_status;
+  message.to_status = req.body.to_status;
+
+  message.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(message);
+    }
+  });
+};
+
+/**
  * createReply
  * @param req
  * @param res

@@ -186,6 +186,34 @@
       } else {
         e.addClass('popup-visible');
       }
+
+      vm.updateReadStatus(msg);
+    };
+
+    /**
+     * updateReadStatus
+     * @param m
+     */
+    vm.updateReadStatus = function (m) {
+      var msg = new MessagesService({
+        _messageId: m._id
+      });
+
+      if (fromIsMe(m)) {
+        msg.from_status = 1;
+      }
+      if (toIsMe(m)) {
+        msg.to_status = 1;
+      }
+      console.log(msg);
+
+      msg.$update(function (res) {
+        vm.selectedMessage = res;
+
+        vm.messages.splice(vm.messages.indexOf(m), 0, res);
+        vm.messages.splice(vm.messages.indexOf(m), 1);
+        vm.figureOutItemsToDisplay();
+      });
     };
 
     /**

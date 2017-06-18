@@ -14,6 +14,7 @@ module.exports = function (app) {
 
   app.route('/api/messages/:messageId').all(messagesPolicy.isAllowed)
     .delete(messages.delete)
+    .put(messages.update)
     .post(messages.createReply);
 
   app.param('messageId', messages.messageByID);
