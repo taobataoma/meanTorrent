@@ -491,7 +491,8 @@
       LIST_SENDAT: '发送时间',
       LIST_SELECT: '选择',
       INFO_SEND_TO: '发送给',
-      INFO_SEND_AT: '于'
+      INFO_SEND_AT: '于',
+      NEW_MSG: '条未读消息'
     },
     MESSAGE_TYPE_USER: '用户消息',
     MESSAGE_TYPE_SYSTEM: '系统消息',

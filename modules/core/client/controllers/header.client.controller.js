@@ -6,10 +6,10 @@
     .controller('HeaderController', HeaderController);
 
   HeaderController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
-    'ScoreLevelService', 'InvitationsService'];
+    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService'];
 
   function HeaderController($scope, $state, $stateParams, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
-                            InvitationsService) {
+                            InvitationsService, $interval, MessagesService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
@@ -43,6 +43,13 @@
     });
 
     /**
+     * user-unread-count-changed
+     */
+    $scope.$on('user-unread-count-changed', function (event, args) {
+      vm.getCountUnread();
+    });
+
+    /**
      * getInvitationsCount
      */
     vm.getInvitationsCount = function () {
@@ -57,11 +64,32 @@
       }
     };
 
+    /**
+     * checkMessageUnread
+     */
+    vm.checkMessageUnread = function () {
+      $interval(vm.getCountUnread, 120000);
+    };
+
+    vm.getCountUnread = function () {
+      MessagesService.countUnread(function (data) {
+        console.log(data);
+        vm.unreadCount = data.countFrom + data.countTo;
+      });
+    };
+
+    /**
+     * stateChangeSuccess
+     */
     function stateChangeSuccess() {
       // Collapsing the menu after navigation
       vm.isCollapsed = false;
     }
 
+    /**
+     * changeLanguage
+     * @param langKey
+     */
     vm.changeLanguage = function (langKey) {
       var lang = localStorageService.get('storage_user_lang');
       if (lang !== langKey) {

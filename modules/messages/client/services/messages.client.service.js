@@ -13,6 +13,10 @@
     }, {
       update: {
         method: 'PUT'
+      },
+      countUnread: {
+        url: '/api/messages/countUnread',
+        method: 'GET'
       }
     });
   }

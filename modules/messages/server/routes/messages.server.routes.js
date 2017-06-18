@@ -12,6 +12,9 @@ module.exports = function (app) {
     .post(messages.create)
     .delete(messages.delete);
 
+  app.route('/api/messages/countUnread').all(messagesPolicy.isAllowed)
+    .get(messages.countUnread);
+
   app.route('/api/messages/:messageId').all(messagesPolicy.isAllowed)
     .delete(messages.delete)
     .put(messages.update)

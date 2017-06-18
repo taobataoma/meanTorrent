@@ -6,10 +6,10 @@
     .controller('MessageController', MessageController);
 
   MessageController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$filter', 'NotifycationService', '$stateParams', 'MessagesService',
-    'MeanTorrentConfig', 'ModalConfirmService', 'marked'];
+    'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope'];
 
   function MessageController($scope, $state, $translate, $timeout, Authentication, $filter, NotifycationService, $stateParams, MessagesService,
-                             MeanTorrentConfig, ModalConfirmService, marked) {
+                             MeanTorrentConfig, ModalConfirmService, marked, $rootScope) {
     var vm = this;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.user = Authentication.user;
@@ -26,6 +26,13 @@
     if (document.getElementById('popupSlide')) {
       document.getElementById('popupSlide').addEventListener('transitionend', onTransitionEnd, false);
     }
+
+    /**
+     * user-unread-count-changed
+     */
+    $scope.$on('user-unread-count-changed', function (event, args) {
+      vm.getCountUnread();
+    });
 
     /**
      * checkSendTo
@@ -213,6 +220,18 @@
         vm.messages.splice(vm.messages.indexOf(m), 0, res);
         vm.messages.splice(vm.messages.indexOf(m), 1);
         vm.figureOutItemsToDisplay();
+
+        $rootScope.$broadcast('user-unread-count-changed');
+      });
+    };
+
+    /**
+     * getCountUnread
+     */
+    vm.getCountUnread = function () {
+      MessagesService.countUnread(function (data) {
+        console.log(data);
+        vm.unreadCount = data.countFrom + data.countTo;
       });
     };
 

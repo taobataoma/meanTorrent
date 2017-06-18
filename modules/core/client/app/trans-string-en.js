@@ -491,7 +491,8 @@
       LIST_SENDAT: 'SendedAt',
       LIST_SELECT: 'Select',
       INFO_SEND_TO: 'send to',
-      INFO_SEND_AT: 'at'
+      INFO_SEND_AT: 'at',
+      NEW_MSG: 'New messages'
     },
     MESSAGE_TYPE_USER: 'User message',
     MESSAGE_TYPE_SYSTEM: 'System message',

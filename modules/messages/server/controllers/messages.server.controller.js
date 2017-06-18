@@ -172,6 +172,50 @@ exports.createReply = function (req, res) {
 };
 
 /**
+ * countUnread
+ * @param req
+ * @param res
+ */
+exports.countUnread = function (req, res) {
+  var countFrom = function (callback) {
+    Message.count({
+      from_user: req.user._id,
+      from_status: 0
+    }, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+  var countTo = function (callback) {
+    Message.count({
+      to_user: req.user._id,
+      to_status: 0
+    }, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  async.parallel([countFrom, countTo], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({
+        countFrom: results[0],
+        countTo: results[1]
+      });
+    }
+  });
+
+};
+
+/**
  * Invitation middleware
  */
 exports.messageByID = function (req, res, next, id) {
