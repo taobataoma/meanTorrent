@@ -16,8 +16,5 @@ module.exports = function (app) {
     .delete(messages.delete)
     .post(messages.createReply);
 
-  app.route('/api/messages/:messageId/:replyId').all(messagesPolicy.isAllowed)
-    .delete(messages.deleteReply);
-
   app.param('messageId', messages.messageByID);
 };

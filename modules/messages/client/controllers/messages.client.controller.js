@@ -6,10 +6,10 @@
     .controller('MessageController', MessageController);
 
   MessageController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$filter', 'NotifycationService', '$stateParams', 'MessagesService',
-    'MeanTorrentConfig', 'ModalConfirmService'];
+    'MeanTorrentConfig', 'ModalConfirmService', 'marked'];
 
   function MessageController($scope, $state, $translate, $timeout, Authentication, $filter, NotifycationService, $stateParams, MessagesService,
-                             MeanTorrentConfig, ModalConfirmService) {
+                             MeanTorrentConfig, ModalConfirmService, marked) {
     var vm = this;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.user = Authentication.user;
@@ -23,7 +23,9 @@
       $state.go('authentication.signin');
     }
 
-    document.getElementById('popupSlide').addEventListener('transitionend', onTransitionEnd, false);
+    if (document.getElementById('popupSlide')) {
+      document.getElementById('popupSlide').addEventListener('transitionend', onTransitionEnd, false);
+    }
 
     /**
      * checkSendTo
@@ -108,6 +110,8 @@
      * pageChanged
      */
     vm.pageChanged = function () {
+      vm.selectedMessage = undefined;
+      vm.hideMessage();
       vm.figureOutItemsToDisplay();
     };
 
@@ -161,8 +165,6 @@
      * @param event
      */
     function onTransitionEnd(event) {
-      console.log('end');
-
       var e = $('.popup-overlay');
       if (vm.selectedMessage) {
         if (!e.hasClass('popup-visible')) {
@@ -176,8 +178,8 @@
      * @param msg
      */
     vm.showMessage = function (msg) {
+      console.log(msg);
       vm.selectedMessage = msg;
-
       var e = $('.popup-overlay');
       if (e.hasClass('popup-visible')) {
         e.removeClass('popup-visible');
@@ -197,5 +199,92 @@
         e.removeClass('popup-visible');
       }
     };
+
+    /**
+     * getMessageClass
+     * @param m
+     * @returns {*}
+     */
+    vm.getMessageClass = function (m) {
+      if (m) {
+        if (m.from_user._id === vm.user._id) {
+          if (m.from_status === 0) {
+            return 'unread';
+          }
+        }
+        if (m.to_user._id === vm.user._id) {
+          if (m.to_status === 0) {
+            return 'unread';
+          }
+        }
+      }
+      return 'read';
+    };
+
+    /**
+     * getContentMarked
+     * @param m
+     * @returns {*}
+     */
+    vm.getContentMarked = function (m) {
+      if (m) {
+        return marked(m.content, {sanitize: true});
+      }
+    };
+
+    /**
+     * replyMessage
+     */
+    vm.replyMessage = function (m) {
+      var rmsg = new MessagesService({
+        _messageId: m._id,
+        title: '',
+        content: vm.replyContent,
+        type: 'user',
+        from_user: vm.user._id,
+        to_user: fromIsMe(m) ? m.to_user._id : m.from_user._id
+      });
+
+      rmsg.$save(function (response) {
+        successCallback(response);
+      }, function (errorResponse) {
+        errorCallback(errorResponse);
+      });
+
+      function successCallback(res) {
+        console.log(res);
+        vm.selectedMessage = res;
+
+        vm.messages.splice(vm.messages.indexOf(m), 0, res);
+        vm.messages.splice(vm.messages.indexOf(m), 1);
+        vm.figureOutItemsToDisplay();
+
+        vm.replyContent = undefined;
+        NotifycationService.showSuccessNotify('MESSAGE_SEND_SUCCESSFULLY');
+      }
+
+      function errorCallback(res) {
+        NotifycationService.showErrorNotify(res.data.message, 'MESSAGE_SEND_FAILED');
+      }
+
+    };
+
+    /**
+     * fromIsMe
+     * @param m
+     * @returns {boolean}
+     */
+    function fromIsMe(m) {
+      return (m.from_user._id === vm.user._id) ? true : false;
+    }
+
+    /**
+     * toIsMe
+     * @param m
+     * @returns {boolean}
+     */
+    function toIsMe(m) {
+      return (m.to_user._id === vm.user._id) ? true : false;
+    }
   }
 }());

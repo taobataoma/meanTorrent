@@ -9,7 +9,7 @@
 
   function MessagesService($resource) {
     return $resource('/api/messages/:messageId', {
-      messageId: '@_id'
+      messageId: '@_messageId'
     }, {
       update: {
         method: 'PUT'

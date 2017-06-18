@@ -18,8 +18,7 @@ exports.invokeRolesPolicies = function () {
         roles: ['admin', 'oper', 'user'],
         allows: [
           {resources: '/api/messages', permissions: '*'},
-          {resources: '/api/messages/:messageId', permissions: '*'},
-          {resources: '/api/messages/:messageId/:replyId', permissions: '*'}
+          {resources: '/api/messages/:messageId', permissions: '*'}
         ]
       }
     ]

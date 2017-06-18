@@ -52,8 +52,18 @@ exports.list = function (req, res) {
     ]
   })
     .sort('-updatedat, -createdat')
-    .populate('from_user')
-    .populate('to_user')
+    .populate('from_user', 'displayName profileImageURL uploaded downloaded')
+    .populate('to_user', 'displayName profileImageURL uploaded downloaded')
+    .populate({
+      path: '_replies.from_user',
+      select: 'displayName profileImageURL uploaded downloaded',
+      model: 'User'
+    })
+    .populate({
+      path: '_replies.to_user',
+      select: 'displayName profileImageURL uploaded downloaded',
+      model: 'User'
+    })
     .exec(function (err, messages) {
       if (err) {
         return res.status(422).send({
@@ -107,16 +117,38 @@ exports.delete = function (req, res) {
  * @param res
  */
 exports.createReply = function (req, res) {
+  var reply = new Message(req.body);
 
-};
+  var message = req.message;
+  message._replies.push(reply);
+  message.updatedat = Date.now();
 
-/**
- * deleteReply
- * @param req
- * @param res
- */
-exports.deleteReply = function (req, res) {
+  if (message.from_user._id.equals(req.user._id)) {
+    message.to_status = 0;
+  } else {
+    message.from_status = 0;
+  }
 
+  message.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      Message.populate(message._replies, {
+        path: 'from_user to_user',
+        select: 'displayName profileImageURL uploaded downloaded'
+      }, function (err, t) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.json(message);
+        }
+      });
+    }
+  });
 };
 
 /**
@@ -131,8 +163,18 @@ exports.messageByID = function (req, res, next, id) {
   }
 
   Message.findById(id)
-    .populate('from_user')
-    .populate('to_user')
+    .populate('from_user', 'displayName profileImageURL uploaded downloaded')
+    .populate('to_user', 'displayName profileImageURL uploaded downloaded')
+    .populate({
+      path: '_replies.from_user',
+      select: 'displayName profileImageURL uploaded downloaded',
+      model: 'User'
+    })
+    .populate({
+      path: '_replies.to_user',
+      select: 'displayName profileImageURL uploaded downloaded',
+      model: 'User'
+    })
     .exec(function (err, message) {
       if (err) {
         return next(err);
