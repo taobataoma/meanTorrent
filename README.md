@@ -29,6 +29,14 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 ![chat](https://cloud.githubusercontent.com/assets/7778550/26185610/9d921b40-3bbe-11e7-9bcb-9d9520373bdd.jpg)
 - __User status page view__
 ![status](https://cloud.githubusercontent.com/assets/7778550/26479404/85117104-4205-11e7-92c4-405aecd42738.jpg)
+- __User score page view__
+![score](https://user-images.githubusercontent.com/7778550/27261287-e199d806-5472-11e7-996d-e3733ad41ae2.jpg)
+- __Invitation detail page view__
+![invitation](https://user-images.githubusercontent.com/7778550/27261302-16d0ce94-5473-11e7-905c-2b030309f90e.jpg)
+- __MessageBox page view__
+![message](https://user-images.githubusercontent.com/7778550/27261310-2eea0fa4-5473-11e7-86d1-8d5a046a1573.jpg)
+- __Message replies list page view__
+![reply](https://user-images.githubusercontent.com/7778550/27261322-6ac3a6fc-5473-11e7-98e2-e17f3ed0e075.jpg)
 
 #### meanTorrent some feature:
 1. Multilingual support, now English & Chinese, you can Copy a string file `modules/core/client/app/trans-string-en.js` to translate it.
@@ -47,6 +55,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 13. Complete user score system, user can use score exchange an invitation to invite friend register join.
 14. Invitations manager, user can keep track of invited friends registration progress.
 15. Admin/Oper can manual management the user`s uploaded/downloaded/score data.
+16. Complete messageBox, include message list, read status, keys search, reply detail and markdown style support.
 
 #### Chat room feature:
 1. Users name list
@@ -58,10 +67,8 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 
 ## TODO
 - Other type torrent support(like TV serial, Music, Other).
-- Change torrents list orderBy when clicked on table header.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - Forums function support.
-- Users messagebox support.
 - Subject support, like region subject, [IMDB](http://www.imdb.com) TOP 100 subject etc.
 - VIP Donate function.
 - Movie belongs to collection, user can list all movie torrents of the collection.
