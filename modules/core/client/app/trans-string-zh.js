@@ -464,9 +464,6 @@
     GET_INVITATIONS_ERROR: '获取邀请列表失败',
     BUTTON_INVITE: '发送',
     BUTTON_SEARCH: '搜索',
-    BUTTON_DELETE: '　删除　',
-    BUTTON_CLOSE: '　关闭　',
-    BUTTON_REPLY: '　回复　',
     INPUT_EMAIL: '邮箱地址',
     SEND_INVITE_SUCCESSFULLY: '发送邀请成功',
     SEND_INVITE_ERROR: '发送邀请失败',
@@ -494,6 +491,10 @@
       INFO_SEND_AT: '于',
       NEW_MSG: '条未读消息'
     },
+    BUTTON_MESSAGE_DELETE: '　删除　',
+    BUTTON_MESSAGE_CLOSE: ' 关闭 (esc) ',
+    BUTTON_MESSAGE_REPLY: '　回复　',
+
     MESSAGE_TYPE_USER: '用户消息',
     MESSAGE_TYPE_SYSTEM: '系统消息',
     MESSAGE_TYPE_ADVERT: '广告推送',

@@ -16,6 +16,12 @@
     vm.messageFields = {};
     vm.deleteList = [];
 
+    $(document).on('keydown', function (e) {
+      console.log(e.keyCode);
+      if (e.keyCode === 27) { // ESC
+        vm.hideMessage();
+      }
+    });
     /**
      * If user is not signed in then redirect back home
      */

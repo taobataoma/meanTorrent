@@ -76,7 +76,7 @@
                     next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
                 </ul>
                 <div class="pull-right margin-top-20">
-                    <button class="btn btn-success" ng-click="vm.deleteSelected()">{{ 'BUTTON_DELETE' | translate }}</button>
+                    <button class="btn btn-success" ng-click="vm.deleteSelected()">{{ 'BUTTON_MESSAGE_DELETE' | translate }}</button>
                 </div>
             </div>
         </div>
@@ -116,9 +116,9 @@
         <div class="bottom-control">
             <textarea class="form-control reply-textarea" id="reply-content" name="reply-content"
                       ng-model="vm.replyContent" autofocus></textarea>
-            <button class="btn btn-default" ng-click="vm.hideMessage();">{{ 'BUTTON_CLOSE' | translate }}</button>
-            <button class="btn btn-default" ng-click="vm.delete(vm.selectedMessage);">{{ 'BUTTON_DELETE' | translate }}</button>
-            <button class="btn btn-success pull-right" ng-disabled="!vm.replyContent" ng-click="vm.replyMessage(vm.selectedMessage);">{{ 'BUTTON_REPLY' | translate }}</button>
+            <button class="btn btn-default" ng-click="vm.hideMessage();">{{ 'BUTTON_MESSAGE_CLOSE' | translate }}</button>
+            <button class="btn btn-default" ng-click="vm.delete(vm.selectedMessage);">{{ 'BUTTON_MESSAGE_DELETE' | translate }}</button>
+            <button class="btn btn-success pull-right" ng-disabled="!vm.replyContent" ng-click="vm.replyMessage(vm.selectedMessage);">{{ 'BUTTON_MESSAGE_REPLY' | translate }}</button>
         </div>
     </div>
 </section>

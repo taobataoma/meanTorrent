@@ -464,9 +464,6 @@
     GET_INVITATIONS_ERROR: 'Get invitations failed',
     BUTTON_INVITE: 'Send',
     BUTTON_SEARCH: 'Search',
-    BUTTON_DELETE: '　Delete　',
-    BUTTON_CLOSE: '　Close　',
-    BUTTON_REPLY: '　Reply　',
     INPUT_EMAIL: 'email',
     SEND_INVITE_SUCCESSFULLY: 'Send invitation successfully',
     SEND_INVITE_ERROR: 'Send invitation failed',
@@ -494,6 +491,10 @@
       INFO_SEND_AT: 'at',
       NEW_MSG: 'New messages'
     },
+    BUTTON_MESSAGE_DELETE: '　Delete　',
+    BUTTON_MESSAGE_CLOSE: ' Close (esc) ',
+    BUTTON_MESSAGE_REPLY: '　Reply　',
+
     MESSAGE_TYPE_USER: 'User message',
     MESSAGE_TYPE_SYSTEM: 'System message',
     MESSAGE_TYPE_ADVERT: 'Advert message',
