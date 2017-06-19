@@ -191,15 +191,16 @@
      * @param msg
      */
     vm.showMessage = function (msg) {
-      vm.selectedMessage = msg;
       var e = $('.popup-overlay');
       if (e.hasClass('popup-visible')) {
         e.removeClass('popup-visible');
       } else {
         e.addClass('popup-visible');
       }
-
-      vm.updateReadStatus(msg);
+      $timeout(function () {
+        vm.selectedMessage = msg;
+        vm.updateReadStatus(msg);
+      }, 300);
     };
 
     /**
