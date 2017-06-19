@@ -489,6 +489,7 @@
       LIST_SELECT: '选择',
       INFO_SEND_TO: '发送给',
       INFO_SEND_AT: '于',
+      LAST_REPLY_AT: '最新回复于',
       NEW_MSG: '条未读消息'
     },
     BUTTON_MESSAGE_DELETE: '　删除　',

@@ -51,7 +51,7 @@ exports.list = function (req, res) {
       {to_user: req.user._id}
     ]
   })
-    .sort('-updatedat, -createdat')
+    .sort('-updatedat -createdat')
     .populate('from_user', 'displayName profileImageURL uploaded downloaded')
     .populate('to_user', 'displayName profileImageURL uploaded downloaded')
     .populate({

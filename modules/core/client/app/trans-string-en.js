@@ -489,6 +489,7 @@
       LIST_SELECT: 'Select',
       INFO_SEND_TO: 'send to',
       INFO_SEND_AT: 'at',
+      LAST_REPLY_AT: 'Latest reply at',
       NEW_MSG: 'New messages'
     },
     BUTTON_MESSAGE_DELETE: '　Delete　',

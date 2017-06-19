@@ -51,6 +51,7 @@
 
                                 <p class="message-info">
                                     {{m.from_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_TO' | translate}} {{m.to_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
+                                    <span ng-show="m.updatedat">, {{'MESSAGES_FIELD.LAST_REPLY_AT' | translate}} {{m.updatedat | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
                                 </p>
                             </td>
                             <td class="td-v-middle text-center">
