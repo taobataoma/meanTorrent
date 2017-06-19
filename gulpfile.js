@@ -25,7 +25,8 @@ var _ = require('lodash'),
   webdriver_update = require('gulp-protractor').webdriver_update,
   webdriver_standalone = require('gulp-protractor').webdriver_standalone,
   del = require('del'),
-  KarmaServer = require('karma').Server;
+  KarmaServer = require('karma').Server,
+  semver = require('semver');
 
 // Local settings
 var changedTestFiles = [];
@@ -47,9 +48,13 @@ gulp.task('env:prod', function () {
 
 // Nodemon task
 gulp.task('nodemon', function () {
+
+  // Node.js v7 and newer use different debug argument
+  var debugArgument = semver.satisfies(process.versions.node, '>=7.0.0') ? '--inspect' : '--debug';
+
   return plugins.nodemon({
     script: 'server.js',
-    nodeArgs: ['--debug'],
+    nodeArgs: [debugArgument],
     ext: 'js,html',
     verbose: true,
     watch: _.union(defaultAssets.server.views, defaultAssets.server.allJS, defaultAssets.server.config)
@@ -388,7 +393,7 @@ gulp.task('dropdb', function (done) {
   });
 });
 
-// Downloads the selenium webdriver
+// Downloads the selenium webdriver if protractor version is compatible
 gulp.task('webdriver_update', webdriver_update);
 
 // Start the standalone selenium server
@@ -450,14 +455,9 @@ gulp.task('test:coverage', function (done) {
   runSequence('env:test', ['copyLocalEnvConfig', 'makeUploadsDir', 'dropdb'], 'lint', 'mocha:coverage', 'karma:coverage', done);
 });
 
-// Run the project in development mode
+// Run the project in development mode with node debugger enabled
 gulp.task('default', function (done) {
   runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['nodemon', 'watch'], done);
-});
-
-// Run the project in debug mode
-gulp.task('debug', function (done) {
-  runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['nodemon-nodebug', 'watch'], done);
 });
 
 // Run the project in production mode
