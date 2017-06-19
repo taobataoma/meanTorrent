@@ -4,7 +4,11 @@
 
             <div class="row margin-bottom-20">
                 <div class="col-xs-8 col-md-9">
-                    <h4>{{'MESSAGES_BOX' | translate}}<small ng-show="vm.unreadCount>0"> - (<span class="badge badge_danger">{{vm.unreadCount}}</span> {{'MESSAGES_FIELD.NEW_MSG' | translate}})</small></h4>
+                    <h4>{{'MESSAGES_BOX' | translate}}
+                        <small ng-show="vm.unreadCount>0"> - (<span
+                                class="badge badge_danger">{{vm.unreadCount}}</span> {{'MESSAGES_FIELD.NEW_MSG' | translate}})
+                        </small>
+                    </h4>
                 </div>
                 <div class="col-xs-4 col-md-3">
                     <input class="form-control" type="text" ng-model="vm.search" placeholder="Search"
@@ -98,17 +102,20 @@
 
             <li class="status-divider"></li>
             <div class="message-content" ng-bind-html="vm.getContentMarked(vm.selectedMessage);"></div>
-            <li class="status-divider" ng-show="vm.selectedMessage._replies.length>0"></li>
 
-            <div class="message-reply" ng-repeat="r in vm.selectedMessage._replies">
-                <img class="reply-avatar" ng-src="/{{r.from_user.profileImageURL}}">
+            <div class="message-reply">
+                <li class="status-divider" ng-show="vm.selectedMessage._replies.length>0"></li>
 
-                <div class="reply-info">
-                    <div class="message-content" ng-bind-html="vm.getContentMarked(r);"></div>
+                <div class="reply-item" ng-repeat="r in vm.selectedMessage._replies">
+                    <img class="reply-avatar" ng-src="/{{r.from_user.profileImageURL}}">
 
-                    <p class="message-info">
-                        {{r.from_user.displayName}} | {{r.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
-                    </p>
+                    <div class="reply-info">
+                        <div class="message-content" ng-bind-html="vm.getContentMarked(r);"></div>
+
+                        <p class="message-info">
+                            {{r.from_user.displayName}} | {{r.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,7 +125,9 @@
                       ng-model="vm.replyContent" autofocus></textarea>
             <button class="btn btn-default" ng-click="vm.hideMessage();">{{ 'BUTTON_MESSAGE_CLOSE' | translate }}</button>
             <button class="btn btn-default" ng-click="vm.delete(vm.selectedMessage);">{{ 'BUTTON_MESSAGE_DELETE' | translate }}</button>
-            <button class="btn btn-success pull-right" ng-disabled="!vm.replyContent" ng-click="vm.replyMessage(vm.selectedMessage);">{{ 'BUTTON_MESSAGE_REPLY' | translate }}</button>
+            <button class="btn btn-success pull-right" ng-disabled="!vm.replyContent"
+                    ng-click="vm.replyMessage(vm.selectedMessage);">{{ 'BUTTON_MESSAGE_REPLY' | translate }}
+            </button>
         </div>
     </div>
 </section>
