@@ -155,36 +155,6 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
     $or: [mainProviderSearchQuery, additionalProviderSearchQuery]
   };
 
-<<<<<<< HEAD
-    User.findOne(searchQuery, function (err, user) {
-      if (err) {
-        return done(err);
-      } else {
-        if (!user) {
-          var possibleUsername = providerUserProfile.username || ((providerUserProfile.email) ? providerUserProfile.email.split('@')[0] : '');
-
-          User.findUniqueUsername(possibleUsername, null, function (availableUsername) {
-            user = new User({
-              firstName: providerUserProfile.firstName,
-              lastName: providerUserProfile.lastName,
-              username: availableUsername,
-              displayName: providerUserProfile.displayName,
-              profileImageURL: providerUserProfile.profileImageURL,
-              provider: providerUserProfile.provider,
-              providerData: providerUserProfile.providerData
-            });
-
-            // Email intentionally added later to allow defaults (sparse settings) to be applid.
-            // Handles case where no email is supplied.
-            // See comment: https://github.com/meanjs/mean/pull/1495#issuecomment-246090193
-            user.email = providerUserProfile.email;
-            user.passkey = user.randomAsciiString(32);
-
-            // And save the user
-            user.save(function (err) {
-              return done(err, user, info);
-            });
-=======
   // Find existing user with this provider account
   User.findOne(searchQuery, function (err, existingUser) {
     if (err) {
@@ -204,13 +174,13 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
             profileImageURL: providerUserProfile.profileImageURL,
             provider: providerUserProfile.provider,
             providerData: providerUserProfile.providerData
->>>>>>> 8f50eecc7c1ec7dda3363093b3b3e7f17ca9a692
           });
 
           // Email intentionally added later to allow defaults (sparse settings) to be applid.
           // Handles case where no email is supplied.
           // See comment: https://github.com/meanjs/mean/pull/1495#issuecomment-246090193
           user.email = providerUserProfile.email;
+          user.passkey = user.randomAsciiString(32);
 
           // And save the user
           user.save(function (err) {
