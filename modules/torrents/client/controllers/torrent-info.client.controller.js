@@ -387,7 +387,7 @@
      */
     vm.replyComment = function (citem) {
       vm.comment_to_id = citem._id;
-      vm.comment_to_at = '@' + citem.user.displayName + ' ';
+      vm.comment_to_at = '@' + citem.user.displayName + ': ';
       vm.reply_action = 'reply';
 
       vm.new_comment_content = vm.comment_to_at;
@@ -400,7 +400,7 @@
      */
     vm.replySubComment = function (citem, sitem) {
       vm.comment_to_id = citem._id;
-      vm.comment_to_at = '@' + sitem.user.displayName + ' ';
+      vm.comment_to_at = '@' + sitem.user.displayName + ': ';
       vm.reply_action = 'reply';
 
       vm.new_comment_content = vm.comment_to_at;
@@ -416,7 +416,7 @@
       if (evt.originalEvent.srcElement.innerText[0] === '@') {
         evt.preventDefault();
         vm.comment_to_id = citem._id;
-        vm.comment_to_at = evt.originalEvent.srcElement.innerText + ' ';
+        vm.comment_to_at = evt.originalEvent.srcElement.innerText + ': ';
         vm.reply_action = 'reply';
 
         vm.new_comment_content = vm.comment_to_at;
