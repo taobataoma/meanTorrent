@@ -12,7 +12,7 @@ module.exports = {
       admin: 'admin@chd.im',
       base_url: 'http://www.chd.im',
       client_black_list_url: 'http://www.chd.im/client_black_list',
-      open_tracker: false
+      open_tracker: true
     },
     sign: {
       open_signin: false,
