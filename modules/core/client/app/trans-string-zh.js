@@ -590,6 +590,7 @@
       TYPE: {
         SELF: '类型',
         BLU_RAY: 'BLU_RAY',
+        WEB_DL: 'WEB_DL',
         REMUX: 'REMUX',
         ENCODE: 'ENCODE'
       },
@@ -597,8 +598,9 @@
       RESOLUTION: {
         SELF: '解析度',
         S4K: '4K',
-        S1080P: '1080P',
-        S720P: '720P'
+        S1080P: '1080p',
+        S1080I: '1080i',
+        S720P: '720p'
       },
 
       VIDEO: {
@@ -611,9 +613,18 @@
       AUDIO: {
         SELF: '音频编码',
         AAC: 'AAC',
+        AC3: 'AC3',
+        LPCM: 'LPCM',
         DTS: 'DTS',
         DTS_HD: 'DTS HD',
         ATMOS_TRUEHD: 'Atmos TrueHD'
+      },
+
+      CHANNEL: {
+        SELF: '声道',
+        C20: '2.0 声道',
+        C51: '5.1 声道',
+        C71: '7.1 声道'
       },
 
       THREED: {

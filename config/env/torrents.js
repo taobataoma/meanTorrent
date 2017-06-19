@@ -135,6 +135,7 @@ module.exports = {
             value: [
               {name: 'BLU_RAY', icon: ''},
               {name: 'REMUX', icon: ''},
+              {name: 'WEB_DL', icon: ''},
               {name: 'ENCODE', icon: ''}
             ]
           },
@@ -143,6 +144,7 @@ module.exports = {
             value: [
               {name: 'S4K', icon: ''},
               {name: 'S1080P', icon: ''},
+              {name: 'S1080I', icon: ''},
               {name: 'S720P', icon: ''}
             ]
           },
@@ -158,9 +160,19 @@ module.exports = {
             name: 'AUDIO',
             value: [
               {name: 'AAC', icon: ''},
+              {name: 'AC3', icon: ''},
+              {name: 'LPCM', icon: ''},
               {name: 'DTS', icon: ''},
               {name: 'DTS_HD', icon: ''},
               {name: 'ATMOS_TRUEHD', icon: ''}
+            ]
+          },
+          {
+            name: 'CHANNEL',
+            value: [
+              {name: 'C20', icon: ''},
+              {name: 'C51', icon: ''},
+              {name: 'C71', icon: ''}
             ]
           },
           {
@@ -184,20 +196,20 @@ module.exports = {
         ],
         checkbox: [
           {
+            name: 'MODIFY',
+            value: [
+              {name: 'DIY', icon: ''},
+              {name: 'GUOPEI', icon: ''},
+              {name: 'ZHONGZI', icon: ''}
+            ]
+          },
+          {
             name: 'RANKING',
             value: [
               {name: 'IMDB_TOP100', icon: ''},
               {name: 'IMDB_TOP250', icon: ''},
               {name: 'DOUBAN_TOP100', icon: ''},
               {name: 'DOUBAN_TOP250', icon: ''}
-            ]
-          },
-          {
-            name: 'MODIFY',
-            value: [
-              {name: 'DIY', icon: ''},
-              {name: 'GUOPEI', icon: ''},
-              {name: 'ZHONGZI', icon: ''}
             ]
           }
         ]
@@ -209,6 +221,7 @@ module.exports = {
             value: [
               {name: 'BLU_RAY', icon: ''},
               {name: 'REMUX', icon: ''},
+              {name: 'WEB_DL', icon: ''},
               {name: 'ENCODE', icon: ''}
             ]
           },
@@ -217,6 +230,7 @@ module.exports = {
             value: [
               {name: 'S4K', icon: ''},
               {name: 'S1080P', icon: ''},
+              {name: 'S1080I', icon: ''},
               {name: 'S720P', icon: ''}
             ]
           },
@@ -232,9 +246,19 @@ module.exports = {
             name: 'AUDIO',
             value: [
               {name: 'AAC', icon: ''},
+              {name: 'AC3', icon: ''},
+              {name: 'LPCM', icon: ''},
               {name: 'DTS', icon: ''},
               {name: 'DTS_HD', icon: ''},
               {name: 'ATMOS_TRUEHD', icon: ''}
+            ]
+          },
+          {
+            name: 'CHANNEL',
+            value: [
+              {name: 'C20', icon: ''},
+              {name: 'C51', icon: ''},
+              {name: 'C71', icon: ''}
             ]
           },
           {
@@ -251,20 +275,20 @@ module.exports = {
         ],
         checkbox: [
           {
+            name: 'MODIFY',
+            value: [
+              {name: 'DIY', icon: ''},
+              {name: 'GUOPEI', icon: ''},
+              {name: 'ZHONGZI', icon: ''}
+            ]
+          },
+          {
             name: 'RANKING',
             value: [
               {name: 'IMDB_TOP100', icon: ''},
               {name: 'IMDB_TOP250', icon: ''},
               {name: 'DOUBAN_TOP100', icon: ''},
               {name: 'DOUBAN_TOP250', icon: ''}
-            ]
-          },
-          {
-            name: 'MODIFY',
-            value: [
-              {name: 'DIY', icon: ''},
-              {name: 'GUOPEI', icon: ''},
-              {name: 'ZHONGZI', icon: ''}
             ]
           }
         ]

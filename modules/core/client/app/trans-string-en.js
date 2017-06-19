@@ -590,6 +590,7 @@
       TYPE: {
         SELF: 'Type',
         BLU_RAY: 'BLU_RAY',
+        WEB_DL: 'WEB_DL',
         REMUX: 'REMUX',
         ENCODE: 'ENCODE'
       },
@@ -597,7 +598,8 @@
       RESOLUTION: {
         SELF: 'Resolution',
         S4K: '4K',
-        S1080P: '1080P',
+        S1080P: '1080p',
+        S1080I: '1080i',
         S720P: '720P'
       },
 
@@ -611,9 +613,18 @@
       AUDIO: {
         SELF: 'Audio Codec',
         AAC: 'AAC',
+        AC3: 'AC3',
+        LPCM: 'LPCM',
         DTS: 'DTS',
         DTS_HD: 'DTS HD',
         ATMOS_TRUEHD: 'Atmos TrueHD'
+      },
+
+      CHANNEL: {
+        SELF: 'Audio Channel',
+        C20: '2.0 chnnel',
+        C51: '5.1 channel',
+        C71: '7.1 channel'
       },
 
       THREED: {
