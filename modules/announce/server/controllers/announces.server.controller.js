@@ -121,6 +121,7 @@ exports.announce = function (req, res) {
   req.seeder = false;
 
   console.log('------------ Announce request ----------------');
+  //console.log(req.url);
 
   var s = req.url.split('?');
   var query = querystringParse(s[1]);
@@ -172,16 +173,12 @@ exports.announce = function (req, res) {
      validatePasskeyCheck
      ---------------------------------------------------------------*/
     function (done) {
-      if (!config.meanTorrentConfig.announce.open_tracker) {
-        if (typeof passkey === 'undefined') {
-          done(104);
-        } else if (passkey.length !== 32) {
-          done(153);
-        } else if (req.passkeyuser === undefined) {
-          done(154);
-        } else {
-          done(null);
-        }
+      if (typeof passkey === 'undefined') {
+        done(104);
+      } else if (passkey.length !== 32) {
+        done(153);
+      } else if (req.passkeyuser === undefined) {
+        done(154);
       } else {
         done(null);
       }
@@ -192,17 +189,15 @@ exports.announce = function (req, res) {
      check normal,banned,sealed
      ---------------------------------------------------------------*/
     function (done) {
-      if (!config.meanTorrentConfig.announce.open_tracker) {
-        switch (req.passkeyuser.status) {
-          case 'banned':
-            done(170);
-            break;
-          case 'sealed':
-            done(171);
-            break;
-          default:
-            done(null);
-        }
+      switch (req.passkeyuser.status) {
+        case 'banned':
+          done(170);
+          break;
+        case 'sealed':
+          done(171);
+          break;
+        default:
+          done(null);
       }
     },
 

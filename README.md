@@ -181,15 +181,14 @@ such as:
 
 ```javascript
     announce: {
-      url: 'http://127.0.0.1:3000/announce',
+      url: 'http://chd.im/announce',
       announce_prefix: '[CHD.im].',
       admin: 'admin@chd.im',
-      base_url: 'http://www.chd.im',
-      client_black_list_url: 'http://www.chd.im/client_black_list',
-      open_tracker: true
+      base_url: 'http://chd.im',
+      client_black_list_url: 'http://chd.im/client_black_list'
     },
 ```
-If your tracker is private, please set the `open_tracker` to `false`, then when user to upload torrent file, It will autocheck the announce url Whether matching as `announce.url`.
+meanTorrent tracker is private, please set the `announce.url` to your server url, then when user to upload torrent file, It will autocheck the torrent announce url whether matching as `announce.url`.
 
 ```javascript
     tmdbConfig: {

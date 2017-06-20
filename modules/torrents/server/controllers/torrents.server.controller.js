@@ -137,13 +137,11 @@ exports.upload = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          if (!config.meanTorrentConfig.announce.open_tracker) {
-            if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
-              console.log(torrent.metadata.announce);
-              message = 'ANNOUNCE_URL_ERROR';
+          if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
+            console.log(torrent.metadata.announce);
+            message = 'ANNOUNCE_URL_ERROR';
 
-              reject(message);
-            }
+            reject(message);
           }
           torrentinfo = torrent.metadata;
           torrentinfo.info_hash = torrent.infoHash();
@@ -239,10 +237,8 @@ exports.download = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          if (!config.meanTorrentConfig.announce.open_tracker) {
-            var announce = config.meanTorrentConfig.announce.url + '/' + req.user.passkey;
-            torrent.metadata.announce = announce;
-          }
+          var announce = config.meanTorrentConfig.announce.url + '/' + req.user.passkey;
+          torrent.metadata.announce = announce;
           torrent_data = torrent.metadata;
           resolve();
         }
