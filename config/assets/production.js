@@ -17,6 +17,7 @@ module.exports = {
         'public/lib/highlightjs/styles/default.css',
         //flag-icon
         'public/lib/flag-icon-css/css/flag-icon.min.css'
+
         // endbower
       ],
       js: [
