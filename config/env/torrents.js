@@ -7,11 +7,12 @@ module.exports = {
       {name: 'zh', index: 1, class: 'flag-icon-cn', title: '中文'}
     ],
     announce: {
-      url: 'http://127.0.0.1:3000/announce',
+      url: 'http://chd.im:3000/announce',
+      announce_interval: 60 * 1000,
       announce_prefix: '[CHD.im].',
       admin: 'admin@chd.im',
-      base_url: 'http://www.chd.im',
-      client_black_list_url: 'http://www.chd.im/client_black_list'
+      base_url: 'http://chd.im:3000',
+      client_black_list_url: 'http://chd.im:3000/client_black_list'
     },
     sign: {
       open_signin: true,

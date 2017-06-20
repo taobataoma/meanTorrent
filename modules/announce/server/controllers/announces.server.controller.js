@@ -56,7 +56,7 @@ const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
 
 const PEER_COMPACT_SIZE = 6;
-const ANNOUNCE_INTERVAL = 60;
+const ANNOUNCE_INTERVAL = Math.floor(config.meanTorrentConfig.announce.announce_interval / 1000);
 const ANNOUNCE_GHOST = 2;
 
 const PARAMS_INTEGER = [
