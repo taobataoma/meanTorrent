@@ -1,4 +1,4 @@
-# meanTorrent - A Private BitTorrent Tracker CMS
+# meanTorrent - A Private BitTorrent Tracker CMS, [DEMO Site](http://chd.im:3000)
 
 meanTorrent is Based on [meanjs/mean](https://github.com/meanjs/mean)
 
