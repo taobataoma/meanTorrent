@@ -15,7 +15,7 @@ module.exports = {
       open_tracker: true
     },
     sign: {
-      open_signin: false,
+      open_signin: true,
       allow_social_sign: false
     },
     invite: {
