@@ -14,6 +14,7 @@
 
   var string_en = {
     COMINGSOON: 'coming soon...',
+    DEMO_INFO: 'Welcome to demo site, you can sign up manual to create a normal account or sign in as demo admin with account <mark>demo</mark> and password <mark>demoAdmin12#</mark>, but don`t delete any demo data please, thanks!',
 
     //client topbar menu
     MENU_CHAT: 'Chat',
@@ -468,6 +469,8 @@
     SEND_INVITE_SUCCESSFULLY: 'Send invitation successfully',
     SEND_INVITE_ERROR: 'Send invitation failed',
     INVALID_INVITATION_TIP: 'Invalid invitation, maybe the invitation is expired.',
+    INVITATION_IS_EMPTY: 'There are no invitations available!',
+    INVITATION_USED_IS_EMPTY: 'There are no used invitations!',
 
     //user message box
     MESSAGES_BOX: 'Messages Box',

@@ -14,6 +14,7 @@
 
   var string_zh = {
     COMINGSOON: '开发中，请稍候...',
+    DEMO_INFO: '欢迎进入meanTorrent演示站点, 您可以手动注册一个普通帐户或者使用admin演示帐号 <mark>demo</mark> 与密码 <mark>demoAdmin12#</mark>登录, 但请不要删除我们的演示数据, 谢谢!',
 
     //client topbar menu
     MENU_CHAT: '聊天室',
@@ -468,6 +469,8 @@
     SEND_INVITE_SUCCESSFULLY: '发送邀请成功',
     SEND_INVITE_ERROR: '发送邀请失败',
     INVALID_INVITATION_TIP: '无效的邀请, 该邀请可能已过期.',
+    INVITATION_IS_EMPTY: '没有可用的邀请函!',
+    INVITATION_USED_IS_EMPTY: '没有发送过的邀请!',
 
     //user message box
     MESSAGES_BOX: '站内消息',
