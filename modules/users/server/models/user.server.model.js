@@ -214,7 +214,9 @@ UserSchema.pre('save', function (next) {
     this.password = this.hashPassword(this.password);
   }
 
-  if (this.uploaded === 0 || this.downloaded === 0) {
+  if (this.uploaded > 0 && this.downloaded === 0) {
+    this.ratio = -1;
+  } else if (this.uploaded === 0 || this.downloaded === 0) {
     this.ratio = 0;
   } else {
     this.ratio = Math.round((this.uploaded / this.downloaded) * 100) / 100;

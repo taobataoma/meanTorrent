@@ -145,7 +145,7 @@
                 </dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
-                <dd class="h-line"><span ng-class="vm.user.ratio > 1 ? 'ratio-normal' : 'ratio-warning' ">{{ vm.user.ratio }}</span></dd>
+                <dd class="h-line"><span ng-class="vm.user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ vm.user.ratio | ratio}}</span></dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
                 <dd class="h-line">

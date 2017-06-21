@@ -14,7 +14,7 @@
            ng-class="{'span-banned': user.status == 'banned'}">
             <img class="ulist-avatar" ng-src="/{{user.profileImageURL}}">
 
-            <h4 class="list-group-item-heading" ng-bind="user.username"></h4>
+            <h4 class="list-group-item-heading">{{user.displayName}} - <small>{{user.username}}</small></h4>
 
             <p class="list-group-item-text pull-right small" ng-bind="user.roles"></p>
 
