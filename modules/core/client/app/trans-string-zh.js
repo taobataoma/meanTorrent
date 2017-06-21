@@ -514,6 +514,8 @@
     MESSAGE_DELETE_CONFIRM_BODY_TEXT_MANY: '您确定要删除选中的这些消息?',
     MESSAGE_DELETE_CONFIRM_BODY_TEXT: '您确定要删除该消息?',
 
+    MESSAGE_TO_ICON_TITLE: '发送站内消息',
+
     //chat view
     CHAT_USERS_LIST: '用户列表',
     CHAT_WELCOME: '欢迎进入聊天室，请注意自已的言行，共同维护良好的聊天环境！',

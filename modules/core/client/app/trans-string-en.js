@@ -73,7 +73,7 @@
       INFO: 'Torrent info',
       SIZE: 'Size',
       SEEDS_LEECHERS_FINISHED: 'S/L/F',
-      PUBLISHER: 'Publisher',
+      PUBLISHER: 'Uploader',
       ADMIN_TOOLS: 'Admin Tools',
       LIFETIME: 'Life',
       VOTES: 'Votes',
@@ -513,6 +513,8 @@
     MESSAGE_DELETE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
     MESSAGE_DELETE_CONFIRM_BODY_TEXT_MANY: 'Are you sure want to delete these messages?',
     MESSAGE_DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this message?',
+
+    MESSAGE_TO_ICON_TITLE: 'Send a message to',
 
     //chat view
     CHAT_USERS_LIST: 'Users List',

@@ -564,7 +564,7 @@ exports.list = function (req, res) {
   var findQuery = function (callback) {
     Torrent.find(condition)
       .sort(sort)
-      .populate('user', 'displayName')
+      .populate('user', 'username displayName')
       .skip(skip)
       .limit(limit)
       .exec(function (err, torrents) {
@@ -598,29 +598,29 @@ exports.torrentByID = function (req, res, next, id) {
 
   var findTorrents = function (callback) {
     Torrent.findById(id)
-      .populate('user', 'displayName profileImageURL')
+      .populate('user', 'username displayName profileImageURL')
       .populate({
         path: '_replies.user',
-        select: 'displayName profileImageURL uploaded downloaded',
+        select: 'username displayName profileImageURL uploaded downloaded',
         model: 'User'
       })
       .populate({
         path: '_replies._replies.user',
-        select: 'displayName profileImageURL uploaded downloaded',
+        select: 'username displayName profileImageURL uploaded downloaded',
         model: 'User'
       })
       .populate({
         path: '_subtitles',
         populate: {
           path: 'user',
-          select: 'displayName profileImageURL'
+          select: 'username displayName profileImageURL'
         }
       })
       .populate({
         path: '_peers',
         populate: {
           path: 'user',
-          select: 'displayName profileImageURL'
+          select: 'username displayName profileImageURL'
         }
       })
       .exec(function (err, torrent) {
@@ -645,7 +645,7 @@ exports.torrentByID = function (req, res, next, id) {
 
     Torrent.find(condition, fields)
       .sort('-createdat')
-      .populate('user', 'displayName')
+      .populate('user', 'username displayName')
       .exec(function (err, torrents) {
         if (err) {
           callback(err);

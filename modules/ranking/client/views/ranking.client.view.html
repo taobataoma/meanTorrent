@@ -40,6 +40,7 @@
                                 <span class="vip-flag" ng-if="user.isVip">
                                     <kbd>VIP</kbd>
                                 </span>
+                                <span message-to="user" to-class="message-to-icon"></span>
                             </td>
                             <td class="text-center ranking-active-col">{{user.uploaded | bytes:2}}</td>
                             <td class="text-center">{{user.downloaded | bytes:2}}</td>
@@ -84,6 +85,7 @@
                                 <span class="vip-flag" ng-if="user.isVip">
                                     <kbd>VIP</kbd>
                                 </span>
+                                <span message-to="user" to-class="message-to-icon"></span>
                             </td>
                             <td class="text-center ranking-active-col">{{user.downloaded | bytes:2}}</td>
                             <td class="text-center">{{user.uploaded | bytes:2}}</td>
@@ -128,6 +130,7 @@
                                 <span class="vip-flag" ng-if="user.isVip">
                                     <kbd>VIP</kbd>
                                 </span>
+                                <span message-to="user" to-class="message-to-icon"></span>
                             </td>
                             <td class="text-center ranking-active-col">{{user.ratio}}</td>
                             <td class="text-center">{{user.uploaded | bytes:2}}</td>
@@ -172,6 +175,7 @@
                                 <span class="vip-flag" ng-if="user.isVip">
                                     <kbd>VIP</kbd>
                                 </span>
+                                <span message-to="user" to-class="message-to-icon"></span>
                             </td>
                             <td class="text-center ranking-active-col">{{user.score}}</td>
                             <td class="text-center">{{user.uploaded | bytes:2}}</td>
