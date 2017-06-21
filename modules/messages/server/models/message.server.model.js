@@ -47,7 +47,8 @@ var MessageSchema = new Schema({
     default: Date.now
   },
   updatedat: {
-    type: Date
+    type: Date,
+    default: Date.now
   }
 });
 
