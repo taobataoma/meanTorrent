@@ -8,6 +8,9 @@
                 <a class="btn btn-primary pull-right margin-left-10" ui-sref="admin.user-edit({userId: vm.user._id})">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
+                <a class="btn btn-primary pull-right margin-left-10" ng-click="vm.messageTo()" ng-if="!vm.isContextUserSelf()">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                </a>
                 <a class="btn btn-primary pull-right" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf()">
                     <i class="glyphicon glyphicon-trash"></i>
                 </a>

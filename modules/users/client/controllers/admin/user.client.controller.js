@@ -18,6 +18,7 @@
     vm.userRolesConfig = MeanTorrentConfig.meanTorrentConfig.userRoles;
     vm.remove = remove;
     vm.update = update;
+    vm.messageTo = messageTo;
     vm.isContextUserSelf = isContextUserSelf;
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
 
@@ -57,6 +58,14 @@
           });
         }
       }
+    }
+
+    /**
+     * messageTo
+     */
+    function messageTo() {
+      var to = vm.user._id + '|' + vm.user.username;
+      $state.go('messages.send', {to: to});
     }
 
     /**

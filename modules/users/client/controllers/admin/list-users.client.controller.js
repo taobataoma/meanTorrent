@@ -18,6 +18,9 @@
       vm.buildPager();
     });
 
+    /**
+     * buildPager
+     */
     function buildPager() {
       vm.pagedItems = [];
       vm.itemsPerPage = 15;
@@ -25,6 +28,9 @@
       vm.figureOutItemsToDisplay();
     }
 
+    /**
+     * figureOutItemsToDisplay
+     */
     function figureOutItemsToDisplay() {
       vm.filteredItems = $filter('filter')(vm.users, {
         $: vm.search
@@ -35,8 +41,12 @@
       vm.pagedItems = vm.filteredItems.slice(begin, end);
     }
 
+    /**
+     * pageChanged
+     */
     function pageChanged() {
       vm.figureOutItemsToDisplay();
     }
+
   }
 }());
