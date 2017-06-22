@@ -6,12 +6,13 @@
     .controller('HomeController', HomeController);
 
   HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'Notification', 'MeanTorrentConfig',
-    'getStorageLangService', 'DownloadService'];
+    'getStorageLangService', 'DownloadService', '$timeout'];
 
   function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService,
-                          DownloadService) {
+                          DownloadService, $timeout) {
     var vm = this;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
 
     vm.movieTopOne = undefined;
     vm.movieTopList = undefined;
@@ -20,6 +21,20 @@
     vm.TVTopOne = undefined;
     vm.TVTopList = undefined;
     vm.TVNewList = undefined;
+
+
+    $(document).ready(function () {
+      $('#warning_popup').popup({
+        outline: false,
+        focusdelay: 400,
+        vertical: 'top',
+        autoopen: false,
+        opacity: 0.6,
+        closetransitionend: function () {
+          $('.popup_wrapper').remove();
+        }
+      });
+    });
 
     /**
      * If user is not signed in then redirect back signin
@@ -52,6 +67,13 @@
     vm.getTopInfo = function () {
       vm.getMovieTopInfo();
       vm.getTVTopInfo();
+      if(vm.appConfig.show_warning_popup) {
+        $timeout(function () {
+          $('#warning_popup').popup('show');
+          //$('.warning_popup_open').trigger('click');
+          //angular.element('#myselector').triggerHandler('click');
+        }, 300);
+      }
     };
 
     /**

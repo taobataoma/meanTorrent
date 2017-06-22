@@ -1031,3 +1031,42 @@ body {
         max-width: 160px;
     }
 }
+
+//popup overlay----------------------------------------------
+/* csslint ignore:start */
+.warning_popup {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+#warning_popup_background {
+    transition: all 0.3s 0.3s;
+}
+
+#warning_popup,
+#warning_popup_wrapper {
+    transition: all 0.3s ease-out;
+}
+
+#warning_popup {
+    transform: translateX(0) translateY(-40%);
+}
+
+.popup_visible #warning_popup {
+    transform: translateX(0) translateY(0);
+}
+
+.popup_content {
+    background-color: #fff;
+    opacity: 0.8 !important;
+    width: 80%;
+    margin-top: 100px;
+    border-radius: 4px;
+    h3,
+    .h3 {
+        line-height: 1.6 !important;
+    }
+}
+
+/* csslint ignore:end */
+//popup overlay end -------------------------------------------

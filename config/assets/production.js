@@ -52,7 +52,9 @@ module.exports = {
         //local-storage
         'public/lib/angular-local-storage/dist/angular-local-storage.min.js',
         //translate
-        'public/lib/angular-translate/angular-translate.min.js'
+        'public/lib/angular-translate/angular-translate.min.js',
+        //popup overlay
+        'public/lib/jquery-popup-overlay/jquery.popupoverlay.js'
 
         // endbower
       ]

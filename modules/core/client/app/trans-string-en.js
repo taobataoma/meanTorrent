@@ -15,7 +15,7 @@
   var string_en = {
     COMINGSOON: 'coming soon...',
     DEMO_INFO: 'Welcome to demo site, you can sign up manual to create a normal account or sign in as demo admin with account <mark>demo</mark> and password <mark>demoAdmin12#</mark>, but don`t delete any demo data please, thanks!',
-
+    WARNING_POPUP_STRING: 'This is a <strong style="color:#f00">DEMO SITE</strong>, all resources are for download testing only, please delete it within 24 hours after the test is completed, we recommend that you buy genuine resources!',
     //client topbar menu
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',

@@ -17,6 +17,7 @@ module.exports = {
         'public/lib/highlightjs/styles/default.css',
         //flag-icon
         'public/lib/flag-icon-css/css/flag-icon.css'
+
         // endbower
       ],
       js: [
@@ -51,7 +52,9 @@ module.exports = {
         //local-storage
         'public/lib/angular-local-storage/dist/angular-local-storage.js',
         //translate
-        'public/lib/angular-translate/angular-translate.js'
+        'public/lib/angular-translate/angular-translate.js',
+        //popup overlay
+        'public/lib/jquery-popup-overlay/jquery.popupoverlay.js'
 
         // endbower
       ],

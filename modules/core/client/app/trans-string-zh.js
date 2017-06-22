@@ -15,6 +15,7 @@
   var string_zh = {
     COMINGSOON: '开发中，请稍候...',
     DEMO_INFO: '欢迎进入meanTorrent演示站点, 您可以手动注册一个普通帐户或者使用admin演示帐号 <mark>demo</mark> 与密码 <mark>demoAdmin12#</mark>登录, 但请不要删除我们的演示数据, 谢谢!',
+    WARNING_POPUP_STRING: '这里是一个 <strong style="color:#f00">DEMO SITE</strong>, 所有资源仅供下载测试使用, 请在测试完毕后24小时内立即删除, 我们推荐您使用正版资源!',
 
     //client topbar menu
     MENU_CHAT: '聊天室',

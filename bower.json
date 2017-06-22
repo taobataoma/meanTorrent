@@ -28,7 +28,8 @@
     "ui-cropper": "^1.0.4",
     "highlightjs": "^9.10.0",
     "angular-local-storage": "^0.5.2",
-    "flag-icon-css": "^2.8.0"
+    "flag-icon-css": "^2.8.0",
+    "jquery-popup-overlay": "https://github.com/vast-engineering/jquery-popup-overlay.git#^1.7.13"
   },
   "overrides": {
     "bootstrap": {

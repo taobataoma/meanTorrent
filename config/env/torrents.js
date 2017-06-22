@@ -2,6 +2,9 @@
 
 module.exports = {
   meanTorrentConfig: {
+    app: {
+      show_warning_popup: true
+    },
     language: [
       {name: 'en', index: 0, class: 'flag-icon-gb', title: 'English'},
       {name: 'zh', index: 1, class: 'flag-icon-cn', title: '中文'}
