@@ -78,6 +78,9 @@
 
         localStorageService.set('showed_warning', true);
       }
+      if(sw){
+        $('.popup_wrapper').remove();
+      }
     };
 
     /**
