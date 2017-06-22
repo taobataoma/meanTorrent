@@ -69,7 +69,7 @@
       vm.getTVTopInfo();
 
       var sw = localStorageService.get('showed_warning');
-      if(vm.appConfig.show_warning_popup && !sw) {
+      if (vm.appConfig.show_warning_popup && !sw) {
         $timeout(function () {
           $('#warning_popup').popup('show');
           //$('.warning_popup_open').trigger('click');
@@ -78,7 +78,7 @@
 
         localStorageService.set('showed_warning', true);
       }
-      if(sw){
+      if (sw) {
         $('.popup_wrapper').remove();
       }
     };
