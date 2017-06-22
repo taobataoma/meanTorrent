@@ -6,10 +6,10 @@
     .controller('HomeController', HomeController);
 
   HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'Notification', 'MeanTorrentConfig',
-    'getStorageLangService', 'DownloadService', '$timeout'];
+    'getStorageLangService', 'DownloadService', '$timeout', 'localStorageService'];
 
   function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService,
-                          DownloadService, $timeout) {
+                          DownloadService, $timeout, localStorageService) {
     var vm = this;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
@@ -67,12 +67,16 @@
     vm.getTopInfo = function () {
       vm.getMovieTopInfo();
       vm.getTVTopInfo();
-      if(vm.appConfig.show_warning_popup) {
+
+      var sw = localStorageService.get('showed_warning');
+      if(vm.appConfig.show_warning_popup && !sw) {
         $timeout(function () {
           $('#warning_popup').popup('show');
           //$('.warning_popup_open').trigger('click');
           //angular.element('#myselector').triggerHandler('click');
         }, 300);
+
+        localStorageService.set('showed_warning', true);
       }
     };
 
