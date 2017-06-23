@@ -22,6 +22,7 @@
     MENU_TORRENTS: '种子',
     MENU_TORRENTS_ADMIN: '种子管理',
     MENU_TORRENTS_ADMIN_EDAU: '种子修改',
+    MENU_ADMIN_TRACE: '系统日志',
     MENU_USERS_ADMIN: '用户管理',
     MENU_UPLOAD: '发布',
     MENU_FORUMS: '论坛',
