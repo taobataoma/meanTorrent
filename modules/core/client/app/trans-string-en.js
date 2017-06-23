@@ -20,6 +20,7 @@
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
+    MENU_TORRENTS_ADMIN_EDAU: 'Announce Edit',
     MENU_USERS_ADMIN: 'Manage User',
     MENU_UPLOAD: 'Upload',
     MENU_FORUMS: 'Forums',

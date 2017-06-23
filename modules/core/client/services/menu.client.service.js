@@ -58,7 +58,8 @@
         position: options.position || 0,
         items: [],
         shouldRender: shouldRender,
-        target: options.target || undefined
+        target: options.target || undefined,
+        divider: options.divider || false
       });
 
       // Add submenu items
@@ -92,7 +93,8 @@
             roles: ((options.roles === null || typeof options.roles === 'undefined') ? service.menus[menuId].items[itemIndex].roles : options.roles),
             position: options.position || 0,
             shouldRender: shouldRender,
-            target: options.target || undefined
+            target: options.target || undefined,
+            divider: options.divider || false
           });
         }
       }
