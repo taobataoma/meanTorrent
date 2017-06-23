@@ -18,6 +18,9 @@ module.exports = function (app) {
   app.route('/api/torrents/upload').all(torrentsPolicy.isAllowed)
     .post(torrents.upload);
 
+  app.route('/api/torrents/announceEdit').all(torrentsPolicy.isAllowed)
+    .post(torrents.announceEdit);
+
   app.route('/api/torrents/download/:torrentId').all(torrentsPolicy.isAllowed)
     .get(torrents.download);
 

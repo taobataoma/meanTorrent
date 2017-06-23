@@ -20,6 +20,7 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/movieinfo/:tmdbid/:language', permissions: '*'},
           {resources: '/api/tvinfo/:tmdbid/:language', permissions: '*'},
           {resources: '/api/torrents/upload', permissions: '*'},
+          {resources: '/api/torrents/announceEdit', permissions: '*'},
           {resources: '/api/torrents/download/:torrentId', permissions: '*'},
           {resources: '/api/torrents', permissions: '*'},
           {resources: '/api/torrents/:torrentId', permissions: '*'},

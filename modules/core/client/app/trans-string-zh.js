@@ -115,6 +115,7 @@
       ADMIN_USER_LIST: '用户管理',
       ADMIN_USER_VIEW: '查看用户',
       ADMIN_USER_EDIT: '编辑用户',
+      ADMIN_ANNOUNCE_EDIT: '种子修改',
       ADMIN_TORRENTS_LIST: '种子管理',
       PASSWORD_FORGOT: '找回密码',
       PASSWORD_RESET: '重设密码',
@@ -193,7 +194,7 @@
     TAB_MY_PANEL: '我的面板',
     TAB_ADMIN_PANEL: '管理员面板',
 
-    TRANCKER_URL: 'Tracker 地址',
+    ANNOUNCE_URL: 'Tracker 地址',
     ATTRIBUTE_TAGS: '视频属性(标签)',
     VIDEO_NFO: '视频 NFO',
     VIDEO_SIZE: '视频文件大小',
@@ -346,6 +347,9 @@
     DOWNLOADED_TITLE: '修改下载量 (单位: GB)',
     SET_DOWNLOADED_SUCCESSFULLY: '用户下载量设置成功',
     SET_DOWNLOADED_FAILED: '用户下载量设置成功',
+
+    ANNOUNCE_EDIT_TIP: '上传一个种子文件, </br>自动替换 <mark>Announce URL</mark> 与 <mark>Comment</mark>',
+    ANNOUNCE_COMMENT: 'Announce Comment',
 
     //vip,rules views
     BUTTON_DNATE: '捐 赠 Vip',

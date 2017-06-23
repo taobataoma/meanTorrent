@@ -16,6 +16,7 @@
     COMINGSOON: 'coming soon...',
     DEMO_INFO: 'Welcome to demo site, you can sign up manual to create a normal account or sign in as demo admin with account <mark>demo</mark> and password <mark>demoAdmin12#</mark>, but don`t delete any demo data please, thanks!',
     WARNING_POPUP_STRING: 'This is a <strong style="color:#f00">DEMO SITE</strong>, all resources are for download testing only, please delete it within 24 hours after the test is completed, we recommend that you buy genuine resources!',
+
     //client topbar menu
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',
@@ -115,6 +116,7 @@
       ADMIN_USER_VIEW: 'View User',
       ADMIN_USER_EDIT: 'Edit User',
       ADMIN_TORRENTS_LIST: 'Torrents LIst',
+      ADMIN_ANNOUNCE_EDIT: 'Announce Edit',
       PASSWORD_FORGOT: 'Password forgot',
       PASSWORD_RESET: 'Password reset',
       MESSAGES_BOX: 'Message Box',
@@ -192,7 +194,7 @@
     TAB_MY_PANEL: 'My Pannel',
     TAB_ADMIN_PANEL: 'Admin Panel',
 
-    TRANCKER_URL: 'Tracker Url',
+    ANNOUNCE_URL: 'Announce Url',
     ATTRIBUTE_TAGS: 'Video Attribute (tags)',
     VIDEO_NFO: 'Video NFO',
     VIDEO_SIZE: 'Video Size',
@@ -345,6 +347,9 @@
     DOWNLOADED_TITLE: 'Edit user downloaded (unit: GB)',
     SET_DOWNLOADED_SUCCESSFULLY: 'set user downloaded successfully',
     SET_DOWNLOADED_FAILED: 'set user downloaded failed',
+
+    ANNOUNCE_EDIT_TIP: 'Upload a torrent file, </br>automatic replacement <mark>Announce URL</mark> & <mark>Comment</mark>',
+    ANNOUNCE_COMMENT: 'Announce Comment',
 
     //vip,rules views
     BUTTON_DNATE: 'Donate Vip',

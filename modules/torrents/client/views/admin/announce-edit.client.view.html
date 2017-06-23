@@ -1,0 +1,47 @@
+<section class="container padding-top-10" ng-controller="AnnounceEditController as vm">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <h3 class="h-line margin-top-50 text-center" translate="ANNOUNCE_EDIT_TIP"></h3>
+            <li class="status-divider"></li>
+
+            <dl class="dl-horizontal margin-top-50">
+                <dt class="h-line">{{ 'ANNOUNCE_URL' | translate}}：</dt>
+                <dd class="h-line">{{ vm.announceConfig.url }}</dd>
+
+                <div class="margin-top-10">
+                    <dt class="h-line">{{ 'ANNOUNCE_COMMENT' | translate}}：</dt>
+                    <dd class="h-line">
+                        <input type="text" class="form-control" ng-model="vm.comment">
+                    </dd>
+                </div>
+
+                <div class="margin-top-10">
+                    <dt class="h-line">{{ 'SELECT_FILE' | translate}}：</dt>
+                    <dd class="h-line">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="vm.tFile.name" disabled>
+
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary btn-file"
+                                        ngf-select="vm.fileSelected = true; vm.progress = 0;"
+                                        ng-model="vm.tFile"
+                                        accept="application/x-bittorrent"
+                                        ngf-resize="{width: 400}"
+                                        ngf-resize-if="$width > 400 || $height > 400">
+                                    {{ 'SELECT_FILE' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </dd>
+                </div>
+
+                <div class="margin-top-10">
+                    <dt class="h-line"></dt>
+                    <dd class="h-line">
+                        <button class="btn btn-success" ng-click="vm.upload(vm.tFile)">{{ 'DO_UPLOAD' | translate}} ({{vm.progress}}%)</button>
+                    </dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+</section>

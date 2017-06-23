@@ -16,6 +16,13 @@
         data: {
           pageTitle: 'PAGETITLE.ADMIN_TORRENTS_LIST'
         }
+      })
+      .state('admin.announce', {
+        url: '/announce',
+        templateUrl: '/modules/torrents/client/views/admin/announce-edit.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.ADMIN_ANNOUNCE_EDIT'
+        }
       });
   }
 }());

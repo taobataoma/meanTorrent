@@ -178,7 +178,112 @@ exports.upload = function (req, res) {
       }
     });
   }
+};
 
+/**
+ * announceEdit
+ * @param req
+ * @param res
+ */
+exports.announceEdit = function (req, res) {
+  var user = req.user;
+  var createUploadFilename = require(path.resolve('./config/lib/multer')).createUploadFilename;
+  var getUploadDestination = require(path.resolve('./config/lib/multer')).getUploadDestination;
+  var fileFilter = require(path.resolve('./config/lib/multer')).torrentFileFilter;
+  var torrent_data = null;
+
+  var storage = multer.diskStorage({
+    destination: getUploadDestination,
+    filename: createUploadFilename
+  });
+
+  var upload = multer({
+    storage: storage,
+    fileFilter: fileFilter,
+    limits: config.uploads.torrent.file.limits
+  }).single('newTorrentFile');
+
+  if (user) {
+    uploadFile()
+      .then(function () {
+        var filePath = config.uploads.torrent.file.temp + req.file.filename;
+        var stat = fs.statSync(filePath);
+
+        fs.exists(filePath, function (exists) {
+          if (exists) {
+            getTorrentFileData(filePath)
+              .then(function () {
+                res.set('Content-Type', 'application/x-bittorrent');
+                res.set('Content-Disposition', 'attachment; filename=' + req.file.filename);
+                res.set('Content-Length', stat.size);
+
+                res.send(benc.encode(torrent_data));
+              })
+              .catch(function (err) {
+                res.status(422).send(err);
+              });
+          } else {
+            res.status(422).send({
+              message: 'FILE_DOES_NOT_EXISTS'
+            });
+          }
+        });
+      })
+      .catch(function (err) {
+
+        res.status(422).send(err);
+
+        if (req.file && req.file.filename) {
+          var newfile = config.uploads.torrent.file.temp + req.file.filename;
+          if (fs.existsSync(newfile)) {
+            console.log(err);
+            console.log('ERROR: DELETE TEMP TORRENT FILE: ' + newfile);
+            fs.unlinkSync(newfile);
+          }
+        }
+      });
+  } else {
+    res.status(401).send({
+      message: 'User is not signed in'
+    });
+  }
+
+  function uploadFile() {
+    return new Promise(function (resolve, reject) {
+      upload(req, res, function (uploadError) {
+        if (uploadError) {
+          var message = errorHandler.getErrorMessage(uploadError);
+
+          if (uploadError.code === 'LIMIT_FILE_SIZE') {
+            message = 'Torrent file too large. Maximum size allowed is ' + (config.uploads.torrent.file.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
+          }
+
+          reject(message);
+        } else {
+          resolve();
+        }
+      });
+    });
+  }
+
+  function getTorrentFileData(file) {
+    return new Promise(function (resolve, reject) {
+      nt.read(file, function (err, torrent) {
+        var message = '';
+
+        if (err) {
+          message = 'Read torrent file faild';
+          reject(message);
+        } else {
+          var announce = config.meanTorrentConfig.announce.url;
+          torrent.metadata.announce = announce;
+          torrent.metadata.comment = req.query.comment;
+          torrent_data = torrent.metadata;
+          resolve();
+        }
+      });
+    });
+  }
 };
 
 /**
