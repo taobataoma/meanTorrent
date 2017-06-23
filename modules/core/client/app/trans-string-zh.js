@@ -118,6 +118,7 @@
       ADMIN_USER_EDIT: '编辑用户',
       ADMIN_ANNOUNCE_EDIT: '种子修改',
       ADMIN_TORRENTS_LIST: '种子管理',
+      ADMIN_TRACES_LIST: '系统日志',
       PASSWORD_FORGOT: '找回密码',
       PASSWORD_RESET: '重设密码',
       MESSAGES_BOX: '站内消息',
