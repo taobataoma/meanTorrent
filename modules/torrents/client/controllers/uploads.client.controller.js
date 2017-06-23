@@ -6,12 +6,12 @@
     .controller('TorrentsUploadController', TorrentsUploadController);
 
   TorrentsUploadController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
-    'TorrentsService', 'getStorageLangService', '$filter'];
+    'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService'];
 
   function TorrentsUploadController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
-                                    TorrentsService, getStorageLangService, $filter) {
+                                    TorrentsService, getStorageLangService, $filter, DownloadService) {
     var vm = this;
-    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
@@ -304,9 +304,11 @@
       });
 
       function successCallback(res) {
+        vm.downloadTorrent(res._id);
+        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
+
         $state.reload('torrents.uploads');
         document.body.scrollTop = document.documentElement.scrollTop = 0;
-        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
       }
 
       function errorCallback(res) {
@@ -343,9 +345,11 @@
       });
 
       function successCallback(res) {
+        vm.downloadTorrent(res._id);
+        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
+
         $state.reload('torrents.uploads');
         document.body.scrollTop = document.documentElement.scrollTop = 0;
-        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
       }
 
       function errorCallback(res) {
@@ -426,5 +430,15 @@
     vm.clearAllCondition = function () {
       vm.tags = [];
     };
+
+    /**
+     * downloadTorrent
+     * @param id
+     */
+    vm.downloadTorrent = function (id) {
+      var url = '/api/torrents/download/' + id;
+      DownloadService.downloadFile(url, null);
+    };
+
   }
 }());
