@@ -13,7 +13,10 @@ var path = require('path'),
   moment = require('moment'),
   async = require('async'),
   querystring = require('querystring'),
-  url = require('url');
+  url = require('url'),
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
+
+var traceConfig = config.meanTorrentConfig.trace;
 
 const FAILURE_REASONS = {
   100: 'Invalid request type: client request was not a HTTP GET',
@@ -362,6 +365,22 @@ exports.announce = function (req, res) {
         req.passkeyuser.update({
           $inc: {uploaded: u, downloaded: d}
         }).exec();
+
+        //create trace log
+        if (curru > 0 || currd > 0) {
+          traceLogCreate(req, traceConfig.action.userAnnounceData, {
+            user: req.passkeyuser._id,
+            torrent: req.torrent._id,
+            curr_uploaded: curru,
+            curr_downloaded: currd,
+            write_uploaded: u,
+            write_downloaded: d,
+            isVip: req.passkeyuser.isVip,
+            agent: req.get('User-Agent'),
+            ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+            port: query.port
+          });
+        }
       }
 
       if (event(query.event) !== EVENT_STOPPED) {

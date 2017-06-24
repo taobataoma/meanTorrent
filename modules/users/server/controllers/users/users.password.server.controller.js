@@ -11,9 +11,11 @@ var path = require('path'),
   Invitation = mongoose.model('Invitation'),
   nodemailer = require('nodemailer'),
   async = require('async'),
-  crypto = require('crypto');
+  crypto = require('crypto'),
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
+var traceConfig = config.meanTorrentConfig.trace;
 
 /**
  * Forgot for reset password (forgot POST)
@@ -175,6 +177,12 @@ exports.reset = function (req, res, next) {
                     user.salt = undefined;
 
                     res.json(user);
+
+                    //create trace log
+                    traceLogCreate(req, traceConfig.action.userPasswordReset, {
+                      to: user._id,
+                      newPassword: passwordDetails.newPassword
+                    });
 
                     done(err, user);
                   }

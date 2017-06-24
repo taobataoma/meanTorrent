@@ -10,9 +10,11 @@ var path = require('path'),
   nodemailer = require('nodemailer'),
   User = mongoose.model('User'),
   Invitation = mongoose.model('Invitation'),
-  async = require('async');
+  async = require('async'),
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
+var traceConfig = config.meanTorrentConfig.trace;
 
 /**
  * create a Invitation
@@ -43,6 +45,13 @@ exports.create = function (req, res) {
         } else {
           user.score = user.score - config.meanTorrentConfig.invite.score_exchange;
           res.json(user);
+
+          //create trace log
+          traceLogCreate(req, traceConfig.action.userInvitationExchange, {
+            to: req.user._id,
+            token: invitation.token,
+            score: config.meanTorrentConfig.invite.score_exchange
+          });
         }
       });
 

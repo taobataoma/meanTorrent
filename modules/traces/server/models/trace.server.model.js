@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Log Schema
  */
 var TraceSchema = new Schema({
-  from_user: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },

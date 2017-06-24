@@ -41,6 +41,28 @@ module.exports = {
         ]
       }
     },
+    trace: {
+      action: {
+        AdminUpdateUserRole: {name: 'AdminUpdateUserRole', value: true},
+        AdminUpdateUserStatus: {name: 'AdminUpdateUserStatus', value: true},
+        AdminUpdateUserScore: {name: 'AdminUpdateUserScore', value: true},
+        AdminUpdateUserUploaded: {name: 'AdminUpdateUserUploaded', value: true},
+        AdminUpdateUserDownloaded: {name: 'AdminUpdateUserDownloaded', value: true},
+        AdminUserDelete: {name: 'AdminUserDelete', value: true},
+        AdminUserEdit: {name: 'AdminUserEdit', value: true},
+        userPasswordReset: {name: 'userPasswordReset', value: true},
+        userSignUp: {name: 'userSignUp', value: true},
+
+        AdminTorrentDelete: {name: 'AdminTorrentDelete', value: true},
+        AdminTorrentSetSaleType: {name: 'AdminTorrentSetSaleType', value: true},
+        AdminTorrentSetRecommendLevel: {name: 'AdminTorrentSetRecommendLevel', value: true},
+        AdminTorrentSetReviewedStatus: {name: 'AdminTorrentSetReviewedStatus', value: true},
+
+        userInvitationExchange: {name: 'userInvitationExchange', value: true},
+
+        userAnnounceData: {name: 'userAnnounceData', value: true}
+      }
+    },
     torrentType: {
       name: 'TYPE',
       value: [

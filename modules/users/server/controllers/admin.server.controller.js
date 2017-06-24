@@ -4,10 +4,13 @@
  * Module dependencies
  */
 var path = require('path'),
+  config = require(path.resolve('./config/config')),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
-  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
+var traceConfig = config.meanTorrentConfig.trace;
 /**
  * Show the current user
  */
@@ -35,6 +38,14 @@ exports.update = function (req, res) {
     }
 
     res.json(user);
+
+    //create trace log
+    traceLogCreate(req, traceConfig.action.AdminUserEdit, {
+      to: user._id,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      roles: req.body.roles
+    });
   });
 };
 
@@ -52,6 +63,11 @@ exports.delete = function (req, res) {
     }
 
     res.json(user);
+
+    //create trace log
+    traceLogCreate(req, traceConfig.action.AdminUserDelete, {
+      to: user._id
+    });
   });
 };
 
@@ -88,6 +104,12 @@ exports.updateUserRole = function (req, res) {
     } else {
       user.roles = req.body.userRole;
       res.json(user);
+
+      //create trace log
+      traceLogCreate(req, traceConfig.action.AdminUpdateUserRole, {
+        to: user._id,
+        role: req.body.userRole
+      });
     }
   });
 };
@@ -110,6 +132,12 @@ exports.updateUserStatus = function (req, res) {
     } else {
       user.status = req.body.userStatus;
       res.json(user);
+
+      //create trace log
+      traceLogCreate(req, traceConfig.action.AdminUpdateUserStatus, {
+        to: user._id,
+        status: req.body.userStatus
+      });
     }
   });
 };
@@ -134,6 +162,12 @@ exports.updateUserScore = function (req, res) {
     }
 
     res.json(user);
+
+    //create trace log
+    traceLogCreate(req, traceConfig.action.AdminUpdateUserScore, {
+      to: user._id,
+      score: req.body.userScore
+    });
   });
 };
 
@@ -157,6 +191,12 @@ exports.updateUserUploaded = function (req, res) {
     }
 
     res.json(user);
+
+    //create trace log
+    traceLogCreate(req, traceConfig.action.AdminUpdateUserUploaded, {
+      to: user._id,
+      uploaded: req.body.userUploaded
+    });
   });
 };
 
@@ -180,6 +220,12 @@ exports.updateUserDownloaded = function (req, res) {
     }
 
     res.json(user);
+
+    //create trace log
+    traceLogCreate(req, traceConfig.action.AdminUpdateUserDownloaded, {
+      to: user._id,
+      downloaded: req.body.userDownloaded
+    });
   });
 };
 

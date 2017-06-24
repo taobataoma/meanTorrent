@@ -16,7 +16,10 @@ var path = require('path'),
   benc = require('bncode'),
   async = require('async'),
   validator = require('validator'),
-  tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key);
+  tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key),
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
+
+var traceConfig = config.meanTorrentConfig.trace;
 
 /**
  * get movie info from tmdb
@@ -472,6 +475,12 @@ exports.setSaleType = function (req, res) {
         });
       } else {
         res.json(torrent);
+
+        //create trace log
+        traceLogCreate(req, traceConfig.action.AdminTorrentSetSaleType, {
+          torrent: torrent._id,
+          sale_status: req.params.saleType
+        });
       }
     });
   } else {
@@ -500,6 +509,12 @@ exports.setRecommendLevel = function (req, res) {
         });
       } else {
         res.json(torrent);
+
+        //create trace log
+        traceLogCreate(req, traceConfig.action.AdminTorrentSetRecommendLevel, {
+          torrent: torrent._id,
+          recommended: req.params.rlevel
+        });
       }
     });
   } else {
@@ -527,6 +542,12 @@ exports.setReviewedStatus = function (req, res) {
       });
     } else {
       res.json(torrent);
+
+      //create trace log
+      traceLogCreate(req, traceConfig.action.AdminTorrentSetReviewedStatus, {
+        torrent: torrent._id,
+        status: 'reviewed'
+      });
     }
   });
 };
@@ -550,6 +571,11 @@ exports.delete = function (req, res) {
       });
     } else {
       res.json(torrent);
+
+      //create trace log
+      traceLogCreate(req, traceConfig.action.AdminTorrentDelete, {
+        torrent: torrent._id
+      });
     }
   });
 };

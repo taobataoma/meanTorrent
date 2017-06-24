@@ -4,17 +4,21 @@
  * Module dependencies
  */
 var path = require('path'),
+  config = require(path.resolve('./config/config')),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   mongoose = require('mongoose'),
   passport = require('passport'),
   User = mongoose.model('User'),
-  Invitation = mongoose.model('Invitation');
+  Invitation = mongoose.model('Invitation'),
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 // URLs for which user can't be redirected on signin
 var noReturnUrls = [
   '/authentication/signin',
   '/authentication/signup'
 ];
+
+var traceConfig = config.meanTorrentConfig.trace;
 
 /**
  * Signup
@@ -37,8 +41,10 @@ exports.signup = function (req, res) {
       });
     } else {
       //if is invited, update invite data
-      Invitation.update({token: req.body.inviteToken}, {$set: {status: 2, to_user: user._id, registeredat: Date.now()}}, function (err) {
-      });
+      if (req.body.inviteToken) {
+        Invitation.update({token: req.body.inviteToken}, {$set: {status: 2, to_user: user._id, registeredat: Date.now()}}, function (err) {
+        });
+      }
       // Remove sensitive data before login
       user.password = undefined;
       user.salt = undefined;
@@ -49,6 +55,13 @@ exports.signup = function (req, res) {
         } else {
           res.json(user);
         }
+      });
+
+      //create trace log
+      traceLogCreate(req, traceConfig.action.userSignUp, {
+        to: user._id,
+        inviteToken: req.body.inviteToken || null,
+        ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress
       });
     }
   });
