@@ -657,7 +657,8 @@ exports.announce = function (req, res) {
     for (var i = 0; i < m; i++) {
       var index = Math.floor(Math.random() * peers.length);
       p = peers[index];
-      if (p !== undefined && p.user.str !== req.passkeyuser._id.str) {
+      //if (p !== undefined && p.user.str !== req.passkeyuser._id.str) {
+      if (p !== undefined) {
         var b = compact(p);
         if (b) {
           b.copy(buf, c++ * PEER_COMPACT_SIZE);
