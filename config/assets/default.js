@@ -16,7 +16,9 @@ module.exports = {
         //highlight
         'public/lib/highlightjs/styles/default.css',
         //flag-icon
-        'public/lib/flag-icon-css/css/flag-icon.css'
+        'public/lib/flag-icon-css/css/flag-icon.css',
+        //json-tree
+        'public/lib/angular-json-tree/dist/angular-json-tree.css'
 
         // endbower
       ],
@@ -54,7 +56,9 @@ module.exports = {
         //translate
         'public/lib/angular-translate/angular-translate.js',
         //popup overlay
-        'public/lib/jquery-popup-overlay/jquery.popupoverlay.js'
+        'public/lib/jquery-popup-overlay/jquery.popupoverlay.js',
+        //json-tree
+        'public/lib/angular-json-tree/dist/angular-json-tree.js'
 
         // endbower
       ],
