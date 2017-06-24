@@ -524,6 +524,16 @@
 
     MESSAGE_TO_ICON_TITLE: 'Send a message to',
 
+    //traces
+    ADMIN_TRACES_LIST: 'Traces List',
+    TRACES_IS_EMPTY: 'Traces is empty!',
+    TRACES_FIELDS: {
+      USERNAME: 'Username',
+      CONTENT: 'Trace Content',
+      TYPE: 'Action Type',
+      CREATEDAT: 'CreatedAt'
+    },
+
     //chat view
     CHAT_USERS_LIST: 'Users List',
     CHAT_WELCOME: 'Welcome to join the chat room, please follow the chat rules, and have a good time!',

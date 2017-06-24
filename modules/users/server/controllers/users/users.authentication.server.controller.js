@@ -59,7 +59,7 @@ exports.signup = function (req, res) {
 
       //create trace log
       traceLogCreate(req, traceConfig.action.userSignUp, {
-        to: user._id,
+        user: user._id,
         inviteToken: req.body.inviteToken || null,
         ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress
       });

@@ -180,7 +180,7 @@ exports.reset = function (req, res, next) {
 
                     //create trace log
                     traceLogCreate(req, traceConfig.action.userPasswordReset, {
-                      to: user._id,
+                      user: user._id,
                       newPassword: passwordDetails.newPassword
                     });
 

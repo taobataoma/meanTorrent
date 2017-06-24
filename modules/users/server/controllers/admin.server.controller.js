@@ -41,7 +41,7 @@ exports.update = function (req, res) {
 
     //create trace log
     traceLogCreate(req, traceConfig.action.AdminUserEdit, {
-      to: user._id,
+      user: user._id,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       roles: req.body.roles
@@ -66,7 +66,7 @@ exports.delete = function (req, res) {
 
     //create trace log
     traceLogCreate(req, traceConfig.action.AdminUserDelete, {
-      to: user._id
+      user: user._id
     });
   });
 };
@@ -107,7 +107,7 @@ exports.updateUserRole = function (req, res) {
 
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminUpdateUserRole, {
-        to: user._id,
+        user: user._id,
         role: req.body.userRole
       });
     }
@@ -135,7 +135,7 @@ exports.updateUserStatus = function (req, res) {
 
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminUpdateUserStatus, {
-        to: user._id,
+        user: user._id,
         status: req.body.userStatus
       });
     }
@@ -165,7 +165,7 @@ exports.updateUserScore = function (req, res) {
 
     //create trace log
     traceLogCreate(req, traceConfig.action.AdminUpdateUserScore, {
-      to: user._id,
+      user: user._id,
       score: req.body.userScore
     });
   });
@@ -194,7 +194,7 @@ exports.updateUserUploaded = function (req, res) {
 
     //create trace log
     traceLogCreate(req, traceConfig.action.AdminUpdateUserUploaded, {
-      to: user._id,
+      user: user._id,
       uploaded: req.body.userUploaded
     });
   });
@@ -223,7 +223,7 @@ exports.updateUserDownloaded = function (req, res) {
 
     //create trace log
     traceLogCreate(req, traceConfig.action.AdminUpdateUserDownloaded, {
-      to: user._id,
+      user: user._id,
       downloaded: req.body.userDownloaded
     });
   });

@@ -48,7 +48,7 @@ exports.create = function (req, res) {
 
           //create trace log
           traceLogCreate(req, traceConfig.action.userInvitationExchange, {
-            to: req.user._id,
+            user: req.user._id,
             token: invitation.token,
             score: config.meanTorrentConfig.invite.score_exchange
           });

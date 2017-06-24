@@ -1,5 +1,65 @@
-<section class="container" ng-controller="TracesController as vm">
-    <div class="text-center margin-top-50 padding-top-50">
-        <h3>Traces List</h3>
+<section class="container" ng-controller="TracesController as vm" ng-init="vm.getTraces();">
+    <div class="row margin-top-20">
+        <div class="col-sm-12 traces-list">
+
+            <div class="row margin-bottom-20">
+                <div class="col-xs-8 col-md-9">
+                    <h4>{{'ADMIN_TRACES_LIST' | translate}}</h4>
+                </div>
+                <div class="col-xs-4 col-md-3">
+                    <input class="form-control" type="text" ng-model="vm.search" placeholder="Search"
+                           ng-change="vm.figureOutItemsToDisplay()"/>
+                </div>
+            </div>
+
+            <div class="pagination-div-top">
+                <div class="row">
+                    <div class="col-sm-12 col-md-7">
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                            ng-model="vm.currentPage"
+                            ng-change="vm.pageChanged()"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive margin-top-50 margin-bottom-50 padding-top-40 padding-bottom-50 text-center" ng-if="!vm.pagedItems.length">
+                <h4>{{ 'MESSAGES_IS_EMPTY' | translate }}</h4>
+            </div>
+            <div class="table-responsive" ng-if="vm.pagedItems.length">
+                <table class="table table-hover tb-v-middle">
+                    <thead>
+                        <tr>
+                            <th class="text-center">{{ 'TRACES_FIELDS.USERNAME' | translate}}</th>
+                            <th class="text-center">{{ 'TRACES_FIELDS.CONTENT' | translate}}</th>
+                            <th class="text-center">{{ 'TRACES_FIELDS.TYPE' | translate}}</th>
+                            <th class="text-center">{{ 'TRACES_FIELDS.CREATEDAT' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="message-item" ng-repeat="m in vm.pagedItems" ng-click="vm.showMessage(m);">
+                            <td class="td-v-middle text-center">{{m.user.displayName}}</td>
+
+                            <td class="td-v-middle"><json-tree object="m.content"></json-tree></td>
+
+                            <td class="td-v-middle text-center">{{m.content.action}}</td>
+
+                            <td class="td-v-middle text-center">{{m.createdat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination-div-bottom">
+                <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                    ng-model="vm.currentPage"
+                    ng-change="vm.pageChanged()"
+                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                </ul>
+            </div>
+        </div>
     </div>
 </section>

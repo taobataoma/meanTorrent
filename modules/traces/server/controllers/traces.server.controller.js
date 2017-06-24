@@ -19,7 +19,12 @@ var path = require('path'),
 exports.list = function (req, res) {
   Trace.find({})
     .sort('-createdat')
-    .populate('user', 'displayName profileImageURL uploaded downloaded')
+    .populate('user', 'username displayName')
+    .populate({
+      path: 'content.user',
+      select: 'username displayName',
+      model: 'User'
+    })
     .exec(function (err, traces) {
       if (err) {
         return res.status(422).send({

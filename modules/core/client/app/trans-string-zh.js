@@ -524,6 +524,16 @@
 
     MESSAGE_TO_ICON_TITLE: '发送站内消息',
 
+    //traces
+    ADMIN_TRACES_LIST: '系统日志',
+    TRACES_IS_EMPTY: '系统日志为空!',
+    TRACES_FIELDS: {
+      USERNAME: '操作用户',
+      CONTENT: '日志内容',
+      TYPE: '操作类型',
+      CREATEDAT: '操作时间'
+    },
+
     //chat view
     CHAT_USERS_LIST: '用户列表',
     CHAT_WELCOME: '欢迎进入聊天室，请注意自已的言行，共同维护良好的聊天环境！',
