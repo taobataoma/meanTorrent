@@ -22,6 +22,7 @@
     MENU_TORRENTS: 'Torrents',
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
     MENU_TORRENTS_ADMIN_EDAU: 'Announce Edit',
+    MENU_ADMIN_MESSAGES: 'System Messages',
     MENU_ADMIN_TRACE: 'System Traces',
     MENU_USERS_ADMIN: 'Manage User',
     MENU_UPLOAD: 'Upload',
@@ -118,6 +119,7 @@
       ADMIN_USER_EDIT: 'Edit User',
       ADMIN_TORRENTS_LIST: 'Torrents List',
       ADMIN_ANNOUNCE_EDIT: 'Announce Edit',
+      ADMIN_MESSAGES: 'System Messages',
       ADMIN_TRACES_LIST: 'Traces List',
       PASSWORD_FORGOT: 'Password forgot',
       PASSWORD_RESET: 'Password reset',
@@ -483,6 +485,7 @@
     //user message box
     MESSAGES_BOX: 'Messages Box',
     MESSAGES_SEND: 'Send Messages',
+    ADMIN_MESSAGES_SEND: 'Send System Messages',
     MESSAGES_SEND_BUTTON: '　　Send　　',
     MESSAGES_IS_EMPTY: 'Messages Box is empty!',
     MESSAGES_FIELD: {

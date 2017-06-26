@@ -22,6 +22,7 @@
     MENU_TORRENTS: '种子',
     MENU_TORRENTS_ADMIN: '种子管理',
     MENU_TORRENTS_ADMIN_EDAU: '种子修改',
+    MENU_ADMIN_MESSAGES: '系统消息',
     MENU_ADMIN_TRACE: '系统日志',
     MENU_USERS_ADMIN: '用户管理',
     MENU_UPLOAD: '发布',
@@ -118,6 +119,7 @@
       ADMIN_USER_EDIT: '编辑用户',
       ADMIN_ANNOUNCE_EDIT: '种子修改',
       ADMIN_TORRENTS_LIST: '种子管理',
+      ADMIN_MESSAGES: '系统消息',
       ADMIN_TRACES_LIST: '系统日志',
       PASSWORD_FORGOT: '找回密码',
       PASSWORD_RESET: '重设密码',
@@ -483,6 +485,7 @@
     //user message box
     MESSAGES_BOX: '站内消息',
     MESSAGES_SEND: '发送消息',
+    ADMIN_MESSAGES_SEND: '发送系统消息',
     MESSAGES_SEND_BUTTON: '　　发送　　',
     MESSAGES_IS_EMPTY: '消息盒子为空!',
     MESSAGES_FIELD: {
