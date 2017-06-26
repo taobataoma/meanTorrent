@@ -29,10 +29,10 @@
                 </div>
             </div>
 
-            <div class="table-responsive margin-top-50 margin-bottom-50 padding-top-40 padding-bottom-50 text-center" ng-if="!vm.pagedItems.length">
+            <div class="table-responsive margin-top-50 margin-bottom-50 padding-top-40 padding-bottom-50 text-center" ng-if="!vm.pagedItems">
                 <h4>{{ 'MESSAGES_IS_EMPTY' | translate }}</h4>
             </div>
-            <div class="table-responsive" ng-if="vm.pagedItems.length">
+            <div class="table-responsive" ng-if="vm.pagedItems">
                 <table class="table table-hover tb-v-middle">
                     <thead>
                         <tr>
@@ -61,13 +61,14 @@
                                 </p>
                             </td>
                             <td class="td-v-middle text-center">
-                                <span ng-class="vm.getMessageClass(m);">{{m._replies.length}}</span>
+                                <span ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-if="m.type=='user'">{{m._replies.length}}</span>
+                                <span ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-if="m.type!='user'">-</span>
                             </td>
                             <td class="td-v-middle text-center">
-                                <span ng-class="vm.getMessageClass(m);">{{'MESSAGE_TYPE_' + m.type.toUpperCase() | translate}}</span>
+                                <span ng-class="vm.isUnread(m)? 'unread' : 'read'">{{'MESSAGE_TYPE_' + m.type.toUpperCase() | translate}}</span>
                             </td>
                             <td class="td-v-middle text-center">
-                                <span ng-class="vm.getMessageClass(m);">{{m.createdat | life}}</span>
+                                <span ng-class="vm.isUnread(m)? 'unread' : 'read'">{{m.createdat | life}}</span>
                             </td>
                             <td class="td-v-middle text-center" ng-click="$event.stopPropagation();">
                                 <input type="checkbox" class="tcheckbox" ng-model="vm.selected[m._id]"
@@ -99,7 +100,7 @@
                 <img class="message-avatar" ng-src="/{{vm.selectedMessage.from_user.profileImageURL}}">
 
                 <div class="title-info">
-                    <span class="message-title" ng-class="vm.getMessageClass(vm.selectedMessage);" ng-bind="vm.selectedMessage.title"></span>
+                    <span class="message-title" ng-class="vm.isUnread(vm.selectedMessage)? 'unread' : 'read'" ng-bind="vm.selectedMessage.title"></span>
 
                     <p class="message-info" ng-if="m.type=='user'">
                         {{vm.selectedMessage.from_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_TO' | translate}} {{vm.selectedMessage.to_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{vm.selectedMessage.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
