@@ -11,4 +11,9 @@ module.exports = function (app) {
     .get(adminMessages.list)
     .post(adminMessages.create)
     .delete(adminMessages.delete);
+
+  app.route('/api/adminMessages/:adminMessageId').all(adminMessagesPolicy.isAllowed)
+    .put(adminMessages.setReaded);
+
+  app.param('adminMessageId', adminMessages.adminMessageByID);
 };

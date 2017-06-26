@@ -46,12 +46,18 @@
                     <tbody>
                         <tr class="message-item" ng-repeat="m in vm.pagedItems" ng-click="vm.showMessage(m);">
                             <td>
-                                <img class="message-avatar" ng-src="/{{m.from_user.profileImageURL}}">
-                                <span class="message-title" ng-class="vm.getMessageClass(m);" ng-bind="m.title"></span>
+                                <img class="message-avatar" ng-src="/{{m.from_user.profileImageURL}}" ng-if="m.type=='user'">
+                                <span class="message-avatar glyphicon glyphicon-cog admin-message-avatar" ng-if="m.type!='user'"></span>
 
-                                <p class="message-info">
+                                <span class="message-title" ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-bind="m.title"></span>
+
+                                <p class="message-info" ng-if="m.type=='user'">
                                     {{m.from_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_TO' | translate}} {{m.to_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
-                                    <span ng-show="m.updatedat">, {{'MESSAGES_FIELD.LAST_REPLY_AT' | translate}} {{m.updatedat | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+                                    <span ng-show="m._replies.length">, {{'MESSAGES_FIELD.LAST_REPLY_AT' | translate}} {{m.updatedat | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+                                </p>
+
+                                <p class="message-info" ng-if="m.type!='user'">
+                                    {{m.from_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                                 </p>
                             </td>
                             <td class="td-v-middle text-center">
@@ -65,7 +71,7 @@
                             </td>
                             <td class="td-v-middle text-center" ng-click="$event.stopPropagation();">
                                 <input type="checkbox" class="tcheckbox" ng-model="vm.selected[m._id]"
-                                       id="checkbox_{{m._id}}">
+                                       id="checkbox_{{m._id}}" ng-show="m.type=='user'">
                                 </label>
                             </td>
                         </tr>
@@ -95,8 +101,12 @@
                 <div class="title-info">
                     <span class="message-title" ng-class="vm.getMessageClass(vm.selectedMessage);" ng-bind="vm.selectedMessage.title"></span>
 
-                    <p class="message-info">
+                    <p class="message-info" ng-if="m.type=='user'">
                         {{vm.selectedMessage.from_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_TO' | translate}} {{vm.selectedMessage.to_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{vm.selectedMessage.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
+                    </p>
+
+                    <p class="message-info" ng-if="m.type!='user'">
+                        {{vm.selectedMessage.from_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{vm.selectedMessage.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                     </p>
                 </div>
             </div>
@@ -104,8 +114,8 @@
             <li class="status-divider"></li>
             <div class="message-content" ng-bind-html="vm.getContentMarked(vm.selectedMessage);"></div>
 
-            <div class="message-reply">
-                <li class="status-divider" ng-show="vm.selectedMessage._replies.length>0"></li>
+            <div class="message-reply" ng-if="vm.selectedMessage._replies.length>0">
+                <li class="status-divider"></li>
 
                 <div class="reply-item" ng-repeat="r in vm.selectedMessage._replies">
                     <img class="reply-avatar" ng-src="/{{r.from_user.profileImageURL}}">
@@ -121,13 +131,15 @@
             </div>
         </div>
 
-        <div class="bottom-control">
+        <div class="bottom-control" ng-class="{'not-user-message':  vm.selectedMessage.type!='user'}">
             <textarea class="form-control reply-textarea" id="reply-content" name="reply-content"
-                      ng-model="vm.replyContent" autofocus></textarea>
+                      ng-model="vm.replyContent" ng-if="vm.selectedMessage.type=='user'" autofocus></textarea>
             <button class="btn btn-default" ng-click="vm.hideMessage();">{{ 'BUTTON_MESSAGE_CLOSE' | translate }}</button>
-            <button class="btn btn-default" ng-click="vm.delete(vm.selectedMessage);">{{ 'BUTTON_MESSAGE_DELETE' | translate }}</button>
+            <button class="btn btn-default" ng-click="vm.delete(vm.selectedMessage);"
+                    ng-if="vm.selectedMessage.type=='user'">{{ 'BUTTON_MESSAGE_DELETE' | translate }}
+            </button>
             <button class="btn btn-success pull-right" ng-disabled="!vm.replyContent"
-                    ng-click="vm.replyMessage(vm.selectedMessage);">{{ 'BUTTON_MESSAGE_REPLY' | translate }}
+                    ng-click="vm.replyMessage(vm.selectedMessage);" ng-if="vm.selectedMessage.type=='user'">{{ 'BUTTON_MESSAGE_REPLY' | translate }}
             </button>
         </div>
     </div>

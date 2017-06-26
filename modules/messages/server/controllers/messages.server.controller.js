@@ -9,6 +9,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   User = mongoose.model('User'),
   Message = mongoose.model('Message'),
+  AdminMessage = mongoose.model('AdminMessage'),
   async = require('async');
 
 /**
@@ -45,33 +46,57 @@ exports.create = function (req, res) {
  * @param res
  */
 exports.list = function (req, res) {
-  Message.find({
-    $or: [
-      {from_user: req.user._id},
-      {to_user: req.user._id}
-    ]
-  })
-    .sort('-updatedat -createdat')
-    .populate('from_user', 'displayName profileImageURL uploaded downloaded')
-    .populate('to_user', 'displayName profileImageURL uploaded downloaded')
-    .populate({
-      path: '_replies.from_user',
-      select: 'displayName profileImageURL uploaded downloaded',
-      model: 'User'
+  var findMessage = function (callback) {
+    Message.find({
+      $or: [
+        {from_user: req.user._id},
+        {to_user: req.user._id}
+      ]
     })
-    .populate({
-      path: '_replies.to_user',
-      select: 'displayName profileImageURL uploaded downloaded',
-      model: 'User'
+      .sort('-updatedat -createdat')
+      .populate('from_user', 'displayName profileImageURL uploaded downloaded')
+      .populate('to_user', 'displayName profileImageURL uploaded downloaded')
+      .populate({
+        path: '_replies.from_user',
+        select: 'displayName profileImageURL uploaded downloaded',
+        model: 'User'
+      })
+      .populate({
+        path: '_replies.to_user',
+        select: 'displayName profileImageURL uploaded downloaded',
+        model: 'User'
+      })
+      .exec(function (err, messages) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, messages);
+        }
+      });
+  };
+
+  var findAdminMessage = function (callback) {
+    AdminMessage.find({
+      createdat: {$gt: req.user.created}
     })
-    .exec(function (err, messages) {
-      if (err) {
-        return res.status(422).send({
-          message: errorHandler.getErrorMessage(err)
-        });
-      }
-      res.json(messages);
-    });
+      .sort('-createdat')
+      .populate('from_user', 'displayName profileImageURL uploaded downloaded')
+      .exec(function (err, messages) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, messages);
+        }
+      });
+  };
+
+  async.parallel([findMessage, findAdminMessage], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json(results[0].concat(results[1]));
+    }
+  });
 };
 
 /**
@@ -117,8 +142,12 @@ exports.delete = function (req, res) {
 exports.update = function (req, res) {
   var message = req.message;
 
-  message.from_status = req.body.from_status;
-  message.to_status = req.body.to_status;
+  if (req.body.from_status) {
+    message.from_status = req.body.from_status;
+  }
+  if (req.body.to_status) {
+    message.to_status = req.body.to_status;
+  }
 
   message.save(function (err) {
     if (err) {
@@ -201,14 +230,28 @@ exports.countUnread = function (req, res) {
       }
     });
   };
+  var countAdminMessage = function (callback) {
+    AdminMessage.count({
+      createdat: {$gt: req.user.created},
+      _readers: {$not: {$in: [req.user._id]}}
 
-  async.parallel([countFrom, countTo], function (err, results) {
+    }, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  async.parallel([countFrom, countTo, countAdminMessage], function (err, results) {
     if (err) {
       return res.status(422).send(err);
     } else {
       res.json({
         countFrom: results[0],
-        countTo: results[1]
+        countTo: results[1],
+        countAdmin: results[2]
       });
     }
   });

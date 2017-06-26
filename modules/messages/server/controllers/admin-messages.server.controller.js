@@ -73,3 +73,47 @@ exports.delete = function (req, res) {
   }
 };
 
+/**
+ * setReaded
+ */
+exports.setReaded = function (req, res) {
+  var adminMessage = req.adminMessage;
+
+  adminMessage._readers.push(req.user._id);
+  adminMessage.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(adminMessage);
+    }
+  });
+};
+
+/**
+ * Invitation middleware
+ */
+exports.adminMessageByID = function (req, res, next, id) {
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Message is invalid'
+    });
+  }
+
+  AdminMessage.findById(id)
+    .populate('from_user', 'displayName profileImageURL uploaded downloaded')
+    .exec(function (err, message) {
+      if (err) {
+        return next(err);
+      } else if (!message) {
+        return res.status(404).send({
+          message: 'No message with that identifier has been found'
+        });
+      }
+      req.adminMessage = message;
+      next();
+    });
+};
+

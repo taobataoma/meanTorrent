@@ -74,7 +74,7 @@
     vm.getCountUnread = function () {
       if (Authentication.user) {
         MessagesService.countUnread(function (data) {
-          vm.unreadCount = data.countFrom + data.countTo;
+          vm.unreadCount = data.countFrom + data.countTo + data.countAdmin;
         });
       }
     };

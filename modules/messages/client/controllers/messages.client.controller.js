@@ -6,10 +6,10 @@
     .controller('MessageController', MessageController);
 
   MessageController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$filter', 'NotifycationService', '$stateParams', 'MessagesService',
-    'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope'];
+    'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope', 'AdminMessagesService'];
 
   function MessageController($scope, $state, $translate, $timeout, Authentication, $filter, NotifycationService, $stateParams, MessagesService,
-                             MeanTorrentConfig, ModalConfirmService, marked, $rootScope) {
+                             MeanTorrentConfig, ModalConfirmService, marked, $rootScope, AdminMessagesService) {
     var vm = this;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.user = Authentication.user;
@@ -17,7 +17,6 @@
     vm.deleteList = [];
 
     $(document).on('keydown', function (e) {
-      console.log(e.keyCode);
       if (e.keyCode === 27) { // ESC
         vm.hideMessage();
       }
@@ -113,6 +112,7 @@
       vm.filteredItems = $filter('filter')(vm.messages, {
         $: vm.search
       });
+      vm.filteredItems = $filter('orderBy')(vm.filteredItems, ['-updatedat']);
       vm.filterLength = vm.filteredItems.length;
       var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
       var end = begin + vm.itemsPerPage;
@@ -199,7 +199,9 @@
       }
       $timeout(function () {
         vm.selectedMessage = msg;
-        vm.updateReadStatus(msg);
+        if(vm.isUnread(msg)) {
+          vm.updateReadStatus(msg);
+        }
       }, 300);
     };
 
@@ -208,18 +210,33 @@
      * @param m
      */
     vm.updateReadStatus = function (m) {
-      var msg = new MessagesService({
-        _messageId: m._id
-      });
+      var msg;
+      if (m.type === 'user') {
+        msg = new MessagesService({
+          _messageId: m._id
+        });
 
-      if (fromIsMe(m)) {
-        msg.from_status = 1;
-      }
-      if (toIsMe(m)) {
-        msg.to_status = 1;
+        if (fromIsMe(m)) {
+          msg.from_status = 1;
+        }
+        if (toIsMe(m)) {
+          msg.to_status = 1;
+        }
+
+        msg.$update(function (res) {
+          updateEnd(res);
+        });
+      } else { //system message
+        msg = new AdminMessagesService({
+          _adminMessageId: m._id
+        });
+
+        msg.$update(function (res) {
+          updateEnd(res);
+        });
       }
 
-      msg.$update(function (res) {
+      function updateEnd(res) {
         vm.selectedMessage = res;
 
         vm.messages.splice(vm.messages.indexOf(m), 0, res);
@@ -227,7 +244,7 @@
         vm.figureOutItemsToDisplay();
 
         $rootScope.$broadcast('user-unread-count-changed');
-      });
+      }
     };
 
     /**
@@ -235,7 +252,8 @@
      */
     vm.getCountUnread = function () {
       MessagesService.countUnread(function (data) {
-        vm.unreadCount = data.countFrom + data.countTo;
+        console.log(data);
+        vm.unreadCount = data.countFrom + data.countTo + data.countAdmin;
       });
     };
 
@@ -252,24 +270,30 @@
     };
 
     /**
-     * getMessageClass
+     * isUnread
      * @param m
      * @returns {*}
      */
-    vm.getMessageClass = function (m) {
+    vm.isUnread = function (m) {
       if (m) {
         if (m.from_user._id === vm.user._id) {
           if (m.from_status === 0) {
-            return 'unread';
+            return true;
           }
         }
-        if (m.to_user._id === vm.user._id) {
-          if (m.to_status === 0) {
-            return 'unread';
+        if (m.type === 'user') {
+          if (m.to_user._id === vm.user._id) {
+            if (m.to_status === 0) {
+              return true;
+            }
+          }
+        } else {    //not user message
+          if (m._readers.indexOf(vm.user._id) < 0) {
+            return true;
           }
         }
       }
-      return 'read';
+      return false;
     };
 
     /**

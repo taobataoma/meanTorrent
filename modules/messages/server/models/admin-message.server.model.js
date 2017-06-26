@@ -32,6 +32,10 @@ var AdminMessageSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
+  updatedat: {
+    type: Date,
+    default: Date.now
+  },
   createdat: {
     type: Date,
     default: Date.now
