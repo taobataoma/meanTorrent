@@ -3,11 +3,11 @@
 
   angular
     .module('messages.services')
-    .factory('MessagesService', MessagesService);
+    .factory('AdminMessagesService', AdminMessagesService);
 
-  MessagesService.$inject = ['$resource'];
+  AdminMessagesService.$inject = ['$resource'];
 
-  function MessagesService($resource) {
+  function AdminMessagesService($resource) {
     return $resource('/api/adminMessages/:adminMessageId', {
       adminMessageId: '@_adminMessageId'
     }, {

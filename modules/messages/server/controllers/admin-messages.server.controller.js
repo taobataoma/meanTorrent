@@ -8,7 +8,7 @@ var path = require('path'),
   mongoose = require('mongoose'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   User = mongoose.model('User'),
-  AdminMessage = mongoose.model('Message'),
+  AdminMessage = mongoose.model('AdminMessage'),
   async = require('async');
 
 /**
@@ -17,16 +17,8 @@ var path = require('path'),
  * @param res
  */
 exports.create = function (req, res) {
-  var msg = new Message(req.body);
+  var msg = new AdminMessage(req.body);
   msg.from_user = req.user._id;
-  msg.from_status = 1;
-  msg.to_status = 0;
-
-  if (!msg.to_user || !mongoose.Types.ObjectId.isValid(msg.to_user)) {
-    return res.status(400).send({
-      message: 'Receiver user id is invalid'
-    });
-  }
 
   msg.save(function (err) {
     if (err) {
@@ -45,25 +37,9 @@ exports.create = function (req, res) {
  * @param res
  */
 exports.list = function (req, res) {
-  Message.find({
-    $or: [
-      {from_user: req.user._id},
-      {to_user: req.user._id}
-    ]
-  })
-    .sort('-updatedat -createdat')
+  AdminMessage.find()
+    .sort('-createdat')
     .populate('from_user', 'displayName profileImageURL uploaded downloaded')
-    .populate('to_user', 'displayName profileImageURL uploaded downloaded')
-    .populate({
-      path: '_replies.from_user',
-      select: 'displayName profileImageURL uploaded downloaded',
-      model: 'User'
-    })
-    .populate({
-      path: '_replies.to_user',
-      select: 'displayName profileImageURL uploaded downloaded',
-      model: 'User'
-    })
     .exec(function (err, messages) {
       if (err) {
         return res.status(422).send({
@@ -80,60 +56,20 @@ exports.list = function (req, res) {
  * @param res
  */
 exports.delete = function (req, res) {
-  if (req.params.messageId) {
-    var message = req.message;
-    message.remove(function (err) {
+  if (req.query.ids) {
+    AdminMessage.remove({
+      _id: {$in: req.query.ids}
+    }, function (err) {
       if (err) {
         return res.status(422).send({
           message: errorHandler.getErrorMessage(err)
         });
       } else {
-        res.json(message);
-      }
-    });
-
-  } else {
-    if (req.query.ids) {
-      Message.remove({
-        _id: {$in: req.query.ids}
-      }, function (err) {
-        if (err) {
-          return res.status(422).send({
-            message: errorHandler.getErrorMessage(err)
-          });
-        } else {
-          return res.status(200).send({
-            message: 'delete successfully'
-          });
-        }
-      });
-    }
-  }
-};
-
-/**
- * Invitation middleware
- */
-exports.adminMessageByID = function (req, res, next, id) {
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: 'Message is invalid'
-    });
-  }
-
-  AdminMessage.findById(id)
-    .populate('from_user', 'displayName profileImageURL uploaded downloaded')
-    .exec(function (err, message) {
-      if (err) {
-        return next(err);
-      } else if (!message) {
-        return res.status(404).send({
-          message: 'No message with that identifier has been found'
+        return res.status(200).send({
+          message: 'delete successfully'
         });
       }
-      req.adminMessage = adminMessage;
-      next();
     });
+  }
 };
 

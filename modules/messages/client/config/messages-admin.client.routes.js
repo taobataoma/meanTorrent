@@ -12,7 +12,7 @@
     $stateProvider
       .state('admin.messages', {
         url: '/messages',
-        templateUrl: '/modules/messages/client/views/admin/send.client.view.html',
+        templateUrl: '/modules/messages/client/views/admin-send.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.ADMIN_MESSAGES'
         }

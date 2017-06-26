@@ -1,4 +1,4 @@
-<section class="container" ng-controller="AdminMessageController as vm">
+<section class="container" ng-controller="AdminMessageController as vm" ng-init="vm.getAdminMessages();">
     <div class="row margin-top-50">
         <div class="col-md-8 col-md-offset-2">
 
@@ -14,7 +14,8 @@
                             <dt class="h-line">{{ 'MESSAGES_FIELD.TYPE' | translate}}：</dt>
                             <dd class="h-line">
                                 <select class="form-control" ng-model="vm.messageType">
-                                    <option ng-repeat="t in vm.messageConfig.type.value" value="{{t.value}}">{{'MESSAGE_TYPE_'+t.name | translate}}</option>
+                                    <option ng-repeat="t in vm.messageConfig.type.value" value="{{t.value}}">{{'MESSAGE_TYPE_'+t.name | translate}}
+                                    </option>
                                 </select>
                             </dd>
                         </div>
@@ -64,7 +65,55 @@
                     </dl>
                 </form>
             </div>
+        </div>
+    </div>
 
+    <div class="row margin-top-50 margin-bottom-50">
+        <div class="col-md-12">
+            <div class="table-responsive" ng-if="vm.adminMessages.length">
+                <table class="table table-hover tb-v-middle">
+                    <thead>
+                        <tr>
+                            <th>{{ 'MESSAGES_FIELD.LIST_TITLE_CONTENT' | translate}}</th>
+                            <th class="text-center">{{ 'MESSAGES_FIELD.LIST_READERS' | translate}}</th>
+                            <th class="text-center">{{ 'MESSAGES_FIELD.LIST_TYPE' | translate}}</th>
+                            <th class="text-center">{{ 'MESSAGES_FIELD.LIST_SENDAT' | translate}}</th>
+                            <th class="text-center">{{ 'MESSAGES_FIELD.LIST_SELECT' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="message-item" ng-repeat="m in vm.adminMessages">
+                            <td>
+                                <h5 ng-bind="m.title"></h5>
+                                <p class="message-content" ng-bind-html="vm.getContentMarked(m);"></p>
+                                <p class="message-info">
+                                    {{m.from_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
+                                </p>
+                            </td>
+                            <td class="td-v-middle text-center">
+                                <span ng-class="vm.getMessageClass(m);">{{m._readers.length}}</span>
+                            </td>
+                            <td class="td-v-middle text-center">
+                                <span ng-class="vm.getMessageClass(m);">{{'MESSAGE_TYPE_' + m.type.toUpperCase() | translate}}</span>
+                            </td>
+                            <td class="td-v-middle text-center">
+                                <span ng-class="vm.getMessageClass(m);">{{m.createdat | life}}</span>
+                            </td>
+                            <td class="td-v-middle text-center">
+                                <input type="checkbox" class="tcheckbox" ng-model="vm.selected[m._id]"
+                                       id="checkbox_{{m._id}}">
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="margin-top-20">
+                <div class="pull-right margin-top-20">
+                    <button class="btn btn-success" ng-click="vm.deleteSelected()">{{ 'BUTTON_MESSAGE_DELETE' | translate }}</button>
+                </div>
+            </div>
         </div>
     </div>
 </section>
