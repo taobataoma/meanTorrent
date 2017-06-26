@@ -199,7 +199,7 @@
       }
       $timeout(function () {
         vm.selectedMessage = msg;
-        if(vm.isUnread(msg)) {
+        if (vm.isUnread(msg)) {
           vm.updateReadStatus(msg);
         }
       }, 300);
