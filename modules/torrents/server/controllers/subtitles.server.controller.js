@@ -12,7 +12,10 @@ var path = require('path'),
   User = mongoose.model('User'),
   Torrent = mongoose.model('Torrent'),
   Subtitle = mongoose.model('Subtitle'),
-  async = require('async');
+  async = require('async'),
+  scoreUpdate = require(path.resolve('./config/lib/score')).update;
+
+var scoreConfig = config.meanTorrentConfig.score;
 
 /**
  * create a subtitle of torrent
@@ -73,6 +76,9 @@ exports.create = function (req, res) {
                 });
               } else {
                 res.status(200).send(torrent);
+
+                scoreUpdate(req, req.user, scoreConfig.action.uploadSubtitle);
+
                 return;
               }
             });
@@ -126,6 +132,8 @@ exports.delete = function (req, res) {
 
       r.remove();
       res.json(torrent);
+
+      scoreUpdate(req, req.user, scoreConfig.action.uploadSubtitleBeDeleted);
     }
   });
 };

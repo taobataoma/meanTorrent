@@ -13,7 +13,7 @@ var path = require('path'),
  * @returns {*}
  */
 module.exports.create = function (req, action, obj) {
-  if (action.value) {
+  if (action.enable) {
     var trace = new Trace();
 
     obj.action = action.name;

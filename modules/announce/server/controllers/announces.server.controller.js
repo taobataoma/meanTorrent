@@ -14,9 +14,11 @@ var path = require('path'),
   async = require('async'),
   querystring = require('querystring'),
   url = require('url'),
-  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
+  scoreUpdate = require(path.resolve('./config/lib/score')).update;
 
 var traceConfig = config.meanTorrentConfig.trace;
+var scoreConfig = config.meanTorrentConfig.score;
 
 const FAILURE_REASONS = {
   100: 'Invalid request type: client request was not a HTTP GET',
@@ -380,6 +382,14 @@ exports.announce = function (req, res) {
             ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
             port: query.port
           });
+          //update score
+          var action = scoreConfig.action.seedAnnounce;
+          if (curru > 0 && action.enable) {
+            var unitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
+            var upScore = Math.round((curru / action.perlSize) * 100) / 100;
+            var score = unitScore * action.value * upScore;
+            scoreUpdate(req, req.user, action, score);
+          }
         }
       }
 

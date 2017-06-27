@@ -17,9 +17,11 @@ var path = require('path'),
   async = require('async'),
   validator = require('validator'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key),
-  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
+  scoreUpdate = require(path.resolve('./config/lib/score')).update;
 
 var traceConfig = config.meanTorrentConfig.trace;
+var scoreConfig = config.meanTorrentConfig.score;
 
 /**
  * get movie info from tmdb
@@ -382,6 +384,8 @@ exports.create = function (req, res) {
           });
         } else {
           res.json(torrent);
+
+          scoreUpdate(req, req.user, scoreConfig.action.uploadTorrent);
         }
       });
     }
@@ -510,6 +514,7 @@ exports.setRecommendLevel = function (req, res) {
       } else {
         res.json(torrent);
 
+        scoreUpdate(req, req.user, scoreConfig.action.uploadTorrentBeRecommend);
         //create trace log
         traceLogCreate(req, traceConfig.action.AdminTorrentSetRecommendLevel, {
           torrent: torrent._id,
@@ -572,6 +577,7 @@ exports.delete = function (req, res) {
     } else {
       res.json(torrent);
 
+      scoreUpdate(req, req.user, scoreConfig.action.uploadTorrentBeDeleted);
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminTorrentDelete, {
         torrent: torrent._id

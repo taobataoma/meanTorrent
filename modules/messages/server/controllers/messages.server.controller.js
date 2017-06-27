@@ -208,7 +208,7 @@ exports.createReply = function (req, res) {
 exports.countUnread = function (req, res) {
   if (!req.user) {
     return res.status(422).send({
-      message: 'user is not signin'
+      message: 'User is not signed in'
     });
   }
 
