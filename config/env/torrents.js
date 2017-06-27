@@ -28,7 +28,23 @@ module.exports = {
       expires: 60 * 60 * 1000 * 24
     },
     score: {
-      level_step: 500
+      level_step: 500,
+      action: {
+        signEveryday: {name: 'signEveryday', value: 10, enable: true},
+        uploadTorrent: {name: 'uploadTorrent', value: 50, enable: true},
+        uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', value: -50, enable: true},
+        uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', value: 10, enable: true},
+        uploadSubtitle: {name: 'uploadSubtitle', value: 20, enable: true},
+        uploadSubtitleBeDeleted: {name: 'uploadSubtitleBeDeleted', value: -20, enable: true},
+
+        seedAnnounce: {
+          name: 'seedAnnounce',
+          additionSize: 1024 * 1024 * 1024 * 10,  //10G
+          perlSize: 1024 * 1024 * 1024,   //1G
+          value: 5,
+          enable: true
+        }
+      }
     },
     messages: {
       type: {
@@ -43,24 +59,25 @@ module.exports = {
     },
     trace: {
       action: {
-        AdminUpdateUserRole: {name: 'AdminUpdateUserRole', value: true},
-        AdminUpdateUserStatus: {name: 'AdminUpdateUserStatus', value: true},
-        AdminUpdateUserScore: {name: 'AdminUpdateUserScore', value: true},
-        AdminUpdateUserUploaded: {name: 'AdminUpdateUserUploaded', value: true},
-        AdminUpdateUserDownloaded: {name: 'AdminUpdateUserDownloaded', value: true},
-        AdminUserDelete: {name: 'AdminUserDelete', value: true},
-        AdminUserEdit: {name: 'AdminUserEdit', value: true},
-        userPasswordReset: {name: 'userPasswordReset', value: true},
-        userSignUp: {name: 'userSignUp', value: true},
+        AdminUpdateUserRole: {name: 'AdminUpdateUserRole', enable: true},
+        AdminUpdateUserStatus: {name: 'AdminUpdateUserStatus', enable: true},
+        AdminUpdateUserScore: {name: 'AdminUpdateUserScore', enable: true},
+        AdminUpdateUserUploaded: {name: 'AdminUpdateUserUploaded', enable: true},
+        AdminUpdateUserDownloaded: {name: 'AdminUpdateUserDownloaded', enable: true},
+        AdminUserDelete: {name: 'AdminUserDelete', enable: true},
+        AdminUserEdit: {name: 'AdminUserEdit', enable: true},
+        userPasswordReset: {name: 'userPasswordReset', enable: true},
+        userSignUp: {name: 'userSignUp', enable: true},
 
-        AdminTorrentDelete: {name: 'AdminTorrentDelete', value: true},
-        AdminTorrentSetSaleType: {name: 'AdminTorrentSetSaleType', value: true},
-        AdminTorrentSetRecommendLevel: {name: 'AdminTorrentSetRecommendLevel', value: true},
-        AdminTorrentSetReviewedStatus: {name: 'AdminTorrentSetReviewedStatus', value: true},
+        AdminTorrentDelete: {name: 'AdminTorrentDelete', enable: true},
+        AdminTorrentSetSaleType: {name: 'AdminTorrentSetSaleType', enable: true},
+        AdminTorrentSetRecommendLevel: {name: 'AdminTorrentSetRecommendLevel', enable: true},
+        AdminTorrentSetReviewedStatus: {name: 'AdminTorrentSetReviewedStatus', enable: true},
 
-        userInvitationExchange: {name: 'userInvitationExchange', value: true},
+        userInvitationExchange: {name: 'userInvitationExchange', enable: true},
 
-        userAnnounceData: {name: 'userAnnounceData', value: true}
+        userAnnounceData: {name: 'userAnnounceData', enable: true},
+        userScoreChange: {name: 'userScoreChange', enable: true}
       }
     },
     torrentType: {
