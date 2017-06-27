@@ -251,9 +251,11 @@
      * getCountUnread
      */
     vm.getCountUnread = function () {
-      MessagesService.countUnread(function (data) {
-        vm.unreadCount = data.countFrom + data.countTo + data.countAdmin;
-      });
+      if (Authentication.user) {
+        MessagesService.countUnread(function (data) {
+          vm.unreadCount = data.countFrom + data.countTo + data.countAdmin;
+        });
+      }
     };
 
     /**

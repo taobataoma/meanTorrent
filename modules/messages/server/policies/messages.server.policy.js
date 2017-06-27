@@ -21,6 +21,12 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/messages/:messageId', permissions: '*'},
           {resources: '/api/messages/countUnread', permissions: '*'}
         ]
+      },
+      {
+        roles: ['guest'],
+        allows: [
+          {resources: '/api/messages/countUnread', permissions: ['get']}
+        ]
       }
     ]
   );

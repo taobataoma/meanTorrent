@@ -206,6 +206,12 @@ exports.createReply = function (req, res) {
  * @param res
  */
 exports.countUnread = function (req, res) {
+  if (!req.user) {
+    return res.status(422).send({
+      message: 'user is not signin'
+    });
+  }
+
   var countFrom = function (callback) {
     Message.count({
       from_user: req.user._id,
