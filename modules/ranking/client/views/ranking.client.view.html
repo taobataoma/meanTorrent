@@ -44,7 +44,7 @@
                             </td>
                             <td class="text-center ranking-active-col">{{user.uploaded | bytes:2}}</td>
                             <td class="text-center">{{user.downloaded | bytes:2}}</td>
-                            <td class="text-center">{{user.ratio}}</td>
+                            <td class="text-center"><span ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
                             <td class="text-center">{{user.score}}</td>
                             <td class="text-center">{{user.seeded}}</td>
                             <td class="text-center">{{user.leeched}}</td>
@@ -89,7 +89,7 @@
                             </td>
                             <td class="text-center ranking-active-col">{{user.downloaded | bytes:2}}</td>
                             <td class="text-center">{{user.uploaded | bytes:2}}</td>
-                            <td class="text-center">{{user.ratio}}</td>
+                            <td class="text-center"><span ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
                             <td class="text-center">{{user.score}}</td>
                             <td class="text-center">{{user.seeded}}</td>
                             <td class="text-center">{{user.leeched}}</td>
@@ -132,7 +132,7 @@
                                 </span>
                                 <span message-to="user" to-class="message-to-icon"></span>
                             </td>
-                            <td class="text-center ranking-active-col">{{user.ratio}}</td>
+                            <td class="text-center ranking-active-col"><span ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
                             <td class="text-center">{{user.uploaded | bytes:2}}</td>
                             <td class="text-center">{{user.downloaded | bytes:2}}</td>
                             <td class="text-center">{{user.score}}</td>
@@ -180,7 +180,7 @@
                             <td class="text-center ranking-active-col">{{user.score}}</td>
                             <td class="text-center">{{user.uploaded | bytes:2}}</td>
                             <td class="text-center">{{user.downloaded | bytes:2}}</td>
-                            <td class="text-center">{{user.ratio}}</td>
+                            <td class="text-center"><span ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
                             <td class="text-center">{{user.seeded}}</td>
                             <td class="text-center">{{user.leeched}}</td>
                             <td class="text-center">{{user.finished}}</td>
