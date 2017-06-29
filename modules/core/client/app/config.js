@@ -7,7 +7,8 @@
     applicationEnvironment: window.env,
     applicationModuleName: applicationModuleName,
     applicationModuleVendorDependencies: ['ngResource', 'ngAnimate', 'ngMessages', 'ui.router', 'ui.bootstrap', 'ngFileUpload', 'ui-notification',
-      'LocalStorageModule', 'pascalprecht.translate', 'angularMoment', 'ngFileSaver', 'ngSanitize', 'uiCropper', 'hc.marked', 'angular-json-tree'],
+      'LocalStorageModule', 'pascalprecht.translate', 'angularMoment', 'ngFileSaver', 'ngSanitize', 'uiCropper', 'hc.marked', 'angular-json-tree',
+      'ngSideOverlay'],
     registerModule: registerModule
   };
 

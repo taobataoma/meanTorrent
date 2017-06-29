@@ -84,31 +84,14 @@
     }
 }
 
-.popup-overlay {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    background-color: #fff;
-    position: fixed;
-    top: 50px;
-    bottom: 0;
-    right: 0;
-    overflow: auto;
-    z-index: 999;
-    transition: all 0.3s ease-out;
-    /* csslint ignore:start */
-    transform: translateX(101%) translateY(0);
-    /* csslint ignore:end */
+.popup-side-overlay {
+    top: 50px !important;
     @media (min-width: @screen-sm-min) {
         width: 450px;
     }
     @media (max-width: @screen-xs-max) {
         min-width: ~"calc(100% - 150px)";
     }
-}
-
-.popup-visible {
-    /* csslint ignore:start */
-    transform: translateX(0) translateY(0);
-    /* csslint ignore:end */
 }
 
 .bottom-control {

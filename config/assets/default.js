@@ -18,8 +18,9 @@ module.exports = {
         //flag-icon
         'public/lib/flag-icon-css/css/flag-icon.css',
         //json-tree
-        'public/lib/angular-json-tree/dist/angular-json-tree.css'
-
+        'public/lib/angular-json-tree/dist/angular-json-tree.css',
+        //side-overlay
+        'public/lib/angular-side-overlay/dist/angular-side-overlay.css'
         // endbower
       ],
       js: [
@@ -58,7 +59,9 @@ module.exports = {
         //popup overlay
         'public/lib/jquery-popup-overlay/jquery.popupoverlay.js',
         //json-tree
-        'public/lib/angular-json-tree/dist/angular-json-tree.js'
+        'public/lib/angular-json-tree/dist/angular-json-tree.js',
+        //side-overlay
+        'public/lib/angular-side-overlay/dist/angular-side-overlay.js'
 
         // endbower
       ],

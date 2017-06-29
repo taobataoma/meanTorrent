@@ -6,30 +6,21 @@
     .controller('MessageController', MessageController);
 
   MessageController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$filter', 'NotifycationService', '$stateParams', 'MessagesService',
-    'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope', 'AdminMessagesService'];
+    'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope', 'AdminMessagesService', 'SideOverlay'];
 
   function MessageController($scope, $state, $translate, $timeout, Authentication, $filter, NotifycationService, $stateParams, MessagesService,
-                             MeanTorrentConfig, ModalConfirmService, marked, $rootScope, AdminMessagesService) {
+                             MeanTorrentConfig, ModalConfirmService, marked, $rootScope, AdminMessagesService, SideOverlay) {
     var vm = this;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.user = Authentication.user;
     vm.messageFields = {};
     vm.deleteList = [];
 
-    $(document).on('keydown', function (e) {
-      if (e.keyCode === 27) { // ESC
-        vm.hideMessage();
-      }
-    });
     /**
      * If user is not signed in then redirect back home
      */
     if (!Authentication.user) {
       $state.go('authentication.signin');
-    }
-
-    if (document.getElementById('popupSlide')) {
-      document.getElementById('popupSlide').addEventListener('transitionend', onTransitionEnd, false);
     }
 
     /**
@@ -174,35 +165,27 @@
     };
 
     /**
-     * onTransitionEnd
-     * @param event
-     */
-    function onTransitionEnd(event) {
-      var e = $('.popup-overlay');
-      if (vm.selectedMessage) {
-        if (!e.hasClass('popup-visible')) {
-          e.addClass('popup-visible');
-        }
-      }
-    }
-
-    /**
      * viewMessage
      * @param msg
      */
     vm.showMessage = function (msg) {
-      var e = $('.popup-overlay');
-      if (e.hasClass('popup-visible')) {
-        e.removeClass('popup-visible');
+      if (SideOverlay.isOpened('popupSlide')) {
+        SideOverlay.close('popupSlide', function () {
+          vm.selectedMessage = msg;
+          SideOverlay.open('popupSlide');
+        });
       } else {
-        e.addClass('popup-visible');
-      }
-      $timeout(function () {
         vm.selectedMessage = msg;
-        if (vm.isUnread(msg)) {
-          vm.updateReadStatus(msg);
-        }
-      }, 300);
+        SideOverlay.open('popupSlide');
+      }
+    };
+
+    /**
+     * hideMessage
+     */
+    vm.hideMessage = function () {
+      vm.selectedMessage = undefined;
+      SideOverlay.close('popupSlide');
     };
 
     /**
@@ -255,18 +238,6 @@
         MessagesService.countUnread(function (data) {
           vm.unreadCount = data.countFrom + data.countTo + data.countAdmin;
         });
-      }
-    };
-
-    /**
-     * hideMessage
-     */
-    vm.hideMessage = function () {
-      vm.selectedMessage = undefined;
-
-      var e = $('.popup-overlay');
-      if (e.hasClass('popup-visible')) {
-        e.removeClass('popup-visible');
       }
     };
 
