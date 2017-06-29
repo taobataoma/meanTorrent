@@ -214,13 +214,7 @@ UserSchema.pre('save', function (next) {
     this.password = this.hashPassword(this.password);
   }
 
-  if (this.uploaded > 0 && this.downloaded === 0) {
-    this.ratio = -1;
-  } else if (this.uploaded === 0 || this.downloaded === 0) {
-    this.ratio = 0;
-  } else {
-    this.ratio = Math.round((this.uploaded / this.downloaded) * 100) / 100;
-  }
+  countRatio(this);
 
   this.constructor.count(function (err, count) {
     if (err) {
@@ -234,6 +228,24 @@ UserSchema.pre('save', function (next) {
     next();
   });
 });
+
+/**
+ * Hook a pre save method to hash the password
+ */
+UserSchema.pre('update', function (next) {
+  countRatio(this);
+  next();
+});
+
+function countRatio(user) {
+  if (user.uploaded > 0 && user.downloaded === 0) {
+    user.ratio = -1;
+  } else if (user.uploaded === 0 || user.downloaded === 0) {
+    user.ratio = 0;
+  } else {
+    user.ratio = Math.round((user.uploaded / user.downloaded) * 100) / 100;
+  }
+}
 
 /**
  * Hook a pre validate method to test the local password
