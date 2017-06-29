@@ -102,11 +102,11 @@
                 <div class="title-info">
                     <span class="message-title" ng-class="vm.isUnread(vm.selectedMessage)? 'unread' : 'read'" ng-bind="vm.selectedMessage.title"></span>
 
-                    <p class="message-info" ng-if="m.type=='user'">
+                    <p class="message-info" ng-if="vm.selectedMessage.type=='user'">
                         {{vm.selectedMessage.from_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_TO' | translate}} {{vm.selectedMessage.to_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{vm.selectedMessage.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                     </p>
 
-                    <p class="message-info" ng-if="m.type!='user'">
+                    <p class="message-info" ng-if="vm.selectedMessage.type!='user'">
                         {{vm.selectedMessage.from_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{vm.selectedMessage.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                     </p>
                 </div>
