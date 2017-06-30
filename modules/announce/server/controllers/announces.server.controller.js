@@ -327,19 +327,19 @@ exports.announce = function (req, res) {
 
         if (req.currentPeer === undefined) {
           createCurrentPeer();
+        } else {
+          req.currentPeer.update({
+            $set: {peer_status: PEERSTATE_SEEDER, finishedat: Date.now()}
+          }).exec();
+
+          req.torrent.update({
+            $inc: {torrent_seeds: 1, torrent_finished: 1, torrent_leechers: -1}
+          }).exec();
+
+          req.passkeyuser.update({
+            $inc: {seeded: 1, finished: 1, leeched: -1}
+          }).exec();
         }
-
-        req.currentPeer.update({
-          $set: {peer_status: PEERSTATE_SEEDER, finishedat: Date.now()}
-        }).exec();
-
-        req.torrent.update({
-          $inc: {torrent_seeds: 1, torrent_finished: 1, torrent_leechers: -1}
-        }).exec();
-
-        req.passkeyuser.update({
-          $inc: {finished: 1}
-        }).exec();
       }
       done(null);
     },
@@ -358,7 +358,6 @@ exports.announce = function (req, res) {
         var currd = query.downloaded - req.currentPeer.peer_downloaded;
         var u = Math.round(curru * udr.ur);
         var d = Math.round(currd * udr.dr);
-        var l = query.left;
 
         if (req.passkeyuser.isVip) {
           u = u * config.meanTorrentConfig.torrentSalesValue.vip.Ur;
