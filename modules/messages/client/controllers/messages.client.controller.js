@@ -168,15 +168,15 @@
      * viewMessage
      * @param msg
      */
-    vm.showMessage = function (msg) {
+    vm.showMessage = function (evt, msg) {
       if (SideOverlay.isOpened('popupSlide')) {
-        SideOverlay.close('popupSlide', function () {
+        SideOverlay.close(evt, 'popupSlide', function () {
           vm.selectedMessage = msg;
-          SideOverlay.open('popupSlide');
+          SideOverlay.open(evt, 'popupSlide');
         });
       } else {
         vm.selectedMessage = msg;
-        SideOverlay.open('popupSlide');
+        SideOverlay.open(evt, 'popupSlide');
       }
     };
 
@@ -185,7 +185,7 @@
      */
     vm.hideMessage = function () {
       vm.selectedMessage = undefined;
-      SideOverlay.close('popupSlide');
+      SideOverlay.close(null, 'popupSlide');
     };
 
     /**

@@ -44,7 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="message-item" ng-repeat="m in vm.pagedItems" ng-click="vm.showMessage(m);">
+                        <tr class="message-item" ng-repeat="m in vm.pagedItems" ng-click="vm.showMessage($event, m);">
                             <td>
                                 <img class="message-avatar" ng-src="/{{m.from_user.profileImageURL}}" ng-if="m.type=='user'">
                                 <span class="message-avatar glyphicon glyphicon-cog admin-message-avatar" ng-if="m.type!='user'"></span>
@@ -94,7 +94,7 @@
         </div>
     </div>
 
-    <div id="popupSlide" side-overlay="right" side-class="popup-side-overlay" side-close-on-esc>
+    <div id="popupSlide" side-overlay="right" side-class="popup-side-overlay" side-close-on-esc side-close-on-outside-click>
         <div class="message-popup message-item">
             <div>
                 <img class="message-avatar" ng-src="/{{vm.selectedMessage.from_user.profileImageURL}}">
