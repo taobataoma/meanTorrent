@@ -178,6 +178,8 @@
         vm.selectedMessage = msg;
         SideOverlay.open(evt, 'popupSlide');
       }
+
+      vm.updateReadStatus(msg);
     };
 
     /**
