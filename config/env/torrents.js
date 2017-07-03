@@ -170,6 +170,13 @@ module.exports = {
     imdbConfig: {
       imdb_link_url: 'http://www.imdb.com/title/'
     },
+    forumsConfig: {
+      category: [
+        {name: 'AFFAIRS', value: 'affairs'},
+        {name: 'DISCUSS', value: 'discuss'},
+        {name: 'BUSINESS', value: 'business'}
+      ]
+    },
     resourcesTags: {
       movie: {
         radio: [

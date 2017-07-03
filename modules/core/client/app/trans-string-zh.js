@@ -613,6 +613,15 @@
       EPISODES_INPUT_TIP: '提示：输入只接受0-9的数字以及减号字符，如 9 表示第9集，1-30 表示1到30集集合，像 001 12 01-30 12-45 45-127 等.'
     },
 
+    //forum
+    FORUM: {
+      CATEGORY: {
+        AFFAIRS: '站务区',
+        DISCUSS: '讨论区',
+        BUSINESS: '商务区'
+      }
+    },
+
     /////////////////////////resources tag fields///////////////////////////////////
     RESOURCESTAGS: {
       TYPE: {

@@ -613,6 +613,15 @@
       EPISODES_INPUT_TIP: 'tip: Only accepts numbers 0-9 and characters minus, for example：9 is 9th episode, 1-30 is first to thirty episode, like 001 12 01-30 12-45 45-127 etc.'
     },
 
+    //forum
+    FORUM: {
+      CATEGORY: {
+        AFFAIRS: 'Affairs',
+        DISCUSS: 'Discuss',
+        BUSINESS: 'Business'
+      }
+    },
+
     /////////////////////////resources tag fields///////////////////////////////////
     RESOURCESTAGS: {
       TYPE: {
