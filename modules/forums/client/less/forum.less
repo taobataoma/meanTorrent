@@ -1,0 +1,19 @@
+@import (reference) "../../../core/client/less/mt-var.less";
+
+.forum-side-overlay {
+    top: 50px !important;
+    @media (min-width: @screen-sm-min) {
+        width: 450px;
+    }
+    @media (max-width: @screen-xs-max) {
+        min-width: ~"calc(100% - 50px)";
+    }
+}
+
+.forum-popup {
+    background-color: #fdfdfd;
+    width: 100%;
+    height: ~"calc(100% - 150px)";
+    overflow: auto;
+    padding: 15px;
+}

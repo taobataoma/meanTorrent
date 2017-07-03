@@ -1,7 +1,7 @@
 <section class="container padding-top-10" ng-controller="ForumsController as vm" ng-init="vm.init();">
     <div class="row margin-top-20">
         <div class="col-md-10 col-md-offset-1">
-            <button class="btn btn-success">　　{{ 'FORUMS.BTN_ADD_FORUM' | translate }}　　</button>
+            <button class="btn btn-success" ng-click="vm.openSideOverlay($event)">　　{{ 'FORUMS.BTN_ADD_FORUM' | translate }}　　</button>
         </div>
 
         <div class="col-sm-10 col-sm-offset-1">
@@ -23,6 +23,7 @@
                             <tr ng-repeat="f in vm.forums | filter: { category: cat }">
                                 <td scope="row">
                                     <h4>{{f.name}}</h4>
+
                                     <p>{{f.desc}}</p>
                                 </td>
                                 <td class="text-center">{{f.order}}</td>
@@ -32,6 +33,11 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="popupSlide" side-overlay="right" side-class="forum-side-overlay" side-modal side-close-on-esc side-close-on-outside-click>
+        <div class="forum-popup">
         </div>
     </div>
 </section>
