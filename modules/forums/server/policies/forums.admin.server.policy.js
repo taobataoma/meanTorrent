@@ -15,17 +15,24 @@ exports.invokeRolesPolicies = function () {
   acl.allow(
     [
       {
-        roles: ['admin', 'oper', 'user'],
+        roles: ['admin', 'oper'],
         allows: [
-          {resources: '/api/forums', permissions: '*'},
-          {resources: '/api/forums/:forumId', permissions: '*'}
+          {resources: '/api/admin/forums', permissions: '*'},
+          {resources: '/api/admin/forums/:forumId', permissions: '*'}
+        ]
+      },
+      {
+        roles: ['user'],
+        allows: [
+          {resources: '/api/admin/forums', permissions: ['get']},
+          {resources: '/api/admin/forums/:forumId', permissions: ['get']}
         ]
       },
       {
         roles: ['guest'],
         allows: [
-          {resources: '/api/forums', permissions: ['get']},
-          {resources: '/api/forums/:forumId', permissions: ['get']}
+          {resources: '/api/admin/forums', permissions: ['get']},
+          {resources: '/api/admin/forums/:forumId', permissions: ['get']}
         ]
       }
     ]

@@ -618,7 +618,8 @@
     },
 
     //forum
-    FORUM: {
+    FORUMS: {
+      BTN_ADD_FORUM: '添加版块',
       CATEGORY: {
         AFFAIRS: '站务区',
         DISCUSS: '讨论区',

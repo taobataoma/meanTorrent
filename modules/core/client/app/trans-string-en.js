@@ -618,7 +618,8 @@
     },
 
     //forum
-    FORUM: {
+    FORUMS: {
+      BTN_ADD_FORUM: 'Add New Forum',
       CATEGORY: {
         AFFAIRS: 'Affairs',
         DISCUSS: 'Discuss',

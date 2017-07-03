@@ -9,14 +9,10 @@ var forumsPolicy = require('../policies/forums.server.policy'),
 module.exports = function (app) {
   // Articles collection routes
   app.route('/api/forums').all(forumsPolicy.isAllowed)
-    .get(forums.list)
-    .post(forums.create);
+    .get(forums.list);
 
   // Single article routes
-  app.route('/api/forums/:forumId').all(forumsPolicy.isAllowed)
-    .put(forums.update)
-    .delete(forums.delete);
+  //app.route('/api/forums/:forumId').all(forumsPolicy.isAllowed)
+  //  .get(forums.listTopic);
 
-  // Finish by binding the article middleware
-  app.param('forumId', forums.forumByID);
 };
