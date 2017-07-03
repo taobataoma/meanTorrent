@@ -5,26 +5,28 @@
         </div>
 
         <div class="col-sm-10 col-sm-offset-1">
-            <div class="panel panel-default margin-top-30" ng-repeat="cat in vm.formsConfig.category">
+            <div class="panel panel-default margin-top-30" ng-repeat="cat in vm.forumsConfig.category">
                 <div class="panel-heading text-center mt-title">
-                    {{ 'FORUMS.CATEGORY.'+cat.name | translate }}
+                    <strong>{{ 'FORUMS.CATEGORY.'+cat.name | translate }}</strong>
                 </div>
 
-                <div class="table-responsive" ng-if="vm.used_invitations.length>0">
+                <div class="table-responsive">
                     <table class="table table-hover table-valign-middle">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th class="text-center">{{'INVITATION.TITLE_TOKEN' | translate}}</th>
-                                <th class="text-center">{{'INVITATION.TITLE_EMAIL' | translate}}</th>
-                                <th class="text-center">{{'INVITATION.TITLE_SIGNINAT' | translate}}</th>
+                                <td class="text-center col-md-7">{{'FORUMS.FIELDS.NAME' | translate}}</td>
+                                <td class="text-center">{{'FORUMS.FIELDS.ORDER' | translate}}</td>
+                                <td class="text-center">{{'FORUMS.FIELDS.CMD' | translate}}</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="r in vm.used_invitations">
-                                <th scope="row">{{$index+1}}</th>
-                                <td class="text-center">{{r.token}}</td>
-                                <td class="text-center">{{r.to_email}}</td>
+                            <tr ng-repeat="f in vm.forums | filter: { category: cat }">
+                                <td scope="row">
+                                    <h4>{{f.name}}</h4>
+                                    <p>{{f.desc}}</p>
+                                </td>
+                                <td class="text-center">{{f.order}}</td>
+                                <td class="text-center"></td>
                             </tr>
                         </tbody>
                     </table>

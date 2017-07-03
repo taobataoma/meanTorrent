@@ -33,6 +33,11 @@ var ForumSchema = new Schema({
     type: Boolean,
     default: false
   },
+  category: {
+    type: String,
+    default: 'discuss',
+    trim: true
+  },
 
   topicCount: {
     type: Number,

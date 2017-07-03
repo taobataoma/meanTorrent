@@ -624,6 +624,11 @@
         AFFAIRS: '站务区',
         DISCUSS: '讨论区',
         BUSINESS: '商务区'
+      },
+      FIELDS: {
+        NAME: '版块名称',
+        ORDER: '版块序号',
+        CMD: '操作选项'
       }
     },
 

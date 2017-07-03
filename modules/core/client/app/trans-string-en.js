@@ -624,6 +624,11 @@
         AFFAIRS: 'Affairs',
         DISCUSS: 'Discuss',
         BUSINESS: 'Business'
+      },
+      FIELDS: {
+        NAME: 'Forum Name',
+        ORDER: 'Forum Order',
+        CMD: 'Command'
       }
     },
 

@@ -9,7 +9,7 @@
 
   function ForumsController($scope, $translate, Authentication, MeanTorrentConfig, ForumsAdminService) {
     var vm = this;
-    vm.formsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
+    vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
 
     vm.init = function () {
