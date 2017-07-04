@@ -31,7 +31,7 @@
                                 <td class="text-center">{{f.order}}</td>
                                 <td class="text-center">
                                     <div ng-repeat="m in f.moderators">
-                                        <strong>{{m.username}}</strong> <small>[
+                                        <span class="text-primary">{{m.username}}</span> <small>[
                                         <a href="#" ng-click="vm.removeModeratorClicked(f, m);">-</a> ]
                                     </small>
                                     </div>
@@ -42,7 +42,7 @@
                                                popover-append-to-body="true"
                                                popover-title="{{vm.addModeratorPopover.title | translate}}"
                                                popover-trigger="'outsideClick'"
-                                               popover-placement="bottom"
+                                               popover-placement="top"
                                                popover-is-open="vm.addModeratorPopover.items[f._id]"
                                                popover-class="add-moderator-popover"
                                                ng-click="vm.addModeratorClicked(f);">

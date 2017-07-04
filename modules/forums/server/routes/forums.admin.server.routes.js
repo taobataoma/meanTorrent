@@ -20,6 +20,7 @@ module.exports = function (app) {
   // Single article routes
   app.route('/api/admin/forums/:forumId/addModerator/:username').all(forumsPolicy.isAllowed)
     .put(forums.addModerator);
+
   // Single article routes
   app.route('/api/admin/forums/:forumId/removeModerator/:username').all(forumsPolicy.isAllowed)
     .put(forums.removeModerator);
