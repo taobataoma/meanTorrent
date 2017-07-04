@@ -620,6 +620,10 @@
     //forum
     FORUMS: {
       BTN_ADD_FORUM: '添加版块',
+      BTN_EDIT_FORUM: '编辑版块',
+      BTN_ADD: '　　添加　　 ',
+      ADD_SUCCESSFULLY: '版块添加成功',
+      ADD_FAILED: '版块添加失败',
       CATEGORY: {
         AFFAIRS: '站务区',
         DISCUSS: '讨论区',
@@ -628,7 +632,10 @@
       FIELDS: {
         NAME: '版块名称',
         ORDER: '版块序号',
-        CMD: '操作选项'
+        CMD: '操作选项',
+        DESC: '描述',
+        CATEGORY: '分类',
+        READONLY: '只有管理员可以发起新话题'
       }
     },
 

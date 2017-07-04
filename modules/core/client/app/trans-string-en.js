@@ -620,6 +620,10 @@
     //forum
     FORUMS: {
       BTN_ADD_FORUM: 'Add New Forum',
+      BTN_EDIT_FORUM: 'Edit Forum',
+      BTN_ADD: '　　Add　　 ',
+      ADD_SUCCESSFULLY: 'Forum added successfully',
+      ADD_FAILED: 'Forum added failed',
       CATEGORY: {
         AFFAIRS: 'Affairs',
         DISCUSS: 'Discuss',
@@ -628,7 +632,10 @@
       FIELDS: {
         NAME: 'Forum Name',
         ORDER: 'Forum Order',
-        CMD: 'Command'
+        CMD: 'Command',
+        DESC: 'Description',
+        CATEGORY: 'Category',
+        READONLY: 'Only oper/admin can post new topic'
       }
     },
 

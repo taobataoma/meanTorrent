@@ -14,15 +14,15 @@
                     <table class="table table-hover table-valign-middle">
                         <thead>
                             <tr>
-                                <td class="text-center col-md-7">{{'FORUMS.FIELDS.NAME' | translate}}</td>
-                                <td class="text-center">{{'FORUMS.FIELDS.ORDER' | translate}}</td>
-                                <td class="text-center">{{'FORUMS.FIELDS.CMD' | translate}}</td>
+                                <th class="col-md-7">{{'FORUMS.FIELDS.NAME' | translate}}</th>
+                                <th class="text-center">{{'FORUMS.FIELDS.ORDER' | translate}}</th>
+                                <th class="text-center">{{'FORUMS.FIELDS.CMD' | translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="f in vm.forums | filter: { category: cat }">
+                            <tr ng-repeat="f in vm.forums | filter: { category: cat.value }">
                                 <td scope="row">
-                                    <h4>{{f.name}}</h4>
+                                    <h4>{{f.name}} <span class="badge badge_mt" ng-show="f.readOnly">R</span></h4>
 
                                     <p>{{f.desc}}</p>
                                 </td>
@@ -38,6 +38,61 @@
 
     <div id="popupSlide" side-overlay="right" side-class="forum-side-overlay" side-modal side-close-on-esc side-close-on-outside-click>
         <div class="forum-popup">
+            <h3 class="margin-left-30">{{'FORUMS.BTN_ADD_FORUM' | translate}}</h3>
+            <li class="status-divider"></li>
+            <form class="form-horizontal margin-top-50">
+                <div class="form-group">
+                    <label for="forum-cat" class="col-sm-4 control-label">{{'FORUMS.FIELDS.CATEGORY' | translate}}</label>
+
+                    <div class="col-sm-8">
+                        <select class="form-control" id="forum-cat" ng-model="vm.forum.category" ng-change="vm.categoryChanged();">
+                            <option ng-repeat="t in vm.forumsConfig.category" value="{{t.value}}">{{'FORUMS.CATEGORY.'+t.name | translate}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="forum-name" class="col-sm-4 control-label">{{'FORUMS.FIELDS.NAME' | translate}}</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="forum-name" placeholder="{{'FORUMS.FIELDS.NAME' | translate}}"
+                               ng-model="vm.forum.name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="forum-desc" class="col-sm-4 control-label">{{'FORUMS.FIELDS.DESC' | translate}}</label>
+
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="forum-desc" placeholder="{{'FORUMS.FIELDS.DESC' | translate}}"
+                                  ng-model="vm.forum.desc"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="forum-order" class="col-sm-4 control-label">{{'FORUMS.FIELDS.ORDER' | translate}}</label>
+
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" id="forum-order" placeholder="{{'FORUMS.FIELDS.NAME' | translate}}"
+                               ng-model="vm.forum.order">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="vm.forum.readOnly"> {{'FORUMS.FIELDS.READONLY' | translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-success"
+                                ng-click="vm.createNewForum();"
+                                ng-disabled="!vm.forum.name || !vm.forum.desc ">{{'FORUMS.BTN_ADD' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </section>
