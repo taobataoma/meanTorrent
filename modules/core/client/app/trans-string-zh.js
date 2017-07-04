@@ -630,6 +630,10 @@
       EDIT_FAILED: '版块编辑失败',
       DELETE_SUCCESSFULLY: '版块删除成功',
       DELETE_FAILED: '版块删除失败',
+      DELETE_CONFIRM_OK: '删除',
+      DELETE_CONFIRM_CANCEL: '取消',
+      DELETE_CONFIRM_HEADER_TEXT: '删除确认',
+      DELETE_CONFIRM_BODY_TEXT: '您确定要删除这个版块吗?',
       CATEGORY: {
         AFFAIRS: '站务区',
         DISCUSS: '讨论区',

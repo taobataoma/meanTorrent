@@ -630,6 +630,10 @@
       EDIT_FAILED: 'Forum edited failed',
       DELETE_SUCCESSFULLY: 'Forum deleted successfully',
       DELETE_FAILED: 'Forum deleted failed',
+      DELETE_CONFIRM_OK: 'Delete',
+      DELETE_CONFIRM_CANCEL: 'Cancel',
+      DELETE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
+      DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this forum?',
       CATEGORY: {
         AFFAIRS: 'Affairs',
         DISCUSS: 'Discuss',

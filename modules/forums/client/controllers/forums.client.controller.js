@@ -6,10 +6,10 @@
     .controller('ForumsController', ForumsController);
 
   ForumsController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsAdminService', 'SideOverlay', '$filter', 'NotifycationService',
-    'marked'];
+    'marked', 'ModalConfirmService'];
 
   function ForumsController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsAdminService, SideOverlay, $filter, NotifycationService,
-                            marked) {
+                            marked, ModalConfirmService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
@@ -99,14 +99,24 @@
      * deleteForum
      */
     vm.deleteForum = function () {
-      vm.forum.$remove(function (res) {
-        NotifycationService.showSuccessNotify('FORUMS.DELETE_SUCCESSFULLY');
-        vm.forum = undefined;
-        SideOverlay.close(null, 'popupSlide');
-        vm.init();
-      }, function (res) {
-        NotifycationService.showErrorNotify(res.data.message, 'FORUMS.DELETE_FAILED');
-      });
+      var modalOptions = {
+        closeButtonText: $translate.instant('FORUMS.DELETE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('FORUMS.DELETE_CONFIRM_OK'),
+        headerText: $translate.instant('FORUMS.DELETE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('FORUMS.DELETE_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          vm.forum.$remove(function (res) {
+            NotifycationService.showSuccessNotify('FORUMS.DELETE_SUCCESSFULLY');
+            vm.forum = undefined;
+            SideOverlay.close(null, 'popupSlide');
+            vm.init();
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'FORUMS.DELETE_FAILED');
+          });
+        });
     };
 
     /**
