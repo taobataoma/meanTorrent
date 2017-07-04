@@ -634,6 +634,12 @@
       DELETE_CONFIRM_CANCEL: '取消',
       DELETE_CONFIRM_HEADER_TEXT: '删除确认',
       DELETE_CONFIRM_BODY_TEXT: '您确定要删除这个版块吗?',
+      MODERATOR_TITLE: '添加版主',
+      ADD_MODERATOR_SUCCESSFULLY: '添加版主成功',
+      ADD_MODERATOR_FAILED: '添加版主失败',
+      REMOVE_MODERATOR_SUCCESSFULLY: '删除版主成功',
+      REMOVE_MODERATOR_FAILED: '删除版主失败',
+      REMOVE_CONFIRM_BODY_TEXT: '您确定要删除该版主吗?',
       CATEGORY: {
         AFFAIRS: '站务区',
         DISCUSS: '讨论区',

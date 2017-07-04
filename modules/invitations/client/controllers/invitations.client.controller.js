@@ -55,6 +55,10 @@
       });
     };
 
+    /**
+     * sendClicked
+     * @param idx
+     */
     vm.sendClicked = function (idx) {
       vm.invitePopover.email = undefined;
       vm.invitePopover.items[idx].isOpen = true;

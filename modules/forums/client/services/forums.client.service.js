@@ -13,6 +13,22 @@
     }, {
       update: {
         method: 'PUT'
+      },
+      addModerator: {
+        method: 'PUT',
+        url: '/api/admin/forums/:forumId/addModerator/:username',
+        params: {
+          forumId: '@_id',
+          username: '@_username'
+        }
+      },
+      removeModerator: {
+        method: 'PUT',
+        url: '/api/admin/forums/:forumId/removeModerator/:username',
+        params: {
+          forumId: '@_id',
+          username: '@_username'
+        }
       }
     });
   }

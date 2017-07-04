@@ -18,7 +18,9 @@ exports.invokeRolesPolicies = function () {
         roles: ['admin', 'oper'],
         allows: [
           {resources: '/api/admin/forums', permissions: '*'},
-          {resources: '/api/admin/forums/:forumId', permissions: '*'}
+          {resources: '/api/admin/forums/:forumId', permissions: '*'},
+          {resources: '/api/admin/forums/:forumId/addModerator/:username', permissions: '*'},
+          {resources: '/api/admin/forums/:forumId/removeModerator/:username', permissions: '*'}
         ]
       },
       {

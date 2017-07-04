@@ -22,12 +22,34 @@
                         <tbody>
                             <tr ng-repeat="f in vm.forums | filter: { category: cat.value }">
                                 <td scope="row">
-                                    <h4>{{f.name}} <span class="badge badge_mt" ng-show="f.readOnly">R</span><small>[<a href="#" ng-click="vm.popupEditForum($event, f);">Edit</a>]</small></h4>
+                                    <h4>{{f.name}} <span class="badge badge_mt" ng-show="f.readOnly">R</span>
+                                        <small>[<a href="#" ng-click="vm.popupEditForum($event, f);">Edit</a>]</small>
+                                    </h4>
 
                                     <p class="forum-desc" ng-bind-html="vm.getForumDesc(f);"></p>
                                 </td>
                                 <td class="text-center">{{f.order}}</td>
-                                <td class="text-center"></td>
+                                <td class="text-center">
+                                    <div ng-repeat="m in f.moderators">
+                                        <strong>{{m.username}}</strong> <small>[
+                                        <a href="#" ng-click="vm.removeModeratorClicked(f, m);">-</a> ]
+                                    </small>
+                                    </div>
+                                    <div>
+                                        <small>[
+                                            <a href="#"
+                                               uib-popover-template="vm.addModeratorPopover.templateUrl"
+                                               popover-append-to-body="true"
+                                               popover-title="{{vm.addModeratorPopover.title | translate}}"
+                                               popover-trigger="'outsideClick'"
+                                               popover-placement="bottom"
+                                               popover-is-open="vm.addModeratorPopover.items[f._id]"
+                                               popover-class="add-moderator-popover"
+                                               ng-click="vm.addModeratorClicked(f);">
+                                                +</a> ]
+                                        </small>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -106,5 +128,19 @@
             </form>
         </div>
     </div>
+
+    <script type="text/ng-template" id="add-moderator.html">
+        <form>
+            <div class="form-group">
+                <input type="text" ng-model="vm.addModeratorPopover.username" class="form-control"
+                       placeholder="{{ 'STATUS_FIELD.USERNAME' | translate }}" autofocus>
+            </div>
+            <div class="margin-top-10">
+                <button class="btn btn-default" ng-disabled="!vm.addModeratorPopover.username"
+                        ng-click="vm.addModerator();">{{ 'FORUMS.BTN_ADD' | translate }}
+                </button>
+            </div>
+        </form>
+    </script>
 </section>
 

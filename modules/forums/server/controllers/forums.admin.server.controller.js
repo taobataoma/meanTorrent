@@ -75,6 +75,65 @@ exports.update = function (req, res) {
 };
 
 /**
+ * addModerator
+ * @param req
+ * @param res
+ */
+exports.addModerator = function (req, res) {
+  var forum = req.forum;
+  var mu = req.nameuser;
+
+  var om = [];
+  forum.moderators.forEach(function (m) {
+    om.push(m._id.toString());
+  });
+
+  if (om.indexOf(mu._id.toString()) >= 0) {
+    return res.status(422).send({
+      message: 'username "' + mu.username + '" already exist!'
+    });
+  } else {
+    forum.moderators.push(mu);
+    forum.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(forum);
+      }
+    });
+  }
+};
+
+exports.removeModerator = function (req, res) {
+  var forum = req.forum;
+  var mu = req.nameuser;
+
+  var om = [];
+  forum.moderators.forEach(function (m) {
+    om.push(m._id.toString());
+  });
+
+  if (om.indexOf(mu._id.toString()) < 0) {
+    return res.status(422).send({
+      message: 'username "' + mu.username + '" not exist!'
+    });
+  } else {
+    forum.moderators.splice(om.indexOf(mu._id.toString()), 1);
+    forum.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(forum);
+      }
+    });
+  }
+};
+
+/**
  * delete forum
  * @param req
  * @param res
@@ -115,6 +174,27 @@ exports.forumByID = function (req, res, next, id) {
         });
       }
       req.forum = forum;
+      next();
+    });
+};
+
+/**
+ * Invitation middleware
+ */
+exports.userByUsername = function (req, res, next, uname) {
+  User.findOne({
+    username: uname
+  })
+    .select('username displayName profileImageURL uploaded downloaded')
+    .exec(function (err, user) {
+      if (err) {
+        return next(err);
+      } else if (!user) {
+        return res.status(404).send({
+          message: 'No user with that username has been found'
+        });
+      }
+      req.nameuser = user;
       next();
     });
 };

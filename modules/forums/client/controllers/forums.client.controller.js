@@ -14,6 +14,12 @@
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
 
+    vm.addModeratorPopover = {
+      title: 'FORUMS.MODERATOR_TITLE',
+      templateUrl: 'add-moderator.html',
+      items: []
+    };
+
     /**
      * init
      */
@@ -21,6 +27,10 @@
       ForumsAdminService.query({}, function (items) {
         vm.forums = items;
         console.log(items);
+
+        angular.forEach(vm.forums, function (f) {
+          vm.addModeratorPopover.items.push(f._id, false);
+        });
       });
     };
 
@@ -130,5 +140,59 @@
       }
     };
 
+    /**
+     * addModerator
+     */
+    vm.addModerator = function () {
+      ForumsAdminService.addModerator({
+        _id: vm.forum._id,
+        _username: vm.addModeratorPopover.username
+      }, function (res) {
+        NotifycationService.showSuccessNotify('FORUMS.ADD_MODERATOR_SUCCESSFULLY');
+        vm.addModeratorPopover.items[vm.forum._id] = false;
+        vm.init();
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'FORUMS.ADD_MODERATOR_FAILED');
+        vm.addModeratorPopover.items[vm.forum._id] = false;
+      });
+    };
+
+    /**
+     * addModeratorClicked
+     * @param idx
+     */
+    vm.addModeratorClicked = function (f) {
+      vm.addModeratorPopover.username = undefined;
+      vm.addModeratorPopover.items[f._id] = true;
+
+      vm.forum = f;
+    };
+
+    /**
+     * removeModeratorClicked
+     * @param f forum
+     * @param m moderator
+     */
+    vm.removeModeratorClicked = function (f, m) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('FORUMS.DELETE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('FORUMS.DELETE_CONFIRM_OK'),
+        headerText: $translate.instant('FORUMS.DELETE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('FORUMS.REMOVE_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          ForumsAdminService.removeModerator({
+            _id: f._id,
+            _username: m.username
+          }, function (res) {
+            NotifycationService.showSuccessNotify('FORUMS.REMOVE_MODERATOR_SUCCESSFULLY');
+            vm.init();
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'FORUMS.REMOVE_MODERATOR_FAILED');
+          });
+        });
+    };
   }
 }());

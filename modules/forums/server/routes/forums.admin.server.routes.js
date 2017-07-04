@@ -17,6 +17,14 @@ module.exports = function (app) {
     .put(forums.update)
     .delete(forums.delete);
 
+  // Single article routes
+  app.route('/api/admin/forums/:forumId/addModerator/:username').all(forumsPolicy.isAllowed)
+    .put(forums.addModerator);
+  // Single article routes
+  app.route('/api/admin/forums/:forumId/removeModerator/:username').all(forumsPolicy.isAllowed)
+    .put(forums.removeModerator);
+
   // Finish by binding the article middleware
   app.param('forumId', forums.forumByID);
+  app.param('username', forums.userByUsername);
 };

@@ -634,6 +634,12 @@
       DELETE_CONFIRM_CANCEL: 'Cancel',
       DELETE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
       DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this forum?',
+      MODERATOR_TITLE: 'Add Moderator',
+      ADD_MODERATOR_SUCCESSFULLY: 'Add moderator successfully',
+      ADD_MODERATOR_FAILED: 'Add moderator failed',
+      REMOVE_MODERATOR_SUCCESSFULLY: 'Remove moderator successfully',
+      REMOVE_MODERATOR_FAILED: 'Remove moderator failed',
+      REMOVE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this moderator?',
       CATEGORY: {
         AFFAIRS: 'Affairs',
         DISCUSS: 'Discuss',
