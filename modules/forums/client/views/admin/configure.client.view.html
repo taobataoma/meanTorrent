@@ -1,5 +1,5 @@
 <section class="container padding-top-10" ng-controller="ForumsController as vm" ng-init="vm.init();">
-    <div class="row margin-top-20">
+    <div class="row margin-top-20 forum-list">
         <div class="col-md-10 col-md-offset-1">
             <button class="btn btn-success" ng-click="vm.openSideOverlay($event)">　　{{ 'FORUMS.BTN_ADD_FORUM' | translate }}　　</button>
         </div>
@@ -24,7 +24,7 @@
                                 <td scope="row">
                                     <h4>{{f.name}} <span class="badge badge_mt" ng-show="f.readOnly">R</span></h4>
 
-                                    <p>{{f.desc}}</p>
+                                    <p class="forum-desc" ng-bind-html="vm.getForumDesc(f);"></p>
                                 </td>
                                 <td class="text-center">{{f.order}}</td>
                                 <td class="text-center"></td>

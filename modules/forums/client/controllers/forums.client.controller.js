@@ -69,5 +69,17 @@
         NotifycationService.showErrorNotify(res.data.message, 'FORUMS.ADD_FAILED');
       });
     };
+
+    /**
+     * getForumDesc
+     * @param f
+     * @returns {*}
+     */
+    vm.getForumDesc = function (f) {
+      if (f) {
+        return marked(f.desc, {sanitize: true});
+      }
+    };
+
   }
 }());
