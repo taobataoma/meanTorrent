@@ -49,7 +49,7 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.ROLE' | translate}}：</dt>
                 <dd class="h-line">
                     <mark>{{ vm.user.roles[0] }}</mark>
-                    <div class="pull-right" ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isAdmin && !vm.user.isOper">
+                    <div class="pull-right" ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isAdmin">
                         <select ng-model="vm.selectedRole" ng-change="vm.onUserRoleChanged();">
                             <option ng-repeat="r in vm.userRolesConfig" value="{{r}}">{{ r }}
                             </option>
@@ -61,7 +61,7 @@
                 <dd class="h-line">
                     <span ng-class="{'span-banned': vm.user.status == 'banned'}">{{ 'STATUS_FIELD.' + vm.user.status.toUpperCase() | translate }}</span>
 
-                    <div class="pull-right" ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isOper && !vm.user.isOper">
+                    <div class="pull-right" ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isOper && !vm.user.isAdmin">
                         <button class="btn btn-default btn-xs" style="width: 64px;" ng-click="vm.setUserStatus();">
                             {{ vm.user.status == 'banned' ? ('STATUS_FIELD.UNBANNED' | translate) : ('STATUS_FIELD.BANNED' | translate)}}
                         </button>
