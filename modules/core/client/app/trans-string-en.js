@@ -622,8 +622,14 @@
       BTN_ADD_FORUM: 'Add New Forum',
       BTN_EDIT_FORUM: 'Edit Forum',
       BTN_ADD: '　　Add　　 ',
+      BTN_EDIT: '　　Edit　　 ',
+      BTN_DELETE: '　Delete　 ',
       ADD_SUCCESSFULLY: 'Forum added successfully',
       ADD_FAILED: 'Forum added failed',
+      EDIT_SUCCESSFULLY: 'Forum edited successfully',
+      EDIT_FAILED: 'Forum edited failed',
+      DELETE_SUCCESSFULLY: 'Forum deleted successfully',
+      DELETE_FAILED: 'Forum deleted failed',
       CATEGORY: {
         AFFAIRS: 'Affairs',
         DISCUSS: 'Discuss',
@@ -633,6 +639,7 @@
         NAME: 'Forum Name',
         ORDER: 'Forum Order',
         CMD: 'Command',
+        MODERATORS: 'Moderators',
         DESC: 'Description',
         CATEGORY: 'Category',
         READONLY: 'Only oper/admin can post new topic'

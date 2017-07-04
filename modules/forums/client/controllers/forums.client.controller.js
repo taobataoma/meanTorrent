@@ -5,14 +5,14 @@
     .module('forums')
     .controller('ForumsController', ForumsController);
 
-  ForumsController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsAdminService', 'SideOverlay', '$filter', 'NotifycationService'];
+  ForumsController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsAdminService', 'SideOverlay', '$filter', 'NotifycationService',
+    'marked'];
 
-  function ForumsController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsAdminService, SideOverlay, $filter, NotifycationService) {
+  function ForumsController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsAdminService, SideOverlay, $filter, NotifycationService,
+                            marked) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
-
-    vm.forum = {};
 
     /**
      * init
@@ -25,23 +25,34 @@
     };
 
     /**
-     * openSideOverlay
+     * popupCreateForum
      * @param evt
      */
-    vm.openSideOverlay = function (evt, f) {
-      if (f) {
-        vm.forum = f;
-      } else {
-        vm.forum = {
-          name: '',
-          desc: '',
-          category: 'discuss',
-          order: 0,
-          readOnly: false
-        };
-      }
+    vm.popupCreateForum = function (evt) {
+      vm.forum = {
+        name: '',
+        desc: '',
+        category: 'discuss',
+        order: 0,
+        readOnly: false
+      };
+
+      vm.actionTitle = 'FORUMS.BTN_ADD_FORUM';
+      vm.isEdit = false;
       vm.categoryChanged();
       SideOverlay.open(evt, 'popupSlide');
+    };
+    /**
+     * popupEditForum
+     * @param evt
+     */
+    vm.popupEditForum = function (evt, f) {
+      if (f) {
+        vm.forum = f;
+        vm.actionTitle = 'FORUMS.BTN_EDIT_FORUM';
+        vm.isEdit = true;
+        SideOverlay.open(evt, 'popupSlide');
+      }
     };
 
     /**
@@ -62,11 +73,39 @@
       var f = new ForumsAdminService(vm.forum);
       f.$save(function (res) {
         NotifycationService.showSuccessNotify('FORUMS.ADD_SUCCESSFULLY');
-        vm.forum = {};
+        vm.forum = undefined;
         SideOverlay.close(null, 'popupSlide');
-        $state.reload();
+        vm.init();
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'FORUMS.ADD_FAILED');
+      });
+    };
+
+    /**
+     * editForum
+     */
+    vm.editForum = function () {
+      vm.forum.$update(function (res) {
+        NotifycationService.showSuccessNotify('FORUMS.EDIT_SUCCESSFULLY');
+        vm.forum = undefined;
+        SideOverlay.close(null, 'popupSlide');
+        vm.init();
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'FORUMS.EDIT_FAILED');
+      });
+    };
+
+    /**
+     * deleteForum
+     */
+    vm.deleteForum = function () {
+      vm.forum.$remove(function (res) {
+        NotifycationService.showSuccessNotify('FORUMS.DELETE_SUCCESSFULLY');
+        vm.forum = undefined;
+        SideOverlay.close(null, 'popupSlide');
+        vm.init();
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'FORUMS.DELETE_FAILED');
       });
     };
 

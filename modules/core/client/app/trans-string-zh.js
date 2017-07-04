@@ -621,9 +621,15 @@
     FORUMS: {
       BTN_ADD_FORUM: '添加版块',
       BTN_EDIT_FORUM: '编辑版块',
-      BTN_ADD: '　　添加　　 ',
+      BTN_ADD: '　　添加　　',
+      BTN_EDIT: '　　编辑　　',
+      BTN_DELETE: '　删除　　',
       ADD_SUCCESSFULLY: '版块添加成功',
       ADD_FAILED: '版块添加失败',
+      EDIT_SUCCESSFULLY: '版块编辑成功',
+      EDIT_FAILED: '版块编辑失败',
+      DELETE_SUCCESSFULLY: '版块删除成功',
+      DELETE_FAILED: '版块删除失败',
       CATEGORY: {
         AFFAIRS: '站务区',
         DISCUSS: '讨论区',
@@ -633,6 +639,7 @@
         NAME: '版块名称',
         ORDER: '版块序号',
         CMD: '操作选项',
+        MODERATORS: '版主',
         DESC: '描述',
         CATEGORY: '分类',
         READONLY: '只有管理员可以发起新话题'
