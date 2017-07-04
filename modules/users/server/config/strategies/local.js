@@ -29,6 +29,11 @@ module.exports = function () {
           message: 'Invalid username or password (' + (new Date()).toLocaleTimeString() + ')'
         });
       }
+      if(user.status === 'banned'){
+        return done(null, false, {
+          message: 'You are banned from the server!'
+        });
+      }
 
       return done(null, user);
     });
