@@ -4,53 +4,47 @@
             <button class="btn btn-success" ng-click="vm.popupCreateForum($event)">　　{{ 'FORUMS.BTN_ADD_FORUM' | translate }}　　</button>
         </div>
 
-        <div class="col-sm-10 col-sm-offset-1">
-            <div class="panel panel-default margin-top-30" ng-repeat="cat in vm.forumsConfig.category">
-                <div class="panel-heading text-center mt-title">
-                    <h3 class="panel-title">{{ 'FORUMS.CATEGORY.'+cat.name | translate }}</h3>
-                </div>
+        <div class="col-sm-10 col-sm-offset-1 margin-top-30">
+            <div class="table-responsive table-category" ng-repeat="cat in vm.forumsConfig.category">
+                <table class="table table-hover table-valign-middle">
+                    <thead>
+                        <tr>
+                            <th class="col-md-7">{{'FORUMS.CATEGORY.'+cat.name | translate}}</th>
+                            <th class="text-center">{{'FORUMS.FIELDS.ORDER' | translate}}</th>
+                            <th class="text-center">{{'FORUMS.FIELDS.MODERATORS' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="f in vm.forums | filter: { category: cat.value }">
+                            <td>
+                                <h4>{{f.name}} <span class="badge badge_mt" ng-show="f.readOnly">R</span>
+                                    <small>[<a href="#" ng-click="vm.popupEditForum($event, f);">{{'FORUMS.LINK_EDIT' | translate}}</a>]</small>
+                                    <small>[<a href="#"
+                                               uib-popover-template="vm.addModeratorPopover.templateUrl"
+                                               popover-append-to-body="true"
+                                               popover-title="{{vm.addModeratorPopover.title | translate}}"
+                                               popover-trigger="'outsideClick'"
+                                               popover-placement="top"
+                                               popover-is-open="vm.addModeratorPopover.items[f._id]"
+                                               popover-class="add-moderator-popover"
+                                               ng-click="vm.addModeratorClicked(f);">{{vm.addModeratorPopover.title | translate}}</a>]
+                                    </small>
+                                </h4>
 
-                <div class="table-responsive">
-                    <table class="table table-hover table-valign-middle">
-                        <thead>
-                            <tr>
-                                <th class="col-md-7">{{'FORUMS.FIELDS.NAME' | translate}}</th>
-                                <th class="text-center">{{'FORUMS.FIELDS.ORDER' | translate}}</th>
-                                <th class="text-center">{{'FORUMS.FIELDS.MODERATORS' | translate}}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="f in vm.forums | filter: { category: cat.value }">
-                                <td>
-                                    <h4>{{f.name}} <span class="badge badge_mt" ng-show="f.readOnly">R</span>
-                                        <small>[<a href="#" ng-click="vm.popupEditForum($event, f);">{{'FORUMS.LINK_EDIT' | translate}}</a>]</small>
-                                        <small>[<a href="#"
-                                                   uib-popover-template="vm.addModeratorPopover.templateUrl"
-                                                   popover-append-to-body="true"
-                                                   popover-title="{{vm.addModeratorPopover.title | translate}}"
-                                                   popover-trigger="'outsideClick'"
-                                                   popover-placement="top"
-                                                   popover-is-open="vm.addModeratorPopover.items[f._id]"
-                                                   popover-class="add-moderator-popover"
-                                                   ng-click="vm.addModeratorClicked(f);">{{vm.addModeratorPopover.title | translate}}</a>]
-                                        </small>
-                                    </h4>
-
-                                    <p class="forum-desc" ng-bind-html="vm.getForumDesc(f);"></p>
-                                </td>
-                                <td class="text-center">{{f.order}}</td>
-                                <td class="text-center">
-                                    <div ng-repeat="m in f.moderators">
-                                        <span class="text-primary">{{m.username}}</span>
-                                        <small>[
-                                            <a href="#" ng-click="vm.removeModeratorClicked(f, m);">-</a> ]
-                                        </small>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                <p class="forum-desc" ng-bind-html="vm.getForumDesc(f);"></p>
+                            </td>
+                            <td class="text-center">{{f.order}}</td>
+                            <td class="text-center">
+                                <div ng-repeat="m in f.moderators">
+                                    <span class="text-primary">{{m.username}}</span>
+                                    <small>[
+                                        <a href="#" ng-click="vm.removeModeratorClicked(f, m);">-</a> ]
+                                    </small>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
