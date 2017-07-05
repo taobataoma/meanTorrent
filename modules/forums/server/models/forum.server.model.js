@@ -52,7 +52,11 @@ var ForumSchema = new Schema({
     default: 0
   },
 
-  lastTopic: {
+  lastNewTopic: {
+    type: Schema.Types.ObjectId,
+    ref: 'Topic'
+  },
+  lastReplyTopic: {
     type: Schema.Types.ObjectId,
     ref: 'Topic'
   },
