@@ -20,7 +20,8 @@ var path = require('path'),
 exports.list = function (req, res) {
   Forum.find()
     .sort('order -createdat')
-    .populate('lastTopic')
+    .populate('lastNewTopic')
+    .populate('lastReplyTopic')
     .populate('moderators', 'username displayName profileImageURL uploaded downloaded')
     .exec(function (err, forums) {
       if (err) {

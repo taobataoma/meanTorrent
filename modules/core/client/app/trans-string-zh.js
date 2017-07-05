@@ -653,7 +653,10 @@
         MODERATORS: '版主',
         DESC: '描述',
         CATEGORY: '分类',
-        READONLY: '只有管理员可以发起新话题'
+        READONLY: '只有管理员可以发起新话题',
+        TOPICS: '主题数',
+        REPLIES: '回贴数',
+        LAST_REPLY: '最近回复'
       }
     },
 

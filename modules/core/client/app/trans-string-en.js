@@ -653,7 +653,10 @@
         MODERATORS: 'Moderators',
         DESC: 'Description',
         CATEGORY: 'Category',
-        READONLY: 'Only oper/admin can post new topic'
+        READONLY: 'Only oper/admin can post new topic',
+        TOPICS: 'Topics',
+        REPLIES: 'Replies',
+        LAST_REPLY: 'Last Reply'
       }
     },
 

@@ -1,4 +1,4 @@
-<section class="container padding-top-10" ng-controller="ForumsController as vm" ng-init="vm.init();">
+<section class="container padding-top-10" ng-controller="ForumsAdminController as vm" ng-init="vm.init();">
     <div class="row margin-top-20 forum-list">
         <div class="col-md-10 col-md-offset-1">
             <button class="btn btn-success" ng-click="vm.popupCreateForum($event)">　　{{ 'FORUMS.BTN_ADD_FORUM' | translate }}　　</button>
@@ -7,7 +7,7 @@
         <div class="col-sm-10 col-sm-offset-1">
             <div class="panel panel-default margin-top-30" ng-repeat="cat in vm.forumsConfig.category">
                 <div class="panel-heading text-center mt-title">
-                    <strong>{{ 'FORUMS.CATEGORY.'+cat.name | translate }}</strong>
+                    <h3 class="panel-title">{{ 'FORUMS.CATEGORY.'+cat.name | translate }}</h3>
                 </div>
 
                 <div class="table-responsive">
@@ -21,7 +21,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="f in vm.forums | filter: { category: cat.value }">
-                                <td scope="row">
+                                <td>
                                     <h4>{{f.name}} <span class="badge badge_mt" ng-show="f.readOnly">R</span>
                                         <small>[<a href="#" ng-click="vm.popupEditForum($event, f);">{{'FORUMS.LINK_EDIT' | translate}}</a>]</small>
                                         <small>[<a href="#"

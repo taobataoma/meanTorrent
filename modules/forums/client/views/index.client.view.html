@@ -1,2 +1,72 @@
-<section class="container padding-top-10" ng-controller="ForumsController as vm" ng-init="vm.init();">
+<section ng-controller="ForumsController as vm" ng-init="vm.init();">
+    <div class="pagetop">
+        <div class="container">
+            <div class="col-sm-8">
+                <div class="page-header">
+                    <h1>meanTorrent Forums</h1>
+
+                    <p class="text-muted">Welcome to meanTorrent forums!</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="page-header padding-top-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" aria-label="search" placeholder="Search">
+
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" aria-label="Search"><span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <!--<p class="text-muted margin-top-10">Welcome to meanTorrent forums!</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container forum-list">
+        <div class="path margin-top-20">
+            <ol class="breadcrumb">
+                <li><a href="#"><span class="small glyphicon glyphicon-home"></span> Forums</a></li>
+                <!--<li><a href="#">Library</a></li>-->
+                <!--<li class="active">Data</li>-->
+            </ol>
+        </div>
+
+        <div class="table-responsive table-category" ng-repeat="cat in vm.forumsConfig.category">
+            <table class="table table-hover table-valign-middle">
+                <thead>
+                    <tr>
+                        <th class="col-md-7">{{'FORUMS.CATEGORY.'+cat.name | translate}}</th>
+                        <th class="text-center">{{'FORUMS.FIELDS.TOPICS' | translate}}</th>
+                        <th class="text-center">{{'FORUMS.FIELDS.REPLIES' | translate}}</th>
+                        <th class="text-center">{{'FORUMS.FIELDS.LAST_REPLY' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="f in vm.forums | filter: { category: cat.value }">
+                        <td>
+                            <span class="forum-icon glyphicon glyphicon-folder-open"></span>
+
+                            <div class="forum-info">
+                                <h4><a href="#">{{f.name}}</a>
+                                    <small class="badge badge_mt" ng-show="f.readOnly">R</small>
+                                </h4>
+
+                                <p class="forum-desc" ng-bind-html="vm.getForumDesc(f);"></p>
+
+                                <p>{{'FORUMS.FIELDS.MODERATORS' | translate}}: <span ng-repeat="m in f.moderators">{{m.username}} </span></p>
+                            </div>
+                        </td>
+                        <td class="text-center">{{f.topicCount}}</td>
+                        <td class="text-center">{{f.replyCount}}</td>
+                        <td class="text-center">
+                            <div class="last-reply">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </section>
