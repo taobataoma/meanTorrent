@@ -623,6 +623,7 @@
       BTN_EDIT_FORUM: '编辑版块',
       BTN_ADD: '　　添加　　',
       BTN_EDIT: '　　编辑　　',
+      LINK_EDIT: '编辑',
       BTN_DELETE: '　删除　　',
       ADD_SUCCESSFULLY: '版块添加成功',
       ADD_FAILED: '版块添加失败',

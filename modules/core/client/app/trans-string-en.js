@@ -623,6 +623,7 @@
       BTN_EDIT_FORUM: 'Edit Forum',
       BTN_ADD: '　　Add　　 ',
       BTN_EDIT: '　　Edit　　 ',
+      LINK_EDIT: 'Edit',
       BTN_DELETE: '　Delete　 ',
       ADD_SUCCESSFULLY: 'Forum added successfully',
       ADD_FAILED: 'Forum added failed',

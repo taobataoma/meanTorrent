@@ -55,10 +55,11 @@
     /**
      * popupEditForum
      * @param evt
+     * @param f: forum
      */
     vm.popupEditForum = function (evt, f) {
       if (f) {
-        vm.forum = f;
+        vm.forum = new ForumsAdminService(f);
         vm.actionTitle = 'FORUMS.BTN_EDIT_FORUM';
         vm.isEdit = true;
         SideOverlay.open(evt, 'popupSlide');
@@ -131,7 +132,7 @@
 
     /**
      * getForumDesc
-     * @param f
+     * @param f: forum
      * @returns {*}
      */
     vm.getForumDesc = function (f) {
@@ -159,7 +160,7 @@
 
     /**
      * addModeratorClicked
-     * @param idx
+     * @param f: forum
      */
     vm.addModeratorClicked = function (f) {
       vm.addModeratorPopover.username = undefined;
