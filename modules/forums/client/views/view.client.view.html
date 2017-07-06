@@ -24,4 +24,48 @@
         </div>
     </div>
 
+    <div class="container forum-list">
+        <div class="path margin-top-20">
+            <ol class="breadcrumb">
+                <li><a href="/forums"><span class="small glyphicon glyphicon-home"></span> {{'FORUMS.HOME_INDEX' | translate}}</a></li>
+                <li ng-repeat="p in vm.forumPath" ng-class="{'active': !g.state}"><a href="{{p.state}}" ng-if="p.state!=undefined">{{p.name}}</a><span ng-if="p.state==undefined">{{p.name}}</span></li>
+            </ol>
+        </div>
+
+        <div>
+            <div class="row">
+                <div class="col-sm-12 col-md-9">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <button class="btn btn-success margin-top-10 margin-bottom-10 pull-right">Post New Topic</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive table-category">
+            <table class="table table-hover table-valign-middle">
+                <thead>
+                    <tr>
+                        <th>{{'FORUMS.FIELDS.TOPICS' | translate}}</th>
+                        <th class="text-center xs-hide">{{'FORUMS.FIELDS.REPLIES' | translate}}</th>
+                        <th class="text-center xs-hide">{{'FORUMS.FIELDS.VIEWS' | translate}}</th>
+                        <th class="text-center xs-hide sm-hide">{{'FORUMS.FIELDS.LAST_REPLY' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <td></td>
+                        <td class="text-center xs-hide"></td>
+                        <td class="text-center xs-hide"></td>
+                        <td class="text-center xs-hide sm-hide"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </section>

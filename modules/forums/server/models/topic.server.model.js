@@ -48,6 +48,10 @@ var ScoreSchema = new Schema({
  * Topic Schema
  */
 var TopicSchema = new Schema({
+  forum: {
+    type: Schema.Types.ObjectId,
+    ref: 'Forum'
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -82,6 +86,10 @@ var TopicSchema = new Schema({
   lastUser: {
     type: Schema.Types.ObjectId,
     ref: 'User'
+  },
+  isTop: {
+    type: Number,
+    default: 0
   },
   lastReplyAt: {
     type: Date

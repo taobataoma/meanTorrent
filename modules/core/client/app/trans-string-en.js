@@ -619,6 +619,7 @@
 
     //forum
     FORUMS: {
+      HOME_INDEX: 'Forums Home',
       BTN_ADD_FORUM: 'Add New Forum',
       BTN_EDIT_FORUM: 'Edit Forum',
       BTN_ADD: '　　Add　　 ',
@@ -656,6 +657,7 @@
         READONLY: 'Only oper/admin can post new topic',
         TOPICS: 'Topics',
         REPLIES: 'Replies',
+        VIEWS: 'Views',
         LAST_REPLY: 'Last Reply'
       }
     },

@@ -619,6 +619,7 @@
 
     //forum
     FORUMS: {
+      HOME_INDEX: '论坛首页',
       BTN_ADD_FORUM: '添加版块',
       BTN_EDIT_FORUM: '编辑版块',
       BTN_ADD: '　　添加　　',
@@ -656,6 +657,7 @@
         READONLY: '只有管理员可以发起新话题',
         TOPICS: '主题数',
         REPLIES: '回贴数',
+        VIEWS: '查看数',
         LAST_REPLY: '最近回复'
       }
     },
