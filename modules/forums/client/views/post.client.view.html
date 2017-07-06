@@ -1,0 +1,36 @@
+<section ng-controller="ForumsPostController as vm" ng-init="vm.init();">
+    <div class="pagetop">
+        <div class="container">
+            <div class="col-sm-8">
+                <div class="page-header">
+                    <h1>meanTorrent Forums</h1>
+
+                    <p class="text-muted">Welcome to meanTorrent forums!</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="page-header padding-top-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" aria-label="search" placeholder="Search">
+
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" aria-label="Search"><span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <!--<p class="text-muted margin-top-10">Welcome to meanTorrent forums!</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container forum-list">
+        <div class="path margin-top-20">
+            <ol class="breadcrumb">
+                <li><a ui-sref="forums.list"><span class="small glyphicon glyphicon-home"></span> {{'FORUMS.HOME_INDEX' | translate}}</a></li>
+                <li ng-repeat="p in vm.forumPath" ng-class="{'active': !g.state}"><a ui-sref="{{p.state}}( {{p.params}} )" ng-if="p.state!=undefined">{{p.name}}</a><span ng-if="p.state==undefined">{{p.name}}</span></li>
+            </ol>
+        </div>
+
+    </div>
+</section>
