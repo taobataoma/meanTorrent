@@ -40,7 +40,7 @@
                         <th class="col-md-7">{{'FORUMS.CATEGORY.'+cat.name | translate}}</th>
                         <th class="text-center">{{'FORUMS.FIELDS.TOPICS' | translate}}</th>
                         <th class="text-center">{{'FORUMS.FIELDS.REPLIES' | translate}}</th>
-                        <th class="text-center">{{'FORUMS.FIELDS.LAST_REPLY' | translate}}</th>
+                        <th class="text-center xs-hide sm-hide">{{'FORUMS.FIELDS.LAST_REPLY' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +62,7 @@
                         </td>
                         <td class="text-center">{{f.topicCount}}</td>
                         <td class="text-center">{{f.replyCount}}</td>
-                        <td class="text-center">
+                        <td class="text-center xs-hide sm-hide">
                             <div class="last-reply">
                             </div>
                         </td>
