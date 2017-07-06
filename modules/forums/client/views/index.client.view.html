@@ -5,7 +5,7 @@
                 <div class="page-header">
                     <h1>meanTorrent Forums</h1>
 
-                    <p class="text-muted">Welcome to meanTorrent forums!</p>
+                    <p>Welcome to meanTorrent forums!</p>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -55,7 +55,9 @@
 
                                 <p class="forum-desc" ng-bind-html="vm.getForumDesc(f);"></p>
 
-                                <p>{{'FORUMS.FIELDS.MODERATORS' | translate}}: <span ng-repeat="m in f.moderators">{{m.username}} </span></p>
+                                <p class="moderators-list">{{'FORUMS.FIELDS.MODERATORS' | translate}}:
+                                    <span class="moderators-item" ng-repeat="m in f.moderators">{{m.displayName}}<span message-to="m" to-class="message-to-icon"></span> </span>
+                                </p>
                             </div>
                         </td>
                         <td class="text-center">{{f.topicCount}}</td>

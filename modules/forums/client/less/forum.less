@@ -61,15 +61,26 @@
                     .forum-icon {
                         float: left;
                         font-size: 25px;
-                        color: #ff6600;
+                        color: @brand-primary;
                         margin: 25px 10px;
                     }
                     .forum-info {
                         margin-left: 60px;
                     }
+                    .moderators-list {
+                        .moderators-item {
+                            &:not(:first-child) {
+                                &::before {
+                                    content: " | ";
+                                    font-weight: bold;
+                                    color: #ccc;
+                                }
+                            }
+                        }
+                    }
                 }
                 &:hover {
-                    background-color: rgba(160, 196, 228, 0.15);
+                    background-color: #f1f6fb;
                 }
             }
             tr:last-child {
