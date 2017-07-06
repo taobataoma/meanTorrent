@@ -5,7 +5,7 @@
                 <div class="page-header">
                     <h1>meanTorrent Forums</h1>
 
-                    <p>Welcome to meanTorrent forums!</p>
+                    <p class="text-muted">Welcome to meanTorrent forums!</p>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -46,7 +46,7 @@
                 <tbody>
                     <tr ng-repeat="f in vm.forums | filter: { category: cat.value }">
                         <td>
-                            <span class="forum-icon glyphicon glyphicon-folder-open"></span>
+                            <span class="forum-icon glyphicon glyphicon-folder-open" ng-class="{'has-new-post': $index/2==0}"></span>
 
                             <div class="forum-info">
                                 <h4><a href="#">{{f.name}}</a>
@@ -55,8 +55,12 @@
 
                                 <p class="forum-desc" ng-bind-html="vm.getForumDesc(f);"></p>
 
-                                <p class="moderators-list">{{'FORUMS.FIELDS.MODERATORS' | translate}}:
-                                    <span class="moderators-item" ng-repeat="m in f.moderators">{{m.displayName}}<span message-to="m" to-class="message-to-icon"></span> </span>
+                                <p><span class="moderators-title">{{'FORUMS.FIELDS.MODERATORS' | translate}}:</span>
+                                    <span class="moderators-list">
+                                        <span class="moderators-item" ng-repeat="m in f.moderators">{{m.displayName}}
+                                            <span message-to="m" to-class="message-to-icon"></span>
+                                        </span>
+                                    </span>
                                 </p>
                             </div>
                         </td>

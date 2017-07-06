@@ -29,7 +29,7 @@
         border-radius: 6px;
     }
     .forum-desc {
-        word-break: break-all;
+        word-break: normal;
         color: #999;
     }
     table {
@@ -65,11 +65,17 @@
                     .forum-icon {
                         float: left;
                         font-size: 25px;
-                        color: @brand-primary;
                         margin: 25px 10px;
+                        color: #ccc;
+                        &.has-new-post {
+                            color: @brand-primary;
+                        }
                     }
                     .forum-info {
                         margin-left: 60px;
+                    }
+                    .moderators-title {
+                        color: @brand-primary;
                     }
                     .moderators-list {
                         .moderators-item {
