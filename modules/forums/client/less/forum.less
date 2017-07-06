@@ -36,6 +36,9 @@
         border-spacing: 0;
         border-collapse: inherit;
         border: solid 3px @brand-primary;
+        @media (max-width: @screen-xs-max) {
+            max-width: 800px;
+        }
         thead {
             background-color: @brand-primary;
             border: solid 1px @brand-primary;
@@ -51,6 +54,7 @@
             tr {
                 td {
                     border-top: none;
+                    white-space: normal !important;
                     border-bottom: solid 2px lighten(@brand-primary, 45%);
                     p {
                         margin-bottom: 5px;
