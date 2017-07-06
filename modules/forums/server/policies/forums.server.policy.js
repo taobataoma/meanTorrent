@@ -18,14 +18,16 @@ exports.invokeRolesPolicies = function () {
         roles: ['admin', 'oper', 'user'],
         allows: [
           {resources: '/api/forums', permissions: '*'},
-          {resources: '/api/forums/:forumId', permissions: '*'}
+          {resources: '/api/forums/:forumId', permissions: '*'},
+          {resources: '/api/topics/:forumId', permissions: '*'}
         ]
       },
       {
         roles: ['guest'],
         allows: [
           {resources: '/api/forums', permissions: ['get']},
-          {resources: '/api/forums/:forumId', permissions: ['get']}
+          {resources: '/api/forums/:forumId', permissions: ['get']},
+          {resources: '/api/topics/:forumId', permissions: ['get']}
         ]
       }
     ]
