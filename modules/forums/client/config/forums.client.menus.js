@@ -11,7 +11,7 @@
     // Set top bar menu items
     menuService.addMenuItem('topbar', {
       title: 'MENU_FORUMS',
-      state: 'forums',
+      state: 'forums.list',
       roles: ['*'],
       position: 1
     });

@@ -46,10 +46,10 @@
                 <tbody>
                     <tr ng-repeat="f in vm.forums | filter: { category: cat.value }">
                         <td>
-                            <span class="forum-icon glyphicon glyphicon-folder-open" ng-class="{'has-new-post': $index/2==0}"></span>
+                            <span class="forum-icon glyphicon glyphicon-folder-open" ng-class="{'has-new-post': $index%2==0}"></span>
 
                             <div class="forum-info">
-                                <h4><a href="#">{{f.name}}</a>
+                                <h4><a ui-sref="forums.view({ forumId: f._id })">{{f.name}}</a>
                                     <small class="badge badge_mt" ng-show="f.readOnly">R</small>
                                 </h4>
 
