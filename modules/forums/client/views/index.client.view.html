@@ -66,8 +66,36 @@
                         </td>
                         <td class="text-center xs-hide">{{f.topicCount}}</td>
                         <td class="text-center xs-hide">{{f.replyCount}}</td>
-                        <td class="text-center xs-hide sm-hide">
-                            <div class="last-reply">
+                        <td class="xs-hide sm-hide">
+                            <div ng-if="f.lastTopic">
+                                <div ng-if="f.lastTopic._replies.length > 0">   <!--reply-->
+                                    <div class="text-long">
+                                        <a href="#">Re: {{f.lastTopic.title}}</a>
+                                    </div>
+                                    <div class="small reply-by">
+                                        <span translate="FORUMS.FIELDS.REPLY_BY_1"
+                                          translate-values="{user: f.lastTopic.lastUser.displayName}"></span>
+                                        <span message-to="f.lastTopic.lastUser" to-class="message-to-icon"></span>
+                                    </div>
+                                    <div class="small reply-by"
+                                         translate="FORUMS.FIELDS.REPLY_BY_2"
+                                         translate-values="{createdAt: '{{f.lastTopic.lastReplyAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}">
+                                    </div>
+                                </div>
+                                <div ng-if="f.lastTopic._replies.length == 0">   <!--post-->
+                                    <div class="text-long">
+                                        <a  href="#">{{f.lastTopic.title}}</a>
+                                    </div>
+                                    <div class="small reply-by">
+                                        <span translate="FORUMS.FIELDS.REPLY_BY_1"
+                                          translate-values="{user: f.lastTopic.user.displayName}"></span>
+                                        <span message-to="f.lastTopic.user" to-class="message-to-icon"></span>
+                                    </div>
+                                    <div class="small reply-by"
+                                         translate="FORUMS.FIELDS.REPLY_BY_3"
+                                         translate-values="{createdAt: '{{f.lastTopic.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}">
+                                    </div>
+                                </div>
                             </div>
                         </td>
                     </tr>

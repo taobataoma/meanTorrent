@@ -47,16 +47,8 @@ var ForumSchema = new Schema({
     type: Number,
     default: 0
   },
-  todayCount: {
-    type: Number,
-    default: 0
-  },
 
-  lastNewTopic: {
-    type: Schema.Types.ObjectId,
-    ref: 'Topic'
-  },
-  lastReplyTopic: {
+  lastTopic: {
     type: Schema.Types.ObjectId,
     ref: 'Topic'
   },
@@ -71,6 +63,5 @@ var ForumSchema = new Schema({
     default: Date.now
   }
 });
-
 
 mongoose.model('Forum', ForumSchema);

@@ -19,17 +19,23 @@ var path = require('path'),
  */
 exports.list = function (req, res) {
   Forum.find()
-    .sort('order -createdat')
-    .populate('lastNewTopic')
-    .populate('lastReplyTopic')
+    .sort('category order -createdat')
+    .populate({
+      path: 'lastTopic',
+      populate: {
+        path: 'user lastUser',
+        select: 'username displayName profileImageURL uploaded downloaded'
+      }
+    })
     .populate('moderators', 'username displayName profileImageURL uploaded downloaded')
     .exec(function (err, forums) {
       if (err) {
         return res.status(422).send({
           message: errorHandler.getErrorMessage(err)
         });
+      } else {
+        res.status(200).send(forums);
       }
-      res.json(forums);
     });
 };
 
@@ -86,4 +92,9 @@ exports.postNewTopic = function (req, res) {
       res.json(topic);
     }
   });
+
+  forum.update({
+    $inc: {topicCount: 1},
+    lastTopic: topic
+  }).exec();
 };

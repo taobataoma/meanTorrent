@@ -97,6 +97,21 @@
                             }
                         }
                     }
+                    .reply-by {
+                        color: #666;
+                    }
+                    .text-long {
+                        @media (min-width: @screen-lg-min) {
+                            max-width: 260px;
+                        }
+                        @media (max-width: @screen-lg-min) {
+                            max-width: 200px;
+                        }
+                        font-weight: bold;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
                 }
                 &:hover {
                     background-color: #f1f6fb;
