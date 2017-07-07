@@ -55,13 +55,12 @@
       function successCallback(res) {
         vm.postFields = {};
         $scope.$broadcast('show-errors-reset', 'vm.postForm');
-        NotifycationService.showSuccessNotify('POST_SEND_SUCCESSFULLY');
-
-        $state.reload();
+        NotifycationService.showSuccessNotify('FORUMS.POST_SEND_SUCCESSFULLY');
+        $state.go('forums.view', {forumId: vm.forum._id});
       }
 
       function errorCallback(res) {
-        NotifycationService.showErrorNotify(res.data.message, 'POST_SEND_FAILED');
+        NotifycationService.showErrorNotify(res.data.message, 'FORUMS.POST_SEND_FAILED');
       }
     };
 
