@@ -22,7 +22,6 @@
       ForumsService.get({
         forumId: $stateParams.forumId
       }, function (item) {
-        console.log(item);
         vm.forum = item;
 
         vm.forumPath = [

@@ -65,3 +65,25 @@ exports.listTopics = function (req, res) {
       res.json(topics);
     });
 };
+
+/**
+ * postNewTopic
+ * @param req
+ * @param res
+ */
+exports.postNewTopic = function (req, res) {
+  var forum = req.forum;
+  var topic = new Topic(req.body);
+  topic.forum = forum;
+  topic.user = req.user;
+
+  topic.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(topic);
+    }
+  });
+};

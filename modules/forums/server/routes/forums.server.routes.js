@@ -17,6 +17,7 @@ module.exports = function (app) {
 
   //Single article routes
   app.route('/api/topics/:forumId').all(forumsPolicy.isAllowed)
+    .post(forums.postNewTopic)
     .get(forums.listTopics);
 
 };

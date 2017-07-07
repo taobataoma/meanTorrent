@@ -6,10 +6,10 @@
     .controller('ForumsPostController', ForumsPostController);
 
   ForumsPostController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'SideOverlay', '$filter', 'NotifycationService',
-    'marked', 'ModalConfirmService', '$stateParams', 'TopicsService', 'localStorageService'];
+    'marked', 'ModalConfirmService', '$stateParams', 'TopicsService'];
 
   function ForumsPostController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, SideOverlay, $filter, NotifycationService,
-                                marked, ModalConfirmService, $stateParams, TopicsService, localStorageService) {
+                                marked, ModalConfirmService, $stateParams, TopicsService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
@@ -18,20 +18,10 @@
      * init
      */
     vm.init = function () {
-      $("#postContent").markdown({
-        autofocus:false,
-        savable:false,
-        iconlibrary: 'fa',
-        resize: 'vertical',
-        language: localStorageService.get('storage_user_lang'),
-        fullscreen: { enable: false}
-      });
-
       // get forum info by state params
       ForumsService.get({
         forumId: $stateParams.forumId
       }, function (item) {
-        console.log(item);
         vm.forum = item;
 
         vm.forumPath = [
@@ -41,5 +31,39 @@
       });
 
     };
+
+    /**
+     * postTopic
+     * @param isValid
+     * @returns {boolean}
+     */
+    vm.postTopic = function (isValid) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.postForm');
+        return false;
+      }
+
+      var post = new TopicsService(vm.postFields);
+      post._forumId = vm.forum._id;
+
+      post.$save(function (response) {
+        successCallback(response);
+      }, function (errorResponse) {
+        errorCallback(errorResponse);
+      });
+
+      function successCallback(res) {
+        vm.postFields = {};
+        $scope.$broadcast('show-errors-reset', 'vm.postForm');
+        NotifycationService.showSuccessNotify('POST_SEND_SUCCESSFULLY');
+
+        $state.reload();
+      }
+
+      function errorCallback(res) {
+        NotifycationService.showErrorNotify(res.data.message, 'POST_SEND_FAILED');
+      }
+    };
+
   }
 }());
