@@ -80,17 +80,21 @@
                         <td class="text-center xs-hide">{{t.replyCount}}</td>
                         <td class="text-center xs-hide">{{t.viewCount}}</td>
                         <td class="xs-hide sm-hide">
-                            <div class="small"
-                                 translate="FORUMS.FIELDS.REPLY_BY_1"
-                                 translate-values="{user: t.user.displayName}"></div>
+                            <div class="small">
+                                <span translate="FORUMS.FIELDS.REPLY_BY_1"
+                                      translate-values="{user: t.user.displayName}"></span>
+                                <span message-to="t.user" to-class="message-to-icon"></span>
+                            </div>
                             <div class="small"
                                  ng-if="t._replies.length > 0"
                                  translate="FORUMS.FIELDS.REPLY_BY_2"
-                                 translate-values="{createdAt: '{{t.lastReplyAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}"></div>
+                                 translate-values="{createdAt: '{{t.lastReplyAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}">
+                            </div>
                             <div class="small"
                                  ng-if="t._replies.length == 0"
                                  translate="FORUMS.FIELDS.REPLY_BY_3"
-                                 translate-values="{createdAt: '{{t.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}"></div>
+                                 translate-values="{createdAt: '{{t.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}">
+                            </div>
                         </td>
                     </tr>
                 </tbody>
