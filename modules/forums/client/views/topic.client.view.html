@@ -1,0 +1,46 @@
+<section ng-controller="ForumsTopicController as vm" ng-init="vm.init();">
+    <div class="pagetop">
+        <div class="container">
+            <div class="col-sm-8">
+                <div class="page-header">
+                    <h2 translate="FORUMS.FORUM_TITLE"></h2>
+
+                    <p class="text-muted" translate="FORUMS.FORUM_SUB_TITLE"></p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="page-header padding-top-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" aria-label="search" placeholder="Search">
+
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" aria-label="Search"><span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container reply-list">
+        <div class="path margin-top-20">
+            <ol class="breadcrumb">
+                <li><a ui-sref="forums.list"><span class="small glyphicon glyphicon-home"></span> {{'FORUMS.HOME_INDEX' | translate}}</a></li>
+                <li ng-repeat="p in vm.forumPath" ng-class="{'active': !g.state}">
+                    <a ui-sref="{{p.state}}( {{p.params}} )"
+                       ng-if="p.state!=undefined">{{p.name}}
+                    </a>
+                    <span ng-if="p.state==undefined">{{p.name}}</span>
+                </li>
+            </ol>
+        </div>
+
+        <div class="post-view">
+            <div class="row">
+                <div class="col-md-8">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

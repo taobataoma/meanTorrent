@@ -49,7 +49,7 @@
                             <span class="forum-icon glyphicon glyphicon-folder-open" ng-class="{'has-new-post': $index%2==0}"></span>
 
                             <div class="forum-info">
-                                <h4><a ui-sref="forums.view({ forumId: f._id })">{{f.name}}</a>
+                                <h4><a ui-sref="forums.view({ forumId: f._id})">{{f.name}}</a>
                                     <small class="badge badge_mt" ng-show="f.readOnly">R</small>
                                 </h4>
 
@@ -70,7 +70,7 @@
                             <div ng-if="f.lastTopic">
                                 <div ng-if="f.lastTopic._replies.length > 0">   <!--reply-->
                                     <div class="text-long">
-                                        <a href="#">Re: {{f.lastTopic.title}}</a>
+                                        <a ui-sref="forums.topic({ forumId: f._id, topicId: f.lastTopic._id })">Re: {{f.lastTopic.title}}</a>
                                     </div>
                                     <div class="small reply-by">
                                         <span translate="FORUMS.FIELDS.REPLY_BY_1"
@@ -84,7 +84,7 @@
                                 </div>
                                 <div ng-if="f.lastTopic._replies.length == 0">   <!--post-->
                                     <div class="text-long">
-                                        <a  href="#">{{f.lastTopic.title}}</a>
+                                        <a ui-sref="forums.topic({ forumId: f._id, topicId: f.lastTopic._id })">{{f.lastTopic.title}}</a>
                                     </div>
                                     <div class="small reply-by">
                                         <span translate="FORUMS.FIELDS.REPLY_BY_1"

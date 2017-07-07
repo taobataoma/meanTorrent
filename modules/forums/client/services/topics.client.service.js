@@ -8,8 +8,9 @@
   TopicsService.$inject = ['$resource'];
 
   function TopicsService($resource) {
-    return $resource('/api/topics/:forumId', {
-      forumId: '@_forumId'
+    return $resource('/api/topics/:forumId/:topicId', {
+      forumId: '@_forumId',
+      topicId: '@_topicId'
     }, {
       update: {
         method: 'PUT'

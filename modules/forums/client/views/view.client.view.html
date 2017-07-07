@@ -67,7 +67,7 @@
                             <span class="post-icon glyphicon glyphicon-eye-open" ng-class="{'has-new-reply': $index%2==0}"></span>
 
                             <div class="post-info">
-                                <h4><a ui-sref="topics.view({ forumId: f._id, topicId: t._id })">{{t.title}}</a>
+                                <h4><a ui-sref="forums.topic({ forumId: vm.forum._id, topicId: t._id })">{{t.title}}</a>
                                     <small class="badge badge_mt" ng-show="t.readOnly">R</small>
                                 </h4>
 

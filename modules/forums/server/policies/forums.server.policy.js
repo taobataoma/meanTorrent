@@ -19,7 +19,8 @@ exports.invokeRolesPolicies = function () {
         allows: [
           {resources: '/api/forums', permissions: '*'},
           {resources: '/api/forums/:forumId', permissions: '*'},
-          {resources: '/api/topics/:forumId', permissions: '*'}
+          {resources: '/api/topics/:forumId', permissions: '*'},
+          {resources: '/api/topics/:forumId/:topicId', permissions: '*'}
         ]
       },
       {
@@ -27,7 +28,8 @@ exports.invokeRolesPolicies = function () {
         allows: [
           {resources: '/api/forums', permissions: ['get']},
           {resources: '/api/forums/:forumId', permissions: ['get']},
-          {resources: '/api/topics/:forumId', permissions: ['get']}
+          {resources: '/api/topics/:forumId', permissions: ['get']},
+          {resources: '/api/topics/:forumId/:topicId', permissions: '*'}
         ]
       }
     ]

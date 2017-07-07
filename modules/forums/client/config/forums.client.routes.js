@@ -37,6 +37,14 @@
           roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.FORUM'
         }
+      })
+      .state('forums.topic', {
+        url: '/:forumId/:topicId',
+        templateUrl: '/modules/forums/client/views/topic.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.FORUM'
+        }
       });
   }
 }());
