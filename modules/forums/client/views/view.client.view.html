@@ -3,9 +3,9 @@
         <div class="container">
             <div class="col-sm-8">
                 <div class="page-header">
-                    <h1>meanTorrent Forums</h1>
+                    <h2 translate="FORUMS.FORUM_TITLE"></h2>
 
-                    <p class="text-muted">Welcome to meanTorrent forums!</p>
+                    <p class="text-muted" translate="FORUMS.FORUM_SUB_TITLE"></p>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -28,7 +28,9 @@
         <div class="path margin-top-20">
             <ol class="breadcrumb">
                 <li><a ui-sref="forums.list"><span class="small glyphicon glyphicon-home"></span> {{'FORUMS.HOME_INDEX' | translate}}</a></li>
-                <li ng-repeat="p in vm.forumPath" ng-class="{'active': !g.state}"><a ui-sref="{{p.state}}( {{p.params}} )" ng-if="p.state!=undefined">{{p.name}}</a><span ng-if="p.state==undefined">{{p.name}}</span></li>
+                <li ng-repeat="p in vm.forumPath" ng-class="{'active': !g.state}"><a ui-sref="{{p.state}}( {{p.params}} )"
+                                                                                     ng-if="p.state!=undefined">{{p.name}}</a><span
+                        ng-if="p.state==undefined">{{p.name}}</span></li>
             </ol>
         </div>
 
@@ -43,7 +45,8 @@
                     </ul>
                 </div>
                 <div class="col-sm-12 col-md-3">
-                    <a class="btn btn-success margin-top-10 margin-bottom-10 pull-right" ui-sref="forums.post({forumId: vm.forum._id})">Post New Topic</a>
+                    <a class="btn btn-success margin-top-10 margin-bottom-10 pull-right"
+                       ui-sref="forums.post({forumId: vm.forum._id})">{{'FORUMS.BTN_POST_NEW' | translate}}</a>
                 </div>
             </div>
         </div>
@@ -59,10 +62,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <td></td>
-                        <td class="text-center xs-hide"></td>
-                        <td class="text-center xs-hide"></td>
-                        <td class="text-center xs-hide sm-hide"></td>
+                    <td></td>
+                    <td class="text-center xs-hide"></td>
+                    <td class="text-center xs-hide"></td>
+                    <td class="text-center xs-hide sm-hide"></td>
                     </tr>
                 </tbody>
             </table>

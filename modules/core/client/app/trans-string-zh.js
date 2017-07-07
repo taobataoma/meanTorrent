@@ -619,6 +619,8 @@
 
     //forum
     FORUMS: {
+      FORUM_TITLE: 'meanTorrent 官方论坛',
+      FORUM_SUB_TITLE: '欢迎您进入 meanTorrent 官方论坛，请文明发言，谢谢!',
       HOME_INDEX: '论坛首页',
       BTN_ADD_FORUM: '添加版块',
       BTN_EDIT_FORUM: '编辑版块',
@@ -626,6 +628,8 @@
       BTN_EDIT: '　　编辑　　',
       LINK_EDIT: '编辑',
       BTN_DELETE: '　删除　　',
+      BTN_SUBMIT: ' 提交新话题 ',
+      BTN_POST_NEW: ' 发起新话题 ',
       ADD_SUCCESSFULLY: '版块添加成功',
       ADD_FAILED: '版块添加失败',
       EDIT_SUCCESSFULLY: '版块编辑成功',

@@ -619,6 +619,8 @@
 
     //forum
     FORUMS: {
+      FORUM_TITLE: 'meanTorrent Forums',
+      FORUM_SUB_TITLE: 'Welcome to meanTorrent forums!',
       HOME_INDEX: 'Forums Home',
       BTN_ADD_FORUM: 'Add New Forum',
       BTN_EDIT_FORUM: 'Edit Forum',
@@ -626,6 +628,8 @@
       BTN_EDIT: '　　Edit　　 ',
       LINK_EDIT: 'Edit',
       BTN_DELETE: '　Delete　 ',
+      BTN_SUBMIT: 'Submit New Topic',
+      BTN_POST_NEW: 'Post New Topic',
       ADD_SUCCESSFULLY: 'Forum added successfully',
       ADD_FAILED: 'Forum added failed',
       EDIT_SUCCESSFULLY: 'Forum edited successfully',

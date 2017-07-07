@@ -3,9 +3,9 @@
         <div class="container">
             <div class="col-sm-8">
                 <div class="page-header">
-                    <h1>meanTorrent Forums</h1>
+                    <h2 translate="FORUMS.FORUM_TITLE"></h2>
 
-                    <p class="text-muted">Welcome to meanTorrent forums!</p>
+                    <p class="text-muted" translate="FORUMS.FORUM_SUB_TITLE"></p>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -28,18 +28,34 @@
         <div class="path margin-top-20">
             <ol class="breadcrumb">
                 <li><a ui-sref="forums.list"><span class="small glyphicon glyphicon-home"></span> {{'FORUMS.HOME_INDEX' | translate}}</a></li>
-                <li ng-repeat="p in vm.forumPath" ng-class="{'active': !g.state}"><a ui-sref="{{p.state}}( {{p.params}} )"
-                                                                                     ng-if="p.state!=undefined">{{p.name}}</a><span
-                        ng-if="p.state==undefined">{{p.name}}</span></li>
+                <li ng-repeat="p in vm.forumPath" ng-class="{'active': !g.state}">
+                    <a ui-sref="{{p.state}}( {{p.params}} )"
+                       ng-if="p.state!=undefined">{{p.name}}
+                    </a>
+                    <span ng-if="p.state==undefined">{{p.name}}</span>
+                </li>
             </ol>
         </div>
-    </div>
 
-    <div class="container post-view">
-        <div class="row">
-            <div class="col-md-8">
-                <input class="form-control margin-bottom-10" name="title" type="text" placeholder="{{'FORUMS.FIELDS.TITLE' | translate}}"/>
-                <textarea id="postContent" name="content"></textarea>
+        <div class="post-view">
+            <div class="row">
+                <div class="col-md-8">
+                    <input class="form-control margin-bottom-10" name="title" type="text" placeholder="{{'FORUMS.FIELDS.TITLE' | translate}}"/>
+                    <textarea id="postContent" name="content"></textarea>
+
+                    <div class="margin-top-5" style="display: table;">
+                        <a class="message-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"
+                           data-ga-click="Markdown Toolbar, click, help">
+                            <svg aria-hidden="true" height="16" version="1.1"
+                                 viewBox="0 0 16 16" width="16">
+                                <path fill-rule="evenodd"
+                                      d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"/>
+                            </svg>
+                            {{ 'MARKDOWN_LINK' | translate }}
+                        </a>
+                    </div>
+                    <button class="btn btn-success pull-right">{{'FORUMS.BTN_SUBMIT' | translate}}</button>
+                </div>
             </div>
         </div>
     </div>
