@@ -9,6 +9,9 @@ module.exports = {
         // bower:css
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+        //font-awesome
+        'public/lib/font-awesome/css/font-awesome.css',
+
         'public/lib/angular-ui-notification/dist/angular-ui-notification.css',
         'public/lib/Ionicons/css/ionicons.css',
         //img cropper
@@ -20,7 +23,10 @@ module.exports = {
         //json-tree
         'public/lib/angular-json-tree/dist/angular-json-tree.css',
         //side-overlay
-        'public/lib/angular-side-overlay/dist/angular-side-overlay.css'
+        'public/lib/angular-side-overlay/dist/angular-side-overlay.css',
+        //bootstrap-markdown
+        'public/lib/bootstrap-markdown/css/bootstrap-markdown.min.css'
+
         // endbower
       ],
       js: [
@@ -61,7 +67,10 @@ module.exports = {
         //json-tree
         'public/lib/angular-json-tree/dist/angular-json-tree.js',
         //side-overlay
-        'public/lib/angular-side-overlay/dist/angular-side-overlay.js'
+        'public/lib/angular-side-overlay/dist/angular-side-overlay.js',
+        //bootstrap-markdown
+        'public/lib/bootstrap-markdown/js/bootstrap-markdown.js',
+        'public/lib/bootstrap-markdown/locale/bootstrap-markdown.zh.js'
 
         // endbower
       ],
