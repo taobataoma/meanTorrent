@@ -13,6 +13,7 @@
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
+    vm.forumPath = [];
 
     /**
      * init
@@ -24,9 +25,7 @@
       }, function (item) {
         vm.forum = item;
 
-        vm.forumPath = [
-          {name: vm.forum.name, state: undefined}
-        ];
+        vm.forumPath.push({name: vm.forum.name, state: undefined});
       });
 
       // get topics list

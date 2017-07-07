@@ -20,7 +20,6 @@
     vm.init = function () {
       ForumsService.query({}, function (items) {
         vm.forums = items;
-        console.log(items);
       });
     };
 

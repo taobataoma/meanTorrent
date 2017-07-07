@@ -13,6 +13,7 @@
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
+    vm.forumPath = [];
 
     /**
      * init
@@ -24,10 +25,8 @@
       }, function (item) {
         vm.forum = item;
 
-        vm.forumPath = [
-          {name: vm.forum.name, state: 'forums.view', params: {forumId: vm.forum._id}},
-          {name: 'Post New Topic', state: undefined}
-        ];
+        vm.forumPath.push({name: vm.forum.name, state: 'forums.view', params: {forumId: vm.forum._id}});
+        vm.forumPath.push({name: 'Post New Topic', state: undefined});
       });
 
     };
