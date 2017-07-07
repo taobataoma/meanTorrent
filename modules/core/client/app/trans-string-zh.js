@@ -658,7 +658,9 @@
         TOPICS: '主题数',
         REPLIES: '回贴数',
         VIEWS: '查看数',
-        LAST_REPLY: '最近回复'
+        LAST_REPLY: '最近回复',
+        TITLE: '标题',
+        CONTENT: '内容'
       }
     },
 

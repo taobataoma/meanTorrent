@@ -18,6 +18,13 @@
      * init
      */
     vm.init = function () {
+      $("#postContent").markdown({
+        autofocus:false,
+        savable:false,
+        iconlibrary: 'fa',
+        resize: 'vertical'
+      });
+
       // get forum info by state params
       ForumsService.get({
         forumId: $stateParams.forumId

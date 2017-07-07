@@ -28,9 +28,19 @@
         <div class="path margin-top-20">
             <ol class="breadcrumb">
                 <li><a ui-sref="forums.list"><span class="small glyphicon glyphicon-home"></span> {{'FORUMS.HOME_INDEX' | translate}}</a></li>
-                <li ng-repeat="p in vm.forumPath" ng-class="{'active': !g.state}"><a ui-sref="{{p.state}}( {{p.params}} )" ng-if="p.state!=undefined">{{p.name}}</a><span ng-if="p.state==undefined">{{p.name}}</span></li>
+                <li ng-repeat="p in vm.forumPath" ng-class="{'active': !g.state}"><a ui-sref="{{p.state}}( {{p.params}} )"
+                                                                                     ng-if="p.state!=undefined">{{p.name}}</a><span
+                        ng-if="p.state==undefined">{{p.name}}</span></li>
             </ol>
         </div>
+    </div>
 
+    <div class="container post-view">
+        <div class="row">
+            <div class="col-md-8">
+                <input class="form-control margin-bottom-10" name="title" type="text" placeholder="{{'FORUMS.FIELDS.TITLE' | translate}}"/>
+                <textarea id="postContent" name="content"></textarea>
+            </div>
+        </div>
     </div>
 </section>

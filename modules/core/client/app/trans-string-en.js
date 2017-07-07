@@ -658,7 +658,9 @@
         TOPICS: 'Topics',
         REPLIES: 'Replies',
         VIEWS: 'Views',
-        LAST_REPLY: 'Last Reply'
+        LAST_REPLY: 'Last Reply',
+        TITLE: 'Title',
+        CONTENT: 'Content'
       }
     },
 
