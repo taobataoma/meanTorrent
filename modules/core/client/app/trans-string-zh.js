@@ -669,7 +669,11 @@
         VIEWS: '查看数',
         LAST_REPLY: '最近回复',
         TITLE: '标题',
-        CONTENT: '内容'
+        CONTENT: '内容',
+        POST_BY: '由 {{user}} 发表于 {{createdAt}}',
+        REPLY_BY_1: '由 {{user}}',
+        REPLY_BY_2: '回复于 at {{createdAt}}',
+        REPLY_BY_3: '发表于 at {{createdAt}}'
       }
     },
 

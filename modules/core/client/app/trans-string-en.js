@@ -669,7 +669,11 @@
         VIEWS: 'Views',
         LAST_REPLY: 'Last Reply',
         TITLE: 'Title',
-        CONTENT: 'Content'
+        CONTENT: 'Content',
+        POST_BY: 'by {{user}} post at {{createdAt}}',
+        REPLY_BY_1: 'by {{user}}',
+        REPLY_BY_2: 'reply at {{createdAt}}',
+        REPLY_BY_3: 'post at {{createdAt}}'
       }
     },
 

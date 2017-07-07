@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="container forum-list">
+    <div class="container post-list">
         <div class="path margin-top-20">
             <ol class="breadcrumb">
                 <li><a ui-sref="forums.list"><span class="small glyphicon glyphicon-home"></span> {{'FORUMS.HOME_INDEX' | translate}}</a></li>
@@ -62,10 +62,36 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <td></td>
-                    <td class="text-center xs-hide"></td>
-                    <td class="text-center xs-hide"></td>
-                    <td class="text-center xs-hide sm-hide"></td>
+                    <tr ng-repeat="t in vm.topics">
+                        <td>
+                            <span class="post-icon glyphicon glyphicon-eye-open" ng-class="{'has-new-reply': $index%2==0}"></span>
+
+                            <div class="post-info">
+                                <h4><a ui-sref="topics.view({ forumId: f._id, topicId: t._id })">{{t.title}}</a>
+                                    <small class="badge badge_mt" ng-show="t.readOnly">R</small>
+                                </h4>
+
+                                <p class="topic-by small"
+                                   translate="FORUMS.FIELDS.POST_BY"
+                                   translate-values="{user: t.user.displayName, createdAt: '{{t.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}' }">
+                                </p>
+                            </div>
+                        </td>
+                        <td class="text-center xs-hide">{{t.replyCount}}</td>
+                        <td class="text-center xs-hide">{{t.viewCount}}</td>
+                        <td class="xs-hide sm-hide">
+                            <div class="small"
+                                 translate="FORUMS.FIELDS.REPLY_BY_1"
+                                 translate-values="{user: t.user.displayName}"></div>
+                            <div class="small"
+                                 ng-if="t._replies.length > 0"
+                                 translate="FORUMS.FIELDS.REPLY_BY_2"
+                                 translate-values="{createdAt: '{{t.lastReplyAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}"></div>
+                            <div class="small"
+                                 ng-if="t._replies.length == 0"
+                                 translate="FORUMS.FIELDS.REPLY_BY_3"
+                                 translate-values="{createdAt: '{{t.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}"></div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
