@@ -39,8 +39,7 @@ exports.create = function (req, res) {
 exports.list = function (req, res) {
   Forum.find()
     .sort('order -createdat')
-    .populate('lastNewTopic')
-    .populate('lastReplyTopic')
+    .populate('lastTopic')
     .populate('moderators', 'username displayName profileImageURL uploaded downloaded')
     .exec(function (err, forums) {
       if (err) {
@@ -164,8 +163,7 @@ exports.forumByID = function (req, res, next, id) {
   }
 
   Forum.findById(id)
-    .populate('lastNewTopic')
-    .populate('lastReplyTopic')
+    .populate('lastTopic')
     .populate('moderators', 'username displayName profileImageURL uploaded downloaded')
     .exec(function (err, forum) {
       if (err) {

@@ -7,17 +7,18 @@ var forumsPolicy = require('../policies/forums.server.policy'),
   forums = require('../controllers/forums.server.controller');
 
 module.exports = function (app) {
-  // Articles collection routes
   app.route('/api/forums').all(forumsPolicy.isAllowed)
     .get(forums.list);
 
-  //Single article routes
   app.route('/api/forums/:forumId').all(forumsPolicy.isAllowed)
     .get(forums.read);
 
-  //Single article routes
   app.route('/api/topics/:forumId').all(forumsPolicy.isAllowed)
     .post(forums.postNewTopic)
     .get(forums.listTopics);
 
+  app.route('/api/topics/:forumId/:topicId').all(forumsPolicy.isAllowed)
+    .get(forums.readTopic);
+
+  app.param('topicId', forums.topicById);
 };

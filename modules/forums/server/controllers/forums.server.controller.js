@@ -60,8 +60,6 @@ exports.listTopics = function (req, res) {
     .sort('-isTop -updatedAt -createdAt')
     .populate('user', 'username displayName profileImageURL uploaded downloaded')
     .populate('lastUser', 'username displayName profileImageURL uploaded downloaded')
-    .populate('_scoreList.user', 'username displayName profileImageURL uploaded downloaded')
-    .populate('_replies.user', 'username displayName profileImageURL uploaded downloaded')
     .exec(function (err, topics) {
       if (err) {
         return res.status(422).send({
@@ -97,4 +95,42 @@ exports.postNewTopic = function (req, res) {
     $inc: {topicCount: 1},
     lastTopic: topic
   }).exec();
+};
+
+/**
+ * read forum
+ * @param req
+ * @param res
+ */
+exports.readTopic = function (req, res) {
+  res.json(req.topic);
+};
+
+/**
+ * Invitation middleware
+ */
+exports.topicById = function (req, res, next, id) {
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Topic is invalid'
+    });
+  }
+
+  Topic.findById(id)
+    .populate('user', 'username displayName profileImageURL uploaded downloaded')
+    .populate('lastUser', 'username displayName profileImageURL uploaded downloaded')
+    .populate('_scoreList.user', 'username displayName profileImageURL uploaded downloaded')
+    .populate('_replies.user', 'username displayName profileImageURL uploaded downloaded')
+    .exec(function (err, topic) {
+      if (err) {
+        return next(err);
+      } else if (!topic) {
+        return res.status(404).send({
+          message: 'No topic with that identifier has been found'
+        });
+      }
+      req.topic = topic;
+      next();
+    });
 };
