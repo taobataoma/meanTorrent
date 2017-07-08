@@ -17,7 +17,7 @@ module.exports.create = function (req, action, obj) {
     var trace = new Trace();
 
     obj.action = action.name;
-    trace.user = req.user._id || null;
+    trace.user = req.user ? req.user._id : null;
     trace.content = obj;
 
     trace.save(function (err) {
