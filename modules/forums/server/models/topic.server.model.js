@@ -83,19 +83,23 @@ var TopicSchema = new Schema({
   _attach: [AttachSchema],
   _scoreList: [ScoreSchema],
 
-  lastUser: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
   isTop: {
     type: Number,
     default: 0
+  },
+  lastUser: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   },
   lastReplyAt: {
     type: Date
   },
   updatedAt: {
     type: Date
+  },
+  updatedBy: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   },
   createdAt: {
     type: Date,

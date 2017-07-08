@@ -15,6 +15,13 @@
     vm.user = Authentication.user;
 
     /**
+     * If user is not signed in then redirect back home
+     */
+    if (!Authentication.user) {
+      $state.go('authentication.signin');
+    }
+
+    /**
      * init
      */
     vm.init = function () {

@@ -204,6 +204,144 @@
     }
 }
 
+.reply-list {
+    .pagination {
+        margin-bottom: 5px;
+        margin-top: 10px;
+    }
+    .table-category {
+        border-radius: 6px;
+    }
+    table {
+        border-spacing: 0;
+        border-collapse: inherit;
+        border: solid 3px @brand-primary;
+        thead {
+            background-color: @brand-primary;
+            border: solid 1px @brand-primary;
+            color: #efefef;
+            tr {
+                th {
+                    border: solid 2px @brand-primary;
+                    padding: 13px 10px;
+                    .count-info {
+                        font-size: 12px;
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    border-top: none;
+                    white-space: normal !important;
+                    border-bottom: solid 2px lighten(@brand-primary, 45%);
+                }
+            }
+            tr:last-child {
+                td {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+}
+
+.reply-item {
+    .reply-wrapper {
+        padding-left: 60px;
+        margin: 20px 30px;
+        .reply-comment {
+            position: relative;
+            background-color: #fff;
+            border: 1px solid #d1d5da;
+            border-radius: 3px;
+            &::before {
+                position: absolute;
+                top: 11px;
+                right: 100%;
+                left: -16px;
+                display: block;
+                width: 0;
+                height: 0;
+                pointer-events: none;
+                content: " ";
+                border-color: transparent;
+                border-style: solid solid outset;
+
+                border-width: 8px;
+                border-right-color: #d1d5da;
+            }
+            &::after {
+                position: absolute;
+                top: 11px;
+                right: 100%;
+                left: -16px;
+                display: block;
+                width: 0;
+                height: 0;
+                pointer-events: none;
+                content: " ";
+                border-color: transparent;
+                border-style: solid solid outset;
+
+                margin-top: 1px;
+                margin-left: 2px;
+                border-width: 7px;
+                border-right-color: lighten(@comment-background-default, 2%);
+            }
+            .reply-comment-header {
+                padding-right: 15px;
+                padding-left: 15px;
+                color: #586069;
+                background-color: lighten(@comment-background-default, 2%);
+                border-bottom: 1px dashed #d1d5da;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+                min-height: 42px;
+                .reply-comment-header-text {
+                    max-width: 70%;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    .user-ud-text {
+                        font-size: 12px;
+                        color: lighten(@gray-base, 60%);
+                    }
+                }
+                .reply-comment-header-time-text {
+                    font-size: 12px;
+                    color: lighten(@gray-base, 60%);
+                    margin-left: 5px;
+                }
+            }
+            .reply-comment-body {
+                padding-right: 15px;
+                padding-left: 15px;
+                min-height: 42px;
+                .reply-comment-body-text {
+                    padding-top: 10px;
+                }
+                .reply-comment-body-edited-text {
+                    font-size: 12px;
+                    color: lighten(@gray-base, 60%);
+                    margin-right: 15px;
+                }
+            }
+        }
+        .reply-avatar {
+            img {
+                cursor: pointer;
+                float: left;
+                margin-left: -60px;
+                border-radius: 3px;
+                height: 44px;
+                width: 44px;
+            }
+        }
+    }
+}
+
 .add-moderator-popover {
     max-width: 250px;
     max-height: 150px;

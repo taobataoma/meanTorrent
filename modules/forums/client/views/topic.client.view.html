@@ -36,11 +36,76 @@
             </ol>
         </div>
 
-        <div class="post-view">
+
+        <div>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-sm-12 col-md-9">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <a class="btn btn-success margin-top-10 margin-bottom-10 pull-right"
+                       href="#" ng-click="vm.scrollToReply=true;">{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</a>
                 </div>
             </div>
         </div>
+
+        <div class="table-responsive table-category">
+            <table class="table table-valign-middle">
+                <thead>
+                    <tr>
+                        <th>
+                            <span>{{vm.topic.title}}</span>
+
+                            <div class="count-info pull-right xs-hide sm-hide">
+                                <span>{{'FORUMS.FIELDS.VIEWS' | translate}}: {{vm.topic.viewCount}}</span>,
+                                <span>{{'FORUMS.FIELDS.REPLIES' | translate}}: {{vm.topic.replyCount}}</span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="reply-item">
+                                <div class="reply-wrapper">
+                                    <a class="reply-avatar">
+                                        <img title="{{vm.topic.user.displayName}}" ng-src="/{{vm.topic.user.profileImageURL}}">
+                                    </a>
+
+                                    <div class="reply-comment">
+                                        <div class="reply-comment-header">
+                                            <div class="reply-comment-header-text">{{vm.topic.user.displayName}}
+                                                <span class="user-ud-text">
+                                                    (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{vm.topic.user.uploaded | bytes}}
+                                                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{vm.topic.user.downloaded | bytes}}
+                                                    )
+                                                </span>
+                                                <span message-to="vm.topic.user" to-class="message-to-icon"></span>
+                                                <span class="reply-comment-header-time-text">{{vm.topic.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="reply-comment-body">
+                                            <div class="reply-comment-body-text" ng-bind-html="vm.getTopicContent(vm.topic);"></div>
+                                            <div class="row text-right" ng-show="vm.topic.updatedAt">
+                                                <p class="reply-comment-body-edited-text">[ {{vm.topic.updatedBy}} {{ 'COMMENT_EDITED_INFO' | translate}} {{vm.topic.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div scroll-if="vm.scrollToReply==true">
+
     </div>
 </section>
