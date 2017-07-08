@@ -24,7 +24,7 @@
         language: localStorageService.get('storage_user_lang'),
         fullscreen: {enable: false},
         onChange: function (e) {
-          ngModel.$setViewValue($('#postContent')[0].value);
+          ngModel.$setViewValue($('#' + attrs.mtMarkdownEditor)[0].value);
         }
       });
     }

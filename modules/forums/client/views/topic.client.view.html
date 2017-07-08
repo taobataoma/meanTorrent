@@ -79,7 +79,8 @@
 
                                     <div class="reply-comment">
                                         <div class="reply-comment-header">
-                                            <div class="reply-comment-header-text">{{vm.topic.user.displayName}} <span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
+                                            <div class="reply-comment-header-text">{{vm.topic.user.displayName}} <span
+                                                    score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
 
                                                 <span class="user-ud-text">
                                                     (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{vm.topic.user.uploaded | bytes}}
@@ -88,12 +89,26 @@
                                                 </span>
                                                 <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="reply-comment-header-time-text">{{vm.topic.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+
+                                                <div class="reply-comment-header-command pull-right">
+                                                    <i class="fa fa-quote-left" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.QUOTE' | translate}}"></i>
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.EDIT' | translate}}"
+                                                       ng-show="vm.canEditTopic(vm.topic);"
+                                                       ng-click="vm.beginEditReply(vm.topic)"></i>
+                                                    <i class="fa fa-times" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.DELETE' | translate}}"
+                                                       ng-show="vm.canEditTopic(vm.topic);"></i>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="reply-comment-body">
-                                            <div class="reply-comment-body-text" ng-bind-html="vm.getTopicContent(vm.topic);"></div>
-                                            <div class="row text-right" ng-show="vm.topic.updatedAt">
-                                                <p class="reply-comment-body-edited-text">[ {{vm.topic.updatedBy}} {{ 'COMMENT_EDITED_INFO' | translate}} {{vm.topic.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>
+                                            <div id="{{vm.topic._id}}" data-provide="markdown" class="reply-comment-body-text"
+                                                 ng-bind-html="vm.getTopicContent(vm.topic)">
+                                            </div>
+                                            <div class="row text-right margin-top-10" ng-show="vm.topic.updatedAt">
+                                                <p class="reply-comment-body-edited-text">[ {{vm.topic.updatedBy.displayName}} {{ 'COMMENT_EDITED_INFO' | translate}} {{vm.topic.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>
                                             </div>
                                         </div>
                                     </div>

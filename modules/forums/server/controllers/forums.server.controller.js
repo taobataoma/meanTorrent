@@ -57,7 +57,7 @@ exports.listTopics = function (req, res) {
   Topic.find({
     forum: req.params.forumId
   })
-    .sort('-isTop -updatedAt -createdAt')
+    .sort('-isTop -createdAt')
     .populate('user', 'username displayName profileImageURL uploaded downloaded')
     .populate('lastUser', 'username displayName profileImageURL uploaded downloaded')
     .exec(function (err, topics) {
@@ -98,12 +98,36 @@ exports.postNewTopic = function (req, res) {
 };
 
 /**
- * read forum
+ * read readTopic
  * @param req
  * @param res
  */
 exports.readTopic = function (req, res) {
   res.json(req.topic);
+};
+
+/**
+ * updateTopic
+ * @param req
+ * @param res
+ */
+exports.updateTopic = function (req, res) {
+  var forum = req.forum;
+  var topic = req.topic;
+
+  topic.content = req.body.content;
+  topic.updatedAt = Date.now();
+  topic.updatedBy = req.user;
+
+  topic.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(topic);
+    }
+  });
 };
 
 /**
@@ -120,6 +144,7 @@ exports.topicById = function (req, res, next, id) {
   Topic.findById(id)
     .populate('user', 'username displayName profileImageURL uploaded downloaded score')
     .populate('lastUser', 'username displayName profileImageURL uploaded downloaded')
+    .populate('updatedBy', 'username displayName profileImageURL uploaded downloaded')
     .populate('_scoreList.user', 'username displayName profileImageURL uploaded downloaded')
     .populate('_replies.user', 'username displayName profileImageURL uploaded downloaded')
     .exec(function (err, topic) {

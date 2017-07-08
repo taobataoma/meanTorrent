@@ -624,10 +624,12 @@
       HOME_INDEX: 'Forums Home',
       BTN_ADD_FORUM: 'Add New Forum',
       BTN_EDIT_FORUM: 'Edit Forum',
-      BTN_ADD: '　　Add　　 ',
-      BTN_EDIT: '　　Edit　　 ',
+      BTN_ADD: '　　Add　　',
+      BTN_EDIT: '　　Edit　　',
+      BTN_SAVE: '　Save　',
+      BTN_CANCEL: ' Cancel ',
       LINK_EDIT: 'Edit',
-      BTN_DELETE: '　Delete　 ',
+      BTN_DELETE: ' 　Delete　 ',
       BTN_SUBMIT: 'Submit New Topic',
       BTN_POST_NEW_TOPIC: 'Post New Topic',
       BTN_POST_NEW_REPLY: 'Post New Reply',
@@ -651,6 +653,9 @@
       PC_REQUIRED: 'Please enter topic content',
       POST_SEND_SUCCESSFULLY: 'Post new topic successfully',
       POST_SEND_FAILED: 'Post new topic failed',
+      REPLY_EDIT_SUCCESSFULLY: 'Reply content modify successfully',
+      REPLY_EDIT_FAILED: 'Reply content modify failed',
+
       CATEGORY: {
         AFFAIRS: 'Affairs',
         DISCUSS: 'Discuss',
@@ -675,6 +680,11 @@
         REPLY_BY_1: 'by {{user}}',
         REPLY_BY_2: 'reply at {{createdAt}}',
         REPLY_BY_3: 'post at {{createdAt}}'
+      },
+      TITLES: {
+        QUOTE: 'quote and reply',
+        EDIT: 'edit reply',
+        DELETE: 'delete reply'
       }
     },
 

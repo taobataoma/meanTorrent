@@ -301,7 +301,6 @@
                 border-top-right-radius: 3px;
                 min-height: 42px;
                 .reply-comment-header-text {
-                    max-width: 70%;
                     padding-top: 10px;
                     padding-bottom: 10px;
                     .user-ud-text {
@@ -314,18 +313,30 @@
                     color: lighten(@gray-base, 60%);
                     margin-left: 5px;
                 }
+                .reply-comment-header-command {
+                    margin-right: 15px;
+                    .fa {
+                        margin: 0 5px;
+                        cursor: pointer;
+                        &:hover {
+                            color: @brand-primary
+                        }
+                    }
+                }
             }
             .reply-comment-body {
-                padding-right: 15px;
-                padding-left: 15px;
+                padding: 10px 15px;
                 min-height: 42px;
                 .reply-comment-body-text {
-                    padding-top: 10px;
+                    p:last-child {
+                        margin-bottom: 0px;
+                    }
                 }
                 .reply-comment-body-edited-text {
                     font-size: 12px;
                     color: lighten(@gray-base, 60%);
                     margin-right: 15px;
+                    margin-bottom: 0;
                 }
             }
         }

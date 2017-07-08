@@ -626,11 +626,13 @@
       BTN_EDIT_FORUM: '编辑版块',
       BTN_ADD: '　　添加　　',
       BTN_EDIT: '　　编辑　　',
+      BTN_SAVE: '　保存　',
+      BTN_CANCEL: '　取消　',
       LINK_EDIT: '编辑',
       BTN_DELETE: '　删除　　',
       BTN_SUBMIT: ' 提交新话题 ',
       BTN_POST_NEW_TOPIC: ' 发起新话题 ',
-      BTN_POST_NEW_REPLY: ' 回复 ',
+      BTN_POST_NEW_REPLY: ' 　　回　复　　 ',
       ADD_SUCCESSFULLY: '版块添加成功',
       ADD_FAILED: '版块添加失败',
       EDIT_SUCCESSFULLY: '版块编辑成功',
@@ -651,6 +653,9 @@
       PC_REQUIRED: '请输入话题内容',
       POST_SEND_SUCCESSFULLY: '新话题发布成功',
       POST_SEND_FAILED: '新话题发布失败',
+      REPLY_EDIT_SUCCESSFULLY: '回复内容修改成功',
+      REPLY_EDIT_FAILED: '回复内容修改失败',
+
       CATEGORY: {
         AFFAIRS: '站务区',
         DISCUSS: '讨论区',
@@ -675,6 +680,11 @@
         REPLY_BY_1: '由 {{user}}',
         REPLY_BY_2: '回复于 at {{createdAt}}',
         REPLY_BY_3: '发表于 at {{createdAt}}'
+      },
+      TITLES: {
+        QUOTE: '引用并回复',
+        EDIT: '编辑回复',
+        DELETE: '删除回复'
       }
     },
 

@@ -18,7 +18,8 @@ module.exports = function (app) {
     .get(forums.listTopics);
 
   app.route('/api/topics/:forumId/:topicId').all(forumsPolicy.isAllowed)
-    .get(forums.readTopic);
+    .get(forums.readTopic)
+    .put(forums.updateTopic);
 
   app.param('topicId', forums.topicById);
 };

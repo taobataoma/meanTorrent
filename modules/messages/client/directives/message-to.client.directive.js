@@ -16,7 +16,7 @@
 
     function link(scope, element, attrs) {
       scope.$watch(attrs.messageTo, function (s) {
-        if(s) {
+        if (s) {
           var user = s;
           var to = user._id + '|' + user.displayName;
           var title = $translate.instant('MESSAGE_TO_ICON_TITLE');

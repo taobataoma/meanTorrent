@@ -9,8 +9,8 @@
 
   function TopicsService($resource) {
     return $resource('/api/topics/:forumId/:topicId', {
-      forumId: '@_forumId',
-      topicId: '@_topicId'
+      forumId: '@forum',
+      topicId: '@_id'
     }, {
       update: {
         method: 'PUT'
