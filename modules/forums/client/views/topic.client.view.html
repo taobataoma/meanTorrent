@@ -92,14 +92,15 @@
 
                                                 <div class="reply-comment-header-command pull-right">
                                                     <i class="fa fa-quote-left" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.QUOTE' | translate}}"></i>
+                                                       title="{{'FORUMS.TITLES.REPLY_QUOTE' | translate}}"></i>
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.EDIT' | translate}}"
+                                                       title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
                                                        ng-show="vm.canEditTopic(vm.topic);"
-                                                       ng-click="vm.beginEditReply(vm.topic)"></i>
+                                                       ng-click="vm.beginEditTopic(vm.topic)"></i>
                                                     <i class="fa fa-times" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.DELETE' | translate}}"
-                                                       ng-show="vm.canEditTopic(vm.topic);"></i>
+                                                       title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
+                                                       ng-show="vm.canEditTopic(vm.topic);"
+                                                            ng-click="vm.beginDeleteTopic(vm.topic);"></i>
                                                 </div>
                                             </div>
                                         </div>

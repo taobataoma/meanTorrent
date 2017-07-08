@@ -96,10 +96,10 @@
     };
 
     /**
-     * beginEditReply
+     * beginEditTopic
      * @param t
      */
-    vm.beginEditReply = function (t) {
+    vm.beginEditTopic = function (t) {
       var el = $('#' + t._id);
 
       el.markdown({
@@ -146,6 +146,29 @@
           $compile($('.md-footer').contents())($scope);
         }
       });
+    };
+
+    /**
+     * beginDeleteTopic
+     * @param t
+     */
+    vm.beginDeleteTopic = function (t) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('FORUMS.DELETE_TOPIC_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('FORUMS.DELETE_TOPIC_CONFIRM_OK'),
+        headerText: $translate.instant('FORUMS.DELETE_TOPIC_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('FORUMS.DELETE_TOPIC_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          vm.topic.$remove(function (res) {
+            NotifycationService.showSuccessNotify('FORUMS.DELETE_TOPIC_SUCCESSFULLY');
+            $state.go('forums.view', {forumId: vm.forum._id});
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'FORUMS.DELETE_TOPIC_FAILED');
+          });
+        });
     };
   }
 }());

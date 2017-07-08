@@ -25,6 +25,10 @@ exports.list = function (req, res) {
       select: 'username displayName',
       model: 'User'
     })
+    .populate({
+      path: 'content.forum',
+      model: 'Forum'
+    })
     .exec(function (err, traces) {
       if (err) {
         return res.status(422).send({

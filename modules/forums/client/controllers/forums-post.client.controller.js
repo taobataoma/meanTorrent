@@ -50,7 +50,7 @@
       }
 
       var post = new TopicsService(vm.postFields);
-      post._forumId = vm.forum._id;
+      post.forum = vm.forum._id;
 
       post.$save(function (response) {
         successCallback(response);

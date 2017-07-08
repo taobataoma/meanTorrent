@@ -106,6 +106,12 @@ exports.addModerator = function (req, res) {
   }
 };
 
+/**
+ * removeModerator
+ * @param req
+ * @param res
+ * @returns {*}
+ */
 exports.removeModerator = function (req, res) {
   var forum = req.forum;
   var mu = req.nameuser;

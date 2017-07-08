@@ -92,7 +92,8 @@ var TopicSchema = new Schema({
     ref: 'User'
   },
   lastReplyAt: {
-    type: Date
+    type: Date,
+    default: Date.now
   },
   updatedAt: {
     type: Date

@@ -655,6 +655,12 @@
       POST_SEND_FAILED: '新话题发布失败',
       REPLY_EDIT_SUCCESSFULLY: '回复内容修改成功',
       REPLY_EDIT_FAILED: '回复内容修改失败',
+      DELETE_TOPIC_SUCCESSFULLY: '话题删除成功',
+      DELETE_TOPIC_FAILED: '话题删除失败',
+      DELETE_TOPIC_CONFIRM_OK: '删除',
+      DELETE_TOPIC_CONFIRM_CANCEL: '取消',
+      DELETE_TOPIC_CONFIRM_HEADER_TEXT: '删除确认',
+      DELETE_TOPIC_CONFIRM_BODY_TEXT: '您确定要删除这个话题?',
 
       CATEGORY: {
         AFFAIRS: '站务区',
@@ -682,9 +688,11 @@
         REPLY_BY_3: '发表于 at {{createdAt}}'
       },
       TITLES: {
-        QUOTE: '引用并回复',
-        EDIT: '编辑回复',
-        DELETE: '删除回复'
+        REPLY_QUOTE: '引用并回复',
+        REPLY_EDIT: '编辑回复',
+        REPLY_DELETE: '删除回复',
+        TOPIC_EDIT: '编辑话题',
+        TOPIC_DELETE: '删除话题'
       }
     },
 

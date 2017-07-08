@@ -655,6 +655,12 @@
       POST_SEND_FAILED: 'Post new topic failed',
       REPLY_EDIT_SUCCESSFULLY: 'Reply content modify successfully',
       REPLY_EDIT_FAILED: 'Reply content modify failed',
+      DELETE_TOPIC_SUCCESSFULLY: 'Topic deleted successfully',
+      DELETE_TOPIC_FAILED: 'Topic deleted failed',
+      DELETE_TOPIC_CONFIRM_OK: 'Delete',
+      DELETE_TOPIC_CONFIRM_CANCEL: 'Cancel',
+      DELETE_TOPIC_CONFIRM_HEADER_TEXT: 'Delete Topic',
+      DELETE_TOPIC_CONFIRM_BODY_TEXT: 'Are you sure want to delete this topic?',
 
       CATEGORY: {
         AFFAIRS: 'Affairs',
@@ -682,9 +688,11 @@
         REPLY_BY_3: 'post at {{createdAt}}'
       },
       TITLES: {
-        QUOTE: 'quote and reply',
-        EDIT: 'edit reply',
-        DELETE: 'delete reply'
+        REPLY_QUOTE: 'quote and reply',
+        REPLY_EDIT: 'edit reply',
+        REPLY_DELETE: 'delete reply',
+        TOPIC_EDIT: 'edit topic',
+        TOPIC_DELETE: 'delete topic'
       }
     },
 

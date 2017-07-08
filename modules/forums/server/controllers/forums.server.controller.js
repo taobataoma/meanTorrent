@@ -10,7 +10,10 @@ var path = require('path'),
   User = mongoose.model('User'),
   Forum = mongoose.model('Forum'),
   Topic = mongoose.model('Topic'),
-  async = require('async');
+  async = require('async'),
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
+
+var traceConfig = config.meanTorrentConfig.trace;
 
 /**
  * list forums
@@ -57,7 +60,7 @@ exports.listTopics = function (req, res) {
   Topic.find({
     forum: req.params.forumId
   })
-    .sort('-isTop -createdAt')
+    .sort('-isTop -lastReplyAt -createdAt')
     .populate('user', 'username displayName profileImageURL uploaded downloaded')
     .populate('lastUser', 'username displayName profileImageURL uploaded downloaded')
     .exec(function (err, topics) {
@@ -128,6 +131,45 @@ exports.updateTopic = function (req, res) {
       res.json(topic);
     }
   });
+};
+
+/**
+ * deleteTopic
+ * @param req
+ * @param res
+ */
+exports.deleteTopic = function (req, res) {
+  var forum = req.forum;
+  var topic = req.topic;
+
+  topic.remove(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(topic);
+    }
+  });
+
+  //create trace log
+  traceLogCreate(req, traceConfig.action.forumDeleteTopic, {
+    forum: forum._id,
+    topic: topic._id
+  });
+
+  Topic.findOne({
+    forum: forum._id
+  })
+    .sort('-lastReplyAt -createdAt')
+    .exec(function (err, topic) {
+      if (!err) {
+        forum.update({
+          $inc: {topicCount: -1},
+          lastTopic: topic
+        }).exec();
+      }
+    });
 };
 
 /**

@@ -19,7 +19,8 @@ module.exports = function (app) {
 
   app.route('/api/topics/:forumId/:topicId').all(forumsPolicy.isAllowed)
     .get(forums.readTopic)
-    .put(forums.updateTopic);
+    .put(forums.updateTopic)
+    .delete(forums.deleteTopic);
 
   app.param('topicId', forums.topicById);
 };

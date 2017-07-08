@@ -77,7 +77,9 @@ module.exports = {
         userInvitationExchange: {name: 'userInvitationExchange', enable: true},
 
         userAnnounceData: {name: 'userAnnounceData', enable: true},
-        userScoreChange: {name: 'userScoreChange', enable: true}
+        userScoreChange: {name: 'userScoreChange', enable: true},
+
+        forumDeleteTopic: {name: 'forumDeleteTopic', enable: true}
       }
     },
     torrentType: {
