@@ -108,7 +108,7 @@
       var user = vm.user;
       AdminService.setUserRole({
         userId: user._id,
-        userRole: vm.selectedRole
+        userRole: [vm.selectedRole]
       })
         .then(onSetRoleSuccess)
         .catch(onSetRoleError);
