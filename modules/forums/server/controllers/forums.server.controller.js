@@ -118,7 +118,7 @@ exports.topicById = function (req, res, next, id) {
   }
 
   Topic.findById(id)
-    .populate('user', 'username displayName profileImageURL uploaded downloaded')
+    .populate('user', 'username displayName profileImageURL uploaded downloaded score')
     .populate('lastUser', 'username displayName profileImageURL uploaded downloaded')
     .populate('_scoreList.user', 'username displayName profileImageURL uploaded downloaded')
     .populate('_replies.user', 'username displayName profileImageURL uploaded downloaded')

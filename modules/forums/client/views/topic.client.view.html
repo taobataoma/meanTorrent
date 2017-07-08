@@ -79,7 +79,8 @@
 
                                     <div class="reply-comment">
                                         <div class="reply-comment-header">
-                                            <div class="reply-comment-header-text">{{vm.topic.user.displayName}}
+                                            <div class="reply-comment-header-text">{{vm.topic.user.displayName}} <span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
+
                                                 <span class="user-ud-text">
                                                     (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{vm.topic.user.uploaded | bytes}}
                                                     <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{vm.topic.user.downloaded | bytes}}

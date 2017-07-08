@@ -5,10 +5,10 @@
     .module('forums')
     .controller('ForumsTopicController', ForumsTopicController);
 
-  ForumsTopicController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'SideOverlay', '$filter', 'NotifycationService',
+  ForumsTopicController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'ScoreLevelService', '$filter', 'NotifycationService',
     'marked', 'ModalConfirmService', '$stateParams', 'TopicsService'];
 
-  function ForumsTopicController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, SideOverlay, $filter, NotifycationService,
+  function ForumsTopicController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, ScoreLevelService, $filter, NotifycationService,
                                  marked, ModalConfirmService, $stateParams, TopicsService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
@@ -57,6 +57,16 @@
       if (t) {
         return marked(t.content, {sanitize: true});
       }
+    };
+
+    /**
+     * getUserScoreLevel
+     * @param u
+     * @returns {*|l}
+     */
+    vm.getUserScoreLevel = function (u) {
+      var s = ScoreLevelService.getScoreLevelJson(vm.user.score);
+      return s.currLevel;
     };
   }
 }());
