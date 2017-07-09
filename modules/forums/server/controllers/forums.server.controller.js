@@ -192,6 +192,8 @@ exports.postNewReply = function (req, res) {
 
   topic._replies.push(reply);
   topic.replyCount++;
+  topic.lastReplyAt = Date.now();
+  topic.lastUser = req.user;
 
   topic.save(function (err) {
     if (err) {

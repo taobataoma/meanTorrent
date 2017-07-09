@@ -1,0 +1,34 @@
+@import (reference) "mt-var.less";
+
+.md-table {
+    border-radius: 5px;
+    width: auto;
+    border-spacing: 0 !important;
+    border-collapse: collapse !important;
+    border: solid 1px #e5e5e5 !important;
+    thead {
+        background-color: #e5e5e5 !important;
+        border: solid 1px #e5e5e5 !important;
+        color: #333 !important;
+        tr {
+            th {
+                border: solid 1px #e5e5e5 !important;
+                padding: 5px 10px !important;
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                border-top: none !important;
+                white-space: normal !important;
+                border-bottom: solid 1px #e5e5e5 !important;
+            }
+        }
+        tr:last-child {
+            td {
+                border-bottom: none !important;
+            }
+        }
+    }
+}
