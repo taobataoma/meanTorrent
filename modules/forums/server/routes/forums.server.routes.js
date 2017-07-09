@@ -28,5 +28,4 @@ module.exports = function (app) {
     .delete(forums.deleteReply);
 
   app.param('topicId', forums.topicById);
-  app.param('replyId', forums.replyById);
 };

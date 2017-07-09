@@ -74,7 +74,7 @@
      * @param t
      * @returns {boolean}
      */
-    vm.isTopicOwner = function (t) {
+    vm.isOwner = function (t) {
       if (t) {
         if (t.user._id.str === vm.user._id) {
           return true;
@@ -89,9 +89,9 @@
      * @param t
      * @returns {boolean}
      */
-    vm.canEditTopic = function (t) {
+    vm.canEdit = function (t) {
       if (t) {
-        if (vm.isTopicOwner(t) || vm.user.isOper) {
+        if (vm.isOwner(t) || vm.user.isOper) {
           return true;
         } else {
           return false;
@@ -120,9 +120,9 @@
             t.content = e.getContent();
             t.$update(function (res) {
               vm.topic = res;
-              NotifycationService.showSuccessNotify('FORUMS.REPLY_EDIT_SUCCESSFULLY');
+              NotifycationService.showSuccessNotify('FORUMS.TOPIC_EDIT_SUCCESSFULLY');
             }, function (res) {
-              NotifycationService.showErrorNotify(res.data.message, 'FORUMS.REPLY_EDIT_FAILED');
+              NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_EDIT_FAILED');
             });
 
             e.$options.hideable = true;
@@ -171,6 +171,33 @@
             $state.go('forums.view', {forumId: vm.forum._id});
           }, function (res) {
             NotifycationService.showErrorNotify(res.data.message, 'FORUMS.DELETE_TOPIC_FAILED');
+          });
+        });
+    };
+
+    /**
+     * beginDeleteReply
+     * @param reply
+     */
+    vm.beginDeleteReply = function (reply) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('FORUMS.DELETE_TOPIC_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('FORUMS.DELETE_TOPIC_CONFIRM_OK'),
+        headerText: $translate.instant('FORUMS.DELETE_REPLY_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('FORUMS.DELETE_REPLY_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          RepliesService.remove({
+            forumId: vm.forum._id,
+            topicId: vm.topic._id,
+            replyId: reply._id
+          }, function (res) {
+            vm.topic = res;
+            NotifycationService.showSuccessNotify('FORUMS.DELETE_REPLY_SUCCESSFULLY');
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'FORUMS.DELETE_REPLY_FAILED');
           });
         });
     };

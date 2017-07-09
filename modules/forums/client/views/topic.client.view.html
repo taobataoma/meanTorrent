@@ -96,11 +96,11 @@
                                                        title="{{'FORUMS.TITLES.REPLY_QUOTE' | translate}}"></i>
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
-                                                       ng-show="vm.canEditTopic(vm.topic);"
+                                                       ng-show="vm.canEdit(vm.topic);"
                                                        ng-click="vm.beginEditTopic(vm.topic)"></i>
                                                     <i class="fa fa-times" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
-                                                       ng-show="vm.canEditTopic(vm.topic);"
+                                                       ng-show="vm.canEdit(vm.topic);"
                                                        ng-click="vm.beginDeleteTopic(vm.topic);"></i>
                                                 </div>
                                             </div>
@@ -140,12 +140,12 @@
                                                        title="{{'FORUMS.TITLES.REPLY_QUOTE' | translate}}"></i>
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
-                                                       ng-show="vm.canEditTopic(rep);"
-                                                       ng-click="vm.beginEditTopic(rep)"></i>
+                                                       ng-show="vm.canEdit(rep);"
+                                                       ng-click="vm.beginEditReply(rep)"></i>
                                                     <i class="fa fa-times" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
-                                                       ng-show="vm.canEditTopic(rep);"
-                                                       ng-click="vm.beginDeleteTopic(rep);"></i>
+                                                       ng-show="vm.canEdit(rep);"
+                                                       ng-click="vm.beginDeleteReply(rep);"></i>
                                                 </div>
                                             </div>
                                         </div>

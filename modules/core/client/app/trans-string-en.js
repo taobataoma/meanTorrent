@@ -657,6 +657,8 @@
       POST_TOPIC_FAILED: 'Post new topic failed',
       POST_REPLY_SUCCESSFULLY: 'Post new reply successfully',
       POST_REPLY_FAILED: 'Post new reply failed',
+      TOPIC_EDIT_SUCCESSFULLY: 'Reply content modify successfully',
+      TOPIC_EDIT_FAILED: 'Reply content modify failed',
       REPLY_EDIT_SUCCESSFULLY: 'Reply content modify successfully',
       REPLY_EDIT_FAILED: 'Reply content modify failed',
       DELETE_TOPIC_SUCCESSFULLY: 'Topic deleted successfully',
@@ -665,6 +667,10 @@
       DELETE_TOPIC_CONFIRM_CANCEL: 'Cancel',
       DELETE_TOPIC_CONFIRM_HEADER_TEXT: 'Delete Topic',
       DELETE_TOPIC_CONFIRM_BODY_TEXT: 'Are you sure want to delete this topic?',
+      DELETE_REPLY_SUCCESSFULLY: 'Reply deleted successfully',
+      DELETE_REPLY_FAILED: 'Reply deleted failed',
+      DELETE_REPLY_CONFIRM_HEADER_TEXT: 'Delete Reply',
+      DELETE_REPLY_CONFIRM_BODY_TEXT: 'Are you sure want to delete this reply?',
 
       CATEGORY: {
         AFFAIRS: 'Affairs',

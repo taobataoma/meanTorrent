@@ -225,7 +225,28 @@ exports.updateReply = function (req, res) {
  * @param res
  */
 exports.deleteReply = function (req, res) {
-  console.log('-----deleteReply-----');
+  var forum = req.forum;
+  var topic = req.topic;
+
+  topic._replies.forEach(function (r) {
+    if (r._id.equals(req.params.replyId)) {
+      topic._replies.pull(r);
+      topic.replyCount--;
+      topic.save(function (err) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.json(topic);
+        }
+      });
+    }
+  });
+
+  forum.update({
+    $inc: {replyCount: -1}
+  }).exec();
 };
 
 /**
@@ -254,34 +275,6 @@ exports.topicById = function (req, res, next, id) {
         });
       }
       req.topic = topic;
-      next();
-    });
-};
-
-/**
- * Invitation middleware
- */
-exports.replyById = function (req, res, next, id) {
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: 'Reply is invalid'
-    });
-  }
-
-  Reply.findById(id)
-    .populate('user', 'username displayName profileImageURL uploaded downloaded score')
-    .populate('updatedBy', 'username displayName profileImageURL uploaded downloaded score')
-    .populate('_scoreList.user', 'username displayName profileImageURL uploaded downloaded')
-    .exec(function (err, reply) {
-      if (err) {
-        return next(err);
-      } else if (!reply) {
-        return res.status(404).send({
-          message: 'No reply with that identifier has been found'
-        });
-      }
-      req.reply = reply;
       next();
     });
 };
