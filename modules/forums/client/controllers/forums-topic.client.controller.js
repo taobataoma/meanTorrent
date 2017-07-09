@@ -153,6 +153,65 @@
     };
 
     /**
+     * beginEditReply
+     * @param r
+     */
+    vm.beginEditReply = function (r) {
+      var el = $('#' + r._id);
+
+      el.markdown({
+        autofocus: true,
+        savable: true,
+        hideable: true,
+        iconlibrary: 'fa',
+        resize: 'vertical',
+        language: localStorageService.get('storage_user_lang'),
+        fullscreen: {enable: false},
+        onSave: function (e) {
+          if (e.isDirty()) {
+            //save content
+            var rep = new RepliesService({
+              forum: vm.forum._id,
+              topic: vm.topic._id,
+              _id: r._id,
+              content: e.getContent()
+            });
+
+            rep.$update(function (res) {
+              vm.topic = res;
+              NotifycationService.showSuccessNotify('FORUMS.REPLY_EDIT_SUCCESSFULLY');
+            }, function (res) {
+              NotifycationService.showErrorNotify(res.data.message, 'FORUMS.FORUMS');
+            });
+
+            e.$options.hideable = true;
+            e.blur();
+          } else {
+            e.$options.hideable = true;
+            e.blur();
+          }
+        },
+        onChange: function (e) {
+          e.$options.hideable = false;
+        },
+        onShow: function (e) {
+          e.setContent(r.content);
+
+          $('.md-footer').addClass('text-right');
+          $('.md-footer')[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
+
+          var cbtn = angular.element('<button class="btn btn-success margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
+          cbtn.bind('click', function (evt) {
+            e.$options.hideable = true;
+            e.blur();
+          });
+          $('.md-footer').append(cbtn);
+          $compile($('.md-footer').contents())($scope);
+        }
+      });
+    };
+
+    /**
      * beginDeleteTopic
      * @param t
      */

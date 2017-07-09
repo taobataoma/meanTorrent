@@ -215,7 +215,25 @@ exports.postNewReply = function (req, res) {
  * @param res
  */
 exports.updateReply = function (req, res) {
-  console.log('-----updateReply-----');
+  var topic = req.topic;
+
+  topic._replies.forEach(function (t) {
+    if (t._id.equals(req.params.replyId)) {
+      t.content = req.body.content;
+      t.updatedAt = Date.now();
+      t.updatedBy = req.user;
+
+      topic.save(function (err) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.json(topic);
+        }
+      });
+    }
+  });
 };
 
 
@@ -228,9 +246,9 @@ exports.deleteReply = function (req, res) {
   var forum = req.forum;
   var topic = req.topic;
 
-  topic._replies.forEach(function (r) {
-    if (r._id.equals(req.params.replyId)) {
-      topic._replies.pull(r);
+  topic._replies.forEach(function (t) {
+    if (t._id.equals(req.params.replyId)) {
+      topic._replies.pull(t);
       topic.replyCount--;
       topic.save(function (err) {
         if (err) {
@@ -247,6 +265,13 @@ exports.deleteReply = function (req, res) {
   forum.update({
     $inc: {replyCount: -1}
   }).exec();
+
+  //create trace log
+  traceLogCreate(req, traceConfig.action.forumDeleteReply, {
+    forum: forum._id,
+    topic: topic._id,
+    reply: req.params.replyId
+  });
 };
 
 /**
@@ -266,6 +291,7 @@ exports.topicById = function (req, res, next, id) {
     .populate('updatedBy', 'username displayName profileImageURL uploaded downloaded')
     .populate('_scoreList.user', 'username displayName profileImageURL uploaded downloaded')
     .populate('_replies.user', 'username displayName profileImageURL uploaded downloaded')
+    .populate('_replies.updatedBy', 'username displayName profileImageURL uploaded downloaded')
     .exec(function (err, topic) {
       if (err) {
         return next(err);

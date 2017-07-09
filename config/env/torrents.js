@@ -79,7 +79,8 @@ module.exports = {
         userAnnounceData: {name: 'userAnnounceData', enable: true},
         userScoreChange: {name: 'userScoreChange', enable: true},
 
-        forumDeleteTopic: {name: 'forumDeleteTopic', enable: true}
+        forumDeleteTopic: {name: 'forumDeleteTopic', enable: true},
+        forumDeleteReply: {name: 'forumDeleteReply', enable: true}
       }
     },
     torrentType: {
