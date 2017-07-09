@@ -31,6 +31,7 @@
       ForumsService.get({
         forumId: $stateParams.forumId
       }, function (item) {
+        console.log(item);
         vm.forum = item;
 
         vm.forumPath.splice(0, 0, {name: vm.forum.name, state: 'forums.view', params: {forumId: vm.forum._id}});
@@ -86,13 +87,29 @@
     };
 
     /**
+     * isModerator
+     * @returns {boolean}
+     */
+    vm.isModerator = function () {
+      var isM = false;
+
+      angular.forEach(vm.forum.moderators, function (m) {
+        if (m._id === vm.user._id) {
+          isM = true;
+        }
+      });
+
+      return isM;
+    };
+
+    /**
      * canEditTopic
      * @param t
      * @returns {boolean}
      */
     vm.canEdit = function (t) {
       if (t) {
-        if (vm.isOwner(t) || vm.user.isOper) {
+        if (vm.isModerator() || vm.isOwner(t) || vm.user.isOper) {
           return true;
         } else {
           return false;
