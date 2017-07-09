@@ -43,6 +43,36 @@ var ScoreSchema = new Schema({
   }
 });
 
+/**
+ * Sub Reply Schema
+ */
+var ReplySchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  content: {
+    type: String,
+    default: '',
+    trim: true
+  },
+
+  _attach: [AttachSchema],
+  _scoreList: [ScoreSchema],
+
+  updatedAt: {
+    type: Date
+  },
+  updatedBy: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
+
 
 /**
  * Topic Schema
@@ -79,7 +109,7 @@ var TopicSchema = new Schema({
     type: Number,
     default: 0
   },
-  _replies: [this],
+  _replies: [ReplySchema],
   _attach: [AttachSchema],
   _scoreList: [ScoreSchema],
 
@@ -112,3 +142,4 @@ var TopicSchema = new Schema({
 mongoose.model('Topic', TopicSchema);
 mongoose.model('Attach', AttachSchema);
 mongoose.model('Score', ScoreSchema);
+mongoose.model('Reply', ReplySchema);

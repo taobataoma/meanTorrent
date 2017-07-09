@@ -20,7 +20,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/forums', permissions: '*'},
           {resources: '/api/forums/:forumId', permissions: '*'},
           {resources: '/api/topics/:forumId', permissions: '*'},
-          {resources: '/api/topics/:forumId/:topicId', permissions: '*'}
+          {resources: '/api/topics/:forumId/:topicId', permissions: '*'},
+          {resources: '/api/topics/:forumId/:topicId/:replyId', permissions: '*'}
         ]
       },
       {
@@ -29,7 +30,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/forums', permissions: ['get']},
           {resources: '/api/forums/:forumId', permissions: ['get']},
           {resources: '/api/topics/:forumId', permissions: ['get']},
-          {resources: '/api/topics/:forumId/:topicId', permissions: '*'}
+          {resources: '/api/topics/:forumId/:topicId', permissions: ['get']},
+          {resources: '/api/topics/:forumId/:topicId/:replyId', permissions: ['get']}
         ]
       }
     ]

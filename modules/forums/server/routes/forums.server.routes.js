@@ -20,7 +20,13 @@ module.exports = function (app) {
   app.route('/api/topics/:forumId/:topicId').all(forumsPolicy.isAllowed)
     .get(forums.readTopic)
     .put(forums.updateTopic)
-    .delete(forums.deleteTopic);
+    .delete(forums.deleteTopic)
+    .post(forums.postNewReply);
+
+  app.route('/api/topics/:forumId/:topicId/:replyId').all(forumsPolicy.isAllowed)
+    .put(forums.updateReply)
+    .delete(forums.deleteReply);
 
   app.param('topicId', forums.topicById);
+  app.param('replyId', forums.replyById);
 };

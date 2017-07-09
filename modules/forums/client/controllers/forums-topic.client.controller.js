@@ -5,11 +5,11 @@
     .module('forums')
     .controller('ForumsTopicController', ForumsTopicController);
 
-  ForumsTopicController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'ScoreLevelService', '$filter', 'NotifycationService',
-    'marked', 'ModalConfirmService', '$stateParams', 'TopicsService', 'localStorageService', '$compile'];
+  ForumsTopicController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'ScoreLevelService', '$timeout', 'NotifycationService',
+    'marked', 'ModalConfirmService', '$stateParams', 'TopicsService', 'localStorageService', '$compile', 'RepliesService'];
 
-  function ForumsTopicController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, ScoreLevelService, $filter, NotifycationService,
-                                 marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile) {
+  function ForumsTopicController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, ScoreLevelService, $timeout, NotifycationService,
+                                 marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
@@ -75,10 +75,12 @@
      * @returns {boolean}
      */
     vm.isTopicOwner = function (t) {
-      if (t.user._id.str === vm.user._id) {
-        return true;
-      } else {
-        return false;
+      if (t) {
+        if (t.user._id.str === vm.user._id) {
+          return true;
+        } else {
+          return false;
+        }
       }
     };
 
@@ -88,10 +90,12 @@
      * @returns {boolean}
      */
     vm.canEditTopic = function (t) {
-      if (vm.isTopicOwner(t) || vm.user.isOper) {
-        return true;
-      } else {
-        return false;
+      if (t) {
+        if (vm.isTopicOwner(t) || vm.user.isOper) {
+          return true;
+        } else {
+          return false;
+        }
       }
     };
 
@@ -169,6 +173,50 @@
             NotifycationService.showErrorNotify(res.data.message, 'FORUMS.DELETE_TOPIC_FAILED');
           });
         });
+    };
+
+    /**
+     * beginPostReply
+     */
+    vm.beginPostReply = function () {
+      vm.scrollToReply = true;
+      $('#postReplyContent').focus();
+      $timeout(function () {
+        vm.scrollToReply = false;
+      }, 500);
+    };
+
+    /**
+     * postReply
+     * @param isValid
+     * @returns {boolean}
+     */
+    vm.postReply = function (isValid) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.replyForm');
+        return false;
+      }
+
+      var reply = new RepliesService(vm.postReplyFields);
+      reply.forum = vm.forum._id;
+      reply.topic = vm.topic._id;
+
+      reply.$save(function (response) {
+        successCallback(response);
+      }, function (errorResponse) {
+        errorCallback(errorResponse);
+      });
+
+      function successCallback(res) {
+        vm.postReplyFields = {};
+        vm.topic = res;
+        $scope.$broadcast('show-errors-reset', 'vm.replyForm');
+        NotifycationService.showSuccessNotify('FORUMS.POST_REPLY_SUCCESSFULLY');
+      }
+
+      function errorCallback(res) {
+        NotifycationService.showErrorNotify(res.data.message, 'FORUMS.POST_REPLY_FAILED');
+      }
     };
   }
 }());

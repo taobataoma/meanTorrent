@@ -39,7 +39,7 @@
 
         <div class="post-view">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-10 col-md-offset-1">
                     <form name="vm.postForm" ng-submit="vm.postTopic(vm.postForm.$valid)" novalidate autocomplete="off">
                         <div class="form-group" show-errors>
                             <input id="postTitle" name="postTitle"
@@ -78,7 +78,7 @@
                                 {{ 'MARKDOWN_LINK' | translate }}
                             </a>
                         </div>
-                        <button type="submit" class="btn btn-success pull-right">{{'FORUMS.BTN_SUBMIT' | translate}}
+                        <button type="submit" class="btn btn-success pull-right">{{'FORUMS.BTN_SUBMIT_POST' | translate}}
                         </button>
                     </form>
                 </div>

@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-sm-12 col-md-3">
                     <a class="btn btn-success margin-top-10 margin-bottom-10 pull-right"
-                       href="#" ng-click="vm.scrollToReply=true;">{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</a>
+                       href="#" ng-click="vm.beginPostReply();">{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</a>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
                                                     <i class="fa fa-times" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
                                                        ng-show="vm.canEditTopic(vm.topic);"
-                                                            ng-click="vm.beginDeleteTopic(vm.topic);"></i>
+                                                       ng-click="vm.beginDeleteTopic(vm.topic);"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,9 +120,47 @@
                 </tbody>
             </table>
         </div>
-    </div>
 
-    <div scroll-if="vm.scrollToReply==true">
+        <div class="table-responsive table-category" scroll-if="vm.scrollToReply">
+            <table class="table table-valign-middle">
+                <thead>
+                    <tr>
+                        <th>
+                            <span>{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
 
+        <div class="reply-post margin-bottom-30">
+            <div class="row">
+                <div class="col-md-12">
+                    <form name="vm.replyForm" ng-submit="vm.postReply(vm.replyForm.$valid)" novalidate autocomplete="off">
+                        <div class="form-group" show-errors>
+                            <textarea id="postReplyContent" name="postReplyContent" ng-model="vm.postReplyFields.content" mt-markdown-editor="postReplyContent" required></textarea>
+
+                            <div ng-messages="vm.replyForm.postReplyContent.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">{{ 'FORUMS.PRC_REQUIRED' | translate}}</p>
+                            </div>
+                        </div>
+
+                        <div class="margin-top-5" style="display: table;">
+                            <a class="message-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"
+                               data-ga-click="Markdown Toolbar, click, help">
+                                <svg aria-hidden="true" height="16" version="1.1"
+                                     viewBox="0 0 16 16" width="16">
+                                    <path fill-rule="evenodd"
+                                          d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"/>
+                                </svg>
+                                {{ 'MARKDOWN_LINK' | translate }}
+                            </a>
+                        </div>
+                        <button type="submit" class="btn btn-success pull-right">{{'FORUMS.BTN_SUBMIT_REPLY' | translate}}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

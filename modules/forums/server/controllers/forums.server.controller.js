@@ -10,6 +10,7 @@ var path = require('path'),
   User = mongoose.model('User'),
   Forum = mongoose.model('Forum'),
   Topic = mongoose.model('Topic'),
+  Reply = mongoose.model('Reply'),
   async = require('async'),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
@@ -106,7 +107,13 @@ exports.postNewTopic = function (req, res) {
  * @param res
  */
 exports.readTopic = function (req, res) {
-  res.json(req.topic);
+  var topic = req.topic;
+
+  topic.update({
+    $inc: {viewCount: 1}
+  }).exec();
+
+  res.json(topic);
 };
 
 /**
@@ -173,6 +180,55 @@ exports.deleteTopic = function (req, res) {
 };
 
 /**
+ * postNewReply
+ * @param req
+ * @param res
+ */
+exports.postNewReply = function (req, res) {
+  var forum = req.forum;
+  var topic = req.topic;
+  var reply = new Reply(req.body);
+  reply.user = req.user;
+
+  topic._replies.push(reply);
+  topic.replyCount++;
+
+  topic.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(topic);
+    }
+  });
+
+  forum.update({
+    $inc: {replyCount: 1},
+    lastTopic: topic
+  }).exec();
+};
+
+/**
+ * updateReply
+ * @param req
+ * @param res
+ */
+exports.updateReply = function (req, res) {
+  console.log('-----updateReply-----');
+};
+
+
+/**
+ * deleteReply
+ * @param req
+ * @param res
+ */
+exports.deleteReply = function (req, res) {
+  console.log('-----deleteReply-----');
+};
+
+/**
  * Invitation middleware
  */
 exports.topicById = function (req, res, next, id) {
@@ -198,6 +254,34 @@ exports.topicById = function (req, res, next, id) {
         });
       }
       req.topic = topic;
+      next();
+    });
+};
+
+/**
+ * Invitation middleware
+ */
+exports.replyById = function (req, res, next, id) {
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Reply is invalid'
+    });
+  }
+
+  Reply.findById(id)
+    .populate('user', 'username displayName profileImageURL uploaded downloaded score')
+    .populate('updatedBy', 'username displayName profileImageURL uploaded downloaded score')
+    .populate('_scoreList.user', 'username displayName profileImageURL uploaded downloaded')
+    .exec(function (err, reply) {
+      if (err) {
+        return next(err);
+      } else if (!reply) {
+        return res.status(404).send({
+          message: 'No reply with that identifier has been found'
+        });
+      }
+      req.reply = reply;
       next();
     });
 };
