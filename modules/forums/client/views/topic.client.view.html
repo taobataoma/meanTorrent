@@ -93,7 +93,8 @@
 
                                                 <div class="reply-comment-header-command pull-right">
                                                     <i class="fa fa-quote-left" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.REPLY_QUOTE' | translate}}"></i>
+                                                       title="{{'FORUMS.TITLES.REPLY_QUOTE' | translate}}"
+                                                       ng-click="vm.quoteAndReply(vm.topic);"></i>
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
                                                        ng-show="vm.canEdit(vm.topic);"
@@ -137,7 +138,8 @@
 
                                                 <div class="reply-comment-header-command pull-right">
                                                     <i class="fa fa-quote-left" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.REPLY_QUOTE' | translate}}"></i>
+                                                       title="{{'FORUMS.TITLES.REPLY_QUOTE' | translate}}"
+                                                       ng-click="vm.quoteAndReply(rep);"></i>
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
                                                        ng-show="vm.canEdit(rep);"
@@ -183,7 +185,8 @@
                 <div class="col-md-12">
                     <form name="vm.replyForm" ng-submit="vm.postReply(vm.replyForm.$valid)" novalidate autocomplete="off">
                         <div class="form-group" show-errors>
-                            <textarea id="postReplyContent" name="postReplyContent" ng-model="vm.postReplyFields.content" mt-markdown-editor="postReplyContent" required></textarea>
+                            <textarea id="postReplyContent" name="postReplyContent" ng-model="vm.postReplyFields.content"
+                                      mt-markdown-editor="postReplyContent" required></textarea>
 
                             <div ng-messages="vm.replyForm.postReplyContent.$error" role="alert">
                                 <p class="help-block error-text" ng-message="required">{{ 'FORUMS.PRC_REQUIRED' | translate}}</p>

@@ -6,14 +6,15 @@
     .controller('ForumsTopicController', ForumsTopicController);
 
   ForumsTopicController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'ScoreLevelService', '$timeout', 'NotifycationService',
-    'marked', 'ModalConfirmService', '$stateParams', 'TopicsService', 'localStorageService', '$compile', 'RepliesService'];
+    'marked', 'ModalConfirmService', '$stateParams', 'TopicsService', 'localStorageService', '$compile', 'RepliesService', '$filter'];
 
   function ForumsTopicController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, ScoreLevelService, $timeout, NotifycationService,
-                                 marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService) {
+                                 marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService, $filter) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
     vm.forumPath = [];
+    vm.postReplyFields = {};
 
     /**
      * If user is not signed in then redirect back home
@@ -143,6 +144,7 @@
 
           var cbtn = angular.element('<button class="btn btn-success margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
           cbtn.bind('click', function (evt) {
+            e.setContent(t.content);
             e.$options.hideable = true;
             e.blur();
           });
@@ -202,6 +204,7 @@
 
           var cbtn = angular.element('<button class="btn btn-success margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
           cbtn.bind('click', function (evt) {
+            e.setContent(r.content);
             e.$options.hideable = true;
             e.blur();
           });
@@ -268,6 +271,9 @@
       vm.scrollToReply = true;
       $('#postReplyContent').focus();
       $timeout(function () {
+        $('#postReplyContent').scrollTop($('#postReplyContent')[0].scrollHeight);
+      }, 100);
+      $timeout(function () {
         vm.scrollToReply = false;
       }, 500);
     };
@@ -303,6 +309,26 @@
       function errorCallback(res) {
         NotifycationService.showErrorNotify(res.data.message, 'FORUMS.POST_REPLY_FAILED');
       }
+    };
+
+    /**
+     * quoteAndReply
+     * @param obj, topic or reply object, need the content field
+     */
+    vm.quoteAndReply = function (obj) {
+      var by = obj.user.displayName + ' at ' + $filter('date')(obj.updatedAt ? obj.updatedAt : obj.createdAt, 'yyyy-MM-dd HH:mm:ss');
+      by = '_' + by + '_' + '\n\n';
+      var list = [];
+
+      list = obj.content.split('\n');
+      list.push(by);
+
+      $.each(list, function (k, v) {
+        list[k] = '> ' + v;
+      });
+
+      vm.postReplyFields.content = list.join('\n');
+      vm.beginPostReply();
     };
   }
 }());
