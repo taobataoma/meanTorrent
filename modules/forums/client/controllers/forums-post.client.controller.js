@@ -62,7 +62,7 @@
         vm.postFields = {};
         $scope.$broadcast('show-errors-reset', 'vm.postForm');
         NotifycationService.showSuccessNotify('FORUMS.POST_TOPIC_SUCCESSFULLY');
-        $state.go('forums.view', {forumId: vm.forum._id});
+        $state.go('forums.topic', {forumId: vm.forum._id, topicId: res._id});
       }
 
       function errorCallback(res) {
