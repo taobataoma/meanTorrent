@@ -64,8 +64,8 @@
                                 </p>
                             </div>
                         </td>
-                        <td class="text-center xs-hide">{{f.topicCount}}</td>
-                        <td class="text-center xs-hide">{{f.replyCount}}</td>
+                        <td class="text-center xs-hide"><span class="count-number">{{f.topicCount}}</span></td>
+                        <td class="text-center xs-hide"><span class="count-number">{{f.replyCount}}</span></td>
                         <td class="xs-hide sm-hide">
                             <div ng-if="f.lastTopic">
                                 <div ng-if="f.lastTopic._replies.length > 0">   <!--reply-->
