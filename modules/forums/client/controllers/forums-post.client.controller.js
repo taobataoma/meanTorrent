@@ -32,8 +32,8 @@
       }, function (item) {
         vm.forum = item;
 
-        vm.forumPath.push({name: vm.forum.name, state: 'forums.view', params: {forumId: vm.forum._id}});
-        vm.forumPath.splice(0, 0, {name: 'Post New Topic', state: undefined});
+        vm.forumPath.splice(0, 0, {name: vm.forum.name, state: 'forums.view', params: {forumId: vm.forum._id}});
+        vm.forumPath.push({name: 'Post New Topic', state: undefined});
       });
 
     };

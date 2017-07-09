@@ -32,7 +32,7 @@
       }, function (item) {
         vm.forum = item;
 
-        vm.forumPath.push({name: vm.forum.name, state: 'forums.view', params: {forumId: vm.forum._id}});
+        vm.forumPath.splice(0, 0, {name: vm.forum.name, state: 'forums.view', params: {forumId: vm.forum._id}});
       });
 
       // get topics
@@ -43,7 +43,7 @@
         console.log(topic);
         vm.topic = topic;
 
-        vm.forumPath.splice(0, 0, {name: topic.title, state: undefined});
+        vm.forumPath.push({name: topic.title, state: undefined});
       });
 
     };
