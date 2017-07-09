@@ -43,7 +43,7 @@
         console.log(topic);
         vm.topic = topic;
 
-        vm.forumPath.push({name: topic.title, state: undefined});
+        vm.forumPath.splice(0, 0, {name: topic.title, state: undefined});
       });
 
     };
