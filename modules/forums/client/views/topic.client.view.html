@@ -72,6 +72,7 @@
                     <tr>
                         <td>
                             <div class="reply-item">
+                                <!-- topic content -->
                                 <div class="reply-wrapper">
                                     <a class="reply-avatar">
                                         <img title="{{vm.topic.user.displayName}}" ng-src="/{{vm.topic.user.profileImageURL}}">
@@ -110,6 +111,50 @@
                                             </div>
                                             <div class="row text-right margin-top-10" ng-show="vm.topic.updatedAt">
                                                 <p class="reply-comment-body-edited-text">[ {{vm.topic.updatedBy.displayName}} {{ 'COMMENT_EDITED_INFO' | translate}} {{vm.topic.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- topic replies -->
+                                <div class="reply-wrapper" ng-repeat="rep in vm.topic._replies">
+                                    <a class="reply-avatar">
+                                        <img title="{{rep.user.displayName}}" ng-src="/{{rep.user.profileImageURL}}">
+                                    </a>
+
+                                    <div class="reply-comment">
+                                        <div class="reply-comment-header">
+                                            <div class="reply-comment-header-text">{{rep.user.displayName}} <span
+                                                    score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
+
+                                                <span class="user-ud-text">
+                                                    (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{rep.user.uploaded | bytes}}
+                                                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{rep.user.downloaded | bytes}}
+                                                    )
+                                                </span>
+                                                <span message-to="vm.topic.user" to-class="message-to-icon"></span>
+                                                <span class="reply-comment-header-time-text">{{rep.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+
+                                                <div class="reply-comment-header-command pull-right">
+                                                    <i class="fa fa-quote-left" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.REPLY_QUOTE' | translate}}"></i>
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
+                                                       ng-show="vm.canEditTopic(rep);"
+                                                       ng-click="vm.beginEditTopic(rep)"></i>
+                                                    <i class="fa fa-times" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
+                                                       ng-show="vm.canEditTopic(rep);"
+                                                       ng-click="vm.beginDeleteTopic(rep);"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="reply-comment-body">
+                                            <div id="{{rep._id}}" data-provide="markdown" class="reply-comment-body-text"
+                                                 ng-bind-html="vm.getTopicContent(rep)">
+                                            </div>
+                                            <div class="row text-right margin-top-10" ng-show="rep.updatedAt">
+                                                <p class="reply-comment-body-edited-text">[ {{rep.updatedBy.displayName}} {{ 'COMMENT_EDITED_INFO' | translate}} {{rep.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>
                                             </div>
                                         </div>
                                     </div>
