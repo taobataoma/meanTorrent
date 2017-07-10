@@ -93,11 +93,13 @@
     vm.isModerator = function () {
       var isM = false;
 
-      angular.forEach(vm.forum.moderators, function (m) {
-        if (m._id === vm.user._id) {
-          isM = true;
-        }
-      });
+      if(vm.forum) {
+        angular.forEach(vm.forum.moderators, function (m) {
+          if (m._id === vm.user._id) {
+            isM = true;
+          }
+        });
+      }
 
       return isM;
     };
