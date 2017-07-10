@@ -156,10 +156,11 @@
         onShow: function (e) {
           e.setContent(t.content);
 
-          $('.md-footer').addClass('text-right');
+          angular.element($('.md-footer')).addClass('text-right');
+          angular.element($('.md-footer')[0].childNodes[0]).addClass('btn-width-80');
           $('.md-footer')[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
 
-          var cbtn = angular.element('<button class="btn btn-success margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
+          var cbtn = angular.element('<button class="btn btn-success btn-width-80 margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
           cbtn.bind('click', function (evt) {
             e.setContent(t.content);
             e.$options.hideable = true;
@@ -216,10 +217,11 @@
         onShow: function (e) {
           e.setContent(r.content);
 
-          $('.md-footer').addClass('text-right');
+          angular.element($('.md-footer')).addClass('text-right');
+          angular.element($('.md-footer')[0].childNodes[0]).addClass('btn-width-80');
           $('.md-footer')[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
 
-          var cbtn = angular.element('<button class="btn btn-success margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
+          var cbtn = angular.element('<button class="btn btn-success btn-width-80 margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
           cbtn.bind('click', function (evt) {
             e.setContent(r.content);
             e.$options.hideable = true;
