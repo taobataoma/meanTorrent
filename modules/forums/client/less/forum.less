@@ -258,7 +258,7 @@
 .box-uib-and-post-btn {
     display: -webkit-box;
     display: -moz-box;
-    display: -ms-box;
+    display: -ms-flexbox;
     display: box;
 
     -webkit-box-orient: horizontal;
@@ -274,12 +274,12 @@
     .box-uib {
         -webkit-box-ordinal-group: 1;
         -moz-box-ordinal-group: 1;
-        -ms-box-ordinal-group: 1;
+        -ms-flex-order: 1;
         box-ordinal-group: 1;
         @media (max-width: @screen-sm-max) {
             -webkit-box-ordinal-group: 2;
             -moz-box-ordinal-group: 2;
-            -ms-box-ordinal-group: 2;
+            -ms-flex-order: 2;
             box-ordinal-group: 2;
         }
     }
@@ -289,14 +289,14 @@
         right: 15px;
         -webkit-box-ordinal-group: 2;
         -moz-box-ordinal-group: 2;
-        -ms-box-ordinal-group: 2;
+        -ms-flex-order: 2;
         box-ordinal-group: 2;
         @media (max-width: @screen-sm-max) {
             margin: 0 0;
             position: inherit;
             -webkit-box-ordinal-group: 1;
             -moz-box-ordinal-group: 1;
-            -ms-box-ordinal-group: 1;
+            -ms-flex-order: 1;
             box-ordinal-group: 1;
         }
     }
