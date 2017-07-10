@@ -39,17 +39,21 @@
 
         <div>
             <div class="row">
-                <div class="col-sm-12 col-md-9">
-                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                        ng-model="vm.currentPage"
-                        ng-change="vm.pageChanged()"
-                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                    </ul>
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <a class="btn btn-success margin-top-10 margin-bottom-10 btn-width-100 pull-right"
-                       href="#" ng-click="vm.beginPostReply();">{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</a>
+                <div class="col-sm-12">
+                    <div class="box-uib-and-post-btn">
+                        <div class="box-uib">
+                            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                                ng-model="vm.currentPage"
+                                ng-change="vm.pageChanged()"
+                                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                            </ul>
+                        </div>
+                        <div class="box-post-btn">
+                            <a class="btn btn-success btn-width-100"
+                               href="#" ng-click="vm.beginPostReply();">{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,12 +87,12 @@
                                             <div class="reply-comment-header-text">{{vm.topic.user.displayName}} <span
                                                     score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
 
+                                                <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="user-ud-text">
                                                     (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{vm.topic.user.uploaded | bytes}}
                                                     <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{vm.topic.user.downloaded | bytes}}
                                                     )
                                                 </span>
-                                                <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="reply-comment-header-time-text">{{vm.topic.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</span>
 
                                                 <div class="reply-comment-header-command pull-right">
@@ -128,12 +132,12 @@
                                             <div class="reply-comment-header-text">{{rep.user.displayName}} <span
                                                     score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
 
+                                                <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="user-ud-text">
                                                     (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{rep.user.uploaded | bytes}}
                                                     <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{rep.user.downloaded | bytes}}
                                                     )
                                                 </span>
-                                                <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="reply-comment-header-time-text">{{rep.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</span>
 
                                                 <div class="reply-comment-header-command pull-right">

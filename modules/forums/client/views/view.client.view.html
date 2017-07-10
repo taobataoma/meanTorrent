@@ -28,25 +28,32 @@
         <div class="path margin-top-20">
             <ol class="breadcrumb">
                 <li><a ui-sref="forums.list"><span class="small glyphicon glyphicon-home"></span> {{'FORUMS.HOME_INDEX' | translate}}</a></li>
-                <li ng-repeat="p in vm.forumPath" ng-class="{'active': !g.state}"><a ui-sref="{{p.state}}( {{p.params}} )"
-                                                                                     ng-if="p.state!=undefined">{{p.name}}</a><span
-                        ng-if="p.state==undefined">{{p.name}}</span></li>
+                <li ng-repeat="p in vm.forumPath" ng-class="{'active': !g.state}">
+                    <a ui-sref="{{p.state}}( {{p.params}} )"
+                       ng-if="p.state!=undefined">{{p.name}}
+                    </a>
+                    <span ng-if="p.state==undefined">{{p.name}}</span>
+                </li>
             </ol>
         </div>
 
         <div>
             <div class="row">
-                <div class="col-sm-12 col-md-9">
-                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                        ng-model="vm.currentPage"
-                        ng-change="vm.pageChanged()"
-                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                    </ul>
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <a class="btn btn-success margin-top-10 margin-bottom-10 pull-right"
-                       ui-sref="forums.post({forumId: vm.forum._id})">{{'FORUMS.BTN_POST_NEW_TOPIC' | translate}}</a>
+                <div class="col-sm-12">
+                    <div class="box-uib-and-post-btn">
+                        <div class="box-uib">
+                            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                                ng-model="vm.currentPage"
+                                ng-change="vm.pageChanged()"
+                                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                            </ul>
+                        </div>
+                        <div class="box-post-btn">
+                            <a class="btn btn-success btn-width-100"
+                               ui-sref="forums.post({forumId: vm.forum._id})">{{'FORUMS.BTN_POST_NEW_TOPIC' | translate}}</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
