@@ -196,11 +196,13 @@ body {
 }
 
 .menu-divider {
-    background-color: #fff;
     border-top: solid 1px @dropdown-divider-bg;
     margin-top: 9px;
     a {
         margin-top: 9px;
+    }
+    @media (max-width: @screen-xs-max) {
+        border-top: solid 1px #080808;
     }
 }
 
