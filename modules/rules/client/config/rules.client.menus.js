@@ -12,6 +12,7 @@
       title: 'MENU_RULES',
       state: 'rules',
       roles: ['*'],
+      class: 'sm-hide',
       position: 5
     });
   }

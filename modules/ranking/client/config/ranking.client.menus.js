@@ -12,6 +12,7 @@
       title: 'MENU_RANKING',
       state: 'ranking',
       roles: ['*'],
+      class: 'sm-hide',
       position: 4
     });
   }
