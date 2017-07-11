@@ -218,10 +218,12 @@
         },
         onShow: function (e) {
           e.setContent(r.content);
+          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
+          console.log(ele);
 
-          angular.element($('.md-footer')).addClass('text-right');
-          angular.element($('.md-footer')[0].childNodes[0]).addClass('btn-width-80');
-          $('.md-footer')[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
+          angular.element(ele).addClass('text-right');
+          angular.element(ele[0].childNodes[0]).addClass('btn-width-80');
+          ele[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
 
           var cbtn = angular.element('<button class="btn btn-success btn-width-80 margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
           cbtn.bind('click', function (evt) {
@@ -229,8 +231,8 @@
             e.$options.hideable = true;
             e.blur();
           });
-          $('.md-footer').append(cbtn);
-          $compile($('.md-footer').contents())($scope);
+          ele.append(cbtn);
+          $compile(ele.contents())($scope);
         }
       });
     };
