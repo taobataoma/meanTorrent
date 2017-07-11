@@ -44,5 +44,40 @@
       });
 
     };
+
+    /**
+     * isModerator
+     * @param f
+     * @returns {boolean}
+     */
+    vm.isModerator = function (f) {
+      var isM = false;
+
+      if (f) {
+        angular.forEach(f.moderators, function (m) {
+          if (m._id === vm.user._id) {
+            isM = true;
+          }
+        });
+      }
+
+      return isM;
+    };
+
+    /**
+     * canEditTopic
+     * @param f
+     * @returns {boolean}
+     */
+    vm.canEdit = function (f) {
+      if (f) {
+        if (vm.isModerator(f) || vm.user.isOper) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    };
+
   }
 }());
