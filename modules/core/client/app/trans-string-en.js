@@ -671,6 +671,8 @@
       DELETE_REPLY_FAILED: 'Reply deleted failed',
       DELETE_REPLY_CONFIRM_HEADER_TEXT: 'Delete Reply',
       DELETE_REPLY_CONFIRM_BODY_TEXT: 'Are you sure want to delete this reply?',
+      READ_ONLY_POST: '*** Readonly forum, cannot to post topic!',
+      READ_ONLY_REPLY: '*** Readonly topic, cannot to post reply!',
 
       CATEGORY: {
         AFFAIRS: 'Affairs',
@@ -684,8 +686,8 @@
         MODERATORS: 'Moderators',
         DESC: 'Description',
         CATEGORY: 'Category',
-        READONLY_POST: 'Only oper/admin can post new topic',
-        READONLY_REPLY: 'disabled user to post new topic',
+        READONLY_POST: 'Users are forbidden to post new topics',
+        READONLY_REPLY: 'Users are forbidden to post new replies',
         TOPICS: 'Topics',
         REPLIES: 'Replies',
         VIEWS: 'Views',

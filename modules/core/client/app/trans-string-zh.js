@@ -671,6 +671,8 @@
       DELETE_REPLY_FAILED: '回复删除失败',
       DELETE_REPLY_CONFIRM_HEADER_TEXT: '删除回复',
       DELETE_REPLY_CONFIRM_BODY_TEXT: '您确定要删除这条回复?',
+      READ_ONLY_POST: '*** 只读版块，不能发表话题!',
+      READ_ONLY_REPLY: '*** 只读话题，不能发表回复!',
 
       CATEGORY: {
         AFFAIRS: '站务区',
