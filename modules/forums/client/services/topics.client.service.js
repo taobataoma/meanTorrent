@@ -14,6 +14,14 @@
     }, {
       update: {
         method: 'PUT'
+      },
+      toggleTopicReadonly: {
+        method: 'PUT',
+        url: '/api/topics/:forumId/:topicId/toggleTopicReadonly',
+        params: {
+          forumId: '@forum',
+          topicId: '@_id'
+        }
       }
     });
   }

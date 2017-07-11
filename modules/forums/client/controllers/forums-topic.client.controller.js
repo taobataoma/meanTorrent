@@ -302,6 +302,27 @@
     };
 
     /**
+     * toggleReadonly
+     * @param t
+     */
+    vm.toggleReadonly = function (t) {
+      var topic = new TopicsService({
+        forum: vm.forum._id,
+        _id: t._id
+      });
+
+      console.log(topic);
+
+      topic.$toggleTopicReadonly(function (res) {
+        vm.topic = res;
+        NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_READONLY_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_TOGGLE_READONLY_FAILED');
+      });
+
+    };
+
+    /**
      * postReply
      * @param isValid
      * @returns {boolean}

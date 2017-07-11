@@ -50,11 +50,15 @@
                             </ul>
                         </div>
                         <div class="box-post-btn">
-                            <a class="btn btn-success btn-width-100"
-                               ng-if="!vm.topic.readOnly || vm.canEdit(vm.topic)"
-                               href="#" ng-click="vm.beginPostReply();">{{'FORUMS.BTN_POST_NEW_TOPIC' | translate}}</a>
+                            <div ng-if="!vm.topic.readOnly || vm.canEdit(vm.topic)">
+                                <a class="btn btn-success btn-width-100"
+                                   href="#" ng-click="vm.beginPostReply();">{{'FORUMS.BTN_POST_NEW_TOPIC' | translate}}</a>
+                                <a class="btn btn-default btn-width-100"
+                                   href="#" ng-click="vm.toggleReadonly(vm.topic);">{{ vm.topic.readOnly ? 'FORUMS.BTN_UNSET_READONLY' : 'FORUMS.BTN_SET_READONLY' | translate}}</a>
+                            </div>
 
-                            <h5 class="text-danger text-uppercase" translate="FORUMS.READ_ONLY_REPLY" ng-if="vm.topic.readOnly && !vm.canEdit(vm.topic)"></h5>
+                            <h5 class="text-danger text-uppercase" translate="FORUMS.READ_ONLY_REPLY"
+                                ng-if="vm.topic.readOnly && !vm.canEdit(vm.topic)"></h5>
                         </div>
                     </div>
                 </div>

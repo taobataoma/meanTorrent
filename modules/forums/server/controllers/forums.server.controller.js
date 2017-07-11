@@ -141,6 +141,27 @@ exports.updateTopic = function (req, res) {
 };
 
 /**
+ * toggleTopicReadonly
+ * @param req
+ * @param res
+ */
+exports.toggleTopicReadonly = function (req, res) {
+  var topic = req.topic;
+
+  topic.readOnly = !topic.readOnly;
+
+  topic.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(topic);
+    }
+  });
+};
+
+/**
  * deleteTopic
  * @param req
  * @param res

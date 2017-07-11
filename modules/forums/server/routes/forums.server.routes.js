@@ -23,6 +23,9 @@ module.exports = function (app) {
     .delete(forums.deleteTopic)
     .post(forums.postNewReply);
 
+  app.route('/api/topics/:forumId/:topicId/toggleTopicReadonly').all(forumsPolicy.isAllowed)
+    .put(forums.toggleTopicReadonly);
+
   app.route('/api/topics/:forumId/:topicId/:replyId').all(forumsPolicy.isAllowed)
     .put(forums.updateReply)
     .delete(forums.deleteReply);
