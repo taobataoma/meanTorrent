@@ -22,25 +22,95 @@ var traceConfig = config.meanTorrentConfig.trace;
  * @param res
  */
 exports.list = function (req, res) {
-  Forum.find()
-    .sort('category order -createdat')
-    .populate({
-      path: 'lastTopic',
-      populate: {
-        path: 'user lastUser',
-        select: 'username displayName profileImageURL uploaded downloaded'
+  var findForumsList = function (callback) {
+    Forum.find()
+      .sort('category order -createdat')
+      .populate({
+        path: 'lastTopic',
+        populate: {
+          path: 'user lastUser',
+          select: 'username displayName profileImageURL uploaded downloaded'
+        }
+      })
+      .populate('moderators', 'username displayName profileImageURL uploaded downloaded')
+      .exec(function (err, forums) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, forums);
+        }
+      });
+  };
+
+  var forumsTopicsCount = function (callback) {
+    var nd = (new Date()).getDate();
+    Topic.aggregate({
+      $project: {
+        'forum': '$forum',
+        'day': {
+          '$dayOfMonth': '$createdAt'
+        }
       }
-    })
-    .populate('moderators', 'username displayName profileImageURL uploaded downloaded')
-    .exec(function (err, forums) {
+    }, {
+      $match: {
+        day: nd
+      }
+    }, {
+      $group: {
+        _id: '$forum',
+        count: {$sum: 1}
+      }
+    }).exec(function (err, counts) {
       if (err) {
-        return res.status(422).send({
-          message: errorHandler.getErrorMessage(err)
-        });
+        callback(err, null);
       } else {
-        res.status(200).send(forums);
+        callback(null, counts);
       }
     });
+  };
+
+  var forumsRepliesCount = function (callback) {
+    var nd = (new Date()).getDate();
+    Topic.aggregate({
+      $unwind: '$_replies'
+    }, {
+      $project: {
+        'forum': '$forum',
+        //'title': '$title',
+        //'createdAt': '$_replies.createdAt',
+        'day': {
+          '$dayOfMonth': '$_replies.createdAt'
+        }
+      }
+    }, {
+      $match: {
+        day: nd
+      }
+    }, {
+      $group: {
+        _id: '$forum',
+        count: {$sum: 1}
+      }
+    }).exec(function (err, counts) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, counts);
+      }
+    });
+  };
+
+  async.parallel([findForumsList, forumsTopicsCount, forumsRepliesCount], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({
+        forumsList: results[0],
+        forumsTopicsCount: results[1],
+        forumsRepliesCount: results[2]
+      });
+    }
+  });
 };
 
 /**

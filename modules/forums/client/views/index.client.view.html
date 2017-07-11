@@ -51,6 +51,7 @@
                             <div class="forum-info">
                                 <h4><a ui-sref="forums.view({ forumId: f._id})">{{f.name}}</a>
                                     <small class="badge badge_default" ng-show="f.readOnly">R</small>
+                                    <span class="today-new-count" ng-if="vm.getTodayNewCount(f);" ng-bind-html="vm.getTodayNewCount(f);"></span>
                                 </h4>
 
                                 <p class="forum-desc" ng-bind-html="vm.getForumDesc(f);"></p>

@@ -28,9 +28,11 @@
       vm.last_leave_time = localStorageService.get('last_leave_time') || Date.now();
 
       // get forums list
-      ForumsService.query({}, function (items) {
+      ForumsService.get({}, function (items) {
         console.log(items);
-        vm.forums = items;
+        vm.forums = items.forumsList;
+        vm.forumsTopicsCount = items.forumsTopicsCount;
+        vm.forumsRepliesCount = items.forumsRepliesCount;
       });
     };
 
@@ -58,6 +60,46 @@
         return t_reply > t_leave;
       } else {
         return false;
+      }
+    };
+
+    vm.getTodayNewCount = function (f) {
+      if (f) {
+        var n_topic = getNewTopic(f);
+        var n_reply = getNewReply(f);
+        if (n_topic === 0 && n_reply === 0) {
+          return undefined;
+        } else if (n_topic === 0 && n_reply !== 0) {
+          return $translate.instant('FORUMS.TODAY_NEW_COUNT_REPLY', {reply: n_reply});
+        } else if (n_topic !== 0 && n_reply === 0) {
+          return $translate.instant('FORUMS.TODAY_NEW_COUNT_TOPIC', {topic: n_topic});
+        } else {
+          return $translate.instant('FORUMS.TODAY_NEW_COUNT_ALL', {topic: n_topic, reply: n_reply});
+        }
+      } else {
+        return undefined;
+      }
+
+      function getNewTopic(f) {
+        var c = 0;
+        angular.forEach(vm.forumsTopicsCount, function (tc) {
+          if (tc._id === f._id) {
+            c = c + tc.count;
+          }
+        });
+
+        return c;
+      }
+
+      function getNewReply(f) {
+        var c = 0;
+        angular.forEach(vm.forumsRepliesCount, function (rc) {
+          if (rc._id === f._id) {
+            c = c + rc.count;
+          }
+        });
+
+        return c;
       }
     };
 

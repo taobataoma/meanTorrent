@@ -56,7 +56,7 @@
   function writeLeaveTime(localStorageService, $window) {
     $window.onbeforeunload = function () {
       localStorageService.set('last_leave_time', Date.now());
-    }
+    };
   }
 
   markedConfig.$inject = ['markedProvider'];

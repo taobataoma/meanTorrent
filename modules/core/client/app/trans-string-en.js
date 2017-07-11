@@ -677,6 +677,9 @@
       DELETE_REPLY_CONFIRM_BODY_TEXT: 'Are you sure want to delete this reply?',
       READ_ONLY_POST: '*** Readonly forum, cannot to post topic!',
       READ_ONLY_REPLY: '*** Readonly topic, cannot to post reply!',
+      TODAY_NEW_COUNT_ALL: '(Today: <mark class="text-danger">{{topic}}</mark> topics, <mark class="text-danger">{{reply}}</mark> replies)',
+      TODAY_NEW_COUNT_TOPIC: '(Today: <mark class="text-danger">{{topic}}</mark> topics)',
+      TODAY_NEW_COUNT_REPLY: '(Today: <mark class="text-danger">{{reply}}</mark> replies)',
 
       CATEGORY: {
         AFFAIRS: 'Affairs',
