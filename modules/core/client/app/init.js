@@ -12,7 +12,8 @@
     .config(localStorageModuleConfig)
     .config(transConfig)
     .config(markedConfig)
-    .run(setDefaultLang);
+    .run(setDefaultLang)
+    .run(writeLeaveTime);
 
   bootstrapConfig.$inject = ['$compileProvider', '$locationProvider', '$httpProvider', '$logProvider'];
 
@@ -49,6 +50,13 @@
     var user_lang = getStorageLangService.getLang();
 
     $translate.use(user_lang);
+  }
+
+  writeLeaveTime.$inject = ['localStorageService', '$window'];
+  function writeLeaveTime(localStorageService, $window) {
+    $window.onbeforeunload = function () {
+      localStorageService.set('last_leave_time', Date.now());
+    }
   }
 
   markedConfig.$inject = ['markedProvider'];
@@ -104,4 +112,5 @@
     // Then init the app
     angular.bootstrap(document, [app.applicationModuleName]);
   }
+
 }(ApplicationConfiguration));

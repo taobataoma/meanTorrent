@@ -52,7 +52,7 @@
                         <div class="box-post-btn">
                             <div ng-if="!vm.topic.readOnly || vm.canEdit(vm.topic)">
                                 <a class="btn btn-success btn-width-100"
-                                   href="#" ng-click="vm.beginPostReply();">{{'FORUMS.BTN_POST_NEW_TOPIC' | translate}}</a>
+                                   href="#" ng-click="vm.beginPostReply();">{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</a>
                                 <a class="btn btn-default btn-width-100"
                                    href="#" ng-click="vm.toggleReadonly(vm.topic);">{{ vm.topic.readOnly ? 'FORUMS.BTN_UNSET_READONLY' : 'FORUMS.BTN_SET_READONLY' | translate}}</a>
                             </div>
@@ -191,7 +191,7 @@
             </table>
         </div>
 
-        <div class="reply-post margin-bottom-30" ng-if="!vm.topic.readOnly">
+        <div class="reply-post margin-bottom-30" ng-if="!vm.topic.readOnly || vm.canEdit(vm.topic)">
             <div class="row">
                 <div class="col-md-12">
                     <form name="vm.replyForm" ng-submit="vm.postReply(vm.replyForm.$valid)" novalidate autocomplete="off">

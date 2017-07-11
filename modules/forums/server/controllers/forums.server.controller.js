@@ -177,27 +177,28 @@ exports.deleteTopic = function (req, res) {
       });
     } else {
       res.json(topic);
+
+      Topic.findOne({
+        forum: forum._id
+      })
+        .sort('-lastReplyAt -createdAt')
+        .exec(function (err, topic) {
+          if (!err) {
+            console.log(topic);
+            forum.update({
+              $inc: {topicCount: -1},
+              lastTopic: topic
+            }).exec();
+          }
+        });
+
+      //create trace log
+      traceLogCreate(req, traceConfig.action.forumDeleteTopic, {
+        forum: forum._id,
+        topic: topic._id
+      });
     }
   });
-
-  //create trace log
-  traceLogCreate(req, traceConfig.action.forumDeleteTopic, {
-    forum: forum._id,
-    topic: topic._id
-  });
-
-  Topic.findOne({
-    forum: forum._id
-  })
-    .sort('-lastReplyAt -createdAt')
-    .exec(function (err, topic) {
-      if (!err) {
-        forum.update({
-          $inc: {topicCount: -1},
-          lastTopic: topic
-        }).exec();
-      }
-    });
 };
 
 /**

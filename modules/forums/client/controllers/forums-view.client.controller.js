@@ -5,11 +5,11 @@
     .module('forums')
     .controller('ForumsViewController', ForumsViewController);
 
-  ForumsViewController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'SideOverlay', '$filter', 'NotifycationService',
-    'marked', 'ModalConfirmService', '$stateParams', 'TopicsService'];
+  ForumsViewController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'moment', '$filter', 'NotifycationService',
+    'marked', 'localStorageService', '$stateParams', 'TopicsService'];
 
-  function ForumsViewController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, SideOverlay, $filter, NotifycationService,
-                                marked, ModalConfirmService, $stateParams, TopicsService) {
+  function ForumsViewController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, moment, $filter, NotifycationService,
+                                marked, localStorageService, $stateParams, TopicsService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
@@ -26,6 +26,8 @@
      * init
      */
     vm.init = function () {
+      vm.last_leave_time = localStorageService.get('last_leave_time') || Date.now();
+
       // get forum info by state params
       ForumsService.get({
         forumId: $stateParams.forumId
@@ -79,5 +81,20 @@
       }
     };
 
+    /**
+     * hasNewReply
+     * @param t
+     * @returns {boolean}
+     */
+    vm.hasNewReply = function (t) {
+      if (t && t.lastReplyAt) {
+        var t_reply = moment.utc(t.lastReplyAt).valueOf();
+        var t_leave = moment.utc(vm.last_leave_time).valueOf();
+
+        return t_reply > t_leave;
+      } else {
+        return false;
+      }
+    };
   }
 }());
