@@ -92,13 +92,13 @@ exports.postNewTopic = function (req, res) {
       });
     } else {
       res.json(topic);
+
+      forum.update({
+        $inc: {topicCount: 1},
+        lastTopic: topic
+      }).exec();
     }
   });
-
-  forum.update({
-    $inc: {topicCount: 1},
-    lastTopic: topic
-  }).exec();
 };
 
 /**
@@ -169,6 +169,7 @@ exports.toggleTopicReadonly = function (req, res) {
 exports.deleteTopic = function (req, res) {
   var forum = req.forum;
   var topic = req.topic;
+  var rcount = topic.replyCount;
 
   topic.remove(function (err) {
     if (err) {
@@ -184,9 +185,8 @@ exports.deleteTopic = function (req, res) {
         .sort('-lastReplyAt -createdAt')
         .exec(function (err, topic) {
           if (!err) {
-            console.log(topic);
             forum.update({
-              $inc: {topicCount: -1},
+              $inc: {topicCount: -1, replyCount: -rcount},
               lastTopic: topic
             }).exec();
           }
@@ -224,13 +224,13 @@ exports.postNewReply = function (req, res) {
       });
     } else {
       res.json(topic);
+
+      forum.update({
+        $inc: {replyCount: 1},
+        lastTopic: topic
+      }).exec();
     }
   });
-
-  forum.update({
-    $inc: {replyCount: 1},
-    lastTopic: topic
-  }).exec();
 };
 
 /**
@@ -281,20 +281,20 @@ exports.deleteReply = function (req, res) {
           });
         } else {
           res.json(topic);
+
+          forum.update({
+            $inc: {replyCount: -1}
+          }).exec();
+
+          //create trace log
+          traceLogCreate(req, traceConfig.action.forumDeleteReply, {
+            forum: forum._id,
+            topic: topic._id,
+            reply: req.params.replyId
+          });
         }
       });
     }
-  });
-
-  forum.update({
-    $inc: {replyCount: -1}
-  }).exec();
-
-  //create trace log
-  traceLogCreate(req, traceConfig.action.forumDeleteReply, {
-    forum: forum._id,
-    topic: topic._id,
-    reply: req.params.replyId
   });
 };
 
