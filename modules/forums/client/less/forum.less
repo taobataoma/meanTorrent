@@ -222,6 +222,7 @@
         border-spacing: 0;
         border-collapse: inherit;
         border: solid 3px @brand-primary;
+        table-layout: fixed;
         thead {
             background-color: @brand-primary;
             border: solid 1px @brand-primary;
@@ -256,18 +257,9 @@
 
 /* csslint ignore:start */
 .box-uib-and-post-btn {
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-
-    -webkit-flex-direction: row;
-    -moz-flex-direction: row;
-    -ms-flex-direction: row;
     flex-direction: row;
     @media (max-width: @screen-sm-max) {
-        -webkit-flex-direction: column;
-        -moz-flex-direction: column;
-        -ms-flex-direction: column;
         flex-direction: column;
     }
     .box-uib {
