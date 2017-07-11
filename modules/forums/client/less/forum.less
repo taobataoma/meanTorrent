@@ -181,10 +181,16 @@
                     }
                     .post-info {
                         margin-left: 40px;
-                        h4 {
-                            font-size: 16px;
+                        .topic-title {
                             margin-top: 2px;
                             margin-bottom: 5px;
+                            a {
+                                font-size: 16px;
+                                font-weight: 500;
+                                &:visited {
+                                    color: darken(@brand-primary, 20%);
+                                }
+                            }
                         }
                         .topic-by {
                             color: #666;
