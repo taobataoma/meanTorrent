@@ -7,6 +7,7 @@ var path = require('path'),
   config = require(path.resolve('./config/config')),
   mongoose = require('mongoose'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  moment = require('moment'),
   User = mongoose.model('User'),
   Forum = mongoose.model('Forum'),
   Topic = mongoose.model('Topic'),
@@ -71,30 +72,30 @@ exports.list = function (req, res) {
 
   var forumsRepliesCount = function (callback) {
     var nd = (new Date()).getDate();
+    console.log(moment());
+    console.log(moment.utc());
+    console.log(moment().year(year).month(month).date(day));
+    console.log(moment.utc().year(year).month(month).date(day));
     Topic.aggregate({
       $unwind: '$_replies'
     }, {
       $project: {
         'forum': '$forum',
-        //'title': '$title',
-        //'createdAt': '$_replies.createdAt',
+        'title': '$title',
+        'createdAt': '$_replies.createdAt',
         'day': {
           '$dayOfMonth': '$_replies.createdAt'
-        }
-      }
-    }, {
-      $match: {
-        day: nd
-      }
-    }, {
-      $group: {
-        _id: '$forum',
-        count: {$sum: 1}
+        },
+        'mday': {
+          '$dayOfMonth': moment('$_replies.createdAt')
+        },
+        'nd': nd
       }
     }).exec(function (err, counts) {
       if (err) {
         callback(err, null);
       } else {
+        console.log(counts);
         callback(null, counts);
       }
     });
