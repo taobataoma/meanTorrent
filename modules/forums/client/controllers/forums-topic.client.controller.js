@@ -48,6 +48,9 @@
         vm.forumPath.push({name: topic.title, state: undefined});
       });
 
+      $timeout(function () {
+        $('html,body').scrollTop(0);
+      }, 0);
     };
 
     /**
@@ -385,9 +388,7 @@
       });
 
       topic.$thumbsUp(function (res) {
-        console.log(res);
         vm.topic = res;
-        NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_READONLY_SUCCESSFULLY');
       });
     };
   }

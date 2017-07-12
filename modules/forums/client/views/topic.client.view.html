@@ -116,7 +116,7 @@
                                                        ng-click="vm.beginDeleteTopic(vm.topic);"></i>
                                                     <i class="fa fa-thumbs-up" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
-                                                       ng-click="vm.beginThumbsUp(vm.topic, null);"></i>
+                                                       ng-click="vm.beginThumbsUp(vm.topic, null);">({{vm.topic._scoreList.length}})</i>
                                                 </div>
                                             </div>
                                         </div>
@@ -164,7 +164,7 @@
                                                        ng-click="vm.beginDeleteReply(rep);"></i>
                                                     <i class="fa fa-thumbs-up" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
-                                                       ng-click="vm.beginThumbsUp(vm.topic, rep);"></i>
+                                                       ng-click="vm.beginThumbsUp(vm.topic, rep);">({{rep._scoreList.length}})</i>
                                                 </div>
                                             </div>
                                         </div>
