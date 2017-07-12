@@ -44,7 +44,6 @@ exports.list = function (req, res) {
   };
 
   var forumsTopicsCount = function (callback) {
-    var nd = (new Date()).getDate();
     Topic.aggregate({
       $project: {
         'forum': '$forum',
@@ -54,7 +53,7 @@ exports.list = function (req, res) {
       }
     }, {
       $match: {
-        day: nd
+        day: moment.utc().date()
       }
     }, {
       $group: {
@@ -95,7 +94,6 @@ exports.list = function (req, res) {
       if (err) {
         callback(err, null);
       } else {
-        console.log(counts);
         callback(null, counts);
       }
     });
