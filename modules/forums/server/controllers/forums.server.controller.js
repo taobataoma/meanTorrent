@@ -71,25 +71,25 @@ exports.list = function (req, res) {
   };
 
   var forumsRepliesCount = function (callback) {
-    var nd = (new Date()).getDate();
-    console.log(moment());
-    console.log(moment.utc());
-    console.log(moment().year(year).month(month).date(day));
-    console.log(moment.utc().year(year).month(month).date(day));
     Topic.aggregate({
       $unwind: '$_replies'
     }, {
       $project: {
         'forum': '$forum',
-        'title': '$title',
-        'createdAt': '$_replies.createdAt',
+        //'title': '$title',
+        //'createdAt': '$_replies.createdAt',
         'day': {
           '$dayOfMonth': '$_replies.createdAt'
-        },
-        'mday': {
-          '$dayOfMonth': moment('$_replies.createdAt')
-        },
-        'nd': nd
+        }
+      }
+    }, {
+      $match: {
+        day: moment.utc().date()
+      }
+    }, {
+      $group: {
+        _id: '$forum',
+        count: {$sum: 1}
       }
     }).exec(function (err, counts) {
       if (err) {
