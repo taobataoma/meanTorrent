@@ -26,9 +26,9 @@ var AttachSchema = new Schema({
 });
 
 /**
- * Sub Score Schema
+ * Sub Thumb Schema
  */
-var ScoreSchema = new Schema({
+var ThumbSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -58,7 +58,7 @@ var ReplySchema = new Schema({
   },
 
   _attach: [AttachSchema],
-  _scoreList: [ScoreSchema],
+  _scoreList: [ThumbSchema],
 
   updatedAt: {
     type: Date
@@ -111,7 +111,7 @@ var TopicSchema = new Schema({
   },
   _replies: [ReplySchema],
   _attach: [AttachSchema],
-  _scoreList: [ScoreSchema],
+  _scoreList: [ThumbSchema],
 
   isTop: {
     type: Number,
@@ -141,5 +141,5 @@ var TopicSchema = new Schema({
 
 mongoose.model('Topic', TopicSchema);
 mongoose.model('Attach', AttachSchema);
-mongoose.model('Score', ScoreSchema);
+mongoose.model('Thumb', ThumbSchema);
 mongoose.model('Reply', ReplySchema);

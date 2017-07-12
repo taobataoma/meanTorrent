@@ -114,6 +114,9 @@
                                                        title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
                                                        ng-show="vm.canEdit(vm.topic);"
                                                        ng-click="vm.beginDeleteTopic(vm.topic);"></i>
+                                                    <i class="fa fa-thumbs-up" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
+                                                       ng-click="vm.beginThumbsUp(vm.topic, null);"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -152,13 +155,16 @@
                                                        title="{{'FORUMS.TITLES.REPLY_QUOTE' | translate}}"
                                                        ng-click="vm.quoteAndReply(rep);"></i>
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
+                                                       title="{{'FORUMS.TITLES.REPLY_EDIT' | translate}}"
                                                        ng-show="vm.canEdit(rep);"
                                                        ng-click="vm.beginEditReply(rep)"></i>
                                                     <i class="fa fa-times" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
+                                                       title="{{'FORUMS.TITLES.REPLY_DELETE' | translate}}"
                                                        ng-show="vm.canEdit(rep);"
                                                        ng-click="vm.beginDeleteReply(rep);"></i>
+                                                    <i class="fa fa-thumbs-up" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
+                                                       ng-click="vm.beginThumbsUp(vm.topic, rep);"></i>
                                                 </div>
                                             </div>
                                         </div>

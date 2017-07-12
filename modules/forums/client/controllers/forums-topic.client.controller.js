@@ -311,15 +311,12 @@
         _id: t._id
       });
 
-      console.log(topic);
-
       topic.$toggleTopicReadonly(function (res) {
         vm.topic = res;
         NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_READONLY_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_TOGGLE_READONLY_FAILED');
       });
-
     };
 
     /**
@@ -373,6 +370,25 @@
 
       vm.postReplyFields.content = list.join('\n');
       vm.beginPostReply();
+    };
+
+    /**
+     * beginThumbsUp
+     * @param t,topic
+     * @param r,reply
+     */
+    vm.beginThumbsUp = function (t, r) {
+      var topic = new TopicsService({
+        forum: vm.forum._id,
+        _id: t._id,
+        _replyId: r ? r._id : undefined
+      });
+
+      topic.$thumbsUp(function (res) {
+        console.log(res);
+        vm.topic = res;
+        NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_READONLY_SUCCESSFULLY');
+      });
     };
   }
 }());

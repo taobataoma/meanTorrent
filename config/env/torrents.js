@@ -178,7 +178,8 @@ module.exports = {
         {name: 'AFFAIRS', value: 'affairs'},
         {name: 'DISCUSS', value: 'discuss'},
         {name: 'BUSINESS', value: 'business'}
-      ]
+      ],
+      thumbs_up_score: 10
     },
     resourcesTags: {
       movie: {

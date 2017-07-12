@@ -711,7 +711,8 @@
         REPLY_EDIT: 'edit reply',
         REPLY_DELETE: 'delete reply',
         TOPIC_EDIT: 'edit topic',
-        TOPIC_DELETE: 'delete topic'
+        TOPIC_DELETE: 'delete topic',
+        TOPIC_THUMBS_UP: 'thumbs up and donate score'
       }
     },
 

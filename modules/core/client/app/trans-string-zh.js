@@ -711,7 +711,8 @@
         REPLY_EDIT: '编辑回复',
         REPLY_DELETE: '删除回复',
         TOPIC_EDIT: '编辑话题',
-        TOPIC_DELETE: '删除话题'
+        TOPIC_DELETE: '删除话题',
+        TOPIC_THUMBS_UP: '点赞送分'
       }
     },
 

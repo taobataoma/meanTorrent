@@ -22,6 +22,15 @@
           forumId: '@forum',
           topicId: '@_id'
         }
+      },
+      thumbsUp: {
+        method: 'PUT',
+        url: '/api/topics/:forumId/:topicId/thumbsUp',
+        params: {
+          forumId: '@forum',
+          topicId: '@_id',
+          replyId: '@_replyId'
+        }
       }
     });
   }

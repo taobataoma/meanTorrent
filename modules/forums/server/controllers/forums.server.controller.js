@@ -12,10 +12,12 @@ var path = require('path'),
   Forum = mongoose.model('Forum'),
   Topic = mongoose.model('Topic'),
   Reply = mongoose.model('Reply'),
+  Thumb = mongoose.model('Thumb'),
   async = require('async'),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var traceConfig = config.meanTorrentConfig.trace;
+var forumsConfig = config.meanTorrentConfig.forumsConfig;
 
 /**
  * list forums
@@ -231,6 +233,61 @@ exports.toggleTopicReadonly = function (req, res) {
 };
 
 /**
+ * thumbsUp
+ * @param req
+ * @param res
+ */
+exports.thumbsUp = function (req, res) {
+  var exist = false;
+  var topic = req.topic;
+  var thumb = new Thumb();
+  thumb.user = req.user;
+  thumb.score = forumsConfig.thumbs_up_score;
+
+  if (req.query.replyId) {
+    topic._replies.forEach(function (r) {
+      if (r._id.equals(req.query.replyId)) {
+        //check if already exist
+        exist = false;
+        r._scoreList.forEach(function (sr) {
+          if (sr.user._id.equals(req.user._id)) {
+            exist = true;
+          }
+        });
+        if (exist) {
+          return res.json(topic);
+        } else {
+          r._scoreList.push(thumb);
+        }
+      }
+    });
+  } else {
+    //check if already exist
+    exist = false;
+    topic._scoreList.forEach(function (sr) {
+      if (sr.user._id.equals(req.user._id)) {
+        exist = true;
+      }
+    });
+    if (exist) {
+      return res.json(topic);
+    } else {
+      topic._scoreList.push(thumb);
+    }
+  }
+
+  topic.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(topic);
+    }
+  });
+};
+
+/**
  * deleteTopic
  * @param req
  * @param res
@@ -385,6 +442,7 @@ exports.topicById = function (req, res, next, id) {
     .populate('_scoreList.user', 'username displayName profileImageURL uploaded downloaded')
     .populate('_replies.user', 'username displayName profileImageURL uploaded downloaded')
     .populate('_replies.updatedBy', 'username displayName profileImageURL uploaded downloaded')
+    .populate('_replies._scoreList.user', 'username displayName profileImageURL uploaded downloaded')
     .exec(function (err, topic) {
       if (err) {
         return next(err);

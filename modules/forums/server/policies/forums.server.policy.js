@@ -22,7 +22,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/topics/:forumId', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/:replyId', permissions: '*'},
-          {resources: '/api/topics/:forumId/:topicId/toggleTopicReadonly', permissions: '*'}
+          {resources: '/api/topics/:forumId/:topicId/toggleTopicReadonly', permissions: '*'},
+          {resources: '/api/topics/:forumId/:topicId/thumbsUp', permissions: '*'}
         ]
       },
       {
