@@ -298,7 +298,7 @@
 .reply-item {
     .reply-wrapper {
         padding-left: 60px;
-        margin: 20px 30px;
+        margin: 20px 40px 20px 20px;
         .reply-comment {
             position: relative;
             background-color: #fff;
@@ -372,8 +372,17 @@
                         }
                     }
                 }
+                .reply-floor {
+                    color: #333;
+                    border-radius: 8px 0 0 8px;
+                    border-right: none;
+                    position: absolute;
+                    right: 3px;
+                    top: 6px;
+                    padding: 4px;
+                }
                 .reply-comment-header-command {
-                    //margin-right: 15px;
+                    margin-right: 30px;
                     @media (max-width: @screen-xs-max) {
                         float: none !important;
                         margin-top: 8px;

@@ -118,6 +118,8 @@
                                                        title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
                                                        ng-click="vm.beginThumbsUp(vm.topic, null);">({{vm.topic._scoreList.length}})</i>
                                                 </div>
+
+                                                <div class="reply-floor">F1</div>
                                             </div>
                                         </div>
                                         <div class="reply-comment-body">
@@ -166,6 +168,8 @@
                                                        title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
                                                        ng-click="vm.beginThumbsUp(vm.topic, rep);">({{rep._scoreList.length}})</i>
                                                 </div>
+
+                                                <div class="reply-floor">F{{$index+2}}</div>
                                             </div>
                                         </div>
                                         <div class="reply-comment-body">
