@@ -270,6 +270,16 @@ gulp.task('makeUploadsDir', function () {
       console.error(err);
     }
   });
+  fs.mkdir('modules/forums/client/attach', function (err) {
+    if (err && err.code !== 'EEXIST') {
+      console.error(err);
+    }
+  });
+  fs.mkdir('modules/forums/client/attach/temp', function (err) {
+    if (err && err.code !== 'EEXIST') {
+      console.error(err);
+    }
+  });
   fs.mkdir('modules/torrents/client/uploads/subtitles', function (err) {
     if (err && err.code !== 'EEXIST') {
       console.error(err);

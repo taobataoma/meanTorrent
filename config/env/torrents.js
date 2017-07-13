@@ -3,6 +3,7 @@
 module.exports = {
   meanTorrentConfig: {
     app: {
+      domain: 'http://chd.im:3000',
       show_warning_popup: true
     },
     language: [

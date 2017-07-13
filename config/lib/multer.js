@@ -54,6 +54,42 @@ module.exports.getUploadDestination = function (req, file, cb) {
   cb(null, config.uploads.torrent.file.temp);
 };
 
+module.exports.createUploadAttachFilename = function (req, file, cb) {
+  var RexStr = /\(|\)|\[|\]|\,/g;
+  var filename = file.originalname.replace(RexStr, function (MatchStr) {
+    switch (MatchStr) {
+      case '(':
+        return '<';
+      case ')':
+        return '>';
+      case '[':
+        return '{';
+      case ']':
+        return '}';
+      case ',':
+        return ' ';
+      default:
+        break;
+    }
+  });
+
+  if (fs.existsSync(config.uploads.attach.file.temp + filename)) {
+    fs.unlinkSync(config.uploads.attach.file.temp + filename);
+  }
+
+  if (fs.existsSync(config.uploads.attach.file.dest + filename)) {
+    var err = new Error();
+    err.code = 'FILE_ALREADY_EXISTS';
+    cb(err, null);
+  } else {
+    cb(null, filename);
+  }
+};
+
+module.exports.getUploadAttachDestination = function (req, file, cb) {
+  cb(null, config.uploads.attach.file.temp);
+};
+
 module.exports.createUploadSubtitleFilename = function (req, file, cb) {
   var regex = new RegExp(',', 'g');
   var filename = file.originalname.replace(regex, ' ');

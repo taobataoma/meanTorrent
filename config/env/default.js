@@ -63,6 +63,15 @@ module.exports = {
         }
       }
     },
+    attach: {
+      file: {
+        dest: './modules/forums/client/attach/',
+        temp: './modules/forums/client/attach/temp/',
+        limits: {
+          fileSize: 100 * 1024 * 1024 // Max file size in bytes (100 MB)
+        }
+      }
+    },
     subtitle: {
       file: {
         dest: './modules/torrents/client/uploads/subtitles/',
