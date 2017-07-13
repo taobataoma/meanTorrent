@@ -10,6 +10,9 @@ module.exports = function (app) {
   app.route('/api/forums').all(forumsPolicy.isAllowed)
     .get(forums.list);
 
+  app.route('/api/attach/upload').all(forumsPolicy.isAllowed)
+    .post(forums.attachUpload);
+
   app.route('/api/forums/:forumId').all(forumsPolicy.isAllowed)
     .get(forums.read);
 

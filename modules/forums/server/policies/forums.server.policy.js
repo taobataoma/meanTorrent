@@ -18,6 +18,7 @@ exports.invokeRolesPolicies = function () {
         roles: ['admin', 'oper', 'user'],
         allows: [
           {resources: '/api/forums', permissions: '*'},
+          {resources: '/api/attach/upload', permissions: '*'},
           {resources: '/api/forums/:forumId', permissions: '*'},
           {resources: '/api/topics/:forumId', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId', permissions: '*'},
