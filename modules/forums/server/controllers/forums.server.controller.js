@@ -320,11 +320,12 @@ exports.thumbsUp = function (req, res) {
             message: 'ALREADY_THUMBS_UP'
           });
         } else {
-          if (r.user.score >= forumsConfig.thumbs_up_score) {
+          if (req.user.score >= forumsConfig.thumbs_up_score) {
             r._scoreList.push(thumb);
             r.user.update({
               $inc: {score: forumsConfig.thumbs_up_score}
             }).exec();
+            save();
           } else {
             return res.status(422).send({
               message: 'SCORE_NOT_ENOUGH'
@@ -346,11 +347,12 @@ exports.thumbsUp = function (req, res) {
         message: 'ALREADY_THUMBS_UP'
       });
     } else {
-      if (topic.user.score >= forumsConfig.thumbs_up_score) {
+      if (req.user.score >= forumsConfig.thumbs_up_score) {
         topic._scoreList.push(thumb);
         topic.user.update({
           $inc: {score: forumsConfig.thumbs_up_score}
         }).exec();
+        save();
       } else {
         return res.status(422).send({
           message: 'SCORE_NOT_ENOUGH'
@@ -359,19 +361,21 @@ exports.thumbsUp = function (req, res) {
     }
   }
 
-  topic.save(function (err) {
-    if (err) {
-      return res.status(422).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.json(topic);
-    }
-  });
+  function save() {
+    topic.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(topic);
+      }
+    });
 
-  user.update({
-    $inc: {score: -forumsConfig.thumbs_up_score}
-  }).exec();
+    user.update({
+      $inc: {score: -forumsConfig.thumbs_up_score}
+    }).exec();
+  }
 };
 
 /**

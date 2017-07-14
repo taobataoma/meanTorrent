@@ -2,9 +2,9 @@
   'use strict';
 
   angular.module('core')
-    .directive('mtScale', mtScale);
+    .directive('mtScaleByMouse', mtScaleByMouse);
 
-  function mtScale() {
+  function mtScaleByMouse() {
     var directive = {
       restrict: 'A',
       link: link
@@ -13,9 +13,9 @@
     return directive;
 
     function link(scope, element, attrs) {
-      scope.$watch(attrs.mtScale, function (s) {
+      scope.$watch(attrs.mtScaleByMouse, function (s) {
 
-        var mtScale = JSON.parse(JSON.stringify(eval('(' + attrs.mtScale + ')')));
+        var mtScale = JSON.parse(JSON.stringify(eval('(' + attrs.mtScaleByMouse + ')')));
 
         element.css('transition-property', 'transform, opacity');
         element.css('transition-duration', mtScale.duration || '.5s');

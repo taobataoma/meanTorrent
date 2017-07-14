@@ -397,11 +397,12 @@
     };
 
     /**
-     * beginThumbsUp
-     * @param t,topic
-     * @param r,reply
+     * function
+     * @param evt
+     * @param t
+     * @param r
      */
-    vm.beginThumbsUp = function (t, r) {
+    vm.beginThumbsUp = function (evt, t, r) {
       var topic = new TopicsService({
         forum: vm.forum._id,
         _id: t._id,
@@ -410,7 +411,13 @@
 
       topic.$thumbsUp(function (res) {
         vm.topic = res;
-      }, function(res){
+
+        $timeout(function () {
+          var ele = angular.element($('#thumbs_' + (r ? r._id : t._id)));
+          ele.attr('mt-scale-start', true);
+          $compile(ele)($scope);
+        }, 10);
+      }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'ERROR');
       });
     };

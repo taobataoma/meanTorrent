@@ -115,9 +115,13 @@
                                                        title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
                                                        ng-show="vm.canEdit(vm.topic);"
                                                        ng-click="vm.beginDeleteTopic(vm.topic);"></i>
-                                                    <i class="fa fa-thumbs-up" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
-                                                       ng-click="vm.beginThumbsUp(vm.topic, null);">({{vm.topic._scoreList.length}})</i>
+                                                    <span ng-click="vm.beginThumbsUp($event, vm.topic, null);">
+                                                        <i id="thumbs_{{vm.topic._id}}" class="fa fa-thumbs-up" aria-hidden="true"
+                                                           mt-scale-by-param="{scale: 3, duration: '.5s'}"
+                                                           mt-scale-start="false"
+                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
+                                                                >({{vm.topic._scoreList.length}})</i>
+                                                    </span>
                                                 </div>
 
                                                 <div class="reply-floor">F1</div>
@@ -131,7 +135,8 @@
                                                 <div class="attach-header" translate="FORUMS.ATTACH_LIST_HEADER"></div>
                                                 <ol>
                                                     <li ng-repeat="af in vm.topic._attach track by $index">
-                                                        <span><a ng-href="#" ng-click="vm.downloadAttach(vm.topic, null, af);">{{af.filename}}</a></span> (
+                                                        <span><a ng-href="#"
+                                                                 ng-click="vm.downloadAttach(vm.topic, null, af);">{{af.filename}}</a></span> (
                                                         <span>{{'FORUMS.ATTACH_FILE_SIZE' | translate}} {{af.filesize | bytes}}</span>
                                                         <span>{{'FORUMS.ATTACH_DOWN_COUNT' | translate}} {{af.downCount}}</span> )
                                                     </li>
@@ -175,11 +180,14 @@
                                                        title="{{'FORUMS.TITLES.REPLY_DELETE' | translate}}"
                                                        ng-show="vm.canEdit(rep);"
                                                        ng-click="vm.beginDeleteReply(rep);"></i>
-                                                    <i class="fa fa-thumbs-up" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
-                                                       ng-click="vm.beginThumbsUp(vm.topic, rep);">({{rep._scoreList.length}})</i>
+                                                    <span ng-click="vm.beginThumbsUp($event, vm.topic, rep);">
+                                                        <i id="thumbs_{{rep._id}}" class="fa fa-thumbs-up" aria-hidden="true"
+                                                           mt-scale-by-param="{scale: 3, duration: '.5s'}"
+                                                           mt-scale-start="false"
+                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
+                                                                >({{rep._scoreList.length}})</i>
+                                                    </span>
                                                 </div>
-
                                                 <div class="reply-floor">F{{$index+2}}</div>
                                             </div>
                                         </div>
@@ -191,7 +199,8 @@
                                                 <div class="attach-header" translate="FORUMS.ATTACH_LIST_HEADER"></div>
                                                 <ol>
                                                     <li ng-repeat="af in rep._attach track by $index">
-                                                        <span><a ng-href="#" ng-click="vm.downloadAttach(vm.topic, rep, af);">{{af.filename}}</a></span> (
+                                                        <span><a ng-href="#"
+                                                                 ng-click="vm.downloadAttach(vm.topic, rep, af);">{{af.filename}}</a></span> (
                                                         <span>{{'FORUMS.ATTACH_FILE_SIZE' | translate}} {{af.filesize | bytes}}</span>
                                                         <span>{{'FORUMS.ATTACH_DOWN_COUNT' | translate}} {{af.downCount}}</span> )
                                                     </li>

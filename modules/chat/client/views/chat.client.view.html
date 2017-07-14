@@ -76,7 +76,7 @@
                 <div class="user-body">
                     <ul class="list-unstyled">
                         <li ng-repeat="u in vm.users | orderBy:['-isAdmin', '-isOper', '-isVip', 'username']">
-                            <div class="user-item-wrapper" mt-scale="{scale: 1.1, duration: '.5s'}" ng-dblclick="vm.onUserListItemDblClicked(u);">
+                            <div class="user-item-wrapper" mt-scale-by-mouse="{scale: 1.1, duration: '.5s'}" ng-dblclick="vm.onUserListItemDblClicked(u);">
                                 <a class="user-item-avatar">
                                     <img title="@{{u.displayName}}" ng-src="/{{u.profileImageURL}}">
                                 </a>
@@ -101,7 +101,7 @@
     <script type="text/ng-template" id="fontColor.html">
         <div class="color-list">
             <label ng-repeat="c in vm.colorList">
-                <div style="background-color: {{c}}" class="color-item" mt-scale="{scale: 1.2, duration: '.5s'}"
+                <div style="background-color: {{c}}" class="color-item" mt-scale-by-mouse="{scale: 1.2, duration: '.5s'}"
                      ng-click="vm.onColorItemClicked(c);"
                      ng-mouseenter="vm.onColorItemMouseEnter(c);"
                      ng-mouseleave="vm.onColorItemMouseLeave(c);"></div>
