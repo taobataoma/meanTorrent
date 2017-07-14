@@ -62,6 +62,9 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 14. Invitations manager, user can keep track of invited friends registration progress.
 15. Admin/Oper can manual management the user`s uploaded/downloaded/score data.
 16. Complete messageBox, include message list, read status, keys search, reply detail and [markdown](https://guides.github.com/features/mastering-markdown/) style support.
+17. Complete forum function, admin can configure each forum section and section moderators, the content support [markdown](https://guides.github.com/features/mastering-markdown/) style.
+18. Forum topics and replies can attach picture files and other type files, The picture file will be displayed automatically, Others file can only be downloaded.
+19. Forum replies support real edit, What you see is what you get, and drag & drop attach file upload.
 
 #### Chat room feature:
 1. Users name list
@@ -72,9 +75,8 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 6. Chat message bubble style
 
 ## TODO
-- Other type torrent support(like TV serial, Music, Other).
+- Other type torrent support(like Music, Other).
 - torrent more images from [TMDB](https://www.themoviedb.org)
-- Forums function support.
 - Subject support, like region subject, [IMDB](http://www.imdb.com) TOP 100 subject etc.
 - VIP Donate function.
 - Movie belongs to collection, user can list all movie torrents of the collection.
