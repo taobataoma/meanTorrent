@@ -298,6 +298,7 @@ exports.toggleTopicReadonly = function (req, res) {
  * @param res
  */
 exports.thumbsUp = function (req, res) {
+  var user = req.user;
   var exist = false;
   var topic = req.topic;
   var thumb = new Thumb();
@@ -315,9 +316,20 @@ exports.thumbsUp = function (req, res) {
           }
         });
         if (exist) {
-          return res.json(topic);
+          return res.status(422).send({
+            message: 'ALREADY_THUMBS_UP'
+          });
         } else {
-          r._scoreList.push(thumb);
+          if (r.user.score >= forumsConfig.thumbs_up_score) {
+            r._scoreList.push(thumb);
+            r.user.update({
+              $inc: {score: forumsConfig.thumbs_up_score}
+            }).exec();
+          } else {
+            return res.status(422).send({
+              message: 'SCORE_NOT_ENOUGH'
+            });
+          }
         }
       }
     });
@@ -330,9 +342,20 @@ exports.thumbsUp = function (req, res) {
       }
     });
     if (exist) {
-      return res.json(topic);
+      return res.status(422).send({
+        message: 'ALREADY_THUMBS_UP'
+      });
     } else {
-      topic._scoreList.push(thumb);
+      if (topic.user.score >= forumsConfig.thumbs_up_score) {
+        topic._scoreList.push(thumb);
+        topic.user.update({
+          $inc: {score: forumsConfig.thumbs_up_score}
+        }).exec();
+      } else {
+        return res.status(422).send({
+          message: 'SCORE_NOT_ENOUGH'
+        });
+      }
     }
   }
 
@@ -345,6 +368,10 @@ exports.thumbsUp = function (req, res) {
       res.json(topic);
     }
   });
+
+  user.update({
+    $inc: {score: -forumsConfig.thumbs_up_score}
+  }).exec();
 };
 
 /**

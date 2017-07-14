@@ -410,6 +410,8 @@
 
       topic.$thumbsUp(function (res) {
         vm.topic = res;
+      }, function(res){
+        NotifycationService.showErrorNotify(res.data.message, 'ERROR');
       });
     };
 
