@@ -193,10 +193,13 @@ such as:
       announce_prefix: '[CHD.im].',
       admin: 'admin@chd.im',
       base_url: 'http://chd.im',
-      client_black_list_url: 'http://chd.im/client_black_list'
+      client_black_list_url: 'http://chd.im/client_black_list',
+      private_torrent_cms: true
     },
 ```
 meanTorrent tracker is private, please set the `announce.url` to your server url, then when user to upload torrent file, It will autocheck the torrent announce url whether matching as `announce.url`.
+But, meanTorrent support public tracker torrents CMS mode with `private_torrent_cms` set to `false`, in `private` mode, user can upload and download public tracker torrent files, but these torrent files is can not
+used by meanTorrent tracker server.
 
 ```javascript
     tmdbConfig: {

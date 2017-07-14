@@ -17,7 +17,8 @@ module.exports = {
       announce_prefix: '[CHD.im].',
       admin: 'admin@chd.im',
       base_url: 'http://chd.im:3000',
-      client_black_list_url: 'http://chd.im:3000/client_black_list'
+      client_black_list_url: 'http://chd.im:3000/client_black_list',
+      private_torrent_cms: true
     },
     sign: {
       open_signin: true,

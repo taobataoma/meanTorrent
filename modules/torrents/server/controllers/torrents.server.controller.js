@@ -142,11 +142,13 @@ exports.upload = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
-            console.log(torrent.metadata.announce);
-            message = 'ANNOUNCE_URL_ERROR';
+          if (config.meanTorrentConfig.announce.private_torrent_cms) {
+            if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
+              console.log(torrent.metadata.announce);
+              message = 'ANNOUNCE_URL_ERROR';
 
-            reject(message);
+              reject(message);
+            }
           }
           torrentinfo = torrent.metadata;
           torrentinfo.info_hash = torrent.infoHash();
@@ -305,28 +307,11 @@ exports.download = function (req, res) {
     if (exists) {
       getTorrentFileData(filePath)
         .then(function () {
-          //var options = {
-          //  root: path.join(__dirname, '../../../../'),
-          //  headers: {
-          //    'Content-Type': 'application/x-bittorrent',
-          //    'Content-Disposition': 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename,
-          //    'Content-Length': stat.size
-          //  }
-          //};
-          //res.sendFile(filePath, options);
-
           res.set('Content-Type', 'application/x-bittorrent');
           res.set('Content-Disposition', 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename);
           res.set('Content-Length', stat.size);
 
           res.send(benc.encode(torrent_data));
-
-          //res.writeHead(200, {
-          //  'Content-Type': 'application/octet-stream',
-          //  'Content-Disposition': 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename,
-          //  'Content-Length': stat.size
-          //});
-          //fs.createReadStream(filePath).pipe(res);
         })
         .catch(function (err) {
           res.status(422).send(err);
@@ -347,8 +332,10 @@ exports.download = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          var announce = config.meanTorrentConfig.announce.url + '/' + req.user.passkey;
-          torrent.metadata.announce = announce;
+          if (config.meanTorrentConfig.announce.private_torrent_cms) {
+            var announce = config.meanTorrentConfig.announce.url + '/' + req.user.passkey;
+            torrent.metadata.announce = announce;
+          }
           torrent_data = torrent.metadata;
           resolve();
         }
