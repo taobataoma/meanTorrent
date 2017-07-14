@@ -221,7 +221,7 @@ exports.announceEdit = function (req, res) {
             getTorrentFileData(filePath)
               .then(function () {
                 res.set('Content-Type', 'application/x-bittorrent');
-                res.set('Content-Disposition', 'attachment; filename=' + req.file.filename);
+                res.set('Content-Disposition', 'attachment; filename=' + encodeURI(req.file.filename));
                 res.set('Content-Length', stat.size);
 
                 res.send(benc.encode(torrent_data));
@@ -308,12 +308,13 @@ exports.download = function (req, res) {
       getTorrentFileData(filePath)
         .then(function () {
           res.set('Content-Type', 'application/x-bittorrent');
-          res.set('Content-Disposition', 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + req.torrent.torrent_filename);
+          res.set('Content-Disposition', 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + encodeURI(req.torrent.torrent_filename));
           res.set('Content-Length', stat.size);
 
           res.send(benc.encode(torrent_data));
         })
         .catch(function (err) {
+          console.log(err);
           res.status(422).send(err);
         });
     } else {

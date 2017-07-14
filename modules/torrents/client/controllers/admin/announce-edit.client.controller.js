@@ -60,7 +60,7 @@
       vm.tFile = undefined;
 
       var contentDisposition = res.headers('Content-Disposition');
-      var fileName = contentDisposition.substr(contentDisposition.indexOf('filename=') + 9);
+      var fileName = decodeURI(contentDisposition.substr(contentDisposition.indexOf('filename=') + 9));
       FileSaver.saveAs(res.data, fileName);
     }
 
