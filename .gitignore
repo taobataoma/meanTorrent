@@ -21,8 +21,10 @@ coverage/
 # ======================
 public/dist/
 uploads
+attach
 modules/users/client/img/profile/uploads
 modules/torrents/client/uploads
+modules/forums/client/attach
 config/env/local.js
 config/env/local-*.js
 *.pem
