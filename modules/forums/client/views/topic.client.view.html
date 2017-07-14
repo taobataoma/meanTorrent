@@ -54,7 +54,8 @@
                                 <a class="btn btn-success btn-width-100"
                                    href="#" ng-click="vm.beginPostReply();">{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</a>
                                 <a class="btn btn-default btn-width-100"
-                                   href="#" ng-click="vm.toggleReadonly(vm.topic);">{{ vm.topic.readOnly ? 'FORUMS.BTN_UNSET_READONLY' : 'FORUMS.BTN_SET_READONLY' | translate}}</a>
+                                   href="#"
+                                   ng-click="vm.toggleReadonly(vm.topic);">{{ vm.topic.readOnly ? 'FORUMS.BTN_UNSET_READONLY' : 'FORUMS.BTN_SET_READONLY' | translate}}</a>
                             </div>
 
                             <h5 class="text-danger text-uppercase" translate="FORUMS.READ_ONLY_REPLY"
@@ -126,6 +127,16 @@
                                             <div id="{{vm.topic._id}}" data-provide="markdown" class="reply-comment-body-text"
                                                  ng-bind-html="vm.getTopicContent(vm.topic)">
                                             </div>
+                                            <div class="attach-list" ng-if="vm.topic._attach.length">
+                                                <div class="attach-header" translate="FORUMS.ATTACH_LIST_HEADER"></div>
+                                                <ol>
+                                                    <li ng-repeat="af in vm.topic._attach track by $index">
+                                                        <span><a ng-href="#" ng-click="vm.downloadAttach(vm.topic, null, af);">{{af.filename}}</a></span> (
+                                                        <span>{{'FORUMS.ATTACH_FILE_SIZE' | translate}} {{af.filesize | bytes}}</span>
+                                                        <span>{{'FORUMS.ATTACH_DOWN_COUNT' | translate}} {{af.downCount}}</span> )
+                                                    </li>
+                                                </ol>
+                                            </div>
                                             <div class="row text-right margin-top-10" ng-show="vm.topic.updatedAt">
                                                 <p class="reply-comment-body-edited-text">[ {{vm.topic.updatedBy.displayName}} {{ 'COMMENT_EDITED_INFO' | translate}} {{vm.topic.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>
                                             </div>
@@ -176,6 +187,16 @@
                                             <div id="{{rep._id}}" data-provide="markdown" class="reply-comment-body-text"
                                                  ng-bind-html="vm.getTopicContent(rep)">
                                             </div>
+                                            <div class="attach-list" ng-if="rep._attach.length">
+                                                <div class="attach-header" translate="FORUMS.ATTACH_LIST_HEADER"></div>
+                                                <ol>
+                                                    <li ng-repeat="af in rep._attach track by $index">
+                                                        <span><a ng-href="#" ng-click="vm.downloadAttach(vm.topic, rep, af);">{{af.filename}}</a></span> (
+                                                        <span>{{'FORUMS.ATTACH_FILE_SIZE' | translate}} {{af.filesize | bytes}}</span>
+                                                        <span>{{'FORUMS.ATTACH_DOWN_COUNT' | translate}} {{af.downCount}}</span> )
+                                                    </li>
+                                                </ol>
+                                            </div>
                                             <div class="row text-right margin-top-10" ng-show="rep.updatedAt">
                                                 <p class="reply-comment-body-edited-text">[ {{rep.updatedBy.displayName}} {{ 'COMMENT_EDITED_INFO' | translate}} {{rep.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>
                                             </div>
@@ -201,13 +222,14 @@
             </table>
         </div>
 
-        <div class="reply-post margin-bottom-30" ng-if="!vm.topic.readOnly || vm.canEdit(vm.topic)">
+        <div class="reply-post margin-bottom-30" ng-show="!vm.topic.readOnly || vm.canEdit(vm.topic)">
             <div class="row">
                 <div class="col-md-12">
                     <form name="vm.replyForm" ng-submit="vm.postReply(vm.replyForm.$valid)" novalidate autocomplete="off">
                         <div class="form-group" show-errors>
                             <textarea id="postReplyContent" name="postReplyContent" ng-model="vm.postReplyFields.content"
-                                      mt-markdown-editor="postReplyContent" required></textarea>
+                                      mt-markdown-editor="postReplyContent"
+                                      upload-method="vm.uploadAttach(editor, ufile, progressback, callback, errback);" required></textarea>
 
                             <div ng-messages="vm.replyForm.postReplyContent.$error" role="alert">
                                 <p class="help-block error-text" ng-message="required">{{ 'FORUMS.PRC_REQUIRED' | translate}}</p>

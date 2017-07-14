@@ -15,6 +15,10 @@ var AttachSchema = new Schema({
     default: '',
     trim: true
   },
+  filesize: {
+    type: Number,
+    default: 0
+  },
   downCount: {
     type: Number,
     default: 0

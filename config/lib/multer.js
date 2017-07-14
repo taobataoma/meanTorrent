@@ -78,9 +78,11 @@ module.exports.createUploadAttachFilename = function (req, file, cb) {
   }
 
   if (fs.existsSync(config.uploads.attach.file.dest + filename)) {
-    var err = new Error();
-    err.code = 'FILE_ALREADY_EXISTS';
-    cb(err, null);
+    var ext = file.originalname.replace(/^.+\./, '');
+    var regex = new RegExp(ext, 'g');
+    filename = filename.replace(regex, Date.now() + '.' + ext);
+
+    cb(null, filename);
   } else {
     cb(null, filename);
   }

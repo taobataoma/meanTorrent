@@ -680,6 +680,15 @@
       TODAY_NEW_COUNT_ALL: '(Today: <mark class="text-danger">{{topic}}</mark> topics, <mark class="text-danger">{{reply}}</mark> replies)',
       TODAY_NEW_COUNT_TOPIC: '(Today: <mark class="text-danger">{{topic}}</mark> topics)',
       TODAY_NEW_COUNT_REPLY: '(Today: <mark class="text-danger">{{reply}}</mark> replies)',
+      UPLOAD_ATTACH_SUCCESSFULLY: 'Upload attach file successfully',
+      UPLOAD_ATTACH_FAILED: 'Upload attach file failed',
+      ATTACH_UPLOAD_TOOLTIP: 'Attach files by dragging & dropping to here, The picture file will be displayed automatically, Others file can only be downloaded.',
+      ATTACH_UPLOADING: 'Uploading',
+      ATTACH_LIST_HEADER: 'Attach files list:',
+      ATTACH_FILE_SIZE: 'Size:',
+      ATTACH_DOWN_COUNT: 'Downloaded:',
+      ATTACHE_DOWNLOAD_SUCCESSFULLY: 'Attach file download successfully',
+      ATTACHE_DOWNLOAD_FAILED: 'Attach file download failed',
 
       CATEGORY: {
         AFFAIRS: 'Affairs',

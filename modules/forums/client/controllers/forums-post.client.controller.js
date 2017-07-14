@@ -5,10 +5,10 @@
     .module('forums')
     .controller('ForumsPostController', ForumsPostController);
 
-  ForumsPostController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'SideOverlay', '$filter', 'NotifycationService',
+  ForumsPostController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'Upload', '$timeout', 'NotifycationService',
     'marked', 'ModalConfirmService', '$stateParams', 'TopicsService'];
 
-  function ForumsPostController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, SideOverlay, $filter, NotifycationService,
+  function ForumsPostController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, Upload, $timeout, NotifycationService,
                                 marked, ModalConfirmService, $stateParams, TopicsService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
@@ -49,8 +49,25 @@
         return false;
       }
 
+      var uf = [];
+      angular.forEach($scope.uFiles, function (f) {
+        uf.push({
+          filename: f.name,
+          filesize: f.size
+        });
+      });
+
+      var uimg = [];
+      angular.forEach($scope.uImages, function (f) {
+        uimg.push({
+          filename: f.name
+        });
+      });
+
       var post = new TopicsService(vm.postFields);
       post.forum = vm.forum._id;
+      post._attach = uf;
+      post._uImage = uimg;
 
       post.$save(function (response) {
         successCallback(response);
@@ -60,6 +77,9 @@
 
       function successCallback(res) {
         vm.postFields = {};
+        $scope.uFiles = [];
+        $scope.uImages = [];
+
         $scope.$broadcast('show-errors-reset', 'vm.postForm');
         NotifycationService.showSuccessNotify('FORUMS.POST_TOPIC_SUCCESSFULLY');
         $state.go('forums.topic', {forumId: vm.forum._id, topicId: res._id});
@@ -70,5 +90,31 @@
       }
     };
 
+    /**
+     * uploadAttach
+     * @param editor
+     * @param ufile
+     * @param callback
+     */
+    vm.uploadAttach = function (editor, ufile, progressback, callback, errback) {
+      Upload.upload({
+        url: '/api/attach/upload',
+        data: {
+          newAttachFile: ufile
+        }
+      }).then(function (res) {
+        if (callback) {
+          callback(res.data.filename);
+        }
+      }, function (res) {
+        if (errback && res.status > 0) {
+          errback(res);
+        }
+      }, function (evt) {
+        if (progressback) {
+          progressback(parseInt(100.0 * evt.loaded / evt.total, 10));
+        }
+      });
+    };
   }
 }());

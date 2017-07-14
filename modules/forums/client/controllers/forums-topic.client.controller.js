@@ -6,12 +6,13 @@
     .controller('ForumsTopicController', ForumsTopicController);
 
   ForumsTopicController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'ScoreLevelService', '$timeout', 'NotifycationService',
-    'marked', 'ModalConfirmService', '$stateParams', 'TopicsService', 'localStorageService', '$compile', 'RepliesService', '$filter'];
+    'marked', 'ModalConfirmService', '$stateParams', 'TopicsService', 'localStorageService', '$compile', 'RepliesService', '$filter', 'Upload', 'DownloadService'];
 
   function ForumsTopicController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, ScoreLevelService, $timeout, NotifycationService,
-                                 marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService, $filter) {
+                                 marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService, $filter, Upload, DownloadService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
+    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.user = Authentication.user;
     vm.forumPath = [];
     vm.postReplyFields = {};
@@ -333,9 +334,26 @@
         return false;
       }
 
+      var uf = [];
+      angular.forEach($scope.uFiles, function (f) {
+        uf.push({
+          filename: f.name,
+          filesize: f.size
+        });
+      });
+
+      var uimg = [];
+      angular.forEach($scope.uImages, function (f) {
+        uimg.push({
+          filename: f.name
+        });
+      });
+
       var reply = new RepliesService(vm.postReplyFields);
       reply.forum = vm.forum._id;
       reply.topic = vm.topic._id;
+      reply._attach = uf;
+      reply._uImage = uimg;
 
       reply.$save(function (response) {
         successCallback(response);
@@ -346,6 +364,9 @@
       function successCallback(res) {
         vm.postReplyFields = {};
         vm.topic = res;
+        $scope.uFiles = [];
+        $scope.uImages = [];
+
         $scope.$broadcast('show-errors-reset', 'vm.replyForm');
         NotifycationService.showSuccessNotify('FORUMS.POST_REPLY_SUCCESSFULLY');
       }
@@ -389,6 +410,54 @@
 
       topic.$thumbsUp(function (res) {
         vm.topic = res;
+      });
+    };
+
+    /**
+     * uploadAttach
+     * @param editor
+     * @param ufile
+     * @param callback
+     */
+    vm.uploadAttach = function (editor, ufile, progressback, callback, errback) {
+      Upload.upload({
+        url: '/api/attach/upload',
+        data: {
+          newAttachFile: ufile
+        }
+      }).then(function (res) {
+        if (callback) {
+          callback(res.data.filename);
+        }
+      }, function (res) {
+        if (errback && res.status > 0) {
+          errback(res);
+        }
+      }, function (evt) {
+        if (progressback) {
+          progressback(parseInt(100.0 * evt.loaded / evt.total, 10));
+        }
+      });
+    };
+
+    /**
+     * downloadAttach
+     * @param t
+     * @param r
+     * @param af
+     */
+    vm.downloadAttach = function (t, r, af) {
+      var url = '/api/attach/' + vm.topic._id.toString();
+      url += r ? '/' + r._id.toString() : '';
+      url += '?attachId=' + af._id.toString();
+
+      DownloadService.downloadFile(url, null, function (status) {
+        if (status === 200) {
+          NotifycationService.showSuccessNotify('FORUMS.ATTACHE_DOWNLOAD_SUCCESSFULLY');
+        }
+      }, function (err) {
+        console.log(err);
+        NotifycationService.showErrorNotify(err.data.message, 'FORUMS.ATTACHE_DOWNLOAD_FAILED');
       });
     };
   }

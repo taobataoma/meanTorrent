@@ -52,7 +52,8 @@
                         </div>
 
                         <div class="form-group" show-errors>
-                            <textarea id="postContent" name="postContent" ng-model="vm.postFields.content" mt-markdown-editor="postContent" required></textarea>
+                            <textarea id="postContent" name="postContent" ng-model="vm.postFields.content"
+                                      mt-markdown-editor="postContent" upload-method="vm.uploadAttach(editor, ufile, progressback, callback, errback);" required></textarea>
 
                             <div ng-messages="vm.postForm.postContent.$error" role="alert">
                                 <p class="help-block error-text" ng-message="required">{{ 'FORUMS.PC_REQUIRED' | translate}}</p>
