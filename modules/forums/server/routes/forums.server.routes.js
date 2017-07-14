@@ -13,6 +13,11 @@ module.exports = function (app) {
   app.route('/api/attach/upload').all(forumsPolicy.isAllowed)
     .post(forums.attachUpload);
 
+  app.route('/api/attach/:topicId').all(forumsPolicy.isAllowed)
+    .get(forums.attachDownload);
+  app.route('/api/attach/:topicId/:replyId').all(forumsPolicy.isAllowed)
+    .get(forums.attachDownload);
+
   app.route('/api/forums/:forumId').all(forumsPolicy.isAllowed)
     .get(forums.read);
 
