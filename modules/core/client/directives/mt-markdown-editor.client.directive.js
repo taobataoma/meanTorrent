@@ -33,7 +33,7 @@
           scope.uFiles = [];
           scope.uImages = [];
 
-          var eleUploadTip = angular.element('<div class="attach-info text-long" ng-show="!uFile"><div class="attach-upload-tooltip">{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP\' | translate}}</div></div>');
+          var eleUploadTip = angular.element('<div class="attach-info" ng-show="!uFile"><div class="attach-upload-tooltip text-long"><span>{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP\' | translate}}</span></div></div>');
           var eleUploadBegin = angular.element('<div class="upload-info" ng-show="uFile"><i class="fa fa-cog fa-spin fa-lg fa-fw"></i> <div class="attach-upload-progress" style="width: {{uProgress}}%"></div><div class="attach-upload-filename">{{\'FORUMS.ATTACH_UPLOADING\' | translate}}: {{uFile.name}}</div></div>');
           var eleUploadList = angular.element('<div class="attach-list" ng-show="uFiles.length"><div><ol><li ng-repeat="f in uFiles track by $index">{{f.name}}　<i class="fa fa-times" ng-click="removeAttach($index)"></i></li></ol></div></div>');
 

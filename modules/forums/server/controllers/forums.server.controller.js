@@ -679,6 +679,7 @@ exports.attachUpload = function (req, res) {
 exports.attachDownload = function (req, res) {
   var topic = req.topic;
   var filePath = undefined;
+  var fileName = undefined;
 
   if (req.params.replyId) {
     topic._replies.forEach(function (rep) {
@@ -687,6 +688,7 @@ exports.attachDownload = function (req, res) {
           if (at._id.equals(req.query.attachId)) {
             at.downCount++;
             filePath = config.uploads.attach.file.dest + at.filename;
+            fileName = at.filename;
 
             topic.markModified('_replies');
             topic.save();
@@ -699,14 +701,15 @@ exports.attachDownload = function (req, res) {
       if (at._id.equals(req.query.attachId)) {
         at.downCount++;
         filePath = config.uploads.attach.file.dest + at.filename;
+        fileName = at.filename;
 
         topic.save();
       }
     });
   }
-  return downFile(filePath);
+  return downFile(filePath, fileName);
 
-  function downFile(filePath) {
+  function downFile(filePath, filename) {
     if (!filePath) {
       res.status(422).send({
         message: 'FILE_DOES_NOT_FINDED'
@@ -719,7 +722,7 @@ exports.attachDownload = function (req, res) {
 
         try {
           //res.set('Content-Type', 'application/x-bittorrent');
-          res.set('Content-Disposition', 'attachment; filename=' + encodeURI(req.params.filename));
+          res.set('Content-Disposition', 'attachment; filename=' + encodeURI(filename));
           res.set('Content-Length', stat.size);
 
           fs.createReadStream(filePath).pipe(res);
