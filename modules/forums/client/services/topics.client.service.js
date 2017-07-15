@@ -23,6 +23,14 @@
           topicId: '@_id'
         }
       },
+      toggleTopicTopStatus: {
+        method: 'PUT',
+        url: '/api/topics/:forumId/:topicId/toggleTopicTopStatus',
+        params: {
+          forumId: '@forum',
+          topicId: '@_id'
+        }
+      },
       thumbsUp: {
         method: 'PUT',
         url: '/api/topics/:forumId/:topicId/thumbsUp',

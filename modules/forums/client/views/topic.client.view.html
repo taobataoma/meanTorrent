@@ -54,7 +54,7 @@
                                 <a class="btn btn-success btn-width-100"
                                    href="#" ng-click="vm.beginPostReply();">{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</a>
                                 <a class="btn btn-default btn-width-100"
-                                   href="#"
+                                   href="#" ng-if="vm.canEdit(vm.topic)"
                                    ng-click="vm.toggleReadonly(vm.topic);">{{ vm.topic.readOnly ? 'FORUMS.BTN_UNSET_READONLY' : 'FORUMS.BTN_SET_READONLY' | translate}}</a>
                             </div>
 
@@ -115,6 +115,10 @@
                                                        title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
                                                        ng-show="vm.canEdit(vm.topic);"
                                                        ng-click="vm.beginDeleteTopic(vm.topic);"></i>
+                                                    <i class="fa" ng-class="vm.topic.isTop ? 'fa-arrow-circle-down' : 'fa-arrow-circle-up'" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.TOPIC_TOP_TOPIC' | translate}}"
+                                                       ng-show="vm.canEdit(vm.topic);"
+                                                       ng-click="vm.beginTopTopic(vm.topic);"></i>
                                                     <span ng-click="vm.beginThumbsUp($event, vm.topic, null);">
                                                         <i id="thumbs_{{vm.topic._id}}" class="fa fa-thumbs-up" aria-hidden="true"
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"
@@ -184,8 +188,7 @@
                                                         <i id="thumbs_{{rep._id}}" class="fa fa-thumbs-up" aria-hidden="true"
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"
                                                            mt-scale-start="false"
-                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
-                                                                >({{rep._scoreList.length}})</i>
+                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}">({{rep._scoreList.length}})</i>
                                                     </span>
                                                 </div>
                                                 <div class="reply-floor">F{{$index+2}}</div>

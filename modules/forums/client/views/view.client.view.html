@@ -77,6 +77,9 @@
 
                             <div class="post-info">
                                 <p class="topic-title">
+                                    <i class="fa fa-arrow-circle-up fa-lg text-primary" aria-hidden="true"
+                                       title="{{'FORUMS.TITLES.TOPIC_TOP_TOPIC' | translate}}"
+                                       ng-if="t.isTop"></i>
                                     <a ui-sref="forums.topic({ forumId: vm.forum._id, topicId: t._id })">{{t.title}}</a>
                                     <small class="badge badge_default" ng-show="t.readOnly">R</small>
                                 </p>

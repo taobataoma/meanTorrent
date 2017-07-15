@@ -663,6 +663,8 @@
       TOPIC_EDIT_FAILED: 'Reply content modify failed',
       TOPIC_TOGGLE_READONLY_SUCCESSFULLY: 'Toggle set topic readonly successfully',
       TOPIC_TOGGLE_READONLY_FAILED: 'Toggle set topic readonly failed',
+      TOPIC_TOGGLE_TOP_SUCCESSFULLY: 'Toggle set topic top status successfully',
+      TOPIC_TOGGLE_TOP_FAILED: 'Toggle set topic top status failed',
       REPLY_EDIT_SUCCESSFULLY: 'Reply content modify successfully',
       REPLY_EDIT_FAILED: 'Reply content modify failed',
       DELETE_TOPIC_SUCCESSFULLY: 'Topic deleted successfully',
@@ -721,6 +723,7 @@
         REPLY_DELETE: 'delete reply',
         TOPIC_EDIT: 'edit topic',
         TOPIC_DELETE: 'delete topic',
+        TOPIC_TOP_TOPIC: 'top status',
         TOPIC_THUMBS_UP: 'thumbs up and donate score'
       }
     },

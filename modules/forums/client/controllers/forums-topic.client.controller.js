@@ -265,6 +265,24 @@
     };
 
     /**
+     * beginTopTopic
+     * @param t
+     */
+    vm.beginTopTopic = function (t) {
+      var topic = new TopicsService({
+        forum: vm.forum._id,
+        _id: t._id
+      });
+
+      topic.$toggleTopicTopStatus(function (res) {
+        vm.topic = res;
+        NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_TOP_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_TOGGLE_TOP_FAILED');
+      });
+    };
+
+    /**
      * beginDeleteReply
      * @param reply
      */

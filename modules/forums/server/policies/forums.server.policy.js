@@ -26,6 +26,7 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/topics/:forumId/:topicId', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/:replyId', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/toggleTopicReadonly', permissions: '*'},
+          {resources: '/api/topics/:forumId/:topicId/toggleTopicTopStatus', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/thumbsUp', permissions: '*'}
         ]
       },

@@ -293,6 +293,27 @@ exports.toggleTopicReadonly = function (req, res) {
 };
 
 /**
+ * toggleTopicTopStatus
+ * @param req
+ * @param res
+ */
+exports.toggleTopicTopStatus = function (req, res) {
+  var topic = req.topic;
+
+  topic.isTop = !topic.isTop;
+
+  topic.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(topic);
+    }
+  });
+};
+
+/**
  * thumbsUp
  * @param req
  * @param res

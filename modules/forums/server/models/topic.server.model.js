@@ -118,8 +118,8 @@ var TopicSchema = new Schema({
   _scoreList: [ThumbSchema],
 
   isTop: {
-    type: Number,
-    default: 0
+    type: Boolean,
+    default: false
   },
   lastUser: {
     type: Schema.Types.ObjectId,
