@@ -148,6 +148,29 @@ exports.listTopics = function (req, res) {
 };
 
 /**
+ * globalTopics
+ * @param req
+ * @param res
+ */
+exports.globalTopics = function (req, res) {
+  Topic.find({
+    isGlobal: true
+  })
+    .sort('-createdAt')
+    .populate('forum', 'name')
+    .populate('user', 'username displayName profileImageURL uploaded downloaded')
+    .populate('lastUser', 'username displayName profileImageURL uploaded downloaded')
+    .exec(function (err, topics) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      res.json(topics);
+    });
+};
+
+/**
  * postNewTopic
  * @param req
  * @param res
@@ -301,6 +324,27 @@ exports.toggleTopicTopStatus = function (req, res) {
   var topic = req.topic;
 
   topic.isTop = !topic.isTop;
+
+  topic.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(topic);
+    }
+  });
+};
+
+/**
+ * toggleTopicGlobalStatus
+ * @param req
+ * @param res
+ */
+exports.toggleTopicGlobalStatus = function (req, res) {
+  var topic = req.topic;
+
+  topic.isGlobal = !topic.isGlobal;
 
   topic.save(function (err) {
     if (err) {

@@ -18,6 +18,7 @@ exports.invokeRolesPolicies = function () {
         roles: ['admin', 'oper', 'user'],
         allows: [
           {resources: '/api/forums', permissions: '*'},
+          {resources: '/api/globalTopics', permissions: '*'},
           {resources: '/api/attach/upload', permissions: '*'},
           {resources: '/api/attach/:topicId', permissions: '*'},
           {resources: '/api/attach/:topicId/:replyId', permissions: '*'},
@@ -27,6 +28,7 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/topics/:forumId/:topicId/:replyId', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/toggleTopicReadonly', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/toggleTopicTopStatus', permissions: '*'},
+          {resources: '/api/topics/:forumId/:topicId/toggleTopicGlobalStatus', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/thumbsUp', permissions: '*'}
         ]
       },

@@ -665,6 +665,8 @@
       TOPIC_TOGGLE_READONLY_FAILED: 'Toggle set topic readonly failed',
       TOPIC_TOGGLE_TOP_SUCCESSFULLY: 'Toggle set topic top status successfully',
       TOPIC_TOGGLE_TOP_FAILED: 'Toggle set topic top status failed',
+      TOPIC_TOGGLE_GLOBAL_SUCCESSFULLY: 'Toggle set topic global status successfully',
+      TOPIC_TOGGLE_GLOBAL_FAILED: 'Toggle set topic global status failed',
       REPLY_EDIT_SUCCESSFULLY: 'Reply content modify successfully',
       REPLY_EDIT_FAILED: 'Reply content modify failed',
       DELETE_TOPIC_SUCCESSFULLY: 'Topic deleted successfully',
@@ -706,6 +708,8 @@
         CATEGORY: 'Category',
         READONLY_POST: 'Users are forbidden to post new topics',
         READONLY_REPLY: 'Users are forbidden to post new replies',
+        TOPIC: '主题',
+        GLOBAL_TOPIC: 'Global topics',
         TOPICS: 'Topics',
         REPLIES: 'Replies',
         VIEWS: 'Views',
@@ -724,6 +728,7 @@
         TOPIC_EDIT: 'edit topic',
         TOPIC_DELETE: 'delete topic',
         TOPIC_TOP_TOPIC: 'top status',
+        TOPIC_GLOBAL_TOPIC: 'global status',
         TOPIC_THUMBS_UP: 'thumbs up and donate score'
       }
     },

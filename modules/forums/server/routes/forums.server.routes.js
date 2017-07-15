@@ -10,6 +10,9 @@ module.exports = function (app) {
   app.route('/api/forums').all(forumsPolicy.isAllowed)
     .get(forums.list);
 
+  app.route('/api/globalTopics').all(forumsPolicy.isAllowed)
+    .get(forums.globalTopics);
+
   app.route('/api/attach/upload').all(forumsPolicy.isAllowed)
     .post(forums.attachUpload);
 
@@ -36,6 +39,9 @@ module.exports = function (app) {
 
   app.route('/api/topics/:forumId/:topicId/toggleTopicTopStatus').all(forumsPolicy.isAllowed)
     .put(forums.toggleTopicTopStatus);
+
+  app.route('/api/topics/:forumId/:topicId/toggleTopicGlobalStatus').all(forumsPolicy.isAllowed)
+    .put(forums.toggleTopicGlobalStatus);
 
   app.route('/api/topics/:forumId/:topicId/thumbsUp').all(forumsPolicy.isAllowed)
     .put(forums.thumbsUp);

@@ -119,6 +119,10 @@
                                                        title="{{'FORUMS.TITLES.TOPIC_TOP_TOPIC' | translate}}"
                                                        ng-show="vm.canEdit(vm.topic);"
                                                        ng-click="vm.beginTopTopic(vm.topic);"></i>
+                                                    <i class="fa" ng-class="vm.topic.isGlobal ? 'fa-download' : 'fa-upload'" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.TOPIC_GLOBAL_TOPIC' | translate}}"
+                                                       ng-show="vm.user.isOper;"
+                                                       ng-click="vm.beginGlobalTopic(vm.topic);"></i>
                                                     <span ng-click="vm.beginThumbsUp($event, vm.topic, null);">
                                                         <i id="thumbs_{{vm.topic._id}}" class="fa fa-thumbs-up" aria-hidden="true"
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"

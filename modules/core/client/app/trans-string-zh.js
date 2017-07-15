@@ -665,6 +665,8 @@
       TOPIC_TOGGLE_READONLY_FAILED: '只读状态切换失败',
       TOPIC_TOGGLE_TOP_SUCCESSFULLY: '置顶状态切换成功',
       TOPIC_TOGGLE_TOP_FAILED: '置顶状态切换失败',
+      TOPIC_TOGGLE_GLOBAL_SUCCESSFULLY: '全局状态切换成功',
+      TOPIC_TOGGLE_GLOBAL_FAILED: '全局状态切换失败',
       REPLY_EDIT_SUCCESSFULLY: '回复内容修改成功',
       REPLY_EDIT_FAILED: '回复内容修改失败',
       DELETE_TOPIC_SUCCESSFULLY: '话题删除成功',
@@ -706,6 +708,8 @@
         CATEGORY: '分类',
         READONLY_POST: '只有管理员可以发起新话题',
         READONLY_REPLY: '禁止普通用户回复该话题',
+        TOPIC: '主题',
+        GLOBAL_TOPIC: '全局主题',
         TOPICS: '主题数',
         REPLIES: '回贴数',
         VIEWS: '查看数',
@@ -724,6 +728,7 @@
         TOPIC_EDIT: '编辑话题',
         TOPIC_DELETE: '删除话题',
         TOPIC_TOP_TOPIC: '置顶话题',
+        TOPIC_GLOBAL_TOPIC: '全局话题',
         TOPIC_THUMBS_UP: '点赞送分'
       }
     },

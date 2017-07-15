@@ -37,6 +37,57 @@
             </ol>
         </div>
 
+        <div class="table-responsive table-category">
+            <table class="table table-hover table-valign-middle">
+                <thead>
+                    <tr>
+                        <th>{{'FORUMS.FIELDS.GLOBAL_TOPIC' | translate}}</th>
+                        <th class="text-center xs-hide">{{'FORUMS.FIELDS.REPLIES' | translate}}</th>
+                        <th class="text-center xs-hide">{{'FORUMS.FIELDS.VIEWS' | translate}}</th>
+                        <th class="text-center xs-hide sm-hide">{{'FORUMS.FIELDS.LAST_REPLY' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="t in vm.globalTopics">
+                        <td>
+                            <span class="post-icon glyphicon glyphicon-eye-open" ng-class="{'has-new-reply': vm.hasNewReply(t)}"></span>
+
+                            <div class="post-info">
+                                <p class="topic-title">
+                                    <a ui-sref="forums.topic({ forumId: vm.forum._id, topicId: t._id })">{{t.title}}</a>
+                                    <small class="badge badge_default" ng-show="t.readOnly">R</small>
+                                </p>
+
+                                <p class="topic-by small"
+                                   translate="FORUMS.FIELDS.POST_BY"
+                                   translate-values="{user: t.user.displayName, createdAt: '{{t.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}' }">
+                                </p>
+                            </div>
+                        </td>
+                        <td class="text-center xs-hide"><span class="count-number">{{t.replyCount}}</span></td>
+                        <td class="text-center xs-hide"><span class="count-number">{{t.viewCount}}</span></td>
+                        <td class="xs-hide sm-hide">
+                            <div class="small reply-by">
+                                <span translate="FORUMS.FIELDS.REPLY_BY_1"
+                                      translate-values="{user: t.user.displayName}"></span>
+                                <span message-to="t.user" to-class="message-to-icon"></span>
+                            </div>
+                            <div class="small reply-by"
+                                 ng-if="t._replies.length > 0"
+                                 translate="FORUMS.FIELDS.REPLY_BY_2"
+                                 translate-values="{createdAt: '{{t.lastReplyAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}">
+                            </div>
+                            <div class="small reply-by"
+                                 ng-if="t._replies.length == 0"
+                                 translate="FORUMS.FIELDS.REPLY_BY_3"
+                                 translate-values="{createdAt: '{{t.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div>
             <div class="row">
                 <div class="col-sm-12">
@@ -64,7 +115,7 @@
             <table class="table table-hover table-valign-middle">
                 <thead>
                     <tr>
-                        <th>{{'FORUMS.FIELDS.TOPICS' | translate}}</th>
+                        <th>{{'FORUMS.FIELDS.TOPIC' | translate}}</th>
                         <th class="text-center xs-hide">{{'FORUMS.FIELDS.REPLIES' | translate}}</th>
                         <th class="text-center xs-hide">{{'FORUMS.FIELDS.VIEWS' | translate}}</th>
                         <th class="text-center xs-hide sm-hide">{{'FORUMS.FIELDS.LAST_REPLY' | translate}}</th>

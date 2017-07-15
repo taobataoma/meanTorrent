@@ -15,6 +15,11 @@
       update: {
         method: 'PUT'
       },
+      getGlobalTopics: {
+        method: 'GET',
+        url: '/api/globalTopics',
+        isArray: true
+      },
       toggleTopicReadonly: {
         method: 'PUT',
         url: '/api/topics/:forumId/:topicId/toggleTopicReadonly',
@@ -26,6 +31,14 @@
       toggleTopicTopStatus: {
         method: 'PUT',
         url: '/api/topics/:forumId/:topicId/toggleTopicTopStatus',
+        params: {
+          forumId: '@forum',
+          topicId: '@_id'
+        }
+      },
+      toggleTopicGlobalStatus: {
+        method: 'PUT',
+        url: '/api/topics/:forumId/:topicId/toggleTopicGlobalStatus',
         params: {
           forumId: '@forum',
           topicId: '@_id'

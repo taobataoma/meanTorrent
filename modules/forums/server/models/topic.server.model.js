@@ -121,6 +121,10 @@ var TopicSchema = new Schema({
     type: Boolean,
     default: false
   },
+  isGlobal: {
+    type: Boolean,
+    default: false
+  },
   lastUser: {
     type: Schema.Types.ObjectId,
     ref: 'User'

@@ -283,6 +283,24 @@
     };
 
     /**
+     * beginGlobalTopic
+     * @param t
+     */
+    vm.beginGlobalTopic = function (t) {
+      var topic = new TopicsService({
+        forum: vm.forum._id,
+        _id: t._id
+      });
+
+      topic.$toggleTopicGlobalStatus(function (res) {
+        vm.topic = res;
+        NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_GLOBAL_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_TOGGLE_GLOBAL_FAILED');
+      });
+    };
+
+    /**
      * beginDeleteReply
      * @param reply
      */

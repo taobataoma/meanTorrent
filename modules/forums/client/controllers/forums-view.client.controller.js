@@ -37,6 +37,12 @@
         vm.forumPath.push({name: vm.forum.name, state: undefined});
       });
 
+      // get global topics list
+      TopicsService.getGlobalTopics(function (topics) {
+        console.log(topics);
+        vm.globalTopics = topics;
+      });
+
       // get topics list
       TopicsService.query({
         forumId: $stateParams.forumId
