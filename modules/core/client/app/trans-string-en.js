@@ -708,7 +708,7 @@
         CATEGORY: 'Category',
         READONLY_POST: 'Users are forbidden to post new topics',
         READONLY_REPLY: 'Users are forbidden to post new replies',
-        TOPIC: '主题',
+        TOPIC: 'Topics',
         GLOBAL_TOPIC: 'Global topics',
         TOPICS: 'Topics',
         REPLIES: 'Replies',
