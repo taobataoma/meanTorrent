@@ -76,17 +76,19 @@
     };
 
     /**
-     * isTopicOwner
-     * @param t
+     * isOwner
+     * @param o, topic or reply
      * @returns {boolean}
      */
-    vm.isOwner = function (t) {
-      if (t) {
-        if (t.user._id.str === vm.user._id) {
+    vm.isOwner = function (o) {
+      if (o) {
+        if (o.user._id.str === vm.user._id) {
           return true;
         } else {
           return false;
         }
+      } else {
+        return false;
       }
     };
 
@@ -104,22 +106,20 @@
           }
         });
       }
-
       return isM;
     };
 
     /**
-     * canEditTopic
-     * @param t
+     * canEdit
      * @returns {boolean}
      */
-    vm.canEdit = function (t) {
-      if (t) {
-        if (vm.isModerator() || vm.isOwner(t) || vm.user.isOper) {
-          return true;
-        } else {
-          return false;
-        }
+    vm.canEdit = function () {
+      if (vm.user.isOper) {
+        return true;
+      } else if (vm.isModerator()) {
+        return true;
+      } else {
+        return false;
       }
     };
 

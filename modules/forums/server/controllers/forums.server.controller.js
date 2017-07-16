@@ -284,6 +284,12 @@ exports.updateTopic = function (req, res) {
   var forum = req.forum;
   var topic = req.topic;
 
+  if (!canEdit(req.user, forum) && !isOwner(req.user, topic)) {
+    return res.status(403).json({
+      message: 'ERROR: User is not authorized'
+    });
+  }
+
   topic.content = req.body.content;
   topic.updatedAt = Date.now();
   topic.updatedBy = req.user;
@@ -305,7 +311,14 @@ exports.updateTopic = function (req, res) {
  * @param res
  */
 exports.toggleTopicReadonly = function (req, res) {
+  var forum = req.forum;
   var topic = req.topic;
+
+  if (!canEdit(req.user, forum) && !isOwner(req.user, topic)) {
+    return res.status(403).json({
+      message: 'ERROR: User is not authorized'
+    });
+  }
 
   topic.readOnly = !topic.readOnly;
 
@@ -326,7 +339,14 @@ exports.toggleTopicReadonly = function (req, res) {
  * @param res
  */
 exports.toggleTopicTopStatus = function (req, res) {
+  var forum = req.forum;
   var topic = req.topic;
+
+  if (!canEdit(req.user, forum)) {
+    return res.status(403).json({
+      message: 'ERROR: User is not authorized'
+    });
+  }
 
   topic.isTop = !topic.isTop;
 
@@ -348,6 +368,12 @@ exports.toggleTopicTopStatus = function (req, res) {
  */
 exports.toggleTopicGlobalStatus = function (req, res) {
   var topic = req.topic;
+
+  if (!req.user.isOper) {
+    return res.status(403).json({
+      message: 'ERROR: User is not authorized'
+    });
+  }
 
   topic.isGlobal = !topic.isGlobal;
 
@@ -458,6 +484,12 @@ exports.deleteTopic = function (req, res) {
   var topic = req.topic;
   var rcount = topic.replyCount;
 
+  if (!canEdit(req.user, forum) && !isOwner(req.user, topic)) {
+    return res.status(403).json({
+      message: 'ERROR: User is not authorized'
+    });
+  }
+
   topic._replies.forEach(function (r) {
     r.user.update({
       $inc: {replies: -1}
@@ -566,13 +598,21 @@ exports.postNewReply = function (req, res) {
  * @param res
  */
 exports.updateReply = function (req, res) {
+  var forum = req.forum;
   var topic = req.topic;
 
-  topic._replies.forEach(function (t) {
-    if (t._id.equals(req.params.replyId)) {
-      t.content = req.body.content;
-      t.updatedAt = Date.now();
-      t.updatedBy = req.user;
+  topic._replies.forEach(function (r) {
+    if (r._id.equals(req.params.replyId)) {
+
+      if (!canEdit(req.user, forum) && !isOwner(req.user, r)) {
+        return res.status(403).json({
+          message: 'ERROR: User is not authorized'
+        });
+      }
+
+      r.content = req.body.content;
+      r.updatedAt = Date.now();
+      r.updatedBy = req.user;
 
       topic.save(function (err) {
         if (err) {
@@ -599,6 +639,13 @@ exports.deleteReply = function (req, res) {
 
   topic._replies.forEach(function (r) {
     if (r._id.equals(req.params.replyId)) {
+
+      if (!canEdit(req.user, forum) && !isOwner(req.user, r)) {
+        return res.status(403).json({
+          message: 'ERROR: User is not authorized'
+        });
+      }
+
       topic._replies.pull(r);
       topic.replyCount--;
       topic.save(function (err) {
@@ -795,3 +842,50 @@ exports.topicById = function (req, res, next, id) {
       next();
     });
 };
+
+/**
+ * canEdit
+ * @param u, req.user
+ * @param f, forum
+ * @returns {boolean}
+ */
+function canEdit(u, f) {
+  if (u.isOper) {
+    return true;
+  } else if (isModerator(f)) {
+    return true;
+  } else {
+    return false;
+  }
+
+  function isModerator(f) {
+    if (f) {
+      var isM = false;
+      f.moderators.forEach(function (m) {
+        if (m._id === u._id) {
+          isM = true;
+        }
+      });
+      return isM;
+    } else {
+      return false;
+    }
+  }
+}
+
+/**
+ * isOwner
+ * @param o, topic or reply object
+ * @returns {boolean}
+ */
+function isOwner(u, o) {
+  if (o) {
+    if (o.user._id.str === u._id) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}

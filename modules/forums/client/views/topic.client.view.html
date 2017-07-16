@@ -50,16 +50,16 @@
                             </ul>
                         </div>
                         <div class="box-post-btn">
-                            <div ng-if="!vm.topic.readOnly || vm.canEdit(vm.topic)">
+                            <div ng-if="!vm.topic.readOnly || vm.canEdit(vm.topic) || vm.isOwner(vm.topic)">
                                 <a class="btn btn-success btn-width-100"
                                    href="#" ng-click="vm.beginPostReply();">{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</a>
                                 <a class="btn btn-default btn-width-100"
-                                   href="#" ng-if="vm.canEdit(vm.topic)"
+                                   href="#" ng-if="vm.canEdit(vm.topic) || vm.isOwner(vm.topic)"
                                    ng-click="vm.toggleReadonly(vm.topic);">{{ vm.topic.readOnly ? 'FORUMS.BTN_UNSET_READONLY' : 'FORUMS.BTN_SET_READONLY' | translate}}</a>
                             </div>
 
                             <h5 class="text-danger text-uppercase" translate="FORUMS.READ_ONLY_REPLY"
-                                ng-if="vm.topic.readOnly && !vm.canEdit(vm.topic)"></h5>
+                                ng-if="vm.topic.readOnly && !vm.canEdit(vm.topic) && !vm.isOwner(vm.topic)"></h5>
                         </div>
                     </div>
                 </div>
@@ -109,15 +109,15 @@
                                                        ng-click="vm.quoteAndReply(vm.topic);"></i>
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
-                                                       ng-show="vm.canEdit(vm.topic);"
+                                                       ng-show="vm.canEdit() || vm.isOwner(vm.topic)"
                                                        ng-click="vm.beginEditTopic(vm.topic)"></i>
                                                     <i class="fa fa-times" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
-                                                       ng-show="vm.canEdit(vm.topic);"
+                                                       ng-show="vm.canEdit() || vm.isOwner(vm.topic)"
                                                        ng-click="vm.beginDeleteTopic(vm.topic);"></i>
                                                     <i class="fa" ng-class="vm.topic.isTop ? 'fa-arrow-circle-down' : 'fa-arrow-circle-up'" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_TOP_TOPIC' | translate}}"
-                                                       ng-show="vm.canEdit(vm.topic);"
+                                                       ng-show="vm.canEdit()"
                                                        ng-click="vm.beginTopTopic(vm.topic);"></i>
                                                     <i class="fa" ng-class="vm.topic.isGlobal ? 'fa-download' : 'fa-upload'" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_GLOBAL_TOPIC' | translate}}"
@@ -182,11 +182,11 @@
                                                        ng-click="vm.quoteAndReply(rep);"></i>
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.REPLY_EDIT' | translate}}"
-                                                       ng-show="vm.canEdit(rep);"
+                                                       ng-show="vm.canEdit() || vm.isOwner(rep)"
                                                        ng-click="vm.beginEditReply(rep)"></i>
                                                     <i class="fa fa-times" aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.REPLY_DELETE' | translate}}"
-                                                       ng-show="vm.canEdit(rep);"
+                                                       ng-show="vm.canEdit() || vm.isOwner(rep)"
                                                        ng-click="vm.beginDeleteReply(rep);"></i>
                                                     <span ng-click="vm.beginThumbsUp($event, vm.topic, rep);">
                                                         <i id="thumbs_{{rep._id}}" class="fa fa-thumbs-up" aria-hidden="true"
