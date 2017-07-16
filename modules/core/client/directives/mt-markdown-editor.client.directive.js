@@ -49,7 +49,7 @@
             scope.uFiles.splice(idx, 1);
           };
 
-          scope.onFileSelected = function(evt){
+          scope.onFileSelected = function (evt) {
             doUpload(scope.selectedFile);
           };
 
@@ -70,7 +70,7 @@
             return false;
           });
 
-          function doUpload(sFile){
+          function doUpload(sFile) {
             if (attrs.uploadMethod) {
               scope.uFile = sFile;
               scope.uProgress = 0;
@@ -109,6 +109,7 @@
               });
             }
           }
+
           $compile($('.md-editor').contents())(scope);
         }
       });
