@@ -420,6 +420,8 @@
       SEEDED: '正在做种',
       LEECHED: '正在下载',
       FINISHED: '下载完成',
+      FORUM_TOPICS: '论坛主题数',
+      FORUM_REPLIES: '论坛回复数',
       DETAIL: '详情',
       SIGNUP_DATE: '注册时间',
       LATEST_SIGNED_TIME: '最近一次登录时间',
