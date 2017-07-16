@@ -369,7 +369,7 @@ exports.toggleTopicTopStatus = function (req, res) {
 exports.toggleTopicGlobalStatus = function (req, res) {
   var topic = req.topic;
 
-  if (!req.user.isOper) {
+  if (!req.user.toJSON().isOper && !req.user.toJSON().isAdmin) {
     return res.status(403).json({
       message: 'ERROR: User is not authorized'
     });
@@ -850,7 +850,9 @@ exports.topicById = function (req, res, next, id) {
  * @returns {boolean}
  */
 function canEdit(u, f) {
-  if (u.isOper) {
+  if (u.toJSON().isOper) {
+    return true;
+  } else if (u.toJSON().isAdmin) {
     return true;
   } else if (isModerator(f)) {
     return true;
@@ -862,7 +864,7 @@ function canEdit(u, f) {
     if (f) {
       var isM = false;
       f.moderators.forEach(function (m) {
-        if (m._id === u._id) {
+        if (m._id.equals(u._id)) {
           isM = true;
         }
       });
@@ -880,7 +882,7 @@ function canEdit(u, f) {
  */
 function isOwner(u, o) {
   if (o) {
-    if (o.user._id.str === u._id) {
+    if (o.user._id.equals(u._id)) {
       return true;
     } else {
       return false;
