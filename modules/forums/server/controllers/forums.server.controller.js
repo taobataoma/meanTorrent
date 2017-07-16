@@ -176,6 +176,7 @@ exports.globalTopics = function (req, res) {
  * @param res
  */
 exports.postNewTopic = function (req, res) {
+  var user = req.user;
   var forum = req.forum;
   var topic = new Topic(req.body);
   topic.forum = forum;
@@ -217,6 +218,10 @@ exports.postNewTopic = function (req, res) {
       forum.update({
         $inc: {topicCount: 1},
         lastTopic: topic
+      }).exec();
+
+      user.update({
+        $inc: {topics: 1}
       }).exec();
     }
   });
@@ -453,6 +458,12 @@ exports.deleteTopic = function (req, res) {
   var topic = req.topic;
   var rcount = topic.replyCount;
 
+  topic._replies.forEach(function (r) {
+    r.user.update({
+      $inc: {replies: -1}
+    }).exec();
+  });
+
   topic.remove(function (err) {
     if (err) {
       return res.status(422).send({
@@ -474,6 +485,10 @@ exports.deleteTopic = function (req, res) {
           }
         });
 
+      topic.user.update({
+        $inc: {topics: -1}
+      }).exec();
+
       //create trace log
       traceLogCreate(req, traceConfig.action.forumDeleteTopic, {
         forum: forum._id,
@@ -489,6 +504,7 @@ exports.deleteTopic = function (req, res) {
  * @param res
  */
 exports.postNewReply = function (req, res) {
+  var user = req.user;
   var forum = req.forum;
   var topic = req.topic;
   var reply = new Reply(req.body);
@@ -531,6 +547,10 @@ exports.postNewReply = function (req, res) {
       });
     } else {
       res.json(topic);
+
+      user.update({
+        $inc: {replies: 1}
+      }).exec();
 
       forum.update({
         $inc: {replyCount: 1},
@@ -577,9 +597,9 @@ exports.deleteReply = function (req, res) {
   var forum = req.forum;
   var topic = req.topic;
 
-  topic._replies.forEach(function (t) {
-    if (t._id.equals(req.params.replyId)) {
-      topic._replies.pull(t);
+  topic._replies.forEach(function (r) {
+    if (r._id.equals(req.params.replyId)) {
+      topic._replies.pull(r);
       topic.replyCount--;
       topic.save(function (err) {
         if (err) {
@@ -588,6 +608,10 @@ exports.deleteReply = function (req, res) {
           });
         } else {
           res.json(topic);
+
+          r.user.update({
+            $inc: {replies: -1}
+          }).exec();
 
           forum.update({
             $inc: {replyCount: -1}
