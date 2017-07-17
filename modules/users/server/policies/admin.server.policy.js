@@ -30,6 +30,12 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/users/:userId/uploaded', permissions: '*'},
           {resources: '/api/users/:userId/downloaded', permissions: '*'}
         ]
+      },
+      {
+        roles: ['user'],
+        allows: [
+          {resources: '/api/users/:userId', permissions: ['get']}
+        ]
       }
     ]
   );
