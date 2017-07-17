@@ -119,6 +119,7 @@
       ADMIN_USER_LIST: '用户管理',
       ADMIN_USER_VIEW: '查看用户',
       ADMIN_USER_EDIT: '编辑用户',
+      USER_INFO: '用户信息',
       ADMIN_ANNOUNCE_EDIT: '种子修改',
       ADMIN_TORRENTS_LIST: '种子管理',
       ADMIN_MESSAGES: '系统消息',
@@ -533,7 +534,8 @@
     MESSAGE_DELETE_CONFIRM_BODY_TEXT_MANY: '您确定要删除选中的这些消息?',
     MESSAGE_DELETE_CONFIRM_BODY_TEXT: '您确定要删除该消息?',
 
-    MESSAGE_TO_ICON_TITLE: '发送站内消息',
+    MESSAGE_TO_ICON_TITLE: '给{{name}}发送站内消息',
+    USER_INFO_TITLE: '{{name}} 的用户信息',
 
     //traces
     ADMIN_TRACES_LIST: '系统日志',
@@ -720,8 +722,7 @@
         LAST_REPLY: '最近回复',
         TITLE: '标题',
         CONTENT: '内容',
-        POST_BY: '由 {{user}} 发表于 {{createdAt}}',
-        REPLY_BY_1: '由 {{user}}',
+        REPLY_BY_1: '由',
         REPLY_BY_2: '回复于 at {{createdAt}}',
         REPLY_BY_3: '发表于 at {{createdAt}}'
       },

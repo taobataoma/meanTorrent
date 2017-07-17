@@ -119,6 +119,7 @@
       ADMIN_USER_LIST: 'User List',
       ADMIN_USER_VIEW: 'View User',
       ADMIN_USER_EDIT: 'Edit User',
+      USER_INFO: 'User Info',
       ADMIN_TORRENTS_LIST: 'Torrents List',
       ADMIN_ANNOUNCE_EDIT: 'Announce Edit',
       ADMIN_MESSAGES: 'System Messages',
@@ -533,7 +534,8 @@
     MESSAGE_DELETE_CONFIRM_BODY_TEXT_MANY: 'Are you sure want to delete these messages?',
     MESSAGE_DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this message?',
 
-    MESSAGE_TO_ICON_TITLE: 'Send a message to',
+    MESSAGE_TO_ICON_TITLE: 'Send a message to {{name}}',
+    USER_INFO_TITLE: 'user info of {{name}}',
 
     //traces
     ADMIN_TRACES_LIST: 'Traces List',
@@ -720,8 +722,7 @@
         LAST_REPLY: 'Last Reply',
         TITLE: 'Title',
         CONTENT: 'Content',
-        POST_BY: 'by {{user}} post at {{createdAt}}',
-        REPLY_BY_1: 'by {{user}}',
+        REPLY_BY_1: 'by',
         REPLY_BY_2: 'reply at {{createdAt}}',
         REPLY_BY_3: 'post at {{createdAt}}'
       },

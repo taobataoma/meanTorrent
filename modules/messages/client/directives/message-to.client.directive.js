@@ -19,7 +19,7 @@
         if (s) {
           var user = s;
           var to = user._id + '|' + user.displayName;
-          var title = $translate.instant('MESSAGE_TO_ICON_TITLE');
+          var title = $translate.instant('MESSAGE_TO_ICON_TITLE', {name: user.displayName});
           var e = $compile('<a href="#"><i class="glyphicon glyphicon-envelope" ng-click="$event.stopPropagation();" ui-sref="messages.send({to: \'' + to + '\'})"></i></a>')(scope);
 
           e.attr('title', title);
