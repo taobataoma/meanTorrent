@@ -5,9 +5,9 @@
     .module('users')
     .controller('UserInfoController', UserInfoController);
 
-  UserInfoController.$inject = ['$scope', '$state', 'Authentication', 'userResolve', 'ScoreLevelService'];
+  UserInfoController.$inject = ['$scope', '$state', 'Authentication', 'userResolve', 'ScoreLevelService', '$timeout'];
 
-  function UserInfoController($scope, $state, Authentication, user, ScoreLevelService) {
+  function UserInfoController($scope, $state, Authentication, user, ScoreLevelService, $timeout) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -31,5 +31,14 @@
     function isContextUserSelf() {
       return vm.user.username === vm.authentication.user.username;
     }
+
+    /**
+     * init
+     */
+    vm.init = function () {
+      $timeout(function () {
+        $('html,body').scrollTop(0);
+      }, 0);
+    };
   }
 }());

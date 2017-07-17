@@ -86,15 +86,15 @@
                             <div class="reply-item">
                                 <!-- topic content -->
                                 <div class="reply-wrapper">
-                                    <a class="reply-avatar">
-                                        <img title="{{vm.topic.user.displayName}}" ng-src="/{{vm.topic.user.profileImageURL}}">
-                                    </a>
+                                    <span user-info="vm.topic.user" info-class="reply-avatar">
+                                        <img ng-src="/{{vm.topic.user.profileImageURL}}">
+                                    </span>
 
                                     <div class="reply-comment">
                                         <div class="reply-comment-header">
-                                            <div class="reply-comment-header-text">{{vm.topic.user.displayName}} <span
-                                                    score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
-
+                                            <div class="reply-comment-header-text">
+                                                <span user-info="vm.topic.user">{{vm.topic.user.displayName}}</span>
+                                                <span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
                                                 <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="user-ud-text">
                                                     (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{vm.topic.user.uploaded | bytes}}
@@ -115,7 +115,8 @@
                                                        title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
                                                        ng-show="vm.canEdit() || vm.isOwner(vm.topic)"
                                                        ng-click="vm.beginDeleteTopic(vm.topic);"></i>
-                                                    <i class="fa" ng-class="vm.topic.isTop ? 'fa-arrow-circle-down' : 'fa-arrow-circle-up'" aria-hidden="true"
+                                                    <i class="fa" ng-class="vm.topic.isTop ? 'fa-arrow-circle-down' : 'fa-arrow-circle-up'"
+                                                       aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_TOP_TOPIC' | translate}}"
                                                        ng-show="vm.canEdit()"
                                                        ng-click="vm.beginTopTopic(vm.topic);"></i>
@@ -159,15 +160,15 @@
 
                                 <!-- topic replies -->
                                 <div class="reply-wrapper" ng-repeat="rep in vm.topic._replies">
-                                    <a class="reply-avatar">
-                                        <img title="{{rep.user.displayName}}" ng-src="/{{rep.user.profileImageURL}}">
-                                    </a>
+                                    <span user-info="rep.user" info-class="reply-avatar">
+                                        <img ng-src="/{{rep.user.profileImageURL}}">
+                                    </span>
 
                                     <div class="reply-comment">
                                         <div class="reply-comment-header">
-                                            <div class="reply-comment-header-text">{{rep.user.displayName}} <span
-                                                    score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
-
+                                            <div class="reply-comment-header-text">
+                                                <span user-info="rep.user">{{rep.user.displayName}}</span>
+                                                <span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
                                                 <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="user-ud-text">
                                                     (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{rep.user.uploaded | bytes}}

@@ -19,7 +19,8 @@
         if (s) {
           var user = s;
           var title = $translate.instant('USER_INFO_TITLE', {name: user.displayName});
-          var e = angular.element('<a href="#" ui-sref="userinfo({userId: \'' + user._id + '\'})" title="' + title + '">' + element[0].innerHTML + '</a>');
+          var cls = attrs.infoClass;
+          var e = angular.element('<a href="#" class="' + (cls ? cls : "") + '" ui-sref="userinfo({userId: \'' + user._id + '\'})" title="' + title + '">' + element[0].innerHTML + '</a>');
           element.html(e[0].outerHTML);
           $compile(element.contents())(scope);
         }
