@@ -185,6 +185,7 @@ module.exports = {
     },
     itemsPerPage: {
       topics_per_page: 10,
+      replies_per_page: 10,
       torrents_per_page: 15,
       torrents_comments_per_page: 10
     },

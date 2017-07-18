@@ -37,7 +37,7 @@
         </div>
 
 
-        <div>
+        <div id="top_of_reply_list">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="box-uib-and-post-btn">
@@ -157,7 +157,7 @@
                                 </div>
 
                                 <!-- topic replies -->
-                                <div class="reply-wrapper" ng-repeat="rep in vm.topic._replies">
+                                <div class="reply-wrapper" ng-repeat="rep in vm.pagedItems">
                                     <span user-info="rep.user" info-class="reply-avatar" info-avatar></span>
 
                                     <div class="reply-comment">

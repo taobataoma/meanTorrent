@@ -12,17 +12,64 @@
                                  marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService, $filter, Upload, DownloadService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.user = Authentication.user;
     vm.forumPath = [];
     vm.postReplyFields = {};
 
+    vm.pagedItems = [];
+    vm.itemsPerPage = vm.itemsPerPageConfig.replies_per_page;
+    vm.currentPage = 1;
     /**
      * If user is not signed in then redirect back home
      */
     if (!Authentication.user) {
       $state.go('authentication.signin');
     }
+
+    /**
+     * buildPager
+     * pagination init
+     */
+    vm.buildPager = function () {
+      vm.figureOutItemsToDisplay();
+    };
+
+    /**
+     * figureOutItemsToDisplay
+     * @param callback
+     */
+    vm.figureOutItemsToDisplay = function (callback) {
+      vm.filterLength = vm.topic._replies.length;
+      var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
+      var end = begin + vm.itemsPerPage;
+      vm.pagedItems = vm.topic._replies.slice(begin, end);
+
+      if (callback) callback();
+    };
+
+    /**
+     * pageChanged
+     */
+    vm.pageChanged = function () {
+      var element = angular.element('#top_of_reply_list');
+
+      vm.figureOutItemsToDisplay(function () {
+        $timeout(function () {
+          $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
+        }, 10);
+      });
+    };
+
+    /**
+     * $watch 'vm.torrentLocalInfo'
+     */
+    $scope.$watch('vm.topic', function (newValue, oldValue) {
+      if (newValue) {
+        vm.pageChanged();
+      }
+    });
 
     /**
      * init
@@ -395,9 +442,10 @@
 
       function successCallback(res) {
         vm.postReplyFields = {};
-        vm.topic = res;
         $scope.uFiles = [];
         $scope.uImages = [];
+        vm.currentPage = Math.ceil(vm.topic._replies.length / vm.itemsPerPage);
+        vm.topic = res;
 
         $scope.$broadcast('show-errors-reset', 'vm.replyForm');
         NotifycationService.showSuccessNotify('FORUMS.POST_REPLY_SUCCESSFULLY');
