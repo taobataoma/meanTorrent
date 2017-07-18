@@ -12,13 +12,12 @@
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_ADMIN_FORUMS_CONFIGURE',
       state: 'admin.forums.configure',
-      position: 30,
-      divider: true
+      position: 30
     });
-    menuService.addSubMenuItem('topbar', 'admin', {
-      title: 'MENU_ADMIN_FORUMS_MANAGEMENT',
-      state: 'admin.forums.management',
-      position: 31
-    });
+    //menuService.addSubMenuItem('topbar', 'admin', {
+    //  title: 'MENU_ADMIN_FORUMS_MANAGEMENT',
+    //  state: 'admin.forums.management',
+    //  position: 31
+    //});
   }
 }());
