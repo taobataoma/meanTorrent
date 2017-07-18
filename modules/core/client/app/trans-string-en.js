@@ -695,7 +695,7 @@
       ATTACH_UPLOAD_TOOLTIP3: ', The picture file will be displayed automatically, Others file can only be downloaded.',
       ATTACH_UPLOADING: 'Uploading',
       ATTACH_LIST_HEADER: 'Attach files list:',
-      THUMBS_LIST_HEADER: 'Thumbs up users list:',
+      THUMBS_LIST_HEADER: 'Thumbs up users list ({{number}}):',
       ATTACH_FILE_SIZE: 'Size:',
       ATTACH_DOWN_COUNT: 'Downloaded:',
       ATTACHE_DOWNLOAD_SUCCESSFULLY: 'Attach file download successfully',

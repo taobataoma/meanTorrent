@@ -149,8 +149,10 @@
                                                     </li>
                                                 </ol>
                                             </div>
-                                            <div class="thumbs-up-list" ng-if="vm.topic._scoreList.length && vm.forumsConfig.show_thumbs_up_user_list">
-                                                <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"></div>
+                                            <div class="thumbs-up-list"
+                                                 ng-if="vm.topic._scoreList.length && vm.forumsConfig.show_thumbs_up_user_list">
+                                                <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"
+                                                     translate-values="{number: vm.topic._scoreList.length}"></div>
                                                 <div class="thumbs-users panel-collapsed" id="thumbs-{{vm.topic._id}}">
                                                     <span class="thumbs-item"
                                                           ng-repeat="sl in vm.topic._scoreList track by $index"
@@ -219,7 +221,8 @@
                                                 </ol>
                                             </div>
                                             <div class="thumbs-up-list" ng-if="rep._scoreList.length && vm.forumsConfig.show_thumbs_up_user_list">
-                                                <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"></div>
+                                                <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"
+                                                     translate-values="{number: rep._scoreList.length}"></div>
                                                 <div class="thumbs-users panel-collapsed" id="thumbs-{{rep._id}}">
                                                     <span class="thumbs-item"
                                                           ng-repeat="sl in rep._scoreList track by $index"
