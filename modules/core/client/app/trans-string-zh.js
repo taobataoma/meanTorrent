@@ -690,7 +690,7 @@
       TODAY_NEW_COUNT_REPLY: '(今日: <mark class="text-danger">{{reply}}</mark> 回复)',
       UPLOAD_ATTACH_SUCCESSFULLY: '文件上传成功',
       UPLOAD_ATTACH_FAILED: '文件上传失败',
-      ATTACH_UPLOAD_TOOLTIP1: '上传附件请将文件拖到这里或者',
+      ATTACH_UPLOAD_TOOLTIP1: '如需上传附件请将文件直接拖到这里或',
       ATTACH_UPLOAD_TOOLTIP2: '选择文件',
       ATTACH_UPLOAD_TOOLTIP3: ', 图片文件将会被自动显示, 其它类文件只能被下载.',
       ATTACH_UPLOADING: '正在上传',
