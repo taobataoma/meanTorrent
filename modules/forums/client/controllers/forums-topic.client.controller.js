@@ -41,10 +41,14 @@
      * @param callback
      */
     vm.figureOutItemsToDisplay = function (callback) {
+      console.log(vm.currentPage);
       vm.filterLength = vm.topic._replies.length;
       var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
       var end = begin + vm.itemsPerPage;
       vm.pagedItems = vm.topic._replies.slice(begin, end);
+
+      console.log(vm.filterLength + '-' + begin + '-' + end);
+      console.log(vm.pagedItems);
 
       if (callback) callback();
     };
@@ -67,6 +71,8 @@
      */
     $scope.$watch('vm.topic', function (newValue, oldValue) {
       if (newValue) {
+        console.log(newValue);
+
         if (oldValue) {
           vm.pageChanged();
         } else {
@@ -83,7 +89,6 @@
       ForumsService.get({
         forumId: $stateParams.forumId
       }, function (item) {
-        console.log(item);
         vm.forum = item;
 
         vm.forumPath.splice(0, 0, {name: vm.forum.name, state: 'forums.view', params: {forumId: vm.forum._id}});
@@ -94,7 +99,6 @@
         forumId: $stateParams.forumId,
         topicId: $stateParams.topicId
       }, function (topic) {
-        console.log(topic);
         vm.topic = topic;
 
         vm.forumPath.push({name: topic.title, state: undefined});
@@ -448,7 +452,7 @@
         vm.postReplyFields = {};
         $scope.uFiles = [];
         $scope.uImages = [];
-        vm.currentPage = Math.ceil(vm.topic._replies.length / vm.itemsPerPage);
+        vm.currentPage = Math.ceil(res._replies.length / vm.itemsPerPage);
         vm.topic = res;
 
         $scope.$broadcast('show-errors-reset', 'vm.replyForm');

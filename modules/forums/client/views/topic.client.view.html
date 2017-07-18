@@ -149,6 +149,14 @@
                                                     </li>
                                                 </ol>
                                             </div>
+                                            <div class="thumbs-up-list" ng-if="vm.topic._scoreList.length">
+                                                <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"></div>
+                                                <div class="thumbs-users panel-collapsed" id="thumbs-{{vm.topic._id}}">
+                                                    <span class="thumbs-item"
+                                                          ng-repeat="sl in vm.topic._scoreList track by $index"
+                                                          user-info="sl.user" info-name></span>
+                                                </div>
+                                            </div>
                                             <div class="row text-right margin-top-10" ng-show="vm.topic.updatedAt">
                                                 <p class="reply-comment-body-edited-text">[ {{vm.topic.updatedBy.displayName}} {{ 'COMMENT_EDITED_INFO' | translate}} {{vm.topic.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>
                                             </div>
@@ -209,6 +217,14 @@
                                                         <span>{{'FORUMS.ATTACH_DOWN_COUNT' | translate}} {{af.downCount}}</span> )
                                                     </li>
                                                 </ol>
+                                            </div>
+                                            <div class="thumbs-up-list" ng-if="rep._scoreList.length">
+                                                <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"></div>
+                                                <div class="thumbs-users panel-collapsed" id="thumbs-{{rep._id}}">
+                                                    <span class="thumbs-item"
+                                                          ng-repeat="sl in rep._scoreList track by $index"
+                                                          user-info="sl.user" info-name></span>
+                                                </div>
                                             </div>
                                             <div class="row text-right margin-top-10" ng-show="rep.updatedAt">
                                                 <p class="reply-comment-body-edited-text">[ {{rep.updatedBy.displayName}} {{ 'COMMENT_EDITED_INFO' | translate}} {{rep.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>

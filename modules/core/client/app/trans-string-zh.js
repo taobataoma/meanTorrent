@@ -695,6 +695,7 @@
       ATTACH_UPLOAD_TOOLTIP3: ', 图片文件将会被自动显示, 其它类文件只能被下载.',
       ATTACH_UPLOADING: '正在上传',
       ATTACH_LIST_HEADER: '附件清单:',
+      THUMBS_LIST_HEADER: '点赞用户请单:',
       ATTACH_FILE_SIZE: '文件大小:',
       ATTACH_DOWN_COUNT: '下载次数:',
       ATTACHE_DOWNLOAD_SUCCESSFULLY: '附件文件下载成功',
