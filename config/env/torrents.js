@@ -181,7 +181,8 @@ module.exports = {
         {name: 'DISCUSS', value: 'discuss'},
         {name: 'BUSINESS', value: 'business'}
       ],
-      thumbs_up_score: 10
+      thumbs_up_score: 10,
+      show_thumbs_up_user_list: true
     },
     itemsPerPage: {
       topics_per_page: 10,

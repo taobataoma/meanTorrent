@@ -149,7 +149,7 @@
                                                     </li>
                                                 </ol>
                                             </div>
-                                            <div class="thumbs-up-list" ng-if="vm.topic._scoreList.length">
+                                            <div class="thumbs-up-list" ng-if="vm.topic._scoreList.length && vm.forumsConfig.show_thumbs_up_user_list">
                                                 <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"></div>
                                                 <div class="thumbs-users panel-collapsed" id="thumbs-{{vm.topic._id}}">
                                                     <span class="thumbs-item"
@@ -218,7 +218,7 @@
                                                     </li>
                                                 </ol>
                                             </div>
-                                            <div class="thumbs-up-list" ng-if="rep._scoreList.length">
+                                            <div class="thumbs-up-list" ng-if="rep._scoreList.length && vm.forumsConfig.show_thumbs_up_user_list">
                                                 <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"></div>
                                                 <div class="thumbs-users panel-collapsed" id="thumbs-{{rep._id}}">
                                                     <span class="thumbs-item"
