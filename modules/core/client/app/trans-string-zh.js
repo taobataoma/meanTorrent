@@ -700,6 +700,7 @@
       ATTACH_DOWN_COUNT: '下载次数:',
       ATTACHE_DOWNLOAD_SUCCESSFULLY: '附件文件下载成功',
       ATTACHE_DOWNLOAD_FAILED: '附件文件下载失败',
+      FLOOR_POSTER: '楼主',
 
       CATEGORY: {
         AFFAIRS: '站务区',

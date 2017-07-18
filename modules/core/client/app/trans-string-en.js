@@ -700,6 +700,7 @@
       ATTACH_DOWN_COUNT: 'Downloaded:',
       ATTACHE_DOWNLOAD_SUCCESSFULLY: 'Attach file download successfully',
       ATTACHE_DOWNLOAD_FAILED: 'Attach file download failed',
+      FLOOR_POSTER: 'OWN',
 
       CATEGORY: {
         AFFAIRS: 'Affairs',

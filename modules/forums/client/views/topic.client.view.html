@@ -131,7 +131,7 @@
                                                     </span>
                                                 </div>
 
-                                                <div class="reply-floor">F1</div>
+                                                <div class="reply-floor">{{'FORUMS.FLOOR_POSTER' | translate}}</div>
                                             </div>
                                         </div>
                                         <div class="reply-comment-body">
@@ -202,7 +202,7 @@
                                                            title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}">({{rep._scoreList.length}})</i>
                                                     </span>
                                                 </div>
-                                                <div class="reply-floor">F{{$index+2}}</div>
+                                                <div class="reply-floor">F{{ (vm.currentPage-1) * vm.itemsPerPage + $index + 1 }}</div>
                                             </div>
                                         </div>
                                         <div class="reply-comment-body">

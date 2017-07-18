@@ -41,14 +41,10 @@
      * @param callback
      */
     vm.figureOutItemsToDisplay = function (callback) {
-      console.log(vm.currentPage);
       vm.filterLength = vm.topic._replies.length;
       var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
       var end = begin + vm.itemsPerPage;
       vm.pagedItems = vm.topic._replies.slice(begin, end);
-
-      console.log(vm.filterLength + '-' + begin + '-' + end);
-      console.log(vm.pagedItems);
 
       if (callback) callback();
     };
@@ -65,21 +61,6 @@
         }, 10);
       });
     };
-
-    /**
-     * $watch 'vm.torrentLocalInfo'
-     */
-    $scope.$watch('vm.topic', function (newValue, oldValue) {
-      if (newValue) {
-        console.log(newValue);
-
-        if (oldValue) {
-          vm.pageChanged();
-        } else {
-          vm.buildPager();
-        }
-      }
-    });
 
     /**
      * init
@@ -100,6 +81,7 @@
         topicId: $stateParams.topicId
       }, function (topic) {
         vm.topic = topic;
+        vm.buildPager();
 
         vm.forumPath.push({name: topic.title, state: undefined});
       });
@@ -371,6 +353,7 @@
             replyId: reply._id
           }, function (res) {
             vm.topic = res;
+            vm.figureOutItemsToDisplay();
             NotifycationService.showSuccessNotify('FORUMS.DELETE_REPLY_SUCCESSFULLY');
           }, function (res) {
             NotifycationService.showErrorNotify(res.data.message, 'FORUMS.DELETE_REPLY_FAILED');
@@ -454,6 +437,7 @@
         $scope.uImages = [];
         vm.currentPage = Math.ceil(res._replies.length / vm.itemsPerPage);
         vm.topic = res;
+        vm.pageChanged();
 
         $scope.$broadcast('show-errors-reset', 'vm.replyForm');
         NotifycationService.showSuccessNotify('FORUMS.POST_REPLY_SUCCESSFULLY');
@@ -499,6 +483,7 @@
 
       topic.$thumbsUp(function (res) {
         vm.topic = res;
+        vm.figureOutItemsToDisplay();
 
         $timeout(function () {
           var ele = angular.element($('#thumbs_' + (r ? r._id : t._id)));
