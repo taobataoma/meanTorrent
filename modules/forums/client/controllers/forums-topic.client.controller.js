@@ -18,9 +18,6 @@
     vm.forumPath = [];
     vm.postReplyFields = {};
 
-    vm.pagedItems = [];
-    vm.itemsPerPage = vm.itemsPerPageConfig.replies_per_page;
-    vm.currentPage = 1;
     /**
      * If user is not signed in then redirect back home
      */
@@ -33,6 +30,9 @@
      * pagination init
      */
     vm.buildPager = function () {
+      vm.pagedItems = [];
+      vm.itemsPerPage = vm.itemsPerPageConfig.replies_per_page;
+      vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     };
 
@@ -67,7 +67,11 @@
      */
     $scope.$watch('vm.topic', function (newValue, oldValue) {
       if (newValue) {
-        vm.pageChanged();
+        if (oldValue) {
+          vm.pageChanged();
+        } else {
+          vm.buildPager();
+        }
       }
     });
 
