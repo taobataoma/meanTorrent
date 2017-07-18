@@ -183,6 +183,11 @@ module.exports = {
       ],
       thumbs_up_score: 10
     },
+    itemsPerPage: {
+      topics_per_page: 10,
+      torrents_per_page: 15,
+      torrents_comments_per_page: 10
+    },
     resourcesTags: {
       movie: {
         radio: [

@@ -17,6 +17,7 @@
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.searchTags = [];
     vm.searchKey = '';
@@ -38,13 +39,13 @@
      */
     vm.torrentBuildPager = function () {
       vm.torrentPagedItems = [];
-      vm.torrentItemsPerPage = 15;
+      vm.torrentItemsPerPage = vm.itemsPerPageConfig.torrents_per_page;
       vm.torrentCurrentPage = 1;
       vm.torrentFigureOutItemsToDisplay();
     };
 
     /**
-     * commentFigureOutItemsToDisplay
+     * torrentFigureOutItemsToDisplay
      * @param callback
      */
     vm.torrentFigureOutItemsToDisplay = function (callback) {
@@ -57,7 +58,7 @@
     };
 
     /**
-     * commentPageChanged
+     * torrentPageChanged
      */
     vm.torrentPageChanged = function () {
       var element = angular.element('#top_of_torrent_list');

@@ -20,6 +20,7 @@
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
     vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.torrentTabs = [];
     vm.progress = 0;
@@ -37,7 +38,7 @@
      */
     vm.commentBuildPager = function () {
       vm.commentPagedItems = [];
-      vm.commentItemsPerPage = 10;
+      vm.commentItemsPerPage = vm.itemsPerPageConfig.torrents_comments_per_page;
       vm.commentCurrentPage = 1;
       vm.commentFigureOutItemsToDisplay();
     };
