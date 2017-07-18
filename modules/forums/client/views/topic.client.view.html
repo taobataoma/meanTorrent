@@ -86,14 +86,12 @@
                             <div class="reply-item">
                                 <!-- topic content -->
                                 <div class="reply-wrapper">
-                                    <span user-info="vm.topic.user" info-class="reply-avatar">
-                                        <img ng-src="/{{vm.topic.user.profileImageURL}}">
-                                    </span>
+                                    <span user-info="vm.topic.user" info-class="reply-avatar" info-avatar></span>
 
                                     <div class="reply-comment">
                                         <div class="reply-comment-header">
                                             <div class="reply-comment-header-text">
-                                                <span user-info="vm.topic.user">{{vm.topic.user.displayName}}</span>
+                                                <span user-info="vm.topic.user" info-name></span>
                                                 <span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
                                                 <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="user-ud-text">
@@ -160,14 +158,12 @@
 
                                 <!-- topic replies -->
                                 <div class="reply-wrapper" ng-repeat="rep in vm.topic._replies">
-                                    <span user-info="rep.user" info-class="reply-avatar">
-                                        <img ng-src="/{{rep.user.profileImageURL}}">
-                                    </span>
+                                    <span user-info="rep.user" info-class="reply-avatar" info-avatar></span>
 
                                     <div class="reply-comment">
                                         <div class="reply-comment-header">
                                             <div class="reply-comment-header-text">
-                                                <span user-info="rep.user">{{rep.user.displayName}}</span>
+                                                <span user-info="rep.user" info-name></span>
                                                 <span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
                                                 <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="user-ud-text">

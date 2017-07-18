@@ -60,7 +60,7 @@
 
                                 <p class="topic-by small">
                                     <span translate="FORUMS.FIELDS.REPLY_BY_1"></span>
-                                    <span user-info="t.user">{{t.user.displayName}}</span>
+                                    <span user-info="t.user" info-name></span>
                                     <span message-to="t.user" to-class="message-to-icon"></span>
                                     <span translate="FORUMS.FIELDS.REPLY_BY_3"
                                           translate-values="{createdAt: '{{t.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}">
@@ -74,7 +74,7 @@
                             <div ng-if="t._replies.length > 0">   <!--reply-->
                                 <div class="small reply-by">
                                     <span translate="FORUMS.FIELDS.REPLY_BY_1"></span>
-                                    <span user-info="t.lastUser">{{t.lastUser.displayName}}</span>
+                                    <span user-info="t.lastUser" info-name></span>
                                     <span message-to="t.lastUser" to-class="message-to-icon"></span>
                                 </div>
                                 <div class="small reply-by"
@@ -85,7 +85,7 @@
                             <div ng-if="f.lastTopic._replies.length == 0">   <!--post-->
                                 <div class="small reply-by">
                                     <span translate="FORUMS.FIELDS.REPLY_BY_1"></span>
-                                    <span user-info="t.user">{{t.user.displayName}}</span>
+                                    <span user-info="t.user" info-name></span>
                                     <span message-to="t.user" to-class="message-to-icon"></span>
                                 </div>
                                 <div class="small reply-by"
@@ -149,7 +149,7 @@
 
                                 <p class="topic-by small">
                                     <span translate="FORUMS.FIELDS.REPLY_BY_1"></span>
-                                    <span user-info="t.user">{{t.user.displayName}}</span>
+                                    <span user-info="t.user" info-name></span>
                                     <span message-to="t.user" to-class="message-to-icon"></span>
                                     <span translate="FORUMS.FIELDS.REPLY_BY_3"
                                           translate-values="{createdAt: '{{t.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}">
@@ -163,7 +163,7 @@
                             <div ng-if="t._replies.length > 0">   <!--reply-->
                                 <div class="small reply-by">
                                     <span translate="FORUMS.FIELDS.REPLY_BY_1"></span>
-                                    <span user-info="t.lastUser">{{t.lastUser.displayName}}</span>
+                                    <span user-info="t.lastUser" info-name></span>
                                     <span message-to="t.lastUser" to-class="message-to-icon"></span>
                                 </div>
                                 <div class="small reply-by"
@@ -174,7 +174,7 @@
                             <div ng-if="t._replies.length == 0">   <!--post-->
                                 <div class="small reply-by">
                                     <span translate="FORUMS.FIELDS.REPLY_BY_1"></span>
-                                    <span user-info="t.user">{{t.user.displayName}}</span>
+                                    <span user-info="t.user" info-name></span>
                                     <span message-to="t.user" to-class="message-to-icon"></span>
                                 </div>
                                 <div class="small reply-by"

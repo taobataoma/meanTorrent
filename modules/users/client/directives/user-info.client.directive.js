@@ -20,9 +20,20 @@
           var user = s;
           var title = $translate.instant('USER_INFO_TITLE', {name: user.displayName});
           var cls = attrs.infoClass;
-          var e = angular.element('<a href="#" class="' + (cls ? cls : '') + '" ui-sref="userinfo({userId: \'' + user._id + '\'})" title="' + title + '" ng-click="$event.stopPropagation();">' + element[0].innerHTML + '</a>');
-          element.html(e[0].outerHTML);
-          $compile(element.contents())(scope);
+          var e = undefined;
+
+          if (attrs.hasOwnProperty('infoName')) {
+            e = angular.element('<a href="#" ui-sref="userinfo({userId: \'' + user._id + '\'})" ng-click="$event.stopPropagation();">' + user.displayName + '</a>');
+          } else if (attrs.hasOwnProperty('infoAvatar')) {
+            e = angular.element('<a href="#" ui-sref="userinfo({userId: \'' + user._id + '\'})" ng-click="$event.stopPropagation();"><img src="/' + user.profileImageURL + '"></a>');
+          }
+          if (e) {
+            e.addClass(cls ? cls : '');
+            e.attr('title', title);
+
+            element.html(e);
+            $compile(element.contents())(scope);
+          }
         }
       });
     }

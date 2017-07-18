@@ -210,7 +210,7 @@
                                 <div class="timeline-comment">
                                     <div class="timeline-comment-header">
                                         <div class="timeline-comment-header-text">
-                                            <span user-info="item.user">{{item.user.displayName}}</span>
+                                            <span user-info="item.user" info-name></span>
                                             <span message-to="item.user" to-class="message-to-icon"></span>
                                             <span class="user-ud-text">
                                                 (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{item.user.uploaded | bytes}}
@@ -328,7 +328,7 @@
             <dl class="dl-horizontal" style="margin-bottom: 0;">
                 <dt class="h-line">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}：</dt>
                 <dd class="h-line">
-                    <span user-info="vm.torrentLocalInfo.user">{{vm.torrentLocalInfo.user.displayName}}</span>
+                    <span user-info="vm.torrentLocalInfo.user" info-name></span>
                     <span message-to="vm.torrentLocalInfo.user" to-class="message-to-icon"></span>
                 </dd>
 
