@@ -12,6 +12,7 @@
     .config(localStorageModuleConfig)
     .config(transConfig)
     .config(markedConfig)
+    .run(scrollToTopOfPage)
     .run(setDefaultLang)
     .run(writeLeaveTime);
 
@@ -43,6 +44,13 @@
   transConfig.$inject = ['$translateProvider'];
   function transConfig($translateProvider) {
     $translateProvider.useSanitizeValueStrategy(null);
+  }
+
+  scrollToTopOfPage.$inject = ['$rootScope', '$anchorScroll'];
+  function scrollToTopOfPage($rootScope, $anchorScroll) {
+    $rootScope.$on("$locationChangeSuccess", function () {
+      $anchorScroll();
+    });
   }
 
   setDefaultLang.$inject = ['$translate', 'getStorageLangService'];

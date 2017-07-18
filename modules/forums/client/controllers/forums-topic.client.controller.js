@@ -48,10 +48,6 @@
 
         vm.forumPath.push({name: topic.title, state: undefined});
       });
-
-      $timeout(function () {
-        $('html,body').scrollTop(0);
-      }, 0);
     };
 
     /**

@@ -31,14 +31,5 @@
     function isContextUserSelf() {
       return vm.user.username === vm.authentication.user.username;
     }
-
-    /**
-     * init
-     */
-    vm.init = function () {
-      $timeout(function () {
-        $('html,body').scrollTop(0);
-      }, 0);
-    };
   }
 }());
