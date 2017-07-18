@@ -48,7 +48,7 @@
 
   scrollToTopOfPage.$inject = ['$rootScope', '$anchorScroll'];
   function scrollToTopOfPage($rootScope, $anchorScroll) {
-    $rootScope.$on("$locationChangeSuccess", function () {
+    $rootScope.$on('$locationChangeSuccess', function () {
       $anchorScroll();
     });
   }

@@ -1,4 +1,4 @@
-<section ng-controller="ForumsViewController as vm" ng-init="vm.init();">
+<section ng-controller="ForumsViewController as vm" ng-init="vm.init(); vm.buildPager();">
     <div class="pagetop">
         <div class="container">
             <div class="col-sm-8">
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="container post-list">
+    <div class="container post-list" id="top_of_post_list">
         <div class="path margin-top-20">
             <ol class="breadcrumb">
                 <li><a ui-sref="forums.list"><span class="small glyphicon glyphicon-home"></span> {{'FORUMS.HOME_INDEX' | translate}}</a></li>
@@ -134,7 +134,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="t in vm.topics">
+                    <tr ng-repeat="t in vm.pagedItems">
                         <td>
                             <span class="post-icon glyphicon glyphicon-eye-open" ng-class="{'has-new-reply': vm.hasNewReply(t)}"></span>
 

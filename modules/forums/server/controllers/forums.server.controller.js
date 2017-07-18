@@ -131,20 +131,53 @@ exports.read = function (req, res) {
  * @param res
  */
 exports.listTopics = function (req, res) {
-  Topic.find({
-    forum: req.params.forumId
-  })
-    .sort('-isTop -lastReplyAt -createdAt')
-    .populate('user', 'username displayName profileImageURL uploaded downloaded')
-    .populate('lastUser', 'username displayName profileImageURL uploaded downloaded')
-    .exec(function (err, topics) {
+  var skip = 0;
+  var limit = 0;
+
+  if (req.query.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.query.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+
+  var countQuery = function (callback) {
+    Topic.count({
+      forum: req.params.forumId
+    }, function (err, count) {
       if (err) {
-        return res.status(422).send({
-          message: errorHandler.getErrorMessage(err)
-        });
+        callback(err, null);
+      } else {
+        callback(null, count);
       }
-      res.json(topics);
     });
+  };
+
+  var findQuery = function (callback) {
+    Topic.find({
+      forum: req.params.forumId
+    })
+      .sort('-isTop -lastReplyAt -createdAt')
+      .populate('user', 'username displayName profileImageURL uploaded downloaded')
+      .populate('lastUser', 'username displayName profileImageURL uploaded downloaded')
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, topics) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, topics);
+        }
+      });
+  };
+
+  async.parallel([countQuery, findQuery], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
+  });
 };
 
 /**

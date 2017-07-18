@@ -6,12 +6,13 @@
     .controller('ForumsViewController', ForumsViewController);
 
   ForumsViewController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'moment', '$filter', 'NotifycationService',
-    'marked', 'localStorageService', '$stateParams', 'TopicsService'];
+    '$timeout', 'localStorageService', '$stateParams', 'TopicsService'];
 
   function ForumsViewController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, moment, $filter, NotifycationService,
-                                marked, localStorageService, $stateParams, TopicsService) {
+                                $timeout, localStorageService, $stateParams, TopicsService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.user = Authentication.user;
     vm.forumPath = [];
 
@@ -21,6 +22,44 @@
     if (!Authentication.user) {
       $state.go('authentication.signin');
     }
+
+    /**
+     * buildPager
+     * pagination init
+     */
+    vm.buildPager = function () {
+      vm.pagedItems = [];
+      vm.itemsPerPage = vm.itemsPerPageConfig.topics_per_page;
+      vm.currentPage = 1;
+      vm.figureOutItemsToDisplay();
+    };
+
+    /**
+     * figureOutItemsToDisplay
+     * @param callback
+     */
+    vm.figureOutItemsToDisplay = function (callback) {
+      vm.getTopicsList(vm.currentPage, function (items) {
+        console.log(items);
+        vm.filterLength = items.total;
+        vm.pagedItems = items.rows;
+
+        if (callback) callback();
+      });
+    };
+
+    /**
+     * pageChanged
+     */
+    vm.pageChanged = function () {
+      var element = angular.element('#top_of_post_list');
+
+      vm.figureOutItemsToDisplay(function () {
+        $timeout(function () {
+          $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
+        }, 10);
+      });
+    };
 
     /**
      * init
@@ -42,15 +81,21 @@
         console.log(topics);
         vm.globalTopics = topics;
       });
+    };
 
-      // get topics list
-      TopicsService.query({
-        forumId: $stateParams.forumId
-      }, function (topics) {
-        console.log(topics);
-        vm.topics = topics;
+    /**
+     * getTopicsList
+     * @param p
+     * @param callback
+     */
+    vm.getTopicsList = function (p, callback) {
+      TopicsService.get({
+        forumId: $stateParams.forumId,
+        skip: (p - 1) * vm.itemsPerPage,
+        limit: vm.itemsPerPage
+      }, function (items) {
+        callback(items);
       });
-
     };
 
     /**
