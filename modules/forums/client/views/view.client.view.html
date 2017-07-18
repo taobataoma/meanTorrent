@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="container post-list" id="top_of_post_list">
+    <div class="container post-list">
         <div class="path margin-top-20">
             <ol class="breadcrumb">
                 <li><a ui-sref="forums.list"><span class="small glyphicon glyphicon-home"></span> {{'FORUMS.HOME_INDEX' | translate}}</a></li>
@@ -99,7 +99,7 @@
             </table>
         </div>
 
-        <div>
+        <div id="top_of_post_list">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="box-uib-and-post-btn">
@@ -186,6 +186,14 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="pagination-div-bottom">
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                ng-model="vm.currentPage" ng-change="vm.pageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+            </ul>
         </div>
     </div>
 </section>
