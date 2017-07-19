@@ -1,0 +1,28 @@
+<section ng-controller="ForumsSearchResultController as vm" ng-init="vm.buildPager();">
+    <div ng-include="'/modules/forums/client/views/search.client.view.html'"></div>
+
+    <div class="container margin-top-30" id="top_of_search_list">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <legend translate="FORUMS.SEARCH_RESULT_LIST"></legend>
+
+                <div class="search-result-list">
+                    <div class="result-item" ng-repeat="r in vm.pagedItems">
+                        <a class="item-title" ui-sref="forums.topic({ forumId: r.forum._id, topicId: r._id })">{{r.title}}</a>
+                        <span> - </span>
+                        <span class="item-forum-name">{{r.forum.category}} > {{r.forum.name}}</span>
+                    </div>
+                </div>
+
+                <div class="pagination-div-bottom">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage" ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
