@@ -59,7 +59,7 @@
                                      translate-values="{createdAt: '{{t.lastReplyAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}">
                                 </div>
                             </div>
-                            <div ng-if="f.lastTopic._replies.length == 0">   <!--post-->
+                            <div ng-if="t._replies.length == 0">   <!--post-->
                                 <div class="small reply-by">
                                     <span translate="FORUMS.FIELDS.REPLY_BY_1"></span>
                                     <span user-info="t.user" info-name></span>
