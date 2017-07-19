@@ -730,8 +730,8 @@
         TITLE: '标题',
         CONTENT: '内容',
         REPLY_BY_1: '由',
-        REPLY_BY_2: '回复于 at {{createdAt}}',
-        REPLY_BY_3: '发表于 at {{createdAt}}'
+        REPLY_BY_2: '回复于 {{createdAt}}',
+        REPLY_BY_3: '发表于 {{createdAt}}'
       },
       TITLES: {
         REPLY_QUOTE: '引用并回复',
