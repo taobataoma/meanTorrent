@@ -704,6 +704,8 @@
       FLOOR_POSTER: 'OWN',
       ALL_FORUMS: 'All Forums',
       SEARCH_RESULT_LIST: 'Search Result',
+      SEARCH_LOADING: 'is loading result, please wait...',
+      SEARCH_EMPTY: 'No matching results',
 
       CATEGORY: {
         AFFAIRS: 'Affairs',

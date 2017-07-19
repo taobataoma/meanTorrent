@@ -6,13 +6,16 @@
             <div class="col-sm-10 col-sm-offset-1">
                 <legend translate="FORUMS.SEARCH_RESULT_LIST"></legend>
 
-                <div class="search-result-list">
+                <div class="text-center is-loading" ng-if="vm.isLoading" translate="FORUMS.SEARCH_LOADING"></div>
+                <div class="text-center is-empty" ng-if="vm.pagedItems.length == 0" translate="FORUMS.SEARCH_EMPTY"></div>
+
+                <div class="search-result-list" ng-if="!vm.isLoading && vm.pagedItems.length > 0">
                     <div class="result-item" ng-repeat="r in vm.pagedItems">
-                        <a class="item-title" ui-sref="forums.topic({ forumId: r.forum._id, topicId: r._id })">{{r.title}}</a>
+                        <a class="item-title" ui-sref="forums.topic({ forumId: r.forum._id, topicId: r._id })" ng-bind-html="vm.getFormatedString(r.title);"></a>
                         <span> - </span>
                         <span class="item-forum-name">{{r.forum.category}} > {{r.forum.name}}</span>
 
-                        <div class="item-content">{{r.content}}</div>
+                        <div class="item-content" ng-bind-html="vm.getFormatedString(r.content);"></div>
 
                         <div class="topic-by">
                             <span>   <!--post-->
@@ -39,14 +42,14 @@
                             </span>
                         </div>
                     </div>
-                </div>
 
-                <div class="pagination-div-bottom">
-                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                        ng-model="vm.currentPage" ng-change="vm.pageChanged()"
-                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                    </ul>
+                    <div class="pagination-div-bottom">
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                            ng-model="vm.currentPage" ng-change="vm.pageChanged()"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

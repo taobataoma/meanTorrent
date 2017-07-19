@@ -648,9 +648,25 @@ em {
     }
 }
 
+#top_of_search_list {
+    .is-loading {
+        margin: 100px;
+        font-size: 30px;
+        font-weight: 500;
+    }
+    .is-empty {
+        margin: 100px;
+        font-size: 30px;
+        font-weight: 500;
+    }
+}
+
 .search-result-list {
     .result-item {
-        margin: 15px 15px;
+        &:hover {
+            background-color: #f5f5f5;
+        }
+        padding: 10px 10px;
         .item-title {
             font-size: 16px;
             font-weight: 500;
@@ -672,6 +688,9 @@ em {
             color: #999;
             font-size: 12px;
             margin-top: 3px;
+        }
+        .keys {
+            color: #F22C40;
         }
     }
 }

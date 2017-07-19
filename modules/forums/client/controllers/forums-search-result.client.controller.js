@@ -5,9 +5,9 @@
     .module('forums')
     .controller('ForumsSearchResultController', ForumsSearchResultController);
 
-  ForumsSearchResultController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'marked', 'NotifycationService'];
+  ForumsSearchResultController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'MeanTorrentConfig', 'ForumsService', '$sanitize', 'NotifycationService'];
 
-  function ForumsSearchResultController($scope, $state, $timeout, Authentication, MeanTorrentConfig, ForumsService, marked, NotifycationService) {
+  function ForumsSearchResultController($scope, $state, $timeout, Authentication, MeanTorrentConfig, ForumsService, $sanitize, NotifycationService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
@@ -57,6 +57,9 @@
      * @param callback
      */
     vm.doSearch = function (p, callback) {
+      vm.isLoading = true;
+      vm.pagedItems = [];
+
       var fs = new ForumsService({
         forumId: $state.params.forumId || undefined,
         keys: $state.params.keys,
@@ -67,10 +70,40 @@
       console.log(fs);
 
       fs.$search(function (res) {
+        vm.isLoading = false;
         callback(res);
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_SEARCH_FAILED');
       });
+    };
+
+    /**
+     * getFormatedString
+     * @param t, title
+     * @returns {*}
+     */
+    vm.getFormatedString = function (t) {
+      var keysA = [];
+      t = $sanitize(t);
+
+      if ($state.params.keys && $state.params.keys.length > 0) {
+        var keysS = $state.params.keys + '';
+        var keysT = keysS.split(' ');
+
+        keysT.forEach(function (it) {
+          keysA.push(it);
+        });
+      }
+
+      var regex = new RegExp('<', 'g');
+      t = t.replace(regex, '&lt;');
+
+      angular.forEach(keysA, function (k) {
+        regex = new RegExp(k, 'ig');
+        t = t.replace(regex, '<span class="keys">' + k + '</span>');
+      });
+
+      return t;
     };
   }
 }());
