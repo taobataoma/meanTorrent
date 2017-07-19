@@ -701,6 +701,7 @@
       ATTACHE_DOWNLOAD_SUCCESSFULLY: 'Attach file download successfully',
       ATTACHE_DOWNLOAD_FAILED: 'Attach file download failed',
       FLOOR_POSTER: 'OWN',
+      ALL_FORUMS: 'All Forums',
 
       CATEGORY: {
         AFFAIRS: 'Affairs',

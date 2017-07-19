@@ -630,7 +630,20 @@ em {
         button {
             &:first-child {
                 border-radius: 0;
+                width: auto;
             }
+        }
+        ul {
+            li {
+                &.item-divider {
+                    margin-top: 8px;
+                    padding-top: 8px;
+                    border-top: solid 1px #ccc;
+                }
+            }
+        }
+        .dropdown-menu-right {
+            right: 38px;
         }
     }
 }
