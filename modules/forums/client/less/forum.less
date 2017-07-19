@@ -202,6 +202,11 @@
                                     color: lighten(@brand-primary, 15%);
                                 }
                             }
+                            .fa {
+                                margin-left: 3px;
+                                color: darken(@brand-primary, 10%);
+                                cursor: pointer;
+                            }
                         }
                         .topic-by {
                             color: #666;
@@ -679,8 +684,8 @@ em {
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            line-height: 20px;     /* fallback */
-            max-height: 40px;      /* fallback */
+            line-height: 20px; /* fallback */
+            max-height: 40px; /* fallback */
             -webkit-line-clamp: 2; /* number of lines to show */
             -webkit-box-orient: vertical;
         }

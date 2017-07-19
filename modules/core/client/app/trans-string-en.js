@@ -741,7 +741,8 @@
         TOPIC_DELETE: 'delete topic',
         TOPIC_TOP_TOPIC: 'top status',
         TOPIC_GLOBAL_TOPIC: 'global status',
-        TOPIC_THUMBS_UP: 'thumbs up and donate score'
+        TOPIC_THUMBS_UP: 'thumbs up and donate score',
+        HAS_ATTACH: 'has attach files'
       }
     },
 

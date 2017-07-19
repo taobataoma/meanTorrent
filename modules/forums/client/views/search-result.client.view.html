@@ -13,7 +13,7 @@
                     <div class="result-item" ng-repeat="r in vm.pagedItems">
                         <a class="item-title" ui-sref="forums.topic({ forumId: r.forum._id, topicId: r._id })" ng-bind-html="vm.getFormatedString(r.title);"></a>
                         <span> - </span>
-                        <span class="item-forum-name">{{r.forum.category}} > {{r.forum.name}}</span>
+                        <span class="item-forum-name">{{r.forum.category}} -> {{r.forum.name}}</span>
 
                         <div class="item-content" ng-bind-html="vm.getFormatedString(r.content);"></div>
 

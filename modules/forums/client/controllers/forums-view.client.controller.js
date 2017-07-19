@@ -147,5 +147,24 @@
         return false;
       }
     };
+
+    /**
+     * hasAttach
+     * @param t
+     * @returns {boolean}
+     */
+    vm.hasAttach = function (t) {
+      var has = false;
+      if (t._attach.length > 0) {
+        has = true;
+      } else {
+        angular.forEach(t._replies, function (r) {
+          if (r._attach.length > 0) {
+            has = true;
+          }
+        });
+      }
+      return has;
+    }
   }
 }());

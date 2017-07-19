@@ -161,7 +161,9 @@ exports.forumsSearch = function (req, res) {
     condition.$or = [
       {title: {'$all': keysA}},
       {content: {'$all': keysA}},
-      {'_replies.content': {'$all': keysA}}
+      {'_replies.content': {'$all': keysA}},
+      {'_attach.filename': {'$all': keysA}},
+      {'_replies._attach.filename': {'$all': keysA}}
     ];
   }
 
