@@ -154,8 +154,9 @@ exports.forumsSearch = function (req, res) {
   }
 
   if (req.body.forumId) {
-    condition.forum = req.body.forumId
+    condition.forum = req.body.forumId;
   }
+
   if (keysA.length > 0) {
     condition.$or = [
       {title: {'$all': keysA}},

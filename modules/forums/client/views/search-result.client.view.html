@@ -11,6 +11,33 @@
                         <a class="item-title" ui-sref="forums.topic({ forumId: r.forum._id, topicId: r._id })">{{r.title}}</a>
                         <span> - </span>
                         <span class="item-forum-name">{{r.forum.category}} > {{r.forum.name}}</span>
+
+                        <div class="item-content">{{r.content}}</div>
+
+                        <div class="topic-by">
+                            <span>   <!--post-->
+                                <span class="small">
+                                    <span translate="FORUMS.FIELDS.REPLY_BY_1"></span>
+                                    <span user-info="r.user" info-name></span>
+                                    <span message-to="r.user" to-class="message-to-icon"></span>
+                                </span>
+                                <span class="small"
+                                      translate="FORUMS.FIELDS.REPLY_BY_3"
+                                      translate-values="{createdAt: '{{r.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}">
+                                </span>
+                            </span>
+                            <span class="by-reply" ng-if="r._replies.length > 0">   <!--reply-->
+                                <span class="small">
+                                    <span>, </span>
+                                    <span user-info="r.lastUser" info-name></span>
+                                    <span message-to="r.lastUser" to-class="message-to-icon"></span>
+                                </span>
+                                <span class="small"
+                                     translate="FORUMS.FIELDS.REPLY_BY_2"
+                                     translate-values="{createdAt: '{{r.lastReplyAt | date: 'yyyy-MM-dd HH:mm:ss'}}'}">
+                                </span>
+                            </span>
+                        </div>
                     </div>
                 </div>
 

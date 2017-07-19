@@ -653,9 +653,25 @@ em {
         margin: 15px 15px;
         .item-title {
             font-size: 16px;
+            font-weight: 500;
         }
         .item-forum-name {
             color: #999;
+        }
+        .item-content {
+            color: #666;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            line-height: 20px;     /* fallback */
+            max-height: 40px;      /* fallback */
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
+        }
+        .topic-by {
+            color: #999;
+            font-size: 12px;
+            margin-top: 3px;
         }
     }
 }
