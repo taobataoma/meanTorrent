@@ -7,7 +7,7 @@
                 <legend translate="FORUMS.SEARCH_RESULT_LIST"></legend>
 
                 <div class="text-center is-loading" ng-if="vm.isLoading" translate="FORUMS.SEARCH_LOADING"></div>
-                <div class="text-center is-empty" ng-if="vm.pagedItems.length == 0" translate="FORUMS.SEARCH_EMPTY"></div>
+                <div class="text-center is-empty" ng-if="!vm.isLoading && vm.pagedItems.length == 0" translate="FORUMS.SEARCH_EMPTY"></div>
 
                 <div class="search-result-list" ng-if="!vm.isLoading && vm.pagedItems.length > 0">
                     <div class="result-item" ng-repeat="r in vm.pagedItems">
