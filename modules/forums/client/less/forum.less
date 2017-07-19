@@ -653,7 +653,7 @@ em {
     }
 }
 
-#top_of_search_list {
+.top_of_search_list {
     .is-loading {
         margin: 100px;
         font-size: 30px;
@@ -687,7 +687,9 @@ em {
             line-height: 20px; /* fallback */
             max-height: 40px; /* fallback */
             -webkit-line-clamp: 2; /* number of lines to show */
+            /* csslint ignore:start */
             -webkit-box-orient: vertical;
+            /* csslint ignore:end */
         }
         .topic-by {
             color: #999;
