@@ -667,6 +667,7 @@
       TOPIC_EDIT_FAILED: '话题内容编辑失败',
       TOPIC_TOGGLE_READONLY_SUCCESSFULLY: '只读状态切换成功',
       TOPIC_TOGGLE_READONLY_FAILED: '只读状态切换失败',
+      TOPIC_SEARCH_FAILED: '搜索失败',
       TOPIC_TOGGLE_TOP_SUCCESSFULLY: '置顶状态切换成功',
       TOPIC_TOGGLE_TOP_FAILED: '置顶状态切换失败',
       TOPIC_TOGGLE_GLOBAL_SUCCESSFULLY: '全局状态切换成功',
@@ -702,6 +703,7 @@
       ATTACHE_DOWNLOAD_FAILED: '附件文件下载失败',
       FLOOR_POSTER: '楼主',
       ALL_FORUMS: '所有论坛',
+      SEARCH_RESULT_LIST: '搜索结果',
 
       CATEGORY: {
         AFFAIRS: '站务区',

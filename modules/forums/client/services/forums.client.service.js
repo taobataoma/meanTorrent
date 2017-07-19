@@ -45,6 +45,10 @@
     }, {
       update: {
         method: 'PUT'
+      },
+      search: {
+        method: 'PUT',
+        url: '/api/forums/search'
       }
     });
   }

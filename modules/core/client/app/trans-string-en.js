@@ -667,6 +667,7 @@
       TOPIC_EDIT_FAILED: 'Reply content modify failed',
       TOPIC_TOGGLE_READONLY_SUCCESSFULLY: 'Toggle set topic readonly successfully',
       TOPIC_TOGGLE_READONLY_FAILED: 'Toggle set topic readonly failed',
+      TOPIC_SEARCH_FAILED: 'Topics search failed',
       TOPIC_TOGGLE_TOP_SUCCESSFULLY: 'Toggle set topic top status successfully',
       TOPIC_TOGGLE_TOP_FAILED: 'Toggle set topic top status failed',
       TOPIC_TOGGLE_GLOBAL_SUCCESSFULLY: 'Toggle set topic global status successfully',
@@ -702,6 +703,7 @@
       ATTACHE_DOWNLOAD_FAILED: 'Attach file download failed',
       FLOOR_POSTER: 'OWN',
       ALL_FORUMS: 'All Forums',
+      SEARCH_RESULT_LIST: 'Search Result',
 
       CATEGORY: {
         AFFAIRS: 'Affairs',

@@ -5,15 +5,16 @@
     .module('forums')
     .controller('ForumsSearchController', ForumsSearchController);
 
-  ForumsSearchController.$inject = ['$scope', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'marked'];
+  ForumsSearchController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService'];
 
-  function ForumsSearchController($scope, $translate, Authentication, MeanTorrentConfig, ForumsService, marked) {
+  function ForumsSearchController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
 
     vm.forumList = [];
     vm.selectedForum = {};
+    vm.searchKeys = undefined;
     /**
      * init
      */
@@ -27,6 +28,7 @@
           name: $translate.instant('FORUMS.ALL_FORUMS'),
           divider: false
         });
+        vm.selectedForum = vm.forumList[0];
 
         var cat = '';
         angular.forEach(vm.forums, function (f) {
@@ -38,15 +40,33 @@
           cat = f.category;
         });
 
-        vm.selectedForum = vm.forumList[0];
+        //current forum
+        angular.forEach(vm.forumList, function (f) {
+          if ($state.params.forumId === f._id) {
+            vm.selectedForum = f;
+          }
+        });
+        vm.searchKeys = $state.params.keys || '';
       });
     };
 
     /**
-     * doSearch
+     * onSearchKeyDown
+     * @param evt
      */
-    vm.doSearch = function () {
-      console.log(vm.selectedForum);
+    vm.onSearchKeyDown = function (evt) {
+      if (evt.keyCode === 13 && vm.searchKeys) {
+        vm.routeToSearch();
+      }
+    };
+
+    /**
+     * routeToSearch
+     */
+    vm.routeToSearch = function () {
+      if (vm.searchKeys) {
+        $state.go('forums.search', {forumId: vm.selectedForum._id, keys: vm.searchKeys});
+      }
     };
   }
 }());

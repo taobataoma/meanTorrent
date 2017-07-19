@@ -22,6 +22,14 @@
           pageTitle: 'PAGETITLE.FORUM'
         }
       })
+      .state('forums.search', {
+        url: '/search?forumId&keys',
+        templateUrl: '/modules/forums/client/views/search-result.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.FORUM'
+        }
+      })
       .state('forums.post', {
         url: '/:forumId/post',
         templateUrl: '/modules/forums/client/views/post.client.view.html',

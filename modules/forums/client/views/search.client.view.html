@@ -10,7 +10,10 @@
         <div class="col-sm-5">
             <div class="page-header padding-top-10">
                 <div class="input-group search-group">
-                    <input type="text" class="form-control" aria-label="search" placeholder="Search">
+                    <input type="text" class="form-control"
+                           ng-model="vm.searchKeys"
+                           ng-keydown="vm.onSearchKeyDown($event);"
+                           aria-label="search" placeholder="Search">
 
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -20,10 +23,10 @@
                                 <a href="#" ng-click="vm.selectedForum = f;">{{f.name}}</a>
                             </li>
                         </ul>
-                        <button type="button" class="btn btn-default" aria-label="Search"
-                                ng-click="vm.doSearch();">
+                        <a class="btn btn-default" id="search-button" aria-label="Search"
+                           ng-disabled="!vm.searchKeys" ng-click="vm.routeToSearch();">
                             <span class="glyphicon glyphicon-search"></span>
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <!--<p class="text-muted margin-top-10">Welcome to meanTorrent forums!</p>-->
