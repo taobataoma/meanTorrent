@@ -21,6 +21,9 @@ module.exports = function (app) {
   app.route('/api/attach/:topicId/:replyId').all(forumsPolicy.isAllowed)
     .get(forums.attachDownload);
 
+  app.route('/api/forums/search').all(forumsPolicy.isAllowed)
+    .put(forums.forumsSearch);
+
   app.route('/api/forums/:forumId').all(forumsPolicy.isAllowed)
     .get(forums.read);
 

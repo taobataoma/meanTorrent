@@ -126,6 +126,81 @@ exports.read = function (req, res) {
 };
 
 /**
+ * forumsSearch
+ * @param req
+ * @param res
+ */
+exports.forumsSearch = function (req, res) {
+  var condition = {};
+  var keysA = [];
+  var skip = 0;
+  var limit = 0;
+
+  if (req.body.skip !== undefined) {
+    skip = parseInt(req.body.skip, 10);
+  }
+  if (req.body.limit !== undefined) {
+    limit = parseInt(req.body.limit, 10);
+  }
+
+  if (req.body.keys && req.body.keys.length > 0) {
+    var keysS = req.body.keys + '';
+    var keysT = keysS.split(' ');
+
+    keysT.forEach(function (it) {
+      var ti = new RegExp(it, 'i');
+      keysA.push(ti);
+    });
+  }
+
+  if (req.body.forumId) {
+    condition.forum = req.body.forumId
+  }
+  if (keysA.length > 0) {
+    condition.$or = [
+      {title: {'$all': keysA}},
+      {content: {'$all': keysA}},
+      {'_replies.content': {'$all': keysA}}
+    ];
+  }
+
+  var countQuery = function (callback) {
+    Topic.count(condition, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  var findQuery = function (callback) {
+    Topic.find(condition)
+      .sort('-lastReplyAt -createdAt')
+      .populate('user', 'username displayName profileImageURL uploaded downloaded')
+      .populate('lastUser', 'username displayName profileImageURL uploaded downloaded')
+      .populate('forum', 'name category')
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, topics) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, topics);
+        }
+      });
+  };
+
+  async.parallel([countQuery, findQuery], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
+  });
+};
+
+/**
  * listTopics
  * @param req
  * @param res
