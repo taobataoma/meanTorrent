@@ -32,7 +32,7 @@
                             <div class="post-info">
                                 <p class="topic-title">
                                     <a ui-sref="forums.topic({ forumId: vm.forum._id, topicId: t._id })">{{t.title}}</a>
-                                    <i class="fa fa-file-text" aria-hidden="true"
+                                    <i class="fa fa-paperclip fa-lg" aria-hidden="true"
                                        title="{{'FORUMS.TITLES.HAS_ATTACH' | translate}}"
                                        ng-show="vm.hasAttach(t);"></i>
                                     <small class="badge badge_default" ng-show="t.readOnly">R</small>
@@ -124,7 +124,7 @@
                                        title="{{'FORUMS.TITLES.TOPIC_TOP_TOPIC' | translate}}"
                                        ng-if="t.isTop"></i>
                                     <a ui-sref="forums.topic({ forumId: vm.forum._id, topicId: t._id })">{{t.title}}</a>
-                                    <i class="fa fa-file-text" aria-hidden="true"
+                                    <i class="fa fa-paperclip fa-lg" aria-hidden="true"
                                        title="{{'FORUMS.TITLES.HAS_ATTACH' | translate}}"
                                        ng-show="vm.hasAttach(t);"></i>
                                     <small class="badge badge_default" ng-show="t.readOnly">R</small>
