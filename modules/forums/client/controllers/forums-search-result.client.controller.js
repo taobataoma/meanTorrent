@@ -100,7 +100,9 @@
 
       angular.forEach(keysA, function (k) {
         regex = new RegExp(k, 'ig');
-        t = t.replace(regex, '<span class="keys">' + k + '</span>');
+        t = t.replace(regex, function (match) {
+          return '<span class="keys">' + match + '</span>'
+        });
       });
 
       return t;
