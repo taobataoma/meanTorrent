@@ -177,9 +177,9 @@ module.exports = {
     },
     forumsConfig: {
       category: [
-        {name: 'AFFAIRS', value: 'affairs'},
-        {name: 'DISCUSS', value: 'discuss'},
-        {name: 'BUSINESS', value: 'business'}
+        {name: 'AFFAIRS', value: 'affairs', index: 0},
+        {name: 'DISCUSS', value: 'discuss', index: 1},
+        {name: 'BUSINESS', value: 'business', index: 2}
       ],
       thumbs_up_score: 10,
       show_thumbs_up_user_list: true
