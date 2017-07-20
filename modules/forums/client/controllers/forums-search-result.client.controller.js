@@ -30,7 +30,6 @@
      */
     vm.figureOutItemsToDisplay = function (callback) {
       vm.doSearch(vm.currentPage, function (items) {
-        console.log(items);
         vm.filterLength = items.total;
         vm.pagedItems = items.rows;
 
@@ -67,8 +66,6 @@
         limit: vm.itemsPerPage
       });
 
-      console.log(fs);
-
       fs.$search(function (res) {
         vm.isLoading = false;
         callback(res);
@@ -101,7 +98,7 @@
       angular.forEach(keysA, function (k) {
         regex = new RegExp(k, 'ig');
         t = t.replace(regex, function (match) {
-          return '<span class="keys">' + match + '</span>'
+          return '<span class="keys">' + match + '</span>';
         });
       });
 

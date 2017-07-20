@@ -17,26 +17,57 @@ var path = require('path'),
  * @param res
  */
 exports.list = function (req, res) {
-  Trace.find({})
-    .sort('-createdat')
-    .populate('user', 'username displayName')
-    .populate({
-      path: 'content.user',
-      select: 'username displayName',
-      model: 'User'
-    })
-    .populate({
-      path: 'content.forum',
-      model: 'Forum'
-    })
-    .exec(function (err, traces) {
+  var skip = 0;
+  var limit = 0;
+
+  if (req.query.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.query.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+
+  var countQuery = function (callback) {
+    Trace.count({}, function (err, count) {
       if (err) {
-        return res.status(422).send({
-          message: errorHandler.getErrorMessage(err)
-        });
+        callback(err, null);
+      } else {
+        callback(null, count);
       }
-      res.json(traces);
     });
+  };
+
+  var findQuery = function (callback) {
+    Trace.find({})
+      .sort('-createdat')
+      .populate('user', 'username displayName')
+      .populate({
+        path: 'content.user',
+        select: 'username displayName',
+        model: 'User'
+      })
+      .populate({
+        path: 'content.forum',
+        model: 'Forum'
+      })
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, traces) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, traces);
+        }
+      });
+  };
+
+  async.parallel([countQuery, findQuery], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
+  });
 };
 
 /**

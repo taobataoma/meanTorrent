@@ -189,7 +189,8 @@ module.exports = {
       replies_per_page: 10,
       topics_search_per_page: 10,
       torrents_per_page: 15,
-      torrents_comments_per_page: 10
+      torrents_comments_per_page: 10,
+      traces_per_page: 30
     },
     resourcesTags: {
       movie: {

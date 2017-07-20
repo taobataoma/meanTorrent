@@ -11,6 +11,7 @@
   function TracesController($scope, $state, $translate, $timeout, Authentication, $filter, NotifycationService, $stateParams, MessagesService,
                             MeanTorrentConfig, ModalConfirmService, marked, $rootScope, TracesService) {
     var vm = this;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     /**
      * If user is not signed in then redirect back home
@@ -20,43 +21,54 @@
     }
 
     /**
-     * getTraces
-     */
-    vm.getTraces = function () {
-      TracesService.query(function (data) {
-        vm.traces = data;
-        vm.buildPager();
-      });
-    };
-
-    /**
      * buildPager
+     * pagination init
      */
     vm.buildPager = function () {
       vm.pagedItems = [];
-      vm.itemsPerPage = 10;
+      vm.itemsPerPage = vm.itemsPerPageConfig.traces_per_page;
       vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     };
 
     /**
      * figureOutItemsToDisplay
+     * @param callback
      */
-    vm.figureOutItemsToDisplay = function () {
-      vm.filteredItems = $filter('filter')(vm.traces, {
-        $: vm.search
+    vm.figureOutItemsToDisplay = function (callback) {
+      vm.getTraces(vm.currentPage, function (items) {
+        vm.filterLength = items.total;
+        vm.pagedItems = items.rows;
+
+        if (callback) callback();
       });
-      vm.filterLength = vm.filteredItems.length;
-      var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
-      var end = begin + vm.itemsPerPage;
-      vm.pagedItems = vm.filteredItems.slice(begin, end);
     };
 
     /**
      * pageChanged
      */
     vm.pageChanged = function () {
-      vm.figureOutItemsToDisplay();
+      var element = angular.element('#top_of_traces_list');
+
+      vm.figureOutItemsToDisplay(function () {
+        $timeout(function () {
+          $('html,body').animate({scrollTop: element[0].offsetTop + 15}, 200);
+        }, 10);
+      });
+    };
+
+    /**
+     * getTraces
+     * @param p
+     * @param callback
+     */
+    vm.getTraces = function (p, callback) {
+      TracesService.get({
+        skip: (p - 1) * vm.itemsPerPage,
+        limit: vm.itemsPerPage
+      }, function (data) {
+        callback(data);
+      });
     };
   }
 }());

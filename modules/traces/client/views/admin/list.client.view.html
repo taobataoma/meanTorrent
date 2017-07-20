@@ -1,4 +1,4 @@
-<section class="container" ng-controller="TracesController as vm" ng-init="vm.getTraces();">
+<section class="container" ng-controller="TracesController as vm" ng-init="vm.buildPager();">
     <div class="row margin-top-20">
         <div class="col-sm-12 traces-list">
 
@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <div class="pagination-div-top">
+            <div class="pagination-div-top" id="top_of_traces_list">
                 <div class="row">
                     <div class="col-sm-12 col-md-7">
                         <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
