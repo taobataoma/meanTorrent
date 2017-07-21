@@ -741,7 +741,7 @@
         TOPIC_DELETE: '删除话题',
         TOPIC_TOP_TOPIC: '置顶话题',
         TOPIC_GLOBAL_TOPIC: '全局话题',
-        TOPIC_THUMBS_UP: '点赞送分',
+        TOPIC_THUMBS_UP: '点赞并赠送积分 ({{number}})',
         HAS_ATTACH: '包含附件'
       }
     },

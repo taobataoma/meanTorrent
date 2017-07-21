@@ -100,11 +100,11 @@
                                                        title="{{'FORUMS.TITLES.TOPIC_GLOBAL_TOPIC' | translate}}"
                                                        ng-show="vm.user.isOper;"
                                                        ng-click="vm.beginGlobalTopic(vm.topic);"></i>
-                                                    <span ng-click="vm.beginThumbsUp($event, vm.topic, null);">
+                                                    <span ng-click="vm.beginThumbsUp($event, vm.topic, null);" style="position: relative">
                                                         <i id="thumbs_{{vm.topic._id}}" class="fa fa-thumbs-up" aria-hidden="true"
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"
                                                            mt-scale-start="false"
-                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}"
+                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.forumsConfig.thumbs_up_score}) }}"
                                                                 >({{vm.topic._scoreList.length}})</i>
                                                     </span>
                                                 </div>
@@ -177,7 +177,8 @@
                                                         <i id="thumbs_{{rep._id}}" class="fa fa-thumbs-up" aria-hidden="true"
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"
                                                            mt-scale-start="false"
-                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate}}">({{rep._scoreList.length}})</i>
+                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.forumsConfig.thumbs_up_score}) }}"
+                                                                >({{rep._scoreList.length}})</i>
                                                     </span>
                                                 </div>
                                                 <div class="reply-floor">F{{ (vm.currentPage-1) * vm.itemsPerPage + $index + 1 }}</div>
