@@ -65,6 +65,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 17. Complete forum function, admin can configure each forum section and section moderators, the content support [markdown](https://guides.github.com/features/mastering-markdown/) style.
 18. Forum topics and replies can attach picture files and other type files, The picture file will be displayed automatically, Others file can only be downloaded.
 19. Forum replies support real edit, What you see is what you get ([bootstrap-markdown](http://www.codingdrama.com/bootstrap-markdown/)）), and drag & drop attach file upload.
+20. Complete thumbs-up system(thanks system), topic poster or torrent uploader will received score donate from clicker.
 
 #### Chat room feature:
 1. Users name list
