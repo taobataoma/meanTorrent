@@ -19,7 +19,7 @@ var path = require('path'),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var traceConfig = config.meanTorrentConfig.trace;
-var forumsConfig = config.meanTorrentConfig.forumsConfig;
+var thumbsUpScore = config.meanTorrentConfig.score.thumbsUpScore;
 
 /**
  * list forums
@@ -510,7 +510,7 @@ exports.thumbsUp = function (req, res) {
   var topic = req.topic;
   var thumb = new Thumb();
   thumb.user = req.user;
-  thumb.score = forumsConfig.thumbs_up_score;
+  thumb.score = thumbsUpScore.topic;
 
   if (req.query.replyId) {
     topic._replies.forEach(function (r) {
@@ -527,10 +527,10 @@ exports.thumbsUp = function (req, res) {
             message: 'ALREADY_THUMBS_UP'
           });
         } else {
-          if (req.user.score >= forumsConfig.thumbs_up_score) {
+          if (req.user.score >= thumbsUpScore.topic) {
             r._scoreList.push(thumb);
             r.user.update({
-              $inc: {score: forumsConfig.thumbs_up_score}
+              $inc: {score: thumbsUpScore.topic}
             }).exec();
             save();
           } else {
@@ -554,10 +554,10 @@ exports.thumbsUp = function (req, res) {
         message: 'ALREADY_THUMBS_UP'
       });
     } else {
-      if (req.user.score >= forumsConfig.thumbs_up_score) {
+      if (req.user.score >= thumbsUpScore.topic) {
         topic._scoreList.push(thumb);
         topic.user.update({
-          $inc: {score: forumsConfig.thumbs_up_score}
+          $inc: {score: thumbsUpScore.topic}
         }).exec();
         save();
       } else {
@@ -580,7 +580,7 @@ exports.thumbsUp = function (req, res) {
     });
 
     user.update({
-      $inc: {score: -forumsConfig.thumbs_up_score}
+      $inc: {score: -thumbsUpScore.topic}
     }).exec();
   }
 };

@@ -46,6 +46,10 @@ module.exports = {
           value: 5,
           enable: true
         }
+      },
+      thumbsUpScore:{
+        torrent: 10,
+        topic: 10
       }
     },
     messages: {
@@ -181,7 +185,6 @@ module.exports = {
         {name: 'DISCUSS', value: 'discuss', index: 1},
         {name: 'BUSINESS', value: 'business', index: 2}
       ],
-      thumbs_up_score: 10,
       show_thumbs_up_user_list: true
     },
     itemsPerPage: {
