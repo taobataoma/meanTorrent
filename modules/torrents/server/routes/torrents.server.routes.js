@@ -33,6 +33,9 @@ module.exports = function (app) {
     .put(torrents.update)
     .delete(torrents.delete);
 
+  app.route('/api/torrents/:torrentId/thumbsUp').all(torrentsPolicy.isAllowed)
+    .put(torrents.thumbsUp);
+
   app.route('/api/torrents/:torrentId/set/saletype/:saleType').all(torrentsPolicy.isAllowed)
     .put(torrents.setSaleType);
 

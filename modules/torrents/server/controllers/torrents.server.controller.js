@@ -10,6 +10,7 @@ var path = require('path'),
   multer = require('multer'),
   User = mongoose.model('User'),
   Peer = mongoose.model('Peer'),
+  Thumb = mongoose.model('Thumb'),
   Torrent = mongoose.model('Torrent'),
   fs = require('fs'),
   nt = require('nt'),
@@ -22,6 +23,7 @@ var path = require('path'),
 
 var traceConfig = config.meanTorrentConfig.trace;
 var scoreConfig = config.meanTorrentConfig.score;
+var thumbsUpScore = config.meanTorrentConfig.score.thumbsUpScore;
 
 /**
  * get movie info from tmdb
@@ -448,6 +450,61 @@ exports.update = function (req, res) {
 };
 
 /**
+ * thumbsUp
+ * @param req
+ * @param res
+ */
+exports.thumbsUp = function (req, res) {
+  var user = req.user;
+  var exist = false;
+  var torrent = req.torrent;
+  var thumb = new Thumb();
+  thumb.user = req.user;
+  thumb.score = thumbsUpScore.torrent;
+
+  //check if already exist
+  exist = false;
+  torrent._thumbs.forEach(function (sr) {
+    if (sr.user._id.equals(req.user._id)) {
+      exist = true;
+    }
+  });
+  if (exist) {
+    return res.status(422).send({
+      message: 'ALREADY_THUMBS_UP'
+    });
+  } else {
+    if (req.user.score >= thumbsUpScore.torrent) {
+      torrent._thumbs.push(thumb);
+      torrent.user.update({
+        $inc: {score: thumbsUpScore.torrent}
+      }).exec();
+      save();
+    } else {
+      return res.status(422).send({
+        message: 'SCORE_NOT_ENOUGH'
+      });
+    }
+  }
+
+  function save() {
+    torrent.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(torrent);
+      }
+    });
+
+    user.update({
+      $inc: {score: -thumbsUpScore.torrent}
+    }).exec();
+  }
+};
+
+/**
  * setSaleType
  * @param req
  * @param res
@@ -724,6 +781,7 @@ exports.torrentByID = function (req, res, next, id) {
   var findTorrents = function (callback) {
     Torrent.findById(id)
       .populate('user', 'username displayName profileImageURL')
+      .populate('_thumbs.user', 'username displayName profileImageURL uploaded downloaded')
       .populate({
         path: '_replies.user',
         select: 'username displayName profileImageURL uploaded downloaded',
