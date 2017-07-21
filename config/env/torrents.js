@@ -47,7 +47,7 @@ module.exports = {
           enable: true
         }
       },
-      thumbsUpScore:{
+      thumbsUpScore: {
         torrent: 10,
         topic: 10
       }

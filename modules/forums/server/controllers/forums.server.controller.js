@@ -517,7 +517,7 @@ exports.thumbsUp = function (req, res) {
       if (r._id.equals(req.query.replyId)) {
         //check if already exist
         exist = false;
-        r._scoreList.forEach(function (sr) {
+        r._thumbs.forEach(function (sr) {
           if (sr.user._id.equals(req.user._id)) {
             exist = true;
           }
@@ -528,7 +528,7 @@ exports.thumbsUp = function (req, res) {
           });
         } else {
           if (req.user.score >= thumbsUpScore.topic) {
-            r._scoreList.push(thumb);
+            r._thumbs.push(thumb);
             r.user.update({
               $inc: {score: thumbsUpScore.topic}
             }).exec();
@@ -544,7 +544,7 @@ exports.thumbsUp = function (req, res) {
   } else {
     //check if already exist
     exist = false;
-    topic._scoreList.forEach(function (sr) {
+    topic._thumbs.forEach(function (sr) {
       if (sr.user._id.equals(req.user._id)) {
         exist = true;
       }
@@ -555,7 +555,7 @@ exports.thumbsUp = function (req, res) {
       });
     } else {
       if (req.user.score >= thumbsUpScore.topic) {
-        topic._scoreList.push(thumb);
+        topic._thumbs.push(thumb);
         topic.user.update({
           $inc: {score: thumbsUpScore.topic}
         }).exec();
@@ -937,10 +937,10 @@ exports.topicById = function (req, res, next, id) {
     .populate('user', 'username displayName profileImageURL uploaded downloaded score')
     .populate('lastUser', 'username displayName profileImageURL uploaded downloaded')
     .populate('updatedBy', 'username displayName profileImageURL uploaded downloaded')
-    .populate('_scoreList.user', 'username displayName profileImageURL uploaded downloaded')
+    .populate('_thumbs.user', 'username displayName profileImageURL uploaded downloaded')
     .populate('_replies.user', 'username displayName profileImageURL uploaded downloaded')
     .populate('_replies.updatedBy', 'username displayName profileImageURL uploaded downloaded')
-    .populate('_replies._scoreList.user', 'username displayName profileImageURL uploaded downloaded')
+    .populate('_replies._thumbs.user', 'username displayName profileImageURL uploaded downloaded')
     .exec(function (err, topic) {
       if (err) {
         return next(err);

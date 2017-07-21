@@ -105,7 +105,7 @@
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"
                                                            mt-scale-start="false"
                                                            title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.forumsConfig.thumbs_up_score}) }}"
-                                                                >({{vm.topic._scoreList.length}})</i>
+                                                                >({{vm.topic._thumbs.length}})</i>
                                                     </span>
                                                 </div>
 
@@ -128,12 +128,12 @@
                                                 </ol>
                                             </div>
                                             <div class="thumbs-up-list"
-                                                 ng-if="vm.topic._scoreList.length && vm.forumsConfig.show_thumbs_up_user_list">
+                                                 ng-if="vm.topic._thumbs.length && vm.forumsConfig.show_thumbs_up_user_list">
                                                 <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"
-                                                     translate-values="{number: vm.topic._scoreList.length}"></div>
+                                                     translate-values="{number: vm.topic._thumbs.length}"></div>
                                                 <div class="thumbs-users panel-collapsed" id="thumbs-{{vm.topic._id}}">
                                                     <span class="thumbs-item"
-                                                          ng-repeat="sl in vm.topic._scoreList track by $index"
+                                                          ng-repeat="sl in vm.topic._thumbs track by $index"
                                                           user-info="sl.user" info-name></span>
                                                 </div>
                                             </div>
@@ -178,7 +178,7 @@
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"
                                                            mt-scale-start="false"
                                                            title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.forumsConfig.thumbs_up_score}) }}"
-                                                                >({{rep._scoreList.length}})</i>
+                                                                >({{rep._thumbs.length}})</i>
                                                     </span>
                                                 </div>
                                                 <div class="reply-floor">F{{ (vm.currentPage-1) * vm.itemsPerPage + $index + 1 }}</div>
@@ -199,12 +199,12 @@
                                                     </li>
                                                 </ol>
                                             </div>
-                                            <div class="thumbs-up-list" ng-if="rep._scoreList.length && vm.forumsConfig.show_thumbs_up_user_list">
+                                            <div class="thumbs-up-list" ng-if="rep._thumbs.length && vm.forumsConfig.show_thumbs_up_user_list">
                                                 <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"
-                                                     translate-values="{number: rep._scoreList.length}"></div>
+                                                     translate-values="{number: rep._thumbs.length}"></div>
                                                 <div class="thumbs-users panel-collapsed" id="thumbs-{{rep._id}}">
                                                     <span class="thumbs-item"
-                                                          ng-repeat="sl in rep._scoreList track by $index"
+                                                          ng-repeat="sl in rep._thumbs track by $index"
                                                           user-info="sl.user" info-name></span>
                                                 </div>
                                             </div>

@@ -35,6 +35,23 @@ var CommentSchema = new Schema({
   }
 });
 
+/**
+ * Sub Thumb Schema
+ */
+var ThumbSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  score: {
+    type: Number,
+    default: 0
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
 
 /**
  * Torrent Schema
@@ -129,6 +146,7 @@ var TorrentSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  _thumbs: [ThumbSchema],
   _other_torrents: [],
 
   //resource info

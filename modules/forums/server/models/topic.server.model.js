@@ -62,7 +62,7 @@ var ReplySchema = new Schema({
   },
 
   _attach: [AttachSchema],
-  _scoreList: [ThumbSchema],
+  _thumbs: [ThumbSchema],
 
   updatedAt: {
     type: Date
@@ -115,7 +115,7 @@ var TopicSchema = new Schema({
   },
   _replies: [ReplySchema],
   _attach: [AttachSchema],
-  _scoreList: [ThumbSchema],
+  _thumbs: [ThumbSchema],
 
   isTop: {
     type: Boolean,
