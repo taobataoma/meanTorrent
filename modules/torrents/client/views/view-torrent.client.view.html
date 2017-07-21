@@ -619,7 +619,7 @@
 
     <script type="text/ng-template" id="thumbsInfo.html">
         <div class="padding-top-20">
-            <div class="text-center"><a href="#" ng-click="vm.beginThumbsUp(vm.torrentLocalInfo);">{{'THUMBS_UP_TORRENT' | translate: ({number: vm.scoreConfig.thumbsUpScore.torrent}) }}</a></div>
+            <div class="text-center"><h4><a href="#" ng-click="vm.beginThumbsUp(vm.torrentLocalInfo);">{{'THUMBS_UP_TORRENT' | translate: ({number: vm.scoreConfig.thumbsUpScore.torrent}) }}</a></h4></div>
         </div>
         <div class="padding-top-20">
             <div class="thumbs-up-list" ng-if="vm.torrentLocalInfo._thumbs.length">
