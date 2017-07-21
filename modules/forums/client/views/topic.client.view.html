@@ -104,7 +104,7 @@
                                                         <i id="thumbs_{{vm.topic._id}}" class="fa fa-thumbs-up" aria-hidden="true"
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"
                                                            mt-scale-start="false"
-                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.forumsConfig.thumbs_up_score}) }}"
+                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.scoreConfig.thumbsUpScore.topic}) }}"
                                                                 >({{vm.topic._thumbs.length}})</i>
                                                     </span>
                                                 </div>
@@ -177,7 +177,7 @@
                                                         <i id="thumbs_{{rep._id}}" class="fa fa-thumbs-up" aria-hidden="true"
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"
                                                            mt-scale-start="false"
-                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.forumsConfig.thumbs_up_score}) }}"
+                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.scoreConfig.thumbsUpScore.topic}) }}"
                                                                 >({{rep._thumbs.length}})</i>
                                                     </span>
                                                 </div>

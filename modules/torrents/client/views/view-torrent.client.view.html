@@ -310,7 +310,9 @@
                                         </div>
                                         <div class="col-sm-6 text-right">
                                             <button class="btn btn-warning" translate="SUBMIT_CANCEL" ng-click="vm.submitInit();"></button>
-                                            <button class="btn btn-success" translate="{{vm.reply_action == 'reply' ? 'SUBMIT_REPLY' : 'SUBMIT_COMMENT'}}" ng-click="vm.submitComment();"
+                                            <button class="btn btn-success"
+                                                    translate="{{vm.reply_action == 'reply' ? 'SUBMIT_REPLY' : 'SUBMIT_COMMENT'}}"
+                                                    ng-click="vm.submitComment();"
                                                     ng-disabled="!vm.new_comment_content"></button>
                                         </div>
                                     </div>
@@ -611,6 +613,23 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="thumbsInfo.html">
+        <div class="padding-top-20">
+            <div class="text-center"><a href="#" ng-click="vm.beginThumbsUp(vm.torrentLocalInfo);">{{'THUMBS_UP_TORRENT' | translate: ({number: vm.scoreConfig.thumbsUpScore.torrent}) }}</a></div>
+        </div>
+        <div class="padding-top-20">
+            <div class="thumbs-up-list" ng-if="vm.torrentLocalInfo._thumbs.length">
+                <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"
+                     translate-values="{number: vm.torrentLocalInfo._thumbs.length}"></div>
+                <div class="thumbs-users panel-collapsed" id="thumbs-{{rep._id}}">
+                     <span class="thumbs-item"
+                           ng-repeat="sl in vm.torrentLocalInfo._thumbs track by $index"
+                           user-info="sl.user" info-name></span>
+                </div>
             </div>
         </div>
     </script>

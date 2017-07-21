@@ -12,6 +12,7 @@
                                  marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService, $filter, Upload, DownloadService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
+    vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.user = Authentication.user;
