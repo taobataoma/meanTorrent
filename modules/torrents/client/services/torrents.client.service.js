@@ -53,6 +53,13 @@
         params: {
           torrentId: '@_torrentId'
         }
+      },
+      thumbsUp: {
+        method: 'PUT',
+        url: '/api/torrents/:torrentId/thumbsUp',
+        params: {
+          torrentId: '@_id'
+        }
       }
     });
 

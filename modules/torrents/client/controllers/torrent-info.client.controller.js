@@ -21,6 +21,7 @@
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
     vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+    vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
 
     vm.torrentTabs = [];
     vm.progress = 0;
@@ -150,6 +151,17 @@
             badges: [
               {
                 value: '↑ ' + vm.torrentLocalInfo.torrent_seeds + '　↓ ' + vm.torrentLocalInfo.torrent_leechers + '　√ ' + vm.torrentLocalInfo.torrent_finished,
+                class: 'badge_info'
+              }
+            ]
+          },
+          {
+            title: $translate.instant('TAB_THUMBS_LIST'),
+            templateUrl: 'thumbsInfo.html',
+            ng_show: true,
+            badges: [
+              {
+                value: vm.torrentLocalInfo._thumbs.length,
                 class: 'badge_info'
               }
             ]
@@ -808,6 +820,25 @@
         Notification.error({
           message: res.data.message,
           title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETRLEVEL_ERROR')
+        });
+      });
+    };
+
+    /**
+     * beginThumbsUp
+     * @param t, torrent
+     */
+    vm.beginThumbsUp = function (t) {
+      t.$thumbsUp(function (res) {
+        vm.torrentLocalInfo = res;
+
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_THUMBS_SUCCESSFULLY')
+        });
+      }, function (res) {
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_THUMBS_FAILED')
         });
       });
     };
