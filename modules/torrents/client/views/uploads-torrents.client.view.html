@@ -3,23 +3,9 @@
         <div class="row">
             <div class="col-md-11 col-md-offset-1 col-sm-11 col-sm-offset-1 col-xs-12">
                 <h4 translate="UPLOAD_RULES"></h4>
-                <!--<ol>-->
-                <!--<li ng-repeat="r in vm.rule_items" translate="UPLOAD_RULES_CONTENT.{{r}}"-->
-                <!--translate-values='{ url: vm.announceConfig.url, admin: vm.announceConfig.admin}' style="line-height: 1.6;"></li>-->
-                <!--</ol>-->
+
                 <div marked src="'/modules/torrents/client/templates/upload-rules-'+vm.lang+'.md'" compile="true" style="line-height: 1.6;">
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row margin-bottom-40">
-        <div class="col-xs-12">
-            <legend class="small-legend" translate="SELECT_RESOURCE_TYPE"></legend>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <select class="form-control" ng-model="vm.selectedType" ng-change="vm.onTorrentTypeChanged();">
-                    <option ng-repeat="t in vm.torrentType.value" value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}</option>
-                </select>
             </div>
         </div>
     </div>
@@ -53,44 +39,22 @@
                 <label class="text-danger control-label" translate="TORRENTS_UPLOAD_FAILED"></label>
             </div>
         </div>
-
     </div>
 
-    <div ng-show="vm.successfully == true" class="row margin-bottom-40">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <legend class="small-legend" translate="ENTER_TMDB_ID"></legend>
-            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-ac ng-model="vm.tmdb_id"
-                           id="tmdbid"
-                           ng-change="vm.tmdb_info_ok = undefined"
-                           ng-disabled="vm.tmdb_info_ok"
-                           ng-focus="vm.onTextClick($event)"
-                           ng-keydown="vm.onTMDBIDKeyDown($event);"
-                           placeholder="{{ 'TMDB_ID' | translate}}" autofocus>
-
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary" ng-click="vm.getInfo(vm.tmdb_id)"
-                                ng-disabled="vm.tmdb_info_ok">{{ 'LOAD_TMDB_INFO' | translate}}
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div ng-show="vm.tmdb_info_ok == true" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
-                <label class="text-success control-label" translate="TMDB_ID_OK"></label>
-            </div>
-            <div ng-show="vm.tmdb_info_ok == false" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
-                <label class="text-danger control-label" translate="TMDB_ID_ERROR"></label>
-            </div>
-            <div ng-show="vm.tmdb_isloading" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
-                <label class="text-danger control-label" translate="TMDB_IS_LOADING"></label>
+    <div class="row margin-bottom-40" ng-show="vm.successfully == true">
+        <div class="col-xs-12">
+            <legend class="small-legend" translate="SELECT_RESOURCE_TYPE"></legend>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <select class="form-control" ng-model="vm.selectedType" ng-change="vm.onTorrentTypeChanged();">
+                    <option ng-repeat="t in vm.torrentType.value" value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}</option>
+                </select>
             </div>
         </div>
     </div>
 
-    <div ng-if="vm.tmdb_info_ok == true" ng-include="vm.getIncludeInfoTemplate();"></div>
+    <div ng-if="vm.selectedType" ng-include="vm.selectedType"></div>
 
-    <div class="row margin-bottom-40" ng-show="vm.tmdb_info_ok == true && vm.inputedEpisodesOK == true">
+    <div class="row margin-bottom-40" ng-show="vm.showVideoNfo">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <legend class="small-legend" translate="ENTER_VIDEO_NFO"></legend>
             <div class="col-xs-12">
@@ -99,7 +63,7 @@
         </div>
     </div>
 
-    <div class="row margin-bottom-40 margin-top-50" ng-show="vm.tmdb_info_ok == true && vm.inputedEpisodesOK == true">
+    <div class="row margin-bottom-40 margin-top-50" ng-show="vm.showAgreeAndSubmit">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <legend class="small-legend" translate="TORRENTS_SUBMIT_UPLOAD"></legend>
             <div class="col-sm-6 col-sm-offset-3 text-center">
@@ -126,8 +90,40 @@
         ng-template     movieinfo.html
     **********************************************************************
     -->
-    <script type="text/ng-template" id="movieinfo.html">
-        <div>
+    <script type="text/ng-template" id="movie">
+        <div class="row margin-bottom-40">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="ENTER_TMDB_ID"></legend>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-ac ng-model="vm.tmdb_id"
+                               id="tmdbid"
+                               ng-change="vm.tmdb_info_ok = undefined"
+                               ng-disabled="vm.tmdb_info_ok"
+                               ng-focus="vm.onTextClick($event)"
+                               ng-keydown="vm.onTMDBIDKeyDown($event);"
+                               placeholder="{{ 'TMDB_ID' | translate}}" autofocus>
+
+                        <div class="input-group-btn">
+                            <button id="btnGetTMDBInfo" class="btn btn-primary" ng-click="vm.getMovieInfo(vm.tmdb_id)"
+                                    ng-disabled="vm.tmdb_info_ok">{{ 'LOAD_TMDB_INFO' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="vm.tmdb_info_ok == true" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                    <label class="text-success control-label" translate="TMDB_ID_OK"></label>
+                </div>
+                <div ng-show="vm.tmdb_info_ok == false" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                    <label class="text-danger control-label" translate="TMDB_ID_ERROR"></label>
+                </div>
+                <div ng-show="vm.tmdb_isloading" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                    <label class="text-danger control-label" translate="TMDB_IS_LOADING"></label>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="vm.tmdb_info_ok == true">
             <div class="row margin-bottom-40">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <legend class="small-legend" translate="TMDB_RESOURCE_INFO"></legend>
@@ -246,8 +242,39 @@
         ng-template     tvinfo.html
     **********************************************************************
     -->
-    <script type="text/ng-template" id="tvinfo.html">
-        <div>
+    <script type="text/ng-template" id="tvserial">
+        <div class="row margin-bottom-40">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="ENTER_TMDB_ID"></legend>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-ac ng-model="vm.tmdb_id"
+                               id="tmdbid"
+                               ng-change="vm.tmdb_info_ok = undefined"
+                               ng-disabled="vm.tmdb_info_ok"
+                               ng-focus="vm.onTextClick($event)"
+                               ng-keydown="vm.onTMDBIDKeyDown($event);"
+                               placeholder="{{ 'TMDB_ID' | translate}}" autofocus>
+
+                        <div class="input-group-btn">
+                            <button id="btnGetTMDBInfo" class="btn btn-primary" ng-click="vm.getTVInfo(vm.tmdb_id)"
+                                    ng-disabled="vm.tmdb_info_ok">{{ 'LOAD_TMDB_INFO' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="vm.tmdb_info_ok == true" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                    <label class="text-success control-label" translate="TMDB_ID_OK"></label>
+                </div>
+                <div ng-show="vm.tmdb_info_ok == false" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                    <label class="text-danger control-label" translate="TMDB_ID_ERROR"></label>
+                </div>
+                <div ng-show="vm.tmdb_isloading" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                    <label class="text-danger control-label" translate="TMDB_IS_LOADING"></label>
+                </div>
+            </div>
+        </div>
+        <div ng-show="vm.tmdb_info_ok == true">
             <div class="row margin-bottom-40">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <legend class="small-legend" translate="TMDB_RESOURCE_INFO"></legend>
@@ -347,7 +374,9 @@
                                             <button type="submit" class="btn btn-primary">continue</button>
                                         </div>
                                         <div class="col-xs-12" ng-messages="vm.episodesForm.inputedEpisodes.$error" role="alert">
-                                            <p class="help-block error-text" ng-message="required">{{'TMDB_FIELDS.EPISODES_INPUT_TIP' | translate}}</p>
+                                            <p class="help-block error-text"
+                                               ng-message="required">{{'TMDB_FIELDS.EPISODES_INPUT_TIP' | translate}}</p>
+
                                             <p class="help-block error-text" ng-message="pattern">{{'TMDB_FIELDS.EPISODES_INPUT_TIP' | translate}}</p>
                                         </div>
                                         <div class="col-xs-12" ng-hide="vm.inputedEpisodesError">
@@ -396,6 +425,26 @@
                     </dl>
                 </div>
             </div>
+        </div>
+    </script>
+    <!--
+    **********************************************************************
+        ng-template     music.html
+    **********************************************************************
+    -->
+    <script type="text/ng-template" id="music">
+        <div>
+
+        </div>
+    </script>
+    <!--
+    **********************************************************************
+        ng-template     other.html
+    **********************************************************************
+    -->
+    <script type="text/ng-template" id="other">
+        <div>
+
         </div>
     </script>
 </section>

@@ -299,8 +299,8 @@
     TORRENTS_UPLOAD_FAILED: '文件上传失败',
     TORRENTS_NO_FILE_SELECTED: '请选择种子文件后再做尝试',
 
-    SELECT_RESOURCE_TYPE: '1. 请选择上传资源类型',
-    SELECT_TORRENT_FILE: '2. 请选择种子文件',
+    SELECT_RESOURCE_TYPE: '2. 请选择上传资源类型',
+    SELECT_TORRENT_FILE: '1. 请选择种子文件',
     SELECT_FILE: '选择文件',
     DO_UPLOAD: '上传',
     ENTER_TMDB_ID: '3. 请输入TMDB_ID',

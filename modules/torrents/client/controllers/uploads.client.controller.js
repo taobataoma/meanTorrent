@@ -19,13 +19,7 @@
     vm.lang = getStorageLangService.getLang();
     vm.user = Authentication.user;
     vm.progress = 0;
-    vm.selectedType = 'movie';
-    vm.successfully = undefined;
-    vm.tmdb_info_ok = undefined;
-    vm.selectedSeasons = undefined;
     vm.torrentInfo = null;
-    vm.inputedEpisodesError = undefined;
-    vm.inputedEpisodesOK = false;
     vm.tags = [];
     vm.videoNfo = '';
 
@@ -102,7 +96,9 @@
      */
     vm.onTMDBIDKeyDown = function (evt) {
       if (evt.keyCode === 13) {
-        vm.getInfo(vm.tmdb_id);
+        $timeout(function () {
+          angular.element('#btnGetTMDBInfo').triggerHandler('click');
+        }, 0);
       }
     };
 
@@ -115,51 +111,21 @@
     };
 
     /**
-     * getIncludeInfoTemplate
-     * @returns {*}
-     */
-    vm.getIncludeInfoTemplate = function () {
-      switch (vm.selectedType) {
-        case 'tvserial':
-          return 'tvinfo.html';
-        case 'music':
-          return 'musicinfo.html';
-        case 'other':
-          return 'otherinfo.html';
-        default:
-          return 'movieinfo.html';
-      }
-    };
-
-    /**
      * onTorrentTypeChanged
      */
     vm.onTorrentTypeChanged = function () {
+      vm.tmdb_isloading = false;
       vm.tmdb_info_ok = undefined;
+
       vm.inputedEpisodesError = undefined;
       vm.inputedEpisodesOK = false;
-      vm.tmdb_isloading = false;
+
       vm.movieinfo = undefined;
       vm.tvinfo = undefined;
       vm.tmdb_id = undefined;
-    };
 
-    /**
-     * getInfo
-     * @param tmdbid
-     */
-    vm.getInfo = function (tmdbid) {
-      switch (vm.selectedType) {
-        case 'tvserial':
-          vm.getTVInfo(tmdbid);
-          break;
-        case 'music':
-          break;
-        case 'other':
-          break;
-        default:
-          vm.getMovieInfo(tmdbid);
-      }
+      vm.showVideoNfo = false;
+      vm.showAgreeAndSubmit = false;
     };
 
     /**
@@ -176,13 +142,15 @@
       }
 
       vm.tmdb_isloading = true;
+      vm.tmdb_info_ok = undefined;
       TorrentsService.getTMDBMovieInfo({
         tmdbid: tmdbid,
         language: getStorageLangService.getLang()
       }, function (res) {
         vm.tmdb_info_ok = true;
         vm.tmdb_isloading = false;
-        vm.inputedEpisodesOK = true;
+        vm.showVideoNfo = true;
+        vm.showAgreeAndSubmit = true;
         Notification.success({
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_ID_OK')
         });
@@ -215,6 +183,7 @@
       }
 
       vm.tmdb_isloading = true;
+      vm.tmdb_info_ok = undefined;
       TorrentsService.getTMDBTVInfo({
         tmdbid: tmdbid,
         language: getStorageLangService.getLang()
@@ -254,6 +223,8 @@
       } else {
         vm.inputedEpisodesError = false;
         vm.inputedEpisodesOK = true;
+        vm.showVideoNfo = true;
+        vm.showAgreeAndSubmit = true;
       }
     };
 
