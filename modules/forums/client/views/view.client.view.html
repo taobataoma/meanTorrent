@@ -31,7 +31,7 @@
 
                             <div class="post-info">
                                 <p class="topic-title">
-                                    <a ui-sref="forums.topic({ forumId: vm.forum._id, topicId: t._id })">{{t.title}}</a>
+                                    <a ui-sref="forums.topic({ forumId: t.forum._id, topicId: t._id })">{{t.title}}</a>
                                     <i class="fa fa-paperclip fa-lg" aria-hidden="true"
                                        title="{{'FORUMS.TITLES.HAS_ATTACH' | translate}}"
                                        ng-show="vm.hasAttach(t);"></i>
