@@ -19,7 +19,8 @@ var config = require('../config'),
   hbs = require('express-hbs'),
   path = require('path'),
   _ = require('lodash'),
-  lusca = require('lusca');
+  lusca = require('lusca'),
+  ircConfig = config.meanTorrentConfig.ircAnnounce;
 
 /**
  * Initialize local variables
@@ -160,7 +161,7 @@ module.exports.initHelmetHeaders = function (app) {
  */
 module.exports.initModulesClientRoutes = function (app) {
   // Setting the app router and static folder
-  app.use('/', express.static(path.resolve('./public'), { maxAge: 86400000 }));
+  app.use('/', express.static(path.resolve('./public'), {maxAge: 86400000}));
 
   // Globbing static routing
   config.folders.client.forEach(function (staticPath) {
@@ -218,6 +219,14 @@ module.exports.configureSocketIO = function (app, db) {
 };
 
 /**
+ * Initialize IRC announce
+ */
+module.exports.initIRCAnnounce = function (app) {
+  var client = require('./ircAnnounce.js')(app);
+  app.set('ircClient', client);
+};
+
+/**
  * Initialize the Express application
  */
 module.exports.init = function (db) {
@@ -253,6 +262,10 @@ module.exports.init = function (db) {
 
   // Initialize error routes
   this.initErrorRoutes(app);
+
+  // Initialize IRC announce
+  if (ircConfig.enable)
+    this.initIRCAnnounce(app);
 
   // Configure Socket.io
   app = this.configureSocketIO(app, db);

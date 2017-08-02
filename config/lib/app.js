@@ -7,7 +7,8 @@ var config = require('../config'),
   mongoose = require('./mongoose'),
   express = require('./express'),
   chalk = require('chalk'),
-  seed = require('./seed');
+  seed = require('./seed'),
+  ircConfig = config.meanTorrentConfig.ircAnnounce;
 
 function seedDB() {
   if (config.seedDB && config.seedDB.seed) {
@@ -47,6 +48,10 @@ module.exports.start = function start(callback) {
       console.log(chalk.green('App version:     ' + config.meanjs.version));
       if (config.meanjs['meanjs-version'])
         console.log(chalk.green('MEAN.JS version: ' + config.meanjs['meanjs-version']));
+      if (ircConfig.enable)
+        console.log(chalk.green('IRC announce:    ' + ircConfig.server + ':' + ircConfig.port + ' ' + ircConfig.channel));
+      else
+        console.log(chalk.green('IRC announce:    disabled'));
       console.log('--');
 
       if (callback) callback(app, db, config);
