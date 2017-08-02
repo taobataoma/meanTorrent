@@ -20,6 +20,23 @@ module.exports = {
       client_black_list_url: 'http://chd.im:3000/client_black_list',
       private_torrent_cms: false
     },
+    ircAnnounce: {
+      enable: true,
+      debug: false,
+      server: 'chd.im',
+      port: 16667,
+      nick: 'chdAnnounce',
+      userName: 'meanTorrent',
+      realName: 'IRC announce client',
+      channel: '#chdAnnounce',
+      msg_format: '%s upload torrent %s at %s',
+      showErrors: true,
+      autoRejoin: true,
+      autoConnect: true,
+      retryCount: 86400,
+      retryDelay: 5000,
+      encoding: 'UTF-8'
+    },
     sign: {
       open_signin: true,
       allow_social_sign: false
