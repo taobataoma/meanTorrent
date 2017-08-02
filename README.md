@@ -147,6 +147,14 @@ This command does a few things:
 * When the npm packages install process is over, npm will initiate a bower install command to install all the front-end modules needed for the application
 * To update these packages later on, just run `npm update`
 
+If install process show error info below:
+
+`../node-icu-charset-detector.cpp:7:28: fatal error: unicode/ucsdet.h: No such file or directory`
+
+then run this command to install lib manual
+
+`apt-get install libicu-dev` OR `yum install libicu-devel`
+
 ## Running Your Application
 
 Run your application using npm:
