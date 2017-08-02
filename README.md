@@ -66,6 +66,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 18. Forum topics and replies can attach picture files and other type files, The picture file will be displayed automatically, Others file can only be downloaded.
 19. Forum replies support real edit, What you see is what you get ([bootstrap-markdown](http://www.codingdrama.com/bootstrap-markdown/)）), and drag & drop attach file upload.
 20. Complete thumbs-up system(thanks system), topic poster or torrent uploader will received score donate from clicker.
+21. IRC Announce support, when user upload new torrent file, and oper/admin reviewed it, then announce the torrent info to IRC channel.
 
 #### Chat room feature:
 1. Users name list
@@ -249,7 +250,26 @@ And you can make a list page to tell users witch clients are unpopular.
 If your site do not accept user free register, please set `open_signin` to `false`, then user only can register through friend invitation or system(admin/oper) invitation.
 if you set `open_invite` to `true`, the normal user can invite friends to join, if `false` only oper/admin can invite users.
 
-
+```javascript
+    ircAnnounce: {
+      enable: true,
+      debug: false,
+      server: 'chd.im',
+      port: 16667,
+      nick: 'chdAnnounce',
+      userName: 'meanTorrent',
+      realName: 'IRC announce client',
+      channel: '#chdAnnounce',
+      msg_format: '%s upload torrent %s at %s',
+      showErrors: true,
+      autoRejoin: true,
+      autoConnect: true,
+      retryCount: 86400,
+      retryDelay: 5000,
+      encoding: 'UTF-8'
+    },
+```
+Now, IRC announce supported [Node-irc](https://github.com/martynsmith/node-irc), this function can be used on rtorrent client, if match some words, the download client can add the torrent into download task list automatic.
 
 There is not much comment of `config/env/torrent.js`, because the development time is limited, I'll add more comment in my free time, If you has any question, please post an [issue](https://github.com/taobataoma/meanTorrent/issues), and i will focus it.
 
