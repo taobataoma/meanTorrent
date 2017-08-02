@@ -8,6 +8,7 @@ var path = require('path'),
   mongoose = require('mongoose'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   multer = require('multer'),
+  moment = require('moment'),
   User = mongoose.model('User'),
   Peer = mongoose.model('Peer'),
   Thumb = mongoose.model('Thumb'),
@@ -24,6 +25,8 @@ var path = require('path'),
 var traceConfig = config.meanTorrentConfig.trace;
 var scoreConfig = config.meanTorrentConfig.score;
 var thumbsUpScore = config.meanTorrentConfig.score.thumbsUpScore;
+var ircConfig = config.meanTorrentConfig.ircAnnounce;
+var vsprintf = require('sprintf-js').vsprintf;
 
 /**
  * get movie info from tmdb
@@ -567,6 +570,11 @@ exports.setRecommendLevel = function (req, res) {
         });
       }
     });
+
+    var client = req.app.get('ircClient');
+    var msg = vsprintf(ircConfig.msg_format, [torrent.user.displayName, torrent.torrent_filename, moment().format('YYYY-MM-DD HH:mm:ss')]);
+    client.notice(ircConfig.channel, msg);
+
   } else {
     return res.status(422).send({
       message: 'params rlevel error'
