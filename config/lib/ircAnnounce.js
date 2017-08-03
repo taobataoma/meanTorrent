@@ -29,12 +29,12 @@ module.exports = function (app) {
   });
 
   client.addListener('registered', function (message) {
-    console.log(chalk.green('IRC connected successfully!'));
+    console.log(chalk.green('IRC: connected successfully!'));
   });
 
   client.addListener('join' + ircConfig.channel, function (nick, message) {
-    if (nick === ircConfig.nick)
-      console.log(chalk.green('IRC join channel ' + ircConfig.channel + ' successfully!'));
+    if (nick === client.nick)
+      console.log(chalk.green('IRC: join channel ' + ircConfig.channel + ' successfully!'));
   });
 
   return client;
