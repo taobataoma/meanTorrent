@@ -570,11 +570,6 @@ exports.setRecommendLevel = function (req, res) {
         });
       }
     });
-
-    var client = req.app.get('ircClient');
-    var msg = vsprintf(ircConfig.msg_format, [torrent.user.displayName, torrent.torrent_filename, moment().format('YYYY-MM-DD HH:mm:ss')]);
-    client.notice(ircConfig.channel, msg);
-
   } else {
     return res.status(422).send({
       message: 'params rlevel error'
@@ -600,6 +595,33 @@ exports.setReviewedStatus = function (req, res) {
       });
     } else {
       res.json(torrent);
+
+      //irc announce
+      var msg = '';
+      var client = req.app.get('ircClient');
+
+      if (torrent.torrent_type === 'tvserial') {
+        msg = vsprintf(ircConfig.tvserial_msg_format, [
+          torrent.user.displayName,
+          torrent.torrent_filename,
+          torrent.torrent_type,
+          torrent.torrent_size,
+          torrent.torrent_seasons,
+          torrent.torrent_episodes,
+          torrent.torrent_sale_status,
+          moment().format('YYYY-MM-DD HH:mm:ss')
+        ]);
+      } else {
+        msg = vsprintf(ircConfig.default_msg_format, [
+          torrent.user.displayName,
+          torrent.torrent_filename,
+          torrent.torrent_type,
+          torrent.torrent_size,
+          torrent.torrent_sale_status,
+          moment().format('YYYY-MM-DD HH:mm:ss')
+        ]);
+      }
+      client.notice(ircConfig.channel, msg);
 
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminTorrentSetReviewedStatus, {
