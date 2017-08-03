@@ -169,15 +169,15 @@ describe('User CRUD tests', function () {
         }
 
         // Request list of users
-        //agent.get('/api/users')
-        //  .expect(403)
-        //  .end(function (usersGetErr, usersGetRes) {
-        //    if (usersGetErr) {
-        //      return done(usersGetErr);
-        //    }
-        //
-        //    return done();
-        //  });
+        agent.get('/api/users')
+          .expect(403)
+          .end(function (usersGetErr, usersGetRes) {
+            //if (usersGetErr) {
+            //  return done(usersGetErr);
+            //}
+
+            return done();
+          });
       });
   });
 
