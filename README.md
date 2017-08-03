@@ -151,7 +151,7 @@ If install process show error info below:
 
 `../node-icu-charset-detector.cpp:7:28: fatal error: unicode/ucsdet.h: No such file or directory`
 
-then run this command to install lib manual
+then run this command to install lib libicu manual
 
 `apt-get install libicu-dev` OR `yum install libicu-devel`
 
