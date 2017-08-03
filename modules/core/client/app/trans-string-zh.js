@@ -690,6 +690,7 @@
       DELETE_REPLY_CONFIRM_BODY_TEXT: '您确定要删除这条回复?',
       READ_ONLY_POST: '*** 只读版块，不能发表话题!',
       READ_ONLY_REPLY: '*** 只读话题，不能发表回复!',
+      TITLE_READONLY: '只读',
       TODAY_NEW_COUNT_ALL: '(今日: <mark class="text-danger">{{topic}}</mark> 话题, <mark class="text-danger">{{reply}}</mark> 回复)',
       TODAY_NEW_COUNT_TOPIC: '(今日: <mark class="text-danger">{{topic}}</mark> 话题)',
       TODAY_NEW_COUNT_REPLY: '(今日: <mark class="text-danger">{{reply}}</mark> 回复)',
