@@ -34,8 +34,25 @@ module.exports.subtitleFileFilter = function (req, file, callback) {
 };
 
 module.exports.createUploadFilename = function (req, file, cb) {
-  var regex = new RegExp(',', 'g');
-  var filename = file.originalname.replace(regex, ' ');
+  //var regex = new RegExp(',', 'g');
+  //var filename = file.originalname.replace(regex, ' ');
+  var RexStr = /\(|\)|\[|\]|\,/g;
+  var filename = file.originalname.replace(RexStr, function (MatchStr) {
+    switch (MatchStr) {
+      case '(':
+        return '<';
+      case ')':
+        return '>';
+      case '[':
+        return '{';
+      case ']':
+        return '}';
+      case ',':
+        return ' ';
+      default:
+        break;
+    }
+  });
 
   if (fs.existsSync(config.uploads.torrent.file.temp + filename)) {
     fs.unlinkSync(config.uploads.torrent.file.temp + filename);

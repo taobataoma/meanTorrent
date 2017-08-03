@@ -14,7 +14,7 @@ module.exports = {
       url: 'http://chd.im:3000/announce',
       comment: 'meanTorrent group',
       announce_interval: 60 * 1000,
-      announce_prefix: '[CHD.im].',
+      announce_prefix: '{CHD.im}.',
       admin: 'admin@chd.im',
       base_url: 'http://chd.im:3000',
       client_black_list_url: 'http://chd.im:3000/client_black_list',
