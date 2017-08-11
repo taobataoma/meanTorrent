@@ -29,6 +29,7 @@
 
       // get forums list
       ForumsService.get({}, function (items) {
+        console.log(items);
         vm.forums = items.forumsList;
         vm.forumsTopicsCount = items.forumsTopicsCount;
         vm.forumsRepliesCount = items.forumsRepliesCount;

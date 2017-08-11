@@ -51,12 +51,20 @@ exports.list = function (req, res) {
     Topic.aggregate({
       $project: {
         'forum': '$forum',
+        'year': {
+          '$year': '$createdAt'
+        },
+        'month': {
+          '$month': '$createdAt'
+        },
         'day': {
           '$dayOfMonth': '$createdAt'
         }
       }
     }, {
       $match: {
+        year: moment.utc().year(),
+        month: moment.utc().month() + 1,
         day: moment.utc().date()
       }
     }, {
@@ -79,14 +87,20 @@ exports.list = function (req, res) {
     }, {
       $project: {
         'forum': '$forum',
-        //'title': '$title',
-        //'createdAt': '$_replies.createdAt',
+        'year': {
+          '$year': '$_replies.createdAt'
+        },
+        'month': {
+          '$month': '$_replies.createdAt'
+        },
         'day': {
           '$dayOfMonth': '$_replies.createdAt'
         }
       }
     }, {
       $match: {
+        year: moment.utc().year(),
+        month: moment.utc().month() + 1,
         day: moment.utc().date()
       }
     }, {
