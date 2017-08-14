@@ -4,7 +4,7 @@ module.exports = {
   meanTorrentConfig: {
     app: {
       domain: 'http://chd.im:3000',
-      show_warning_popup: true
+      show_demo_warning_popup: true
     },
     language: [
       {name: 'en', index: 0, class: 'flag-icon-gb', title: 'English'},
@@ -40,7 +40,8 @@ module.exports = {
     },
     sign: {
       open_signin: true,
-      allow_social_sign: false
+      allow_social_sign: false,
+      show_demo_sign_message: true
     },
     invite: {
       open_invite: true,

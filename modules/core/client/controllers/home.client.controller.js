@@ -23,7 +23,6 @@
     vm.TVTopList = undefined;
     vm.TVNewList = undefined;
 
-
     $(document).ready(function () {
       $('#warning_popup').popup({
         outline: false,
@@ -70,7 +69,7 @@
       vm.getTVTopInfo();
 
       var sw = localStorageService.get('showed_warning');
-      if (vm.appConfig.show_warning_popup && !sw) {
+      if (vm.appConfig.show_demo_warning_popup && !sw) {
         $timeout(function () {
           $('#warning_popup').popup('show');
           //$('.warning_popup_open').trigger('click');
