@@ -279,6 +279,16 @@ if you set `open_invite` to `true`, the normal user can invite friends to join, 
 ```
 Now, IRC announce support [Node-irc](https://github.com/martynsmith/node-irc), this function can be used on rtorrent client, if match some words, the download client can add the torrent into download task list automatic.
 
+```javascript
+    app: {
+      show_demo_warning_popup: true
+    },
+    sign: {
+      show_demo_sign_message: true
+    },
+```
+If you started meanTorrent at `production` env, please set `show_demo_warning_popup` and `show_demo_sign_message` to `false`, this will not show demo message any where.
+
 There is not much comment of `config/env/torrent.js`, because the development time is limited, I'll add more comment in my free time, If you has any question, please post an [issue](https://github.com/taobataoma/meanTorrent/issues), and i will focus it.
 
 ## License
