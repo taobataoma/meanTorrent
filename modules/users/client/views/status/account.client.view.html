@@ -34,7 +34,8 @@
 
                 <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
                 <dd class="h-line">
-                    <span class="text-score">{{ vm.user.score }}</span> <span score-level="vm.scoreLevelData.currLevel"></span> <a ui-sref="score.detail">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                    <span class="text-score">{{ vm.user.score }}</span> <span score-level="vm.scoreLevelData.currLevel"></span> <a
+                        ui-sref="score.detail">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
                 </dd>
 
                 <div class="margin-top-10">
@@ -70,47 +71,49 @@
                     </div>
                 </dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.LEECHED_IP' | translate}}：</dt>
-                <dd class="h-line">
-                    <div class="list-all-ips">
-                        <span class="ip-item" ng-repeat="t in vm.user.leeched_ip">{{t}}</span>
-                    </div>
-                </dd>
+                <div ng-if="vm.announce.private_torrent_cms">
+                    <dt class="h-line">{{ 'STATUS_FIELD.LEECHED_IP' | translate}}：</dt>
+                    <dd class="h-line">
+                        <div class="list-all-ips">
+                            <span class="ip-item" ng-repeat="t in vm.user.leeched_ip">{{t}}</span>
+                        </div>
+                    </dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.BT_CLIENT' | translate}}：</dt>
-                <dd class="h-line">
-                    <div class="list-all-clients">
-                        <span class="client-item" ng-repeat="t in vm.user.client_agent">{{t}}</span>
-                    </div>
-                </dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.BT_CLIENT' | translate}}：</dt>
+                    <dd class="h-line">
+                        <div class="list-all-clients">
+                            <span class="client-item" ng-repeat="t in vm.user.client_agent">{{t}}</span>
+                        </div>
+                    </dd>
 
-                <li class="status-divider"></li>
+                    <li class="status-divider"></li>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
-                <dd class="h-line">
-                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
-                    {{ vm.user.uploaded | bytes:2 }}
-                </dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                        {{ vm.user.uploaded | bytes:2 }}
+                    </dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
-                <dd class="h-line">
-                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
-                    {{ vm.user.downloaded | bytes:2 }}
-                </dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                        {{ vm.user.downloaded | bytes:2 }}
+                    </dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
-                <dd class="h-line"><span ng-class="vm.user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ vm.user.ratio | ratio}}</span></dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
+                    <dd class="h-line"><span ng-class="vm.user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ vm.user.ratio | ratio}}</span></dd>
 
-                <li class="status-divider"></li>
+                    <li class="status-divider"></li>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.seeded }} <a ui-sref="status.seeding">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.seeded }} <a ui-sref="status.seeding">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.leeched }} <a ui-sref="status.downloading">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.leeched }} <a ui-sref="status.downloading">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.finished }}</dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.finished }}</dd>
+                </div>
 
                 <li class="status-divider"></li>
 

@@ -5,16 +5,33 @@
     .module('users.admin')
     .controller('RankingController', RankingController);
 
-  RankingController.$inject = ['$scope', 'RankingService', '$translate', 'localStorageService'];
+  RankingController.$inject = ['$scope', 'RankingService', '$translate', 'localStorageService', 'MeanTorrentConfig'];
 
-  function RankingController($scope, RankingService, $translate, localStorageService) {
+  function RankingController($scope, RankingService, $translate, localStorageService, MeanTorrentConfig) {
     var vm = this;
+    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
 
     vm.rankingTabs = [
-      {title: $translate.instant('PAGE_HEADER_RANKING_UPLOAD'), templateUrl: 'upload_ranking.html'},
-      {title: $translate.instant('PAGE_HEADER_RANKING_DOWNLOAD'), templateUrl: 'download_ranking.html'},
-      {title: $translate.instant('PAGE_HEADER_RANKING_RATIO'), templateUrl: 'ratio_ranking.html'},
-      {title: $translate.instant('PAGE_HEADER_RANKING_SCORE'), templateUrl: 'score_ranking.html'}
+      {
+        title: $translate.instant('PAGE_HEADER_RANKING_SCORE'),
+        templateUrl: 'score_ranking.html',
+        ng_show: true
+      },
+      {
+        title: $translate.instant('PAGE_HEADER_RANKING_UPLOAD'),
+        templateUrl: 'upload_ranking.html',
+        ng_show: vm.announce.private_torrent_cms
+      },
+      {
+        title: $translate.instant('PAGE_HEADER_RANKING_DOWNLOAD'),
+        templateUrl: 'download_ranking.html',
+        ng_show: vm.announce.private_torrent_cms
+      },
+      {
+        title: $translate.instant('PAGE_HEADER_RANKING_RATIO'),
+        templateUrl: 'ratio_ranking.html',
+        ng_show: vm.announce.private_torrent_cms
+      }
     ];
 
     vm.getRankingList = function () {

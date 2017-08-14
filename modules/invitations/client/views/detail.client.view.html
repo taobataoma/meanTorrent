@@ -105,7 +105,8 @@
                                         popover-trigger="'mouseenter'"
                                         popover-placement="top-right"
                                         ng-mouseenter="vm.selectedUser=r.to_user">
-                                        <abbr title="user detail">{{r.to_user.username}}<span message-to="r.to_user" to-class="message-to-icon"></span></abbr>
+                                        <abbr title="user detail">{{r.to_user.username}}<span message-to="r.to_user"
+                                                                                              to-class="message-to-icon"></span></abbr>
                                     </td>
                                     <td class="text-center" ng-if="!r.to_user">
                                     </td>
@@ -136,17 +137,23 @@
     <script type="text/ng-template" id="userinfo.html">
         <div>
             <ul class="list-unstyled margin-left-10 margin-right-10">
-                <li>{{ 'STATUS_FIELD.UPLOADED' | translate}}：<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{ vm.selectedUser.uploaded | bytes:2 }}</li>
-                <li>{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：<span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{ vm.selectedUser.downloaded | bytes:2 }}</li>
-                <li>{{ 'STATUS_FIELD.RATIO' | translate}}：<span ng-class="vm.selectedUser.ratio > 1 ? 'ratio-normal' : 'ratio-warning' ">{{ vm.selectedUser.ratio }}</span></li>
+                <li ng-if="vm.announce.private_torrent_cms">{{ 'STATUS_FIELD.UPLOADED' | translate}}：
+                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{ vm.selectedUser.uploaded | bytes:2 }}
+                </li>
+                <li ng-if="vm.announce.private_torrent_cms">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：
+                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{ vm.selectedUser.downloaded | bytes:2 }}
+                </li>
+                <li ng-if="vm.announce.private_torrent_cms">{{ 'STATUS_FIELD.RATIO' | translate}}：
+                    <span ng-class="vm.selectedUser.ratio > 1 ? 'ratio-normal' : 'ratio-warning' ">{{ vm.selectedUser.ratio }}</span>
+                </li>
 
-                <li class="status-divider"></li>
+                <li class="status-divider" ng-if="vm.announce.private_torrent_cms"></li>
 
-                <li>{{ 'STATUS_FIELD.SEEDED' | translate}}：{{ vm.selectedUser.seeded }}</li>
-                <li>{{ 'STATUS_FIELD.LEECHED' | translate}}：{{ vm.selectedUser.leeched }}</li>
-                <li>{{ 'STATUS_FIELD.FINISHED' | translate}}：{{ vm.selectedUser.finished }}</li>
+                <li ng-if="vm.announce.private_torrent_cms">{{ 'STATUS_FIELD.SEEDED' | translate}}：{{ vm.selectedUser.seeded }}</li>
+                <li ng-if="vm.announce.private_torrent_cms">{{ 'STATUS_FIELD.LEECHED' | translate}}：{{ vm.selectedUser.leeched }}</li>
+                <li ng-if="vm.announce.private_torrent_cms">{{ 'STATUS_FIELD.FINISHED' | translate}}：{{ vm.selectedUser.finished }}</li>
 
-                <li class="status-divider"></li>
+                <li class="status-divider" ng-if="vm.announce.private_torrent_cms"></li>
 
                 <li>{{ 'STATUS_FIELD.FORUM_TOPICS' | translate}}：{{ vm.selectedUser.topics }}</li>
                 <li>{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：{{ vm.selectedUser.replies }}</li>

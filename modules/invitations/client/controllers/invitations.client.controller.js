@@ -13,6 +13,7 @@
     var vm = this;
     vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
     vm.user = Authentication.user;
+    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
 
     vm.invitePopover = {
       title: 'INVITATION.TITLE_SEND',

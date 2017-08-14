@@ -158,7 +158,7 @@
         {
           title: $translate.instant('TAB_USER_INFO'),
           templateUrl: 'userInfo.html',
-          ng_show: true,
+          ng_show: vm.announce.private_torrent_cms,
           badges: [
             {
               value: '↑ ' + vm.torrentLocalInfo.torrent_seeds + '　↓ ' + vm.torrentLocalInfo.torrent_leechers + '　√ ' + vm.torrentLocalInfo.torrent_finished,

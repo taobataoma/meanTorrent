@@ -13,6 +13,7 @@
     var vm = this;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
 
     vm.movieTopOne = undefined;
     vm.movieTopList = undefined;

@@ -16,6 +16,7 @@
     vm.user = user;
     vm.selectedRole = vm.user.roles[0];
     vm.userRolesConfig = MeanTorrentConfig.meanTorrentConfig.userRoles;
+    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.remove = remove;
     vm.update = update;
     vm.messageTo = messageTo;

@@ -79,6 +79,7 @@
       INFO: '种子信息',
       SIZE: '大小',
       SEEDS_LEECHERS_FINISHED: '上/下/完',
+      SEEDS_LEECHERS: '上/下',
       PUBLISHER: '发布者',
       ADMIN_TOOLS: '管理工具',
       LIFETIME: '存活时间',
