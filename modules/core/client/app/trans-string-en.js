@@ -79,7 +79,6 @@
       INFO: 'Torrent info',
       SIZE: 'Size',
       SEEDS_LEECHERS_FINISHED: 'S/L/F',
-      SEEDS_LEECHERS: 'S/L',
       PUBLISHER: 'Uploader',
       ADMIN_TOOLS: 'Admin Tools',
       LIFETIME: 'Life',

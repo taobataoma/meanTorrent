@@ -17,11 +17,11 @@
                                     <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
                                     <span>{{item.torrent_seeds}}</span>
                                 </td>
-                                <td ng-class="vm.announce.private_torrent_cms ? 'text-center' : 'text-right'">
+                                <td class="text-center">
                                     <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
                                     <span>{{item.torrent_leechers}}</span>
                                 </td>
-                                <td class="text-right" ng-if="vm.announce.private_torrent_cms">
+                                <td class="text-right">
                                     <span class="glyphicon glyphicon-ok torrent-finished"></span>
                                     <span>{{item.torrent_finished}}</span>
                                 </td>
@@ -133,8 +133,7 @@
                         <th class="text-center">{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
                         <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
                         <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
-                        <th class="text-center" ng-if="vm.announce.private_torrent_cms">{{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}</th>
-                        <th class="text-center" ng-if="!vm.announce.private_torrent_cms">{{ 'TABLE_FIELDS.SEEDS_LEECHERS' | translate}}</th>
+                        <th class="text-center">{{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}</th>
                         <th class="text-center">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
                     </tr>
                 </thead>
@@ -218,7 +217,7 @@
                                 {{item.torrent_leechers}}
                             </p>
 
-                            <p class="no-margin-p" title="{{ 'TITLE_ALT.FINISHED' | translate}}" ng-if="vm.announce.private_torrent_cms">
+                            <p class="no-margin-p" title="{{ 'TITLE_ALT.FINISHED' | translate}}">
                                 <span class="glyphicon glyphicon-ok torrent-finished"></span>
                                 {{item.torrent_finished}}
                             </p>

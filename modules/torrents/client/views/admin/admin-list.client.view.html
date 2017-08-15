@@ -158,8 +158,7 @@
                         <th class="text-center">{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
                         <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
                         <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
-                        <th class="text-center" ng-if="vm.announce.private_torrent_cms">{{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}</th>
-                        <th class="text-center" ng-if="!vm.announce.private_torrent_cms">{{ 'TABLE_FIELDS.SEEDS_LEECHERS' | translate}}</th>
+                        <th class="text-center">{{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}</th>
                         <th class="text-center">{{ 'TABLE_FIELDS.ADMIN_TOOLS' | translate}}</th>
                     </tr>
                 </thead>
@@ -244,7 +243,7 @@
                                 {{item.torrent_leechers}}
                             </p>
 
-                            <p class="no-margin-p" title="{{ 'TITLE_ALT.FINISHED' | translate}}" ng-if="vm.announce.private_torrent_cms">
+                            <p class="no-margin-p" title="{{ 'TITLE_ALT.FINISHED' | translate}}">
                                 <span class="glyphicon glyphicon-ok torrent-finished"></span>
                                 {{item.torrent_finished}}
                             </p>
