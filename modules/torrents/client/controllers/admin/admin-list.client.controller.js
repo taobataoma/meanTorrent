@@ -210,24 +210,8 @@
     vm.getTagTitle = function (tag) {
       var tmp = tag;
       var find = false;
-      var r = undefined;
 
-      switch (vm.selectedType) {
-        case 'tvserial':
-          r = vm.resourcesTags.tv;
-          break;
-        case 'music':
-          r = vm.resourcesTags.music;
-          break;
-        case 'other':
-          r = vm.resourcesTags.other;
-          break;
-        default:
-          r = vm.resourcesTags.movie;
-      }
-
-
-      angular.forEach(r.radio, function (item) {
+      angular.forEach(vm.resourcesTags.radio, function (item) {
         angular.forEach(item.value, function (sitem) {
           if (sitem.name === tag) {
             tmp = item.name;
@@ -237,7 +221,7 @@
       });
 
       if (!find) {
-        angular.forEach(r.checkbox, function (item) {
+        angular.forEach(vm.resourcesTags.checkbox, function (item) {
           angular.forEach(item.value, function (sitem) {
             if (sitem.name === tag) {
               tmp = item.name;
