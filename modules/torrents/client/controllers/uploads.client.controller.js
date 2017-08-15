@@ -119,6 +119,7 @@
 
       vm.inputedEpisodesError = undefined;
       vm.inputedEpisodesOK = false;
+      vm.showResourcesTag = false;
 
       vm.movieinfo = undefined;
       vm.tvinfo = undefined;
@@ -149,6 +150,7 @@
       }, function (res) {
         vm.tmdb_info_ok = true;
         vm.tmdb_isloading = false;
+        vm.showResourcesTag = true;
         vm.showVideoNfo = true;
         vm.showAgreeAndSubmit = true;
         Notification.success({
@@ -223,6 +225,7 @@
       } else {
         vm.inputedEpisodesError = false;
         vm.inputedEpisodesOK = true;
+        vm.showResourcesTag = true;
         vm.showVideoNfo = true;
         vm.showAgreeAndSubmit = true;
       }
@@ -355,28 +358,13 @@
      */
     vm.getResourceTag = function () {
       var t = [];
-      var r = undefined;
 
-      switch (vm.selectedType) {
-        case 'tvserial':
-          r = vm.resourcesTags.tv;
-          break;
-        case 'music':
-          r = vm.resourcesTags.music;
-          break;
-        case 'other':
-          r = vm.resourcesTags.other;
-          break;
-        default:
-          r = vm.resourcesTags.movie;
-      }
-
-      angular.forEach(r.radio, function (item) {
+      angular.forEach(vm.resourcesTags.radio, function (item) {
         if (vm.tags['tag_' + item.name]) {
           t.push(vm.tags['tag_' + item.name]);
         }
       });
-      angular.forEach(r.checkbox, function (item) {
+      angular.forEach(vm.resourcesTags.checkbox, function (item) {
         angular.forEach(item.value, function (sitem) {
           if (vm.tags['tag_' + item.name + '_' + sitem.name]) {
             t.push(sitem.name);

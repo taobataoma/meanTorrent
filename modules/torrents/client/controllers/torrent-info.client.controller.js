@@ -262,7 +262,7 @@
     vm.getTagTitle = function (tag) {
       var tmp = tag;
       var find = false;
-      angular.forEach(vm.resourcesTags.movie.radio, function (item) {
+      angular.forEach(vm.resourcesTags.radio, function (item) {
         angular.forEach(item.value, function (sitem) {
           if (sitem.name === tag) {
             tmp = item.name;
@@ -272,7 +272,7 @@
       });
 
       if (!find) {
-        angular.forEach(vm.resourcesTags.movie.checkbox, function (item) {
+        angular.forEach(vm.resourcesTags.checkbox, function (item) {
           angular.forEach(item.value, function (sitem) {
             if (sitem.name === tag) {
               tmp = item.name;

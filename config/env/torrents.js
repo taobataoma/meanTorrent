@@ -215,173 +215,100 @@ module.exports = {
       traces_per_page: 30
     },
     resourcesTags: {
-      movie: {
-        radio: [
-          {
-            name: 'TYPE',
-            value: [
-              {name: 'BLU_RAY', icon: ''},
-              {name: 'REMUX', icon: ''},
-              {name: 'WEB_DL', icon: ''},
-              {name: 'ENCODE', icon: ''}
-            ]
-          },
-          {
-            name: 'RESOLUTION',
-            value: [
-              {name: 'S4K', icon: ''},
-              {name: 'S1080P', icon: ''},
-              {name: 'S1080I', icon: ''},
-              {name: 'S720P', icon: ''}
-            ]
-          },
-          {
-            name: 'VIDEO',
-            value: [
-              {name: 'AVC', icon: ''},
-              {name: 'X265', icon: ''},
-              {name: 'X264', icon: ''}
-            ]
-          },
-          {
-            name: 'AUDIO',
-            value: [
-              {name: 'AAC', icon: ''},
-              {name: 'AC3', icon: ''},
-              {name: 'LPCM', icon: ''},
-              {name: 'DTS', icon: ''},
-              {name: 'DTS_HD', icon: ''},
-              {name: 'ATMOS_TRUEHD', icon: ''}
-            ]
-          },
-          {
-            name: 'CHANNEL',
-            value: [
-              {name: 'C20', icon: ''},
-              {name: 'C51', icon: ''},
-              {name: 'C71', icon: ''}
-            ]
-          },
-          {
-            name: 'THREED',
-            value: [
-              {name: 'T3D', icon: ''},
-              {name: 'T2D', icon: ''},
-              {name: 'T2D_3D', icon: ''}
-            ]
-          },
-          {
-            name: 'REGION',
-            value: [
-              {name: 'CHINA', icon: ''},
-              {name: 'JAPAN', icon: ''},
-              {name: 'KOREA', icon: ''},
-              {name: 'INDIA', icon: ''},
-              {name: 'ARAB', icon: ''}
-            ]
-          }
-        ],
-        checkbox: [
-          {
-            name: 'MODIFY',
-            value: [
-              {name: 'DIY', icon: ''},
-              {name: 'GUOPEI', icon: ''},
-              {name: 'ZHONGZI', icon: ''}
-            ]
-          },
-          {
-            name: 'RANKING',
-            value: [
-              {name: 'IMDB_TOP100', icon: ''},
-              {name: 'IMDB_TOP250', icon: ''},
-              {name: 'DOUBAN_TOP100', icon: ''},
-              {name: 'DOUBAN_TOP250', icon: ''}
-            ]
-          }
-        ]
-      },
-      tv: {
-        radio: [
-          {
-            name: 'TYPE',
-            value: [
-              {name: 'BLU_RAY', icon: ''},
-              {name: 'REMUX', icon: ''},
-              {name: 'WEB_DL', icon: ''},
-              {name: 'ENCODE', icon: ''}
-            ]
-          },
-          {
-            name: 'RESOLUTION',
-            value: [
-              {name: 'S4K', icon: ''},
-              {name: 'S1080P', icon: ''},
-              {name: 'S1080I', icon: ''},
-              {name: 'S720P', icon: ''}
-            ]
-          },
-          {
-            name: 'VIDEO',
-            value: [
-              {name: 'AVC', icon: ''},
-              {name: 'X265', icon: ''},
-              {name: 'X264', icon: ''}
-            ]
-          },
-          {
-            name: 'AUDIO',
-            value: [
-              {name: 'AAC', icon: ''},
-              {name: 'AC3', icon: ''},
-              {name: 'LPCM', icon: ''},
-              {name: 'DTS', icon: ''},
-              {name: 'DTS_HD', icon: ''},
-              {name: 'ATMOS_TRUEHD', icon: ''}
-            ]
-          },
-          {
-            name: 'CHANNEL',
-            value: [
-              {name: 'C20', icon: ''},
-              {name: 'C51', icon: ''},
-              {name: 'C71', icon: ''}
-            ]
-          },
-          {
-            name: 'REGION',
-            value: [
-              {name: 'USA', icon: ''},
-              {name: 'CHINA', icon: ''},
-              {name: 'JAPAN', icon: ''},
-              {name: 'KOREA', icon: ''},
-              {name: 'INDIA', icon: ''},
-              {name: 'ARAB', icon: ''}
-            ]
-          }
-        ],
-        checkbox: [
-          {
-            name: 'MODIFY',
-            value: [
-              {name: 'DIY', icon: ''},
-              {name: 'GUOPEI', icon: ''},
-              {name: 'ZHONGZI', icon: ''}
-            ]
-          },
-          {
-            name: 'RANKING',
-            value: [
-              {name: 'IMDB_TOP100', icon: ''},
-              {name: 'IMDB_TOP250', icon: ''},
-              {name: 'DOUBAN_TOP100', icon: ''},
-              {name: 'DOUBAN_TOP250', icon: ''}
-            ]
-          }
-        ]
-      },
-      music: {},
-      other: {}
+      radio: [
+        {
+          name: 'TYPE',
+          cats: ['movie', 'tvserial', 'other'],
+          value: [
+            {name: 'BLU_RAY', icon: ''},
+            {name: 'REMUX', icon: ''},
+            {name: 'WEB_DL', icon: ''},
+            {name: 'ENCODE', icon: ''}
+          ]
+        },
+        {
+          name: 'RESOLUTION',
+          cats: ['movie', 'tvserial', 'other'],
+          value: [
+            {name: 'S4K', icon: ''},
+            {name: 'S1080P', icon: ''},
+            {name: 'S1080I', icon: ''},
+            {name: 'S720P', icon: ''}
+          ]
+        },
+        {
+          name: 'VIDEO',
+          cats: ['movie', 'tvserial', 'other'],
+          value: [
+            {name: 'AVC', icon: ''},
+            {name: 'X265', icon: ''},
+            {name: 'X264', icon: ''}
+          ]
+        },
+        {
+          name: 'AUDIO',
+          cats: ['movie', 'tvserial', 'music', 'other'],
+          value: [
+            {name: 'AAC', icon: ''},
+            {name: 'AC3', icon: ''},
+            {name: 'LPCM', icon: ''},
+            {name: 'DTS', icon: ''},
+            {name: 'DTS_HD', icon: ''},
+            {name: 'ATMOS_TRUEHD', icon: ''}
+          ]
+        },
+        {
+          name: 'CHANNEL',
+          cats: ['movie', 'tvserial', 'music', 'other'],
+          value: [
+            {name: 'C20', icon: ''},
+            {name: 'C51', icon: ''},
+            {name: 'C71', icon: ''}
+          ]
+        },
+        {
+          name: 'THREED',
+          cats: ['movie'],
+          value: [
+            {name: 'T3D', icon: ''},
+            {name: 'T2D', icon: ''},
+            {name: 'T2D_3D', icon: ''}
+          ]
+        },
+        {
+          name: 'REGION',
+          cats: ['movie', 'tvserial', 'music', 'other'],
+          value: [
+            {name: 'USA', icon: ''},
+            {name: 'CHINA', icon: ''},
+            {name: 'JAPAN', icon: ''},
+            {name: 'KOREA', icon: ''},
+            {name: 'INDIA', icon: ''},
+            {name: 'ARAB', icon: ''}
+          ]
+        }
+      ],
+      checkbox: [
+        {
+          name: 'MODIFY',
+          cats: ['movie', 'tvserial'],
+          value: [
+            {name: 'DIY', icon: ''},
+            {name: 'GUOPEI', icon: ''},
+            {name: 'ZHONGZI', icon: ''}
+          ]
+        },
+        {
+          name: 'RANKING',
+          cats: ['movie', 'tvserial'],
+          value: [
+            {name: 'IMDB_TOP100', icon: ''},
+            {name: 'IMDB_TOP250', icon: ''},
+            {name: 'DOUBAN_TOP100', icon: ''},
+            {name: 'DOUBAN_TOP250', icon: ''}
+          ]
+        }
+      ]
     }
   }
 };

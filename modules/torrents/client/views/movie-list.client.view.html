@@ -83,67 +83,33 @@
                         </div>
                     </dd>
 
-                    <div ng-if="vm.torrentType == 'movie'">
-                        <div class="more-tags panel-collapsed" style="display: none;">
-                            <div ng-repeat="item in vm.resourcesTags.movie.radio">
-                                <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
-                                <dd class="h-line">
-                                    <div class="btn-group btn-group-xs" role="group">
-                                        <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
-                                                class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
-                                                ng-click="vm.onRadioTagClicked($event, sitem.name)">
-                                            {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
-                                        </button>
-                                        </span>
-                                    </div>
-                                </dd>
-                            </div>
-
-                            <div ng-repeat="item in vm.resourcesTags.movie.checkbox">
-                                <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
-                                <dd class="h-line">
-                                    <div class="btn-group btn-group-xs" role="group">
-                                        <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
-                                                class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
-                                                ng-click="vm.onCheckboxTagClicked($event, sitem.name)"
-                                                toggle-class="btn-success" base-class="btn-default" onclick="this.blur();">
-                                            {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
-                                        </button>
-                                    </div>
-                                </dd>
-                            </div>
+                    <div class="more-tags panel-collapsed" style="display: none;">
+                        <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.torrentType">
+                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                            <dd class="h-line">
+                                <div class="btn-group btn-group-xs" role="group">
+                                    <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
+                                            class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
+                                            ng-click="vm.onRadioTagClicked($event, sitem.name)">
+                                        {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                                    </button>
+                                    </span>
+                                </div>
+                            </dd>
                         </div>
-                    </div>
 
-                    <div ng-if="vm.torrentType == 'tvserial'">
-                        <div class="more-tags panel-collapsed" style="display: none;">
-                            <div ng-repeat="item in vm.resourcesTags.tv.radio">
-                                <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
-                                <dd class="h-line">
-                                    <div class="btn-group btn-group-xs" role="group">
-                                        <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
-                                                class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
-                                                ng-click="vm.onRadioTagClicked($event, sitem.name)">
-                                            {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
-                                        </button>
-                                        </span>
-                                    </div>
-                                </dd>
-                            </div>
-
-                            <div ng-repeat="item in vm.resourcesTags.tv.checkbox">
-                                <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
-                                <dd class="h-line">
-                                    <div class="btn-group btn-group-xs" role="group">
-                                        <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
-                                                class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
-                                                ng-click="vm.onCheckboxTagClicked($event, sitem.name)"
-                                                toggle-class="btn-success" base-class="btn-default" onclick="this.blur();">
-                                            {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
-                                        </button>
-                                    </div>
-                                </dd>
-                            </div>
+                        <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.torrentType">
+                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                            <dd class="h-line">
+                                <div class="btn-group btn-group-xs" role="group">
+                                    <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
+                                            class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
+                                            ng-click="vm.onCheckboxTagClicked($event, sitem.name)"
+                                            toggle-class="btn-success" base-class="btn-default" onclick="this.blur();">
+                                        {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                                    </button>
+                                </div>
+                            </dd>
                         </div>
                     </div>
                 </dl>
