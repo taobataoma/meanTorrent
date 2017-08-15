@@ -51,11 +51,11 @@ exports.scrape = function (req, res) {
   var info_hash = [];
 
   console.log('------------ Scrape request ----------------');
-  //console.log(req.url);
+  console.log(req.url);
 
   var s = req.url.split('?');
   var query = querystringParse(s[1]);
-  //console.log(query.info_hash);
+  console.log(query.info_hash);
 
   if (Array.isArray(query.info_hash)) {
     query.info_hash.forEach(function (item) {
@@ -69,7 +69,7 @@ exports.scrape = function (req, res) {
   //  console.log(hexToBinary(x));
   //});
 
-  //console.log(info_hash);
+  console.log(info_hash);
 
   //select all torrents with info_hash
   Torrent.find({
