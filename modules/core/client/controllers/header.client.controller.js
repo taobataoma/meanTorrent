@@ -13,7 +13,7 @@
     var vm = this;
     vm.user = Authentication.user;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
-
+    vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.accountMenu = menuService.getMenu('account').items[0];
     vm.messagesMenu = menuService.getMenu('mt-message').items[0];

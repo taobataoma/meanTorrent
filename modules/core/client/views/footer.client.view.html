@@ -8,8 +8,8 @@
                     <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_TORRENTSSIZE' | translate}}:　{{vm.siteInfo.totalTorrentsSize | bytes}}</div>
                     <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_SEEDERS' | translate}}:　{{vm.siteInfo.totalSeeders}}</div>
                     <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_LEECHERS' | translate}}:　{{vm.siteInfo.totalLeechers}}</div>
-                    <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_UPLOADED' | translate}}:　{{vm.siteInfo.totalUploaded | bytes}}</div>
-                    <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_DOWNLOADED' | translate}}:　{{vm.siteInfo.totalDownloaded | bytes}}</div>
+                    <div class="col-xs-6 col-sm-4 col-md-3" ng-if="vm.announceConfig.private_torrent_cms">{{'TOTAL_UPLOADED' | translate}}:　{{vm.siteInfo.totalUploaded | bytes}}</div>
+                    <div class="col-xs-6 col-sm-4 col-md-3" ng-if="vm.announceConfig.private_torrent_cms">{{'TOTAL_DOWNLOADED' | translate}}:　{{vm.siteInfo.totalDownloaded | bytes}}</div>
                     <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_FORUMTOPICS' | translate}}:　{{vm.siteInfo.totalForumTopics}}</div>
                     <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_FORUMREPLIES' | translate}}:　{{vm.siteInfo.totalForumReplies}}</div>
                 </div>
