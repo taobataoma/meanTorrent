@@ -60,6 +60,10 @@
         params: {
           torrentId: '@_id'
         }
+      },
+      siteInfo: {
+        method: 'GET',
+        url: '/api/torrents/siteInfo'
       }
     });
 

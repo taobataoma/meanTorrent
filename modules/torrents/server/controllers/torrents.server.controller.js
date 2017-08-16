@@ -13,6 +13,8 @@ var path = require('path'),
   Peer = mongoose.model('Peer'),
   Thumb = mongoose.model('Thumb'),
   Torrent = mongoose.model('Torrent'),
+  Forum = mongoose.model('Forum'),
+  Topic = mongoose.model('Topic'),
   fs = require('fs'),
   nt = require('nt'),
   benc = require('bncode'),
@@ -793,6 +795,109 @@ exports.list = function (req, res) {
       return res.status(422).send(err);
     } else {
       res.json({rows: results[1], total: results[0]});
+    }
+  });
+};
+
+/**
+ * siteInfo - get site torrent info, seeders/leechers/torrents count/users etc.
+ * @param req
+ * @param res
+ */
+exports.siteInfo = function (req, res) {
+  var countUsers = function (callback) {
+    User.count(function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  var countTorrents = function (callback) {
+    Torrent.count(function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  var totalUpDown = function (callback) {
+    User.aggregate({
+      $group: {
+        _id: null,
+        uploaded: {$sum: '$uploaded'},
+        downloaded: {$sum: '$downloaded'}
+      }
+    }).exec(function (err, total) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, total);
+      }
+    });
+  };
+
+  var totalTorrentsSize = function (callback) {
+    Torrent.aggregate({
+      $group: {
+        _id: null,
+        size: {$sum: '$torrent_size'},
+        seeders: {$sum: '$torrent_seeds'},
+        leechers: {$sum: '$torrent_leechers'}
+      }
+    }).exec(function (err, total) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, total);
+      }
+    });
+  };
+
+  var countForumTopics = function (callback) {
+    Topic.count(function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  var totalForumReplies = function (callback) {
+    Topic.aggregate({
+      $group: {
+        _id: null,
+        replies: {$sum: '$replyCount'}
+      }
+    }).exec(function (err, total) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, total);
+      }
+    });
+  };
+
+  async.parallel([countUsers, countTorrents, totalTorrentsSize, totalUpDown, countForumTopics, totalForumReplies], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({
+        totalUsers: results[0],
+        totalTorrents: results[1],
+        totalTorrentsSize: results[2][0].size,
+        totalSeeders: results[2][0].seeders,
+        totalLeechers: results[2][0].leechers,
+        totalUploaded: results[3][0].uploaded,
+        totalDownloaded: results[3][0].downloaded,
+        totalForumTopics: results[4],
+        totalForumReplies: results[5][0].replies
+      });
     }
   });
 };

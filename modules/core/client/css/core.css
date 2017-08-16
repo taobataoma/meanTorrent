@@ -93,3 +93,11 @@ a:hover .header-profile-image {
     margin-right: 15px;
 }
 
+.site-info {
+    border-bottom: solid 1px #222;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-left: 60px;
+}
+

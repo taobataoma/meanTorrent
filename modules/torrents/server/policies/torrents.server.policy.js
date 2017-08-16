@@ -39,7 +39,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/my/seeding', permissions: '*'},
           {resources: '/api/my/downloading', permissions: '*'},
           {resources: '/api/:userId/seeding', permissions: '*'},
-          {resources: '/api/:userId/downloading', permissions: '*'}
+          {resources: '/api/:userId/downloading', permissions: '*'},
+          {resources: '/api/torrents/siteInfo', permissions: ['get']}
         ]
       },
       {
@@ -61,7 +62,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/comments/:torrentId/:commentId/:subCommentId', permissions: ['put', 'delete']},
 
           {resources: '/api/my/seeding', permissions: ['get']},
-          {resources: '/api/my/downloading', permissions: ['get']}
+          {resources: '/api/my/downloading', permissions: ['get']},
+          {resources: '/api/torrents/siteInfo', permissions: ['get']}
         ]
       },
       {
@@ -70,7 +72,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/movieinfo/:tmdbid/:language', permissions: ['get']},
           {resources: '/api/tvinfo/:tmdbid/:language', permissions: ['get']},
           {resources: '/api/torrents', permissions: ['get']},
-          {resources: '/api/torrents/:torrentId', permissions: ['get']}
+          {resources: '/api/torrents/:torrentId', permissions: ['get']},
+          {resources: '/api/torrents/siteInfo', permissions: ['get']}
         ]
       }
     ]

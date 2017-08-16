@@ -8,7 +8,6 @@ var torrents = require('../controllers/torrents.server.controller'),
 
 
 module.exports = function (app) {
-  // Articles collection routes
   app.route('/api/movieinfo/:tmdbid/:language').all(torrentsPolicy.isAllowed)
     .get(torrents.movieinfo);
 
@@ -27,6 +26,9 @@ module.exports = function (app) {
   app.route('/api/torrents').all(torrentsPolicy.isAllowed)
     .get(torrents.list)
     .post(torrents.create);
+
+  app.route('/api/torrents/siteInfo')
+    .get(torrents.siteInfo);
 
   app.route('/api/torrents/:torrentId').all(torrentsPolicy.isAllowed)
     .get(torrents.read)

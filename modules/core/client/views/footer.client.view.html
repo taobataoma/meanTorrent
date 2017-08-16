@@ -1,22 +1,38 @@
-<div class="container-fluid" style="padding-top: 15px; padding-bottom: 5px;" ng-controller="HeaderController as vm">
+<div class="container-fluid" style="padding-top: 15px; padding-bottom: 5px;" ng-controller="HeaderController as vm" ng-init="vm.getSiteInfo();">
     <div class="container">
         <div class="row view-footer">
-            <div class="col-sm-7 col-sm-offset-1">
-                <ul>
-                    <li>
-                        <span class="lang-list lang-footer">
-                            <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);" ng-repeat="l in vm.language | orderBy: '-index'"></span>
-                        </span>
-                    </li>
-                    <li translate="GIT_REPO"></li>
-                    <li translate="MIT_PROTOCOL"></li>
-                </ul>
+            <div class="col-sm-10 col-sm-offset-1 site-info xs-hide">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_USERS' | translate}}:　{{vm.siteInfo.totalUsers}}</div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_TORRENTS' | translate}}:　{{vm.siteInfo.totalTorrents}}</div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_TORRENTSSIZE' | translate}}:　{{vm.siteInfo.totalTorrentsSize | bytes}}</div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_SEEDERS' | translate}}:　{{vm.siteInfo.totalSeeders}}</div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_LEECHERS' | translate}}:　{{vm.siteInfo.totalLeechers}}</div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_UPLOADED' | translate}}:　{{vm.siteInfo.totalUploaded | bytes}}</div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_DOWNLOADED' | translate}}:　{{vm.siteInfo.totalDownloaded | bytes}}</div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_FORUMTOPICS' | translate}}:　{{vm.siteInfo.totalForumTopics}}</div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">{{'TOTAL_FORUMREPLIES' | translate}}:　{{vm.siteInfo.totalForumReplies}}</div>
+                </div>
             </div>
-            <div class="col-sm-3 text-right">
-                <i class="icon ion-social-github"></i>
-                <i class="icon ion-social-nodejs"></i>
-                <i class="icon ion-social-html5-outline"></i>
-                <i class="icon ion-social-css3-outline"></i>
+            <div class="col-sm-12">
+                <div class="col-sm-7 col-sm-offset-1">
+                    <ul>
+                        <li>
+                        <span class="lang-list lang-footer">
+                            <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);"
+                                  ng-repeat="l in vm.language | orderBy: '-index'"></span>
+                        </span>
+                        </li>
+                        <li translate="GIT_REPO"></li>
+                        <li translate="MIT_PROTOCOL"></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 text-right">
+                    <i class="icon ion-social-github"></i>
+                    <i class="icon ion-social-nodejs"></i>
+                    <i class="icon ion-social-html5-outline"></i>
+                    <i class="icon ion-social-css3-outline"></i>
+                </div>
             </div>
         </div>
     </div>

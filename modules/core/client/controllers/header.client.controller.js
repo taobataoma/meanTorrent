@@ -6,10 +6,10 @@
     .controller('HeaderController', HeaderController);
 
   HeaderController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
-    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService'];
+    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'TorrentsService'];
 
   function HeaderController($scope, $state, $stateParams, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
-                            InvitationsService, $interval, MessagesService) {
+                            InvitationsService, $interval, MessagesService, TorrentsService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
@@ -102,6 +102,15 @@
         //  reload: true, inherit: false, notify: false
         //});
       }
+    };
+
+    /**
+     * getSiteInfo
+     */
+    vm.getSiteInfo = function () {
+      TorrentsService.siteInfo(function (data) {
+        vm.siteInfo = data;
+      });
     };
   }
 }());
