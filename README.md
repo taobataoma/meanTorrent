@@ -243,7 +243,7 @@ And you can make a list page to tell users witch clients are unpopular.
 
 ```javascript
     sign: {
-      open_signin: true,
+      open_signup: true,
       allow_social_sign: true
     },
 ```
@@ -255,7 +255,7 @@ And you can make a list page to tell users witch clients are unpopular.
     },
 
 ```
-If your site do not accept user free register, please set `open_signin` to `false`, then user only can register through friend invitation or system(admin/oper) invitation.
+If your site do not accept user free register, please set `open_signup` to `false`, then user only can register through friend invitation or system(admin/oper) invitation.
 if you set `open_invite` to `true`, the normal user can invite friends to join, if `false` only oper/admin can invite users.
 
 ```javascript

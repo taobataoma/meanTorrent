@@ -39,7 +39,7 @@ module.exports = {
       encoding: 'UTF-8'
     },
     sign: {
-      open_signin: true,
+      open_signup: true,
       allow_social_sign: false,
       show_demo_sign_message: true
     },
