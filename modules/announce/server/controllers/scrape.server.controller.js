@@ -8,13 +8,14 @@ var path = require('path'),
   mongoose = require('mongoose'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   Torrent = mongoose.model('Torrent'),
-  querystring = require('querystring'),
+  common = require(path.resolve('./config/lib/common')),
   url = require('url');
 
 
 const FAILURE_REASONS = {
   900: 'Generic error',
-  901: 'Server error'
+  901: 'Server error',
+  902: 'Torrent not registered with this tracker'
 };
 
 /**
@@ -54,15 +55,15 @@ exports.scrape = function (req, res) {
   console.log(req.url);
 
   var s = req.url.split('?');
-  var query = querystringParse(s[1]);
+  var query = common.querystringParse(s[1]);
   console.log(query.info_hash);
 
   if (Array.isArray(query.info_hash)) {
     query.info_hash.forEach(function (item) {
-      info_hash.push(binaryToHex(item));
+      info_hash.push(common.binaryToHex(item));
     });
   } else {
-    info_hash.push(binaryToHex(query.info_hash));
+    info_hash.push(common.binaryToHex(query.info_hash));
   }
 
   //info_hash.forEach(function (x) {
@@ -78,12 +79,12 @@ exports.scrape = function (req, res) {
     if (err) {
       sendError(new Failure(901));
     } else if (!allt) {
-      sendError(new Failure(901));
+      sendError(new Failure(902));
     } else {
       var resStr = 'd5:files' + 'd';
 
       allt.forEach(function (it) {
-        resStr += '20:' + hexToBinary(it.info_hash) + 'd';
+        resStr += '20:' + common.hexToBinary(it.info_hash) + 'd';
         resStr += '8:completei' + it.torrent_seeds + 'e';
         resStr += '10:downloadedi' + it.torrent_finished + 'e';
         resStr += '10:incompletei' + it.torrent_leechers + 'e';
@@ -116,35 +117,5 @@ exports.scrape = function (req, res) {
     });
 
     res.end(respc);
-  }
-
-  /**
-   * binaryToHex
-   * @param str
-   */
-  function binaryToHex(str) {
-    if (typeof str !== 'string') {
-      str = String(str);
-    }
-    return Buffer.from(str, 'binary').toString('hex');
-  }
-
-  /**
-   * hexToBinary
-   * @param str
-   */
-  function hexToBinary(str) {
-    if (typeof str !== 'string') {
-      str = String(str);
-    }
-    return Buffer.from(str, 'hex').toString('binary');
-  }
-
-  /**
-   * querystringParse
-   * @param q
-   */
-  function querystringParse(q) {
-    return querystring.parse(q, null, null, {decodeURIComponent: unescape});
   }
 };
