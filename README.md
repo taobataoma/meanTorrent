@@ -78,6 +78,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 
 ## TODO
 - Other type torrent support(like Music, Other).
+- Scrape public torrent status from owner tracker server.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - Subject support, like region subject, [IMDB](http://www.imdb.com) TOP 100 subject etc.
 - VIP Donate function.
