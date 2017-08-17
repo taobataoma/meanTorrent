@@ -18,7 +18,7 @@ module.exports = {
       admin: 'admin@chd.im',
       base_url: 'http://chd.im:3000',
       client_black_list_url: 'http://chd.im:3000/client_black_list',
-      private_torrent_cms: true
+      private_torrent_cms: false
     },
     ircAnnounce: {
       enable: true,

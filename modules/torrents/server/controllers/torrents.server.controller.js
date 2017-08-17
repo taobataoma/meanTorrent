@@ -18,6 +18,7 @@ var path = require('path'),
   fs = require('fs'),
   nt = require('nt'),
   benc = require('bncode'),
+  scrape = require(path.resolve('./config/lib/scrape')),
   async = require('async'),
   validator = require('validator'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key),
@@ -985,6 +986,15 @@ exports.torrentByID = function (req, res, next, id) {
     } else {
       req.torrent = torrent;
       next();
+
+      scrape.doScrape(torrent, function (err, res) {
+        if (err) {
+          console.log(err);
+        }
+        if (res) {
+          console.log(res);
+        }
+      });
     }
   });
 };
