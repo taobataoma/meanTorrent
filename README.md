@@ -90,6 +90,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 ## Online support
 - Post an [issue](https://github.com/taobataoma/meanTorrent/issues)
 - Email to [taobataoma](mailto:taobataoma@gmail.com)
+- Skype ID: taobataoma
 - Join [QQ](http://im.qq.com/) Group: 291843550
 
 ## Before You Begin
