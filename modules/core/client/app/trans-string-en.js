@@ -169,7 +169,7 @@
       VP_REQUIRED: 'Enter the password again to verify.',
       NP_VP_NOTMATCH: 'Passwords do not match.',
       BTN_UPDATE_PASSWORD: 'Update Password',
-      ENTER_USERNAME: 'Enter your account username.',
+      ENTER_USERNAME: 'Enter your account username or email.',
       RESET_PASS_OK: 'Password successfully reset',
       RESET_PASS_INVALID: 'Password reset is invalid',
       RE_RESET_PASSWORD: 'Ask for a new password reset?'

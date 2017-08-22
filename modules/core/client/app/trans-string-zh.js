@@ -169,7 +169,7 @@
       VP_REQUIRED: '验证新密码不能为空.',
       NP_VP_NOTMATCH: '两次输入的密码不一致.',
       BTN_UPDATE_PASSWORD: '修改密码',
-      ENTER_USERNAME: '请输入你的帐号用户名',
+      ENTER_USERNAME: '请输入你的帐号用户名或注册邮箱',
       RESET_PASS_OK: '密码重置成功',
       RESET_PASS_INVALID: '密码重置失败',
       RE_RESET_PASSWORD: '再次请求重置密码?'
