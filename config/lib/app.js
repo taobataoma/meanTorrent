@@ -4,10 +4,10 @@
  * Module dependencies.
  */
 var config = require('../config'),
-  mongoose = require('./mongoose'),
+  mongooseService = require('./mongoose'),
   express = require('./express'),
   chalk = require('chalk'),
-  seed = require('./seed'),
+  seed = require('./mongo-seed'),
   ircConfig = config.meanTorrentConfig.ircAnnounce;
 
 function seedDB() {
@@ -17,11 +17,11 @@ function seedDB() {
   }
 }
 
-// Initialize Models
-mongoose.loadModels(seedDB);
-
 module.exports.init = function init(callback) {
-  mongoose.connect(function (db) {
+  mongooseService.connect(function (db) {
+    // Initialize Models
+    mongooseService.loadModels(seedDB);
+
     // Initialize express
     var app = express.init(db);
     if (callback) callback(app, db, config);
