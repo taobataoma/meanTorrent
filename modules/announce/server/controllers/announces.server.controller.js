@@ -129,9 +129,8 @@ exports.announce = function (req, res) {
   console.log('------------ Announce request ----------------');
   //console.log(req.url);
 
-  //var s = req.url.split('?');
-  //var query = common.querystringParse(s[1]);
-  var query = req.query;
+  var s = req.url.split('?');
+  var query = common.querystringParse(s[1]);
   var passkey = req.params.passkey || query.passkey || undefined;
 
   async.waterfall([
