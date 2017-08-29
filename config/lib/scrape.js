@@ -12,25 +12,32 @@ module.exports.doScrape = function (t, cb) {
   var scrapeInfo = [];
 
   var regex = new RegExp('announce', 'g');
-  //console.log(t.torrent_announce);
-  //console.log(t.info_hash);
+  console.log('torrent_announce = ' + t.torrent_announce);
+  console.log('info_hash = ' + t.info_hash);
 
   var url = URL.parse(t.torrent_announce);
   var protocol = url.protocol;
   var hostname = url.hostname;
   var port = url.port;
   var path = url.pathname;
+  var npath = '';
 
-  if (path.indexOf('announce') >= 0) {
-    path = path.replace(regex, 'scrape');
+  var i = path.indexOf('announce');
+  if (i >= 0) {
+    var j = path.indexOf('/', i);
+    if (j >= 0) {
+      path = path.slice(0, j);
+    }
+    npath = path.replace(regex, 'scrape');
   } else {
-    path = '/scrape';
+    npath = '/scrape';
   }
 
   var scrapeUrl = protocol + '//' + hostname;
   scrapeUrl += port ? ':' + port : '';
-  scrapeUrl += path;
-  scrapeUrl += '?info_hash=' + common.hexToBinary(t.info_hash);
+  scrapeUrl += npath;
+
+  scrapeUrl += '?info_hash=' + escape(common.hexToBinary(t.info_hash));
   //scrapeUrl += '&info_hash=' + common.hexToBinary('5c610cb1882f13699215c8c448a2f1502e98a28e');
   console.log('-= scrape =- ' + scrapeUrl);
 
@@ -41,36 +48,42 @@ module.exports.doScrape = function (t, cb) {
     if (error) {
       //console.log('-= scrape error =- ' + scrapeUrl);
       if (cb) cb(error, null);
-    } else if (response && response.statusCode === 200) {
-      var data = new Buffer(body);
-      var result = bencoding.decode(data);
+    } else if (response) {
+      if (response.statusCode === 200) {
+        var data = new Buffer(body);
+        var result = bencoding.decode(data);
 
-      //console.log(result);
-      //console.log(result.toJSON());
-      //console.log(result.vals[0]);
-      result.keys.forEach(function (k1, idx1) {
-        //console.log(k1.toString('utf8').toUpperCase() + ' - ' + idx1 + ' - ' + result.vals[idx1]);
-        if (k1.toString('utf8').toUpperCase() === 'FAILURE REASON') {
-          //console.log('-= scrape error =- ' + result.vals[idx1].toString('utf8'));
-          if (cb) cb(result.vals[idx1].toString('utf8'), null);
-        } else if (k1.toString('utf8').toUpperCase() === 'FILES') {
-          var val = result.vals[idx1];
-          val.keys.forEach(function (k2, idx2) {
-            //console.log(k2.toString('hex'));
-            //console.log(val.vals[idx2].toJSON());
+        //console.log(result);
+        //console.log(result.toJSON());
+        //console.log(result.vals[0]);
+        result.keys.forEach(function (k1, idx1) {
+          //console.log(k1.toString('utf8').toUpperCase() + ' - ' + idx1 + ' - ' + result.vals[idx1]);
+          if (k1.toString('utf8').toUpperCase() === 'FAILURE REASON') {
+            //console.log('-= scrape error =- ' + result.vals[idx1].toString('utf8'));
+            if (cb) cb(result.vals[idx1].toString('utf8'), null);
+          } else if (k1.toString('utf8').toUpperCase() === 'FILES') {
+            var val = result.vals[idx1];
+            val.keys.forEach(function (k2, idx2) {
+              //console.log(k2.toString('hex'));
+              //console.log(val.vals[idx2].toJSON());
 
-            scrapeInfo.push({
-              info_hash: k2.toString('hex'),
-              data: val.vals[idx2].toJSON()
+              scrapeInfo.push({
+                info_hash: k2.toString('hex'),
+                data: val.vals[idx2].toJSON()
+              });
+
             });
-
-          });
-          //console.log(scrapeInfo);
-          if (cb) cb(null, scrapeInfo);
-        } else {
-          if (cb) cb(null, null);
-        }
-      });
+            //console.log(scrapeInfo);
+            if (scrapeInfo.length > 0) {
+              if (cb) cb(null, scrapeInfo);
+            } else {
+              if (cb) cb('422 result is empty', null);
+            }
+          }
+        });
+      } else if (response.statusCode === 403) {
+        if (cb) cb('403 Forbidden', null);
+      }
     }
   });
 };
