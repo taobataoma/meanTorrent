@@ -5,6 +5,7 @@
  */
 var path = require('path'),
   config = require(path.resolve('./config/config')),
+  common = require(path.resolve('./config/lib/common')),
   mongoose = require('mongoose'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   User = mongoose.model('User'),
@@ -128,8 +129,9 @@ exports.announce = function (req, res) {
   console.log('------------ Announce request ----------------');
   //console.log(req.url);
 
-  var s = req.url.split('?');
-  var query = querystringParse(s[1]);
+  //var s = req.url.split('?');
+  //var query = common.querystringParse(s[1]);
+  var query = req.query;
   var passkey = req.params.passkey || query.passkey || undefined;
 
   async.waterfall([
@@ -167,7 +169,7 @@ exports.announce = function (req, res) {
             query[p] = query[p].toString();
         }
 
-        query.info_hash = binaryToHex(query.info_hash);
+        query.info_hash = common.binaryToHex(query.info_hash);
         req.seeder = (query.left === 0) ? true : false;
 
         done(null);
@@ -698,36 +700,6 @@ exports.announce = function (req, res) {
 
       return b;
     }
-  }
-
-  /**
-   * binaryToHex
-   * @param str
-   */
-  function binaryToHex(str) {
-    if (typeof str !== 'string') {
-      str = String(str);
-    }
-    return Buffer.from(str, 'binary').toString('hex');
-  }
-
-  /**
-   * hexToBinary
-   * @param str
-   */
-  function hexToBinary(str) {
-    if (typeof str !== 'string') {
-      str = String(str);
-    }
-    return Buffer.from(str, 'hex').toString('binary');
-  }
-
-  /**
-   * querystringParse
-   * @param q
-   */
-  function querystringParse(q) {
-    return querystring.parse(q, null, null, {decodeURIComponent: unescape});
   }
 };
 
