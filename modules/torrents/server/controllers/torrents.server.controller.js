@@ -11,6 +11,7 @@ var path = require('path'),
   moment = require('moment'),
   User = mongoose.model('User'),
   Peer = mongoose.model('Peer'),
+  Subtitle = mongoose.model('Subtitle'),
   Thumb = mongoose.model('Thumb'),
   Torrent = mongoose.model('Torrent'),
   Forum = mongoose.model('Forum'),
@@ -30,6 +31,9 @@ var scoreConfig = config.meanTorrentConfig.score;
 var thumbsUpScore = config.meanTorrentConfig.score.thumbsUpScore;
 var ircConfig = config.meanTorrentConfig.ircAnnounce;
 var vsprintf = require('sprintf-js').vsprintf;
+
+const PEERSTATE_SEEDER = 'seeder';
+const PEERSTATE_LEECHER = 'leecher';
 
 /**
  * get movie info from tmdb
@@ -646,6 +650,35 @@ exports.delete = function (req, res) {
   //DELETE the torrent file
   var tfile = config.uploads.torrent.file.dest + req.torrent.torrent_filename;
   fs.unlinkSync(tfile);
+
+  //update users seed/leech number
+  Peer.find({
+    torrent: torrent._id
+  })
+    .populate('user')
+    .exec(function (err, ps) {
+      ps.forEach(function (p) {
+        if (p.user && p.peer_status === PEERSTATE_SEEDER) {
+          p.user.update({
+            $inc: {seeded: -1}
+          }).exec();
+        }
+        if (p.user && p.peer_status === PEERSTATE_LEECHER) {
+          p.user.update({
+            $inc: {leeched: -1}
+          }).exec();
+        }
+      });
+    });
+
+  //remove all peers of the torrent
+  Peer.remove({
+    torrent: torrent._id
+  });
+  //remove all subtitle of the torrent
+  Subtitle.remove({
+    torrent: torrent._id
+  });
 
   torrent.remove(function (err) {
     if (err) {
