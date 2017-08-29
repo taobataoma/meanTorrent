@@ -54,8 +54,9 @@ exports.scrape = function (req, res) {
   console.log('------------ Scrape request ----------------');
   console.log(req.url);
 
-  var s = req.url.split('?');
-  var query = common.querystringParse(s[1]);
+  //var s = req.url.split('?');
+  //var query = common.querystringParse(s[1]);
+  var query = req.query;
   console.log('query.info_hash = ' + unescape(query.info_hash));
 
   if (Array.isArray(query.info_hash)) {
