@@ -148,7 +148,9 @@ module.exports = {
       {name: 'Mozilla'},
       {name: 'AppleWebKit'},
       {name: 'Safari'},
-      {name: 'Chrome'}
+      {name: 'Chrome'},
+      {name: 'Lynx'},
+      {name: 'Opera'}
     ],
     torrentSalesType: {
       name: 'SALESTYPE',
