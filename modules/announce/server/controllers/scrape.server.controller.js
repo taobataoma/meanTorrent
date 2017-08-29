@@ -54,21 +54,18 @@ exports.scrape = function (req, res) {
   console.log('------------ Scrape request ----------------');
   console.log(req.url);
 
-  var s = req.url.split('?');
-  var query = common.querystringParse(s[1]);
-  console.log(query.info_hash);
+  //var s = req.url.split('?');
+  //var query = common.querystringParse(s[1]);
+  var query = req.query;
+  console.log('query.info_hash = ' + unescape(query.info_hash));
 
   if (Array.isArray(query.info_hash)) {
     query.info_hash.forEach(function (item) {
-      info_hash.push(common.binaryToHex(item));
+      info_hash.push(common.binaryToHex(unescape(item)));
     });
   } else {
-    info_hash.push(common.binaryToHex(query.info_hash));
+    info_hash.push(common.binaryToHex(unescape(query.info_hash)));
   }
-
-  //info_hash.forEach(function (x) {
-  //  console.log(hexToBinary(x));
-  //});
 
   console.log(info_hash);
 
@@ -92,15 +89,14 @@ exports.scrape = function (req, res) {
       });
       resStr += 'ee';
 
-      console.log(resStr);
+      //console.log('resStr = ' + resStr);
 
       res.writeHead(200, {
         'Content-Length': resStr.length,
         'Content-Type': 'text/plain'
       });
 
-      res.write(resStr);
-      res.end();
+      res.end(resStr, 'ascii');
     }
   });
 
