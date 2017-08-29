@@ -989,9 +989,11 @@ exports.torrentByID = function (req, res, next, id) {
 
       scrape.doScrape(torrent, function (err, res) {
         if (err) {
+          console.log('doScrape result: error!');
           console.log(err);
         }
         if (res) {
+          console.log('doScrape result:');
           console.log(res);
         }
       });
