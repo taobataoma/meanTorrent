@@ -74,6 +74,11 @@
     vm.getDownloadingTorrend = function () {
       PeersService.getMyDownloadingList(function (items) {
         vm.downloadingList = items;
+        for (var i = items.length - 1; i >= 0; i--) {
+          if (!items[i].torrent) {
+            items.splice(i, 1);
+          }
+        }
         vm.buildPager();
       }, function (err) {
         Notification.error({
