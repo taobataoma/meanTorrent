@@ -386,6 +386,11 @@ exports.create = function (req, res) {
           res.json(torrent);
 
           scoreUpdate(req, req.user, scoreConfig.action.uploadTorrent);
+
+          //scrape torrent status info in public cms mode
+          if (!config.meanTorrentConfig.announce.privateTorrentCmsMode && config.meanTorrentConfig.scrapeTorrentStatus.onTorrentUpload) {
+            scrape.doScrape(torrent);
+          }
         }
       });
     }
@@ -443,9 +448,6 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var torrent = req.torrent;
 
-  //torrent.info_hash = req.body.info_hash;
-  //torrent.tmdb_id = req.body.tmdb_id;
-
   torrent.resource_detail_info = req.body.resource_detail_info;
 
   torrent.save(function (err) {
@@ -457,6 +459,31 @@ exports.update = function (req, res) {
       res.json(torrent);
     }
   });
+};
+
+/**
+ * scrape
+ * scrape torrent status info in public cms mode
+ * @param req
+ * @param res
+ */
+exports.scrape = function (req, res) {
+  if (!config.meanTorrentConfig.announce.privateTorrentCmsMode) {
+    scrape.doScrape(req.torrent, function (err, result) {
+      if (err) {
+        return res.status(422).send({
+          message: err
+        });
+      }
+      if (result && result.length === 1) {
+        res.json(result[0]);
+      }
+    });
+  } else {
+    return res.status(422).send({
+      message: 'privateTorrentCmsMode do not support scrape method'
+    });
+  }
 };
 
 /**
@@ -1019,17 +1046,6 @@ exports.torrentByID = function (req, res, next, id) {
     } else {
       req.torrent = torrent;
       next();
-
-      scrape.doScrape(torrent, function (err, res) {
-        if (err) {
-          console.log('doScrape result: error!');
-          console.log(err);
-        }
-        if (res) {
-          console.log('doScrape result:');
-          console.log(res);
-        }
-      });
     }
   });
 };
