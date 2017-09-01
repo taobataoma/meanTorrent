@@ -20,6 +20,25 @@ module.exports = {
       clientBlackListUrl: 'http://chd.im:3000/client_black_list',
       privateTorrentCmsMode: true
     },
+
+    /**
+     * @scrapeTorrentsStatus
+     *
+     * this option used only when public cms mode (announce.privateTorrentCmsMode = false),
+     * this defines the timing of scrape torrent status from other tracker server
+     *
+     * @onTorrentUpload: scrape status when the torrent uploaded by a user (= init the status info)
+     * @onTorrentInHome: scrape each torrent status when load into home page (= update the status info)
+     * @onTorrentInList: scrape each torrent status when load into torrent list page (= update the status info)
+     *                  if too more items list in one page, this will make efficiency very low
+     * @onTorrentInDetail: scrape current torrent status when load torrent detail info
+     */
+    scrapeTorrentStatus: {
+      onTorrentUpload: true,
+      onTorrentInHome: true,
+      onTorrentInList: true,
+      onTorrentInDetail: true
+    },
     ircAnnounce: {
       enable: true,
       debug: false,
