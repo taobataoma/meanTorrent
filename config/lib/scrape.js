@@ -75,6 +75,16 @@ module.exports.doScrape = function (t, cb) {
             });
             //console.log(scrapeInfo);
             if (scrapeInfo.length > 0) {
+              scrapeInfo.forEach(function (s) {
+                console.log(s);
+                if (s.info_hash === t.info_hash) {
+                  t.update({
+                    torrent_seeds: s.data.complete,
+                    torrent_finished: s.data.downloaded,
+                    torrent_leechers: s.data.incomplete
+                  }).exec();
+                }
+              });
               if (cb) cb(null, scrapeInfo);
             } else {
               if (cb) cb('422 result is empty', null);
