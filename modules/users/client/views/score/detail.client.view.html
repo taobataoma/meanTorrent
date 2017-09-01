@@ -23,16 +23,16 @@
             </div>
         </div>
 
-        <div class="row margin-top-30" ng-show="vm.inviteConfig.open_invite">
+        <div class="row margin-top-30" ng-show="vm.inviteConfig.openInvite">
             <div class="col-sm-8 col-sm-offset-2 text-center">
-                <button class="btn btn-default" ng-disabled="vm.user.score < vm.inviteConfig.score_exchange"
-                        translate="EXCHANGE_INVITATION" translate-values='{ score: vm.inviteConfig.score_exchange}'
+                <button class="btn btn-default" ng-disabled="vm.user.score < vm.inviteConfig.scoreExchange"
+                        translate="EXCHANGE_INVITATION" translate-values='{ score: vm.inviteConfig.scoreExchange}'
                         ng-click="vm.exchangeInvitation();">
                 </button>
             </div>
         </div>
 
-        <div class="row margin-top-30" ng-hide="vm.inviteConfig.open_invite">
+        <div class="row margin-top-30" ng-hide="vm.inviteConfig.openInvite">
             <div class="col-sm-8 col-sm-offset-2 text-center">
                 <div class="alert alert-warning" role="alert">
                     <strong>{{ 'NOTE_CAPTION' | translate }}</strong> {{ 'INVITE_CLOSED' | translate }}

@@ -157,12 +157,12 @@
                             <th class="text-center"></th>
                             <th>{{ 'TABLE_FIELDS.USERNAME' | translate}}</th>
                             <th class="text-center ranking-active-col">{{ 'TABLE_FIELDS.SCORE' | translate}}</th>
-                            <th class="text-center" ng-if="vm.announce.private_torrent_cms">{{ 'TABLE_FIELDS.UPLOAD' | translate}}</th>
-                            <th class="text-center" ng-if="vm.announce.private_torrent_cms">{{ 'TABLE_FIELDS.DOWNLOAD' | translate}}</th>
-                            <th class="text-center" ng-if="vm.announce.private_torrent_cms">{{ 'TABLE_FIELDS.RATIO' | translate}}</th>
-                            <th class="text-center" ng-if="vm.announce.private_torrent_cms">{{ 'TABLE_FIELDS.SEEDED' | translate}}</th>
-                            <th class="text-center" ng-if="vm.announce.private_torrent_cms">{{ 'TABLE_FIELDS.LEECHED' | translate}}</th>
-                            <th class="text-center" ng-if="vm.announce.private_torrent_cms">{{ 'TABLE_FIELDS.FINISHED' | translate}}</th>
+                            <th class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{ 'TABLE_FIELDS.UPLOAD' | translate}}</th>
+                            <th class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{ 'TABLE_FIELDS.DOWNLOAD' | translate}}</th>
+                            <th class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{ 'TABLE_FIELDS.RATIO' | translate}}</th>
+                            <th class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{ 'TABLE_FIELDS.SEEDED' | translate}}</th>
+                            <th class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{ 'TABLE_FIELDS.LEECHED' | translate}}</th>
+                            <th class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{ 'TABLE_FIELDS.FINISHED' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.JOINED' | translate}}</th>
                         </tr>
                     </thead>
@@ -178,12 +178,12 @@
                                 <span message-to="user" to-class="message-to-icon"></span>
                             </td>
                             <td class="text-center ranking-active-col">{{user.score}}</td>
-                            <td class="text-center" ng-if="vm.announce.private_torrent_cms">{{user.uploaded | bytes:2}}</td>
-                            <td class="text-center" ng-if="vm.announce.private_torrent_cms">{{user.downloaded | bytes:2}}</td>
-                            <td class="text-center" ng-if="vm.announce.private_torrent_cms"><span ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
-                            <td class="text-center" ng-if="vm.announce.private_torrent_cms">{{user.seeded}}</td>
-                            <td class="text-center" ng-if="vm.announce.private_torrent_cms">{{user.leeched}}</td>
-                            <td class="text-center" ng-if="vm.announce.private_torrent_cms">{{user.finished}}</td>
+                            <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.uploaded | bytes:2}}</td>
+                            <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.downloaded | bytes:2}}</td>
+                            <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode"><span ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
+                            <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.seeded}}</td>
+                            <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.leeched}}</td>
+                            <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.finished}}</td>
                             <td class="text-center">{{user.created | life}}</td>
                         </tr>
                     </tbody>

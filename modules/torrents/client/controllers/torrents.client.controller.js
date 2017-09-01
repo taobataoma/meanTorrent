@@ -39,7 +39,7 @@
      */
     vm.torrentBuildPager = function () {
       vm.torrentPagedItems = [];
-      vm.torrentItemsPerPage = vm.itemsPerPageConfig.torrents_per_page;
+      vm.torrentItemsPerPage = vm.itemsPerPageConfig.torrentsPerPage;
       vm.torrentCurrentPage = 1;
       vm.torrentFigureOutItemsToDisplay();
     };

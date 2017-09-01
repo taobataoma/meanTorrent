@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="topone">
                     <div class="col-md-4">
-                        <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{vm.torrentLocalInfo.resource_detail_info.poster_path}}"
+                        <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.torrentLocalInfo.resource_detail_info.poster_path}}"
                              class="img-thumbnail center-block"
                              onload="this.style.opacity='1';">
 
@@ -138,15 +138,15 @@
                             <div ng-show="vm.torrentLocalInfo.resource_detail_info.imdb_id">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <a href="{{vm.imdbConfig.imdb_link_url}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}"
-                                       target="_blank">{{vm.imdbConfig.imdb_link_url}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}</a>
+                                    <a href="{{vm.imdbConfig.imdbLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}"
+                                       target="_blank">{{vm.imdbConfig.imdbLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}</a>
                                 </dd>
                             </div>
 
                             <div ng-show="vm.torrentLocalInfo.resource_detail_info.id">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>
-                                <dd class="h-line"><a href="{{vm.tmdbConfig.tmdb_movie_link_url}}{{vm.torrentLocalInfo.resource_detail_info.id}}"
-                                                      target="_blank">{{vm.tmdbConfig.tmdb_movie_link_url}}{{vm.torrentLocalInfo.resource_detail_info.id}}</a>
+                                <dd class="h-line"><a href="{{vm.tmdbConfig.tmdbMovieLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.id}}"
+                                                      target="_blank">{{vm.tmdbConfig.tmdbMovieLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.id}}</a>
                                 </dd>
                             </div>
 
@@ -157,7 +157,7 @@
                         <div class="row cast-list">
                             <div class="col-xs-4 col-md-2 text-center"
                                  ng-repeat="cast in vm.torrentLocalInfo.resource_detail_info.credits.cast | limitTo: 6">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{cast.profile_path}}"
+                                <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
@@ -212,7 +212,7 @@
                                         <div class="timeline-comment-header-text">
                                             <span user-info="item.user" info-name></span>
                                             <span message-to="item.user" to-class="message-to-icon"></span>
-                                            <span class="user-ud-text" ng-if="vm.announce.private_torrent_cms">
+                                            <span class="user-ud-text" ng-if="vm.announce.privateTorrentCmsMode">
                                                 (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{item.user.uploaded | bytes}}
                                                 <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{item.user.downloaded | bytes}}
                                                 )
@@ -359,7 +359,7 @@
                     </div>
                 </dd>
 
-                <div ng-if="vm.announce.private_torrent_cms">
+                <div ng-if="vm.announce.privateTorrentCmsMode">
                     <dt class="h-line">{{ 'VIDEO_SALE_INFO' | translate}}：</dt>
                     <dd class="h-line">
                     <span class="label label-sale"
@@ -669,14 +669,14 @@
                     <button class="btn btn-default btn-sm" ng-click="vm.deleteTorrent();">{{ 'ADMIN_BASIC_DELETE' | translate}}</button>
                 </dt>
 
-                <div class="margin-top-20" ng-if="vm.announce.private_torrent_cms"></div>
+                <div class="margin-top-20" ng-if="vm.announce.privateTorrentCmsMode"></div>
 
-                <dt class="h-line" ng-if="vm.announce.private_torrent_cms">{{ 'ADMIN_SALE_TYPE_SET' | translate}}:</dt>
-                <dd class="h-line" ng-if="vm.announce.private_torrent_cms">
+                <dt class="h-line" ng-if="vm.announce.privateTorrentCmsMode">{{ 'ADMIN_SALE_TYPE_SET' | translate}}:</dt>
+                <dd class="h-line" ng-if="vm.announce.privateTorrentCmsMode">
                     <mark>{{vm.getSaleTypeDesc();}}</mark>
                 </dd>
 
-                <div class="padding-top-10 margin-left-50" ng-if="vm.announce.private_torrent_cms">
+                <div class="padding-top-10 margin-left-50" ng-if="vm.announce.privateTorrentCmsMode">
                     <div class="btn-group sales-btn-group text-center">
                         <label ng-repeat="st in vm.torrentSalesType.value"
                                class="btn btn-sm" ng-model="vm.model_salestype" uib-btn-radio="'{{st.name}}'" uncheckable

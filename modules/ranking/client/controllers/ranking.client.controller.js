@@ -20,17 +20,17 @@
       {
         title: $translate.instant('PAGE_HEADER_RANKING_UPLOAD'),
         templateUrl: 'upload_ranking.html',
-        ng_show: vm.announce.private_torrent_cms
+        ng_show: vm.announce.privateTorrentCmsMode
       },
       {
         title: $translate.instant('PAGE_HEADER_RANKING_DOWNLOAD'),
         templateUrl: 'download_ranking.html',
-        ng_show: vm.announce.private_torrent_cms
+        ng_show: vm.announce.privateTorrentCmsMode
       },
       {
         title: $translate.instant('PAGE_HEADER_RANKING_RATIO'),
         templateUrl: 'ratio_ranking.html',
-        ng_show: vm.announce.private_torrent_cms
+        ng_show: vm.announce.privateTorrentCmsMode
       }
     ];
 

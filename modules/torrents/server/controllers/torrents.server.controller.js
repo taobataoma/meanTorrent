@@ -154,7 +154,7 @@ exports.upload = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          if (config.meanTorrentConfig.announce.private_torrent_cms) {
+          if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
             if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
               console.log(torrent.metadata.announce);
               message = 'ANNOUNCE_URL_ERROR';
@@ -320,7 +320,7 @@ exports.download = function (req, res) {
       getTorrentFileData(filePath)
         .then(function () {
           res.set('Content-Type', 'application/x-bittorrent');
-          res.set('Content-Disposition', 'attachment; filename=' + config.meanTorrentConfig.announce.announce_prefix + encodeURI(req.torrent.torrent_filename));
+          res.set('Content-Disposition', 'attachment; filename=' + config.meanTorrentConfig.announce.announcePrefix + encodeURI(req.torrent.torrent_filename));
           res.set('Content-Length', stat.size);
 
           res.send(benc.encode(torrent_data));
@@ -345,7 +345,7 @@ exports.download = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          if (config.meanTorrentConfig.announce.private_torrent_cms) {
+          if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
             var announce = config.meanTorrentConfig.announce.url + '/' + req.user.passkey;
             torrent.metadata.announce = announce;
           }
@@ -608,7 +608,7 @@ exports.setReviewedStatus = function (req, res) {
       var client = req.app.get('ircClient');
 
       if (torrent.torrent_type === 'tvserial') {
-        msg = vsprintf(ircConfig.tvserial_msg_format, [
+        msg = vsprintf(ircConfig.tvserialMsgFormat, [
           torrent.user.displayName,
           torrent.torrent_filename,
           torrent.torrent_type,
@@ -619,7 +619,7 @@ exports.setReviewedStatus = function (req, res) {
           moment().format('YYYY-MM-DD HH:mm:ss')
         ]);
       } else {
-        msg = vsprintf(ircConfig.default_msg_format, [
+        msg = vsprintf(ircConfig.defaultMsgFormat, [
           torrent.user.displayName,
           torrent.torrent_filename,
           torrent.torrent_type,

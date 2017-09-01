@@ -4,7 +4,7 @@ module.exports = {
   meanTorrentConfig: {
     app: {
       domain: 'http://chd.im:3000',
-      show_demo_warning_popup: true
+      showDemoWarningPopup: true
     },
     language: [
       {name: 'en', index: 0, class: 'flag-icon-gb', title: 'English'},
@@ -13,12 +13,12 @@ module.exports = {
     announce: {
       url: 'http://chd.im:3000/announce',
       comment: 'meanTorrent group',
-      announce_interval: 60 * 1000,
-      announce_prefix: '{CHD.im}.',
+      announceInterval: 60 * 1000,
+      announcePrefix: '{CHD.im}.',
       admin: 'admin@chd.im',
-      base_url: 'http://chd.im:3000',
-      client_black_list_url: 'http://chd.im:3000/client_black_list',
-      private_torrent_cms: true
+      baseUrl: 'http://chd.im:3000',
+      clientBlackListUrl: 'http://chd.im:3000/client_black_list',
+      privateTorrentCmsMode: true
     },
     ircAnnounce: {
       enable: true,
@@ -29,8 +29,8 @@ module.exports = {
       userName: 'meanTorrent',
       realName: 'IRC announce client',
       channel: '#chdAnnounce',
-      default_msg_format: '%s upload - torrent: %s, type: %s, size: %d, sale: %s, at %s',
-      tvserial_msg_format: '%s upload - torrent: %s, type: %s, size: %d, seasons: %d, episodes: %s, sale: %s, at %s',
+      defaultMsgFormat: '%s upload - torrent: %s, type: %s, size: %d, sale: %s, at %s',
+      tvserialMsgFormat: '%s upload - torrent: %s, type: %s, size: %d, seasons: %d, episodes: %s, sale: %s, at %s',
       showErrors: true,
       autoRejoin: true,
       autoConnect: true,
@@ -39,17 +39,17 @@ module.exports = {
       encoding: 'UTF-8'
     },
     sign: {
-      open_signup: true,
-      allow_social_sign: false,
-      show_demo_sign_message: true
+      openSignup: true,
+      allowSocialSignin: false,
+      showDemoSignMessage: true
     },
     invite: {
-      open_invite: true,
-      score_exchange: 10000,
+      openInvite: true,
+      scoreExchange: 10000,
       expires: 60 * 60 * 1000 * 24
     },
     score: {
-      level_step: 500,
+      levelStep: 500,
       action: {
         signEveryday: {name: 'signEveryday', value: 10, enable: true},
         uploadTorrent: {name: 'uploadTorrent', value: 50, enable: true},
@@ -186,19 +186,19 @@ module.exports = {
       }
     },
     tmdbConfig: {
-      tmdb_home: 'https://www.themoviedb.org',
-      tmdb_movie_link_url: 'https://www.themoviedb.org/movie/',
-      tmdb_tv_link_url: 'https://www.themoviedb.org/tv/',
+      tmdbHome: 'https://www.themoviedb.org',
+      tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
+      tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',
       //please change it to your api key from themoviedb.org
       key: '7888f0042a366f63289ff571b68b7ce0',
-      backdrop_img_base_url: 'http://image.tmdb.org/t/p/w1280',
-      backdrop_img_base_url_300: 'http://image.tmdb.org/t/p/w300',
-      poster_img_base_url: 'http://image.tmdb.org/t/p/w500',
-      poster_list_base_url: 'http://image.tmdb.org/t/p/w92',
-      cast_img_base_url: 'http://image.tmdb.org/t/p/w132_and_h132_bestv2'
+      backdropImgBaseUrl: 'http://image.tmdb.org/t/p/w1280',
+      backdropImgBaseUrl_300: 'http://image.tmdb.org/t/p/w300',
+      posterImgBaseUrl: 'http://image.tmdb.org/t/p/w500',
+      posterListBaseUrl: 'http://image.tmdb.org/t/p/w92',
+      castImgBaseUrl: 'http://image.tmdb.org/t/p/w132_and_h132_bestv2'
     },
     imdbConfig: {
-      imdb_link_url: 'http://www.imdb.com/title/'
+      imdbLinkUrl: 'http://www.imdb.com/title/'
     },
     forumsConfig: {
       category: [
@@ -206,15 +206,15 @@ module.exports = {
         {name: 'DISCUSS', value: 'discuss', index: 1},
         {name: 'BUSINESS', value: 'business', index: 2}
       ],
-      show_thumbs_up_user_list: true
+      showThumbsUpUserList: true
     },
     itemsPerPage: {
-      topics_per_page: 10,
-      replies_per_page: 10,
-      topics_search_per_page: 10,
-      torrents_per_page: 15,
-      torrents_comments_per_page: 10,
-      traces_per_page: 30
+      topicsPerPage: 10,
+      repliesPerPage: 10,
+      topicsSearchPerPage: 10,
+      torrentsPerPage: 15,
+      torrentsCommentsPerPage: 10,
+      tracesPerPage: 30
     },
     resourcesTags: {
       radio: [

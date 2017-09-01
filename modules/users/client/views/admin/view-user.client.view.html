@@ -95,7 +95,7 @@
                     </div>
                 </dd>
 
-                <div ng-if="vm.announce.private_torrent_cms">
+                <div ng-if="vm.announce.privateTorrentCmsMode">
                     <dt class="h-line">{{ 'STATUS_FIELD.LEECHED_IP' | translate}}：</dt>
                     <dd class="h-line">
                         <div class="list-all-ips">
@@ -113,7 +113,7 @@
 
                 <li class="status-divider"></li>
 
-                <div ng-if="vm.announce.private_torrent_cms">
+                <div ng-if="vm.announce.privateTorrentCmsMode">
                     <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
                     <dd class="h-line">
                         <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
@@ -176,7 +176,7 @@
 
                 <li class="status-divider"></li>
 
-                <div ng-if="vm.announce.private_torrent_cms">
+                <div ng-if="vm.announce.privateTorrentCmsMode">
                     <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
                     <dd class="h-line">{{ vm.user.seeded }}</dd>
 

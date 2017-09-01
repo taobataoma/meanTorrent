@@ -58,7 +58,7 @@
           <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
             <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a>
           </li>
-          <li ui-sref-active="active" ng-if="vm.signConfig.allow_social_sign">
+          <li ui-sref-active="active" ng-if="vm.signConfig.allowSocialSignin">
             <a ui-sref="settings.accounts" ng-bind="MANAGE_SOCIAL_ACCOUNTS" menu-title="MANAGE_SOCIAL_ACCOUNTS"></a>
           </li>
           <li class="divider"></li>

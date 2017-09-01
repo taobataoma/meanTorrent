@@ -63,7 +63,7 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.LATEST_SIGNED_TIME' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.last_signed | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                <div ng-if="vm.announce.private_torrent_cms">
+                <div ng-if="vm.announce.privateTorrentCmsMode">
                     <dt class="h-line">{{ 'STATUS_FIELD.SIGNED_IP' | translate}}：</dt>
                     <dd class="h-line">
                         <div class="list-all-ips">
@@ -88,7 +88,7 @@
 
                 <li class="status-divider"></li>
 
-                <div ng-if="vm.announce.private_torrent_cms">
+                <div ng-if="vm.announce.privateTorrentCmsMode">
                     <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
                     <dd class="h-line">
                         <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
@@ -110,7 +110,7 @@
                     <span>{{ vm.user.score }}</span> <span score-level="vm.scoreLevelData.currLevel"></span>
                 </dd>
 
-                <div ng-if="vm.announce.private_torrent_cms">
+                <div ng-if="vm.announce.privateTorrentCmsMode">
                     <li class="status-divider"></li>
 
                     <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>

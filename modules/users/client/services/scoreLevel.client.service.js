@@ -9,7 +9,7 @@
 
   function ScoreLevelService(MeanTorrentConfig) {
     var scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
-    var step = scoreConfig.level_step;
+    var step = scoreConfig.levelStep;
 
     return {
       getScoreLevelJson: function (score) {

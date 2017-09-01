@@ -36,21 +36,21 @@ exports.create = function (req, res) {
       //res.json(invitation);
       var user = req.user;
       user.update({
-        $set: {score: user.score - config.meanTorrentConfig.invite.score_exchange}
+        $set: {score: user.score - config.meanTorrentConfig.invite.scoreExchange}
       }).exec(function (err, result) {
         if (err) {
           return res.status(422).send({
             message: errorHandler.getErrorMessage(err)
           });
         } else {
-          user.score = user.score - config.meanTorrentConfig.invite.score_exchange;
+          user.score = user.score - config.meanTorrentConfig.invite.scoreExchange;
           res.json(user);
 
           //create trace log
           traceLogCreate(req, traceConfig.action.userInvitationExchange, {
             user: req.user._id,
             token: invitation.token,
-            score: config.meanTorrentConfig.invite.score_exchange
+            score: config.meanTorrentConfig.invite.scoreExchange
           });
         }
       });

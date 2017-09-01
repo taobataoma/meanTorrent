@@ -6,7 +6,7 @@
             <div data-ng-if="$index != 0 && $index % 6 == 0" class="clearfix visible-md-block visible-lg-block"></div>
             <div class="col-xs-6 col-sm-4 col-md-2 col-small-padding">
                 <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
-                    <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.resource_detail_info.poster_path}}"
+                    <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{item.resource_detail_info.poster_path}}"
                          alt="{{item.resource_detail_info.title || item.resource_detail_info.name}}"
                          class="img-responsive">
 
@@ -142,7 +142,7 @@
                         <td class="col-md-7 td-text-overflow">
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" ng-src="{{vm.tmdbConfig.poster_list_base_url}}{{item.resource_detail_info.poster_path}}"
+                                    <img class="media-object" ng-src="{{vm.tmdbConfig.posterListBaseUrl}}{{item.resource_detail_info.poster_path}}"
                                          alt="...">
                                 </div>
                                 <div class="media-body">

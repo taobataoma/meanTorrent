@@ -31,7 +31,7 @@ const FAILURE_REASONS = {
   151: 'Invalid peerid: peerid is not 20 bytes long',
   152: 'Invalid numwant. Client requested more peers than allowed by tracker',
   153: 'Passkey length error (length=32)',
-  154: 'Invalid passkey, if you changed you passkey, please re-download the torrent file from ' + config.meanTorrentConfig.announce.base_url,
+  154: 'Invalid passkey, if you changed you passkey, please re-download the torrent file from ' + config.meanTorrentConfig.announce.baseUrl,
 
   160: 'Invalid torrent info_hash',
   161: 'No torrent with that info_hash has been found',
@@ -39,7 +39,7 @@ const FAILURE_REASONS = {
 
   170: 'your account is banned',
   171: 'your account is sealed',
-  172: 'your client is not allowed, here is the blacklist: ' + config.meanTorrentConfig.announce.client_black_list_url,
+  172: 'your client is not allowed, here is the blacklist: ' + config.meanTorrentConfig.announce.clientBlackListUrl,
 
   180: 'You already are downloading the same torrent. You may only leech from one location at a time',
   181: 'You cannot seed the same torrent from more than 3 locations',
@@ -62,7 +62,7 @@ const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
 
 const PEER_COMPACT_SIZE = 6;
-const ANNOUNCE_INTERVAL = Math.floor(config.meanTorrentConfig.announce.announce_interval / 1000);
+const ANNOUNCE_INTERVAL = Math.floor(config.meanTorrentConfig.announce.announceInterval / 1000);
 const ANNOUNCE_GHOST = 2;
 
 const PARAMS_INTEGER = [

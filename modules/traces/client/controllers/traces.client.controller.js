@@ -26,7 +26,7 @@
      */
     vm.buildPager = function () {
       vm.pagedItems = [];
-      vm.itemsPerPage = vm.itemsPerPageConfig.traces_per_page;
+      vm.itemsPerPage = vm.itemsPerPageConfig.tracesPerPage;
       vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     };

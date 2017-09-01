@@ -202,15 +202,15 @@ such as:
 ```javascript
     announce: {
       url: 'http://chd.im/announce',
-      announce_prefix: '[CHD.im].',
+      announcePrefix: '[CHD.im].',
       admin: 'admin@chd.im',
-      base_url: 'http://chd.im',
-      client_black_list_url: 'http://chd.im/client_black_list',
-      private_torrent_cms: true
+      baseUrl: 'http://chd.im',
+      clientBlackListUrl: 'http://chd.im/client_black_list',
+      privateTorrentCmsMode: true
     },
 ```
 meanTorrent tracker is private, please set the `announce.url` to your server url, then when user to upload torrent file, It will autocheck the torrent announce url whether matching as `announce.url`.
-But, meanTorrent support public tracker torrents CMS mode with `private_torrent_cms` set to `false`, in `public` mode, user can upload and download public tracker torrent files, but these torrent files is can not
+But, meanTorrent support public tracker torrents CMS mode with `privateTorrentCmsMode` set to `false`, in `public` mode, user can upload and download public tracker torrent files, but these torrent files is can not
 used by meanTorrent tracker server.
 
 ```javascript
@@ -245,20 +245,20 @@ And you can make a list page to tell users witch clients are unpopular.
 
 ```javascript
     sign: {
-      open_signup: true,
-      allow_social_sign: true
+      openSignup: true,
+      allowSocialSignin: true
     },
 ```
 ```javascript
     invite: {
-      open_invite: true,
-      score_exchange: 10000,
+      openInvite: true,
+      scoreExchange: 10000,
       expires: 60 * 60 * 1000 * 24
     },
 
 ```
-If your site do not accept user free register, please set `open_signup` to `false`, then user only can register through friend invitation or system(admin/oper) invitation.
-if you set `open_invite` to `true`, the normal user can invite friends to join, if `false` only oper/admin can invite users.
+If your site do not accept user free register, please set `openSignup` to `false`, then user only can register through friend invitation or system(admin/oper) invitation.
+if you set `openInvite` to `true`, the normal user can invite friends to join, if `false` only oper/admin can invite users.
 
 ```javascript
     ircAnnounce: {
@@ -270,7 +270,6 @@ if you set `open_invite` to `true`, the normal user can invite friends to join, 
       userName: 'meanTorrent',
       realName: 'IRC announce client',
       channel: '#chdAnnounce',
-      msg_format: '%s upload torrent %s at %s',
       showErrors: true,
       autoRejoin: true,
       autoConnect: true,
@@ -283,13 +282,13 @@ Now, IRC announce support [Node-irc](https://github.com/martynsmith/node-irc), t
 
 ```javascript
     app: {
-      show_demo_warning_popup: true
+      showDemoWarningPopup: true
     },
     sign: {
-      show_demo_sign_message: true
+      showDemoSignMessage: true
     },
 ```
-If you started meanTorrent at `production` env, please set `show_demo_warning_popup` and `show_demo_sign_message` to `false`, this will not show demo message any where.
+If you started meanTorrent at `production` env, please set `showDemoWarningPopup` and `showDemoSignMessage` to `false`, this will not show demo message any where.
 
 There is not much comment of `config/env/torrent.js`, because the development time is limited, I'll add more comment in my free time, If you has any question, please post an [issue](https://github.com/taobataoma/meanTorrent/issues), and i will focus it.
 

@@ -47,7 +47,7 @@
      */
     vm.initTopOneMovieInfo = function () {
       if (vm.movieTopOne.resource_detail_info.backdrop_path) {
-        $('.movie-backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + vm.movieTopOne.resource_detail_info.backdrop_path + ')');
+        $('.movie-backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdropImgBaseUrl + vm.movieTopOne.resource_detail_info.backdrop_path + ')');
       }
     };
 
@@ -56,7 +56,7 @@
      */
     vm.initTopOneTVInfo = function () {
       if (vm.TVTopOne.resource_detail_info.backdrop_path) {
-        $('.tv-backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + vm.TVTopOne.resource_detail_info.backdrop_path + ')');
+        $('.tv-backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdropImgBaseUrl + vm.TVTopOne.resource_detail_info.backdrop_path + ')');
       }
     };
 
@@ -68,7 +68,7 @@
       vm.getTVTopInfo();
 
       var sw = localStorageService.get('showed_warning');
-      if (vm.appConfig.show_demo_warning_popup && !sw) {
+      if (vm.appConfig.showDemoWarningPopup && !sw) {
         $timeout(function () {
           $('#warning_popup').popup('show');
           //$('.warning_popup_open').trigger('click');

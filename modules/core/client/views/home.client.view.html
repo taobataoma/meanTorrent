@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="topone">
                     <div class="col-md-4">
-                        <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{vm.movieTopOne.resource_detail_info.poster_path}}"
+                        <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.movieTopOne.resource_detail_info.poster_path}}"
                              class="img-thumbnail center-block"
                              onload="this.style.opacity='1';" ng-click="vm.openTorrentInfo(vm.movieTopOne._id);">
 
@@ -76,7 +76,7 @@
                         <div class="row cast-list">
                             <div class="col-xs-4 col-md-2 text-center"
                                  ng-repeat="cast in vm.movieTopOne.resource_detail_info.credits.cast | limitTo: 6">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{cast.profile_path}}"
+                                <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
@@ -99,7 +99,7 @@
                         <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                         <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
                             <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
-                                <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.resource_detail_info.poster_path}}"
+                                <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{item.resource_detail_info.poster_path}}"
                                      alt="{{item.resource_detail_info.title}}"
                                      class="img-responsive">
 
@@ -155,7 +155,7 @@
                                         ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                         <td>
                                             <div class="newest-item-big" ng-click="vm.openTorrentInfo(nt._id);">
-                                                <img ng-src="{{vm.tmdbConfig.backdrop_img_base_url_300}}{{nt.resource_detail_info.backdrop_path}}"
+                                                <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_300}}{{nt.resource_detail_info.backdrop_path}}"
                                                      on-error-src="/./modules/torrents/client/img/default_backdrop_300.jpg">
 
                                                 <div class="newest-user-info">
@@ -204,7 +204,7 @@
             <div class="container">
                 <div class="topone">
                     <div class="col-md-4">
-                        <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{vm.TVTopOne.resource_detail_info.poster_path}}"
+                        <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.TVTopOne.resource_detail_info.poster_path}}"
                              class="img-thumbnail center-block"
                              onload="this.style.opacity='1';" ng-click="vm.openTorrentInfo(vm.TVTopOne._id);">
 
@@ -284,7 +284,7 @@
                         <div class="row cast-list">
                             <div class="col-xs-4 col-md-2 text-center"
                                  ng-repeat="cast in vm.TVTopOne.resource_detail_info.credits.cast | limitTo: 6">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{cast.profile_path}}"
+                                <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
                                 <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
@@ -307,7 +307,7 @@
                         <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                         <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
                             <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
-                                <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{item.resource_detail_info.poster_path}}"
+                                <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{item.resource_detail_info.poster_path}}"
                                      alt="{{item.resource_detail_info.name}}"
                                      class="img-responsive">
 
@@ -363,7 +363,7 @@
                                         ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                         <td>
                                             <div class="newest-item-big" ng-click="vm.openTorrentInfo(nt._id);">
-                                                <img ng-src="{{vm.tmdbConfig.backdrop_img_base_url_300}}{{nt.resource_detail_info.backdrop_path}}"
+                                                <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_300}}{{nt.resource_detail_info.backdrop_path}}"
                                                      on-error-src="/./modules/torrents/client/img/default_backdrop_300.jpg">
 
                                                 <div class="newest-user-info">

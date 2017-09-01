@@ -19,7 +19,7 @@
      */
     vm.buildPager = function () {
       vm.pagedItems = [];
-      vm.itemsPerPage = vm.itemsPerPageConfig.topics_search_per_page;
+      vm.itemsPerPage = vm.itemsPerPageConfig.topicsSearchPerPage;
       vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     };

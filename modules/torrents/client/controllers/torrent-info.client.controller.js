@@ -39,7 +39,7 @@
      */
     vm.commentBuildPager = function () {
       vm.commentPagedItems = [];
-      vm.commentItemsPerPage = vm.itemsPerPageConfig.torrents_comments_per_page;
+      vm.commentItemsPerPage = vm.itemsPerPageConfig.torrentsCommentsPerPage;
       vm.commentCurrentPage = 1;
       vm.commentFigureOutItemsToDisplay();
     };
@@ -121,7 +121,7 @@
         torrentId: $stateParams.torrentId
       }, function (res) {
         if (res.resource_detail_info.backdrop_path) {
-          $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdrop_img_base_url + res.resource_detail_info.backdrop_path + ')');
+          $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdropImgBaseUrl + res.resource_detail_info.backdrop_path + ')');
         }
 
         vm.initTabLists();
@@ -158,7 +158,7 @@
         {
           title: $translate.instant('TAB_USER_INFO'),
           templateUrl: 'userInfo.html',
-          ng_show: vm.announce.private_torrent_cms,
+          ng_show: vm.announce.privateTorrentCmsMode,
           badges: [
             {
               value: '↑ ' + vm.torrentLocalInfo.torrent_seeds + '　↓ ' + vm.torrentLocalInfo.torrent_leechers + '　√ ' + vm.torrentLocalInfo.torrent_finished,

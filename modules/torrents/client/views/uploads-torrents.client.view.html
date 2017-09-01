@@ -167,7 +167,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <legend class="small-legend" translate="TMDB_RESOURCE_INFO"></legend>
                     <div class="col-md-4 col-sm-4 col-xs-12">
-                        <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{vm.movieinfo.poster_path}}" class="img-thumbnail">
+                        <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.movieinfo.poster_path}}" class="img-thumbnail">
                     </div>
                     <div class="col-md-8 col-sm-8 col-xs-12">
                         <dl class="dl-horizontal">
@@ -214,12 +214,12 @@
                             <dd class="h-line">{{vm.movieinfo.vote_average}} / {{vm.movieinfo.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>
-                            <dd class="h-line"><a href="{{vm.imdbConfig.imdb_link_url}}{{vm.movieinfo.imdb_id}}"
-                                                  target="_blank">{{vm.imdbConfig.imdb_link_url}}{{vm.movieinfo.imdb_id}}</a></dd>
+                            <dd class="h-line"><a href="{{vm.imdbConfig.imdbLinkUrl}}{{vm.movieinfo.imdb_id}}"
+                                                  target="_blank">{{vm.imdbConfig.imdbLinkUrl}}{{vm.movieinfo.imdb_id}}</a></dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>
-                            <dd class="h-line"><a href="{{vm.tmdbConfig.tmdb_movie_link_url}}{{vm.movieinfo.id}}"
-                                                  target="_blank">{{vm.tmdbConfig.tmdb_movie_link_url}}{{vm.movieinfo.id}}</a></dd>
+                            <dd class="h-line"><a href="{{vm.tmdbConfig.tmdbMovieLinkUrl}}{{vm.movieinfo.id}}"
+                                                  target="_blank">{{vm.tmdbConfig.tmdbMovieLinkUrl}}{{vm.movieinfo.id}}</a></dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                             <dd class="h-line">{{vm.movieinfo.overview}}</dd>
@@ -227,7 +227,7 @@
                         <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
                         <div class="row cast-list">
                             <div class="col-xs-4 col-md-2 text-center" ng-repeat="cast in vm.movieinfo.credits.cast | limitTo: 6">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{cast.profile_path}}"
+                                <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block">
                                 <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
@@ -282,7 +282,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <legend class="small-legend" translate="TMDB_RESOURCE_INFO"></legend>
                     <div class="col-md-4 col-sm-4 col-xs-12">
-                        <img ng-src="{{vm.tmdbConfig.poster_img_base_url}}{{vm.tvinfo.poster_path}}" class="img-thumbnail">
+                        <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.tvinfo.poster_path}}" class="img-thumbnail">
                     </div>
                     <div class="col-md-8 col-sm-8 col-xs-12">
                         <dl class="dl-horizontal">
@@ -329,8 +329,8 @@
                             <dd class="h-line">{{vm.tvinfo.vote_average}} / {{vm.tvinfo.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>
-                            <dd class="h-line"><a href="{{vm.tmdbConfig.tmdb_tv_link_url}}{{vm.tvinfo.id}}"
-                                                  target="_blank">{{vm.tmdbConfig.tmdb_tv_link_url}}{{vm.tvinfo.id}}</a></dd>
+                            <dd class="h-line"><a href="{{vm.tmdbConfig.tmdbTvserialLinkUrl}}{{vm.tvinfo.id}}"
+                                                  target="_blank">{{vm.tmdbConfig.tmdbTvserialLinkUrl}}{{vm.tvinfo.id}}</a></dd>
 
                             <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                             <dd class="h-line">{{vm.tvinfo.overview}}</dd>
@@ -338,7 +338,7 @@
                         <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
                         <div class="row cast-list">
                             <div class="col-xs-4 col-md-2 text-center" ng-repeat="cast in vm.tvinfo.credits.cast | limitTo: 6">
-                                <img ng-src="{{vm.tmdbConfig.cast_img_base_url}}{{cast.profile_path}}"
+                                <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
                                      on-error-src="/./modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block">
                                 <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>

@@ -136,7 +136,7 @@
                         <td class="col-md-7 td-text-overflow">
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" ng-src="{{vm.tmdbConfig.poster_list_base_url}}{{item.resource_detail_info.poster_path}}"
+                                    <img class="media-object" ng-src="{{vm.tmdbConfig.posterListBaseUrl}}{{item.resource_detail_info.poster_path}}"
                                          alt="...">
                                 </div>
                                 <div class="media-body">
@@ -230,7 +230,7 @@
                                     {{ 'ADMIN_BASIC_DELETE' | translate}}
                                 </button>
                             </div>
-                            <div class="margin-top-2" ng-if="vm.announce.private_torrent_cms">
+                            <div class="margin-top-2" ng-if="vm.announce.privateTorrentCmsMode">
                                 <div class="admin-tools-btn-list btn-group" uib-dropdown dropdown-append-to-body>
                                     <button id="btn-append-to-body" type="button"
                                             class="btn btn-xs btn-default btn-block"

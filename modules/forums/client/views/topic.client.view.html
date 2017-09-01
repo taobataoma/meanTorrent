@@ -72,7 +72,7 @@
                                                 <span user-info="vm.topic.user" info-name></span>
                                                 <span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
                                                 <span message-to="vm.topic.user" to-class="message-to-icon"></span>
-                                                <span class="user-ud-text" ng-if="vm.announce.private_torrent_cms">
+                                                <span class="user-ud-text" ng-if="vm.announce.privateTorrentCmsMode">
                                                     (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{vm.topic.user.uploaded | bytes}}
                                                     <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{vm.topic.user.downloaded | bytes}}
                                                     )
@@ -128,7 +128,7 @@
                                                 </ol>
                                             </div>
                                             <div class="thumbs-up-list"
-                                                 ng-if="vm.topic._thumbs.length && vm.forumsConfig.show_thumbs_up_user_list">
+                                                 ng-if="vm.topic._thumbs.length && vm.forumsConfig.showThumbsUpUserList">
                                                 <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"
                                                      translate-values="{number: vm.topic._thumbs.length}"></div>
                                                 <div class="thumbs-users panel-collapsed" id="thumbs-{{vm.topic._id}}">
@@ -154,7 +154,7 @@
                                                 <span user-info="rep.user" info-name></span>
                                                 <span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
                                                 <span message-to="vm.topic.user" to-class="message-to-icon"></span>
-                                                <span class="user-ud-text" ng-if="vm.announce.private_torrent_cms">
+                                                <span class="user-ud-text" ng-if="vm.announce.privateTorrentCmsMode">
                                                     (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{rep.user.uploaded | bytes}}
                                                     <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{rep.user.downloaded | bytes}}
                                                     )
@@ -199,7 +199,7 @@
                                                     </li>
                                                 </ol>
                                             </div>
-                                            <div class="thumbs-up-list" ng-if="rep._thumbs.length && vm.forumsConfig.show_thumbs_up_user_list">
+                                            <div class="thumbs-up-list" ng-if="rep._thumbs.length && vm.forumsConfig.showThumbsUpUserList">
                                                 <div class="thumbs-header" translate="FORUMS.THUMBS_LIST_HEADER"
                                                      translate-values="{number: rep._thumbs.length}"></div>
                                                 <div class="thumbs-users panel-collapsed" id="thumbs-{{rep._id}}">
