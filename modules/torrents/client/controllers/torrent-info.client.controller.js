@@ -15,6 +15,7 @@
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
@@ -126,9 +127,28 @@
 
         vm.initTabLists();
         vm.commentBuildPager();
+        vm.doScrape();
       });
 
       console.log(vm.torrentLocalInfo);
+    };
+
+    /**
+     * doScrape
+     */
+    vm.doScrape = function () {
+      $timeout(function () {
+        if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInDetail) {
+          TorrentsService.scrape({
+            torrentId: vm.torrentLocalInfo._id
+          }, function (scinfo) {
+            console.log(scinfo);
+            vm.torrentLocalInfo.torrent_seeds = scinfo.data.complete;
+            vm.torrentLocalInfo.torrent_finished = scinfo.data.downloaded;
+            vm.torrentLocalInfo.torrent_leechers = scinfo.data.incomplete;
+          });
+        }
+      }, 100);
     };
 
     /**

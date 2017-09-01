@@ -61,6 +61,13 @@
           torrentId: '@_id'
         }
       },
+      scrape: {
+        method: 'GET',
+        url: '/api/torrents/:torrentId/scrape',
+        params: {
+          torrentId: '@_id'
+        }
+      },
       siteInfo: {
         method: 'GET',
         url: '/api/torrents/siteInfo'
