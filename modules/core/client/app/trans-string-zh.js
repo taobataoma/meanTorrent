@@ -242,6 +242,7 @@
     ADMIN_BASIC_REVIEWED: '通过审核',
     ADMIN_BASIC_UPDATE: '从 TMDB 更新电影信息',
     ADMIN_BASIC_DELETE: '删除种子',
+    ADMIN_BASIC_SCRAPE: '刮削种子状态',
     ADMIN_BASIC_TYPE_SET: '设置促销',
     ADMIN_SALE_TYPE_SET: '种子促销类型',
     ADMIN_BASIC_RLEVEL_SET: '推荐级别',

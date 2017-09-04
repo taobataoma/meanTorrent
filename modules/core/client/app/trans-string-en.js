@@ -242,6 +242,7 @@
     ADMIN_BASIC_REVIEWED: 'Reviewed',
     ADMIN_BASIC_UPDATE: 'Update torrent info from TMDB',
     ADMIN_BASIC_DELETE: 'Delete torrent',
+    ADMIN_BASIC_SCRAPE: 'Scrape torrent status',
     ADMIN_BASIC_TYPE_SET: 'Sale Type',
     ADMIN_SALE_TYPE_SET: 'Sale Type Set',
     ADMIN_BASIC_RLEVEL_SET: 'Recommend Level',

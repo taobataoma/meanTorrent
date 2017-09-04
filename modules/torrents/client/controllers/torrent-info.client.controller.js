@@ -127,7 +127,9 @@
 
         vm.initTabLists();
         vm.commentBuildPager();
-        vm.doScrape();
+        if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInDetail) {
+          vm.doScrape();
+        }
       });
 
       console.log(vm.torrentLocalInfo);
@@ -138,16 +140,14 @@
      */
     vm.doScrape = function () {
       $timeout(function () {
-        if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInDetail) {
-          TorrentsService.scrape({
-            torrentId: vm.torrentLocalInfo._id
-          }, function (scinfo) {
-            console.log(scinfo);
-            vm.torrentLocalInfo.torrent_seeds = scinfo.data.complete;
-            vm.torrentLocalInfo.torrent_finished = scinfo.data.downloaded;
-            vm.torrentLocalInfo.torrent_leechers = scinfo.data.incomplete;
-          });
-        }
+        TorrentsService.scrape({
+          torrentId: vm.torrentLocalInfo._id
+        }, function (scinfo) {
+          console.log(scinfo);
+          vm.torrentLocalInfo.torrent_seeds = scinfo.data.complete;
+          vm.torrentLocalInfo.torrent_finished = scinfo.data.downloaded;
+          vm.torrentLocalInfo.torrent_leechers = scinfo.data.incomplete;
+        });
       }, 100);
     };
 
