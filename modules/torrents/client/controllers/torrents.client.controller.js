@@ -6,13 +6,14 @@
     .controller('TorrentsController', TorrentsController);
 
   TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$window'];
+    'MeanTorrentConfig', 'DownloadService', '$window', 'ScrapeService'];
 
   function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                              DownloadService, $window) {
+                              DownloadService, $window, ScrapeService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
@@ -53,6 +54,10 @@
         vm.torrentFilterLength = items.total - vm.topItems;
         vm.torrentPagedItems = items.rows;
 
+        if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInList) {
+          ScrapeService.scrapeTorrent(vm.torrentPagedItems);
+        }
+
         if (callback) callback();
       });
     };
@@ -85,6 +90,10 @@
         torrent_type: vm.torrentType
       }, function (items) {
         vm.listTopInfo = items.rows;
+
+        if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInList) {
+          ScrapeService.scrapeTorrent(vm.listTopInfo);
+        }
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_LIST_INFO_ERROR')
