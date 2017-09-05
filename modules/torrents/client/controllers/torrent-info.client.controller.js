@@ -7,11 +7,11 @@
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
-    'SubtitlesService', 'getStorageLangService'];
+    'SubtitlesService', 'getStorageLangService', 'ScrapeService'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
-                                  getStorageLangService) {
+                                  getStorageLangService, ScrapeService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -128,27 +128,11 @@
         vm.initTabLists();
         vm.commentBuildPager();
         if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInDetail) {
-          vm.doScrape();
+          ScrapeService.scrapeTorrent(vm.torrentLocalInfo);
         }
       });
 
       console.log(vm.torrentLocalInfo);
-    };
-
-    /**
-     * doScrape
-     */
-    vm.doScrape = function () {
-      $timeout(function () {
-        TorrentsService.scrape({
-          torrentId: vm.torrentLocalInfo._id
-        }, function (scinfo) {
-          console.log(scinfo);
-          vm.torrentLocalInfo.torrent_seeds = scinfo.data.complete;
-          vm.torrentLocalInfo.torrent_finished = scinfo.data.downloaded;
-          vm.torrentLocalInfo.torrent_leechers = scinfo.data.incomplete;
-        });
-      }, 100);
     };
 
     /**
