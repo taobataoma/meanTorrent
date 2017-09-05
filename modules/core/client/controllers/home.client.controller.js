@@ -6,13 +6,15 @@
     .controller('HomeController', HomeController);
 
   HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'Notification', 'MeanTorrentConfig',
-    'getStorageLangService', 'DownloadService', '$timeout', 'localStorageService'];
+    'getStorageLangService', 'DownloadService', '$timeout', 'localStorageService', 'ScrapeService'];
 
   function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService,
-                          DownloadService, $timeout, localStorageService) {
+                          DownloadService, $timeout, localStorageService, ScrapeService) {
     var vm = this;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
+    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
 
     vm.movieTopOne = undefined;
     vm.movieTopList = undefined;
@@ -97,6 +99,11 @@
           vm.movieTopList = items.rows;
 
           vm.initTopOneMovieInfo();
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.movieTopOne);
+            ScrapeService.scrapeTorrent(vm.movieTopList);
+          }
         }
       }, function (err) {
         Notification.error({
@@ -112,6 +119,10 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.movieNewList = items.rows;
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.movieNewList);
+          }
         }
       }, function (err) {
         Notification.error({
@@ -135,6 +146,11 @@
           vm.TVTopList = items.rows;
 
           vm.initTopOneTVInfo();
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.TVTopOne);
+            ScrapeService.scrapeTorrent(vm.TVTopList);
+          }
         }
       });
 
@@ -146,6 +162,10 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.TVNewList = items.rows;
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.TVNewList);
+          }
         }
       });
     };
