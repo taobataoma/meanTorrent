@@ -2,14 +2,51 @@
 
 module.exports = {
   meanTorrentConfig: {
+    /**
+     * @app
+     *
+     * App & site settings
+     *
+     * @domain:                 site domain
+     * @showDemoWarningPopup:   if is demo site, show warning popup whene home is opened for the first time.
+     */
     app: {
       domain: 'http://chd.im:3000',
       showDemoWarningPopup: true
     },
+
+    /**
+     * @language
+     *
+     * Multilingual support settings
+     *
+     * @name:   language name
+     * @index:  list index in menu
+     * @class:  flag icon class, can find flag icon at '/public/lib/flag-icon-css/flags'
+     * @title:  language title show in menu item
+     *
+     */
     language: [
       {name: 'en', index: 0, class: 'flag-icon-gb', title: 'English'},
       {name: 'zh', index: 1, class: 'flag-icon-cn', title: '中文'}
     ],
+
+    /**
+     * @announce
+     *
+     * tracker server announce settings
+     *
+     * @url:                    announce url, download client will request this url to report uploads and downloads data
+     * @comment:                used in admin tools, auto replace torrent make group info with this setting
+     * @announceInterval:       interval of twice announce request
+     * @announcePrefix:         prefix of torrent file name, is will auto add when user download the torrent files
+     * @admin:                  site admin mail address
+     * @baseUrl:                torrent announce url base url, system will check it when user upload torrent file
+     * @clientBlackListUrl:     forbidden download client list url, user can view this list to check forbidden client software
+     * @privateTorrentCmsMode:  meanTorrent default tracker server mode is private (value true), the tracker server only accept private mode.
+     *                          but, you can set this value to false to make a public torrent cms web site without tracker server and announce function.
+     *                          if this value is false(public mode), server can scrape all torrent status from owner tracker server
+     */
     announce: {
       url: 'http://chd.im:3000/announce',
       comment: 'meanTorrent group',
@@ -18,14 +55,14 @@ module.exports = {
       admin: 'admin@chd.im',
       baseUrl: 'http://chd.im:3000',
       clientBlackListUrl: 'http://chd.im:3000/client_black_list',
-      privateTorrentCmsMode: false
+      privateTorrentCmsMode: true
     },
 
     /**
      * @scrapeTorrentsStatus
      *
-     * this option used only when public cms mode (announce.privateTorrentCmsMode = false),
-     * this defines the timing of scrape torrent status from other tracker server
+     * This option used only when public cms mode (announce.privateTorrentCmsMode = false),
+     * This defines the timing of scrape torrent status from other tracker server
      *
      * @scrapeInterval:     scrape interval with torrent last_scrape, Avoid frequent scrape, unit in hours
      * @onTorrentUpload:    scrape status at server side when the torrent uploaded by a user (= init the status info)
@@ -42,6 +79,29 @@ module.exports = {
       onTorrentInList: true,
       onTorrentInDetail: false
     },
+
+    /**
+     * @ircAnnounce
+     *
+     * IRC announce server settings
+     *
+     * @enable:             enable irc announce
+     * @debug:              debug mode, more info will log out by console
+     * @server:             IRC server address
+     * @port:               IRC server port
+     * @nick:               IRC announce user nick name, needed with IRC protocol
+     * @userName:           IRC announce user username, needed with IRC protocol
+     * @realName:           IRC announce user realName, needed with IRC protocol
+     * @channel:            IRC announce channel name, the message will send to the appointed channel
+     * @defaultMsgFormat:   the default announce message format
+     * @tvserialMsgFormat:  the custom announce message format of tv serial type torrent
+     * @showErrors:         log and show error info when some error happened
+     * @autoRejoin:         auto rejoin into the channel when some event happened cause user part the announce channel
+     * @autoConnect:        auto connect & reconnect to IRC server when disconnect from IRC server
+     * @retryCount:         reconnect retry times
+     * @retryDelay:         reconnect retry delay time, unit in millisecond
+     * @encoding:           IRC announce message encoding, default to 'UTF-8'
+     */
     ircAnnounce: {
       enable: true,
       debug: false,
@@ -60,11 +120,36 @@ module.exports = {
       retryDelay: 5000,
       encoding: 'UTF-8'
     },
+
+    /**
+     * @sign
+     *
+     * user register settings
+     *
+     * @openSignup:           set whether open the signup, if true, the user can signup(register) by heself,
+     *                        if you create a private web site, and only accept invite to join, please set it to false.
+     * @allowSocialSignin:    meanTorrent can accept social account to signin, like google, twitter, facebook etc.
+     *                        if you do not want them to login, please set it to false
+     * @showDemoSignMessage:  if true, will show demo sign in message in sign in page, if your site is not demo site, please set it to false
+     */
     sign: {
       openSignup: true,
       allowSocialSignin: false,
       showDemoSignMessage: true
     },
+
+    /**
+     * @invite
+     *
+     * invite settings when sign.openSignup is false
+     *
+     * @openInvite:     if true, then any user can invite friends to join us, if false, only admin/oper can send invite mail
+     * @scoreExchange:  if any user can send invite mail, the user must used score number to exchange an invite send qualifications, if the user has no
+     *                  enough score, then can not send invite mail too.
+     * @expires:        if user exchange an invite send qualifications, then must send it out within the expiration time
+     *                  if user received an invite mail, must signin(register) within the expiration time
+     *                  if exceed the expiration time, the invite send qualifications will invalid and user also can not signin(register).
+     */
     invite: {
       openInvite: true,
       scoreExchange: 10000,
