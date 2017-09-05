@@ -94,6 +94,10 @@ module.exports.doScrape = function (t, cb) {
       } else if (response.statusCode === 403) {
         if (cb) cb('403 Forbidden', null);
       }
+
+      t.update({
+        last_scrape: Date.now()
+      }).exec();
     }
   });
 };
