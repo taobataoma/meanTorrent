@@ -269,10 +269,13 @@
     };
 
     /**
-     * onHnRClicked
+     * onHnRClicked, onHnRChanged
      */
     vm.onHnRClicked = function () {
       vm.filterHnR = !vm.filterHnR;
+      vm.torrentBuildPager();
+    };
+    vm.onHnRChanged = function () {
       vm.torrentBuildPager();
     };
 

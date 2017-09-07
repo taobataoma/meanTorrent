@@ -260,6 +260,9 @@
       vm.filterHnR = !vm.filterHnR;
       vm.torrentBuildPager();
     };
+    vm.onHnRChanged = function () {
+      vm.torrentBuildPager();
+    };
 
     /**
      * getSaleTypeDesc

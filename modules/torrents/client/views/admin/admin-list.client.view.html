@@ -42,6 +42,15 @@
                         </div>
                     </dd>
 
+                    <dt class="h-line">{{ 'CA_TORRENT_HNR' | translate}}:</dt>
+                    <dd class="h-line">
+                        <div class="checkbox checkbox-hnr">
+                            <label>
+                                <input type="checkbox" ng-model="vm.filterHnR" ng-change="vm.onHnRChanged();"> {{ 'CA_TORRENT_HNR' | translate}}
+                            </label>
+                        </div>
+                    </dd>
+
                     <dt class="h-line">{{ 'CA_TORRENT_STATUS' | translate}}:</dt>
                     <dd class="h-line">
                         <div class="btn-group btn-group-xs" role="group">
