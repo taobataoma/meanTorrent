@@ -136,6 +136,13 @@
     };
 
     /**
+     * doScrape
+     */
+    vm.doScrape = function(){
+      ScrapeService.scrapeTorrent(vm.torrentLocalInfo);
+    };
+
+    /**
      * initTabLists
      */
     vm.initTabLists = function () {
