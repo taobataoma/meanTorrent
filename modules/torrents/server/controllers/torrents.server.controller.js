@@ -487,6 +487,27 @@ exports.scrape = function (req, res) {
 };
 
 /**
+ * toggleHnRStatus
+ * @param req
+ * @param res
+ */
+exports.toggleHnRStatus = function (req, res) {
+  var torrent = req.torrent;
+
+  torrent.torrent_hnr = !torrent.torrent_hnr;
+
+  torrent.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(torrent);
+    }
+  });
+};
+
+/**
  * thumbsUp
  * @param req
  * @param res

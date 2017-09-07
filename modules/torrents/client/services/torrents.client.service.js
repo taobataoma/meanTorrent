@@ -54,6 +54,13 @@
           torrentId: '@_torrentId'
         }
       },
+      toggleHnRStatus: {
+        method: 'PUT',
+        url: '/api/torrents/:torrentId/toggleHnRStatus',
+        params: {
+          torrentId: '@_id'
+        }
+      },
       thumbsUp: {
         method: 'PUT',
         url: '/api/torrents/:torrentId/thumbsUp',
