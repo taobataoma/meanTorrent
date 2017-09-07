@@ -7,11 +7,11 @@
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
-    'SubtitlesService', 'getStorageLangService', 'ScrapeService'];
+    'SubtitlesService', 'getStorageLangService', 'ScrapeService', 'NotifycationService'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
-                                  getStorageLangService, ScrapeService) {
+                                  getStorageLangService, ScrapeService, NotifycationService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -136,9 +136,22 @@
     };
 
     /**
+     * toggleHnR
+     */
+    vm.toggleHnR = function () {
+      vm.torrentLocalInfo.$toggleHnRStatus(function (res) {
+        console.log(res);
+        vm.torrentLocalInfo = res;
+        NotifycationService.showSuccessNotify('TORRENT_TOGGLE_HNR_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_HNR_FAILED');
+      });
+    };
+
+    /**
      * doScrape
      */
-    vm.doScrape = function(){
+    vm.doScrape = function () {
       ScrapeService.scrapeTorrent(vm.torrentLocalInfo);
     };
 

@@ -243,6 +243,8 @@
     ADMIN_BASIC_UPDATE: '从 TMDB 更新电影信息',
     ADMIN_BASIC_DELETE: '删除种子',
     ADMIN_BASIC_SCRAPE: '刮削种子状态',
+    ADMIN_BASIC_SET_HNR: '设置 H&R',
+    ADMIN_BASIC_UNSET_HNR: '取消 H&R',
     ADMIN_BASIC_TYPE_SET: '设置促销',
     ADMIN_SALE_TYPE_SET: '种子促销类型',
     ADMIN_BASIC_RLEVEL_SET: '推荐级别',
@@ -266,6 +268,8 @@
     TORRENT_SETREVIEWED_ERROR: '种子审核状态设置失败',
     TORRENT_SETRLEVEL_SUCCESSFULLY: '种子推荐级别设置成功',
     TORRENT_SETRLEVEL_ERROR: '种子推荐级别设置失败',
+    TORRENT_TOGGLE_HNR_SUCCESSFULLY: '改变种子HnR标签成功',
+    TORRENT_TOGGLE_HNR_FAILED: '改变种子HnR标签失败',
 
     //page text
     PAGE_TEXT_FIRST: '首页',

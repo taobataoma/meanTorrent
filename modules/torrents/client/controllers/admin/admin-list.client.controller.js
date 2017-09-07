@@ -6,10 +6,10 @@
     .controller('TorrentsAdminController', TorrentsAdminController);
 
   TorrentsAdminController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$window', 'ModalConfirmService'];
+    'MeanTorrentConfig', 'DownloadService', '$window', 'ModalConfirmService', 'NotifycationService'];
 
   function TorrentsAdminController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                                   DownloadService, $window, ModalConfirmService) {
+                                   DownloadService, $window, ModalConfirmService, NotifycationService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -338,6 +338,19 @@
     vm.openTorrentInfo = function (id) {
       var url = $state.href('torrents.view', {torrentId: id});
       $window.open(url, '_blank');
+    };
+
+    /**
+     * toggleHnR
+     */
+    vm.toggleHnR = function (item) {
+      var dt = new TorrentsService(item);
+      dt.$toggleHnRStatus(function (res) {
+        vm.torrentPagedItems[vm.torrentPagedItems.indexOf(item)] = res;
+        NotifycationService.showSuccessNotify('TORRENT_TOGGLE_HNR_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_HNR_FAILED');
+      });
     };
 
     /**

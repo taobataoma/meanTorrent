@@ -243,6 +243,8 @@
     ADMIN_BASIC_UPDATE: 'Update torrent info from TMDB',
     ADMIN_BASIC_DELETE: 'Delete torrent',
     ADMIN_BASIC_SCRAPE: 'Scrape torrent status',
+    ADMIN_BASIC_SET_HNR: 'Set H&R',
+    ADMIN_BASIC_UNSET_HNR: 'Unset H&R',
     ADMIN_BASIC_TYPE_SET: 'Sale Type',
     ADMIN_SALE_TYPE_SET: 'Sale Type Set',
     ADMIN_BASIC_RLEVEL_SET: 'Recommend Level',
@@ -266,6 +268,8 @@
     TORRENT_SETREVIEWED_ERROR: 'Torrent status reviewed set failed',
     TORRENT_SETRLEVEL_SUCCESSFULLY: 'Torrent recommend level set successfully',
     TORRENT_SETRLEVEL_ERROR: 'Torrent recommend level set failed',
+    TORRENT_TOGGLE_HNR_SUCCESSFULLY: 'Torrent toggle HnR tag successfully',
+    TORRENT_TOGGLE_HNR_FAILED: 'Torrent toggle HnR tag failed',
 
     //page text
     PAGE_TEXT_FIRST: 'First',

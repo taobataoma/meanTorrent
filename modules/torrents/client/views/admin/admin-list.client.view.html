@@ -230,6 +230,11 @@
                                     {{ 'ADMIN_BASIC_DELETE' | translate}}
                                 </button>
                             </div>
+                            <div class="margin-top-2">
+                                <button class="btn btn-xs btn-default btn-block" ng-click="vm.toggleHnR(item); $event.stopPropagation();">
+                                    {{ (item.torrent_hnr ? 'ADMIN_BASIC_UNSET_HNR' : 'ADMIN_BASIC_SET_HNR') | translate}}
+                                </button>
+                            </div>
                             <div class="margin-top-2" ng-if="vm.announce.privateTorrentCmsMode">
                                 <div class="admin-tools-btn-list btn-group" uib-dropdown dropdown-append-to-body>
                                     <button id="btn-append-to-body" type="button"

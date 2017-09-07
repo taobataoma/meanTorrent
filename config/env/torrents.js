@@ -264,7 +264,7 @@ module.exports = {
         seedTime: 24 * 60 * 60 * 1000 * 7,
         ratio: 1.5
       },
-      forbiddenWarningNumber:{
+      forbiddenWarningNumber: {
         downloadHnR: 2,
         downloadAll: 5
       },
