@@ -222,8 +222,17 @@ module.exports.configureSocketIO = function (app, db) {
  * Initialize IRC announce
  */
 module.exports.initIRCAnnounce = function (app) {
-  var client = require('./ircAnnounce.js')(app);
+  var client = require('./ircAnnounce')(app);
   app.set('ircClient', client);
+};
+
+/**
+ * initCronJobHnR
+ * @param app
+ */
+module.exports.initCronJobHnR = function (app) {
+  var cron = require('./cron-hnr')(app);
+  app.set('cronJobHnR', cron);
 };
 
 /**
@@ -266,6 +275,9 @@ module.exports.init = function (db) {
   // Initialize IRC announce
   if (ircConfig.enable)
     this.initIRCAnnounce(app);
+
+  // Initialize cron job of hit and run
+  this.initCronJobHnR(app);
 
   // Configure Socket.io
   app = this.configureSocketIO(app, db);

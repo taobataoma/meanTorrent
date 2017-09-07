@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path'),
   bencoding = require('bencoding'),
   common = require(path.resolve('./config/lib/common')),

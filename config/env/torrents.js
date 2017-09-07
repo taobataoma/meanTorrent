@@ -258,6 +258,7 @@ module.exports = {
      * @canReDownloadWarningSelf:       if true, user can redownload the warning torrent and continue seed until the warning disappears
      * @scoreToRemoveWarning:           if user has any warning, user can remove one warning by score number, if the user has not enough score, user still can remove these
      *                                  warning by donate the VIP class.
+     * @cronTimeZone:                   count warning crontab timezone, because need to auto count warning at midnight
      */
     hitAndRun: {
       condition: {
@@ -268,6 +269,7 @@ module.exports = {
         downloadHnR: 2,
         downloadAll: 5
       },
+      cronTimeZone: 'Asia/Shanghai',
       countWarningAtDownloadComplete: true,
       countWarningAtMidnightEveryday: true,
       canReDownloadWarningSelf: true,
