@@ -159,6 +159,10 @@ var UserSchema = new Schema({
     type: Number,
     default: 0
   },
+  hnr_warning: {
+    type: Number,
+    default: 0
+  },
   topics: {
     type: Number,
     default: 0
