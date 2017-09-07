@@ -6,7 +6,6 @@
 var path = require('path'),
   config = require(path.resolve('./config/config')),
   mongoose = require('mongoose'),
-  User = mongoose.model('User'),
   Schema = mongoose.Schema;
 
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
@@ -103,7 +102,7 @@ function countSeedDay(t) {
 /**
  * countHnRWarning
  */
-CompleteSchema.methods.countHnRWarning = function () {
+CompleteSchema.methods.countHnRWarning = function (u) {
   if (this.total_seed_day >= hnrConfig.condition.seedTime || this.total_ratio >= hnrConfig.condition.ratio) {
     if (this.hnr_warning) {
       this.update({
@@ -111,13 +110,9 @@ CompleteSchema.methods.countHnRWarning = function () {
       }).exec();
 
       //update user warning numbers
-      User.findById(this.user).exec(function (err, user) {
-        if (!err && user) {
-          user.update({
-            $inc: {hnr_warning: -1}
-          }).exec();
-        }
-      });
+      u.update({
+        $inc: {hnr_warning: -1}
+      }).exec();
     }
   } else {
     if (!this.hnr_warning) {
@@ -126,13 +121,9 @@ CompleteSchema.methods.countHnRWarning = function () {
       }).exec();
 
       //update user warning numbers
-      User.findById(this.user).exec(function (err, user) {
-        if (!err && user) {
-          user.update({
-            $inc: {hnr_warning: 1}
-          }).exec();
-        }
-      });
+      u.update({
+        $inc: {hnr_warning: 1}
+      }).exec();
     }
   }
 };
