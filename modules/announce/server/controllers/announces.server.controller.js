@@ -11,6 +11,7 @@ var path = require('path'),
   User = mongoose.model('User'),
   Torrent = mongoose.model('Torrent'),
   Peer = mongoose.model('Peer'),
+  Complete = mongoose.model('Complete'),
   moment = require('moment'),
   async = require('async'),
   querystring = require('querystring'),
@@ -46,6 +47,8 @@ const FAILURE_REASONS = {
   182: 'save peer failed',
   183: 'save torrent failed',
   184: 'save passkeyuser failed',
+  185: 'get completeTorrent failed',
+  186: 'create completeTorrent failed',
 
   600: 'This tracker only supports compact mode',
   900: 'Generic error'
@@ -123,6 +126,7 @@ Failure.prototype = {
 exports.announce = function (req, res) {
   req.torrent = undefined;
   req.currentPeer = undefined;
+  req.completeTorrent = undefined;
   req.selfpeer = [];
   req.seeder = false;
 
@@ -273,6 +277,39 @@ exports.announce = function (req, res) {
     },
 
     /*---------------------------------------------------------------
+     find complete torrent data
+     ---------------------------------------------------------------*/
+    function (done) {
+      Complete.findOne({
+        torrent: req.torrent._id,
+        user: req.passkeyuser._id
+      })
+        .exec(function (err, t) {
+          if (err) {
+            done(185);
+          } else {
+            if (!t) {
+              var comp = new Complete();
+              comp.torrent = req.torrent._id;
+              comp.user = req.passkeyuser._id;
+
+              comp.save(function (err) {
+                if (err) {
+                  done(186);
+                } else {
+                  req.completeTorrent = comp;
+                  done(null);
+                }
+              });
+            } else {
+              req.completeTorrent = t;
+              done(null);
+            }
+          }
+        });
+    },
+
+    /*---------------------------------------------------------------
      onEventStarted
      if downloading, check download peer num only 1, torrent leechers +1, ratio check
      if seeding, check seed peer num less 3, torrent seeds +1
@@ -340,6 +377,13 @@ exports.announce = function (req, res) {
           req.passkeyuser.update({
             $inc: {seeded: 1, finished: 1, leeched: -1}
           }).exec();
+
+          //update completeTorrent complete status
+          if (req.completeTorrent) {
+            req.completeTorrent.update({
+              $set: {complete: true}
+            }).exec();
+          }
         }
       }
       done(null);
@@ -348,6 +392,7 @@ exports.announce = function (req, res) {
     /*---------------------------------------------------------------
      writeUpDownData
      uploaded,downloaded
+     update complete data if completeTorrent is exist
      ---------------------------------------------------------------*/
     function (done) {
       console.log('---------------WRITE_UP_DOWN_DATA----------------');
@@ -367,6 +412,25 @@ exports.announce = function (req, res) {
         req.passkeyuser.update({
           $inc: {uploaded: u, downloaded: d}
         }).exec();
+
+        //write complete data to completeTorrent
+        if (req.completeTorrent) {
+          req.completeTorrent.update({
+            $inc: {
+              total_uploaded: curru,
+              total_downloaded: currd
+            }
+          }).exec();
+
+          //only add seed time for completed torrent
+          if (req.completeTorrent.complete) {
+            req.completeTorrent.update({
+              $inc: {
+                total_seed_time: config.meanTorrentConfig.announce.announceInterval
+              }
+            }).exec();
+          }
+        }
 
         //create trace log
         if (curru > 0 || currd > 0) {

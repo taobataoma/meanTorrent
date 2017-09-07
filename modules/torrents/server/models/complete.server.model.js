@@ -41,6 +41,10 @@ var CompleteSchema = new Schema({
     type: Number,
     default: 0
   },
+  complete: {
+    type: Boolean,
+    default: false
+  },
   hnr_warning: {
     type: Boolean,
     default: false
@@ -101,29 +105,32 @@ function countSeedDay(t) {
 
 /**
  * countHnRWarning
+ * only for completed torrents to count warning
  */
 CompleteSchema.methods.countHnRWarning = function (u) {
-  if (this.total_seed_day >= hnrConfig.condition.seedTime || this.total_ratio >= hnrConfig.condition.ratio) {
-    if (this.hnr_warning) {
-      this.update({
-        $set: {hnr_warning: false}
-      }).exec();
+  if(this.complete) {
+    if (this.total_seed_day >= hnrConfig.condition.seedTime || this.total_ratio >= hnrConfig.condition.ratio) {
+      if (this.hnr_warning) {
+        this.update({
+          $set: {hnr_warning: false}
+        }).exec();
 
-      //update user warning numbers
-      u.update({
-        $inc: {hnr_warning: -1}
-      }).exec();
-    }
-  } else {
-    if (!this.hnr_warning) {
-      this.update({
-        $set: {hnr_warning: true}
-      }).exec();
+        //update user warning numbers
+        u.update({
+          $inc: {hnr_warning: -1}
+        }).exec();
+      }
+    } else {
+      if (!this.hnr_warning) {
+        this.update({
+          $set: {hnr_warning: true}
+        }).exec();
 
-      //update user warning numbers
-      u.update({
-        $inc: {hnr_warning: 1}
-      }).exec();
+        //update user warning numbers
+        u.update({
+          $inc: {hnr_warning: 1}
+        }).exec();
+      }
     }
   }
 };
