@@ -23,6 +23,7 @@
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
+    vm.filterHnR = false;
     vm.topItems = 6;
 
     vm.torrentType = $state.current.data.torrentType;
@@ -159,7 +160,7 @@
     vm.getResourcePageInfo = function (p, callback) {
       //if searchKey or searchTags has value, the skip=0
       var skip = vm.topItems;
-      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear) {
+      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear || vm.filterHnR) {
         skip = 0;
       }
 
@@ -170,7 +171,8 @@
         torrent_status: 'reviewed',
         torrent_type: vm.torrentType,
         torrent_release: vm.releaseYear,
-        torrent_tags: vm.searchTags
+        torrent_tags: vm.searchTags,
+        torrent_hnr: vm.filterHnR
       }, function (items) {
         if (items.length === 0) {
           Notification.error({
@@ -248,6 +250,14 @@
       } else {
         vm.releaseYear = y;
       }
+      vm.torrentBuildPager();
+    };
+
+    /**
+     * onHnRClicked
+     */
+    vm.onHnRClicked = function () {
+      vm.filterHnR = !vm.filterHnR;
       vm.torrentBuildPager();
     };
 

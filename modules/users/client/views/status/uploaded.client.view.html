@@ -88,6 +88,10 @@
                                             </span>
                                             <span class="label label-se-info" ng-if="item.torrent_type == 'tvserial'"
                                                   ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
+
+                                            <span class="label label-hnr-info" ng-if="item.torrent_hnr"
+                                                  ng-click="$event.stopPropagation();">H&R</span>
+
                                             <span ng-repeat="t in item.torrent_tags">
                                                 <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}"
                                                       ng-click="$event.stopPropagation();">

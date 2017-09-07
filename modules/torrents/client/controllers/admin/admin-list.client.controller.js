@@ -24,6 +24,7 @@
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
+    vm.filterHnR = false;
     vm.torrentStatus = 'reviewed';
     vm.torrentRLevel = 'none';
 
@@ -185,7 +186,8 @@
         torrent_rlevel: vm.torrentRLevel,
         torrent_type: vm.selectedType,
         torrent_release: vm.releaseYear,
-        torrent_tags: vm.searchTags
+        torrent_tags: vm.searchTags,
+        torrent_hnr: vm.filterHnR
       }, function (items) {
         if (items.length === 0) {
           Notification.error({
@@ -263,6 +265,14 @@
       } else {
         vm.releaseYear = y;
       }
+      vm.torrentBuildPager();
+    };
+
+    /**
+     * onHnRClicked
+     */
+    vm.onHnRClicked = function () {
+      vm.filterHnR = !vm.filterHnR;
       vm.torrentBuildPager();
     };
 

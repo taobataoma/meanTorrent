@@ -757,6 +757,7 @@ exports.list = function (req, res) {
   var rlevel = 'none';
   var stype = 'movie';
   var newest = false;
+  var hnr = false;
   var release = undefined;
   var userid = undefined;
   var tagsA = [];
@@ -781,6 +782,9 @@ exports.list = function (req, res) {
   }
   if (req.query.torrent_release !== undefined) {
     release = req.query.torrent_release;
+  }
+  if (req.query.torrent_hnr !== undefined) {
+    hnr = req.query.torrent_hnr;
   }
   if (req.query.newest !== undefined) {
     newest = (req.query.newest === 'true');
@@ -822,6 +826,9 @@ exports.list = function (req, res) {
   }
   if (stype !== 'all') {
     condition.torrent_type = stype;
+  }
+  if (hnr === 'true') {
+    condition.torrent_hnr = hnr;
   }
 
   if (tagsA.length > 0) {
