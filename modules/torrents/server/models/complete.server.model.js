@@ -3,9 +3,13 @@
 /**
  * Module dependencies
  */
-var mongoose = require('mongoose'),
+var path = require('path'),
+  config = require(path.resolve('./config/config')),
+  mongoose = require('mongoose'),
+  User = mongoose.model('User'),
   Schema = mongoose.Schema;
 
+var hnrConfig = config.meanTorrentConfig.hitAndRun;
 /**
  * Complete Schema
  */
@@ -56,6 +60,9 @@ var CompleteSchema = new Schema({
   }
 });
 
+/**
+ * Hook a pre save method
+ */
 CompleteSchema.pre('save', function (next) {
   countRatio(this);
   countSeedDay(this);
@@ -63,7 +70,7 @@ CompleteSchema.pre('save', function (next) {
 });
 
 /**
- * Hook a pre save method to hash the password
+ * Hook a pre update method
  */
 CompleteSchema.pre('update', function (next) {
   countRatio(this);
@@ -71,6 +78,10 @@ CompleteSchema.pre('update', function (next) {
   next();
 });
 
+/**
+ * countRatio
+ * @param t
+ */
 function countRatio(t) {
   if (t.total_uploaded > 0 && t.total_downloaded === 0) {
     t.total_ratio = -1;
@@ -81,9 +92,51 @@ function countRatio(t) {
   }
 }
 
+/**
+ * countSeedDay
+ * @param t
+ */
 function countSeedDay(t) {
   t.total_seed_day = Math.floor(t.total_seed_time / (60 * 60 * 1000 * 24));
 }
+
+/**
+ * countHnRWarning
+ */
+CompleteSchema.methods.countHnRWarning = function () {
+  if (this.total_seed_day >= hnrConfig.condition.seedTime || this.total_ratio >= hnrConfig.condition.ratio) {
+    if (this.hnr_warning) {
+      this.update({
+        $set: {hnr_warning: false}
+      }).exec();
+
+      //update user warning numbers
+      User.findById(this.user).exec(function (err, user) {
+        if (!err && user) {
+          user.update({
+            $inc: {hnr_warning: -1}
+          }).exec();
+        }
+      });
+    }
+  } else {
+    if (!this.hnr_warning) {
+      this.update({
+        $set: {hnr_warning: true}
+      }).exec();
+
+      //update user warning numbers
+      User.findById(this.user).exec(function (err, user) {
+        if (!err && user) {
+          user.update({
+            $inc: {hnr_warning: 1}
+          }).exec();
+        }
+      });
+    }
+  }
+};
+
 
 CompleteSchema.index({user: -1, createdAt: -1});
 CompleteSchema.index({torrent: 1, createdAt: -1});
