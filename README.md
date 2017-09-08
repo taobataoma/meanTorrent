@@ -291,6 +291,21 @@ Now, IRC announce support [Node-irc](https://github.com/martynsmith/node-irc), t
 ```
 If you started meanTorrent at `production` env, please set `showDemoWarningPopup` and `showDemoSignMessage` to `false`, this will not show demo message any where.
 
+```javascript
+    hitAndRun: {
+      condition: {
+        seedTime: 24 * 60 * 60 * 1000 * 7,
+        ratio: 1.5
+      },
+      forbiddenDownloadMinWarningNumber: 3,
+      scoreToRemoveWarning: 10000
+    },
+```
+meanTorrent support complete HnR(hit and run) system, if user download a HnR torrent, then must seeding days of `contition.seedTime` or
+the upload ratio more than `contition.ratio`, otherwise, the user will get a HnR warning, if the warning numbers is more than `forbiddenDownloadMinWarningNumber`,
+then the user can not download any torrent. but can continue the warning torrent and seed it until the warning disappears,
+and the user can remove a warning by score number of `scoreToRemoveWarning`.
+
 There is not much comment of `config/env/torrent.js`, because the development time is limited, I'll add more comment in my free time, If you has any question, please post an [issue](https://github.com/taobataoma/meanTorrent/issues), and i will focus it.
 
 ## License
