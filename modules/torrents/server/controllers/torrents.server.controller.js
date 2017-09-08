@@ -506,7 +506,8 @@ exports.toggleHnRStatus = function (req, res) {
       res.json(torrent);
 
       //remove the complete data and update user`s warning number when the H&R prop to false
-      removeTorrentHnRWarning(torrent._id);
+      if (!torrent.torrent_hnr)
+        removeTorrentHnRWarning(torrent._id);
     }
   });
 };
