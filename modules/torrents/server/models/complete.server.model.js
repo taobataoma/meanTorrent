@@ -135,6 +135,23 @@ CompleteSchema.methods.countHnRWarning = function (u) {
   }
 };
 
+/**
+ * removeHnRWarning
+ * remove H&R warning
+ */
+CompleteSchema.methods.removeHnRWarning = function (u) {
+  if (this.hnr_warning) {
+    this.update({
+      $set: {hnr_warning: false}
+    }).exec();
+
+    //update user warning numbers
+    u.update({
+      $inc: {hnr_warning: -1}
+    }).exec();
+  }
+};
+
 
 CompleteSchema.index({user: -1, createdAt: -1});
 CompleteSchema.index({torrent: 1, createdAt: -1});

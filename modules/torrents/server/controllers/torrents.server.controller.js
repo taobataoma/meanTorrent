@@ -14,6 +14,7 @@ var path = require('path'),
   Subtitle = mongoose.model('Subtitle'),
   Thumb = mongoose.model('Thumb'),
   Torrent = mongoose.model('Torrent'),
+  Complete = mongoose.model('Complete'),
   Forum = mongoose.model('Forum'),
   Topic = mongoose.model('Topic'),
   fs = require('fs'),
@@ -503,12 +504,32 @@ exports.toggleHnRStatus = function (req, res) {
       });
     } else {
       res.json(torrent);
+
+      //remove the complete data and update user`s warning number when the H&R prop to false
+      removeTorrentHnRWarning(torrent._id);
     }
   });
-
-  //TODO: remove the complete data and update user`s warning number when the H&R prop to false
-
 };
+
+/**
+ * removeTorrentHnRWarning
+ * @param torrent
+ */
+function removeTorrentHnRWarning(tid) {
+  Complete.find({
+    torrent: tid
+  })
+    .populate('user')
+    .exec(function (err, cs) {
+      if (!err && cs) {
+        cs.forEach(function (c) {
+          if (c.hnr_warning) {
+            c.removeHnRWarning(c.user);
+          }
+        });
+      }
+    });
+}
 
 /**
  * thumbsUp
@@ -733,7 +754,11 @@ exports.delete = function (req, res) {
     torrent: torrent._id
   });
 
-  //TODO: remove the complete data and update user`s warning number if the torrent has H&R prop
+  //remove the complete data and update user`s warning number if the torrent has H&R prop
+  removeTorrentHnRWarning(torrent._id);
+  Complete.remove({
+    torrent: torrent._id
+  });
 
   torrent.remove(function (err) {
     if (err) {
