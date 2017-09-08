@@ -294,7 +294,7 @@ exports.announce = function (req, res) {
             done(185);
           } else {
             if (!t) {
-              if (t.torrent_hnr) {
+              if (req.torrent.torrent_hnr) {
                 var comp = new Complete();
                 comp.torrent = req.torrent._id;
                 comp.user = req.passkeyuser._id;
