@@ -247,7 +247,7 @@ module.exports = {
     /**
      * @hitAndRun
      *
-     * settings of Hit & Run system
+     * settings of Hit & Run system, system will auto update the warning status and number of user when client announce to tracker server
      *
      * @condition:                          the condition of HnR warning, user must meet one of them before you receive the warning
      *   @seedTime:                         torrent seed time, unit of day, default to 7 days
