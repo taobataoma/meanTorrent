@@ -9,7 +9,7 @@ var path = require('path'),
   Torrent = mongoose.model('Torrent'),
   User = mongoose.model('User');
 
-var hnrConfig = config.meanTorrentConfig.hitAndRun;
+var appConfig = config.meanTorrentConfig.app;
 
 /**
  * cron params of time
@@ -46,8 +46,8 @@ var hnrConfig = config.meanTorrentConfig.hitAndRun;
 module.exports = function (app) {
   var cronJobHnR = new CronJob({
     //cronTime: '00 00 1 * * *',
-    //cronTime: '*/5 * * * * *',
-    cronTime: '00 00 * * * *',
+    cronTime: '*/5 * * * * *',
+    //cronTime: '00 00 * * * *',
     onTick: function () {
       console.log(chalk.green('cronJobHnR: process!'));
     },
@@ -55,7 +55,7 @@ module.exports = function (app) {
       console.log(chalk.green('cronJobHnR: complete!'));
     },
     start: false,
-    timeZone: hnrConfig.cronTimeZone
+    timeZone: appConfig.cronTimeZone
   });
 
   cronJobHnR.start();
