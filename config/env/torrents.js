@@ -248,6 +248,8 @@ module.exports = {
      * @hitAndRun
      *
      * settings of Hit & Run system, system will auto update the warning status and number of user when client announce to tracker server
+     * when admin/oper changed the torrent h&r prop to false, system will auto remove all warning and number of user
+     * when admin/oper to delete a h&r torrent, system will auto remove all warning and number of user
      *
      * @condition:                          the condition of HnR warning, user must meet one of them before you receive the warning
      *   @seedTime:                         torrent seed time, unit of day, default to 7 days
