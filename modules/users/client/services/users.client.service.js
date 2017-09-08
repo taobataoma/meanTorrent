@@ -77,7 +77,7 @@
     return Users;
   }
 
-  // TODO this should be Users service
+  // this should be Users service
   angular
     .module('users.admin.services')
     .factory('AdminService', AdminService);
