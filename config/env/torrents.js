@@ -264,6 +264,7 @@ module.exports = {
       forbiddenDownloadMinWarningNumber: 5,
       scoreToRemoveWarning: 10000
     },
+
     userStatus: {
       name: 'STATUS',
       value: [

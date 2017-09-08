@@ -294,6 +294,7 @@ exports.announce = function (req, res) {
                 var comp = new Complete();
                 comp.torrent = req.torrent._id;
                 comp.user = req.passkeyuser._id;
+                comp.complete = req.seeder ? true : false;
 
                 comp.save(function (err) {
                   if (err) {
@@ -398,6 +399,8 @@ exports.announce = function (req, res) {
      writeUpDownData
      uploaded,downloaded
      update complete data if completeTorrent is exist
+     if has upload and download data size, write data size,
+     write time of seed(complete) whether or not u/d is 0
      ---------------------------------------------------------------*/
     function (done) {
       console.log('---------------WRITE_UP_DOWN_DATA----------------');
@@ -407,34 +410,41 @@ exports.announce = function (req, res) {
       if (req.currentPeer !== undefined) {
         var curru = query.uploaded - req.currentPeer.peer_uploaded;
         var currd = query.downloaded - req.currentPeer.peer_downloaded;
+
         var u = Math.round(curru * udr.ur);
         var d = Math.round(currd * udr.dr);
 
-        if (req.passkeyuser.isVip) {
-          u = u * config.meanTorrentConfig.torrentSalesValue.vip.Ur;
-          d = d * config.meanTorrentConfig.torrentSalesValue.vip.Dr;
-        }
-        req.passkeyuser.update({
-          $inc: {uploaded: u, downloaded: d}
-        }).exec();
-
-        //write complete data to completeTorrent
-        if (req.completeTorrent) {
-          req.completeTorrent.update({
-            $inc: {
-              total_uploaded: curru,
-              total_downloaded: currd
-            }
+        if (curru > 0 || currd > 0) {
+          if (req.passkeyuser.isVip) {
+            u = u * config.meanTorrentConfig.torrentSalesValue.vip.Ur;
+            d = d * config.meanTorrentConfig.torrentSalesValue.vip.Dr;
+          }
+          req.passkeyuser.update({
+            $inc: {uploaded: u, downloaded: d}
           }).exec();
 
-          //only add seed time for completed torrent
-          if (req.completeTorrent.complete) {
+          //write complete data to completeTorrent
+          if (req.completeTorrent) {
             req.completeTorrent.update({
               $inc: {
-                total_seed_time: config.meanTorrentConfig.announce.announceInterval
+                total_uploaded: curru,
+                total_downloaded: currd
               }
             }).exec();
           }
+        }
+
+        //only add seed time for completed torrent
+        if (req.completeTorrent && req.completeTorrent.complete) {
+          req.completeTorrent.update({
+            $inc: {
+              total_seed_time: config.meanTorrentConfig.announce.announceInterval
+            }
+          }).exec();
+        }
+        //update warning status
+        if (req.completeTorrent) {
+          req.completeTorrent.countHnRWarning(req.passkeyuser);
         }
 
         //create trace log

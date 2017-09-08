@@ -109,7 +109,7 @@ function countSeedDay(t) {
  */
 CompleteSchema.methods.countHnRWarning = function (u) {
   if (this.complete) {
-    if (this.total_seed_day >= hnrConfig.condition.seedTime || this.total_ratio >= hnrConfig.condition.ratio) {
+    if (this.total_seed_day >= hnrConfig.condition.seedTime || this.total_ratio === -1 || this.total_ratio >= hnrConfig.condition.ratio) {
       if (this.hnr_warning) {
         this.update({
           $set: {hnr_warning: false}

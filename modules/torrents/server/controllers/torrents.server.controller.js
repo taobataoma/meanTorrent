@@ -505,6 +505,9 @@ exports.toggleHnRStatus = function (req, res) {
       res.json(torrent);
     }
   });
+
+  //TODO: remove the complete data and update user`s warning number when the H&R prop to false
+
 };
 
 /**
@@ -727,6 +730,8 @@ exports.delete = function (req, res) {
   Subtitle.remove({
     torrent: torrent._id
   });
+
+  //TODO: remove the complete data and update user`s warning number if the torrent has H&R prop
 
   torrent.remove(function (err) {
     if (err) {
