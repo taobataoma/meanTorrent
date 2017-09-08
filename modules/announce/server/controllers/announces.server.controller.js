@@ -21,6 +21,7 @@ var path = require('path'),
 
 var traceConfig = config.meanTorrentConfig.trace;
 var scoreConfig = config.meanTorrentConfig.score;
+var hnrConfig = config.meanTorrentConfig.hitAndRun;
 
 const FAILURE_REASONS = {
   100: 'Invalid request type: client request was not a HTTP GET',
@@ -49,6 +50,9 @@ const FAILURE_REASONS = {
   184: 'save passkeyuser failed',
   185: 'get completeTorrent failed',
   186: 'create completeTorrent failed',
+
+  190: 'You have more H&R warning, can not download any torrent now!',
+  191: 'not find this torrent complete data',
 
   600: 'This tracker only supports compact mode',
   900: 'Generic error'
@@ -313,6 +317,35 @@ exports.announce = function (req, res) {
             }
           }
         });
+    },
+
+    /*---------------------------------------------------------------
+     checkCanDownload
+     if user has too more H&R warning numbers, can not download any torrent
+     but can continue download the warning status torrent
+     ---------------------------------------------------------------*/
+    function (done) {
+      if (!req.seeder) {
+        if (req.passkeyuser.hnr_warning >= hnrConfig.forbiddenDownloadMinWarningNumber) {
+          if (!req.torrent.torrent_hnr) {
+            done(190);
+          } else {
+            if (!req.completeTorrent) {
+              done(191);
+            } else {
+              if (!req.completeTorrent.hnr_warning) {
+                done(190);
+              } else {
+                done(null);
+              }
+            }
+          }
+        } else {
+          done(null);
+        }
+      } else {
+        done(null);
+      }
     },
 
     /*---------------------------------------------------------------
