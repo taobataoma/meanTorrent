@@ -68,6 +68,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 20. Complete thumbs-up system(thanks system), topic poster or torrent uploader will received score donate from clicker.
 21. __IRC Announce support [Node-irc](https://github.com/martynsmith/node-irc), when user upload new torrent file, and oper/admin reviewed it, then announce the torrent info to IRC channel.__
 22. Scrape torrents status from owner tracker server, design for `public` CMS mode.
+23. Complete HnR(hit and run) system support.
 
 #### Chat room feature:
 1. Users name list
@@ -79,7 +80,6 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 
 ## TODO
 - Other type torrent support(like Music, Other).
-- Hit and Run support.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - Subject support, like region subject, [IMDB](http://www.imdb.com) TOP 100 subject etc.
 - VIP Donate function.
@@ -304,7 +304,7 @@ If you started meanTorrent at `production` env, please set `showDemoWarningPopup
 meanTorrent support complete HnR(hit and run) system, if user download a HnR torrent, then must seeding days of `contition.seedTime` or
 the upload ratio more than `contition.ratio`, otherwise, the user will get a HnR warning, if the warning numbers is more than `forbiddenDownloadMinWarningNumber`,
 then the user can not download any torrent. but can continue the warning torrent and seed it until the warning disappears,
-and the user can remove a warning by score number of `scoreToRemoveWarning`.
+and the user can remove a warning by score number of `scoreToRemoveWarning` or donate a VIP qualifications.
 
 There is not much comment of `config/env/torrent.js`, because the development time is limited, I'll add more comment in my free time, If you has any question, please post an [issue](https://github.com/taobataoma/meanTorrent/issues), and i will focus it.
 
