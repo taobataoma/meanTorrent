@@ -655,31 +655,33 @@ exports.setReviewedStatus = function (req, res) {
       res.json(torrent);
 
       //irc announce
-      var msg = '';
-      var client = req.app.get('ircClient');
+      if (ircConfig.enable) {
+        var msg = '';
+        var client = req.app.get('ircClient');
 
-      if (torrent.torrent_type === 'tvserial') {
-        msg = vsprintf(ircConfig.tvserialMsgFormat, [
-          torrent.user.displayName,
-          torrent.torrent_filename,
-          torrent.torrent_type,
-          torrent.torrent_size,
-          torrent.torrent_seasons,
-          torrent.torrent_episodes,
-          torrent.torrent_sale_status,
-          moment().format('YYYY-MM-DD HH:mm:ss')
-        ]);
-      } else {
-        msg = vsprintf(ircConfig.defaultMsgFormat, [
-          torrent.user.displayName,
-          torrent.torrent_filename,
-          torrent.torrent_type,
-          torrent.torrent_size,
-          torrent.torrent_sale_status,
-          moment().format('YYYY-MM-DD HH:mm:ss')
-        ]);
+        if (torrent.torrent_type === 'tvserial') {
+          msg = vsprintf(ircConfig.tvserialMsgFormat, [
+            torrent.user.displayName,
+            torrent.torrent_filename,
+            torrent.torrent_type,
+            torrent.torrent_size,
+            torrent.torrent_seasons,
+            torrent.torrent_episodes,
+            torrent.torrent_sale_status,
+            moment().format('YYYY-MM-DD HH:mm:ss')
+          ]);
+        } else {
+          msg = vsprintf(ircConfig.defaultMsgFormat, [
+            torrent.user.displayName,
+            torrent.torrent_filename,
+            torrent.torrent_type,
+            torrent.torrent_size,
+            torrent.torrent_sale_status,
+            moment().format('YYYY-MM-DD HH:mm:ss')
+          ]);
+        }
+        client.notice(ircConfig.channel, msg);
       }
-      client.notice(ircConfig.channel, msg);
 
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminTorrentSetReviewedStatus, {
