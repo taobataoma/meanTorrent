@@ -9,10 +9,12 @@ module.exports = {
      *
      * @domain:                 site domain
      * @showDemoWarningPopup:   if is demo site, show warning popup whene home is opened for the first time.
+     * @cronTimeZone:           timezone of cron
      */
     app: {
       domain: 'http://chd.im:3000',
-      showDemoWarningPopup: true
+      showDemoWarningPopup: true,
+      cronTimeZone: 'Asia/Shanghai'
     },
 
     /**
@@ -247,32 +249,19 @@ module.exports = {
      *
      * settings of Hit & Run system
      *
-     * @condition:                      the condition of HnR warning, user must meet one of them before you receive the warning
-     *   @seedTime:                     torrent seed time, unit of day, default to 7 days
-     *   @ratio:                        seed ratio, default to 1.5
-     * @forbiddenWarningNumber:         when user get any warning, then can not to download some torrents
-     *   @downloadHnR:                  if user has 2 warnings, then can not to download HnR torrents
-     *   @downloadAll:                  if user has 5 warnings, then can not to download all the torrents
-     * @countWarningAtDownloadComplete: if true, system will auto set user warning tag when a torrent download complete and If the conditions are not met
-     * @countWarningAtMidnightEveryday: if true, system will run the crontab to set warning tag of all the download complete torrents
-     * @canReDownloadWarningSelf:       if true, user can redownload the warning torrent and continue seed until the warning disappears
-     * @scoreToRemoveWarning:           if user has any warning, user can remove one warning by score number, if the user has not enough score, user still can remove these
-     *                                  warning by donate the VIP class.
-     * @cronTimeZone:                   count warning crontab timezone, because need to auto count warning at midnight
+     * @condition:                          the condition of HnR warning, user must meet one of them before you receive the warning
+     *   @seedTime:                         torrent seed time, unit of day, default to 7 days
+     *   @ratio:                            seed ratio, default to 1.5
+     * @forbiddenDownloadMinWarningNumber:  when user get this number of warning, then can not to download any torrents, but can continue download the warning status torrent
+     * @scoreToRemoveWarning:               if user has any warning, user can remove one warning by score number, if the user has not enough score, user still can remove these
+     *                                      warning by donate the VIP class.
      */
     hitAndRun: {
       condition: {
         seedTime: 24 * 60 * 60 * 1000 * 7,
         ratio: 1.5
       },
-      forbiddenWarningNumber: {
-        downloadHnR: 2,
-        downloadAll: 5
-      },
-      cronTimeZone: 'Asia/Shanghai',
-      countWarningAtDownloadComplete: true,
-      countWarningAtMidnightEveryday: true,
-      canReDownloadWarningSelf: true,
+      forbiddenDownloadMinWarningNumber: 5,
       scoreToRemoveWarning: 10000
     },
     userStatus: {

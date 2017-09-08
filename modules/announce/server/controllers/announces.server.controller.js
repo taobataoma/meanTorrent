@@ -278,6 +278,7 @@ exports.announce = function (req, res) {
 
     /*---------------------------------------------------------------
      find complete torrent data
+     if not find and torrent is h&r, then create complete record
      ---------------------------------------------------------------*/
     function (done) {
       Complete.findOne({
@@ -289,18 +290,22 @@ exports.announce = function (req, res) {
             done(185);
           } else {
             if (!t) {
-              var comp = new Complete();
-              comp.torrent = req.torrent._id;
-              comp.user = req.passkeyuser._id;
+              if (t.torrent_hnr) {
+                var comp = new Complete();
+                comp.torrent = req.torrent._id;
+                comp.user = req.passkeyuser._id;
 
-              comp.save(function (err) {
-                if (err) {
-                  done(186);
-                } else {
-                  req.completeTorrent = comp;
-                  done(null);
-                }
-              });
+                comp.save(function (err) {
+                  if (err) {
+                    done(186);
+                  } else {
+                    req.completeTorrent = comp;
+                    done(null);
+                  }
+                });
+              } else {
+                done(null);
+              }
             } else {
               req.completeTorrent = t;
               done(null);

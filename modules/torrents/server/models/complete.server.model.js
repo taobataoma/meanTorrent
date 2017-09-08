@@ -108,7 +108,7 @@ function countSeedDay(t) {
  * only for completed torrents to count warning
  */
 CompleteSchema.methods.countHnRWarning = function (u) {
-  if(this.complete) {
+  if (this.complete) {
     if (this.total_seed_day >= hnrConfig.condition.seedTime || this.total_ratio >= hnrConfig.condition.ratio) {
       if (this.hnr_warning) {
         this.update({
