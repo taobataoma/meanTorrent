@@ -221,6 +221,7 @@
     TORRENT_THUMBS_FAILED: '为种子点赞失败',
 
     ANNOUNCE_URL: 'Tracker 地址',
+    TORRENT_FILENAME: '种子文件名',
     ATTRIBUTE_TAGS: '视频属性(标签)',
     VIDEO_NFO: '视频 NFO',
     VIDEO_SIZE: '视频文件大小',

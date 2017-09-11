@@ -221,6 +221,7 @@
     TORRENT_THUMBS_FAILED: 'Thumbs-up for torrent failed',
 
     ANNOUNCE_URL: 'Announce Url',
+    TORRENT_FILENAME: 'Torrent Filename',
     ATTRIBUTE_TAGS: 'Video Attribute (tags)',
     VIDEO_NFO: 'Video NFO',
     VIDEO_SIZE: 'Video Size',
