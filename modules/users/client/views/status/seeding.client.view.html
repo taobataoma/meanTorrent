@@ -27,8 +27,16 @@
                             <th class="text-center">{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
-                            <th class="text-center">{{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}</th>
-                            <th class="text-center">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
+                            <th class="text-center">
+                                <abbr title="{{ 'TABLE_FIELDS.ABBR_UPLOADED_SPEED' | translate}}" class="initialism">
+                                    {{ 'TABLE_FIELDS.UPLOADED_SPEED' | translate}}
+                                </abbr>
+                            </th>
+                            <th class="text-center">
+                                <abbr title="{{ 'TABLE_FIELDS.ABBR_DOWNLOADED_RATIO' | translate}}" class="initialism">
+                                    {{ 'TABLE_FIELDS.DOWNLOADED_RATIO' | translate}}
+                                </abbr>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,22 +117,23 @@
                             <td class="col-md-1 td-v-middle text-center">{{item.torrent.createdat | life}}</td>
                             <td class="col-md-1 td-v-middle text-center">{{item.torrent.torrent_size | bytes:2}}</td>
                             <td class="col-md-1 td-v-middle text-center list-user-info">
-                                <p class="no-margin-p" title="{{ 'TITLE_ALT.SEEDS' | translate}}">
-                                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
-                                    {{item.torrent.torrent_seeds}}
+                                <p class="no-margin-p">
+                                    {{item.peer_uploaded | bytes:2}}
                                 </p>
 
-                                <p class="no-margin-p" title="{{ 'TITLE_ALT.LEECHERS' | translate}}">
-                                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
-                                    {{item.torrent.torrent_leechers}}
-                                </p>
-
-                                <p class="no-margin-p" title="{{ 'TITLE_ALT.FINISHED' | translate}}">
-                                    <span class="glyphicon glyphicon-ok torrent-finished"></span>
-                                    {{item.torrent.torrent_finished}}
+                                <p class="no-margin-p">
+                                    {{item.peer_uspeed | bytes:2}}/s
                                 </p>
                             </td>
-                            <td class="col-md-1 td-v-middle text-center">{{item.torrent.user.displayName}}</td>
+                            <td class="col-md-1 td-v-middle text-center">
+                                <p class="no-margin-p">
+                                    {{item.peer_downloaded | bytes:2}}
+                                </p>
+
+                                <p class="no-margin-p">
+                                    {{item.peer_ratio | ratio}}
+                                </p>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

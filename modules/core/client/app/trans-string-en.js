@@ -84,6 +84,17 @@
       LIFETIME: 'Life',
       VOTES: 'Votes',
 
+      //status
+      UPLOADED_SPEED: 'U/S',
+      DOWNLOADED_RATIO: 'D/R',
+      DOWNLOADED_SPEED: 'D/S',
+      UPLOADED_RATIO_PERCENT: 'U/R/P',
+
+      ABBR_UPLOADED_SPEED: 'uploaded/speed',
+      ABBR_DOWNLOADED_RATIO: 'downloaded/ratio',
+      ABBR_DOWNLOADED_SPEED: 'downloaded/speed',
+      ABBR_UPLOADED_RATIO_PERCENT: 'uploaded/ratio/percent',
+
       //peer
       USERNAME: 'DisplayName',
       UPLOADED: 'Uploaded/Speed',

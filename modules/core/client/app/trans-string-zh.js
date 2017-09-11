@@ -84,6 +84,17 @@
       LIFETIME: '存活时间',
       VOTES: '评分',
 
+      //status
+      UPLOADED_SPEED: '上/速',
+      DOWNLOADED_RATIO: '下/比',
+      DOWNLOADED_SPEED: '下/速',
+      UPLOADED_RATIO_PERCENT: '上/比/进度',
+
+      ABBR_UPLOADED_SPEED: '上传量/速度',
+      ABBR_DOWNLOADED_RATIO: '下载量/分享率',
+      ABBR_DOWNLOADED_SPEED: '下载量/速度',
+      ABBR_UPLOADED_RATIO_PERCENT: '上传量/分享率/完成百分比',
+
       //peer
       USERNAME: '用户',
       UPLOADED: '已上传/速度',

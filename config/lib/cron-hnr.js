@@ -46,8 +46,8 @@ var appConfig = config.meanTorrentConfig.app;
 module.exports = function (app) {
   var cronJobHnR = new CronJob({
     //cronTime: '00 00 1 * * *',
-    cronTime: '*/5 * * * * *',
-    //cronTime: '00 00 * * * *',
+    //cronTime: '*/5 * * * * *',
+    cronTime: '00 00 * * * *',
     onTick: function () {
       console.log(chalk.green('cronJobHnR: process!'));
     },
