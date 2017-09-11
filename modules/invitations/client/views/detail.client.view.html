@@ -152,6 +152,9 @@
                 <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.SEEDED' | translate}}：{{ vm.selectedUser.seeded }}</li>
                 <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.LEECHED' | translate}}：{{ vm.selectedUser.leeched }}</li>
                 <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.FINISHED' | translate}}：{{ vm.selectedUser.finished }}</li>
+                <li ng-if="vm.announce.privateTorrentCmsMode && vm.selectedUser.hnr_warning>0">
+                    {{ 'STATUS_FIELD.HNY_WARNING' | translate}}：<span class="badge badge_danger">{{vm.selectedUser.hnr_warning}}</span>
+                </li>
 
                 <li class="status-divider" ng-if="vm.announce.privateTorrentCmsMode"></li>
 

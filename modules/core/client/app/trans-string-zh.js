@@ -146,6 +146,7 @@
       STATUS_UPLOADED: '我的种子',
       STATUS_SEEDING: '正在做种',
       STATUS_DOWNLOADING: '正在下载',
+      STATUS_WARNING: '正被警告',
       SCORE_DETAIL: '积分详情',
       INVITATIONS: '我的邀请',
       INVITE_INVALID: '无效的邀请'
@@ -418,6 +419,7 @@
     STATUS_UPLOADED: '我上传的种子',
     STATUS_SEEDING: '正在做种的种子',
     STATUS_DOWNLOADING: '正在下载的种子',
+    STATUS_WARNING: '正被警告的种子',
     UPLOADED_LIST_ERROR: '获取我上传的种子列表失败',
     SEEDING_LIST_ERROR: '获取我正做种的列表失败',
     DOWNLOADING_LIST_ERROR: '获取我正下载的列表失败',

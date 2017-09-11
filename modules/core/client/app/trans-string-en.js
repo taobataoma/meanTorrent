@@ -146,6 +146,7 @@
       STATUS_UPLOADED: 'Uploaded',
       STATUS_SEEDING: 'Seeding',
       STATUS_DOWNLOADING: 'Downloading',
+      STATUS_WARNING: 'Warning',
       SCORE_DETAIL: 'Score detail',
       INVITATIONS: 'Invitations',
       INVITE_INVALID: 'invalid invitation'
@@ -418,6 +419,7 @@
     STATUS_UPLOADED: 'Uploaded torrents',
     STATUS_SEEDING: 'Seeding torrents',
     STATUS_DOWNLOADING: 'Downloading torrents',
+    STATUS_WARNING: 'Warning torrents',
     UPLOADED_LIST_ERROR: 'Get uploaded list info failed',
     SEEDING_LIST_ERROR: 'Get seeding list info failed',
     DOWNLOADING_LIST_ERROR: 'Get downloading list info failed',

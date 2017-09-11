@@ -99,6 +99,13 @@
           pageTitle: 'PAGETITLE.STATUS_DOWNLOADING'
         }
       })
+      .state('status.warning', {
+        url: '/warning',
+        templateUrl: '/modules/users/client/views/status/warning.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.STATUS_WARNING'
+        }
+      })
       .state('score', {
         abstract: true,
         url: '/score',
