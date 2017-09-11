@@ -1,7 +1,12 @@
 <section class="container" ng-init="vm.getUserSeedingTorrent();">
     <div class="row margin-top-50">
         <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.UserSeedingList">
-            <h4 class="margin-bottom-30">{{vm.user.displayName}} - {{'PAGETITLE.STATUS_SEEDING' | translate}}</h4>
+            <span>
+                <h4 class="margin-bottom-30">
+                    {{vm.user.displayName}} - {{'PAGETITLE.STATUS_SEEDING' | translate}}
+                    <span class="badge badge_info">{{vm.UserSeedingList.length}}</span>
+                </h4>
+            </span>
 
             <div class="table-responsive">
                 <table class="table table-hover tb-v-middle">
