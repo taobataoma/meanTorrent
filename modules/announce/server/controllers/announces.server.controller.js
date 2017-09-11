@@ -465,6 +465,14 @@ exports.announce = function (req, res) {
               }
             }).exec();
           }
+
+          //write peer speed
+          req.currentPeer.update({
+            $set: {
+              peer_uspeed: curru / config.meanTorrentConfig.announce.announceInterval * 1000,
+              peer_dspeed: currd / config.meanTorrentConfig.announce.announceInterval * 1000
+            }
+          }).exec();
         }
 
         //only add seed time for completed torrent
