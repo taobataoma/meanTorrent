@@ -21,6 +21,10 @@
         method: 'POST',
         url: '/api/users/passkey'
       },
+      warningNumber: {
+        method: 'GET',
+        url: '/api/users/warningNumber'
+      },
       deleteProvider: {
         method: 'DELETE',
         url: '/api/users/accounts',
@@ -52,6 +56,9 @@
       },
       changePasskey: function () {
         return this.resetPasskey().$promise;
+      },
+      getUserWarningNumber: function () {
+        return this.warningNumber().$promise;
       },
       removeSocialAccount: function (provider) {
         return this.deleteProvider({

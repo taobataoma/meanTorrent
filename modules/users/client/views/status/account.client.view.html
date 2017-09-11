@@ -113,6 +113,14 @@
 
                     <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
                     <dd class="h-line">{{ vm.user.finished }}</dd>
+
+                    <div ng-if="vm.user.hnr_warning>0">
+                        <dt class="h-line">{{ 'STATUS_FIELD.HNY_WARNING' | translate}}：</dt>
+                        <dd class="h-line">
+                            <span class="badge badge_danger">{{vm.user.hnr_warning}}</span>
+                            <a ui-sref="status.warning">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                        </dd>
+                    </div>
                 </div>
 
                 <li class="status-divider"></li>

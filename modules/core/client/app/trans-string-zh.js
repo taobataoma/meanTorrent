@@ -444,6 +444,7 @@
       SEEDED: '正在做种',
       LEECHED: '正在下载',
       FINISHED: '下载完成',
+      HNY_WARNING: 'H&R 警告',
       FORUM_TOPICS: '论坛主题数',
       FORUM_REPLIES: '论坛回复数',
       DETAIL: '详情',

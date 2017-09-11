@@ -160,6 +160,7 @@ exports.me = function (req, res) {
       username: validator.escape(req.user.username),
       created: req.user.created.toString(),
       roles: req.user.roles,
+      hnr_warning: req.user.hnr_warning,
       profileImageURL: req.user.profileImageURL,
       email: validator.escape(req.user.email),
       lastName: validator.escape(req.user.lastName),
@@ -169,4 +170,23 @@ exports.me = function (req, res) {
   }
 
   res.json(safeUserObject || null);
+};
+
+
+/**
+ * warningNumber
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.warningNumber = function (req, res, next) {
+  if (req.user) {
+    res.json({
+      hnr_warning: req.user.hnr_warning
+    });
+  } else {
+    res.status(401).send({
+      message: 'User is not signed in'
+    });
+  }
 };

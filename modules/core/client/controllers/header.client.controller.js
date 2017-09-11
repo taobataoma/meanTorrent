@@ -6,10 +6,10 @@
     .controller('HeaderController', HeaderController);
 
   HeaderController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
-    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'TorrentsService'];
+    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'TorrentsService', 'UsersService'];
 
   function HeaderController($scope, $state, $stateParams, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
-                            InvitationsService, $interval, MessagesService, TorrentsService) {
+                            InvitationsService, $interval, MessagesService, TorrentsService, UsersService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
@@ -68,6 +68,7 @@
      * checkMessageUnread
      */
     vm.checkMessageUnread = function () {
+      vm.getCountUnread();
       $interval(vm.getCountUnread, 120000);
     };
 
@@ -76,6 +77,23 @@
         MessagesService.countUnread(function (data) {
           vm.unreadCount = data.countFrom + data.countTo + data.countAdmin;
         });
+      }
+    };
+
+    /**
+     * checkHnRWarning
+     */
+    vm.checkHnRWarning = function () {
+      vm.getWarning();
+      $interval(vm.getWarning, 120000);
+    };
+
+    vm.getWarning = function () {
+      if (Authentication.user) {
+        UsersService.getUserWarningNumber()
+          .then(function (data) {
+            vm.user.hnr_warning = Authentication.user.hnr_warning = data.hnr_warning;
+          });
       }
     };
 

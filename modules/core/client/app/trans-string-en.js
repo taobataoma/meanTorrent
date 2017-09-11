@@ -444,6 +444,7 @@
       SEEDED: 'Torrents seeded',
       LEECHED: 'Torrents leeched',
       FINISHED: 'Torrents finished',
+      HNY_WARNING: 'H&R Warning',
       FORUM_TOPICS: 'Forum topics',
       FORUM_REPLIES: 'Forum replies',
       DETAIL: 'Detail',
