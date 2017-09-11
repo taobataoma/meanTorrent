@@ -24,4 +24,7 @@ module.exports = function (app) {
   app.route('/api/:userId/downloading').all(torrentsPolicy.isAllowed)
     .get(peers.getUserDownloading);
 
+  app.route('/api/:userId/warning').all(torrentsPolicy.isAllowed)
+    .get(peers.getUserWarning);
+
 };

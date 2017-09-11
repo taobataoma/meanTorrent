@@ -155,3 +155,29 @@ exports.getUserDownloading = function (req, res) {
       }
     });
 };
+
+/**
+ * list user warning torrents
+ * @param req
+ * @param res
+ */
+exports.getUserWarning = function (req, res) {
+  Complete.find({
+    user: req.model._id,
+    hnr_warning: true
+  }).populate({
+    path: 'torrent',
+    populate: {
+      path: 'user',
+      select: 'displayName profileImageURL'
+    }
+  }).exec(function (err, complets) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(complets);
+    }
+  });
+};

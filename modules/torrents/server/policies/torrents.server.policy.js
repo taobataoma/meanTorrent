@@ -43,6 +43,7 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/my/warning', permissions: '*'},
           {resources: '/api/:userId/seeding', permissions: '*'},
           {resources: '/api/:userId/downloading', permissions: '*'},
+          {resources: '/api/:userId/warning', permissions: '*'},
           {resources: '/api/torrents/siteInfo', permissions: ['get']}
         ]
       },
