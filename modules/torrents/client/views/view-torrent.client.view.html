@@ -502,10 +502,10 @@
                         <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_uploaded"
                             ng-if="item.peer_status == 'seeder'">
                             <td class="text-center" message-to="item.user" to-class="message-to-icon">{{item.user.displayName}}</td>
-                            <td class="text-center">{{item.peer_uploaded | bytes:2}}</td>
-                            <td class="text-center">{{item.peer_downloaded | bytes:2}}</td>
-                            <td class="text-center">{{item.peer_downloaded == 0 ? '-' : (item.peer_uploaded/item.peer_downloaded | number:2)}}</td>
-                            <td class="text-center">{{item.peer_left == 0 ? '100%' : ((vm.torrentLocalInfo.torrent_size - item.peer_left)/vm.torrentLocalInfo.torrent_size | percentage:2)}}</td>
+                            <td class="text-center">{{item.peer_uploaded | bytes:2}} / {{item.peer_uspeed}}</td>
+                            <td class="text-center">{{item.peer_downloaded | bytes:2}} / {{item.peer_dspeed}}</td>
+                            <td class="text-center">{{item.peer_ratio}}</td>
+                            <td class="text-center">{{item.peer_percent}}%</td>
                             <td class="text-center">{{item.startedat | life}}</td>
                             <td class="text-center">{{item.last_announce_at | life}}</td>
                             <td class="text-center">{{item.user_agent}}</td>
@@ -539,10 +539,10 @@
                         <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_downloaded"
                             ng-if="item.peer_status == 'leecher'">
                             <td class="text-center" message-to="item.user" to-class="message-to-icon">{{item.user.displayName}}</td>
-                            <td class="text-center">{{item.peer_uploaded | bytes:2}}</td>
-                            <td class="text-center">{{item.peer_downloaded | bytes:2}}</td>
-                            <td class="text-center">{{item.peer_downloaded == 0 ? '-' : (item.peer_uploaded/item.peer_downloaded | number:2)}}</td>
-                            <td class="text-center">{{item.peer_left == 0 ? '100%' : ((vm.torrentLocalInfo.torrent_size - item.peer_left)/vm.torrentLocalInfo.torrent_size | percentage:2)}}</td>
+                            <td class="text-center">{{item.peer_uploaded | bytes:2}} / {{item.peer_uspeed}}</td>
+                            <td class="text-center">{{item.peer_downloaded | bytes:2}} / {{item.peer_dspeed}}</td>
+                            <td class="text-center">{{item.peer_ratio}}</td>
+                            <td class="text-center">{{item.peer_percent}}</td>
                             <td class="text-center">{{item.startedat | life}}</td>
                             <td class="text-center">{{item.last_announce_at | life}}</td>
                             <td class="text-center">{{item.user_agent}}</td>
