@@ -502,8 +502,8 @@
                         <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_uploaded"
                             ng-if="item.peer_status == 'seeder'">
                             <td class="text-center" message-to="item.user" to-class="message-to-icon">{{item.user.displayName}}</td>
-                            <td class="text-center">{{item.peer_uploaded | bytes:2}} / {{item.peer_uspeed}}</td>
-                            <td class="text-center">{{item.peer_downloaded | bytes:2}} / {{item.peer_dspeed}}</td>
+                            <td class="text-center">{{item.peer_uploaded | bytes:2}} | {{item.peer_uspeed | bytes:2}}/s</td>
+                            <td class="text-center">{{item.peer_downloaded | bytes:2}} | {{item.peer_dspeed | bytes:2}}/s</td>
                             <td class="text-center">{{item.peer_ratio}}</td>
                             <td class="text-center">{{item.peer_percent}}%</td>
                             <td class="text-center">{{item.startedat | life}}</td>
@@ -539,10 +539,10 @@
                         <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_downloaded"
                             ng-if="item.peer_status == 'leecher'">
                             <td class="text-center" message-to="item.user" to-class="message-to-icon">{{item.user.displayName}}</td>
-                            <td class="text-center">{{item.peer_uploaded | bytes:2}} / {{item.peer_uspeed}}</td>
-                            <td class="text-center">{{item.peer_downloaded | bytes:2}} / {{item.peer_dspeed}}</td>
+                            <td class="text-center">{{item.peer_uploaded | bytes:2}} | {{item.peer_uspeed | bytes:2}}/s</td>
+                            <td class="text-center">{{item.peer_downloaded | bytes:2}} | {{item.peer_dspeed | bytes:2}}/s</td>
                             <td class="text-center">{{item.peer_ratio}}</td>
-                            <td class="text-center">{{item.peer_percent}}</td>
+                            <td class="text-center">{{item.peer_percent}}%</td>
                             <td class="text-center">{{item.startedat | life}}</td>
                             <td class="text-center">{{item.last_announce_at | life}}</td>
                             <td class="text-center">{{item.user_agent}}</td>
