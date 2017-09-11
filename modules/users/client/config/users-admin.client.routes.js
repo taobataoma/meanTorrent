@@ -42,6 +42,42 @@
         data: {
           pageTitle: 'PAGETITLE.ADMIN_USER_EDIT'
         }
+      })
+      .state('admin.user-seeding', {
+        url: '/users/:userId/seeding',
+        templateUrl: '/modules/users/client/views/admin/user-seeding.client.view.html',
+        controller: 'UserController',
+        controllerAs: 'vm',
+        resolve: {
+          userResolve: getUser
+        },
+        data: {
+          pageTitle: 'PAGETITLE.ADMIN_USER_SEEDING'
+        }
+      })
+      .state('admin.user-leeching', {
+        url: '/users/:userId/leeching',
+        templateUrl: '/modules/users/client/views/admin/user-leeching.client.view.html',
+        controller: 'UserController',
+        controllerAs: 'vm',
+        resolve: {
+          userResolve: getUser
+        },
+        data: {
+          pageTitle: 'PAGETITLE.ADMIN_USER_LEECHING'
+        }
+      })
+      .state('admin.user-warning', {
+        url: '/users/:userId/warning',
+        templateUrl: '/modules/users/client/views/admin/user-warning.client.view.html',
+        controller: 'UserController',
+        controllerAs: 'vm',
+        resolve: {
+          userResolve: getUser
+        },
+        data: {
+          pageTitle: 'PAGETITLE.ADMIN_USER_WARNING'
+        }
       });
 
     getUser.$inject = ['$stateParams', 'AdminService'];

@@ -6,16 +6,18 @@
     .controller('UserController', UserController);
 
   UserController.$inject = ['$scope', '$state', '$window', 'Authentication', 'userResolve', 'Notification', 'NotifycationService', 'MeanTorrentConfig',
-    'AdminService', 'ScoreLevelService'];
+    'AdminService', 'ScoreLevelService', 'PeersService', 'DownloadService', '$translate'];
 
   function UserController($scope, $state, $window, Authentication, user, Notification, NotifycationService, MeanTorrentConfig, AdminService,
-                          ScoreLevelService) {
+                          ScoreLevelService, PeersService, DownloadService, $translate) {
     var vm = this;
 
     vm.authentication = Authentication;
     vm.user = user;
     vm.selectedRole = vm.user.roles[0];
     vm.userRolesConfig = MeanTorrentConfig.meanTorrentConfig.userRoles;
+    vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
+    vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.remove = remove;
     vm.update = update;
@@ -236,6 +238,126 @@
       function onSetDownloadedError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'SET_DOWNLOADED_FAILED');
       }
+    };
+
+    /**
+     * getUserSeedingTorrent
+     */
+    vm.getUserSeedingTorrent = function () {
+      PeersService.getUserSeedingList({
+        userId: vm.user._id
+      }, function (items) {
+        console.log(items);
+        vm.UserSeedingList = items;
+        for (var i = items.length - 1; i >= 0; i--) {
+          if (!items[i].torrent) {
+            items.splice(i, 1);
+          }
+        }
+      }, function (err) {
+        Notification.error({
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('SEEDING_LIST_ERROR')
+        });
+      });
+    };
+
+    /**
+     * getUserLeechingTorrent
+     */
+    vm.getUserLeechingTorrent = function () {
+      PeersService.getUserLeechingList({
+        userId: vm.user._id
+      }, function (items) {
+        vm.leechingList = items;
+        for (var i = items.length - 1; i >= 0; i--) {
+          if (!items[i].torrent) {
+            items.splice(i, 1);
+          }
+        }
+      }, function (err) {
+        Notification.error({
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('DOWNLOADING_LIST_ERROR')
+        });
+      });
+    };
+
+    /**
+     * getUserWarningTorrent
+     */
+    vm.getUserWarningTorrent = function () {
+      PeersService.getUserWarningList({
+        userId: vm.user._id
+      }, function (items) {
+        vm.UserWarningList = items;
+        for (var i = items.length - 1; i >= 0; i--) {
+          if (!items[i].torrent) {
+            items.splice(i, 1);
+          }
+        }
+      }, function (err) {
+        Notification.error({
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('WARNING_LIST_ERROR')
+        });
+      });
+    };
+
+    /**
+     * getTagTitle
+     * @param tag: tag name
+     * @returns {*}
+     */
+    vm.getTagTitle = function (tag, item) {
+      var tmp = tag;
+      var find = false;
+
+      angular.forEach(vm.resourcesTags.radio, function (item) {
+        angular.forEach(item.value, function (sitem) {
+          if (sitem.name === tag) {
+            tmp = item.name;
+            find = true;
+          }
+        });
+      });
+
+      if (!find) {
+        angular.forEach(vm.resourcesTags.checkbox, function (item) {
+          angular.forEach(item.value, function (sitem) {
+            if (sitem.name === tag) {
+              tmp = item.name;
+            }
+          });
+        });
+      }
+      return tmp;
+    };
+
+    /**
+     * downloadTorrent
+     * @param id
+     */
+    vm.downloadTorrent = function (id) {
+      var url = '/api/torrents/download/' + id;
+      DownloadService.downloadFile(url, null, function (status) {
+        if (status === 200) {
+          Notification.success({
+            message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENTS_DOWNLOAD_SUCCESSFULLY')
+          });
+        }
+      }, function (err) {
+        Notification.error({
+          title: 'ERROR',
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
+        });
+      });
+    };
+
+    /**
+     * openTorrentInfo
+     * @param id
+     */
+    vm.openTorrentInfo = function (id) {
+      var url = $state.href('torrents.view', {torrentId: id});
+      $window.open(url, '_blank');
     };
   }
 }());

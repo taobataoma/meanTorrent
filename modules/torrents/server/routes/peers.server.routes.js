@@ -18,13 +18,4 @@ module.exports = function (app) {
   app.route('/api/my/warning').all(torrentsPolicy.isAllowed)
     .get(peers.getMyWarning);
 
-  app.route('/api/:userId/seeding').all(torrentsPolicy.isAllowed)
-    .get(peers.getUserSeeding);
-
-  app.route('/api/:userId/downloading').all(torrentsPolicy.isAllowed)
-    .get(peers.getUserDownloading);
-
-  app.route('/api/:userId/warning').all(torrentsPolicy.isAllowed)
-    .get(peers.getUserWarning);
-
 };

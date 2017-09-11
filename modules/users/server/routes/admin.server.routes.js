@@ -32,6 +32,13 @@ module.exports = function (app) {
   app.route('/api/users/:userId/downloaded')
     .post(adminPolicy.isAllowed, admin.updateUserDownloaded);
 
+  app.route('/api/users/:userId/seeding').all(adminPolicy.isAllowed)
+    .get(admin.getUserSeeding);
+  app.route('/api/users/:userId/leeching').all(adminPolicy.isAllowed)
+    .get(admin.getUserLeeching);
+  app.route('/api/users/:userId/warning').all(adminPolicy.isAllowed)
+    .get(admin.getUserWarning);
+
   // Finish by binding the user middleware
   app.param('userId', admin.userByID);
 };

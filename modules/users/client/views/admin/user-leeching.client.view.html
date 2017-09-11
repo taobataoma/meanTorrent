@@ -1,0 +1,133 @@
+<section class="container" ng-init="vm.getUserLeechingTorrent();">
+    <div class="row margin-top-50">
+
+        <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.leechingList">
+            <h4 class="margin-bottom-30">{{vm.user.displayName}} - {{'PAGETITLE.STATUS_DOWNLOADING' | translate}}</h4>
+
+            <div class="table-responsive">
+                <table class="table table-hover tb-v-middle">
+                    <thead>
+                        <tr>
+                            <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
+                            <th class="text-center">
+                                <abbr title="{{ 'TABLE_FIELDS.ABBR_DOWNLOADED_SPEED' | translate}}" class="initialism">
+                                    {{ 'TABLE_FIELDS.DOWNLOADED_SPEED' | translate}}
+                                </abbr>
+                            </th>
+                            <th class="text-center">
+                                <abbr title="{{ 'TABLE_FIELDS.ABBR_UPLOADED_RATIO_PERCENT' | translate}}" class="initialism">
+                                    {{ 'TABLE_FIELDS.UPLOADED_RATIO_PERCENT' | translate}}
+                                </abbr>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="torrent-list-info" ng-repeat="item in vm.leechingList" ng-click="vm.openTorrentInfo(item.torrent._id);">
+                            <td class="col-md-7 td-text-overflow">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img class="media-object"
+                                             ng-src="{{vm.tmdbConfig.posterListBaseUrl}}{{item.torrent.resource_detail_info.poster_path}}"
+                                             alt="...">
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            {{item.torrent.resource_detail_info.original_title || item.torrent.resource_detail_info.original_name}}
+                                            <span ng-show="item.torrent.resource_detail_info.title">
+                                                <span ng-show="item.torrent.resource_detail_info.original_title!=item.torrent.resource_detail_info.title"> / {{item.torrent.resource_detail_info.title}}</span>
+                                            </span>
+                                            <span ng-show="item.torrent.resource_detail_info.name">
+                                                <span ng-show="item.torrent.resource_detail_info.original_name!=item.torrent.resource_detail_info.name"> / {{item.torrent.resource_detail_info.name}}</span>
+                                            </span>
+                                            <span class="label label-download text-uppercase"
+                                                  title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                  ng-click="vm.downloadTorrent(item.torrent._id); $event.stopPropagation();">
+                                                <i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}
+                                            </span>
+                                        </h5>
+
+                                        <div class="list-all-genres">
+                                            <span class="genres-item" ng-repeat="t in item.torrent.resource_detail_info.genres">{{t.name}}</span>
+                                        </div>
+
+                                        <div class="torrent-filename text-long">{{item.torrent.torrent_filename | filename}}</div>
+
+                                        <div class="list-all-tags">
+                                            <!--<span class="label label-success text-uppercase">{{ item.torrent.torrent_type}}</span>-->
+                                            <span class="label label-ttype label-primary" ng-click="$event.stopPropagation();">
+                                                {{'TORRENT_TYPE_LABEL.' + item.torrent.torrent_type.toUpperCase() | translate}}
+                                            </span>
+                                            <span class="label label-tstatus label-danger" ng-show="item.torrent.torrent_status == 'new'"
+                                                  ng-click="$event.stopPropagation();">
+                                                {{'TORRENT_STATUS_LABEL.' + item.torrent.torrent_status.toUpperCase() | translate}}
+                                            </span>
+                                            <span class="label label-release label-warning" ng-show="item.torrent.resource_detail_info.release_date"
+                                                  ng-click="$event.stopPropagation();">
+                                                {{ item.torrent.resource_detail_info.release_date}}
+                                            </span>
+                                            <span class="label label-rlevel label-info"
+                                                  ng-show="item.torrent.torrent_recommended != 'none'"
+                                                  ng-click="$event.stopPropagation();">
+                                                {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent.torrent_recommended.toUpperCase() | translate}}
+                                            </span>
+                                            <span class="label label-sale" ng-if="item.torrent.isSaling"
+                                                  title="{{vm.getSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
+                                                  ng-click="$event.stopPropagation();"
+                                                  ng-class="{'label-default': !item.torrent.isSaling, 'label-success': item.torrent.isSaling}">
+                                                    {{item.torrent.torrent_sale_status}} {{item.torrent.torrent_sale_expires | unlife}}
+                                            </span>
+                                            <span class="label label-se-info" ng-if="item.torrent_type == 'tvserial'"
+                                                  ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
+
+                                            <span class="label label-hnr-info" ng-if="item.torrent_hnr"
+                                                  ng-click="$event.stopPropagation();">H&R</span>
+
+                                            <span ng-repeat="t in item.torrent.torrent_tags">
+                                                <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}"
+                                                      ng-click="$event.stopPropagation();">
+                                                    {{ 'RESOURCESTAGS.' + vm.getTagTitle(t, item.torrent) + '.' + t | translate}}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col-md-1 td-v-middle">
+                                <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
+                                      class="torrent-votes"><kbd>IMDB</kbd> {{item.torrent.resource_detail_info.vote_average | number : 1}}</span>
+                            </td>
+                            <td class="col-md-1 td-v-middle text-center">{{item.torrent.createdat | life}}</td>
+                            <td class="col-md-1 td-v-middle text-center">{{item.torrent.torrent_size | bytes:2}}</td>
+                            <td class="col-md-1 td-v-middle text-center list-user-info">
+                                <p class="no-margin-p">
+                                    {{item.peer_downloaded | bytes:2}}
+                                </p>
+
+                                <p class="no-margin-p">
+                                    {{item.peer_dspeed | bytes:2}}/s
+                                </p>
+                            </td>
+                            <td class="col-md-1 td-v-middle text-center">
+                                <p class="no-margin-p">
+                                    {{item.peer_uploaded | bytes:2}}
+                                </p>
+
+                                <p class="no-margin-p">
+                                    {{item.peer_ratio | ratio}}
+                                </p>
+
+                                <p class="no-margin-p">
+                                    {{item.peer_percent}}%
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</section>

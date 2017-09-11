@@ -7,8 +7,13 @@ var path = require('path'),
   config = require(path.resolve('./config/config')),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
+  Peer = mongoose.model('Peer'),
+  Complete = mongoose.model('Complete'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
+
+const PEERSTATE_SEEDER = 'seeder';
+const PEERSTATE_LEECHER = 'leecher';
 
 var traceConfig = config.meanTorrentConfig.trace;
 /**
@@ -226,6 +231,89 @@ exports.updateUserDownloaded = function (req, res) {
       user: user._id,
       downloaded: req.body.userDownloaded
     });
+  });
+};
+
+
+/**
+ * list user seeding torrents
+ * @param req
+ * @param res
+ */
+exports.getUserSeeding = function (req, res) {
+  Peer.find({
+    user: req.model._id,
+    peer_status: PEERSTATE_SEEDER
+  }).sort('-peer_uploaded')
+    .populate({
+      path: 'torrent',
+      populate: {
+        path: 'user',
+        select: 'displayName profileImageURL'
+      }
+    })
+    .exec(function (err, torrents) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(torrents);
+      }
+    });
+};
+
+/**
+ * list user getUserLeeching torrents
+ * @param req
+ * @param res
+ */
+exports.getUserLeeching = function (req, res) {
+  Peer.find({
+    user: req.model._id,
+    peer_status: PEERSTATE_LEECHER
+  }).sort('-peer_downloaded')
+    .populate({
+      path: 'torrent',
+      populate: {
+        path: 'user',
+        select: 'displayName profileImageURL'
+      }
+    })
+    .exec(function (err, torrents) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(torrents);
+      }
+    });
+};
+
+/**
+ * list user warning torrents
+ * @param req
+ * @param res
+ */
+exports.getUserWarning = function (req, res) {
+  Complete.find({
+    user: req.model._id,
+    hnr_warning: true
+  }).populate({
+    path: 'torrent',
+    populate: {
+      path: 'user',
+      select: 'displayName profileImageURL'
+    }
+  }).exec(function (err, complets) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(complets);
+    }
   });
 };
 

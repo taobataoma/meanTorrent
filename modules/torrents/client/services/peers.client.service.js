@@ -27,15 +27,15 @@
       },
       getUserSeedingList: {
         method: 'GET',
-        url: '/api/:userId/seeding',
+        url: '/api/users/:userId/seeding',
         isArray: true,
         params: {
           userId: '@userId'
         }
       },
-      getUserDownloadingList: {
+      getUserLeechingList: {
         method: 'GET',
-        url: '/api/:userId/downloading',
+        url: '/api/users/:userId/leeching',
         isArray: true,
         params: {
           userId: '@userId'
@@ -43,7 +43,7 @@
       },
       getUserWarningList: {
         method: 'GET',
-        url: '/api/:userId/warning',
+        url: '/api/users/:userId/warning',
         isArray: true,
         params: {
           userId: '@userId'

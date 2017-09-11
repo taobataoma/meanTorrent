@@ -28,7 +28,10 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/users/:userId/status', permissions: '*'},
           {resources: '/api/users/:userId/score', permissions: '*'},
           {resources: '/api/users/:userId/uploaded', permissions: '*'},
-          {resources: '/api/users/:userId/downloaded', permissions: '*'}
+          {resources: '/api/users/:userId/downloaded', permissions: '*'},
+          {resources: '/api/users/:userId/seeding', permissions: '*'},
+          {resources: '/api/users/:userId/leeching', permissions: '*'},
+          {resources: '/api/users/:userId/warning', permissions: '*'}
         ]
       },
       {
