@@ -40,6 +40,7 @@ exports.invokeRolesPolicies = function () {
 
           {resources: '/api/my/seeding', permissions: '*'},
           {resources: '/api/my/downloading', permissions: '*'},
+          {resources: '/api/my/warning', permissions: '*'},
           {resources: '/api/:userId/seeding', permissions: '*'},
           {resources: '/api/:userId/downloading', permissions: '*'},
           {resources: '/api/torrents/siteInfo', permissions: ['get']}
@@ -66,6 +67,7 @@ exports.invokeRolesPolicies = function () {
 
           {resources: '/api/my/seeding', permissions: ['get']},
           {resources: '/api/my/downloading', permissions: ['get']},
+          {resources: '/api/my/warning', permissions: ['get']},
           {resources: '/api/torrents/siteInfo', permissions: ['get']}
         ]
       },

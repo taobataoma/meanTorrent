@@ -90,11 +90,13 @@
       DOWNLOADED_RATIO: '下/比',
       DOWNLOADED_SPEED: '下/速',
       UPLOADED_RATIO_PERCENT: '上/比/进度',
+      UP_DOWN_RATIO_TIME: '上/下/比/时',
 
       ABBR_UPLOADED_SPEED: '上传量/速度',
       ABBR_DOWNLOADED_RATIO: '下载量/分享率',
       ABBR_DOWNLOADED_SPEED: '下载量/速度',
       ABBR_UPLOADED_RATIO_PERCENT: '上传量/分享率/完成百分比',
+      ABBR_UP_DOWN_RATIO_TIME: '上传量/下载量/分享率/做种时间',
 
       //peer
       USERNAME: '用户',

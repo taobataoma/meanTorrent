@@ -90,11 +90,13 @@
       DOWNLOADED_RATIO: 'D/R',
       DOWNLOADED_SPEED: 'D/S',
       UPLOADED_RATIO_PERCENT: 'U/R/P',
+      UP_DOWN_RATIO_TIME: 'U/D/R/T',
 
       ABBR_UPLOADED_SPEED: 'uploaded/speed',
       ABBR_DOWNLOADED_RATIO: 'downloaded/ratio',
       ABBR_DOWNLOADED_SPEED: 'downloaded/speed',
       ABBR_UPLOADED_RATIO_PERCENT: 'uploaded/ratio/percent',
+      ABBR_UP_DOWN_RATIO_TIME: 'uploaded/downloaded/ratio/seeded time',
 
       //peer
       USERNAME: 'DisplayName',
@@ -422,6 +424,7 @@
     STATUS_WARNING: 'Warning torrents',
     UPLOADED_LIST_ERROR: 'Get uploaded list info failed',
     SEEDING_LIST_ERROR: 'Get seeding list info failed',
+    WARNING_LIST_ERROR: 'Get warning list info failed',
     DOWNLOADING_LIST_ERROR: 'Get downloading list info failed',
     STATUS_FIELD: {
       PICTURE: 'Profile picture',

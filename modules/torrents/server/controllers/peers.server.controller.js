@@ -9,6 +9,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   User = mongoose.model('User'),
   Peer = mongoose.model('Peer'),
+  Complete = mongoose.model('Complete'),
   Torrent = mongoose.model('Torrent'),
   async = require('async'),
   validator = require('validator'),
@@ -71,6 +72,32 @@ exports.getMyDownloading = function (req, res) {
         res.json(torrents);
       }
     });
+};
+
+/**
+ * getMyWarning
+ * @param req
+ * @param res
+ */
+exports.getMyWarning = function (req, res) {
+  Complete.find({
+    user: req.user._id,
+    hnr_warning: true
+  }).populate({
+    path: 'torrent',
+    populate: {
+      path: 'user',
+      select: 'displayName profileImageURL'
+    }
+  }).exec(function (err, complets) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(complets);
+    }
+  });
 };
 
 /**

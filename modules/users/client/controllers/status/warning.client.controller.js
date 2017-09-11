@@ -3,13 +3,13 @@
 
   angular
     .module('users')
-    .controller('UploadedController', UploadedController);
+    .controller('WarningController', WarningController);
 
-  UploadedController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
+  WarningController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'PeersService',
     'MeanTorrentConfig', '$window', '$filter', 'DownloadService'];
 
-  function UploadedController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                            $window, $filter, DownloadService) {
+  function WarningController($scope, $state, $translate, $timeout, Authentication, Notification, PeersService, MeanTorrentConfig,
+                             $window, $filter, DownloadService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -26,62 +26,19 @@
     }
 
     /**
-     * buildPager
+     * getWarningTorrent
      */
-    vm.buildPager = function () {
-      vm.pagedItems = [];
-      vm.itemsPerPage = 15;
-      vm.currentPage = 1;
-      vm.figureOutItemsToDisplay();
-    };
-
-    /**
-     * figureOutItemsToDisplay
-     */
-    vm.figureOutItemsToDisplay = function (callback) {
-      vm.filteredItems = $filter('filter')(vm.uploadedList, {
-        $: vm.search
-      });
-      vm.filterLength = vm.filteredItems.length;
-      var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
-      var end = begin + vm.itemsPerPage;
-      vm.pagedItems = vm.filteredItems.slice(begin, end);
-
-      if (callback) callback();
-    };
-
-    /**
-     * pageChanged
-     */
-    vm.pageChanged = function () {
-      var element = angular.element('#top_of_torrent_list');
-
-      $('.tb-v-middle').fadeTo(100, 0.01, function () {
-        vm.figureOutItemsToDisplay(function () {
-          $timeout(function () {
-            $('.tb-v-middle').fadeTo(400, 1, function () {
-              //window.scrollTo(0, element[0].offsetTop - 60);
-              $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
-            });
-          }, 100);
-        });
-      });
-    };
-
-    /**
-     * getUploadedTorrent
-     */
-    vm.getUploadedTorrent = function () {
-      TorrentsService.get({
-        userid: vm.user._id,
-        torrent_type: 'all',
-        torrent_status: 'all'
-      }, function (items) {
-        vm.uploadedList = items.rows;
-        vm.buildPager();
+    vm.getWarningTorrent = function () {
+      PeersService.getMyWarningList(function (items) {
+        vm.warningList = items;
+        for (var i = items.length - 1; i >= 0; i--) {
+          if (!items[i].torrent) {
+            items.splice(i, 1);
+          }
+        }
       }, function (err) {
         Notification.error({
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('UPLOADED_LIST_ERROR')
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('WARNING_LIST_ERROR')
         });
       });
     };

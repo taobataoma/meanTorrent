@@ -69,9 +69,9 @@
     };
 
     /**
-     * getSeedingTorrend
+     * getSeedingTorrent
      */
-    vm.getSeedingTorrend = function () {
+    vm.getSeedingTorrent = function () {
       PeersService.getMySeedingList(function (items) {
         vm.seedingList = items;
         for (var i = items.length - 1; i >= 0; i--) {

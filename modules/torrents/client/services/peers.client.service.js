@@ -20,6 +20,11 @@
         url: '/api/my/downloading',
         isArray: true
       },
+      getMyWarningList: {
+        method: 'GET',
+        url: '/api/my/warning',
+        isArray: true
+      },
       getUserSeedingList: {
         method: 'GET',
         url: '/api/:userId/seeding',
@@ -31,6 +36,14 @@
       getUserDownloadingList: {
         method: 'GET',
         url: '/api/:userId/downloading',
+        isArray: true,
+        params: {
+          userId: '@userId'
+        }
+      },
+      getUserWarningList: {
+        method: 'GET',
+        url: '/api/:userId/warning',
         isArray: true,
         params: {
           userId: '@userId'

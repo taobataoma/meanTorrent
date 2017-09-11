@@ -1,25 +1,8 @@
-<section ng-controller="DownloadingController as vm" ng-init="vm.getDownloadingTorrent();">
+<section ng-controller="WarningController as vm" ng-init="vm.getWarningTorrent();">
     <div class="row margin-top-20">
-        <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.pagedItems">
+        <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.warningList">
 
-            <div class="pagination-div-top">
-                <div class="row">
-                    <div class="col-sm-12 col-md-9">
-                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                            ng-model="vm.currentPage"
-                            ng-change="vm.pageChanged()"
-                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                        </ul>
-                    </div>
-                    <div class="col-sm-12 col-md-3">
-                        <input class="form-control margin-top-20" type="text" ng-model="vm.search" placeholder="Search"
-                               ng-change="vm.figureOutItemsToDisplay()"/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="table-responsive">
+            <div class="table-responsive margin-top-50">
                 <table class="table table-hover tb-v-middle">
                     <thead>
                         <tr>
@@ -28,19 +11,17 @@
                             <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
                             <th class="text-center">
-                                <abbr title="{{ 'TABLE_FIELDS.ABBR_DOWNLOADED_SPEED' | translate}}" class="initialism">
-                                    {{ 'TABLE_FIELDS.DOWNLOADED_SPEED' | translate}}
+                                <abbr title="{{ 'TABLE_FIELDS.ABBR_UP_DOWN_RATIO_TIME' | translate}}" class="initialism">
+                                    {{ 'TABLE_FIELDS.UP_DOWN_RATIO_TIME' | translate}}
                                 </abbr>
                             </th>
                             <th class="text-center">
-                                <abbr title="{{ 'TABLE_FIELDS.ABBR_UPLOADED_RATIO_PERCENT' | translate}}" class="initialism">
-                                    {{ 'TABLE_FIELDS.UPLOADED_RATIO_PERCENT' | translate}}
-                                </abbr>
+                                CMD
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="torrent-list-info" ng-repeat="item in vm.pagedItems" ng-click="vm.openTorrentInfo(item.torrent._id);">
+                        <tr class="torrent-list-info" ng-repeat="item in vm.warningList" ng-click="vm.openTorrentInfo(item.torrent._id);">
                             <td class="col-md-7 td-text-overflow">
                                 <div class="media">
                                     <div class="media-left">
@@ -111,45 +92,33 @@
                                 </div>
                             </td>
                             <td class="col-md-1 td-v-middle">
-                                <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                      class="torrent-votes"><kbd>IMDB</kbd> {{item.torrent.resource_detail_info.vote_average | number : 1}}</span>
+                            <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
+                                  class="torrent-votes"><kbd>IMDB</kbd> {{item.torrent.resource_detail_info.vote_average | number : 1}}</span>
                             </td>
                             <td class="col-md-1 td-v-middle text-center">{{item.torrent.createdat | life}}</td>
                             <td class="col-md-1 td-v-middle text-center">{{item.torrent.torrent_size | bytes:2}}</td>
                             <td class="col-md-1 td-v-middle text-center list-user-info">
                                 <p class="no-margin-p">
-                                    {{item.peer_downloaded | bytes:2}}
+                                    {{item.total_uploaded | bytes:2}}
                                 </p>
 
                                 <p class="no-margin-p">
-                                    {{item.peer_dspeed | bytes:2}}/s
+                                    {{item.total_downloaded | bytes:2}}
+                                </p>
+
+                                <p class="no-margin-p">
+                                    {{item.total_ratio | ratio}}
+                                </p>
+
+                                <p class="no-margin-p">
+                                    {{item.total_seed_day}}d
                                 </p>
                             </td>
                             <td class="col-md-1 td-v-middle text-center">
-                                <p class="no-margin-p">
-                                    {{item.peer_uploaded | bytes:2}}
-                                </p>
-
-                                <p class="no-margin-p">
-                                    {{item.peer_ratio | ratio}}
-                                </p>
-
-                                <p class="no-margin-p">
-                                    {{item.peer_percent}}%
-                                </p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-
-            <div class="pagination-div-bottom">
-                <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                    ng-model="vm.currentPage"
-                    ng-change="vm.pageChanged()"
-                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                </ul>
             </div>
         </div>
     </div>
