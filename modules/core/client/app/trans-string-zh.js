@@ -79,6 +79,7 @@
       INFO: '种子信息',
       SIZE: '大小',
       SEEDS_LEECHERS_FINISHED: '上/下/完',
+      ABBR_SEEDS_LEECHERS_FINISHED: '种子用户数/下载用户数/完成用户数',
       PUBLISHER: '发布者',
       ADMIN_TOOLS: '管理工具',
       LIFETIME: '存活时间',
