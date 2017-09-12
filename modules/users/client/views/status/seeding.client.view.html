@@ -95,9 +95,9 @@
                                                     {{item.torrent.torrent_sale_status}} {{item.torrent.torrent_sale_expires | unlife}}
                                             </span>
                                             <span class="label label-se-info" ng-if="item.torrent_type == 'tvserial'"
-                                                  ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
+                                                  ng-click="$event.stopPropagation();">S{{item.torrent.torrent_seasons}}E{{item.torrent.torrent_episodes}}</span>
 
-                                            <span class="label label-hnr-info" ng-if="item.torrent_hnr"
+                                            <span class="label label-hnr-info" ng-if="item.torrent.torrent_hnr"
                                                   ng-click="$event.stopPropagation();">H&R</span>
 
                                             <span ng-repeat="t in item.torrent.torrent_tags">
