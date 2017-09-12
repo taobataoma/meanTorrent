@@ -147,6 +147,10 @@ var UserSchema = new Schema({
     type: Number,
     default: 0
   },
+  uptotal: {
+    type: Number,
+    default: 0
+  },
   seeded: {
     type: Number,
     default: 0

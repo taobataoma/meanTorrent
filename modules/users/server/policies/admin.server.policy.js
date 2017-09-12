@@ -31,13 +31,15 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/users/:userId/downloaded', permissions: '*'},
           {resources: '/api/users/:userId/seeding', permissions: '*'},
           {resources: '/api/users/:userId/leeching', permissions: '*'},
-          {resources: '/api/users/:userId/warning', permissions: '*'}
+          {resources: '/api/users/:userId/warning', permissions: '*'},
+          {resources: '/api/users/:userId/uptotal', permissions: '*'}
         ]
       },
       {
         roles: ['user'],
         allows: [
-          {resources: '/api/users/:userId', permissions: ['get']}
+          {resources: '/api/users/:userId', permissions: ['get']},
+          {resources: '/api/users/:userId/uptotal', permissions: ['get']}
         ]
       }
     ]

@@ -137,6 +137,13 @@
           userId: '@userId',
           userDownloaded: '@userDownloaded'
         }
+      },
+      getUserUploadedTotal: {
+        method: 'GET',
+        url: '/api/users/:userId/uptotal',
+        params: {
+          userId: '@userId'
+        }
       }
     });
 
@@ -155,6 +162,9 @@
       },
       setUserDownloaded: function (params) {
         return this.updateUserDownloaded(params).$promise;
+      },
+      countUserUploaded: function (params) {
+        return this.getUserUploadedTotal(params).$promise;
       }
     });
 

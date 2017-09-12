@@ -388,6 +388,11 @@ exports.create = function (req, res) {
 
           scoreUpdate(req, req.user, scoreConfig.action.uploadTorrent);
 
+          //update user uptotal fields
+          req.user.update({
+            $inc: {uptotal: 1}
+          }).exec();
+
           //scrape torrent status info in public cms mode
           if (!config.meanTorrentConfig.announce.privateTorrentCmsMode && config.meanTorrentConfig.scrapeTorrentStatus.onTorrentUpload) {
             scrape.doScrape(torrent);
@@ -754,6 +759,11 @@ exports.delete = function (req, res) {
   Subtitle.remove({
     torrent: torrent._id
   });
+
+  //update user uptotal fields
+  torrent.user.update({
+    $inc: {uptotal: -1}
+  }).exec();
 
   //remove the complete data and update user`s warning number if the torrent has H&R prop
   removeTorrentHnRWarning(torrent._id);

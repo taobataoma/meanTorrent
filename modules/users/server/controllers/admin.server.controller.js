@@ -8,6 +8,7 @@ var path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Peer = mongoose.model('Peer'),
+  Torrent = mongoose.model('Torrent'),
   Complete = mongoose.model('Complete'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
@@ -313,6 +314,27 @@ exports.getUserWarning = function (req, res) {
       });
     } else {
       res.json(complets);
+    }
+  });
+};
+
+/**
+ * getUserUploadedTotal
+ * @param req
+ * @param res
+ */
+exports.getUserUploadedTotal = function (req, res) {
+  Torrent.count({
+    user: req.user._id
+  }, function (err, count) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json({
+        total: count
+      });
     }
   });
 };
