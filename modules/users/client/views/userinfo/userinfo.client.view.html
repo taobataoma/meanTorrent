@@ -116,6 +116,9 @@
                 <div ng-if="vm.announce.privateTorrentCmsMode">
                     <li class="status-divider"></li>
 
+                    <dt class="h-line">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.uptotal }}</dd>
+
                     <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
                     <dd class="h-line">{{ vm.user.seeded }}</dd>
 
