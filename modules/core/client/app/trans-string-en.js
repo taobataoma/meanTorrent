@@ -449,6 +449,7 @@
       DOWNLOADED: 'Total downloaded',
       RATIO: 'Total ratio',
       SCORE: 'Total score',
+      UPTOTAL: 'Uploaded torrents',
       SEEDED: 'Torrents seeded',
       LEECHED: 'Torrents leeched',
       FINISHED: 'Torrents finished',

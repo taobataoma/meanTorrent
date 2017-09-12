@@ -427,6 +427,7 @@
     STATUS_WARNING: '正被警告的种子',
     UPLOADED_LIST_ERROR: '获取我上传的种子列表失败',
     SEEDING_LIST_ERROR: '获取我正做种的列表失败',
+    WARNING_LIST_ERROR: '获取正被警告种子列表失败',
     DOWNLOADING_LIST_ERROR: '获取我正下载的列表失败',
     STATUS_FIELD: {
       PICTURE: '头像',
@@ -448,6 +449,7 @@
       DOWNLOADED: '总下载量',
       RATIO: '总分享率',
       SCORE: '总积分',
+      UPTOTAL: '发布种子',
       SEEDED: '正在做种',
       LEECHED: '正在下载',
       FINISHED: '下载完成',
