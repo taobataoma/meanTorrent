@@ -6,16 +6,17 @@
     .controller('WarningController', WarningController);
 
   WarningController.$inject = ['$rootScope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'PeersService', 'CompleteService',
-    'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'NotifycationService', 'ModalConfirmService'];
+    'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'NotifycationService', 'ModalConfirmService', 'getStorageLangService'];
 
   function WarningController($rootScope, $state, $translate, $timeout, Authentication, Notification, PeersService, CompleteService, MeanTorrentConfig,
-                             $window, $filter, DownloadService, NotifycationService, ModalConfirmService) {
+                             $window, $filter, DownloadService, NotifycationService, ModalConfirmService, getStorageLangService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+    vm.lang = getStorageLangService.getLang();
 
     vm.searchTags = [];
 
@@ -118,7 +119,7 @@
 
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
-          if (vm.user.score >= vm.hnrConfig.scoreToRemoveWarning) {
+          if (vm.user.score < vm.hnrConfig.scoreToRemoveWarning) {
             CompleteService.update({
               completeId: comp._id
             }, function (response) {
