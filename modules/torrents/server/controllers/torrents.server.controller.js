@@ -647,7 +647,7 @@ exports.setRecommendLevel = function (req, res) {
       } else {
         res.json(torrent);
 
-        scoreUpdate(req, req.user, scoreConfig.action.uploadTorrentBeRecommend);
+        scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrentBeRecommend);
         //create trace log
         traceLogCreate(req, traceConfig.action.AdminTorrentSetRecommendLevel, {
           torrent: torrent._id,
@@ -779,7 +779,7 @@ exports.delete = function (req, res) {
     } else {
       res.json(torrent);
 
-      scoreUpdate(req, req.user, scoreConfig.action.uploadTorrentBeDeleted);
+      scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrentBeDeleted);
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminTorrentDelete, {
         torrent: torrent._id

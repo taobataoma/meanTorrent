@@ -508,7 +508,7 @@ exports.announce = function (req, res) {
             var unitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
             var upScore = Math.round((curru / action.perlSize) * 100) / 100;
             var score = unitScore * action.value * upScore;
-            scoreUpdate(req, req.user, action, score);
+            scoreUpdate(req, req.passkeyuser, action, score);
           }
         }
       }

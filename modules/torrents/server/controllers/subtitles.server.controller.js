@@ -133,7 +133,7 @@ exports.delete = function (req, res) {
       r.remove();
       res.json(torrent);
 
-      scoreUpdate(req, req.user, scoreConfig.action.uploadSubtitleBeDeleted);
+      scoreUpdate(req, torrent.user, scoreConfig.action.uploadSubtitleBeDeleted);
     }
   });
 };
