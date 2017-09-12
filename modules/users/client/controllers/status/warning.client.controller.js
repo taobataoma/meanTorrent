@@ -119,7 +119,7 @@
 
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
-          if (vm.user.score < vm.hnrConfig.scoreToRemoveWarning) {
+          if (vm.user.score >= vm.hnrConfig.scoreToRemoveWarning) {
             CompleteService.update({
               completeId: comp._id
             }, function (response) {
