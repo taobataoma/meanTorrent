@@ -485,6 +485,8 @@
     REMOVE_WARNING_SUCCESSFULLY: 'Remove warning successfully',
     REMOVE_WARNING_ERROR: 'Remove warning failed',
     REMOVE_WARNING_NO_ENOUGH_SCORE: 'ERROR: no enough score!',
+    WARNING_TOOLTIP: 'You have <strong>{{wnumber}}</strong> H&R warnings, please deal with it immediately, ',
+    WARNING_DETAIL_LINK: 'detail is here',
 
     //user score
     SCORE: {

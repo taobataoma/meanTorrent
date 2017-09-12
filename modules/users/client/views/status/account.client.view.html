@@ -1,6 +1,11 @@
 <section ng-controller="StatusController as vm">
     <div class="row margin-top-30 margin-bottom-30">
         <div class="col-md-10 col-md-offset-1">
+            <div class="alert alert-warning text-center" role="alert" ng-if="vm.user.hnr_warning>0">
+                <span translate="WARNING_TOOLTIP" translate-values="{wnumber: vm.user.hnr_warning}"></span>
+                <a ui-sref="status.warning">{{'WARNING_DETAIL_LINK' | translate}}</a>
+            </div>
+
             <dl class="dl-horizontal">
                 <dt class="h-line">{{ 'STATUS_FIELD.PICTURE' | translate}}：</dt>
                 <dd class="h-line">
@@ -107,7 +112,7 @@
 
                     <dt class="h-line">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：</dt>
                     <dd class="h-line">{{ vm.user.uptotal }} <a ui-sref="status.uploaded"
-                                                               ng-if="vm.user.uptotal>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+                                                                ng-if="vm.user.uptotal>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
 
                     <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
                     <dd class="h-line">{{ vm.user.seeded }} <a ui-sref="status.seeding"

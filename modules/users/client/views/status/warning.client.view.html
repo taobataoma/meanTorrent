@@ -1,8 +1,8 @@
 <section ng-controller="WarningController as vm" ng-init="vm.getWarningTorrent();">
     <div class="row margin-top-20">
         <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.warningList">
-            <div class="row margin-top-10 bg-danger">
-                <div class="col-sm-10 col-sm-offset-1">
+            <div class="margin-top-10">
+                <div class="alert alert-warning" role="alert" style="padding: 10px 50px;">
                     <div marked src="'/modules/users/client/templates/status-hnr-warning-'+vm.lang+'.md'" compile="true">
                     </div>
                 </div>
@@ -121,7 +121,9 @@
                                 </p>
                             </td>
                             <td class="col-md-1 td-v-middle text-center">
-                                <button class="btn btn-default btn-sm" ng-click="vm.removeWarning(item); $event.stopPropagation();">{{'BTN_REMOVE_WARNING' | translate}}</button>
+                                <button class="btn btn-default btn-sm"
+                                        ng-click="vm.removeWarning(item); $event.stopPropagation();">{{'BTN_REMOVE_WARNING' | translate}}
+                                </button>
                             </td>
                         </tr>
                     </tbody>

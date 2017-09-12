@@ -485,6 +485,8 @@
     REMOVE_WARNING_SUCCESSFULLY: '警告移除成功',
     REMOVE_WARNING_ERROR: '警告移除失败',
     REMOVE_WARNING_NO_ENOUGH_SCORE: '错误: 积分不足!',
+    WARNING_TOOLTIP: '您有 {{wnumber}} 个 H&R 警告, 请立即处理, ',
+    WARNING_DETAIL_LINK: '查看详情',
 
     //user score
     SCORE: {
