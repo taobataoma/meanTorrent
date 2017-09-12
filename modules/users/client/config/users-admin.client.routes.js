@@ -78,6 +78,18 @@
         data: {
           pageTitle: 'PAGETITLE.ADMIN_USER_WARNING'
         }
+      })
+      .state('admin.user-uplist', {
+        url: '/users/:userId/uplist',
+        templateUrl: '/modules/users/client/views/admin/user-uplist.client.view.html',
+        controller: 'UserController',
+        controllerAs: 'vm',
+        resolve: {
+          userResolve: getUser
+        },
+        data: {
+          pageTitle: 'PAGETITLE.ADMIN_USER_UPLIST'
+        }
       });
 
     getUser.$inject = ['$stateParams', 'AdminService'];

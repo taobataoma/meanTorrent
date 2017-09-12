@@ -6,10 +6,10 @@
     .controller('UserController', UserController);
 
   UserController.$inject = ['$scope', '$state', '$window', 'Authentication', 'userResolve', 'Notification', 'NotifycationService', 'MeanTorrentConfig',
-    'AdminService', 'ScoreLevelService', 'PeersService', 'DownloadService', '$translate'];
+    'AdminService', 'ScoreLevelService', 'PeersService', 'DownloadService', '$translate', 'TorrentsService'];
 
   function UserController($scope, $state, $window, Authentication, user, Notification, NotifycationService, MeanTorrentConfig, AdminService,
-                          ScoreLevelService, PeersService, DownloadService, $translate) {
+                          ScoreLevelService, PeersService, DownloadService, $translate, TorrentsService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -24,6 +24,8 @@
     vm.messageTo = messageTo;
     vm.isContextUserSelf = isContextUserSelf;
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
+
+    vm.searchTags = [];
 
     vm.setUserScorePopover = {
       title: 'SCORE_TITLE',
@@ -299,6 +301,24 @@
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('WARNING_LIST_ERROR')
         });
       });
+    };
+
+    /**
+     * getUserUploadedTorrent
+     */
+    vm.getUserUploadedTorrent = function () {
+      TorrentsService.get({
+        userid: vm.user._id,
+        torrent_type: 'all',
+        torrent_status: 'all'
+      }, function (items) {
+        vm.UserUploadedList = items.rows;
+      }, function (err) {
+        Notification.error({
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('UPLOADED_LIST_ERROR')
+        });
+      });
+
     };
 
     /**

@@ -136,6 +136,7 @@
       ADMIN_USER_SEEDING: '用户正在做种',
       ADMIN_USER_LEECHING: '用户正在下载',
       ADMIN_USER_WARNING: '用户正被警告',
+      ADMIN_USER_UPLIST: '用户上传的种子',
       USER_INFO: '用户信息',
       ADMIN_ANNOUNCE_EDIT: '种子修改',
       ADMIN_TORRENTS_LIST: '种子管理',

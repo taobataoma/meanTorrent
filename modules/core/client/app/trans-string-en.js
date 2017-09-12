@@ -136,6 +136,7 @@
       ADMIN_USER_SEEDING: 'User Seeding',
       ADMIN_USER_LEECHING: 'User Leeching',
       ADMIN_USER_WARNING: 'User Warning',
+      ADMIN_USER_UPLIST: 'User uploaded list',
       USER_INFO: 'User Info',
       ADMIN_TORRENTS_LIST: 'Torrents List',
       ADMIN_ANNOUNCE_EDIT: 'Announce Edit',
