@@ -78,6 +78,7 @@
         torrent_status: 'all'
       }, function (items) {
         vm.uploadedList = items.rows;
+        console.log(items);
         vm.buildPager();
       }, function (err) {
         Notification.error({
