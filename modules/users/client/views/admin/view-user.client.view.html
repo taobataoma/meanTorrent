@@ -177,6 +177,9 @@
                 <li class="status-divider"></li>
 
                 <div ng-if="vm.announce.privateTorrentCmsMode">
+                    <dt class="h-line">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.uptotal }} <a ui-sref="admin.user-uplist({userId: vm.user._id})"
+                                                               ng-if="vm.user.uptotal>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
                     <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
                     <dd class="h-line">{{ vm.user.seeded }} <a ui-sref="admin.user-seeding({userId: vm.user._id})"
                                                                ng-if="vm.user.seeded>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
