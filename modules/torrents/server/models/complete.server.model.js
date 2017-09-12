@@ -57,6 +57,10 @@ var CompleteSchema = new Schema({
     type: Date,
     default: ''
   },
+  remove_by: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -109,7 +113,7 @@ function countSeedDay(t) {
  */
 CompleteSchema.methods.countHnRWarning = function (u) {
   if (this.complete) {
-    if (this.total_seed_time >= hnrConfig.condition.seedTime || this.total_downloaded === 0 || this.total_ratio >= hnrConfig.condition.ratio) {
+    if (u.isVip || this.total_seed_time >= hnrConfig.condition.seedTime || this.total_downloaded === 0 || this.total_ratio >= hnrConfig.condition.ratio) {
       if (this.hnr_warning) {
         this.update({
           $set: {hnr_warning: false}
@@ -121,7 +125,7 @@ CompleteSchema.methods.countHnRWarning = function (u) {
         }).exec();
       }
     } else {
-      if (!this.hnr_warning) {
+      if (!this.hnr_warning && !this.remove_by) {
         this.update({
           $set: {hnr_warning: true}
         }).exec();

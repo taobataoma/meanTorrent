@@ -50,6 +50,14 @@ exports.list = function (req, res) {
         path: 'content.forum',
         model: 'Forum'
       })
+      .populate({
+        path: 'content.torrent',
+        model: 'Torrent'
+      })
+      .populate({
+        path: 'content.complete',
+        model: 'Complete'
+      })
       .skip(skip)
       .limit(limit)
       .exec(function (err, traces) {

@@ -426,6 +426,7 @@
     STATUS_SEEDING: '正在做种的种子',
     STATUS_DOWNLOADING: '正在下载的种子',
     STATUS_WARNING: '正被警告的种子',
+    BTN_REMOVE_WARNING: '移除警告',
     UPLOADED_LIST_ERROR: '获取我上传的种子列表失败',
     SEEDING_LIST_ERROR: '获取我正做种的列表失败',
     WARNING_LIST_ERROR: '获取正被警告种子列表失败',
@@ -474,6 +475,16 @@
       NEW: '未审核',
       REVIEWED: '已审核'
     },
+
+    //user status warning list
+    REMOVE_WARNING_CONFIRM_OK: '移除警告',
+    REMOVE_WARNING_CONFIRM_CANCEL: '取消',
+    REMOVE_WARNING_CONFIRM_HEADER_TEXT: '移除确认',
+    REMOVE_WARNING_CONFIRM_BODY_TEXT: '您确定愿意使用 {{score}} 积分来移除这个 H&R 警告?',
+    REMOVE_WARNING_CONFIRM_BODY_TEXT_ADMIN: '您确定要移除这个 H&R 警告?',
+    REMOVE_WARNING_SUCCESSFULLY: '警告移除成功',
+    REMOVE_WARNING_ERROR: '警告移除失败',
+    REMOVE_WARNING_NO_ENOUGH_SCORE: '错误: 积分不足!',
 
     //user score
     SCORE: {

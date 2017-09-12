@@ -209,6 +209,8 @@ module.exports = {
         AdminTorrentSetReviewedStatus: {name: 'AdminTorrentSetReviewedStatus', enable: true},
 
         userInvitationExchange: {name: 'userInvitationExchange', enable: true},
+        adminRemoveHnrWarning: {name: 'adminRemoveHnrWarning', enable: true},
+        userRemoveHnrWarning: {name: 'userRemoveHnrWarning', enable: true},
 
         userAnnounceData: {name: 'userAnnounceData', enable: true},
         userScoreChange: {name: 'userScoreChange', enable: true},

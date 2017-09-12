@@ -426,6 +426,7 @@
     STATUS_SEEDING: 'Seeding torrents',
     STATUS_DOWNLOADING: 'Downloading torrents',
     STATUS_WARNING: 'Warning torrents',
+    BTN_REMOVE_WARNING: 'Remove',
     UPLOADED_LIST_ERROR: 'Get uploaded list info failed',
     SEEDING_LIST_ERROR: 'Get seeding list info failed',
     WARNING_LIST_ERROR: 'Get warning list info failed',
@@ -474,6 +475,16 @@
       NEW: 'New',
       REVIEWED: 'Reviewed'
     },
+
+    //user status warning list
+    REMOVE_WARNING_CONFIRM_OK: 'Remove Warning',
+    REMOVE_WARNING_CONFIRM_CANCEL: 'Cancel',
+    REMOVE_WARNING_CONFIRM_HEADER_TEXT: 'Remove Confirm',
+    REMOVE_WARNING_CONFIRM_BODY_TEXT: 'Are you sure want to remove this H&R warning with {{score}} scores?',
+    REMOVE_WARNING_CONFIRM_BODY_TEXT_ADMIN: 'Are you sure want to remove this H&R warning?',
+    REMOVE_WARNING_SUCCESSFULLY: 'Remove warning successfully',
+    REMOVE_WARNING_ERROR: 'Remove warning failed',
+    REMOVE_WARNING_NO_ENOUGH_SCORE: 'ERROR: no enough score!',
 
     //user score
     SCORE: {

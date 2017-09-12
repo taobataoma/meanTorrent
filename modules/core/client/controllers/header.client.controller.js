@@ -43,6 +43,13 @@
     });
 
     /**
+     * user-hnr-warnings-changed
+     */
+    $scope.$on('user-hnr-warnings-changed', function (event, args) {
+      vm.getWarning();
+    });
+
+    /**
      * user-unread-count-changed
      */
     $scope.$on('user-unread-count-changed', function (event, args) {

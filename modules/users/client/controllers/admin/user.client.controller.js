@@ -6,10 +6,10 @@
     .controller('UserController', UserController);
 
   UserController.$inject = ['$scope', '$state', '$window', 'Authentication', 'userResolve', 'Notification', 'NotifycationService', 'MeanTorrentConfig',
-    'AdminService', 'ScoreLevelService', 'PeersService', 'DownloadService', '$translate', 'TorrentsService'];
+    'AdminService', 'ScoreLevelService', 'PeersService', 'DownloadService', '$translate', 'TorrentsService', 'ModalConfirmService', 'CompleteService'];
 
   function UserController($scope, $state, $window, Authentication, user, Notification, NotifycationService, MeanTorrentConfig, AdminService,
-                          ScoreLevelService, PeersService, DownloadService, $translate, TorrentsService) {
+                          ScoreLevelService, PeersService, DownloadService, $translate, TorrentsService, ModalConfirmService, CompleteService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -18,6 +18,7 @@
     vm.userRolesConfig = MeanTorrentConfig.meanTorrentConfig.userRoles;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.remove = remove;
     vm.update = update;
@@ -378,6 +379,45 @@
     vm.openTorrentInfo = function (id) {
       var url = $state.href('torrents.view', {torrentId: id});
       $window.open(url, '_blank');
+    };
+
+    /**
+     * removeWarning
+     * @param comp
+     */
+    vm.removeWarning = function (comp) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('REMOVE_WARNING_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('REMOVE_WARNING_CONFIRM_OK'),
+        headerText: $translate.instant('REMOVE_WARNING_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('REMOVE_WARNING_CONFIRM_BODY_TEXT_ADMIN')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          if (vm.user.score >= vm.hnrConfig.scoreToRemoveWarning) {
+            CompleteService.update({
+              completeId: comp._id
+            }, function (response) {
+              successCallback(response);
+            }, function (errorResponse) {
+              errorCallback(errorResponse);
+            });
+
+          } else {
+            NotifycationService.showErrorNotify($translate.instant('REMOVE_WARNING_NO_ENOUGH_SCORE'), 'REMOVE_WARNING_ERROR');
+          }
+
+          function successCallback(res) {
+            vm.UserWarningList.splice(vm.UserWarningList.indexOf(comp), 1);
+            NotifycationService.showSuccessNotify('REMOVE_WARNING_SUCCESSFULLY');
+          }
+
+          function errorCallback(res) {
+            NotifycationService.showErrorNotify(res.data.message, 'REMOVE_WARNING_ERROR');
+          }
+        });
+
     };
   }
 }());
