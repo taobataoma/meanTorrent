@@ -16,6 +16,7 @@ var path = require('path'),
   scoreUpdate = require(path.resolve('./config/lib/score')).update;
 
 var scoreConfig = config.meanTorrentConfig.score;
+var mtDebug = require(path.resolve('./config/lib/debug'));
 
 /**
  * create a subtitle of torrent
@@ -100,7 +101,7 @@ exports.create = function (req, res) {
     return new Promise(function (resolve, reject) {
       upload(req, res, function (uploadError) {
         if (uploadError) {
-          console.log(uploadError);
+          mtDebug.debugRed(uploadError);
           var message = errorHandler.getErrorMessage(uploadError);
 
           if (uploadError.code === 'LIMIT_FILE_SIZE') {

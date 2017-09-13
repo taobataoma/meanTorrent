@@ -14,6 +14,7 @@ var _ = require('lodash'),
   validator = require('validator');
 
 var whitelistedFields = ['firstName', 'lastName', 'email', 'username'];
+var mtDebug = require(path.resolve('./config/lib/debug'));
 
 /**
  * Update user details
@@ -114,7 +115,7 @@ exports.changeProfilePicture = function (req, res) {
 
             // If file didn't exist, no need to reject promise
             if (unlinkError.code === 'ENOENT') {
-              console.log('Removing profile image failed because file did not exist.');
+              mtDebug.debugRed('Removing profile image failed because file did not exist.');
               return resolve();
             }
 

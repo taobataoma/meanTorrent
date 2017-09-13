@@ -21,6 +21,8 @@ var path = require('path'),
 var traceConfig = config.meanTorrentConfig.trace;
 var thumbsUpScore = config.meanTorrentConfig.score.thumbsUpScore;
 
+var mtDebug = require(path.resolve('./config/lib/debug'));
+
 /**
  * list forums
  * @param req
@@ -313,7 +315,7 @@ exports.postNewTopic = function (req, res) {
     var newPath = config.uploads.attach.file.dest + f.filename;
     move(oldPath, newPath, function (err) {
       if (err) {
-        console.log(err);
+        mtDebug.debugRed(err);
       }
     });
   });
@@ -322,7 +324,7 @@ exports.postNewTopic = function (req, res) {
     var newPath = config.uploads.attach.file.dest + f.filename;
     move(oldPath, newPath, function (err) {
       if (err) {
-        console.log(err);
+        mtDebug.debugRed(err);
       }
     });
   });
@@ -682,7 +684,7 @@ exports.postNewReply = function (req, res) {
     var newPath = config.uploads.attach.file.dest + f.filename;
     move(oldPath, newPath, function (err) {
       if (err) {
-        console.log(err);
+        mtDebug.debugRed(err);
       }
     });
   });
@@ -691,7 +693,7 @@ exports.postNewReply = function (req, res) {
     var newPath = config.uploads.attach.file.dest + f.filename;
     move(oldPath, newPath, function (err) {
       if (err) {
-        console.log(err);
+        mtDebug.debugRed(err);
       }
     });
   });
@@ -830,13 +832,13 @@ exports.attachUpload = function (req, res) {
       })
       .catch(function (err) {
         res.status(422).send(err);
-        console.log(err);
+        mtDebug.debugRed(err);
 
         if (req.file && req.file.filename) {
           var newfile = config.uploads.attach.file.temp + req.file.filename;
           if (fs.existsSync(newfile)) {
-            console.log(err);
-            console.log('ERROR: DELETE TEMP ATTACH FILE: ' + newfile);
+            mtDebug.debugRed(err);
+            mtDebug.debugRed('ERROR: DELETE TEMP ATTACH FILE: ' + newfile);
             fs.unlinkSync(newfile);
           }
         }

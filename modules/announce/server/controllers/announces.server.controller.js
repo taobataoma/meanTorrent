@@ -23,6 +23,8 @@ var traceConfig = config.meanTorrentConfig.trace;
 var scoreConfig = config.meanTorrentConfig.score;
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
 
+var mtDebug = require(path.resolve('./config/lib/debug'));
+
 const FAILURE_REASONS = {
   100: 'Invalid request type: client request was not a HTTP GET',
   101: 'Missing info_hash',
@@ -134,8 +136,8 @@ exports.announce = function (req, res) {
   req.selfpeer = [];
   req.seeder = false;
 
-  console.log('------------ Announce request ----------------');
-  //console.log(req.url);
+  mtDebug.debugGreen('------------ Announce request ----------------');
+  //mtDebug.debugGreen(req.url);
 
   var s = req.url.split('?');
   var query = common.querystringParse(s[1]);
@@ -356,7 +358,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (event(query.event) === EVENT_STARTED) {
-        console.log('---------------EVENT_STARTED----------------');
+        mtDebug.debugGreen('---------------EVENT_STARTED----------------');
 
         if (getSelfLeecherCount() >= 1 && !req.seeder) {
           done(180);
@@ -382,7 +384,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (event(query.event) === EVENT_STOPPED) {
-        console.log('---------------EVENT_STOPPED----------------');
+        mtDebug.debugGreen('---------------EVENT_STOPPED----------------');
 
         if (req.currentPeer !== undefined) {
           req.selfpeer.splice(req.selfpeer.indexOf(req.currentPeer), 1);
@@ -400,7 +402,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (event(query.event) === EVENT_COMPLETED) {
-        console.log('---------------EVENT_COMPLETED----------------');
+        mtDebug.debugGreen('---------------EVENT_COMPLETED----------------');
 
         if (req.currentPeer === undefined) {
           createCurrentPeer();
@@ -436,7 +438,7 @@ exports.announce = function (req, res) {
      write time of seed(complete) whether or not u/d is 0
      ---------------------------------------------------------------*/
     function (done) {
-      console.log('---------------WRITE_UP_DOWN_DATA----------------');
+      mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA----------------');
 
       var udr = getUDRatio();
 
@@ -539,7 +541,7 @@ exports.announce = function (req, res) {
       peerBuffer = peerBuffer.slice(0, len);
 
       var resp = 'd8:intervali' + ANNOUNCE_INTERVAL + 'e8:completei' + req.torrent.torrent_seeds + 'e10:incompletei' + req.torrent.torrent_leechers + 'e10:downloadedi' + req.torrent.torrent_finished + 'e5:peers' + len + ':';
-      console.log(resp);
+      mtDebug.debugGreen(resp);
 
       res.writeHead(200, {
         'Content-Length': resp.length + peerBuffer.length + 1,
@@ -612,7 +614,7 @@ exports.announce = function (req, res) {
     req.passkeyuser.addClientAgent(peer.user_agent);
 
     req.currentPeer = peer;
-    console.log('---------------createCurrentPeer()----------------');
+    mtDebug.debugGreen('---------------createCurrentPeer()----------------');
   }
 
   /**
@@ -642,7 +644,7 @@ exports.announce = function (req, res) {
     }).exec();
 
     p.remove();
-    console.log('---------------removePeer()----------------');
+    mtDebug.debugGreen('---------------removePeer()----------------');
   }
 
   /**
@@ -763,7 +765,7 @@ exports.announce = function (req, res) {
    */
   function sendError(failure) {
     var respc = failure.bencode();
-    console.log(respc);
+    mtDebug.debugGreen(respc);
     res.writeHead(500, {
       'Content-Length': respc.length,
       'Content-Type': 'text/plain'

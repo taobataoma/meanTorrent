@@ -26,8 +26,6 @@ exports.removeWarning = function (req, res) {
   var comp = req.complate;
   var user = req.user ? req.user.toJSON() : {}; //fill isVip, isAdmin, isOper in toJSON()
 
-  //console.log(user);
-
   if (user.isOper) {
     comp.hnr_warning = false;
     comp.remove_warning_at = Date.now();

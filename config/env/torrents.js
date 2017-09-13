@@ -10,11 +10,13 @@ module.exports = {
      * @domain:                 site domain
      * @showDemoWarningPopup:   if is demo site, show warning popup whene home is opened for the first time.
      * @cronTimeZone:           timezone of cron
+     * @showDebugLog:           if true, will console.log all debug info at server side and client side.
      */
     app: {
       domain: 'http://chd.im:3000',
       showDemoWarningPopup: true,
-      cronTimeZone: 'Asia/Shanghai'
+      cronTimeZone: 'Asia/Shanghai',
+      showDebugLog: true
     },
 
     /**

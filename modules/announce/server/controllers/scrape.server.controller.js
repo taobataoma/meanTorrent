@@ -11,6 +11,7 @@ var path = require('path'),
   common = require(path.resolve('./config/lib/common')),
   url = require('url');
 
+var mtDebug = require(path.resolve('./config/lib/debug'));
 
 const FAILURE_REASONS = {
   900: 'Generic error',
@@ -51,13 +52,13 @@ Failure.prototype = {
 exports.scrape = function (req, res) {
   var info_hash = [];
 
-  console.log('------------ Scrape request ----------------');
-  console.log(req.url);
+  mtDebug.debugGreen('------------ Scrape request ----------------');
+  mtDebug.debugGreen(req.url);
 
   //var s = req.url.split('?');
   //var query = common.querystringParse(s[1]);
   var query = req.query;
-  console.log('query.info_hash = ' + unescape(query.info_hash));
+  mtDebug.debugGreen('query.info_hash = ' + unescape(query.info_hash));
 
   if (Array.isArray(query.info_hash)) {
     query.info_hash.forEach(function (item) {
@@ -67,7 +68,7 @@ exports.scrape = function (req, res) {
     info_hash.push(common.binaryToHex(unescape(query.info_hash)));
   }
 
-  console.log(info_hash);
+  mtDebug.debugGreen(info_hash);
 
   //select all torrents with info_hash
   Torrent.find({
@@ -89,7 +90,7 @@ exports.scrape = function (req, res) {
       });
       resStr += 'ee';
 
-      //console.log('resStr = ' + resStr);
+      //mtDebug.debugGreen('resStr = ' + resStr);
 
       res.writeHead(200, {
         'Content-Length': resStr.length,
@@ -106,7 +107,7 @@ exports.scrape = function (req, res) {
    */
   function sendError(failure) {
     var respc = failure.bencode();
-    console.log(respc);
+    mtDebug.debugGreen(respc);
     res.writeHead(500, {
       'Content-Length': respc.length,
       'Content-Type': 'text/plain'

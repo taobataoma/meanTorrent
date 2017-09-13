@@ -21,7 +21,7 @@ module.exports = function (io, socket) {
       us.push(socket.request.user);
     });
 
-    //console.log(us);
+    //mtDebug.debugGreen(us);
     return us;
   }
 

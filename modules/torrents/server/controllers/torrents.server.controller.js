@@ -33,6 +33,8 @@ var thumbsUpScore = config.meanTorrentConfig.score.thumbsUpScore;
 var ircConfig = config.meanTorrentConfig.ircAnnounce;
 var vsprintf = require('sprintf-js').vsprintf;
 
+var mtDebug = require(path.resolve('./config/lib/debug'));
+
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
 
@@ -40,8 +42,8 @@ const PEERSTATE_LEECHER = 'leecher';
  * get movie info from tmdb
  */
 exports.movieinfo = function (req, res) {
-  console.log('------- API: movieinfo --------------------');
-  console.log(req.params);
+  mtDebug.debugGreen('------- API: movieinfo --------------------');
+  mtDebug.debugGreen(req.params);
 
   tmdb.movieInfo({
     id: req.params.tmdbid,
@@ -61,8 +63,8 @@ exports.movieinfo = function (req, res) {
  * get tv info from tmdb
  */
 exports.tvinfo = function (req, res) {
-  console.log('------- API: tvinfo --------------------');
-  console.log(req.params);
+  mtDebug.debugGreen('------- API: tvinfo --------------------');
+  mtDebug.debugGreen(req.params);
 
   tmdb.tvInfo({
     id: req.params.tmdbid,
@@ -114,8 +116,8 @@ exports.upload = function (req, res) {
         if (req.file && req.file.filename) {
           var newfile = config.uploads.torrent.file.temp + req.file.filename;
           if (fs.existsSync(newfile)) {
-            console.log(err);
-            console.log('ERROR: DELETE TEMP TORRENT FILE: ' + newfile);
+            mtDebug.debugRed(err);
+            mtDebug.debugRed('ERROR: DELETE TEMP TORRENT FILE: ' + newfile);
             fs.unlinkSync(newfile);
           }
         }
@@ -146,7 +148,7 @@ exports.upload = function (req, res) {
 
   function checkAnnounce() {
     return new Promise(function (resolve, reject) {
-      console.log(req.file.filename);
+      mtDebug.debugGreen(req.file.filename);
       var newfile = config.uploads.torrent.file.temp + req.file.filename;
       nt.read(newfile, function (err, torrent) {
         var message = '';
@@ -157,7 +159,7 @@ exports.upload = function (req, res) {
         } else {
           if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
             if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
-              console.log(torrent.metadata.announce);
+              mtDebug.debugGreen(torrent.metadata.announce);
               message = 'ANNOUNCE_URL_ERROR';
 
               reject(message);
@@ -256,8 +258,8 @@ exports.announceEdit = function (req, res) {
         if (req.file && req.file.filename) {
           var newfile = config.uploads.torrent.file.temp + req.file.filename;
           if (fs.existsSync(newfile)) {
-            console.log(err);
-            console.log('ERROR: DELETE TEMP TORRENT FILE: ' + newfile);
+            mtDebug.debugRed(err);
+            mtDebug.debugRed('ERROR: DELETE TEMP TORRENT FILE: ' + newfile);
             fs.unlinkSync(newfile);
           }
         }
@@ -327,7 +329,7 @@ exports.download = function (req, res) {
           res.send(benc.encode(torrent_data));
         })
         .catch(function (err) {
-          console.log(err);
+          mtDebug.debugRed(err);
           res.status(422).send(err);
         });
     } else {
@@ -367,7 +369,7 @@ exports.create = function (req, res) {
   var torrent = new Torrent(req.body);
   torrent.user = req.user;
 
-  //console.log(torrent);
+  //mtDebug.debugGreen(torrent);
 
   //move temp torrent file to dest directory
   var oldPath = config.uploads.torrent.file.temp + req.body.torrent_filename;
@@ -891,7 +893,7 @@ exports.list = function (req, res) {
     condition.user = userid;
   }
 
-  console.log(JSON.stringify(condition));
+  mtDebug.debugGreen(JSON.stringify(condition));
 
   if (newest) {
     sort = '-createdat';
@@ -1089,7 +1091,7 @@ exports.torrentByID = function (req, res, next, id) {
       'resource_detail_info.id': torrent.resource_detail_info.id
     };
 
-    console.log(condition);
+    mtDebug.debugGreen(condition);
 
     var fields = 'user torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_seasons torrent_episodes torrent_size torrent_sale_status torrent_type torrent_hnr torrent_sale_expires createdat';
 

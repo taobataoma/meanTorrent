@@ -13,6 +13,8 @@ var path = require('path'),
   Comment = mongoose.model('Comment'),
   async = require('async');
 
+var mtDebug = require(path.resolve('./config/lib/debug'));
+
 /**
  * create a comment of torrent
  * @param req
@@ -68,7 +70,6 @@ exports.update = function (req, res) {
             message: errorHandler.getErrorMessage(err)
           });
         } else {
-          //console.log('numAffected: ' + numAffected);
           res.json(torrent);
         }
       });
@@ -164,7 +165,6 @@ exports.SubUpdate = function (req, res) {
                 message: errorHandler.getErrorMessage(err)
               });
             } else {
-              //console.log('numAffected: ' + numAffected);
               res.json(torrent);
             }
           });
@@ -186,7 +186,7 @@ exports.SubDelete = function (req, res) {
     if (r._id.equals(req.params.commentId)) {
       r._replies.forEach(function (s) {
         if (s._id.equals(req.params.subCommentId)) {
-          console.log(r._id + '-' + s._id);
+          mtDebug.debugGreen(r._id + '-' + s._id);
           r._replies.pull(s);
 
           torrent.markModified('_replies');
