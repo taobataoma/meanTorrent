@@ -34,6 +34,10 @@ var InvitationSchema = new Schema({
     type: String,
     default: ''
   },
+  isOfficial: {
+    type: Boolean,
+    default: false
+  },
   expiresat: {
     type: Date
   },
