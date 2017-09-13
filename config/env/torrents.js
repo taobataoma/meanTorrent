@@ -10,7 +10,8 @@ module.exports = {
      * @domain:                 site domain
      * @showDemoWarningPopup:   if is demo site, show warning popup whene home is opened for the first time.
      * @cronTimeZone:           timezone of cron
-     * @showDebugLog:           if true, will console.log all debug info at server side and client side.
+     * @showDebugLog:           if true, will console.log all debug info at server side and client side. when your site is prod env, please change this
+     *                          value to false, then console.log info is not output
      */
     app: {
       domain: 'http://chd.im:3000',
