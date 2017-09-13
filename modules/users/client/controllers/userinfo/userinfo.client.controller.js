@@ -6,7 +6,7 @@
     .controller('UserInfoController', UserInfoController);
 
   UserInfoController.$inject = ['$scope', '$state', 'Authentication', 'userResolve', 'ScoreLevelService', '$timeout', 'MeanTorrentConfig',
-  'DebugConsoleService'];
+    'DebugConsoleService'];
 
   function UserInfoController($scope, $state, Authentication, user, ScoreLevelService, $timeout, MeanTorrentConfig, mtDebug) {
     var vm = this;

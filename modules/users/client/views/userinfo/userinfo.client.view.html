@@ -35,6 +35,14 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.displayName }}</dd>
 
+                <div ng-if="vm.user.invited_by">
+                    <dt class="h-line">{{ 'STATUS_FIELD.INVITED_BY' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span user-info="item.user.invited_by" info-name></span>
+                        <span message-to="item.user.invited_by" to-class="message-to-icon"></span>
+                    </dd>
+                </div>
+
                 <dt class="h-line">{{ 'STATUS_FIELD.EMAIL' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.email }}</dd>
 

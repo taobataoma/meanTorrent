@@ -437,6 +437,7 @@
       FIRST_NAME: 'First name',
       LAST_NAME: 'Last name',
       DISPLAY_NAME: 'Display name',
+      INVITED_BY: 'Invited by',
       EMAIL: 'Email',
       PASSKEY: 'Passkey',
       ROLE: 'Role',

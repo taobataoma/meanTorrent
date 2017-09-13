@@ -437,6 +437,7 @@
       FIRST_NAME: '姓',
       LAST_NAME: '名',
       DISPLAY_NAME: '显示昵称',
+      INVITED_BY: '邀请发送人',
       EMAIL: '邮箱',
       PASSKEY: 'Passkey',
       ROLE: '用户角色',
