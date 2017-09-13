@@ -5,9 +5,9 @@
     .module('users.admin')
     .controller('RankingController', RankingController);
 
-  RankingController.$inject = ['$scope', 'RankingService', '$translate', 'localStorageService', 'MeanTorrentConfig'];
+  RankingController.$inject = ['$scope', 'RankingService', '$translate', 'localStorageService', 'MeanTorrentConfig', 'DebugConsoleService'];
 
-  function RankingController($scope, RankingService, $translate, localStorageService, MeanTorrentConfig) {
+  function RankingController($scope, RankingService, $translate, localStorageService, MeanTorrentConfig, mtDebug) {
     var vm = this;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
 
@@ -36,7 +36,7 @@
 
     vm.getRankingList = function () {
       RankingService.get(function (data) {
-        console.log(data);
+        mtDebug.info(data);
 
         vm.upload_ranking = data.upload_ranking;
         vm.download_ranking = data.download_ranking;

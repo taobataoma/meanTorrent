@@ -36,6 +36,9 @@ module.exports.debugRed = function (obj) {
     console.log(chalk.red('[' + moment().format('YYYY-MM-DD HH:mm:ss') + '] ' + obj));
   }
 };
+module.exports.debugError = function (obj) {
+  this.debugRed(obj);
+};
 
 /**
  * debugBlue

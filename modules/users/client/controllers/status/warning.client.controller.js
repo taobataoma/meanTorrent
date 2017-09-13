@@ -6,10 +6,10 @@
     .controller('WarningController', WarningController);
 
   WarningController.$inject = ['$rootScope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'PeersService', 'CompleteService',
-    'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'NotifycationService', 'ModalConfirmService', 'getStorageLangService'];
+    'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'NotifycationService', 'ModalConfirmService', 'getStorageLangService', 'DebugConsoleService'];
 
   function WarningController($rootScope, $state, $translate, $timeout, Authentication, Notification, PeersService, CompleteService, MeanTorrentConfig,
-                             $window, $filter, DownloadService, NotifycationService, ModalConfirmService, getStorageLangService) {
+                             $window, $filter, DownloadService, NotifycationService, ModalConfirmService, getStorageLangService, mtDebug) {
     var vm = this;
     vm.user = Authentication.user;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -33,7 +33,7 @@
     vm.getWarningTorrent = function () {
       PeersService.getMyWarningList(function (items) {
         vm.warningList = items;
-        console.log(items);
+        mtDebug.info(items);
         for (var i = items.length - 1; i >= 0; i--) {
           if (!items[i].torrent) {
             items.splice(i, 1);

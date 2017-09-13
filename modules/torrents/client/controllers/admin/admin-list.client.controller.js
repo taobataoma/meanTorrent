@@ -6,10 +6,10 @@
     .controller('TorrentsAdminController', TorrentsAdminController);
 
   TorrentsAdminController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$window', 'ModalConfirmService', 'NotifycationService'];
+    'MeanTorrentConfig', 'DownloadService', '$window', 'ModalConfirmService', 'NotifycationService', 'DebugConsoleService'];
 
   function TorrentsAdminController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                                   DownloadService, $window, ModalConfirmService, NotifycationService) {
+                                   DownloadService, $window, ModalConfirmService, NotifycationService, mtDebug) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -195,7 +195,7 @@
           });
         } else {
           callback(items);
-          console.log(items);
+          mtDebug.info(items);
         }
       }, function (err) {
         Notification.error({

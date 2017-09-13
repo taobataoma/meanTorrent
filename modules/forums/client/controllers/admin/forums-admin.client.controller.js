@@ -6,10 +6,10 @@
     .controller('ForumsAdminController', ForumsAdminController);
 
   ForumsAdminController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsAdminService', 'SideOverlay', '$filter', 'NotifycationService',
-    'marked', 'ModalConfirmService'];
+    'marked', 'ModalConfirmService', 'DebugConsoleService'];
 
   function ForumsAdminController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsAdminService, SideOverlay, $filter, NotifycationService,
-                            marked, ModalConfirmService) {
+                            marked, ModalConfirmService, mtDebug) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
@@ -26,7 +26,7 @@
     vm.init = function () {
       ForumsAdminService.query({}, function (items) {
         vm.forums = items;
-        console.log(items);
+        mtDebug.info(items);
 
         angular.forEach(vm.forums, function (f) {
           vm.addModeratorPopover.items.push(f._id, false);

@@ -5,9 +5,11 @@
     .module('chat')
     .controller('ChatController', ChatController);
 
-  ChatController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'Socket', '$translate', 'ModalConfirmService', 'MeanTorrentConfig'];
+  ChatController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'Socket', '$translate', 'ModalConfirmService', 'MeanTorrentConfig',
+    'DebugConsoleService'];
 
-  function ChatController($scope, $state, $timeout, Authentication, Socket, $translate, ModalConfirmService, MeanTorrentConfig) {
+  function ChatController($scope, $state, $timeout, Authentication, Socket, $translate, ModalConfirmService, MeanTorrentConfig,
+                          mtDebug) {
     var vm = this;
 
     vm.user = Authentication.user;
@@ -136,7 +138,7 @@
      * when changed, scroll to bottom
      */
     $scope.$watch('vm.messages.length', function (newValue, oldValue) {
-      //console.log('vm.messages changed');
+      //mtDebug.info('vm.messages changed');
     });
     $scope.$watch('vm.fontStyleBold', function (newValue, oldValue) {
       if (newValue) {

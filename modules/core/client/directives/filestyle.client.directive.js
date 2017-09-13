@@ -17,7 +17,6 @@
     return directive;
 
     function link(scope, element, attrs) {
-      //console.log(attrs);
       var options = {
         'input': attrs.input === 'false' ? false : true,
         'icon': attrs.icon === 'false' ? false : true,

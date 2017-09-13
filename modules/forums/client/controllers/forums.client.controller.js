@@ -6,10 +6,10 @@
     .controller('ForumsController', ForumsController);
 
   ForumsController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'localStorageService', '$filter', 'NotifycationService',
-    'marked', 'ModalConfirmService'];
+    'marked', 'ModalConfirmService', 'DebugConsoleService'];
 
   function ForumsController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, localStorageService, $filter, NotifycationService,
-                            marked, ModalConfirmService) {
+                            marked, ModalConfirmService, mtDebug) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
@@ -29,7 +29,7 @@
 
       // get forums list
       ForumsService.get({}, function (items) {
-        console.log(items);
+        mtDebug.info(items);
         vm.forums = items.forumsList;
         vm.forumsTopicsCount = items.forumsTopicsCount;
         vm.forumsRepliesCount = items.forumsRepliesCount;

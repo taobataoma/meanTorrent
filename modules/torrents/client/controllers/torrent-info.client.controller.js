@@ -7,11 +7,11 @@
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
-    'SubtitlesService', 'getStorageLangService', 'ScrapeService', 'NotifycationService'];
+    'SubtitlesService', 'getStorageLangService', 'ScrapeService', 'NotifycationService', 'DebugConsoleService'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
-                                  getStorageLangService, ScrapeService, NotifycationService) {
+                                  getStorageLangService, ScrapeService, NotifycationService, mtDebug) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -132,7 +132,7 @@
         }
       });
 
-      console.log(vm.torrentLocalInfo);
+      mtDebug.info(vm.torrentLocalInfo);
     };
 
     /**
@@ -140,7 +140,7 @@
      */
     vm.toggleHnR = function () {
       vm.torrentLocalInfo.$toggleHnRStatus(function (res) {
-        console.log(res);
+        mtDebug.info(res);
         vm.torrentLocalInfo = res;
         NotifycationService.showSuccessNotify('TORRENT_TOGGLE_HNR_SUCCESSFULLY');
       }, function (res) {
@@ -591,7 +591,7 @@
      * @param dataUrl
      */
     vm.upload = function (dataUrl) {
-      //console.log(dataUrl);
+      mtDebug.info(dataUrl);
 
       if (dataUrl === null || dataUrl === undefined) {
         vm.fileSelected = false;
@@ -608,7 +608,7 @@
           onSuccessItem(response);
         });
       }, function (response) {
-        console.log(response);
+        mtDebug.info(response);
         if (response.status > 0) onErrorItem(response);
       }, function (evt) {
         vm.progress = parseInt(100.0 * evt.loaded / evt.total, 10);
@@ -623,7 +623,7 @@
       vm.fileSelected = false;
       vm.sFile = undefined;
 
-      console.log(res);
+      mtDebug.info(res);
       vm.torrentLocalInfo = res.data;
     }
 
@@ -699,7 +699,7 @@
           });
         }
       }, function (err) {
-        console.log(err);
+        mtDebug.info(err);
         Notification.error({
           title: 'ERROR',
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('SUBTITLE_DOWNLOAD_ERROR')

@@ -6,10 +6,10 @@
     .controller('DownloadingController', DownloadingController);
 
   DownloadingController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'PeersService',
-    'MeanTorrentConfig', '$window', '$filter', 'DownloadService'];
+    'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'DebugConsoleService'];
 
   function DownloadingController($scope, $state, $translate, $timeout, Authentication, Notification, PeersService, MeanTorrentConfig,
-                             $window, $filter, DownloadService) {
+                             $window, $filter, DownloadService, mtDebug) {
     var vm = this;
     vm.user = Authentication.user;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -74,7 +74,7 @@
     vm.getDownloadingTorrent = function () {
       PeersService.getMyDownloadingList(function (items) {
         vm.downloadingList = items;
-        console.log(items);
+        mtDebug.info(items);
         for (var i = items.length - 1; i >= 0; i--) {
           if (!items[i].torrent) {
             items.splice(i, 1);

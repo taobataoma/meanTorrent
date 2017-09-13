@@ -6,10 +6,10 @@
     .controller('TorrentsUploadController', TorrentsUploadController);
 
   TorrentsUploadController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
-    'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService'];
+    'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService', 'DebugConsoleService'];
 
   function TorrentsUploadController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
-                                    TorrentsService, getStorageLangService, $filter, DownloadService) {
+                                    TorrentsService, getStorageLangService, $filter, DownloadService, mtDebug) {
     var vm = this;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -33,7 +33,7 @@
      * @param dataUrl
      */
     vm.upload = function (dataUrl) {
-      //console.log(dataUrl);
+      mtDebug.info(dataUrl);
 
       if (dataUrl === null || dataUrl === undefined) {
         vm.fileSelected = false;
@@ -53,7 +53,7 @@
           onSuccessItem(response);
         });
       }, function (response) {
-        console.log(response);
+        mtDebug.info(response);
         if (response.status > 0) onErrorItem(response);
       }, function (evt) {
         vm.progress = parseInt(100.0 * evt.loaded / evt.total, 10);
@@ -68,7 +68,7 @@
       vm.fileSelected = false;
       vm.successfully = true;
       // Show success message
-      console.log(response);
+      mtDebug.info(response);
       vm.torrentInfo = response.data;
       Notification.success({
         message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENTS_UPLOAD_SUCCESSFULLY')
@@ -157,7 +157,7 @@
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_ID_OK')
         });
 
-        console.log(res);
+        mtDebug.info(res);
         vm.movieinfo = res;
 
         vm.movieinfo.release_date = $filter('date')(vm.movieinfo.release_date, 'yyyy');
@@ -196,7 +196,7 @@
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_ID_OK')
         });
 
-        console.log(res);
+        mtDebug.info(res);
         vm.tvinfo = res;
         if (parseInt(vm.tvinfo.number_of_seasons, 10) > 0) {
           vm.selectedSeasons = '1';
@@ -235,7 +235,7 @@
      * create
      */
     vm.create = function () {
-      //console.log(vm.torrentInfo);
+      mtDebug.info(vm.torrentInfo);
 
       switch (vm.selectedType) {
         case 'tvserial':

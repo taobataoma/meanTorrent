@@ -6,10 +6,10 @@
     .controller('ForumsViewController', ForumsViewController);
 
   ForumsViewController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'moment', '$filter', 'NotifycationService',
-    '$timeout', 'localStorageService', '$stateParams', 'TopicsService'];
+    '$timeout', 'localStorageService', '$stateParams', 'TopicsService', 'DebugConsoleService'];
 
   function ForumsViewController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, moment, $filter, NotifycationService,
-                                $timeout, localStorageService, $stateParams, TopicsService) {
+                                $timeout, localStorageService, $stateParams, TopicsService, mtDebug) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
@@ -40,7 +40,7 @@
      */
     vm.figureOutItemsToDisplay = function (callback) {
       vm.getTopicsList(vm.currentPage, function (items) {
-        console.log(items);
+        mtDebug.info(items);
         vm.filterLength = items.total;
         vm.pagedItems = items.rows;
 
@@ -78,7 +78,7 @@
 
       // get global topics list
       TopicsService.getGlobalTopics(function (topics) {
-        console.log(topics);
+        mtDebug.info(topics);
         vm.globalTopics = topics;
       });
     };

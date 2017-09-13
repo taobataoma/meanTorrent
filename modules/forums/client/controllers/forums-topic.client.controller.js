@@ -6,10 +6,12 @@
     .controller('ForumsTopicController', ForumsTopicController);
 
   ForumsTopicController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'ScoreLevelService', '$timeout', 'NotifycationService',
-    'marked', 'ModalConfirmService', '$stateParams', 'TopicsService', 'localStorageService', '$compile', 'RepliesService', '$filter', 'Upload', 'DownloadService'];
+    'marked', 'ModalConfirmService', '$stateParams', 'TopicsService', 'localStorageService', '$compile', 'RepliesService', '$filter', 'Upload', 'DownloadService',
+    'DebugConsoleService'];
 
   function ForumsTopicController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, ScoreLevelService, $timeout, NotifycationService,
-                                 marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService, $filter, Upload, DownloadService) {
+                                 marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService, $filter, Upload, DownloadService,
+                                 mtDebug) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -258,7 +260,7 @@
         onShow: function (e) {
           e.setContent(r.content);
           var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
-          console.log(ele);
+          mtDebug.info(ele);
 
           angular.element(ele).addClass('text-right');
           angular.element(ele[0].childNodes[0]).addClass('btn-width-80');
@@ -540,7 +542,7 @@
           NotifycationService.showSuccessNotify('FORUMS.ATTACHE_DOWNLOAD_SUCCESSFULLY');
         }
       }, function (err) {
-        console.log(err);
+        mtDebug.info(err);
         NotifycationService.showErrorNotify(err.data.message, 'FORUMS.ATTACHE_DOWNLOAD_FAILED');
       });
     };

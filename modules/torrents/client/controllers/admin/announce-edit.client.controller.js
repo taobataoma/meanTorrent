@@ -5,9 +5,11 @@
     .module('torrents')
     .controller('AnnounceEditController', AnnounceEditController);
 
-  AnnounceEditController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Upload', 'Notification', 'MeanTorrentConfig', 'FileSaver'];
+  AnnounceEditController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Upload', 'Notification', 'MeanTorrentConfig', 'FileSaver',
+    'DebugConsoleService'];
 
-  function AnnounceEditController($scope, $state, $translate, $timeout, Authentication, Upload, Notification, MeanTorrentConfig, FileSaver) {
+  function AnnounceEditController($scope, $state, $translate, $timeout, Authentication, Upload, Notification, MeanTorrentConfig, FileSaver,
+                                  mtDebug) {
     var vm = this;
     vm.user = Authentication.user;
     vm.progress = 0;
@@ -24,7 +26,7 @@
      * @param dataUrl
      */
     vm.upload = function (dataUrl) {
-      //console.log(dataUrl);
+      mtDebug.info(dataUrl);
 
       if (dataUrl === null || dataUrl === undefined) {
         vm.fileSelected = false;
@@ -69,7 +71,7 @@
      * @param response
      */
     function onErrorItem(res) {
-      console.log(res);
+      mtDebug.info(res);
       vm.fileSelected = false;
       vm.tFile = undefined;
       // Show error message

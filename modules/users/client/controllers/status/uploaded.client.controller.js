@@ -6,10 +6,10 @@
     .controller('UploadedController', UploadedController);
 
   UploadedController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', '$window', '$filter', 'DownloadService'];
+    'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'DebugConsoleService'];
 
   function UploadedController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                            $window, $filter, DownloadService) {
+                            $window, $filter, DownloadService, mtDebug) {
     var vm = this;
     vm.user = Authentication.user;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -78,7 +78,7 @@
         torrent_status: 'all'
       }, function (items) {
         vm.uploadedList = items.rows;
-        console.log(items);
+        mtDebug.info(items);
         vm.buildPager();
       }, function (err) {
         Notification.error({

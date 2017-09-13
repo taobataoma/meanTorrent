@@ -6,10 +6,12 @@
     .controller('UserController', UserController);
 
   UserController.$inject = ['$scope', '$state', '$window', 'Authentication', 'userResolve', 'Notification', 'NotifycationService', 'MeanTorrentConfig',
-    'AdminService', 'ScoreLevelService', 'PeersService', 'DownloadService', '$translate', 'TorrentsService', 'ModalConfirmService', 'CompleteService'];
+    'AdminService', 'ScoreLevelService', 'PeersService', 'DownloadService', '$translate', 'TorrentsService', 'ModalConfirmService', 'CompleteService',
+    'DebugConsoleService'];
 
   function UserController($scope, $state, $window, Authentication, user, Notification, NotifycationService, MeanTorrentConfig, AdminService,
-                          ScoreLevelService, PeersService, DownloadService, $translate, TorrentsService, ModalConfirmService, CompleteService) {
+                          ScoreLevelService, PeersService, DownloadService, $translate, TorrentsService, ModalConfirmService, CompleteService,
+                          mtDebug) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -173,9 +175,9 @@
 
       function onSetScoreSuccess(response) {
         vm.user = response;
-        console.log(vm.scoreLevelData);
+        mtDebug.info(vm.scoreLevelData);
         vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
-        console.log(vm.scoreLevelData);
+        mtDebug.info(vm.scoreLevelData);
 
         NotifycationService.showSuccessNotify('SET_SCORE_SUCCESSFULLY');
       }
@@ -250,7 +252,7 @@
       PeersService.getUserSeedingList({
         userId: vm.user._id
       }, function (items) {
-        console.log(items);
+        mtDebug.info(items);
         vm.UserSeedingList = items;
         for (var i = items.length - 1; i >= 0; i--) {
           if (!items[i].torrent) {

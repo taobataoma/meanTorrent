@@ -5,9 +5,9 @@
     .module('torrents.services')
     .factory('ScrapeService', ScrapeService);
 
-  ScrapeService.$inject = ['TorrentsService', '$timeout', 'moment', 'MeanTorrentConfig'];
+  ScrapeService.$inject = ['TorrentsService', '$timeout', 'moment', 'MeanTorrentConfig', 'DebugConsoleService'];
 
-  function ScrapeService(TorrentsService, $timeout, moment, MeanTorrentConfig) {
+  function ScrapeService(TorrentsService, $timeout, moment, MeanTorrentConfig, mtDebug) {
     var scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
 
     return {
@@ -24,7 +24,7 @@
               TorrentsService.scrape({
                 torrentId: oi._id
               }, function (scinfo) {
-                console.log(scinfo);
+                mtDebug.info(scinfo);
                 oi.torrent_seeds = scinfo.data.complete;
                 oi.torrent_finished = scinfo.data.downloaded;
                 oi.torrent_leechers = scinfo.data.incomplete;
@@ -40,7 +40,7 @@
             TorrentsService.scrape({
               torrentId: obj._id
             }, function (scinfo) {
-              console.log(scinfo);
+              mtDebug.info(scinfo);
               obj.torrent_seeds = scinfo.data.complete;
               obj.torrent_finished = scinfo.data.downloaded;
               obj.torrent_leechers = scinfo.data.incomplete;

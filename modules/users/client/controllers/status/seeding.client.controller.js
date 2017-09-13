@@ -6,10 +6,10 @@
     .controller('SeedingController', SeedingController);
 
   SeedingController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'PeersService',
-    'MeanTorrentConfig', '$window', '$filter', 'DownloadService'];
+    'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'DebugConsoleService'];
 
   function SeedingController($scope, $state, $translate, $timeout, Authentication, Notification, PeersService, MeanTorrentConfig,
-                             $window, $filter, DownloadService) {
+                             $window, $filter, DownloadService, mtDebug) {
     var vm = this;
     vm.user = Authentication.user;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -74,7 +74,7 @@
     vm.getSeedingTorrent = function () {
       PeersService.getMySeedingList(function (items) {
         vm.seedingList = items;
-        console.log(items);
+        mtDebug.info(items);
         for (var i = items.length - 1; i >= 0; i--) {
           if (!items[i].torrent) {
             items.splice(i, 1);
