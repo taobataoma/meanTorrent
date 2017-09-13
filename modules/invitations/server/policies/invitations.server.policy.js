@@ -15,6 +15,12 @@ exports.invokeRolesPolicies = function () {
   acl.allow(
     [
       {
+        roles: ['admin', 'oper'],
+        allows: [
+          {resources: '/api/invitations/official', permissions: ['post']}
+        ]
+      },
+      {
         roles: ['admin', 'oper', 'user'],
         allows: [
           {resources: '/api/invitations', permissions: '*'},

@@ -539,6 +539,10 @@
     INVITATION_IS_EMPTY: 'There are no invitations available!',
     INVITATION_USED_IS_EMPTY: 'There are no used invitations!',
 
+    ADMIN_SEND_OFFICIAL_INVITATION: 'Send official invitation',
+    ADMIN_INVITATION_SUCCESSFULLY: 'Send official invitation successfully',
+    ADMIN_INVITATION_ERROR: 'Send official invitation failed',
+
     //user message box
     MESSAGES_BOX: 'Messages Box',
     MESSAGES_SEND: 'Send Messages',

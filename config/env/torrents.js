@@ -214,6 +214,7 @@ module.exports = {
         userInvitationExchange: {name: 'userInvitationExchange', enable: true},
         adminRemoveHnrWarning: {name: 'adminRemoveHnrWarning', enable: true},
         userRemoveHnrWarning: {name: 'userRemoveHnrWarning', enable: true},
+        adminSendOfficialInvitation: {name: 'adminSendOfficialInvitation', enable: true},
 
         userAnnounceData: {name: 'userAnnounceData', enable: true},
         userScoreChange: {name: 'userScoreChange', enable: true},

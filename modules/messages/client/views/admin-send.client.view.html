@@ -11,7 +11,7 @@
                 <form name="vm.messageForm" ng-submit="vm.sendMessage(vm.messageForm.$valid)" novalidate autocomplete="off">
                     <dl class="dl-horizontal">
                         <div class="margin-bottom-10 form-group">
-                            <dt class="h-line">{{ 'MESSAGES_FIELD.TYPE' | translate}}：</dt>
+                            <dt class="h-line">{{ 'MESSAGES_FIELD.TYPE' | translate}}</dt>
                             <dd class="h-line">
                                 <select class="form-control" ng-model="vm.messageType">
                                     <option ng-repeat="t in vm.messageConfig.type.value" value="{{t.value}}">{{'MESSAGE_TYPE_'+t.name | translate}}
@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="margin-bottom-10 form-group" show-errors>
-                            <dt class="h-line">{{ 'MESSAGES_FIELD.TITLE' | translate}}：</dt>
+                            <dt class="h-line">{{ 'MESSAGES_FIELD.TITLE' | translate}}</dt>
                             <dd class="h-line">
                                 <input type="text" class="form-control" id="title" name="title"
                                        ng-model="vm.messageFields.title" required>
@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="margin-bottom-10 form-group" show-errors>
-                            <dt class="h-line">{{ 'MESSAGES_FIELD.CONTENT' | translate}}：</dt>
+                            <dt class="h-line">{{ 'MESSAGES_FIELD.CONTENT' | translate}}</dt>
                             <dd class="h-line">
                                 <textarea class="form-control message-textarea" id="content" name="content"
                                           ng-model="vm.messageFields.content" required></textarea>

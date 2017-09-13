@@ -539,6 +539,10 @@
     INVITATION_IS_EMPTY: '没有可用的邀请函!',
     INVITATION_USED_IS_EMPTY: '没有发送过的邀请!',
 
+    ADMIN_SEND_OFFICIAL_INVITATION: '发送官方邀请函',
+    ADMIN_INVITATION_SUCCESSFULLY: '官方邀请函发送成功',
+    ADMIN_INVITATION_ERROR: '官方邀请函发送失败',
+
     //user message box
     MESSAGES_BOX: '站内消息',
     MESSAGES_SEND: '发送消息',

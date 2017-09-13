@@ -24,6 +24,10 @@
       countInvitations: {
         method: 'GET',
         url: '/api/invitations/count'
+      },
+      official: {
+        method: 'POST',
+        url: '/api/invitations/official'
       }
     });
   }

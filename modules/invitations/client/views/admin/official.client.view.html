@@ -1,0 +1,27 @@
+<section class="container" ng-controller="AdminInvitationController as vm" ng-init="">
+    <div class="row margin-top-50">
+        <div class="col-md-8 col-md-offset-2">
+
+            <div class="margin-bottom-20">
+                <h4>{{'ADMIN_SEND_OFFICIAL_INVITATION' | translate}}</h4>
+                <li class="status-divider"></li>
+            </div>
+
+            <div class="margin-bottom-20 text-center">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input type="email" class="form-control width-300" id="title" name="title"
+                               ng-model="vm.invitationFields.email" placeholder="{{ 'INPUT_EMAIL' | translate }}" autofocus>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-width-100"
+                            ng-disabled="!vm.invitationFields.email"
+                            ng-click="vm.sendOfficialInvitation();">
+                        {{ 'BUTTON_INVITE' | translate }}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
