@@ -19,7 +19,7 @@ exports.userByID = function (req, res, next, id) {
 
   User.findOne({
     _id: id
-  }).exec(function (err, user) {
+  }).populate('invited_by', 'username displayName profileImageURL').exec(function (err, user) {
     if (err) {
       return next(err);
     } else if (!user) {

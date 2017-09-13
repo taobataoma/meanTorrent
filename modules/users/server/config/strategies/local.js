@@ -21,23 +21,25 @@ module.exports = function () {
         }, {
           email: usernameOrEmail.toLowerCase()
         }]
-      }, function (err, user) {
-        if (err) {
-          return done(err);
-        }
-        if (!user || !user.authenticate(password)) {
-          return done(null, false, {
-            message: 'Invalid username or password (' + (new Date()).toLocaleTimeString() + ')'
-          });
-        }
-        if (user.status === 'banned') {
-          return done(null, false, {
-            message: 'You are banned from the server!'
-          });
-        }
+      }).populate('invited_by', 'username displayName profileImageURL')
+        .exec(function (err, user) {
+          console.log(user);
+          if (err) {
+            return done(err);
+          }
+          if (!user || !user.authenticate(password)) {
+            return done(null, false, {
+              message: 'Invalid username or password (' + (new Date()).toLocaleTimeString() + ')'
+            });
+          }
+          if (user.status === 'banned') {
+            return done(null, false, {
+              message: 'You are banned from the server!'
+            });
+          }
 
-        return done(null, user);
-      });
+          return done(null, user);
+        });
     }
   ));
 };
