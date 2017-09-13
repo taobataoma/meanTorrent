@@ -5,9 +5,10 @@
     .module('users')
     .controller('UserInfoController', UserInfoController);
 
-  UserInfoController.$inject = ['$scope', '$state', 'Authentication', 'userResolve', 'ScoreLevelService', '$timeout', 'MeanTorrentConfig'];
+  UserInfoController.$inject = ['$scope', '$state', 'Authentication', 'userResolve', 'ScoreLevelService', '$timeout', 'MeanTorrentConfig',
+  'DebugConsoleService'];
 
-  function UserInfoController($scope, $state, Authentication, user, ScoreLevelService, $timeout, MeanTorrentConfig) {
+  function UserInfoController($scope, $state, Authentication, user, ScoreLevelService, $timeout, MeanTorrentConfig, mtDebug) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -16,6 +17,8 @@
     vm.messageTo = messageTo;
     vm.isContextUserSelf = isContextUserSelf;
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
+
+    mtDebug.info(user);
 
     /**
      * messageTo

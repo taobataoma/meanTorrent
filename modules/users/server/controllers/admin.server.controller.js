@@ -349,7 +349,9 @@ exports.userByID = function (req, res, next, id) {
     });
   }
 
-  User.findById(id, '-salt -password -providerData').exec(function (err, user) {
+  User.findById(id, '-salt -password -providerData')
+    .populate('invited_by', 'username displayName profileImageURL')
+    .exec(function (err, user) {
     if (err) {
       return next(err);
     } else if (!user) {

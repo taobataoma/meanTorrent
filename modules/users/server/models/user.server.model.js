@@ -184,6 +184,10 @@ var UserSchema = new Schema({
   signed_ip: [String],
   leeched_ip: [String],
   client_agent: [String],
+  invited_by: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   created: {
     type: Date,
     default: Date.now

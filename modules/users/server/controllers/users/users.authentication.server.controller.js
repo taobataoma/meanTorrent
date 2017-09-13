@@ -44,6 +44,15 @@ exports.signup = function (req, res) {
       if (req.body.inviteToken) {
         Invitation.update({token: req.body.inviteToken}, {$set: {status: 2, to_user: user._id, registeredat: Date.now()}}, function (err) {
         });
+        //update user invited_by
+        Invitation.findOne({
+          token: req.body.inviteToken
+        }, function (err, inv) {
+          if (inv) {
+            user.invited_by = inv.user;
+            user.save();
+          }
+        });
       }
       // Remove sensitive data before login
       user.password = undefined;
