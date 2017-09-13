@@ -284,12 +284,14 @@ Now, IRC announce support [Node-irc](https://github.com/martynsmith/node-irc), t
 ```javascript
     app: {
       showDemoWarningPopup: true
+      showDebugLog: true
     },
     sign: {
       showDemoSignMessage: true
     },
 ```
 If you started meanTorrent at `production` env, please set `showDemoWarningPopup` and `showDemoSignMessage` to `false`, this will not show demo message any where.
+and you can set `showDebugLog` to `false`, then the `console.log` info is not output.
 
 ```javascript
     hitAndRun: {
