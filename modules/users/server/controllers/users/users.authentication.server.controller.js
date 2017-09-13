@@ -49,8 +49,9 @@ exports.signup = function (req, res) {
           token: req.body.inviteToken
         }, function (err, inv) {
           if (inv) {
-            user.invited_by = inv.user;
-            user.save();
+            user.update({
+              $set: {invited_by: inv.user}
+            }).exec();
           }
         });
       }
