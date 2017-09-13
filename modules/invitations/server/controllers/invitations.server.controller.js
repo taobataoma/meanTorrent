@@ -192,6 +192,11 @@ exports.update = function (req, res) {
                     });
                   } else {
                     res.json(invitation);
+                    //create trace log
+                    traceLogCreate(req, traceConfig.action.userSendInvitation, {
+                      to: req.query.to_email,
+                      token: invitation.token
+                    });
                   }
                 });
               }
