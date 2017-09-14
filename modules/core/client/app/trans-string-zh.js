@@ -592,6 +592,7 @@
 
     MESSAGE_TO_ICON_TITLE: '给{{name}}发送站内消息',
     USER_INFO_TITLE: '{{name}} 的用户信息',
+    USER_IS_VIP: '{{name}} 是一个VIP用户',
 
     //traces
     ADMIN_TRACES_LIST: '系统日志',

@@ -36,10 +36,8 @@
                             <td class="text-center">{{$index + 1}}</td>
                             <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
                             <td>
-                                {{user.displayName}}
-                                <span class="vip-flag" ng-if="user.isVip">
-                                    <kbd>VIP</kbd>
-                                </span>
+                                <span user-info="user" info-name></span>
+                                <span vip-flag="user"></span>
                                 <span message-to="user" to-class="message-to-icon"></span>
                             </td>
                             <td class="text-center ranking-active-col">{{user.uploaded | bytes:2}}</td>
@@ -81,10 +79,8 @@
                             <td class="text-center">{{$index + 1}}</td>
                             <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
                             <td>
-                                {{user.displayName}}
-                                <span class="vip-flag" ng-if="user.isVip">
-                                    <kbd>VIP</kbd>
-                                </span>
+                                <span user-info="user" info-name></span>
+                                <span vip-flag="user"></span>
                                 <span message-to="user" to-class="message-to-icon"></span>
                             </td>
                             <td class="text-center ranking-active-col">{{user.downloaded | bytes:2}}</td>
@@ -126,10 +122,8 @@
                             <td class="text-center">{{$index + 1}}</td>
                             <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
                             <td>
-                                {{user.displayName}}
-                                <span class="vip-flag" ng-if="user.isVip">
-                                    <kbd>VIP</kbd>
-                                </span>
+                                <span user-info="user" info-name></span>
+                                <span vip-flag="user"></span>
                                 <span message-to="user" to-class="message-to-icon"></span>
                             </td>
                             <td class="text-center ranking-active-col"><span ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
@@ -171,10 +165,8 @@
                             <td class="text-center">{{$index + 1}}</td>
                             <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
                             <td>
-                                {{user.displayName}}
-                                <span class="vip-flag" ng-if="user.isVip">
-                                    <kbd>VIP</kbd>
-                                </span>
+                                <span user-info="user" info-name></span>
+                                <span vip-flag="user"></span>
                                 <span message-to="user" to-class="message-to-icon"></span>
                             </td>
                             <td class="text-center ranking-active-col">{{user.score}}</td>

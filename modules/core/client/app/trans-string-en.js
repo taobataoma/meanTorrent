@@ -592,6 +592,7 @@
 
     MESSAGE_TO_ICON_TITLE: 'Send a message to {{name}}',
     USER_INFO_TITLE: 'user info of {{name}}',
+    USER_IS_VIP: '{{name}} is a VIP',
 
     //traces
     ADMIN_TRACES_LIST: 'Traces List',
