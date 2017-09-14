@@ -22,7 +22,12 @@
                 <!--<dd class="h-line">{{ vm.user.lastName }}</dd>-->
 
                 <dt class="h-line">{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.displayName }}</dd>
+                <dd class="h-line">
+                    {{ vm.user.displayName }}
+                    <span class="vip-flag" ng-if="vm.user.isVip">
+                        <kbd>VIP</kbd>
+                    </span>
+                </dd>
 
                 <div ng-if="vm.user.invited_by">
                     <dt class="h-line">{{ 'STATUS_FIELD.INVITED_BY' | translate}}：</dt>
