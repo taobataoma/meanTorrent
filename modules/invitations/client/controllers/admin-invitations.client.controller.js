@@ -6,10 +6,10 @@
     .controller('AdminInvitationController', AdminInvitationController);
 
   AdminInvitationController.$inject = ['$scope', '$state', 'Authentication', 'InvitationsService', 'NotifycationService', 'DebugConsoleService', '$translate',
-    'MeanTorrentConfig', '$filter'];
+    'MeanTorrentConfig', '$filter', '$timeout'];
 
   function AdminInvitationController($scope, $state, Authentication, InvitationsService, NotifycationService, mtDebug, $translate,
-                                     MeanTorrentConfig, $filter) {
+                                     MeanTorrentConfig, $filter, $timeout) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
