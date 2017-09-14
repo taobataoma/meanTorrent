@@ -24,7 +24,7 @@ var traceConfig = config.meanTorrentConfig.trace;
  */
 exports.removeWarning = function (req, res) {
   var comp = req.complate;
-  var user = req.user ? req.user.toJSON() : {}; //fill isVip, isAdmin, isOper in toJSON()
+  var user = req.user;
 
   if (user.isOper) {
     comp.hnr_warning = false;

@@ -496,7 +496,7 @@ exports.toggleTopicTopStatus = function (req, res) {
 exports.toggleTopicGlobalStatus = function (req, res) {
   var topic = req.topic;
 
-  if (!req.user.toJSON().isOper && !req.user.toJSON().isAdmin) {
+  if (!req.user.isOper && !req.user.isAdmin) {
     return res.status(403).json({
       message: 'ERROR: User is not authorized'
     });
@@ -977,9 +977,9 @@ exports.topicById = function (req, res, next, id) {
  * @returns {boolean}
  */
 function canEdit(u, f) {
-  if (u.toJSON().isOper) {
+  if (u.isOper) {
     return true;
-  } else if (u.toJSON().isAdmin) {
+  } else if (u.isAdmin) {
     return true;
   } else if (isModerator(f)) {
     return true;

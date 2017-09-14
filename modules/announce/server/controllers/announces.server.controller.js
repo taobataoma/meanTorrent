@@ -825,21 +825,6 @@ exports.announce = function (req, res) {
 };
 
 /**
- * get user isVip status
- * @param u
- * @returns {boolean}
- */
-function isVip(u) {
-  if (!u.vip_start_at || !u.vip_end_at) {
-    return false;
-  } else if (moment(Date.now()) > moment(u.vip_end_at)) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
-/**
  * userByPasskey
  * @param req
  * @param res
@@ -852,7 +837,6 @@ exports.userByPasskey = function (req, res, next, pk) {
     .exec(function (err, u) {
       if (u) {
         req.passkeyuser = u;
-        req.passkeyuser.isVip = isVip(u);
       } else {
         req.passkeyuser = undefined;
       }

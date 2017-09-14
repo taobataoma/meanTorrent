@@ -119,6 +119,14 @@ var UserSchema = new Schema({
     default: ['user'],
     required: 'Please provide at least one role'
   },
+  isOper: {
+    type: Boolean,
+    default: false
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
+  },
   status: {
     type: String,
     default: 'normal'
@@ -130,6 +138,10 @@ var UserSchema = new Schema({
   vip_end_at: {
     type: Date,
     default: ''
+  },
+  isVip: {
+    type: Boolean,
+    default: false
   },
   score: {
     type: Number,
@@ -202,29 +214,6 @@ var UserSchema = new Schema({
 });
 
 /**
- * overwrite toJSON
- */
-UserSchema.methods.toJSON = function (options) {
-  var document = this.toObject(options);
-  document.isVip = false;
-
-  if (!document.vip_start_at || !document.vip_end_at) {
-    document.isVip = false;
-  } else if (moment(Date.now()) > moment(document.vip_end_at)) {
-    document.isVip = false;
-  } else {
-    document.isVip = true;
-  }
-
-  if (document.roles) {
-    document.isOper = (document.roles[0] === 'oper' || document.roles[0] === 'admin');
-    document.isAdmin = (document.roles[0] === 'admin');
-  }
-
-  return document;
-};
-
-/**
  * Hook a pre save method to hash the password
  */
 UserSchema.pre('save', function (next) {
@@ -236,6 +225,8 @@ UserSchema.pre('save', function (next) {
   }
 
   countRatio(this);
+  updateVipFlag(this);
+  updateOperAdminFlag(this);
 
   this.constructor.count(function (err, count) {
     if (err) {
@@ -255,9 +246,16 @@ UserSchema.pre('save', function (next) {
  */
 UserSchema.pre('update', function (next) {
   countRatio(this);
+  updateVipFlag(this);
+  updateOperAdminFlag(this);
+
   next();
 });
 
+/**
+ * countRatio
+ * @param user
+ */
 function countRatio(user) {
   if (user.uploaded > 0 && user.downloaded === 0) {
     user.ratio = -1;
@@ -265,6 +263,36 @@ function countRatio(user) {
     user.ratio = 0;
   } else {
     user.ratio = Math.round((user.uploaded / user.downloaded) * 100) / 100;
+  }
+}
+
+/**
+ * updateVipFlag
+ * @param user
+ */
+function updateVipFlag(user) {
+  user.isVip = false;
+
+  if (!user.vip_start_at || !user.vip_end_at) {
+    user.isVip = false;
+  } else if (moment(Date.now()) > moment(user.vip_end_at)) {
+    user.isVip = false;
+  } else {
+    user.isVip = true;
+  }
+}
+
+/**
+ * updateOperAdminFlag
+ * @param user
+ */
+function updateOperAdminFlag(user) {
+  user.isOper = false;
+  user.isAdmin = false;
+
+  if (user.roles) {
+    user.isOper = (user.roles[0] === 'oper' || user.roles[0] === 'admin');
+    user.isAdmin = (user.roles[0] === 'admin');
   }
 }
 
@@ -442,9 +470,9 @@ UserSchema.statics.seed = seed;
 mongoose.model('User', UserSchema);
 
 /**
-* Seeds the User collection with document (User)
-* and provided options.
-*/
+ * Seeds the User collection with document (User)
+ * and provided options.
+ */
 function seed(doc, options) {
   var User = mongoose.model('User');
 
