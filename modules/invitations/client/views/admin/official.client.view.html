@@ -75,7 +75,7 @@
                                 popover-trigger="'mouseenter'"
                                 popover-placement="top-right"
                                 ng-mouseenter="vm.selectedUser=r.to_user">
-                                <abbr title="user detail">{{r.to_user.username}}<span message-to="r.to_user"
+                                <abbr title="user detail"><span user-info="r.to_user" info-uname></span><span message-to="r.to_user"
                                                                                       to-class="message-to-icon"></span></abbr>
                             </td>
                             <td class="text-center" ng-if="!r.to_user">
