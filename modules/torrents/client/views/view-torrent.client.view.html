@@ -211,6 +211,7 @@
                                     <div class="timeline-comment-header">
                                         <div class="timeline-comment-header-text">
                                             <span user-info="item.user" info-name></span>
+                                            <span vip-flag="item.user"></span>
                                             <span message-to="item.user" to-class="message-to-icon"></span>
                                             <span class="user-ud-text" ng-if="vm.announce.privateTorrentCmsMode">
                                                 (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{item.user.uploaded | bytes}}
@@ -331,6 +332,7 @@
                 <dt class="h-line">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}：</dt>
                 <dd class="h-line">
                     <span user-info="vm.torrentLocalInfo.user" info-name></span>
+                    <span vip-flag="vm.torrentLocalInfo.user"></span>
                     <span message-to="vm.torrentLocalInfo.user" to-class="message-to-icon"></span>
                 </dd>
 
@@ -506,6 +508,7 @@
                             ng-if="item.peer_status == 'seeder'">
                             <td class="text-center">
                                 <span user-info="item.user" info-name></span>
+                                <span vip-flag="item.user"></span>
                                 <span message-to="item.user" to-class="message-to-icon"></span>
                             </td>
                             <td class="text-center">{{item.peer_uploaded | bytes:2}} | {{item.peer_uspeed | bytes:2}}/s</td>
@@ -546,6 +549,7 @@
                             ng-if="item.peer_status == 'leecher'">
                             <td class="text-center">
                                 <span user-info="item.user" info-name></span>
+                                <span vip-flag="item.user"></span>
                                 <span message-to="item.user" to-class="message-to-icon"></span>
                             </td>
                             <td class="text-center">{{item.peer_uploaded | bytes:2}} | {{item.peer_uspeed | bytes:2}}/s</td>
@@ -658,8 +662,11 @@
                      translate-values="{number: vm.torrentLocalInfo._thumbs.length}"></div>
                 <div class="thumbs-users panel-collapsed" id="thumbs-{{rep._id}}">
                      <span class="thumbs-item"
-                           ng-repeat="sl in vm.torrentLocalInfo._thumbs track by $index"
-                           user-info="sl.user" info-name></span>
+                           ng-repeat="sl in vm.torrentLocalInfo._thumbs track by $index">
+                         <span user-info="sl.user" info-name></span>
+                         <!--<span vip-flag="sl.user"></span>-->
+                         <span message-to="sl.user" to-class="message-to-icon"></span>
+                     </span>
                 </div>
             </div>
         </div>
@@ -694,8 +701,12 @@
                         {{ 'ADMIN_BASIC_UPDATE' | translate}}
                     </button>
                     <button class="btn btn-default btn-sm" ng-click="vm.deleteTorrent();">{{ 'ADMIN_BASIC_DELETE' | translate}}</button>
-                    <button class="btn btn-default btn-sm" ng-click="vm.toggleHnR();">{{ (vm.torrentLocalInfo.torrent_hnr ? 'ADMIN_BASIC_UNSET_HNR' : 'ADMIN_BASIC_SET_HNR') | translate}}</button>
-                    <button class="btn btn-default btn-sm" ng-click="vm.doScrape();" ng-if="!vm.announce.privateTorrentCmsMode">{{ 'ADMIN_BASIC_SCRAPE' | translate}}</button>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="vm.toggleHnR();">{{ (vm.torrentLocalInfo.torrent_hnr ? 'ADMIN_BASIC_UNSET_HNR' : 'ADMIN_BASIC_SET_HNR') | translate}}
+                    </button>
+                    <button class="btn btn-default btn-sm" ng-click="vm.doScrape();"
+                            ng-if="!vm.announce.privateTorrentCmsMode">{{ 'ADMIN_BASIC_SCRAPE' | translate}}
+                    </button>
                 </dt>
 
                 <div class="margin-top-20" ng-if="vm.announce.privateTorrentCmsMode"></div>

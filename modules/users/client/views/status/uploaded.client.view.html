@@ -128,7 +128,11 @@
                                     {{item.torrent_finished}}
                                 </p>
                             </td>
-                            <td class="col-md-1 td-v-middle text-center">{{item.user.displayName}}</td>
+                            <td class="col-md-1 td-v-middle text-center">
+                                <span user-info="item.user" info-name></span>
+                                <!--<span vip-flag="item.user"></span>-->
+                                <span message-to="item.user" to-class="message-to-icon"></span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

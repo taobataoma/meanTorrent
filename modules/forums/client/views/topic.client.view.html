@@ -70,7 +70,8 @@
                                         <div class="reply-comment-header">
                                             <div class="reply-comment-header-text">
                                                 <span user-info="vm.topic.user" info-name></span>
-                                                <span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
+                                                <span vip-flag="vm.topic.user"></span>
+                                                <!--<span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>-->
                                                 <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="user-ud-text" ng-if="vm.announce.privateTorrentCmsMode">
                                                     (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{vm.topic.user.uploaded | bytes}}
@@ -133,8 +134,11 @@
                                                      translate-values="{number: vm.topic._thumbs.length}"></div>
                                                 <div class="thumbs-users panel-collapsed" id="thumbs-{{vm.topic._id}}">
                                                     <span class="thumbs-item"
-                                                          ng-repeat="sl in vm.topic._thumbs track by $index"
-                                                          user-info="sl.user" info-name></span>
+                                                          ng-repeat="sl in vm.topic._thumbs track by $index">
+                                                         <span user-info="sl.user" info-name></span>
+                                                         <!--<span vip-flag="sl.user"></span>-->
+                                                         <span message-to="sl.user" to-class="message-to-icon"></span>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="row text-right margin-top-10" ng-show="vm.topic.updatedAt">
@@ -152,7 +156,8 @@
                                         <div class="reply-comment-header">
                                             <div class="reply-comment-header-text">
                                                 <span user-info="rep.user" info-name></span>
-                                                <span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>
+                                                <span vip-flag="vm.topic.user"></span>
+                                                <!--<span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>-->
                                                 <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="user-ud-text" ng-if="vm.announce.privateTorrentCmsMode">
                                                     (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{rep.user.uploaded | bytes}}
@@ -204,8 +209,11 @@
                                                      translate-values="{number: rep._thumbs.length}"></div>
                                                 <div class="thumbs-users panel-collapsed" id="thumbs-{{rep._id}}">
                                                     <span class="thumbs-item"
-                                                          ng-repeat="sl in rep._thumbs track by $index"
-                                                          user-info="sl.user" info-name></span>
+                                                          ng-repeat="sl in rep._thumbs track by $index">
+                                                         <span user-info="sl.user" info-name></span>
+                                                         <!--<span vip-flag="sl.user"></span>-->
+                                                         <span message-to="sl.user" to-class="message-to-icon"></span>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="row text-right margin-top-10" ng-show="rep.updatedAt">

@@ -40,7 +40,11 @@
                     </thead>
                     <tbody>
                         <tr class="message-item" ng-repeat="m in vm.pagedItems" ng-click="vm.showMessage(m);">
-                            <td class="td-v-middle text-center">{{m.user.displayName}}</td>
+                            <td class="td-v-middle text-center">
+                                <span user-info="m.user" info-name></span>
+                                <!--<span vip-flag="m.user"></span>-->
+                                <span message-to="m.user" to-class="message-to-icon"></span>
+                            </td>
 
                             <td class="td-v-middle"><json-tree object="m.content"></json-tree></td>
 

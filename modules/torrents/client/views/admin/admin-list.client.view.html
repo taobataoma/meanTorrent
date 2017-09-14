@@ -155,8 +155,9 @@
                                 <div class="media-body">
                                     <h5 class="media-heading" ng-if="vm.selectedType=='movie'">{{item.resource_detail_info.original_title}}
                                         <span ng-show="item.resource_detail_info.original_title!=item.resource_detail_info.title"> / {{item.resource_detail_info.title}}</span>
-                                        <span class="upload-by" ng-show="item.user.displayName"> (By: {{item.user.displayName}}<span
-                                                message-to="item.user" to-class="message-to-icon"></span> )</span>
+                                        <span class="upload-by" ng-show="item.user.displayName"> (By:
+                                            <span user-info="item.user" info-name></span>
+                                            <span message-to="item.user" to-class="message-to-icon"></span> )</span>
                                         <span class="label label-download text-uppercase"
                                               title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
                                               ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();">

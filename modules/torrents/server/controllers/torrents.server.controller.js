@@ -912,7 +912,7 @@ exports.list = function (req, res) {
   var findQuery = function (callback) {
     Torrent.find(condition)
       .sort(sort)
-      .populate('user', 'username displayName')
+      .populate('user', 'username displayName isVip')
       .skip(skip)
       .limit(limit)
       .exec(function (err, torrents) {
@@ -1049,30 +1049,30 @@ exports.torrentByID = function (req, res, next, id) {
 
   var findTorrents = function (callback) {
     Torrent.findById(id)
-      .populate('user', 'username displayName profileImageURL')
-      .populate('_thumbs.user', 'username displayName profileImageURL uploaded downloaded')
+      .populate('user', 'username displayName profileImageURL isVip')
+      .populate('_thumbs.user', 'username displayName profileImageURL isVip uploaded downloaded')
       .populate({
         path: '_replies.user',
-        select: 'username displayName profileImageURL uploaded downloaded',
+        select: 'username displayName profileImageURL isVip uploaded downloaded',
         model: 'User'
       })
       .populate({
         path: '_replies._replies.user',
-        select: 'username displayName profileImageURL uploaded downloaded',
+        select: 'username displayName profileImageURL isVip uploaded downloaded',
         model: 'User'
       })
       .populate({
         path: '_subtitles',
         populate: {
           path: 'user',
-          select: 'username displayName profileImageURL'
+          select: 'username displayName profileImageURL isVip'
         }
       })
       .populate({
         path: '_peers',
         populate: {
           path: 'user',
-          select: 'username displayName profileImageURL'
+          select: 'username displayName profileImageURL isVip'
         }
       })
       .exec(function (err, torrent) {
@@ -1097,7 +1097,7 @@ exports.torrentByID = function (req, res, next, id) {
 
     Torrent.find(condition, fields)
       .sort('-createdat')
-      .populate('user', 'username displayName')
+      .populate('user', 'username displayName isVip')
       .exec(function (err, torrents) {
         if (err) {
           callback(err);

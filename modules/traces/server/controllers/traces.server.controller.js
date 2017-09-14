@@ -40,7 +40,7 @@ exports.list = function (req, res) {
   var findQuery = function (callback) {
     Trace.find({})
       .sort('-createdat')
-      .populate('user', 'username displayName')
+      .populate('user', 'username displayName isVip')
       .populate({
         path: 'content.user',
         select: 'username displayName',
@@ -109,7 +109,7 @@ exports.traceByID = function (req, res, next, id) {
   }
 
   Trace.findById(id)
-    .populate('user', 'displayName profileImageURL uploaded downloaded')
+    .populate('user', 'displayName profileImageURL isVip uploaded downloaded')
     .exec(function (err, trace) {
       if (err) {
         return next(err);
