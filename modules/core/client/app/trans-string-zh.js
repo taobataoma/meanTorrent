@@ -458,7 +458,7 @@
       SEEDED: '正在做种',
       LEECHED: '正在下载',
       FINISHED: '下载完成',
-      HNY_WARNING: 'H&R 警告',
+      HNR_WARNING: 'H&R 警告',
       FORUM_TOPICS: '论坛主题数',
       FORUM_REPLIES: '论坛回复数',
       DETAIL: '详情',
@@ -490,6 +490,7 @@
     REMOVE_WARNING_NO_ENOUGH_SCORE: '错误: 积分不足!',
     WARNING_TOOLTIP: '您有 {{wnumber}} 个 H&R 警告, 请立即处理, ',
     WARNING_DETAIL_LINK: '查看详情',
+    HNR_HAVE_NO_WARNING: '很好, 您目前还没有 H&R 警告.',
 
     //user score
     SCORE: {

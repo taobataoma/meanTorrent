@@ -105,8 +105,10 @@
                                         popover-trigger="'mouseenter'"
                                         popover-placement="top-right"
                                         ng-mouseenter="vm.selectedUser=r.to_user">
-                                        <abbr title="user detail"><span user-info="r.to_user" info-uname></span><span message-to="r.to_user"
-                                                                                              to-class="message-to-icon"></span></abbr>
+                                        <abbr title="user detail">
+                                            <span user-info="r.to_user" info-uname></span>
+                                            <span message-to="r.to_user" to-class="message-to-icon"></span>
+                                        </abbr>
                                     </td>
                                     <td class="text-center" ng-if="!r.to_user">
                                     </td>
@@ -154,7 +156,7 @@
                 <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.LEECHED' | translate}}：{{ vm.selectedUser.leeched }}</li>
                 <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.FINISHED' | translate}}：{{ vm.selectedUser.finished }}</li>
                 <li ng-if="vm.announce.privateTorrentCmsMode && vm.selectedUser.hnr_warning>0">
-                    {{ 'STATUS_FIELD.HNY_WARNING' | translate}}：<span class="badge badge_danger">{{vm.selectedUser.hnr_warning}}</span>
+                    {{ 'STATUS_FIELD.HNR_WARNING' | translate}}：<span class="badge badge_danger">{{vm.selectedUser.hnr_warning}}</span>
                 </li>
 
                 <li class="status-divider" ng-if="vm.announce.privateTorrentCmsMode"></li>

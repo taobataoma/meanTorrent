@@ -458,7 +458,7 @@
       SEEDED: 'Torrents seeded',
       LEECHED: 'Torrents leeched',
       FINISHED: 'Torrents finished',
-      HNY_WARNING: 'H&R Warning',
+      HNR_WARNING: 'H&R Warning',
       FORUM_TOPICS: 'Forum topics',
       FORUM_REPLIES: 'Forum replies',
       DETAIL: 'Detail',
@@ -490,6 +490,7 @@
     REMOVE_WARNING_NO_ENOUGH_SCORE: 'ERROR: no enough score!',
     WARNING_TOOLTIP: 'You have <strong>{{wnumber}}</strong> H&R warnings, please deal with it immediately, ',
     WARNING_DETAIL_LINK: 'detail is here',
+    HNR_HAVE_NO_WARNING: 'Very good, you have no any H&R warnings.',
 
     //user score
     SCORE: {
