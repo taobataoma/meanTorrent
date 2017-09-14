@@ -521,6 +521,7 @@
       TITLE_SIGNINAT: 'SigninAt',
       TITLE_SIGNINID: 'SigninID',
       TITLE_OPERATION: 'Operation',
+      TITLE_SENDER: 'Sender',
       TITLE_TOKEN: 'Token',
       TITLE_EMAIL: 'Email',
       TITLE_SEND: 'Send an invitation',

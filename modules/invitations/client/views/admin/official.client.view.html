@@ -1,27 +1,133 @@
-<section class="container" ng-controller="AdminInvitationController as vm" ng-init="">
-    <div class="row margin-top-50">
-        <div class="col-md-8 col-md-offset-2">
+<section class="container" ng-controller="AdminInvitationController as vm" ng-init="vm.getOfficialInvitations();">
+    <div class="margin-top-50 alert alert-success" role="alert">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="margin-bottom-20">
+                    <h4>{{'ADMIN_SEND_OFFICIAL_INVITATION' | translate}}</h4>
+                    <li class="status-divider"></li>
+                </div>
 
-            <div class="margin-bottom-20">
-                <h4>{{'ADMIN_SEND_OFFICIAL_INVITATION' | translate}}</h4>
-                <li class="status-divider"></li>
-            </div>
+                <div class="margin-bottom-20 text-center">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input type="email" class="form-control width-300" id="title" name="title"
+                                   ng-model="vm.invitationFields.email" placeholder="{{ 'INPUT_EMAIL' | translate }}" autofocus>
+                        </div>
 
-            <div class="margin-bottom-20 text-center">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <input type="email" class="form-control width-300" id="title" name="title"
-                               ng-model="vm.invitationFields.email" placeholder="{{ 'INPUT_EMAIL' | translate }}" autofocus>
-                    </div>
-
-                    <button type="submit" class="btn btn-success btn-width-100"
-                            ng-disabled="!vm.invitationFields.email"
-                            ng-click="vm.sendOfficialInvitation();">
-                        {{ 'BUTTON_INVITE' | translate }}
-                    </button>
-                </form>
+                        <button type="submit" class="btn btn-success btn-width-100"
+                                ng-disabled="!vm.invitationFields.email"
+                                ng-click="vm.sendOfficialInvitation();">
+                            {{ 'BUTTON_INVITE' | translate }}
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="invitations-list" id="top_of_invitations_list">
+        <div class="pagination-div-top">
+            <div class="row">
+                <div class="col-sm-12 col-md-9">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <input class="form-control margin-top-20" type="text" ng-model="vm.search" placeholder="Search"
+                           ng-change="vm.figureOutItemsToDisplay()"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="margin-top-10">
+            <div class="table-responsive">
+                <table class="table table-hover table-valign-middle">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="text-center">{{'INVITATION.TITLE_SENDER' | translate}}</th>
+                            <th class="text-center">{{'INVITATION.TITLE_TOKEN' | translate}}</th>
+                            <th class="text-center">{{'INVITATION.TITLE_EMAIL' | translate}}</th>
+                            <th class="text-center">{{'INVITATION.TITLE_INVITEDAT' | translate}}</th>
+                            <th class="text-center">{{'INVITATION.TITLE_SIGNINAT' | translate}}</th>
+                            <th class="text-center">{{'INVITATION.TITLE_SIGNINID' | translate}}</th>
+                            <th class="text-center">{{'INVITATION.TITLE_STATUS' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="r in vm.pagedItems">
+                            <th scope="row">{{$index+1}}</th>
+                            <td class="text-center">
+                                <span user-info="r.user" info-name></span>
+                                <span message-to="r.user" to-class="message-to-icon"></span>
+                            </td>
+                            <td class="text-center">{{r.token}}</td>
+                            <td class="text-center">{{r.to_email}}</td>
+                            <td class="text-center">{{r.invitedat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td class="text-center">{{r.registeredat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td class="text-center" ng-if="r.to_user"
+                                uib-popover-template="vm.subuserPopover.templateUrl"
+                                popover-append-to-body="true"
+                                popover-trigger="'mouseenter'"
+                                popover-placement="top-right"
+                                ng-mouseenter="vm.selectedUser=r.to_user">
+                                <abbr title="user detail">{{r.to_user.username}}<span message-to="r.to_user"
+                                                                                      to-class="message-to-icon"></span></abbr>
+                            </td>
+                            <td class="text-center" ng-if="!r.to_user">
+                            </td>
+                            <td class="text-center" ng-class="r.status == 2 ? 'text-success' : 'text-danger'">
+                                <strong>{{vm.getInvitationStatus(r);}}</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="pagination-div-bottom">
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                ng-model="vm.currentPage"
+                ng-change="vm.pageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="userinfo.html">
+        <div>
+            <ul class="list-unstyled margin-left-10 margin-right-10">
+                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.UPLOADED' | translate}}：
+                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{ vm.selectedUser.uploaded | bytes:2 }}
+                </li>
+                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：
+                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{ vm.selectedUser.downloaded | bytes:2 }}
+                </li>
+                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.RATIO' | translate}}：
+                    <span ng-class="vm.selectedUser.ratio > 1 ? 'ratio-normal' : 'ratio-warning' ">{{ vm.selectedUser.ratio }}</span>
+                </li>
+
+                <li class="status-divider" ng-if="vm.announce.privateTorrentCmsMode"></li>
+
+                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：{{ vm.selectedUser.uptotal }}</li>
+                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.SEEDED' | translate}}：{{ vm.selectedUser.seeded }}</li>
+                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.LEECHED' | translate}}：{{ vm.selectedUser.leeched }}</li>
+                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.FINISHED' | translate}}：{{ vm.selectedUser.finished }}</li>
+                <li ng-if="vm.announce.privateTorrentCmsMode && vm.selectedUser.hnr_warning>0">
+                    {{ 'STATUS_FIELD.HNY_WARNING' | translate}}：<span class="badge badge_danger">{{vm.selectedUser.hnr_warning}}</span>
+                </li>
+
+                <li class="status-divider" ng-if="vm.announce.privateTorrentCmsMode"></li>
+
+                <li>{{ 'STATUS_FIELD.FORUM_TOPICS' | translate}}：{{ vm.selectedUser.topics }}</li>
+                <li>{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：{{ vm.selectedUser.replies }}</li>
+            </ul>
+        </div>
+    </script>
 
 </section>

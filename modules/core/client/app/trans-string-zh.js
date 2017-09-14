@@ -521,6 +521,7 @@
       TITLE_SIGNINAT: '注册时间',
       TITLE_SIGNINID: '注册ID',
       TITLE_OPERATION: '操作',
+      TITLE_SENDER: '发送人',
       TITLE_TOKEN: '哈希码',
       TITLE_EMAIL: '邮箱',
       TITLE_SEND: '发送邀请',

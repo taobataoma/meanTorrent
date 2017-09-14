@@ -69,6 +69,29 @@ exports.create = function (req, res) {
   });
 };
 
+/**
+ * listOfficial
+ * @param req
+ * @param res
+ */
+exports.listOfficial = function (req, res) {
+  Invitation.find({
+    isOfficial: true
+  })
+    .sort('-invitedat')
+    .populate('user', '-salt -password')
+    .populate('to_user', '-salt -password')
+    .exec(function (err, invitations) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(invitations);
+      }
+    });
+
+};
 
 /**
  * List of Invitations
@@ -81,7 +104,7 @@ exports.list = function (req, res) {
       expiresat: {$gt: Date.now()}
     })
       .sort('createdat')
-      .populate('user')
+      .populate('user', '-salt -password')
       .exec(function (err, invitations) {
         if (err) {
           callback(err, null);
@@ -97,8 +120,8 @@ exports.list = function (req, res) {
       status: {$gt: 0}
     })
       .sort('invitedat')
-      .populate('user')
-      .populate('to_user')
+      .populate('user', '-salt -password')
+      .populate('to_user', '-salt -password')
       .exec(function (err, invitations) {
         if (err) {
           callback(err, null);
@@ -209,12 +232,12 @@ exports.update = function (req, res) {
 };
 
 /**
- * official
+ * sendOfficial
  * send official invitation
  * @param req
  * @param res
  */
-exports.official = function (req, res) {
+exports.sendOfficial = function (req, res) {
   if (!validateEmail(req.body.email)) {
     return res.status(422).send({
       message: 'ERROR: invalid email address!'
@@ -405,7 +428,7 @@ exports.invitationByID = function (req, res, next, id) {
     });
   }
 
-  Invitation.findById(id).populate('user').exec(function (err, invitation) {
+  Invitation.findById(id).populate('user', '-salt -password').exec(function (err, invitation) {
     if (err) {
       return next(err);
     } else if (!invitation) {

@@ -17,8 +17,11 @@ module.exports = function (app) {
   app.route('/api/invitations/count').all(invitationsPolicy.isAllowed)
     .get(invitations.countInvitations);
 
-  app.route('/api/invitations/official').all(invitationsPolicy.isAllowed)
-    .post(invitations.official);
+  app.route('/api/invitations/official/send').all(invitationsPolicy.isAllowed)
+    .post(invitations.sendOfficial);
+
+  app.route('/api/invitations/official/list').all(invitationsPolicy.isAllowed)
+    .get(invitations.listOfficial);
 
   app.route('/api/invitations/:invitationId').all(invitationsPolicy.isAllowed)
     .put(invitations.update)

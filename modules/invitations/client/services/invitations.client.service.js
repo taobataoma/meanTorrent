@@ -25,9 +25,14 @@
         method: 'GET',
         url: '/api/invitations/count'
       },
-      official: {
+      sendOfficial: {
         method: 'POST',
-        url: '/api/invitations/official'
+        url: '/api/invitations/official/send'
+      },
+      listOfficial: {
+        method: 'GET',
+        url: '/api/invitations/official/list',
+        isArray: true
       }
     });
   }
