@@ -14,6 +14,7 @@ module.exports = {
      *                          value to false, then console.log info is not output
      */
     app: {
+      name: 'CHD.im',
       domain: 'http://chd.im:3000',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',

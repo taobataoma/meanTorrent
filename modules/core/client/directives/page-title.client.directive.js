@@ -4,9 +4,9 @@
   angular.module('core')
     .directive('pageTitle', pageTitle);
 
-  pageTitle.$inject = ['$rootScope', '$interpolate', '$state', '$translate'];
+  pageTitle.$inject = ['$rootScope', '$interpolate', '$state', '$translate', 'MeanTorrentConfig'];
 
-  function pageTitle($rootScope, $interpolate, $state, $translate) {
+  function pageTitle($rootScope, $interpolate, $state, $translate, MeanTorrentConfig) {
     var directive = {
       restrict: 'A',
       link: link
@@ -18,7 +18,8 @@
       $rootScope.$on('$stateChangeSuccess', listener);
 
       function listener(event, toState) {
-        var applicationCoreTitle = 'CHD.im',
+        var appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+        var applicationCoreTitle = appConfig.name,
           separeteBy = ' - ';
         if (toState.data && toState.data.pageTitle) {
           var stateTitle = $interpolate(toState.data.pageTitle)($state.$current.locals.globals);
