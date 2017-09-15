@@ -101,13 +101,13 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="col-md-1 td-v-middle">
+                            <td class="col-md-1 td-v-middle td-imdb">
                             <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                   class="torrent-votes"><kbd>IMDB</kbd> {{item.torrent.resource_detail_info.vote_average | number : 1}}</span>
                             </td>
-                            <td class="col-md-1 td-v-middle text-center">{{item.torrent.createdat | life}}</td>
-                            <td class="col-md-1 td-v-middle text-center">{{item.torrent.torrent_size | bytes:2}}</td>
-                            <td class="col-md-1 td-v-middle text-center list-user-info">
+                            <td class="col-md-1 td-v-middle text-center td-life">{{item.torrent.createdat | life}}</td>
+                            <td class="col-md-1 td-v-middle text-center td-size">{{item.torrent.torrent_size | bytes:2}}</td>
+                            <td class="col-md-1 td-v-middle text-center list-user-info td-user-info">
                                 <p class="no-margin-p">
                                     {{item.total_uploaded | bytes:2}}
                                 </p>
@@ -124,7 +124,7 @@
                                     {{item.total_seed_day}}d
                                 </p>
                             </td>
-                            <td class="col-md-1 td-v-middle text-center">
+                            <td class="col-md-1 td-v-middle text-center td-uploader">
                                 <button class="btn btn-default btn-sm"
                                         ng-click="vm.removeWarning(item); $event.stopPropagation();">{{'BTN_REMOVE_WARNING' | translate}}
                                 </button>

@@ -93,6 +93,7 @@ body {
             }
         }
         .genres-item {
+            font-size: 14px;
             color: #ccc;
         }
         .network-item {
@@ -464,14 +465,36 @@ body {
             > .td-text-overflow {
                 .text-long {
                     @media (min-width: @screen-lg-min) {
-                        max-width: 580px;
+                        max-width: 570px;
+                        min-width: 560px;
                     }
                     @media (max-width: @screen-lg-min) {
-                        max-width: 460px;
+                        max-width: 420px;
+                        min-width: 410px;
                     }
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                }
+            }
+            > .td-text-overflow-admin {
+                .text-long {
+                    @media (min-width: @screen-lg-min) {
+                        max-width: 540px;
+                        min-width: 530px;
+                    }
+                    @media (max-width: @screen-lg-min) {
+                        max-width: 370px;
+                        min-width: 360px;
+                    }
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+            > td {
+                @media screen and (max-width: @screen-xs-max) {
+                    white-space: normal !important;
                 }
             }
         }
@@ -528,6 +551,7 @@ body {
     .media-body {
         position: relative;
         .torrent-filename {
+            font-size: 12px;
             color: @gray-light;
         }
         .list-all-tags {
@@ -535,11 +559,30 @@ body {
             bottom: 1px;
         }
     }
+    .td-imdb {
+        min-width: 90px;
+    }
+    .td-life {
+        min-width: 85px;
+    }
+    .td-size {
+        min-width: 75px;
+    }
+    .td-user-info {
+        min-width: 75px;
+    }
+    .td-uploader {
+        min-width: 90px;
+    }
+    .td-admin-cmd {
+        min-width: 140px;
+    }
 }
 
 .list-all-genres {
     .genres-item {
         color: @gray-light;
+        font-size: 12px;
         &:not(:first-child) {
             &::before {
                 content: " | ";
@@ -832,7 +875,6 @@ body {
         border-bottom: 2px solid lighten(@gray-base, 85%)
     }
 }
-
 
 .invitations-list {
     .pagination-div-bottom {

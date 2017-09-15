@@ -110,13 +110,13 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="col-md-1 td-v-middle">
+                            <td class="col-md-1 td-v-middle td-imdb">
                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                       class="torrent-votes"><kbd>IMDB</kbd> {{item.torrent.resource_detail_info.vote_average | number : 1}}</span>
                             </td>
-                            <td class="col-md-1 td-v-middle text-center">{{item.torrent.createdat | life}}</td>
-                            <td class="col-md-1 td-v-middle text-center">{{item.torrent.torrent_size | bytes:2}}</td>
-                            <td class="col-md-1 td-v-middle text-center list-user-info">
+                            <td class="col-md-1 td-v-middle text-center td-life">{{item.torrent.createdat | life}}</td>
+                            <td class="col-md-1 td-v-middle text-center td-size">{{item.torrent.torrent_size | bytes:2}}</td>
+                            <td class="col-md-1 td-v-middle text-center list-user-info td-user-info">
                                 <p class="no-margin-p">
                                     {{item.peer_downloaded | bytes:2}}
                                 </p>
@@ -125,7 +125,7 @@
                                     {{item.peer_dspeed | bytes:2}}/s
                                 </p>
                             </td>
-                            <td class="col-md-1 td-v-middle text-center">
+                            <td class="col-md-1 td-v-middle text-center td-uploader">
                                 <p class="no-margin-p">
                                     {{item.peer_uploaded | bytes:2}}
                                 </p>
