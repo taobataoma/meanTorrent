@@ -85,9 +85,12 @@
                         <tr class="message-item" ng-repeat="m in vm.adminMessages">
                             <td>
                                 <h5 ng-bind="m.title"></h5>
+
                                 <p class="message-content" ng-bind-html="vm.getContentMarked(m);"></p>
+
                                 <p class="message-info">
-                                    {{m.from_user.displayName}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
+                                    <span user-info="m.from_user"
+                                          info-name></span> {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                                 </p>
                             </td>
                             <td class="td-v-middle text-center">
