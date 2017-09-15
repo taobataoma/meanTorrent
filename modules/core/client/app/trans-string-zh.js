@@ -209,7 +209,6 @@
     CLEAR_ALL_CONDITION: '清空所有条件',
     MORE_TAGS: '显示更多标签',
     CA_RESET: '重置条件',
-    CA_DOWNLOAD: '下载种子',
     TORRENT_DOWNLOAD_ERROR: '种子文件下载失败',
     TORRENTS_DOWNLOAD_SUCCESSFULLY: '种子文件下载成功',
 

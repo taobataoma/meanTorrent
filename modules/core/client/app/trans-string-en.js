@@ -209,7 +209,6 @@
     CLEAR_ALL_CONDITION: 'Clear All Condition',
     MORE_TAGS: 'More Tags',
     CA_RESET: 'Reset',
-    CA_DOWNLOAD: 'Download',
     TORRENT_DOWNLOAD_ERROR: 'Torrent file download failed',
     TORRENTS_DOWNLOAD_SUCCESSFULLY: 'Torrents file download successfully',
 

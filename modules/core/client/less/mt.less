@@ -455,9 +455,21 @@ body {
                     opacity: 1;
                 }
                 .label-download {
-                    padding: 2px 4px;
+                    padding: 2px 2px;
                     display: inline;
                 }
+                .layer-download {
+                    background-color: rgba(0, 0, 0, 0.6);
+                    .fa {
+                        display: block;
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            .media-left {
+                position: relative;
             }
             > .td-v-middle {
                 vertical-align: middle;
@@ -498,6 +510,25 @@ body {
                 }
             }
         }
+    }
+}
+
+.layer-download {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: ~"calc(100% - 10px)";
+    height: 100%;
+    .fa {
+        display: none;
+        position: relative;
+        float: left;
+        color: @mt-base-color;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.9;
     }
 }
 
@@ -546,7 +577,8 @@ body {
 .torrent-list-info {
     .media-object {
         max-height: 100px;
-        opacity: 0.8;
+        //opacity: 0.8;
+        opacity: 1;
     }
     .media-body {
         position: relative;
@@ -576,6 +608,23 @@ body {
     }
     .td-admin-cmd {
         min-width: 140px;
+    }
+}
+
+.other-torrent-info {
+    .torrent-filename {
+        font-size: 12px;
+        color: @gray-light;
+    }
+    .text-long {
+        @media (min-width: @screen-lg-min) {
+            max-width: 700px !important;
+            min-width: 690px !important;
+        }
+        @media (max-width: @screen-lg-min) {
+            max-width: 530px !important;
+            min-width: 520px !important;
+        }
     }
 }
 

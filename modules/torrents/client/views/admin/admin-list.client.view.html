@@ -151,6 +151,14 @@
                                 <div class="media-left">
                                     <img class="media-object" ng-src="{{vm.tmdbConfig.posterListBaseUrl}}{{item.resource_detail_info.poster_path}}"
                                          alt="...">
+
+                                    <div class="layer-download">
+                                        <i class="fa fa-arrow-circle-o-down fa-3x" aria-hidden="true"
+                                           title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                           ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();"
+                                           ng-class="{'fa-arrow-circle-down': vm.hover}"
+                                           ng-mouseover="vm.hover = true;" ng-mouseleave="vm.hover = false;"></i>
+                                    </div>
                                 </div>
                                 <div class="media-body">
                                     <h5 class="media-heading" ng-if="vm.selectedType=='movie'">{{item.resource_detail_info.original_title}}
@@ -158,20 +166,10 @@
                                         <span class="upload-by" ng-show="item.user.displayName"> (By:
                                             <span user-info="item.user" info-name></span>
                                             <span message-to="item.user" to-class="message-to-icon"></span> )</span>
-                                        <!--<span class="label label-download text-uppercase"-->
-                                              <!--title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"-->
-                                              <!--ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();">-->
-                                            <!--<i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}-->
-                                        <!--</span>-->
                                     </h5>
                                     <h5 class="media-heading" ng-if="vm.selectedType=='tvserial'">{{item.resource_detail_info.original_name}}
                                         <span ng-show="item.resource_detail_info.original_name!=item.resource_detail_info.name"> / {{item.resource_detail_info.name}}</span>
                                         <span class="upload-by" ng-show="item.user.displayName"> (By: {{item.user.displayName}})</span>
-                                        <!--<span class="label label-download text-uppercase"-->
-                                              <!--title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"-->
-                                              <!--ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();">-->
-                                            <!--<i class="glyphicon glyphicon-arrow-right"></i> {{ 'CA_DOWNLOAD' | translate}}-->
-                                        <!--</span>-->
                                     </h5>
 
                                     <div class="list-all-genres">
