@@ -36,7 +36,7 @@
                             <td class="text-center">{{f.order}}</td>
                             <td class="text-center">
                                 <div ng-repeat="m in f.moderators">
-                                    <span class="text-primary">{{m.username}}</span>
+                                    <span user-info="m" info-uname></span>
                                     <small>[
                                         <a href="#" ng-click="vm.removeModeratorClicked(f, m);">-</a> ]
                                     </small>
