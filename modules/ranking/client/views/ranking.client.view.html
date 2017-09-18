@@ -1,9 +1,9 @@
 <section class="container padding-top-10" ng-controller="RankingController as vm" ng-init="vm.getRankingList();">
     <div class="tab-ranking margin-top-30">
-        <uib-tabset>
+        <uib-tabset class="mt-responsive-tabs-xs">
             <uib-tab index="$index" ng-repeat="tab in vm.rankingTabs" ng-show="tab.ng_show">
                 <uib-tab-heading>
-                    {{tab.title}}
+                    <i class="fa {{tab.icon}} fa-2x" aria-hidden="true"></i><span>{{tab.title}}</span>
                 </uib-tab-heading>
                 <div ng-include="tab.templateUrl">
                 </div>
@@ -14,6 +14,12 @@
 
     <script type="text/ng-template" id="upload_ranking.html">
         <div class="padding-top-30">
+            <span class="xs-show">
+                <h4 class="margin-bottom-30">
+                    {{'PAGE_HEADER_RANKING_UPLOAD' | translate}}:
+                </h4>
+            </span>
+
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-valign-middle">
                     <thead>
@@ -34,7 +40,8 @@
                     <tbody>
                         <tr class="ranking-list-info" ng-repeat="user in vm.upload_ranking">
                             <td class="text-center">{{$index + 1}}</td>
-                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
+                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}">
+                            </td>
                             <td>
                                 <span user-info="user" info-name></span>
                                 <span vip-flag="user"></span>
@@ -42,7 +49,8 @@
                             </td>
                             <td class="text-center ranking-active-col">{{user.uploaded | bytes:2}}</td>
                             <td class="text-center">{{user.downloaded | bytes:2}}</td>
-                            <td class="text-center"><span ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
+                            <td class="text-center"><span
+                                    ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
                             <td class="text-center">{{user.score}}</td>
                             <td class="text-center">{{user.seeded}}</td>
                             <td class="text-center">{{user.leeched}}</td>
@@ -57,6 +65,11 @@
 
     <script type="text/ng-template" id="download_ranking.html">
         <div class="padding-top-30">
+            <span class="xs-show">
+                <h4 class="margin-bottom-30">
+                    {{'PAGE_HEADER_RANKING_DOWNLOAD' | translate}}:
+                </h4>
+            </span>
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-valign-middle">
                     <thead>
@@ -77,7 +90,8 @@
                     <tbody>
                         <tr class="ranking-list-info" ng-repeat="user in vm.download_ranking">
                             <td class="text-center">{{$index + 1}}</td>
-                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
+                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}">
+                            </td>
                             <td>
                                 <span user-info="user" info-name></span>
                                 <span vip-flag="user"></span>
@@ -85,7 +99,8 @@
                             </td>
                             <td class="text-center ranking-active-col">{{user.downloaded | bytes:2}}</td>
                             <td class="text-center">{{user.uploaded | bytes:2}}</td>
-                            <td class="text-center"><span ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
+                            <td class="text-center"><span
+                                    ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
                             <td class="text-center">{{user.score}}</td>
                             <td class="text-center">{{user.seeded}}</td>
                             <td class="text-center">{{user.leeched}}</td>
@@ -100,6 +115,11 @@
 
     <script type="text/ng-template" id="ratio_ranking.html">
         <div class="padding-top-30">
+            <span class="xs-show">
+                <h4 class="margin-bottom-30">
+                    {{'PAGE_HEADER_RANKING_RATIO' | translate}}:
+                </h4>
+            </span>
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-valign-middle">
                     <thead>
@@ -120,13 +140,15 @@
                     <tbody>
                         <tr class="ranking-list-info" ng-repeat="user in vm.ratio_ranking">
                             <td class="text-center">{{$index + 1}}</td>
-                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
+                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}">
+                            </td>
                             <td>
                                 <span user-info="user" info-name></span>
                                 <span vip-flag="user"></span>
                                 <span message-to="user" to-class="message-to-icon"></span>
                             </td>
-                            <td class="text-center ranking-active-col"><span ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
+                            <td class="text-center ranking-active-col"><span
+                                    ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
                             <td class="text-center">{{user.uploaded | bytes:2}}</td>
                             <td class="text-center">{{user.downloaded | bytes:2}}</td>
                             <td class="text-center">{{user.score}}</td>
@@ -143,6 +165,11 @@
 
     <script type="text/ng-template" id="score_ranking.html">
         <div class="padding-top-30">
+            <span class="xs-show">
+                <h4 class="margin-bottom-30">
+                    {{'PAGE_HEADER_RANKING_SCORE' | translate}}:
+                </h4>
+            </span>
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-valign-middle">
                     <thead>
@@ -163,7 +190,8 @@
                     <tbody>
                         <tr class="ranking-list-info" ng-repeat="user in vm.score_ranking">
                             <td class="text-center">{{$index + 1}}</td>
-                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}"></td>
+                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="/{{user.profileImageURL}}">
+                            </td>
                             <td>
                                 <span user-info="user" info-name></span>
                                 <span vip-flag="user"></span>
@@ -172,7 +200,8 @@
                             <td class="text-center ranking-active-col">{{user.score}}</td>
                             <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.uploaded | bytes:2}}</td>
                             <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.downloaded | bytes:2}}</td>
-                            <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode"><span ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
+                            <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode"><span
+                                    ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
                             <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.seeded}}</td>
                             <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.leeched}}</td>
                             <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.finished}}</td>

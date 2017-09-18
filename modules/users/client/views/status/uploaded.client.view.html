@@ -1,6 +1,12 @@
 <section ng-controller="UploadedController as vm" ng-init="vm.getUploadedTorrent();">
     <div class="row margin-top-20">
         <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.pagedItems">
+            <span class="xs-show">
+                <h4 class="margin-bottom-30">
+                    {{'STATUS_UPLOADED' | translate}}:
+                </h4>
+            </span>
+
 
             <div class="pagination-div-top">
                 <div class="row">

@@ -23,3 +23,31 @@
         display: none !important;;
     }
 }
+
+.xs-show, .sm-show, .md-show, .lg-show {
+    display: none;
+}
+
+@media (max-width: @screen-xs-max) {
+    .xs-show {
+        display: block !important;
+    }
+}
+
+@media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+    .sm-show {
+        display: block !important;;
+    }
+}
+
+@media (min-width: @screen-md) and (max-width: @screen-md-max) {
+    .md-show {
+        display: block !important;;
+    }
+}
+
+@media (min-width: @screen-lg) {
+    .lg-show {
+        display: block !important;;
+    }
+}

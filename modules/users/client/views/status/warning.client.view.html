@@ -1,6 +1,12 @@
 <section ng-controller="WarningController as vm" ng-init="vm.getWarningTorrent();">
     <div class="row margin-top-20">
         <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.warningList">
+            <span class="xs-show">
+                <h4 class="margin-bottom-30">
+                    {{'STATUS_WARNING' | translate}}:
+                </h4>
+            </span>
+
             <div class="margin-top-10">
                 <div class="alert alert-warning" role="alert" style="padding: 10px 50px;">
                     <div marked src="'/modules/users/client/templates/status-hnr-warning-'+vm.lang+'.md'" compile="true">

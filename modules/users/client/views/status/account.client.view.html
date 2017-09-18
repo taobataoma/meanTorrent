@@ -1,6 +1,12 @@
 <section ng-controller="StatusController as vm">
     <div class="row margin-top-30 margin-bottom-30">
         <div class="col-md-10 col-md-offset-1">
+            <span class="xs-show">
+                <h4 class="margin-bottom-30">
+                    {{'STATUS_ACCOUNT' | translate}}:
+                </h4>
+            </span>
+
             <div class="alert alert-warning text-center" role="alert" ng-if="vm.user.hnr_warning>0">
                 <span translate="WARNING_TOOLTIP" translate-values="{wnumber: vm.user.hnr_warning}"></span>
                 <a ui-sref="status.warning">{{'WARNING_DETAIL_LINK' | translate}}</a>
