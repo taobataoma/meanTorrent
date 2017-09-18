@@ -3,14 +3,14 @@
         <div class="col-sm-12 messages-list">
 
             <div class="row margin-bottom-20">
-                <div class="col-xs-8 col-md-9">
+                <div class="col-xs-12 col-md-9">
                     <h4>{{'MESSAGES_BOX' | translate}}
                         <small ng-show="vm.unreadCount>0"> - (<span
                                 class="badge badge_info">{{vm.unreadCount}}</span> {{'MESSAGES_FIELD.NEW_MSG' | translate}})
                         </small>
                     </h4>
                 </div>
-                <div class="col-xs-4 col-md-3">
+                <div class="col-xs-12 col-md-3">
                     <input class="form-control" type="text" ng-model="vm.search" placeholder="Search"
                            ng-change="vm.figureOutItemsToDisplay()"/>
                 </div>
