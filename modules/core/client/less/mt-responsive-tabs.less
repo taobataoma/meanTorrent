@@ -1,0 +1,105 @@
+@import (reference) "mt-var.less";
+
+.mt-responsive-tabs-xs {
+    > li {
+        @media (max-width: @screen-xs-max) {
+            > a {
+                padding: 10px 20px !important;
+                i {
+                    display: block !important;
+                }
+                span {
+                    display: none !important;
+                }
+            }
+        }
+
+        @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+            > a {
+                padding: 10px 30px !important;
+                i {
+                    display: none !important;;
+                }
+                span {
+                    display: block !important;
+                }
+            }
+        }
+
+        @media (min-width: @screen-md) and (max-width: @screen-md-max) {
+            > a {
+                padding: 10px 30px !important;
+                i {
+                    display: none !important;;
+                }
+                span {
+                    display: block !important;
+                }
+            }
+        }
+
+        @media (min-width: @screen-lg) {
+            > a {
+                padding: 10px 30px !important;
+                i {
+                    display: none !important;;
+                }
+                span {
+                    display: block !important;
+                }
+            }
+        }
+    }
+}
+
+.mt-responsive-tabs-sm {
+    > li {
+        @media (max-width: @screen-xs-max) {
+            > a {
+                padding: 10px 20px !important;
+                i {
+                    display: block !important;
+                }
+                span {
+                    display: none !important;
+                }
+            }
+        }
+
+        @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+            > a {
+                padding: 10px 40px !important;
+                i {
+                    display: block !important;;
+                }
+                span {
+                    display: none !important;
+                }
+            }
+        }
+
+        @media (min-width: @screen-md) and (max-width: @screen-md-max) {
+            > a {
+                padding: 10px 30px !important;
+                i {
+                    display: none !important;;
+                }
+                span {
+                    display: block !important;
+                }
+            }
+        }
+
+        @media (min-width: @screen-lg) {
+            > a {
+                padding: 10px 30px !important;
+                i {
+                    display: none !important;;
+                }
+                span {
+                    display: block !important;
+                }
+            }
+        }
+    }
+}

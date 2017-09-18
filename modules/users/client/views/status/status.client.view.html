@@ -1,11 +1,21 @@
 <section class="container" ng-controller="StatusController as vm" ng-init="vm.initIsActive = false;">
     <div class="tab-status margin-top-40">
-        <ul class="nav nav-tabs">
-            <li ui-sref="status.account" ui-sref-active="active"><a>{{'STATUS_ACCOUNT' | translate}}</a></li>
-            <li ui-sref="status.uploaded" ui-sref-active="active" ng-if="vm.announce.privateTorrentCmsMode"><a>{{'STATUS_UPLOADED' | translate}}</a></li>
-            <li ui-sref="status.seeding" ui-sref-active="active" ng-if="vm.announce.privateTorrentCmsMode"><a>{{'STATUS_SEEDING' | translate}}</a></li>
-            <li ui-sref="status.downloading" ui-sref-active="active" ng-if="vm.announce.privateTorrentCmsMode"><a>{{'STATUS_DOWNLOADING' | translate}}</a></li>
-            <li ui-sref="status.warning" ui-sref-active="active" ng-if="vm.announce.privateTorrentCmsMode"><a>{{'STATUS_WARNING' | translate}}</a></li>
+        <ul class="nav nav-tabs mt-responsive-tabs-sm">
+            <li ui-sref="status.account" ui-sref-active="active">
+                <a><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i><span>{{'STATUS_ACCOUNT' | translate}}</span></a>
+            </li>
+            <li ui-sref="status.uploaded" ui-sref-active="active" ng-if="vm.announce.privateTorrentCmsMode">
+                <a><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span>{{'STATUS_UPLOADED' | translate}}</span></a>
+            </li>
+            <li ui-sref="status.seeding" ui-sref-active="active" ng-if="vm.announce.privateTorrentCmsMode">
+                <a><i class="fa fa-arrow-up fa-2x" aria-hidden="true"></i><span>{{'STATUS_SEEDING' | translate}}</span></a>
+            </li>
+            <li ui-sref="status.downloading" ui-sref-active="active" ng-if="vm.announce.privateTorrentCmsMode">
+                <a><i class="fa fa-arrow-down fa-2x" aria-hidden="true"></i><span>{{'STATUS_DOWNLOADING' | translate}}</span></a>
+            </li>
+            <li ui-sref="status.warning" ui-sref-active="active" ng-if="vm.announce.privateTorrentCmsMode">
+                <a><i class="fa fa-warning fa-2x" aria-hidden="true"></i><span>{{'STATUS_WARNING' | translate}}</span></a>
+            </li>
         </ul>
 
     </div>
