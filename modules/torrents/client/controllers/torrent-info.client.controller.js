@@ -163,12 +163,14 @@
 
       vm.torrentTabs.push(
         {
+          icon: 'fa-file-video-o',
           title: $translate.instant('TAB_VIDEO_INFO'),
           templateUrl: 'videoInfo.html',
           ng_show: true,
           badges: []
         },
         {
+          icon: 'fa-file-text',
           title: $translate.instant('TAB_USER_SUBTITLE'),
           templateUrl: 'subtitleInfo.html',
           ng_show: true,
@@ -180,6 +182,7 @@
           ]
         },
         {
+          icon: 'fa-users',
           title: $translate.instant('TAB_USER_INFO'),
           templateUrl: 'userInfo.html',
           ng_show: vm.announce.privateTorrentCmsMode,
@@ -191,6 +194,7 @@
           ]
         },
         {
+          icon: 'fa-thumbs-up',
           title: $translate.instant('TAB_THUMBS_LIST'),
           templateUrl: 'thumbsInfo.html',
           ng_show: true,
@@ -202,6 +206,7 @@
           ]
         },
         {
+          icon: 'fa-list-alt',
           title: $translate.instant('TAB_OTHER_TORRENTS'),
           templateUrl: 'otherTorrents.html',
           ng_show: vm.torrentLocalInfo._other_torrents.length > 0,
@@ -213,12 +218,14 @@
           ]
         },
         {
+          icon: 'fa-user-md',
           title: $translate.instant('TAB_MY_PANEL'),
           templateUrl: 'myPanel.html',
           ng_show: vm.torrentLocalInfo.isCurrentUserOwner,
           badges: []
         },
         {
+          icon: 'fa-cog',
           title: $translate.instant('TAB_ADMIN_PANEL'),
           templateUrl: 'adminPanel.html',
           ng_show: vm.user ? vm.user.isOper : false,

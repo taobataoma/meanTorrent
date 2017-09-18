@@ -176,10 +176,11 @@
 
     <div class="container">
         <div class="torrent-info-tabs">
-            <uib-tabset>
-                <uib-tab index="$index" ng-repeat="tab in vm.torrentTabs" disabled="tab.disabled" ng-show="tab.ng_show">
+            <uib-tabset class="mt-responsive-tabs-sm">
+                <uib-tab index="$index" ng-repeat="tab in vm.torrentTabs" disabled="tab.disabled" ng-show="tab.ng_show" title="{{tab.title}}">
                     <uib-tab-heading>
-                        {{tab.title}} <span class="badge {{b.class}}" ng-repeat="b in tab.badges">{{b.value}}</span>
+                        <i class="fa {{tab.icon}} fa-2x" aria-hidden="true"></i><span class="tab-title">{{tab.title}}</span>
+                        <span class="badge {{b.class}}" ng-repeat="b in tab.badges">{{b.value}}</span>
                     </uib-tab-heading>
                     <div class="tab-border-view" ng-include="tab.templateUrl">
                     </div>
@@ -331,6 +332,12 @@
 
     <script type="text/ng-template" id="videoInfo.html">
         <div class="padding-top-30">
+            <span class="xs-show sm-show">
+                <h4 class="margin-bottom-30">
+                    {{'TAB_VIDEO_INFO' | translate}}:
+                </h4>
+            </span>
+
             <dl class="dl-horizontal" style="margin-bottom: 0;">
                 <dt class="h-line">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}：</dt>
                 <dd class="h-line">
@@ -423,6 +430,12 @@
 
     <script type="text/ng-template" id="subtitleInfo.html">
         <div class="padding-top-30">
+            <span class="xs-show sm-show">
+                <h4 class="margin-bottom-30">
+                    {{'TAB_USER_SUBTITLE' | translate}}:
+                </h4>
+            </span>
+
             <ul class="margin-bottom-30">
                 <li class="h-line" translate="SUBTITLE_RULES.0"></li>
                 <li class="h-line" translate="SUBTITLE_RULES.1"></li>
@@ -482,6 +495,12 @@
 
     <script type="text/ng-template" id="userInfo.html">
         <div class="padding-top-30 peer-dlist">
+            <span class="xs-show sm-show">
+                <h4 class="margin-bottom-30">
+                    {{'TAB_USER_INFO' | translate}}:
+                </h4>
+            </span>
+
             <dl class="dl-horizontal">
                 <dt class="h-line text-left">{{ 'TORRENT_FINISHED_USERS' | translate}}：{{vm.torrentLocalInfo.torrent_finished}}</dt>
                 <dd class="h-line"></dd>
@@ -572,6 +591,12 @@
 
     <script type="text/ng-template" id="otherTorrents.html">
         <div>
+            <span class="xs-show sm-show">
+                <h4 class="margin-bottom-30">
+                    {{'TAB_USER_INFO' | translate}}:
+                </h4>
+            </span>
+
             <p><strong translate="OTHER_TORRENT_LIST_TITLE" translate-values="{x: vm.torrentLocalInfo._other_torrents.length}"></strong></p>
 
             <div class="table-responsive">
@@ -656,7 +681,13 @@
     </script>
 
     <script type="text/ng-template" id="thumbsInfo.html">
-        <div class="padding-top-20">
+        <div class="padding-top-30">
+            <span class="xs-show sm-show">
+                <h4 class="margin-bottom-30">
+                    {{'TAB_THUMBS_LIST' | translate}}:
+                </h4>
+            </span>
+
             <div class="text-center"><h4><a href="#"
                                             ng-click="vm.beginThumbsUp(vm.torrentLocalInfo);">{{'THUMBS_UP_TORRENT' | translate: ({number: vm.scoreConfig.thumbsUpScore.torrent}) }}</a>
             </h4></div>
@@ -679,6 +710,12 @@
 
     <script type="text/ng-template" id="myPanel.html">
         <div class="padding-top-30">
+            <span class="xs-show sm-show">
+                <h4 class="margin-bottom-30">
+                    {{'TAB_MY_PANEL' | translate}}:
+                </h4>
+            </span>
+
             <dl class="dl-horizontal">
                 <dt class="h-line"></dt>
                 <dd class="h-line margin-bottom-30">
@@ -697,6 +734,12 @@
 
     <script type="text/ng-template" id="adminPanel.html">
         <div class="padding-top-30">
+            <span class="xs-show sm-show">
+                <h4 class="margin-bottom-30">
+                    {{'TAB_ADMIN_PANEL' | translate}}:
+                </h4>
+            </span>
+
             <dl class="dl-horizontal">
                 <dt class="h-line">{{ 'ADMIN_BASIC_COMMAND' | translate}}:</dt>
                 <dd class="h-line">

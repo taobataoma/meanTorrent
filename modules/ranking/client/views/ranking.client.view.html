@@ -1,9 +1,9 @@
 <section class="container padding-top-10" ng-controller="RankingController as vm" ng-init="vm.getRankingList();">
     <div class="tab-ranking margin-top-30">
         <uib-tabset class="mt-responsive-tabs-xs">
-            <uib-tab index="$index" ng-repeat="tab in vm.rankingTabs" ng-show="tab.ng_show">
+            <uib-tab index="$index" ng-repeat="tab in vm.rankingTabs" ng-show="tab.ng_show" title="{{tab.title}}">
                 <uib-tab-heading>
-                    <i class="fa {{tab.icon}} fa-2x" aria-hidden="true"></i><span>{{tab.title}}</span>
+                    <i class="fa {{tab.icon}} fa-2x" aria-hidden="true"></i><span class="tab-title">{{tab.title}}</span>
                 </uib-tab-heading>
                 <div ng-include="tab.templateUrl">
                 </div>

@@ -823,10 +823,35 @@ body {
 .torrent-info-tabs {
     .nav-tabs {
         > li {
+            @media (max-width: @screen-xs-max) {
+                >a {
+                    padding: 10px 20px !important;
+                }
+            }
+
+            @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+                >a {
+                    padding: 10px 20px !important;
+                }
+            }
+
+            @media (min-width: @screen-md) and (max-width: @screen-md-max) {
+                >a {
+                    padding: 10px 10px !important;
+                }
+            }
+
+            @media (min-width: @screen-lg) {
+                >a {
+                    padding: 10px 20px !important;
+                }
+            }
             > a {
                 margin-right: 2px;
-                padding: 10px 20px;
                 border-top: 3px solid transparent;
+                .fa-2x {
+                    font-size: 1.4em;
+                }
             }
             &.active {
                 > a {
@@ -845,13 +870,34 @@ body {
 .tab-ranking {
     .nav-tabs {
         > li {
+            @media (max-width: @screen-xs-max) {
+                >a {
+                    padding: 10px 20px !important;
+                }
+            }
+
+            @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+                >a {
+                    padding: 10px 20px !important;
+                }
+            }
+
+            @media (min-width: @screen-md) and (max-width: @screen-md-max) {
+                >a {
+                    padding: 10px 30px !important;
+                }
+            }
+
+            @media (min-width: @screen-lg) {
+                >a {
+                    padding: 10px 40px !important;
+                }
+            }
             > a {
                 margin-right: 5px;
-                padding: 10px 30px;
                 border-top: 3px solid transparent;
                 .fa-2x {
                     font-size: 1.4em;
-                    margin-right: 5px;
                 }
             }
             &.active {
@@ -871,9 +917,31 @@ body {
     .nav-tabs {
         > li {
             cursor: pointer;
+            @media (max-width: @screen-xs-max) {
+                >a {
+                    padding: 10px 20px !important;
+                }
+            }
+
+            @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+                >a {
+                    padding: 10px 40px !important;
+                }
+            }
+
+            @media (min-width: @screen-md) and (max-width: @screen-md-max) {
+                >a {
+                    padding: 10px 30px !important;
+                }
+            }
+
+            @media (min-width: @screen-lg) {
+                >a {
+                    padding: 10px 30px !important;
+                }
+            }
             > a {
                 margin-right: 5px;
-                padding: 10px 30px;
                 border-top: 3px solid transparent;
                 .fa-2x {
                     font-size: 1.4em;
