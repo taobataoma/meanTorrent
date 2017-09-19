@@ -5,16 +5,20 @@
     .module('users.admin')
     .controller('UserListController', UserListController);
 
-  UserListController.$inject = ['$scope', '$filter', 'AdminService'];
+  UserListController.$inject = ['$scope', '$filter', 'AdminService', 'DebugConsoleService'];
 
-  function UserListController($scope, $filter, AdminService) {
+  function UserListController($scope, $filter, AdminService, mtDebug) {
     var vm = this;
     vm.buildPager = buildPager;
     vm.figureOutItemsToDisplay = figureOutItemsToDisplay;
     vm.pageChanged = pageChanged;
+    vm.searchVip = false;
+    vm.searchAdmin = false;
+    vm.searchOper = false;
 
     AdminService.query(function (data) {
       vm.users = data;
+      mtDebug.info(data);
       vm.buildPager();
     });
 
@@ -32,7 +36,23 @@
      * figureOutItemsToDisplay
      */
     function figureOutItemsToDisplay() {
-      vm.filteredItems = $filter('filter')(vm.users, {
+      vm.resultUsers = vm.users;
+      if (vm.searchVip) {
+        vm.resultUsers = $filter('filter')(vm.resultUsers, {
+          isVip: true
+        });
+      }
+      if (vm.searchAdmin) {
+        vm.resultUsers = $filter('filter')(vm.resultUsers, {
+          isAdmin: true
+        });
+      }
+      if (vm.searchOper) {
+        vm.resultUsers = $filter('filter')(vm.resultUsers, {
+          isOper: true
+        });
+      }
+      vm.filteredItems = $filter('filter')(vm.resultUsers, {
         $: vm.search
       });
       vm.filterLength = vm.filteredItems.length;

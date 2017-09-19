@@ -4,7 +4,18 @@
             <div class="col-md-4">
                 <h3>{{ 'USERS_LIST' | translate}}</h3>
             </div>
-            <div class="col-md-4 col-md-offset-4" style="margin-top: 1em">
+            <div class="col-md-4 checkbox-inline" style="margin-top: 1em">
+                <label class="checkbox-inline">
+                    <input type="checkbox" ng-model="vm.searchVip" ng-change="vm.figureOutItemsToDisplay()"> isVip
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" ng-model="vm.searchAdmin" ng-change="vm.figureOutItemsToDisplay()"> isAdmin
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" ng-model="vm.searchOper" ng-change="vm.figureOutItemsToDisplay()"> isOper
+                </label>
+            </div>
+            <div class="col-md-4" style="margin-top: 1em">
                 <input class="form-control col-md-4" type="text" ng-model="vm.search" placeholder="Search" ng-change="vm.figureOutItemsToDisplay()"/>
             </div>
         </div>
@@ -14,7 +25,9 @@
            ng-class="{'span-banned': user.status == 'banned'}">
             <img class="ulist-avatar" ng-src="/{{user.profileImageURL}}">
 
-            <h4 class="list-group-item-heading">{{user.displayName}} <span vip-flag="user"></span> - <small>{{user.username}}</small></h4>
+            <h4 class="list-group-item-heading">{{user.displayName}} <span vip-flag="user"></span> -
+                <small>{{user.username}}</small>
+            </h4>
 
             <p class="list-group-item-text pull-right small" ng-bind="user.roles"></p>
 
@@ -23,8 +36,8 @@
     </div>
 
     <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength" ng-model="vm.currentPage"
-                    ng-change="vm.pageChanged()"
-                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+        ng-change="vm.pageChanged()"
+        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
     </ul>
 </section>

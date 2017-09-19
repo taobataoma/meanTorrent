@@ -19,13 +19,13 @@
         ng_show: true
       },
       {
-        icon: 'fa-arrow-circle-o-up',
+        icon: 'fa-arrow-up',
         title: $translate.instant('PAGE_HEADER_RANKING_UPLOAD'),
         templateUrl: 'upload_ranking.html',
         ng_show: vm.announce.privateTorrentCmsMode
       },
       {
-        icon: 'fa-arrow-circle-o-down',
+        icon: 'fa-arrow-down',
         title: $translate.instant('PAGE_HEADER_RANKING_DOWNLOAD'),
         templateUrl: 'download_ranking.html',
         ng_show: vm.announce.privateTorrentCmsMode
