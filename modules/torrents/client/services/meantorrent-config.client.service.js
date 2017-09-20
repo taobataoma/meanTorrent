@@ -5,15 +5,22 @@
 
   angular
     .module('torrents.services')
-    .factory('MeanTorrentConfig', MeanTorrentConfig);
+    .provider('MeanTorrentConfig', MeanTorrentConfig);
 
-  MeanTorrentConfig.$inject = ['$window'];
+  //MeanTorrentConfig.$inject = ['$window'];
 
-  function MeanTorrentConfig($window) {
-    var config = {
-      meanTorrentConfig: $window.meanTorrentConfig
+  function MeanTorrentConfig() {
+
+    this.meanTorrentConfig = function () {
+      var meanTorrentConfig = window.meanTorrentConfig;
+      return meanTorrentConfig;
     };
 
-    return config;
+    this.$get = [function () {
+      var meanTorrentConfig = {
+        meanTorrentConfig: window.meanTorrentConfig
+      };
+      return meanTorrentConfig;
+    }];
   }
 }());
