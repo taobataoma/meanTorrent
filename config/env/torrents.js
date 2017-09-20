@@ -225,15 +225,86 @@ module.exports = {
         forumDeleteReply: {name: 'forumDeleteReply', enable: true}
       }
     },
+
+    /**
+     * @torrentType
+     *
+     * torrent type settings
+     * if you need more torrent type, please add at here and config it, the system will add new type everywhere automatic
+     *
+     * @name:   TYPE, do not change it
+     * @value:  configure settings value of torrent type
+     *
+     *        @name:      name of type, used by $translate at TORRENT_TYPE_LABEL, will show translate result as torrent tag in torrent list
+     *        @value:     value of type, torrent type value in model, will write this value into mongodb and query torrents by this value
+     *        @title:     title of type, used by $translate at MENU_TORRENTS_SUB, will show translate result in header submenu item
+     *        @state:     angular state of type, this state value used in module route config
+     *        @url:       window location url of type
+     *        @divider:   divider status of submenu item
+     *        @position:  position of submenu item(ordered index)
+     */
     torrentType: {
       name: 'TYPE',
       value: [
-        {name: 'MOVIE', value: 'movie'},
-        {name: 'TVSERIAL', value: 'tvserial'},
-        {name: 'MUSIC', value: 'music'},
-        {name: 'OTHER', value: 'other'}
+        {
+          name: 'MOVIE',
+          value: 'movie',
+          title: 'MENU_TORRENTS_SUB.MOVIE',
+          state: 'torrents.movie',
+          url: '/movie',
+          divider: false,
+          position: 1
+        },
+        {
+          name: 'TVSERIAL',
+          value: 'tvserial',
+          title: 'MENU_TORRENTS_SUB.TVSERIAL',
+          state: 'torrents.tvserial',
+          url: '/tv',
+          divider: false,
+          position: 2
+        },
+        {
+          name: 'MUSIC',
+          value: 'music',
+          title: 'MENU_TORRENTS_SUB.MUSIC',
+          state: 'torrents.music',
+          url: '/music',
+          divider: false,
+          position: 3
+        },
+        {
+          name: 'VARIETY',
+          value: 'variety',
+          title: 'MENU_TORRENTS_SUB.VARIETY',
+          state: 'torrents.variety',
+          url: '/variety',
+          divider: false,
+          position: 4
+        },
+        {
+          name: 'OTHER',
+          value: 'other',
+          title: 'MENU_TORRENTS_SUB.OTHER',
+          state: 'torrents.other',
+          url: '/other',
+          divider: true,
+          position: 5
+        }
       ]
     },
+
+    /**
+     * @torrentStatus
+     *
+     * the torrent status settings
+     *
+     * @name:   do not change it
+     * @value:  value of status
+     *
+     *        @name:  name of status level, used by $translate at TORRENT_RECOMMEND_LEVEL_ITEM, will show translate result in torrent admin list
+     *        @value: value of status level, will write this value into mongodb and query(search) torrents by this value
+     */
     torrentStatus: {
       name: 'STATUS',
       value: [
@@ -242,6 +313,18 @@ module.exports = {
         {name: 'DELETED', value: 'deleted'}
       ]
     },
+
+    /**
+     * @torrentRecommendLevel
+     *
+     * the torrent recommend level settings
+     *
+     * @name:   do not change it
+     * @value:  value of recommend level
+     *
+     *        @name:  name of recommend level, used by $translate at TORRENT_RECOMMEND_LEVEL_ITEM, will show translate result as torrent tag in torrent list
+     *        @value: value of recommend level, will write this value into mongodb and query(search) torrents by this value
+     */
     torrentRecommendLevel: {
       name: 'RECOMMENDLEVEL',
       value: [
@@ -260,8 +343,8 @@ module.exports = {
      * when admin/oper to delete a h&r torrent, system will auto remove all warning and number of user
      *
      * @condition:                          the condition of HnR warning, user must meet one of them before you receive the warning
-     *   @seedTime:                         torrent seed time, unit of day, default to 7 days
-     *   @ratio:                            seed ratio, default to 1.5
+     *        @seedTime:                  torrent seed time, unit of day, default to 7 days
+     *        @ratio:                     seed ratio, default to 1.5
      * @forbiddenDownloadMinWarningNumber:  when user get this number of warning, then can not to download any torrents, but can continue download the warning status torrent
      * @scoreToRemoveWarning:               if user has any warning, user can remove one warning by score number, if the user has not enough score, user still can remove these
      *                                      warning by donate the VIP class.
@@ -361,7 +444,7 @@ module.exports = {
       radio: [
         {
           name: 'TYPE',
-          cats: ['movie', 'tvserial', 'other'],
+          cats: ['movie', 'tvserial'],
           value: [
             {name: 'BLU_RAY', icon: ''},
             {name: 'REMUX', icon: ''},
@@ -371,7 +454,7 @@ module.exports = {
         },
         {
           name: 'RESOLUTION',
-          cats: ['movie', 'tvserial', 'other'],
+          cats: ['movie', 'tvserial', 'variety'],
           value: [
             {name: 'S4K', icon: ''},
             {name: 'S1080P', icon: ''},
@@ -381,7 +464,7 @@ module.exports = {
         },
         {
           name: 'VIDEO',
-          cats: ['movie', 'tvserial', 'other'],
+          cats: ['movie', 'tvserial', 'variety'],
           value: [
             {name: 'AVC', icon: ''},
             {name: 'X265', icon: ''},
@@ -390,7 +473,7 @@ module.exports = {
         },
         {
           name: 'AUDIO',
-          cats: ['movie', 'tvserial', 'music', 'other'],
+          cats: ['movie', 'tvserial', 'music', 'variety'],
           value: [
             {name: 'AAC', icon: ''},
             {name: 'AC3', icon: ''},
@@ -402,7 +485,7 @@ module.exports = {
         },
         {
           name: 'CHANNEL',
-          cats: ['movie', 'tvserial', 'music', 'other'],
+          cats: ['movie', 'tvserial', 'music', 'variety'],
           value: [
             {name: 'C20', icon: ''},
             {name: 'C51', icon: ''},
@@ -420,7 +503,7 @@ module.exports = {
         },
         {
           name: 'REGION',
-          cats: ['movie', 'tvserial', 'music', 'other'],
+          cats: ['movie', 'tvserial', 'music', 'variety'],
           value: [
             {name: 'USA', icon: ''},
             {name: 'CHINA', icon: ''},
@@ -434,7 +517,7 @@ module.exports = {
       checkbox: [
         {
           name: 'MODIFY',
-          cats: ['movie', 'tvserial'],
+          cats: ['movie', 'tvserial', 'variety'],
           value: [
             {name: 'DIY', icon: ''},
             {name: 'GUOPEI', icon: ''},
