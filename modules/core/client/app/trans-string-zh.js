@@ -40,6 +40,7 @@
       MOVIE: '电影',
       TVSERIAL: '电视剧',
       MUSIC: '音乐',
+      VARIETY: '综艺',
       OTHER: '其它'
     },
 
@@ -471,6 +472,7 @@
       MOVIE: '电影',
       TVSERIAL: '电视剧',
       MUSIC: '音乐',
+      VARIETY: '综艺',
       OTHER: '其它'
     },
     TORRENT_STATUS_LABEL: {

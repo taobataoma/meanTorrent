@@ -40,6 +40,7 @@
       MOVIE: 'Movie',
       TVSERIAL: 'TVSerial',
       MUSIC: 'Music',
+      VARIETY: 'Variety',
       OTHER: 'Other'
     },
 
@@ -471,6 +472,7 @@
       MOVIE: 'Movie',
       TVSERIAL: 'TVSerial',
       MUSIC: 'Music',
+      VARIETY: 'Variety',
       OTHER: 'Other'
     },
     TORRENT_STATUS_LABEL: {
