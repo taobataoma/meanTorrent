@@ -886,6 +886,12 @@
         DIY: 'DIY',
         GUOPEI: '国配',
         ZHONGZI: '中字'
+      },
+
+      MUSIC_SUB_CAT: {
+        SELF: '音乐类型',
+        CD: 'CD',
+        MTV: 'MTV'
       }
     }
   };

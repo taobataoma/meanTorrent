@@ -94,7 +94,7 @@
 
                     <div class="more-tags panel-collapsed" style="display: none;">
                         <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.torrentType">
-                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
                             <dd class="h-line">
                                 <div class="btn-group btn-group-xs" role="group">
                                     <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
@@ -108,7 +108,7 @@
                         </div>
 
                         <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.torrentType">
-                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
                             <dd class="h-line">
                                 <div class="btn-group btn-group-xs" role="group">
                                     <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"

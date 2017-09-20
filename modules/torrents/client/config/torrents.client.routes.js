@@ -9,7 +9,6 @@
 
   function routeConfig($stateProvider, MeanTorrentConfigProvider) {
     var torrentTypeConfig = MeanTorrentConfigProvider.meanTorrentConfig().torrentType;
-    console.log(torrentTypeConfig);
 
     $stateProvider
       .state('torrents', {

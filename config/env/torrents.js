@@ -443,6 +443,14 @@ module.exports = {
     resourcesTags: {
       radio: [
         {
+          name: 'MUSIC_SUB_CAT',
+          cats: ['music'],
+          value: [
+            {name: 'CD', icon: ''},
+            {name: 'MTV', icon: ''}
+          ]
+        },
+        {
           name: 'TYPE',
           cats: ['movie', 'tvserial'],
           value: [
@@ -454,7 +462,7 @@ module.exports = {
         },
         {
           name: 'RESOLUTION',
-          cats: ['movie', 'tvserial', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'variety'],
           value: [
             {name: 'S4K', icon: ''},
             {name: 'S1080P', icon: ''},
@@ -464,7 +472,7 @@ module.exports = {
         },
         {
           name: 'VIDEO',
-          cats: ['movie', 'tvserial', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'variety'],
           value: [
             {name: 'AVC', icon: ''},
             {name: 'X265', icon: ''},

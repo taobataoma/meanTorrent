@@ -817,7 +817,7 @@
     /////////////////////////resources tag fields///////////////////////////////////
     RESOURCESTAGS: {
       TYPE: {
-        SELF: 'Type',
+        SELF: 'Video Type',
         BLU_RAY: 'BLU_RAY',
         WEB_DL: 'WEB_DL',
         REMUX: 'REMUX',
@@ -886,6 +886,12 @@
         DIY: 'DIY',
         GUOPEI: 'Mandarin',
         ZHONGZI: 'Chinese Subtitle'
+      },
+
+      MUSIC_SUB_CAT: {
+        SELF: 'Music Sub Category',
+        CD: 'CD',
+        MTV: 'MTV'
       }
     }
   };
