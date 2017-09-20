@@ -5,9 +5,12 @@
     .module('torrents.routes')
     .config(routeConfig);
 
-  routeConfig.$inject = ['$stateProvider'];
+  routeConfig.$inject = ['$stateProvider', 'MeanTorrentConfigProvider'];
 
-  function routeConfig($stateProvider) {
+  function routeConfig($stateProvider, MeanTorrentConfigProvider) {
+    var torrentTypeConfig = MeanTorrentConfigProvider.meanTorrentConfig().torrentType;
+    console.log(torrentTypeConfig);
+
     $stateProvider
       .state('torrents', {
         abstract: true,
@@ -16,46 +19,30 @@
         data: {
           roles: ['user', 'oper', 'admin']
         }
-      })
-      .state('torrents.movie', {
-        url: '/movie',
-        templateUrl: '/modules/torrents/client/views/movie-list.client.view.html',
-        data: {
-          pageTitle: 'PAGETITLE.MOVIE_LIST',
-          torrentType: 'movie'
-        }
-      })
-      .state('torrents.tvserial', {
-        url: '/tv',
-        templateUrl: '/modules/torrents/client/views/movie-list.client.view.html',
-        data: {
-          pageTitle: 'PAGETITLE.TV_LIST',
-          torrentType: 'tvserial'
-        }
-      })
-      .state('torrents.music', {
-        url: '/music',
-        templateUrl: '/modules/torrents/client/views/movie-list.client.view.html',
-        data: {
-          pageTitle: 'PAGETITLE.MUSIC_LIST',
-          torrentType: 'music'
-        }
-      })
-      .state('torrents.other', {
-        url: '/other',
-        templateUrl: '/modules/torrents/client/views/movie-list.client.view.html',
-        data: {
-          pageTitle: 'PAGETITLE.OTHER_LIST',
-          torrentType: 'other'
-        }
-      })
+      });
+
+    $stateProvider
       .state('torrents.uploads', {
         url: '/uploads',
         templateUrl: '/modules/torrents/client/views/uploads-torrents.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.UPLOAD'
         }
-      })
+      });
+
+    angular.forEach(torrentTypeConfig.value, function (cfg) {
+      $stateProvider
+        .state(cfg.state, {
+          url: cfg.url,
+          templateUrl: '/modules/torrents/client/views/torrent-list.client.view.html',
+          data: {
+            pageTitle: 'PAGETITLE.MOVIE_LIST',
+            torrentType: cfg.value
+          }
+        });
+    });
+
+    $stateProvider
       .state('torrents.view', {
         url: '/:torrentId',
         templateUrl: '/modules/torrents/client/views/view-torrent.client.view.html',
