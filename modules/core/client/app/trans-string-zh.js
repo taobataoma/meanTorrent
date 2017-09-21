@@ -207,6 +207,7 @@
     CA_KEYWORD: '关键字',
     CA_TORRENT_STATUS: '种子状态',
     CA_TORRENT_HNR: 'Hit and Run',
+    CA_TORRENT_VIP: 'VIP 资源',
     CA_RESOURCE_TYPE: '资源类型',
     PH_KEYWORD: '搜索关键字',
     CLEAR_ALL_CONDITION: '清空所有条件',

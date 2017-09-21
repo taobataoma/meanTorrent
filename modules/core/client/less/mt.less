@@ -614,7 +614,7 @@ body {
         min-width: 90px;
     }
     .td-admin-cmd {
-        min-width: 140px;
+        min-width: 143px;
     }
 }
 
@@ -741,6 +741,22 @@ body {
     }
 }
 
+.label-vip-info {
+    color: @mt-base-color;
+    font-weight: bold;
+    background-color: #f1f8ff;
+    &:hover {
+        cursor: pointer;
+        color: #f00;
+    }
+    &:active {
+        color: #0366d6;
+    }
+    &.used {
+        background-color: #c9e4ff !important;
+    }
+}
+
 .label-se-info {
     color: @mt-base-color;
     background-color: #f1f8ff;
@@ -793,6 +809,14 @@ body {
 }
 
 .checkbox-hnr {
+    margin-top: 0;
+    margin-bottom: 0;
+    input[type="checkbox"] {
+        margin-top: 8px;
+    }
+}
+
+.checkbox-vip {
     margin-top: 0;
     margin-bottom: 0;
     input[type="checkbox"] {

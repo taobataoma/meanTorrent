@@ -149,6 +149,19 @@
     };
 
     /**
+     * toggleVIP
+     */
+    vm.toggleVIP = function () {
+      vm.torrentLocalInfo.$toggleVIPStatus(function (res) {
+        mtDebug.info(res);
+        vm.torrentLocalInfo = res;
+        NotifycationService.showSuccessNotify('TORRENT_TOGGLE_VIP_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_VIP_FAILED');
+      });
+    };
+
+    /**
      * doScrape
      */
     vm.doScrape = function () {

@@ -824,6 +824,7 @@ exports.list = function (req, res) {
   var stype = 'movie';
   var newest = false;
   var hnr = false;
+  var vip = undefined;
   var release = undefined;
   var userid = undefined;
   var tagsA = [];
@@ -851,6 +852,9 @@ exports.list = function (req, res) {
   }
   if (req.query.torrent_hnr !== undefined) {
     hnr = req.query.torrent_hnr;
+  }
+  if (req.query.torrent_vip !== undefined) {
+    vip = req.query.torrent_vip;
   }
   if (req.query.newest !== undefined) {
     newest = (req.query.newest === 'true');
@@ -895,6 +899,11 @@ exports.list = function (req, res) {
   }
   if (hnr === 'true') {
     condition.torrent_hnr = hnr;
+  }
+  if (vip === 'true') {
+    condition.torrent_vip = true;
+  } else if (vip === undefined) {
+    condition.torrent_vip = false;
   }
 
   if (tagsA.length > 0) {
@@ -1114,7 +1123,7 @@ exports.torrentByID = function (req, res, next, id) {
 
     mtDebug.debugGreen(condition);
 
-    var fields = 'user torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_seasons torrent_episodes torrent_size torrent_sale_status torrent_type torrent_hnr torrent_sale_expires createdat';
+    var fields = 'user torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_seasons torrent_episodes torrent_size torrent_sale_status torrent_type torrent_hnr torrent_vip torrent_sale_expires createdat';
 
     Torrent.find(condition, fields)
       .sort('-createdat')

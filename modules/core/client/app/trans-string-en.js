@@ -207,6 +207,7 @@
     CA_KEYWORD: 'Keyword',
     CA_TORRENT_STATUS: 'Torrent status',
     CA_TORRENT_HNR: 'Hit and Run',
+    CA_TORRENT_VIP: 'VIP resources',
     CA_RESOURCE_TYPE: 'Resource type',
     PH_KEYWORD: 'Search keyword',
     CLEAR_ALL_CONDITION: 'Clear All Condition',
