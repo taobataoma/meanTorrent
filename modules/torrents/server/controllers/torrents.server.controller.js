@@ -520,6 +520,27 @@ exports.toggleHnRStatus = function (req, res) {
 };
 
 /**
+ * toggleVIPStatus
+ * @param req
+ * @param res
+ */
+exports.toggleVIPStatus = function (req, res) {
+  var torrent = req.torrent;
+
+  torrent.torrent_vip = !torrent.torrent_vip;
+
+  torrent.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(torrent);
+    }
+  });
+};
+
+/**
  * removeTorrentHnRWarning
  * @param torrent
  */

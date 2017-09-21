@@ -44,6 +44,9 @@ module.exports = function (app) {
   app.route('/api/torrents/:torrentId/toggleHnRStatus').all(torrentsPolicy.isAllowed)
     .put(torrents.toggleHnRStatus);
 
+  app.route('/api/torrents/:torrentId/toggleVIPStatus').all(torrentsPolicy.isAllowed)
+    .put(torrents.toggleVIPStatus);
+
   app.route('/api/torrents/:torrentId/set/saletype/:saleType').all(torrentsPolicy.isAllowed)
     .put(torrents.setSaleType);
 
