@@ -313,7 +313,8 @@
       TorrentsService.get({
         userid: vm.user._id,
         torrent_type: 'all',
-        torrent_status: 'all'
+        torrent_status: 'all',
+        torrent_vip: false
       }, function (items) {
         vm.UserUploadedList = items.rows;
       }, function (err) {

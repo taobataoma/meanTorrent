@@ -109,6 +109,9 @@
                                             <span class="label label-hnr-info" ng-if="item.torrent.torrent_hnr"
                                                   ng-click="$event.stopPropagation();">H&R</span>
 
+                                            <span class="label label-vip-info" ng-if="item.torrent.torrent_vip"
+                                                  ng-click="$event.stopPropagation();">VIP</span>
+
                                             <span ng-repeat="t in item.torrent.torrent_tags">
                                                 <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}"
                                                       ng-click="$event.stopPropagation();">
