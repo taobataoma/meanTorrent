@@ -61,6 +61,13 @@
           torrentId: '@_id'
         }
       },
+      toggleVIPStatus: {
+        method: 'PUT',
+        url: '/api/torrents/:torrentId/toggleVIPStatus',
+        params: {
+          torrentId: '@_id'
+        }
+      },
       thumbsUp: {
         method: 'PUT',
         url: '/api/torrents/:torrentId/thumbsUp',
