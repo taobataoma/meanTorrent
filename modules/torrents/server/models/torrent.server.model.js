@@ -125,6 +125,10 @@ var TorrentSchema = new Schema({
     type: Boolean,
     default: false
   },
+  torrent_vip: {
+    type: Boolean,
+    default: false
+  },
   torrent_sale_status: {
     type: String,
     default: 'U1/D1',
