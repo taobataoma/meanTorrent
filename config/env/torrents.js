@@ -242,11 +242,16 @@ module.exports = {
      *        @url:       window location url of type
      *        @divider:   divider status of submenu item
      *        @position:  position of submenu item(ordered index)
+     *
+     * if you add a config json item, please add translate string:
+     *        MENU_TORRENTS_SUB
+     *        TORRENT_TYPE_LABEL
      */
     torrentType: {
       name: 'TYPE',
       value: [
         {
+          enable: true,
           name: 'MOVIE',
           value: 'movie',
           title: 'MENU_TORRENTS_SUB.MOVIE',
@@ -256,6 +261,7 @@ module.exports = {
           position: 1
         },
         {
+          enable: true,
           name: 'TVSERIAL',
           value: 'tvserial',
           title: 'MENU_TORRENTS_SUB.TVSERIAL',
@@ -265,6 +271,7 @@ module.exports = {
           position: 2
         },
         {
+          enable: true,
           name: 'MUSIC',
           value: 'music',
           title: 'MENU_TORRENTS_SUB.MUSIC',
@@ -274,6 +281,7 @@ module.exports = {
           position: 3
         },
         {
+          enable: true,
           name: 'VARIETY',
           value: 'variety',
           title: 'MENU_TORRENTS_SUB.VARIETY',
@@ -283,6 +291,27 @@ module.exports = {
           position: 4
         },
         {
+          enable: true,
+          name: 'SOFTWARE',
+          value: 'software',
+          title: 'MENU_TORRENTS_SUB.SOFTWARE',
+          state: 'torrents.software',
+          url: '/software',
+          divider: true,
+          position: 4
+        },
+        {
+          enable: true,
+          name: 'EBOOK',
+          value: 'ebook',
+          title: 'MENU_TORRENTS_SUB.EBOOK',
+          state: 'torrents.ebook',
+          url: '/ebook',
+          divider: false,
+          position: 4
+        },
+        {
+          enable: true,
           name: 'OTHER',
           value: 'other',
           title: 'MENU_TORRENTS_SUB.OTHER',
@@ -519,6 +548,17 @@ module.exports = {
             {name: 'KOREA', icon: ''},
             {name: 'INDIA', icon: ''},
             {name: 'ARAB', icon: ''}
+          ]
+        },
+        {
+          name: 'PLATFORM',
+          cats: ['software'],
+          value: [
+            {name: 'Windows', icon: ''},
+            {name: 'MacOS', icon: ''},
+            {name: 'Linux', icon: ''},
+            {name: 'iOS', icon: ''},
+            {name: 'Android', icon: ''}
           ]
         }
       ],

@@ -18,15 +18,24 @@
       position: 0
     });
 
+    menuService.addMenuItem('topbar', {
+      title: 'MENU_UPLOAD',
+      state: 'torrents.uploads',
+      roles: ['*'],
+      position: 3
+    });
+
     // Add the dropdown list item
     angular.forEach(torrentTypeConfig.value, function (cfg) {
-      menuService.addSubMenuItem('topbar', 'torrents', {
-        title: cfg.title,
-        state: cfg.state,
-        divider: cfg.divider,
-        roles: ['*'],
-        position: cfg.position
-      });
+      if (cfg.enable) {
+        menuService.addSubMenuItem('topbar', 'torrents', {
+          title: cfg.title,
+          state: cfg.state,
+          divider: cfg.divider,
+          roles: ['*'],
+          position: cfg.position
+        });
+      }
     });
   }
 }());

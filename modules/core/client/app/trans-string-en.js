@@ -41,6 +41,8 @@
       TVSERIAL: 'TVSerial',
       MUSIC: 'Music',
       VARIETY: 'Variety',
+      SOFTWARE: 'Software',
+      EBOOK: 'eBook',
       OTHER: 'Other'
     },
 
@@ -473,6 +475,8 @@
       TVSERIAL: 'TVSerial',
       MUSIC: 'Music',
       VARIETY: 'Variety',
+      SOFTWARE: 'Software',
+      EBOOK: 'eBook',
       OTHER: 'Other'
     },
     TORRENT_STATUS_LABEL: {
@@ -892,6 +896,15 @@
         SELF: 'Music Sub Category',
         CD: 'CD',
         MTV: 'MTV'
+      },
+
+      PLATFORM: {
+        SELF: 'Platform',
+        Windows: 'Windows',
+        MacOS: 'MacOS',
+        Linux: 'Linux',
+        iOS: 'iOS',
+        Android: 'Android'
       }
     }
   };

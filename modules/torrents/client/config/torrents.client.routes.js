@@ -30,15 +30,17 @@
       });
 
     angular.forEach(torrentTypeConfig.value, function (cfg) {
-      $stateProvider
-        .state(cfg.state, {
-          url: cfg.url,
-          templateUrl: '/modules/torrents/client/views/torrent-list.client.view.html',
-          data: {
-            pageTitle: 'PAGETITLE.MOVIE_LIST',
-            torrentType: cfg.value
-          }
-        });
+      if (cfg.enable) {
+        $stateProvider
+          .state(cfg.state, {
+            url: cfg.url,
+            templateUrl: '/modules/torrents/client/views/torrent-list.client.view.html',
+            data: {
+              pageTitle: 'PAGETITLE.MOVIE_LIST',
+              torrentType: cfg.value
+            }
+          });
+      }
     });
 
     $stateProvider

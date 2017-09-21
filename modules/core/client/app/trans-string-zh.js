@@ -41,6 +41,8 @@
       TVSERIAL: '电视剧',
       MUSIC: '音乐',
       VARIETY: '综艺',
+      SOFTWARE: '软件',
+      EBOOK: '电子书',
       OTHER: '其它'
     },
 
@@ -473,6 +475,8 @@
       TVSERIAL: '电视剧',
       MUSIC: '音乐',
       VARIETY: '综艺',
+      SOFTWARE: '软件',
+      EBOOK: '电子书',
       OTHER: '其它'
     },
     TORRENT_STATUS_LABEL: {
@@ -892,6 +896,15 @@
         SELF: '音乐类型',
         CD: 'CD',
         MTV: 'MTV'
+      },
+
+      PLATFORM: {
+        SELF: 'Platform',
+        Windows: 'Windows',
+        MacOS: 'MacOS',
+        Linux: 'Linux',
+        iOS: 'iOS',
+        Android: 'Android'
       }
     }
   };
