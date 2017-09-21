@@ -247,8 +247,11 @@
                                 </button>
                             </div>
                             <div class="margin-top-2">
-                                <button class="btn btn-xs btn-default btn-block" ng-click="vm.toggleHnR(item); $event.stopPropagation();">
+                                <button class="btn col-xs-6 btn-xs btn-default" ng-click="vm.toggleHnR(item); $event.stopPropagation();">
                                     {{ (item.torrent_hnr ? 'ADMIN_BASIC_UNSET_HNR' : 'ADMIN_BASIC_SET_HNR') | translate}}
+                                </button>
+                                <button class="btn col-xs-6 btn-xs btn-default" ng-click="vm.toggleVIP(item); $event.stopPropagation();">
+                                    {{ (item.torrent_vip ? 'ADMIN_BASIC_UNSET_VIP' : 'ADMIN_BASIC_SET_VIP') | translate}}
                                 </button>
                             </div>
                             <div class="margin-top-2" ng-if="vm.announce.privateTorrentCmsMode">

@@ -268,8 +268,10 @@
     ADMIN_BASIC_UPDATE: 'Update torrent info from TMDB',
     ADMIN_BASIC_DELETE: 'Delete torrent',
     ADMIN_BASIC_SCRAPE: 'Scrape torrent status',
-    ADMIN_BASIC_SET_HNR: 'Set H&R',
-    ADMIN_BASIC_UNSET_HNR: 'Unset H&R',
+    ADMIN_BASIC_SET_HNR: 'SetHnR',
+    ADMIN_BASIC_UNSET_HNR: 'UnsetHnR',
+    ADMIN_BASIC_SET_VIP: 'SetVIP',
+    ADMIN_BASIC_UNSET_VIP: 'UnsetVIP',
     ADMIN_BASIC_TYPE_SET: 'Sale Type',
     ADMIN_SALE_TYPE_SET: 'Sale Type Set',
     ADMIN_BASIC_RLEVEL_SET: 'Recommend Level',
@@ -295,6 +297,8 @@
     TORRENT_SETRLEVEL_ERROR: 'Torrent recommend level set failed',
     TORRENT_TOGGLE_HNR_SUCCESSFULLY: 'Torrent toggle HnR tag successfully',
     TORRENT_TOGGLE_HNR_FAILED: 'Torrent toggle HnR tag failed',
+    TORRENT_TOGGLE_VIP_SUCCESSFULLY: 'Torrent toggle VIP tag successfully',
+    TORRENT_TOGGLE_VIP_FAILED: 'Torrent toggle VIP tag failed',
 
     //page text
     PAGE_TEXT_FIRST: 'First',

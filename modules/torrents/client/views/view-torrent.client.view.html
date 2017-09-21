@@ -752,6 +752,9 @@
                     <button class="btn btn-default btn-sm"
                             ng-click="vm.toggleHnR();">{{ (vm.torrentLocalInfo.torrent_hnr ? 'ADMIN_BASIC_UNSET_HNR' : 'ADMIN_BASIC_SET_HNR') | translate}}
                     </button>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="vm.toggleVIP();">{{ (vm.torrentLocalInfo.torrent_vip ? 'ADMIN_BASIC_UNSET_VIP' : 'ADMIN_BASIC_SET_VIP') | translate}}
+                    </button>
                     <button class="btn btn-default btn-sm" ng-click="vm.doScrape();"
                             ng-if="!vm.announce.privateTorrentCmsMode">{{ 'ADMIN_BASIC_SCRAPE' | translate}}
                     </button>

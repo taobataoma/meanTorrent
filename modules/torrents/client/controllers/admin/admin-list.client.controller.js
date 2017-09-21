@@ -367,6 +367,19 @@
     };
 
     /**
+     * toggleVIP
+     */
+    vm.toggleVIP = function (item) {
+      var dt = new TorrentsService(item);
+      dt.$toggleVIPStatus(function (res) {
+        vm.torrentPagedItems[vm.torrentPagedItems.indexOf(item)] = res;
+        NotifycationService.showSuccessNotify('TORRENT_TOGGLE_VIP_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_VIP_FAILED');
+      });
+    };
+
+    /**
      * deleteTorrent
      */
     vm.deleteTorrent = function (item) {
