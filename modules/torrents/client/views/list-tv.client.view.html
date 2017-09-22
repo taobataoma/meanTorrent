@@ -32,8 +32,7 @@
                     <div class="torrent-tmdb-info">
                         <ul class="list-unstyled">
                             <li>
-                                <span class="release-date" ng-if="vm.torrentType == 'movie'">{{item.resource_detail_info.release_date}}</span>
-                                <span class="se-info" ng-if="vm.torrentType == 'tvserial'">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
+                                <span class="se-info">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                       class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average}}</span>
                             </li>
@@ -167,11 +166,7 @@
                                     </div>
                                 </div>
                                 <div class="media-body">
-                                    <h5 ng-if="vm.torrentType == 'movie'" class="media-heading">
-                                        {{item.resource_detail_info.original_title}}
-                                        <span ng-show="item.resource_detail_info.original_title!=item.resource_detail_info.title"> / {{item.resource_detail_info.title}}</span>
-                                    </h5>
-                                    <h5 ng-if="vm.torrentType == 'tvserial'" class="media-heading">
+                                    <h5 class="media-heading">
                                         {{item.resource_detail_info.original_name}}
                                         <span ng-show="item.resource_detail_info.original_name!=item.resource_detail_info.name"> / {{item.resource_detail_info.name}}</span>
                                     </h5>
@@ -183,11 +178,6 @@
                                     <div class="torrent-filename text-long">{{item.torrent_filename | filename}}</div>
 
                                     <div class="list-all-tags">
-                                        <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
-                                        <span class="label label-release label-warning" ng-show="item.resource_detail_info.release_date"
-                                              ng-click="vm.onReleaseClicked(item.resource_detail_info.release_date); $event.stopPropagation();">
-                                            {{ item.resource_detail_info.release_date}}
-                                        </span>
                                         <span class="label label-rlevel label-info"
                                               ng-show="item.torrent_recommended != 'none'"
                                               ng-click="$event.stopPropagation();">
@@ -199,7 +189,7 @@
                                               ng-class="{'label-default': !item.isSaling, 'label-success': item.isSaling}">
                                                 {{item.torrent_sale_status}} {{item.torrent_sale_expires | unlife}}
                                         </span>
-                                        <span class="label label-se-info" ng-if="vm.torrentType == 'tvserial'"
+                                        <span class="label label-se-info"
                                               ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
 
                                         <span class="label label-hnr-info" ng-if="item.torrent_hnr"
