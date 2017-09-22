@@ -41,12 +41,12 @@
         </div>
     </div>
 
-    <div class="row margin-bottom-40" ng-show="vm.successfully == true">
+    <div class="row margin-bottom-40" ng-show="vm.successfully !== true">
         <div class="col-xs-12">
             <legend class="small-legend" translate="SELECT_RESOURCE_TYPE"></legend>
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <select class="form-control" ng-model="vm.selectedType" ng-change="vm.onTorrentTypeChanged();">
-                    <option ng-repeat="t in vm.torrentType.value" value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}</option>
+                    <option ng-repeat="t in vm.torrentType.value | filter:{enable: true}" value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}</option>
                 </select>
             </div>
         </div>

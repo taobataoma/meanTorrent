@@ -11,7 +11,7 @@
                         <div class="row margin-bottom-5">
                             <div class="col-sm-6 col-md-4">
                                 <select class="form-control" ng-model="vm.selectedType" ng-change="vm.onTorrentTypeChanged();">
-                                    <option ng-repeat="t in vm.torrentType.value" value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}
+                                    <option ng-repeat="t in vm.torrentType.value | filter:{enable: true}" value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}
                                     </option>
                                 </select>
                             </div>
