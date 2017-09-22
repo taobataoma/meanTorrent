@@ -34,9 +34,9 @@
         $stateProvider
           .state(cfg.state, {
             url: cfg.url,
-            templateUrl: '/modules/torrents/client/views/torrent-list.client.view.html',
+            templateUrl: cfg.viewTemplateUrl,
             data: {
-              pageTitle: 'PAGETITLE.MOVIE_LIST',
+              pageTitle: 'PAGETITLE.' + cfg.pageTitle,
               torrentType: cfg.value
             }
           });

@@ -235,13 +235,17 @@ module.exports = {
      * @name:   TYPE, do not change it
      * @value:  configure settings value of torrent type
      *
-     *        @name:      name of type, used by $translate at TORRENT_TYPE_LABEL, will show translate result as torrent tag in torrent list
-     *        @value:     value of type, torrent type value in model, will write this value into mongodb and query torrents by this value
-     *        @title:     title of type, used by $translate at MENU_TORRENTS_SUB, will show translate result in header submenu item
-     *        @state:     angular state of type, this state value used in module route config
-     *        @url:       window location url of type
-     *        @divider:   divider status of submenu item
-     *        @position:  position of submenu item(ordered index)
+     *        @enable:            enable this type
+     *        @name:              name of type, used by $translate at TORRENT_TYPE_LABEL, will show translate result as torrent tag in torrent list
+     *        @value:             value of type, torrent type value in model, will write this value into mongodb and query torrents by this value
+     *        @title:             title of type, used by $translate at MENU_TORRENTS_SUB, will show translate result in header submenu item
+     *        @divider:           divider status of submenu item
+     *        @position:          position of submenu item(ordered index)
+     *        @state:             angular state of type, this state value used in module route config
+     *        @url:               window location url of type
+     *        @viewTemplateUrl:   view templateUrl value of state
+     *        @uploadTemplateID:  view templateID in upload torrent page, when selected type is changed, then include the template by this id,
+     *                            all the template html is in file: modules/torrents/client/views/uploads-torrents.client.view.html
      *
      * if you add a config json item, please add translate string:
      *        MENU_TORRENTS_SUB
@@ -255,10 +259,12 @@ module.exports = {
           name: 'MOVIE',
           value: 'movie',
           title: 'MENU_TORRENTS_SUB.MOVIE',
-          state: 'torrents.movie',
-          url: '/movie',
           divider: false,
           position: 1,
+          state: 'torrents.movie',
+          url: '/movie',
+          viewTemplateUrl: '/modules/torrents/client/views/list-movie.client.view.html',
+          pageTitle: 'MOVIE_LIST',
           uploadTemplateID: 'movie'
         },
         {
@@ -266,10 +272,12 @@ module.exports = {
           name: 'TVSERIAL',
           value: 'tvserial',
           title: 'MENU_TORRENTS_SUB.TVSERIAL',
-          state: 'torrents.tvserial',
-          url: '/tv',
           divider: false,
           position: 2,
+          state: 'torrents.tvserial',
+          url: '/tv',
+          viewTemplateUrl: '/modules/torrents/client/views/list-tv.client.view.html',
+          pageTitle: 'TV_LIST',
           uploadTemplateID: 'tvserial'
         },
         {
@@ -277,10 +285,12 @@ module.exports = {
           name: 'MUSIC',
           value: 'music',
           title: 'MENU_TORRENTS_SUB.MUSIC',
-          state: 'torrents.music',
-          url: '/music',
           divider: false,
           position: 3,
+          state: 'torrents.music',
+          url: '/music',
+          viewTemplateUrl: '/modules/torrents/client/views/list-music.client.view.html',
+          pageTitle: 'MUSIC_LIST',
           uploadTemplateID: 'music'
         },
         {
@@ -288,10 +298,12 @@ module.exports = {
           name: 'VARIETY',
           value: 'variety',
           title: 'MENU_TORRENTS_SUB.VARIETY',
-          state: 'torrents.variety',
-          url: '/variety',
           divider: false,
           position: 4,
+          state: 'torrents.variety',
+          url: '/variety',
+          viewTemplateUrl: '/modules/torrents/client/views/list-variety.client.view.html',
+          pageTitle: 'VARIETY_LIST',
           uploadTemplateID: 'variety'
         },
         {
@@ -299,10 +311,12 @@ module.exports = {
           name: 'SOFTWARE',
           value: 'software',
           title: 'MENU_TORRENTS_SUB.SOFTWARE',
-          state: 'torrents.software',
-          url: '/software',
           divider: true,
           position: 4,
+          state: 'torrents.software',
+          url: '/software',
+          viewTemplateUrl: '/modules/torrents/client/views/list-software.client.view.html',
+          pageTitle: 'SOFTWARE_LIST',
           uploadTemplateID: 'default'
         },
         {
@@ -310,10 +324,12 @@ module.exports = {
           name: 'EBOOK',
           value: 'ebook',
           title: 'MENU_TORRENTS_SUB.EBOOK',
-          state: 'torrents.ebook',
-          url: '/ebook',
           divider: false,
           position: 4,
+          state: 'torrents.ebook',
+          url: '/ebook',
+          viewTemplateUrl: '/modules/torrents/client/views/list-ebook.client.view.html',
+          pageTitle: 'EBOOK_LIST',
           uploadTemplateID: 'default'
         },
         {
@@ -321,10 +337,12 @@ module.exports = {
           name: 'OTHER',
           value: 'other',
           title: 'MENU_TORRENTS_SUB.OTHER',
-          state: 'torrents.other',
-          url: '/other',
           divider: true,
           position: 5,
+          state: 'torrents.other',
+          url: '/other',
+          viewTemplateUrl: '/modules/torrents/client/views/list-other.client.view.html',
+          pageTitle: 'OTHER_LIST',
           uploadTemplateID: 'default'
         }
       ]
