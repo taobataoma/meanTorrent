@@ -15,6 +15,7 @@
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
 
     vm.movieTopOne = undefined;
     vm.movieTopList = undefined;
@@ -63,12 +64,22 @@
     };
 
     /**
-     * getTopInfo
+     * getTorrentTypeEnabled
      */
-    vm.getTopInfo = function () {
-      vm.getMovieTopInfo();
-      vm.getTVTopInfo();
+    vm.getTorrentTypeEnabled = function (t) {
+      var enb = false;
+      angular.forEach(vm.torrentType.value, function (tc) {
+        if (tc.value === t) {
+          enb = tc.enable;
+        }
+      });
+      return enb;
+    };
 
+    /**
+     * getWarningInfo
+     */
+    vm.getWarningInfo = function () {
       var sw = localStorageService.get('showed_warning');
       if (vm.appConfig.showDemoWarningPopup && !sw) {
         $timeout(function () {
