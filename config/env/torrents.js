@@ -241,15 +241,17 @@ module.exports = {
      *        @title:             title of type, used by $translate at MENU_TORRENTS_SUB, will show translate result in header submenu item
      *        @divider:           divider status of submenu item
      *        @position:          position of submenu item(ordered index)
-     *        @state:             angular state of type, this state value used in module route config
+     *        @state:             angular state of torrent type, this state value used in module route config
      *        @url:               window location url of type
      *        @viewTemplateUrl:   view templateUrl value of state
+     *        @pageTitle:         the page title string, used by translate
      *        @uploadTemplateID:  view templateID in upload torrent page, when selected type is changed, then include the template by this id,
      *                            all the template html is in file: modules/torrents/client/views/uploads-torrents.client.view.html
      *
      * if you add a config json item, please add translate string:
      *        MENU_TORRENTS_SUB
      *        TORRENT_TYPE_LABEL
+     *        PAGETITLE.*
      */
     torrentType: {
       name: 'TYPE',
