@@ -130,6 +130,21 @@
     };
 
     /**
+     * getIncludeUploadTemplateID
+     * @param st
+     */
+    vm.getIncludeUploadTemplateID = function (st) {
+      var inc = 'default';
+      angular.forEach(vm.torrentType.value, function (tc) {
+        if (tc.value === st) {
+          inc = tc.uploadTemplateID;
+        }
+      });
+
+      return inc;
+    };
+
+    /**
      * getMovieInfo
      * @param tmdbid
      */

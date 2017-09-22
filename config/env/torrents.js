@@ -258,7 +258,8 @@ module.exports = {
           state: 'torrents.movie',
           url: '/movie',
           divider: false,
-          position: 1
+          position: 1,
+          uploadTemplateID: 'movie'
         },
         {
           enable: true,
@@ -268,7 +269,8 @@ module.exports = {
           state: 'torrents.tvserial',
           url: '/tv',
           divider: false,
-          position: 2
+          position: 2,
+          uploadTemplateID: 'tvserial'
         },
         {
           enable: true,
@@ -278,7 +280,8 @@ module.exports = {
           state: 'torrents.music',
           url: '/music',
           divider: false,
-          position: 3
+          position: 3,
+          uploadTemplateID: 'music'
         },
         {
           enable: true,
@@ -288,7 +291,8 @@ module.exports = {
           state: 'torrents.variety',
           url: '/variety',
           divider: false,
-          position: 4
+          position: 4,
+          uploadTemplateID: 'variety'
         },
         {
           enable: true,
@@ -298,7 +302,8 @@ module.exports = {
           state: 'torrents.software',
           url: '/software',
           divider: true,
-          position: 4
+          position: 4,
+          uploadTemplateID: 'default'
         },
         {
           enable: true,
@@ -308,7 +313,8 @@ module.exports = {
           state: 'torrents.ebook',
           url: '/ebook',
           divider: false,
-          position: 4
+          position: 4,
+          uploadTemplateID: 'default'
         },
         {
           enable: true,
@@ -318,7 +324,8 @@ module.exports = {
           state: 'torrents.other',
           url: '/other',
           divider: true,
-          position: 5
+          position: 5,
+          uploadTemplateID: 'default'
         }
       ]
     },
