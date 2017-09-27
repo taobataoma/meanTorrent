@@ -38,15 +38,14 @@
       if (!customModalDefaults) customModalDefaults = {};
       customModalDefaults.backdrop = 'static';
 
-      cModalOptions = customModalOptions;
-
       return this.show(customModalDefaults, customModalOptions);
     };
 
     var show = function (customModalDefaults, customModalOptions) {
       //Create temp objects to work with since we're in a singleton service
       var tempModalDefaults = {};
-      var tempModalOptions = {};
+
+      cModalOptions = customModalOptions;
 
       //Map angular-ui modal custom defaults to modal defaults defined in service
       angular.extend(tempModalDefaults, modalDefaults, customModalDefaults);
