@@ -203,11 +203,11 @@ exports.upload = function (req, res) {
 };
 
 /**
- * uploadMusicCover
+ * uploadTorrentCover
  * @param req
  * @param res
  */
-exports.uploadMusicCover = function (req, res) {
+exports.uploadTorrentCover = function (req, res) {
   var user = req.user;
   var createUploadCoverImageFilename = require(path.resolve('./config/lib/multer')).createUploadCoverImageFilename;
   var getUploadCoverImageDestination = require(path.resolve('./config/lib/multer')).getUploadCoverImageDestination;
@@ -222,8 +222,8 @@ exports.uploadMusicCover = function (req, res) {
   var upload = multer({
     storage: storage,
     fileFilter: fileFilter,
-    limits: config.uploads.cover.image.limits
-  }).single('newMusicCoverFile');
+    limits: config.uploads.torrent.cover.limits
+  }).single('newTorrentCoverFile');
 
   if (user) {
     uploadFile()
@@ -235,7 +235,7 @@ exports.uploadMusicCover = function (req, res) {
         mtDebug.debugRed(err);
 
         if (req.file && req.file.filename) {
-          var newfile = config.uploads.cover.image.temp + req.file.filename;
+          var newfile = config.uploads.torrent.cover.temp + req.file.filename;
           if (fs.existsSync(newfile)) {
             mtDebug.debugRed(err);
             mtDebug.debugRed('ERROR: DELETE TEMP COVER FILE: ' + newfile);
@@ -256,12 +256,79 @@ exports.uploadMusicCover = function (req, res) {
           var message = errorHandler.getErrorMessage(uploadError);
 
           if (uploadError.code === 'LIMIT_FILE_SIZE') {
-            message = 'Cover image file too large. Maximum size allowed is ' + (config.uploads.cover.image.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
+            message = 'Cover image file too large. Maximum size allowed is ' + (config.uploads.torrent.cover.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
           }
 
           reject(message);
         } else {
           coverInfo.filename = req.file.filename;
+          resolve();
+        }
+      });
+    });
+  }
+};
+
+/**
+ * uploadTorrentImage
+ * @param req
+ * @param res
+ */
+exports.uploadTorrentImage = function (req, res) {
+  var user = req.user;
+  var createUploadTorrentImageFilename = require(path.resolve('./config/lib/multer')).createUploadTorrentImageFilename;
+  var getUploadTorrentImageDestination = require(path.resolve('./config/lib/multer')).getUploadTorrentImageDestination;
+  var fileFilter = require(path.resolve('./config/lib/multer')).imageFileFilter;
+  var imageInfo = {};
+
+  var storage = multer.diskStorage({
+    destination: getUploadTorrentImageDestination,
+    filename: createUploadTorrentImageFilename
+  });
+
+  var upload = multer({
+    storage: storage,
+    fileFilter: fileFilter,
+    limits: config.uploads.torrent.cover.limits
+  }).single('newTorrentImageFile');
+
+  if (user) {
+    uploadFile()
+      .then(function () {
+        res.status(200).send(imageInfo);
+      })
+      .catch(function (err) {
+        res.status(422).send(err);
+        mtDebug.debugRed(err);
+
+        if (req.file && req.file.filename) {
+          var newfile = config.uploads.torrent.image.temp + req.file.filename;
+          if (fs.existsSync(newfile)) {
+            mtDebug.debugRed(err);
+            mtDebug.debugRed('ERROR: DELETE TEMP TORRENT IMAGE FILE: ' + newfile);
+            fs.unlinkSync(newfile);
+          }
+        }
+      });
+  } else {
+    res.status(401).send({
+      message: 'User is not signed in'
+    });
+  }
+
+  function uploadFile() {
+    return new Promise(function (resolve, reject) {
+      upload(req, res, function (uploadError) {
+        if (uploadError) {
+          var message = errorHandler.getErrorMessage(uploadError);
+
+          if (uploadError.code === 'LIMIT_FILE_SIZE') {
+            message = 'Torrent image file too large. Maximum size allowed is ' + (config.uploads.torrent.image.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
+          }
+
+          reject(message);
+        } else {
+          imageInfo.filename = req.file.filename;
           resolve();
         }
       });

@@ -17,8 +17,11 @@ module.exports = function (app) {
   app.route('/api/torrents/upload').all(torrentsPolicy.isAllowed)
     .post(torrents.upload);
 
-  app.route('/api/torrents/uploadMusicCover').all(torrentsPolicy.isAllowed)
-    .post(torrents.uploadMusicCover);
+  app.route('/api/torrents/uploadTorrentCover').all(torrentsPolicy.isAllowed)
+    .post(torrents.uploadTorrentCover);
+
+  app.route('/api/torrents/uploadTorrentImage').all(torrentsPolicy.isAllowed)
+    .post(torrents.uploadTorrentImage);
 
   app.route('/api/torrents/announceEdit').all(torrentsPolicy.isAllowed)
     .post(torrents.announceEdit);
