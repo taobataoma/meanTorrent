@@ -203,6 +203,73 @@ exports.upload = function (req, res) {
 };
 
 /**
+ * uploadMusicCover
+ * @param req
+ * @param res
+ */
+exports.uploadMusicCover = function (req, res) {
+  var user = req.user;
+  var createUploadCoverImageFilename = require(path.resolve('./config/lib/multer')).createUploadCoverImageFilename;
+  var getUploadCoverImageDestination = require(path.resolve('./config/lib/multer')).getUploadCoverImageDestination;
+  var fileFilter = require(path.resolve('./config/lib/multer')).imageFileFilter;
+  var coverInfo = {};
+
+  var storage = multer.diskStorage({
+    destination: getUploadCoverImageDestination,
+    filename: createUploadCoverImageFilename
+  });
+
+  var upload = multer({
+    storage: storage,
+    fileFilter: fileFilter,
+    limits: config.uploads.cover.image.limits
+  }).single('newMusicCoverFile');
+
+  if (user) {
+    uploadFile()
+      .then(function () {
+        res.status(200).send(coverInfo);
+      })
+      .catch(function (err) {
+        res.status(422).send(err);
+        mtDebug.debugRed(err);
+
+        if (req.file && req.file.filename) {
+          var newfile = config.uploads.cover.image.temp + req.file.filename;
+          if (fs.existsSync(newfile)) {
+            mtDebug.debugRed(err);
+            mtDebug.debugRed('ERROR: DELETE TEMP COVER FILE: ' + newfile);
+            fs.unlinkSync(newfile);
+          }
+        }
+      });
+  } else {
+    res.status(401).send({
+      message: 'User is not signed in'
+    });
+  }
+
+  function uploadFile() {
+    return new Promise(function (resolve, reject) {
+      upload(req, res, function (uploadError) {
+        if (uploadError) {
+          var message = errorHandler.getErrorMessage(uploadError);
+
+          if (uploadError.code === 'LIMIT_FILE_SIZE') {
+            message = 'Cover image file too large. Maximum size allowed is ' + (config.uploads.cover.image.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
+          }
+
+          reject(message);
+        } else {
+          coverInfo.filename = req.file.filename;
+          resolve();
+        }
+      });
+    });
+  }
+};
+
+/**
  * announceEdit
  * @param req
  * @param res
