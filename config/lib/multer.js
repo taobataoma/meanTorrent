@@ -5,7 +5,7 @@ var path = require('path'),
   config = require(path.resolve('./config/config'));
 
 module.exports.imageFileFilter = function (req, file, callback) {
-  if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/gif') {
+  if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/gif' && file.mimetype !== 'image/bmp') {
     var err = new Error();
     err.code = 'UNSUPPORTED_MEDIA_TYPE';
     return callback(err, false);
@@ -124,4 +124,81 @@ module.exports.createUploadSubtitleFilename = function (req, file, cb) {
 
 module.exports.getUploadSubtitleDestination = function (req, file, cb) {
   cb(null, config.uploads.subtitle.file.dest);
+};
+
+
+module.exports.createUploadCoverImageFilename = function (req, file, cb) {
+  var RexStr = /\(|\)|\[|\]|\,/g;
+  var filename = file.originalname.replace(RexStr, function (MatchStr) {
+    switch (MatchStr) {
+      case '(':
+        return '<';
+      case ')':
+        return '>';
+      case '[':
+        return '{';
+      case ']':
+        return '}';
+      case ',':
+        return ' ';
+      default:
+        break;
+    }
+  });
+
+  if (fs.existsSync(config.uploads.torrent.cover.temp + filename)) {
+    fs.unlinkSync(config.uploads.torrent.cover.temp + filename);
+  }
+
+  if (fs.existsSync(config.uploads.torrent.cover.dest + filename)) {
+    var ext = file.originalname.replace(/^.+\./, '');
+    var regex = new RegExp(ext, 'g');
+    filename = filename.replace(regex, Date.now() + '.' + ext);
+
+    cb(null, filename);
+  } else {
+    cb(null, filename);
+  }
+};
+
+module.exports.getUploadCoverImageDestination = function (req, file, cb) {
+  cb(null, config.uploads.torrent.cover.temp);
+};
+
+module.exports.createUploadTorrentImageFilename = function (req, file, cb) {
+  var RexStr = /\(|\)|\[|\]|\,/g;
+  var filename = file.originalname.replace(RexStr, function (MatchStr) {
+    switch (MatchStr) {
+      case '(':
+        return '<';
+      case ')':
+        return '>';
+      case '[':
+        return '{';
+      case ']':
+        return '}';
+      case ',':
+        return ' ';
+      default:
+        break;
+    }
+  });
+
+  if (fs.existsSync(config.uploads.torrent.image.temp + filename)) {
+    fs.unlinkSync(config.uploads.torrent.image.temp + filename);
+  }
+
+  if (fs.existsSync(config.uploads.torrent.image.dest + filename)) {
+    var ext = file.originalname.replace(/^.+\./, '');
+    var regex = new RegExp(ext, 'g');
+    filename = filename.replace(regex, Date.now() + '.' + ext);
+
+    cb(null, filename);
+  } else {
+    cb(null, filename);
+  }
+};
+
+module.exports.getUploadTorrentImageDestination = function (req, file, cb) {
+  cb(null, config.uploads.torrent.image.temp);
 };
