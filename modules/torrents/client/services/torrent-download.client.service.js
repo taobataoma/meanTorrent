@@ -24,9 +24,9 @@
         var fileName = decodeURI(contentDisposition.substr(contentDisposition.indexOf('filename=') + 9));
         FileSaver.saveAs(response.data, fileName);
 
-        successcb(response.status);
+        if (successcb) successcb(response.status);
       }, function errorCallback(response) {
-        errorcb(response);
+        if (errorcb) errorcb(response);
       });
     }
   }

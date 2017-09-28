@@ -358,6 +358,15 @@
     AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="#">协议条款</a>',
     DOWNLOAD_TORRENT: '下载种子',
 
+    ENTER_MUSIC_TITLE: '3. 请输入音乐/专辑标题',
+    MUSIC_TITLE: '标题',
+    MUSIC_SUB_TITLE: '短描述',
+    SELECT_MUSIC_IMAGE: '3.1 请选择音乐/专辑封面图片',
+    MUSIC_COVER_UPLOAD_SUCCESSFULLY: '封面图片上传成功',
+    MUSIC_COVER_UPLOAD_FAILED: '封面图片上传失败',
+    ENTER_MUSIC_DETAIL_INFO: '4. 请输入音乐/专辑详细信息',
+    ERROR_ONLY_IMAGE: '此处只支持图片文件上传(gif, png, bmp, jpg, jpeg)',
+
     //ranking view
     PAGE_HEADER_RANKING_UPLOAD: '上传量排行榜',
     PAGE_HEADER_RANKING_DOWNLOAD: '下载量排行榜',

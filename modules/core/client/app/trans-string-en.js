@@ -358,6 +358,15 @@
     AGREE_RULES: 'I agree and already read all the rules, <a href="#">read here</a>',
     DOWNLOAD_TORRENT: 'Download Torrent',
 
+    ENTER_MUSIC_TITLE: '3. Please enter the music/album title',
+    MUSIC_TITLE: 'title',
+    MUSIC_SUB_TITLE: 'short desc',
+    SELECT_MUSIC_IMAGE: '3.1 Please select music/album cover image',
+    MUSIC_COVER_UPLOAD_SUCCESSFULLY: 'Successfully upload music cover',
+    MUSIC_COVER_UPLOAD_FAILED: 'Failed to upload  music cover',
+    ENTER_MUSIC_DETAIL_INFO: '4. Please enter the music/album detail info',
+    ERROR_ONLY_IMAGE: 'Only image files support(gif, png, bmp, jpg, jpeg)',
+
     //ranking view
     PAGE_HEADER_RANKING_UPLOAD: 'Uploaded Ranking',
     PAGE_HEADER_RANKING_DOWNLOAD: 'Downloaded Ranking',

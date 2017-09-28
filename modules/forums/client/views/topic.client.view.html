@@ -256,6 +256,7 @@
                         <div class="form-group" show-errors>
                             <textarea id="postReplyContent" name="postReplyContent" ng-model="vm.postReplyFields.content"
                                       mt-markdown-editor="postReplyContent"
+                                      upload-dir="/modules/forums/client/attach/temp/"
                                       upload-method="vm.uploadAttach(editor, ufile, progressback, callback, errback);" required></textarea>
 
                             <div ng-messages="vm.replyForm.postReplyContent.$error" role="alert">

@@ -408,6 +408,7 @@
         return false;
       }
 
+      mtDebug.info($scope.uFiles);
       var uf = [];
       angular.forEach($scope.uFiles, function (f) {
         uf.push({
@@ -416,6 +417,7 @@
         });
       });
 
+      mtDebug.info($scope.uImages);
       var uimg = [];
       angular.forEach($scope.uImages, function (f) {
         uimg.push({

@@ -157,14 +157,14 @@ exports.upload = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
-            if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
-              mtDebug.debugGreen(torrent.metadata.announce);
-              message = 'ANNOUNCE_URL_ERROR';
-
-              reject(message);
-            }
-          }
+          //if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
+          //  if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
+          //    mtDebug.debugGreen(torrent.metadata.announce);
+          //    message = 'ANNOUNCE_URL_ERROR';
+          //
+          //    reject(message);
+          //  }
+          //}
           torrentinfo = torrent.metadata;
           torrentinfo.info_hash = torrent.infoHash();
           torrentinfo.filename = req.file.filename;
@@ -501,9 +501,15 @@ exports.download = function (req, res) {
  */
 exports.create = function (req, res) {
   var torrent = new Torrent(req.body);
+  mtDebug.debugGreen(req.body);
+
   torrent.user = req.user;
 
-  //mtDebug.debugGreen(torrent);
+  //replace content path
+  var regex = new RegExp(config.uploads.torrent.image.temp, 'g');
+  torrent.resource_detail_info.detail = torrent.resource_detail_info.detail.replace(regex, config.uploads.torrent.image.dest);
+
+  mtDebug.debugGreen(torrent);
 
   //move temp torrent file to dest directory
   var oldPath = config.uploads.torrent.file.temp + req.body.torrent_filename;
@@ -514,6 +520,26 @@ exports.create = function (req, res) {
         message: 'MOVE_TORRENT_FILE_ERROR'
       });
     } else {
+      //move temp cover image file to dest directory
+      var cv = req.body.resource_detail_info.cover;
+      var o = config.uploads.torrent.cover.temp + cv;
+      var n = config.uploads.torrent.cover.dest + cv;
+      move(o, n, function (err) {
+        if (err) {
+          mtDebug.debugRed(err);
+        }
+      });
+      //move temp torrent image file to dest directory
+      req.body._uImage.forEach(function (f) {
+        o = config.uploads.torrent.image.temp + f.filename;
+        n = config.uploads.torrent.image.dest + f.filename;
+        move(o, n, function (err) {
+          if (err) {
+            mtDebug.debugRed(err);
+          }
+        });
+      });
+
       torrent.save(function (err) {
         if (err) {
           return res.status(422).send({

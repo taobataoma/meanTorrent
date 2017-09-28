@@ -6,10 +6,10 @@
     .controller('TorrentsUploadController', TorrentsUploadController);
 
   TorrentsUploadController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
-    'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService', 'DebugConsoleService'];
+    'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService', 'DebugConsoleService', 'NotifycationService'];
 
   function TorrentsUploadController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
-                                    TorrentsService, getStorageLangService, $filter, DownloadService, mtDebug) {
+                                    TorrentsService, getStorageLangService, $filter, DownloadService, mtDebug, NotifycationService) {
     var vm = this;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -22,6 +22,7 @@
     vm.torrentInfo = null;
     vm.tags = [];
     vm.videoNfo = '';
+    vm.music = {};
 
     // If user is not signed in then redirect back home
     if (!Authentication.user) {
@@ -89,6 +90,79 @@
         title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENTS_UPLOAD_FAILED')
       });
     }
+
+    /**
+     * uploadMusicCover
+     * @param dataUrl
+     */
+    vm.uploadMusicCover = function (dataUrl) {
+      mtDebug.info(dataUrl);
+
+      if (dataUrl === null || dataUrl === undefined) {
+        vm.music.fileSelected = false;
+        Notification.info({
+          message: '<i class="glyphicon glyphicon-info-sign"></i> ' + $translate.instant('TORRENTS_NO_FILE_SELECTED')
+        });
+        return;
+      }
+
+      Upload.upload({
+        url: '/api/torrents/uploadTorrentCover',
+        data: {
+          newTorrentCoverFile: dataUrl
+        }
+      }).then(function (response) {
+        vm.music.fileSelected = false;
+        vm.music.successfully = true;
+        mtDebug.info(response);
+        vm.music.coverFileName = response.data.filename;
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('MUSIC_COVER_UPLOAD_SUCCESSFULLY')
+        });
+      }, function (response) {
+        mtDebug.info(response);
+        if (response.status > 0) {
+          vm.music.fileSelected = false;
+          vm.music.successfully = false;
+          vm.music.coverFile = undefined;
+          Notification.error({
+            message: response.data,
+            title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('MUSIC_COVER_UPLOAD_FAILED')
+          });
+        }
+      }, function (evt) {
+        vm.music.progress = parseInt(100.0 * evt.loaded / evt.total, 10);
+      });
+    };
+
+    /**
+     * uploadTorrentImage
+     * @param editor
+     * @param ufile
+     * @param progressback
+     * @param callback
+     * @param errback
+     */
+    vm.uploadTorrentImage = function (editor, ufile, progressback, callback, errback) {
+      Upload.upload({
+        url: '/api/torrents/uploadTorrentImage',
+        data: {
+          newTorrentImageFile: ufile
+        }
+      }).then(function (res) {
+        if (callback) {
+          callback(res.data.filename);
+        }
+      }, function (res) {
+        if (errback && res.status > 0) {
+          errback(res);
+        }
+      }, function (evt) {
+        if (progressback) {
+          progressback(parseInt(100.0 * evt.loaded / evt.total, 10));
+        }
+      });
+    };
 
     /**
      * onTMDBIDKeyDown
@@ -326,6 +400,63 @@
 
         resource_detail_info: vm.tvinfo
       });
+
+      torrent.$save(function (response) {
+        successCallback(response);
+      }, function (errorResponse) {
+        errorCallback(errorResponse);
+      });
+
+      function successCallback(res) {
+        vm.downloadTorrent(res._id);
+        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
+
+        $state.reload('torrents.uploads');
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+      }
+
+      function errorCallback(res) {
+        vm.error_msg = res.data.message;
+        Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Torrent created error!'});
+      }
+    };
+
+    /**
+     * createMusicTorrent
+     */
+    vm.createMusicTorrent = function () {
+      var l = vm.getTorrentSize();
+      var t = vm.getResourceTag();
+
+      var detail_info = {
+        title: vm.music.title,
+        subtitle: vm.music.subtitle,
+        cover: vm.music.coverFileName,
+        detail: vm.music.detail
+      };
+
+      mtDebug.info($scope.uImages);
+      var uimg = [];
+      angular.forEach($scope.uImages, function (f) {
+        mtDebug.info(f);
+        uimg.push({
+          filename: f.name
+        });
+      });
+
+      var torrent = new TorrentsService({
+        info_hash: vm.torrentInfo.info_hash,
+        torrent_filename: vm.torrentInfo.filename,
+        torrent_type: 'music',
+        torrent_tags: t,
+        torrent_nfo: vm.videoNfo,
+        torrent_announce: vm.torrentInfo.announce,
+        torrent_size: l,
+
+        resource_detail_info: detail_info,
+        _uImage: uimg
+      });
+
 
       torrent.$save(function (response) {
         successCallback(response);
