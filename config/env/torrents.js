@@ -465,11 +465,26 @@ module.exports = {
         expires: 60 * 60 * 1000 * 1
       }
     },
+
+    /**
+     * @tmdbConfig
+     *
+     * movie info web www.themoviedb.com settings
+     *
+     * @tmdbHome:                 TMDB website home link url
+     * @tmdbMovieLinkUrl:         linked url, link to movie detail info page, system get movie detail info from here
+     * @tmdbTvserialLinkUrl:      linked url, link to tv serial detail info page, system get tv serial detail info from here
+     * @key:                      access key fro TMDB, when u first install and runing this system, please register a key from TMDB and replace here
+     * @backdropImgBaseUrl:       image link url
+     * @backdropImgBaseUrl_300:   image link url
+     * @posterImgBaseUrl:         image link url
+     * @posterListBaseUrl:        image link url
+     * @castImgBaseUrl:           image link url
+     */
     tmdbConfig: {
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',
-      //please change it to your api key from themoviedb.org
       key: '7888f0042a366f63289ff571b68b7ce0',
       backdropImgBaseUrl: 'http://image.tmdb.org/t/p/w1280',
       backdropImgBaseUrl_300: 'http://image.tmdb.org/t/p/w300',
@@ -477,9 +492,43 @@ module.exports = {
       posterListBaseUrl: 'http://image.tmdb.org/t/p/w92',
       castImgBaseUrl: 'http://image.tmdb.org/t/p/w132_and_h132_bestv2'
     },
+
+    /**
+     * @imdbConfig
+     *
+     * movie info web www.imdb.com settings
+     *
+     * @imdbLinkUrl: linked url, will nav to imdb website
+     */
     imdbConfig: {
       imdbLinkUrl: 'http://www.imdb.com/title/'
     },
+
+    /**
+     * @voteTitle
+     *
+     * vote title string settings
+     *
+     * @imdb:   imdb vote value
+     * @mt:     meanTorrent system vote value
+     */
+    voteTitle: {
+      imdb: 'IMDB',
+      mt: 'CHD'
+    },
+
+    /**
+     * @forumsConfig
+     *
+     * forums configure settings
+     * here is only configure the forum category, if you want to add some sub discussion area, please into admin menu -> forums configure
+     *
+     * @category:               forums category
+     *        @name:            name of forum category
+     *        @value:           value of forum category
+     *        @index:           list order index of forum category
+     * @showThumbsUpUserList:   if true, will show thumbs up users list at eof of topic content or reply content
+     */
     forumsConfig: {
       category: [
         {name: 'AFFAIRS', value: 'affairs', index: 0},
@@ -488,6 +537,7 @@ module.exports = {
       ],
       showThumbsUpUserList: true
     },
+
     itemsPerPage: {
       topicsPerPage: 10,
       repliesPerPage: 10,
@@ -496,6 +546,7 @@ module.exports = {
       torrentsCommentsPerPage: 10,
       tracesPerPage: 30
     },
+
     resourcesTags: {
       radio: [
         {
