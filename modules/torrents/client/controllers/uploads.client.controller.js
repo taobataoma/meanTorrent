@@ -432,7 +432,10 @@
         title: vm.music.title,
         subtitle: vm.music.subtitle,
         cover: vm.music.coverFileName,
-        detail: vm.music.detail
+        detail: vm.music.detail,
+
+        vote_average: 0,
+        vote_count: 0
       };
 
       mtDebug.info($scope.uImages);
