@@ -30,7 +30,7 @@
                     <thead>
                         <tr>
                             <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
-                            <th class="text-center">{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
+                            <th>{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
                             <th>
@@ -46,11 +46,11 @@
                             <td class="col-md-7 td-text-overflow">
                                 <div class="media">
                                     <div class="media-left">
-                                        <img class="media-object"
-                                             ng-src="{{vm.tmdbConfig.posterListBaseUrl}}{{item.resource_detail_info.poster_path}}"
+                                        <img class="media-object" ng-class="{'music': item.torrent_type=='music'}" music-disk="{{item.torrent_type=='music'}}"
+                                             ng-src="{{vm.getTorrentListImage(item)}}"
                                              alt="...">
 
-                                        <div class="layer-download">
+                                        <div class="layer-download" ng-class="{'music': item.torrent_type=='music'}">
                                             <i class="fa fa-arrow-circle-o-down fa-3x" aria-hidden="true"
                                                title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
                                                ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();"
@@ -59,20 +59,17 @@
                                         </div>
                                     </div>
                                     <div class="media-body">
-                                        <h5 class="media-heading">
-                                            {{item.resource_detail_info.original_title || item.resource_detail_info.original_name}}
-                                            <span ng-show="item.resource_detail_info.title">
-                                                <span ng-show="item.resource_detail_info.original_title!=item.resource_detail_info.title"> / {{item.resource_detail_info.title}}</span>
-                                            </span>
-                                            <span ng-show="item.resource_detail_info.name">
-                                                <span ng-show="item.resource_detail_info.original_name!=item.resource_detail_info.name"> / {{item.resource_detail_info.name}}</span>
-                                            </span>
+                                        <h5 class="media-heading">{{vm.getTorrentTitle(item)}}
+                                            <span ng-show="vm.getTorrentOriginalTitle(item)"> / {{vm.getTorrentOriginalTitle(item)}}</span>
+                                            <span class="upload-by" ng-show="item.user.displayName"> (By:
+                                            <span user-info="item.user" info-name></span> )</span>
                                         </h5>
 
                                         <div class="list-all-genres">
                                             <span class="genres-item" ng-repeat="t in item.resource_detail_info.genres">{{t.name}}</span>
                                         </div>
 
+                                        <div class="torrent-filename text-long">{{item.resource_detail_info.subtitle}}</div>
                                         <div class="torrent-filename text-long">{{item.torrent_filename | filename}}</div>
 
                                         <div class="list-all-tags">
@@ -120,7 +117,7 @@
                             </td>
                             <td class="col-md-1 td-v-middle td-imdb">
                             <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                  class="torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
+                                  class="torrent-votes"><kbd>{{vm.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                             </td>
                             <td class="col-md-1 td-v-middle text-center td-life">{{item.createdat | life}}</td>
                             <td class="col-md-1 td-v-middle text-center td-size">{{item.torrent_size | bytes:2}}</td>

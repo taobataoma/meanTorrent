@@ -51,7 +51,6 @@
           cir2.append(cir3);
           cir3.append(cir4);
 
-          console.log(cir1);
           element.replaceWith(cir1);
         }
       });
