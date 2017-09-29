@@ -243,7 +243,6 @@ module.exports = {
      *        @position:          position of submenu item(ordered index)
      *        @state:             angular state of torrent type, this state value used in module route config
      *        @url:               window location url of type
-     *        @viewTemplateUrl:   view templateUrl value of state
      *        @pageTitle:         the page title string, used by translate
      *        @uploadTemplateID:  view templateID in upload torrent page, when selected type is changed, then include the template by this id,
      *                            all the template html is in file: modules/torrents/client/views/uploads-torrents.client.view.html
@@ -265,7 +264,6 @@ module.exports = {
           position: 1,
           state: 'torrents.movie',
           url: '/movie',
-          viewTemplateUrl: '/modules/torrents/client/views/list-movie.client.view.html',
           pageTitle: 'MOVIE_LIST',
           uploadTemplateID: 'movie'
         },
@@ -278,7 +276,6 @@ module.exports = {
           position: 2,
           state: 'torrents.tvserial',
           url: '/tv',
-          viewTemplateUrl: '/modules/torrents/client/views/list-tv.client.view.html',
           pageTitle: 'TV_LIST',
           uploadTemplateID: 'tvserial'
         },
@@ -291,7 +288,6 @@ module.exports = {
           position: 3,
           state: 'torrents.music',
           url: '/music',
-          viewTemplateUrl: '/modules/torrents/client/views/list-music.client.view.html',
           pageTitle: 'MUSIC_LIST',
           uploadTemplateID: 'music'
         },
@@ -304,7 +300,6 @@ module.exports = {
           position: 4,
           state: 'torrents.variety',
           url: '/variety',
-          viewTemplateUrl: '/modules/torrents/client/views/list-variety.client.view.html',
           pageTitle: 'VARIETY_LIST',
           uploadTemplateID: 'variety'
         },
@@ -317,7 +312,6 @@ module.exports = {
           position: 4,
           state: 'torrents.software',
           url: '/software',
-          viewTemplateUrl: '/modules/torrents/client/views/list-software.client.view.html',
           pageTitle: 'SOFTWARE_LIST',
           uploadTemplateID: 'default'
         },
@@ -330,7 +324,6 @@ module.exports = {
           position: 4,
           state: 'torrents.ebook',
           url: '/ebook',
-          viewTemplateUrl: '/modules/torrents/client/views/list-ebook.client.view.html',
           pageTitle: 'EBOOK_LIST',
           uploadTemplateID: 'default'
         },
@@ -343,7 +336,6 @@ module.exports = {
           position: 5,
           state: 'torrents.other',
           url: '/other',
-          viewTemplateUrl: '/modules/torrents/client/views/list-other.client.view.html',
           pageTitle: 'OTHER_LIST',
           uploadTemplateID: 'default'
         }

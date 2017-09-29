@@ -34,7 +34,7 @@
         $stateProvider
           .state(cfg.state, {
             url: cfg.url,
-            templateUrl: cfg.viewTemplateUrl,
+            templateUrl: '/modules/torrents/client/views/list-torrents.client.view.html',
             data: {
               pageTitle: 'PAGETITLE.' + cfg.pageTitle,
               torrentType: cfg.value

@@ -23,6 +23,7 @@
           cir1.css('border', 'solid 2px #515151');
           cir1.css('background-color', '#ddd');
           cir1.css('padding', '1px');
+          cir1.attr('title', attrs.alt);
 
           var cir2 = angular.element('<div></div>');
           cir2.css('border-radius', '50%');
@@ -30,7 +31,7 @@
           cir2.css('background-size', '100% 100%');
           cir2.css('height', '100%');
           cir2.css('width', '100%');
-          cir2.css('padding', '22px');
+          cir2.css('padding', '36%');
 
           var cir3 = angular.element('<div></div>');
           cir3.css('border-radius', '50%');

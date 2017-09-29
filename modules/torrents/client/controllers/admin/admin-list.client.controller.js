@@ -503,7 +503,7 @@
     vm.getTorrentListImage = function (item) {
       var result = null;
 
-      switch (vm.selectedType) {
+      switch (item.torrent_type) {
         case 'movie':
         case 'tvserial':
           result = vm.tmdbConfig.posterListBaseUrl + item.resource_detail_info.poster_path;
@@ -523,7 +523,7 @@
     vm.getTorrentTitle = function (item) {
       var result = null;
 
-      switch (vm.selectedType) {
+      switch (item.torrent_type) {
         case 'movie':
           result = item.resource_detail_info.original_title;
           break;
@@ -545,7 +545,7 @@
     vm.getTorrentOriginalTitle = function (item) {
       var result = null;
 
-      switch (vm.selectedType) {
+      switch (item.torrent_type) {
         case 'movie':
           if (item.resource_detail_info.original_title !== item.resource_detail_info.title) {
             result = item.resource_detail_info.title;
