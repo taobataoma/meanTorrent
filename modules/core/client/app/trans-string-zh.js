@@ -870,6 +870,13 @@
         ATMOS_TRUEHD: 'Atmos TrueHD'
       },
 
+      AUDIOFORMATS: {
+        SELF: '声音格式',
+        WAV: 'WAV',
+        FLAC: 'FLAC',
+        APE: 'APE'
+      },
+
       CHANNEL: {
         SELF: '声道',
         C20: '2.0 声道',

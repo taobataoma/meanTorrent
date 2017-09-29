@@ -159,10 +159,10 @@
                         <td class="col-md-7 td-text-overflow-admin">
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" ng-src="{{vm.getTorrentListImage(item)}}"
+                                    <img class="media-object" ng-class="{'music': vm.selectedType=='music'}" music-disk="{{vm.selectedType=='music'}}" ng-src="{{vm.getTorrentListImage(item)}}"
                                          alt="...">
 
-                                    <div class="layer-download">
+                                    <div class="layer-download" ng-class="{'music': vm.selectedType=='music'}">
                                         <i class="fa fa-arrow-circle-o-down fa-3x" aria-hidden="true"
                                            title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
                                            ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();"

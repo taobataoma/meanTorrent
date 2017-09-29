@@ -547,12 +547,12 @@
 
       switch (vm.selectedType) {
         case 'movie':
-          if (item.resource_detail_info.original_title != item.resource_detail_info.title) {
+          if (item.resource_detail_info.original_title !== item.resource_detail_info.title) {
             result = item.resource_detail_info.title;
           }
           break;
         case 'tvserial':
-          if (item.resource_detail_info.original_name != item.resource_detail_info.name) {
+          if (item.resource_detail_info.original_name !== item.resource_detail_info.name) {
             result = item.resource_detail_info.name;
           }
           break;
@@ -565,8 +565,8 @@
      * @param item
      * @returns {string}
      */
-    vm.getVoteTitle = function(item){
-      return item.resource_detail_info.vote_average? vm.voteTitleConfig.imdb : vm.voteTitleConfig.mt;
-    }
+    vm.getVoteTitle = function (item) {
+      return item.resource_detail_info.vote_average ? vm.voteTitleConfig.imdb : vm.voteTitleConfig.mt;
+    };
   }
 }());

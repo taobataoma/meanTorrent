@@ -599,6 +599,15 @@ module.exports = {
           ]
         },
         {
+          name: 'AUDIOFORMATS',
+          cats: ['music'],
+          value: [
+            {name: 'WAV', icon: ''},
+            {name: 'FLAC', icon: ''},
+            {name: 'APE', icon: ''}
+          ]
+        },
+        {
           name: 'CHANNEL',
           cats: ['movie', 'tvserial', 'music', 'variety'],
           value: [
