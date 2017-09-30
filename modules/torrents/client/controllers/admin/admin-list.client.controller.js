@@ -6,20 +6,18 @@
     .controller('TorrentsAdminController', TorrentsAdminController);
 
   TorrentsAdminController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
-    'MeanTorrentConfig', 'DownloadService', '$window', 'ModalConfirmService', 'NotifycationService', 'DebugConsoleService'];
+    'MeanTorrentConfig', 'DownloadService', '$window', 'ModalConfirmService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices'];
 
   function TorrentsAdminController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                                   DownloadService, $window, ModalConfirmService, NotifycationService, mtDebug) {
+                                   DownloadService, $window, ModalConfirmService, NotifycationService, mtDebug, TGI) {
     var vm = this;
+    vm.TGI = TGI;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
-    vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
-    vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
     vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
-    vm.voteTitleConfig = MeanTorrentConfig.meanTorrentConfig.voteTitle;
 
     vm.selectedType = 'movie';
     vm.searchTags = [];
@@ -493,80 +491,6 @@
           title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETREVIEWED_ERROR')
         });
       });
-    };
-
-    /**
-     * getTorrentListImage
-     * @param item
-     * @returns {string}
-     */
-    vm.getTorrentListImage = function (item) {
-      var result = null;
-
-      switch (item.torrent_type) {
-        case 'movie':
-        case 'tvserial':
-          result = vm.tmdbConfig.posterListBaseUrl + item.resource_detail_info.poster_path;
-          break;
-        case 'music':
-          result = '/modules/torrents/client/uploads/cover/' + item.resource_detail_info.cover;
-          break;
-      }
-      return result;
-    };
-
-    /**
-     * getTorrentTitle
-     * @param item
-     * @returns {string}
-     */
-    vm.getTorrentTitle = function (item) {
-      var result = null;
-
-      switch (item.torrent_type) {
-        case 'movie':
-          result = item.resource_detail_info.original_title;
-          break;
-        case 'tvserial':
-          result = item.resource_detail_info.original_name;
-          break;
-        case 'music':
-          result = item.resource_detail_info.title;
-          break;
-      }
-      return result;
-    };
-
-    /**
-     * getTorrentOriginalTitle
-     * @param item
-     * @returns {string}
-     */
-    vm.getTorrentOriginalTitle = function (item) {
-      var result = null;
-
-      switch (item.torrent_type) {
-        case 'movie':
-          if (item.resource_detail_info.original_title !== item.resource_detail_info.title) {
-            result = item.resource_detail_info.title;
-          }
-          break;
-        case 'tvserial':
-          if (item.resource_detail_info.original_name !== item.resource_detail_info.name) {
-            result = item.resource_detail_info.name;
-          }
-          break;
-      }
-      return result;
-    };
-
-    /**
-     * getVoteTitle
-     * @param item
-     * @returns {string}
-     */
-    vm.getVoteTitle = function (item) {
-      return item.resource_detail_info.vote_average ? vm.voteTitleConfig.imdb : vm.voteTitleConfig.mt;
     };
   }
 }());

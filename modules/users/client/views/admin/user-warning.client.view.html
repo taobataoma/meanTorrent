@@ -32,7 +32,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <img class="media-object" ng-class="{'music': item.torrent.torrent_type=='music'}" music-disk="{{item.torrent.torrent_type=='music'}}"
-                                             ng-src="{{vm.getTorrentListImage(item.torrent)}}"
+                                             ng-src="{{vm.TGI.getTorrentListImage(item.torrent)}}"
                                              alt="...">
 
                                         <div class="layer-download" ng-class="{'music': item.torrent.torrent_type=='music'}">
@@ -44,8 +44,8 @@
                                         </div>
                                     </div>
                                     <div class="media-body">
-                                        <h5 class="media-heading">{{vm.getTorrentTitle(item.torrent)}}
-                                            <span ng-show="vm.getTorrentOriginalTitle(item.torrent)"> / {{vm.getTorrentOriginalTitle(item.torrent)}}</span>
+                                        <h5 class="media-heading">{{vm.TGI.getTorrentTitle(item.torrent)}}
+                                            <span ng-show="vm.TGI.getTorrentOriginalTitle(item.torrent)"> / {{vm.TGI.getTorrentOriginalTitle(item.torrent)}}</span>
                                             <span class="upload-by" ng-show="item.torrent.user.displayName"> (By:
                                             <span user-info="item.torrent.user" info-name></span> )</span>
                                         </h5>
@@ -102,7 +102,7 @@
                             </td>
                             <td class="col-md-1 td-v-middle td-imdb">
                             <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                  class="torrent-votes"><kbd>{{vm.getVoteTitle(item.torrent)}}</kbd> {{item.torrent.resource_detail_info.vote_average | number : 1}}</span>
+                                  class="torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item.torrent)}}</kbd> {{item.torrent.resource_detail_info.vote_average | number : 1}}</span>
                             </td>
                             <td class="col-md-1 td-v-middle text-center td-life">{{item.torrent.createdat | life}}</td>
                             <td class="col-md-1 td-v-middle text-center td-size">{{item.torrent.torrent_size | bytes:2}}</td>

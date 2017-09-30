@@ -7,8 +7,8 @@
             <div class="col-xs-6 col-sm-4 col-md-2 col-small-padding">
                 <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
                     <img  class="img-responsive" ng-class="{'music': item.torrent_type=='music'}" music-disk="{{item.torrent_type=='music'}}"
-                         ng-src="{{vm.getTorrentListTopImage(item)}}"
-                         alt="{{vm.getTorrentTitle(item)}}">
+                         ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
+                         alt="{{vm.TGI.getTorrentTitle(item)}}">
 
                     <div class="torrent-user-info">
                         <table>
@@ -34,7 +34,7 @@
                             <li>
                                 <span class="release-date">{{item.resource_detail_info.release_date}}</span>
                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                      class="pull-right torrent-votes"><kbd>{{vm.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average}}</span>
+                                      class="pull-right torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average}}</span>
                             </li>
                         </ul>
                     </div>
@@ -42,7 +42,7 @@
                     <div class="caption">
                         <ul class="list-unstyled">
                             <li class="text-long">
-                                <strong>{{vm.getTorrentTitle(item)}}</strong>
+                                <strong>{{vm.TGI.getTorrentTitle(item)}}</strong>
                             </li>
                         </ul>
                     </div>
@@ -155,7 +155,7 @@
                             <div class="media">
                                 <div class="media-left">
                                     <img class="media-object" ng-class="{'music': item.torrent_type=='music'}" music-disk="{{item.torrent_type=='music'}}"
-                                         ng-src="{{vm.getTorrentListImage(item)}}"
+                                         ng-src="{{vm.TGI.getTorrentListImage(item)}}"
                                          alt="...">
 
                                     <div class="layer-download" ng-class="{'music': item.torrent_type=='music'}">
@@ -167,8 +167,8 @@
                                     </div>
                                 </div>
                                 <div class="media-body">
-                                    <h5 class="media-heading">{{vm.getTorrentTitle(item)}}
-                                        <span ng-show="vm.getTorrentOriginalTitle(item)"> / {{vm.getTorrentOriginalTitle(item)}}</span>
+                                    <h5 class="media-heading">{{vm.TGI.getTorrentTitle(item)}}
+                                        <span ng-show="vm.TGI.getTorrentOriginalTitle(item)"> / {{vm.TGI.getTorrentOriginalTitle(item)}}</span>
                                         <span class="upload-by" ng-show="item.user.displayName"></span>
                                     </h5>
 
@@ -212,7 +212,7 @@
                         </td>
                         <td class="col-md-1 td-v-middle td-imdb">
                             <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                  class="torrent-votes"><kbd>{{vm.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
+                                  class="torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                         </td>
                         <td class="col-md-1 td-v-middle text-center td-life">{{item.createdat | life}}</td>
                         <td class="col-md-1 td-v-middle text-center td-size">{{item.torrent_size | bytes:2}}</td>
