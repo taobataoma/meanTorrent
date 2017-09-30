@@ -358,9 +358,10 @@
     AGREE_RULES: 'I agree and already read all the rules, <a href="#">read here</a>',
     DOWNLOAD_TORRENT: 'Download Torrent',
 
-    ENTER_MUSIC_TITLE: '3. Please enter the music/album title',
-    MUSIC_TITLE: 'title',
-    MUSIC_SUB_TITLE: 'short desc',
+    ENTER_MUSIC_TITLE: '3. Please enter the artist name and music/album title',
+    MUSIC_ARTIST: 'artist name',
+    MUSIC_TITLE: 'music/album title',
+    MUSIC_SUB_TITLE: 'music/album short desc',
     SELECT_MUSIC_IMAGE: '3.1 Please select music/album cover image',
     MUSIC_COVER_UPLOAD_SUCCESSFULLY: 'Successfully upload music cover',
     MUSIC_COVER_UPLOAD_FAILED: 'Failed to upload  music cover',

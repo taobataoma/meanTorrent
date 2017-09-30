@@ -358,9 +358,10 @@
     AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="#">协议条款</a>',
     DOWNLOAD_TORRENT: '下载种子',
 
-    ENTER_MUSIC_TITLE: '3. 请输入音乐/专辑标题',
-    MUSIC_TITLE: '标题',
-    MUSIC_SUB_TITLE: '短描述',
+    ENTER_MUSIC_TITLE: '3. 请输入艺人名称和音乐/专辑标题',
+    MUSIC_ARTIST: '艺人名称',
+    MUSIC_TITLE: '音乐/专辑标题',
+    MUSIC_SUB_TITLE: '音乐/专辑短描述',
     SELECT_MUSIC_IMAGE: '3.1 请选择音乐/专辑封面图片',
     MUSIC_COVER_UPLOAD_SUCCESSFULLY: '封面图片上传成功',
     MUSIC_COVER_UPLOAD_FAILED: '封面图片上传失败',

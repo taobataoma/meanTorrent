@@ -429,12 +429,14 @@
       var t = vm.getResourceTag();
 
       var detail_info = {
+        artist: vm.music.artist,
         title: vm.music.title,
         subtitle: vm.music.subtitle,
         cover: vm.music.coverFileName,
         detail: vm.music.detail,
 
         vote_average: 0,
+        vote_total: 0,
         vote_count: 0
       };
 
