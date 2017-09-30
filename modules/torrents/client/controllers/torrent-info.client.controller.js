@@ -7,12 +7,13 @@
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
-    'SubtitlesService', 'getStorageLangService', 'ScrapeService', 'NotifycationService', 'DebugConsoleService'];
+    'SubtitlesService', 'getStorageLangService', 'ScrapeService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
-                                  getStorageLangService, ScrapeService, NotifycationService, mtDebug) {
+                                  getStorageLangService, ScrapeService, NotifycationService, mtDebug, TGI) {
     var vm = this;
+    vm.TGI = TGI;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
@@ -121,9 +122,7 @@
       vm.torrentLocalInfo = TorrentsService.get({
         torrentId: $stateParams.torrentId
       }, function (res) {
-        if (res.resource_detail_info.backdrop_path) {
-          $('.backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdropImgBaseUrl + res.resource_detail_info.backdrop_path + ')');
-        }
+        $('.backdrop').css('backgroundImage', 'url(' + vm.TGI.getTorrentBackdropImage(vm.torrentLocalInfo) + ')');
 
         vm.initTabLists();
         vm.commentBuildPager();
@@ -325,23 +324,6 @@
         });
       }
       return tmp;
-    };
-
-    /**
-     * getDirector
-     * @returns {string}
-     */
-    vm.getDirector = function () {
-      var n = '-';
-
-      if (vm.torrentLocalInfo.resource_detail_info) {
-        angular.forEach(vm.torrentLocalInfo.resource_detail_info.credits.crew, function (item) {
-          if (item.job === 'Director') {
-            n = item.name;
-          }
-        });
-      }
-      return n;
     };
 
     /**
@@ -894,5 +876,15 @@
         });
       });
     };
+
+    /**
+     * getOverviewMarkedContent
+     * @param t
+     * @returns {*}
+     */
+    vm.getOverviewMarkedContent = function (c) {
+      return marked(c, {sanitize: true});
+    };
+
   }
 }());

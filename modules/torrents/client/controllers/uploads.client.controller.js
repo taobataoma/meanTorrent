@@ -433,7 +433,7 @@
         title: vm.music.title,
         subtitle: vm.music.subtitle,
         cover: vm.music.coverFileName,
-        detail: vm.music.detail,
+        overview: vm.music.detail,
 
         vote_average: 0,
         vote_total: 0,

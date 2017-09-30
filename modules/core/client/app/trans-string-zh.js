@@ -676,6 +676,8 @@
       ORIGINAL_LANGUAGE: '原语言',
       ORIGINAL_TITLE: '原片名',
       TITLE: '译名',
+      SUB_TITLE: '短描述',
+      ARTIST: '艺人名称',
       BELONGS_TO_COLLECTION: '集合',
       GENRES: '类型',
       OVERVIEW: '剧情',

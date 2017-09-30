@@ -32,7 +32,8 @@
                     <div class="torrent-tmdb-info">
                         <ul class="list-unstyled">
                             <li>
-                                <span class="release-date">{{item.resource_detail_info.release_date}}</span>
+                                <span class="release-date" ng-if="item.resource_detail_info.release_date">{{item.resource_detail_info.release_date}}</span>
+                                <span class="release-date" ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                       class="pull-right torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average}}</span>
                             </li>

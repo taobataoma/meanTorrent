@@ -24,7 +24,7 @@
                                 <dd class="h-line">{{vm.movieTopOne.resource_detail_info.title}}</dd>
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.DIRECTOR' | translate}}：</dt>
-                                <dd class="h-line">{{vm.getDirector();}}</dd>
+                                <dd class="h-line">{{vm.TGI.getMovieDirector(vm.movieTopOne)}}</dd>
 
                                 <!--<dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_LANGUAGE' | translate}}：</dt>-->
                                 <!--<dd class="h-line">{{vm.movieTopOne.torrent_original_language}}</dd>-->
@@ -73,18 +73,21 @@
                                     <span ng-show="vm.movieTopOne.resource_detail_info.overview.length > 300">......</span>
                                 </dd>
                             </dl>
-                            <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
-                            <div class="row cast-list">
-                                <div ng-repeat="cast in vm.movieTopOne.resource_detail_info.credits.cast | limitTo: 6">
-                                    <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-xs-block visible-sm-block"></div>
-                                    <div data-ng-if="$index != 0 && $index % 6 == 0" class="clearfix visible-md-block visible-lg-block"></div>
-                                    <div class="col-xs-4 col-md-2 text-center">
-                                        <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
-                                             on-error-src="/./modules/core/client/img/default_face.jpg"
-                                             class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
-                                        <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
 
-                                        <p class="cast-xs-info character">{{cast.character}}</p>
+                            <div ng-show="vm.movieTopOne.resource_detail_info.credits.cast.length > 0">
+                                <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
+                                <div class="row cast-list">
+                                    <div ng-repeat="cast in vm.movieTopOne.resource_detail_info.credits.cast | limitTo: 6">
+                                        <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-xs-block visible-sm-block"></div>
+                                        <div data-ng-if="$index != 0 && $index % 6 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                                        <div class="col-xs-4 col-md-2 text-center">
+                                            <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
+                                                 on-error-src="/./modules/core/client/img/default_face.jpg"
+                                                 class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
+                                            <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
+
+                                            <p class="cast-xs-info character">{{cast.character}}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

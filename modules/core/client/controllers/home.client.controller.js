@@ -191,23 +191,6 @@
     };
 
     /**
-     * getDirector
-     * @returns {string}
-     */
-    vm.getDirector = function () {
-      var n = '-';
-
-      if (vm.movieTopOne && vm.movieTopOne.resource_detail_info) {
-        angular.forEach(vm.movieTopOne.resource_detail_info.credits.crew, function (item) {
-          if (item.job === 'Director') {
-            n = item.name;
-          }
-        });
-      }
-      return n;
-    };
-
-    /**
      * downloadTorrent
      * @param id
      */
