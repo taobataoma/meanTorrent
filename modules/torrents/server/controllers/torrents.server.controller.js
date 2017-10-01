@@ -1279,31 +1279,35 @@ exports.torrentByID = function (req, res, next, id) {
   };
 
   var findOtherTorrents = function (torrent, callback) {
-    var condition = {
-      torrent_status: 'reviewed',
-      'resource_detail_info.id': torrent.resource_detail_info.id
-    };
+    if (torrent.resource_detail_info.id) {
+      var condition = {
+        torrent_status: 'reviewed',
+        'resource_detail_info.id': torrent.resource_detail_info.id
+      };
 
-    mtDebug.debugGreen(condition);
+      mtDebug.debugGreen(condition);
 
-    var fields = 'user torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_seasons torrent_episodes torrent_size torrent_sale_status torrent_type torrent_hnr torrent_vip torrent_sale_expires createdat';
+      var fields = 'user torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_seasons torrent_episodes torrent_size torrent_sale_status torrent_type torrent_hnr torrent_vip torrent_sale_expires createdat';
 
-    Torrent.find(condition, fields)
-      .sort('-createdat')
-      .populate('user', 'username displayName isVip')
-      .exec(function (err, torrents) {
-        if (err) {
-          callback(err);
-        } else {
-          torrent._other_torrents.splice(0, torrent._other_torrents.length);
-          torrents.forEach(function (t) {
-            if (!t._id.equals(torrent._id)) {
-              torrent._other_torrents.push(t.toJSON());
-            }
-          });
-          callback(null, torrent);
-        }
-      });
+      Torrent.find(condition, fields)
+        .sort('-createdat')
+        .populate('user', 'username displayName isVip')
+        .exec(function (err, torrents) {
+          if (err) {
+            callback(err);
+          } else {
+            torrent._other_torrents.splice(0, torrent._other_torrents.length);
+            torrents.forEach(function (t) {
+              if (!t._id.equals(torrent._id)) {
+                torrent._other_torrents.push(t.toJSON());
+              }
+            });
+            callback(null, torrent);
+          }
+        });
+    } else {
+      callback(null, torrent);
+    }
   };
 
   async.waterfall([findTorrents, findOtherTorrents], function (err, torrent) {
