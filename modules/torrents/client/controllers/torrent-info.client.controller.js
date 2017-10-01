@@ -185,7 +185,7 @@
           icon: 'fa-file-text',
           title: $translate.instant('TAB_USER_SUBTITLE'),
           templateUrl: 'subtitleInfo.html',
-          ng_show: vm.torrentLocalInfo.torrent_type=='movie' || vm.torrentLocalInfo.torrent_type=='tvserial',
+          ng_show: vm.torrentLocalInfo.torrent_type === 'movie' || vm.torrentLocalInfo.torrent_type === 'tvserial',
           badges: [
             {
               value: vm.torrentLocalInfo._subtitles.length,
