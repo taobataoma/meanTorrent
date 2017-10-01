@@ -109,11 +109,46 @@ body {
                 /* csslint ignore:end */
             }
         }
-
         .down-torrent {
             margin-top: 20px;
             margin-left: 40px;
             margin-right: 40px;
+        }
+        .music {
+            max-width: 300px;
+            margin: 35px auto 35px auto;
+            overflow: hidden;
+
+            transition-property: transform, opacity;
+            transition-duration: 1s;
+            transition-timing-function: ease;
+            &:hover {
+                /* csslint ignore:start */
+                transform: scale(1.2);
+                /* csslint ignore:end */
+            }
+            &::before {
+                content: ' ';
+                padding-top: 100%; /* vertical value as  100% equals width */
+                float: left;
+            }
+            div {
+                overflow: hidden;
+                &::before {
+                    content: ' ';
+                    padding-top: 100%; /* vertical value as  100% equals width */
+                    float: left;
+                }
+            }
+        }
+        .music-overview {
+            p {
+                > img {
+                    max-width: 100% !important;
+                    height: auto !important;
+                    border: 1px solid #999;
+                }
+            }
         }
     }
 }

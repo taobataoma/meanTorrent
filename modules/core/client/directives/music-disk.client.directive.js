@@ -23,6 +23,7 @@
           cir1.css('border', 'solid 2px #515151');
           cir1.css('background-color', '#ddd');
           cir1.css('padding', '1px');
+          cir1.css('cursor', 'pointer');
           cir1.attr('title', attrs.alt);
 
           var cir2 = angular.element('<div></div>');

@@ -187,7 +187,7 @@
     function getMovieDirector(item) {
       var result = null;
 
-      if (item.resource_detail_info) {
+      if (item.resource_detail_info && item.resource_detail_info.credits) {
         angular.forEach(item.resource_detail_info.credits.crew, function (sitem) {
           if (sitem.job === 'Director') {
             result = sitem.name;

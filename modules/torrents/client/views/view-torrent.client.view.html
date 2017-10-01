@@ -3,17 +3,17 @@
         <div class="filter">
             <div class="container">
                 <div class="topone">
-                    <div class="col-md-4">
-                        <img ng-src="{{vm.TGI.getTorrentTopOneImage(vm.torrentLocalInfo)}}"
-                             class="img-thumbnail center-block"
-                             onload="this.style.opacity='1';">
+                    <div class="col-md-3 text-center">
+                        <img class="img-thumbnail center-block" ng-class="{'music': vm.torrentLocalInfo.torrent_type=='music'}" music-disk="vm.torrentLocalInfo.torrent_type=='music'"
+                             ng-src="{{vm.TGI.getTorrentTopOneImage(vm.torrentLocalInfo)}}"
+                             alt="{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}" onload="this.style.opacity='1';">
 
                         <div class="down-torrent">
                             <button class="btn btn-success btn-block" ng-click="vm.downloadTorrent(vm.torrentLocalInfo._id)"
                                     translate="DOWNLOAD_TORRENT"></button>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-9" ng-class="{'music-overview': vm.torrentLocalInfo.torrent_type=='music'}">
                         <dl class="dl-horizontal">
                             <div ng-if="vm.TGI.getTorrentTitle(vm.torrentLocalInfo)">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
