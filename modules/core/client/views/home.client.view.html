@@ -430,10 +430,11 @@
                 <div class="container">
                     <div class="topone">
                         <div class="col-md-3">
-                            <img class="img-thumbnail center-block" music-disk="vm.musicTopOne.torrent_type=='music'"
-                                 ng-src="{{vm.TGI.getTorrentTopOneImage(vm.musicTopOne)}}"
-                                 alt="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}" onload="this.style.opacity='1';"
-                                 ng-click="vm.openTorrentInfo(vm.TVTopOne._id);">
+                            <div ng-click="vm.openTorrentInfo(vm.musicTopOne._id);">
+                                <img class="img-thumbnail center-block" music-disk="vm.musicTopOne.torrent_type=='music'"
+                                     ng-src="{{vm.TGI.getTorrentTopOneImage(vm.musicTopOne)}}"
+                                     alt="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}" onload="this.style.opacity='1';">
+                            </div>
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.downloadTorrent(vm.musicTopOne._id)"
