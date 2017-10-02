@@ -28,7 +28,7 @@
 
           var cir2 = angular.element('<div></div>');
           cir2.css('border-radius', '50%');
-          if(attrs.src) {
+          if (attrs.src) {
             cir2.css('background-image', 'url(' + attrs.src + ')');
           }
           cir2.css('background-size', '100% 100%');
