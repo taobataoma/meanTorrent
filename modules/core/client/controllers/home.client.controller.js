@@ -6,10 +6,12 @@
     .controller('HomeController', HomeController);
 
   HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'Notification', 'MeanTorrentConfig',
-    'getStorageLangService', 'DownloadService', '$timeout', 'localStorageService', 'ScrapeService', 'TorrentGetInfoServices'];
+    'getStorageLangService', 'DownloadService', '$timeout', 'localStorageService', 'ScrapeService', 'TorrentGetInfoServices', 'DebugConsoleService',
+    'marked'];
 
   function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService,
-                          DownloadService, $timeout, localStorageService, ScrapeService, TGI) {
+                          DownloadService, $timeout, localStorageService, ScrapeService, TGI, mtDebug,
+                          marked) {
     var vm = this;
     vm.TGI = TGI;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -61,6 +63,15 @@
     vm.initTopOneTVInfo = function () {
       if (vm.TVTopOne.resource_detail_info.backdrop_path) {
         $('.tv-backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdropImgBaseUrl + vm.TVTopOne.resource_detail_info.backdrop_path + ')');
+      }
+    };
+
+    /**
+     * initTopOneMusicInfo
+     */
+    vm.initTopOneMusicInfo = function () {
+      if (vm.musicTopOne.resource_detail_info.cover) {
+        $('.music-backdrop').css('backgroundImage', 'url(/modules/torrents/client/uploads/cover/' + vm.musicTopOne.resource_detail_info.cover + ')');
       }
     };
 
@@ -166,7 +177,7 @@
         }
       });
 
-      vm.moviesInfo = TorrentsService.get({
+      vm.tvsInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'tvserial',
         newest: true,
@@ -177,6 +188,47 @@
 
           if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
             ScrapeService.scrapeTorrent(vm.TVNewList);
+          }
+        }
+      });
+    };
+
+    /**
+     * getMusicTopInfo
+     */
+    vm.getMusicTopInfo = function () {
+      vm.musicInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'music',
+        limit: 9
+      }, function (items) {
+        if (items.rows.length > 0) {
+          mtDebug.info(items);
+
+          vm.musicTopOne = items.rows[0];
+          items.rows.splice(0, 1);
+          vm.musicTopList = items.rows;
+
+          vm.initTopOneMusicInfo();
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.musicTopOne);
+            ScrapeService.scrapeTorrent(vm.musicTopList);
+          }
+        }
+      });
+
+      vm.musicInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'music',
+        newest: true,
+        limit: 14
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.musicNewList = items.rows;
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.musicNewList);
           }
         }
       });
@@ -209,6 +261,19 @@
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
         });
       });
+    };
+
+    /**
+     * getOverviewMarkedContent
+     * @param t
+     * @returns {*}
+     */
+    vm.getOverviewMarkedContent = function (c) {
+      if (c) {
+        return marked(c, {sanitize: true});
+      } else {
+        return '';
+      }
     };
   }
 }());

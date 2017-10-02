@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="topone">
                     <div class="col-md-3 text-center">
-                        <img class="img-thumbnail center-block" ng-class="{'music': vm.torrentLocalInfo.torrent_type=='music'}" music-disk="vm.torrentLocalInfo.torrent_type=='music'"
+                        <img class="img-thumbnail center-block" music-disk="vm.torrentLocalInfo.torrent_type=='music'"
                              ng-src="{{vm.TGI.getTorrentTopOneImage(vm.torrentLocalInfo)}}"
                              alt="{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}" onload="this.style.opacity='1';">
 
@@ -13,7 +13,7 @@
                                     translate="DOWNLOAD_TORRENT"></button>
                         </div>
                     </div>
-                    <div class="col-md-9" ng-class="{'music-overview': vm.torrentLocalInfo.torrent_type=='music'}">
+                    <div class="col-md-9" ng-class="{'music-detail': vm.torrentLocalInfo.torrent_type=='music'}">
                         <dl class="dl-horizontal">
                             <div ng-if="vm.TGI.getTorrentTitle(vm.torrentLocalInfo)">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>

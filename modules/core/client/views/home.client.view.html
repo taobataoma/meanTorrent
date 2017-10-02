@@ -423,6 +423,57 @@
         </div>
     </div>
 
+    <div ng-if="vm.getTorrentTypeEnabled('music')" ng-init="vm.getMusicTopInfo();">
+        <div class="backdrop music-backdrop" ng-show="vm.musicTopOne">
+            <div class="filter">
+                <div class="type-flag">{{'MENU_TORRENTS_SUB.MUSIC' | translate}}</div>
+                <div class="container">
+                    <div class="topone">
+                        <div class="col-md-3">
+                            <img class="img-thumbnail center-block" music-disk="vm.musicTopOne.torrent_type=='music'"
+                                 ng-src="{{vm.TGI.getTorrentTopOneImage(vm.musicTopOne)}}"
+                                 alt="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}" onload="this.style.opacity='1';"
+                                 ng-click="vm.openTorrentInfo(vm.TVTopOne._id);">
+
+                            <div class="down-torrent">
+                                <button class="btn btn-success btn-block" ng-click="vm.downloadTorrent(vm.musicTopOne._id)"
+                                        translate="DOWNLOAD_TORRENT"></button>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <dl class="dl-horizontal">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
+                                <dd class="h-line">{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}</dd>
+
+                                <dt class="h-line">{{ 'TMDB_FIELDS.SUB_TITLE' | translate}}：</dt>
+                                <dd class="h-line">{{vm.musicTopOne.resource_detail_info.subtitle}}</dd>
+
+                                <dt class="h-line">{{ 'TMDB_FIELDS.ARTIST' | translate}}：</dt>
+                                <dd class="h-line">{{vm.musicTopOne.resource_detail_info.artist}}</dd>
+
+                                <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
+                                <dd class="h-line">
+                                <span ng-show="vm.musicTopOne">
+                                    <span class="torrent-votes">
+                                        <kbd>{{vm.TGI.getVoteTitle(vm.musicTopOne)}}</kbd>
+                                    </span> {{vm.musicTopOne.resource_detail_info.vote_average}} / {{vm.musicTopOne.resource_detail_info.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}
+                                </span>
+                                </dd>
+
+                                <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
+                                <dd class="h-line">
+                                    <div class="music-overview" id="overview_markdown" data-provide="markdown"
+                                         ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.musicTopOne))">
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="warning_popup" style="display: none;">
         <div class="row padding-top-50 padding-bottom-30">
             <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">

@@ -37,7 +37,7 @@
     function getTorrentTitle(item) {
       var result = null;
 
-      if (item.resource_detail_info) {
+      if (item && item.resource_detail_info) {
         switch (item.torrent_type) {
           case 'movie':
             result = item.resource_detail_info.original_title;
@@ -61,7 +61,7 @@
     function getTorrentOriginalTitle(item) {
       var result = null;
 
-      if (item.resource_detail_info) {
+      if (item && item.resource_detail_info) {
         switch (item.torrent_type) {
           case 'movie':
             if (item.resource_detail_info.original_title !== item.resource_detail_info.title) {
@@ -86,7 +86,7 @@
     function getTorrentListImage(item) {
       var result = null;
 
-      if (item.resource_detail_info) {
+      if (item && item.resource_detail_info) {
         switch (item.torrent_type) {
           case 'movie':
           case 'tvserial':
@@ -108,7 +108,7 @@
     function getTorrentListTopImage(item) {
       var result = null;
 
-      if (item.resource_detail_info) {
+      if (item && item.resource_detail_info) {
         switch (item.torrent_type) {
           case 'movie':
           case 'tvserial':
@@ -130,7 +130,7 @@
     function getTorrentTopOneImage(item) {
       var result = null;
 
-      if (item.resource_detail_info) {
+      if (item && item.resource_detail_info) {
         switch (item.torrent_type) {
           case 'movie':
           case 'tvserial':
@@ -152,7 +152,7 @@
     function getTorrentBackdropImage(item) {
       var result = null;
 
-      if (item.resource_detail_info) {
+      if (item && item.resource_detail_info) {
         switch (item.torrent_type) {
           case 'movie':
           case 'tvserial':
@@ -172,7 +172,7 @@
      * @returns {string}
      */
     function getVoteTitle(item) {
-      if (item.resource_detail_info) {
+      if (item && item.resource_detail_info) {
         return item.resource_detail_info.vote_average ? voteTitleConfig.imdb : voteTitleConfig.mt;
       } else {
         return null;
@@ -187,7 +187,7 @@
     function getMovieDirector(item) {
       var result = null;
 
-      if (item.resource_detail_info && item.resource_detail_info.credits) {
+      if (item && item.resource_detail_info && item.resource_detail_info.credits) {
         angular.forEach(item.resource_detail_info.credits.crew, function (sitem) {
           if (sitem.job === 'Director') {
             result = sitem.name;
@@ -205,7 +205,7 @@
     function getTorrentLanguage(item) {
       var result = null;
 
-      if (item.resource_detail_info) {
+      if (item && item.resource_detail_info) {
         result = item.resource_detail_info.original_language;
       }
       return result;
@@ -219,7 +219,7 @@
     function getTorrentOverview(item) {
       var result = null;
 
-      if (item.resource_detail_info) {
+      if (item && item.resource_detail_info) {
         result = item.resource_detail_info.overview || item.resource_detail_info.detail || null;
       }
       return result;
