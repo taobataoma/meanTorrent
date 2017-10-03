@@ -207,7 +207,7 @@ body {
         }
     }
     .music {
-        margin: 35px 0;
+        margin: 38px 0 42px 0;
         overflow: hidden;
         opacity: 0.8;
         &::before {
@@ -438,6 +438,9 @@ body {
     }
     .newest-item-big {
         position: relative;
+        &.music-margin {
+            padding: 30px 0 33px 0 !important;
+        }
         img {
             width: 100%;
         }
@@ -480,6 +483,36 @@ body {
         }
         .se-info {
             right: 5px;
+        }
+        .music {
+            max-width: 80px;
+            overflow: hidden;
+            &::before {
+                content: ' ';
+                padding-top: 100%; /* vertical value as  100% equals width */
+                float: left;
+            }
+            div {
+                overflow: hidden;
+                &::before {
+                    content: ' ';
+                    padding-top: 100%; /* vertical value as  100% equals width */
+                    float: left;
+                }
+            }
+        }
+        .music-info {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 90px;
+            height: 100%;
+            font-size: 12px;
+            >div {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
         }
     }
     .se-info {

@@ -222,7 +222,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'music',
         newest: true,
-        limit: 14
+        limit: 13
       }, function (items) {
         if (items.rows.length > 0) {
           vm.musicNewList = items.rows;

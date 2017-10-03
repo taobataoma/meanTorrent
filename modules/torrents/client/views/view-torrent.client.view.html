@@ -130,7 +130,7 @@
                                 <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.revenue | dollar:2}}</dd>
                             </div>
 
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.vote_average && vm.torrentLocalInfo.resource_detail_info.vote_average>0">
+                            <div>
                                 <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
                                 <dd class="h-line">
                                     <span ng-if="vm.torrentLocalInfo">

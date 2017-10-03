@@ -65,6 +65,7 @@
     TOP_MOVIE_INFO_ERROR: 'Get movie top info failed',
     NEWEST_MOVIE_LIST: 'Newest Movie Torrents',
     NEWEST_TV_LIST: 'Newest TV Serial Torrents',
+    NEWEST_MUSIC_LIST: 'Newest Music Torrents',
 
     //element title/alt
     TITLE_ALT: {

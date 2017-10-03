@@ -65,6 +65,7 @@
     TOP_MOVIE_INFO_ERROR: '获取电影Top列表失败',
     NEWEST_MOVIE_LIST: '最新电影种子',
     NEWEST_TV_LIST: '最新电视剧种子',
+    NEWEST_MUSIC_LIST: '最新音乐种子',
 
     //element title/alt
     TITLE_ALT: {

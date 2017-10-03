@@ -31,7 +31,9 @@
           if (attrs.src) {
             cir2.css('background-image', 'url(' + attrs.src + ')');
           }
-          cir2.css('background-size', '100% 100%');
+          cir2.css('background-size', 'cover');
+          cir2.css('background-position', 'center');
+          cir2.css('background-repeat', 'no-repeat');
           cir2.css('height', '100%');
           cir2.css('width', '100%');
           cir2.css('padding', '36%');
