@@ -85,7 +85,6 @@
      */
     $scope.$watch('vm.torrentLocalInfo', function (newValue, oldValue) {
       if (vm.torrentLocalInfo && vm.torrentLocalInfo._replies) {
-
         var hasme = false;
         var meitem = null;
         if (newValue._replies.length > oldValue._replies.length) {
@@ -124,6 +123,7 @@
       }, function (res) {
         $('.backdrop').css('backgroundImage', 'url(' + vm.TGI.getTorrentBackdropImage(vm.torrentLocalInfo) + ')');
 
+        vm.rating_vote = res.resource_detail_info.vote_average;
         vm.initTabLists();
         vm.commentBuildPager();
         if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInDetail) {
@@ -176,8 +176,8 @@
       vm.torrentTabs.push(
         {
           icon: 'fa-file-video-o',
-          title: $translate.instant('TAB_VIDEO_INFO'),
-          templateUrl: 'videoInfo.html',
+          title: $translate.instant('TAB_TORRENT_INFO'),
+          templateUrl: 'torrentInfo.html',
           ng_show: true,
           badges: []
         },
@@ -886,5 +886,26 @@
       return marked(c, {sanitize: true});
     };
 
+    /**
+     * ratingTorrent
+     * @param item
+     */
+    vm.ratingTorrent = function (item) {
+      item.$rating({
+        vote: vm.rating_vote
+      }, function (res) {
+        vm.torrentLocalInfo = res;
+        vm.rating_vote = res.resource_detail_info.vote_average;
+
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_RATING_SUCCESSFULLY')
+        });
+      }, function (res) {
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_RATING_FAILED')
+        });
+      });
+    };
   }
 }());

@@ -12,6 +12,21 @@
                             <button class="btn btn-success btn-block" ng-click="vm.downloadTorrent(vm.torrentLocalInfo._id)"
                                     translate="DOWNLOAD_TORRENT"></button>
                         </div>
+
+                        <div class="margin-top-20 margin-bottom-20 rating"
+                             ng-if="vm.torrentLocalInfo.torrent_type!='movie' && vm.torrentLocalInfo.torrent_type!='tvserial'">
+                            <span uib-rating ng-model="vm.rating_vote" max="10"
+                                  state-on="'fa fa-star'"
+                                  state-off="'fa fa-star-o'"
+                                  titles="['1','2','3','4','5','6','7','8','9','10']"
+                                  enable-reset="false"
+                                  ng-click="vm.ratingTorrent(vm.torrentLocalInfo);"
+                                  aria-labelledby="rating-torrent">
+                            </span>
+                            <div class="torrent-votes margin-top-10">
+                                 <kbd>{{vm.torrentLocalInfo.resource_detail_info.vote_average}}</kbd>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-9" ng-class="{'music-detail': vm.torrentLocalInfo.torrent_type=='music'}">
                         <dl class="dl-horizontal">
@@ -350,13 +365,13 @@
     </div>
 
     <!-- =================================================================
-        videoInfo.html
+        torrentInfo.html
     ================================================================== -->
-    <script type="text/ng-template" id="videoInfo.html">
+    <script type="text/ng-template" id="torrentInfo.html">
         <div class="padding-top-30">
             <span class="xs-show sm-show">
                 <h4 class="margin-bottom-30">
-                    {{'TAB_VIDEO_INFO' | translate}}:
+                    {{'TAB_TORRENT_INFO' | translate}}:
                 </h4>
             </span>
 

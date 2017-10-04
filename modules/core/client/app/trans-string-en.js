@@ -225,7 +225,7 @@
     UNIT_MITUTE: 'min',
     TMDB_INFO_OK: 'Load TMDB movie info OK',
     TMDB_INFO_FAILED: 'Load TMDB movie info ERROR',
-    TAB_VIDEO_INFO: 'Video Info',
+    TAB_TORRENT_INFO: 'Torrent Info',
     TAB_USER_SUBTITLE: 'Subtitle Info',
     TAB_THUMBS_LIST: 'Thumbs-up',
     TAB_USER_INFO: 'User Info',
@@ -235,6 +235,8 @@
     THUMBS_UP_TORRENT: 'Thumbs-up for this torrent and donate score ({{number}}) to uploader',
     TORRENT_THUMBS_SUCCESSFULLY: 'Thumbs-up for torrent successfully',
     TORRENT_THUMBS_FAILED: 'Thumbs-up for torrent failed',
+    TORRENT_RATING_SUCCESSFULLY: 'Rating torrent successfully',
+    TORRENT_RATING_FAILED: 'Rating torrent failed',
 
     ANNOUNCE_URL: 'Announce Url',
     TORRENT_FILENAME: 'Torrent Filename',

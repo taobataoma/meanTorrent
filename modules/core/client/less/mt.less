@@ -52,7 +52,7 @@ body {
         background-color: rgba(0, 0, 0, .7);
         //opacity: 0.5;
         padding-top: 30px;
-        padding-bottom: 20px;
+        padding-bottom: 30px;
         position: relative;
     }
     .loading {
@@ -164,6 +164,21 @@ body {
                 background-color: #555;
             }
         }
+    }
+}
+
+.rating {
+    span {
+        &:focus {
+            outline: 0;
+        }
+    }
+    .fa {
+        font-size: 16px;
+    }
+    .fa-star {
+        color: @mt-base-color;
+        cursor: pointer;
     }
 }
 

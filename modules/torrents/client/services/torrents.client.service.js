@@ -75,6 +75,13 @@
           torrentId: '@_id'
         }
       },
+      rating: {
+        method: 'PUT',
+        url: '/api/torrents/:torrentId/rating',
+        params: {
+          torrentId: '@_id'
+        }
+      },
       scrape: {
         method: 'GET',
         url: '/api/torrents/:torrentId/scrape',

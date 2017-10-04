@@ -225,7 +225,7 @@
     UNIT_MITUTE: '分钟',
     TMDB_INFO_OK: '装载 TMDB 电影信息成功',
     TMDB_INFO_FAILED: '装载 TMDB 电影信息失败',
-    TAB_VIDEO_INFO: '视频信息',
+    TAB_TORRENT_INFO: '种子信息',
     TAB_USER_SUBTITLE: '字幕信息',
     TAB_THUMBS_LIST: '点赞用户',
     TAB_USER_INFO: '用户信息',
@@ -235,6 +235,8 @@
     THUMBS_UP_TORRENT: '我要为此种子点赞并赠送 {{number}} 积分给发布者',
     TORRENT_THUMBS_SUCCESSFULLY: '为种子点赞成功',
     TORRENT_THUMBS_FAILED: '为种子点赞失败',
+    TORRENT_RATING_SUCCESSFULLY: '为种子投票成功',
+    TORRENT_RATING_FAILED: '为种子投票失败',
 
     ANNOUNCE_URL: 'Tracker 地址',
     TORRENT_FILENAME: '种子文件名',

@@ -172,11 +172,22 @@
      * @returns {string}
      */
     function getVoteTitle(item) {
+      var result = null;
+
       if (item && item.resource_detail_info) {
-        return item.resource_detail_info.vote_average ? voteTitleConfig.imdb : voteTitleConfig.mt;
+        switch (item.torrent_type) {
+          case 'movie':
+          case 'tvserial':
+            result = voteTitleConfig.imdb;
+            break;
+          default :
+            result = voteTitleConfig.mt;
+            break;
+        }
       } else {
-        return null;
+        result = voteTitleConfig.mt;
       }
+      return result;
     }
 
     /**
