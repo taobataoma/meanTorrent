@@ -88,7 +88,7 @@
         var hasme = false;
         var meitem = null;
 
-        if(newValue && oldValue) {
+        if (newValue && oldValue) {
           if (newValue._replies.length > oldValue._replies.length) {
             angular.forEach(newValue._replies, function (n) {
               if (oldValue._replies.indexOf(n) < 0) {

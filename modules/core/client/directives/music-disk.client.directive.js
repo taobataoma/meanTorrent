@@ -19,10 +19,11 @@
       scope.$watch(attrs.musicDisk, function (s) {
         if (s && s.torrent_type === 'music') {
           var border_color = '#515151';
-          if (s.torrent_tags.indexOf('MTV') !== -1) {
-            var div1 = angular.element('<div>MTV</div>');
-            div1.addClass('music-badge');
 
+          var div1 = angular.element('<div>MTV</div>');
+          div1.addClass('music-badge');
+
+          if (s.torrent_tags.indexOf('MTV') !== -1) {
             border_color = '#d9534f';
           }
 
@@ -65,7 +66,9 @@
           cir2.append(cir3);
           cir3.append(cir4);
 
-          element.parent().append(div1);
+          if (s.torrent_tags.indexOf('MTV') !== -1) {
+            element.parent().append(div1);
+          }
           element.replaceWith(cir1);
         }
       });
