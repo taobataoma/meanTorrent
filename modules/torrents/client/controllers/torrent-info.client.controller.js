@@ -87,17 +87,20 @@
       if (vm.torrentLocalInfo && vm.torrentLocalInfo._replies) {
         var hasme = false;
         var meitem = null;
-        if (newValue._replies.length > oldValue._replies.length) {
 
-          angular.forEach(newValue._replies, function (n) {
-            if (oldValue._replies.indexOf(n) < 0) {
-              if (n.user._id.toString() === vm.user._id) {
-                hasme = true;
-                meitem = n;
+        if(newValue && oldValue) {
+          if (newValue._replies.length > oldValue._replies.length) {
+            angular.forEach(newValue._replies, function (n) {
+              if (oldValue._replies.indexOf(n) < 0) {
+                if (n.user._id.toString() === vm.user._id) {
+                  hasme = true;
+                  meitem = n;
+                }
               }
-            }
-          });
+            });
+          }
         }
+
         if (hasme) {
           var totalPages = vm.commentItemsPerPage < 1 ? 1 : Math.ceil(newValue._replies.length / vm.commentItemsPerPage);
           var p = Math.max(totalPages || 0, 1);
@@ -118,9 +121,12 @@
      * getTorrentInfo
      */
     vm.getTorrentInfo = function () {
-      vm.torrentLocalInfo = TorrentsService.get({
+      TorrentsService.get({
         torrentId: $stateParams.torrentId
       }, function (res) {
+        vm.torrentLocalInfo = res;
+        mtDebug.info(vm.torrentLocalInfo);
+
         $('.backdrop').css('backgroundImage', 'url(' + vm.TGI.getTorrentBackdropImage(vm.torrentLocalInfo) + ')');
 
         vm.rating_vote = res.resource_detail_info.vote_average;
@@ -130,8 +136,6 @@
           ScrapeService.scrapeTorrent(vm.torrentLocalInfo);
         }
       });
-
-      mtDebug.info(vm.torrentLocalInfo);
     };
 
     /**

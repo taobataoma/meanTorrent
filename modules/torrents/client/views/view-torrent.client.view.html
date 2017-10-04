@@ -1,10 +1,10 @@
 <section ng-controller="TorrentsInfoController as vm" ng-init="vm.getTorrentInfo();">
-    <div class="backdrop" ng-if="vm.torrentLocalInfo">
+    <div class="backdrop" ng-show="vm.torrentLocalInfo">
         <div class="filter">
             <div class="container">
                 <div class="topone">
                     <div class="col-md-3 text-center">
-                        <img class="img-thumbnail center-block" music-disk="vm.torrentLocalInfo.torrent_type=='music'"
+                        <img class="img-thumbnail center-block" music-disk="vm.torrentLocalInfo"
                              ng-src="{{vm.TGI.getTorrentTopOneImage(vm.torrentLocalInfo)}}"
                              alt="{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}" onload="this.style.opacity='1';">
 
