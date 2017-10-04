@@ -36,7 +36,7 @@ var CommentSchema = new Schema({
 });
 
 /**
- * Sub Thumb Schema
+ * Thumb Schema
  */
 var ThumbSchema = new Schema({
   user: {
@@ -44,6 +44,24 @@ var ThumbSchema = new Schema({
     ref: 'User'
   },
   score: {
+    type: Number,
+    default: 0
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+/**
+ * rating Schema
+ */
+var RatingSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  vote: {
     type: Number,
     default: 0
   },
@@ -155,6 +173,7 @@ var TorrentSchema = new Schema({
     default: Date.now
   },
   _thumbs: [ThumbSchema],
+  _ratings: [RatingSchema],
   _other_torrents: [],
 
   //resource info
@@ -197,3 +216,5 @@ TorrentSchema.index({torrent_tmdb_id: -1, createdat: -1});
 
 mongoose.model('Torrent', TorrentSchema);
 mongoose.model('Comment', CommentSchema);
+//mongoose.model('Thumb', ThumbSchema);
+mongoose.model('Rating', RatingSchema);

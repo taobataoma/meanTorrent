@@ -27,6 +27,7 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/torrents', permissions: '*'},
           {resources: '/api/torrents/:torrentId', permissions: '*'},
           {resources: '/api/torrents/:torrentId/thumbsUp', permissions: '*'},
+          {resources: '/api/torrents/:torrentId/rating', permissions: '*'},
           {resources: '/api/torrents/:torrentId/scrape', permissions: '*'},
           {resources: '/api/torrents/:torrentId/toggleHnRStatus', permissions: '*'},
           {resources: '/api/torrents/:torrentId/toggleVIPStatus', permissions: '*'},
@@ -61,6 +62,7 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/torrents', permissions: ['get', 'post']},
           {resources: '/api/torrents/:torrentId', permissions: ['get', 'put']},
           {resources: '/api/torrents/:torrentId/thumbsUp', permissions: ['put']},
+          {resources: '/api/torrents/:torrentId/rating', permissions: ['put']},
           {resources: '/api/torrents/:torrentId/scrape', permissions: ['get']},
 
           {resources: '/api/subtitles/:torrentId', permissions: ['post']},

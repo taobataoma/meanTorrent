@@ -13,6 +13,7 @@ var path = require('path'),
   Peer = mongoose.model('Peer'),
   Subtitle = mongoose.model('Subtitle'),
   Thumb = mongoose.model('Thumb'),
+  Rating = mongoose.model('Rating'),
   Torrent = mongoose.model('Torrent'),
   Complete = mongoose.model('Complete'),
   Forum = mongoose.model('Forum'),
@@ -779,6 +780,54 @@ exports.thumbsUp = function (req, res) {
 };
 
 /**
+ * rating
+ * @param req
+ * @param res
+ */
+exports.rating = function (req, res) {
+  var user = req.user;
+  var exist = false;
+  var torrent = req.torrent;
+  var rat = new Rating();
+  rat.user = req.user;
+  rat.vote = req.query.vote;
+
+  mtDebug.debugGreen(rat);
+  //check if already exist
+  exist = false;
+  torrent._ratings.forEach(function (r) {
+    if (r.user._id.equals(user._id)) {
+      exist = true;
+    }
+  });
+  if (exist) {
+    return res.status(422).send({
+      message: 'ALREADY_RATING'
+    });
+  } else {
+    torrent._ratings.push(rat);
+
+    mtDebug.debugGreen(torrent.resource_detail_info);
+    torrent.resource_detail_info.vote_count = parseInt(torrent.resource_detail_info.vote_count, 10) + 1;
+    torrent.resource_detail_info.vote_total = parseInt(torrent.resource_detail_info.vote_total, 10) + rat.vote;
+    torrent.resource_detail_info.vote_average = Math.floor((torrent.resource_detail_info.vote_total / torrent.resource_detail_info.vote_count) * 10) / 10;
+    mtDebug.debugGreen(torrent.resource_detail_info);
+
+    torrent.markModified('resource_detail_info');
+
+    torrent.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(torrent);
+      }
+    });
+  }
+};
+
+/**
  * setSaleType
  * @param req
  * @param res
@@ -1244,6 +1293,7 @@ exports.torrentByID = function (req, res, next, id) {
     Torrent.findById(id)
       .populate('user', 'username displayName profileImageURL isVip')
       .populate('_thumbs.user', 'username displayName profileImageURL isVip uploaded downloaded')
+      .populate('_ratings.user', 'username displayName profileImageURL isVip uploaded downloaded')
       .populate({
         path: '_replies.user',
         select: 'username displayName profileImageURL isVip uploaded downloaded',
