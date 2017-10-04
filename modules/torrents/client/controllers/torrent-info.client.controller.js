@@ -901,6 +901,7 @@
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_RATING_SUCCESSFULLY')
         });
       }, function (res) {
+        vm.rating_vote = vm.torrentLocalInfo.resource_detail_info.vote_average;
         Notification.error({
           message: res.data.message,
           title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_RATING_FAILED')
