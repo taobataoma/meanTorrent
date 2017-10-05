@@ -70,6 +70,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 22. Scrape torrents status from owner tracker server, design for `public` CMS mode.
 23. Complete HnR(hit and run) system support.
 24. Oper/admin can send official invitation, but all the invitation has the expired time setting.
+25. Complete music torrents support, include __CD__ and __MTV__ sub type.
 
 #### Chat room feature:
 1. Users name list
