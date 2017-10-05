@@ -7,11 +7,13 @@
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
-    'SubtitlesService', 'getStorageLangService', 'ScrapeService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices'];
+    'SubtitlesService', 'getStorageLangService', 'ScrapeService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
+    'localStorageService', '$compile'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
-                                  getStorageLangService, ScrapeService, NotifycationService, mtDebug, TGI) {
+                                  getStorageLangService, ScrapeService, NotifycationService, mtDebug, TGI,
+                                  localStorageService, $compile) {
     var vm = this;
     vm.TGI = TGI;
     vm.user = Authentication.user;
@@ -910,6 +912,84 @@
           message: res.data.message,
           title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_RATING_FAILED')
         });
+      });
+    };
+
+    /**
+     * isOwner
+     * @param o, topic or reply
+     * @returns {boolean}
+     */
+    vm.isOwner = function (t) {
+      if (t) {
+        if (t.user._id.str === vm.user._id) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    };
+
+    /**
+     * beginEditOverview
+     * @param r
+     */
+    vm.beginEditOverview = function (r) {
+      var el = $('#' + r._id);
+
+      el.markdown({
+        autofocus: true,
+        savable: true,
+        hideable: true,
+        iconlibrary: 'fa',
+        resize: 'vertical',
+        language: localStorageService.get('storage_user_lang'),
+        fullscreen: {enable: false},
+        onSave: function (e) {
+          if (e.isDirty()) {
+            var resinfo = r.resource_detail_info;
+            resinfo.overview = e.getContent();
+            vm.doUpdateTorrentInfo(resinfo);
+
+            e.$options.hideable = true;
+            e.blur();
+          } else {
+            e.$options.hideable = true;
+            e.blur();
+          }
+        },
+        onChange: function (e) {
+          e.$options.hideable = false;
+        },
+        onShow: function (e) {
+          var oe = angular.element('#top_of_overview');
+          window.scrollTo(0, oe[0].offsetTop);
+
+          e.setContent(r.resource_detail_info.overview);
+
+          var ele = $('#' + e.$editor.attr('id') + ' .md-input');
+          mtDebug.info(ele);
+          angular.element(ele).css('height', '550px');
+          angular.element(ele).css('color', '#333');
+
+          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
+          mtDebug.info(ele);
+
+          angular.element(ele).addClass('text-right');
+          angular.element(ele[0].childNodes[0]).addClass('btn-width-80');
+          ele[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
+
+          var cbtn = angular.element('<button class="btn btn-default btn-width-80 margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
+          cbtn.bind('click', function (evt) {
+            e.setContent(r.resource_detail_info.overview);
+            e.$options.hideable = true;
+            e.blur();
+          });
+          ele.append(cbtn);
+          $compile(ele.contents())($scope);
+        }
       });
     };
   }
