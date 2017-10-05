@@ -6,6 +6,7 @@ module.exports = {
      * @app
      *
      * App & site settings
+     * NOTE: you can change these value at anytime if you understand it
      *
      * @domain:                 site domain
      * @showDemoWarningPopup:   if is demo site, show warning popup whene home is opened for the first time.
@@ -41,6 +42,7 @@ module.exports = {
      * @announce
      *
      * tracker server announce settings
+     * NOTE: you can change these value at anytime if you understand it
      *
      * @url:                    announce url, download client will request this url to report uploads and downloads data
      * @comment:                used in admin tools, auto replace torrent make group info with this setting
@@ -69,6 +71,7 @@ module.exports = {
      *
      * This option used only when public cms mode (announce.privateTorrentCmsMode = false),
      * This defines the timing of scrape torrent status from other tracker server
+     * NOTE: you can change these value at anytime if you understand it
      *
      * @scrapeInterval:     scrape interval with torrent last_scrape, Avoid frequent scrape, unit in hours
      * @onTorrentUpload:    scrape status at server side when the torrent uploaded by a user (= init the status info)
@@ -90,6 +93,7 @@ module.exports = {
      * @ircAnnounce
      *
      * IRC announce server settings
+     * NOTE: you can change these value at anytime if you understand it
      *
      * @enable:             enable irc announce
      * @debug:              debug mode, more info will log out by console
@@ -131,6 +135,7 @@ module.exports = {
      * @sign
      *
      * user register settings
+     * NOTE: you can change these value at anytime if you understand it
      *
      * @openSignup:           set whether open the signup, if true, the user can signup(register) by heself,
      *                        if you create a private web site, and only accept invite to join, please set it to false.
@@ -148,6 +153,7 @@ module.exports = {
      * @invite
      *
      * invite settings when sign.openSignup is false
+     * NOTE: you can change these value at anytime if you understand it
      *
      * @openInvite:     if true, then any user can invite friends to join us, if false, only admin/oper can send invite mail
      * @scoreExchange:  if any user can send invite mail, the user must used score number to exchange an invite send qualifications, if the user has no
@@ -161,6 +167,21 @@ module.exports = {
       scoreExchange: 10000,
       expires: 60 * 60 * 1000 * 24
     },
+
+    /**
+     * @score
+     *
+     * score system settings
+     *
+     * @levelStep:        value of each level step, default 500
+     * @action:           score change action list
+     *        @name:      action name
+     *        @value:     action score value
+     *        @enable:    action enable status, if false, system will not change user`s score at this action
+     * @thumbsUpScore:    thumbs up score setting
+     *        @torrent:   thumbs up of torrent score change value
+     *        @topic:     thumbs up of forum topic/reply score change value
+     */
     score: {
       levelStep: 500,
       action: {
@@ -184,6 +205,18 @@ module.exports = {
         topic: 10
       }
     },
+
+    /**
+     * @messages
+     *
+     * site message settings
+     *
+     * @type:                   messages type
+     *        @name:            name of messages type, used in $translate
+     *        @value:           messages type value list
+     *                @name:    type name
+     *                @value:   type value
+     */
     messages: {
       type: {
         name: 'TYPE',
@@ -195,6 +228,16 @@ module.exports = {
         ]
       }
     },
+
+    /**
+     * @trace
+     *
+     * system trace logs settings
+     *
+     * @action:         trace action list
+     *        @name:    action name
+     *        @enable:  action enable status, if false, system will not to trace log this action
+     */
     trace: {
       action: {
         AdminUpdateUserRole: {name: 'AdminUpdateUserRole', enable: true},
@@ -231,6 +274,7 @@ module.exports = {
      *
      * torrent type settings
      * if you need more torrent type, please add at here and config it, the system will add new type everywhere automatic
+     * NOTE: don`t change these value if you can not understand it
      *
      * @name:   TYPE, do not change it
      * @value:  configure settings value of torrent type
@@ -346,6 +390,7 @@ module.exports = {
      * @torrentStatus
      *
      * the torrent status settings
+     * NOTE: don`t change these value if you can not understand it
      *
      * @name:   do not change it
      * @value:  value of status
@@ -366,6 +411,7 @@ module.exports = {
      * @torrentRecommendLevel
      *
      * the torrent recommend level settings
+     * NOTE: don`t change these value if you can not understand it
      *
      * @name:   do not change it
      * @value:  value of recommend level
@@ -389,6 +435,7 @@ module.exports = {
      * settings of Hit & Run system, system will auto update the warning status and number of user when client announce to tracker server
      * when admin/oper changed the torrent h&r prop to false, system will auto remove all warning and number of user
      * when admin/oper to delete a h&r torrent, system will auto remove all warning and number of user
+     * NOTE: you can change these value at anytime if you understand it
      *
      * @condition:                          the condition of HnR warning, user must meet one of them before you receive the warning
      *        @seedTime:                  torrent seed time, unit of day, default to 7 days
@@ -406,6 +453,19 @@ module.exports = {
       scoreToRemoveWarning: 10000
     },
 
+    /**
+     * @userStatus
+     *
+     * user account status setting
+     * NOTE: don`t change these value if you can not understand it
+
+     * @name:         name of status, used in $translate
+     * @value:        values of user status
+     *      @name:    status name
+     *      @value:   status value
+     *
+     * banned user is banned from server, can not download any torrent and can not logon chat room
+     */
     userStatus: {
       name: 'STATUS',
       value: [
@@ -414,7 +474,27 @@ module.exports = {
         {name: 'SEALED', value: 'sealed'}
       ]
     },
+
+    /**
+     * @userRoles
+     *
+     * user roles settings
+     * NOTE: don`t change these value if you can not understand it
+     *
+     * user:  normal user role
+     * oper:  operator user role
+     * admin: admin user role, admin include oper
+     */
     userRoles: ['user', 'oper', 'admin'],
+
+    /**
+     * @clientBlackList
+     *
+     * download client black list
+     * all the list client can not download the torrent data
+     *
+     * @name:  client software name
+     */
     clientBlackList: [
       {name: 'Transmission/2.93'},
       {name: 'Mozilla'},
@@ -424,6 +504,17 @@ module.exports = {
       {name: 'Lynx'},
       {name: 'Opera'}
     ],
+
+    /**
+     * @torrentSalesType
+     *
+     * torrent sale type setting
+     *
+     * @name:         name of torrent sale type, used in $translate
+     * @value:        sale type value list
+     *        @name:  sale item name
+     *        @desc:  sale item desc
+     */
     torrentSalesType: {
       name: 'SALESTYPE',
       value: [
@@ -445,6 +536,17 @@ module.exports = {
       ],
       expires: {size: 1024 * 1024 * 1024, time: 60 * 60 * 1000}
     },
+
+    /**
+     * @torrentSalesValue
+     *
+     * torrent sales settings
+     *
+     * @global:       number value of @torrentSalesType, like 'U2/Free' etc, this value priority torrent @torrentSalesType
+     * @vip:          vip sale settings
+     *        @Ur:    upload ratio, like 1.25 is upload scaling plus 25%
+     *        @Dr:    download ratio
+     */
     torrentSalesValue: {
       global: undefined,
       vip: {
@@ -452,6 +554,16 @@ module.exports = {
         Dr: 0
       }
     },
+
+    /**
+     * @chat
+     *
+     * chat settings
+     * NOTE: you can change these value at anytime if you understand it
+     *
+     * @ban:               banned user settings
+     *        @expires:    banned expires time setting, in this time, user cannot connect chat server
+     */
     chat: {
       ban: {
         expires: 60 * 60 * 1000 * 1
@@ -501,8 +613,8 @@ module.exports = {
      *
      * vote title string settings
      *
-     * @imdb:   imdb vote value
-     * @mt:     meanTorrent system vote value
+     * @imdb:   imdb vote label string
+     * @mt:     meanTorrent system vote label string
      */
     voteTitle: {
       imdb: 'IMDB',
@@ -514,6 +626,7 @@ module.exports = {
      *
      * forums configure settings
      * here is only configure the forum category, if you want to add some sub discussion area, please into admin menu -> forums configure
+     * NOTE: you can change these value at anytime if you understand it
      *
      * @category:               forums category
      *        @name:            name of forum category
@@ -530,6 +643,19 @@ module.exports = {
       showThumbsUpUserList: true
     },
 
+    /**
+     * @itemsPerPage
+     *
+     * items number in per list page settings
+     * NOTE: you can change these value at anytime if you understand it
+     *
+     * @topicsPerPage:            forum topic list page settings
+     * @repliesPerPage:           forum topic replies list page settings
+     * @topicsSearchPerPage:      forum topic search list page settings
+     * @torrentsPerPage:          torrents list page settings
+     * @torrentsCommentsPerPage:  torrent comments list settings
+     * @tracesPerPage:            system traces log list page settings
+     */
     itemsPerPage: {
       topicsPerPage: 10,
       repliesPerPage: 10,
@@ -539,6 +665,19 @@ module.exports = {
       tracesPerPage: 30
     },
 
+    /**
+     * @resourcesTags
+     *
+     * resources search tags settings, can configure more tags of torrentType at here
+     *
+     * @radio:                single selection tags
+     * @checkbox:             multiple selection tags
+     *        @name:          tag type name, used in $translate -> RESOURCESTAGS
+     *        @cats:          value of @torrentType, torrents search will used this value
+     *        @value:         sub tags value list
+     *                @name:  sub tag name
+     *                @icon:  sub tag icon file path
+     */
     resourcesTags: {
       radio: [
         {
