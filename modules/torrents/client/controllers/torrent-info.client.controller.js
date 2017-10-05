@@ -969,10 +969,10 @@
 
           e.setContent(r.resource_detail_info.overview);
 
-          var ele = $('#' + e.$editor.attr('id') + ' .md-input');
-          mtDebug.info(ele);
-          angular.element(ele).css('height', '550px');
-          angular.element(ele).css('color', '#333');
+          var elei = $('#' + e.$editor.attr('id') + ' .md-input');
+          mtDebug.info(elei);
+          angular.element(elei).css('height', '550px');
+          angular.element(elei).css('color', '#333');
 
           var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
           mtDebug.info(ele);
