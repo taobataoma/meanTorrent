@@ -8,7 +8,8 @@
                 <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
                     <img class="img-responsive" music-disk="item"
                          ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
-                         alt="{{vm.TGI.getTorrentTitle(item)}}">
+                         alt="{{vm.TGI.getTorrentTitle(item)}}"
+                         title="{{vm.TGI.getTorrentTitle(item)}}">
 
                     <div class="torrent-user-info">
                         <table>
@@ -157,7 +158,7 @@
                                 <div class="media-left">
                                     <img class="media-object" music-disk="item"
                                          ng-src="{{vm.TGI.getTorrentListImage(item)}}"
-                                         alt="...">
+                                         alt="{{vm.TGI.getTorrentTitle(item)}}">
 
                                     <div class="layer-download" ng-class="{'music': item.torrent_type=='music'}">
                                         <i class="fa fa-arrow-circle-o-down fa-3x" aria-hidden="true"
@@ -168,9 +169,10 @@
                                     </div>
                                 </div>
                                 <div class="media-body">
-                                    <h5 class="media-heading">{{vm.TGI.getTorrentTitle(item)}}
-                                        <span ng-show="vm.TGI.getTorrentOriginalTitle(item)"> / {{vm.TGI.getTorrentOriginalTitle(item)}}</span>
-                                        <span class="upload-by" ng-show="item.user.displayName"></span>
+                                    <h5 class="media-heading">
+                                        <span>{{vm.TGI.getTorrentDoubleTitle(item)}}</span>
+                                        <span class="upload-by" ng-show="item.user.displayName"> (By:
+                                            <span user-info="item.user" info-name></span> )</span>
                                     </h5>
 
                                     <div class="list-all-genres">

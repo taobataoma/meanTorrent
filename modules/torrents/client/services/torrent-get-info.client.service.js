@@ -16,6 +16,7 @@
     var service = {
       getTorrentTitle: getTorrentTitle,
       getTorrentOriginalTitle: getTorrentOriginalTitle,
+      getTorrentDoubleTitle: getTorrentDoubleTitle,
       getTorrentListImage: getTorrentListImage,
       getTorrentListTopImage: getTorrentListTopImage,
       getTorrentTopOneImage: getTorrentTopOneImage,
@@ -40,12 +41,12 @@
       if (item && item.resource_detail_info) {
         switch (item.torrent_type) {
           case 'movie':
-            result = item.resource_detail_info.original_title;
+            result = item.resource_detail_info.title;
             break;
           case 'tvserial':
-            result = item.resource_detail_info.original_name;
+            result = item.resource_detail_info.name;
             break;
-          case 'music':
+          default:
             result = item.resource_detail_info.title;
             break;
         }
@@ -64,18 +65,28 @@
       if (item && item.resource_detail_info) {
         switch (item.torrent_type) {
           case 'movie':
-            if (item.resource_detail_info.original_title !== item.resource_detail_info.title) {
-              result = item.resource_detail_info.title;
-            }
+            result = item.resource_detail_info.original_title;
             break;
           case 'tvserial':
-            if (item.resource_detail_info.original_name !== item.resource_detail_info.name) {
-              result = item.resource_detail_info.name;
-            }
+            result = item.resource_detail_info.original_name;
             break;
+          default:
+            result = item.resource_detail_info.title;
         }
       }
       return result;
+    }
+
+    /**
+     * getTorrentDoubleTitle
+     * @param item
+     * @returns {string}
+     */
+    function getTorrentDoubleTitle(item) {
+      var ori = getTorrentOriginalTitle(item);
+      var t = getTorrentTitle(item);
+
+      return ori === t ? t : t + ' / ' + ori;
     }
 
     /**
@@ -92,7 +103,7 @@
           case 'tvserial':
             result = tmdbConfig.posterListBaseUrl + item.resource_detail_info.poster_path;
             break;
-          case 'music':
+          default:
             result = '/modules/torrents/client/uploads/cover/' + item.resource_detail_info.cover;
             break;
         }
@@ -114,7 +125,7 @@
           case 'tvserial':
             result = tmdbConfig.posterImgBaseUrl + item.resource_detail_info.poster_path;
             break;
-          case 'music':
+          default:
             result = '/modules/torrents/client/uploads/cover/' + item.resource_detail_info.cover;
             break;
         }
@@ -136,7 +147,7 @@
           case 'tvserial':
             result = tmdbConfig.posterImgBaseUrl + item.resource_detail_info.poster_path;
             break;
-          case 'music':
+          default:
             result = '/modules/torrents/client/uploads/cover/' + item.resource_detail_info.cover;
             break;
         }
@@ -158,7 +169,7 @@
           case 'tvserial':
             result = tmdbConfig.backdropImgBaseUrl + item.resource_detail_info.backdrop_path;
             break;
-          case 'music':
+          default:
             result = '/modules/torrents/client/uploads/cover/' + item.resource_detail_info.cover;
             break;
         }

@@ -109,6 +109,7 @@
                                 <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
                                     <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{item.resource_detail_info.poster_path}}"
                                          alt="{{item.resource_detail_info.title}}"
+                                         title="{{item.resource_detail_info.title}}"
                                          class="img-responsive">
 
                                     <div class="torrent-user-info">
@@ -322,6 +323,7 @@
                                 <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
                                     <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{item.resource_detail_info.poster_path}}"
                                          alt="{{item.resource_detail_info.name}}"
+                                         title="{{item.resource_detail_info.name}}"
                                          class="img-responsive">
 
                                     <div class="torrent-user-info">
@@ -433,7 +435,8 @@
                             <div ng-click="vm.openTorrentInfo(vm.musicTopOne._id);">
                                 <img class="img-thumbnail center-block" music-disk="vm.musicTopOne"
                                      ng-src="{{vm.TGI.getTorrentTopOneImage(vm.musicTopOne)}}"
-                                     alt="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}" onload="this.style.opacity='1';">
+                                     alt="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}"
+                                     title="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}" onload="this.style.opacity='1';">
                             </div>
 
                             <div class="down-torrent">

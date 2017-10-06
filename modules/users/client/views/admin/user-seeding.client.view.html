@@ -35,7 +35,7 @@
                                     <div class="media-left">
                                         <img class="media-object" music-disk="item.torrent"
                                              ng-src="{{vm.TGI.getTorrentListImage(item.torrent)}}"
-                                             alt="...">
+                                             alt="{{vm.TGI.getTorrentTitle(item.torrent)}}">
 
                                         <div class="layer-download" ng-class="{'music': item.torrent.torrent_type=='music'}">
                                             <i class="fa fa-arrow-circle-o-down fa-3x" aria-hidden="true"
@@ -46,10 +46,10 @@
                                         </div>
                                     </div>
                                     <div class="media-body">
-                                        <h5 class="media-heading">{{vm.TGI.getTorrentTitle(item.torrent)}}
-                                            <span ng-show="vm.TGI.getTorrentOriginalTitle(item.torrent)"> / {{vm.TGI.getTorrentOriginalTitle(item.torrent)}}</span>
+                                        <h5 class="media-heading">
+                                            <span>{{vm.TGI.getTorrentDoubleTitle(item.torrent)}}</span>
                                             <span class="upload-by" ng-show="item.torrent.user.displayName"> (By:
-                                            <span user-info="item.torrent.user" info-name></span> )</span>
+                                                <span user-info="item.torrent.user" info-name></span> )</span>
                                         </h5>
 
                                         <div class="list-all-genres">
