@@ -337,11 +337,23 @@ module.exports = {
         },
         {
           enable: true,
+          name: 'SPORTS',
+          value: 'sports',
+          title: 'MENU_TORRENTS_SUB.SPORTS',
+          divider: false,
+          position: 4,
+          state: 'torrents.sports',
+          url: '/sports',
+          pageTitle: 'SPORTS_LIST',
+          uploadTemplateID: 'sports'
+        },
+        {
+          enable: true,
           name: 'VARIETY',
           value: 'variety',
           title: 'MENU_TORRENTS_SUB.VARIETY',
           divider: false,
-          position: 4,
+          position: 5,
           state: 'torrents.variety',
           url: '/variety',
           pageTitle: 'VARIETY_LIST',
@@ -353,10 +365,22 @@ module.exports = {
           value: 'software',
           title: 'MENU_TORRENTS_SUB.SOFTWARE',
           divider: true,
-          position: 4,
+          position: 6,
           state: 'torrents.software',
           url: '/software',
           pageTitle: 'SOFTWARE_LIST',
+          uploadTemplateID: 'default'
+        },
+        {
+          enable: true,
+          name: 'GAME',
+          value: 'game',
+          title: 'MENU_TORRENTS_SUB.GAME',
+          divider: false,
+          position: 7,
+          state: 'torrents.game',
+          url: '/game',
+          pageTitle: 'GAME_LIST',
           uploadTemplateID: 'default'
         },
         {
@@ -365,7 +389,7 @@ module.exports = {
           value: 'ebook',
           title: 'MENU_TORRENTS_SUB.EBOOK',
           divider: false,
-          position: 4,
+          position: 8,
           state: 'torrents.ebook',
           url: '/ebook',
           pageTitle: 'EBOOK_LIST',
@@ -377,7 +401,7 @@ module.exports = {
           value: 'other',
           title: 'MENU_TORRENTS_SUB.OTHER',
           divider: true,
-          position: 5,
+          position: 9,
           state: 'torrents.other',
           url: '/other',
           pageTitle: 'OTHER_LIST',
@@ -700,7 +724,7 @@ module.exports = {
         },
         {
           name: 'RESOLUTION',
-          cats: ['movie', 'tvserial', 'music', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'sports', 'variety'],
           value: [
             {name: 'S4K', icon: ''},
             {name: 'S1080P', icon: ''},
@@ -710,7 +734,7 @@ module.exports = {
         },
         {
           name: 'VIDEO',
-          cats: ['movie', 'tvserial', 'music', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'sports', 'variety'],
           value: [
             {name: 'AVC', icon: ''},
             {name: 'X265', icon: ''},
@@ -719,7 +743,7 @@ module.exports = {
         },
         {
           name: 'AUDIO',
-          cats: ['movie', 'tvserial', 'music', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'sports', 'variety'],
           value: [
             {name: 'AAC', icon: ''},
             {name: 'AC3', icon: ''},
@@ -740,7 +764,7 @@ module.exports = {
         },
         {
           name: 'CHANNEL',
-          cats: ['movie', 'tvserial', 'music', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'sports', 'variety'],
           value: [
             {name: 'C20', icon: ''},
             {name: 'C51', icon: ''},
@@ -758,7 +782,7 @@ module.exports = {
         },
         {
           name: 'REGION',
-          cats: ['movie', 'tvserial', 'music', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'sports', 'variety'],
           value: [
             {name: 'USA', icon: ''},
             {name: 'CHINA', icon: ''},
@@ -770,7 +794,7 @@ module.exports = {
         },
         {
           name: 'PLATFORM',
-          cats: ['software'],
+          cats: ['software', 'game'],
           value: [
             {name: 'Windows', icon: ''},
             {name: 'MacOS', icon: ''},
@@ -783,7 +807,7 @@ module.exports = {
       checkbox: [
         {
           name: 'MODIFY',
-          cats: ['movie', 'tvserial', 'variety'],
+          cats: ['movie', 'tvserial'],
           value: [
             {name: 'DIY', icon: ''},
             {name: 'GUOPEI', icon: ''},

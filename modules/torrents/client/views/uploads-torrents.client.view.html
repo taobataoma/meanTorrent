@@ -56,7 +56,7 @@
 
     <div ng-show="vm.selectedType" ng-include="vm.getIncludeUploadTemplateID(vm.selectedType);"></div>
 
-    <div class="row margin-bottom-40 margin-top-50" ng-show="vm.showAgreeAndSubmit || vm.music.detail">
+    <div class="row margin-bottom-40 margin-top-50" ng-show="vm.showAgreeAndSubmit || vm.customTorrent.detail">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <legend class="small-legend" translate="TORRENTS_SUBMIT_UPLOAD"></legend>
             <div class="col-sm-6 col-sm-offset-3 text-center">
@@ -449,58 +449,58 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="ENTER_MUSIC_TITLE"></legend>
                 <div class="col-md-6 col-sm-8">
-                    <input type="text" class="form-control" ng-model="vm.music.artist" placeholder="{{ 'MUSIC_ARTIST' | translate}}" autofocus>
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.artist" placeholder="{{ 'MUSIC_ARTIST' | translate}}" autofocus>
                 </div>
                 <div class="col-md-6 col-md-offset-2"></div>
                 <div class="col-md-6 col-sm-8 margin-top-10">
-                    <input type="text" class="form-control" ng-model="vm.music.title" placeholder="{{ 'MUSIC_TITLE' | translate}}">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.title" placeholder="{{ 'MUSIC_TITLE' | translate}}">
                 </div>
                 <div class="col-md-6 col-md-offset-2"></div>
                 <div class="col-md-8 col-sm-10 margin-top-10">
-                    <input type="text" class="form-control" ng-model="vm.music.subtitle" placeholder="{{ 'MUSIC_SUB_TITLE' | translate}}">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.subtitle" placeholder="{{ 'MUSIC_SUB_TITLE' | translate}}">
                 </div>
             </div>
         </div>
 
-        <div class="row margin-bottom-40" ng-show="vm.music.artist && vm.music.title && vm.music.subtitle">
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.artist && vm.customTorrent.title && vm.customTorrent.subtitle">
             <div class="col-xs-12">
                 <legend class="small-legend" translate="SELECT_MUSIC_IMAGE"></legend>
                 <div class="col-sm-7">
                     <div class="input-group">
-                        <input type="text" class="form-control" ng-model="vm.music.coverFile.name" disabled>
+                        <input type="text" class="form-control" ng-model="vm.customTorrent.coverFile.name" disabled>
 
                         <div class="input-group-btn">
                             <button class="btn btn-primary btn-file"
-                                    ngf-select="vm.music.fileSelected = true; vm.music.successfully = undefined; vm.music.progress = 0;"
-                                    ng-model="vm.music.coverFile"
+                                    ngf-select="vm.customTorrent.fileSelected = true; vm.customTorrent.successfully = undefined; vm.customTorrent.progress = 0;"
+                                    ng-model="vm.customTorrent.coverFile"
                                     ngf-pattern="'image/*'"
                                     ngf-accept="'image/*'"
                                     ngf-resize="{width: 400}"
                                     ngf-resize-if="$width > 400 || $height > 400"
-                                    ng-disabled="vm.music.successfully">{{ 'SELECT_FILE' | translate}}
+                                    ng-disabled="vm.customTorrent.successfully">{{ 'SELECT_FILE' | translate}}
                             </button>
                         </div>
                     </div>
                 </div>
-                <div ng-show="vm.music.fileSelected" class="col-sm-5">
+                <div ng-show="vm.customTorrent.fileSelected" class="col-sm-5">
                     <button class="btn btn-success"
-                            ng-click="vm.uploadMusicCover(vm.music.coverFile)">{{ 'DO_UPLOAD' | translate}} ({{vm.music.progress}}%)
+                            ng-click="vm.uploadCustomTorrentCover(vm.customTorrent.coverFile)">{{ 'DO_UPLOAD' | translate}} ({{vm.customTorrent.progress}}%)
                     </button>
                 </div>
-                <div ng-show="vm.music.successfully == true" class="col-sm-5" style="margin-top: 7px">
-                    <label class="text-success control-label" translate="MUSIC_COVER_UPLOAD_SUCCESSFULLY"></label>
+                <div ng-show="vm.customTorrent.successfully == true" class="col-sm-5" style="margin-top: 7px">
+                    <label class="text-success control-label" translate="COVER_UPLOAD_SUCCESSFULLY"></label>
                 </div>
-                <div ng-show="vm.music.successfully == false" class="col-sm-5" style="margin-top: 7px">
-                    <label class="text-danger control-label" translate="MUSIC_COVER_UPLOAD_FAILED"></label>
+                <div ng-show="vm.customTorrent.successfully == false" class="col-sm-5" style="margin-top: 7px">
+                    <label class="text-danger control-label" translate="COVER_UPLOAD_FAILED"></label>
                 </div>
             </div>
         </div>
 
-        <div class="row margin-bottom-40" ng-show="vm.music.successfully">
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.successfully">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="ENTER_MUSIC_DETAIL_INFO"></legend>
                 <div class="col-xs-12">
-                    <textarea id="musicDetail" name="musicDetail" ng-model="vm.music.detail"
+                    <textarea id="musicDetail" name="musicDetail" ng-model="vm.customTorrent.detail"
                               mt-markdown-editor="musicDetail"
                               upload-dir="/modules/torrents/client/uploads/temp/"
                               upload-only-image="true"
@@ -510,7 +510,7 @@
             </div>
         </div>
 
-        <div class="row margin-bottom-40" ng-show="vm.music.detail">
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_TAGS"></legend>
                 <dl class="dl-horizontal">
@@ -549,7 +549,7 @@
             </div>
         </div>
 
-        <div class="row margin-bottom-40" ng-show="vm.music.detail">
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="ENTER_VIDEO_NFO"></legend>
                 <div class="col-xs-12">
@@ -559,11 +559,229 @@
         </div>
     </script>
     <!-- **********************************************************************
-        ng-template     music.html
+        ng-template     sports.html
+    *********************************************************************** -->
+    <script type="text/ng-template" id="sports">
+        <div class="row margin-bottom-40">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="ENTER_SPORTS_TITLE"></legend>
+                <div class="col-md-6 col-sm-8 margin-top-10">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.title" placeholder="{{ 'SPORTS_TITLE' | translate}}">
+                </div>
+                <div class="col-md-6 col-md-offset-2"></div>
+                <div class="col-md-8 col-sm-10 margin-top-10">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.subtitle" placeholder="{{ 'SPORTS_SUB_TITLE' | translate}}">
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.title && vm.customTorrent.subtitle">
+            <div class="col-xs-12">
+                <legend class="small-legend" translate="SELECT_SPORTS_IMAGE"></legend>
+                <div class="col-sm-7">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="vm.customTorrent.coverFile.name" disabled>
+
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-file"
+                                    ngf-select="vm.customTorrent.fileSelected = true; vm.customTorrent.successfully = undefined; vm.customTorrent.progress = 0;"
+                                    ng-model="vm.customTorrent.coverFile"
+                                    ngf-pattern="'image/*'"
+                                    ngf-accept="'image/*'"
+                                    ngf-resize="{width: 400}"
+                                    ngf-resize-if="$width > 400 || $height > 400"
+                                    ng-disabled="vm.customTorrent.successfully">{{ 'SELECT_FILE' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="vm.customTorrent.fileSelected" class="col-sm-5">
+                    <button class="btn btn-success"
+                            ng-click="vm.uploadCustomTorrentCover(vm.customTorrent.coverFile)">{{ 'DO_UPLOAD' | translate}} ({{vm.customTorrent.progress}}%)
+                    </button>
+                </div>
+                <div ng-show="vm.customTorrent.successfully == true" class="col-sm-5" style="margin-top: 7px">
+                    <label class="text-success control-label" translate="COVER_UPLOAD_SUCCESSFULLY"></label>
+                </div>
+                <div ng-show="vm.customTorrent.successfully == false" class="col-sm-5" style="margin-top: 7px">
+                    <label class="text-danger control-label" translate="COVER_UPLOAD_FAILED"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.successfully">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="ENTER_SPORTS_DETAIL_INFO"></legend>
+                <div class="col-xs-12">
+                    <textarea id="sportsDetail" name="sportsDetail" ng-model="vm.customTorrent.detail"
+                              mt-markdown-editor="sportsDetail"
+                              upload-dir="/modules/torrents/client/uploads/temp/"
+                              upload-only-image="true"
+                              upload-method="vm.uploadTorrentImage(editor, ufile, progressback, callback, errback);"></textarea>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="SELECT_TAGS"></legend>
+                <dl class="dl-horizontal">
+                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.selectedType">
+                        <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                        <dd class="h-line">
+                            <label class="radio-inline" ng-repeat="sitem in item.value">
+                                <input type="radio" class="tradio" name="tag_{{item.name}}" ng-model="vm.tags['tag_'+item.name]"
+                                       id="radio_{{item.name}}{{$index}}"
+                                       value="{{sitem.name}}"> {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                            </label>
+                        </dd>
+                    </div>
+
+                    <div style="margin-top: 30px;"></div>
+
+                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.selectedType">
+                        <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                        <dd class="h-line">
+                            <label class="checkbox-inline" ng-repeat="sitem in item.value">
+                                <input type="checkbox" class="tcheckbox" ng-model="vm.tags['tag_'+item.name+'_'+sitem.name]"
+                                       id="checkbox_{{item.name}}_{{sitem.name}}"
+                                       value="{{sitem.name}}"> {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                            </label>
+                        </dd>
+                    </div>
+                    <div class="margin-top-10">
+                        <dt class="h-line"></dt>
+                        <dd class="h-line">
+                        <span class="label label-tag text-uppercase" ng-click="vm.clearAllCondition();">
+                            {{ 'CLEAR_ALL_CONDITION' | translate}}
+                        </span>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="ENTER_VIDEO_NFO"></legend>
+                <div class="col-xs-12">
+                    <textarea class="form-control" rows="10" ng-model="vm.videoNfo" style="resize: vertical"></textarea>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- **********************************************************************
+        ng-template     variety.html
     *********************************************************************** -->
     <script type="text/ng-template" id="variety">
-        <div>
+        <div class="row margin-bottom-40">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="ENTER_VARIETY_TITLE"></legend>
+                <div class="col-md-6 col-sm-8 margin-top-10">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.title" placeholder="{{ 'VARIETY_TITLE' | translate}}">
+                </div>
+                <div class="col-md-6 col-md-offset-2"></div>
+                <div class="col-md-8 col-sm-10 margin-top-10">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.subtitle" placeholder="{{ 'VARIETY_SUB_TITLE' | translate}}">
+                </div>
+            </div>
+        </div>
 
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.title && vm.customTorrent.subtitle">
+            <div class="col-xs-12">
+                <legend class="small-legend" translate="SELECT_VARIETY_IMAGE"></legend>
+                <div class="col-sm-7">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="vm.customTorrent.coverFile.name" disabled>
+
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-file"
+                                    ngf-select="vm.customTorrent.fileSelected = true; vm.customTorrent.successfully = undefined; vm.customTorrent.progress = 0;"
+                                    ng-model="vm.customTorrent.coverFile"
+                                    ngf-pattern="'image/*'"
+                                    ngf-accept="'image/*'"
+                                    ngf-resize="{width: 400}"
+                                    ngf-resize-if="$width > 400 || $height > 400"
+                                    ng-disabled="vm.customTorrent.successfully">{{ 'SELECT_FILE' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="vm.customTorrent.fileSelected" class="col-sm-5">
+                    <button class="btn btn-success"
+                            ng-click="vm.uploadCustomTorrentCover(vm.customTorrent.coverFile)">{{ 'DO_UPLOAD' | translate}} ({{vm.customTorrent.progress}}%)
+                    </button>
+                </div>
+                <div ng-show="vm.customTorrent.successfully == true" class="col-sm-5" style="margin-top: 7px">
+                    <label class="text-success control-label" translate="COVER_UPLOAD_SUCCESSFULLY"></label>
+                </div>
+                <div ng-show="vm.customTorrent.successfully == false" class="col-sm-5" style="margin-top: 7px">
+                    <label class="text-danger control-label" translate="COVER_UPLOAD_FAILED"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.successfully">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="ENTER_VARIETY_DETAIL_INFO"></legend>
+                <div class="col-xs-12">
+                    <textarea id="varietyDetail" name="varietyDetail" ng-model="vm.customTorrent.detail"
+                              mt-markdown-editor="varietyDetail"
+                              upload-dir="/modules/torrents/client/uploads/temp/"
+                              upload-only-image="true"
+                              upload-method="vm.uploadTorrentImage(editor, ufile, progressback, callback, errback);"></textarea>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="SELECT_TAGS"></legend>
+                <dl class="dl-horizontal">
+                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.selectedType">
+                        <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                        <dd class="h-line">
+                            <label class="radio-inline" ng-repeat="sitem in item.value">
+                                <input type="radio" class="tradio" name="tag_{{item.name}}" ng-model="vm.tags['tag_'+item.name]"
+                                       id="radio_{{item.name}}{{$index}}"
+                                       value="{{sitem.name}}"> {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                            </label>
+                        </dd>
+                    </div>
+
+                    <div style="margin-top: 30px;"></div>
+
+                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.selectedType">
+                        <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
+                        <dd class="h-line">
+                            <label class="checkbox-inline" ng-repeat="sitem in item.value">
+                                <input type="checkbox" class="tcheckbox" ng-model="vm.tags['tag_'+item.name+'_'+sitem.name]"
+                                       id="checkbox_{{item.name}}_{{sitem.name}}"
+                                       value="{{sitem.name}}"> {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name | translate}}
+                            </label>
+                        </dd>
+                    </div>
+                    <div class="margin-top-10">
+                        <dt class="h-line"></dt>
+                        <dd class="h-line">
+                        <span class="label label-tag text-uppercase" ng-click="vm.clearAllCondition();">
+                            {{ 'CLEAR_ALL_CONDITION' | translate}}
+                        </span>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="ENTER_VIDEO_NFO"></legend>
+                <div class="col-xs-12">
+                    <textarea class="form-control" rows="10" ng-model="vm.videoNfo" style="resize: vertical"></textarea>
+                </div>
+            </div>
         </div>
     </script>
     <!-- **********************************************************************

@@ -22,7 +22,7 @@
     vm.torrentInfo = null;
     vm.tags = [];
     vm.videoNfo = '';
-    vm.music = {};
+    vm.customTorrent = {};
 
     // If user is not signed in then redirect back home
     if (!Authentication.user) {
@@ -92,14 +92,14 @@
     }
 
     /**
-     * uploadMusicCover
+     * uploadCustomTorrentCover
      * @param dataUrl
      */
-    vm.uploadMusicCover = function (dataUrl) {
+    vm.uploadCustomTorrentCover = function (dataUrl) {
       mtDebug.info(dataUrl);
 
       if (dataUrl === null || dataUrl === undefined) {
-        vm.music.fileSelected = false;
+        vm.customTorrent.fileSelected = false;
         Notification.info({
           message: '<i class="glyphicon glyphicon-info-sign"></i> ' + $translate.instant('TORRENTS_NO_FILE_SELECTED')
         });
@@ -112,26 +112,26 @@
           newTorrentCoverFile: dataUrl
         }
       }).then(function (response) {
-        vm.music.fileSelected = false;
-        vm.music.successfully = true;
+        vm.customTorrent.fileSelected = false;
+        vm.customTorrent.successfully = true;
         mtDebug.info(response);
-        vm.music.coverFileName = response.data.filename;
+        vm.customTorrent.coverFileName = response.data.filename;
         Notification.success({
-          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('MUSIC_COVER_UPLOAD_SUCCESSFULLY')
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('COVER_UPLOAD_SUCCESSFULLY')
         });
       }, function (response) {
         mtDebug.info(response);
         if (response.status > 0) {
-          vm.music.fileSelected = false;
-          vm.music.successfully = false;
-          vm.music.coverFile = undefined;
+          vm.customTorrent.fileSelected = false;
+          vm.customTorrent.successfully = false;
+          vm.customTorrent.coverFile = undefined;
           Notification.error({
             message: response.data,
-            title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('MUSIC_COVER_UPLOAD_FAILED')
+            title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('COVER_UPLOAD_FAILED')
           });
         }
       }, function (evt) {
-        vm.music.progress = parseInt(100.0 * evt.loaded / evt.total, 10);
+        vm.customTorrent.progress = parseInt(100.0 * evt.loaded / evt.total, 10);
       });
     };
 
@@ -327,17 +327,14 @@
       mtDebug.info(vm.torrentInfo);
 
       switch (vm.selectedType) {
+        case 'movie':
+          vm.createMovieTorrent();
+          break;
         case 'tvserial':
           vm.createTVTorrent();
           break;
-        case 'music':
-          vm.createMusicTorrent();
-          break;
-        case 'other':
-          vm.createOtherTorrent();
-          break;
         default:
-          vm.createMovieTorrent();
+          vm.createCustomTorrentTorrent();
       }
     };
 
@@ -422,18 +419,18 @@
     };
 
     /**
-     * createMusicTorrent
+     * createCustomTorrentTorrent
      */
-    vm.createMusicTorrent = function () {
+    vm.createCustomTorrentTorrent = function () {
       var l = vm.getTorrentSize();
       var t = vm.getResourceTag();
 
       var detail_info = {
-        artist: vm.music.artist,
-        title: vm.music.title,
-        subtitle: vm.music.subtitle,
-        cover: vm.music.coverFileName,
-        overview: vm.music.detail,
+        artist: vm.customTorrent.artist || undefined,
+        title: vm.customTorrent.title,
+        subtitle: vm.customTorrent.subtitle,
+        cover: vm.customTorrent.coverFileName,
+        overview: vm.customTorrent.detail,
 
         vote_average: 0,
         vote_total: 0,
@@ -452,7 +449,7 @@
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
         torrent_filename: vm.torrentInfo.filename,
-        torrent_type: 'music',
+        torrent_type: vm.selectedType,
         torrent_tags: t,
         torrent_nfo: vm.videoNfo,
         torrent_announce: vm.torrentInfo.announce,
@@ -462,6 +459,7 @@
         _uImage: uimg
       });
 
+      mtDebug.info(torrent);
 
       torrent.$save(function (response) {
         successCallback(response);
