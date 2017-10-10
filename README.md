@@ -71,6 +71,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 23. Complete HnR(hit and run) system support.
 24. Oper/admin can send official invitation, but all the invitation has the expired time setting.
 25. Complete music torrents support, include __CD__ and __MTV__ sub type.
+26. Sports and variety type torrents support NOW!
 
 #### Chat room feature:
 1. Users name list
@@ -81,7 +82,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 6. Chat message bubble style
 
 ## TODO
-- Other type torrent support(like Music, Other).
+- Other type torrent support.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - Subject support, like region subject, [IMDB](http://www.imdb.com) TOP 100 subject etc.
 - VIP Donate function.
