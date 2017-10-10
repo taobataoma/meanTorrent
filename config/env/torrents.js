@@ -781,6 +781,25 @@ module.exports = {
           ]
         },
         {
+          name: 'MOVIE_SUB_CAT',
+          cats: ['movie', 'tvserial'],
+          value: [
+            {name: 'CARTOON', icon: ''},
+            {name: 'DOCUMENTARY', icon: ''}
+          ]
+        },
+        {
+          name: 'SPORTS_SUB_CAT',
+          cats: ['sports'],
+          value: [
+            {name: 'FOOTBALL', icon: ''},
+            {name: 'BASKETBALL', icon: ''},
+            {name: 'RUGBY', icon: ''},
+            {name: 'TENNIS', icon: ''},
+            {name: 'SNOOKER', icon: ''}
+          ]
+        },
+        {
           name: 'REGION',
           cats: ['movie', 'tvserial', 'music', 'sports', 'variety'],
           value: [

@@ -946,6 +946,21 @@
         MTV: 'MTV'
       },
 
+      MOVIE_SUB_CAT: {
+        SELF: '视频分类',
+        CARTOON: '卡通片',
+        DOCUMENTARY: '记录片'
+      },
+
+      SPORTS_SUB_CAT: {
+        SELF: '运动项目',
+        FOOTBALL: '篮球',
+        BASKETBALL: '足球',
+        RUGBY: '橄榄球',
+        TENNIS: '网球',
+        SNOOKER: '斯诺克'
+      },
+
       PLATFORM: {
         SELF: 'Platform',
         Windows: 'Windows',
