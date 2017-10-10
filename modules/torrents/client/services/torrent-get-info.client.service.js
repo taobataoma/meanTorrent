@@ -81,10 +81,14 @@
      * @returns {string}
      */
     function getTorrentDoubleTitle(item) {
-      var ori = getTorrentOriginalTitle(item);
       var t = getTorrentTitle(item);
+      var ori = getTorrentOriginalTitle(item);
 
-      return ori === t ? t : t + ' / ' + ori;
+      if (!ori) {
+        return t;
+      } else {
+        return ori === t ? t : t + ' / ' + ori;
+      }
     }
 
     /**
