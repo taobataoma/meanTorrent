@@ -85,6 +85,15 @@
     };
 
     /**
+     * getVarietyTopInfo
+     */
+    vm.getVarietyTopInfo = function () {
+      if (vm.sportsTopOne.resource_detail_info.cover) {
+        $('.variety-backdrop').css('backgroundImage', 'url(/modules/torrents/client/uploads/cover/' + vm.varietyTopOne.resource_detail_info.cover + ')');
+      }
+    };
+
+    /**
      * getTorrentTypeEnabled
      */
     vm.getTorrentTypeEnabled = function (t) {
@@ -279,6 +288,47 @@
 
           if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
             ScrapeService.scrapeTorrent(vm.sportsNewList);
+          }
+        }
+      });
+    };
+
+    /**
+     * getVarietyTopInfo
+     */
+    vm.getVarietyTopInfo = function () {
+      vm.varietyInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'variety',
+        limit: 9
+      }, function (items) {
+        if (items.rows.length > 0) {
+          mtDebug.info(items);
+
+          vm.varietyTopOne = items.rows[0];
+          items.rows.splice(0, 1);
+          vm.varietyTopList = items.rows;
+
+          vm.initTopOneVarietyInfo();
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.varietyTopOne);
+            ScrapeService.scrapeTorrent(vm.varietyTopList);
+          }
+        }
+      });
+
+      vm.varietyInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'variety',
+        newest: true,
+        limit: 14
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.varietyNewList = items.rows;
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.varietyNewList);
           }
         }
       });

@@ -69,6 +69,7 @@
     NEWEST_TV_LIST: 'Newest TV Serial Torrents',
     NEWEST_MUSIC_LIST: 'Newest Music Torrents',
     NEWEST_SPORTS_LIST: 'Newest Sports Torrents',
+    NEWEST_VARIETY_LIST: 'Newest Variety Torrents',
 
     //element title/alt
     TITLE_ALT: {
