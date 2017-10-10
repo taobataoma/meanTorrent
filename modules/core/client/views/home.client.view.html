@@ -433,7 +433,7 @@
                     <div class="topone">
                         <div class="col-md-3">
                             <div ng-click="vm.openTorrentInfo(vm.musicTopOne._id);">
-                                <img class="img-thumbnail center-block" music-disk="vm.musicTopOne"
+                                <img class="img-thumbnail center-block" torrent-logo="vm.musicTopOne"
                                      ng-src="{{vm.TGI.getTorrentTopOneImage(vm.musicTopOne)}}"
                                      alt="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}"
                                      title="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}" onload="this.style.opacity='1';">
@@ -486,7 +486,7 @@
                             <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
                                 <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
-                                    <img class="img-responsive" music-disk="item"
+                                    <img class="img-responsive" torrent-logo="item"
                                          ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
                                          alt="{{vm.TGI.getTorrentTitle(item)}}">
 
@@ -543,7 +543,7 @@
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
                                                 <div class="newest-item-big music-margin" ng-click="vm.openTorrentInfo(nm._id);">
-                                                    <img class="img-responsive" music-disk="nm"
+                                                    <img class="img-responsive" torrent-logo="nm"
                                                          ng-src="{{vm.TGI.getTorrentListTopImage(nm)}}"
                                                          alt="{{vm.TGI.getTorrentTitle(nm)}}">
 

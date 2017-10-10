@@ -4,9 +4,11 @@
             <div class="container">
                 <div class="topone">
                     <div class="col-md-3 text-center">
-                        <img class="img-thumbnail center-block" music-disk="vm.torrentLocalInfo"
-                             ng-src="{{vm.TGI.getTorrentTopOneImage(vm.torrentLocalInfo)}}"
-                             alt="{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}" onload="this.style.opacity='1';">
+                        <div class="img-thumbnail center-block torrent-logo">
+                            <img torrent-logo="vm.torrentLocalInfo"
+                                 ng-src="{{vm.TGI.getTorrentTopOneImage(vm.torrentLocalInfo)}}"
+                                 alt="{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}">
+                        </div>
 
                         <div class="down-torrent">
                             <button class="btn btn-success btn-block" ng-click="vm.downloadTorrent(vm.torrentLocalInfo._id)"

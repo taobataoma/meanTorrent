@@ -70,8 +70,6 @@
           case 'tvserial':
             result = item.resource_detail_info.original_name;
             break;
-          default:
-            result = item.resource_detail_info.title;
         }
       }
       return result;

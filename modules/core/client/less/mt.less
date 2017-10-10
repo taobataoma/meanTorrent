@@ -111,8 +111,18 @@ body {
         }
         .down-torrent {
             margin-top: 20px;
-            margin-left: 40px;
-            margin-right: 40px;
+        }
+        .torrent-logo {
+            max-height: 400px;
+            max-width: 270px;
+            transition-property: transform, opacity;
+            transition-duration: 1s;
+            transition-timing-function: ease;
+            &:hover {
+                /* csslint ignore:start */
+                transform: scale(1.1);
+                /* csslint ignore:end */
+            }
         }
         .music {
             max-width: 300px;
@@ -226,6 +236,9 @@ body {
         .music {
             opacity: 1;
         }
+        .torrent-logo {
+            opacity: 1;
+        }
     }
     > img {
         opacity: 0.8;
@@ -264,6 +277,9 @@ body {
         background-color: @label-danger-bg;
         border: solid 1px #fff;
         border-radius: 4px;
+    }
+    .torrent-logo {
+        opacity: 0.8;
     }
 }
 
