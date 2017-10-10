@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="topone">
                     <div class="col-md-3 text-center">
-                        <div class="img-thumbnail center-block torrent-logo">
+                        <div ng-class="{'img-thumbnail center-block torrent-logo': vm.torrentLocalInfo.torrent_type!='music'}">
                             <img torrent-logo="vm.torrentLocalInfo"
                                  ng-src="{{vm.TGI.getTorrentTopOneImage(vm.torrentLocalInfo)}}"
                                  alt="{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}">
