@@ -78,19 +78,8 @@ body {
             margin-bottom: 10px;
         }
         img {
-            //opacity: 0;
-            transition-property: transform, opacity;
-            transition-duration: 1s;
-            transition-timing-function: ease;
-
-            cursor: pointer;
-            max-height: 400px;
-            //transition: transform .5s ease-in-out;
-            &:hover {
-                /* csslint ignore:start */
-                transform: scale(1.1);
-                /* csslint ignore:end */
-            }
+            width: 100%;
+            height: 100%;
         }
         .genres-item {
             font-size: 14px;
@@ -115,6 +104,8 @@ body {
         .torrent-logo {
             max-height: 400px;
             max-width: 270px;
+            cursor: pointer;
+
             transition-property: transform, opacity;
             transition-duration: 1s;
             transition-timing-function: ease;
