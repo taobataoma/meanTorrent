@@ -121,6 +121,8 @@
       div1.css('min-width', '67px');
       div1.css('padding-top', '150%');
 
+      div1.addClass('logo-div');
+
       element.replaceWith(div1);
     }
   }

@@ -68,6 +68,7 @@
     NEWEST_MOVIE_LIST: 'Newest Movie Torrents',
     NEWEST_TV_LIST: 'Newest TV Serial Torrents',
     NEWEST_MUSIC_LIST: 'Newest Music Torrents',
+    NEWEST_SPORTS_LIST: 'Newest Sports Torrents',
 
     //element title/alt
     TITLE_ALT: {
@@ -958,7 +959,9 @@
         BASKETBALL: 'Basketball',
         RUGBY: 'Rugby',
         TENNIS: 'Tennis',
-        SNOOKER: 'Snooker'
+        BOXING: 'Boxing',
+        SNOOKER: 'Snooker',
+        F1: 'F1'
       },
 
       PLATFORM: {

@@ -958,7 +958,9 @@
         BASKETBALL: '足球',
         RUGBY: '橄榄球',
         TENNIS: '网球',
-        SNOOKER: '斯诺克'
+        BOXING: '拳击',
+        SNOOKER: '斯诺克',
+        F1: 'F1赛车'
       },
 
       PLATFORM: {

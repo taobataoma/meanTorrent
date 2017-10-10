@@ -76,6 +76,15 @@
     };
 
     /**
+     * initTopOneSportsInfo
+     */
+    vm.initTopOneSportsInfo = function () {
+      if (vm.sportsTopOne.resource_detail_info.cover) {
+        $('.sports-backdrop').css('backgroundImage', 'url(/modules/torrents/client/uploads/cover/' + vm.sportsTopOne.resource_detail_info.cover + ')');
+      }
+    };
+
+    /**
      * getTorrentTypeEnabled
      */
     vm.getTorrentTypeEnabled = function (t) {
@@ -229,6 +238,47 @@
 
           if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
             ScrapeService.scrapeTorrent(vm.musicNewList);
+          }
+        }
+      });
+    };
+
+    /**
+     * getSportsTopInfo
+     */
+    vm.getSportsTopInfo = function () {
+      vm.sportsInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'sports',
+        limit: 9
+      }, function (items) {
+        if (items.rows.length > 0) {
+          mtDebug.info(items);
+
+          vm.sportsTopOne = items.rows[0];
+          items.rows.splice(0, 1);
+          vm.sportsTopList = items.rows;
+
+          vm.initTopOneSportsInfo();
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.sportsTopOne);
+            ScrapeService.scrapeTorrent(vm.sportsTopList);
+          }
+        }
+      });
+
+      vm.sportsInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'sports',
+        newest: true,
+        limit: 14
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.sportsNewList = items.rows;
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.sportsNewList);
           }
         }
       });

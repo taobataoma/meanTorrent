@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9" ng-class="{'music-detail': vm.torrentLocalInfo.torrent_type=='music'}">
+                    <div class="col-md-9 torrent-detail">
                         <dl class="dl-horizontal">
                             <div ng-if="vm.TGI.getTorrentTitle(vm.torrentLocalInfo)">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
@@ -500,9 +500,7 @@
                                     <button class="btn btn-primary btn-file"
                                             ngf-select="vm.fileSelected = true; vm.progress = 0;"
                                             ng-model="vm.sFile"
-                                            accept=".srt,.ass,.zip,.rar,.7z"
-                                            ngf-resize="{width: 400}"
-                                            ngf-resize-if="$width > 400 || $height > 400">
+                                            accept=".srt,.ass,.zip,.rar,.7z">
                                         {{ 'SELECT_FILE' | translate}}
                                     </button>
                                 </div>

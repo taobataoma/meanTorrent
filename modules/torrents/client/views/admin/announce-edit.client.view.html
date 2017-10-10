@@ -25,9 +25,7 @@
                                 <button class="btn btn-primary btn-file"
                                         ngf-select="vm.fileSelected = true; vm.progress = 0;"
                                         ng-model="vm.tFile"
-                                        accept="application/x-bittorrent"
-                                        ngf-resize="{width: 400}"
-                                        ngf-resize-if="$width > 400 || $height > 400">
+                                        accept="application/x-bittorrent">
                                     {{ 'SELECT_FILE' | translate}}
                                 </button>
                             </div>

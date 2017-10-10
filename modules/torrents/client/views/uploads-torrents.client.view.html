@@ -22,8 +22,6 @@
                                 ngf-select="vm.fileSelected = true; vm.successfully = undefined; vm.progress = 0;"
                                 ng-model="vm.tFile"
                                 accept="application/x-bittorrent"
-                                ngf-resize="{width: 400}"
-                                ngf-resize-if="$width > 400 || $height > 400"
                                 ng-disabled="vm.successfully">{{ 'SELECT_FILE' | translate}}
                         </button>
                     </div>
@@ -475,8 +473,8 @@
                                     ng-model="vm.customTorrent.coverFile"
                                     ngf-pattern="'image/*'"
                                     ngf-accept="'image/*'"
-                                    ngf-resize="{width: 400}"
-                                    ngf-resize-if="$width > 400 || $height > 400"
+                                    ngf-resize="{width: 800}"
+                                    ngf-resize-if="$width > 800 || $height > 800"
                                     ng-disabled="vm.customTorrent.successfully">{{ 'SELECT_FILE' | translate}}
                             </button>
                         </div>
@@ -588,8 +586,8 @@
                                     ng-model="vm.customTorrent.coverFile"
                                     ngf-pattern="'image/*'"
                                     ngf-accept="'image/*'"
-                                    ngf-resize="{width: 400}"
-                                    ngf-resize-if="$width > 400 || $height > 400"
+                                    ngf-resize="{width: 800}"
+                                    ngf-resize-if="$width > 800 || $height > 800"
                                     ng-disabled="vm.customTorrent.successfully">{{ 'SELECT_FILE' | translate}}
                             </button>
                         </div>
@@ -701,8 +699,8 @@
                                     ng-model="vm.customTorrent.coverFile"
                                     ngf-pattern="'image/*'"
                                     ngf-accept="'image/*'"
-                                    ngf-resize="{width: 400}"
-                                    ngf-resize-if="$width > 400 || $height > 400"
+                                    ngf-resize="{width: 800}"
+                                    ngf-resize-if="$width > 800 || $height > 800"
                                     ng-disabled="vm.customTorrent.successfully">{{ 'SELECT_FILE' | translate}}
                             </button>
                         </div>

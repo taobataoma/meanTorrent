@@ -796,7 +796,9 @@ module.exports = {
             {name: 'BASKETBALL', icon: ''},
             {name: 'RUGBY', icon: ''},
             {name: 'TENNIS', icon: ''},
-            {name: 'SNOOKER', icon: ''}
+            {name: 'BOXING', icon: ''},
+            {name: 'SNOOKER', icon: ''},
+            {name: 'F1', icon: ''}
           ]
         },
         {
@@ -826,7 +828,7 @@ module.exports = {
       checkbox: [
         {
           name: 'MODIFY',
-          cats: ['movie', 'tvserial'],
+          cats: ['movie', 'tvserial', 'sports', 'variety'],
           value: [
             {name: 'DIY', icon: ''},
             {name: 'GUOPEI', icon: ''},
