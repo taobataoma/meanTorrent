@@ -31,7 +31,10 @@
         url: '/',
         templateUrl: '/modules/core/client/views/home.client.view.html',
         controller: 'HomeController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'oper', 'admin']
+        }
       })
       .state('not-found', {
         url: '/not-found',
