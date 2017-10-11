@@ -697,7 +697,7 @@ module.exports = {
      * @radio:                single selection tags
      * @checkbox:             multiple selection tags
      *        @name:          tag type name, used in $translate -> RESOURCESTAGS
-     *        @cats:          value of @torrentType, torrents search will used this value
+     *        @cats:          value of @torrentType, torrents filter(search) will used by this value
      *        @value:         sub tags value list
      *                @name:  sub tag name
      *                @icon:  sub tag icon file path
