@@ -278,7 +278,7 @@
     OTHER_TORRENT_LIST_TITLE: 'This resources has {{x}} other version torrent, you can view or download from here:',
 
     ADMIN_BASIC_COMMAND: 'Basic Command',
-    ADMIN_BASIC_REVIEWED: 'Reviewed',
+    ADMIN_BASIC_REVIEWED: 'Review',
     ADMIN_BASIC_UPDATE: 'Update torrent info from TMDB',
     ADMIN_BASIC_DELETE: 'Delete torrent',
     ADMIN_BASIC_SCRAPE: 'Scrape torrent status',
