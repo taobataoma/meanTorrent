@@ -199,6 +199,10 @@
       vm.tvinfo = undefined;
       vm.tmdb_id = undefined;
 
+      vm.tags = [];
+      vm.videoNfo = '';
+      vm.customTorrent = {};
+
       vm.showVideoNfo = false;
       vm.showAgreeAndSubmit = false;
     };
@@ -441,9 +445,7 @@
       var uimg = [];
       angular.forEach($scope.uImages, function (f) {
         mtDebug.info(f);
-        uimg.push({
-          filename: f.name
-        });
+        uimg.push(f.name);
       });
 
       var torrent = new TorrentsService({

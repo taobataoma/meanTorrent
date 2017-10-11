@@ -526,18 +526,24 @@ exports.create = function (req, res) {
     } else {
       //move temp cover image file to dest directory
       var cv = req.body.resource_detail_info.cover;
-      var o = config.uploads.torrent.cover.temp + cv;
-      var n = config.uploads.torrent.cover.dest + cv;
-      move(o, n, function (err) {
+      var oc = config.uploads.torrent.cover.temp + cv;
+      var nc = config.uploads.torrent.cover.dest + cv;
+      copy(oc, nc, function (err) {
         if (err) {
           mtDebug.debugRed(err);
         }
+
+        if (req.body._uImage.indexOf(cv) < 0) {
+          fs.unlink(oc);
+        }
       });
+
+
       //move temp torrent image file to dest directory
       req.body._uImage.forEach(function (f) {
-        o = config.uploads.torrent.image.temp + f.filename;
-        n = config.uploads.torrent.image.dest + f.filename;
-        move(o, n, function (err) {
+        var oi = config.uploads.torrent.image.temp + f;
+        var ni = config.uploads.torrent.image.dest + f;
+        move(oi, ni, function (err) {
           if (err) {
             mtDebug.debugRed(err);
           }
@@ -567,6 +573,19 @@ exports.create = function (req, res) {
       });
     }
   });
+
+  function copy(oldPath, newPath, callback) {
+    var readStream = fs.createReadStream(oldPath);
+    var writeStream = fs.createWriteStream(newPath);
+
+    readStream.on('error', callback);
+    writeStream.on('error', callback);
+
+    readStream.on('close', function () {
+      callback();
+    });
+    readStream.pipe(writeStream);
+  }
 
   function move(oldPath, newPath, callback) {
     fs.rename(oldPath, newPath, function (err) {
