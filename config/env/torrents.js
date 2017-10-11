@@ -538,6 +538,8 @@ module.exports = {
      * @value:        sale type value list
      *        @name:  sale item name
      *        @desc:  sale item desc
+     * @expires:      sales expires time setting, this time is calc by torrent size, like: each GBit size add expires time one hour,
+     *                if torrent size is 40G, then the sales expires time is set to 40 hours automatic
      */
     torrentSalesType: {
       name: 'SALESTYPE',
