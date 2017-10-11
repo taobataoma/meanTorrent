@@ -8,7 +8,7 @@
                         <div class="col-md-3">
                             <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.movieTopOne.resource_detail_info.poster_path}}"
                                  class="img-thumbnail center-block torrent-logo"
-                                 onload="this.style.opacity='1';" ng-click="vm.openTorrentInfo(vm.movieTopOne._id);">
+                                 ng-click="vm.openTorrentInfo(vm.movieTopOne._id);">
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.downloadTorrent(vm.movieTopOne._id)"
@@ -83,7 +83,7 @@
                                         <div class="col-xs-4 col-md-2 text-center">
                                             <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
                                                  on-error-src="/./modules/core/client/img/default_face.jpg"
-                                                 class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
+                                                 class="img-circle img-thumbnail img-responsive center-block">
                                             <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
 
                                             <p class="cast-xs-info character">{{cast.character}}</p>
@@ -217,7 +217,7 @@
                         <div class="col-md-3">
                             <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.TVTopOne.resource_detail_info.poster_path}}"
                                  class="img-thumbnail center-block torrent-logo"
-                                 onload="this.style.opacity='1';" ng-click="vm.openTorrentInfo(vm.TVTopOne._id);">
+                                 ng-click="vm.openTorrentInfo(vm.TVTopOne._id);">
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.downloadTorrent(vm.TVTopOne._id)"
@@ -299,7 +299,7 @@
                                     <div class="col-xs-4 col-md-2 text-center">
                                         <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
                                              on-error-src="/./modules/core/client/img/default_face.jpg"
-                                             class="img-circle img-thumbnail img-responsive center-block" onload="this.style.opacity='1';">
+                                             class="img-circle img-thumbnail img-responsive center-block">
                                         <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
 
                                         <p class="cast-xs-info character">{{cast.character}}</p>
@@ -436,7 +436,7 @@
                                 <img class="img-thumbnail center-block" torrent-logo="vm.musicTopOne"
                                      ng-src="{{vm.TGI.getTorrentTopOneImage(vm.musicTopOne)}}"
                                      alt="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}"
-                                     title="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}" onload="this.style.opacity='1';">
+                                     title="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}">
                             </div>
 
                             <div class="down-torrent">

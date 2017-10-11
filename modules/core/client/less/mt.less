@@ -82,17 +82,16 @@ body {
             height: 100%;
         }
         .img-circle {
-            //opacity: 0;
             transition-property: transform, opacity;
             transition-duration: 1s;
             transition-timing-function: ease;
 
             cursor: pointer;
-            max-height: 400px;
+            max-width: 120px;
             //transition: transform .5s ease-in-out;
             &:hover {
                 /* csslint ignore:start */
-                transform: scale(1.1);
+                transform: scale(1.2);
                 /* csslint ignore:end */
             }
         }
@@ -106,13 +105,6 @@ body {
         .se-info {
             color: @mt-base-color;
         }
-        .img-circle {
-            &:hover {
-                /* csslint ignore:start */
-                transform: scale(1.2);
-                /* csslint ignore:end */
-            }
-        }
         .down-torrent {
             margin-top: 20px;
         }
@@ -120,6 +112,9 @@ body {
             max-height: 400px;
             max-width: 270px;
             cursor: pointer;
+
+            height: 100%;
+            width: 100%;
 
             transition-property: transform, opacity;
             transition-duration: 1s;
@@ -163,7 +158,7 @@ body {
                     cursor: pointer;
                     max-width: 100% !important;
                     height: auto !important;
-                    border: 1px solid #999;
+                    border: 1px solid #333;
                 }
             }
         }

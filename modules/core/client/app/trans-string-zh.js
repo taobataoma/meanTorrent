@@ -243,6 +243,7 @@
     TORRENT_THUMBS_FAILED: '为种子点赞失败',
     TORRENT_RATING_SUCCESSFULLY: '为种子投票成功',
     TORRENT_RATING_FAILED: '为种子投票失败',
+    EDIT_THIS_OVERVIEW: '编辑详情介绍',
 
     ANNOUNCE_URL: 'Tracker 地址',
     TORRENT_FILENAME: '种子文件名',
@@ -703,7 +704,7 @@
       ARTIST: '艺人名称',
       BELONGS_TO_COLLECTION: '集合',
       GENRES: '类型',
-      OVERVIEW: '剧情',
+      OVERVIEW: '详情介绍',
       POPULARITY: 'popularity',
       PRODUCTION_COMPANIES: '制作',
       PRODUCTION_COUNTRIES: '国家',

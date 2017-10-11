@@ -85,10 +85,10 @@
     };
 
     /**
-     * getVarietyTopInfo
+     * initTopOneVarietyInfo
      */
-    vm.getVarietyTopInfo = function () {
-      if (vm.sportsTopOne.resource_detail_info.cover) {
+    vm.initTopOneVarietyInfo = function () {
+      if (vm.varietyTopOne.resource_detail_info.cover) {
         $('.variety-backdrop').css('backgroundImage', 'url(/modules/torrents/client/uploads/cover/' + vm.varietyTopOne.resource_detail_info.cover + ')');
       }
     };

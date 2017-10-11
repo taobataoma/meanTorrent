@@ -243,6 +243,7 @@
     TORRENT_THUMBS_FAILED: 'Thumbs-up for torrent failed',
     TORRENT_RATING_SUCCESSFULLY: 'Rating torrent successfully',
     TORRENT_RATING_FAILED: 'Rating torrent failed',
+    EDIT_THIS_OVERVIEW: 'Edit this Overview',
 
     ANNOUNCE_URL: 'Announce Url',
     TORRENT_FILENAME: 'Torrent Filename',
