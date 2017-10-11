@@ -66,14 +66,14 @@ module.exports = {
         dest: './modules/torrents/client/uploads/cover/',
         temp: './modules/torrents/client/uploads/temp/',
         limits: {
-          fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
+          fileSize: 2 * 1024 * 1024 // Max file size in bytes (1 MB)
         }
       },
       image: {
         dest: './modules/torrents/client/uploads/image/',
         temp: './modules/torrents/client/uploads/temp/',
         limits: {
-          fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
+          fileSize: 2 * 1024 * 1024 // Max file size in bytes (1 MB)
         }
       }
     },
@@ -90,7 +90,7 @@ module.exports = {
       file: {
         dest: './modules/torrents/client/uploads/subtitles/',
         limits: {
-          fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
+          fileSize: 2 * 1024 * 1024 // Max file size in bytes (1 MB)
         }
       }
     }
