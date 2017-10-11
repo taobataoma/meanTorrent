@@ -678,6 +678,7 @@
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',
     GIT_REPO: 'Power by &copy;meanTottent，<a href="https://github.com/taobataoma/meanTorrent" target="_blank">view on GitHub</a>',
     TOTAL_USERS: 'Total Users',
+    TOTAL_VIP_USERS: 'Total VIP Users',
     TOTAL_TORRENTS: 'Total Torrents',
     TOTAL_TORRENTSSIZE: 'Total TorrentsSize',
     TOTAL_SEEDERS: 'Total Seeders',

@@ -1210,6 +1210,16 @@ exports.siteInfo = function (req, res) {
     });
   };
 
+  var countVipUsers = function (callback) {
+    User.count({isVip: true}, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
   var countTorrents = function (callback) {
     Torrent.count(function (err, count) {
       if (err) {
@@ -1278,7 +1288,7 @@ exports.siteInfo = function (req, res) {
     });
   };
 
-  async.parallel([countUsers, countTorrents, totalTorrentsSize, totalUpDown, countForumTopics, totalForumReplies], function (err, results) {
+  async.parallel([countUsers, countTorrents, totalTorrentsSize, totalUpDown, countForumTopics, totalForumReplies, countVipUsers], function (err, results) {
     if (err) {
       return res.status(422).send(err);
     } else {
@@ -1291,7 +1301,8 @@ exports.siteInfo = function (req, res) {
         totalUploaded: results[3][0].uploaded,
         totalDownloaded: results[3][0].downloaded,
         totalForumTopics: results[4],
-        totalForumReplies: results[5][0].replies
+        totalForumReplies: results[5][0].replies,
+        totalVipUsers: results[6]
       });
     }
   });

@@ -678,6 +678,7 @@
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',
     GIT_REPO: 'Power by &copy;meanTottent，<a href="https://github.com/taobataoma/meanTorrent" target="_blank">GitHub 源码仓库</a>',
     TOTAL_USERS: '注册会员',
+    TOTAL_VIP_USERS: 'VIP会员',
     TOTAL_TORRENTS: '种子数',
     TOTAL_TORRENTSSIZE: '种子总体积',
     TOTAL_SEEDERS: '正在做种',
