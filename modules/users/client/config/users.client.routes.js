@@ -69,7 +69,10 @@
       .state('status', {
         abstract: true,
         url: '/status',
-        templateUrl: '/modules/users/client/views/status/status.client.view.html'
+        templateUrl: '/modules/users/client/views/status/status.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin']
+        }
       })
       .state('status.account', {
         url: '/account',
@@ -109,7 +112,10 @@
       .state('score', {
         abstract: true,
         url: '/score',
-        templateUrl: '/modules/users/client/views/score/score.client.view.html'
+        templateUrl: '/modules/users/client/views/score/score.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin']
+        }
       })
       .state('score.detail', {
         url: '/detail',
@@ -146,7 +152,10 @@
       .state('authentication.invite', {
         abstract: true,
         url: '/invite',
-        template: '<ui-view/>'
+        template: '<ui-view/>',
+        data: {
+          roles: ['user', 'oper', 'admin']
+        }
       })
       .state('authentication.invite.invalid', {
         url: '/invalid',
