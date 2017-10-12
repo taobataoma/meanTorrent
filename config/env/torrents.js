@@ -287,7 +287,7 @@ module.exports = {
      *        @position:          position of submenu item(ordered index)
      *        @state:             angular state of torrent type, this state value used in module route config
      *        @url:               window location url of type
-     *        @pageTitle:         the page title string, used by translate
+     *        @pageTitle:         the page title string, used by translate at PAGETITLE
      *        @uploadTemplateID:  view templateID in upload torrent page, when selected type is changed, then include the template by this id,
      *                            all the template html is in file: modules/torrents/client/views/uploads-torrents.client.view.html
      *
@@ -340,7 +340,7 @@ module.exports = {
           name: 'SPORTS',
           value: 'sports',
           title: 'MENU_TORRENTS_SUB.SPORTS',
-          divider: false,
+          divider: true,
           position: 4,
           state: 'torrents.sports',
           url: '/sports',
@@ -361,11 +361,23 @@ module.exports = {
         },
         {
           enable: true,
+          name: 'PICTURE',
+          value: 'picture',
+          title: 'MENU_TORRENTS_SUB.PICTURE',
+          divider: false,
+          position: 6,
+          state: 'torrents.picture',
+          url: '/picture',
+          pageTitle: 'PICTURE_LIST',
+          uploadTemplateID: 'default'
+        },
+        {
+          enable: true,
           name: 'SOFTWARE',
           value: 'software',
           title: 'MENU_TORRENTS_SUB.SOFTWARE',
           divider: true,
-          position: 6,
+          position: 7,
           state: 'torrents.software',
           url: '/software',
           pageTitle: 'SOFTWARE_LIST',
@@ -377,7 +389,7 @@ module.exports = {
           value: 'game',
           title: 'MENU_TORRENTS_SUB.GAME',
           divider: false,
-          position: 7,
+          position: 8,
           state: 'torrents.game',
           url: '/game',
           pageTitle: 'GAME_LIST',
@@ -389,7 +401,7 @@ module.exports = {
           value: 'ebook',
           title: 'MENU_TORRENTS_SUB.EBOOK',
           divider: false,
-          position: 8,
+          position: 9,
           state: 'torrents.ebook',
           url: '/ebook',
           pageTitle: 'EBOOK_LIST',
@@ -401,7 +413,7 @@ module.exports = {
           value: 'other',
           title: 'MENU_TORRENTS_SUB.OTHER',
           divider: true,
-          position: 9,
+          position: 10,
           state: 'torrents.other',
           url: '/other',
           pageTitle: 'OTHER_LIST',
@@ -824,6 +836,14 @@ module.exports = {
             {name: 'Linux', icon: ''},
             {name: 'iOS', icon: ''},
             {name: 'Android', icon: ''}
+          ]
+        },
+        {
+          name: 'PICTURE_SUB_CAT',
+          cats: ['picture'],
+          value: [
+            {name: 'SCENERY', icon: ''},
+            {name: 'ART_PORTRAIT', icon: ''}
           ]
         }
       ],

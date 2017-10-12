@@ -42,6 +42,7 @@
       MUSIC: '音乐',
       SPORTS: '体育',
       VARIETY: '综艺',
+      PICTURE: '图片',
       SOFTWARE: '软件',
       GAME: '游戏',
       EBOOK: '电子书',
@@ -134,7 +135,8 @@
       TV_LIST: '电视剧列表',
       MUSIC_LIST: '音乐列表',
       SPORTS_LIST: '体育资源列表',
-      VARIETY_LIST: '综艺列表',
+      VARIETY_LIST: '综艺资源列表',
+      PICTURE_LIST: '图片资源列表',
       SOFTWARE_LIST: '软件列表',
       GAME_LIST: '游戏列表',
       EBOOK_LIST_LIST: '电子书列表',
@@ -965,6 +967,12 @@
         BOXING: '拳击',
         SNOOKER: '斯诺克',
         F1: 'F1赛车'
+      },
+
+      PICTURE_SUB_CAT: {
+        SELF: '图片分类',
+        SCENERY: '风光',
+        ART_PORTRAIT: '艺术人像'
       },
 
       PLATFORM: {

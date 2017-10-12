@@ -42,6 +42,7 @@
       MUSIC: 'Music',
       SPORTS: 'Sports',
       VARIETY: 'Variety',
+      PICTURE: 'Picture',
       SOFTWARE: 'Software',
       GAME: 'Game',
       EBOOK: 'eBook',
@@ -135,6 +136,7 @@
       MUSIC_LIST: 'Music List',
       SPORTS_LIST: 'Sports List',
       VARIETY_LIST: 'Variety List',
+      PICTURE_LIST: 'Picture List',
       SOFTWARE_LIST: 'Software List',
       GAME_LIST: 'Game List',
       EBOOK_LIST_LIST: 'eBook List',
@@ -965,6 +967,12 @@
         BOXING: 'Boxing',
         SNOOKER: 'Snooker',
         F1: 'F1'
+      },
+
+      PICTURE_SUB_CAT: {
+        SELF: 'Picture Category',
+        SCENERY: 'Scenery',
+        ART_PORTRAIT: 'Art Portrait'
       },
 
       PLATFORM: {
