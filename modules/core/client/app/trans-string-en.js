@@ -970,6 +970,8 @@
       PICTURE_SUB_CAT: {
         SELF: 'Picture Category',
         SCENERY: 'Scenery',
+        FASHION: 'Fashion',
+        SPORTS: 'Sports',
         ART_PORTRAIT: 'Art Portrait'
       },
 
@@ -979,6 +981,7 @@
         OFFICE: 'Office',
         TOOLS: 'Tools',
         MEDIA: 'Media',
+        DEVELOPMENT_IDE: 'Development IDE',
         MAP: 'Map'
       },
 

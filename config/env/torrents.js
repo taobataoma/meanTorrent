@@ -847,6 +847,7 @@ module.exports = {
             {name: 'OFFICE', icon: ''},
             {name: 'TOOLS', icon: ''},
             {name: 'MEDIA', icon: ''},
+            {name: 'DEVELOPMENT_IDE', icon: ''},
             {name: 'MAP', icon: ''}
           ]
         },
@@ -855,6 +856,8 @@ module.exports = {
           cats: ['picture'],
           value: [
             {name: 'SCENERY', icon: ''},
+            {name: 'FASHION', icon: ''},
+            {name: 'SPORTS', icon: ''},
             {name: 'ART_PORTRAIT', icon: ''}
           ]
         },

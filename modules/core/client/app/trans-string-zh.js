@@ -970,6 +970,8 @@
       PICTURE_SUB_CAT: {
         SELF: '图片分类',
         SCENERY: '风光',
+        FASHION: '时尚',
+        SPORTS: '体育运动',
         ART_PORTRAIT: '艺术人像'
       },
 
@@ -979,6 +981,7 @@
         OFFICE: '办公软件',
         TOOLS: '工具软件',
         MEDIA: '多媒体',
+        DEVELOPMENT_IDE: '编程开发',
         MAP: '地图'
       },
 
