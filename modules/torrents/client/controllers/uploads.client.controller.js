@@ -550,5 +550,25 @@
       DownloadService.downloadFile(url, null);
     };
 
+    /**
+     * needShowNFO
+     * @param t
+     */
+    vm.needShowNFO = function (t) {
+      var sh = false;
+      switch (t) {
+        case 'movie':
+        case 'tvserial':
+        case 'music':
+        case 'sports':
+        case 'variety':
+          sh = true;
+          break;
+        default:
+          sh = false;
+      }
+
+      return sh;
+    };
   }
 }());

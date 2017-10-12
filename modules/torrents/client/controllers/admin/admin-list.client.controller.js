@@ -216,7 +216,7 @@
 
       angular.forEach(vm.resourcesTags.radio, function (item) {
         angular.forEach(item.value, function (sitem) {
-          if (sitem.name === tag) {
+          if (sitem.name.toUpperCase() === tag.toUpperCase()) {
             tmp = item.name;
             find = true;
           }
@@ -226,7 +226,7 @@
       if (!find) {
         angular.forEach(vm.resourcesTags.checkbox, function (item) {
           angular.forEach(item.value, function (sitem) {
-            if (sitem.name === tag) {
+            if (sitem.name.toUpperCase() === tag.toUpperCase()) {
               tmp = item.name;
             }
           });

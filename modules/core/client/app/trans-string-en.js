@@ -71,6 +71,10 @@
     NEWEST_MUSIC_LIST: 'Newest Music Torrents',
     NEWEST_SPORTS_LIST: 'Newest Sports Torrents',
     NEWEST_VARIETY_LIST: 'Newest Variety Torrents',
+    NEWEST_PICTURE_LIST: 'Newest Picture Torrents',
+    NEWEST_GAME_LIST: 'Newest Game Torrents',
+    NEWEST_SOFTWARE_LIST: 'Newest Software Torrents',
+    NEWEST_EBOOK_LIST: 'Newest eBook Torrents',
 
     //element title/alt
     TITLE_ALT: {
@@ -139,7 +143,7 @@
       PICTURE_LIST: 'Picture List',
       SOFTWARE_LIST: 'Software List',
       GAME_LIST: 'Game List',
-      EBOOK_LIST_LIST: 'eBook List',
+      EBOOK_LIST: 'eBook List',
       OTHER_LIST: 'Other List',
       TORRENT_INFO: 'Torrent Info',
       RANKING: 'Ranking',
@@ -380,17 +384,11 @@
     ENTER_MUSIC_DETAIL_INFO: '4. Please enter the music/album detail info',
     ERROR_ONLY_IMAGE: 'Only image files support(gif, png, bmp, jpg, jpeg)',
 
-    ENTER_SPORTS_TITLE: '3. Please enter the sports resource title',
-    SPORTS_TITLE: 'sports title',
-    SPORTS_SUB_TITLE: 'Sports resource short desc',
-    SELECT_SPORTS_IMAGE: '3.1 Please select sports resource cover image',
-    ENTER_SPORTS_DETAIL_INFO: '4. Please enter the sports resource detail info',
-
-    ENTER_VARIETY_TITLE: '3. Please enter the variety title',
-    VARIETY_TITLE: 'variety title',
-    VARIETY_SUB_TITLE: 'variety short desc',
-    SELECT_VARIETY_IMAGE: '3.1 Please select variety cover image',
-    ENTER_VARIETY_DETAIL_INFO: '4. Please enter the variety detail info',
+    ENTER_RESOURCE_TITLE: '3. Please enter the resource title and desc',
+    RESOURCE_TITLE: 'resource title',
+    RESOURCE_SUB_TITLE: 'resource short desc',
+    SELECT_RESOURCE_IMAGE: '3.1 Please select resource cover image',
+    ENTER_RESOURCE_DETAIL_INFO: '4. Please enter the resource detail info',
 
     //ranking view
     PAGE_HEADER_RANKING_UPLOAD: 'Uploaded Ranking',
@@ -975,13 +973,34 @@
         ART_PORTRAIT: 'Art Portrait'
       },
 
+      SOFT_SUB_CAT: {
+        SELF: 'Software Category',
+        OS: 'OS',
+        OFFICE: 'Office',
+        TOOLS: 'Tools',
+        MEDIA: 'Media',
+        MAP: 'Map'
+      },
+
+      EBOOK_FORMAT: {
+        SELF: 'eBook Format',
+        PDF: 'PDF',
+        WDL: 'WDL',
+        ABM: 'ABM',
+        CEB: 'CEB',
+        PDG: 'PDG',
+        CHM: 'CHM',
+        TXT: 'TXT'
+      },
+
       PLATFORM: {
         SELF: 'Platform',
-        Windows: 'Windows',
-        MacOS: 'MacOS',
-        Linux: 'Linux',
-        iOS: 'iOS',
-        Android: 'Android'
+        WINDOWS: 'Windows',
+        MACOS: 'MacOS',
+        LINUX: 'Linux',
+        IOS: 'iOS',
+        ANDROID: 'Android',
+        CAR: 'Car'
       }
     }
   };

@@ -71,6 +71,10 @@
     NEWEST_MUSIC_LIST: '最新音乐资源',
     NEWEST_SPORTS_LIST: '最新体育资源',
     NEWEST_VARIETY_LIST: '最新综艺资源',
+    NEWEST_PICTURE_LIST: '最新图片资源',
+    NEWEST_GAME_LIST: '最新游戏资源',
+    NEWEST_SOFTWARE_LIST: '最新软件资源',
+    NEWEST_EBOOK_LIST: '最新电子书资源',
 
     //element title/alt
     TITLE_ALT: {
@@ -139,7 +143,7 @@
       PICTURE_LIST: '图片资源列表',
       SOFTWARE_LIST: '软件列表',
       GAME_LIST: '游戏列表',
-      EBOOK_LIST_LIST: '电子书列表',
+      EBOOK_LIST: '电子书列表',
       OTHER_LIST: '其它列表',
       TORRENT_INFO: '种子信息',
       RANKING: '排行榜',
@@ -380,17 +384,11 @@
     ENTER_MUSIC_DETAIL_INFO: '4. 请输入音乐/专辑详细信息',
     ERROR_ONLY_IMAGE: '此处只支持图片文件上传(gif, png, bmp, jpg, jpeg)',
 
-    ENTER_SPORTS_TITLE: '3. 请输入体育资源节目标题',
-    SPORTS_TITLE: '体育资源标题',
-    SPORTS_SUB_TITLE: '体育资源短描述',
-    SELECT_SPORTS_IMAGE: '3.1 请选择体育资源封面图片',
-    ENTER_SPORTS_DETAIL_INFO: '4. 请输入体育资源详细信息',
-
-    ENTER_VARIETY_TITLE: '3. 请输入综艺资源节目标题',
-    VARIETY_TITLE: '综艺资源标题',
-    VARIETY_SUB_TITLE: '综艺资源短描述',
-    SELECT_VARIETY_IMAGE: '3.1 请选择综艺资源封面图片',
-    ENTER_VARIETY_DETAIL_INFO: '4. 请输入综艺资源详细信息',
+    ENTER_RESOURCE_TITLE: '3. 请输入资源标题与描述',
+    RESOURCE_TITLE: '资源标题',
+    RESOURCE_SUB_TITLE: '资源短描述',
+    SELECT_RESOURCE_IMAGE: '3.1 请选择资源封面图片',
+    ENTER_RESOURCE_DETAIL_INFO: '4. 请输入资源详细信息',
 
     //ranking view
     PAGE_HEADER_RANKING_UPLOAD: '上传量排行榜',
@@ -975,13 +973,34 @@
         ART_PORTRAIT: '艺术人像'
       },
 
+      SOFT_SUB_CAT: {
+        SELF: '软件分类',
+        OS: '操作系统',
+        OFFICE: '办公软件',
+        TOOLS: '工具软件',
+        MEDIA: '多媒体',
+        MAP: '地图'
+      },
+
+      EBOOK_FORMAT: {
+        SELF: 'eBook Format',
+        PDF: 'PDF',
+        WDL: 'WDL',
+        ABM: 'ABM',
+        CEB: 'CEB',
+        PDG: 'PDG',
+        CHM: 'CHM',
+        TXT: 'TXT'
+      },
+
       PLATFORM: {
         SELF: 'Platform',
-        Windows: 'Windows',
-        MacOS: 'MacOS',
-        Linux: 'Linux',
-        iOS: 'iOS',
-        Android: 'Android'
+        WINDOWS: 'Windows',
+        MACOS: 'MacOS',
+        LINUX: 'Linux',
+        IOS: 'iOS',
+        ANDROID: 'Android',
+        CAR: 'Car'
       }
     }
   };

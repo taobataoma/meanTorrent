@@ -94,6 +94,42 @@
     };
 
     /**
+     * initTopOnePictureInfo
+     */
+    vm.initTopOnePictureInfo = function () {
+      if (vm.pictureTopOne.resource_detail_info.cover) {
+        $('.picture-backdrop').css('backgroundImage', 'url(/modules/torrents/client/uploads/cover/' + vm.pictureTopOne.resource_detail_info.cover + ')');
+      }
+    };
+
+    /**
+     * initTopOneGameInfo
+     */
+    vm.initTopOneGameInfo = function () {
+      if (vm.gameTopOne.resource_detail_info.cover) {
+        $('.game-backdrop').css('backgroundImage', 'url(/modules/torrents/client/uploads/cover/' + vm.gameTopOne.resource_detail_info.cover + ')');
+      }
+    };
+
+    /**
+     * initTopOneSoftwareInfo
+     */
+    vm.initTopOneSoftwareInfo = function () {
+      if (vm.softwareTopOne.resource_detail_info.cover) {
+        $('.software-backdrop').css('backgroundImage', 'url(/modules/torrents/client/uploads/cover/' + vm.softwareTopOne.resource_detail_info.cover + ')');
+      }
+    };
+
+    /**
+     * initTopOneEbookInfo
+     */
+    vm.initTopOneEbookInfo = function () {
+      if (vm.ebookTopOne.resource_detail_info.cover) {
+        $('.ebook-backdrop').css('backgroundImage', 'url(/modules/torrents/client/uploads/cover/' + vm.ebookTopOne.resource_detail_info.cover + ')');
+      }
+    };
+
+    /**
      * getTorrentTypeEnabled
      */
     vm.getTorrentTypeEnabled = function (t) {
@@ -329,6 +365,170 @@
 
           if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
             ScrapeService.scrapeTorrent(vm.varietyNewList);
+          }
+        }
+      });
+    };
+
+    /**
+     * getPictureTopInfo
+     */
+    vm.getPictureTopInfo = function () {
+      vm.pictureInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'picture',
+        limit: 9
+      }, function (items) {
+        if (items.rows.length > 0) {
+          mtDebug.info(items);
+
+          vm.pictureTopOne = items.rows[0];
+          items.rows.splice(0, 1);
+          vm.pictureTopList = items.rows;
+
+          vm.initTopOnePictureInfo();
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.pictureTopOne);
+            ScrapeService.scrapeTorrent(vm.pictureTopList);
+          }
+        }
+      });
+
+      vm.pictureInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'picture',
+        newest: true,
+        limit: 14
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.pictureNewList = items.rows;
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.pictureNewList);
+          }
+        }
+      });
+    };
+
+    /**
+     * getGameTopInfo
+     */
+    vm.getGameTopInfo = function () {
+      vm.gameInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'game',
+        limit: 9
+      }, function (items) {
+        if (items.rows.length > 0) {
+          mtDebug.info(items);
+
+          vm.gameTopOne = items.rows[0];
+          items.rows.splice(0, 1);
+          vm.gameTopList = items.rows;
+
+          vm.initTopOneGameInfo();
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.gameTopOne);
+            ScrapeService.scrapeTorrent(vm.gameTopList);
+          }
+        }
+      });
+
+      vm.gameInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'game',
+        newest: true,
+        limit: 14
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.gameNewList = items.rows;
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.gameNewList);
+          }
+        }
+      });
+    };
+
+    /**
+     * getSoftwareTopInfo
+     */
+    vm.getSoftwareTopInfo = function () {
+      vm.softwareInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'software',
+        limit: 9
+      }, function (items) {
+        if (items.rows.length > 0) {
+          mtDebug.info(items);
+
+          vm.softwareTopOne = items.rows[0];
+          items.rows.splice(0, 1);
+          vm.softwareTopList = items.rows;
+
+          vm.initTopOneSoftwareInfo();
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.softwareTopOne);
+            ScrapeService.scrapeTorrent(vm.softwareTopList);
+          }
+        }
+      });
+
+      vm.softwareInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'software',
+        newest: true,
+        limit: 14
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.softwareNewList = items.rows;
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.softwareNewList);
+          }
+        }
+      });
+    };
+
+    /**
+     * getEbookTopInfo
+     */
+    vm.getEbookTopInfo = function () {
+      vm.ebookInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'ebook',
+        limit: 9
+      }, function (items) {
+        if (items.rows.length > 0) {
+          mtDebug.info(items);
+
+          vm.ebookTopOne = items.rows[0];
+          items.rows.splice(0, 1);
+          vm.ebookTopList = items.rows;
+
+          vm.initTopOneEbookInfo();
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.ebookTopOne);
+            ScrapeService.scrapeTorrent(vm.ebookTopList);
+          }
+        }
+      });
+
+      vm.ebookInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'ebook',
+        newest: true,
+        limit: 14
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.ebookNewList = items.rows;
+
+          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
+            ScrapeService.scrapeTorrent(vm.ebookNewList);
           }
         }
       });

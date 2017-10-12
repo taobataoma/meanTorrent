@@ -345,7 +345,7 @@ module.exports = {
           state: 'torrents.sports',
           url: '/sports',
           pageTitle: 'SPORTS_LIST',
-          uploadTemplateID: 'sports'
+          uploadTemplateID: 'default'
         },
         {
           enable: true,
@@ -357,7 +357,7 @@ module.exports = {
           state: 'torrents.variety',
           url: '/variety',
           pageTitle: 'VARIETY_LIST',
-          uploadTemplateID: 'variety'
+          uploadTemplateID: 'default'
         },
         {
           enable: true,
@@ -373,26 +373,26 @@ module.exports = {
         },
         {
           enable: true,
-          name: 'SOFTWARE',
-          value: 'software',
-          title: 'MENU_TORRENTS_SUB.SOFTWARE',
+          name: 'GAME',
+          value: 'game',
+          title: 'MENU_TORRENTS_SUB.GAME',
           divider: true,
           position: 7,
-          state: 'torrents.software',
-          url: '/software',
-          pageTitle: 'SOFTWARE_LIST',
+          state: 'torrents.game',
+          url: '/game',
+          pageTitle: 'GAME_LIST',
           uploadTemplateID: 'default'
         },
         {
           enable: true,
-          name: 'GAME',
-          value: 'game',
-          title: 'MENU_TORRENTS_SUB.GAME',
+          name: 'SOFTWARE',
+          value: 'software',
+          title: 'MENU_TORRENTS_SUB.SOFTWARE',
           divider: false,
           position: 8,
-          state: 'torrents.game',
-          url: '/game',
-          pageTitle: 'GAME_LIST',
+          state: 'torrents.software',
+          url: '/software',
+          pageTitle: 'SOFTWARE_LIST',
           uploadTemplateID: 'default'
         },
         {
@@ -831,11 +831,23 @@ module.exports = {
           name: 'PLATFORM',
           cats: ['software', 'game'],
           value: [
-            {name: 'Windows', icon: ''},
-            {name: 'MacOS', icon: ''},
-            {name: 'Linux', icon: ''},
-            {name: 'iOS', icon: ''},
-            {name: 'Android', icon: ''}
+            {name: 'WINDOWS', icon: ''},
+            {name: 'MACOS', icon: ''},
+            {name: 'LINUX', icon: ''},
+            {name: 'IOS', icon: ''},
+            {name: 'ANDROID', icon: ''},
+            {name: 'CAR', icon: ''}
+          ]
+        },
+        {
+          name: 'SOFT_SUB_CAT',
+          cats: ['software'],
+          value: [
+            {name: 'OS', icon: ''},
+            {name: 'OFFICE', icon: ''},
+            {name: 'TOOLS', icon: ''},
+            {name: 'MEDIA', icon: ''},
+            {name: 'MAP', icon: ''}
           ]
         },
         {
@@ -844,6 +856,19 @@ module.exports = {
           value: [
             {name: 'SCENERY', icon: ''},
             {name: 'ART_PORTRAIT', icon: ''}
+          ]
+        },
+        {
+          name: 'EBOOK_FORMAT',
+          cats: ['ebook'],
+          value: [
+            {name: 'PDF', icon: ''},
+            {name: 'WDL', icon: ''},
+            {name: 'ABM', icon: ''},
+            {name: 'CEB', icon: ''},
+            {name: 'PDG', icon: ''},
+            {name: 'CHM', icon: ''},
+            {name: 'TXT', icon: ''}
           ]
         }
       ],
