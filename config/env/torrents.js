@@ -290,6 +290,8 @@ module.exports = {
      *        @pageTitle:         the page title string, used by translate at PAGETITLE
      *        @uploadTemplateID:  view templateID in upload torrent page, when selected type is changed, then include the template by this id,
      *                            all the template html is in file: modules/torrents/client/views/uploads-torrents.client.view.html
+     *        @showTopListInHome: setting whether show the TOP list in site home page, if false, don`t show
+     *                            the 'other' type torrent always not show in home page
      *
      * if you add a config json item, please add translate string:
      *        MENU_TORRENTS_SUB
@@ -309,7 +311,8 @@ module.exports = {
           state: 'torrents.movie',
           url: '/movie',
           pageTitle: 'MOVIE_LIST',
-          uploadTemplateID: 'movie'
+          uploadTemplateID: 'movie',
+          showTopListInHome: true
         },
         {
           enable: true,
@@ -321,7 +324,8 @@ module.exports = {
           state: 'torrents.tvserial',
           url: '/tv',
           pageTitle: 'TV_LIST',
-          uploadTemplateID: 'tvserial'
+          uploadTemplateID: 'tvserial',
+          showTopListInHome: true
         },
         {
           enable: true,
@@ -333,7 +337,8 @@ module.exports = {
           state: 'torrents.music',
           url: '/music',
           pageTitle: 'MUSIC_LIST',
-          uploadTemplateID: 'music'
+          uploadTemplateID: 'music',
+          showTopListInHome: true
         },
         {
           enable: true,
@@ -345,7 +350,8 @@ module.exports = {
           state: 'torrents.sports',
           url: '/sports',
           pageTitle: 'SPORTS_LIST',
-          uploadTemplateID: 'default'
+          uploadTemplateID: 'default',
+          showTopListInHome: true
         },
         {
           enable: true,
@@ -357,7 +363,8 @@ module.exports = {
           state: 'torrents.variety',
           url: '/variety',
           pageTitle: 'VARIETY_LIST',
-          uploadTemplateID: 'default'
+          uploadTemplateID: 'default',
+          showTopListInHome: true
         },
         {
           enable: true,
@@ -369,7 +376,8 @@ module.exports = {
           state: 'torrents.picture',
           url: '/picture',
           pageTitle: 'PICTURE_LIST',
-          uploadTemplateID: 'default'
+          uploadTemplateID: 'default',
+          showTopListInHome: true
         },
         {
           enable: true,
@@ -381,7 +389,8 @@ module.exports = {
           state: 'torrents.game',
           url: '/game',
           pageTitle: 'GAME_LIST',
-          uploadTemplateID: 'default'
+          uploadTemplateID: 'default',
+          showTopListInHome: true
         },
         {
           enable: true,
@@ -393,7 +402,8 @@ module.exports = {
           state: 'torrents.software',
           url: '/software',
           pageTitle: 'SOFTWARE_LIST',
-          uploadTemplateID: 'default'
+          uploadTemplateID: 'default',
+          showTopListInHome: true
         },
         {
           enable: true,
@@ -405,7 +415,8 @@ module.exports = {
           state: 'torrents.ebook',
           url: '/ebook',
           pageTitle: 'EBOOK_LIST',
-          uploadTemplateID: 'default'
+          uploadTemplateID: 'default',
+          showTopListInHome: true
         },
         {
           enable: true,
@@ -417,7 +428,8 @@ module.exports = {
           state: 'torrents.other',
           url: '/other',
           pageTitle: 'OTHER_LIST',
-          uploadTemplateID: 'default'
+          uploadTemplateID: 'default',
+          showTopListInHome: false
         }
       ]
     },

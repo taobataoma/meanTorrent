@@ -136,7 +136,7 @@
       var enb = false;
       angular.forEach(vm.torrentType.value, function (tc) {
         if (tc.value === t) {
-          enb = tc.enable;
+          enb = tc.enable && tc.showTopListInHome;
         }
       });
       return enb;
