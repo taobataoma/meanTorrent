@@ -75,6 +75,7 @@
     NEWEST_GAME_LIST: 'Newest Game Torrents',
     NEWEST_SOFTWARE_LIST: 'Newest Software Torrents',
     NEWEST_EBOOK_LIST: 'Newest eBook Torrents',
+    NEWEST_MORE: 'more...',
 
     //element title/alt
     TITLE_ALT: {
