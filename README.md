@@ -72,6 +72,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 24. Oper/admin can send official invitation, but all the invitation has the expired time setting.
 25. Complete music torrents support, include __CD__ and __MTV__ sub type.
 26. Sports and variety type torrents support NOW!
+27. Software, game, picture, ebook type torrents support NOW!
 
 #### Chat room feature:
 1. Users name list
