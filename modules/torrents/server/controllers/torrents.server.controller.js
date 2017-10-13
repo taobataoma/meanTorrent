@@ -525,30 +525,31 @@ exports.create = function (req, res) {
       });
     } else {
       //move temp cover image file to dest directory
-      var cv = req.body.resource_detail_info.cover;
-      var oc = config.uploads.torrent.cover.temp + cv;
-      var nc = config.uploads.torrent.cover.dest + cv;
-      copy(oc, nc, function (err) {
-        if (err) {
-          mtDebug.debugRed(err);
-        }
-
-        if (req.body._uImage.indexOf(cv) < 0) {
-          fs.unlink(oc);
-        }
-      });
-
-
-      //move temp torrent image file to dest directory
-      req.body._uImage.forEach(function (f) {
-        var oi = config.uploads.torrent.image.temp + f;
-        var ni = config.uploads.torrent.image.dest + f;
-        move(oi, ni, function (err) {
+      if (req.body.resource_detail_info.cover) {
+        var cv = req.body.resource_detail_info.cover;
+        var oc = config.uploads.torrent.cover.temp + cv;
+        var nc = config.uploads.torrent.cover.dest + cv;
+        copy(oc, nc, function (err) {
           if (err) {
             mtDebug.debugRed(err);
           }
+
+          if (req.body._uImage.indexOf(cv) < 0) {
+            fs.unlink(oc);
+          }
         });
-      });
+
+        //move temp torrent image file to dest directory
+        req.body._uImage.forEach(function (f) {
+          var oi = config.uploads.torrent.image.temp + f;
+          var ni = config.uploads.torrent.image.dest + f;
+          move(oi, ni, function (err) {
+            if (err) {
+              mtDebug.debugRed(err);
+            }
+          });
+        });
+      }
 
       torrent.save(function (err) {
         if (err) {
