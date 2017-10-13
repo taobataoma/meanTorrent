@@ -517,6 +517,7 @@
       MUSIC: '音乐',
       SPORTS: '体育',
       VARIETY: '综艺',
+      PICTURE: '图片',
       SOFTWARE: '软件',
       GAME: '游戏',
       EBOOK: '电子书',

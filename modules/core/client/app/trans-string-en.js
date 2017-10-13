@@ -517,6 +517,7 @@
       MUSIC: 'Music',
       SPORTS: 'Sports',
       VARIETY: 'Variety',
+      PICTURE: 'Picture',
       SOFTWARE: 'Software',
       GAME: 'Game',
       EBOOK: 'eBook',
