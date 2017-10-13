@@ -158,14 +158,14 @@ exports.upload = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          //if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
-          //  if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
-          //    mtDebug.debugGreen(torrent.metadata.announce);
-          //    message = 'ANNOUNCE_URL_ERROR';
-          //
-          //    reject(message);
-          //  }
-          //}
+          if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
+            if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
+              mtDebug.debugGreen(torrent.metadata.announce);
+              message = 'ANNOUNCE_URL_ERROR';
+
+              reject(message);
+            }
+          }
           torrentinfo = torrent.metadata;
           torrentinfo.info_hash = torrent.infoHash();
           torrentinfo.filename = req.file.filename;
