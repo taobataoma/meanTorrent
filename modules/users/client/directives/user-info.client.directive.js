@@ -27,7 +27,7 @@
           } else if (attrs.hasOwnProperty('infoUname')) {
             e = angular.element('<a href="#" ui-sref="userinfo({userId: \'' + user._id + '\'})" ng-click="$event.stopPropagation();">' + user.username + '</a>');
           } else if (attrs.hasOwnProperty('infoAvatar')) {
-            e = angular.element('<a href="#" ui-sref="userinfo({userId: \'' + user._id + '\'})" ng-click="$event.stopPropagation();"><img src="/' + user.profileImageURL + '"></a>');
+            e = angular.element('<a href="#" ui-sref="userinfo({userId: \'' + user._id + '\'})" ng-click="$event.stopPropagation();"><img src="' + user.profileImageURL + '"></a>');
           }
           if (e) {
             e.addClass(cls ? cls : '');

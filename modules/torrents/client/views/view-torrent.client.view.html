@@ -200,7 +200,7 @@
                                     <div data-ng-if="$index != 0 && $index % 6 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                                     <div class="col-xs-4 col-md-2 text-center">
                                         <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
-                                             on-error-src="/./modules/core/client/img/default_face.jpg"
+                                             on-error-src="/modules/core/client/img/default_face.jpg"
                                              class="img-circle img-thumbnail img-responsive center-block">
                                         <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
 
@@ -249,7 +249,7 @@
                              ng-repeat="item in vm.commentPagedItems">
                             <div class="timeline-comment-wrapper">
                                 <a class="timeline-comment-avatar" ng-click="vm.replyComment(item);">
-                                    <img title="{{item.user.displayName}}" ng-src="/{{item.user.profileImageURL}}">
+                                    <img title="{{item.user.displayName}}" ng-src="{{item.user.profileImageURL}}">
                                 </a>
 
                                 <div class="timeline-comment">
@@ -275,7 +275,7 @@
                                             <div class="col-sm-10 col-sm-offset-2 timeline-comment-sub-list">
                                                 <div class="timeline-comment-sub-item" ng-repeat="sitem in item._replies">
                                                     <a class="timeline-comment-sub-avatar" ng-click="vm.replySubComment(item, sitem);">
-                                                        <img title="{{sitem.user.displayName}}" ng-src="/{{sitem.user.profileImageURL}}">
+                                                        <img title="{{sitem.user.displayName}}" ng-src="{{sitem.user.profileImageURL}}">
                                                     </a>
 
                                                     <div class="timeline-comment-sub-body">
@@ -331,7 +331,7 @@
                     <div class="comment-new" ng-if="vm.user">
                         <div class="timeline-comment-wrapper">
                             <a href="#" class="timeline-comment-avatar">
-                                <img title="{{vm.user.displayName}}" ng-src="/{{vm.user.profileImageURL}}">
+                                <img title="{{vm.user.displayName}}" ng-src="{{vm.user.profileImageURL}}">
                             </a>
 
                             <div class="timeline-comment timeline-new-comment">

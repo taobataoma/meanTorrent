@@ -313,7 +313,23 @@ the upload ratio more than `contition.ratio`, otherwise, the user will get a HnR
 then the user can not download any torrent. but can continue the warning torrent and seed it until the warning disappears,
 and the user can remove a warning by score number of `scoreToRemoveWarning` or donate a VIP qualifications.
 
-There is not much comment of `config/env/torrent.js`, because the development time is limited, I'll add more comment in my free time, If you has any question, please post an [issue](https://github.com/taobataoma/meanTorrent/issues), and i will focus it.
+## Deploying to PAAS
+
+###  Deploying MEANJS To Heroku
+
+By clicking the button below you can signup for Heroku and deploy a working copy of MEANJS to the cloud without having to do the steps above.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+### Amazon S3 configuration
+
+To save the profile images to S3, simply set those environment variables:
+```javascript
+UPLOADS_STORAGE: s3
+S3_BUCKET: the name of the bucket where the images will be saved
+S3_ACCESS_KEY_ID: Your S3 access key
+S3_SECRET_ACCESS_KEY: Your S3 access key password
+```
 
 ## License
 [The MIT License](LICENSE.md)

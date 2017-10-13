@@ -18,7 +18,7 @@
                             </div>
                             <div ng-class="(message.user.username == vm.user.username) && (message.type == 'message') ? 'chat-wrapper-me' : 'chat-wrapper'">
                                 <a class="chat-avatar" ng-dblclick="vm.onUserImgDblClicked(message.user.displayName);">
-                                    <img title="@{{message.user.displayName}}" ng-src="/{{message.user.profileImageURL}}">
+                                    <img title="@{{message.user.displayName}}" ng-src="{{message.user.profileImageURL}}">
                                 </a>
 
                                 <div class="chat-message-item">
@@ -78,7 +78,7 @@
                         <li ng-repeat="u in vm.users | orderBy:['-isAdmin', '-isOper', '-isVip', 'username']">
                             <div class="user-item-wrapper" mt-scale-by-mouse="{scale: 1.1, duration: '.5s'}" ng-dblclick="vm.onUserListItemDblClicked(u);">
                                 <a class="user-item-avatar">
-                                    <img title="@{{u.displayName}}" ng-src="/{{u.profileImageURL}}">
+                                    <img title="@{{u.displayName}}" ng-src="{{u.profileImageURL}}">
                                 </a>
 
                                 <div class="user-item-body">

@@ -178,7 +178,7 @@
                         <div class="row cast-list">
                             <div class="col-xs-4 col-md-2 text-center" ng-repeat="cast in vm.movieinfo.credits.cast | limitTo: 6">
                                 <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
-                                     on-error-src="/./modules/core/client/img/default_face.jpg"
+                                     on-error-src="/modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block">
                                 <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
 
@@ -337,7 +337,7 @@
                         <div class="row cast-list">
                             <div class="col-xs-4 col-md-2 text-center" ng-repeat="cast in vm.tvinfo.credits.cast | limitTo: 6">
                                 <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
-                                     on-error-src="/./modules/core/client/img/default_face.jpg"
+                                     on-error-src="/modules/core/client/img/default_face.jpg"
                                      class="img-circle img-thumbnail img-responsive center-block">
                                 <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
 
