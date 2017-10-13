@@ -1296,13 +1296,13 @@ exports.siteInfo = function (req, res) {
       res.json({
         totalUsers: results[0],
         totalTorrents: results[1],
-        totalTorrentsSize: results[2][0].size,
-        totalSeeders: results[2][0].seeders,
-        totalLeechers: results[2][0].leechers,
-        totalUploaded: results[3][0].uploaded,
-        totalDownloaded: results[3][0].downloaded,
+        totalTorrentsSize: results[2][0] ? results[2][0].size : 0,
+        totalSeeders: results[2][0] ? results[2][0].seeders : 0,
+        totalLeechers: results[2][0] ? results[2][0].leechers : 0,
+        totalUploaded: results[3][0] ? results[3][0].uploaded : 0,
+        totalDownloaded: results[3][0] ? results[3][0].downloaded : 0,
         totalForumTopics: results[4],
-        totalForumReplies: results[5][0].replies,
+        totalForumReplies: results[5][0] ? results[5][0].replies : 0,
         totalVipUsers: results[6]
       });
     }
