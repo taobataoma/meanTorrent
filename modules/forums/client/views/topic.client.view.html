@@ -92,13 +92,13 @@
                                                        title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
                                                        ng-show="vm.canEdit() || vm.isOwner(vm.topic)"
                                                        ng-click="vm.beginDeleteTopic(vm.topic);"></i>
-                                                    <i class="fa" ng-class="vm.topic.isTop ? 'fa-arrow-circle-down' : 'fa-arrow-circle-up'"
+                                                    <i class="fa" ng-class="vm.topic.isTop ? 'fa-arrow-circle-down text-primary' : 'fa-arrow-circle-up'"
                                                        aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.TOPIC_TOP_TOPIC' | translate}}"
+                                                       title="{{'FORUMS.TITLES.TOPIC_TOP_TOPIC' | translate}}: {{vm.topic.isTop}}"
                                                        ng-show="vm.canEdit()"
                                                        ng-click="vm.beginTopTopic(vm.topic);"></i>
-                                                    <i class="fa" ng-class="vm.topic.isGlobal ? 'fa-download' : 'fa-upload'" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.TOPIC_GLOBAL_TOPIC' | translate}}"
+                                                    <i class="fa" ng-class="vm.topic.isGlobal ? 'fa-download text-primary' : 'fa-upload'" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.TOPIC_GLOBAL_TOPIC' | translate}}: {{vm.topic.isGlobal}}"
                                                        ng-show="vm.user.isOper;"
                                                        ng-click="vm.beginGlobalTopic(vm.topic);"></i>
                                                     <span ng-click="vm.beginThumbsUp($event, vm.topic, null);" style="position: relative">
@@ -156,7 +156,7 @@
                                         <div class="reply-comment-header">
                                             <div class="reply-comment-header-text">
                                                 <span user-info="rep.user" info-name></span>
-                                                <span vip-flag="vm.topic.user"></span>
+                                                <span vip-flag="rep.user"></span>
                                                 <!--<span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>-->
                                                 <span message-to="vm.topic.user" to-class="message-to-icon"></span>
                                                 <span class="user-ud-text" ng-if="vm.announce.privateTorrentCmsMode">
