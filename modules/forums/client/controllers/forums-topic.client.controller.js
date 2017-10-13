@@ -181,6 +181,7 @@
             t.content = e.getContent();
             t.$update(function (res) {
               vm.topic = res;
+              vm.figureOutItemsToDisplay();
               NotifycationService.showSuccessNotify('FORUMS.TOPIC_EDIT_SUCCESSFULLY');
             }, function (res) {
               NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_EDIT_FAILED');
@@ -242,6 +243,7 @@
 
             rep.$update(function (res) {
               vm.topic = res;
+              vm.figureOutItemsToDisplay();
               NotifycationService.showSuccessNotify('FORUMS.REPLY_EDIT_SUCCESSFULLY');
             }, function (res) {
               NotifycationService.showErrorNotify(res.data.message, 'FORUMS.FORUMS');
