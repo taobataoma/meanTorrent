@@ -478,6 +478,7 @@
     DOWNLOADING_LIST_ERROR: '获取我正下载的列表失败',
     STATUS_FIELD: {
       PICTURE: '头像',
+      RESET_DEFAULT_PICTURE: '重置为默认图片',
       USERNAME: '用户名',
       FIRST_NAME: '姓',
       LAST_NAME: '名',

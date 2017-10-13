@@ -416,6 +416,8 @@
     SET_ROLE_FAILED: 'set user role failed',
     SET_STATUS_SUCCESSFULLY: 'set user status successfully',
     SET_STATUS_FAILED: 'set user status failed',
+    SET_IMAGE_SUCCESSFULLY: 'set user image successfully',
+    SET_IMAGE_FAILED: 'set user image failed',
 
     SCORE_NUMBER: 'Score number',
     SCORE_TITLE: 'Edit user score',
@@ -478,6 +480,7 @@
     DOWNLOADING_LIST_ERROR: 'Get downloading list info failed',
     STATUS_FIELD: {
       PICTURE: 'Profile picture',
+      RESET_DEFAULT_PICTURE: 'Reset to default picture',
       USERNAME: 'Username',
       FIRST_NAME: 'First name',
       LAST_NAME: 'Last name',

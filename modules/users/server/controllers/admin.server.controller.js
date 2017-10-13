@@ -340,6 +340,27 @@ exports.getUserUploadedTotal = function (req, res) {
 };
 
 /**
+ * resetUserProfileImage
+ * @param req
+ * @param res
+ */
+exports.resetUserProfileImage = function (req, res) {
+  var user = req.model;
+
+  user.profileImageURL = User.schema.path('profileImageURL').defaultValue;
+  user.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(user);
+
+  });
+};
+
+/**
  * User middleware
  */
 exports.userByID = function (req, res, next, id) {

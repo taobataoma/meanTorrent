@@ -32,7 +32,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/users/:userId/seeding', permissions: '*'},
           {resources: '/api/users/:userId/leeching', permissions: '*'},
           {resources: '/api/users/:userId/warning', permissions: '*'},
-          {resources: '/api/users/:userId/uptotal', permissions: '*'}
+          {resources: '/api/users/:userId/uptotal', permissions: '*'},
+          {resources: '/api/users/:userId/resetImage', permissions: '*'}
         ]
       },
       {

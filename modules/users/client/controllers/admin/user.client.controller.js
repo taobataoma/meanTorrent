@@ -108,6 +108,29 @@
     }
 
     /**
+     * resetDefaultProfileImage
+     */
+    vm.resetDefaultProfileImage = function () {
+      var user = vm.user;
+      AdminService.resetUserProfileImage({
+        userId: user._id
+      })
+        .then(onSetRoleSuccess)
+        .catch(onSetRoleError);
+
+      function onSetRoleSuccess(response) {
+        vm.user = response;
+
+        NotifycationService.showSuccessNotify('SET_IMAGE_SUCCESSFULLY');
+      }
+
+      function onSetRoleError(response) {
+        NotifycationService.showErrorNotify(response.data.message, 'SET_IMAGE_FAILED');
+      }
+
+    };
+
+    /**
      * onUserRoleChanged
      * admin set user`s role
      */

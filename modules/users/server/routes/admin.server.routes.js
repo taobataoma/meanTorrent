@@ -40,6 +40,8 @@ module.exports = function (app) {
     .get(admin.getUserWarning);
   app.route('/api/users/:userId/uptotal').all(adminPolicy.isAllowed)
     .get(admin.getUserUploadedTotal);
+  app.route('/api/users/:userId/resetImage').all(adminPolicy.isAllowed)
+    .put(admin.resetUserProfileImage);
 
   // Finish by binding the user middleware
   app.param('userId', admin.userByID);

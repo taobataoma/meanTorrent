@@ -25,6 +25,9 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.PICTURE' | translate}}：</dt>
                 <dd class="h-line">
                     <img class="status-avatar" ng-src="{{vm.user.profileImageURL}}">
+                    <div class="pull-right" ng-if="vm.authentication.user.isOper">
+                        <a href="#" ng-click="vm.resetDefaultProfileImage();">{{'STATUS_FIELD.RESET_DEFAULT_PICTURE' | translate}}</a>
+                    </div>
                 </dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.USERNAME' | translate}}：</dt>

@@ -144,6 +144,13 @@
         params: {
           userId: '@userId'
         }
+      },
+      setDefaultProfileImage: {
+        method: 'PUT',
+        url: '/api/users/:userId/resetImage',
+        params: {
+          userId: '@userId'
+        }
       }
     });
 
@@ -165,6 +172,9 @@
       },
       countUserUploaded: function (params) {
         return this.getUserUploadedTotal(params).$promise;
+      },
+      resetUserProfileImage: function (params) {
+        return this.setDefaultProfileImage(params).$promise;
       }
     });
 
