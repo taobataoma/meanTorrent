@@ -70,7 +70,7 @@
 
       vm.figureOutItemsToDisplay(function () {
         $timeout(function () {
-          $('html,body').animate({scrollTop: element[0].offsetTop + 15}, 200);
+          $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
         }, 10);
       });
     }
