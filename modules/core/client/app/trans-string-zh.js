@@ -1005,6 +1005,15 @@
         TXT: 'TXT'
       },
 
+      EBOOK_SUB_CAT: {
+        SELF: 'eBook Category',
+        PROGRAMMING: '编程',
+        COMPUTER: '计算机',
+        MAGAZINE: '杂志',
+        STORY: '故事小说',
+        BIOGRAPHY: '人物传记'
+      },
+
       PLATFORM: {
         SELF: 'Platform',
         WINDOWS: 'Windows',

@@ -1005,6 +1005,15 @@
         TXT: 'TXT'
       },
 
+      EBOOK_SUB_CAT: {
+        SELF: 'eBook Category',
+        PROGRAMMING: 'Programming',
+        COMPUTER: 'Computer',
+        MAGAZINE: 'Magazine',
+        STORY: 'Story',
+        BIOGRAPHY: 'Biography'
+      },
+
       PLATFORM: {
         SELF: 'Platform',
         WINDOWS: 'Windows',

@@ -885,6 +885,17 @@ module.exports = {
             {name: 'CHM', icon: ''},
             {name: 'TXT', icon: ''}
           ]
+        },
+        {
+          name: 'EBOOK_SUB_CAT',
+          cats: ['ebook'],
+          value: [
+            {name: 'PROGRAMMING', icon: ''},
+            {name: 'COMPUTER', icon: ''},
+            {name: 'MAGAZINE', icon: ''},
+            {name: 'STORY', icon: ''},
+            {name: 'BIOGRAPHY', icon: ''}
+          ]
         }
       ],
       checkbox: [
