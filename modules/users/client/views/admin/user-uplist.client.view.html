@@ -1,12 +1,28 @@
-<section class="container" ng-init="vm.getUserUploadedTorrent();">
+<section class="container" ng-controller="UserUploadedController as vm" ng-init="vm.getUserUploadedTorrent();">
     <div class="row margin-top-50">
-        <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.UserUploadedList">
+        <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.pagedItems">
             <span>
                 <h4 class="margin-bottom-30">
                     {{vm.user.displayName}} - {{'PAGETITLE.STATUS_UPLOADED' | translate}}
-                    <span class="badge badge_info">{{vm.UserUploadedList.length}}</span>
                 </h4>
             </span>
+
+            <div class="pagination-div-top">
+                <div class="row">
+                    <div class="col-sm-12 col-md-9">
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                            ng-model="vm.currentPage"
+                            ng-change="vm.pageChanged()"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <input class="form-control margin-top-20 margin-bottom-20" type="text" ng-model="vm.search" placeholder="Search"
+                               ng-change="vm.figureOutItemsToDisplay()"/>
+                    </div>
+                </div>
+            </div>
 
             <div class="table-responsive">
                 <table class="table table-hover tb-v-middle">
@@ -25,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="torrent-list-info" ng-repeat="item in vm.UserUploadedList" ng-click="vm.openTorrentInfo(item._id);">
+                        <tr class="torrent-list-info" ng-repeat="item in vm.pagedItems" ng-click="vm.openTorrentInfo(item._id);">
                             <td class="col-md-7 td-text-overflow">
                                 <div class="media">
                                     <div class="media-left">
@@ -130,6 +146,14 @@
                 </table>
             </div>
 
+            <div class="pagination-div-bottom">
+                <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                    ng-model="vm.currentPage"
+                    ng-change="vm.pageChanged()"
+                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                </ul>
+            </div>
         </div>
     </div>
 </section>
