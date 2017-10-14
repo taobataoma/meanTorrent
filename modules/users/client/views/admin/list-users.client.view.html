@@ -1,22 +1,22 @@
-<section class="container">
-    <div class="page-header">
+<section class="container" ng-init="vm.buildPager();">
+    <div class="page-header" id="top_of_users_list">
         <div class="row">
             <div class="col-md-4">
                 <h3>{{ 'USERS_LIST' | translate}}</h3>
             </div>
             <div class="col-md-4 checkbox-inline" style="margin-top: 1em">
                 <label class="checkbox-inline">
-                    <input type="checkbox" ng-model="vm.searchVip" ng-change="vm.figureOutItemsToDisplay()"> isVip
+                    <input type="checkbox" ng-model="vm.searchVip" ng-change="vm.currentPage = 1; vm.figureOutItemsToDisplay()"> isVip
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" ng-model="vm.searchAdmin" ng-change="vm.figureOutItemsToDisplay()"> isAdmin
+                    <input type="checkbox" ng-model="vm.searchAdmin" ng-change="vm.currentPage = 1; vm.figureOutItemsToDisplay()"> isAdmin
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" ng-model="vm.searchOper" ng-change="vm.figureOutItemsToDisplay()"> isOper
+                    <input type="checkbox" ng-model="vm.searchOper" ng-change="vm.currentPage = 1; vm.figureOutItemsToDisplay()"> isOper
                 </label>
             </div>
             <div class="col-md-4" style="margin-top: 1em">
-                <input class="form-control col-md-4" type="text" ng-model="vm.search" placeholder="Search" ng-change="vm.figureOutItemsToDisplay()"/>
+                <input class="form-control col-md-4" type="text" ng-model="vm.search" placeholder="Search" ng-change="vm.currentPage = 1; vm.figureOutItemsToDisplay()"/>
             </div>
         </div>
     </div>

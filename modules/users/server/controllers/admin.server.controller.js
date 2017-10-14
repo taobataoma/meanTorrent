@@ -10,6 +10,7 @@ var path = require('path'),
   Peer = mongoose.model('Peer'),
   Torrent = mongoose.model('Torrent'),
   Complete = mongoose.model('Complete'),
+  async = require('async'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
@@ -17,6 +18,8 @@ const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
 
 var traceConfig = config.meanTorrentConfig.trace;
+var mtDebug = require(path.resolve('./config/lib/debug'));
+
 /**
  * Show the current user
  */
@@ -81,14 +84,94 @@ exports.delete = function (req, res) {
  * List of Users
  */
 exports.list = function (req, res) {
-  User.find({}, '-salt -password -providerData').sort('-created').populate('user', 'displayName').exec(function (err, users) {
-    if (err) {
-      return res.status(422).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    }
+  var condition = {};
+  var keysA = [];
+  var skip = 0;
+  var limit = 0;
+  var isVip = false;
+  var isOper = false;
+  var isAdmin = false;
 
-    res.json(users);
+  if (req.query.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.query.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+  if (req.query.isVip !== undefined) {
+    isVip = req.query.isVip;
+  }
+  if (req.query.isOper !== undefined) {
+    isOper = req.query.isOper;
+  }
+  if (req.query.isAdmin !== undefined) {
+    isAdmin = req.query.isAdmin;
+  }
+
+  if (req.query.keys && req.query.keys.length > 0) {
+    var keysS = req.query.keys + '';
+    var keysT = keysS.split(' ');
+
+    keysT.forEach(function (it) {
+      var ti = new RegExp(it, 'i');
+      keysA.push(ti);
+    });
+  }
+  if (isVip === 'true') {
+    condition.isVip = true;
+  }
+  if (isOper === 'true') {
+    condition.roles = {$in: ['oper']};
+  }
+  if (isAdmin === 'true') {
+    condition.roles = {$in: ['admin']};
+  }
+  if (isOper === 'true' && isAdmin === 'true') {
+    condition.roles = {$in: ['oper', 'admin']};
+  }
+
+  if (keysA.length > 0) {
+    condition.$or = [
+      {displayName: {'$all': keysA}},
+      {email: {'$all': keysA}},
+      {username: {'$all': keysA}}
+    ];
+  }
+
+  mtDebug.debugBlue(condition);
+
+  var countQuery = function (callback) {
+    User.count(condition, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  var findQuery = function (callback) {
+    User.find(condition, '-salt -password -providerData')
+      .sort('-created')
+      .populate('invited_by', 'username displayName profileImageURL isVip uploaded downloaded')
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, users) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, users);
+        }
+      });
+  };
+
+  async.parallel([countQuery, findQuery], function (err, results) {
+    if (err) {
+      mtDebug.debugRed(err);
+      return res.status(422).send(err);
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
   });
 };
 

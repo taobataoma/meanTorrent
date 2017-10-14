@@ -705,6 +705,7 @@ module.exports = {
      * @torrentsPerPage:          torrents list page settings
      * @torrentsCommentsPerPage:  torrent comments list settings
      * @tracesPerPage:            system traces log list page settings
+     * @adminUserListPerPage:     admin manage users list page settings
      */
     itemsPerPage: {
       topicsPerPage: 10,
@@ -712,7 +713,8 @@ module.exports = {
       topicsSearchPerPage: 10,
       torrentsPerPage: 15,
       torrentsCommentsPerPage: 10,
-      tracesPerPage: 30
+      tracesPerPage: 30,
+      adminUserListPerPage: 15
     },
 
     /**

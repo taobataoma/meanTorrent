@@ -5,10 +5,12 @@
     .module('users.admin')
     .controller('UserListController', UserListController);
 
-  UserListController.$inject = ['$scope', '$filter', 'AdminService', 'DebugConsoleService'];
+  UserListController.$inject = ['$scope', '$filter', 'AdminService', 'DebugConsoleService', 'MeanTorrentConfig', '$timeout'];
 
-  function UserListController($scope, $filter, AdminService, mtDebug) {
+  function UserListController($scope, $filter, AdminService, mtDebug, MeanTorrentConfig, $timeout) {
     var vm = this;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+
     vm.buildPager = buildPager;
     vm.figureOutItemsToDisplay = figureOutItemsToDisplay;
     vm.pageChanged = pageChanged;
@@ -16,56 +18,61 @@
     vm.searchAdmin = false;
     vm.searchOper = false;
 
-    AdminService.query(function (data) {
-      vm.users = data;
-      mtDebug.info(data);
-      vm.buildPager();
-    });
-
     /**
      * buildPager
      */
     function buildPager() {
       vm.pagedItems = [];
-      vm.itemsPerPage = 15;
+      vm.itemsPerPage = vm.itemsPerPageConfig.adminUserListPerPage;
       vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     }
 
     /**
      * figureOutItemsToDisplay
+     * @param callback
      */
-    function figureOutItemsToDisplay() {
-      vm.resultUsers = vm.users;
-      if (vm.searchVip) {
-        vm.resultUsers = $filter('filter')(vm.resultUsers, {
-          isVip: true
-        });
-      }
-      if (vm.searchAdmin) {
-        vm.resultUsers = $filter('filter')(vm.resultUsers, {
-          isAdmin: true
-        });
-      }
-      if (vm.searchOper) {
-        vm.resultUsers = $filter('filter')(vm.resultUsers, {
-          isOper: true
-        });
-      }
-      vm.filteredItems = $filter('filter')(vm.resultUsers, {
-        $: vm.search
+    function figureOutItemsToDisplay(callback) {
+      vm.getUsers(vm.currentPage, function (items) {
+        vm.filterLength = items.total;
+        vm.pagedItems = items.rows;
+
+        if (callback) callback();
       });
-      vm.filterLength = vm.filteredItems.length;
-      var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
-      var end = begin + vm.itemsPerPage;
-      vm.pagedItems = vm.filteredItems.slice(begin, end);
+
     }
+
+    /**
+     * getUsers
+     * @param p
+     * @param callback
+     */
+    vm.getUsers = function (p, callback) {
+      AdminService.get({
+        skip: (p - 1) * vm.itemsPerPage,
+        limit: vm.itemsPerPage,
+        isVip: vm.searchVip || undefined,
+        isOper: vm.searchOper || undefined,
+        isAdmin: vm.searchAdmin || undefined,
+        keys: vm.search
+      }, function (data) {
+        mtDebug.info(data);
+        callback(data);
+      });
+    };
+
 
     /**
      * pageChanged
      */
     function pageChanged() {
-      vm.figureOutItemsToDisplay();
+      var element = angular.element('#top_of_users_list');
+
+      vm.figureOutItemsToDisplay(function () {
+        $timeout(function () {
+          $('html,body').animate({scrollTop: element[0].offsetTop + 15}, 200);
+        }, 10);
+      });
     }
 
   }
