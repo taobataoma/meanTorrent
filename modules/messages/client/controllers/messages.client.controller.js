@@ -165,7 +165,8 @@
     };
 
     /**
-     * viewMessage
+     * showMessage
+     * @param evt
      * @param msg
      */
     vm.showMessage = function (evt, msg) {

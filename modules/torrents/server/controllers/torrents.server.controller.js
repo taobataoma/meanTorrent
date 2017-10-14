@@ -918,6 +918,33 @@ exports.setRecommendLevel = function (req, res) {
 };
 
 /**
+ * setTorrentTags
+ * @param req
+ * @param res
+ */
+exports.setTorrentTags = function (req, res) {
+  var torrent = req.torrent;
+
+  if (req.body.tags) {
+    torrent.torrent_tags = req.body.tags;
+
+    torrent.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(torrent);
+      }
+    });
+  } else {
+    return res.status(422).send({
+      message: 'params tags error'
+    });
+  }
+};
+
+/**
  * setReviewedStatus
  * @param req
  * @param res

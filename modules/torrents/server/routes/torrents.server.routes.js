@@ -65,5 +65,8 @@ module.exports = function (app) {
   app.route('/api/torrents/:torrentId/set/reviewed').all(torrentsPolicy.isAllowed)
     .put(torrents.setReviewedStatus);
 
+  app.route('/api/torrents/:torrentId/set/tags').all(torrentsPolicy.isAllowed)
+    .put(torrents.setTorrentTags);
+
   app.param('torrentId', torrents.torrentByID);
 };

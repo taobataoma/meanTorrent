@@ -8,12 +8,12 @@
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
     'SubtitlesService', 'getStorageLangService', 'ScrapeService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
-    'localStorageService', '$compile'];
+    'localStorageService', '$compile', 'SideOverlay'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
                                   getStorageLangService, ScrapeService, NotifycationService, mtDebug, TGI,
-                                  localStorageService, $compile) {
+                                  localStorageService, $compile, SideOverlay) {
     var vm = this;
     vm.TGI = TGI;
     vm.user = Authentication.user;
@@ -28,6 +28,7 @@
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
 
     vm.torrentTabs = [];
+    vm.searchTags = [];
     vm.progress = 0;
 
     /**
@@ -164,6 +165,86 @@
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_VIP_FAILED');
       });
+    };
+
+    /**
+     * editTags
+     * @param evt
+     */
+    vm.editTags = function (evt) {
+      vm.searchTags = vm.torrentLocalInfo.torrent_tags;
+      SideOverlay.open(evt, 'tagsPopupSlide');
+    };
+
+    /**
+     * hideTagsPopup
+     */
+    vm.hideTagsPopup = function () {
+      SideOverlay.close(null, 'tagsPopupSlide');
+    };
+
+    /**
+     * setTorrentTags
+     */
+    vm.setTorrentTags = function () {
+      mtDebug.info(vm.searchTags);
+      SideOverlay.close(null, 'tagsPopupSlide');
+
+      TorrentsService.setTorrentTags({
+        _torrentId: vm.torrentLocalInfo._id,
+        tags: vm.searchTags
+      }, function (res) {
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETTAGS_SUCCESSFULLY')
+        });
+
+        vm.torrentLocalInfo = res;
+        mtDebug.info(res);
+      }, function (res) {
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETTAGS_ERROR')
+        });
+      });
+    };
+
+    /**
+     * onRadioTagClicked
+     * @param event
+     * @param n: tag name
+     */
+    vm.onRadioTagClicked = function (event, n) {
+      var e = angular.element(event.currentTarget);
+
+      if (e.hasClass('btn-success')) {
+        e.removeClass('btn-success').addClass('btn-default');
+        vm.searchTags.splice(vm.searchTags.indexOf(n), 1);
+      } else {
+        e.addClass('btn-success').removeClass('btn-default').siblings().removeClass('btn-success').addClass('btn-default');
+        vm.searchTags.push(n);
+
+        angular.forEach(e.siblings(), function (se) {
+          if (vm.searchTags.indexOf(se.value) !== -1) {
+            vm.searchTags.splice(vm.searchTags.indexOf(se.value), 1);
+          }
+        });
+      }
+      e.blur();
+    };
+
+    /**
+     * onCheckboxTagClicked
+     * @param event
+     * @param n: tag name
+     */
+    vm.onCheckboxTagClicked = function (event, n) {
+      var e = angular.element(event.currentTarget);
+
+      if (e.hasClass('btn-success')) {
+        vm.searchTags.push(n);
+      } else {
+        vm.searchTags.splice(vm.searchTags.indexOf(n), 1);
+      }
     };
 
     /**

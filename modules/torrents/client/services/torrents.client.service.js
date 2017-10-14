@@ -47,6 +47,13 @@
           rlevel: '@_rlevel'
         }
       },
+      setTorrentTags: {
+        method: 'PUT',
+        url: '/api/torrents/:torrentId/set/tags',
+        params: {
+          torrentId: '@_torrentId'
+        }
+      },
       setReviewedStatus: {
         method: 'PUT',
         url: '/api/torrents/:torrentId/set/reviewed',

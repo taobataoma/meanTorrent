@@ -372,6 +372,63 @@
     </div>
 
     <!-- =================================================================
+        side-overlay
+    ================================================================== -->
+    <div id="tagsPopupSlide" side-overlay="top" side-class="tags-side-overlay" side-modal side-close-on-esc>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <div class="page-header"><h3>{{ 'ATTRIBUTE_TAGS' | translate}}</h3></div>
+                    <dl class="dl-horizontal">
+                        <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.torrentLocalInfo.torrent_type">
+                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
+                            <dd class="h-line">
+                                <div class="btn-group btn-group-xs" role="group">
+                                    <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
+                                            class="btn btn-xs btn-tag" value="{{sitem.name}}"
+                                            ng-class="vm.searchTags.indexOf(sitem.name) !== -1 ? 'btn-success' : 'btn-default'"
+                                            ng-click="vm.onRadioTagClicked($event, sitem.name)">
+                                        {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name.toUpperCase() | translate}}
+                                    </button>
+                                    </span>
+                                </div>
+                            </dd>
+                        </div>
+
+                        <div style="margin-top: 20px;"></div>
+
+                        <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.torrentLocalInfo.torrent_type">
+                            <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
+                            <dd class="h-line">
+                                <div class="btn-group btn-group-xs" role="group">
+                                    <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
+                                            class="btn btn-xs btn-tag" value="{{sitem.name}}"
+                                            ng-class="vm.searchTags.indexOf(sitem.name) !== -1 ? 'btn-success' : 'btn-default'"
+                                            ng-click="vm.onCheckboxTagClicked($event, sitem.name)"
+                                            toggle-class="btn-success" base-class="btn-default" onclick="this.blur();">
+                                        {{ 'RESOURCESTAGS.' + item.name + '.' + sitem.name.toUpperCase() | translate}}
+                                    </button>
+                                </div>
+                            </dd>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <dt class="h-line"></dt>
+                            <dd class="h-line">
+                                <button class="btn btn-success btn-width-100" ng-click="vm.setTorrentTags();">
+                                    {{ 'BUTTON_SAVE' | translate }}
+                                </button>
+                                <button class="btn btn-default btn-width-100" ng-click="vm.hideTagsPopup();">
+                                    {{ 'BUTTON_CANCEL' | translate }}
+                                </button>
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================
         torrentInfo.html
     ================================================================== -->
     <script type="text/ng-template" id="torrentInfo.html">
@@ -814,6 +871,9 @@
                     </button>
                     <button class="btn btn-default btn-sm"
                             ng-click="vm.toggleVIP();">{{ (vm.torrentLocalInfo.torrent_vip ? 'ADMIN_BASIC_UNSET_VIP' : 'ADMIN_BASIC_SET_VIP') | translate}}
+                    </button>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="vm.editTags($event);">{{ 'ADMIN_BASIC_EDIT_TAGS' | translate}}
                     </button>
                     <button class="btn btn-default btn-sm" ng-click="vm.doScrape();"
                             ng-if="!vm.announce.privateTorrentCmsMode">{{ 'ADMIN_BASIC_SCRAPE' | translate}}

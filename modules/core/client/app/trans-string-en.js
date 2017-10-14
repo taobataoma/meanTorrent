@@ -292,6 +292,7 @@
     ADMIN_BASIC_SET_HNR: 'SetHnR',
     ADMIN_BASIC_UNSET_HNR: 'UnsetHnR',
     ADMIN_BASIC_SET_VIP: 'SetVIP',
+    ADMIN_BASIC_EDIT_TAGS: 'Edit Tags',
     ADMIN_BASIC_UNSET_VIP: 'UnsetVIP',
     ADMIN_BASIC_TYPE_SET: 'Sale Type',
     ADMIN_SALE_TYPE_SET: 'Sale Type Set',
@@ -320,6 +321,8 @@
     TORRENT_TOGGLE_HNR_FAILED: 'Torrent toggle HnR tag failed',
     TORRENT_TOGGLE_VIP_SUCCESSFULLY: 'Torrent toggle VIP tag successfully',
     TORRENT_TOGGLE_VIP_FAILED: 'Torrent toggle VIP tag failed',
+    TORRENT_SETTAGS_SUCCESSFULLY: 'Torrent tags set successfully',
+    TORRENT_SETTAGS_ERROR: 'Torrent tags set failed',
 
     //page text
     PAGE_TEXT_FIRST: 'First',
@@ -446,6 +449,7 @@
     BUTTON_SELECT_PICTURE: 'Select Picture',
     BUTTON_USE_THIS_PICTURE: 'Use This Picture',
     BUTTON_CANCEL: 'Cancel',
+    BUTTON_SAVE: 'Save',
     BUTTON_SET: 'Set',
     BUTTON_COMPLETE: 'Complete',
     BUTTON_SAVE_PASSWORD: 'Save Password',

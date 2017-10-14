@@ -292,6 +292,7 @@
     ADMIN_BASIC_SET_HNR: '设置HnR',
     ADMIN_BASIC_UNSET_HNR: '取消HnR',
     ADMIN_BASIC_SET_VIP: '设置VIP',
+    ADMIN_BASIC_EDIT_TAGS: '编辑标签',
     ADMIN_BASIC_UNSET_VIP: '取消VIP',
     ADMIN_BASIC_TYPE_SET: '设置促销',
     ADMIN_SALE_TYPE_SET: '种子促销类型',
@@ -320,6 +321,8 @@
     TORRENT_TOGGLE_HNR_FAILED: '改变种子HnR标签失败',
     TORRENT_TOGGLE_VIP_SUCCESSFULLY: '改变种子VIP标签成功',
     TORRENT_TOGGLE_VIP_FAILED: '改变种子VIP标签失败',
+    TORRENT_SETTAGS_SUCCESSFULLY: '种子属性标签设置成功',
+    TORRENT_SETTAGS_ERROR: '种子属性标签设置失败',
 
     //page text
     PAGE_TEXT_FIRST: '首页',
@@ -416,6 +419,8 @@
     SET_ROLE_FAILED: '用户角色权限设置失败',
     SET_STATUS_SUCCESSFULLY: '用户帐号状态设置成功',
     SET_STATUS_FAILED: '用户帐号状态设置失败',
+    SET_IMAGE_SUCCESSFULLY: '用户帐号图片修改成功',
+    SET_IMAGE_FAILED: '用户帐号图片修改失败',
 
     SCORE_NUMBER: '积分数',
     SCORE_TITLE: '修改积分',
@@ -444,6 +449,7 @@
     BUTTON_SELECT_PICTURE: '选择图片',
     BUTTON_USE_THIS_PICTURE: '应用图片',
     BUTTON_CANCEL: '取消',
+    BUTTON_SAVE: '保存',
     BUTTON_SET: '设置',
     BUTTON_COMPLETE: '完成',
     BUTTON_SAVE_PASSWORD: '保存密码',
