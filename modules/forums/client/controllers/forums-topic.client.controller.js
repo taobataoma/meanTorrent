@@ -13,7 +13,7 @@
                                  marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService, $filter, Upload, DownloadService,
                                  mtDebug) {
     var vm = this;
-    vm.DLS = DownloadService
+    vm.DLS = DownloadService;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;

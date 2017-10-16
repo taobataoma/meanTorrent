@@ -5,9 +5,9 @@
     .module('torrents.services')
     .factory('DownloadService', DownloadService);
 
-  DownloadService.$inject = ['$http', 'FileSaver', '$translate', 'Notification', 'NotifycationService'];
+  DownloadService.$inject = ['$http', 'FileSaver', 'NotifycationService', 'DebugConsoleService'];
 
-  function DownloadService($http, FileSaver, $translate, Notification, NotifycationService) {
+  function DownloadService($http, FileSaver, NotifycationService, mtDebug) {
 
     return {
       downloadFile: downloadFile,
