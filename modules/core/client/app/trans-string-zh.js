@@ -442,7 +442,8 @@
 
     //vip,rules views
     VIP: {
-      BUTTON_DNATE: '捐赠Vip',
+      BUTTON_DONATE: '捐赠Vip',
+      DONATE_VIP: '捐赠Vip',
       TORRENTS_LIST: 'Vip 资源专区',
       TORRENTS_LIST_ERROR: 'Vip 资源获取失败'
     },
@@ -499,8 +500,9 @@
       ROLE: '用户角色',
       STATUS: '帐号状态',
       NORMAL: '正常',
-      BANNED: '禁止',
-      UNBANNED: '解禁',
+      BANNED: '被禁止',
+      BTN_BAN: '禁止',
+      BTN_UNBAN: '解禁',
       SEALED: '冻结',
       VIP_START_AT: 'Vip 资格开始于',
       VIP_END_AT: 'Vip 资格结束于',

@@ -79,7 +79,7 @@
                     <div class="pull-right"
                          ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isOper && !vm.user.isAdmin">
                         <button class="btn btn-default btn-xs" style="width: 64px;" ng-click="vm.setUserStatus();">
-                            {{ vm.user.status == 'banned' ? ('STATUS_FIELD.UNBANNED' | translate) : ('STATUS_FIELD.BANNED' | translate)}}
+                            {{ vm.user.status == 'banned' ? ('STATUS_FIELD.BTN_UNBAN' | translate) : ('STATUS_FIELD.BTN_BAN' | translate)}}
                         </button>
                     </div>
                 </dd>

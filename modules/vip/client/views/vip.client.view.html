@@ -1,14 +1,14 @@
 <section class="container" ng-controller="VipController as vm">
     <div class="row margin-top-20" ng-if="!vm.user.isVip">
         <div class="col-sm-2 xs-show">
-            <button class="btn btn-lg btn-mt btn-block btn-donate margin-bottom-30">{{'VIP.BUTTON_DNATE' | translate}}</button>
+            <button class="btn btn-lg btn-mt btn-block btn-donate margin-bottom-30">{{'VIP.BUTTON_DONATE' | translate}}</button>
         </div>
         <div class="col-sm-10">
             <div marked src="'/modules/vip/client/templates/vip-'+vm.lang+'.md'" compile="true">
             </div>
         </div>
         <div class="col-sm-2 xs-hide" style="padding-left: 5px">
-            <button class="btn btn-lg btn-mt btn-block btn-donate margin-top-20">{{'VIP.BUTTON_DNATE' | translate}}</button>
+            <button class="btn btn-lg btn-mt btn-block btn-donate margin-top-20">{{'VIP.BUTTON_DONATE' | translate}}</button>
         </div>
     </div>
 

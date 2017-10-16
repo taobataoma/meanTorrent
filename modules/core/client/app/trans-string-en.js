@@ -442,7 +442,8 @@
 
     //vip,rules views
     VIP: {
-      BUTTON_DNATE: 'Donate',
+      BUTTON_DONATE: 'Donate',
+      DONATE_VIP: 'Donate a VIP',
       TORRENTS_LIST: 'Vip Torrents List',
       TORRENTS_LIST_ERROR: 'Vip torrents list error'
     },
@@ -500,7 +501,8 @@
       STATUS: 'Status',
       NORMAL: 'normal',
       BANNED: 'banned',
-      UNBANNED: 'unbanned',
+      BTN_BAN: 'ban',
+      BTN_UNBAN: 'unban',
       SEALED: 'sealed',
       VIP_START_AT: 'Vip start at',
       VIP_END_AT: 'Vip end at',
