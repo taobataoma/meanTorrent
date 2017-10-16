@@ -11,6 +11,7 @@
   function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                               DownloadService, $window, ScrapeService, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
     var vm = this;
+    vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
     vm.user = Authentication.user;
     vm.RTS = ResourcesTagsServices;
@@ -265,26 +266,6 @@
         e.removeClass('panel-collapsed');
         i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
       }
-    };
-
-    /**
-     * downloadTorrent
-     * @param id
-     */
-    vm.downloadTorrent = function (id) {
-      var url = '/api/torrents/download/' + id;
-      DownloadService.downloadFile(url, null, function (status) {
-        if (status === 200) {
-          Notification.success({
-            message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENTS_DOWNLOAD_SUCCESSFULLY')
-          });
-        }
-      }, function (err) {
-        Notification.error({
-          title: 'ERROR',
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
-        });
-      });
     };
 
     /**

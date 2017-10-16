@@ -11,7 +11,7 @@
                         </div>
 
                         <div class="down-torrent">
-                            <button class="btn btn-success btn-block" ng-click="vm.downloadTorrent(vm.torrentLocalInfo._id)"
+                            <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.torrentLocalInfo._id)"
                                     translate="DOWNLOAD_TORRENT"></button>
                         </div>
 
@@ -521,7 +521,7 @@
                 <dt class="h-line"></dt>
                 <dd class="h-line">
                     <div class="down-torrent">
-                        <button class="btn btn-success" ng-click="vm.downloadTorrent(vm.torrentLocalInfo._id)"
+                        <button class="btn btn-success" ng-click="vm.DLS.downloadTorrent(vm.torrentLocalInfo._id)"
                                 translate="DOWNLOAD_TORRENT"></button>
                     </div>
                 </dd>
@@ -576,7 +576,7 @@
                     <ol class="subtitle-list">
                         <li class="h-line" ng-repeat="s in vm.torrentLocalInfo._subtitles">
                             <div>
-                                <a ng-href="#" ng-click="vm.downloadSubtitle($event, s);">{{s.subtitle_filename}}</a>
+                                <a ng-href="#" ng-click="vm.DLS.downloadSubtitle(vm.torrentLocalInfo._id, s._id);">{{s.subtitle_filename}}</a>
                                 <span style="font-size: 12px;"> - {{s.subtitle_filesize | bytes: 2}}</span>
                                 <span style="font-size: 12px; color: #999999;"> - {{s.createdat | date: 'yyyy-MM-dd HH:mm:ss'}} By </span>
                                 <span style="font-size: 12px;">
@@ -754,7 +754,7 @@
                                         </span>
                                         <span class="label label-download text-uppercase"
                                               title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
-                                              ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();">
+                                              ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();">
                                         <i class="glyphicon glyphicon-arrow-down"></i>
                                     </span>
                                     </div>

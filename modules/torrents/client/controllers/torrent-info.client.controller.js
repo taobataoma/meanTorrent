@@ -15,6 +15,7 @@
                                   getStorageLangService, ScrapeService, NotifycationService, mtDebug, TorrentGetInfoServices,
                                   localStorageService, $compile, SideOverlay, ResourcesTagsServices) {
     var vm = this;
+    vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
     vm.user = Authentication.user;
     vm.RTS = ResourcesTagsServices;
@@ -363,26 +364,6 @@
           });
         });
       }
-    };
-
-    /**
-     * downloadTorrent
-     * @param id
-     */
-    vm.downloadTorrent = function (id) {
-      var url = '/api/torrents/download/' + id;
-      DownloadService.downloadFile(url, null, function (status) {
-        if (status === 200) {
-          Notification.success({
-            message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENTS_DOWNLOAD_SUCCESSFULLY')
-          });
-        }
-      }, function (err) {
-        Notification.error({
-          title: 'ERROR',
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
-        });
-      });
     };
 
     /**
@@ -744,30 +725,6 @@
           }
         });
     };
-
-    /**
-     * downloadSubtitle
-     * @param sub
-     */
-    vm.downloadSubtitle = function (evt, sub) {
-      //evt.preventDefault();
-
-      var url = '/api/subtitles/' + vm.torrentLocalInfo._id.toString() + '/' + sub._id.toString();
-      DownloadService.downloadFile(url, null, function (status) {
-        if (status === 200) {
-          Notification.success({
-            message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('SUBTITLE_DOWNLOAD_SUCCESSFULLY')
-          });
-        }
-      }, function (err) {
-        mtDebug.info(err);
-        Notification.error({
-          title: 'ERROR',
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('SUBTITLE_DOWNLOAD_ERROR')
-        });
-      });
-    };
-
 
     /**
      * openTorrentInfo

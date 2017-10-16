@@ -48,7 +48,7 @@
                                         <div class="layer-download" ng-class="{'music': item.torrent.torrent_type=='music'}">
                                             <i class="fa fa-arrow-circle-o-down fa-3x" aria-hidden="true"
                                                title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
-                                               ng-click="vm.downloadTorrent(item._id); $event.stopPropagation();"
+                                               ng-click="vm.DLS.downloadTorrent(item.torrent._id); $event.stopPropagation();"
                                                ng-class="{'fa-arrow-circle-down': vm.hover}"
                                                ng-mouseover="vm.hover = true;" ng-mouseleave="vm.hover = false;"></i>
                                         </div>

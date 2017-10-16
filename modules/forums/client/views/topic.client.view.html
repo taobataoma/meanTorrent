@@ -122,7 +122,7 @@
                                                 <ol>
                                                     <li ng-repeat="af in vm.topic._attach track by $index">
                                                         <span><a ng-href="#"
-                                                                 ng-click="vm.downloadAttach(vm.topic, null, af);">{{af.filename}}</a></span> (
+                                                                 ng-click="vm.DLS.downloadForumAttach(vm.topic._id, null, af._id);">{{af.filename}}</a></span> (
                                                         <span>{{'FORUMS.ATTACH_FILE_SIZE' | translate}} {{af.filesize | bytes}}</span>
                                                         <span>{{'FORUMS.ATTACH_DOWN_COUNT' | translate}} {{af.downCount}}</span> )
                                                     </li>
@@ -198,7 +198,7 @@
                                                 <ol>
                                                     <li ng-repeat="af in rep._attach track by $index">
                                                         <span><a ng-href="#"
-                                                                 ng-click="vm.downloadAttach(vm.topic, rep, af);">{{af.filename}}</a></span> (
+                                                                 ng-click="vm.DLS.downloadForumAttach(vm.topic._id, rep._id, af._id);">{{af.filename}}</a></span> (
                                                         <span>{{'FORUMS.ATTACH_FILE_SIZE' | translate}} {{af.filesize | bytes}}</span>
                                                         <span>{{'FORUMS.ATTACH_DOWN_COUNT' | translate}} {{af.downCount}}</span> )
                                                     </li>

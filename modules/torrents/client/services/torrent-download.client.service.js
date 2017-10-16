@@ -5,14 +5,78 @@
     .module('torrents.services')
     .factory('DownloadService', DownloadService);
 
-  DownloadService.$inject = ['$http', 'FileSaver'];
+  DownloadService.$inject = ['$http', 'FileSaver', '$translate', 'Notification', 'NotifycationService'];
 
-  function DownloadService($http, FileSaver) {
+  function DownloadService($http, FileSaver, $translate, Notification, NotifycationService) {
 
     return {
-      downloadFile: downloadFile
+      downloadFile: downloadFile,
+      downloadTorrent: downloadTorrent,
+      downloadSubtitle: downloadSubtitle,
+      downloadForumAttach: downloadForumAttach
     };
 
+    /**
+     * downloadTorrent
+     * @param id
+     */
+    function downloadTorrent(id) {
+      var url = '/api/torrents/download/' + id;
+      downloadFile(url, null, function (status) {
+        if (status === 200) {
+          NotifycationService.showSuccessNotify('TORRENTS_DOWNLOAD_SUCCESSFULLY');
+        }
+      }, function (err) {
+        mtDebug.info(err);
+        NotifycationService.showErrorNotify(err.data.message, 'TORRENT_DOWNLOAD_ERROR');
+      });
+    }
+
+    /**
+     * downloadSubtitle
+     * @param tid
+     * @param sid
+     */
+    function downloadSubtitle(tid, sid) {
+      var url = '/api/subtitles/' + tid + '/' + sid;
+      downloadFile(url, null, function (status) {
+        if (status === 200) {
+          NotifycationService.showSuccessNotify('SUBTITLE_DOWNLOAD_SUCCESSFULLY');
+        }
+      }, function (err) {
+        mtDebug.info(err);
+        NotifycationService.showErrorNotify(err.data.message, 'SUBTITLE_DOWNLOAD_ERROR');
+      });
+    }
+
+    /**
+     * downloadForumAttach
+     * @param tid
+     * @param rid
+     * @param aid
+     */
+    function downloadForumAttach(tid, rid, aid) {
+      var url = '/api/attach/' + tid;
+      url += rid ? '/' + rid : '';
+      url += '?attachId=' + aid;
+
+      downloadFile(url, null, function (status) {
+        if (status === 200) {
+          NotifycationService.showSuccessNotify('FORUMS.ATTACHE_DOWNLOAD_SUCCESSFULLY');
+        }
+      }, function (err) {
+        mtDebug.info(err);
+        NotifycationService.showErrorNotify(err.data.message, 'FORUMS.ATTACHE_DOWNLOAD_FAILED');
+      });
+    }
+
+    /**
+     * downloadFile
+     * @param url
+     * @param request
+     * @param successcb
+     * @param errorcb
+     */
     function downloadFile(url, request, successcb, errorcb) {
       $http({
         url: url,

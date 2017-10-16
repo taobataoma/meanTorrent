@@ -13,6 +13,7 @@
                                  marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService, $filter, Upload, DownloadService,
                                  mtDebug) {
     var vm = this;
+    vm.DLS = DownloadService
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
@@ -527,27 +528,6 @@
         if (progressback) {
           progressback(parseInt(100.0 * evt.loaded / evt.total, 10));
         }
-      });
-    };
-
-    /**
-     * downloadAttach
-     * @param t
-     * @param r
-     * @param af
-     */
-    vm.downloadAttach = function (t, r, af) {
-      var url = '/api/attach/' + vm.topic._id.toString();
-      url += r ? '/' + r._id.toString() : '';
-      url += '?attachId=' + af._id.toString();
-
-      DownloadService.downloadFile(url, null, function (status) {
-        if (status === 200) {
-          NotifycationService.showSuccessNotify('FORUMS.ATTACHE_DOWNLOAD_SUCCESSFULLY');
-        }
-      }, function (err) {
-        mtDebug.info(err);
-        NotifycationService.showErrorNotify(err.data.message, 'FORUMS.ATTACHE_DOWNLOAD_FAILED');
       });
     };
   }
