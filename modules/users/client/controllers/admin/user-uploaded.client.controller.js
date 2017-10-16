@@ -15,7 +15,6 @@
     vm.TGI = TorrentGetInfoServices;
     vm.user = Authentication.user;
     vm.RTS = ResourcesTagsServices;
-    vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.searchTags = [];

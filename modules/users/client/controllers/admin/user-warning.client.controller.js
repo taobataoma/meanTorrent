@@ -17,8 +17,6 @@
     vm.TGI = TorrentGetInfoServices;
     vm.user = Authentication.user;
     vm.RTS = ResourcesTagsServices;
-    vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
-    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.searchTags = [];
 
@@ -28,49 +26,6 @@
     if (!Authentication.user) {
       $state.go('authentication.signin');
     }
-
-    /**
-     * buildPager
-     */
-    vm.buildPager = function () {
-      vm.pagedItems = [];
-      vm.itemsPerPage = vm.itemsPerPageConfig.torrentsPerPage;
-      vm.currentPage = 1;
-      vm.figureOutItemsToDisplay();
-    };
-
-    /**
-     * figureOutItemsToDisplay
-     */
-    vm.figureOutItemsToDisplay = function (callback) {
-      vm.filteredItems = $filter('filter')(vm.userWarningList, {
-        $: vm.search
-      });
-      vm.filterLength = vm.filteredItems.length;
-      var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
-      var end = begin + vm.itemsPerPage;
-      vm.pagedItems = vm.filteredItems.slice(begin, end);
-
-      if (callback) callback();
-    };
-
-    /**
-     * pageChanged
-     */
-    vm.pageChanged = function () {
-      var element = angular.element('#top_of_torrent_list');
-
-      $('.tb-v-middle').fadeTo(100, 0.01, function () {
-        vm.figureOutItemsToDisplay(function () {
-          $timeout(function () {
-            $('.tb-v-middle').fadeTo(400, 1, function () {
-              //window.scrollTo(0, element[0].offsetTop - 60);
-              $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
-            });
-          }, 100);
-        });
-      });
-    };
 
     /**
      * getUserWarningTorrent
@@ -85,7 +40,6 @@
           }
         }
         vm.userWarningList = items;
-        vm.buildPager();
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('WARNING_LIST_ERROR')

@@ -17,7 +17,6 @@
     vm.TGI = TorrentGetInfoServices;
     vm.user = Authentication.user;
     vm.RTS = ResourcesTagsServices;
-    vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
     vm.lang = getStorageLangService.getLang();
 

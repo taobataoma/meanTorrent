@@ -15,8 +15,7 @@
     vm.TGI = TorrentGetInfoServices;
     vm.user = Authentication.user;
     vm.RTS = ResourcesTagsServices;
-    vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
-    vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.searchTags = [];
 
@@ -32,7 +31,7 @@
      */
     vm.buildPager = function () {
       vm.pagedItems = [];
-      vm.itemsPerPage = 15;
+      vm.itemsPerPage = vm.itemsPerPageConfig.torrentsPerPage;
       vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     };

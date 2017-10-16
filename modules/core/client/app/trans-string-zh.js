@@ -441,7 +441,7 @@
     ANNOUNCE_COMMENT: 'Announce Comment',
 
     //vip,rules views
-    BUTTON_DNATE: '捐 赠 Vip',
+    BUTTON_DNATE: '捐赠Vip',
 
     //user settings
     SETTINGS: '控制面版',

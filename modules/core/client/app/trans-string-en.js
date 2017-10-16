@@ -441,7 +441,7 @@
     ANNOUNCE_COMMENT: 'Announce Comment',
 
     //vip,rules views
-    BUTTON_DNATE: 'Donate Vip',
+    BUTTON_DNATE: 'Donate',
 
     //user settings
     SETTINGS: 'Settings',
