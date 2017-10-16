@@ -441,7 +441,11 @@
     ANNOUNCE_COMMENT: 'Announce Comment',
 
     //vip,rules views
-    BUTTON_DNATE: 'Donate',
+    VIP: {
+      BUTTON_DNATE: 'Donate',
+      TORRENTS_LIST: 'Vip Torrents List',
+      TORRENTS_LIST_ERROR: 'Vip torrents list error'
+    },
 
     //user settings
     SETTINGS: 'Settings',

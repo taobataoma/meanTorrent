@@ -86,7 +86,6 @@
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('UPLOADED_LIST_ERROR')
         });
       });
-
     };
 
     /**

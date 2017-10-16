@@ -1,14 +1,173 @@
-<section class="container padding-top-10" ng-controller="VipController as vm" ng-init="vm.init();">
-    <div class="row" ng-if="!vm.user.isVip">
+<section class="container" ng-controller="VipController as vm">
+    <div class="row margin-top-20" ng-if="!vm.user.isVip">
         <div class="col-sm-2 xs-show">
-            <button class="btn btn-lg btn-mt btn-block btn-donate margin-top-30 margin-bottom-20">{{'BUTTON_DNATE' | translate}}</button>
+            <button class="btn btn-lg btn-mt btn-block btn-donate margin-bottom-30">{{'VIP.BUTTON_DNATE' | translate}}</button>
         </div>
         <div class="col-sm-10">
             <div marked src="'/modules/vip/client/templates/vip-'+vm.lang+'.md'" compile="true">
             </div>
         </div>
         <div class="col-sm-2 xs-hide" style="padding-left: 5px">
-            <button class="btn btn-lg btn-mt btn-block btn-donate margin-top-30">{{'BUTTON_DNATE' | translate}}</button>
+            <button class="btn btn-lg btn-mt btn-block btn-donate margin-top-20">{{'VIP.BUTTON_DNATE' | translate}}</button>
+        </div>
+    </div>
+
+    <div class="row margin-top-20" ng-if="vm.user.isVip" ng-init="vm.buildPager();">
+        <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.pagedItems">
+            <h3 class="margin-bottom-30">
+                {{'VIP.TORRENTS_LIST' | translate}}
+            </h3>
+
+            <div class="margin-bottom-20">
+                <div class="btn-group torrent-type-group">
+                    <label class="btn btn-default"
+                           ng-repeat="t in vm.torrentType.value | filter:{enable: true} | orderBy: 'position'"
+                           ng-model="vm.vipTorrentType" uib-btn-radio="'{{t.value}}'"
+                            ng-click="vm.buildPager();">
+                        {{'MENU_TORRENTS_SUB.'+t.name | translate}}
+                    </label>
+                </div>
+            </div>
+
+            <div class="pagination-div-top">
+                <div class="row">
+                    <div class="col-sm-12 col-md-9">
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                            ng-model="vm.currentPage"
+                            ng-change="vm.pageChanged()"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <input class="form-control margin-top-20 margin-bottom-20" type="text" ng-model="vm.search" placeholder="Search"
+                               ng-change="vm.figureOutItemsToDisplay()"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover tb-v-middle">
+                    <thead>
+                        <tr>
+                            <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
+                            <th>{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
+                            <th>
+                                <abbr title="{{ 'TABLE_FIELDS.ABBR_SEEDS_LEECHERS_FINISHED' | translate}}" class="initialism">
+                                    {{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}
+                                </abbr>
+                            </th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="torrent-list-info" ng-repeat="item in vm.pagedItems" ng-click="vm.openTorrentInfo(item._id);">
+                            <td class="col-md-7 td-text-overflow">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img class="media-object" torrent-logo="item"
+                                             ng-src="{{vm.TGI.getTorrentListImage(item)}}"
+                                             alt="{{vm.TGI.getTorrentTitle(item)}}">
+
+                                        <div class="layer-download" ng-class="{'music': item.torrent_type=='music'}">
+                                            <i class="fa fa-arrow-circle-o-down fa-3x" aria-hidden="true"
+                                               title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                               ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                                               ng-class="{'fa-arrow-circle-down': vm.hover}"
+                                               ng-mouseover="vm.hover = true;" ng-mouseleave="vm.hover = false;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <span>{{vm.TGI.getTorrentDoubleTitle(item)}}</span>
+                                            <span class="upload-by" ng-show="item.user.displayName"> (By:
+                                                <span user-info="item.user" info-name></span> )</span>
+                                        </h5>
+
+                                        <div class="list-all-genres">
+                                            <span class="genres-item" ng-repeat="t in item.resource_detail_info.genres">{{t.name}}</span>
+                                        </div>
+
+                                        <div class="torrent-filename text-long">{{item.resource_detail_info.subtitle}}</div>
+                                        <div class="torrent-filename text-long">{{item.torrent_filename | filename}}</div>
+
+                                        <div class="list-all-tags">
+                                            <span class="label label-release label-warning" ng-show="item.resource_detail_info.release_date"
+                                                  ng-click="$event.stopPropagation();">
+                                                {{ item.resource_detail_info.release_date}}
+                                            </span>
+                                            <span class="label label-rlevel label-info"
+                                                  ng-show="item.torrent_recommended != 'none'"
+                                                  ng-click="$event.stopPropagation();">
+                                                {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent_recommended.toUpperCase() | translate}}
+                                            </span>
+                                            <span class="label label-sale" ng-if="item.isSaling"
+                                                  title="{{vm.getSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
+                                                  ng-click="$event.stopPropagation();"
+                                                  ng-class="{'label-default': !item.isSaling, 'label-success': item.isSaling}">
+                                                    {{item.torrent_sale_status}} {{item.torrent_sale_expires | unlife}}
+                                            </span>
+                                            <span class="label label-se-info" ng-if="item.torrent_type == 'tvserial'"
+                                                  ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
+
+                                            <span class="label label-hnr-info" ng-if="item.torrent_hnr"
+                                                  ng-click="$event.stopPropagation();">H&R</span>
+
+                                            <span class="label label-vip-info" ng-if="item.torrent_vip"
+                                                  ng-click="$event.stopPropagation();">VIP</span>
+
+                                            <span ng-repeat="t in item.torrent_tags">
+                                                <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}"
+                                                      ng-click="$event.stopPropagation();">
+                                                    {{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col-md-1 td-v-middle td-imdb">
+                            <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
+                                  class="torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
+                            </td>
+                            <td class="col-md-1 td-v-middle text-center td-life">{{item.createdat | life}}</td>
+                            <td class="col-md-1 td-v-middle text-center td-size">{{item.torrent_size | bytes:2}}</td>
+                            <td class="col-md-1 td-v-middle list-user-info td-user-info">
+                                <p class="no-margin-p" title="{{ 'TITLE_ALT.SEEDS' | translate}}">
+                                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                                    {{item.torrent_seeds}}
+                                </p>
+
+                                <p class="no-margin-p" title="{{ 'TITLE_ALT.LEECHERS' | translate}}">
+                                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                                    {{item.torrent_leechers}}
+                                </p>
+
+                                <p class="no-margin-p" title="{{ 'TITLE_ALT.FINISHED' | translate}}">
+                                    <span class="glyphicon glyphicon-ok torrent-finished"></span>
+                                    {{item.torrent_finished}}
+                                </p>
+                            </td>
+                            <td class="col-md-1 td-v-middle text-center td-uploader">
+                                <span user-info="item.user" info-name></span>
+                                <!--<span vip-flag="item.user"></span>-->
+                                <span message-to="item.user" to-class="message-to-icon"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination-div-bottom">
+                <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                    ng-model="vm.currentPage"
+                    ng-change="vm.pageChanged()"
+                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                </ul>
+            </div>
         </div>
     </div>
 </section>

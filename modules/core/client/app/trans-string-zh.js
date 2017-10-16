@@ -441,7 +441,11 @@
     ANNOUNCE_COMMENT: 'Announce Comment',
 
     //vip,rules views
-    BUTTON_DNATE: '捐赠Vip',
+    VIP: {
+      BUTTON_DNATE: '捐赠Vip',
+      TORRENTS_LIST: 'Vip 资源专区',
+      TORRENTS_LIST_ERROR: 'Vip 资源获取失败'
+    },
 
     //user settings
     SETTINGS: '控制面版',

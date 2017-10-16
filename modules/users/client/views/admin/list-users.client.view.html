@@ -6,13 +6,13 @@
             </div>
             <div class="col-md-4 checkbox-inline" style="margin-top: 1em">
                 <label class="checkbox-inline">
-                    <input type="checkbox" ng-model="vm.searchVip" ng-change="vm.currentPage = 1; vm.figureOutItemsToDisplay()"> isVip
+                    <input type="checkbox" ng-model="vm.searchVip" ng-change="vm.buildPager();"> isVip
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" ng-model="vm.searchAdmin" ng-change="vm.currentPage = 1; vm.figureOutItemsToDisplay()"> isAdmin
+                    <input type="checkbox" ng-model="vm.searchAdmin" ng-change="vm.buildPager();"> isAdmin
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" ng-model="vm.searchOper" ng-change="vm.currentPage = 1; vm.figureOutItemsToDisplay()"> isOper
+                    <input type="checkbox" ng-model="vm.searchOper" ng-change="vm.buildPager();"> isOper
                 </label>
             </div>
             <div class="col-md-4" style="margin-top: 1em">
