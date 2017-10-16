@@ -7,15 +7,15 @@
 
   WarningController.$inject = ['$rootScope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'PeersService', 'CompleteService',
     'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'NotifycationService', 'ModalConfirmService', 'getStorageLangService', 'DebugConsoleService',
-    'TorrentGetInfoServices'];
+    'TorrentGetInfoServices', 'ResourcesTagsServices'];
 
   function WarningController($rootScope, $state, $translate, $timeout, Authentication, Notification, PeersService, CompleteService, MeanTorrentConfig,
                              $window, $filter, DownloadService, NotifycationService, ModalConfirmService, getStorageLangService, mtDebug,
-                             TGI) {
+                             TorrentGetInfoServices, ResourcesTagsServices) {
     var vm = this;
-    vm.TGI = TGI;
+    vm.TGI = TorrentGetInfoServices;
     vm.user = Authentication.user;
-    vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
+    vm.RTS = ResourcesTagsServices;
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
     vm.lang = getStorageLangService.getLang();
@@ -46,36 +46,6 @@
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('WARNING_LIST_ERROR')
         });
       });
-    };
-
-    /**
-     * getTagTitle
-     * @param tag: tag name
-     * @returns {*}
-     */
-    vm.getTagTitle = function (tag, item) {
-      var tmp = tag;
-      var find = false;
-
-      angular.forEach(vm.resourcesTags.radio, function (item) {
-        angular.forEach(item.value, function (sitem) {
-          if (sitem.name.toUpperCase() === tag.toUpperCase()) {
-            tmp = item.name;
-            find = true;
-          }
-        });
-      });
-
-      if (!find) {
-        angular.forEach(vm.resourcesTags.checkbox, function (item) {
-          angular.forEach(item.value, function (sitem) {
-            if (sitem.name.toUpperCase() === tag.toUpperCase()) {
-              tmp = item.name;
-            }
-          });
-        });
-      }
-      return tmp;
     };
 
     /**

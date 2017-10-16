@@ -10,10 +10,10 @@
     'marked'];
 
   function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService,
-                          DownloadService, $timeout, localStorageService, ScrapeService, TGI, mtDebug,
+                          DownloadService, $timeout, localStorageService, ScrapeService, TorrentGetInfoServices, mtDebug,
                           marked) {
     var vm = this;
-    vm.TGI = TGI;
+    vm.TGI = TorrentGetInfoServices;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;

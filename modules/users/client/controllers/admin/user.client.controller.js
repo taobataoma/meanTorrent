@@ -9,9 +9,9 @@
     'AdminService', 'ScoreLevelService', 'DebugConsoleService', 'TorrentGetInfoServices'];
 
   function UserController($scope, $state, $window, Authentication, user, Notification, NotifycationService, MeanTorrentConfig,
-                          AdminService, ScoreLevelService, mtDebug, TGI) {
+                          AdminService, ScoreLevelService, mtDebug, TorrentGetInfoServices) {
     var vm = this;
-    vm.TGI = TGI;
+    vm.TGI = TorrentGetInfoServices;
     vm.authentication = Authentication;
     vm.user = user;
     vm.selectedRole = vm.user.roles[0];

@@ -479,7 +479,7 @@
                         <span class="label label-hnr-info" ng-if="vm.torrentLocalInfo.torrent_hnr">H&R</span>
                         <span ng-repeat="t in vm.torrentLocalInfo.torrent_tags">
                             <span class="label label-tag">
-                                {{ 'RESOURCESTAGS.' + vm.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
+                                {{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
                             </span>
                         </span>
                     </div>
@@ -749,7 +749,7 @@
 
                                         <span ng-repeat="t in item.torrent_tags">
                                             <span class="label label-tag" ng-click="$event.stopPropagation();">
-                                                {{ 'RESOURCESTAGS.' + vm.getTagTitle(t) + '.' + t | translate}}
+                                                {{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
                                             </span>
                                         </span>
                                         <span class="label label-download text-uppercase"

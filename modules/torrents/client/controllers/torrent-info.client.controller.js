@@ -8,15 +8,16 @@
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
     'SubtitlesService', 'getStorageLangService', 'ScrapeService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
-    'localStorageService', '$compile', 'SideOverlay'];
+    'localStorageService', '$compile', 'SideOverlay', 'ResourcesTagsServices'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
-                                  getStorageLangService, ScrapeService, NotifycationService, mtDebug, TGI,
-                                  localStorageService, $compile, SideOverlay) {
+                                  getStorageLangService, ScrapeService, NotifycationService, mtDebug, TorrentGetInfoServices,
+                                  localStorageService, $compile, SideOverlay, ResourcesTagsServices) {
     var vm = this;
-    vm.TGI = TGI;
+    vm.TGI = TorrentGetInfoServices;
     vm.user = Authentication.user;
+    vm.RTS = ResourcesTagsServices;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -382,35 +383,6 @@
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_DOWNLOAD_ERROR')
         });
       });
-    };
-
-    /**
-     * getTagTitle
-     * @param tag: tag name
-     * @returns {*}
-     */
-    vm.getTagTitle = function (tag) {
-      var tmp = tag;
-      var find = false;
-      angular.forEach(vm.resourcesTags.radio, function (item) {
-        angular.forEach(item.value, function (sitem) {
-          if (sitem.name.toUpperCase() === tag.toUpperCase()) {
-            tmp = item.name;
-            find = true;
-          }
-        });
-      });
-
-      if (!find) {
-        angular.forEach(vm.resourcesTags.checkbox, function (item) {
-          angular.forEach(item.value, function (sitem) {
-            if (sitem.name.toUpperCase() === tag.toUpperCase()) {
-              tmp = item.name;
-            }
-          });
-        });
-      }
-      return tmp;
     };
 
     /**

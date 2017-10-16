@@ -6,15 +6,15 @@
     .controller('DownloadingController', DownloadingController);
 
   DownloadingController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'PeersService',
-    'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'DebugConsoleService', 'TorrentGetInfoServices'];
+    'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices'];
 
   function DownloadingController($scope, $state, $translate, $timeout, Authentication, Notification, PeersService, MeanTorrentConfig,
-                             $window, $filter, DownloadService, mtDebug, TGI) {
+                             $window, $filter, DownloadService, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
     var vm = this;
-    vm.TGI = TGI;
+    vm.TGI = TorrentGetInfoServices;
     vm.user = Authentication.user;
+    vm.RTS = ResourcesTagsServices;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
-    vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
 
     vm.searchTags = [];
@@ -87,36 +87,6 @@
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('DOWNLOADING_LIST_ERROR')
         });
       });
-    };
-
-    /**
-     * getTagTitle
-     * @param tag: tag name
-     * @returns {*}
-     */
-    vm.getTagTitle = function (tag, item) {
-      var tmp = tag;
-      var find = false;
-
-      angular.forEach(vm.resourcesTags.radio, function (item) {
-        angular.forEach(item.value, function (sitem) {
-          if (sitem.name.toUpperCase() === tag.toUpperCase()) {
-            tmp = item.name;
-            find = true;
-          }
-        });
-      });
-
-      if (!find) {
-        angular.forEach(vm.resourcesTags.checkbox, function (item) {
-          angular.forEach(item.value, function (sitem) {
-            if (sitem.name.toUpperCase() === tag.toUpperCase()) {
-              tmp = item.name;
-            }
-          });
-        });
-      }
-      return tmp;
     };
 
     /**
