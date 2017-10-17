@@ -65,8 +65,8 @@
                 <div class="margin-top-10">
                     <dt class="h-line"></dt>
                     <dd class="h-line">
-                        <a ui-sref="settings.profile">{{ 'EDIT_PROFILE' | translate }}</a> |
-                        <a ui-sref="vip">{{ 'VIP.DONATE_VIP' | translate }}</a>
+                        <a ui-sref="settings.profile">{{ 'EDIT_PROFILE' | translate }}</a>
+                        <a ui-sref="vip" ng-if="!vm.user.isVip"> | {{ 'VIP.DONATE_VIP' | translate }}</a>
                     </dd>
                 </div>
 

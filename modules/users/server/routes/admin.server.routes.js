@@ -43,6 +43,9 @@ module.exports = function (app) {
   app.route('/api/users/:userId/resetImage').all(adminPolicy.isAllowed)
     .put(admin.resetUserProfileImage);
 
+  app.route('/api/users/:userId/VIPMonths/:months').all(adminPolicy.isAllowed)
+    .put(admin.addVIPMonths);
+
   // Finish by binding the user middleware
   app.param('userId', admin.userByID);
 };

@@ -113,19 +113,42 @@
       AdminService.resetUserProfileImage({
         userId: user._id
       })
-        .then(onSetRoleSuccess)
-        .catch(onSetRoleError);
+        .then(onSuccess)
+        .catch(onError);
 
-      function onSetRoleSuccess(response) {
+      function onSuccess(response) {
         vm.user = response;
 
         NotifycationService.showSuccessNotify('SET_IMAGE_SUCCESSFULLY');
       }
 
-      function onSetRoleError(response) {
+      function onError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'SET_IMAGE_FAILED');
       }
+    };
 
+    /**
+     * addVIPMonths
+     */
+    vm.addVIPMonths = function () {
+      var user = vm.user;
+      AdminService.addVIPMonths({
+        userId: user._id,
+        months: 1
+      })
+        .then(onSuccess)
+        .catch(onError);
+
+      function onSuccess(response) {
+        vm.user = response;
+        mtDebug.info(response);
+
+        NotifycationService.showSuccessNotify('SET_VIP_MONTHS_SUCCESSFULLY');
+      }
+
+      function onError(response) {
+        NotifycationService.showErrorNotify(response.data.message, 'SET_VIP_MONTHS_FAILED');
+      }
     };
 
     /**
@@ -138,16 +161,16 @@
         userId: user._id,
         userRole: [vm.selectedRole]
       })
-        .then(onSetRoleSuccess)
-        .catch(onSetRoleError);
+        .then(onSuccess)
+        .catch(onError);
 
-      function onSetRoleSuccess(response) {
+      function onSuccess(response) {
         vm.user = response;
 
         NotifycationService.showSuccessNotify('SET_ROLE_SUCCESSFULLY');
       }
 
-      function onSetRoleError(response) {
+      function onError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'SET_ROLE_FAILED');
       }
     };
@@ -161,16 +184,16 @@
         userId: user._id,
         userStatus: user.status === 'banned' ? 'normal' : 'banned'
       })
-        .then(onSetRoleSuccess)
-        .catch(onSetRoleError);
+        .then(onSuccess)
+        .catch(onError);
 
-      function onSetRoleSuccess(response) {
+      function onSuccess(response) {
         vm.user = response;
 
         NotifycationService.showSuccessNotify('SET_STATUS_SUCCESSFULLY');
       }
 
-      function onSetRoleError(response) {
+      function onError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'SET_STATUS_FAILED');
       }
     };
@@ -187,13 +210,13 @@
           userId: user._id,
           userScore: vm.setUserScorePopover.number
         })
-          .then(onSetScoreSuccess)
-          .catch(onSetScoreError);
+          .then(onSuccess)
+          .catch(onError);
 
         vm.setUserScorePopover.isOpen = false;
       }
 
-      function onSetScoreSuccess(response) {
+      function onSuccess(response) {
         vm.user = response;
         mtDebug.info(vm.scoreLevelData);
         vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
@@ -202,7 +225,7 @@
         NotifycationService.showSuccessNotify('SET_SCORE_SUCCESSFULLY');
       }
 
-      function onSetScoreError(response) {
+      function onError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'SET_SCORE_FAILED');
       }
     };
@@ -219,19 +242,19 @@
           userId: user._id,
           userUploaded: vm.setUserUploadedPopover.number * 1024 * 1024 * 1024
         })
-          .then(onSetUploadedSuccess)
-          .catch(onSetUploadedError);
+          .then(onSuccess)
+          .catch(onError);
 
         vm.setUserUploadedPopover.isOpen = false;
       }
 
-      function onSetUploadedSuccess(response) {
+      function onSuccess(response) {
         vm.user = response;
 
         NotifycationService.showSuccessNotify('SET_UPLOADED_SUCCESSFULLY');
       }
 
-      function onSetUploadedError(response) {
+      function onError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'SET_UPLOADED_FAILED');
       }
     };
@@ -248,19 +271,19 @@
           userId: user._id,
           userDownloaded: vm.setUserDownloadedPopover.number * 1024 * 1024 * 1024
         })
-          .then(onSetDownloadedSuccess)
-          .catch(onSetDownloadedError);
+          .then(onSuccess)
+          .catch(onError);
 
         vm.setUserDownloadedPopover.isOpen = false;
       }
 
-      function onSetDownloadedSuccess(response) {
+      function onSuccess(response) {
         vm.user = response;
 
         NotifycationService.showSuccessNotify('SET_DOWNLOADED_SUCCESSFULLY');
       }
 
-      function onSetDownloadedError(response) {
+      function onError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'SET_DOWNLOADED_FAILED');
       }
     };

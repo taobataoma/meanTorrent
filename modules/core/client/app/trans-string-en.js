@@ -421,6 +421,8 @@
     SET_STATUS_FAILED: 'set user status failed',
     SET_IMAGE_SUCCESSFULLY: 'set user image successfully',
     SET_IMAGE_FAILED: 'set user image failed',
+    SET_VIP_MONTHS_SUCCESSFULLY: 'update user vip data successfully',
+    SET_VIP_MONTHS_FAILED: 'update user vip data failed',
 
     SCORE_NUMBER: 'Score number',
     SCORE_TITLE: 'Edit user score',
@@ -490,6 +492,7 @@
     STATUS_FIELD: {
       PICTURE: 'Profile picture',
       RESET_DEFAULT_PICTURE: 'Reset to default picture',
+      ADD_VIP_MONTHS: '+ VIP a month',
       USERNAME: 'Username',
       FIRST_NAME: 'First name',
       LAST_NAME: 'Last name',

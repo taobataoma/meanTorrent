@@ -10,6 +10,7 @@ var path = require('path'),
   Peer = mongoose.model('Peer'),
   Torrent = mongoose.model('Torrent'),
   Complete = mongoose.model('Complete'),
+  moment = require('moment'),
   async = require('async'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
@@ -318,6 +319,60 @@ exports.updateUserDownloaded = function (req, res) {
   });
 };
 
+/**
+ * addVIPMonths
+ * @param req
+ * @param res
+ */
+exports.addVIPMonths = function (req, res) {
+  var user = req.model;
+  var months = parseInt(req.params.months, 10);
+
+  if (months > 0) {
+    mtDebug.debugBlue(user.vip_start_at);
+    mtDebug.debugBlue(user.vip_end_at);
+
+    var now = moment(Date.now());
+    var start = moment(user.vip_start_at);
+    var end = moment(user.vip_end_at);
+
+    if (!user.vip_end_at) {
+      start = now;
+      end = moment(start).add(months, 'M');
+    } else if (now > end) {
+      start = now;
+      end = moment(start).add(months, 'M');
+    } else {
+      end = moment(end).add(months, 'M');
+    }
+
+    mtDebug.debugBlue(start);
+    mtDebug.debugBlue(end);
+
+    user.vip_start_at = start;
+    user.vip_end_at = end;
+
+    user.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+
+      res.json(user);
+
+      //create trace log
+      traceLogCreate(req, traceConfig.action.AdminUpdateUserVIPData, {
+        user: user._id,
+        months: months
+      });
+    });
+  } else {
+    return res.status(422).send({
+      message: 'PARAMS_MONTH_ERROR'
+    });
+  }
+};
 
 /**
  * list user seeding torrents

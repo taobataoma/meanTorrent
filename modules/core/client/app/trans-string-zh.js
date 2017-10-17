@@ -421,6 +421,8 @@
     SET_STATUS_FAILED: '用户帐号状态设置失败',
     SET_IMAGE_SUCCESSFULLY: '用户帐号图片修改成功',
     SET_IMAGE_FAILED: '用户帐号图片修改失败',
+    SET_VIP_MONTHS_SUCCESSFULLY: '更新用户vip状态数据成功',
+    SET_VIP_MONTHS_FAILED: '更新用户vip状态数据失败',
 
     SCORE_NUMBER: '积分数',
     SCORE_TITLE: '修改积分',
@@ -490,6 +492,7 @@
     STATUS_FIELD: {
       PICTURE: '头像',
       RESET_DEFAULT_PICTURE: '重置为默认图片',
+      ADD_VIP_MONTHS: '+ VIP一个月',
       USERNAME: '用户名',
       FIRST_NAME: '姓',
       LAST_NAME: '名',

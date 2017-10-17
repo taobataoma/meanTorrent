@@ -151,6 +151,14 @@
         params: {
           userId: '@userId'
         }
+      },
+      updateUserVIPMonths: {
+        method: 'PUT',
+        url: '/api/users/:userId/VIPMonths/:months',
+        params: {
+          userId: '@userId',
+          months: '@months'
+        }
       }
     });
 
@@ -175,6 +183,9 @@
       },
       resetUserProfileImage: function (params) {
         return this.setDefaultProfileImage(params).$promise;
+      },
+      addVIPMonths: function (params) {
+        return this.updateUserVIPMonths(params).$promise;
       }
     });
 

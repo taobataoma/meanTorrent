@@ -43,6 +43,9 @@
                 <dd class="h-line">
                     {{ vm.user.displayName }}
                     <span vip-flag="vm.user"></span>
+                    <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
+                        <button class="btn btn-default btn-xs btn-width-100" ng-click="vm.addVIPMonths();">{{'STATUS_FIELD.ADD_VIP_MONTHS' | translate}}</button>
+                    </div>
                 </dd>
 
                 <div ng-if="vm.user.invited_by">
@@ -78,7 +81,7 @@
 
                     <div class="pull-right"
                          ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isOper && !vm.user.isAdmin">
-                        <button class="btn btn-default btn-xs" style="width: 64px;" ng-click="vm.setUserStatus();">
+                        <button class="btn btn-default btn-xs btn-width-100" ng-click="vm.setUserStatus();">
                             {{ vm.user.status == 'banned' ? ('STATUS_FIELD.BTN_UNBAN' | translate) : ('STATUS_FIELD.BTN_BAN' | translate)}}
                         </button>
                     </div>
@@ -134,7 +137,7 @@
                         <span>{{ vm.user.uploaded | bytes:2 }}</span>
 
                         <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
-                            <button class="btn btn-default btn-xs" style="width: 64px;"
+                            <button class="btn btn-default btn-xs btn-width-100"
                                     uib-popover-template="vm.setUserUploadedPopover.templateUrl"
                                     popover-title="{{vm.setUserUploadedPopover.title | translate}}"
                                     popover-trigger="'outsideClick'"
@@ -153,7 +156,7 @@
                         <span>{{ vm.user.downloaded | bytes:2 }}</span>
 
                         <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
-                            <button class="btn btn-default btn-xs" style="width: 64px;"
+                            <button class="btn btn-default btn-xs btn-width-100"
                                     uib-popover-template="vm.setUserDownloadedPopover.templateUrl"
                                     popover-title="{{vm.setUserDownloadedPopover.title | translate}}"
                                     popover-trigger="'outsideClick'"
@@ -175,7 +178,7 @@
                     <span>{{ vm.user.score }}</span> <span score-level="vm.scoreLevelData.currLevel"></span>
 
                     <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
-                        <button class="btn btn-default btn-xs" style="width: 64px;"
+                        <button class="btn btn-default btn-xs btn-width-100"
                                 uib-popover-template="vm.setUserScorePopover.templateUrl"
                                 popover-title="{{vm.setUserScorePopover.title | translate}}"
                                 popover-trigger="'outsideClick'"

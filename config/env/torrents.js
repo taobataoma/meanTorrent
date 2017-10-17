@@ -245,6 +245,7 @@ module.exports = {
         AdminUpdateUserScore: {name: 'AdminUpdateUserScore', enable: true},
         AdminUpdateUserUploaded: {name: 'AdminUpdateUserUploaded', enable: true},
         AdminUpdateUserDownloaded: {name: 'AdminUpdateUserDownloaded', enable: true},
+        AdminUpdateUserVIPData: {name: 'AdminUpdateUserVIPData', enable: true},
         AdminUserDelete: {name: 'AdminUserDelete', enable: true},
         AdminUserEdit: {name: 'AdminUserEdit', enable: true},
         userPasswordReset: {name: 'userPasswordReset', enable: true},
