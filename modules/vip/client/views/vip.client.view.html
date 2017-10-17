@@ -1,5 +1,5 @@
 <section class="container" ng-controller="VipController as vm">
-    <div class="row margin-top-20" ng-if="!vm.user.isVip">
+    <div class="row margin-top-20" ng-if="!vm.user.isVip && !vm.user.isOper">
         <div class="col-sm-2 xs-show">
             <button class="btn btn-lg btn-mt btn-block btn-donate margin-bottom-30">{{'VIP.BUTTON_DONATE' | translate}}</button>
         </div>
@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="row margin-top-20" ng-if="vm.user.isVip" ng-init="vm.buildPager();">
+    <div class="row margin-top-20" ng-if="vm.user.isVip || vm.user.isOper" ng-init="vm.buildPager();">
         <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.pagedItems">
             <h3 class="margin-bottom-30">
                 {{'VIP.TORRENTS_LIST' | translate}}
