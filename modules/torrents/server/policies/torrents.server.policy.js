@@ -19,6 +19,8 @@ exports.invokeRolesPolicies = function () {
         allows: [
           {resources: '/api/movieinfo/:tmdbid/:language', permissions: '*'},
           {resources: '/api/tvinfo/:tmdbid/:language', permissions: '*'},
+          {resources: '/api/search/collection/:language', permissions: '*'},
+          {resources: '/api/collection/:collectionid/:language', permissions: '*'},
           {resources: '/api/torrents/upload', permissions: '*'},
           {resources: '/api/torrents/uploadTorrentCover', permissions: '*'},
           {resources: '/api/torrents/uploadTorrentImage', permissions: '*'},
@@ -56,6 +58,8 @@ exports.invokeRolesPolicies = function () {
         allows: [
           {resources: '/api/movieinfo/:tmdbid/:language', permissions: ['get']},
           {resources: '/api/tvinfo/:tmdbid/:language', permissions: ['get']},
+          {resources: '/api/search/collection/:language', permissions: ['get']},
+          {resources: '/api/collection/:collectionid/:language', permissions: ['get']},
           {resources: '/api/torrents/upload', permissions: ['post']},
           {resources: '/api/torrents/uploadTorrentCover', permissions: ['post']},
           {resources: '/api/torrents/uploadTorrentImage', permissions: ['post']},
@@ -86,6 +90,8 @@ exports.invokeRolesPolicies = function () {
         allows: [
           {resources: '/api/movieinfo/:tmdbid/:language', permissions: ['get']},
           {resources: '/api/tvinfo/:tmdbid/:language', permissions: ['get']},
+          {resources: '/api/search/collection/:language', permissions: ['get']},
+          {resources: '/api/collection/:collectionid/:language', permissions: ['get']},
           {resources: '/api/torrents', permissions: ['get']},
           {resources: '/api/torrents/:torrentId', permissions: ['get']},
           {resources: '/api/torrents/siteInfo', permissions: ['get']}

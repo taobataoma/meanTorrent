@@ -31,6 +31,21 @@
           language: '@language'
         }
       },
+      searchCollectionInfo: {
+        method: 'GET',
+        url: '/api/search/collection/:language',
+        params: {
+          language: '@language'
+        }
+      },
+      getCollectionInfo: {
+        method: 'GET',
+        url: '/api/collection/:collectionid/:language',
+        params: {
+          collectionid: '@collectionid',
+          language: '@language'
+        }
+      },
       setSaleType: {
         method: 'PUT',
         url: '/api/torrents/:torrentId/set/saletype/:saleType',
