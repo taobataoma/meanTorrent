@@ -62,7 +62,7 @@ module.exports = {
       announcePrefix: '{CHD.im}.',
       admin: 'admin@chd.im',
       baseUrl: 'http://chd.im:3000',
-      clientBlackListUrl: 'http://chd.im:3000/client_black_list',
+      clientBlackListUrl: '/about/black',
       privateTorrentCmsMode: true
     },
 

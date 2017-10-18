@@ -31,7 +31,9 @@
     MENU_UPLOAD: '发布',
     MENU_FORUMS: '论坛',
     MENU_RANKING: '排行榜',
-    MENU_RULES: '规则',
+    MENU_ABOUT: '关于',
+    MENU_ABOUT_RULES: '站内规则',
+    MENU_ABOUT_BLACKLIST: '禁止客户端列表',
     MENU_VIP: 'VIP',
     MENU_ADMIN: '管理中心',
 
@@ -149,6 +151,7 @@
       TORRENT_INFO: '种子信息',
       RANKING: '排行榜',
       RULES: '规则',
+      BLACK: '禁止客户端列表',
       VIP: 'Vip',
       FORUM: '论坛',
       ADMIN_USER_LIST: '用户管理',
@@ -442,12 +445,17 @@
     ANNOUNCE_EDIT_TIP: '上传一个种子文件, </br>自动替换 <mark>Announce URL</mark> 与 <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
 
-    //vip,rules views
+    //vip views
     VIP: {
       BUTTON_DONATE: '捐赠Vip',
       DONATE_VIP: '捐赠Vip',
       TORRENTS_LIST: 'Vip 资源专区',
       TORRENTS_LIST_ERROR: 'Vip 资源获取失败'
+    },
+
+    //about views
+    ABOUT: {
+      CLIENT_BLACK_LIST: '禁止客户端列表'
     },
 
     //user settings

@@ -31,7 +31,9 @@
     MENU_UPLOAD: 'Upload',
     MENU_FORUMS: 'Forums',
     MENU_RANKING: 'Ranking',
-    MENU_RULES: 'Rules',
+    MENU_ABOUT: 'About',
+    MENU_ABOUT_RULES: 'Rules',
+    MENU_ABOUT_BLACKLIST: 'Client Black List',
     MENU_VIP: 'VIP',
     MENU_ADMIN: 'Admin',
 
@@ -149,6 +151,7 @@
       TORRENT_INFO: 'Torrent Info',
       RANKING: 'Ranking',
       RULES: 'Rules',
+      BLACK: 'Client Black List',
       VIP: 'Vip',
       FORUM: 'Forum',
       ADMIN_USER_LIST: 'User List',
@@ -442,12 +445,17 @@
     ANNOUNCE_EDIT_TIP: 'Upload a torrent file, </br>automatic replacement <mark>Announce URL</mark> & <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
 
-    //vip,rules views
+    //vip views
     VIP: {
       BUTTON_DONATE: 'Donate',
       DONATE_VIP: 'Donate a VIP',
       TORRENTS_LIST: 'Vip Torrents List',
       TORRENTS_LIST_ERROR: 'Vip torrents list error'
+    },
+
+    //about views
+    ABOUT: {
+      CLIENT_BLACK_LIST: 'Client Black List'
     },
 
     //user settings
