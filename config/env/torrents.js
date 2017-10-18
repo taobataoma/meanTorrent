@@ -540,18 +540,18 @@ module.exports = {
      * @clientBlackList
      *
      * download client black list
-     * all the list client can not download the torrent data
+     * all the list client can not announce or get any data
      *
      * @name:  client software name
      */
     clientBlackList: [
-      {name: 'Transmission/2.93'},
-      {name: 'Mozilla'},
-      {name: 'AppleWebKit'},
-      {name: 'Safari'},
-      {name: 'Chrome'},
-      {name: 'Lynx'},
-      {name: 'Opera'}
+      {name: 'Transmission/2.93', type: 'client'},
+      {name: 'Mozilla', type: 'browser'},
+      {name: 'AppleWebKit', type: 'browser'},
+      {name: 'Safari', type: 'browser'},
+      {name: 'Chrome', type: 'browser'},
+      {name: 'Lynx', type: 'browser'},
+      {name: 'Opera', type: 'browser'}
     ],
 
     /**

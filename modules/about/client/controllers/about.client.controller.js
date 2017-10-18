@@ -5,11 +5,12 @@
     .module('about')
     .controller('AboutController', AboutController);
 
-  AboutController.$inject = ['$scope', '$translate', 'getStorageLangService'];
+  AboutController.$inject = ['$scope', 'MeanTorrentConfig'];
 
-  function AboutController($scope, $translate, getStorageLangService) {
+  function AboutController($scope, MeanTorrentConfig) {
     var vm = this;
-    vm.lang = getStorageLangService.getLang();
+    vm.blackListConfig = MeanTorrentConfig.meanTorrentConfig.clientBlackList;
+    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
 
     vm.init = function () {
 

@@ -275,7 +275,7 @@
     },
     MY_TORRENT_RULES: {
       0: '这个种子文件是由你自己上传的，你可以对其做如下操作.',
-      1: '如需其它帮助，请与我们的管理员联系：<strong><a href="mailto:#">{{admin}}</a></strong>.'
+      1: '如需其它帮助，请与我们的 <strong><a href="mailto:{{admin}}">系统管理员</a></strong> 联系.'
     },
     TORRENT_SEED_USERS: '做种用户列表',
     TORRENT_LEECHER_USERS: '下载用户列表',
@@ -464,7 +464,8 @@
     ABOUT: {
       CLIENT_BLACK_LIST: '禁止客户端列表',
       MAKER_GROUP: '资源压制小组',
-      MAKER_GROUP_ADMIN: '资源压制小组配置管理'
+      MAKER_GROUP_ADMIN: '资源压制小组配置管理',
+      BLACK_TOOLTIP: '<h4>提示:</h4>下面列出的所有客户端都已被服务器禁止，使用它们将不能下载到任何数据, 如需其它帮助，请与我们的 <strong><a href="mailto:{{admin}}">系统管理员</a> </strong>联系.'
     },
 
     //collections views

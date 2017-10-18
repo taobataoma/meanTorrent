@@ -6,6 +6,24 @@
                     {{'ABOUT.CLIENT_BLACK_LIST' | translate}}
                 </h3>
             </span>
+
+            <div class="margin-top-10">
+                <div class="alert alert-warning" role="alert" style="padding: 10px 50px;">
+                    <span translate="ABOUT.BLACK_TOOLTIP" translate-values="{admin: vm.announce.admin}"></span>
+                </div>
+            </div>
+
+            <div class="row black-list">
+                <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="b in vm.blackListConfig">
+                    <div class="text-center black-item">
+                        <div>
+                            <h4>{{b.name}}</h4>
+                            <span>{{b.type}}</span>
+                            <i class="fa fa-ban text-danger black-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

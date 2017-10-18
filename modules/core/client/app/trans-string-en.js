@@ -275,7 +275,7 @@
     },
     MY_TORRENT_RULES: {
       0: 'This torrent file is uploaded by yourself, you have actions bellow.',
-      1: 'For additional assistance, please contact our administrator: <strong><a href="mailto:#">{{admin}}</a></strong>'
+      1: 'For additional assistance, please contact our <strong><a href="mailto:{{admin}}">administrator</a></strong>.'
     },
     TORRENT_SEED_USERS: 'Seed Users',
     TORRENT_LEECHER_USERS: 'Leecher Users',
@@ -464,7 +464,8 @@
     ABOUT: {
       CLIENT_BLACK_LIST: 'Client Black List',
       MAKER_GROUP: 'Torrents Maker Group',
-      MAKER_GROUP_ADMIN: 'Torrents Maker Group Configure'
+      MAKER_GROUP_ADMIN: 'Torrents Maker Group Configure',
+      BLACK_TOOLTIP: '<h4>Note:</h4>All the clients in the list was forbidden by server and can not announce or get any torrent data, For more help, please contact our <strong><a href="mailto:{{admin}}">administrator</a></strong>.'
     },
 
     //collections views
