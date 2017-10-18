@@ -359,7 +359,7 @@
                                             <li>
                                                 <span class="se-info">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
                                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                                      class="pull-right torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
+                                                      class="votes-info torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -530,7 +530,7 @@
                                                 <span class="release-date"
                                                       ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
                                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                                      class="pull-right torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
+                                                      class="votes-info torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -558,7 +558,7 @@
                                     </div>
                                     <table class="table">
                                         <tr ng-repeat="nm in vm.musicNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
-                                            ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
+                                            ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 11 ? 'hide-more' : '']">
                                             <td>
                                                 <div class="newest-item-big music-margin" ng-click="vm.openTorrentInfo(nm._id);">
                                                     <img class="img-responsive" torrent-logo="nm"

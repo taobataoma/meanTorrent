@@ -40,7 +40,7 @@
                                 <span class="release-date" ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
                                 <span class="se-info" ng-if="vm.torrentType=='tvserial'">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                      class="pull-right torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
+                                      class="votes-info torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                             </li>
                         </ul>
                     </div>
