@@ -455,7 +455,9 @@
       BUTTON_DONATE: 'Donate',
       DONATE_VIP: 'Donate a VIP',
       TORRENTS_LIST: 'Vip Torrents List',
-      TORRENTS_LIST_ERROR: 'Vip torrents list error'
+      TORRENTS_LIST_ERROR: 'Vip torrents list error',
+      VIP_TORRENTS_IS_LOADING: 'Vip torrents is loading...',
+      VIP_TORRENTS_IS_EMPTY: 'No Vip torrents of this type is founded!'
     },
 
     //about views

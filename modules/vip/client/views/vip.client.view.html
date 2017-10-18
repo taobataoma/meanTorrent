@@ -63,7 +63,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="torrent-list-info" ng-repeat="item in vm.pagedItems" ng-click="vm.openTorrentInfo(item._id);">
+                        <tr ng-if="vm.tooltipMsg">
+                            <td colspan="6">
+                                <div class="text-center margin-top-50 margin-bottom-30 padding-top-20 padding-bottom-50">
+                                    <h2>{{vm.tooltipMsg | translate}}</h2>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="torrent-list-info"
+                            ng-if="!vm.tooltipMsg"
+                            ng-repeat="item in vm.pagedItems" ng-click="vm.openTorrentInfo(item._id);">
                             <td class="col-md-7 td-text-overflow">
                                 <div class="media">
                                     <div class="media-left">

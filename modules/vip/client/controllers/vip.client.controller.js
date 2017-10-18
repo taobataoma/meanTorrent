@@ -38,6 +38,8 @@
       vm.pagedItems = [];
       vm.itemsPerPage = vm.itemsPerPageConfig.adminUserListPerPage;
       vm.currentPage = 1;
+
+      vm.tooltipMsg = 'VIP.VIP_TORRENTS_IS_LOADING';
       vm.figureOutItemsToDisplay();
     };
 
@@ -50,6 +52,11 @@
         vm.filterLength = items.total;
         vm.pagedItems = items.rows;
 
+        if (vm.pagedItems.length === 0) {
+          vm.tooltipMsg = 'VIP.VIP_TORRENTS_IS_EMPTY';
+        } else {
+          vm.tooltipMsg = undefined;
+        }
         if (callback) callback();
       });
     };

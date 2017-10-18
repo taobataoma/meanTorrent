@@ -455,7 +455,9 @@
       BUTTON_DONATE: '捐赠Vip',
       DONATE_VIP: '捐赠Vip',
       TORRENTS_LIST: 'Vip 资源专区',
-      TORRENTS_LIST_ERROR: 'Vip 资源获取失败'
+      TORRENTS_LIST_ERROR: 'Vip 资源获取失败',
+      VIP_TORRENTS_IS_LOADING: 'Vip资源正在获取, 请稍候...',
+      VIP_TORRENTS_IS_EMPTY: '没有找到该类的VIP种子资源!'
     },
 
     //about views
