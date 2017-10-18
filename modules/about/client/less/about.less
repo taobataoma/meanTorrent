@@ -12,29 +12,37 @@
         overflow: hidden;
 
         .fa {
-            font-size: 8em;
+            transition-property: transform, opacity;
+            transition-duration: .5s;
+            transition-timing-function: ease;
+            font-size: 7em;
         }
         h4 {
             color: #ddd;
+            position: relative;
+            z-index: 100;
         }
         span {
             color: #888;
         }
 
         &:hover {
+            .fa {
+                transform: scale(1.5);
+            }
             h4 {
                 color: #fff;
             }
             .black-icon {
-                opacity: 0.8;
+                opacity: 1;
             }
         }
     }
 
     .black-icon {
         position: absolute;
-        top: -30px;
-        right: -30px;
-        opacity: 0.3;
+        top: -20px;
+        right: -20px;
+        opacity: 0.5;
     }
 }
