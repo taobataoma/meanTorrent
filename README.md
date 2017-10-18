@@ -73,6 +73,8 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 25. Complete music torrents support, include __CD__ and __MTV__ sub type.
 26. Sports and variety type torrents support NOW!
 27. Software, game, picture, ebook type torrents support NOW!
+28. Admin can update or set users Vip attribute data manual in manage page.
+29. Admin or oper can set torrent 'VIP' attribute, all these torrents only __VIP__ user can list and download.
 
 #### Chat room feature:
 1. Users name list
@@ -83,8 +85,6 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 6. Chat message bubble style
 
 ## TODO
-- Other type torrent support.
-- VIP torrents list.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - Subject support, like region subject, [IMDB](http://www.imdb.com) TOP 100 subject etc.
 - VIP Donate function.
