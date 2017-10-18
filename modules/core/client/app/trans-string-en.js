@@ -23,7 +23,8 @@
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
     MENU_TORRENTS_ADMIN_EDAU: 'Announce Editor',
     MENU_ADMIN_OFFICIAL_INVITATION: 'Send official invitation',
-    MENU_ADMIN_MAKERGROUP: 'Resources Maker Group Configure',
+    MENU_ADMIN_MAKERGROUP: 'Torrents Maker Group Configure',
+    MENU_ADMIN_COLLECTIONS: 'Torrents Collections Configure',
     MENU_ADMIN_MESSAGES: 'System Messages',
     MENU_ADMIN_TRACE: 'System Traces',
     MENU_ADMIN_FORUMS_CONFIGURE: 'Forums Configure',
@@ -35,7 +36,7 @@
     MENU_ABOUT: 'About',
     MENU_ABOUT_RULES: 'Rules',
     MENU_ABOUT_BLACKLIST: 'Client Black List',
-    MENU_ABOUT_MAKERGROUP: 'Resources Maker Group',
+    MENU_ABOUT_MAKERGROUP: 'Torrents Maker Group',
     MENU_VIP: 'VIP',
     MENU_ADMIN: 'Admin',
 
@@ -154,7 +155,8 @@
       RANKING: 'Ranking',
       RULES: 'Rules',
       BLACK: 'Client Black List',
-      MAKER: 'Resources Maker Group',
+      MAKER: 'Torrents Maker Group',
+      COLLECTIONS: 'Torrents Collections',
       VIP: 'Vip',
       FORUM: 'Forum',
       ADMIN_USER_LIST: 'User List',
@@ -459,8 +461,13 @@
     //about views
     ABOUT: {
       CLIENT_BLACK_LIST: 'Client Black List',
-      MAKER_GROUP: 'Resources Maker Group',
-      MAKER_GROUP_ADMIN: 'Resources Maker Group Configure'
+      MAKER_GROUP: 'Torrents Maker Group',
+      MAKER_GROUP_ADMIN: 'Torrents Maker Group Configure'
+    },
+
+    //collections views
+    COLLECTIONS: {
+      ADMIN_MANAGE: 'Torrents Collections Configure'
     },
 
     //user settings

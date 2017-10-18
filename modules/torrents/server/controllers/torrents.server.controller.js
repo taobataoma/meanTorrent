@@ -82,48 +82,6 @@ exports.tvinfo = function (req, res) {
 };
 
 /**
- * searchcollection
- * @param req
- * @param res
- */
-exports.searchcollection = function (req, res) {
-  mtDebug.debugGreen('------- API: searchCollection --------------------');
-  mtDebug.debugGreen(req.params);
-
-  tmdb.searchCollection({
-    language: req.params.language,
-    query: req.query.query
-  }, function (err, info) {
-    if (err) {
-      res.status(900).send(err);
-    } else {
-      res.json(info);
-    }
-  });
-};
-
-/**
- * collectioninfo
- * @param req
- * @param res
- */
-exports.collectioninfo = function (req, res) {
-  mtDebug.debugGreen('------- API: searchCollection --------------------');
-  mtDebug.debugGreen(req.params);
-
-  tmdb.collectionInfo({
-    id: req.params.collectionid,
-    language: req.params.language
-  }, function (err, info) {
-    if (err) {
-      res.status(900).send(err);
-    } else {
-      res.json(info);
-    }
-  });
-};
-
-/**
  * upload torrent file
  * @param req
  * @param res
