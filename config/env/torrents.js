@@ -144,7 +144,7 @@ module.exports = {
      * @showDemoSignMessage:  if true, will show demo sign in message in sign in page, if your site is not demo site, please set it to false
      */
     sign: {
-      openSignup: false,
+      openSignup: true,
       allowSocialSignin: false,
       showDemoSignMessage: true
     },
