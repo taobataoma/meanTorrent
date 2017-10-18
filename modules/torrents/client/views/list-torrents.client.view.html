@@ -38,6 +38,7 @@
                                 <span class="release-date"
                                       ng-if="item.resource_detail_info.release_date">{{item.resource_detail_info.release_date}}</span>
                                 <span class="release-date" ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
+                                <span class="se-info" ng-if="vm.torrentType=='tvserial'">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                       class="pull-right torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                             </li>
@@ -207,6 +208,9 @@
 
                                         <span class="label label-hnr-info" ng-if="item.torrent_hnr"
                                               ng-click="vm.onHnRClicked(); $event.stopPropagation();">H&R</span>
+
+                                        <span class="label label-se-info" ng-if="vm.torrentType == 'tvserial'"
+                                              ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
 
                                         <span ng-repeat="t in item.torrent_tags">
                                             <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}"

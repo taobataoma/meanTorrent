@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="topone">
                     <div class="col-md-3 text-center">
-                        <div ng-class="{'img-thumbnail center-block torrent-logo': vm.torrentLocalInfo.torrent_type!='music'}">
+                        <div class="topone-logo" ng-class="{'img-thumbnail center-block torrent-logo': vm.torrentLocalInfo.torrent_type!='music'}">
                             <img torrent-logo="vm.torrentLocalInfo"
                                  ng-src="{{vm.TGI.getTorrentTopOneImage(vm.torrentLocalInfo)}}"
                                  alt="{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}">
@@ -477,6 +477,9 @@
                     <div class="list-all-tags">
                         <span class="label label-release label-warning">{{ vm.torrentLocalInfo.resource_detail_info.release_date}}</span>
                         <span class="label label-hnr-info" ng-if="vm.torrentLocalInfo.torrent_hnr">H&R</span>
+                        <span class="label label-se-info" ng-if="vm.torrentLocalInfo.torrent_type == 'tvserial'">
+                            S{{vm.torrentLocalInfo.torrent_seasons}}E{{vm.torrentLocalInfo.torrent_episodes}}
+                        </span>
                         <span ng-repeat="t in vm.torrentLocalInfo.torrent_tags">
                             <span class="label label-tag">
                                 {{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
