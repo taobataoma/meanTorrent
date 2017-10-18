@@ -27,6 +27,14 @@
         data: {
           pageTitle: 'PAGETITLE.BLACK'
         }
+      })
+      .state('about.maker', {
+        url: '/maker',
+        templateUrl: '/modules/about/client/views/maker.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.MAKER'
+        }
       });
   }
 }());

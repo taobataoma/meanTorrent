@@ -27,6 +27,11 @@
       state: 'about.black',
       position: 2
     });
+    menuService.addSubMenuItem('topbar', 'about', {
+      title: 'MENU_ABOUT_MAKERGROUP',
+      state: 'about.maker',
+      position: 2
+    });
 
   }
 }());

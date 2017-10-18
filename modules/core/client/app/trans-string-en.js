@@ -23,6 +23,7 @@
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
     MENU_TORRENTS_ADMIN_EDAU: 'Announce Editor',
     MENU_ADMIN_OFFICIAL_INVITATION: 'Send official invitation',
+    MENU_ADMIN_MAKERGROUP: 'Resources Maker Group Configure',
     MENU_ADMIN_MESSAGES: 'System Messages',
     MENU_ADMIN_TRACE: 'System Traces',
     MENU_ADMIN_FORUMS_CONFIGURE: 'Forums Configure',
@@ -34,6 +35,7 @@
     MENU_ABOUT: 'About',
     MENU_ABOUT_RULES: 'Rules',
     MENU_ABOUT_BLACKLIST: 'Client Black List',
+    MENU_ABOUT_MAKERGROUP: 'Resources Maker Group',
     MENU_VIP: 'VIP',
     MENU_ADMIN: 'Admin',
 
@@ -152,6 +154,7 @@
       RANKING: 'Ranking',
       RULES: 'Rules',
       BLACK: 'Client Black List',
+      MAKER: 'Resources Maker Group',
       VIP: 'Vip',
       FORUM: 'Forum',
       ADMIN_USER_LIST: 'User List',
@@ -378,7 +381,7 @@
     TORRENTS_SUBMIT_UPLOAD: '7. Agree the rules and submit your resources',
     SUBMIT_BUTTON: 'OK, SUBMIT NOW',
     CANCEL_BUTTON: 'NO, CANCEL IT',
-    AGREE_RULES: 'I agree and already read all the rules, <a href="#">read here</a>',
+    AGREE_RULES: 'I agree and already read all the rules, <a href="/about/rules">read here</a>',
     DOWNLOAD_TORRENT: 'Download Torrent',
 
     ENTER_MUSIC_TITLE: '3. Please enter the artist name and music/album title',
@@ -455,7 +458,9 @@
 
     //about views
     ABOUT: {
-      CLIENT_BLACK_LIST: 'Client Black List'
+      CLIENT_BLACK_LIST: 'Client Black List',
+      MAKER_GROUP: 'Resources Maker Group',
+      MAKER_GROUP_ADMIN: 'Resources Maker Group Configure'
     },
 
     //user settings

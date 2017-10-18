@@ -23,9 +23,10 @@
     MENU_TORRENTS_ADMIN: '种子管理',
     MENU_TORRENTS_ADMIN_EDAU: '种子修改器',
     MENU_ADMIN_OFFICIAL_INVITATION: '发送官方邀请',
+    MENU_ADMIN_MAKERGROUP: '资源压制小组管理',
     MENU_ADMIN_MESSAGES: '系统消息',
     MENU_ADMIN_TRACE: '系统日志',
-    MENU_ADMIN_FORUMS_CONFIGURE: '论坛配置',
+    MENU_ADMIN_FORUMS_CONFIGURE: '论坛配置管理',
     MENU_ADMIN_FORUMS_MANAGEMENT: '论坛管理',
     MENU_USERS_ADMIN: '用户管理',
     MENU_UPLOAD: '发布',
@@ -34,6 +35,7 @@
     MENU_ABOUT: '关于',
     MENU_ABOUT_RULES: '站内规则',
     MENU_ABOUT_BLACKLIST: '禁止客户端列表',
+    MENU_ABOUT_MAKERGROUP: '资源压制小组',
     MENU_VIP: 'VIP',
     MENU_ADMIN: '管理中心',
 
@@ -152,6 +154,7 @@
       RANKING: '排行榜',
       RULES: '规则',
       BLACK: '禁止客户端列表',
+      MAKER: '资源压制小组',
       VIP: 'Vip',
       FORUM: '论坛',
       ADMIN_USER_LIST: '用户管理',
@@ -378,7 +381,7 @@
     TORRENTS_SUBMIT_UPLOAD: '7. 同意上传协议，并提交',
     SUBMIT_BUTTON: '已备妥，现在提交',
     CANCEL_BUTTON: '算了，以后再说',
-    AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="#">协议条款</a>',
+    AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="/about/rules">协议条款</a>',
     DOWNLOAD_TORRENT: '下载种子',
 
     ENTER_MUSIC_TITLE: '3. 请输入艺人名称和音乐/专辑标题',
@@ -455,7 +458,9 @@
 
     //about views
     ABOUT: {
-      CLIENT_BLACK_LIST: '禁止客户端列表'
+      CLIENT_BLACK_LIST: '禁止客户端列表',
+      MAKER_GROUP: '资源压制小组',
+      MAKER_GROUP_ADMIN: '资源压制小组配置管理'
     },
 
     //user settings
