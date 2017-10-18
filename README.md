@@ -211,7 +211,7 @@ such as:
       announcePrefix: '[CHD.im].',
       admin: 'admin@chd.im',
       baseUrl: 'http://chd.im',
-      clientBlackListUrl: 'http://chd.im/client_black_list',
+      clientBlackListUrl: '/about/black',
       privateTorrentCmsMode: true
     },
 ```
