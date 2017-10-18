@@ -2,6 +2,7 @@
 
 .black-list {
     .black-item {
+        cursor: pointer;
         position: relative;
         border: solid 1px #333;
         border-radius: 4px;
@@ -17,7 +18,16 @@
             color: #ddd;
         }
         span {
-            color: #999;
+            color: #888;
+        }
+
+        &:hover {
+            h4 {
+                color: #fff;
+            }
+            .black-icon {
+                opacity: 0.8;
+            }
         }
     }
 
