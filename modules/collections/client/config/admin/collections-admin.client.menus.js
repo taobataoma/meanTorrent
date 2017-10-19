@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('about.admin')
+    .module('collections.admin')
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService'];
@@ -11,7 +11,8 @@
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_ADMIN_COLLECTIONS',
       state: 'admin.collections',
-      position: 6
+      position: 5,
+      divider: true
     });
 
   }

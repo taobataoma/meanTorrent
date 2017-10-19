@@ -30,7 +30,7 @@
     menuService.addSubMenuItem('topbar', 'about', {
       title: 'MENU_ABOUT_MAKERGROUP',
       state: 'about.maker',
-      position: 2
+      position: 3
     });
 
   }

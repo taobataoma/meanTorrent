@@ -23,7 +23,6 @@
     MENU_TORRENTS_ADMIN: '种子管理',
     MENU_TORRENTS_ADMIN_EDAU: '种子修改器',
     MENU_ADMIN_OFFICIAL_INVITATION: '发送官方邀请',
-    MENU_ADMIN_MAKERGROUP: '资源压制小组管理',
     MENU_ADMIN_COLLECTIONS: '资源系列管理',
     MENU_ADMIN_MESSAGES: '系统消息',
     MENU_ADMIN_TRACE: '系统日志',
@@ -464,7 +463,6 @@
     ABOUT: {
       CLIENT_BLACK_LIST: '禁止客户端列表',
       MAKER_GROUP: '资源压制小组',
-      MAKER_GROUP_ADMIN: '资源压制小组配置管理',
       BLACK_TOOLTIP: '<h4>提示:</h4>下面列出的所有客户端都已被服务器禁止，使用它们将不能下载到任何数据, 如需其它帮助，请与我们的 <strong><a href="mailto:{{admin}}">系统管理员</a> </strong>联系.'
     },
 

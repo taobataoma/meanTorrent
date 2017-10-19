@@ -23,7 +23,6 @@
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
     MENU_TORRENTS_ADMIN_EDAU: 'Announce Editor',
     MENU_ADMIN_OFFICIAL_INVITATION: 'Send official invitation',
-    MENU_ADMIN_MAKERGROUP: 'Torrents Maker Group Configure',
     MENU_ADMIN_COLLECTIONS: 'Torrents Collections Configure',
     MENU_ADMIN_MESSAGES: 'System Messages',
     MENU_ADMIN_TRACE: 'System Traces',
@@ -464,7 +463,6 @@
     ABOUT: {
       CLIENT_BLACK_LIST: 'Client Black List',
       MAKER_GROUP: 'Torrents Maker Group',
-      MAKER_GROUP_ADMIN: 'Torrents Maker Group Configure',
       BLACK_TOOLTIP: '<h4>Note:</h4>All the clients in the list was forbidden by server and can not announce or get any torrent data, For more help, please contact our <strong><a href="mailto:{{admin}}">administrator</a></strong>.'
     },
 
