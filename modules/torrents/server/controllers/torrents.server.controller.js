@@ -10,6 +10,7 @@ var path = require('path'),
   multer = require('multer'),
   moment = require('moment'),
   User = mongoose.model('User'),
+  Maker = mongoose.model('Maker'),
   Peer = mongoose.model('Peer'),
   Subtitle = mongoose.model('Subtitle'),
   Thumb = mongoose.model('Thumb'),
@@ -565,6 +566,12 @@ exports.create = function (req, res) {
           req.user.update({
             $inc: {uptotal: 1}
           }).exec();
+          //update maker torrent count
+          if (torrent.maker) {
+            Maker.update({_id: torrent.maker}, {
+              $inc: {torrent_count: 1}
+            }).exec();
+          }
 
           //scrape torrent status info in public cms mode
           if (!config.meanTorrentConfig.announce.privateTorrentCmsMode && config.meanTorrentConfig.scrapeTorrentStatus.onTorrentUpload) {
@@ -1041,6 +1048,10 @@ exports.delete = function (req, res) {
   Subtitle.remove({
     torrent: torrent._id
   });
+  //update maker torrent count
+  torrent.maker.update({
+    $inc: {torrent_count: -1}
+  }).exec();
 
   //update user uptotal fields
   torrent.user.update({
@@ -1202,6 +1213,7 @@ exports.list = function (req, res) {
     Torrent.find(condition)
       .sort(sort)
       .populate('user', 'username displayName isVip')
+      .populate('maker', 'name')
       .skip(skip)
       .limit(limit)
       .exec(function (err, torrents) {
@@ -1350,6 +1362,7 @@ exports.torrentByID = function (req, res, next, id) {
   var findTorrents = function (callback) {
     Torrent.findById(id)
       .populate('user', 'username displayName profileImageURL isVip')
+      .populate('maker', 'name')
       .populate('_thumbs.user', 'username displayName profileImageURL isVip uploaded downloaded')
       .populate('_ratings.user', 'username displayName profileImageURL isVip uploaded downloaded')
       .populate({
@@ -1395,11 +1408,12 @@ exports.torrentByID = function (req, res, next, id) {
 
       mtDebug.debugGreen(condition);
 
-      var fields = 'user torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_seasons torrent_episodes torrent_size torrent_sale_status torrent_type torrent_hnr torrent_vip torrent_sale_expires createdat';
+      var fields = 'user maker torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_seasons torrent_episodes torrent_size torrent_sale_status torrent_type torrent_hnr torrent_vip torrent_sale_expires createdat';
 
       Torrent.find(condition, fields)
         .sort('-createdat')
         .populate('user', 'username displayName isVip')
+        .populate('maker', 'name')
         .exec(function (err, torrents) {
           if (err) {
             callback(err);

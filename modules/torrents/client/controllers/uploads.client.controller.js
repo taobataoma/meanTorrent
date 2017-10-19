@@ -21,6 +21,7 @@
     vm.progress = 0;
     vm.torrentInfo = null;
     vm.tags = [];
+    vm.maker = 'NULL';
     vm.videoNfo = '';
     vm.customTorrent = {};
 
@@ -351,6 +352,7 @@
 
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
+        maker: vm.maker === 'NULL' ? undefined : vm.maker,
         torrent_filename: vm.torrentInfo.filename,
         torrent_type: 'movie',
         torrent_tags: t,
@@ -390,6 +392,7 @@
 
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
+        maker: vm.maker === 'NULL' ? undefined : vm.maker,
         torrent_filename: vm.torrentInfo.filename,
         torrent_type: 'tvserial',
         torrent_seasons: vm.selectedSeasons,
@@ -450,6 +453,7 @@
 
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
+        maker: vm.maker === 'NULL' ? undefined : vm.maker,
         torrent_filename: vm.torrentInfo.filename,
         torrent_type: vm.selectedType,
         torrent_tags: t,

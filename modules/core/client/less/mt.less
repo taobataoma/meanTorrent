@@ -1434,6 +1434,15 @@ body {
     }
 }
 
+.maker-list {
+    &:not(:first-child) {
+        &::before {
+            content: " | ";
+            font-weight: bold;
+        }
+    }
+}
+
 .set-score-popover {
     max-width: 250px;
     max-height: 150px;

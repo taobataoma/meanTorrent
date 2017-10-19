@@ -379,7 +379,9 @@
     SELECT_SE: '4.1. Please select number of seasons and input number of episodes',
     SELECT_TAGS: '5. Please select any tags for the resources',
     ENTER_VIDEO_NFO: '6. Please enter video and audio NFO',
-    TORRENTS_SUBMIT_UPLOAD: '7. Agree the rules and submit your resources',
+    SELECT_MAKER_GROUP: '7. Please select torrent maker group upload from',
+    MAKER_NULL: 'NULL',
+    TORRENTS_SUBMIT_UPLOAD: '8. Agree the rules and submit your resources',
     SUBMIT_BUTTON: 'OK, SUBMIT NOW',
     CANCEL_BUTTON: 'NO, CANCEL IT',
     AGREE_RULES: 'I agree and already read all the rules, <a href="/about/rules">read here</a>',
@@ -463,7 +465,12 @@
     ABOUT: {
       CLIENT_BLACK_LIST: 'Client Black List',
       MAKER_GROUP: 'Torrents Maker Group',
-      BLACK_TOOLTIP: '<h4>Note:</h4>All the clients in the list was forbidden by server and can not announce or get any torrent data, For more help, please contact our <strong><a href="mailto:{{admin}}">administrator</a></strong>.'
+      BLACK_TOOLTIP: '<h4>Note:</h4>All the clients in the list was forbidden by server and can not announce or get any torrent data, For more help, please contact our <strong><a href="mailto:{{admin}}">administrator</a></strong>.',
+      FORM_MAKER_NAME: 'Maker Group Name',
+      FORM_MAKER_DESC: 'Maker Group Description',
+      FORM_MAKER_FOR: 'Create maker group for - {{name}}',
+      MAKER_CREATE_SUCCESSFULLY: 'Create maker group successfully',
+      MAKER_CREATE_FAILED: 'Create maker group failed'
     },
 
     //collections views
@@ -525,9 +532,11 @@
       STATUS: 'Status',
       NORMAL: 'normal',
       BANNED: 'banned',
-      BTN_BAN: 'ban',
-      BTN_UNBAN: 'unban',
+      BTN_BAN: 'Ban',
+      BTN_UNBAN: 'Unban',
+      BTN_CREATE_MAKER: 'Create Maker',
       SEALED: 'sealed',
+      MAKER: 'Maker Group',
       VIP_START_AT: 'Vip start at',
       VIP_END_AT: 'Vip end at',
       UPLOADED: 'Total uploaded',

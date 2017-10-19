@@ -79,6 +79,10 @@ var TorrentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  maker: {
+    type: Schema.Types.ObjectId,
+    ref: 'Maker'
+  },
   info_hash: {
     type: String,
     default: '',

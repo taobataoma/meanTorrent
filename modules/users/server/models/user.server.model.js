@@ -200,6 +200,11 @@ var UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  makers: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Maker'
+  }],
+
   created: {
     type: Date,
     default: Date.now

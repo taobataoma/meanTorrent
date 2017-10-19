@@ -22,6 +22,7 @@ module.exports = function () {
           email: usernameOrEmail.toLowerCase()
         }]
       }).populate('invited_by', 'username displayName profileImageURL')
+        .populate('makers', 'name')
         .exec(function (err, user) {
           console.log(user);
           if (err) {

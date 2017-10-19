@@ -155,6 +155,7 @@ exports.list = function (req, res) {
     User.find(condition, '-salt -password -providerData')
       .sort('-created')
       .populate('invited_by', 'username displayName profileImageURL isVip uploaded downloaded')
+      .populate('makers', 'name')
       .skip(skip)
       .limit(limit)
       .exec(function (err, users) {
@@ -508,14 +509,17 @@ exports.userByID = function (req, res, next, id) {
     });
   }
 
-  User.findById(id, '-salt -password -providerData').populate('invited_by', 'username displayName profileImageURL').exec(function (err, user) {
-    if (err) {
-      return next(err);
-    } else if (!user) {
-      return next(new Error('Failed to load user ' + id));
-    }
+  User.findById(id, '-salt -password -providerData')
+    .populate('invited_by', 'username displayName profileImageURL')
+    .populate('makers', 'name')
+    .exec(function (err, user) {
+      if (err) {
+        return next(err);
+      } else if (!user) {
+        return next(new Error('Failed to load user ' + id));
+      }
 
-    req.model = user;
-    next();
-  });
+      req.model = user;
+      next();
+    });
 };

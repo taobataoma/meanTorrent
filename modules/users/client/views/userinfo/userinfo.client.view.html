@@ -54,6 +54,12 @@
                     <mark>{{ vm.user.roles[0] }}</mark>
                 </dd>
 
+                <dt class="h-line">{{ 'STATUS_FIELD.MAKER' | translate}}：</dt>
+                <dd class="h-line">
+                    <span ng-class="maker-list" ng-repeat="m in vm.user.makers">{{m.name}}</span>
+                    <span ng-if="vm.user.makers.length==0">-</span>
+                </dd>
+
                 <dt class="h-line">{{ 'STATUS_FIELD.STATUS' | translate}}：</dt>
                 <dd class="h-line">
                     <span ng-class="{'span-banned': vm.user.status == 'banned'}">{{ 'STATUS_FIELD.' + vm.user.status.toUpperCase() | translate }}</span>

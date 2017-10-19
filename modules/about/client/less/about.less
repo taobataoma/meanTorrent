@@ -48,3 +48,36 @@
         opacity: 0.5;
     }
 }
+
+.maker-side-overlay {
+    top: 50px !important;
+    @media (min-width: @screen-sm-min) {
+        width: 450px;
+    }
+    @media (max-width: @screen-xs-max) {
+        min-width: ~"calc(100% - 50px)";
+    }
+    padding: 30px 15px;
+    .maker-form {
+        margin-top: 20px;
+        input {
+            width: 100%;
+        }
+        textarea {
+            margin-top: 20px;
+            width: 100%;
+            height: 150px;
+        }
+    }
+    .bottom-control {
+        background-color: #fdfdfd;
+        border-top: solid 1px #e6e6e6;
+        width: 100%;
+        height: 50px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 8px 10px;
+    }
+
+}

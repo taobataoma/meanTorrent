@@ -255,6 +255,7 @@ module.exports = {
         AdminTorrentSetSaleType: {name: 'AdminTorrentSetSaleType', enable: true},
         AdminTorrentSetRecommendLevel: {name: 'AdminTorrentSetRecommendLevel', enable: true},
         AdminTorrentSetReviewedStatus: {name: 'AdminTorrentSetReviewedStatus', enable: true},
+        OperCreateMakerGroup: {name: 'OperCreateMakerGroup', enable: true},
 
         userInvitationExchange: {name: 'userInvitationExchange', enable: true},
         adminRemoveHnrWarning: {name: 'adminRemoveHnrWarning', enable: true},

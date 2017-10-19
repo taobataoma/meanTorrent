@@ -22,9 +22,11 @@ module.exports = function (app) {
   passport.deserializeUser(function (id, done) {
     User.findOne({
       _id: id
-    }, '-salt -password').populate('invited_by', 'username displayName profileImageURL').exec(function (err, user) {
-      done(err, user);
-    });
+    }, '-salt -password')
+      .populate('invited_by', 'username displayName profileImageURL')
+      .populate('makers', 'name').exec(function (err, user) {
+        done(err, user);
+      });
   });
 
   // Initialize strategies

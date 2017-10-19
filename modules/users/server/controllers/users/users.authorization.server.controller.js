@@ -19,14 +19,17 @@ exports.userByID = function (req, res, next, id) {
 
   User.findOne({
     _id: id
-  }).populate('invited_by', 'username displayName profileImageURL').exec(function (err, user) {
-    if (err) {
-      return next(err);
-    } else if (!user) {
-      return next(new Error('Failed to load User ' + id));
-    }
+  })
+    .populate('invited_by', 'username displayName profileImageURL')
+    .populate('makers', 'name')
+    .exec(function (err, user) {
+      if (err) {
+        return next(err);
+      } else if (!user) {
+        return next(new Error('Failed to load User ' + id));
+      }
 
-    req.profile = user;
-    next();
-  });
+      req.profile = user;
+      next();
+    });
 };

@@ -6,10 +6,10 @@
     .controller('UserController', UserController);
 
   UserController.$inject = ['$scope', '$state', '$window', 'Authentication', 'userResolve', 'Notification', 'NotifycationService', 'MeanTorrentConfig',
-    'AdminService', 'ScoreLevelService', 'DebugConsoleService', 'TorrentGetInfoServices'];
+    'AdminService', 'ScoreLevelService', 'DebugConsoleService', 'TorrentGetInfoServices', 'SideOverlay', 'MakerGroupService'];
 
   function UserController($scope, $state, $window, Authentication, user, Notification, NotifycationService, MeanTorrentConfig,
-                          AdminService, ScoreLevelService, mtDebug, TorrentGetInfoServices) {
+                          AdminService, ScoreLevelService, mtDebug, TorrentGetInfoServices, SideOverlay, MakerGroupService) {
     var vm = this;
     vm.TGI = TorrentGetInfoServices;
     vm.authentication = Authentication;
@@ -26,6 +26,7 @@
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
 
     vm.searchTags = [];
+    vm.maker = {};
 
     vm.setUserScorePopover = {
       title: 'SCORE_TITLE',
@@ -45,6 +46,7 @@
       isOpen: false
     };
 
+    mtDebug.info(vm.user);
     /**
      * remove
      * @param user
@@ -149,6 +151,51 @@
       function onError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'SET_VIP_MONTHS_FAILED');
       }
+    };
+
+    /**
+     * showMakerGroup
+     * @param evt
+     */
+    vm.showMakerGroup = function (evt) {
+      vm.maker = {};
+      SideOverlay.open(evt, 'makerSlide');
+    };
+
+    /**
+     * hideTagsPopup
+     */
+    vm.hideMakerPopup = function () {
+      SideOverlay.close(null, 'makerSlide');
+    };
+
+    /**
+     * createMakerGroup
+     */
+    vm.createMakerGroup = function () {
+      vm.maker.userId = vm.user._id;
+      var maker = new MakerGroupService(vm.maker);
+
+      mtDebug.info(maker);
+
+      maker.$save(function (response) {
+        successCallback(response);
+      }, function (errorResponse) {
+        errorCallback(errorResponse);
+      });
+
+      function successCallback(res) {
+        vm.maker = {};
+        vm.user = res;
+        NotifycationService.showSuccessNotify('ABOUT.MAKER_CREATE_SUCCESSFULLY');
+        SideOverlay.close(null, 'makerSlide');
+      }
+
+      function errorCallback(res) {
+        vm.maker = {};
+        NotifycationService.showErrorNotify(res.data.message, 'ABOUT.MAKER_CREATE_FAILED');
+      }
+
     };
 
     /**

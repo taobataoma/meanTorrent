@@ -72,10 +72,23 @@
                 <dd class="h-line">
                     <mark>{{ vm.user.roles[0] }}</mark>
                     <div class="pull-right" ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isAdmin">
-                        <select ng-model="vm.selectedRole" ng-change="vm.onUserRoleChanged();">
+                        <select class="width-100" ng-model="vm.selectedRole" ng-change="vm.onUserRoleChanged();">
                             <option ng-repeat="r in vm.userRolesConfig" value="{{r}}">{{ r }}
                             </option>
                         </select>
+                    </div>
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.MAKER' | translate}}：</dt>
+                <dd class="h-line">
+                    <span ng-class="maker-list" ng-repeat="m in vm.user.makers">{{m.name}}</span>
+                    <span ng-if="vm.user.makers.length==0">-</span>
+
+                    <div class="pull-right"
+                         ng-if="vm.authentication.user.isOper && vm.user.makers.length==0">
+                        <button class="btn btn-default btn-xs btn-width-100" ng-click="vm.showMakerGroup($event);">
+                            {{'STATUS_FIELD.BTN_CREATE_MAKER' | translate}}
+                        </button>
                     </div>
                 </dd>
 
@@ -230,6 +243,25 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.replies }}</dd>
             </dl>
+        </div>
+    </div>
+
+    <div id="makerSlide" side-overlay="right" side-class="maker-side-overlay" side-close-on-esc side-modal>
+        <h4 translate="ABOUT.FORM_MAKER_FOR" translate-values="{name: vm.user.displayName}"></h4>
+        <div class="maker-form">
+            <input type="text" class="form-control" id="name" placeholder="{{'ABOUT.FORM_MAKER_NAME' | translate}}"
+                   ng-model="vm.maker.name" autofocus>
+
+            <textarea class="form-control" id="desc" placeholder="{{'ABOUT.FORM_MAKER_DESC' | translate}}"
+                      ng-model="vm.maker.desc"></textarea>
+        </div>
+
+        <div class="bottom-control">
+            <button class="btn btn-success btn-width-100"
+                    ng-disabled="!vm.maker.name || !vm.maker.desc"
+                    ng-click="vm.createMakerGroup();">{{ 'BUTTON_SAVE' | translate }}
+            </button>
+            <button class="btn btn-default btn-width-100" ng-click="vm.hideMakerPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
         </div>
     </div>
 

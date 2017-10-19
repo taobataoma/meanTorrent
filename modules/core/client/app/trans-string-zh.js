@@ -379,7 +379,9 @@
     SELECT_SE: '4.1. 请选择电视剧季数并输入本资源为本剧第几集',
     SELECT_TAGS: '5. 请为资源选择合适的标签',
     ENTER_VIDEO_NFO: '6. 请输入视频和音频的NFO信息',
-    TORRENTS_SUBMIT_UPLOAD: '7. 同意上传协议，并提交',
+    SELECT_MAKER_GROUP: '7. 请选择你上传时使用的资源压制小组',
+    MAKER_NULL: '无',
+    TORRENTS_SUBMIT_UPLOAD: '8. 同意上传协议，并提交',
     SUBMIT_BUTTON: '已备妥，现在提交',
     CANCEL_BUTTON: '算了，以后再说',
     AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="/about/rules">协议条款</a>',
@@ -463,7 +465,12 @@
     ABOUT: {
       CLIENT_BLACK_LIST: '禁止客户端列表',
       MAKER_GROUP: '资源压制小组',
-      BLACK_TOOLTIP: '<h4>提示:</h4>下面列出的所有客户端都已被服务器禁止，使用它们将不能下载到任何数据, 如需其它帮助，请与我们的 <strong><a href="mailto:{{admin}}">系统管理员</a> </strong>联系.'
+      BLACK_TOOLTIP: '<h4>提示:</h4>下面列出的所有客户端都已被服务器禁止，使用它们将不能下载到任何数据, 如需其它帮助，请与我们的 <strong><a href="mailto:{{admin}}">系统管理员</a> </strong>联系.',
+      FORM_MAKER_NAME: '资源压制小组名称',
+      FORM_MAKER_DESC: '资源压制小组简介',
+      FORM_MAKER_FOR: '创建资源压制小组 - {{name}}',
+      MAKER_CREATE_SUCCESSFULLY: '资源压制小组创建成功',
+      MAKER_CREATE_FAILED: '资源压制小组创建失败'
     },
 
     //collections views
@@ -527,7 +534,9 @@
       BANNED: '被禁止',
       BTN_BAN: '禁止',
       BTN_UNBAN: '解禁',
+      BTN_CREATE_MAKER: '创建小组',
       SEALED: '冻结',
+      MAKER: '资源压制小组',
       VIP_START_AT: 'Vip 资格开始于',
       VIP_END_AT: 'Vip 资格结束于',
       UPLOADED: '总上传量',

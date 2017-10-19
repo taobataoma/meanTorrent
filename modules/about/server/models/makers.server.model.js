@@ -10,14 +10,14 @@ var mongoose = require('mongoose'),
  * Maker Schema
  */
 var MakerSchema = new Schema({
-  founder: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
   name: {
     type: String,
     unique: 'GROUP_NAME_ALREADY_EXISTS',
-    required: 'PLEASE_ENTER_GROUP_NAME',
+    uppercase: true,
     trim: true,
     default: ''
   },
@@ -30,6 +30,10 @@ var MakerSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
+  torrent_count: {
+    type: Number,
+    default: 0
+  },
   vote_average: {
     type: Number,
     default: 0

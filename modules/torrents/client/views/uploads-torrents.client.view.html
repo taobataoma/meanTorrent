@@ -55,7 +55,23 @@
     <div ng-show="vm.selectedType" ng-include="vm.getIncludeUploadTemplateID(vm.selectedType);"></div>
 
     <div class="row margin-bottom-40 margin-top-50" ng-show="vm.showAgreeAndSubmit || vm.customTorrent.detail">
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-xs-12">
+            <legend class="small-legend" translate="SELECT_MAKER_GROUP"></legend>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <label class="radio-inline">
+                    <input type="radio" name="maker_NULL" ng-model="vm.maker"
+                           id="maker_NULL"
+                           value="NULL"> {{'MAKER_NULL' | translate}}
+                </label>
+                <label class="radio-inline" ng-repeat="m in vm.user.makers">
+                    <input type="radio" name="maker_{{m.name}}" ng-model="vm.maker"
+                           id="maker_{{m.name}}"
+                           value="{{m._id}}"> {{m.name}}
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 margin-top-50">
             <legend class="small-legend" translate="TORRENTS_SUBMIT_UPLOAD"></legend>
             <div class="col-sm-6 col-sm-offset-3 text-center">
                 <label class="checkbox text-uppercase">
