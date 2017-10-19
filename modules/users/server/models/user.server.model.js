@@ -235,6 +235,7 @@ UserSchema.pre('save', function (next) {
 
     if (count === 0) {
       user.roles = ['admin'];
+      updateOperAdminFlag(user);
     }
 
     next();
