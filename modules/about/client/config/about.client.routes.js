@@ -36,6 +36,14 @@
           pageTitle: 'PAGETITLE.MAKER'
         }
       })
+      .state('about.group', {
+        url: '/maker/:makerId',
+        templateUrl: '/modules/about/client/views/maker-view.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.MAKER'
+        }
+      })
       .state('about.operlist', {
         url: '/operlist',
         templateUrl: '/modules/about/client/views/operlist.client.view.html',

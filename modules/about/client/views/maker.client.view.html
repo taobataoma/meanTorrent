@@ -15,7 +15,9 @@
 
             <div class="row maker-group-list">
                 <div class="col-sm-6" ng-repeat="m in vm.makerList">
-                    <div class="text-center group-item" ng-mouseenter="vm.spinCog($event, m.name)" ng-mouseleave="vm.stopCog($event, m.name)">
+                    <div class="text-center group-item"
+                         ui-sref="about.group({ makerId: m._id })"
+                         ng-mouseenter="vm.spinCog($event, m.name)" ng-mouseleave="vm.stopCog($event, m.name)">
                         <div class="h3">{{m.name}}</div>
 
                         <span>{{'ABOUT.GROUP_FOUNDER' | translate}}</span>
