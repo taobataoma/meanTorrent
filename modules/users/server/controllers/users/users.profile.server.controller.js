@@ -149,8 +149,8 @@ exports.changeProfilePicture = function (req, res) {
 
             s3.deleteObject(params, function (err) {
               if (err) {
-                console.log('Error occurred while deleting old profile picture.');
-                console.log('Check if you have sufficient permissions : ' + err);
+                mtDebug.debugRed('Error occurred while deleting old profile picture.');
+                mtDebug.debugRed('Check if you have sufficient permissions : ' + err);
               }
 
               resolve();
@@ -166,7 +166,7 @@ exports.changeProfilePicture = function (req, res) {
 
               // If file didn't exist, no need to reject promise
               if (unlinkError.code === 'ENOENT') {
-                console.log('Removing profile image failed because file did not exist.');
+                mtDebug.debugRed('Removing profile image failed because file did not exist.');
                 return resolve();
               }
 
