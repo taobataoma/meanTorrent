@@ -17,13 +17,15 @@ exports.invokeRolesPolicies = function () {
     allows: [
       {resources: '/api/makers', permissions: '*'},
       {resources: '/api/makers/create/:userId', permissions: '*'},
-      {resources: '/api/makers/:makerId', permissions: '*'}
+      {resources: '/api/makers/:makerId', permissions: '*'},
+      {resources: '/api/makers/:makerId/rating', permissions: '*'}
     ]
   }, {
     roles: ['user'],
     allows: [
       {resources: '/api/makers', permissions: ['get']},
-      {resources: '/api/makers/:makerId', permissions: ['get']}
+      {resources: '/api/makers/:makerId', permissions: ['get']},
+      {resources: '/api/makers/:makerId/rating', permissions: ['put']}
     ]
   }]);
 };

@@ -488,7 +488,9 @@
       DELETE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
       DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this maker group?',
       DELETE_SUCCESSFULLY: 'Maker group deleted successfully',
-      DELETE_FAILED: 'Maker group deleted failed'
+      DELETE_FAILED: 'Maker group deleted failed',
+      RATING_SUCCESSFULLY: 'Rating for maker group successfully',
+      RATING_FAILED: 'Rating for maker group failed'
     },
 
     //collections views

@@ -7,6 +7,24 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
+ * rating Schema
+ */
+var RatingSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  vote: {
+    type: Number,
+    default: 0
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+/**
  * Maker Schema
  */
 var MakerSchema = new Schema({
@@ -46,6 +64,7 @@ var MakerSchema = new Schema({
     type: Number,
     default: 0
   },
+  _ratings: [RatingSchema],
   createdAt: {
     type: Date,
     default: Date.now

@@ -123,6 +123,8 @@
         makerId: $state.params.makerId
       }, function (data) {
         vm.maker = data;
+        vm.rating_vote = vm.maker.vote_average;
+
         mtDebug.info(data);
 
         vm.buildPager();
@@ -236,6 +238,24 @@
             NotifycationService.showErrorNotify(res.data.message, 'ABOUT.DELETE_FAILED');
           });
         });
+    };
+
+    /**
+     * ratingMaker
+     * @param item
+     */
+    vm.ratingMaker = function (item) {
+      item.$rating({
+        vote: vm.rating_vote
+      }, function (res) {
+        vm.maker = res;
+        vm.rating_vote = vm.maker.vote_average;
+
+        NotifycationService.showSuccessNotify('ABOUT.RATING_SUCCESSFULLY');
+      }, function (res) {
+        vm.rating_vote = vm.maker.vote_average;
+        NotifycationService.showErrorNotify(res.data.message, 'ABOUT.RATING_FAILED');
+      });
     };
 
     /**

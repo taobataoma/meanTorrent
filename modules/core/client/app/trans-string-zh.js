@@ -488,7 +488,9 @@
       DELETE_CONFIRM_HEADER_TEXT: '删除确认',
       DELETE_CONFIRM_BODY_TEXT: '您确定要删除这个资源压制小组?',
       DELETE_SUCCESSFULLY: '资源压制小组删除成功',
-      DELETE_FAILED: '资源压制小组删除失败'
+      DELETE_FAILED: '资源压制小组删除失败',
+      RATING_SUCCESSFULLY: '为资源压制小组评分成功',
+      RATING_FAILED: '为资源压制小组评分失败'
     },
 
     //collections views

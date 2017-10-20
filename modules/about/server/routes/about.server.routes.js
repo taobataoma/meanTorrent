@@ -18,5 +18,8 @@ module.exports = function (app) {
     .put(maker.update)
     .delete(maker.delete);
 
+  app.route('/api/makers/:makerId/rating').all(aboutPolicy.isAllowed)
+    .put(maker.rating);
+
   app.param('makerId', maker.makerByID);
 };

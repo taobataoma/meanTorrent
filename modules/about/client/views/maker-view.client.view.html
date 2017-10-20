@@ -14,7 +14,7 @@
                         <li><span class="data-founder">{{'ABOUT.GROUP_FOUNDER' | translate}}{{vm.maker.user.displayName}}</span></li>
                         <li><i class="fa fa-user-circle-o"> {{vm.maker.members.length}}</i></li>
                         <li><i class="fa fa-upload"> {{vm.maker.torrent_count}}</i></li>
-                        <li><i class="fa fa-star-half-o"> {{vm.maker.vote_average}}/{{vm.maker.vote_total}}</i></li>
+                        <li><i class="fa fa-star-half-o"> {{vm.maker.vote_average}}/{{vm.maker.vote_count}}{{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</i></li>
                     </ul>
                 </div>
                 <div class="col-sm-4">
@@ -24,7 +24,7 @@
                               state-off="'fa fa-star-o'"
                               titles="['1','2','3','4','5','6','7','8','9','10']"
                               enable-reset="false"
-                              ng-click="vm.ratingTorrent(vm.torrentLocalInfo);"
+                              ng-click="vm.ratingMaker(vm.maker);"
                               aria-labelledby="rating-torrent">
                         </span>
 

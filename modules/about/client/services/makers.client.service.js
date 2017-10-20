@@ -20,6 +20,13 @@
         params: {
           userId: '@userId'
         }
+      },
+      rating: {
+        method: 'PUT',
+        url: '/api/makers/:makerId/rating',
+        params: {
+          makerId: '@_id'
+        }
       }
       //,
       //addModerator: {

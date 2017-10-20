@@ -7,6 +7,7 @@ var path = require('path'),
   config = require(path.resolve('./config/config')),
   mongoose = require('mongoose'),
   Maker = mongoose.model('Maker'),
+  Rating = mongoose.model('Rating'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
@@ -127,6 +128,50 @@ exports.list = function (req, res) {
 };
 
 /**
+ * rating
+ * @param req
+ * @param res
+ */
+exports.rating = function (req, res) {
+  var user = req.user;
+  var exist = false;
+  var maker = req.maker;
+  var rat = new Rating();
+  rat.user = req.user;
+  rat.vote = req.query.vote;
+
+  mtDebug.debugGreen(rat);
+  //check if already exist
+  exist = false;
+  maker._ratings.forEach(function (r) {
+    if (r.user._id.equals(user._id)) {
+      exist = true;
+    }
+  });
+  if (exist) {
+    return res.status(422).send({
+      message: 'ALREADY_RATING'
+    });
+  } else {
+    maker._ratings.push(rat);
+    maker.vote_count = parseInt(maker.vote_count, 10) + 1;
+    maker.vote_total = parseInt(maker.vote_total, 10) + rat.vote;
+    maker.vote_average = Math.floor((maker.vote_total / maker.vote_count) * 10) / 10;
+    mtDebug.debugGreen(maker);
+
+    maker.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(maker);
+      }
+    });
+  }
+};
+
+/**
  * Maker middleware
  */
 exports.makerByID = function (req, res, next, id) {
@@ -140,6 +185,7 @@ exports.makerByID = function (req, res, next, id) {
   Maker.findById(id)
     .populate('user', 'username displayName profileImageURL isVip')
     .populate('members', 'username displayName profileImageURL isVip')
+    .populate('_ratings.user', 'username displayName profileImageURL isVip uploaded downloaded')
     .exec(function (err, maker) {
       if (err) {
         return next(err);
