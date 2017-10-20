@@ -715,6 +715,7 @@ module.exports = {
       topicsSearchPerPage: 10,
       torrentsPerPage: 15,
       torrentsCommentsPerPage: 10,
+      makeGroupTorrentsPerPage: 10,
       tracesPerPage: 30,
       adminUserListPerPage: 15
     },

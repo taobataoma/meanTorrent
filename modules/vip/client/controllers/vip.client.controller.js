@@ -36,7 +36,7 @@
      */
     vm.buildPager = function () {
       vm.pagedItems = [];
-      vm.itemsPerPage = vm.itemsPerPageConfig.adminUserListPerPage;
+      vm.itemsPerPage = vm.itemsPerPageConfig.torrentsPerPage;
       vm.currentPage = 1;
 
       vm.tooltipMsg = 'VIP.VIP_TORRENTS_IS_LOADING';

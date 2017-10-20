@@ -477,7 +477,12 @@
       OPER_LIST_TOOLTIP: '<h4>Note:</h4>All the users in the list was the Administrator or Operator of <strong>{{site}}</strong>, If you need any help, please mailto our <strong><a href="mailto:{{admin}}">administrator</a></strong> or send a message to them from below.',
       MAKER_LIST_TOOLTIP: 'All the <strong>torrent maker group</strong> in the list was the official group of <strong>{{site}}</strong>, Thanks to the contributions of these groups. If you want to join one of these groups, send the station message to the group founder.',
       GROUP_FOUNDER: 'Founder: ',
-      BTN_EDIT_DESC: 'Edit Desc'
+      BTN_EDIT_DESC: 'Edit Desc',
+      BTN_ADD_USER: 'Add Member',
+      BTN_REMOVE_GROUP: 'Remove Group',
+      MAKER_TORRENTS_LIST_ERROR: 'Maker group torrents list error',
+      MAKER_TORRENTS_IS_LOADING: 'Maker group torrents is loading...',
+      MAKER_TORRENTS_IS_EMPTY: 'No torrents of this maker group is founded!'
     },
 
     //collections views

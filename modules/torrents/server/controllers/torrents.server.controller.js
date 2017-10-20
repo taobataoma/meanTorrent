@@ -1097,6 +1097,7 @@ exports.list = function (req, res) {
   var vip = undefined;
   var release = undefined;
   var userid = undefined;
+  var maker = undefined;
   var tagsA = [];
   var keysA = [];
 
@@ -1131,6 +1132,9 @@ exports.list = function (req, res) {
   }
   if (req.query.userid !== undefined) {
     userid = req.query.userid;
+  }
+  if (req.query.maker !== undefined) {
+    maker = req.query.maker;
   }
 
   if (req.query.torrent_tags !== undefined) {
@@ -1191,6 +1195,9 @@ exports.list = function (req, res) {
   }
   if (userid !== undefined) {
     condition.user = userid;
+  }
+  if (maker !== undefined) {
+    condition.maker = maker;
   }
 
   mtDebug.debugGreen(JSON.stringify(condition));

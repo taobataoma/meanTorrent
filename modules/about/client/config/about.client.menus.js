@@ -30,13 +30,13 @@
     menuService.addSubMenuItem('topbar', 'about', {
       title: 'MENU_ABOUT_MAKERGROUP',
       state: 'about.maker',
-      position: 3
+      position: 3,
+      divider: true
     });
     menuService.addSubMenuItem('topbar', 'about', {
       title: 'MENU_ABOUT_OPERLIST',
       state: 'about.operlist',
-      position: 4,
-      divider: true
+      position: 4
     });
 
   }
