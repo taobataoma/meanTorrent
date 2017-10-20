@@ -474,7 +474,9 @@
       MAKER_CREATE_SUCCESSFULLY: 'Create maker group successfully',
       MAKER_CREATE_FAILED: 'Create maker group failed',
       OPER_LIST: 'Admin and Oper List',
-      OPER_LIST_TOOLTIP: '<h4>Note:</h4>All the users in the list was the Administrator or Operator of <strong>{{site}}</strong>, If you need any help, please mailto our <strong><a href="mailto:{{admin}}">administrator</a></strong> or send a message to them from below.'
+      OPER_LIST_TOOLTIP: '<h4>Note:</h4>All the users in the list was the Administrator or Operator of <strong>{{site}}</strong>, If you need any help, please mailto our <strong><a href="mailto:{{admin}}">administrator</a></strong> or send a message to them from below.',
+      MAKER_LIST_TOOLTIP: 'All the <strong>torrent maker group</strong> in the list was the official group of <strong>{{site}}</strong>, Thanks to the contributions of these groups. If you want to join one of these groups, send the station message to the group founder.',
+      GROUP_FOUNDER: 'Founder: '
     },
 
     //collections views

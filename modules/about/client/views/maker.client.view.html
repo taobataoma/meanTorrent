@@ -1,4 +1,4 @@
-<section class="container" ng-controller="AboutController as vm" ng-init="vm.init();">
+<section class="container" ng-controller="AboutController as vm" ng-init="vm.getMakerList();">
     <div class="row margin-top-20">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             <span>
@@ -6,6 +6,38 @@
                     {{'ABOUT.MAKER_GROUP' | translate}}
                 </h3>
             </span>
+
+            <div class="margin-top-10">
+                <div class="alert alert-warning" role="alert" style="padding: 10px 50px;">
+                    <span translate="ABOUT.MAKER_LIST_TOOLTIP" translate-values="{site: vm.appConfig.name}"></span>
+                </div>
+            </div>
+
+            <div class="row maker-group-list">
+                <div class="col-sm-6" ng-repeat="m in vm.makerList">
+                    <div class="text-center group-item" ng-mouseenter="vm.spinCog($event, m.name)" ng-mouseleave="vm.stopCog($event, m.name)">
+                        <div class="h3">{{m.name}}</div>
+
+                        <span>{{'ABOUT.GROUP_FOUNDER' | translate}}</span>
+                        <span info-class="h5" user-info="m.user" info-name></span>
+                        <span to-class="h5" message-to="m.user" to-class="message-to-icon"></span>
+
+                        <div class="row margin-top-20 group-data">
+                            <div class="col-xs-4 col-small-padding text-right">
+                                <i class="fa fa-user-circle-o text-info"> {{m.members.length}}</i>
+                            </div>
+                            <div class="col-xs-4 col-small-padding text-center">
+                                <i class="fa fa-upload text-info"> {{m.torrent_count}}</i>
+                            </div>
+                            <div class="col-xs-4 col-small-padding text-left">
+                                <i class="fa fa-star-half-o text-info"> {{m.vote_average}}/{{m.vote_total}}</i>
+                            </div>
+                        </div>
+
+                        <i id="cog_{{m.name}}" class="fa fa-5x fa-cog group-icon"></i>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

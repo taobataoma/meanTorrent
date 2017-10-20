@@ -112,7 +112,7 @@ exports.delete = function (req, res) {
  */
 exports.list = function (req, res) {
   Maker.find()
-    .sort('-created')
+    .sort('-torrent_count')
     .populate('user', 'username displayName profileImageURL isVip')
     .populate('members', 'username displayName profileImageURL isVip')
     .exec(function (err, makers) {

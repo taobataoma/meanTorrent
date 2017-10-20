@@ -107,6 +107,55 @@
     }
 }
 
+.maker-group-list {
+    .group-item {
+        cursor: pointer;
+        position: relative;
+        border: solid 1px #1a1a1a;
+        border-radius: 4px;
+        background-color: #2a2a2a;
+        padding: 10px 0 15px 0;
+        margin: 20px 0 0 0;
+        overflow: hidden;
+
+        .fa-5x {
+            font-size: 10em;
+            color: #888;
+        }
+        span {
+            color: #999;
+            position: relative;
+            z-index: 100;
+        }
+        div {
+            color: #ddd;
+            position: relative;
+            z-index: 100;
+        }
+
+        &:hover {
+            .group-data {
+                .fa {
+                    color: @mt-base-color !important;
+                }
+            }
+            .h3, .h5, div, span {
+                color: #fff;
+            }
+            .group-icon {
+                opacity: 0.3;
+            }
+        }
+    }
+
+    .group-icon {
+        position: absolute;
+        top: 2px;
+        right: -55px;
+        opacity: 0.5;
+    }
+}
+
 .maker-side-overlay {
     top: 50px !important;
     @media (min-width: @screen-sm-min) {
