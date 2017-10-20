@@ -32,6 +32,12 @@
       state: 'about.maker',
       position: 3
     });
+    menuService.addSubMenuItem('topbar', 'about', {
+      title: 'MENU_ABOUT_OPERLIST',
+      state: 'about.operlist',
+      position: 4,
+      divider: true
+    });
 
   }
 }());

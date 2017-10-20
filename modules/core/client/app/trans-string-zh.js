@@ -36,6 +36,7 @@
     MENU_ABOUT_RULES: '站内规则',
     MENU_ABOUT_BLACKLIST: '禁止客户端列表',
     MENU_ABOUT_MAKERGROUP: '资源压制小组',
+    MENU_ABOUT_OPERLIST: 'Admin/Oper 列表',
     MENU_VIP: 'VIP',
     MENU_ADMIN: '管理中心',
 
@@ -155,6 +156,7 @@
       RULES: '规则',
       BLACK: '禁止客户端列表',
       MAKER: '资源压制小组',
+      OPERLIST: 'Admin/Oper 列表',
       COLLECTIONS: '资源系列',
       VIP: 'Vip',
       FORUM: '论坛',
@@ -470,7 +472,9 @@
       FORM_MAKER_DESC: '资源压制小组简介',
       FORM_MAKER_FOR: '创建资源压制小组 - {{name}}',
       MAKER_CREATE_SUCCESSFULLY: '资源压制小组创建成功',
-      MAKER_CREATE_FAILED: '资源压制小组创建失败'
+      MAKER_CREATE_FAILED: '资源压制小组创建失败',
+      OPER_LIST: 'Admin & Oper 列表',
+      OPER_LIST_TOOLTIP: '<h4>提示:</h4>下面列出的所有用户都是 <strong>{{site}}</strong> 站点的 Administrator 或 Operator, 如果你需要帮助, 请向我们的 <strong><a href="mailto:{{admin}}">系统管理员</a></strong> 发送邮件或向下面列出的管理员发送站内消息.'
     },
 
     //collections views

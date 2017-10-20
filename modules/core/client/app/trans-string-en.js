@@ -36,6 +36,7 @@
     MENU_ABOUT_RULES: 'Rules',
     MENU_ABOUT_BLACKLIST: 'Client Black List',
     MENU_ABOUT_MAKERGROUP: 'Torrents Maker Group',
+    MENU_ABOUT_OPERLIST: 'Admin/Oper List',
     MENU_VIP: 'VIP',
     MENU_ADMIN: 'Admin',
 
@@ -155,6 +156,7 @@
       RULES: 'Rules',
       BLACK: 'Client Black List',
       MAKER: 'Torrents Maker Group',
+      OPERLIST: 'Admin/Oper List',
       COLLECTIONS: 'Torrents Collections',
       VIP: 'Vip',
       FORUM: 'Forum',
@@ -470,7 +472,9 @@
       FORM_MAKER_DESC: 'Maker Group Description',
       FORM_MAKER_FOR: 'Create maker group for - {{name}}',
       MAKER_CREATE_SUCCESSFULLY: 'Create maker group successfully',
-      MAKER_CREATE_FAILED: 'Create maker group failed'
+      MAKER_CREATE_FAILED: 'Create maker group failed',
+      OPER_LIST: 'Admin and Oper List',
+      OPER_LIST_TOOLTIP: '<h4>Note:</h4>All the users in the list was the Administrator or Operator of <strong>{{site}}</strong>, If you need any help, please mailto our <strong><a href="mailto:{{admin}}">administrator</a></strong> or send a message to them from below.'
     },
 
     //collections views

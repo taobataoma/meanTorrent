@@ -35,6 +35,14 @@
           roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.MAKER'
         }
+      })
+      .state('about.operlist', {
+        url: '/operlist',
+        templateUrl: '/modules/about/client/views/operlist.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.OPERLIST'
+        }
       });
   }
 }());

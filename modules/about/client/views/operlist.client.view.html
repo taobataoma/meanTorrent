@@ -1,0 +1,30 @@
+<section class="container" ng-controller="AboutController as vm" ng-init="vm.getOperList();">
+    <div class="row margin-top-20">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <span>
+                <h3 class="margin-bottom-30">
+                    {{'ABOUT.OPER_LIST' | translate}}
+                </h3>
+            </span>
+
+            <div class="margin-top-10">
+                <div class="alert alert-warning" role="alert" style="padding: 10px 50px;">
+                    <span translate="ABOUT.OPER_LIST_TOOLTIP" translate-values="{site: vm.appConfig.name, admin: vm.announce.admin}"></span>
+                </div>
+            </div>
+
+            <div class="row oper-list">
+                <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="o in vm.operList">
+                    <div class="text-center oper-item" ng-class="{'is-admin': o.isAdmin}">
+                        <span info-class="h3" user-info="o" info-name></span>
+                        <span to-class="h4" message-to="o" to-class="message-to-icon"></span>
+
+                        <div class="margin-top-10">ID: {{o.username}}</div>
+                        <div>{{o.isAdmin ? 'Administrator' : 'Operator'}}</div>
+                        <i class="fa fa-user-circle-o text-danger oper-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -23,7 +23,9 @@
             z-index: 100;
         }
         span {
-            color: #888;
+            color: #999;
+            position: relative;
+            z-index: 100;
         }
 
         &:hover {
@@ -32,7 +34,7 @@
                 transform: scale(1.5);
                 /* csslint ignore:end */
             }
-            h4 {
+            h4, span {
                 color: #fff;
             }
             .black-icon {
@@ -45,6 +47,62 @@
         position: absolute;
         top: -20px;
         right: -20px;
+        opacity: 0.5;
+    }
+}
+
+.oper-list {
+    .oper-item {
+        cursor: pointer;
+        position: relative;
+        border: solid 1px darken(@state-danger-text, 15%);
+        border-radius: 4px;
+        background-color: lighten(@state-danger-text, 1%);
+        padding: 10px 0 15px 0;
+        margin: 20px 0 0 0;
+        overflow: hidden;
+
+        &.is-admin {
+            background-color: darken(@state-danger-text, 10%);
+        }
+
+        .fa {
+            transition-property: transform, opacity;
+            transition-duration: .5s;
+            transition-timing-function: ease;
+            font-size: 7em;
+            color: #888;
+        }
+        span {
+            color: #ddd;
+            position: relative;
+            z-index: 100;
+        }
+        div {
+            color: #999;
+            position: relative;
+            z-index: 100;
+        }
+
+        &:hover {
+            .fa {
+                /* csslint ignore:start */
+                transform: scale(1.5);
+                /* csslint ignore:end */
+            }
+            .h3, .h4, div {
+                color: #fff;
+            }
+            .oper-icon {
+                opacity: 0.3;
+            }
+        }
+    }
+
+    .oper-icon {
+        position: absolute;
+        top: 2px;
+        right: -40px;
         opacity: 0.5;
     }
 }
