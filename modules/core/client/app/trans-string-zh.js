@@ -482,7 +482,13 @@
       BTN_REMOVE_GROUP: '删除小组',
       MAKER_TORRENTS_LIST_ERROR: '小组资源获取失败',
       MAKER_TORRENTS_IS_LOADING: '正在获取小组资源列表, 请稍候...',
-      MAKER_TORRENTS_IS_EMPTY: '没有找到该小组的种子资源!'
+      MAKER_TORRENTS_IS_EMPTY: '没有找到该小组的种子资源!',
+      DELETE_CONFIRM_OK: '删除',
+      DELETE_CONFIRM_CANCEL: '取消',
+      DELETE_CONFIRM_HEADER_TEXT: '删除确认',
+      DELETE_CONFIRM_BODY_TEXT: '您确定要删除这个资源压制小组?',
+      DELETE_SUCCESSFULLY: '资源压制小组删除成功',
+      DELETE_FAILED: '资源压制小组删除失败'
     },
 
     //collections views

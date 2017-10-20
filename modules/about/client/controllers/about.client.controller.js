@@ -7,11 +7,11 @@
 
   AboutController.$inject = ['$scope', '$state', 'getStorageLangService', 'MeanTorrentConfig', 'AdminService', 'MakerGroupService', 'DebugConsoleService', 'marked',
     'localStorageService', '$translate', '$compile', 'Authentication', 'DownloadService', 'TorrentGetInfoServices', 'ResourcesTagsServices',
-    'uibButtonConfig', '$window', '$timeout', 'TorrentsService'];
+    'uibButtonConfig', '$window', '$timeout', 'TorrentsService', 'ModalConfirmService', 'NotifycationService'];
 
   function AboutController($scope, $state, getStorageLangService, MeanTorrentConfig, AdminService, MakerGroupService, mtDebug, marked,
                            localStorageService, $translate, $compile, Authentication, DownloadService, TorrentGetInfoServices, ResourcesTagsServices,
-                           uibButtonConfig, $window, $timeout, TorrentsService) {
+                           uibButtonConfig, $window, $timeout, TorrentsService, ModalConfirmService, NotifycationService) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -213,6 +213,29 @@
           $compile(ele.contents())($scope);
         }
       });
+    };
+
+    /**
+     * beginRemoveMakerGroup
+     * @param m
+     */
+    vm.beginRemoveMakerGroup = function (m) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('ABOUT.DELETE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('ABOUT.DELETE_CONFIRM_OK'),
+        headerText: $translate.instant('ABOUT.DELETE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('ABOUT.DELETE_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          m.$remove(function (res) {
+            NotifycationService.showSuccessNotify('ABOUT.DELETE_SUCCESSFULLY');
+            $state.go('about.maker');
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'ABOUT.DELETE_FAILED');
+          });
+        });
     };
 
     /**

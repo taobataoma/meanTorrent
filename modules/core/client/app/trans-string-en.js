@@ -482,7 +482,13 @@
       BTN_REMOVE_GROUP: 'Remove Group',
       MAKER_TORRENTS_LIST_ERROR: 'Maker group torrents list error',
       MAKER_TORRENTS_IS_LOADING: 'Maker group torrents is loading...',
-      MAKER_TORRENTS_IS_EMPTY: 'No torrents of this maker group is founded!'
+      MAKER_TORRENTS_IS_EMPTY: 'No torrents of this maker group is founded!',
+      DELETE_CONFIRM_OK: 'Delete',
+      DELETE_CONFIRM_CANCEL: 'Cancel',
+      DELETE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
+      DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this maker group?',
+      DELETE_SUCCESSFULLY: 'Maker group deleted successfully',
+      DELETE_FAILED: 'Maker group deleted failed'
     },
 
     //collections views
