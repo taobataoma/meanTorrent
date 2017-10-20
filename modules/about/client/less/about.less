@@ -188,3 +188,39 @@
     }
 
 }
+
+.maker-view-top {
+    .item-desc {
+        color: @gray-hilight;
+    }
+    .item-data {
+        .data-founder {
+            color: @gray-light;
+        }
+        .fa {
+            color: @mt-base-color !important;
+        }
+    }
+    .maker-rating {
+        @media (max-width: @screen-xs-max) {
+            text-align: left !important;
+        }
+        span {
+            &:focus {
+                outline: 0;
+            }
+        }
+        .fa {
+            font-size: 14px;
+        }
+        .fa-star, .fa-star-o {
+            color: @mt-base-color;
+            cursor: pointer;
+        }
+    }
+    .maker-button {
+        @media (max-width: @screen-xs-max) {
+            text-align: left !important;
+        }
+    }
+}

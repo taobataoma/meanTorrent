@@ -9,7 +9,7 @@
 
   function MakerGroupService($resource) {
     return $resource('/api/makers/:makerId', {
-      forumId: '@_id'
+      makerId: '@_id'
     }, {
       update: {
         method: 'PUT'

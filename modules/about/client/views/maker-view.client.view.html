@@ -1,11 +1,59 @@
-<section class="container" ng-controller="AboutController as vm" ng-init="vm.getMakerList();">
-    <div class="row margin-top-20">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <span>
-                <h3 class="margin-bottom-30">
-                    {{'ABOUT.MAKER_GROUP' | translate}} -
-                </h3>
-            </span>
+<div class="pagetop" ng-controller="AboutController as vm" ng-init="vm.getMaker();">
+    <div class="container maker-view-top">
+        <div class="row margin-top-20 margin-bottom-10">
+            <div class="col-sm-12">
+                <span>
+                    <h3 class="margin-bottom-10">
+                        {{'ABOUT.MAKER_GROUP' | translate}} - {{vm.maker.name}}
+                    </h3>
+                </span>
+            </div>
+            <div class="col-sm-8">
+                <ul class="list-unstyled item-data list-inline">
+                    <li><span class="data-founder">{{'ABOUT.GROUP_FOUNDER' | translate}}{{vm.maker.user.displayName}}</span></li>
+                    <li><i class="fa fa-user-circle-o"> {{vm.maker.members.length}}</i></li>
+                    <li><i class="fa fa-upload"> {{vm.maker.torrent_count}}</i></li>
+                    <li><i class="fa fa-star-half-o"> {{vm.maker.vote_average}}/{{vm.maker.vote_total}}</i></li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <div class="maker-rating text-right">
+                    <span uib-rating ng-model="vm.rating_vote" max="10"
+                          state-on="'fa fa-star'"
+                          state-off="'fa fa-star-o'"
+                          titles="['1','2','3','4','5','6','7','8','9','10']"
+                          enable-reset="false"
+                          ng-click="vm.ratingTorrent(vm.torrentLocalInfo);"
+                          aria-labelledby="rating-torrent">
+                    </span>
+
+                    <span class="torrent-votes margin-left-10 margin-right-10">
+                        <kbd>{{vm.maker.vote_average}}</kbd>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-20">
+            <div class="col-sm-12">
+                <div>
+                    <div class="item-desc" id="{{vm.maker._id}}" data-provide="markdown"
+                         ng-bind-html="vm.getMakerDescContent(vm.maker)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-20">
+            <div class="col-sm-12">
+                <div class="maker-button text-right">
+                    <button class="btn btn-default btn-width-80"
+                            ng-if="vm.user.isOper || vm.isOwner(vm.maker)"
+                            ng-click="vm.beginEditMakerDesc(vm.maker)">
+                        {{'ABOUT.BTN_EDIT_DESC' | translate}}
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+</div>

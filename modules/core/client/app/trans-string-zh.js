@@ -476,7 +476,8 @@
       OPER_LIST: 'Admin & Oper 列表',
       OPER_LIST_TOOLTIP: '<h4>提示:</h4>下面列出的所有用户都是 <strong>{{site}}</strong> 站点的 Administrator 或 Operator, 如果你需要帮助, 请向我们的 <strong><a href="mailto:{{admin}}">系统管理员</a></strong> 发送邮件或向下面列出的管理员发送站内消息.',
       MAKER_LIST_TOOLTIP: '下面列出的所有资源压制小组都是入驻 <strong>{{site}}</strong> 的官方小组, 感谢这些压制小组对站点做出的贡献, 如果您想加入其中的小组, 请向小组创始人发送站内消息并欢迎您成为其中的一份子.',
-      GROUP_FOUNDER: '创始人: '
+      GROUP_FOUNDER: '创始人: ',
+      BTN_EDIT_DESC: '编辑简介'
     },
 
     //collections views

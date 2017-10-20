@@ -15,7 +15,9 @@
 
             <div class="row oper-list">
                 <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="o in vm.operList">
-                    <div class="text-center oper-item" ng-class="{'is-admin': o.isAdmin}">
+                    <div class="text-center oper-item"
+                         ui-sref="userinfo({userId: o._id})"
+                         ng-class="{'is-admin': o.isAdmin}">
                         <span info-class="h3" user-info="o" info-name></span>
                         <span to-class="h4" message-to="o" to-class="message-to-icon"></span>
 
