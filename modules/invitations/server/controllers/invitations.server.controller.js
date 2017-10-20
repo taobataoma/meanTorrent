@@ -35,6 +35,7 @@ exports.create = function (req, res) {
   var invitation = new Invitation();
   invitation.expiresat = Date.now() + config.meanTorrentConfig.invite.expires;
   invitation.user = req.user;
+  invitation.isOfficial = false;
   invitation.token = req.user.randomAsciiString(32);
 
   invitation.save(function (err) {

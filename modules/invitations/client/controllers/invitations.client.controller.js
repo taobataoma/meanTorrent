@@ -6,10 +6,10 @@
     .controller('InviteController', InviteController);
 
   InviteController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$window', 'MeanTorrentConfig', 'NotifycationService',
-    'InvitationsService', '$rootScope'];
+    'InvitationsService', '$rootScope', 'moment'];
 
   function InviteController($scope, $state, $translate, $timeout, Authentication, $window, MeanTorrentConfig, NotifycationService,
-                            InvitationsService, $rootScope) {
+                            InvitationsService, $rootScope, moment) {
     var vm = this;
     vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
     vm.user = Authentication.user;
@@ -97,7 +97,7 @@
       if (invitation.status === 2) {
         return $translate.instant('INVITATION.TITLE_STATUS_REGED');
       } else {
-        if (invitation.expiresat > Date.now()) {
+        if (moment(invitation.expiresat) > moment(Date.now())) {
           return $translate.instant('INVITATION.TITLE_STATUS_UNREGED');
         } else {
           return $translate.instant('INVITATION.TITLE_STATUS_EXPIRED');

@@ -106,7 +106,7 @@
       if (invitation.status === 2) {
         return $translate.instant('INVITATION.TITLE_STATUS_REGED');
       } else {
-        if (invitation.expiresat > Date.now()) {
+        if (moment(invitation.expiresat) > moment(Date.now())) {
           return $translate.instant('INVITATION.TITLE_STATUS_UNREGED');
         } else {
           return $translate.instant('INVITATION.TITLE_STATUS_EXPIRED');
