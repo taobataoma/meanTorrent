@@ -190,8 +190,9 @@ exports.forumByID = function (req, res, next, id) {
 exports.userByUsername = function (req, res, next, uname) {
   User.findOne({
     username: uname
-  })
-    .select('username displayName profileImageURL uploaded downloaded')
+  }, '-salt -password -providerData')
+    //.select('username displayName profileImageURL uploaded downloaded makers')
+    //.populate('makers')
     .exec(function (err, user) {
       if (err) {
         return next(err);

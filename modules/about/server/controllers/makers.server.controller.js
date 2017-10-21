@@ -198,6 +198,13 @@ exports.addMember = function (req, res) {
         });
       } else {
         res.json(maker);
+
+        //save user`s maker
+        if (!mu.makers) {
+          mu.makers = [];
+        }
+        mu.makers.push(maker);
+        mu.save();
       }
     });
   }
@@ -231,6 +238,14 @@ exports.removeMember = function (req, res) {
         });
       } else {
         res.json(maker);
+
+        //save user`s maker
+        if (mu.makers) {
+          if (mu.makers.indexOf(maker._id) >= 0) {
+            mu.makers.splice(mu.makers.indexOf(maker._id), 1);
+            mu.save();
+          }
+        }
       }
     });
   }
