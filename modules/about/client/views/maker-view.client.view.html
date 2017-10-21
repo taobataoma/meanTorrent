@@ -48,15 +48,15 @@
             <div class="row margin-bottom-20">
                 <div class="col-sm-12">
                     <div class="maker-button text-right">
-                        <button class="btn btn-mt-o btn-width-80" mouse-enter-toggle-class="btn-success"
+                        <button class="btn btn-width-80" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
                                 ng-if="vm.user.isOper || vm.isOwner(vm.maker)" ng-click="vm.beginAddUser(vm.maker)">
                             {{'ABOUT.BTN_ADD_USER' | translate}}
                         </button>
-                        <button class="btn btn-mt-o btn-width-80" mouse-enter-toggle-class="btn-default"
+                        <button class="btn btn-width-80" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                 ng-if="vm.user.isOper || vm.isOwner(vm.maker)" ng-click="vm.beginEditMakerDesc(vm.maker)">
                             {{'ABOUT.BTN_EDIT_DESC' | translate}}
                         </button>
-                        <button class="btn btn-mt-o btn-width-80" mouse-enter-toggle-class="btn-default"
+                        <button class="btn btn-width-80" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                 ng-if="vm.user.isOper" ng-click="vm.beginRemoveMakerGroup(vm.maker)">
                             {{'ABOUT.BTN_REMOVE_GROUP' | translate}}
                         </button>

@@ -166,7 +166,7 @@
                                         <span class="newest-more"><a ui-sref="torrents.movie">{{'NEWEST_MORE' | translate}}</a></span>
                                     </div>
                                     <table class="table">
-                                        <tr ng-repeat="nt in vm.movieNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
+                                        <tr ng-repeat="nt in vm.movieNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
                                                 <div class="newest-item-big" ng-click="vm.openTorrentInfo(nt._id);">
@@ -386,7 +386,7 @@
                                         <span class="newest-more"><a ui-sref="torrents.tvserial">{{'NEWEST_MORE' | translate}}</a></span>
                                     </div>
                                     <table class="table">
-                                        <tr ng-repeat="nt in vm.TVNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
+                                        <tr ng-repeat="nt in vm.TVNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
                                                 <div class="newest-item-big" ng-click="vm.openTorrentInfo(nt._id);">
@@ -557,7 +557,7 @@
                                         <span class="newest-more"><a ui-sref="torrents.music">{{'NEWEST_MORE' | translate}}</a></span>
                                     </div>
                                     <table class="table">
-                                        <tr ng-repeat="nm in vm.musicNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
+                                        <tr ng-repeat="nm in vm.musicNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 11 ? 'hide-more' : '']">
                                             <td>
                                                 <div class="newest-item-big music-margin" ng-click="vm.openTorrentInfo(nm._id);">
@@ -732,7 +732,7 @@
                                         <span class="newest-more"><a ui-sref="torrents.sports">{{'NEWEST_MORE' | translate}}</a></span>
                                     </div>
                                     <table class="table">
-                                        <tr ng-repeat="nm in vm.sportsNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
+                                        <tr ng-repeat="nm in vm.sportsNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
                                                 <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">
@@ -900,7 +900,7 @@
                                         <span class="newest-more"><a ui-sref="torrents.variety">{{'NEWEST_MORE' | translate}}</a></span>
                                     </div>
                                     <table class="table">
-                                        <tr ng-repeat="nm in vm.varietyNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
+                                        <tr ng-repeat="nm in vm.varietyNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
                                                 <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">
@@ -1068,7 +1068,7 @@
                                         <span class="newest-more"><a ui-sref="torrents.picture">{{'NEWEST_MORE' | translate}}</a></span>
                                     </div>
                                     <table class="table">
-                                        <tr ng-repeat="nm in vm.pictureNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
+                                        <tr ng-repeat="nm in vm.pictureNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
                                                 <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">
@@ -1236,7 +1236,7 @@
                                         <span class="newest-more"><a ui-sref="torrents.game">{{'NEWEST_MORE' | translate}}</a></span>
                                     </div>
                                     <table class="table">
-                                        <tr ng-repeat="nm in vm.gameNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
+                                        <tr ng-repeat="nm in vm.gameNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
                                                 <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">
@@ -1404,7 +1404,7 @@
                                         <span class="newest-more"><a ui-sref="torrents.software">{{'NEWEST_MORE' | translate}}</a></span>
                                     </div>
                                     <table class="table">
-                                        <tr ng-repeat="nm in vm.softwareNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
+                                        <tr ng-repeat="nm in vm.softwareNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
                                                 <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">
@@ -1572,7 +1572,7 @@
                                         <span class="newest-more"><a ui-sref="torrents.ebook">{{'NEWEST_MORE' | translate}}</a></span>
                                     </div>
                                     <table class="table">
-                                        <tr ng-repeat="nm in vm.ebookNewList" mouse-enter-toggle-class="show-big" base-class="hide-big"
+                                        <tr ng-repeat="nm in vm.ebookNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
                                                 <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">

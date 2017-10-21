@@ -40,15 +40,45 @@
     return directive;
 
     function link(scope, element, attrs) {
+      element.addClass(attrs.baseClass);
+
       element.bind('mouseenter', function () {
         if (!element.hasClass(attrs.mouseEnterToggleClass)) {
           element.addClass(attrs.mouseEnterToggleClass);
           element.removeClass(attrs.baseClass);
+        }
+      });
+      element.bind('mouseout', function () {
+        if (!element.hasClass(attrs.baseClass)) {
+          element.addClass(attrs.baseClass);
+          element.removeClass(attrs.mouseEnterToggleClass);
+        }
+      });
+    }
+  }
 
-          element.siblings().removeClass(attrs.mouseEnterToggleClass);
+  angular.module('core')
+    .directive('mouseEnterToggleClassGroup', mouseEnterToggleClassGroup);
+
+  function mouseEnterToggleClassGroup() {
+    var directive = {
+      restrict: 'A',
+      link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs) {
+      element.bind('mouseenter', function () {
+        if (!element.hasClass(attrs.mouseEnterToggleClassGroup)) {
+          element.addClass(attrs.mouseEnterToggleClassGroup);
+          element.removeClass(attrs.baseClass);
+
+          element.siblings().removeClass(attrs.mouseEnterToggleClassGroup);
           element.siblings().addClass(attrs.baseClass);
         }
       });
     }
   }
+
 }());
