@@ -15,7 +15,7 @@
                         <li><i class="fa fa-user-circle-o"> {{vm.maker.members.length}}</i></li>
                         <li><i class="fa fa-upload"> {{vm.maker.torrent_count}}</i></li>
                         <li>
-                            <i class="fa fa-star-half-o"> {{vm.maker.vote_average}}/{{vm.maker.vote_count}}{{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</i>
+                            <i class="fa fa-star-half-o"> {{vm.maker.vote_average}}/{{vm.maker.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</i>
                         </li>
                     </ul>
                 </div>
@@ -237,7 +237,7 @@
                                 <td class="col-md-1 td-v-middle text-center td-uploader">
                                     <span user-info="item.user" info-name></span>
                                     <!--<span vip-flag="item.user"></span>-->
-                                    <span message-to="item.user" to-class="message-to-icon"></span>
+                                    <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
                                 </td>
                             </tr>
                         </tbody>

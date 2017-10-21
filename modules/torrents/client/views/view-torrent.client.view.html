@@ -257,7 +257,7 @@
                                         <div class="timeline-comment-header-text">
                                             <span user-info="item.user" info-name></span>
                                             <span vip-flag="item.user"></span>
-                                            <span message-to="item.user" to-class="message-to-icon"></span>
+                                            <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
                                             <span class="user-ud-text" ng-if="vm.announce.privateTorrentCmsMode">
                                                 (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{item.user.uploaded | bytes}}
                                                 <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{item.user.downloaded | bytes}}
@@ -444,7 +444,7 @@
                 <dd class="h-line">
                     <span user-info="vm.torrentLocalInfo.user" info-name></span>
                     <span vip-flag="vm.torrentLocalInfo.user"></span>
-                    <span message-to="vm.torrentLocalInfo.user" to-class="message-to-icon"></span>
+                    <!--<span message-to="vm.torrentLocalInfo.user" to-class="message-to-icon"></span>-->
                 </dd>
 
                 <dt class="h-line">{{ 'TORRENT_FILENAME' | translate}}：</dt>
@@ -639,7 +639,7 @@
                             <td class="text-center">
                                 <span user-info="item.user" info-name></span>
                                 <span vip-flag="item.user"></span>
-                                <span message-to="item.user" to-class="message-to-icon"></span>
+                                <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
                             </td>
                             <td class="text-center">{{item.peer_uploaded | bytes:2}} | {{item.peer_uspeed | bytes:2}}/s</td>
                             <td class="text-center">{{item.peer_downloaded | bytes:2}} | {{item.peer_dspeed | bytes:2}}/s</td>
@@ -680,7 +680,7 @@
                             <td class="text-center">
                                 <span user-info="item.user" info-name></span>
                                 <span vip-flag="item.user"></span>
-                                <span message-to="item.user" to-class="message-to-icon"></span>
+                                <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
                             </td>
                             <td class="text-center">{{item.peer_uploaded | bytes:2}} | {{item.peer_uspeed | bytes:2}}/s</td>
                             <td class="text-center">{{item.peer_downloaded | bytes:2}} | {{item.peer_dspeed | bytes:2}}/s</td>
