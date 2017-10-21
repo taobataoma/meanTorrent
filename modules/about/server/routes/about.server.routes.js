@@ -21,5 +21,10 @@ module.exports = function (app) {
   app.route('/api/makers/:makerId/rating').all(aboutPolicy.isAllowed)
     .put(maker.rating);
 
+  app.route('/api/makers/:makerId/addMember/:username').all(aboutPolicy.isAllowed)
+    .put(maker.addMember);
+  app.route('/api/makers/:makerId/removeMember/:username').all(aboutPolicy.isAllowed)
+    .put(maker.removeMember);
+
   app.param('makerId', maker.makerByID);
 };

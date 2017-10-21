@@ -226,9 +226,26 @@
             width: 24px;
         }
     }
+    .maker-members {
+        .fa-remove {
+            cursor: pointer;
+            color: #888;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
     .maker-button {
         @media (max-width: @screen-xs-max) {
             text-align: left !important;
         }
     }
 }
+
+.add-member-popover {
+    max-width: 250px;
+    max-height: 150px;
+    width: 250px;
+    height: auto;
+}
+

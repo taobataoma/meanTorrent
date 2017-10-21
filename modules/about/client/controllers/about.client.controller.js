@@ -29,6 +29,12 @@
 
     uibButtonConfig.activeClass = 'btn-success';
 
+    vm.addMemberPopover = {
+      title: 'ABOUT.ADD_MEMBER_TITLE',
+      templateUrl: 'add-member.html',
+      isOpen: false
+    };
+
     vm.init = function () {
 
     };
@@ -150,12 +156,74 @@
     };
 
     /**
+     * isFounder
+     * @param u
+     * @param m
+     * @returns {boolean}
+     */
+    vm.isFounder = function (u, m) {
+      if (m && u) {
+        if (m.user._id === u._id) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    };
+
+    /**
      * getMakerDescContent
      * @param m
      * @returns {*}
      */
     vm.getMakerDescContent = function (m) {
       return m ? marked(m.desc, {sanitize: true}) : 'NULL';
+    };
+
+    /**
+     * addMember
+     */
+    vm.addMember = function () {
+      MakerGroupService.addMember({
+        _id: vm.maker._id,
+        _username: vm.addMemberPopover.username
+      }, function (res) {
+        vm.maker = res;
+        NotifycationService.showSuccessNotify('ABOUT.ADD_MEMBER_SUCCESSFULLY');
+        vm.addMemberPopover.isOpen = false;
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'ABOUT.ADD_MEMBER_FAILED');
+        vm.addMemberPopover.isOpen = false;
+      });
+    };
+
+    /**
+     * removeMember
+     * @param f forum
+     * @param m moderator
+     */
+    vm.removeMember = function (m, u) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('ABOUT.DELETE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('ABOUT.DELETE_CONFIRM_OK'),
+        headerText: $translate.instant('ABOUT.DELETE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('ABOUT.DELETE_MEMBER_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          MakerGroupService.removeMember({
+            _id: m._id,
+            _username: u.username
+          }, function (res) {
+            vm.maker = res;
+            NotifycationService.showSuccessNotify('ABOUT.REMOVE_MEMBER_SUCCESSFULLY');
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'ABOUT.REMOVE_MEMBER_FAILED');
+          });
+        });
     };
 
     /**

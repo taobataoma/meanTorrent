@@ -14,7 +14,9 @@
                         <li><span class="data-founder">{{'ABOUT.GROUP_FOUNDER' | translate}}{{vm.maker.user.displayName}}</span></li>
                         <li><i class="fa fa-user-circle-o"> {{vm.maker.members.length}}</i></li>
                         <li><i class="fa fa-upload"> {{vm.maker.torrent_count}}</i></li>
-                        <li><i class="fa fa-star-half-o"> {{vm.maker.vote_average}}/{{vm.maker.vote_count}}{{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</i></li>
+                        <li>
+                            <i class="fa fa-star-half-o"> {{vm.maker.vote_average}}/{{vm.maker.vote_count}}{{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</i>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-sm-4">
@@ -45,11 +47,16 @@
                 </div>
             </div>
 
-            <div class="row margin-bottom-20">
+            <div class="row maker-members margin-bottom-40 margin-top-30">
                 <div class="col-xs-6 col-sm-3 col-md-2" ng-repeat="u in vm.maker.members">
-                    <div>
+                    <div class="margin-top-10">
                         <span user-info="u" info-class="maker-avatar" info-avatar></span>
                         <span user-info="u" info-name></span>
+                        <i class="fa fa-remove"
+                           ng-click="vm.removeMember(vm.maker, u);"
+                           title="{{'ABOUT.REMOVE_MEMBER_TITLE' | translate}}"
+                           ng-if="(vm.user.isOper || vm.isOwner(vm.maker)) && (!vm.isFounder(u, vm.maker))">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -58,7 +65,15 @@
                 <div class="col-sm-12">
                     <div class="maker-button text-right">
                         <button class="btn btn-width-80" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
-                                ng-if="vm.user.isOper || vm.isOwner(vm.maker)" ng-click="vm.beginAddUser(vm.maker)">
+                                ng-if="vm.user.isOper || vm.isOwner(vm.maker)"
+                                uib-popover-template="vm.addMemberPopover.templateUrl"
+                                popover-append-to-body="true"
+                                popover-title="{{vm.addMemberPopover.title | translate}}"
+                                popover-trigger="'outsideClick'"
+                                popover-placement="top"
+                                popover-is-open="vm.addMemberPopover.isOpen"
+                                popover-class="add-member-popover"
+                                ng-click="vm.addMemberPopover.isOpen=true; vm.addMemberPopover.username='';">
                             {{'ABOUT.BTN_ADD_USER' | translate}}
                         </button>
                         <button class="btn btn-width-80" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
@@ -240,4 +255,19 @@
             </div>
         </div>
     </div>
+
+
+    <script type="text/ng-template" id="add-member.html">
+        <form>
+            <div class="form-group">
+                <input type="text" ng-model="vm.addMemberPopover.username" class="form-control"
+                       placeholder="{{ 'STATUS_FIELD.USERNAME' | translate }}" autofocus>
+            </div>
+            <div class="margin-top-10">
+                <button class="btn btn-default btn-width-80" ng-disabled="!vm.addMemberPopover.username"
+                        ng-click="vm.addMember();">{{ 'FORUMS.BTN_ADD' | translate }}
+                </button>
+            </div>
+        </form>
+    </script>
 </div>

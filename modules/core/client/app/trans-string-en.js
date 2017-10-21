@@ -487,10 +487,17 @@
       DELETE_CONFIRM_CANCEL: 'Cancel',
       DELETE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
       DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this maker group?',
+      DELETE_MEMBER_CONFIRM_BODY_TEXT: 'Are you sure want to delete the member from this group?',
       DELETE_SUCCESSFULLY: 'Maker group deleted successfully',
       DELETE_FAILED: 'Maker group deleted failed',
       RATING_SUCCESSFULLY: 'Rating for maker group successfully',
-      RATING_FAILED: 'Rating for maker group failed'
+      RATING_FAILED: 'Rating for maker group failed',
+      ADD_MEMBER_TITLE: 'Add Member',
+      ADD_MEMBER_SUCCESSFULLY: 'Add group member successfully',
+      ADD_MEMBER_FAILED: 'Add group member failed',
+      REMOVE_MEMBER_SUCCESSFULLY: 'Remove group member successfully',
+      REMOVE_MEMBER_FAILED: 'Remove group member failed',
+      REMOVE_MEMBER_TITLE: 'Remove this member'
     },
 
     //collections views

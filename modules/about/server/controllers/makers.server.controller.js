@@ -172,6 +172,71 @@ exports.rating = function (req, res) {
 };
 
 /**
+ * addMember
+ * @param req
+ * @param res
+ */
+exports.addMember = function (req, res) {
+  var maker = req.maker;
+  var mu = req.nameuser;
+
+  var om = [];
+  maker.members.forEach(function (m) {
+    om.push(m._id.toString());
+  });
+
+  if (om.indexOf(mu._id.toString()) >= 0) {
+    return res.status(422).send({
+      message: 'username "' + mu.username + '" already exist!'
+    });
+  } else {
+    maker.members.push(mu);
+    maker.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(maker);
+      }
+    });
+  }
+};
+
+/**
+ * removeMember
+ * @param req
+ * @param res
+ * @returns {*}
+ */
+exports.removeMember = function (req, res) {
+  var maker = req.maker;
+  var mu = req.nameuser;
+
+  var om = [];
+  maker.members.forEach(function (m) {
+    om.push(m._id.toString());
+  });
+
+  if (om.indexOf(mu._id.toString()) < 0) {
+    return res.status(422).send({
+      message: 'username "' + mu.username + '" not exist!'
+    });
+  } else {
+    maker.members.splice(om.indexOf(mu._id.toString()), 1);
+    maker.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(maker);
+      }
+    });
+  }
+};
+
+/**
  * Maker middleware
  */
 exports.makerByID = function (req, res, next, id) {

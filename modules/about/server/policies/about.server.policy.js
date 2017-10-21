@@ -18,7 +18,9 @@ exports.invokeRolesPolicies = function () {
       {resources: '/api/makers', permissions: '*'},
       {resources: '/api/makers/create/:userId', permissions: '*'},
       {resources: '/api/makers/:makerId', permissions: '*'},
-      {resources: '/api/makers/:makerId/rating', permissions: '*'}
+      {resources: '/api/makers/:makerId/rating', permissions: '*'},
+      {resources: '/api/makers/:makerId/addMember/:username', permissions: '*'},
+      {resources: '/api/makers/:makerId/removeMember/:username', permissions: '*'}
     ]
   }, {
     roles: ['user'],

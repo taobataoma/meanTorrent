@@ -487,10 +487,17 @@
       DELETE_CONFIRM_CANCEL: '取消',
       DELETE_CONFIRM_HEADER_TEXT: '删除确认',
       DELETE_CONFIRM_BODY_TEXT: '您确定要删除这个资源压制小组?',
+      DELETE_MEMBER_CONFIRM_BODY_TEXT: '您确定要从小组删除这个成员?',
       DELETE_SUCCESSFULLY: '资源压制小组删除成功',
       DELETE_FAILED: '资源压制小组删除失败',
       RATING_SUCCESSFULLY: '为资源压制小组评分成功',
-      RATING_FAILED: '为资源压制小组评分失败'
+      RATING_FAILED: '为资源压制小组评分失败',
+      ADD_MEMBER_TITLE: '添加小组成员',
+      ADD_MEMBER_SUCCESSFULLY: '添加小组成员成功',
+      ADD_MEMBER_FAILED: '添加小组成员失败',
+      REMOVE_MEMBER_SUCCESSFULLY: '删除小组成员成功',
+      REMOVE_MEMBER_FAILED: '删除小组成员失败',
+      REMOVE_MEMBER_TITLE: '删除小组成员'
     },
 
     //collections views

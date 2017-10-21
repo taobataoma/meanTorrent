@@ -196,7 +196,7 @@ exports.userByUsername = function (req, res, next, uname) {
       if (err) {
         return next(err);
       } else if (!user) {
-        return res.status(404).send({
+        return res.status(422).send({
           message: 'No user with that username has been found'
         });
       }

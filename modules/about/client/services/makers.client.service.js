@@ -27,16 +27,23 @@
         params: {
           makerId: '@_id'
         }
+      },
+      addMember: {
+        method: 'PUT',
+        url: '/api/makers/:makerId/addMember/:username',
+        params: {
+          makerId: '@_id',
+          username: '@_username'
+        }
+      },
+      removeMember: {
+        method: 'PUT',
+        url: '/api/makers/:makerId/removeMember/:username',
+        params: {
+          makerId: '@_id',
+          username: '@_username'
+        }
       }
-      //,
-      //addModerator: {
-      //  method: 'PUT',
-      //  url: '/api/admin/forums/:forumId/addModerator/:username',
-      //  params: {
-      //    forumId: '@_id',
-      //    username: '@_username'
-      //  }
-      //}
     });
   }
 }());
