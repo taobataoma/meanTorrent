@@ -75,6 +75,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 27. Software, game, picture, ebook type torrents support NOW!
 28. Admin can update or set users Vip attribute data manual in manage page.
 29. Admin or oper can set torrent 'VIP' attribute, all these torrents only __VIP__ user can list and download.
+30. Complete torrents maker group support, Admin can create a group and set a founder, and the founder can add or remove member users.
 
 #### Chat room feature:
 1. Users name list
