@@ -63,7 +63,7 @@ module.exports = {
       admin: 'admin@chd.im',
       baseUrl: 'http://chd.im:3000',
       clientBlackListUrl: '/about/black',
-      privateTorrentCmsMode: false
+      privateTorrentCmsMode: true
     },
 
     /**

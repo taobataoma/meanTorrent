@@ -18,7 +18,9 @@
                     <div class="text-center group-item"
                          ui-sref="about.group({ makerId: m._id })"
                          ng-mouseenter="vm.spinCog($event, m.name)" ng-mouseleave="vm.stopCog($event, m.name)">
-                        <div class="h3">{{m.name}}</div>
+                        <div class="h3">
+                            <span maker-info="m" info-class="h3"></span>
+                        </div>
 
                         <span>{{'ABOUT.GROUP_FOUNDER' | translate}}</span>
                         <span info-class="h5" user-info="m.user" info-name></span>

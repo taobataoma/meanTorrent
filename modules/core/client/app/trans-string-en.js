@@ -714,6 +714,7 @@
 
     MESSAGE_TO_ICON_TITLE: 'Send a message to {{name}}',
     USER_INFO_TITLE: 'user info of {{name}}',
+    MAKER_INFO_TITLE: 'maker group info of {{name}}',
     USER_IS_VIP: '{{name}} is a VIP',
 
     //traces
