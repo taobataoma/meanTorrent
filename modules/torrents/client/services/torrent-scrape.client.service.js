@@ -14,12 +14,14 @@
       scrapeTorrent: scrapeTorrent
     };
 
-    function scrapeTorrent(obj) {
+    function scrapeTorrent(obj, isNow) {
+      isNow = isNow || false;
+
       if (Array.isArray(obj)) {
         angular.forEach(obj, function (oi) {
           var h = moment().diff(moment(oi.last_scrape), 'hours');
 
-          if (h >= scrapeConfig.scrapeInterval) {
+          if (h >= scrapeConfig.scrapeInterval || isNow) {
             $timeout(function () {
               TorrentsService.scrape({
                 torrentId: oi._id
@@ -28,6 +30,8 @@
                 oi.torrent_seeds = scinfo.data.complete;
                 oi.torrent_finished = scinfo.data.downloaded;
                 oi.torrent_leechers = scinfo.data.incomplete;
+              }, function (err) {
+                mtDebug.info(err);
               });
             }, 10);
           }
@@ -35,7 +39,7 @@
       } else {
         var h = moment().diff(moment(obj.last_scrape), 'hours');
 
-        if (h >= scrapeConfig.scrapeInterval) {
+        if (h >= scrapeConfig.scrapeInterval || isNow) {
           $timeout(function () {
             TorrentsService.scrape({
               torrentId: obj._id
@@ -44,6 +48,8 @@
               obj.torrent_seeds = scinfo.data.complete;
               obj.torrent_finished = scinfo.data.downloaded;
               obj.torrent_leechers = scinfo.data.incomplete;
+            }, function (err) {
+              mtDebug.info(err);
             });
           }, 10);
         }

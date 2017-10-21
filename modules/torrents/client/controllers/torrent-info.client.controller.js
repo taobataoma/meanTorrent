@@ -253,7 +253,7 @@
      * doScrape
      */
     vm.doScrape = function () {
-      ScrapeService.scrapeTorrent(vm.torrentLocalInfo);
+      ScrapeService.scrapeTorrent(vm.torrentLocalInfo, true);
     };
 
     /**

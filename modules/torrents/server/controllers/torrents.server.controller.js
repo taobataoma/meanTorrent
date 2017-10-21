@@ -670,6 +670,7 @@ exports.scrape = function (req, res) {
   if (!config.meanTorrentConfig.announce.privateTorrentCmsMode) {
     scrape.doScrape(req.torrent, function (err, result) {
       if (err) {
+        mtDebug.debugRed(err);
         return res.status(422).send({
           message: err
         });
