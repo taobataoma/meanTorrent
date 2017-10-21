@@ -132,7 +132,7 @@
         vm.torrentLocalInfo = res;
         mtDebug.info(vm.torrentLocalInfo);
 
-        $('.backdrop').css('backgroundImage', 'url(' + vm.TGI.getTorrentBackdropImage(vm.torrentLocalInfo) + ')');
+        $('.backdrop').css('backgroundImage', 'url("' + vm.TGI.getTorrentBackdropImage(vm.torrentLocalInfo) + '")');
 
         vm.rating_vote = res.resource_detail_info.vote_average;
         vm.initTabLists();
