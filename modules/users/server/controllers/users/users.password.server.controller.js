@@ -72,11 +72,7 @@ exports.forgot = function (req, res, next) {
         httpTransport = 'https://';
       }
 
-      mtDebug.debugRed(req.app.get('domain'));
-      mtDebug.debugRed(config.domain);
-      mtDebug.debugRed(req.headers.host);
-
-      var baseUrl = req.app.get('domain') || config.domain || httpTransport + req.headers.host;
+      var baseUrl = (httpTransport + req.headers.host) || config.domain;
       res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
         name: user.displayName,
         appName: config.app.title,

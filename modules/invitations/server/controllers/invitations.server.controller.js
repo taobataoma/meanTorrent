@@ -303,11 +303,7 @@ exports.sendOfficial = function (req, res) {
             httpTransport = 'https://';
           }
 
-          mtDebug.debugRed(req.app.get('domain'));
-          mtDebug.debugRed(config.domain);
-          mtDebug.debugRed(req.headers.host);
-
-          var baseUrl = req.app.get('domain') || config.domain || httpTransport + req.headers.host;
+          var baseUrl = (httpTransport + req.headers.host) || config.domain;
           res.render(path.resolve('modules/invitations/server/templates/invite-sign-up-email'), {
             to_email: req.body.email,
             name: req.user.displayName,
