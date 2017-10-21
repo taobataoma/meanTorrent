@@ -16,7 +16,6 @@ var path = require('path'),
 
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
 var traceConfig = config.meanTorrentConfig.trace;
-var mtDebug = require(path.resolve('./config/lib/debug'));
 
 /**
  * Forgot for reset password (forgot POST)
@@ -38,8 +37,8 @@ exports.forgot = function (req, res, next) {
 
         User.findOne({
           $or: [
-            {username: usernameOrEmail},
-            {email: usernameOrEmail}
+            { username: usernameOrEmail },
+            { email: usernameOrEmail }
           ]
         }, '-salt -password', function (err, user) {
           if (err || !user) {
@@ -71,8 +70,7 @@ exports.forgot = function (req, res, next) {
       if (config.secure && config.secure.ssl === true) {
         httpTransport = 'https://';
       }
-
-      var baseUrl = (httpTransport + req.headers.host) || config.domain;
+      var baseUrl = req.app.get('domain') || httpTransport + req.headers.host;
       res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
         name: user.displayName,
         appName: config.app.title,
