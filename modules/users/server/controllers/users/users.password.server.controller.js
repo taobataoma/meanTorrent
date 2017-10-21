@@ -70,8 +70,7 @@ exports.forgot = function (req, res, next) {
       if (config.secure && config.secure.ssl === true) {
         httpTransport = 'https://';
       }
-
-      var baseUrl = (httpTransport + req.headers.host) || config.domain;
+      var baseUrl = req.app.get('domain') || httpTransport + req.headers.host;
       res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
         name: user.displayName,
         appName: config.app.title,
