@@ -135,10 +135,7 @@ module.exports.doScrape = function (t, cb) {
     //});
 
     server.on('message', function (msg, rinfo) {
-      var buf = new Buffer(msg),
-        seeders,
-        completed,
-        leechers;
+      var buf = new Buffer(msg);
 
       //console.log(rinfo);
       action = buf.readUInt32BE(0, 4);

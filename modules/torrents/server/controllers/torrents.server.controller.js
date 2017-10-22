@@ -575,7 +575,11 @@ exports.create = function (req, res) {
 
           //scrape torrent status info in public cms mode
           if (!config.meanTorrentConfig.announce.privateTorrentCmsMode && config.meanTorrentConfig.scrapeTorrentStatus.onTorrentUpload) {
-            scrape.doScrape(torrent);
+            scrape.doScrape(torrent, function (err, result) {
+              if (err) {
+                mtDebug.debugRed(err);
+              }
+            });
           }
         }
       });
