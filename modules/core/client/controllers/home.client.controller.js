@@ -43,13 +43,6 @@
     });
 
     /**
-     * If user is not signed in then redirect back signin
-     */
-    if (!Authentication.user) {
-      $state.go('authentication.signin');
-    }
-
-    /**
      * initTopOneInfo
      */
     vm.initTopOneMovieInfo = function () {

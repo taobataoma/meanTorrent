@@ -21,13 +21,6 @@
     vm.searchTags = [];
 
     /**
-     * If user is not signed in then redirect back home
-     */
-    if (!Authentication.user) {
-      $state.go('authentication.signin');
-    }
-
-    /**
      * getUserWarningTorrent
      */
     vm.getUserWarningTorrent = function () {

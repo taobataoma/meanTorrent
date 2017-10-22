@@ -50,11 +50,6 @@
      * init all event bundle
      */
     function init() {
-      // If user is not signed in then redirect back home
-      if (!Authentication.user) {
-        $state.go('authentication.signin');
-      }
-
       registerCallback();
 
       // Make sure the Socket is connected

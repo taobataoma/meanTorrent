@@ -24,13 +24,6 @@
     vm.postReplyFields = {};
 
     /**
-     * If user is not signed in then redirect back home
-     */
-    if (!Authentication.user) {
-      $state.go('authentication.signin');
-    }
-
-    /**
      * buildPager
      * pagination init
      */

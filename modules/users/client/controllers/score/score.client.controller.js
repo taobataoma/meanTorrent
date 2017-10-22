@@ -17,13 +17,6 @@
     vm.user = Authentication.user;
 
     /**
-     * If user is not signed in then redirect back home
-     */
-    if (!Authentication.user) {
-      $state.go('authentication.signin');
-    }
-
-    /**
      * auth-user-changed
      */
     $scope.$on('auth-user-changed', function (event, args) {

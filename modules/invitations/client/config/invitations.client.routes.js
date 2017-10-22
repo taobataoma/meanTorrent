@@ -14,7 +14,10 @@
       .state('invitations', {
         abstract: true,
         url: '/invitations',
-        template: '<ui-view/>'
+        template: '<ui-view/>',
+        data: {
+          roles: ['user', 'oper', 'admin']
+        }
       })
       .state('invitations.detail', {
         url: '/detail',

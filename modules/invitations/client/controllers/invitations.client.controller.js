@@ -27,13 +27,6 @@
     };
 
     /**
-     * If user is not signed in then redirect back home
-     */
-    if (!Authentication.user) {
-      $state.go('authentication.signin');
-    }
-
-    /**
      * user-invitations-changed
      */
     $scope.$on('user-invitations-changed', function (event, args) {

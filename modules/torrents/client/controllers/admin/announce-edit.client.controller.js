@@ -16,11 +16,6 @@
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.comment = vm.announceConfig.comment;
 
-    // If user is not signed in then redirect back home
-    if (!Authentication.user) {
-      $state.go('authentication.signin');
-    }
-
     /**
      * upload
      * @param dataUrl

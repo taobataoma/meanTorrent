@@ -14,7 +14,10 @@
       .state('messages', {
         abstract: true,
         url: '/messages',
-        templateUrl: '/modules/messages/client/views/messages.client.view.html'
+        templateUrl: '/modules/messages/client/views/messages.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin']
+        }
       })
       .state('messages.box', {
         url: '/box',

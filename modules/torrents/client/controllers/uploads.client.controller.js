@@ -25,11 +25,6 @@
     vm.videoNfo = '';
     vm.customTorrent = {};
 
-    // If user is not signed in then redirect back home
-    if (!Authentication.user) {
-      $state.go('authentication.signin');
-    }
-
     /**
      * upload
      * @param dataUrl

@@ -9,15 +9,7 @@
 
   function ResetPasskeyController($scope, $state, $translate, Authentication, UsersService, Notification, ModalConfirmService) {
     var vm = this;
-
     vm.user = Authentication.user;
-
-    /**
-     * If user is not signed in then redirect back home
-     */
-    if (!vm.user) {
-      $state.go('authentication.signin');
-    }
 
     vm.resetPasskey = function () {
       var modalOptions = {

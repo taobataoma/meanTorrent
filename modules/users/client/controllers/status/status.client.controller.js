@@ -13,12 +13,5 @@
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
 
-    /**
-     * If user is not signed in then redirect back home
-     */
-    if (!Authentication.user) {
-      $state.go('authentication.signin');
-    }
-
   }
 }());

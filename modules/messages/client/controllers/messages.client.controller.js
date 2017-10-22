@@ -17,13 +17,6 @@
     vm.deleteList = [];
 
     /**
-     * If user is not signed in then redirect back home
-     */
-    if (!Authentication.user) {
-      $state.go('authentication.signin');
-    }
-
-    /**
      * user-unread-count-changed
      */
     $scope.$on('user-unread-count-changed', function (event, args) {
