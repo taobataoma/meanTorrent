@@ -67,7 +67,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 19. Forum replies support real edit, What you see is what you get ([bootstrap-markdown](http://www.codingdrama.com/bootstrap-markdown/)）), and drag & drop attach file upload.
 20. Complete thumbs-up system(thanks system), topic poster or torrent uploader will received score donate from clicker.
 21. __IRC Announce support [Node-irc](https://github.com/martynsmith/node-irc), when user upload new torrent file, and oper/admin reviewed it, then announce the torrent info to IRC channel.__
-22. Scrape torrents status from owner tracker server, design for `public` CMS mode.
+22. Scrape torrents status from owner tracker server, design for `public` CMS mode, support HTTP/HTTPS/UDP tracker protocol.
 23. Complete HnR(hit and run) system support.
 24. Oper/admin can send official invitation, but all the invitation has the expired time setting.
 25. Complete music torrents support, include __CD__ and __MTV__ sub type.
@@ -313,6 +313,23 @@ meanTorrent support complete HnR(hit and run) system, if user download a HnR tor
 the upload ratio more than `contition.ratio`, otherwise, the user will get a HnR warning, if the warning numbers is more than `forbiddenDownloadMinWarningNumber`,
 then the user can not download any torrent. but can continue the warning torrent and seed it until the warning disappears,
 and the user can remove a warning by score number of `scoreToRemoveWarning` or donate a VIP qualifications.
+
+#### mail sender configure
+meanTorrent need send mail to user when restore password, send invitations etc. before send these mail, you need change the mail options in file `env/development.js` or `env/production.js`,
+meanTorrent used module `nodemailer`, if you have any config question you can find at [nodemailer](https://nodemailer.com/about/).
+
+```javascript
+  mailer: {
+    from: process.env.MAILER_FROM || 'admin@domain.com',
+    options: {
+      service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
+      auth: {
+        user: process.env.MAILER_EMAIL_ID || 'username@gmail.com',
+        pass: process.env.MAILER_PASSWORD || 'mailpassword'
+      }
+    }
+  },
+```
 
 ## Deploying to PAAS
 
