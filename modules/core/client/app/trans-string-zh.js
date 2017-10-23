@@ -23,7 +23,6 @@
     MENU_TORRENTS_ADMIN: '种子管理',
     MENU_TORRENTS_ADMIN_EDAU: '种子修改器',
     MENU_ADMIN_OFFICIAL_INVITATION: '发送官方邀请',
-    MENU_ADMIN_COLLECTIONS: '资源系列管理',
     MENU_ADMIN_MESSAGES: '系统消息',
     MENU_ADMIN_TRACE: '系统日志',
     MENU_ADMIN_FORUMS_CONFIGURE: '论坛配置管理',
@@ -43,6 +42,7 @@
     //sub menu of torrents
     MENU_TORRENTS_SUB: {
       MOVIE: '电影',
+      MOVIE_COLLECTIONS: '电影系列',
       TVSERIAL: '电视剧',
       MUSIC: '音乐',
       SPORTS: '体育',
@@ -157,7 +157,7 @@
       BLACK: '禁止客户端列表',
       MAKER: '资源压制小组',
       OPERLIST: 'Admin/Oper 列表',
-      COLLECTIONS: '资源系列',
+      COLLECTIONS: '电影系列',
       VIP: 'Vip',
       FORUM: '论坛',
       ADMIN_USER_LIST: '用户管理',

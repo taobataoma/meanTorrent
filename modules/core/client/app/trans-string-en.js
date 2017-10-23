@@ -23,7 +23,6 @@
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
     MENU_TORRENTS_ADMIN_EDAU: 'Announce Editor',
     MENU_ADMIN_OFFICIAL_INVITATION: 'Send official invitation',
-    MENU_ADMIN_COLLECTIONS: 'Torrents Collections Configure',
     MENU_ADMIN_MESSAGES: 'System Messages',
     MENU_ADMIN_TRACE: 'System Traces',
     MENU_ADMIN_FORUMS_CONFIGURE: 'Forums Configure',
@@ -43,6 +42,7 @@
     //sub menu of torrents
     MENU_TORRENTS_SUB: {
       MOVIE: 'Movie',
+      MOVIE_COLLECTIONS: 'Movie Collections',
       TVSERIAL: 'TVSerial',
       MUSIC: 'Music',
       SPORTS: 'Sports',
@@ -157,7 +157,7 @@
       BLACK: 'Client Black List',
       MAKER: 'Torrents Maker Group',
       OPERLIST: 'Admin/Oper List',
-      COLLECTIONS: 'Torrents Collections',
+      COLLECTIONS: 'Movie Collections',
       VIP: 'Vip',
       FORUM: 'Forum',
       ADMIN_USER_LIST: 'User List',
@@ -502,7 +502,7 @@
 
     //collections views
     COLLECTIONS: {
-      ADMIN_MANAGE: 'Torrents Collections Configure'
+      COLL_LIST: 'Movie Collections List'
     },
 
     //user settings

@@ -2,16 +2,18 @@
   'use strict';
 
   angular
-    .module('collections.admin.routes')
+    .module('collections.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
 
   function routeConfig($stateProvider) {
+
     $stateProvider
-      .state('admin.collections', {
+      // this menu item defined in torrents menu config
+      .state('collections', {
         url: '/collections',
-        templateUrl: '/modules/collections/client/views/admin/collections-admin.client.view.html',
+        templateUrl: '/modules/collections/client/views/collections.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.COLLECTIONS'
         }
