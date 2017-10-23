@@ -110,7 +110,6 @@
       div1.attr('title', attrs.alt);
       div1.css('border-radius', '0');
       if (attrs.src) {
-        console.log(attrs.src);
         div1.css('background-image', 'url("' + attrs.src + '")');
       }
       div1.css('background-size', 'cover');

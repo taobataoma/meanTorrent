@@ -105,12 +105,12 @@ module.exports.doScrape = function (t, cb) {
         } else if (response.statusCode === 403) {
           if (cb) cb('403 Forbidden', null);
         }
-
-        //update torrent last scrape time
-        t.update({
-          last_scrape: Date.now()
-        }).exec();
       }
+
+      //update torrent last scrape time
+      t.update({
+        last_scrape: Date.now()
+      }).exec();
     });
   }
 
@@ -175,11 +175,6 @@ module.exports.doScrape = function (t, cb) {
         } else {
           if (cb) cb('422 result is empty', null);
         }
-
-        //update torrent last scrape time
-        t.update({
-          last_scrape: Date.now()
-        }).exec();
       } else if (action === ACTION_ERROR) {
         //console.log('error response');
         if (cb) cb('ACTION_ERROR', null);
@@ -188,6 +183,11 @@ module.exports.doScrape = function (t, cb) {
 
     server.bind();
     startConnection();
+
+    //update torrent last scrape time
+    t.update({
+      last_scrape: Date.now()
+    }).exec();
 
     function startConnection() {
       var buf = new Buffer(16);

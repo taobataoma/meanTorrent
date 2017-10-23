@@ -179,7 +179,7 @@
      * @returns {*}
      */
     vm.getMakerDescContent = function (m) {
-      return m ? marked(m.desc, {sanitize: true}) : 'NULL';
+      return m ? marked(m.desc, {sanitize: true}) : '';
     };
 
     /**
