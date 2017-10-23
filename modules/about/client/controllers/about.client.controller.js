@@ -35,10 +35,6 @@
       isOpen: false
     };
 
-    vm.init = function () {
-
-    };
-
     /**
      * buildPager
      */

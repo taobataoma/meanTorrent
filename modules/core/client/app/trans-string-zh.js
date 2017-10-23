@@ -307,6 +307,9 @@
     ADMIN_SALE_TYPE_SET: '种子促销类型',
     ADMIN_BASIC_RLEVEL_SET: '推荐级别',
     ADMIN_RLEVEL_SET: '推荐级别设置',
+    ADMIN_COLLECTION_COMMAND: '电影系列操作命令',
+    ADMIN_COLLECTION_CREATE: '创建新系列',
+    ADMIN_COLLECTION_ADDINTO: '将电影加入到系列',
 
     TORRENT_DELETE_CONFIRM_OK: '删除',
     TORRENT_DELETE_CONFIRM_CANCEL: '取消',
@@ -502,7 +505,13 @@
 
     //collections views
     COLLECTIONS: {
-      ADMIN_MANAGE: '资源系列配置管理'
+      FORM_FOR: '创建电影系列 - {{cid}}',
+      FORM_NAME: '系列名称',
+      FORM_DESC: '系列简介',
+      COLL_LIST: '电影系列清单',
+      CREATE_SUCCESSFULLY: '电影系列创建成功',
+      CREATE_FAILED: '电影系列创建失败',
+      LIST_ERROR: '电影系列清单列出失败'
     },
 
     //user settings

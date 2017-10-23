@@ -8,12 +8,12 @@
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
     'SubtitlesService', 'getStorageLangService', 'ScrapeService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
-    'localStorageService', '$compile', 'SideOverlay', 'ResourcesTagsServices'];
+    'localStorageService', '$compile', 'SideOverlay', 'ResourcesTagsServices', 'CollectionsService'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
                                   getStorageLangService, ScrapeService, NotifycationService, mtDebug, TorrentGetInfoServices,
-                                  localStorageService, $compile, SideOverlay, ResourcesTagsServices) {
+                                  localStorageService, $compile, SideOverlay, ResourcesTagsServices, CollectionsService) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -201,6 +201,71 @@
           title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETTAGS_ERROR')
         });
       });
+    };
+
+    /**
+     * showCollectionCommand
+     */
+    vm.showCollectionCommand = function () {
+      var cinfo = vm.torrentLocalInfo.resource_detail_info.belongs_to_collection;
+      return cinfo === null ? false : true;
+    };
+
+    /**
+     * createCollection
+     * @param evt
+     */
+    vm.createCollection = function (evt) {
+      vm.collection = {
+        tmdb_id: vm.torrentLocalInfo.resource_detail_info.belongs_to_collection.id || 0,
+        name: undefined,
+        overview: undefined,
+        poster_path: undefined,
+        backdrop_path: undefined,
+
+        status_msg: 'loading tmdb collection detail ...',
+        status: 'loading'
+      };
+
+      SideOverlay.open(evt, 'collectionsSlide');
+
+      CollectionsService.getCollectionInfo({
+        id: vm.collection.tmdb_id,
+        language: getStorageLangService.getLang()
+      }, function (res) {
+        vm.collection.name = res.name;
+        vm.collection.overview = res.overview;
+        vm.collection.poster_path = res.poster_path;
+        vm.collection.backdrop_path = res.backdrop_path;
+        vm.collection.status = 'ok';
+
+        mtDebug.info(vm.collection);
+      }, function (err) {
+        vm.collection.status = 'error';
+        vm.collection.status_msg = 'Error: get tmdb collection detail';
+      });
+    };
+
+    /**
+     * hideCollectionPopup
+     */
+    vm.hideCollectionPopup = function () {
+      SideOverlay.close(null, 'collectionsSlide');
+    };
+
+    /**
+     * saveCollection
+     */
+    vm.saveCollection = function () {
+      SideOverlay.close(null, 'collectionsSlide');
+
+      var coll = new CollectionsService(vm.collection);
+      coll.$save(function (res) {
+        NotifycationService.showSuccessNotify('COLLECTIONS.CREATE_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'COLLECTIONS.CREATE_FAILED');
+      });
+
     };
 
     /**

@@ -18,21 +18,27 @@ exports.invokeRolesPolicies = function () {
         roles: ['admin', 'oper'],
         allows: [
           {resources: '/api/search/collection/:language', permissions: '*'},
-          {resources: '/api/collectionInfo/:id/:language', permissions: '*'}
+          {resources: '/api/collectionInfo/:id/:language', permissions: '*'},
+          {resources: '/api/collections', permissions: '*'},
+          {resources: '/api/collections/:collectionId', permissions: '*'}
         ]
       },
       {
         roles: ['user'],
         allows: [
           {resources: '/api/search/collection/:language', permissions: ['get']},
-          {resources: '/api/collectionInfo/:id/:language', permissions: ['get']}
+          {resources: '/api/collectionInfo/:id/:language', permissions: ['get']},
+          {resources: '/api/collections', permissions: ['get']},
+          {resources: '/api/collections/:collectionId', permissions: ['get']}
         ]
       },
       {
         roles: ['guest'],
         allows: [
           {resources: '/api/search/collection/:language', permissions: ['get']},
-          {resources: '/api/collectionInfo/:id/:language', permissions: ['get']}
+          {resources: '/api/collectionInfo/:id/:language', permissions: ['get']},
+          {resources: '/api/collections', permissions: ['get']},
+          {resources: '/api/collections/:collectionId', permissions: ['get']}
         ]
       }
     ]

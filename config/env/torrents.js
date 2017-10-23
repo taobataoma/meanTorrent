@@ -256,6 +256,7 @@ module.exports = {
         AdminTorrentSetRecommendLevel: {name: 'AdminTorrentSetRecommendLevel', enable: true},
         AdminTorrentSetReviewedStatus: {name: 'AdminTorrentSetReviewedStatus', enable: true},
         OperCreateMakerGroup: {name: 'OperCreateMakerGroup', enable: true},
+        OperCreateCollection: {name: 'OperCreateCollection', enable: true},
 
         userInvitationExchange: {name: 'userInvitationExchange', enable: true},
         adminRemoveHnrWarning: {name: 'adminRemoveHnrWarning', enable: true},
@@ -644,6 +645,7 @@ module.exports = {
       key: '7888f0042a366f63289ff571b68b7ce0',
       backdropImgBaseUrl: 'http://image.tmdb.org/t/p/w1280',
       backdropImgBaseUrl_300: 'http://image.tmdb.org/t/p/w300',
+      backdropImgBaseUrl_780: 'http://image.tmdb.org/t/p/w780',
       posterImgBaseUrl: 'http://image.tmdb.org/t/p/w500',
       posterListBaseUrl: 'http://image.tmdb.org/t/p/w92',
       castImgBaseUrl: 'http://image.tmdb.org/t/p/w132_and_h132_bestv2'
@@ -717,7 +719,8 @@ module.exports = {
       torrentsCommentsPerPage: 10,
       makeGroupTorrentsPerPage: 10,
       tracesPerPage: 30,
-      adminUserListPerPage: 15
+      adminUserListPerPage: 15,
+      collectionsListPerPage: 6
     },
 
     /**

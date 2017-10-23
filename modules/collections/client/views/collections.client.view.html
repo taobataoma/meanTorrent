@@ -1,41 +1,70 @@
-<section class="container" ng-controller="CollectionController as vm" ng-init="vm.getCollectionsList();">
+<section class="container" ng-controller="CollectionController as vm" ng-init="vm.buildPager();">
     <div class="row margin-top-20">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <span>
+        <div class="col-sm-12">
+            <span id="top_of_collections_list">
                 <h3 class="margin-bottom-30">
                     {{'COLLECTIONS.COLL_LIST' | translate}}
                 </h3>
             </span>
 
-            <!--<div class="row collections-list">-->
-                <!--<div class="col-sm-6" ng-repeat="m in vm.makerList">-->
-                    <!--<div class="text-center group-item"-->
-                         <!--ui-sref="about.group({ makerId: m._id })"-->
-                         <!--ng-mouseenter="vm.spinCog($event, m.name)" ng-mouseleave="vm.stopCog($event, m.name)">-->
-                        <!--<div class="h3">-->
-                            <!--<span maker-info="m" info-class="h3"></span>-->
-                        <!--</div>-->
+            <div class="collections-list">
+                <div class="pagination-div-top">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-9">
+                            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                                ng-model="vm.currentPage"
+                                ng-change="vm.pageChanged()"
+                                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <input class="form-control margin-top-20 margin-bottom-20" type="text" ng-model="vm.search" placeholder="Search"
+                                   ng-change="vm.figureOutItemsToDisplay()"/>
+                        </div>
+                    </div>
+                </div>
 
-                        <!--<span>{{'ABOUT.GROUP_FOUNDER' | translate}}</span>-->
-                        <!--<span info-class="h5" user-info="m.user" info-name></span>-->
-                        <!--<span to-class="h5" message-to="m.user" to-class="message-to-icon"></span>-->
+                <div class="row">
+                    <div class="col-sm-6 col-md-4" ng-repeat="m in vm.pagedItems">
+                        <div class="collection-item"
+                             ui-sref="collections.view({ collectionId: m._id })">
+                            <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_780 + m.backdrop_path}}">
 
-                        <!--<div class="row margin-top-20 group-data">-->
-                            <!--<div class="col-xs-4 col-small-padding text-right">-->
-                                <!--<i class="fa fa-user-circle-o text-info"> {{m.members.length}}</i>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-4 col-small-padding text-center">-->
-                                <!--<i class="fa fa-upload text-info"> {{m.torrent_count}}</i>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-4 col-small-padding text-left">-->
-                                <!--<i class="fa fa-star-half-o text-info"> {{m.vote_average}}/{{m.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</i>-->
-                            <!--</div>-->
-                        <!--</div>-->
+                            <div class="item-info text-center">
+                                <div class="name">{{m.name}}</div>
 
-                        <!--<i id="cog_{{m.name}}" class="fa fa-5x fa-cog group-icon"></i>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+                                <div class="row margin-top-40 collection-data">
+                                    <div class="col-xs-4 col-small-padding text-right">
+                                        <!--<i class="fa fa-user-circle-o text-info"> {{m.members.length}}</i>-->
+                                    </div>
+                                    <div class="col-xs-4 col-small-padding text-center">
+                                        <i class="fa fa-upload text-info"> {{m.torrents.length}}</i>
+                                    </div>
+                                    <div class="col-xs-4 col-small-padding text-left">
+                                        <!--<i class="fa fa-star-half-o text-info"> {{m.vote_average}}/{{m.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</i>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<span>{{'ABOUT.GROUP_FOUNDER' | translate}}</span>-->
+                            <!--<span info-class="h5" user-info="m.user" info-name></span>-->
+                            <!--<span to-class="h5" message-to="m.user" to-class="message-to-icon"></span>-->
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagination-div-bottom">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 

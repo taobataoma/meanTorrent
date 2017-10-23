@@ -307,6 +307,9 @@
     ADMIN_SALE_TYPE_SET: 'Sale Type Set',
     ADMIN_BASIC_RLEVEL_SET: 'Recommend Level',
     ADMIN_RLEVEL_SET: 'Recommend Level Set',
+    ADMIN_COLLECTION_COMMAND: 'Collections Command',
+    ADMIN_COLLECTION_CREATE: 'Create Collection',
+    ADMIN_COLLECTION_ADDINTO: 'Put This Movie Info Collection',
 
     TORRENT_DELETE_CONFIRM_OK: 'Delete',
     TORRENT_DELETE_CONFIRM_CANCEL: 'Cancel',
@@ -502,7 +505,13 @@
 
     //collections views
     COLLECTIONS: {
-      COLL_LIST: 'Movie Collections List'
+      FORM_FOR: 'Create Movie Collection for - {{cid}}',
+      FORM_NAME: 'Movie Collection Name',
+      FORM_DESC: 'Movie Collection Overview',
+      COLL_LIST: 'Movie Collections List',
+      CREATE_SUCCESSFULLY: 'Create movie collection successfully',
+      CREATE_FAILED: 'Create movie collection failed',
+      LIST_ERROR: 'Movie collections list error'
     },
 
     //user settings

@@ -372,7 +372,7 @@
     </div>
 
     <!-- =================================================================
-        side-overlay
+        side-overlay tags
     ================================================================== -->
     <div id="tagsPopupSlide" side-overlay="top" side-class="tags-side-overlay" side-modal side-close-on-esc>
         <div class="container">
@@ -425,6 +425,50 @@
                     </dl>
                 </div>
             </div>
+        </div>
+    </div>
+
+
+    <!-- =================================================================
+        side-overlay collections
+    ================================================================== -->
+    <div id="collectionsSlide" side-overlay="right" side-class="collections-side-overlay" side-close-on-esc side-modal>
+        <h4 translate="COLLECTIONS.FORM_FOR" translate-values="{cid: vm.torrentLocalInfo.resource_detail_info.belongs_to_collection.id}"></h4>
+
+        <div class="collection-form">
+            <input type="text" class="form-control" id="name" placeholder="{{'COLLECTIONS.FORM_NAME' | translate}}"
+                   ng-model="vm.collection.name" autofocus>
+
+            <textarea class="form-control" id="overview" placeholder="{{'COLLECTIONS.FORM_DESC' | translate}}"
+                      ng-model="vm.collection.overview"></textarea>
+
+            <div class="margin-top-10" style="display: table;">
+                <a class="message-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"
+                   data-ga-click="Markdown Toolbar, click, help">
+                    <svg aria-hidden="true" height="16" version="1.1"
+                         viewBox="0 0 16 16" width="16">
+                        <path fill-rule="evenodd"
+                              d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"/>
+                    </svg>
+                    {{ 'MARKDOWN_LINK' | translate }}
+                </a>
+            </div>
+
+            <img class="img-thumbnail" ng-if="vm.collection.backdrop_path"
+                 ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_780 + vm.collection.backdrop_path}}"
+                 on-error-src="http://image.tmdb.org/t/p/w1280/5pAGnkFYSsFJ99ZxDIYnhQbQFXs.jpg">
+
+            <div class="margin-top-20 h5" ng-class="vm.collection.status == 'loading' ? 'text-success' : 'text-danger'"
+                 ng-if="vm.collection.status != 'ok'">{{vm.collection.status_msg}}
+            </div>
+        </div>
+
+        <div class="bottom-control">
+            <button class="btn btn-success btn-width-100"
+                    ng-disabled="!vm.collection.name || !vm.collection.overview"
+                    ng-click="vm.saveCollection();">{{ 'BUTTON_SAVE' | translate }}
+            </button>
+            <button class="btn btn-default btn-width-100" ng-click="vm.hideCollectionPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
         </div>
     </div>
 
@@ -784,6 +828,7 @@
                             </td>
                             <td class="col-md-1 td-v-middle text-center td-uploader">
                                 <span user-info="item.user" info-name></span>
+
                                 <div maker-info="item.maker"></div>
                             </td>
                         </tr>
@@ -883,23 +928,35 @@
                     <button class="btn btn-default btn-sm" ng-click="vm.doScrape();"
                             ng-if="!vm.announce.privateTorrentCmsMode">{{ 'ADMIN_BASIC_SCRAPE' | translate}}
                     </button>
-                </dt>
-
-                <div class="margin-top-20" ng-if="vm.announce.privateTorrentCmsMode"></div>
-
-                <dt class="h-line" ng-if="vm.announce.privateTorrentCmsMode">{{ 'ADMIN_SALE_TYPE_SET' | translate}}:</dt>
-                <dd class="h-line" ng-if="vm.announce.privateTorrentCmsMode">
-                    <mark>{{vm.getSaleTypeDesc();}}</mark>
                 </dd>
 
-                <div class="padding-top-10 margin-left-50" ng-if="vm.announce.privateTorrentCmsMode">
-                    <div class="btn-group sales-btn-group text-center">
-                        <label ng-repeat="st in vm.torrentSalesType.value"
-                               class="btn btn-sm" ng-model="vm.model_salestype" uib-btn-radio="'{{st.name}}'" uncheckable
-                               ng-class="{'btn-default':vm.torrentLocalInfo.torrent_sale_status != st.name, 'btn-success':vm.torrentLocalInfo.torrent_sale_status == st.name}"
-                               ng-click="vm.setSaleType();">
-                            <small>{{st.name}}</small>
-                        </label>
+                <div class="margin-top-10" ng-if="vm.torrentLocalInfo.torrent_type=='movie' && vm.showCollectionCommand()">
+                    <dt class="h-line">{{ 'ADMIN_COLLECTION_COMMAND' | translate}}:</dt>
+                    <dd class="h-line">
+                        <button class="btn btn-default btn-sm"
+                                ng-click="vm.createCollection($event);">{{ 'ADMIN_COLLECTION_CREATE' | translate}}
+                        </button>
+                        <button class="btn btn-default btn-sm"
+                                ng-click="">{{ 'ADMIN_COLLECTION_ADDINTO' | translate}}
+                        </button>
+                    </dd>
+                </div>
+
+                <div class="margin-top-20" ng-if="vm.announce.privateTorrentCmsMode">
+                    <dt class="h-line">{{ 'ADMIN_SALE_TYPE_SET' | translate}}:</dt>
+                    <dd class="h-line">
+                        <mark>{{vm.getSaleTypeDesc();}}</mark>
+                    </dd>
+
+                    <div class="padding-top-10 margin-left-50">
+                        <div class="btn-group sales-btn-group text-center">
+                            <label ng-repeat="st in vm.torrentSalesType.value"
+                                   class="btn btn-sm" ng-model="vm.model_salestype" uib-btn-radio="'{{st.name}}'" uncheckable
+                                   ng-class="{'btn-default':vm.torrentLocalInfo.torrent_sale_status != st.name, 'btn-success':vm.torrentLocalInfo.torrent_sale_status == st.name}"
+                                   ng-click="vm.setSaleType();">
+                                <small>{{st.name}}</small>
+                            </label>
+                        </div>
                     </div>
                 </div>
 

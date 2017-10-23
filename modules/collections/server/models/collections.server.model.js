@@ -46,18 +46,6 @@ var CollectionSchema = new Schema({
     type: String,
     default: 'none'
   },
-  vote_average: {
-    type: Number,
-    default: 0
-  },
-  vote_total: {
-    type: Number,
-    default: 0
-  },
-  vote_count: {
-    type: Number,
-    default: 0
-  },
   created_at: {
     type: Date,
     default: Date.now

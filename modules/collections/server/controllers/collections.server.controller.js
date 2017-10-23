@@ -9,8 +9,8 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   moment = require('moment'),
   User = mongoose.model('User'),
-  Rating = mongoose.model('Rating'),
   Torrent = mongoose.model('Torrent'),
+  Collection = mongoose.model('Collection'),
   async = require('async'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
@@ -62,6 +62,157 @@ exports.collectioninfo = function (req, res) {
   });
 };
 
+
+/**
+ * Create an collection
+ */
+exports.create = function (req, res) {
+  if (req.user.isOper) {
+    var user = req.user;
+    var coll = new Collection(req.body);
+
+    coll.user = user._id;
+    mtDebug.debugRed(coll);
+
+    coll.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(user);
+
+        //create trace log
+        traceLogCreate(req, traceConfig.action.OperCreateCollection, {
+          name: coll.name
+        });
+      }
+    });
+  } else {
+    return res.status(403).json({
+      message: 'ERROR: User is not authorized'
+    });
+  }
+};
+
+
+/**
+ * Show the current collection
+ */
+exports.read = function (req, res) {
+  // convert mongoose document to JSON
+  var coll = req.collection ? req.collection.toJSON() : {};
+
+  coll.isCurrentUserOwner = !!(req.user && coll.user && coll.user._id.toString() === req.user._id.toString());
+
+  res.json(coll);
+};
+
+/**
+ * Update an collection
+ */
+exports.update = function (req, res) {
+  var coll = req.collection;
+
+  coll.name = req.body.name;
+  coll.overview = req.body.overview;
+
+  coll.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(coll);
+    }
+  });
+};
+
+/**
+ * Delete an collection
+ */
+exports.delete = function (req, res) {
+  var coll = req.collection;
+
+  coll.remove(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(coll);
+    }
+  });
+};
+
+/**
+ * List of collections
+ */
+exports.list = function (req, res) {
+  var skip = 0;
+  var limit = 0;
+  var keysA = [];
+  var condition = {};
+
+  if (req.body.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.body.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+
+  if (req.query.keys && req.query.keys.length > 0) {
+    var keysS = req.query.keys + '';
+    var keysT = keysS.split(' ');
+
+    keysT.forEach(function (it) {
+      var ti = new RegExp(it, 'i');
+      keysA.push(ti);
+    });
+  }
+
+  if (keysA.length > 0) {
+    condition.$or = [
+      {name: {'$all': keysA}},
+      {overview: {'$all': keysA}}
+    ];
+  }
+
+  var countQuery = function (callback) {
+    Collection.count(condition, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  var findQuery = function (callback) {
+    Collection.find(condition)
+      .sort('recommend_level -ordered_at -created_at')
+      .populate('user', 'username displayName profileImageURL isVip')
+      .populate('torrents')
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, colls) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, colls);
+        }
+      });
+  };
+
+  async.parallel([countQuery, findQuery], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
+  });
+};
+
 /**
  * Collection middleware
  */
@@ -73,83 +224,18 @@ exports.collectionByID = function (req, res, next, id) {
     });
   }
 
-  //var findTorrents = function (callback) {
-  //  Torrent.findById(id)
-  //    .populate('user', 'username displayName profileImageURL isVip')
-  //    .populate('_thumbs.user', 'username displayName profileImageURL isVip uploaded downloaded')
-  //    .populate('_ratings.user', 'username displayName profileImageURL isVip uploaded downloaded')
-  //    .populate({
-  //      path: '_replies.user',
-  //      select: 'username displayName profileImageURL isVip uploaded downloaded',
-  //      model: 'User'
-  //    })
-  //    .populate({
-  //      path: '_replies._replies.user',
-  //      select: 'username displayName profileImageURL isVip uploaded downloaded',
-  //      model: 'User'
-  //    })
-  //    .populate({
-  //      path: '_subtitles',
-  //      populate: {
-  //        path: 'user',
-  //        select: 'username displayName profileImageURL isVip'
-  //      }
-  //    })
-  //    .populate({
-  //      path: '_peers',
-  //      populate: {
-  //        path: 'user',
-  //        select: 'username displayName profileImageURL isVip'
-  //      }
-  //    })
-  //    .exec(function (err, torrent) {
-  //      if (err) {
-  //        callback(err);
-  //      } else if (!torrent) {
-  //        callback(new Error('No torrent with that id has been found'));
-  //      }
-  //      callback(null, torrent);
-  //    });
-  //};
-  //
-  //var findOtherTorrents = function (torrent, callback) {
-  //  if (torrent.resource_detail_info.id) {
-  //    var condition = {
-  //      torrent_status: 'reviewed',
-  //      'resource_detail_info.id': torrent.resource_detail_info.id
-  //    };
-  //
-  //    mtDebug.debugGreen(condition);
-  //
-  //    var fields = 'user torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_seasons torrent_episodes torrent_size torrent_sale_status torrent_type torrent_hnr torrent_vip torrent_sale_expires createdat';
-  //
-  //    Torrent.find(condition, fields)
-  //      .sort('-createdat')
-  //      .populate('user', 'username displayName isVip')
-  //      .exec(function (err, torrents) {
-  //        if (err) {
-  //          callback(err);
-  //        } else {
-  //          torrent._other_torrents.splice(0, torrent._other_torrents.length);
-  //          torrents.forEach(function (t) {
-  //            if (!t._id.equals(torrent._id)) {
-  //              torrent._other_torrents.push(t.toJSON());
-  //            }
-  //          });
-  //          callback(null, torrent);
-  //        }
-  //      });
-  //  } else {
-  //    callback(null, torrent);
-  //  }
-  //};
-  //
-  //async.waterfall([findTorrents, findOtherTorrents], function (err, torrent) {
-  //  if (err) {
-  //    next(err);
-  //  } else {
-  //    req.torrent = torrent;
-  //    next();
-  //  }
-  //});
+  Collection.findById(id)
+    .populate('user', 'username displayName profileImageURL isVip')
+    .populate('torrents')
+    .exec(function (err, coll) {
+      if (err) {
+        return next(err);
+      } else if (!coll) {
+        return res.status(404).send({
+          message: 'No collection with that identifier has been found'
+        });
+      }
+      req.collection = coll;
+      next();
+    });
 };
