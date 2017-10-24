@@ -36,7 +36,7 @@
         var total = 0;
         var count = 0;
         var total_users = 0;
-        angular.forEach(vm.collection.torrents, function(t){
+        angular.forEach(vm.collection.torrents, function (t) {
           total += t.resource_detail_info.vote_average;
           count += 1;
           total_users += t.resource_detail_info.vote_count;
