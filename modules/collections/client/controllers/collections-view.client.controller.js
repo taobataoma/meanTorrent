@@ -29,10 +29,23 @@
         collectionId: $state.params.collectionId
       }, function (data) {
         vm.collection = data;
-        mtDebug.info(data);
 
         $('.backdrop').css('backgroundImage', 'url("' + vm.tmdbConfig.backdropImgBaseUrl + vm.collection.backdrop_path + '")');
-        //vm.buildPager();
+
+        //count ave vote
+        var total = 0;
+        var count = 0;
+        var total_users = 0;
+        angular.forEach(vm.collection.torrents, function(t){
+          total += t.resource_detail_info.vote_average;
+          count += 1;
+          total_users += t.resource_detail_info.vote_count;
+        });
+
+        vm.collection.vote_count = total_users;
+        vm.collection.vote_average = Math.floor((total / count) * 10) / 10;
+
+        mtDebug.info(vm.collection);
       });
 
     };

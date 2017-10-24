@@ -59,6 +59,24 @@
       });
     };
 
+    /**
+     * getVoteAverage
+     * @param c
+     * @returns {number}
+     */
+    vm.getVoteAverage = function (c) {
+      var total = 0;
+      var count = 0;
+      var avg = 0;
+
+      angular.forEach(c.torrents, function (t) {
+        total += t.resource_detail_info.vote_average;
+        count += 1;
+      });
+      avg = Math.floor((total / count) * 10) / 10;
+
+      return avg || 0;
+    };
 
     /**
      * pageChanged

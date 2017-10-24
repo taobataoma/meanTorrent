@@ -12,8 +12,11 @@
                     </div>
                     <div class="col-sm-12">
                         <ul class="list-unstyled item-data list-inline">
-                            <li><i class="fa fa-list text-info"> {{'COLLECTIONS.FILES_NUMBERS' | translate}}: {{vm.collection.torrents.length}}</i></li>
-                            <li><i class="fa fa-star-half-o text-info"> {{'COLLECTIONS.VOTE_AVERAGE' | translate}}: 0</i></li>
+                            <li><i class="fa fa-list text-info"> {{'COLLECTIONS.FILES_NUMBERS' | translate}}: {{vm.collection.torrents.length}}</i>
+                            </li>
+                            <li><i class="fa fa-star-half-o text-info"> {{'COLLECTIONS.VOTE_AVERAGE' | translate}}:
+                                                                        {{vm.collection.vote_average}} / {{vm.collection.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}
+                            </i></li>
                         </ul>
                     </div>
                 </div>
