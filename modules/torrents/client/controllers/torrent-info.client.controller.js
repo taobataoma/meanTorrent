@@ -227,7 +227,7 @@
         status: 'loading'
       };
 
-      SideOverlay.open(evt, 'collectionsSlide');
+      SideOverlay.open(evt, 'collectionsCreateSlide');
 
       CollectionsService.getCollectionInfo({
         id: vm.collection.tmdb_id,
@@ -250,14 +250,14 @@
      * hideCollectionPopup
      */
     vm.hideCollectionPopup = function () {
-      SideOverlay.close(null, 'collectionsSlide');
+      SideOverlay.close(null, 'collectionsCreateSlide');
     };
 
     /**
      * saveCollection
      */
     vm.saveCollection = function () {
-      SideOverlay.close(null, 'collectionsSlide');
+      SideOverlay.close(null, 'collectionsCreateSlide');
 
       var coll = new CollectionsService(vm.collection);
       coll.$save(function (res) {
@@ -266,6 +266,87 @@
         NotifycationService.showErrorNotify(res.data.message, 'COLLECTIONS.CREATE_FAILED');
       });
 
+    };
+
+    /**
+     * insertIntoCollection
+     * @param evt
+     */
+    vm.insertIntoCollection = function (evt) {
+      vm.collectionsItems = undefined;
+
+      vm.collectionTorrent = {
+        tmdb_id: vm.torrentLocalInfo.resource_detail_info.belongs_to_collection.id || 0,
+        id: vm.torrentLocalInfo._id,
+        cid: undefined,
+        title: vm.TGI.getTorrentTitle(vm.torrentLocalInfo),
+        file: vm.torrentLocalInfo.torrent_filename,
+
+        status_msg: 'loading movie collection list ...',
+        status: 'loading'
+      };
+
+      SideOverlay.open(evt, 'collectionsInsertSlide');
+
+      CollectionsService.get({
+        tmdb_id: vm.collectionTorrent.tmdb_id
+      }, function (res) {
+        vm.collectionsItems = res.rows;
+        vm.collectionTorrent.status = 'ok';
+
+        mtDebug.info(res);
+      }, function (err) {
+        vm.collectionTorrent.status = 'error';
+        vm.collectionTorrent.status_msg = 'Error: get collection items error';
+      });
+    };
+
+    /**
+     * hideCollectionInsertPopup
+     */
+    vm.hideCollectionInsertPopup = function () {
+      SideOverlay.close(null, 'collectionsInsertSlide');
+    };
+
+    /**
+     * saveInsertCollection
+     */
+    vm.saveInsertCollection = function () {
+      SideOverlay.close(null, 'collectionsInsertSlide');
+
+      var sc = undefined;
+      angular.forEach(vm.collectionsItems, function (c) {
+        if (c._id === vm.collectionTorrent.cid) {
+          sc = c;
+        }
+      });
+
+      CollectionsService.insertIntoCollection({
+        collectionId: vm.collectionTorrent.cid,
+        torrentId: vm.collectionTorrent.id
+      }, function (res) {
+        mtDebug.info(res);
+        NotifycationService.showSuccessNotify('COLLECTIONS.INSERT_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'COLLECTIONS.CREATE_FAILED');
+      });
+
+    };
+
+    /**
+     * isAlreadyIn
+     * @param c
+     * @returns {boolean}
+     */
+    vm.isAlreadyIn = function (c) {
+      var result = false;
+      angular.forEach(c.torrents, function (t) {
+        if (vm.torrentLocalInfo._id === t._id) {
+          result = true;
+        }
+      });
+
+      return result;
     };
 
     /**

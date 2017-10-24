@@ -511,7 +511,16 @@
       COLL_LIST: 'Movie Collections List',
       CREATE_SUCCESSFULLY: 'Create movie collection successfully',
       CREATE_FAILED: 'Create movie collection failed',
-      LIST_ERROR: 'Movie collections list error'
+      FILES_NUMBERS: 'Torrents',
+      VOTE_AVERAGE: 'Vote average',
+      LIST_ERROR: 'Movie collections list error',
+      INSERT_INTO: 'Insert  Movie Into Collection for - {{cid}}',
+      TORRENT_INTO: 'Torrent info',
+      SELECT_INFO: 'Select a collection to insert',
+      INSERT_SUCCESSFULLY: 'Insert move into collection successfully',
+      INSERT_FAILED: 'Insert move into collection FAILED',
+      ALREADY_IN: '(Already In)',
+      NO_COLLECTION: 'No collection founded can insert movie, you can create first, then insert this movie into it.'
     },
 
     //user settings

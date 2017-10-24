@@ -428,38 +428,41 @@
         </div>
     </div>
 
-
     <!-- =================================================================
-        side-overlay collections
+        side-overlay collections create
     ================================================================== -->
-    <div id="collectionsSlide" side-overlay="right" side-class="collections-side-overlay" side-close-on-esc side-modal>
-        <h4 translate="COLLECTIONS.FORM_FOR" translate-values="{cid: vm.torrentLocalInfo.resource_detail_info.belongs_to_collection.id}"></h4>
+    <div id="collectionsCreateSlide" side-overlay="right" side-class="collections-side-overlay" side-close-on-esc side-modal>
+        <div class="collection-popup">
+            <legend class="h4"
+                    translate="COLLECTIONS.FORM_FOR" translate-values="{cid: vm.torrentLocalInfo.resource_detail_info.belongs_to_collection.id}">
+            </legend>
 
-        <div class="collection-form">
-            <input type="text" class="form-control" id="name" placeholder="{{'COLLECTIONS.FORM_NAME' | translate}}"
-                   ng-model="vm.collection.name" autofocus>
+            <div class="collection-form">
+                <input type="text" class="form-control" id="name" placeholder="{{'COLLECTIONS.FORM_NAME' | translate}}"
+                       ng-model="vm.collection.name" autofocus>
 
             <textarea class="form-control" id="overview" placeholder="{{'COLLECTIONS.FORM_DESC' | translate}}"
                       ng-model="vm.collection.overview"></textarea>
 
-            <div class="margin-top-10" style="display: table;">
-                <a class="message-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"
-                   data-ga-click="Markdown Toolbar, click, help">
-                    <svg aria-hidden="true" height="16" version="1.1"
-                         viewBox="0 0 16 16" width="16">
-                        <path fill-rule="evenodd"
-                              d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"/>
-                    </svg>
-                    {{ 'MARKDOWN_LINK' | translate }}
-                </a>
-            </div>
+                <div class="margin-top-10" style="display: table;">
+                    <a class="message-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"
+                       data-ga-click="Markdown Toolbar, click, help">
+                        <svg aria-hidden="true" height="16" version="1.1"
+                             viewBox="0 0 16 16" width="16">
+                            <path fill-rule="evenodd"
+                                  d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"/>
+                        </svg>
+                        {{ 'MARKDOWN_LINK' | translate }}
+                    </a>
+                </div>
 
-            <img class="img-thumbnail" ng-if="vm.collection.backdrop_path"
-                 ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_780 + vm.collection.backdrop_path}}"
-                 on-error-src="http://image.tmdb.org/t/p/w1280/5pAGnkFYSsFJ99ZxDIYnhQbQFXs.jpg">
+                <img class="img-thumbnail" ng-if="vm.collection.backdrop_path"
+                     ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_780 + vm.collection.backdrop_path}}"
+                     on-error-src="http://image.tmdb.org/t/p/w1280/5pAGnkFYSsFJ99ZxDIYnhQbQFXs.jpg">
 
-            <div class="margin-top-20 h5" ng-class="vm.collection.status == 'loading' ? 'text-success' : 'text-danger'"
-                 ng-if="vm.collection.status != 'ok'">{{vm.collection.status_msg}}
+                <div class="margin-top-20 h5" ng-class="vm.collection.status == 'loading' ? 'text-success' : 'text-danger'"
+                     ng-if="vm.collection.status != 'ok'">{{vm.collection.status_msg}}
+                </div>
             </div>
         </div>
 
@@ -469,6 +472,53 @@
                     ng-click="vm.saveCollection();">{{ 'BUTTON_SAVE' | translate }}
             </button>
             <button class="btn btn-default btn-width-100" ng-click="vm.hideCollectionPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
+        </div>
+    </div>
+
+    <!-- =================================================================
+        side-overlay collections insert
+    ================================================================== -->
+    <div id="collectionsInsertSlide" side-overlay="right" side-class="collections-side-overlay" side-close-on-esc side-modal>
+        <div class="collection-popup">
+            <legend class="h4"
+                    translate="COLLECTIONS.INSERT_INTO" translate-values="{cid: vm.torrentLocalInfo.resource_detail_info.belongs_to_collection.id}">
+            </legend>
+
+            <div class="collection-form">
+                <div class="h5 margin-bottom-5">{{'COLLECTIONS.TORRENT_INTO' | translate}}:</div>
+                <input type="text" class="form-control margin-top-10" id="tid"
+                       ng-model="vm.collectionTorrent.id" autofocus>
+                <input type="text" class="form-control margin-top-10" id="ttitle"
+                       ng-model="vm.collectionTorrent.title" autofocus>
+                <input type="text" class="form-control margin-top-10" id="tfile"
+                       ng-model="vm.collectionTorrent.file" autofocus>
+
+                <div ng-if="vm.collectionsItems.length<=0">
+                    <div class="h5 text-danger margin-top-40 margin-bottom-5">{{'COLLECTIONS.NO_COLLECTION' | translate}}</div>
+                </div>
+                <div ng-if="vm.collectionsItems.length>0">
+                    <div class="h5 margin-top-40 margin-bottom-5">{{'COLLECTIONS.SELECT_INFO' | translate}}:</div>
+                    <div class="radio margin-left-10" ng-repeat="c in vm.collectionsItems">
+                        <label ng-class="{'text-muted': vm.isAlreadyIn(c)}">
+                            <input type="radio" name="n_{{c._id}}" id="i_{{c._id}}" value="{{c._id}}"
+                                   ng-model="vm.collectionTorrent.cid" ng-disabled="vm.isAlreadyIn(c)">
+                            {{c.name}} <span ng-if="vm.isAlreadyIn(c)">{{'COLLECTIONS.ALREADY_IN' | translate}}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="margin-top-20 h5" ng-class="vm.collectionTorrent.status == 'loading' ? 'text-success' : 'text-danger'"
+                     ng-if="vm.collectionTorrent.status != 'ok'">{{vm.collectionTorrent.status_msg}}
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-control">
+            <button class="btn btn-success btn-width-100"
+                    ng-disabled="!vm.collectionTorrent.cid"
+                    ng-click="vm.saveInsertCollection();">{{ 'BUTTON_SAVE' | translate }}
+            </button>
+            <button class="btn btn-default btn-width-100" ng-click="vm.hideCollectionInsertPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
         </div>
     </div>
 
@@ -937,7 +987,7 @@
                                 ng-click="vm.createCollection($event);">{{ 'ADMIN_COLLECTION_CREATE' | translate}}
                         </button>
                         <button class="btn btn-default btn-sm"
-                                ng-click="">{{ 'ADMIN_COLLECTION_ADDINTO' | translate}}
+                                ng-click="vm.insertIntoCollection($event);">{{ 'ADMIN_COLLECTION_ADDINTO' | translate}}
                         </button>
                     </dd>
                 </div>

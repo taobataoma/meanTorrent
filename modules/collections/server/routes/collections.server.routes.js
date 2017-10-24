@@ -22,5 +22,10 @@ module.exports = function (app) {
     .put(collections.update)
     .delete(collections.delete);
 
+  app.route('/api/collections/:collectionId/insert/:torrentId').all(collectionsPolicy.isAllowed)
+    .put(collections.insertIntoCollection);
+  app.route('/api/collections/:collectionId/remove/:torrentId').all(collectionsPolicy.isAllowed)
+    .put(collections.removeFromCollection);
+
   app.param('collectionId', collections.collectionByID);
 };

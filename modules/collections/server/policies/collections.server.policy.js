@@ -20,7 +20,9 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/search/collection/:language', permissions: '*'},
           {resources: '/api/collectionInfo/:id/:language', permissions: '*'},
           {resources: '/api/collections', permissions: '*'},
-          {resources: '/api/collections/:collectionId', permissions: '*'}
+          {resources: '/api/collections/:collectionId', permissions: '*'},
+          {resources: '/api/collections/:collectionId/insert/:torrentId', permissions: '*'},
+          {resources: '/api/collections/:collectionId/remove/:torrentId', permissions: '*'}
         ]
       },
       {

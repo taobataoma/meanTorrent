@@ -29,6 +29,22 @@
           id: '@id',
           language: '@language'
         }
+      },
+      insertIntoCollection: {
+        method: 'PUT',
+        url: '/api/collections/:collectionId/insert/:torrentId',
+        params: {
+          collectionId: '@collectionId',
+          torrentId: '@torrentId'
+        }
+      },
+      removeFromCollection: {
+        method: 'PUT',
+        url: '/api/collections/:collectionId/remove/:torrentId',
+        params: {
+          collectionId: '@collectionId',
+          torrentId: '@torrentId'
+        }
       }
     });
 

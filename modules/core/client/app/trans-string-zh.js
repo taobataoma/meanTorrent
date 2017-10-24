@@ -511,7 +511,16 @@
       COLL_LIST: '电影系列清单',
       CREATE_SUCCESSFULLY: '电影系列创建成功',
       CREATE_FAILED: '电影系列创建失败',
-      LIST_ERROR: '电影系列清单列出失败'
+      FILES_NUMBERS: '种子数',
+      VOTE_AVERAGE: '平均得分',
+      LIST_ERROR: '电影系列清单列出失败',
+      INSERT_INTO: '添加电影到系列 - {{cid}}',
+      TORRENT_INTO: '种子信息',
+      SELECT_INFO: '选择要加入的电影系列',
+      INSERT_SUCCESSFULLY: '添加电影到系列成功',
+      INSERT_FAILED: '添加电影到系列失败',
+      ALREADY_IN: '(已加入)',
+      NO_COLLECTION: '没有可加入的系列, 如果还没有创建，你可以先创建一个系列, 再执行加入操作.'
     },
 
     //user settings

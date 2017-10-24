@@ -129,6 +129,49 @@ exports.update = function (req, res) {
 };
 
 /**
+ * insertIntoCollection
+ * @param req
+ * @param res
+ */
+exports.insertIntoCollection = function (req, res) {
+  var coll = req.collection;
+  var torrent = req.torrent;
+
+  coll.torrents.push(torrent);
+  coll.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(coll);
+    }
+  });
+};
+
+/**
+ * removeFromCollection
+ * @param req
+ * @param res
+ */
+exports.removeFromCollection = function (req, res) {
+  var coll = req.collection;
+  var torrent = req.torrent;
+
+  coll.update({
+    $pull: {torrents: torrent._id}
+  }).exec(function (err, res) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(res);
+    }
+  });
+};
+
+/**
  * Delete an collection
  */
 exports.delete = function (req, res) {
@@ -151,14 +194,19 @@ exports.delete = function (req, res) {
 exports.list = function (req, res) {
   var skip = 0;
   var limit = 0;
+  var tmdb_id = 0;
   var keysA = [];
   var condition = {};
 
-  if (req.body.skip !== undefined) {
+  if (req.query.skip !== undefined) {
     skip = parseInt(req.query.skip, 10);
   }
-  if (req.body.limit !== undefined) {
+  if (req.query.limit !== undefined) {
     limit = parseInt(req.query.limit, 10);
+  }
+
+  if (req.query.tmdb_id !== undefined) {
+    tmdb_id = parseInt(req.query.tmdb_id, 10);
   }
 
   if (req.query.keys && req.query.keys.length > 0) {
@@ -169,6 +217,10 @@ exports.list = function (req, res) {
       var ti = new RegExp(it, 'i');
       keysA.push(ti);
     });
+  }
+
+  if (tmdb_id !== 0) {
+    condition.tmdb_id = tmdb_id;
   }
 
   if (keysA.length > 0) {

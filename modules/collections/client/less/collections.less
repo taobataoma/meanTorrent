@@ -8,20 +8,29 @@
     @media (max-width: @screen-xs-max) {
         min-width: ~"calc(100% - 50px)";
     }
-    padding: 30px 15px;
-    .collection-form {
-        margin-top: 20px;
-        input {
-            width: 100%;
-        }
-        textarea {
+    .collection-popup {
+        background-color: #fdfdfd;
+        width: 100%;
+        height: ~"calc(100% - 50px)";
+        overflow: auto;
+        padding: 30px 15px;
+        .collection-form {
             margin-top: 20px;
-            width: 100%;
-            height: 200px;
-        }
-        img {
-            margin-top: 10px;
-            width: 100%;
+            input {
+                width: 100%;
+            }
+            textarea {
+                margin-top: 20px;
+                width: 100%;
+                height: 200px;
+            }
+            img {
+                margin-top: 10px;
+                width: 100%;
+            }
+            .text-muted {
+                color: #aaa;
+            }
         }
     }
     .bottom-control {
@@ -34,7 +43,6 @@
         bottom: 0;
         padding: 8px 10px;
     }
-
 }
 
 .collections-list {
@@ -50,58 +58,69 @@
             }
         }
     }
-    .collection-item {
-        cursor: pointer;
-        position: relative;
-        margin: 20px 0 0 0;
-        overflow: hidden;
-        border-radius: 8px;
-
-        &:hover {
-            img {
-                /* csslint ignore:start */
-                transform: scale(2);
-                /* csslint ignore:end */
-            }
-        }
-
-        img {
-            width: 100%;
-            transition-property: transform, opacity;
-            transition-duration: 1s;
-            transition-timing-function: ease;
-
-            border: solid 1px #666;
-            border-radius: 8px;
-        }
-        .item-info {
-            color: #999;
-            position: absolute;
+    .collection-items {
+        text-align: -webkit-center;
+        .collection-item {
+            cursor: pointer;
+            position: relative;
+            margin: 20px 0 0 0;
             overflow: hidden;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 30px 20px;
-            background-color: rgba(0, 0, 0, 0.6);
             border-radius: 8px;
-            .name {
-                margin-bottom: 2px;
-                font-size: 1.6em;
+            max-width: 400px;
+            text-align: -webkit-center;
+
+            &:hover {
+                img {
+                    /* csslint ignore:start */
+                    transform: scale(2);
+                    /* csslint ignore:end */
+                }
             }
-            .collection-data {
-                position: absolute;
-                left: 0;
-                right: 0;
-                bottom: 30px;
-            }
-        }
-        &:hover {
-            .fa {
-                color: @mt-base-color !important;
+
+            img {
+                width: 100%;
+                transition-property: transform, opacity;
+                transition-duration: 1s;
+                transition-timing-function: ease;
+
+                border: solid 1px #666;
+                border-radius: 8px;
             }
             .item-info {
-                color: #fff;
+                color: #ddd;
+                position: absolute;
+                overflow: hidden;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 30px 20px;
+                background-color: rgba(0, 0, 0, 0.6);
+                border-radius: 8px;
+                .name {
+                    margin-bottom: 2px;
+                    font-size: 1.6em;
+                    text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+                }
+                .collection-data {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 30px;
+
+                    strong {
+                        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+                    }
+                }
+            }
+            &:hover {
+                .fa {
+                    color: @mt-base-color !important;
+                }
+                .item-info {
+                    background-color: rgba(0, 0, 0, 0.3);
+                    color: #fff;
+                }
             }
         }
     }
