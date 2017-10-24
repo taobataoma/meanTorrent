@@ -520,7 +520,12 @@
       INSERT_SUCCESSFULLY: '添加电影到系列成功',
       INSERT_FAILED: '添加电影到系列失败',
       ALREADY_IN: '(已加入)',
-      NO_COLLECTION: '没有可加入的系列, 如果还没有创建，你可以先创建一个系列, 再执行加入操作.'
+      NO_COLLECTION: '没有可加入的系列, 如果还没有创建，你可以先创建一个系列, 再执行加入操作.',
+      BTN_EDIT_OVERVIEW: '编辑系列简介',
+      BTN_REMOVE_COLLECTION: '删除系列',
+      DELETE_CONFIRM_BODY_TEXT: '您确定要删除这个电影系列?',
+      DELETE_SUCCESSFULLY: '电影系列删除成功',
+      DELETE_FAILED: '电影系列删除失败'
     },
 
     //user settings

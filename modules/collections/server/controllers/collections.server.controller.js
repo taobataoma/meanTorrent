@@ -9,6 +9,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   moment = require('moment'),
   User = mongoose.model('User'),
+  Maker = mongoose.model('Maker'),
   Torrent = mongoose.model('Torrent'),
   Collection = mongoose.model('Collection'),
   async = require('async'),
@@ -278,7 +279,16 @@ exports.collectionByID = function (req, res, next, id) {
 
   Collection.findById(id)
     .populate('user', 'username displayName profileImageURL isVip')
-    .populate('torrents')
+    .populate({
+      path: 'torrents',
+      populate: [{
+        path: 'user',
+        select: 'username displayName profileImageURL isVip'
+      }, {
+        path: 'maker',
+        select: 'name'
+      }]
+    })
     .exec(function (err, coll) {
       if (err) {
         return next(err);

@@ -125,3 +125,25 @@
         }
     }
 }
+
+.collection-view-top {
+    .item-name {
+        color: #efefef;
+        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+    }
+    .item-overview {
+        font-size: 16px;
+        color: lighten(@gray-light, 20%);
+        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+    }
+    .item-data {
+        .fa {
+            color: @mt-base-color !important;
+        }
+    }
+    .collection-button {
+        @media (max-width: @screen-xs-max) {
+            text-align: left !important;
+        }
+    }
+}

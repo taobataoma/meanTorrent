@@ -1,89 +1,45 @@
-<div ng-controller="AboutController as vm">
-    <div class="pagetop" ng-init="vm.getMaker();">
-        <div class="container maker-view-top">
-            <div class="row margin-top-20 margin-bottom-10">
-                <div class="col-sm-12">
-                    <span class="item-name">
-                        <h3 class="margin-bottom-10">
-                            {{'ABOUT.MAKER_GROUP' | translate}} - {{vm.maker.name}}
-                        </h3>
-                    </span>
-                </div>
-                <div class="col-sm-8">
-                    <ul class="list-unstyled item-data list-inline">
-                        <li><span class="data-founder">{{'ABOUT.GROUP_FOUNDER' | translate}}{{vm.maker.user.displayName}}</span></li>
-                        <li><i class="fa fa-user-circle-o"> {{vm.maker.members.length}}</i></li>
-                        <li><i class="fa fa-upload"> {{vm.maker.torrent_count}}</i></li>
-                        <li>
-                            <i class="fa fa-star-half-o"> {{vm.maker.vote_average}}/{{vm.maker.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</i>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-4">
-                    <div class="maker-rating text-right">
-                        <span uib-rating ng-model="vm.rating_vote" max="10"
-                              state-on="'fa fa-star'"
-                              state-off="'fa fa-star-o'"
-                              titles="['1','2','3','4','5','6','7','8','9','10']"
-                              enable-reset="false"
-                              ng-click="vm.ratingMaker(vm.maker);"
-                              aria-labelledby="rating-torrent">
-                        </span>
-
-                        <span class="torrent-votes margin-left-10 margin-right-10">
-                            <kbd>{{vm.maker.vote_average}}</kbd>
+<div ng-controller="CollectionItemController as vm">
+    <div class="backdrop" ng-init="vm.getCollection();">
+        <div class="filter">
+            <div class="container collection-view-top">
+                <div class="row margin-top-20 margin-bottom-10">
+                    <div class="col-sm-12">
+                        <span class="item-name">
+                            <h3 class="margin-bottom-10">
+                                {{vm.collection.name}}
+                            </h3>
                         </span>
                     </div>
+                    <div class="col-sm-12">
+                        <ul class="list-unstyled item-data list-inline">
+                            <li><i class="fa fa-list text-info"> {{'COLLECTIONS.FILES_NUMBERS' | translate}}: {{vm.collection.torrents.length}}</i></li>
+                            <li><i class="fa fa-star-half-o text-info"> {{'COLLECTIONS.VOTE_AVERAGE' | translate}}: 0</i></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row margin-bottom-20">
-                <div class="col-sm-12">
-                    <div>
-                        <div class="item-desc" id="{{vm.maker._id}}" data-provide="markdown"
-                             ng-bind-html="vm.getMakerDescContent(vm.maker)">
+                <div class="row margin-bottom-20">
+                    <div class="col-sm-12">
+                        <div>
+                            <div class="item-overview" id="{{vm.collection._id}}" data-provide="markdown"
+                                 ng-bind-html="vm.getCollectionOverviewContent(vm.collection)">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row maker-members margin-bottom-40 margin-top-30">
-                <div class="col-xs-6 col-sm-3 col-md-2" ng-repeat="u in vm.maker.members">
-                    <div class="margin-top-10">
-                        <span user-info="u" info-class="maker-avatar" info-avatar></span>
-                        <span user-info="u" info-name></span>
-                        <i class="fa fa-remove"
-                           ng-click="vm.removeMember(vm.maker, u);"
-                           title="{{'ABOUT.REMOVE_MEMBER_TITLE' | translate}}"
-                           ng-if="(vm.user.isOper || vm.isOwner(vm.maker)) && (!vm.isFounder(u, vm.maker))">
-                        </i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row margin-bottom-20">
-                <div class="col-sm-12">
-                    <div class="maker-button text-right">
-                        <button class="btn btn-width-120" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
-                                ng-if="vm.user.isOper || vm.isOwner(vm.maker)"
-                                uib-popover-template="vm.addMemberPopover.templateUrl"
-                                popover-append-to-body="true"
-                                popover-title="{{vm.addMemberPopover.title | translate}}"
-                                popover-trigger="'outsideClick'"
-                                popover-placement="top"
-                                popover-is-open="vm.addMemberPopover.isOpen"
-                                popover-class="add-member-popover"
-                                ng-click="vm.addMemberPopover.isOpen=true; vm.addMemberPopover.username='';">
-                            {{'ABOUT.BTN_ADD_USER' | translate}}
-                        </button>
-                        <button class="btn btn-width-120" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
-                                ng-if="vm.user.isOper || vm.isOwner(vm.maker)" ng-click="vm.beginEditMakerDesc(vm.maker)">
-                            {{'ABOUT.BTN_EDIT_DESC' | translate}}
-                        </button>
-                        <button class="btn btn-width-120" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
-                                ng-if="vm.user.isOper" ng-click="vm.beginRemoveMakerGroup(vm.maker)">
-                            {{'ABOUT.BTN_REMOVE_GROUP' | translate}}
-                        </button>
+                <div class="row margin-bottom-20">
+                    <div class="col-sm-12">
+                        <div class="collection-button text-right">
+                            <button class="btn btn-width-150" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                                    ng-if="vm.user.isOper" ng-click="vm.beginEditCollectionOverview(vm.collection)">
+                                {{'COLLECTIONS.BTN_EDIT_OVERVIEW' | translate}}
+                            </button>
+                            <button class="btn btn-width-150" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                                    ng-if="vm.user.isOper" ng-click="vm.beginRemoveCollection(vm.collection)">
+                                {{'COLLECTIONS.BTN_REMOVE_COLLECTION' | translate}}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -92,35 +48,7 @@
 
     <div class="container">
         <div class="row margin-top-20">
-            <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.pagedItems">
-                <div class="margin-bottom-20">
-                    <div class="btn-group torrent-type-group">
-                        <label class="btn btn-default"
-                               ng-repeat="t in vm.torrentType.value | filter:{enable: true} | orderBy: 'position'"
-                               ng-model="vm.groupTorrentType" uib-btn-radio="'{{t.value}}'"
-                               ng-click="vm.buildPager();">
-                            {{'MENU_TORRENTS_SUB.'+t.name | translate}}
-                        </label>
-                    </div>
-                </div>
-
-                <div class="pagination-div-top">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-9">
-                            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                                ng-model="vm.currentPage"
-                                ng-change="vm.pageChanged()"
-                                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                            </ul>
-                        </div>
-                        <div class="col-sm-12 col-md-3">
-                            <input class="form-control margin-top-20 margin-bottom-20" type="text" ng-model="vm.search" placeholder="Search"
-                                   ng-change="vm.figureOutItemsToDisplay()"/>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.collection.torrents">
                 <div class="table-responsive">
                     <table class="table table-hover tb-v-middle">
                         <thead>
@@ -138,16 +66,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-if="vm.tooltipMsg">
-                                <td colspan="6">
-                                    <div class="text-center margin-top-50 margin-bottom-30 padding-top-20 padding-bottom-50">
-                                        <h2>{{vm.tooltipMsg | translate}}</h2>
-                                    </div>
-                                </td>
-                            </tr>
                             <tr class="torrent-list-info"
-                                ng-if="!vm.tooltipMsg"
-                                ng-repeat="item in vm.pagedItems" ng-click="vm.openTorrentInfo(item._id);">
+                                ng-repeat="item in vm.collection.torrents" ng-click="vm.openTorrentInfo(item._id);">
                                 <td class="col-md-7 td-text-overflow">
                                     <div class="media">
                                         <div class="media-left">
@@ -155,7 +75,7 @@
                                                  ng-src="{{vm.TGI.getTorrentListImage(item)}}"
                                                  alt="{{vm.TGI.getTorrentTitle(item)}}">
 
-                                            <div class="layer-download" ng-class="{'music': item.torrent_type=='music'}">
+                                            <div class="layer-download">
                                                 <i class="fa fa-arrow-circle-o-down fa-3x" aria-hidden="true"
                                                    title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
                                                    ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
@@ -243,31 +163,7 @@
                         </tbody>
                     </table>
                 </div>
-
-                <div class="pagination-div-bottom">
-                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                        ng-model="vm.currentPage"
-                        ng-change="vm.pageChanged()"
-                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
-
-
-    <script type="text/ng-template" id="add-member.html">
-        <form>
-            <div class="form-group">
-                <input type="text" ng-model="vm.addMemberPopover.username" class="form-control"
-                       placeholder="{{ 'STATUS_FIELD.USERNAME' | translate }}" autofocus>
-            </div>
-            <div class="margin-top-10">
-                <button class="btn btn-default btn-width-80" ng-disabled="!vm.addMemberPopover.username"
-                        ng-click="vm.addMember();">{{ 'FORUMS.BTN_ADD' | translate }}
-                </button>
-            </div>
-        </form>
-    </script>
 </div>

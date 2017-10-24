@@ -520,7 +520,12 @@
       INSERT_SUCCESSFULLY: 'Insert move into collection successfully',
       INSERT_FAILED: 'Insert move into collection FAILED',
       ALREADY_IN: '(Already In)',
-      NO_COLLECTION: 'No collection founded can insert movie, you can create first, then insert this movie into it.'
+      NO_COLLECTION: 'No collection founded can insert movie, you can create first, then insert this movie into it.',
+      BTN_EDIT_OVERVIEW: 'Edit Overview',
+      BTN_REMOVE_COLLECTION: 'Remove Collection',
+      DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this collection?',
+      DELETE_SUCCESSFULLY: 'Movie collection deleted successfully',
+      DELETE_FAILED: 'Movie collection deleted failed'
     },
 
     //user settings

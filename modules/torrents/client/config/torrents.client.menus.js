@@ -39,7 +39,7 @@
         if (cfg.value === 'movie') {
           menuService.addSubMenuItem('topbar', 'torrents', {
             title: 'MENU_TORRENTS_SUB.MOVIE_COLLECTIONS',
-            state: 'collections',
+            state: 'collections.list',
             roles: ['*'],
             position: 1
           });
