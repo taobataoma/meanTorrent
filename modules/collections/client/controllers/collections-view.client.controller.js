@@ -5,13 +5,13 @@
     .module('collections')
     .controller('CollectionItemController', CollectionItemController);
 
-  CollectionItemController.$inject = ['$scope', '$state', '$translate', 'getStorageLangService', 'MeanTorrentConfig', 'CollectionsService', 'NotifycationService',
-    'DebugConsoleService', 'DownloadService', 'TorrentGetInfoServices', 'Authentication', 'ResourcesTagsServices', 'ModalConfirmService', 'localStorageService',
-    '$compile', 'marked'];
+  CollectionItemController.$inject = ['$scope', '$state', '$translate', 'MeanTorrentConfig', 'CollectionsService', 'NotifycationService', 'DownloadService',
+    'DebugConsoleService', 'TorrentGetInfoServices', 'Authentication', 'ResourcesTagsServices', 'ModalConfirmService', 'localStorageService',
+    '$compile', 'marked', '$window'];
 
-  function CollectionItemController($scope, $state, $translate, getStorageLangService, MeanTorrentConfig, CollectionsService, NotifycationService,
-                                    mtDebug, DownloadService, TorrentGetInfoServices, Authentication, ResourcesTagsServices, ModalConfirmService, localStorageService,
-                                    $compile, marked) {
+  function CollectionItemController($scope, $state, $translate, MeanTorrentConfig, CollectionsService, NotifycationService, DownloadService,
+                                    mtDebug, TorrentGetInfoServices, Authentication, ResourcesTagsServices, ModalConfirmService, localStorageService,
+                                    $compile, marked, $window) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -35,6 +35,15 @@
         //vm.buildPager();
       });
 
+    };
+
+    /**
+     * openTorrentInfo
+     * @param id
+     */
+    vm.openTorrentInfo = function (id) {
+      var url = $state.href('torrents.view', {torrentId: id});
+      $window.open(url, '_blank');
     };
 
     /**
