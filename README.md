@@ -45,6 +45,10 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 ![reply-list](https://user-images.githubusercontent.com/7778550/28199240-c6a1f9f6-6896-11e7-96ce-817772b8340e.jpg)
 - __Torrents maker group page__
 ![maker](https://user-images.githubusercontent.com/7778550/31860398-efbe681a-b6de-11e7-98d9-db6f13deab72.jpg)
+- __Movie collection list page__
+![collections](https://user-images.githubusercontent.com/7778550/31987778-86904966-b932-11e7-956e-4a35ff08d8fb.jpg)
+- __Movie collection detail page__
+![collectionitem](https://user-images.githubusercontent.com/7778550/31987808-a3e4ad54-b932-11e7-8544-7a4acc5753ff.jpg)
 
 #### meanTorrent some feature:
 1. Multilingual support, now English & Chinese, you can Copy a string file `modules/core/client/app/trans-string-en.js` to translate it.
@@ -78,6 +82,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 28. Admin can update or set users Vip attribute data manual in manage page.
 29. Admin or oper can set torrent 'VIP' attribute, all these torrents only __VIP__ user can list and download.
 30. Complete torrents maker group support, Admin can create a group and set a founder, and the founder can add or remove member users.
+31. Complete movie collections support, Admin can create a collection and insert any movie into it, user can view collection and download all torrents of the collection.
 
 #### Chat room feature:
 1. Users name list
@@ -91,7 +96,6 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - Subject support, like region subject, [IMDB](http://www.imdb.com) TOP 100 subject etc.
 - VIP Donate function.
-- Movie belongs to collection, user can list all movie torrents of the collection.
 - Cast belongs to collection, user can list all movie torrents of the cast.
 - Business cooperation support(like play box? NAS? etc.)
 - ......more
