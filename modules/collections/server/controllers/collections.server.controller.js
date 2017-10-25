@@ -173,6 +173,41 @@ exports.removeFromCollection = function (req, res) {
 };
 
 /**
+ * setRecommendLevel
+ * @param req
+ * @param res
+ */
+exports.setRecommendLevel = function (req, res) {
+  var coll = req.collection;
+
+  if (req.params.rlevel) {
+    coll.recommend_level = req.params.rlevel;
+    coll.ordered_at = Date.now();
+
+    coll.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(coll);
+
+        //create trace log
+        traceLogCreate(req, traceConfig.action.AdminCollectionSetRecommendLevel, {
+          coll: coll._id,
+          recommended: req.params.rlevel
+        });
+      }
+    });
+  } else {
+    return res.status(422).send({
+      message: 'PARAMS_RLEVEL_ERROR'
+    });
+  }
+
+};
+
+/**
  * Delete an collection
  */
 exports.delete = function (req, res) {

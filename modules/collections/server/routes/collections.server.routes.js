@@ -26,6 +26,8 @@ module.exports = function (app) {
     .put(collections.insertIntoCollection);
   app.route('/api/collections/:collectionId/remove/:torrentId').all(collectionsPolicy.isAllowed)
     .put(collections.removeFromCollection);
+  app.route('/api/collections/:collectionId/set/recommendlevel/:rlevel').all(collectionsPolicy.isAllowed)
+    .put(collections.setRecommendLevel);
 
   app.param('collectionId', collections.collectionByID);
 };

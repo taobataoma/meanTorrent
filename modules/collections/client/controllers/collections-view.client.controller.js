@@ -18,6 +18,7 @@
     vm.user = Authentication.user;
     vm.RTS = ResourcesTagsServices;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+    vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
 
     vm.searchTags = [];
 
@@ -148,6 +149,21 @@
           ele.append(cbtn);
           $compile(ele.contents())($scope);
         }
+      });
+    };
+
+    /**
+     * vm.setRecommendLevel
+     */
+    vm.setRecommendLevel = function (item, rl) {
+      CollectionsService.setRecommendLevel({
+        _id: item._id,
+        rlevel: rl.value
+      }, function (res) {
+        vm.collection = res;
+        NotifycationService.showSuccessNotify('COLLECTIONS.SETRLEVEL_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showSuccessNotify('COLLECTIONS.SETRLEVEL_ERROR');
       });
     };
 

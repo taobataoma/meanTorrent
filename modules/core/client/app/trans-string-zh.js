@@ -525,7 +525,9 @@
       BTN_REMOVE_COLLECTION: '删除系列',
       DELETE_CONFIRM_BODY_TEXT: '您确定要删除这个电影系列?',
       DELETE_SUCCESSFULLY: '电影系列删除成功',
-      DELETE_FAILED: '电影系列删除失败'
+      DELETE_FAILED: '电影系列删除失败',
+      SETRLEVEL_SUCCESSFULLY: '修改系列的推荐级别成功',
+      SETRLEVEL_ERROR: '修改系列的推荐级别失败'
     },
 
     //user settings

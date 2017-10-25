@@ -254,6 +254,7 @@ module.exports = {
         AdminTorrentDelete: {name: 'AdminTorrentDelete', enable: true},
         AdminTorrentSetSaleType: {name: 'AdminTorrentSetSaleType', enable: true},
         AdminTorrentSetRecommendLevel: {name: 'AdminTorrentSetRecommendLevel', enable: true},
+        AdminCollectionSetRecommendLevel: {name: 'AdminCollectionSetRecommendLevel', enable: true},
         AdminTorrentSetReviewedStatus: {name: 'AdminTorrentSetReviewedStatus', enable: true},
         OperCreateMakerGroup: {name: 'OperCreateMakerGroup', enable: true},
         OperCreateCollection: {name: 'OperCreateCollection', enable: true},

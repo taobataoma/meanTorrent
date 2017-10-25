@@ -22,7 +22,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/collections', permissions: '*'},
           {resources: '/api/collections/:collectionId', permissions: '*'},
           {resources: '/api/collections/:collectionId/insert/:torrentId', permissions: '*'},
-          {resources: '/api/collections/:collectionId/remove/:torrentId', permissions: '*'}
+          {resources: '/api/collections/:collectionId/remove/:torrentId', permissions: '*'},
+          {resources: '/api/collections/:collectionId/set/recommendlevel/:rlevel', permissions: '*'}
         ]
       },
       {

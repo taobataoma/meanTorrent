@@ -42,6 +42,25 @@
                                     ng-if="vm.user.isOper" ng-click="vm.beginRemoveCollection(vm.collection)">
                                 {{'COLLECTIONS.BTN_REMOVE_COLLECTION' | translate}}
                             </button>
+
+                            <div class="btn-group width-100" uib-dropdown dropdown-append-to-body>
+                                <button id="btn-append-to-body" type="button"
+                                        class="btn btn-block"
+                                        mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                                        ng-click="$event.stopPropagation();"
+                                        uib-dropdown-toggle>
+                                    {{'ADMIN_BASIC_RLEVEL_SET' | translate }} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu-left" uib-dropdown-menu role="menu"
+                                    aria-labelledby="btn-append-to-body">
+                                    <li role="menuitem" ng-repeat="l in vm.torrentRLevels.value"
+                                        ng-class="{'active': vm.collection.recommend_level == l.value}">
+                                        <a href="#"
+                                           ng-click="vm.setRecommendLevel(vm.collection, l);">{{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + l.name | translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
                         </div>
                     </div>
                 </div>

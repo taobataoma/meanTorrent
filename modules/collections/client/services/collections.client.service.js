@@ -45,7 +45,16 @@
           collectionId: '@collectionId',
           torrentId: '@torrentId'
         }
+      },
+      setRecommendLevel: {
+        method: 'PUT',
+        url: '/api/collections/:collectionId/set/recommendlevel/:rlevel',
+        params: {
+          collectionId: '@_id',
+          rlevel: '@rlevel'
+        }
       }
+
     });
 
     return collection;

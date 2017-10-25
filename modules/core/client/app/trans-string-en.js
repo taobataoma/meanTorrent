@@ -525,7 +525,9 @@
       BTN_REMOVE_COLLECTION: 'Remove Collection',
       DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this collection?',
       DELETE_SUCCESSFULLY: 'Movie collection deleted successfully',
-      DELETE_FAILED: 'Movie collection deleted failed'
+      DELETE_FAILED: 'Movie collection deleted failed',
+      SETRLEVEL_SUCCESSFULLY: 'Set collection recommend level successfully',
+      SETRLEVEL_ERROR: 'Set collection recommend level faild'
     },
 
     //user settings
