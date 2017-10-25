@@ -62,8 +62,8 @@
      */
     vm.getMinMaxRelease = function () {
       return {
-        min: vm.release.length>0 ? Math.min.apply(null, vm.release) : '',
-        max: vm.release.length>0 ? Math.max.apply(null, vm.release) : ''
+        min: vm.release.length > 0 ? Math.min.apply(null, vm.release) : '',
+        max: vm.release.length > 0 ? Math.max.apply(null, vm.release) : ''
       };
     };
 

@@ -91,8 +91,8 @@
       });
 
       return {
-        min: re.length>0 ? Math.min.apply(null, re) : '',
-        max: re.length>0 ? Math.max.apply(null, re) : ''
+        min: re.length > 0 ? Math.min.apply(null, re) : '',
+        max: re.length > 0 ? Math.max.apply(null, re) : ''
       };
     };
 
