@@ -44,8 +44,14 @@ body {
     background-image: url("http://image.tmdb.org/t/p/w1280/5pAGnkFYSsFJ99ZxDIYnhQbQFXs.jpg");
     background-position: center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 20px;
+    height: 100%;
+    width: 100%;
+    &.attachment-scroll {
+        background-attachment: scroll !important;
+    }
     //filter: blur(1px);
     .filter {
         background-color: @mt-body-background-color;
