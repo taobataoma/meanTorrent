@@ -2,11 +2,18 @@
     <div class="backdrop attachment-scroll">
         <div class="filter">
             <div class="container collection-view-top">
-                <div class="row margin-top-20 margin-bottom-10">
-                    <div class="col-sm-12">
+                <div class="row margin-bottom-10">
+                    <div class="col-sm-9">
                         <span class="item-name">
                             <h3 class="margin-bottom-10">
                                 {{vm.collection.name}}
+                            </h3>
+                        </span>
+                    </div>
+                    <div class="col-sm-3 text-right">
+                        <span class="item-release">
+                            <h3 class="margin-bottom-10">
+                                <span>{{vm.getMinMaxRelease().min}}</span><span ng-if="vm.release.length>1">-{{vm.getMinMaxRelease().max}}</span>
                             </h3>
                         </span>
                     </div>
@@ -31,19 +38,19 @@
                     </div>
                 </div>
 
-                <div class="row margin-bottom-20">
+                <div class="row">
                     <div class="col-sm-12">
                         <div class="collection-button text-right">
-                            <button class="btn btn-width-150" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                            <button class="btn btn-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                     ng-if="vm.user.isOper" ng-click="vm.beginEditCollectionOverview(vm.collection)">
                                 {{'COLLECTIONS.BTN_EDIT_OVERVIEW' | translate}}
                             </button>
-                            <button class="btn btn-width-150" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                            <button class="btn btn-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                     ng-if="vm.user.isOper" ng-click="vm.beginRemoveCollection(vm.collection)">
                                 {{'COLLECTIONS.BTN_REMOVE_COLLECTION' | translate}}
                             </button>
 
-                            <div class="btn-group width-100" uib-dropdown dropdown-append-to-body>
+                            <div class="btn-group width-160 margin-top-5" uib-dropdown dropdown-append-to-body>
                                 <button id="btn-append-to-body" type="button"
                                         class="btn btn-block"
                                         mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"

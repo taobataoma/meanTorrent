@@ -79,6 +79,24 @@
     };
 
     /**
+     * getMinMaxRelease
+     * @param c
+     * @returns {{min: *, max: *}}
+     */
+    vm.getMinMaxRelease = function (c) {
+      var re = [];
+
+      angular.forEach(c.torrents, function (t) {
+        re.push(parseInt(t.resource_detail_info.release_date, 10));
+      });
+
+      return {
+        min: re.length>0 ? Math.min.apply(null, re) : '',
+        max: re.length>0 ? Math.max.apply(null, re) : ''
+      };
+    };
+
+    /**
      * pageChanged
      */
     vm.pageChanged = function () {

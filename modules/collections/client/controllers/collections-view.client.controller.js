@@ -21,6 +21,7 @@
     vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
 
     vm.searchTags = [];
+    vm.release = [];
 
     /**
      * getCollection
@@ -41,14 +42,29 @@
           total += t.resource_detail_info.vote_average;
           count += 1;
           total_users += t.resource_detail_info.vote_count;
+
+          vm.release.push(parseInt(t.resource_detail_info.release_date, 10));
         });
 
         vm.collection.vote_count = total_users;
         vm.collection.vote_average = Math.floor((total / count) * 10) / 10;
 
         mtDebug.info(vm.collection);
+        mtDebug.info(vm.release);
       });
 
+    };
+
+    /**
+     * getMinMaxRelease
+     * @param c
+     * @returns {{min: *, max: *}}
+     */
+    vm.getMinMaxRelease = function () {
+      return {
+        min: vm.release.length>0 ? Math.min.apply(null, vm.release) : '',
+        max: vm.release.length>0 ? Math.max.apply(null, vm.release) : ''
+      };
     };
 
     /**

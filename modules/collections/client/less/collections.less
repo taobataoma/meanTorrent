@@ -104,6 +104,10 @@
                     text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
                 }
                 .collection-data {
+                    .item-release {
+                        font-size: 1.2em;
+                        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+                    }
                     position: absolute;
                     left: 0;
                     right: 0;
@@ -129,9 +133,19 @@
 }
 
 .collection-view-top {
+    .h3, h3 {
+        margin-top: 5px !important;
+    }
     .item-name {
         color: #efefef;
         text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+    }
+    .item-release {
+        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+        color: @gray-light;
+        @media (max-width: @screen-xs-max) {
+            text-align: left !important;
+        }
     }
     .item-overview {
         font-size: 16px;

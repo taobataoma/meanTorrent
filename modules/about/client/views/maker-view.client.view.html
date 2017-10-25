@@ -64,7 +64,7 @@
             <div class="row margin-bottom-20">
                 <div class="col-sm-12">
                     <div class="maker-button text-right">
-                        <button class="btn btn-width-120" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
+                        <button class="btn btn-width-120 margin-top-5" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
                                 ng-if="vm.user.isOper || vm.isOwner(vm.maker)"
                                 uib-popover-template="vm.addMemberPopover.templateUrl"
                                 popover-append-to-body="true"
@@ -76,11 +76,11 @@
                                 ng-click="vm.addMemberPopover.isOpen=true; vm.addMemberPopover.username='';">
                             {{'ABOUT.BTN_ADD_USER' | translate}}
                         </button>
-                        <button class="btn btn-width-120" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                        <button class="btn btn-width-120 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                 ng-if="vm.user.isOper || vm.isOwner(vm.maker)" ng-click="vm.beginEditMakerDesc(vm.maker)">
                             {{'ABOUT.BTN_EDIT_DESC' | translate}}
                         </button>
-                        <button class="btn btn-width-120" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                        <button class="btn btn-width-120 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                 ng-if="vm.user.isOper" ng-click="vm.beginRemoveMakerGroup(vm.maker)">
                             {{'ABOUT.BTN_REMOVE_GROUP' | translate}}
                         </button>

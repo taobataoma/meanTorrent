@@ -36,6 +36,10 @@
                                     <div class="name">{{m.name}}</div>
 
                                     <div class="row margin-top-40 collection-data">
+                                        <div class="item-release margin-bottom-20">
+                                            <span>{{vm.getMinMaxRelease(m).min}}</span><span
+                                                ng-if="m.torrents.length>1">-{{vm.getMinMaxRelease(m).max}}</span>
+                                        </div>
                                         <div class="col-xs-6 col-small-padding text-center">
                                             <i class="fa fa-list text-info">
                                                 <strong> {{'COLLECTIONS.FILES_NUMBERS' | translate}}: {{m.torrents.length}}</strong></i>
