@@ -51,13 +51,19 @@
                     <thead>
                         <tr>
                             <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
-                            <th>{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
+                            <th>
+                                <a href="#" tooltip-placement="top"
+                                   ng-click="vm.orderByVote();"
+                                   uib-tooltip="{{ 'TABLE_FIELDS.TITLE_VOTES' | translate}}">{{ 'TABLE_FIELDS.VOTES' | translate}}</a>
+                                <i class="fa fa-caret-down text-info" ng-if="vm.sortVote == '-'"></i>
+                                <i class="fa fa-caret-up text-info" ng-if="vm.sortVote == '+'"></i>
+                            </th>
                             <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
                             <th>
-                                <abbr title="{{ 'TABLE_FIELDS.ABBR_SEEDS_LEECHERS_FINISHED' | translate}}" class="initialism">
-                                    {{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}
-                                </abbr>
+                                <a href="#" tooltip-placement="top"
+                                   ng-click="vm.orderBySLF();"
+                                   uib-tooltip="{{ 'TABLE_FIELDS.TITLE_SEEDS_LEECHERS_FINISHED' | translate}}" ng-bind-html="vm.getOrderTableHead()"></a>
                             </th>
                             <th class="text-center">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
                         </tr>

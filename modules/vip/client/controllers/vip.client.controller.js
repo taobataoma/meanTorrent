@@ -55,6 +55,108 @@
     };
 
     /**
+     * orderByVote
+     */
+    vm.orderByVote = function () {
+      if (vm.sortVote === undefined) {
+        vm.sortVote = '-';
+        vm.sort = '-resource_detail_info.vote_average';
+      } else if (vm.sortVote === '-') {
+        vm.sortVote = '+';
+        vm.sort = 'resource_detail_info.vote_average';
+      } else if (vm.sortVote === '+') {
+        vm.sortVote = undefined;
+        vm.sort = undefined;
+      }
+
+      vm.buildPager();
+    };
+
+    /**
+     * orderBySLF
+     */
+    vm.orderBySLF = function () {
+      if (vm.sortSLF === undefined) {
+        vm.sortSLF = '-S';
+        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_S');
+        vm.sort = '-torrent_seeds';
+      } else if (vm.sortSLF === '-S') {
+        vm.sortSLF = '+S';
+        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_S');
+        vm.sort = 'torrent_seeds';
+      } else if (vm.sortSLF === '+S') {
+        vm.sortSLF = '-L';
+        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_L');
+        vm.sort = '-torrent_leechers';
+      } else if (vm.sortSLF === '-L') {
+        vm.sortSLF = '+L';
+        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_L');
+        vm.sort = 'torrent_leechers';
+      } else if (vm.sortSLF === '+L') {
+        vm.sortSLF = '-F';
+        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_F');
+        vm.sort = '-torrent_finished';
+      } else if (vm.sortSLF === '-F') {
+        vm.sortSLF = '+F';
+        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_F');
+        vm.sort = 'torrent_finished';
+      } else if (vm.sortSLF === '+F') {
+        vm.sortSLF = undefined;
+        vm.sortSLFString = undefined;
+        vm.sort = undefined;
+      }
+
+      vm.buildPager();
+    };
+
+    /**
+     *
+     * @returns {string|Object}
+     */
+    vm.getOrderTableHead = function () {
+      var res = $translate.instant('TABLE_FIELDS.SEEDS_LEECHERS_FINISHED');
+      switch (vm.sortSLF) {
+        case '-S':
+          res = $translate.instant('TABLE_FIELDS.SORT_S');
+          res += '<i class="fa fa-caret-down text-info"></i>';
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_L');
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_F');
+          break;
+        case '+S':
+          res = $translate.instant('TABLE_FIELDS.SORT_S');
+          res += '<i class="fa fa-caret-up text-info"></i>';
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_L');
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_F');
+          break;
+        case '-L':
+          res = $translate.instant('TABLE_FIELDS.SORT_S');
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_L');
+          res += '<i class="fa fa-caret-down text-info"></i>';
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_F');
+          break;
+        case '+L':
+          res = $translate.instant('TABLE_FIELDS.SORT_S');
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_L');
+          res += '<i class="fa fa-caret-up text-info"></i>';
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_F');
+          break;
+        case '-F':
+          res = $translate.instant('TABLE_FIELDS.SORT_S');
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_L');
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_F');
+          res += '<i class="fa fa-caret-down text-info"></i>';
+          break;
+        case '+F':
+          res = $translate.instant('TABLE_FIELDS.SORT_S');
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_L');
+          res += '/' + $translate.instant('TABLE_FIELDS.SORT_F');
+          res += '<i class="fa fa-caret-up text-info"></i>';
+          break;
+      }
+      return res;
+    };
+
+    /**
      * getVIPTorrents
      * @param p
      * @param callback
@@ -63,6 +165,7 @@
       TorrentsService.get({
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage,
+        sort: vm.sort,
         torrent_type: vm.vipTorrentType,
         torrent_status: 'reviewed',
         torrent_vip: true,

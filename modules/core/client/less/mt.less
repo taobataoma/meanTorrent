@@ -645,6 +645,17 @@ body {
 }
 
 .tb-v-middle {
+    > thead {
+        > tr {
+            > th {
+                a {
+                    &:hover, &:focus {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
     > tbody {
         > tr {
             .label-download {

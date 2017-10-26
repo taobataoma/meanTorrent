@@ -156,9 +156,9 @@
                         <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
                         <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
                         <th>
-                            <abbr title="{{ 'TABLE_FIELDS.ABBR_SEEDS_LEECHERS_FINISHED' | translate}}" class="initialism">
-                                {{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}
-                            </abbr>
+                            <a href="#" tooltip-placement="top"
+                               ng-click="vm.orderBySLF();"
+                               uib-tooltip="{{ 'TABLE_FIELDS.TITLE_SEEDS_LEECHERS_FINISHED' | translate}}" ng-bind-html="vm.getOrderTableHead()"></a>
                         </th>
                         <th class="text-center">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
                     </tr>

@@ -98,8 +98,11 @@
       //torrent
       INFO: '种子信息',
       SIZE: '大小',
-      SEEDS_LEECHERS_FINISHED: '上/下/完',
-      ABBR_SEEDS_LEECHERS_FINISHED: '种子用户数/下载用户数/完成用户数',
+      SEEDS_LEECHERS_FINISHED: '种/下/完',
+      TITLE_SEEDS_LEECHERS_FINISHED: '按 做种用户数/下载用户数/完成用户数 进行排序',
+      SORT_S: '种',
+      SORT_L: '下',
+      SORT_F: '完',
       PUBLISHER: '发布者',
       ADMIN_TOOLS: '管理工具',
       LIFETIME: '存活时间',
