@@ -104,6 +104,7 @@
       ADMIN_TOOLS: 'Admin Tools',
       LIFETIME: 'Life',
       VOTES: 'Votes',
+      TITLE_VOTES: 'orderBy votes',
 
       //status
       UPLOADED_SPEED: 'U/S',

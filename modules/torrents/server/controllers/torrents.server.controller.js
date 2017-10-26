@@ -1114,6 +1114,9 @@ exports.list = function (req, res) {
   if (req.query.limit !== undefined) {
     limit = parseInt(req.query.limit, 10);
   }
+  if (req.query.sort !== undefined) {
+    sort = req.query.sort;
+  }
   if (req.query.torrent_status !== undefined) {
     status = req.query.torrent_status;
   }
@@ -1206,6 +1209,7 @@ exports.list = function (req, res) {
   }
 
   mtDebug.debugGreen(JSON.stringify(condition));
+  mtDebug.debugGreen(sort);
 
   if (newest) {
     sort = '-createdat';

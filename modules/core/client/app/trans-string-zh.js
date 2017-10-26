@@ -104,6 +104,7 @@
       ADMIN_TOOLS: '管理工具',
       LIFETIME: '存活时间',
       VOTES: '评分',
+      TITLE_VOTES: '按评分排序',
 
       //status
       UPLOADED_SPEED: '上/速',

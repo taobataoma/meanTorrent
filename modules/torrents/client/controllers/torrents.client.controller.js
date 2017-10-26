@@ -24,6 +24,7 @@
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
+    vm.sortVote === undefined;
     vm.filterHnR = false;
     vm.topItems = 6;
 
@@ -149,19 +150,38 @@
     };
 
     /**
+     * orderByVote
+     */
+    vm.orderByVote = function () {
+      if (vm.sortVote === undefined) {
+        vm.sortVote = '-';
+        vm.sort = '-resource_detail_info.vote_average';
+      } else if (vm.sortVote === '-') {
+        vm.sortVote = '+';
+        vm.sort = 'resource_detail_info.vote_average';
+      } else if (vm.sortVote === '+') {
+        vm.sortVote = undefined;
+        vm.sort = undefined;
+      }
+
+      vm.torrentBuildPager();
+    };
+
+    /**
      * getResourcePageInfo
      * @param p: page number
      */
     vm.getResourcePageInfo = function (p, callback) {
       //if searchKey or searchTags has value, the skip=0
       var skip = vm.topItems;
-      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear || vm.filterHnR) {
+      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear || vm.filterHnR || vm.sortVote) {
         skip = 0;
       }
 
       TorrentsService.get({
         skip: (p - 1) * vm.torrentItemsPerPage + skip,
         limit: vm.torrentItemsPerPage,
+        sort: vm.sort,
         keys: vm.searchKey.trim(),
         torrent_status: 'reviewed',
         torrent_type: vm.torrentType,
