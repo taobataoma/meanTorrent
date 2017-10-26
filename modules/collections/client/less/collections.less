@@ -67,8 +67,9 @@
             overflow: hidden;
             border-radius: 8px;
             max-width: 400px;
-            text-align: -webkit-center;
-
+            border: solid 1px #666;
+            z-index:1;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
             &:hover {
                 img {
                     /* csslint ignore:start */
@@ -82,9 +83,6 @@
                 transition-property: transform, opacity;
                 transition-duration: 1s;
                 transition-timing-function: ease;
-
-                border: solid 1px #666;
-                border-radius: 8px;
             }
             .item-info {
                 color: #ddd;
