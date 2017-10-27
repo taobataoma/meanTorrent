@@ -49,6 +49,8 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 ![collections](https://user-images.githubusercontent.com/7778550/31987778-86904966-b932-11e7-956e-4a35ff08d8fb.jpg)
 - __Movie collection detail page__
 ![collectionitem](https://user-images.githubusercontent.com/7778550/31987808-a3e4ad54-b932-11e7-8544-7a4acc5753ff.jpg)
+- __VIP Donate payment page__
+![donate](https://user-images.githubusercontent.com/7778550/32096312-b303a750-bacb-11e7-91e3-d3dfec86e5b7.jpg)
 
 #### meanTorrent some feature:
 1. Multilingual support, now English & Chinese, you can Copy a string file `modules/core/client/app/trans-string-en.js` to translate it.
