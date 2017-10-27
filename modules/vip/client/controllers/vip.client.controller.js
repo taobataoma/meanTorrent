@@ -17,9 +17,11 @@
     vm.RTS = ResourcesTagsServices;
     vm.lang = getStorageLangService.getLang();
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.vipTorrentType = 'movie';
 
+    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.searchTags = [];
 
     uibButtonConfig.activeClass = 'btn-success';

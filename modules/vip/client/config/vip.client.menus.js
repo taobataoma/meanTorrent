@@ -10,7 +10,7 @@
   function menuConfig(menuService) {
     menuService.addMenuItem('topbar', {
       title: 'MENU_VIP',
-      state: 'vip',
+      state: 'vip.list',
       roles: ['*'],
       position: 5
     });

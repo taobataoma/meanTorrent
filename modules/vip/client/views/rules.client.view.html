@@ -1,0 +1,26 @@
+<div ng-controller="VipController as vm">
+    <div class="pagetop">
+        <div class="container">
+            <div class="row margin-top-20 margin-bottom-30">
+                <div class="col-sm-9">
+                    <h3>{{'VIP.VIP_TITLE' | translate}}
+                        <small>{{'VIP.VIP_SUB_TITLE' | translate}}</small>
+                    </h3>
+                </div>
+                <div class="col-sm-3 text-right donate-button">
+                    <a ui-sref="vip.donate" class="btn btn-width-120 margin-top-5"
+                       mouse-enter-toggle-class="btn-mt" base-class="btn-mt-o">
+                        {{'VIP.BUTTON_DONATE' | translate}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-sm-10">
+            <div marked src="'/modules/vip/client/templates/vip-'+vm.lang+'.md'" compile="true">
+            </div>
+        </div>
+    </div>
+</div>

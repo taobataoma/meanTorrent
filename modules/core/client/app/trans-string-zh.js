@@ -163,6 +163,8 @@
       OPERLIST: 'Admin/Oper 列表',
       COLLECTIONS: '电影系列',
       VIP: 'Vip',
+      VIP_DONATE: '捐赠VIP',
+      VIP_RULES: 'Vip用户协议',
       FORUM: '论坛',
       ADMIN_USER_LIST: '用户管理',
       ADMIN_USER_VIEW: '查看用户',
@@ -462,12 +464,15 @@
 
     //vip views
     VIP: {
+      VIP_TITLE: 'VIP 会员',
+      VIP_SUB_TITLE: '- 一个身份、权利和地位的象征',
       BUTTON_DONATE: '捐赠Vip',
       DONATE_VIP: '捐赠Vip',
       TORRENTS_LIST: 'Vip 资源专区',
       TORRENTS_LIST_ERROR: 'Vip 资源获取失败',
       VIP_TORRENTS_IS_LOADING: 'Vip资源正在获取, 请稍候...',
-      VIP_TORRENTS_IS_EMPTY: '没有找到该类的VIP种子资源!'
+      VIP_TORRENTS_IS_EMPTY: '没有找到该类的VIP种子资源!',
+      DONATE_TOOLTIP: '<h4>Note:</h4>在捐赠前, 请认真阅读 <strong>{{site}}</strong> 的 会员用户许可协议 以明确会员用户的权利与义务, 如继续进行捐赠操作, 则表示您已完全同意这些条款, 如需其它帮助，请与我们的 <strong><a href="mailto:{{admin}}">系统管理员</a> </strong>联系.',
     },
 
     //about views

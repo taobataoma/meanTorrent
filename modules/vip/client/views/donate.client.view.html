@@ -1,0 +1,21 @@
+<div ng-controller="VipController as vm">
+    <div class="pagetop">
+        <div class="container">
+            <div class="row margin-top-20 margin-bottom-30">
+                <div class="col-sm-9">
+                    <h3>{{'VIP.VIP_TITLE' | translate}}
+                        <small>{{'VIP.VIP_SUB_TITLE' | translate}}</small>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="margin-top-20">
+            <div class="alert alert-warning" role="alert" style="padding: 10px 50px;">
+                <span translate="VIP.DONATE_TOOLTIP" translate-values="{site: vm.appConfig.name, admin: vm.announce.admin}"></span>
+            </div>
+        </div>
+    </div>
+</div>

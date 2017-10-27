@@ -163,6 +163,8 @@
       OPERLIST: 'Admin/Oper List',
       COLLECTIONS: 'Movie Collections',
       VIP: 'Vip',
+      VIP_DONATE: 'Vip Donate',
+      VIP_RULES: 'Vip Rules',
       FORUM: 'Forum',
       ADMIN_USER_LIST: 'User List',
       ADMIN_USER_VIEW: 'View User',
@@ -462,12 +464,15 @@
 
     //vip views
     VIP: {
+      VIP_TITLE: 'VIP Club',
+      VIP_SUB_TITLE: '- A symbol of rights and status',
       BUTTON_DONATE: 'Donate',
       DONATE_VIP: 'Donate a VIP',
       TORRENTS_LIST: 'Vip Torrents List',
       TORRENTS_LIST_ERROR: 'Vip torrents list error',
       VIP_TORRENTS_IS_LOADING: 'Vip torrents is loading...',
-      VIP_TORRENTS_IS_EMPTY: 'No Vip torrents of this type is founded!'
+      VIP_TORRENTS_IS_EMPTY: 'No Vip torrents of this type is founded!',
+      DONATE_TOOLTIP: '<h4>Note:</h4>Before donations, please carefully read the <strong><a href="/vip/rules">membership user license agreement</a></strong> of CHD.im, and clear the rights and obligations of members, if you continure donations, said you agree to these terms, if you need any other help, please contact our <strong><a href="mailto:{{admin}}">administrator</a></strong>.'
     },
 
     //about views
