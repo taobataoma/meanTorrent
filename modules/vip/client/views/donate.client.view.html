@@ -35,7 +35,7 @@
                     {{ vm.user.vip_end_at | date: 'yyyy-MM-dd HH:mm:ss' }}
                 </p>
 
-                <p class="margin-top-5" ng-if="!vm.isVip">
+                <p class="margin-top-5" ng-if="!vm.user.isVip">
                     {{ 'VIP.NO_VIP_DATA' | translate}}
                 </p>
             </div>
