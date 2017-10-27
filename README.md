@@ -84,6 +84,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 30. Complete torrents maker group support, Admin can create a group and set a founder, and the founder can add or remove member users.
 31. Complete movie collections support, Admin can create a collection and insert any movie into it, user can view collection and download all torrents of the collection.
 32. Sort on torrent Vote, seeders, leechers, finished data on torrent list table head clicked events.
+33. Simple vip donate payment function, support Paypal me, Alipay Qrcode and Weixin QRcode.
 
 #### Chat room feature:
 1. Users name list
@@ -95,8 +96,6 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 
 ## TODO
 - torrent more images from [TMDB](https://www.themoviedb.org)
-- VIP Donate function.
-- Cast belongs to collection, user can list all movie torrents of the cast.
 - Business cooperation support(like play box? NAS? etc.)
 - ......more
 
