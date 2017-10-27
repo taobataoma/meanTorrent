@@ -12,9 +12,47 @@
     </div>
 
     <div class="container">
-        <div class="margin-top-20">
+        <div class="margin-top-30 margin-bottom-50">
             <div class="alert alert-warning" role="alert" style="padding: 10px 50px;">
-                <span translate="VIP.DONATE_TOOLTIP" translate-values="{site: vm.appConfig.name, admin: vm.announce.admin}"></span>
+                <div marked src="'/modules/vip/client/templates/pay-'+vm.lang+'.md'" compile="true">
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-30">
+            <div class="col-xs-5 col-sm-4 col-md-3 vip-user-info text-right" ng-if="vm.user">
+                <span user-info="vm.user" info-class="maker-avatar" info-avatar></span>
+
+                <p class="margin-top-10">
+                    <span class="margin-top-10" user-info="vm.user" info-name></span> <span vip-flag="vm.user"></span>
+                </p>
+
+                <p class="margin-top-30">
+                    {{ vm.user.vip_start_at | date: 'yyyy-MM-dd HH:mm:ss' }}
+                </p>
+
+                <p class="margin-top-5">
+                    {{ vm.user.vip_end_at | date: 'yyyy-MM-dd HH:mm:ss' }}
+                </p>
+            </div>
+            <div class="pay-info" ng-class="{'col-xs-7 col-sm-8 col-md-9': vm.user, 'no-left-border': !vm.user}">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 text-center">
+                        <img class="img-thumbnail" src="/modules/vip/client/images/paypal.png" mt-scale-by-mouse="{scale: 1.2, duration: '.5s'}">
+
+                        <p class="margin-top-15 pay-title">{{'VIP.PAYPAL_TITLE' | translate}}</p>
+                    </div>
+                    <div class="col-sm-6 col-md-4 text-center">
+                        <img class="img-thumbnail" src="/modules/vip/client/images/alipay.png" mt-scale-by-mouse="{scale: 1.2, duration: '.5s'}">
+
+                        <p class="margin-top-15 pay-title">{{'VIP.ALIPAY_TITLE' | translate}}</p>
+                    </div>
+                    <div class="col-sm-6 col-md-4 text-center">
+                        <img class="img-thumbnail" src="/modules/vip/client/images/weixin.png" mt-scale-by-mouse="{scale: 1.2, duration: '.5s'}">
+
+                        <p class="margin-top-15 pay-title">{{'VIP.WEIXIN_TITLE' | translate}}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

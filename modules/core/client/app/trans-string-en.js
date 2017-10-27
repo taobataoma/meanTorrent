@@ -472,7 +472,9 @@
       TORRENTS_LIST_ERROR: 'Vip torrents list error',
       VIP_TORRENTS_IS_LOADING: 'Vip torrents is loading...',
       VIP_TORRENTS_IS_EMPTY: 'No Vip torrents of this type is founded!',
-      DONATE_TOOLTIP: '<h4>Note:</h4>Before donations, please carefully read the <strong><a href="/vip/rules">membership user license agreement</a></strong> of CHD.im, and clear the rights and obligations of members, if you continure donations, said you agree to these terms, if you need any other help, please contact our <strong><a href="mailto:{{admin}}">administrator</a></strong>.'
+      PAYPAL_TITLE: 'Paypal',
+      ALIPAY_TITLE: 'Alipay',
+      WEIXIN_TITLE: 'Weixin'
     },
 
     //about views

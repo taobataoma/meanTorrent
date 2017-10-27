@@ -17,7 +17,8 @@
     vm.RTS = ResourcesTagsServices;
     vm.lang = getStorageLangService.getLang();
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
-    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.vipTorrentType = 'movie';
 

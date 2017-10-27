@@ -472,7 +472,9 @@
       TORRENTS_LIST_ERROR: 'Vip 资源获取失败',
       VIP_TORRENTS_IS_LOADING: 'Vip资源正在获取, 请稍候...',
       VIP_TORRENTS_IS_EMPTY: '没有找到该类的VIP种子资源!',
-      DONATE_TOOLTIP: '<h4>Note:</h4>在捐赠前, 请认真阅读 <strong>{{site}}</strong> 的 会员用户许可协议 以明确会员用户的权利与义务, 如继续进行捐赠操作, 则表示您已完全同意这些条款, 如需其它帮助，请与我们的 <strong><a href="mailto:{{admin}}">系统管理员</a> </strong>联系.',
+      PAYPAL_TITLE: 'Paypal',
+      ALIPAY_TITLE: '支付宝',
+      WEIXIN_TITLE: '微信支付'
     },
 
     //about views
