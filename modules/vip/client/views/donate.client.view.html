@@ -34,6 +34,10 @@
                 <p class="margin-top-5">
                     {{ vm.user.vip_end_at | date: 'yyyy-MM-dd HH:mm:ss' }}
                 </p>
+
+                <p class="margin-top-5" ng-if="!vm.isVip">
+                    {{ 'VIP.NO_VIP_DATA' | translate}}
+                </p>
             </div>
             <div class="pay-info" ng-class="{'col-xs-7 col-sm-8 col-md-9': vm.user, 'no-left-border': !vm.user}">
                 <div class="row">

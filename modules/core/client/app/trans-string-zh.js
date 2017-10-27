@@ -474,7 +474,8 @@
       VIP_TORRENTS_IS_EMPTY: '没有找到该类的VIP种子资源!',
       PAYPAL_TITLE: 'Paypal',
       ALIPAY_TITLE: '支付宝',
-      WEIXIN_TITLE: '微信支付'
+      WEIXIN_TITLE: '微信支付',
+      NO_VIP_DATA: '没有vip数据'
     },
 
     //about views

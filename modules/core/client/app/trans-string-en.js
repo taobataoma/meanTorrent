@@ -474,7 +474,8 @@
       VIP_TORRENTS_IS_EMPTY: 'No Vip torrents of this type is founded!',
       PAYPAL_TITLE: 'Paypal',
       ALIPAY_TITLE: 'Alipay',
-      WEIXIN_TITLE: 'Weixin'
+      WEIXIN_TITLE: 'Weixin',
+      NO_VIP_DATA: 'No vip data'
     },
 
     //about views
