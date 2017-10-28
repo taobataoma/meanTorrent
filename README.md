@@ -98,6 +98,7 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 
 ## TODO
 - torrent more images from [TMDB](https://www.themoviedb.org)
+- IRC chat
 - Business cooperation support(like play box? NAS? etc.)
 - ......more
 
