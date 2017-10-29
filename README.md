@@ -1,11 +1,9 @@
-# meanTorrent - A Private BitTorrent Tracker CMS, [DEMO Site](http://chd.im:3000)
+# meanTorrent - A Private BitTorrent Tracker CMS based on [meanjs/mean](https://github.com/meanjs/mean),  and here is the [DEMO Site](http://chd.im:3000)
 
-meanTorrent is Based on [meanjs/mean](https://github.com/meanjs/mean)
-
-more function is WIP, please wait...
-==================================
-
-meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support__ and a full-stack JavaScript open-source solution, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
+meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support__ and a full-stack JavaScript open-source solution,
+which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/),
+and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks,
+build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
 
 ## Feature, Function, Screenshots First
 
