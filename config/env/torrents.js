@@ -23,6 +23,16 @@ module.exports = {
     },
 
     /**
+     * @backup
+     *
+     * @enable:     if true, meanTorrent will backup mongo db database data with a named '/module/core/client/backup/*.tar'
+     *              at midnight every day.
+     */
+    backup: {
+      enable: true
+    },
+
+    /**
      * @language
      *
      * Multilingual support settings

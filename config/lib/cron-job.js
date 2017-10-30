@@ -11,6 +11,7 @@ var path = require('path'),
   backup = require('mongodb-backup');
 
 var appConfig = config.meanTorrentConfig.app;
+var backupConfig = config.meanTorrentConfig.backup;
 
 /**
  * cron params of time
@@ -48,7 +49,10 @@ module.exports = function (app) {
   var cronJobs = [];
 
   cronJobs.push(cronJobHnR());
-  cronJobs.push(cronJobBackupMongoDB());
+
+  if (backupConfig.enable) {
+    cronJobs.push(cronJobBackupMongoDB());
+  }
 
   return cronJobs;
 };
