@@ -22,21 +22,22 @@
       state: 'about.rules',
       position: 1
     });
-    menuService.addSubMenuItem('topbar', 'about', {
-      title: 'MENU_ABOUT_BLACKLIST',
-      state: 'about.black',
-      position: 2
-    });
+    // 2 is item of Users Ranking configure in module ranking
     menuService.addSubMenuItem('topbar', 'about', {
       title: 'MENU_ABOUT_MAKERGROUP',
       state: 'about.maker',
-      position: 3,
-      divider: true
+      position: 3
     });
     menuService.addSubMenuItem('topbar', 'about', {
       title: 'MENU_ABOUT_OPERLIST',
       state: 'about.operlist',
       position: 4
+    });
+    menuService.addSubMenuItem('topbar', 'about', {
+      title: 'MENU_ABOUT_BLACKLIST',
+      state: 'about.black',
+      position: 5,
+      divider: true
     });
 
   }

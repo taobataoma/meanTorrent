@@ -8,12 +8,11 @@
   menuConfig.$inject = ['menuService'];
 
   function menuConfig(menuService) {
-    menuService.addMenuItem('topbar', {
-      title: 'MENU_RANKING',
+    menuService.addSubMenuItem('topbar', 'about', {
+      title: 'MENU_ABOUT_RANKING',
       state: 'ranking',
-      roles: ['*'],
-      class: 'sm-hide',
-      position: 4
+      position: 2,
+      divider: true
     });
   }
 }());
