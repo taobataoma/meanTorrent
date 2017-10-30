@@ -4,7 +4,9 @@
             <div class="row margin-top-20 margin-bottom-30">
                 <div class="col-sm-9">
                     <h3>{{'VIP.VIP_TITLE' | translate}}
-                        <small>{{'VIP.VIP_SUB_TITLE' | translate}}</small>
+                        <small>{{'VIP.VIP_SUB_TITLE' | translate}}
+                            <small class="text-mt">{{ vm.user.vip_start_at | date: 'yyyy-MM-dd' }} - {{ vm.user.vip_end_at | date: 'yyyy-MM-dd' }}</small>
+                        </small>
                     </h3>
                 </div>
                 <div class="col-sm-3 text-right donate-button">
