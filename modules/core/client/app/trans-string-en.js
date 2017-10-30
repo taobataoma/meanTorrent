@@ -26,7 +26,6 @@
     MENU_ADMIN_MESSAGES: 'System Messages',
     MENU_ADMIN_TRACE: 'System Traces',
     MENU_ADMIN_FORUMS_CONFIGURE: 'Forums Configure',
-    MENU_ADMIN_FORUMS_MANAGEMENT: 'Forums Management',
     MENU_USERS_ADMIN: 'Manage User',
     MENU_UPLOAD: 'Upload',
     MENU_FORUMS: 'Forums',

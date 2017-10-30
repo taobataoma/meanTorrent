@@ -26,7 +26,6 @@
     MENU_ADMIN_MESSAGES: '系统消息',
     MENU_ADMIN_TRACE: '系统日志',
     MENU_ADMIN_FORUMS_CONFIGURE: '论坛配置管理',
-    MENU_ADMIN_FORUMS_MANAGEMENT: '论坛管理',
     MENU_USERS_ADMIN: '用户管理',
     MENU_UPLOAD: '发布',
     MENU_FORUMS: '论坛',
