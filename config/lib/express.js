@@ -227,12 +227,12 @@ module.exports.initIRCAnnounce = function (app) {
 };
 
 /**
- * initCronJobHnR
+ * initCronJob
  * @param app
  */
-module.exports.initCronJobHnR = function (app) {
-  var cron = require('./cron-hnr')(app);
-  app.set('cronJobHnR', cron);
+module.exports.initCronJob = function (app) {
+  var cron = require('./cron-job')(app);
+  app.set('cronJob', cron);
 };
 
 /**
@@ -276,8 +276,8 @@ module.exports.init = function (db) {
   if (ircConfig.enable)
     this.initIRCAnnounce(app);
 
-  // Initialize cron job of hit and run
-  this.initCronJobHnR(app);
+  // Initialize cron job
+  this.initCronJob(app);
 
   // Configure Socket.io
   app = this.configureSocketIO(app, db);

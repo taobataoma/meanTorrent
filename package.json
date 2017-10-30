@@ -83,6 +83,7 @@
     "method-override": "~2.3.8",
     "mocha": "~3.4.2",
     "moment": "^2.18.1",
+    "mongodb-backup": "^1.6.9",
     "mongoose": "^4.11.13",
     "morgan": "~1.8.1",
     "moviedb": "^0.2.10",

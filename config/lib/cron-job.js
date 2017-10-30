@@ -7,7 +7,8 @@ var path = require('path'),
   CronJob = require('cron').CronJob,
   moment = require('moment'),
   Torrent = mongoose.model('Torrent'),
-  User = mongoose.model('User');
+  User = mongoose.model('User'),
+  backup = require('mongodb-backup');
 
 var appConfig = config.meanTorrentConfig.app;
 
@@ -44,21 +45,64 @@ var appConfig = config.meanTorrentConfig.app;
  * @param app
  */
 module.exports = function (app) {
-  var cronJobHnR = new CronJob({
+  var cronJobs = [];
+
+  cronJobs.push(cronJobHnR());
+  cronJobs.push(cronJobBackupMongoDB());
+
+  return cronJobs;
+};
+
+/**
+ * cronJobHnR
+ */
+function cronJobHnR() {
+  var cronJob = new CronJob({
     //cronTime: '00 00 1 * * *',
     //cronTime: '*/5 * * * * *',
     cronTime: '00 00 * * * *',
     onTick: function () {
-      console.log(chalk.green('cronJobHnR: process!'));
+      console.log(chalk.green('cronJob: process!'));
     },
     onComplete: function () {
-      console.log(chalk.green('cronJobHnR: complete!'));
+      console.log(chalk.green('cronJob: complete!'));
     },
     start: false,
     timeZone: appConfig.cronTimeZone
   });
 
-  cronJobHnR.start();
+  cronJob.start();
 
-  return cronJobHnR;
-};
+  return cronJob;
+}
+
+/**
+ * cronJobBackupMongoDB
+ */
+function cronJobBackupMongoDB() {
+  var cronJob = new CronJob({
+    cronTime: '00 00 1 * * *',
+    //cronTime: '*/5 * * * * *',
+    //cronTime: '00 00 * * * *',
+    onTick: function () {
+      console.log(chalk.green('cronJobBackupMongoDB: process!'));
+
+      backup({
+        uri: config.db.uri, // mongodb://<dbuser>:<dbpassword>@<dbdomain>.mongolab.com:<dbport>/<dbdatabase>
+        options: config.db.options || {},
+        root: './modules/core/client/backup/',
+        parser: 'json',
+        tar: appConfig.name + '-backup-' + moment().format('YYYYMMDD-HHmmss') + '.tar'
+      });
+    },
+    onComplete: function () {
+      console.log(chalk.green('cronJobBackupMongoDB: complete!'));
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  cronJob.start();
+
+  return cronJob;
+}

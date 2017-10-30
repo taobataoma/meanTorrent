@@ -22,7 +22,9 @@ coverage/
 public/dist/
 uploads
 attach
+backup
 modules/users/client/img/profile/uploads
+modules/users/client/backup
 modules/torrents/client/uploads
 modules/forums/client/attach
 config/env/local.js
