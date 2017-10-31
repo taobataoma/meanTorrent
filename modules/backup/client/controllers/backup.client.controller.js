@@ -5,15 +5,16 @@
     .module('backup')
     .controller('BackupController', BackupController);
 
-  BackupController.$inject = ['$scope', '$timeout', 'getStorageLangService', 'MeanTorrentConfig', 'BackupService', 'NotifycationService',
-    'DebugConsoleService', '$filter'];
+  BackupController.$inject = ['$scope', '$timeout', 'Authentication', '$translate', 'MeanTorrentConfig', 'BackupService', 'NotifycationService',
+    'DebugConsoleService', '$filter', 'ModalConfirmService'];
 
-  function BackupController($scope, $timeout, getStorageLangService, MeanTorrentConfig, BackupService, NotifycationService,
-                            mtDebug, $filter) {
+  function BackupController($scope, $timeout, Authentication, $translate, MeanTorrentConfig, BackupService, NotifycationService,
+                            mtDebug, $filter, ModalConfirmService) {
     var vm = this;
-    vm.lang = getStorageLangService.getLang();
-    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+
+    vm.deleteList = [];
 
     /**
      * buildPager
@@ -65,6 +66,52 @@
         mtDebug.info(items);
         vm.buildPager();
       });
+    };
+
+    /**
+     * deleteSelected
+     */
+    vm.deleteSelected = function () {
+      vm.deleteList = [];
+      var modalOptions = {
+        closeButtonText: $translate.instant('ABOUT.DELETE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('ABOUT.DELETE_CONFIRM_OK'),
+        headerText: $translate.instant('ABOUT.DELETE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('BACKUP.DELETE_CONFIRM_BODY_TEXT')
+      };
+
+      angular.forEach(vm.selected, function (item, id) {
+        if (item) {
+          vm.deleteList.push(id);
+        }
+      });
+
+      mtDebug.info(vm.deleteList);
+
+      if (vm.deleteList.length > 0) {
+        ModalConfirmService.showModal({}, modalOptions)
+          .then(function (result) {
+            BackupService.remove({
+              names: vm.deleteList
+            }, function (res) {
+              var s = [];
+              angular.forEach(vm.fileList, function (f) {
+                if (vm.deleteList.indexOf(f.name) !== -1) {
+                  s.push(f);
+                }
+              });
+
+              angular.forEach(s, function (f) {
+                vm.fileList.splice(vm.fileList.indexOf(f), 1);
+              });
+              vm.figureOutItemsToDisplay();
+
+              NotifycationService.showSuccessNotify('BACKUP.DELETED_SUCCESSFULLY');
+            }, function (res) {
+              NotifycationService.showErrorNotify(res.data.message, 'BACKUP.DELETED_ERROR');
+            });
+          });
+      }
     };
   }
 }());

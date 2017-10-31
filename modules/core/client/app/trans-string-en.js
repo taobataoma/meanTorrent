@@ -549,7 +549,10 @@
       LIST_ERROR: 'Files list error',
       FIELD_NAME: 'File name',
       FIELD_SIZE: 'File size',
-      FIELD_TIME: 'Backup time'
+      FIELD_TIME: 'Backup time',
+      DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete these files?',
+      DELETED_SUCCESSFULLY: 'File deleted successfully',
+      DELETED_ERROR: 'File deleted failed'
     },
 
     //user settings

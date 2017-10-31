@@ -32,8 +32,24 @@ exports.list = function (req, res) {
 };
 
 /**
- * Delete an collection
+ * delete
+ * @param req
+ * @param res
  */
 exports.delete = function (req, res) {
+  if (req.query.names) {
+    if (Array.isArray(req.query.names)) {
+      req.query.names.forEach(function (n) {
+        var tfile = backupConfig.dir + n;
+        fs.unlinkSync(tfile);
+      });
+    } else {
+      var tfile = backupConfig.dir + req.query.names;
+      fs.unlinkSync(tfile);
+    }
+    return res.status(200).send({
+      message: 'delete successfully'
+    });
 
+  }
 };
