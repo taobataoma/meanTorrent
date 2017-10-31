@@ -30,7 +30,7 @@ module.exports = {
      */
     backup: {
       enable: true,
-      dir: './modules/core/client/backup/'
+      dir: './modules/backup/client/backup/'
 
     },
 
@@ -733,7 +733,8 @@ module.exports = {
       makeGroupTorrentsPerPage: 10,
       tracesPerPage: 30,
       adminUserListPerPage: 15,
-      collectionsListPerPage: 6
+      collectionsListPerPage: 6,
+      backupFilesListPerPage: 15
     },
 
     /**
