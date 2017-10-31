@@ -85,6 +85,7 @@ build a robust framework to support daily development needs, and help developers
 31. Complete movie collections support, Admin can create a collection and insert any movie into it, user can view collection and download all torrents of the collection.
 32. Sort on torrent Vote, seeders, leechers, finished data on torrent list table head clicked events.
 33. Simple vip donate payment function, support Paypal me, Alipay Qrcode and Weixin QRcode.
+34. meanTorrent can backup mongo database into to a .tar files automatic at midnight everyday, and Admin/Oper can manage or download these files.
 
 #### Chat room feature:
 1. Users name list
@@ -319,6 +320,16 @@ meanTorrent support complete HnR(hit and run) system, if user download a HnR tor
 the upload ratio more than `contition.ratio`, otherwise, the user will get a HnR warning, if the warning numbers is more than `forbiddenDownloadMinWarningNumber`,
 then the user can not download any torrent. but can continue the warning torrent and seed it until the warning disappears,
 and the user can remove a warning by score number of `scoreToRemoveWarning` or donate a VIP qualifications.
+
+```javascript
+    backup: {
+      enable: true,
+      dir: './modules/backup/client/backup/'
+
+    }
+```
+meanTorrent can backup mongo database into to a .tar files automatic at midnight everyday, and Admin/Oper can manage or download these files.
+if you want to disabled this feature, please set `enable` to `false`, `dir` is the saved path.
 
 #### mail sender configure
 meanTorrent need send mail to user when restore password, send invitations etc. before send these mail, you need change the mail options in file `env/development.js` or `env/production.js`,
