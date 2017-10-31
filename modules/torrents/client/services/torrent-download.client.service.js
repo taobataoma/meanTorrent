@@ -13,7 +13,8 @@
       downloadFile: downloadFile,
       downloadTorrent: downloadTorrent,
       downloadSubtitle: downloadSubtitle,
-      downloadForumAttach: downloadForumAttach
+      downloadForumAttach: downloadForumAttach,
+      downloadBackupFile: downloadBackupFile
     };
 
     /**
@@ -67,6 +68,23 @@
       }, function (err) {
         mtDebug.info(err);
         NotifycationService.showErrorNotify(err.data.message, 'FORUMS.ATTACHE_DOWNLOAD_FAILED');
+      });
+    }
+
+    /**
+     * downloadBackupFile
+     * @param fname
+     */
+    function downloadBackupFile(fname) {
+      var url = '/api/backup/' + fname;
+
+      downloadFile(url, null, function (status) {
+        if (status === 200) {
+          NotifycationService.showSuccessNotify('BACKUP.DOWNLOAD_SUCCESSFULLY');
+        }
+      }, function (err) {
+        mtDebug.info(err);
+        NotifycationService.showErrorNotify(err.data.message, 'BACKUP.DOWNLOAD_FAILED');
       });
     }
 

@@ -6,12 +6,13 @@
     .controller('BackupController', BackupController);
 
   BackupController.$inject = ['$scope', '$timeout', 'Authentication', '$translate', 'MeanTorrentConfig', 'BackupService', 'NotifycationService',
-    'DebugConsoleService', '$filter', 'ModalConfirmService'];
+    'DebugConsoleService', '$filter', 'ModalConfirmService', 'DownloadService'];
 
   function BackupController($scope, $timeout, Authentication, $translate, MeanTorrentConfig, BackupService, NotifycationService,
-                            mtDebug, $filter, ModalConfirmService) {
+                            mtDebug, $filter, ModalConfirmService, DownloadService) {
     var vm = this;
     vm.user = Authentication.user;
+    vm.DLS = DownloadService;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.deleteList = [];

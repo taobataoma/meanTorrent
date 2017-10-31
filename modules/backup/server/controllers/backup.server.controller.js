@@ -53,3 +53,34 @@ exports.delete = function (req, res) {
 
   }
 };
+
+/**
+ * download
+ * @param req
+ * @param res
+ */
+exports.download = function (req, res) {
+  var filePath = backupConfig.dir + req.params.filename;
+
+  fs.exists(filePath, function (exists) {
+    if (exists) {
+      var stat = fs.statSync(filePath);
+
+      try {
+        res.set('Content-Type', 'application/octet-stream');
+        res.set('Content-Disposition', 'attachment; filename=' + encodeURI(req.params.filename));
+        res.set('Content-Length', stat.size);
+
+        fs.createReadStream(filePath).pipe(res);
+      } catch (err) {
+        res.status(422).send({
+          message: 'DOWNLOAD_FAILED'
+        });
+      }
+    } else {
+      res.status(422).send({
+        message: 'FILE_DOES_NOT_EXISTS'
+      });
+    }
+  });
+};

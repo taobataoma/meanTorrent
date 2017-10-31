@@ -30,7 +30,8 @@
                         <tbody>
                             <tr class="message-item" ng-repeat="f in vm.pagedItems">
                                 <td class="td-v-middle">
-                                    {{f.name}}
+                                    <a href="/backup/download/{{f.name}}"
+                                       ng-click="vm.DLS.downloadBackupFile(f.name); $event.preventDefault(); $event.stopPropagation();">{{f.name}}</a>
                                 </td>
                                 <td class="td-v-middle text-center">
                                     {{f.size | bytes}}

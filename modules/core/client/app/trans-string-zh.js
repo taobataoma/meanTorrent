@@ -552,7 +552,9 @@
       FIELD_TIME: '备份时间',
       DELETE_CONFIRM_BODY_TEXT: '您确定要删除这些备份文件吗?',
       DELETED_SUCCESSFULLY: '备份文件删除成功',
-      DELETED_ERROR: '备份文件删除失败'
+      DELETED_ERROR: '备份文件删除失败',
+      DOWNLOAD_SUCCESSFULLY: '备份文件下载成功',
+      DOWNLOAD_FAILED: '备份文件下载失败'
     },
 
     //user settings

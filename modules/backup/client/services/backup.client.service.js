@@ -9,8 +9,8 @@
   BackupService.$inject = ['$resource'];
 
   function BackupService($resource) {
-    var backup = $resource('/api/backup/:backupId', {
-      backupId: '@_id'
+    var backup = $resource('/api/backup/:filename', {
+      filename: '@filename'
     }, {
       update: {
         method: 'PUT'
