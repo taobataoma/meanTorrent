@@ -330,8 +330,11 @@ exports.postNewTopic = function (req, res) {
   });
 
   //replace content path
-  var regex = new RegExp('/modules/forums/client/attach/temp/', 'g');
-  topic.content = topic.content.replace(regex, '/modules/forums/client/attach/');
+  var tmp = config.uploads.attach.file.temp.substr(1);
+  var dst = config.uploads.attach.file.dest.substr(1);
+
+  var regex = new RegExp(tmp, 'g');
+  topic.content = topic.content.replace(regex, dst);
 
   //save topic
   topic.save(function (err) {

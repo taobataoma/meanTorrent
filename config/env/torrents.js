@@ -31,7 +31,6 @@ module.exports = {
     backup: {
       enable: true,
       dir: './modules/backup/client/backup/'
-
     },
 
     /**
