@@ -96,7 +96,7 @@ function cronJobBackupMongoDB() {
         options: config.db.options || {},
         root: backupConfig.dir,
         parser: 'json',
-        tar: appConfig.name + '-backup-' + moment().format('YYYYMMDD-HHmmss') + '.tar'
+        tar: appConfig.name + '-backup-mongodb-' + moment().format('YYYYMMDD-HHmmss') + '.tar'
       });
     },
     onComplete: function () {
