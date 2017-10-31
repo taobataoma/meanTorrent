@@ -47,6 +47,12 @@ exports.delete = function (req, res) {
       var tfile = backupConfig.dir + req.query.names;
       fs.unlinkSync(tfile);
     }
+
+    //create trace log
+    traceLogCreate(req, traceConfig.action.OperDeleteBackupFiles, {
+      filename: req.query.names
+    });
+
     return res.status(200).send({
       message: 'delete successfully'
     });

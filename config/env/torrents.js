@@ -270,6 +270,7 @@ module.exports = {
         AdminTorrentSetReviewedStatus: {name: 'AdminTorrentSetReviewedStatus', enable: true},
         OperCreateMakerGroup: {name: 'OperCreateMakerGroup', enable: true},
         OperCreateCollection: {name: 'OperCreateCollection', enable: true},
+        OperDeleteBackupFiles: {name: 'OperDeleteBackupFiles', enable: true},
 
         userInvitationExchange: {name: 'userInvitationExchange', enable: true},
         adminRemoveHnrWarning: {name: 'adminRemoveHnrWarning', enable: true},
