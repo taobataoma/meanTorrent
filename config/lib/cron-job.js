@@ -94,7 +94,7 @@ function cronJobBackupMongoDB() {
       backup({
         uri: config.db.uri, // mongodb://<dbuser>:<dbpassword>@<dbdomain>.mongolab.com:<dbport>/<dbdatabase>
         options: config.db.options || {},
-        root: './modules/core/client/backup/',
+        root: backupConfig.dir,
         parser: 'json',
         tar: appConfig.name + '-backup-' + moment().format('YYYYMMDD-HHmmss') + '.tar'
       });

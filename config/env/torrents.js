@@ -29,7 +29,9 @@ module.exports = {
      *              at midnight every day.
      */
     backup: {
-      enable: true
+      enable: true,
+      dir: './modules/core/client/backup/'
+
     },
 
     /**
