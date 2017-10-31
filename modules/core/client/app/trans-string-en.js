@@ -23,6 +23,7 @@
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
     MENU_TORRENTS_ADMIN_EDAU: 'Announce Editor',
     MENU_ADMIN_OFFICIAL_INVITATION: 'Send official invitation',
+    MENU_ADMIN_BACKUP: 'System Backup Files Database',
     MENU_ADMIN_MESSAGES: 'System Messages',
     MENU_ADMIN_TRACE: 'System Traces',
     MENU_ADMIN_FORUMS_CONFIGURE: 'Forums Configure',
@@ -180,6 +181,7 @@
       ADMIN_FORUMS_CONFIGURE: 'Forums Configure',
       ADMIN_FORUMS_MANAGEMENT: 'Forums Management',
       ADMIN_OFFICIAL_INVITATION: 'Official invitations',
+      ADMIN_BACKUP: 'System Backup Files Manager',
       PASSWORD_FORGOT: 'Password forgot',
       PASSWORD_RESET: 'Password reset',
       MESSAGES_BOX: 'Message Box',
@@ -539,6 +541,15 @@
       DELETE_FAILED: 'Movie collection deleted failed',
       SETRLEVEL_SUCCESSFULLY: 'Set collection recommend level successfully',
       SETRLEVEL_ERROR: 'Set collection recommend level faild'
+    },
+
+    //backup views settings
+    BACKUP: {
+      VIEW_CAPTION: 'System Backup Database Files List',
+      LIST_ERROR: 'Files list error',
+      FIELD_NAME: 'File name',
+      FIELD_SIZE: 'File size',
+      FIELD_TIME: 'Backup time'
     },
 
     //user settings

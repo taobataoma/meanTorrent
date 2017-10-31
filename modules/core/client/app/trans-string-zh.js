@@ -23,6 +23,7 @@
     MENU_TORRENTS_ADMIN: '种子管理',
     MENU_TORRENTS_ADMIN_EDAU: '种子修改器',
     MENU_ADMIN_OFFICIAL_INVITATION: '发送官方邀请',
+    MENU_ADMIN_BACKUP: '系统备份文件管理',
     MENU_ADMIN_MESSAGES: '系统消息',
     MENU_ADMIN_TRACE: '系统日志',
     MENU_ADMIN_FORUMS_CONFIGURE: '论坛配置管理',
@@ -180,6 +181,7 @@
       ADMIN_FORUMS_CONFIGURE: '论坛配置',
       ADMIN_FORUMS_MANAGEMENT: '论坛管理',
       ADMIN_OFFICIAL_INVITATION: '官方邀请',
+      ADMIN_BACKUP: '系统备份文件管理',
       PASSWORD_FORGOT: '找回密码',
       PASSWORD_RESET: '重设密码',
       MESSAGES_BOX: '站内消息',
@@ -539,6 +541,15 @@
       DELETE_FAILED: '电影系列删除失败',
       SETRLEVEL_SUCCESSFULLY: '修改系列的推荐级别成功',
       SETRLEVEL_ERROR: '修改系列的推荐级别失败'
+    },
+
+    //backup views settings
+    BACKUP: {
+      VIEW_CAPTION: '系统备份数据文件列表',
+      LIST_ERROR: '备份文件列表错误',
+      FIELD_NAME: '文件名',
+      FIELD_SIZE: '文件大小',
+      FIELD_TIME: '备份时间'
     },
 
     //user settings
