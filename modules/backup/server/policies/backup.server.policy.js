@@ -15,7 +15,7 @@ exports.invokeRolesPolicies = function () {
   acl.allow(
     [
       {
-        roles: ['admin', 'oper'],
+        roles: ['admin'],
         allows: [
           {resources: '/api/backup', permissions: '*'},
           {resources: '/api/backup/:filename', permissions: '*'}

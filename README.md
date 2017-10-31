@@ -70,7 +70,7 @@ build a robust framework to support daily development needs, and help developers
 16. Complete messageBox, include message list, read status, keys search, reply detail and [markdown](https://guides.github.com/features/mastering-markdown/) style support.
 17. Complete forum function, admin can configure each forum section and section moderators, the content support [markdown](https://guides.github.com/features/mastering-markdown/) style.
 18. Forum topics and replies can attach picture files and other type files, The picture file will be displayed automatically, Others file can only be downloaded.
-19. Forum replies support real edit, What you see is what you get ([bootstrap-markdown](http://www.codingdrama.com/bootstrap-markdown/)）), and drag & drop attach file upload.
+19. Forum replies support real edit, What you see is what you get ([bootstrap-markdown](http://www.codingdrama.com/bootstrap-markdown/)), and drag & drop attach file upload.
 20. Complete thumbs-up system(thanks system), topic poster or torrent uploader will received score donate from clicker.
 21. __IRC Announce support [Node-irc](https://github.com/martynsmith/node-irc), when user upload new torrent file, and oper/admin reviewed it, then announce the torrent info to IRC channel.__
 22. Scrape torrents status from owner tracker server, design for `public` CMS mode, support HTTP/HTTPS/UDP tracker protocol.
@@ -85,7 +85,7 @@ build a robust framework to support daily development needs, and help developers
 31. Complete movie collections support, Admin can create a collection and insert any movie into it, user can view collection and download all torrents of the collection.
 32. Sort on torrent Vote, seeders, leechers, finished data on torrent list table head clicked events.
 33. Simple vip donate payment function, support Paypal me, Alipay Qrcode and Weixin QRcode.
-34. meanTorrent can backup mongo database into to a .tar files automatic at midnight everyday, and Admin/Oper can manage or download these files.
+34. meanTorrent can backup mongo database into to a .tar files automatic at midnight everyday, and Admin can manage or download these files.
 
 #### Chat room feature:
 1. Users name list

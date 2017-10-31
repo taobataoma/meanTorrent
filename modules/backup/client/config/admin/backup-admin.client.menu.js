@@ -13,6 +13,7 @@
       title: 'MENU_ADMIN_BACKUP',
       state: 'admin.backup',
       position: 50,
+      roles: ['admin'],
       divider: true
     });
   }
