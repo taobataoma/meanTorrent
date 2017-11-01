@@ -71,18 +71,35 @@ exports.download = function (req, res) {
   fs.exists(filePath, function (exists) {
     if (exists) {
       var stat = fs.statSync(filePath);
+      //
+      //try {
+      //  res.set('Content-Type', 'application/octet-stream');
+      //  res.set('Content-Disposition', 'attachment; filename=' + encodeURI(req.params.filename));
+      //  res.set('Content-Length', stat.size);
+      //
+      //  fs.createReadStream(filePath).pipe(res);
+      //} catch (err) {
+      //  res.status(422).send({
+      //    message: 'DOWNLOAD_FAILED'
+      //  });
+      //}
 
-      try {
-        res.set('Content-Type', 'application/octet-stream');
-        res.set('Content-Disposition', 'attachment; filename=' + encodeURI(req.params.filename));
-        res.set('Content-Length', stat.size);
+      var options = {
+        root: path.join(__dirname, '../../../../' + backupConfig.dir),
+        dotfiles: 'deny',
+        headers: {
+          'x-timestamp': Date.now(),
+          'x-sent': true,
+          'Content-Disposition': 'attachment; filename=' + encodeURI(req.params.filename)
+        }
+      };
 
-        fs.createReadStream(filePath).pipe(res);
-      } catch (err) {
-        res.status(422).send({
-          message: 'DOWNLOAD_FAILED'
-        });
-      }
+      res.sendFile(req.params.filename, options, function (err) {
+        if (err) {
+          console.log(err);
+          res.status(err.status).end();
+        }
+      });
     } else {
       res.status(422).send({
         message: 'FILE_DOES_NOT_EXISTS'
