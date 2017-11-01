@@ -1023,7 +1023,11 @@ exports.delete = function (req, res) {
 
   //DELETE the torrent file
   var tfile = config.uploads.torrent.file.dest + req.torrent.torrent_filename;
-  fs.unlinkSync(tfile);
+  fs.exists(tfile, function (exists) {
+    if (exists) {
+      fs.unlinkSync(tfile);
+    }
+  });
 
   //update users seed/leech number
   Peer.find({
@@ -1054,9 +1058,11 @@ exports.delete = function (req, res) {
     torrent: torrent._id
   });
   //update maker torrent count
-  torrent.maker.update({
-    $inc: {torrent_count: -1}
-  }).exec();
+  if(torrent.maker) {
+    torrent.maker.update({
+      $inc: {torrent_count: -1}
+    }).exec();
+  }
 
   //update user uptotal fields
   torrent.user.update({
