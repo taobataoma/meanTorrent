@@ -265,7 +265,7 @@ exports.announce = function (req, res) {
             if (req.torrent._peers.length > 0) {
               for (var i = req.torrent._peers.length; i > 0; i--) {
                 var p = req.torrent._peers[i - 1];
-                if (p.user.str === req.passkeyuser._id.str) {
+                if (p.user.equals(req.passkeyuser._id)) {
                   var diff = moment(Date.now()).diff(moment(p.last_announce_at || p.startedat), 'seconds');
                   if (diff > ANNOUNCE_INTERVAL * ANNOUNCE_GHOST) {
                     removePeer(p);
@@ -361,8 +361,10 @@ exports.announce = function (req, res) {
         mtDebug.debugGreen('---------------EVENT_STARTED----------------');
 
         if (getSelfLeecherCount() >= 1 && !req.seeder) {
+          mtDebug.debugGreen(req.selfpeer);
           done(180);
         } else if (getSelfSeederCount >= 3 && req.seeder) {
+          mtDebug.debugGreen(req.selfpeer);
           done(181);
         } else {
           if (req.currentPeer === undefined) {
@@ -789,7 +791,7 @@ exports.announce = function (req, res) {
     for (var i = 0; i < m; i++) {
       var index = Math.floor(Math.random() * peers.length);
       p = peers[index];
-      //if (p !== undefined && p.user.str !== req.passkeyuser._id.str) {
+      //if (p !== undefined && !p.user.equals(req.passkeyuser._id)) {
       if (p !== undefined) {
         var b = compact(p);
         if (b) {
