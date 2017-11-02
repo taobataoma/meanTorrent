@@ -61,13 +61,12 @@
      * orderByVote
      */
     vm.orderByVote = function () {
+      vm.sortSLF = undefined;
+
       if (vm.sortVote === undefined) {
         vm.sortVote = '-';
-        vm.sort = '-resource_detail_info.vote_average';
+        vm.sort = {'resource_detail_info.vote_average': -1};
       } else if (vm.sortVote === '-') {
-        vm.sortVote = '+';
-        vm.sort = 'resource_detail_info.vote_average';
-      } else if (vm.sortVote === '+') {
         vm.sortVote = undefined;
         vm.sort = undefined;
       }
@@ -79,33 +78,19 @@
      * orderBySLF
      */
     vm.orderBySLF = function () {
+      vm.sortVote = undefined;
+
       if (vm.sortSLF === undefined) {
         vm.sortSLF = '-S';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_S');
-        vm.sort = '-torrent_seeds';
+        vm.sort = {torrent_seeds: -1};
       } else if (vm.sortSLF === '-S') {
-        vm.sortSLF = '+S';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_S');
-        vm.sort = 'torrent_seeds';
-      } else if (vm.sortSLF === '+S') {
         vm.sortSLF = '-L';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_L');
-        vm.sort = '-torrent_leechers';
+        vm.sort = {torrent_leechers: -1};
       } else if (vm.sortSLF === '-L') {
-        vm.sortSLF = '+L';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_L');
-        vm.sort = 'torrent_leechers';
-      } else if (vm.sortSLF === '+L') {
         vm.sortSLF = '-F';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_F');
-        vm.sort = '-torrent_finished';
+        vm.sort = {torrent_finished: -1};
       } else if (vm.sortSLF === '-F') {
-        vm.sortSLF = '+F';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_F');
-        vm.sort = 'torrent_finished';
-      } else if (vm.sortSLF === '+F') {
         vm.sortSLF = undefined;
-        vm.sortSLFString = undefined;
         vm.sort = undefined;
       }
 
@@ -165,6 +150,15 @@
      * @param callback
      */
     vm.getVIPTorrents = function (p, callback) {
+      console.log({
+        skip: (p - 1) * vm.itemsPerPage,
+        limit: vm.itemsPerPage,
+        sort: vm.sort,
+        torrent_type: vm.vipTorrentType,
+        torrent_status: 'reviewed',
+        torrent_vip: true,
+        keys: vm.search
+      });
       TorrentsService.get({
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage,
