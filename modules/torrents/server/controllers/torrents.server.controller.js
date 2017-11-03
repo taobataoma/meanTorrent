@@ -366,10 +366,10 @@ exports.announceEdit = function (req, res) {
     uploadFile()
       .then(function () {
         var filePath = config.uploads.torrent.file.temp + req.file.filename;
-        var stat = fs.statSync(filePath);
 
         fs.exists(filePath, function (exists) {
           if (exists) {
+            var stat = fs.statSync(filePath);
             getTorrentFileData(filePath)
               .then(function () {
                 res.set('Content-Type', 'application/x-bittorrent');
@@ -453,28 +453,34 @@ exports.announceEdit = function (req, res) {
 exports.download = function (req, res) {
   var torrent_data = null;
   var filePath = config.uploads.torrent.file.dest + req.torrent.torrent_filename;
-  var stat = fs.statSync(filePath);
 
-  fs.exists(filePath, function (exists) {
-    if (exists) {
-      getTorrentFileData(filePath)
-        .then(function () {
-          res.set('Content-Type', 'application/x-bittorrent');
-          res.set('Content-Disposition', 'attachment; filename=' + config.meanTorrentConfig.announce.announcePrefix + encodeURI(req.torrent.torrent_filename));
-          res.set('Content-Length', stat.size);
+  if (req.torrent.torrent_vip && !req.user.isVip) {
+    return res.status(422).send({
+      message: 'ONLY_VIP_CAN_DOWNLOAD'
+    });
+  } else {
+    fs.exists(filePath, function (exists) {
+      if (exists) {
+        var stat = fs.statSync(filePath);
+        getTorrentFileData(filePath)
+          .then(function () {
+            res.set('Content-Type', 'application/x-bittorrent');
+            res.set('Content-Disposition', 'attachment; filename=' + config.meanTorrentConfig.announce.announcePrefix + encodeURI(req.torrent.torrent_filename));
+            res.set('Content-Length', stat.size);
 
-          res.send(benc.encode(torrent_data));
-        })
-        .catch(function (err) {
-          mtDebug.debugRed(err);
-          res.status(422).send(err);
+            res.send(benc.encode(torrent_data));
+          })
+          .catch(function (err) {
+            mtDebug.debugRed(err);
+            res.status(422).send(err);
+          });
+      } else {
+        res.status(422).send({
+          message: 'FILE_DOES_NOT_EXISTS'
         });
-    } else {
-      res.status(422).send({
-        message: 'FILE_DOES_NOT_EXISTS'
-      });
-    }
-  });
+      }
+    });
+  }
 
   function getTorrentFileData(file) {
     return new Promise(function (resolve, reject) {
