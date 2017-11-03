@@ -258,6 +258,9 @@ exports.announce = function (req, res) {
           } else {
             req.torrent = t;
 
+            //active torrent update method to update some fields value
+            t.globalUpdateMethod();
+
             /*
              find myself peers
              if the peer is ghost, deleted it

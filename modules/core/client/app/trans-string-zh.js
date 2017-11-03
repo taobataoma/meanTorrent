@@ -632,6 +632,7 @@
       DETAIL: '详情',
       SIGNUP_DATE: '注册时间',
       LATEST_SIGNED_TIME: '最近一次登录时间',
+      LATEST_REFRESH_TIME: '最近一次刷新时间',
       SIGNED_IP: '登录过网站的IP列表',
       LEECHED_IP: '下载过的IP列表',
       BT_CLIENT: '下载过的BT客户端'

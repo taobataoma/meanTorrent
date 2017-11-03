@@ -632,6 +632,7 @@
       DETAIL: 'Detail',
       SIGNUP_DATE: 'Sign up at',
       LATEST_SIGNED_TIME: 'Latest signed at',
+      LATEST_REFRESH_TIME: 'Latest refresh at',
       SIGNED_IP: 'Signed IP list',
       LEECHED_IP: 'Leeched IP list',
       BT_CLIENT: 'Leeched BT Client list'

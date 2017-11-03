@@ -194,9 +194,12 @@ var TorrentSchema = new Schema({
   orderedat: {
     type: Date,
     default: Date.now
+  },
+  refreshat: {
+    type: Date,
+    default: Date.now
   }
 });
-
 
 /**
  * Hook a pre save method
@@ -232,6 +235,15 @@ function writeIsSaling(torrent) {
     torrent.isSaling = false;
   }
 }
+
+/**
+ * globalUpdateMethod
+ */
+TorrentSchema.methods.globalUpdateMethod = function () {
+  this.update({
+    $set: {refreshat: Date.now()}
+  }).exec();
+};
 
 TorrentSchema.index({user: -1, createdat: -1});
 TorrentSchema.index({info_hash: -1, createdat: -1});

@@ -209,6 +209,10 @@ var UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  refreshat: {
+    type: Date,
+    default: Date.now
+  },
   /* For reset password */
   resetPasswordToken: {
     type: String
@@ -354,6 +358,15 @@ UserSchema.methods.addSignedIp = function (ip) {
 UserSchema.methods.addLeechedIp = function (ip) {
   this.update({
     $addToSet: {leeched_ip: ip}
+  }).exec();
+};
+
+/**
+ * globalUpdateMethod
+ */
+UserSchema.methods.globalUpdateMethod = function () {
+  this.update({
+    $set: {refreshat: Date.now()}
   }).exec();
 };
 

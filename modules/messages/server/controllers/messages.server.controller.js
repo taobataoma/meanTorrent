@@ -212,6 +212,9 @@ exports.countUnread = function (req, res) {
     });
   }
 
+  //active user update method to update some fields value
+  req.user.globalUpdateMethod();
+
   var countFrom = function (callback) {
     Message.count({
       from_user: req.user._id,
