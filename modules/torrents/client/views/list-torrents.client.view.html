@@ -145,6 +145,7 @@
             <table class="table table-hover tb-v-middle">
                 <thead>
                     <tr>
+                        <th class="td-width-0"></th>
                         <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
                         <th>
                             <a href="#" tooltip-placement="top"
@@ -163,7 +164,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="torrent-list-info" ng-repeat="item in vm.torrentPagedItems" ng-click="vm.openTorrentInfo(item._id);">
+                    <tr class="torrent-list-info" ng-repeat-start="item in vm.torrentPagedItems" ng-click="vm.openTorrentInfo(item._id);">
+                        <td class="td-width-0" rowspan="2"></td>
                         <td class="col-md-7 td-text-overflow">
                             <div class="media">
                                 <div class="media-left">
@@ -255,6 +257,11 @@
                             <div maker-info="item.maker"></div>
                             <!--<span vip-flag="item.user"></span>-->
                             <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
+                        </td>
+                    </tr>
+                    <tr ng-repeat-end>
+                        <td class="td-progress" colspan="6">
+                            <div torrent-progress="item.my_peers"></div>
                         </td>
                     </tr>
                 </tbody>
