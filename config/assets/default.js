@@ -25,7 +25,9 @@ module.exports = {
         //side-overlay
         'public/lib/angular-side-overlay/dist/angular-side-overlay.css',
         //bootstrap-markdown
-        'public/lib/bootstrap-markdown/css/bootstrap-markdown.min.css'
+        'public/lib/bootstrap-markdown/css/bootstrap-markdown.min.css',
+        //ngProgress
+        'public/lib/ngprogress/ngProgress.css'
 
         // endbower
       ],
@@ -70,7 +72,9 @@ module.exports = {
         'public/lib/angular-side-overlay/dist/angular-side-overlay.js',
         //bootstrap-markdown
         'public/lib/bootstrap-markdown/js/bootstrap-markdown.js',
-        'public/lib/bootstrap-markdown/locale/bootstrap-markdown.zh.js'
+        'public/lib/bootstrap-markdown/locale/bootstrap-markdown.zh.js',
+        //ngProgress
+        'public/lib/ngprogress/build/ngprogress.js'
 
         // endbower
       ],
