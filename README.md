@@ -87,7 +87,7 @@ build a robust framework to support daily development needs, and help developers
 33. Simple vip donate payment function, support Paypal me, Alipay Qrcode and Weixin QRcode.
 34. meanTorrent can backup mongo database into to a .tar files automatic at midnight everyday, and Admin can manage or download these files.
 35. OrderBy torrent imdb vote or site vote in torrent list table header click.
-36. User downloading progress bar or seeding status bar in torrent list and home page.
+36. User downloading progress bar or seeding status bar ([ngProgress](http://victorbjelkholm.github.io/ngProgress/)) in torrent list and home page.
 
 #### Chat room feature:
 1. Users name list
