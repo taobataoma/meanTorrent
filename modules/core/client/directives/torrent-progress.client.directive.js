@@ -7,8 +7,8 @@
   torrentProgress.$inject = ['$compile', 'DebugConsoleService', 'ngProgressFactory'];
 
   function torrentProgress($compile, mtDebug, ngProgressFactory) {
-    const PEERSTATE_SEEDER = 'seeder';
-    const PEERSTATE_LEECHER = 'leecher';
+    var PEERSTATE_SEEDER = 'seeder';
+    var PEERSTATE_LEECHER = 'leecher';
 
     var directive = {
       restrict: 'A',
