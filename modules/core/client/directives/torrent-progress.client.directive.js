@@ -28,10 +28,10 @@
           t_progressbar.setParent(element[0]);
           t_progressbar.setAbsolute();
           t_progressbar.setHeight('2px');
-          if(pt.peer_status === PEERSTATE_SEEDER){
+          if (pt.peer_status === PEERSTATE_SEEDER) {
             t_progressbar.set(100);
             t_progressbar.setColor('#ff6600');
-          }else {
+          } else {
             t_progressbar.set(pt.peer_percent);
             t_progressbar.setColor('#5cb85c');
           }
@@ -75,10 +75,10 @@
           t_progressbar.setParent(element[0]);
           t_progressbar.setAbsolute();
           t_progressbar.setHeight('2px');
-          if(pt.peer_status === PEERSTATE_SEEDER){
+          if (pt.peer_status === PEERSTATE_SEEDER) {
             t_progressbar.set(100);
             t_progressbar.setColor('#ff6600');
-          }else {
+          } else {
             t_progressbar.set(pt.peer_percent);
             t_progressbar.setColor('#5cb85c');
           }
