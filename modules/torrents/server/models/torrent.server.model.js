@@ -159,6 +159,10 @@ var TorrentSchema = new Schema({
   torrent_sale_expires: {
     type: Date
   },
+  isSaling: {
+    type: Boolean,
+    default: false
+  },
   torrent_recommended: {
     type: String,
     default: 'none'
@@ -193,26 +197,41 @@ var TorrentSchema = new Schema({
   }
 });
 
+
 /**
- * overwrite toJSON
+ * Hook a pre save method
  */
-TorrentSchema.methods.toJSON = function (options) {
-  var document = this.toObject(options);
-  document.isSaling = false;
+TorrentSchema.pre('save', function (next) {
+  writeIsSaling(this);
+  next();
+});
 
-  if (this.torrent_sale_expires > Date.now()) {
-    document.isSaling = true;
+/**
+ * Hook a pre save method
+ */
+TorrentSchema.pre('update', function (next) {
+  writeIsSaling(this);
+  next();
+});
+
+/**
+ * countRatio
+ * @param user
+ */
+function writeIsSaling(torrent) {
+  torrent.isSaling = false;
+
+  if (torrent.torrent_sale_expires > Date.now()) {
+    torrent.isSaling = true;
   }
 
-  if (!document.isSaling) {
-    document.torrent_sale_status = 'U1/D1';
+  if (!torrent.isSaling) {
+    torrent.torrent_sale_status = 'U1/D1';
   }
-  if (document.torrent_sale_status === 'U1/D1') {
-    document.isSaling = false;
+  if (torrent.torrent_sale_status === 'U1/D1') {
+    torrent.isSaling = false;
   }
-
-  return document;
-};
+}
 
 TorrentSchema.index({user: -1, createdat: -1});
 TorrentSchema.index({info_hash: -1, createdat: -1});

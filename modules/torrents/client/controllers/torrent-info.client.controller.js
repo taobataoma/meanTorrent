@@ -975,42 +975,47 @@
      * setSaleType
      */
     vm.setSaleType = function () {
-      TorrentsService.setSaleType({
-        _torrentId: vm.torrentLocalInfo._id,
-        _saleType: vm.model_salestype
-      }, function (res) {
-        Notification.success({
-          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETSALETYPE_SUCCESSFULLY')
-        });
+      if (vm.model_salestype && vm.model_salestype !== vm.torrentLocalInfo.torrent_sale_status) {
+        TorrentsService.setSaleType({
+          _torrentId: vm.torrentLocalInfo._id,
+          _saleType: vm.model_salestype
+        }, function (res) {
+          Notification.success({
+            message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETSALETYPE_SUCCESSFULLY')
+          });
 
-        vm.torrentLocalInfo = res;
-      }, function (res) {
-        Notification.error({
-          message: res.data.message,
-          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETSALETYPE_ERROR')
+          mtDebug.info(res);
+          vm.torrentLocalInfo = res;
+        }, function (res) {
+          Notification.error({
+            message: res.data.message,
+            title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETSALETYPE_ERROR')
+          });
         });
-      });
+      }
     };
 
     /**
      * setRecommendLevel
      */
     vm.setRecommendLevel = function () {
-      TorrentsService.setRecommendLevel({
-        _torrentId: vm.torrentLocalInfo._id,
-        _rlevel: vm.model_rlevel
-      }, function (res) {
-        Notification.success({
-          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETRLEVEL_SUCCESSFULLY')
-        });
+      if (vm.model_rlevel && vm.model_rlevel !== vm.torrentLocalInfo.torrent_recommended) {
+        TorrentsService.setRecommendLevel({
+          _torrentId: vm.torrentLocalInfo._id,
+          _rlevel: vm.model_rlevel
+        }, function (res) {
+          Notification.success({
+            message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETRLEVEL_SUCCESSFULLY')
+          });
 
-        vm.torrentLocalInfo = res;
-      }, function (res) {
-        Notification.error({
-          message: res.data.message,
-          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETRLEVEL_ERROR')
+          vm.torrentLocalInfo = res;
+        }, function (res) {
+          Notification.error({
+            message: res.data.message,
+            title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_SETRLEVEL_ERROR')
+          });
         });
-      });
+      }
     };
 
     /**

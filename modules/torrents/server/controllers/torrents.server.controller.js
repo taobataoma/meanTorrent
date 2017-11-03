@@ -873,6 +873,8 @@ exports.setSaleType = function (req, res) {
     torrent.torrent_sale_status = req.params.saleType;
     torrent.torrent_sale_expires = Date.now() + gbit * config.meanTorrentConfig.torrentSalesType.expires.time;
 
+    mtDebug.debugGreen(torrent);
+
     torrent.save(function (err) {
       if (err) {
         return res.status(422).send({
