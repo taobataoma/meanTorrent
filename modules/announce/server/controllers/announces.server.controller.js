@@ -258,9 +258,6 @@ exports.announce = function (req, res) {
           } else {
             req.torrent = t;
 
-            //active torrent update method to update some fields value
-            t.globalUpdateMethod();
-
             /*
              find myself peers
              if the peer is ghost, deleted it
@@ -362,6 +359,9 @@ exports.announce = function (req, res) {
     function (done) {
       if (event(query.event) === EVENT_STARTED) {
         mtDebug.debugGreen('---------------EVENT_STARTED----------------');
+
+        //active torrent update method to update some fields value
+        req.torrent.globalUpdateMethod();
 
         if (getSelfLeecherCount() >= 1 && !req.seeder) {
           mtDebug.debugGreen(req.selfpeer);
