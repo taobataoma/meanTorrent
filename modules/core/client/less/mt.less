@@ -645,6 +645,15 @@ body {
 }
 
 .tb-v-middle {
+    > thead,
+    > tbody {
+        > tr {
+            .td-width-0 {
+                padding: 0 !important;
+            }
+        }
+    }
+
     > thead {
         > tr {
             > th {
@@ -722,6 +731,11 @@ body {
                     white-space: normal !important;
                 }
             }
+            .td-progress {
+                padding: 0 8px;
+                border-top: none;
+                position: relative;
+            }
         }
     }
 }
@@ -732,7 +746,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: ~"calc(100% - 10px)";
+    width: ~"calc(100% - 11px)";
     height: 100%;
     .fa {
         display: none;

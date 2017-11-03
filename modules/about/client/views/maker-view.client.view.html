@@ -137,7 +137,8 @@
                                 <th>
                                     <a href="#" tooltip-placement="top"
                                        ng-click="vm.orderBySLF();"
-                                       uib-tooltip="{{ 'TABLE_FIELDS.TITLE_SEEDS_LEECHERS_FINISHED' | translate}}" ng-bind-html="vm.getOrderTableHead()"></a>
+                                       uib-tooltip="{{ 'TABLE_FIELDS.TITLE_SEEDS_LEECHERS_FINISHED' | translate}}"
+                                       ng-bind-html="vm.getOrderTableHead()"></a>
                                 </th>
                                 <th class="text-center">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
                             </tr>
@@ -151,8 +152,7 @@
                                 </td>
                             </tr>
                             <tr class="torrent-list-info"
-                                ng-if="!vm.tooltipMsg"
-                                ng-repeat="item in vm.pagedItems" ng-click="vm.openTorrentInfo(item._id);">
+                                ng-if="!vm.tooltipMsg" ng-repeat="item in vm.pagedItems" ng-click="vm.openTorrentInfo(item._id);">
                                 <td class="col-md-7 td-text-overflow">
                                     <div class="media">
                                         <div class="media-left">

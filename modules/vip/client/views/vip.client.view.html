@@ -65,6 +65,7 @@
                     <table class="table table-hover tb-v-middle">
                         <thead>
                             <tr>
+                                <th class="td-width-0"></th>
                                 <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
                                 <th>
                                     <a href="#" tooltip-placement="top"
@@ -92,8 +93,8 @@
                                 </td>
                             </tr>
                             <tr class="torrent-list-info"
-                                ng-if="!vm.tooltipMsg"
-                                ng-repeat="item in vm.pagedItems" ng-click="vm.openTorrentInfo(item._id);">
+                                ng-if="!vm.tooltipMsg" ng-repeat-start="item in vm.pagedItems" ng-click="vm.openTorrentInfo(item._id);">
+                                <td class="td-width-0" rowspan="2"></td>
                                 <td class="col-md-7 td-text-overflow">
                                     <div class="media">
                                         <div class="media-left">
@@ -159,8 +160,8 @@
                                     </div>
                                 </td>
                                 <td class="col-md-1 td-v-middle td-imdb">
-                            <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
-                                  class="torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
+                                    <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
+                                          class="torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                 </td>
                                 <td class="col-md-1 td-v-middle text-center td-life">{{item.createdat | life}}</td>
                                 <td class="col-md-1 td-v-middle text-center td-size">{{item.torrent_size | bytes:2}}</td>
@@ -186,6 +187,11 @@
                                     <div maker-info="item.maker"></div>
                                     <!--<span vip-flag="item.user"></span>-->
                                     <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
+                                </td>
+                            </tr>
+                            <tr ng-repeat-end>
+                                <td class="td-progress" colspan="6">
+                                    <div torrent-progress="item.my_peers"></div>
                                 </td>
                             </tr>
                         </tbody>

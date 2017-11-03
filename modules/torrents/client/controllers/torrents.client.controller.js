@@ -46,7 +46,7 @@
      */
     vm.torrentFigureOutItemsToDisplay = function (callback) {
       vm.getResourcePageInfo(vm.torrentCurrentPage, function (items) {
-        vm.torrentFilterLength = items.total - vm.topItems;
+        vm.torrentFilterLength = items.total;
         vm.torrentPagedItems = items.rows;
 
         if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInList) {
@@ -152,13 +152,12 @@
      * orderByVote
      */
     vm.orderByVote = function () {
+      vm.sortSLF = undefined;
+
       if (vm.sortVote === undefined) {
         vm.sortVote = '-';
-        vm.sort = '-resource_detail_info.vote_average';
+        vm.sort = {'resource_detail_info.vote_average': -1};
       } else if (vm.sortVote === '-') {
-        vm.sortVote = '+';
-        vm.sort = 'resource_detail_info.vote_average';
-      } else if (vm.sortVote === '+') {
         vm.sortVote = undefined;
         vm.sort = undefined;
       }
@@ -170,33 +169,19 @@
      * orderBySLF
      */
     vm.orderBySLF = function () {
+      vm.sortVote = undefined;
+
       if (vm.sortSLF === undefined) {
         vm.sortSLF = '-S';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_S');
-        vm.sort = '-torrent_seeds';
+        vm.sort = {torrent_seeds: -1};
       } else if (vm.sortSLF === '-S') {
-        vm.sortSLF = '+S';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_S');
-        vm.sort = 'torrent_seeds';
-      } else if (vm.sortSLF === '+S') {
         vm.sortSLF = '-L';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_L');
-        vm.sort = '-torrent_leechers';
+        vm.sort = {torrent_leechers: -1};
       } else if (vm.sortSLF === '-L') {
-        vm.sortSLF = '+L';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_L');
-        vm.sort = 'torrent_leechers';
-      } else if (vm.sortSLF === '+L') {
         vm.sortSLF = '-F';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_F');
-        vm.sort = '-torrent_finished';
+        vm.sort = {torrent_finished: -1};
       } else if (vm.sortSLF === '-F') {
-        vm.sortSLF = '+F';
-        vm.sortSLFString = $translate.instant('TABLE_FIELDS.SORT_F');
-        vm.sort = 'torrent_finished';
-      } else if (vm.sortSLF === '+F') {
         vm.sortSLF = undefined;
-        vm.sortSLFString = undefined;
         vm.sort = undefined;
       }
 
@@ -257,7 +242,7 @@
     vm.getResourcePageInfo = function (p, callback) {
       //if searchKey or searchTags has value, the skip=0
       var skip = vm.topItems;
-      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear || vm.filterHnR || vm.sortVote) {
+      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear || vm.filterHnR || vm.sort) {
         skip = 0;
       }
 
@@ -277,6 +262,8 @@
             message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('LIST_PAGE_INFO_EMPTY')
           });
         } else {
+          items.oTotal = items.total;
+          items.total = items.total - skip;
           callback(items);
           mtDebug.info(items);
         }

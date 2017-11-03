@@ -19,6 +19,7 @@ var path = require('path'),
   Complete = mongoose.model('Complete'),
   Forum = mongoose.model('Forum'),
   Topic = mongoose.model('Topic'),
+  objectId = require('mongodb').ObjectId,
   fs = require('fs'),
   nt = require('nt'),
   benc = require('bncode'),
@@ -1058,7 +1059,7 @@ exports.delete = function (req, res) {
     torrent: torrent._id
   });
   //update maker torrent count
-  if(torrent.maker) {
+  if (torrent.maker) {
     torrent.maker.update({
       $inc: {torrent_count: -1}
     }).exec();
@@ -1112,7 +1113,8 @@ exports.list = function (req, res) {
   var tagsA = [];
   var keysA = [];
 
-  var sort = 'torrent_recommended -orderedat -createdat';
+  //var sort = 'torrent_recommended -orderedat -createdat';
+  var sort = {torrent_recommended: 1, orderedat: -1, createdat: -1};
 
   if (req.query.skip !== undefined) {
     skip = parseInt(req.query.skip, 10);
@@ -1121,7 +1123,7 @@ exports.list = function (req, res) {
     limit = parseInt(req.query.limit, 10);
   }
   if (req.query.sort !== undefined) {
-    sort = req.query.sort;
+    sort = JSON.parse(req.query.sort);
   }
   if (req.query.torrent_status !== undefined) {
     status = req.query.torrent_status;
@@ -1145,10 +1147,10 @@ exports.list = function (req, res) {
     newest = (req.query.newest === 'true');
   }
   if (req.query.userid !== undefined) {
-    userid = req.query.userid;
+    userid = objectId(req.query.userid);
   }
   if (req.query.maker !== undefined) {
-    maker = req.query.maker;
+    maker = objectId(req.query.maker);
   }
 
   if (req.query.torrent_tags !== undefined) {
@@ -1186,7 +1188,7 @@ exports.list = function (req, res) {
     condition.torrent_type = stype;
   }
   if (hnr === 'true') {
-    condition.torrent_hnr = hnr;
+    condition.torrent_hnr = true;
   }
   if (vip === 'true') {
     condition.torrent_vip = true;
@@ -1218,7 +1220,8 @@ exports.list = function (req, res) {
   mtDebug.debugGreen(sort);
 
   if (newest) {
-    sort = '-createdat';
+    //sort = '-createdat';
+    sort = {createdat: -1};
   }
 
   var countQuery = function (callback) {
@@ -1232,19 +1235,80 @@ exports.list = function (req, res) {
   };
 
   var findQuery = function (callback) {
-    Torrent.find(condition)
-      .sort(sort)
-      .populate('user', 'username displayName isVip')
-      .populate('maker', 'name')
-      .skip(skip)
-      .limit(limit)
-      .exec(function (err, torrents) {
-        if (err) {
-          callback(err, null);
-        } else {
-          callback(null, torrents);
+    //Torrent.find(condition)
+    //  .sort(sort)
+    //  .populate('user', 'username displayName isVip')
+    //  .populate('maker', 'name')
+    //  .skip(skip)
+    //  .limit(limit)
+    //  .exec(function (err, torrents) {
+    //    if (err) {
+    //      callback(err, null);
+    //    } else {
+    //      callback(null, torrents);
+    //    }
+    //  });
+
+    var query = Torrent.aggregate([
+      {'$match': condition},
+      {'$sort': sort},
+      {'$skip': skip},
+      {'$limit': limit},
+      {
+        '$lookup': {
+          from: 'peers',
+          localField: '_id',
+          foreignField: 'torrent',
+          as: 't_peer'
         }
-      });
+      },
+      {
+        '$addFields': {
+          'my_peers': {
+            '$filter': {
+              'input': '$t_peer',
+              'as': 'p',
+              'cond': {'$eq': ['$$p.user', req.user._id]}
+            }
+          }
+        }
+      },
+      {
+        '$project': {
+          't_peer': 0
+        }
+      }
+    ]);
+
+    if (limit === 0) {
+      let i = query._pipeline.length;
+      while (i--) {
+        if (Object.keys(query._pipeline[i])[0] === '$limit') {
+          query._pipeline.splice(i, 1);
+          break;
+        }
+      }
+    }
+
+    query.exec(function (err, torrents) {
+      if (err) {
+        callback(err, null);
+      } else {
+        Torrent.populate(torrents,
+          [
+            {path: 'user', select: 'username displayName isVip'},
+            {path: 'maker', select: 'name'}
+          ], function (err, ts) {
+            if (err) {
+              return res.status(422).send({
+                message: errorHandler.getErrorMessage(err)
+              });
+            } else {
+              callback(null, ts);
+            }
+          });
+      }
+    });
   };
 
   async.parallel([countQuery, findQuery], function (err, results) {
