@@ -98,6 +98,8 @@ build a robust framework to support daily development needs, and help developers
 6. Chat message bubble style
 
 ## TODO
+- Confirmation of account activation by mail.
+- Add signature for forum.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - IRC chat
 - Business cooperation support(like play box? NAS? etc.)
