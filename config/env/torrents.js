@@ -535,7 +535,7 @@ module.exports = {
       value: [
         {name: 'NORMAL', value: 'normal'},
         {name: 'BANNED', value: 'banned'},
-        {name: 'SEALED', value: 'sealed'}
+        {name: 'SEALED', value: 'inactive'}
       ]
     },
 
