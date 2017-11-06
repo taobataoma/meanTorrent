@@ -38,6 +38,12 @@ module.exports = function () {
             });
           }
 
+          if (user.status === 'inactive') {
+            return done(null, false, {
+              message: 'You account is not Activated!'
+            });
+          }
+
           return done(null, user);
         });
     }
