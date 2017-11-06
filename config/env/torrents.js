@@ -156,7 +156,7 @@ module.exports = {
      */
     sign: {
       openSignup: true,
-      signUpActiveTokenExpires: 60 * 60 * 1000 * 2,
+      signUpActiveTokenExpires: 60 * 60 * 1000 * 24,
       allowSocialSignin: false,
       showDemoSignMessage: true
     },
