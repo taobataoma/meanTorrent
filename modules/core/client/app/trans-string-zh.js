@@ -617,6 +617,7 @@
       STATUS: '帐号状态',
       NORMAL: '正常',
       BANNED: '被禁止',
+      INACTIVE: '未激活',
       BTN_BAN: '禁止',
       BTN_UNBAN: '解禁',
       BTN_CREATE_MAKER: '创建小组',

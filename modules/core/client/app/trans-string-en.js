@@ -617,6 +617,7 @@
       STATUS: 'Status',
       NORMAL: 'normal',
       BANNED: 'banned',
+      INACTIVE: 'inactive',
       BTN_BAN: 'Ban',
       BTN_UNBAN: 'Unban',
       BTN_CREATE_MAKER: 'Create Maker',

@@ -92,6 +92,7 @@ exports.list = function (req, res) {
   var isVip = false;
   var isOper = false;
   var isAdmin = false;
+  var status = undefined;
 
   if (req.query.skip !== undefined) {
     skip = parseInt(req.query.skip, 10);
@@ -107,6 +108,9 @@ exports.list = function (req, res) {
   }
   if (req.query.isAdmin !== undefined) {
     isAdmin = req.query.isAdmin;
+  }
+  if (req.query.status !== undefined) {
+    status = req.query.status;
   }
 
   if (req.query.keys && req.query.keys.length > 0) {
@@ -129,6 +133,9 @@ exports.list = function (req, res) {
   }
   if (isOper === 'true' && isAdmin === 'true') {
     condition.roles = {$in: ['oper', 'admin']};
+  }
+  if (status !== undefined) {
+    condition.status = status;
   }
 
   if (keysA.length > 0) {
