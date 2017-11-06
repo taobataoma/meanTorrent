@@ -88,6 +88,7 @@ build a robust framework to support daily development needs, and help developers
 34. meanTorrent can backup mongo database into to a .tar files automatic at midnight everyday, and Admin can manage or download these files.
 35. OrderBy torrent imdb vote or site vote in torrent list table header click.
 36. User downloading progress bar or seeding status bar ([ngProgress](http://victorbjelkholm.github.io/ngProgress/)) in torrent list and home page.
+37. User email verify and account active support, inactive account can not login and announce torrent data.
 
 #### Chat room feature:
 1. Users name list
@@ -98,7 +99,6 @@ build a robust framework to support daily development needs, and help developers
 6. Chat message bubble style
 
 ## TODO
-- Confirmation of account activation by mail.
 - Add signature for forum.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - IRC chat
