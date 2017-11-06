@@ -1,10 +1,10 @@
 <section class="container" ng-init="vm.buildPager();">
     <div class="page-header" id="top_of_users_list">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h3>{{ 'USERS_LIST' | translate}}</h3>
             </div>
-            <div class="col-md-4 checkbox-inline" style="margin-top: 1em">
+            <div class="col-md-6 checkbox-inline" style="margin-top: 1em">
                 <label class="checkbox-inline">
                     <input type="checkbox" ng-model="vm.searchVip" ng-change="vm.buildPager();"> isVip
                 </label>
@@ -14,8 +14,24 @@
                 <label class="checkbox-inline">
                     <input type="checkbox" ng-model="vm.searchOper" ng-change="vm.buildPager();"> isOper
                 </label>
+
+                <div>
+                    <label class="radio-inline">
+                        <input type="radio" name="status_normal" ng-model="vm.userStatus"
+                               id="status_normal" value="normal" ng-change="vm.buildPager();"> normal
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="status_banned" ng-model="vm.userStatus"
+                               id="status_banned" value="banned" ng-change="vm.buildPager();"> banned
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="status_inactive" ng-model="vm.userStatus"
+                               id="status_inactive" value="inactive" ng-change="vm.buildPager();"> inactive
+                    </label>
+
+                </div>
             </div>
-            <div class="col-md-4" style="margin-top: 1em">
+            <div class="col-md-3" style="margin-top: 1em">
                 <input class="form-control col-md-4" type="text" ng-model="vm.search" placeholder="Search" ng-change="vm.currentPage = 1; vm.figureOutItemsToDisplay()"/>
             </div>
         </div>
