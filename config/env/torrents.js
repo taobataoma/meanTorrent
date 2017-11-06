@@ -27,6 +27,7 @@ module.exports = {
      *
      * @enable:     if true, meanTorrent will backup mongo db database data with a named '/module/core/client/backup/*.tar'
      *              at midnight every day.
+     * @dir:        backup files path
      */
     backup: {
       enable: true,
@@ -148,11 +149,12 @@ module.exports = {
      * user register settings
      * NOTE: you can change these value at anytime if you understand it
      *
-     * @openSignup:           set whether open the signup, if true, the user can signup(register) by heself,
-     *                        if you create a private web site, and only accept invite to join, please set it to false.
-     * @allowSocialSignin:    meanTorrent can accept social account to signin, like google, twitter, facebook etc.
-     *                        if you do not want them to login, please set it to false
-     * @showDemoSignMessage:  if true, will show demo sign in message in sign in page, if your site is not demo site, please set it to false
+     * @openSignup:                 set whether open the signup, if true, the user can signup(register) by heself,
+     *                              if you create a private web site, and only accept invite to join, please set it to false.
+     * @signUpActiveTokenExpires:   sign up account active expires time setting.
+     * @allowSocialSignin:          meanTorrent can accept social account to signin, like google, twitter, facebook etc.
+     *                              if you do not want them to login, please set it to false
+     * @showDemoSignMessage:        if true, will show demo sign in message in sign in page, if your site is not demo site, please set it to false
      */
     sign: {
       openSignup: true,
@@ -530,13 +532,14 @@ module.exports = {
      *      @value:   status value
      *
      * banned user is banned from server, can not download any torrent and can not logon chat room
+     * inactive user can not sign in, need active from email verify link
      */
     userStatus: {
       name: 'STATUS',
       value: [
         {name: 'NORMAL', value: 'normal'},
         {name: 'BANNED', value: 'banned'},
-        {name: 'SEALED', value: 'inactive'}
+        {name: 'INACTIVE', value: 'inactive'}
       ]
     },
 
@@ -648,6 +651,7 @@ module.exports = {
      * @key:                      access key fro TMDB, when u first install and runing this system, please register a key from TMDB and replace here
      * @backdropImgBaseUrl:       image link url
      * @backdropImgBaseUrl_300:   image link url
+     * @backdropImgBaseUrl_780:   image link url
      * @posterImgBaseUrl:         image link url
      * @posterListBaseUrl:        image link url
      * @castImgBaseUrl:           image link url
@@ -724,6 +728,8 @@ module.exports = {
      * @torrentsCommentsPerPage:  torrent comments list settings
      * @tracesPerPage:            system traces log list page settings
      * @adminUserListPerPage:     admin manage users list page settings
+     * @collectionsListPerPage:   movie collections list page settings
+     * @backupFilesListPerPage:   system backup files list page settings
      */
     itemsPerPage: {
       topicsPerPage: 10,
