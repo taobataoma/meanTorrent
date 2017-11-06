@@ -42,7 +42,7 @@ const FAILURE_REASONS = {
   162: 'ip length error',
 
   170: 'your account is banned',
-  171: 'your account is sealed',
+  171: 'your account is inactive',
   172: 'your client is not allowed, here is the blacklist: ' + config.meanTorrentConfig.announce.clientBlackListUrl,
 
   180: 'You already are downloading the same torrent. You may only leech from one location at a time',
@@ -209,7 +209,7 @@ exports.announce = function (req, res) {
         case 'banned':
           done(170);
           break;
-        case 'sealed':
+        case 'inactive':
           done(171);
           break;
         default:
