@@ -96,7 +96,7 @@
 
                 <dt class="h-line">{{ 'STATUS_FIELD.STATUS' | translate}}：</dt>
                 <dd class="h-line">
-                    <span ng-class="{'span-banned': vm.user.status == 'banned'}">{{ 'STATUS_FIELD.' + vm.user.status.toUpperCase() | translate }}</span>
+                    <span ng-class="{'span-banned': vm.user.status != 'normal'}">{{ 'STATUS_FIELD.' + vm.user.status.toUpperCase() | translate }}</span>
 
                     <div class="pull-right"
                          ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isOper && !vm.user.isAdmin">
