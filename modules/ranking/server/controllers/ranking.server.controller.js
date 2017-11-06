@@ -14,7 +14,7 @@ var path = require('path'),
  */
 exports.list = function (req, res) {
   var findUploadRanking = function (callback) {
-    User.find({}, '-salt -password -providerData')
+    User.find({status: 'normal'}, '-salt -password -providerData')
       .sort('-uploaded')
       .limit(20)
       .exec(function (err, users) {
@@ -27,7 +27,7 @@ exports.list = function (req, res) {
   };
 
   var findDownloadRanking = function (callback) {
-    User.find({}, '-salt -password -providerData')
+    User.find({status: 'normal'}, '-salt -password -providerData')
       .sort('-downloaded')
       .limit(20)
       .exec(function (err, users) {
@@ -40,7 +40,7 @@ exports.list = function (req, res) {
   };
 
   var findScoreRanking = function (callback) {
-    User.find({}, '-salt -password -providerData')
+    User.find({status: 'normal'}, '-salt -password -providerData')
       .sort('-score')
       .limit(20)
       .exec(function (err, users) {
@@ -53,7 +53,7 @@ exports.list = function (req, res) {
   };
 
   var findRatioRanking = function (callback) {
-    User.find({}, '-salt -password -providerData')
+    User.find({status: 'normal'}, '-salt -password -providerData')
       .sort('-ratio')
       .limit(20)
       .exec(function (err, users) {
