@@ -144,6 +144,7 @@
 
     //page title
     PAGETITLE: {
+      ACCOUNT_ACTIVE: '帐号激活',
       UPLOAD: '上传',
       MOVIE_LIST: '电影列表',
       TV_LIST: '电视剧列表',
@@ -229,7 +230,12 @@
       ENTER_USERNAME: '请输入你的帐号用户名或注册邮箱',
       RESET_PASS_OK: '密码重置成功',
       RESET_PASS_INVALID: '密码重置失败',
-      RE_RESET_PASSWORD: '再次请求重置密码?'
+      RE_RESET_PASSWORD: '再次请求重置密码?',
+
+      ACTIVE_INVALID: '帐户激活失败, 可能该链接已被使用或者已失效.',
+      ACTIVE_ERROR: '帐户激活错误!',
+      ACTIVE_FAILED: '帐户激活与登录失败',
+      ACTIVE_SUCCESSFULLY: '帐户激活成功, 3秒钟后将自动跳转到首页.'
     },
 
     //TorrentsController & views
@@ -1143,6 +1149,11 @@
         ANDROID: 'Android',
         CAR: 'Car'
       }
+    },
+
+    //server returned string
+    SERVER: {
+      SENDING_ACTIVE_MAIL_SUCCESSFULLY: '欢迎加入 <strong>{{site}}</strong>, 我们已向你的邮箱 <strong>{{mail}}</strong> 发送了一封电子邮件, 请在 <strong>{{hours}}</strong> 小时内检查您的邮箱并点击邮件中的链接地址来验证您的邮箱地址并激您的帐号，谢谢！'
     }
   };
 

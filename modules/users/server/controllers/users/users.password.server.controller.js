@@ -126,7 +126,6 @@ exports.validateResetToken = function (req, res) {
   });
 };
 
-
 /**
  * invite sign up from email token
  */

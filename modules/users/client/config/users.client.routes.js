@@ -149,6 +149,15 @@
           pageTitle: 'SIGNIN'
         }
       })
+      .state('authentication.active', {
+        url: '/active?method',
+        templateUrl: '/modules/users/client/views/authentication/active.client.view.html',
+        controller: 'AuthenticationController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'PAGETITLE.ACCOUNT_ACTIVE'
+        }
+      })
       .state('authentication.invite', {
         abstract: true,
         url: '/invite',

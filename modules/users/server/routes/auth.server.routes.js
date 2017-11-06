@@ -15,6 +15,7 @@ module.exports = function (app) {
   app.route('/api/auth/reset/:token').post(users.reset);
 
   app.route('/api/auth/invite/:token').get(users.invite);
+  app.route('/api/auth/active/:token').get(users.active);
 
   // Setting up the users authentication api
   app.route('/api/auth/signup').post(users.signup);

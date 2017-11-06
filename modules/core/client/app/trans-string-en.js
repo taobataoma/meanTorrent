@@ -144,6 +144,7 @@
 
     //page title
     PAGETITLE: {
+      ACCOUNT_ACTIVE: 'Account Active',
       UPLOAD: 'Upload',
       MOVIE_LIST: 'Movie List',
       TV_LIST: 'TV List',
@@ -229,7 +230,12 @@
       ENTER_USERNAME: 'Enter your account username or email.',
       RESET_PASS_OK: 'Password successfully reset',
       RESET_PASS_INVALID: 'Password reset is invalid',
-      RE_RESET_PASSWORD: 'Ask for a new password reset?'
+      RE_RESET_PASSWORD: 'Ask for a new password reset?',
+
+      ACTIVE_INVALID: 'Can not active your account, maybe this token already used or this token is expired.',
+      ACTIVE_ERROR: 'Account active ERROR!',
+      ACTIVE_FAILED: 'Account active and login failed',
+      ACTIVE_SUCCESSFULLY: 'Account active successfully, will redirect to home after 3 seconds automate.'
     },
 
     //TorrentsController & views
@@ -1143,6 +1149,11 @@
         ANDROID: 'Android',
         CAR: 'Car'
       }
+    },
+
+    //server returned string
+    SERVER: {
+      SENDING_ACTIVE_MAIL_SUCCESSFULLY: 'Welcome join <strong>{{site}}</strong>, We`ve sent you an email to <strong>{{mail}}</strong>, please check you mail box and click the active url to verify you mail address and active you account in <strong>{{hours}}</strong> hours, thanks!'
     }
   };
 

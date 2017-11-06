@@ -10,7 +10,11 @@ var path = require('path'),
   passport = require('passport'),
   User = mongoose.model('User'),
   Invitation = mongoose.model('Invitation'),
+  nodemailer = require('nodemailer'),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
+
+var smtpTransport = nodemailer.createTransport(config.mailer.options);
+var mtConfig = config.meanTorrentConfig;
 
 // URLs for which user can't be redirected on signin
 var noReturnUrls = [
@@ -32,6 +36,9 @@ exports.signup = function (req, res) {
   user.provider = 'local';
   user.displayName = user.firstName + ' ' + user.lastName;
   user.passkey = user.randomAsciiString(32);
+
+  user.signUpActiveToken = user.randomAsciiString(32);
+  user.signUpActiveExpires = Date.now() + mtConfig.sign.signUpActiveTokenExpires;
 
   // Then save the user
   user.save(function (err) {
@@ -59,19 +66,87 @@ exports.signup = function (req, res) {
       user.password = undefined;
       user.salt = undefined;
 
-      req.login(user, function (err) {
+      /* send an account active mail */
+      var httpTransport = 'http://';
+      if (config.secure && config.secure.ssl === true) {
+        httpTransport = 'https://';
+      }
+      var baseUrl = req.app.get('domain') || httpTransport + req.headers.host;
+      res.render(path.resolve('modules/users/server/templates/sign-up-active-email'), {
+        name: user.displayName,
+        appName: config.app.title,
+        hours: mtConfig.sign.signUpActiveTokenExpires / (60 * 60 * 1000),
+        url: baseUrl + '/api/auth/active/' + user.signUpActiveToken
+      }, function (err, emailHTML) {
         if (err) {
-          res.status(400).send(err);
+          return res.status(400).send({
+            message: 'ACTIVE_MAIL_RENDER_ERROR'
+          });
         } else {
-          res.json(user);
+          var mailOptions = {
+            to: user.email,
+            from: config.mailer.from,
+            subject: 'Sign up account active of ' + config.app.title,
+            html: emailHTML
+          };
+          smtpTransport.sendMail(mailOptions, function (err) {
+            if (!err) {
+              res.send({
+                message: 'SENDING_ACTIVE_MAIL_SUCCESSFULLY'
+              });
+            } else {
+              return res.status(400).send({
+                message: 'SENDING_ACTIVE_MAIL_FAILED'
+              });
+            }
+
+          });
         }
       });
+
 
       //create trace log
       traceLogCreate(req, traceConfig.action.userSignUp, {
         user: user._id,
         inviteToken: req.body.inviteToken || null,
         ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress
+      });
+    }
+  });
+};
+
+/**
+ * active sign up from email token
+ */
+exports.active = function (req, res, next) {
+  User.findOne({
+    signUpActiveToken: req.params.token,
+    status: 'inactive',
+    signUpActiveExpires: {
+      $gt: Date.now()
+    }
+  }, function (err, u) {
+    if (err || !u) {
+      return res.redirect('/authentication/active?method=invalid');
+    } else {
+      u.update({
+        $set: {
+          status: 'normal',
+          signUpActiveToken: undefined,
+          signUpActiveExpires: undefined
+        }
+      }).exec(function (err) {
+        if (err) {
+          return res.redirect('/authentication/active?method=error');
+        } else {
+          req.login(u, function (err) {
+            if (err) {
+              return res.redirect('/authentication/active?method=failed');
+            } else {
+              return res.redirect('/authentication/active?method=successfully');
+            }
+          });
+        }
       });
     }
   });

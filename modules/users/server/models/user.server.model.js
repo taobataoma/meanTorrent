@@ -129,7 +129,7 @@ var UserSchema = new Schema({
   },
   status: {
     type: String,
-    default: 'normal'
+    default: 'inactive'
   },
   vip_start_at: {
     type: Date,
@@ -212,6 +212,13 @@ var UserSchema = new Schema({
   refreshat: {
     type: Date,
     default: Date.now
+  },
+  /* for sing up active */
+  signUpActiveToken: {
+    type: String
+  },
+  signUpActiveExpires: {
+    type: Date
   },
   /* For reset password */
   resetPasswordToken: {
