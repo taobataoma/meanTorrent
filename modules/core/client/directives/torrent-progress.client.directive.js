@@ -37,8 +37,8 @@
           }
           t_progressbar.progressbarEl.css('background-color', '#dedede');
           t_progressbar.progressbarEl.css('top', '-5px');
-          t_progressbar.progressbarEl.css('left', '8px');
-          t_progressbar.progressbarEl.css('right', '8px');
+          //t_progressbar.progressbarEl.css('left', '8px');
+          //t_progressbar.progressbarEl.css('right', '8px');
 
           //element.css('margin-bottom', '8px');
           //console.log(t_progressbar);
