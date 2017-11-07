@@ -34,6 +34,7 @@
         <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
           <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
           <span class="sm-hide" ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
+          <span class="header-red-dot" ng-if="vm.unreadCount>0 || vm.user.hnr_warning>0" ng-class="{'bg-hnr': vm.user.hnr_warning>0, 'bg-msg': vm.unreadCount>0}"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
           <li>

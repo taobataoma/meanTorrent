@@ -44,6 +44,23 @@ body {
     font-size: 18px;
 }
 
+.header-red-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 12px;
+    left: 35px;
+    border-radius: 50%;
+    border: solid 1px #fff;
+
+    &.bg-msg {
+        background-color: @btn-info-bg !important;
+    }
+    &.bg-hnr {
+        background-color: @btn-danger-bg;
+    }
+}
+
 .user-header-dropdown-toggle {
     .img {
         position: relative;
