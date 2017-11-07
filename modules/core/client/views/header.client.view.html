@@ -30,6 +30,13 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+      <li class="scroll-info xs-hide sm-hide" ng-if="vm.authentication.user">
+        <span>
+            {{'TABLE_FIELDS.RATIO' | translate}}: {{vm.authentication.user.ratio}},　
+            {{'TABLE_FIELDS.LEVEL' | translate}}: {{vm.scoreLevelData.currLevel}},　
+            {{'TABLE_FIELDS.SEEDED' | translate}}: {{vm.authentication.user.seeded}},　
+            {{'TABLE_FIELDS.LEECHED' | translate}}: {{vm.authentication.user.leeched}}</span>
+      </li>
       <li class="dropdown" uib-dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
           <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />

@@ -120,7 +120,7 @@
       ABBR_DOWNLOADED_RATIO: 'downloaded/ratio',
       ABBR_DOWNLOADED_SPEED: 'downloaded/speed',
       ABBR_UPLOADED_RATIO_PERCENT: 'uploaded/ratio/percent',
-      ABBR_UP_DOWN_RATIO_TIME: 'uploaded/downloaded/ratio/seeded time',
+      ABBR_UP_DOWN_RATIO_TIME: 'uploaded/downloaded/ratio/seeding time',
 
       //peer
       USERNAME: 'DisplayName',
@@ -136,8 +136,9 @@
       //ranking
       UPLOAD: 'Uploaded',
       DOWNLOAD: 'Downloaded',
-      SEEDED: 'Seeded',
-      LEECHED: 'Leeched',
+      SEEDED: 'Seeding',
+      LEECHED: 'Leeching',
+      LEVEL: 'Level',
       SCORE: 'Score',
       JOINED: 'Joined'
     },
@@ -190,6 +191,7 @@
       STATUS_ACCOUNT: 'Account Status',
       STATUS_UPLOADED: 'Uploaded',
       STATUS_SEEDING: 'Seeding',
+      STATUS_LEECHING: 'Leeching',
       STATUS_DOWNLOADING: 'Downloading',
       STATUS_WARNING: 'Warning',
       SCORE_DETAIL: 'Score detail',
@@ -630,8 +632,8 @@
       RATIO: 'Total ratio',
       SCORE: 'Total score',
       UPTOTAL: 'Uploaded torrents',
-      SEEDED: 'Torrents seeded',
-      LEECHED: 'Torrents leeched',
+      SEEDED: 'Torrents seeding',
+      LEECHED: 'Torrents leeching',
       FINISHED: 'Torrents finished',
       HNR_WARNING: 'H&R Warning',
       FORUM_TOPICS: 'Forum topics',

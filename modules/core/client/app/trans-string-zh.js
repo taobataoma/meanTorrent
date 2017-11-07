@@ -138,6 +138,7 @@
       DOWNLOAD: '已下载',
       SEEDED: '正在做种',
       LEECHED: '正在下载',
+      LEVEL: '用户级别',
       SCORE: '积分',
       JOINED: '加入时间'
     },
@@ -190,6 +191,7 @@
       STATUS_ACCOUNT: '帐户状态',
       STATUS_UPLOADED: '我的种子',
       STATUS_SEEDING: '正在做种',
+      STATUS_LEECHING: '正在下载',
       STATUS_DOWNLOADING: '正在下载',
       STATUS_WARNING: '正被警告',
       SCORE_DETAIL: '积分详情',
