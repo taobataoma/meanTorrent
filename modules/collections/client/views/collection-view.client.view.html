@@ -96,7 +96,7 @@
                         </thead>
                         <tbody>
                             <tr class="torrent-list-info"
-                                ng-repeat="item in vm.collection.torrents" ng-click="vm.openTorrentInfo(item._id);">
+                                ng-repeat="item in vm.collection.torrents" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                                 <td class="col-md-7 td-text-overflow">
                                     <div class="media">
                                         <div class="media-left">
@@ -114,7 +114,7 @@
                                         </div>
                                         <div class="media-body">
                                             <h5 class="media-heading">
-                                                <span>{{vm.TGI.getTorrentDoubleTitle(item)}}</span>
+                                                <a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentDoubleTitle(item)}}</a>
                                                 <span class="upload-by" ng-show="item.user.displayName"> (By:
                                                 <span user-info="item.user" info-name></span> )</span>
                                             </h5>

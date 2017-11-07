@@ -41,15 +41,6 @@
     };
 
     /**
-     * openTorrentInfo
-     * @param id
-     */
-    vm.openTorrentInfo = function (id) {
-      var url = $state.href('torrents.view', {torrentId: id});
-      $window.open(url, '_blank');
-    };
-
-    /**
      * removeWarning
      * @param comp
      */

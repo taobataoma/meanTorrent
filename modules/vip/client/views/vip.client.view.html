@@ -93,7 +93,7 @@
                                 </td>
                             </tr>
                             <tr class="torrent-list-info"
-                                ng-if="!vm.tooltipMsg" ng-repeat-start="item in vm.pagedItems" ng-click="vm.openTorrentInfo(item._id);">
+                                ng-if="!vm.tooltipMsg" ng-repeat-start="item in vm.pagedItems" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                                 <td class="td-width-0" rowspan="2"></td>
                                 <td class="col-md-7 td-text-overflow">
                                     <div class="media">
@@ -112,8 +112,8 @@
                                         </div>
                                         <div class="media-body">
                                             <h5 class="media-heading">
-                                                <span>{{vm.TGI.getTorrentDoubleTitle(item)}}</span>
-                                            <span class="upload-by" ng-show="item.user.displayName"> (By:
+                                                <a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentDoubleTitle(item)}}</a>
+                                                <span class="upload-by" ng-show="item.user.displayName"> (By:
                                                 <span user-info="item.user" info-name></span> )</span>
                                             </h5>
 

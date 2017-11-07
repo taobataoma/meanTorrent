@@ -9,9 +9,12 @@
                 <div class="container">
                     <div class="topone">
                         <div class="col-md-3">
-                            <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.movieTopOne.resource_detail_info.poster_path}}"
-                                 class="img-thumbnail center-block torrent-logo"
-                                 ng-click="vm.openTorrentInfo(vm.movieTopOne._id);">
+                            <a ui-sref="torrents.view({torrentId: vm.movieTopOne._id})">
+                                <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.movieTopOne.resource_detail_info.poster_path}}"
+                                     class="img-thumbnail center-block torrent-logo"
+                                     alt="{{vm.TGI.getTorrentTitle(vm.movieTopOne)}}"
+                                     title="{{vm.TGI.getTorrentTitle(vm.movieTopOne)}}">
+                            </a>
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.movieTopOne._id)"
@@ -109,7 +112,7 @@
                             <div data-ng-if="$index != 0 && $index % 4 == 0"
                                  class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
-                                <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
+                                <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                                     <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{item.resource_detail_info.poster_path}}"
                                          alt="{{item.resource_detail_info.title}}"
                                          title="{{item.resource_detail_info.title}}"
@@ -147,14 +150,13 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <strong>{{item.resource_detail_info.title}}</strong>
+                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-3 col-md-height col-small-padding" style="padding-left: 15px;">
@@ -169,7 +171,7 @@
                                         <tr ng-repeat="nt in vm.movieNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
-                                                <div class="newest-item-big" ng-click="vm.openTorrentInfo(nt._id);">
+                                                <a class="newest-item-big" ui-sref="torrents.view({torrentId: nt._id})">
                                                     <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_300}}{{nt.resource_detail_info.backdrop_path}}"
                                                          on-error-src="/modules/torrents/client/img/default_backdrop_300.jpg">
 
@@ -195,13 +197,13 @@
                                                     <div class="newest-info">
                                                         <div card-progress="nt.my_peers"></div>
                                                         <div class="text-long">
-                                                            {{$index + 1}}. {{nt.resource_detail_info.title}}
+                                                            {{$index + 1}}. {{vm.TGI.getTorrentTitle(nt)}}
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
 
                                                 <div class="newest-item-small text-long">
-                                                    {{$index + 1}}. {{nt.resource_detail_info.title}}
+                                                    <a ui-sref="torrents.view({torrentId: nt._id})">{{$index + 1}}. {{vm.TGI.getTorrentTitle(nt)}}</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -225,9 +227,12 @@
                 <div class="container">
                     <div class="topone">
                         <div class="col-md-3">
-                            <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.TVTopOne.resource_detail_info.poster_path}}"
-                                 class="img-thumbnail center-block torrent-logo"
-                                 ng-click="vm.openTorrentInfo(vm.TVTopOne._id);">
+                            <a ui-sref="torrents.view({torrentId: vm.TVTopOne._id})">
+                                <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.TVTopOne.resource_detail_info.poster_path}}"
+                                     class="img-thumbnail center-block torrent-logo"
+                                     alt="{{vm.TGI.getTorrentTitle(vm.TVTopOne)}}"
+                                     title="{{vm.TGI.getTorrentTitle(vm.TVTopOne)}}">
+                            </a>
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.TVTopOne._id)"
@@ -330,7 +335,7 @@
                             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
                             <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
-                                <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
+                                <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                                     <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{item.resource_detail_info.poster_path}}"
                                          alt="{{item.resource_detail_info.name}}"
                                          title="{{item.resource_detail_info.name}}"
@@ -369,14 +374,13 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <strong>{{item.resource_detail_info.name}}</strong>
+                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-3 col-md-height col-small-padding" style="padding-left: 15px;">
@@ -391,7 +395,7 @@
                                         <tr ng-repeat="nt in vm.TVNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
-                                                <div class="newest-item-big" ng-click="vm.openTorrentInfo(nt._id);">
+                                                <a class="newest-item-big" ui-sref="torrents.view({torrentId: nt._id})">
                                                     <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_300}}{{nt.resource_detail_info.backdrop_path}}"
                                                          on-error-src="/modules/torrents/client/img/default_backdrop_300.jpg">
 
@@ -417,14 +421,14 @@
                                                     <div class="newest-info">
                                                         <div card-progress="nt.my_peers"></div>
                                                         <div class="text-long">
-                                                            {{$index + 1}}. {{nt.resource_detail_info.name}}
+                                                            {{$index + 1}}. {{vm.TGI.getTorrentTitle(nt)}}
                                                             <span class="label label-se-info se-info">S{{nt.torrent_seasons}}E{{nt.torrent_episodes}}</span>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
 
                                                 <div class="newest-item-small text-long">
-                                                    {{$index + 1}}. {{nt.resource_detail_info.name}}
+                                                    <a ui-sref="torrents.view({torrentId: nt._id})">{{$index + 1}}. {{vm.TGI.getTorrentTitle(nt)}}</a>
                                                     <span class="label label-se-info se-info">S{{nt.torrent_seasons}}E{{nt.torrent_episodes}}</span>
                                                     <!--<span class="se-info">S{{nt.torrent_seasons}}E{{nt.torrent_episodes}}</span>-->
                                                 </div>
@@ -450,12 +454,14 @@
                 <div class="container">
                     <div class="topone">
                         <div class="col-md-3">
-                            <div class="topone-logo" ng-click="vm.openTorrentInfo(vm.musicTopOne._id);">
-                                <img class="img-thumbnail center-block" torrent-logo="vm.musicTopOne"
-                                     ng-src="{{vm.TGI.getTorrentTopOneImage(vm.musicTopOne)}}"
-                                     alt="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}"
-                                     title="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}">
-                            </div>
+                            <a ui-sref="torrents.view({torrentId: vm.musicTopOne._id})">
+                                <div class="topone-logo">
+                                    <img class="img-thumbnail center-block" torrent-logo="vm.musicTopOne"
+                                         ng-src="{{vm.TGI.getTorrentTopOneImage(vm.musicTopOne)}}"
+                                         alt="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}"
+                                         title="{{vm.TGI.getTorrentTitle(vm.musicTopOne)}}">
+                                </div>
+                            </a>
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.musicTopOne._id)"
@@ -503,7 +509,7 @@
                             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
                             <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
-                                <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
+                                <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                                     <img class="img-responsive" torrent-logo="item"
                                          ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
                                          alt="{{vm.TGI.getTorrentTitle(item)}}">
@@ -542,14 +548,13 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <strong>{{vm.TGI.getTorrentTitle(item)}}</strong>
+                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-3 col-md-height col-small-padding" style="padding-left: 15px;">
@@ -564,7 +569,7 @@
                                         <tr ng-repeat="nm in vm.musicNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 11 ? 'hide-more' : '']">
                                             <td>
-                                                <div class="newest-item-big music-margin" ng-click="vm.openTorrentInfo(nm._id);">
+                                                <a class="newest-item-big music-margin" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
                                                          ng-src="{{vm.TGI.getTorrentListTopImage(nm)}}"
                                                          alt="{{vm.TGI.getTorrentTitle(nm)}}">
@@ -598,13 +603,13 @@
                                                     <div class="newest-info">
                                                         <div card-progress="nm.my_peers"></div>
                                                         <div class="text-long">
-                                                            {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                            {{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
 
                                                 <div class="newest-item-small text-long">
-                                                    {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                    <a ui-sref="torrents.view({torrentId: nm._id})">{{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -628,12 +633,14 @@
                 <div class="container">
                     <div class="topone">
                         <div class="col-md-3">
-                            <div class="img-thumbnail center-block torrent-logo" ng-click="vm.openTorrentInfo(vm.sportsTopOne._id);">
-                                <img class="img-thumbnail center-block" torrent-logo="vm.sportsTopOne"
-                                     ng-src="{{vm.TGI.getTorrentTopOneImage(vm.sportsTopOne)}}"
-                                     alt="{{vm.TGI.getTorrentTitle(vm.sportsTopOne)}}"
-                                     title="{{vm.TGI.getTorrentTitle(vm.sportsTopOne)}}">
-                            </div>
+                            <a ui-sref="torrents.view({torrentId: vm.sportsTopOne._id})">
+                                <div class="img-thumbnail center-block torrent-logo">
+                                    <img class="img-thumbnail center-block" torrent-logo="vm.sportsTopOne"
+                                         ng-src="{{vm.TGI.getTorrentTopOneImage(vm.sportsTopOne)}}"
+                                         alt="{{vm.TGI.getTorrentTitle(vm.sportsTopOne)}}"
+                                         title="{{vm.TGI.getTorrentTitle(vm.sportsTopOne)}}">
+                                </div>
+                            </a>
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.sportsTopOne._id)"
@@ -678,7 +685,7 @@
                             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
                             <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
-                                <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
+                                <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                                     <div class="torrent-logo">
                                         <img class="img-responsive" torrent-logo="item"
                                              ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
@@ -719,14 +726,13 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <strong>{{vm.TGI.getTorrentTitle(item)}}</strong>
+                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-3 col-md-height col-small-padding" style="padding-left: 15px;">
@@ -741,7 +747,7 @@
                                         <tr ng-repeat="nm in vm.sportsNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
-                                                <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">
+                                                <a class="newest-item-big"  ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
                                                          ng-src="{{vm.TGI.getTorrentListTopImage(nm)}}"
                                                          alt="{{vm.TGI.getTorrentTitle(nm)}}">
@@ -768,13 +774,13 @@
                                                     <div class="newest-info">
                                                         <div card-progress="nm.my_peers"></div>
                                                         <div class="text-long">
-                                                            {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                            {{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
 
                                                 <div class="newest-item-small text-long">
-                                                    {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                    <a ui-sref="torrents.view({torrentId: nm._id})">{{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -798,12 +804,14 @@
                 <div class="container">
                     <div class="topone">
                         <div class="col-md-3">
-                            <div class="img-thumbnail center-block torrent-logo" ng-click="vm.openTorrentInfo(vm.varietyTopOne._id);">
-                                <img class="img-thumbnail center-block" torrent-logo="vm.varietyTopOne"
-                                     ng-src="{{vm.TGI.getTorrentTopOneImage(vm.varietyTopOne)}}"
-                                     alt="{{vm.TGI.getTorrentTitle(vm.varietyTopOne)}}"
-                                     title="{{vm.TGI.getTorrentTitle(vm.varietyTopOne)}}">
-                            </div>
+                            <a ui-sref="torrents.view({torrentId: vm.varietyTopOne._id})">
+                                <div class="img-thumbnail center-block torrent-logo">
+                                    <img class="img-thumbnail center-block" torrent-logo="vm.varietyTopOne"
+                                         ng-src="{{vm.TGI.getTorrentTopOneImage(vm.varietyTopOne)}}"
+                                         alt="{{vm.TGI.getTorrentTitle(vm.varietyTopOne)}}"
+                                         title="{{vm.TGI.getTorrentTitle(vm.varietyTopOne)}}">
+                                </div>
+                            </a>
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.varietyTopOne._id)"
@@ -848,7 +856,7 @@
                             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
                             <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
-                                <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
+                                <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                                     <div class="torrent-logo">
                                         <img class="img-responsive" torrent-logo="item"
                                              ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
@@ -889,14 +897,13 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <strong>{{vm.TGI.getTorrentTitle(item)}}</strong>
+                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-3 col-md-height col-small-padding" style="padding-left: 15px;">
@@ -911,7 +918,7 @@
                                         <tr ng-repeat="nm in vm.varietyNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
-                                                <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">
+                                                <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
                                                          ng-src="{{vm.TGI.getTorrentListTopImage(nm)}}"
                                                          alt="{{vm.TGI.getTorrentTitle(nm)}}">
@@ -938,13 +945,13 @@
                                                     <div class="newest-info">
                                                         <div card-progress="nm.my_peers"></div>
                                                         <div class="text-long">
-                                                            {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                            {{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
 
                                                 <div class="newest-item-small text-long">
-                                                    {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                    <a ui-sref="torrents.view({torrentId: nm._id})">{{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -968,12 +975,14 @@
                 <div class="container">
                     <div class="topone">
                         <div class="col-md-3">
-                            <div class="img-thumbnail center-block torrent-logo" ng-click="vm.openTorrentInfo(vm.pictureTopOne._id);">
-                                <img class="img-thumbnail center-block" torrent-logo="vm.pictureTopOne"
-                                     ng-src="{{vm.TGI.getTorrentTopOneImage(vm.pictureTopOne)}}"
-                                     alt="{{vm.TGI.getTorrentTitle(vm.pictureTopOne)}}"
-                                     title="{{vm.TGI.getTorrentTitle(vm.pictureTopOne)}}">
-                            </div>
+                            <a ui-sref="torrents.view({torrentId: vm.pictureTopOne._id})">
+                                <div class="img-thumbnail center-block torrent-logo">
+                                    <img class="img-thumbnail center-block" torrent-logo="vm.pictureTopOne"
+                                         ng-src="{{vm.TGI.getTorrentTopOneImage(vm.pictureTopOne)}}"
+                                         alt="{{vm.TGI.getTorrentTitle(vm.pictureTopOne)}}"
+                                         title="{{vm.TGI.getTorrentTitle(vm.pictureTopOne)}}">
+                                </div>
+                            </a>
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.pictureTopOne._id)"
@@ -1018,7 +1027,7 @@
                             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
                             <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
-                                <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
+                                <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                                     <div class="torrent-logo">
                                         <img class="img-responsive" torrent-logo="item"
                                              ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
@@ -1059,14 +1068,13 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <strong>{{vm.TGI.getTorrentTitle(item)}}</strong>
+                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-3 col-md-height col-small-padding" style="padding-left: 15px;">
@@ -1081,7 +1089,7 @@
                                         <tr ng-repeat="nm in vm.pictureNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
-                                                <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">
+                                                <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
                                                          ng-src="{{vm.TGI.getTorrentListTopImage(nm)}}"
                                                          alt="{{vm.TGI.getTorrentTitle(nm)}}">
@@ -1108,13 +1116,13 @@
                                                     <div class="newest-info">
                                                         <div card-progress="nm.my_peers"></div>
                                                         <div class="text-long">
-                                                            {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                            {{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
 
                                                 <div class="newest-item-small text-long">
-                                                    {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                    <a ui-sref="torrents.view({torrentId: nm._id})">{{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -1138,12 +1146,14 @@
                 <div class="container">
                     <div class="topone">
                         <div class="col-md-3">
-                            <div class="img-thumbnail center-block torrent-logo" ng-click="vm.openTorrentInfo(vm.gameTopOne._id);">
-                                <img class="img-thumbnail center-block" torrent-logo="vm.gameTopOne"
-                                     ng-src="{{vm.TGI.getTorrentTopOneImage(vm.gameTopOne)}}"
-                                     alt="{{vm.TGI.getTorrentTitle(vm.gameTopOne)}}"
-                                     title="{{vm.TGI.getTorrentTitle(vm.gameTopOne)}}">
-                            </div>
+                            <a ui-sref="torrents.view({torrentId: vm.gameTopOne._id})">
+                                <div class="img-thumbnail center-block torrent-logo">
+                                    <img class="img-thumbnail center-block" torrent-logo="vm.gameTopOne"
+                                         ng-src="{{vm.TGI.getTorrentTopOneImage(vm.gameTopOne)}}"
+                                         alt="{{vm.TGI.getTorrentTitle(vm.gameTopOne)}}"
+                                         title="{{vm.TGI.getTorrentTitle(vm.gameTopOne)}}">
+                                </div>
+                            </a>
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.gameTopOne._id)"
@@ -1188,7 +1198,7 @@
                             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
                             <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
-                                <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
+                                <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                                     <div class="torrent-logo">
                                         <img class="img-responsive" torrent-logo="item"
                                              ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
@@ -1229,14 +1239,13 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <strong>{{vm.TGI.getTorrentTitle(item)}}</strong>
+                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-3 col-md-height col-small-padding" style="padding-left: 15px;">
@@ -1251,7 +1260,7 @@
                                         <tr ng-repeat="nm in vm.gameNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
-                                                <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">
+                                                <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
                                                          ng-src="{{vm.TGI.getTorrentListTopImage(nm)}}"
                                                          alt="{{vm.TGI.getTorrentTitle(nm)}}">
@@ -1278,13 +1287,13 @@
                                                     <div class="newest-info">
                                                         <div card-progress="nm.my_peers"></div>
                                                         <div class="text-long">
-                                                            {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                            {{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
 
                                                 <div class="newest-item-small text-long">
-                                                    {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                    <a ui-sref="torrents.view({torrentId: nm._id})">{{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -1308,12 +1317,14 @@
                 <div class="container">
                     <div class="topone">
                         <div class="col-md-3">
-                            <div class="img-thumbnail center-block torrent-logo" ng-click="vm.openTorrentInfo(vm.softwareTopOne._id);">
-                                <img class="img-thumbnail center-block" torrent-logo="vm.softwareTopOne"
-                                     ng-src="{{vm.TGI.getTorrentTopOneImage(vm.softwareTopOne)}}"
-                                     alt="{{vm.TGI.getTorrentTitle(vm.softwareTopOne)}}"
-                                     title="{{vm.TGI.getTorrentTitle(vm.softwareTopOne)}}">
-                            </div>
+                            <a ui-sref="torrents.view({torrentId: vm.softwareTopOne._id})">
+                                <div class="img-thumbnail center-block torrent-logo">
+                                    <img class="img-thumbnail center-block" torrent-logo="vm.softwareTopOne"
+                                         ng-src="{{vm.TGI.getTorrentTopOneImage(vm.softwareTopOne)}}"
+                                         alt="{{vm.TGI.getTorrentTitle(vm.softwareTopOne)}}"
+                                         title="{{vm.TGI.getTorrentTitle(vm.softwareTopOne)}}">
+                                </div>
+                            </a>
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.softwareTopOne._id)"
@@ -1358,7 +1369,7 @@
                             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
                             <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
-                                <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
+                                <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                                     <div class="torrent-logo">
                                         <img class="img-responsive" torrent-logo="item"
                                              ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
@@ -1399,14 +1410,13 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <strong>{{vm.TGI.getTorrentTitle(item)}}</strong>
+                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-3 col-md-height col-small-padding" style="padding-left: 15px;">
@@ -1421,7 +1431,7 @@
                                         <tr ng-repeat="nm in vm.softwareNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
-                                                <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">
+                                                <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
                                                          ng-src="{{vm.TGI.getTorrentListTopImage(nm)}}"
                                                          alt="{{vm.TGI.getTorrentTitle(nm)}}">
@@ -1448,13 +1458,13 @@
                                                     <div class="newest-info">
                                                         <div card-progress="nm.my_peers"></div>
                                                         <div class="text-long">
-                                                            {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                            {{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
 
                                                 <div class="newest-item-small text-long">
-                                                    {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                    <a ui-sref="torrents.view({torrentId: nm._id})">{{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -1478,12 +1488,14 @@
                 <div class="container">
                     <div class="topone">
                         <div class="col-md-3">
-                            <div class="img-thumbnail center-block torrent-logo" ng-click="vm.openTorrentInfo(vm.ebookTopOne._id);">
-                                <img class="img-thumbnail center-block" torrent-logo="vm.ebookTopOne"
-                                     ng-src="{{vm.TGI.getTorrentTopOneImage(vm.ebookTopOne)}}"
-                                     alt="{{vm.TGI.getTorrentTitle(vm.ebookTopOne)}}"
-                                     title="{{vm.TGI.getTorrentTitle(vm.ebookTopOne)}}">
-                            </div>
+                            <a ui-sref="torrents.view({torrentId: vm.ebookTopOne._id})">
+                                <div class="img-thumbnail center-block torrent-logo">
+                                    <img class="img-thumbnail center-block" torrent-logo="vm.ebookTopOne"
+                                         ng-src="{{vm.TGI.getTorrentTopOneImage(vm.ebookTopOne)}}"
+                                         alt="{{vm.TGI.getTorrentTitle(vm.ebookTopOne)}}"
+                                         title="{{vm.TGI.getTorrentTitle(vm.ebookTopOne)}}">
+                                </div>
+                            </a>
 
                             <div class="down-torrent">
                                 <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.ebookTopOne._id)"
@@ -1528,7 +1540,7 @@
                             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
                             <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
-                                <div class="thumbnail torrent-post-info" ng-click="vm.openTorrentInfo(item._id);">
+                                <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                                     <div class="torrent-logo">
                                         <img class="img-responsive" torrent-logo="item"
                                              ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
@@ -1569,14 +1581,13 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <strong>{{vm.TGI.getTorrentTitle(item)}}</strong>
+                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-3 col-md-height col-small-padding" style="padding-left: 15px;">
@@ -1591,7 +1602,7 @@
                                         <tr ng-repeat="nm in vm.ebookNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
                                             ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
                                             <td>
-                                                <div class="newest-item-big" ng-click="vm.openTorrentInfo(nm._id);">
+                                                <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
                                                          ng-src="{{vm.TGI.getTorrentListTopImage(nm)}}"
                                                          alt="{{vm.TGI.getTorrentTitle(nm)}}">
@@ -1618,13 +1629,13 @@
                                                     <div class="newest-info">
                                                         <div card-progress="nm.my_peers"></div>
                                                         <div class="text-long">
-                                                            {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                            {{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
 
                                                 <div class="newest-item-small text-long">
-                                                    {{$index + 1}}. {{nm.resource_detail_info.title}}
+                                                    <a ui-sref="torrents.view({torrentId: nm._id})">{{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}</a>
                                                 </div>
                                             </td>
                                         </tr>

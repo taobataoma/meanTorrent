@@ -350,14 +350,5 @@
         i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
       }
     };
-
-    /**
-     * openTorrentInfo
-     * @param id
-     */
-    vm.openTorrentInfo = function (id) {
-      var url = $state.href('torrents.view', {torrentId: id});
-      $window.open(url, '_blank');
-    };
   }
 }());

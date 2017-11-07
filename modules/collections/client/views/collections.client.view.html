@@ -31,29 +31,30 @@
                         <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                         <div class="col-sm-6 col-md-4">
                             <div class="collection-items">
-                                <div class="collection-item"
-                                     ui-sref="collections.view({ collectionId: m._id })">
-                                    <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_780 + m.backdrop_path}}">
+                                <a ui-sref="collections.view({ collectionId: m._id })">
+                                    <div class="collection-item">
+                                        <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_780 + m.backdrop_path}}">
 
-                                    <div class="item-info text-center">
-                                        <div class="name">{{m.name}}</div>
+                                        <div class="item-info text-center">
+                                            <div class="name">{{m.name}}</div>
 
-                                        <div class="row margin-top-40 collection-data">
-                                            <div class="item-release margin-bottom-10">
-                                                <span>{{vm.getMinMaxRelease(m).min}}</span><span
-                                                    ng-if="m.torrents.length>1">-{{vm.getMinMaxRelease(m).max}}</span>
-                                            </div>
-                                            <div class="col-xs-6 col-small-padding text-center">
-                                                <i class="fa fa-list text-info">
-                                                    <strong> {{'COLLECTIONS.FILES_NUMBERS' | translate}}: {{m.torrents.length}}</strong></i>
-                                            </div>
-                                            <div class="col-xs-6 col-small-padding text-left">
-                                                <i class="fa fa-star-half-o text-info">
-                                                    <strong> {{'COLLECTIONS.VOTE_AVERAGE' | translate}}: {{vm.getVoteAverage(m);}}</strong></i>
+                                            <div class="row margin-top-40 collection-data">
+                                                <div class="item-release margin-bottom-10">
+                                                    <span>{{vm.getMinMaxRelease(m).min}}</span><span
+                                                        ng-if="m.torrents.length>1">-{{vm.getMinMaxRelease(m).max}}</span>
+                                                </div>
+                                                <div class="col-xs-6 col-small-padding text-center">
+                                                    <i class="fa fa-list text-info">
+                                                        <strong> {{'COLLECTIONS.FILES_NUMBERS' | translate}}: {{m.torrents.length}}</strong></i>
+                                                </div>
+                                                <div class="col-xs-6 col-small-padding text-left">
+                                                    <i class="fa fa-star-half-o text-info">
+                                                        <strong> {{'COLLECTIONS.VOTE_AVERAGE' | translate}}: {{vm.getVoteAverage(m);}}</strong></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>

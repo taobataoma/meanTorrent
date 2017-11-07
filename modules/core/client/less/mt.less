@@ -44,6 +44,21 @@ body {
     font-size: 18px;
 }
 
+.user-header-dropdown-toggle {
+    .img {
+        position: relative;
+        top: -3px;
+    }
+    .user-ratio {
+        font-size: 12px;
+        color: @mt-base-color;
+        text-shadow: 0 0 1px #000,-0 -0 1px #000;
+        position: absolute;
+        bottom: 0;
+        left: 15px;
+    }
+}
+
 .backdrop {
     background-image: url("http://image.tmdb.org/t/p/w1280/5pAGnkFYSsFJ99ZxDIYnhQbQFXs.jpg");
     background-position: center;
@@ -597,6 +612,7 @@ body {
             left: 90px;
             height: 100%;
             font-size: 12px;
+            color: #333;
             > div {
                 position: absolute;
                 top: 50%;
@@ -874,7 +890,7 @@ body {
 
 .other-torrent-info {
     .torrent-filename {
-        font-size: 12px;
+        font-size: 14px;
         color: @gray-light;
     }
     .text-long {

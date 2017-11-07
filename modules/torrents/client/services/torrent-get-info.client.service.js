@@ -7,9 +7,9 @@
     .module('torrents.services')
     .factory('TorrentGetInfoServices', TorrentGetInfoServices);
 
-  TorrentGetInfoServices.$inject = ['MeanTorrentConfig'];
+  TorrentGetInfoServices.$inject = ['MeanTorrentConfig', '$state'];
 
-  function TorrentGetInfoServices(MeanTorrentConfig) {
+  function TorrentGetInfoServices(MeanTorrentConfig, $state) {
     var voteTitleConfig = MeanTorrentConfig.meanTorrentConfig.voteTitle;
     var tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
 
@@ -24,7 +24,9 @@
       getVoteTitle: getVoteTitle,
       getMovieDirector: getMovieDirector,
       getTorrentLanguage: getTorrentLanguage,
-      getTorrentOverview: getTorrentOverview
+      getTorrentOverview: getTorrentOverview,
+
+      openTorrentDetailInfo: openTorrentDetailInfo
     };
 
     return service;
@@ -247,6 +249,14 @@
         result = item.resource_detail_info.overview || item.resource_detail_info.detail || null;
       }
       return result;
+    }
+
+    /**
+     * openTorrentDetailInfo
+     * @param id
+     */
+    function openTorrentDetailInfo(id) {
+      $state.go('torrents.view', {torrentId: id});
     }
   }
 }());

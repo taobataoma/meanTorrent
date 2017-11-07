@@ -822,10 +822,10 @@
                     </thead>
                     <tbody>
                         <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._other_torrents"
-                            ng-click="vm.openTorrentInfo(item._id);">
+                            ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                             <td class="col-md-8 td-v-middle td-text-overflow">
                                 <div class="other-torrent-info">
-                                    <div class="torrent-filename text-long">{{item.torrent_filename}}</div>
+                                    <div class="torrent-filename text-long"><a ui-sref="torrents.view({torrentId: item._id})">{{item.torrent_filename}}</a></div>
 
                                     <div class="list-all-tags">
                                         <span ng-if="vm.torrentLocalInfo.resource_detail_info.release_date">
