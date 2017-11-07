@@ -30,7 +30,7 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
-      <li class="scroll-info xs-hide sm-hide" ng-if="vm.authentication.user">
+      <li class="scroll-info xs-hide sm-hide" ui-sref="status.account" ng-if="vm.authentication.user">
         <span>
             {{'TABLE_FIELDS.RATIO' | translate}}: {{vm.authentication.user.ratio}},　
             {{'TABLE_FIELDS.LEVEL' | translate}}: {{vm.scoreLevelData.currLevel}},　
