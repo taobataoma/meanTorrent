@@ -709,6 +709,7 @@ module.exports = {
      *        @value:           value of forum category
      *        @index:           list order index of forum category
      * @showThumbsUpUserList:   if true, will show thumbs up users list at eof of topic content or reply content
+     * @showUserSignature:      if true, will show user signature info in forum
      */
     forumsConfig: {
       category: [
