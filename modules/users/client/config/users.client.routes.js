@@ -66,6 +66,15 @@
           pageTitle: 'EDIT_PROFILE_PIC'
         }
       })
+      .state('settings.signature', {
+        url: '/signature',
+        templateUrl: '/modules/users/client/views/settings/change-signature.client.view.html',
+        controller: 'ChangeSignatureController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'EDIT_SIGNATURE'
+        }
+      })
       .state('status', {
         abstract: true,
         url: '/status',

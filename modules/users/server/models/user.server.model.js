@@ -204,7 +204,10 @@ var UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Maker'
   }],
-
+  signature: {
+    type: String,
+    default: ''
+  },
   created: {
     type: Date,
     default: Date.now

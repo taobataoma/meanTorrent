@@ -37,8 +37,8 @@ exports.forgot = function (req, res, next) {
 
         User.findOne({
           $or: [
-            { username: usernameOrEmail },
-            { email: usernameOrEmail }
+            {username: usernameOrEmail},
+            {email: usernameOrEmail}
           ]
         }, '-salt -password', function (err, user) {
           if (err || !user) {
@@ -315,6 +315,33 @@ exports.resetPasskey = function (req, res, next) {
             res.json(user);
           }
         });
+      }
+    });
+  } else {
+    res.status(401).send({
+      message: 'User is not signed in'
+    });
+  }
+};
+
+/**
+ * changeSignature
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.changeSignature = function (req, res, next) {
+  if (req.user) {
+    var user = req.user;
+    user.signature = req.body.signature;
+
+    user.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(user);
       }
     });
   } else {

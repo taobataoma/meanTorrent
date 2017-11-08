@@ -30,6 +30,11 @@
     });
 
     menuService.addSubMenuItem('account', 'settings', {
+      title: 'EDIT_SIGNATURE',
+      state: 'settings.signature'
+    });
+
+    menuService.addSubMenuItem('account', 'settings', {
       title: 'CHANGE_PASSWORD',
       state: 'settings.password'
     });
@@ -38,10 +43,5 @@
       title: 'RESET_PASSKEY',
       state: 'settings.passkey'
     });
-    //
-    //menuService.addSubMenuItem('account', 'settings', {
-    //  title: 'MANAGE_SOCIAL_ACCOUNTS',
-    //  state: 'settings.accounts'
-    //});
   }
 }());

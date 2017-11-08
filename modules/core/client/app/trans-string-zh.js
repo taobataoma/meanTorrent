@@ -64,6 +64,7 @@
     MENU_ACCOUNT_STATUS: '帐户状态',
     EDIT_PROFILE: '修改个人信息',
     EDIT_PROFILE_PIC: '修改个人头像',
+    EDIT_SIGNATURE: '修改论坛签名',
     CHANGE_PASSWORD: '修改登录密码',
     RESET_PASSKEY: '重置 Passkey',
     MANAGE_SOCIAL_ACCOUNTS: '管理社交帐号',
@@ -583,7 +584,7 @@
     CAPTION_REQUIRED_VERIFY_PASSWORD: '请再输入一次新密码.',
     CAPTION_PASSWORD_NOT_MATCH: '两次输入的新密码不一致.',
     CURRENT_PASSKEY: '当前 Passkey: <mark class="text-danger">{{passkey}}</mark>',
-    RESET_PASSKEY_NOTE: '注意：如果你重置了你的 passkey, 你必须重新下载所有种子文件并添加到你的下载客户端，这样才能正确下载上传并统计你的数据。',
+    RESET_PASSKEY_NOTE: '注意：如果你重置了你的 passkey, 你必须重新下载所有种子文件并添加到你的下载客户端，然后才能正确下载上传并统计你的数据。',
     RESET_PASSKEY_CONFIRM_OK: '重置',
     RESET_PASSKEY_CONFIRM_CANCEL: '取消',
     RESET_PASSKEY_CONFIRM_HEADER_TEXT: '重置 Passkey',
@@ -592,6 +593,10 @@
     RESET_PASSKEY_ERROR: 'Passkey 重置失败',
     CONNECTED_SOCIAL: '已绑定的社交平台帐号:',
     UNCONNECTED_SOCIAL: '还未绑定的部分社交平台帐号:',
+    CURRENT_SIGNATURE: '当前签名',
+    EDIT_SIGNATURE_LINK: '编辑签名',
+    EDIT_SIGNATURE_SUCCESSFULLY: '修改签名成功',
+    EDIT_SIGNATURE_ERROR: '修改签名失败',
 
     //user status
     STATUS_ACCOUNT: '帐户状态',

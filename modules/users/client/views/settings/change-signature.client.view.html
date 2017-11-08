@@ -1,0 +1,10 @@
+<section class="row margin-top-10">
+    <div class="col-sm-11 col-sm-offset-1">
+        <div>
+            <h4>{{'CURRENT_SIGNATURE' | translate}}　<small><a href="#" translate="EDIT_SIGNATURE_LINK" ng-click="vm.beginEditSignature()"></a></small></h4>
+        </div>
+        <div id="signature" data-provide="markdown" class="signature-input"
+             ng-bind-html="vm.getSignatureContent()">
+        </div>
+    </div>
+</section>

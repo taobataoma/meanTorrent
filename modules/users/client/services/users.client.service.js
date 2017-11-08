@@ -21,6 +21,10 @@
         method: 'POST',
         url: '/api/users/passkey'
       },
+      updateSignature: {
+        method: 'POST',
+        url: '/api/users/signature'
+      },
       warningNumber: {
         method: 'GET',
         url: '/api/users/warningNumber'
@@ -56,6 +60,9 @@
       },
       changePasskey: function () {
         return this.resetPasskey().$promise;
+      },
+      changeSignature: function (signText) {
+        return this.updateSignature(signText).$promise;
       },
       getUserWarningNumber: function () {
         return this.warningNumber().$promise;
