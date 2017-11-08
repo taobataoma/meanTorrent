@@ -14,6 +14,7 @@
     vm.user = Authentication.user;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.accountMenu = menuService.getMenu('account').items[0];
@@ -77,7 +78,7 @@
      */
     vm.checkMessageUnread = function () {
       vm.getCountUnread();
-      $interval(vm.getCountUnread, 120000);
+      $interval(vm.getCountUnread, vm.messageConfig.checkUnreadInterval);
     };
 
     vm.getCountUnread = function () {

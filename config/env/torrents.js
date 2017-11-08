@@ -230,6 +230,7 @@ module.exports = {
      *        @value:           messages type value list
      *                @name:    type name
      *                @value:   type value
+     * @checkUnreadInterval:    set check unread message interval, default 2 minutes
      */
     messages: {
       type: {
@@ -240,7 +241,8 @@ module.exports = {
           {name: 'ADVERT', value: 'advert'},
           {name: 'NOTICE', value: 'notice'}
         ]
-      }
+      },
+      checkUnreadInterval: 60 * 1000 * 2
     },
 
     /**
