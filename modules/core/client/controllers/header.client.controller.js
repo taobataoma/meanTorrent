@@ -15,6 +15,7 @@
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.accountMenu = menuService.getMenu('account').items[0];
@@ -94,7 +95,7 @@
      */
     vm.checkHnRWarning = function () {
       vm.getWarning();
-      $interval(vm.getWarning, 120000);
+      $interval(vm.getWarning, vm.hnrConfig.checkWaringInterval);
     };
 
     vm.getWarning = function () {

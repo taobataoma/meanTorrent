@@ -507,11 +507,12 @@ module.exports = {
      * NOTE: you can change these value at anytime if you understand it
      *
      * @condition:                          the condition of HnR warning, user must meet one of them before you receive the warning
-     *        @seedTime:                  torrent seed time, unit of day, default to 7 days
-     *        @ratio:                     seed ratio, default to 1.5
+     *        @seedTime:                    torrent seed time, unit of day, default to 7 days
+     *        @ratio:                       seed ratio, default to 1.5
      * @forbiddenDownloadMinWarningNumber:  when user get this number of warning, then can not to download any torrents, but can continue download the warning status torrent
      * @scoreToRemoveWarning:               if user has any warning, user can remove one warning by score number, if the user has not enough score, user still can remove these
      *                                      warning by donate the VIP class.
+     * @checkWaringInterval:                set check warning number interval, default 2 minutes
      */
     hitAndRun: {
       condition: {
@@ -519,7 +520,8 @@ module.exports = {
         ratio: 1.5
       },
       forbiddenDownloadMinWarningNumber: 3,
-      scoreToRemoveWarning: 10000
+      scoreToRemoveWarning: 10000,
+      checkWaringInterval: 60 * 1000 * 2
     },
 
     /**
