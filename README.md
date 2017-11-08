@@ -89,6 +89,7 @@ build a robust framework to support daily development needs, and help developers
 35. OrderBy torrent imdb vote or site vote in torrent list table header click.
 36. User downloading progress bar or seeding status bar ([ngProgress](http://victorbjelkholm.github.io/ngProgress/)) in torrent list and home page.
 37. User email verify and account active support, inactive account can not login and announce torrent data.
+38. User can set a signature info for forum.
 
 #### Chat room feature:
 1. Users name list
