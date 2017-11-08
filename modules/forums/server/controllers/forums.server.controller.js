@@ -953,11 +953,11 @@ exports.topicById = function (req, res, next, id) {
   }
 
   Topic.findById(id)
-    .populate('user', 'username displayName profileImageURL isVip uploaded downloaded score')
+    .populate('user', 'username displayName profileImageURL isVip uploaded downloaded score signature')
     .populate('lastUser', 'username displayName profileImageURL isVip uploaded downloaded')
     .populate('updatedBy', 'username displayName profileImageURL isVip uploaded downloaded')
     .populate('_thumbs.user', 'username displayName profileImageURL isVip uploaded downloaded')
-    .populate('_replies.user', 'username displayName profileImageURL isVip uploaded downloaded')
+    .populate('_replies.user', 'username displayName profileImageURL isVip uploaded downloaded signature')
     .populate('_replies.updatedBy', 'username displayName profileImageURL isVip uploaded downloaded')
     .populate('_replies._thumbs.user', 'username displayName profileImageURL isVip uploaded downloaded')
     .exec(function (err, topic) {

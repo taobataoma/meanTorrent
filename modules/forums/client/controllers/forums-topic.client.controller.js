@@ -78,6 +78,7 @@
         forumId: $stateParams.forumId,
         topicId: $stateParams.topicId
       }, function (topic) {
+        mtDebug.info(topic);
         vm.topic = topic;
         vm.buildPager();
 
@@ -93,6 +94,17 @@
     vm.getTopicContent = function (t) {
       if (t) {
         return marked(t.content, {sanitize: true});
+      }
+    };
+
+    /**
+     * getUserSignatureMarked
+     * @param u
+     * @returns {*}
+     */
+    vm.getUserSignatureMarked = function (u) {
+      if (u) {
+        return marked(u.signature, {sanitize: true});
       }
     };
 

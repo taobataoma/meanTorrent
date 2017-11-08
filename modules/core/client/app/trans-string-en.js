@@ -966,6 +966,7 @@
       SEARCH_RESULT_LIST: 'Search Result',
       SEARCH_LOADING: 'is loading result, please wait...',
       SEARCH_EMPTY: 'No matching results',
+      SIGNATURE_TAG: 'Signature',
 
       CATEGORY: {
         AFFAIRS: 'Affairs',

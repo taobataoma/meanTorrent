@@ -966,6 +966,7 @@
       SEARCH_RESULT_LIST: '搜索结果',
       SEARCH_LOADING: '正在装载搜索结果，请稍候...',
       SEARCH_EMPTY: '没有匹配的搜索结果',
+      SIGNATURE_TAG: '用户签名',
 
       CATEGORY: {
         AFFAIRS: '站务区',
