@@ -966,7 +966,7 @@
      * setSaleType
      */
     vm.setSaleType = function () {
-      if (vm.model_salestype && vm.model_salestype !== vm.torrentLocalInfo.torrent_sale_status) {
+      if (vm.model_salestype) {
         TorrentsService.setSaleType({
           _torrentId: vm.torrentLocalInfo._id,
           _saleType: vm.model_salestype
@@ -990,7 +990,7 @@
      * setRecommendLevel
      */
     vm.setRecommendLevel = function () {
-      if (vm.model_rlevel && vm.model_rlevel !== vm.torrentLocalInfo.torrent_recommended) {
+      if (vm.model_rlevel) {
         TorrentsService.setRecommendLevel({
           _torrentId: vm.torrentLocalInfo._id,
           _rlevel: vm.model_rlevel
