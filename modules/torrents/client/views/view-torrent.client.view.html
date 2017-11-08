@@ -441,8 +441,8 @@
                 <input type="text" class="form-control" id="name" placeholder="{{'COLLECTIONS.FORM_NAME' | translate}}"
                        ng-model="vm.collection.name" autofocus>
 
-            <textarea class="form-control" id="overview" placeholder="{{'COLLECTIONS.FORM_DESC' | translate}}"
-                      ng-model="vm.collection.overview"></textarea>
+                <textarea class="form-control" id="overview" placeholder="{{'COLLECTIONS.FORM_DESC' | translate}}"
+                          ng-model="vm.collection.overview"></textarea>
 
                 <div class="margin-top-10" style="display: table;">
                     <a class="message-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"
@@ -825,7 +825,8 @@
                             ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
                             <td class="col-md-8 td-v-middle td-text-overflow">
                                 <div class="other-torrent-info">
-                                    <div class="torrent-filename text-long"><a ui-sref="torrents.view({torrentId: item._id})">{{item.torrent_filename}}</a></div>
+                                    <div class="torrent-filename text-long"><a
+                                            ui-sref="torrents.view({torrentId: item._id})">{{item.torrent_filename}}</a></div>
 
                                     <div class="list-all-tags">
                                         <span ng-if="vm.torrentLocalInfo.resource_detail_info.release_date">

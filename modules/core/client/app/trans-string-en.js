@@ -325,7 +325,7 @@
     ADMIN_RLEVEL_SET: 'Recommend Level Set',
     ADMIN_COLLECTION_COMMAND: 'Collections Command',
     ADMIN_COLLECTION_CREATE: 'Create Collection',
-    ADMIN_COLLECTION_ADDINTO: 'Put This Movie Info Collection',
+    ADMIN_COLLECTION_ADDINTO: 'Put This Movie Into Collection',
 
     TORRENT_DELETE_CONFIRM_OK: 'Delete',
     TORRENT_DELETE_CONFIRM_CANCEL: 'Cancel',
