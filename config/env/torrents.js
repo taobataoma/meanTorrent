@@ -716,7 +716,8 @@ module.exports = {
         {name: 'DISCUSS', value: 'discuss', index: 1},
         {name: 'BUSINESS', value: 'business', index: 2}
       ],
-      showThumbsUpUserList: true
+      showThumbsUpUserList: true,
+      showUserSignature: true
     },
 
     /**

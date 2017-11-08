@@ -145,7 +145,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="reply-comment-signature" ng-if="vm.topic.user.signature">
+                                        <div class="reply-comment-signature" ng-if="vm.topic.user.signature && vm.forumsConfig.showUserSignature">
                                             <div ng-bind-html="vm.getUserSignatureMarked(vm.topic.user);"></div>
                                             <span class="signature-tag" translate="FORUMS.SIGNATURE_TAG"></span>
                                         </div>
@@ -224,7 +224,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="reply-comment-signature" ng-if="rep.user.signature">
+                                        <div class="reply-comment-signature" ng-if="rep.user.signature && vm.forumsConfig.showUserSignature">
                                             <div ng-bind-html="vm.getUserSignatureMarked(rep.user);"></div>
                                             <span class="signature-tag" translate="FORUMS.SIGNATURE_TAG"></span>
                                         </div>
