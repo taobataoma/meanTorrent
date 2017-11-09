@@ -26,11 +26,11 @@
                 </div>
 
                 <div class="row">
-                    <div ng-repeat="m in vm.pagedItems">
-                        <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
-                        <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-md-block visible-lg-block"></div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="collection-items">
+                    <div class="collection-items">
+                        <div ng-repeat="m in vm.pagedItems">
+                            <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
+                            <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                            <div class="col-sm-6 col-md-4">
                                 <a ui-sref="collections.view({ collectionId: m._id })">
                                     <div class="collection-item">
                                         <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_780 + m.backdrop_path}}">
