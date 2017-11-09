@@ -33,6 +33,12 @@
                         <p class="help-block error-text" ng-message="required">{{ 'SIGN.U_REQUIRED' | translate}}</p>
                     </div>
                 </div>
+                <div class="checkbox margin-bottom-20">
+                    <label>
+                        <input type="checkbox" ng-model="vm.user.hideMoreDetail"> {{'STATUS_FIELD.HIDE_MORE_DETAIL' | translate}}
+                    </label>
+                </div>
+
                 <div class="text-center form-group">
                     <button type="submit" class="btn btn-default">{{'BUTTON_SAVE_PROFILE' | translate}}</button>
                 </div>

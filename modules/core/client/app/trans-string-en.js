@@ -614,6 +614,8 @@
       ADD_VIP_MONTHS: '+ VIP a month',
       USERNAME: 'Username',
       DISPLAY_NAME: 'Display name',
+      HIDE_MORE_DETAIL: 'Hide more account detail info',
+      HIDE_MORE_DETAIL_DESC: 'More account detail info hidden by user!',
       INVITED_BY: 'Invited by',
       EMAIL: 'Email',
       PASSKEY: 'Passkey',

@@ -614,6 +614,8 @@
       ADD_VIP_MONTHS: '+ VIP一个月',
       USERNAME: '用户名',
       DISPLAY_NAME: '显示昵称',
+      HIDE_MORE_DETAIL: '隐藏更多的帐户详细信息',
+      HIDE_MORE_DETAIL_DESC: '更多的帐户详细信息被用户隐藏!',
       INVITED_BY: '邀请发送人',
       EMAIL: '邮箱',
       PASSKEY: 'Passkey',

@@ -119,6 +119,10 @@ var UserSchema = new Schema({
     default: ['user'],
     required: 'Please provide at least one role'
   },
+  hideMoreDetail: {
+    type: Boolean,
+    default: false
+  },
   isOper: {
     type: Boolean,
     default: false

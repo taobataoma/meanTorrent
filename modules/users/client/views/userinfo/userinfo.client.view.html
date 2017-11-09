@@ -51,9 +51,9 @@
 
                 <dt class="h-line">{{ 'STATUS_FIELD.MAKER' | translate}}：</dt>
                 <dd class="h-line">
-                    <span ng-class="maker-list" ng-repeat="m in vm.user.makers">
-                        <a ui-sref="about.group({ makerId: m._id })">{{m.name}}</a>
-                    </span>
+                        <span ng-class="maker-list" ng-repeat="m in vm.user.makers">
+                            <a ui-sref="about.group({ makerId: m._id })">{{m.name}}</a>
+                        </span>
                     <span ng-if="vm.user.makers.length==0">-</span>
                 </dd>
 
@@ -62,38 +62,47 @@
                     <span ng-class="{'span-banned': vm.user.status == 'banned'}">{{ 'STATUS_FIELD.' + vm.user.status.toUpperCase() | translate }}</span>
                 </dd>
 
+                <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
+                <dd class="h-line">
+                    <span>{{ vm.user.score }}</span> <span score-level="vm.scoreLevelData.currLevel"></span>
+                </dd>
+
                 <li class="status-divider"></li>
 
-                <div ng-show="vm.user.isVip">
-                    <dt class="h-line">{{ 'STATUS_FIELD.VIP_START_AT' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.vip_start_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
-
-                    <dt class="h-line">{{ 'STATUS_FIELD.VIP_END_AT' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.vip_end_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
-
-                    <li class="status-divider"></li>
+                <div class="margin-top-50" ng-if="vm.user.hideMoreDetail">
+                    <div class="alert alert-warning text-center">{{'STATUS_FIELD.HIDE_MORE_DETAIL_DESC' | translate}}</div>
                 </div>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.SIGNUP_DATE' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.created | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+                <div ng-if="!vm.user.hideMoreDetail">
+                    <div ng-show="vm.user.isVip">
+                        <dt class="h-line">{{ 'STATUS_FIELD.VIP_START_AT' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.vip_start_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.LATEST_SIGNED_TIME' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.last_signed | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+                        <dt class="h-line">{{ 'STATUS_FIELD.VIP_END_AT' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.vip_end_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                <div ng-if="vm.announce.privateTorrentCmsMode">
-                    <dt class="h-line">{{ 'STATUS_FIELD.SIGNED_IP' | translate}}：</dt>
-                    <dd class="h-line">
-                        <div class="list-all-ips">
-                            <span class="ip-item" ng-repeat="t in vm.user.signed_ip">{{t}}</span>
-                        </div>
-                    </dd>
+                        <li class="status-divider"></li>
+                    </div>
 
-                    <dt class="h-line">{{ 'STATUS_FIELD.LEECHED_IP' | translate}}：</dt>
-                    <dd class="h-line">
-                        <div class="list-all-ips">
-                            <span class="ip-item" ng-repeat="t in vm.user.leeched_ip">{{t}}</span>
-                        </div>
-                    </dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.SIGNUP_DATE' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.created | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.LATEST_SIGNED_TIME' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.last_signed | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+
+                    <!--<dt class="h-line">{{ 'STATUS_FIELD.SIGNED_IP' | translate}}：</dt>-->
+                    <!--<dd class="h-line">-->
+                    <!--<div class="list-all-ips">-->
+                    <!--<span class="ip-item" ng-repeat="t in vm.user.signed_ip">{{t}}</span>-->
+                    <!--</div>-->
+                    <!--</dd>-->
+
+                    <!--<dt class="h-line">{{ 'STATUS_FIELD.LEECHED_IP' | translate}}：</dt>-->
+                    <!--<dd class="h-line">-->
+                    <!--<div class="list-all-ips">-->
+                    <!--<span class="ip-item" ng-repeat="t in vm.user.leeched_ip">{{t}}</span>-->
+                    <!--</div>-->
+                    <!--</dd>-->
 
                     <dt class="h-line">{{ 'STATUS_FIELD.BT_CLIENT' | translate}}：</dt>
                     <dd class="h-line">
@@ -101,60 +110,56 @@
                             <span class="client-item" ng-repeat="t in vm.user.client_agent">{{t}}</span>
                         </div>
                     </dd>
-                </div>
 
-                <li class="status-divider"></li>
-
-                <div ng-if="vm.announce.privateTorrentCmsMode">
-                    <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
-                    <dd class="h-line">
-                        <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
-                        <span>{{ vm.user.uploaded | bytes:2 }}</span>
-                    </dd>
-
-                    <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
-                    <dd class="h-line">
-                        <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
-                        <span>{{ vm.user.downloaded | bytes:2 }}</span>
-                    </dd>
-
-                    <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
-                    <dd class="h-line"><span ng-class="vm.user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ vm.user.ratio | ratio}}</span></dd>
-                </div>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
-                <dd class="h-line">
-                    <span>{{ vm.user.score }}</span> <span score-level="vm.scoreLevelData.currLevel"></span>
-                </dd>
-
-                <div ng-if="vm.announce.privateTorrentCmsMode">
                     <li class="status-divider"></li>
 
-                    <dt class="h-line">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.uptotal }}</dd>
+                    <div ng-if="vm.announce.privateTorrentCmsMode">
+                        <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
+                        <dd class="h-line">
+                            <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                            <span>{{ vm.user.uploaded | bytes:2 }}</span>
+                        </dd>
 
-                    <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.seeded }}</dd>
+                        <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
+                        <dd class="h-line">
+                            <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                            <span>{{ vm.user.downloaded | bytes:2 }}</span>
+                        </dd>
 
-                    <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.leeched }}</dd>
-
-                    <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.finished }}</span></dd>
-
-                    <div ng-if="vm.user.hnr_warning>0">
-                        <dt class="h-line">{{ 'STATUS_FIELD.HNR_WARNING' | translate}}：</dt>
-                        <dd class="h-line"><span class="badge badge_danger">{{vm.user.hnr_warning}}</span></dd>
+                        <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
+                        <dd class="h-line"><span ng-class="vm.user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ vm.user.ratio | ratio}}</span>
+                        </dd>
                     </div>
+
+                    <div ng-if="vm.announce.privateTorrentCmsMode">
+                        <li class="status-divider"></li>
+
+                        <dt class="h-line">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.uptotal }}</dd>
+
+                        <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.seeded }}</dd>
+
+                        <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.leeched }}</dd>
+
+                        <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.finished }}</span></dd>
+
+                        <div ng-if="vm.user.hnr_warning>0">
+                            <dt class="h-line">{{ 'STATUS_FIELD.HNR_WARNING' | translate}}：</dt>
+                            <dd class="h-line"><span class="badge badge_danger">{{vm.user.hnr_warning}}</span></dd>
+                        </div>
+                    </div>
+
+                    <li class="status-divider"></li>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.FORUM_TOPICS' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.topics }}</dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.replies }}</dd>
                 </div>
-
-                <li class="status-divider"></li>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.FORUM_TOPICS' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.topics }}</dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.replies }}</dd>
             </dl>
         </div>
     </div>
