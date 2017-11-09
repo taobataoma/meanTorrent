@@ -90,10 +90,7 @@ module.exports = {
       'modules/*/client/scss/*.scss'
     ],
     js: [
-      'modules/core/client/app/config.js',
-      'modules/core/client/app/init.js',
-      'modules/core/client/app/trans-string-cn.js',
-      'modules/core/client/app/trans-string-en.js',
+      'modules/core/client/app/*.js',
       'modules/*/client/*.js',
       'modules/*/client/**/*.js'
     ],
