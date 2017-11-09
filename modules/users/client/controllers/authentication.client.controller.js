@@ -29,6 +29,11 @@
       Notification.error({message: $location.search().err});
     }
 
+    // If user is signed in then redirect back home
+    if (vm.authentication.user && !vm.activeMethod) {
+      $location.path('/');
+    }
+
     /**
      * account active successfully, redirect to home after 2 seconds
      */
@@ -72,6 +77,7 @@
         vm.credentials.inviteToken = $stateParams.token;
       }
 
+      vm.credentials.lastName = '';
       UsersService.userSignup(vm.credentials)
         .then(onUserSignupSuccess)
         .catch(onUserSignupError);
@@ -109,7 +115,7 @@
         vm.authentication.user = response;
         $rootScope.$broadcast('auth-user-changed');
         $rootScope.$broadcast('user-invitations-changed');
-        Notification.info({message: 'Welcome ' + response.firstName});
+        Notification.info({message: 'Welcome ' + response.displayName});
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
       }

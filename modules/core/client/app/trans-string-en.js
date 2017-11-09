@@ -221,8 +221,7 @@
       PASSWORD_REQ: 'Password Requirements',
       P_REQUIRED: 'Password is required.',
       FORGOT_PASSWORD: 'Forgot your password?',
-      FN_REQUIRED: 'First name is required.',
-      LN_REQUIRED: 'Last name is required.',
+      DN_REQUIRED: 'Display name is required.',
 
       NEW_PASSWORD: 'New Password',
       NP_REQUIRED: 'Enter a new password.',
@@ -614,8 +613,6 @@
       RESET_DEFAULT_PICTURE: 'Reset to default picture',
       ADD_VIP_MONTHS: '+ VIP a month',
       USERNAME: 'Username',
-      FIRST_NAME: 'First name',
-      LAST_NAME: 'Last name',
       DISPLAY_NAME: 'Display name',
       INVITED_BY: 'Invited by',
       EMAIL: 'Email',

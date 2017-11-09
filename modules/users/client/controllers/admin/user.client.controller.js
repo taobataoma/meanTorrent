@@ -87,6 +87,7 @@
         return false;
       }
 
+      vm.user.lastName = '';
       var user = vm.user;
 
       user.$update(function () {

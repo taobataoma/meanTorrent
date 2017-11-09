@@ -221,8 +221,7 @@
       PASSWORD_REQ: '密码强度检测',
       P_REQUIRED: '密码不能为空.',
       FORGOT_PASSWORD: '忘记了密码?',
-      FN_REQUIRED: '姓氏不能为空.',
-      LN_REQUIRED: '名字不能为空.',
+      DN_REQUIRED: '显示昵称不能为空.',
 
       NEW_PASSWORD: '新密码',
       NP_REQUIRED: '新密码不能为空.',
@@ -614,8 +613,6 @@
       RESET_DEFAULT_PICTURE: '重置为默认图片',
       ADD_VIP_MONTHS: '+ VIP一个月',
       USERNAME: '用户名',
-      FIRST_NAME: '姓',
-      LAST_NAME: '名',
       DISPLAY_NAME: '显示昵称',
       INVITED_BY: '邀请发送人',
       EMAIL: '邮箱',
