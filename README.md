@@ -51,7 +51,7 @@ build a robust framework to support daily development needs, and help developers
 ![donate](https://user-images.githubusercontent.com/7778550/32096312-b303a750-bacb-11e7-91e3-d3dfec86e5b7.jpg)
 
 #### meanTorrent some feature:
-1. Multilingual support, now English & Chinese, you can Copy a string file `modules/core/client/app/trans-string-en.js` to translate it.
+1. Multilingual support, now English & Chinese, please read the guide of [how to add a complete translated language](#howToAddTranslate).
 2. When you want to upload a torrent, Only need to select a source torrent file,
    and input the movie ID origin [TMDB](https://www.themoviedb.org), the movie detaill info will be autoload.
 3. One torrent can boundle many attrs tag, It's the key to search filtering.
@@ -352,6 +352,8 @@ meanTorrent used module `nodemailer`, if you have any config question you can fi
     }
   },
 ```
+#### <a name='howToAddTranslate'>How to add translated language
+
 
 ## Deploying to PAAS
 
