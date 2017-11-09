@@ -368,8 +368,7 @@ you can find flag icon at `/public/lib/flag-icon-css/flags/`.
 
 3. Copy and translate all the .md files in `modules/*/client/templates/*.md`, notice the naming rules of files please.
 4. meanTorrent used richtext box of [bootstrap-markdown](http://www.codingdrama.com/bootstrap-markdown/), It has already translated some
-language, you can find them at `/public/lib/bootstrap-markdown/locale/`, then inset into config file `/config/assets/default.js` and `/config/assets/production.js`,
- such as:
+language, you can find them at `/public/lib/bootstrap-markdown/locale/`, then inset into config file `/config/assets/default.js` and `/config/assets/production.js`, such as:
 ```javascript
         //bootstrap-markdown
         'public/lib/bootstrap-markdown/js/bootstrap-markdown.js',
@@ -377,6 +376,7 @@ language, you can find them at `/public/lib/bootstrap-markdown/locale/`, then in
         'public/lib/bootstrap-markdown/locale/bootstrap-markdown.fr.js',    // this is added new line
 ```
 Note: If you can not find you wanted language file, you can copy and translate and config it.
+
 5. Restart meanTorrent.
 
 ## Deploying to PAAS
