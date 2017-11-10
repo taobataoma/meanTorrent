@@ -130,6 +130,7 @@
         vm.rating_vote = res.resource_detail_info.vote_average;
         vm.initTabLists();
         vm.commentBuildPager();
+        vm.buildPeersPager();
         if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInDetail) {
           ScrapeService.scrapeTorrent(vm.torrentLocalInfo);
         }
@@ -1137,5 +1138,106 @@
         }
       });
     };
+
+    /**
+     * buildPeersPager
+     */
+    vm.buildPeersPager = function () {
+      vm.seederPagedItems = [];
+      vm.leecherPagedItems = [];
+
+      vm.peerItemsPerPage = vm.itemsPerPageConfig.torrentPeersListPerPage;
+
+      vm.currentSeederPage = 1;
+      vm.currentLeecherPage = 1;
+
+      vm.figureOutSeederItemsToDisplay();
+      vm.figureOutLeecherItemsToDisplay();
+    };
+
+    /**
+     * figureOutSeederItemsToDisplay
+     * @param callback
+     */
+    vm.figureOutSeederItemsToDisplay = function (callback) {
+      vm.getSeederUsers(vm.currentSeederPage, function (items) {
+        vm.seederFilterLength = items.total;
+        vm.seederPagedItems = items.rows;
+
+        if (callback) callback();
+      });
+    };
+
+    /**
+     * figureOutLeecherItemsToDisplay
+     * @param callback
+     */
+    vm.figureOutLeecherItemsToDisplay = function (callback) {
+      vm.getLeecherUsers(vm.currentLeecherPage, function (items) {
+        vm.leecherFilterLength = items.total;
+        vm.leecherPagedItems = items.rows;
+
+        if (callback) callback();
+      });
+    };
+
+    /**
+     * getSeederUsers
+     * @param p
+     * @param callback
+     */
+    vm.getSeederUsers = function (p, callback) {
+      TorrentsService.getSeederUsers({
+        torrentId: vm.torrentLocalInfo._id,
+        skip: (p - 1) * vm.peerItemsPerPage,
+        limit: vm.peerItemsPerPage
+      }, function (data) {
+        mtDebug.info(data);
+        callback(data);
+      });
+    };
+
+    /**
+     * getLeecherUsers
+     * @param p
+     * @param callback
+     */
+    vm.getLeecherUsers = function (p, callback) {
+      TorrentsService.getLeecherUsers({
+        torrentId: vm.torrentLocalInfo._id,
+        skip: (p - 1) * vm.peerItemsPerPage,
+        limit: vm.peerItemsPerPage
+      }, function (data) {
+        mtDebug.info(data);
+        callback(data);
+      });
+    };
+
+    /**
+     * seederPageChanged
+     */
+    vm.seederPageChanged = function () {
+      var element = angular.element('#top_of_seeder_list');
+
+      vm.figureOutSeederItemsToDisplay(function () {
+        $timeout(function () {
+          $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
+        }, 10);
+      });
+    };
+
+    /**
+     * seederPageChanged
+     */
+    vm.leecherPageChanged = function () {
+      var element = angular.element('#top_of_leecher_list');
+
+      vm.figureOutLeecherItemsToDisplay(function () {
+        $timeout(function () {
+          $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
+        }, 10);
+      });
+    };
+
   }
 }());

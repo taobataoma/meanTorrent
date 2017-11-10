@@ -265,7 +265,7 @@
     TAB_TORRENT_INFO: 'Torrent Info',
     TAB_USER_SUBTITLE: 'Subtitle Info',
     TAB_THUMBS_LIST: 'Thumbs-up',
-    TAB_USER_INFO: 'User Info',
+    TAB_USER_INFO: 'Users Info',
     TAB_OTHER_TORRENTS: 'Other Torrents',
     TAB_MY_PANEL: 'My Pannel',
     TAB_ADMIN_PANEL: 'Admin Panel',

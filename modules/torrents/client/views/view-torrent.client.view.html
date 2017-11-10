@@ -708,7 +708,7 @@
                 <dt class="h-line text-left">{{ 'TORRENT_FINISHED_USERS' | translate}}：{{vm.torrentLocalInfo.torrent_finished}}</dt>
                 <dd class="h-line"></dd>
             </dl>
-            <dl class="dl-horizontal">
+            <dl class="dl-horizontal" id="top_of_seeder_list">
                 <dt class="h-line">{{ 'TORRENT_SEED_USERS' | translate}}：{{vm.torrentLocalInfo.torrent_seeds}}</dt>
                 <dd class="h-line"></dd>
             </dl>
@@ -725,15 +725,15 @@
                             <th class="text-center">{{ 'TABLE_FIELDS.STARTED' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.ACTIVE' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.CLIENT' | translate}}</th>
-                            <th class="text-center">{{ 'TABLE_FIELDS.CONNECTABLE' | translate}}</th>
+                            <!--<th class="text-center">{{ 'TABLE_FIELDS.CONNECTABLE' | translate}}</th>-->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_uploaded"
+                        <tr class="torrent-list-info" ng-repeat="item in vm.seederPagedItems"
                             ng-if="item.peer_status == 'seeder'">
                             <td class="text-center">
                                 <span user-info="item.user" info-name></span>
-                                <span vip-flag="item.user"></span>
+                                <!--<span vip-flag="item.user"></span>-->
                                 <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
                             </td>
                             <td class="text-center">{{item.peer_uploaded | bytes:2}} | {{item.peer_uspeed | bytes:2}}/s</td>
@@ -743,13 +743,19 @@
                             <td class="text-center">{{item.startedat | life}}</td>
                             <td class="text-center">{{item.last_announce_at | life}}</td>
                             <td class="text-center">{{item.user_agent}}</td>
-                            <td class="text-center">{{item.peer_connectable}}</td>
+                            <!--<td class="text-center">{{item.peer_connectable}}</td>-->
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <dl class="dl-horizontal">
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.peerItemsPerPage" total-items="vm.seederFilterLength" ng-model="vm.currentSeederPage"
+                ng-change="vm.seederPageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+            </ul>
+
+            <dl class="dl-horizontal" id="top_of_leecher_list">
                 <dt class="h-line">{{ 'TORRENT_LEECHER_USERS' | translate}}：{{vm.torrentLocalInfo.torrent_leechers}}</dt>
                 <dd class="h-line"></dd>
             </dl>
@@ -766,15 +772,15 @@
                             <th class="text-center">{{ 'TABLE_FIELDS.STARTED' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.ACTIVE' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.CLIENT' | translate}}</th>
-                            <th class="text-center">{{ 'TABLE_FIELDS.CONNECTABLE' | translate}}</th>
+                            <!--<th class="text-center">{{ 'TABLE_FIELDS.CONNECTABLE' | translate}}</th>-->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="torrent-list-info" ng-repeat="item in vm.torrentLocalInfo._peers | orderBy: peer_downloaded"
+                        <tr class="torrent-list-info" ng-repeat="item in vm.leecherPagedItems"
                             ng-if="item.peer_status == 'leecher'">
                             <td class="text-center">
                                 <span user-info="item.user" info-name></span>
-                                <span vip-flag="item.user"></span>
+                                <!--<span vip-flag="item.user"></span>-->
                                 <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
                             </td>
                             <td class="text-center">{{item.peer_uploaded | bytes:2}} | {{item.peer_uspeed | bytes:2}}/s</td>
@@ -784,11 +790,17 @@
                             <td class="text-center">{{item.startedat | life}}</td>
                             <td class="text-center">{{item.last_announce_at | life}}</td>
                             <td class="text-center">{{item.user_agent}}</td>
-                            <td class="text-center">{{item.peer_connectable}}</td>
+                            <!--<td class="text-center">{{item.peer_connectable}}</td>-->
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.peerItemsPerPage" total-items="vm.leecherFilterLength" ng-model="vm.currentLeecherPage"
+                ng-change="vm.leecherPageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+            </ul>
         </div>
     </script>
 

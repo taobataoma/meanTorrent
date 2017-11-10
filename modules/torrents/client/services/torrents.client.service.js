@@ -99,6 +99,20 @@
       siteInfo: {
         method: 'GET',
         url: '/api/torrents/siteInfo'
+      },
+      getSeederUsers: {
+        method: 'GET',
+        url: '/api/torrents/:torrentId/seederUsers',
+        params: {
+          torrentId: '@_id'
+        }
+      },
+      getLeecherUsers: {
+        method: 'GET',
+        url: '/api/torrents/:torrentId/leecherUsers',
+        params: {
+          torrentId: '@_id'
+        }
       }
     });
 

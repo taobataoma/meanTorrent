@@ -49,6 +49,12 @@ module.exports = function (app) {
   app.route('/api/torrents/:torrentId/scrape').all(torrentsPolicy.isAllowed)
     .get(torrents.scrape);
 
+  app.route('/api/torrents/:torrentId/seederUsers').all(torrentsPolicy.isAllowed)
+    .get(torrents.getSeederUsers);
+
+  app.route('/api/torrents/:torrentId/leecherUsers').all(torrentsPolicy.isAllowed)
+    .get(torrents.getLeecherUsers);
+
   app.route('/api/torrents/:torrentId/toggleHnRStatus').all(torrentsPolicy.isAllowed)
     .put(torrents.toggleHnRStatus);
 

@@ -736,6 +736,7 @@ module.exports = {
      * @adminUserListPerPage:     admin manage users list page settings
      * @collectionsListPerPage:   movie collections list page settings
      * @backupFilesListPerPage:   system backup files list page settings
+     * @torrentPeersListPerPage:  torrent detail seeder & leecher users list page settings
      */
     itemsPerPage: {
       topicsPerPage: 10,
@@ -747,7 +748,8 @@ module.exports = {
       tracesPerPage: 30,
       adminUserListPerPage: 15,
       collectionsListPerPage: 6,
-      backupFilesListPerPage: 15
+      backupFilesListPerPage: 15,
+      torrentPeersListPerPage: 15
     },
 
     /**

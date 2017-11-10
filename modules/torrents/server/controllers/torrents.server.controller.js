@@ -1441,6 +1441,124 @@ exports.siteInfo = function (req, res) {
 };
 
 /**
+ * getSeederUsers
+ * @param req
+ * @param res
+ */
+exports.getSeederUsers = function (req, res) {
+  var skip = 0;
+  var limit = 0;
+
+  if (req.query.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.query.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+
+  var countSeederUsers = function (callback) {
+    Peer.count({
+      torrent: req.torrent._id,
+      peer_status: PEERSTATE_SEEDER
+    }, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+
+  };
+
+  var findSeederUsers = function (callback) {
+    Peer.find({
+      torrent: req.torrent._id,
+      peer_status: PEERSTATE_SEEDER
+    })
+      .sort('-peer_uploaded')
+      .populate('user', 'username displayName profileImageURL isVip')
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, peers) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          callback(null, peers);
+        }
+      });
+  };
+
+  async.parallel([countSeederUsers, findSeederUsers], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
+  });
+};
+
+/**
+ * getLeecherUsers
+ * @param req
+ * @param res
+ */
+exports.getLeecherUsers = function (req, res) {
+  var skip = 0;
+  var limit = 0;
+
+  if (req.query.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.query.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+
+  var countSeederUsers = function (callback) {
+    Peer.count({
+      torrent: req.torrent._id,
+      peer_status: PEERSTATE_LEECHER
+    }, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+
+  };
+
+  var findSeederUsers = function (callback) {
+    Peer.find({
+      torrent: req.torrent._id,
+      peer_status: PEERSTATE_LEECHER
+    })
+      .sort('-peer_uploaded')
+      .populate('user', 'username displayName profileImageURL isVip')
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, peers) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          callback(null, peers);
+        }
+      });
+  };
+
+  async.parallel([countSeederUsers, findSeederUsers], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
+  });
+};
+
+/**
  * Torrent middleware
  */
 exports.torrentByID = function (req, res, next, id) {
@@ -1452,7 +1570,7 @@ exports.torrentByID = function (req, res, next, id) {
   }
 
   var findTorrents = function (callback) {
-    Torrent.findById(id)
+    Torrent.find({_id: id}, {'_peers': 0})
       .populate('user', 'username displayName profileImageURL isVip')
       .populate('maker', 'name')
       .populate('_thumbs.user', 'username displayName profileImageURL isVip uploaded downloaded')
@@ -1474,20 +1592,13 @@ exports.torrentByID = function (req, res, next, id) {
           select: 'username displayName profileImageURL isVip'
         }
       })
-      .populate({
-        path: '_peers',
-        populate: {
-          path: 'user',
-          select: 'username displayName profileImageURL isVip'
-        }
-      })
       .exec(function (err, torrent) {
         if (err) {
           callback(err);
         } else if (!torrent) {
           callback(new Error('No torrent with that id has been found'));
         }
-        callback(null, torrent);
+        callback(null, torrent[0]);
       });
   };
 

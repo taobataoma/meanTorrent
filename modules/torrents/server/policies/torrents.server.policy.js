@@ -29,6 +29,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/torrents/:torrentId/thumbsUp', permissions: '*'},
           {resources: '/api/torrents/:torrentId/rating', permissions: '*'},
           {resources: '/api/torrents/:torrentId/scrape', permissions: '*'},
+          {resources: '/api/torrents/:torrentId/seederUsers', permissions: '*'},
+          {resources: '/api/torrents/:torrentId/leecherUsers', permissions: '*'},
           {resources: '/api/torrents/:torrentId/toggleHnRStatus', permissions: '*'},
           {resources: '/api/torrents/:torrentId/toggleVIPStatus', permissions: '*'},
           {resources: '/api/torrents/:torrentId/set/saletype/:saleType', permissions: '*'},
@@ -65,6 +67,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/torrents/:torrentId/thumbsUp', permissions: ['put']},
           {resources: '/api/torrents/:torrentId/rating', permissions: ['put']},
           {resources: '/api/torrents/:torrentId/scrape', permissions: ['get']},
+          {resources: '/api/torrents/:torrentId/seederUsers', permissions: ['get']},
+          {resources: '/api/torrents/:torrentId/leecherUsers', permissions: ['get']},
 
           {resources: '/api/subtitles/:torrentId', permissions: ['post']},
           {resources: '/api/subtitles/:torrentId/:subtitleId', permissions: ['get', 'delete']},
@@ -88,6 +92,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/tvinfo/:tmdbid/:language', permissions: ['get']},
           {resources: '/api/torrents', permissions: ['get']},
           {resources: '/api/torrents/:torrentId', permissions: ['get']},
+          {resources: '/api/torrents/:torrentId/seederUsers', permissions: ['get']},
+          {resources: '/api/torrents/:torrentId/leecherUsers', permissions: ['get']},
           {resources: '/api/torrents/siteInfo', permissions: ['get']}
         ]
       }
