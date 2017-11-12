@@ -380,9 +380,9 @@ Note: If you can not find you wanted language file, you can copy and translate a
 
 ## Deploying to PAAS
 
-###  Deploying MEANJS To Heroku
+###  Deploying meanTorrent To Heroku
 
-By clicking the button below you can signup for Heroku and deploy a working copy of MEANJS to the cloud without having to do the steps above.
+By clicking the button below you can signup for Heroku and deploy a working copy of meanTorrent to the cloud without having to do the steps above.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
