@@ -600,9 +600,8 @@
 
     /**
      * searchFromTMDB
-     * @param isMovie
      */
-    vm.searchFromTMDB = function (isMovie = true) {
+    vm.searchFromTMDB = function () {
       vm.search.status_msg = 'LOAD_SEARCH_RESULT';
       vm.search.status = 'loading';
       vm.search.searchItems = undefined;
@@ -611,7 +610,8 @@
 
       TorrentsService.searchMovie({
         language: getStorageLangService.getLang(),
-        query: vm.search.keys
+        query: vm.search.keys,
+        type: vm.selectedType
       }, function (res) {
         mtDebug.info(res);
 

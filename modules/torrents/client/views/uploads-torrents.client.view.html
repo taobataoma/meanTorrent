@@ -111,7 +111,7 @@
                            placeholder="{{ 'PLACE_HOLDER_SEARCH' | translate}}" autofocus>
 
                     <div class="input-group-btn">
-                        <button id="btnSearchFromTMDB" class="btn btn-primary" ng-click="vm.searchFromTMDB(true)"
+                        <button id="btnSearchFromTMDB" class="btn btn-primary" ng-click="vm.searchFromTMDB()"
                                 ng-disabled="!vm.search.keys">{{ 'BTN_SEARCH' | translate}}
                         </button>
                     </div>
@@ -134,9 +134,9 @@
                         <label ng-dblclick="vm.onSelectResult()">
                             <input type="radio" name="n_{{r.id}}" id="i_{{r.id}}" value="{{r.id}}"
                                    ng-model="vm.search.sid">
-                            {{r.title}}
+                            {{r.title || r.name}}
                             <div>
-                                <small class="text-muted">{{r.original_title}} - {{r.release_date}}</small>
+                                <small class="text-muted">{{r.original_title || r.original_name}} - {{r.release_date || r.first_air_date}}</small>
                             </div>
                         </label>
                     </div>
@@ -332,8 +332,13 @@
         <div class="row margin-bottom-40">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="ENTER_TMDB_ID"></legend>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                <div class="col-sm-7 col-md-6 col-lg-5">
                     <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" ng-click="vm.beginSearchFromTMDB($event)">
+                                {{ 'SEARCH_FROM_TMDB' | translate}}
+                            </button>
+                        </div>
                         <input type="number" class="form-control" ng-model="vm.tmdb_id"
                                id="tmdbid"
                                ng-change="vm.tmdb_info_ok = undefined"
@@ -349,13 +354,13 @@
                         </div>
                     </div>
                 </div>
-                <div ng-show="vm.tmdb_info_ok == true" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                <div ng-show="vm.tmdb_info_ok == true" class="col-sm-5 col-md-6 col-lg-7" style="margin-top: 7px">
                     <label class="text-success control-label" translate="TMDB_ID_OK"></label>
                 </div>
-                <div ng-show="vm.tmdb_info_ok == false" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                <div ng-show="vm.tmdb_info_ok == false" class="col-sm-5 col-md-6 col-lg-7" style="margin-top: 7px">
                     <label class="text-danger control-label" translate="TMDB_ID_ERROR"></label>
                 </div>
-                <div ng-show="vm.tmdb_isloading" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                <div ng-show="vm.tmdb_isloading" class="col-sm-5 col-md-6 col-lg-7" style="margin-top: 7px">
                     <label class="text-danger control-label" translate="TMDB_IS_LOADING"></label>
                 </div>
             </div>

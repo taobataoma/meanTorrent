@@ -71,17 +71,31 @@ exports.searchmovie = function (req, res) {
   mtDebug.debugGreen('------- API: searchMovie --------------------');
   mtDebug.debugGreen(req.params);
 
-  tmdb.searchMovie({
-    language: req.params.language,
-    query: req.query.query
-  }, function (err, info) {
-    if (err) {
-      res.status(900).send(err);
-    } else {
-      res.json(info);
-    }
-  });
+  var type = req.query.type;
 
+  if (type === 'movie') {
+    tmdb.searchMovie({
+      language: req.params.language,
+      query: req.query.query
+    }, function (err, info) {
+      if (err) {
+        res.status(900).send(err);
+      } else {
+        res.json(info);
+      }
+    });
+  } else if (type === 'tvserial') {
+    tmdb.searchTv({
+      language: req.params.language,
+      query: req.query.query
+    }, function (err, info) {
+      if (err) {
+        res.status(900).send(err);
+      } else {
+        res.json(info);
+      }
+    });
+  }
 };
 
 /**
