@@ -91,6 +91,7 @@ build a robust framework to support daily development needs, and help developers
 37. User email verify and account active support, inactive account can not login and announce torrent data.
 38. User can set a signature info for forum.
 39. Auto get search movie/tvserial result from TMDB by keywords, user can select a result item to load resources info and upload.
+40. Admin can configure to hide all menu header for guest users, usefully for private tracker mode.
 
 #### Chat room feature:
 1. Users name list
