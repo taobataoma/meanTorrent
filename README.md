@@ -264,6 +264,7 @@ And you can make a list page to tell users witch clients are unpopular.
 ```javascript
     sign: {
       openSignup: true,
+      signUpActiveTokenExpires: 60 * 60 * 1000 * 24,
       allowSocialSignin: true,
       showMenuHeaderForGuest, true
     },
@@ -279,7 +280,9 @@ And you can make a list page to tell users witch clients are unpopular.
 If your site do not accept user free register, please set `openSignup` to `false`, then user only can register through friend invitation or system(admin/oper) invitation.
 if you set `openInvite` to `true`, the normal user can invite friends to join, if `false` only oper/admin can invite users.
 
-`signUpActiveTokenExpires` is setting whether show menu header for guest user, if you do not want the menu header showing for guest, please set to `false`.
+All the sign up account need verify & active by mail, and must completed within the set time `signUpActiveTokenExpires`.
+
+`showMenuHeaderForGuest` is setting whether show menu header for guest user, if you do not want the menu header showing for guest, please set to `false`.
 
 ```javascript
     ircAnnounce: {
