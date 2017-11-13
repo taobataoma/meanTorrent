@@ -154,12 +154,14 @@ module.exports = {
      * @signUpActiveTokenExpires:   sign up account active expires time setting.
      * @allowSocialSignin:          meanTorrent can accept social account to signin, like google, twitter, facebook etc.
      *                              if you do not want them to login, please set it to false
+     * @showMenuHeaderForGuest:     set whether show menu header for guest user(not sign in)
      * @showDemoSignMessage:        if true, will show demo sign in message in sign in page, if your site is not demo site, please set it to false
      */
     sign: {
       openSignup: true,
       signUpActiveTokenExpires: 60 * 60 * 1000 * 24,
       allowSocialSignin: false,
+      showMenuHeaderForGuest: true,
       showDemoSignMessage: true
     },
 
