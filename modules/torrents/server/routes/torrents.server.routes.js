@@ -12,6 +12,9 @@ module.exports = function (app) {
     .get(torrents.movieinfo);
   app.route('/api/tvinfo/:tmdbid/:language').all(torrentsPolicy.isAllowed)
     .get(torrents.tvinfo);
+  app.route('/api/search/movie/:language').all(torrentsPolicy.isAllowed)
+    .get(torrents.searchmovie);
+
 
   app.route('/api/torrents/upload').all(torrentsPolicy.isAllowed)
     .post(torrents.upload);

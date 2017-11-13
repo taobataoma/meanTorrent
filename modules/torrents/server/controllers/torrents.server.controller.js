@@ -63,6 +63,28 @@ exports.movieinfo = function (req, res) {
 };
 
 /**
+ * searchmovie
+ * @param req
+ * @param res
+ */
+exports.searchmovie = function (req, res) {
+  mtDebug.debugGreen('------- API: searchMovie --------------------');
+  mtDebug.debugGreen(req.params);
+
+  tmdb.searchMovie({
+    language: req.params.language,
+    query: req.query.query
+  }, function (err, info) {
+    if (err) {
+      res.status(900).send(err);
+    } else {
+      res.json(info);
+    }
+  });
+
+};
+
+/**
  * get tv info from tmdb
  */
 exports.tvinfo = function (req, res) {

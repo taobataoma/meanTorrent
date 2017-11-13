@@ -23,6 +23,13 @@
           language: '@language'
         }
       },
+      searchMovie: {
+        method: 'GET',
+        url: '/api/search/movie/:language',
+        params: {
+          language: '@language'
+        }
+      },
       getTMDBTVInfo: {
         method: 'GET',
         url: '/api/tvinfo/:tmdbid/:language',

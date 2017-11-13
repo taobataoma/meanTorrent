@@ -39,7 +39,8 @@
         </div>
     </div>
 
-    <div class="row margin-bottom-40" ng-show="vm.successfully == true">
+    <!--<div class="row margin-bottom-40" ng-show="vm.successfully == true">-->
+    <div class="row margin-bottom-40">
         <div class="col-xs-12">
             <legend class="small-legend" translate="SELECT_RESOURCE_TYPE"></legend>
             <div class="col-xs-12 col-sm-6 col-md-4">
@@ -92,6 +93,66 @@
         </div>
     </div>
 
+    <!-- =================================================================
+        side-overlay search movies
+    ================================================================== -->
+    <div id="searchFromTMDBSlide" side-overlay="right" side-class="search-from-tmdb-side-overlay" side-close-on-esc side-modal>
+        <div class="search-popup">
+            <legend class="h4"
+                    translate="SEARCH_FROM_TMDB_TITLE" translate-values="{type: ('MENU_TORRENTS_SUB.'+vm.selectedType.toUpperCase() | translate)}">
+            </legend>
+
+            <div class="search-form">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="vm.search.keys"
+                           id="skey"
+                           ng-keydown="vm.onSearchKeyDown($event);"
+                           ng-focus="vm.onTextClick($event)"
+                           placeholder="{{ 'PLACE_HOLDER_SEARCH' | translate}}" autofocus>
+
+                    <div class="input-group-btn">
+                        <button id="btnSearchFromTMDB" class="btn btn-primary" ng-click="vm.searchFromTMDB(true)"
+                                ng-disabled="!vm.search.keys">{{ 'BTN_SEARCH' | translate}}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="margin-top-20 h5" ng-class="vm.search.status == 'loading' ? 'text-success' : 'text-danger'"
+                     ng-if="vm.search.status != 'ok'">{{vm.search.status_msg | translate}}
+                </div>
+
+                <div ng-if="vm.search.searchItems.length<=0">
+                    <div class="h5 text-danger margin-top-20 margin-bottom-5">{{'SEARCH_RESULT_EMPTY' | translate}}</div>
+                </div>
+
+                <div ng-if="vm.search.searchItems.length>0">
+                    <div class="h4 margin-top-20 margin-bottom-5">{{'SELECT_RESULT_ITEM' | translate}}</div>
+                    <div class="margin-top-10 h5 text-danger"
+                         ng-if="vm.search.totalItems > 20">{{'RESULT_TOO_MORE' | translate}}
+                    </div>
+                    <div class="radio margin-left-10" ng-repeat="r in vm.search.searchItems">
+                        <label ng-dblclick="vm.onSelectResult()">
+                            <input type="radio" name="n_{{r.id}}" id="i_{{r.id}}" value="{{r.id}}"
+                                   ng-model="vm.search.sid">
+                            {{r.title}}
+                            <div>
+                                <small class="text-muted">{{r.original_title}} - {{r.release_date}}</small>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-control">
+            <button class="btn btn-success btn-width-100"
+                    ng-disabled="!vm.search.sid"
+                    ng-click="vm.onSelectResult()">{{ 'BTN_SELECT' | translate }}
+            </button>
+            <button class="btn btn-default btn-width-100" ng-click="vm.hideSearchPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
+        </div>
+    </div>
+
     <!-- **********************************************************************
         ng-template     movie.html
     *********************************************************************** -->
@@ -99,8 +160,13 @@
         <div class="row margin-bottom-40">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="ENTER_TMDB_ID"></legend>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                <div class="col-sm-7 col-md-6 col-lg-5">
                     <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" ng-click="vm.beginSearchFromTMDB($event)">
+                                {{ 'SEARCH_FROM_TMDB' | translate}}
+                            </button>
+                        </div>
                         <input type="number" class="form-control" ng-model="vm.tmdb_id"
                                id="tmdbid"
                                ng-change="vm.tmdb_info_ok = undefined"
@@ -116,13 +182,13 @@
                         </div>
                     </div>
                 </div>
-                <div ng-show="vm.tmdb_info_ok == true" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                <div ng-show="vm.tmdb_info_ok == true" class="col-sm-5 col-md-6 col-lg-7" style="margin-top: 7px">
                     <label class="text-success control-label" translate="TMDB_ID_OK"></label>
                 </div>
-                <div ng-show="vm.tmdb_info_ok == false" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                <div ng-show="vm.tmdb_info_ok == false" class="col-sm-6 col-md-6 col-lg-7" style="margin-top: 7px">
                     <label class="text-danger control-label" translate="TMDB_ID_ERROR"></label>
                 </div>
-                <div ng-show="vm.tmdb_isloading" class="col-lg-9 col-md-8 col-sm-7 col-xs-6" style="margin-top: 7px">
+                <div ng-show="vm.tmdb_isloading" class="col-sm-6 col-md-6 col-lg-7" style="margin-top: 7px">
                     <label class="text-danger control-label" translate="TMDB_IS_LOADING"></label>
                 </div>
             </div>
@@ -132,7 +198,7 @@
             <div class="row margin-bottom-40">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <legend class="small-legend" translate="TMDB_RESOURCE_INFO"></legend>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="col-md-3 col-sm-3 col-xs-12 upload-info-img">
                         <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.movieinfo.poster_path}}" class="img-thumbnail">
                     </div>
                     <div class="col-md-9 col-sm-9 col-xs-12">
@@ -192,13 +258,17 @@
                         </dl>
                         <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
                         <div class="row cast-list">
-                            <div class="col-xs-4 col-md-2 text-center" ng-repeat="cast in vm.movieinfo.credits.cast | limitTo: 6">
-                                <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
-                                     on-error-src="/modules/core/client/img/default_face.jpg"
-                                     class="img-circle img-thumbnail img-responsive center-block">
-                                <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
+                            <div ng-repeat="cast in vm.movieinfo.credits.cast | limitTo: 6">
+                                <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-xs-block visible-sm-block"></div>
+                                <div data-ng-if="$index != 0 && $index % 6 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                                <div class="col-xs-4 col-md-2 text-center">
+                                    <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
+                                         on-error-src="/modules/core/client/img/default_face.jpg"
+                                         class="img-circle img-thumbnail img-responsive center-block">
+                                    <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
 
-                                <p class="cast-xs-info">{{cast.character}}</p>
+                                    <p class="cast-xs-info character">{{cast.character}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>

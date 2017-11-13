@@ -6,10 +6,10 @@
     .controller('TorrentsUploadController', TorrentsUploadController);
 
   TorrentsUploadController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
-    'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService', 'DebugConsoleService', 'NotifycationService'];
+    'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService', 'DebugConsoleService', 'NotifycationService', 'SideOverlay'];
 
   function TorrentsUploadController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
-                                    TorrentsService, getStorageLangService, $filter, DownloadService, mtDebug, NotifycationService) {
+                                    TorrentsService, getStorageLangService, $filter, DownloadService, mtDebug, NotifycationService, SideOverlay) {
     var vm = this;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -168,6 +168,18 @@
       if (evt.keyCode === 13) {
         $timeout(function () {
           angular.element('#btnGetTMDBInfo').triggerHandler('click');
+        }, 0);
+      }
+    };
+
+    /**
+     * onSearchKeyDown
+     * @param evt
+     */
+    vm.onSearchKeyDown = function (evt) {
+      if (evt.keyCode === 13) {
+        $timeout(function () {
+          angular.element('#btnSearchFromTMDB').triggerHandler('click');
         }, 0);
       }
     };
@@ -568,6 +580,60 @@
       }
 
       return sh;
+    };
+
+    /**
+     * beginSearchFromTMDB
+     * @param evt
+     */
+    vm.beginSearchFromTMDB = function (evt) {
+      vm.search = {};
+      SideOverlay.open(evt, 'searchFromTMDBSlide');
+    };
+
+    /**
+     * hideSearchPopup
+     */
+    vm.hideSearchPopup = function () {
+      SideOverlay.close(null, 'searchFromTMDBSlide');
+    };
+
+    /**
+     * searchFromTMDB
+     * @param isMovie
+     */
+    vm.searchFromTMDB = function (isMovie = true) {
+      vm.search.status_msg = 'LOAD_SEARCH_RESULT';
+      vm.search.status = 'loading';
+      vm.search.searchItems = undefined;
+
+      mtDebug.info(vm.search.keys);
+
+      TorrentsService.searchMovie({
+        language: getStorageLangService.getLang(),
+        query: vm.search.keys
+      }, function (res) {
+        mtDebug.info(res);
+
+        vm.search.searchItems = res.results;
+        vm.search.totalItems = res.total_results;
+        vm.search.status = 'ok';
+      }, function (err) {
+        vm.search.status_msg = 'LOAD_SEARCH_RESULT_ERROR';
+        vm.search.status = 'error';
+      });
+    };
+
+    /**
+     * onSelectResult
+     */
+    vm.onSelectResult = function () {
+      vm.tmdb_id = parseInt(vm.search.sid, 10);
+      SideOverlay.close(null, 'searchFromTMDBSlide');
+
+      $timeout(function () {
+        angular.element('#btnGetTMDBInfo').triggerHandler('click');
+      }, 0);
     };
   }
 }());

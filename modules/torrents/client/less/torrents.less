@@ -1,0 +1,40 @@
+@import (reference) "../../../core/client/less/mt-var.less";
+
+.search-from-tmdb-side-overlay {
+    top: 50px !important;
+    @media (min-width: @screen-sm-min) {
+        width: 450px;
+    }
+    @media (max-width: @screen-xs-max) {
+        min-width: ~"calc(100% - 50px)";
+    }
+    .search-popup {
+        background-color: #fdfdfd;
+        width: 100%;
+        height: ~"calc(100% - 50px)";
+        overflow: auto;
+        padding: 30px 15px;
+        .search-form {
+            margin-top: 20px;
+            input {
+                width: 100%;
+            }
+            input[type=radio] {
+                cursor: pointer;
+            }
+            .text-muted {
+                color: #aaa;
+            }
+        }
+    }
+    .bottom-control {
+        background-color: #fdfdfd;
+        border-top: solid 1px #e6e6e6;
+        width: 100%;
+        height: 50px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 8px 10px;
+    }
+}
