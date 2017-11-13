@@ -224,7 +224,7 @@
         poster_path: undefined,
         backdrop_path: undefined,
 
-        status_msg: 'loading tmdb collection detail ...',
+        status_msg: 'LOAD_TMDB_COLLECTION',
         status: 'loading'
       };
 
@@ -243,7 +243,7 @@
         mtDebug.info(vm.collection);
       }, function (err) {
         vm.collection.status = 'error';
-        vm.collection.status_msg = 'Error: get tmdb collection detail';
+        vm.collection.status_msg = 'LOAD_TMDB_COLLECTION_ERROR';
       });
     };
 
@@ -283,7 +283,7 @@
         title: vm.TGI.getTorrentTitle(vm.torrentLocalInfo),
         file: vm.torrentLocalInfo.torrent_filename,
 
-        status_msg: 'loading movie collection list ...',
+        status_msg: 'LOAD_COLLECTION_LIST',
         status: 'loading'
       };
 
@@ -298,7 +298,7 @@
         mtDebug.info(res);
       }, function (err) {
         vm.collectionTorrent.status = 'error';
-        vm.collectionTorrent.status_msg = 'Error: get collection items error';
+        vm.collectionTorrent.status_msg = 'LOAD_COLLECTION_LIST_ERROR';
       });
     };
 

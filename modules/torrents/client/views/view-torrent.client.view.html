@@ -461,7 +461,7 @@
                      on-error-src="http://image.tmdb.org/t/p/w1280/5pAGnkFYSsFJ99ZxDIYnhQbQFXs.jpg">
 
                 <div class="margin-top-20 h5" ng-class="vm.collection.status == 'loading' ? 'text-success' : 'text-danger'"
-                     ng-if="vm.collection.status != 'ok'">{{vm.collection.status_msg}}
+                     ng-if="vm.collection.status != 'ok'">{{vm.collection.status_msg | translate}}
                 </div>
             </div>
         </div>
@@ -508,7 +508,7 @@
                 </div>
 
                 <div class="margin-top-20 h5" ng-class="vm.collectionTorrent.status == 'loading' ? 'text-success' : 'text-danger'"
-                     ng-if="vm.collectionTorrent.status != 'ok'">{{vm.collectionTorrent.status_msg}}
+                     ng-if="vm.collectionTorrent.status != 'ok'">{{vm.collectionTorrent.status_msg | translate}}
                 </div>
             </div>
         </div>

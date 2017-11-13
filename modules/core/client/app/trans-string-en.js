@@ -325,6 +325,10 @@
     ADMIN_COLLECTION_COMMAND: 'Collections Command',
     ADMIN_COLLECTION_CREATE: 'Create Collection',
     ADMIN_COLLECTION_ADDINTO: 'Put This Movie Into Collection',
+    LOAD_TMDB_COLLECTION: 'loading tmdb movie collection detail ...',
+    LOAD_TMDB_COLLECTION_ERROR: 'Error: get tmdb movie collection detail',
+    LOAD_COLLECTION_LIST: 'loading movie collection list ...',
+    LOAD_COLLECTION_LIST_ERROR: 'Error: get movie collection items error',
 
     TORRENT_DELETE_CONFIRM_OK: 'Delete',
     TORRENT_DELETE_CONFIRM_CANCEL: 'Cancel',

@@ -325,6 +325,10 @@
     ADMIN_COLLECTION_COMMAND: '电影系列操作命令',
     ADMIN_COLLECTION_CREATE: '创建新系列',
     ADMIN_COLLECTION_ADDINTO: '将电影加入到系列',
+    LOAD_TMDB_COLLECTION: '正在从 TMDB 读取电影系列信息, 请稍候 ...',
+    LOAD_TMDB_COLLECTION_ERROR: '从 TMDB 读取电影系列信息失败',
+    LOAD_COLLECTION_LIST: '正在装载电影系列列表，请稍候 ...',
+    LOAD_COLLECTION_LIST_ERROR: '装载电影系列列表失败',
 
     TORRENT_DELETE_CONFIRM_OK: '删除',
     TORRENT_DELETE_CONFIRM_CANCEL: '取消',
