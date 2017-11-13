@@ -2,8 +2,7 @@
 
 meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support__ and a full-stack JavaScript open-source solution,
 which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/),
-and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks,
-build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
+and [AngularJS](http://angularjs.org/) based applications.
 
 ## Feature, Function, Screenshots First
 
@@ -54,7 +53,7 @@ build a robust framework to support daily development needs, and help developers
 1. Multilingual support, now English & Chinese, please read the guide of [how to add a complete translated language](#howToAddTranslate).
 2. When you want to upload a torrent, Only need to select a source torrent file,
    and input the movie ID origin [TMDB](https://www.themoviedb.org), the movie detaill info will be autoload.
-3. One torrent can boundle many attrs tag, It's the key to search filtering.
+3. One torrent can boundle many attrs tag, It's the keyword to search filtering.
 4. Torrent comment with full [markdown](https://guides.github.com/features/mastering-markdown/) style support.
 5. Oper/Admin can manager users(edit/delete etc), forbidden user(banned).
 6. OPer/Admin can manager torrents, can reviewed new torrents, set torrent sale type, set torrent recommend level, and delete torrent.
