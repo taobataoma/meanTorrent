@@ -101,6 +101,9 @@ and [AngularJS](http://angularjs.org/) based applications.
 6. Chat message bubble style
 
 ## TODO
+- RSS feeds support.
+- Users follow(friend) support.
+- Forum access check(VIP, admin, oper, user).
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - IRC chat
 - Business cooperation support(like play box? NAS? etc.)
