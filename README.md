@@ -91,6 +91,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 38. User can set a signature info for forum.
 39. Auto get search movie/tvserial result from TMDB by keywords, user can select a result item to load resources info and upload.
 40. Admin can configure to hide all menu header for guest users, usefully for private tracker mode.
+41. Complete emoji picture support in markdown content, The images for the emoji can be found in the [emoji-cheat-sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/).
 
 #### Chat room feature:
 1. Users name list
