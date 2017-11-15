@@ -984,7 +984,9 @@
       CATEGORY: {
         AFFAIRS: '站务区',
         DISCUSS: '讨论区',
-        BUSINESS: '商务区'
+        BUSINESS: '商务区',
+        VIP: 'Vip会员专区',
+        ADMINISTRATION: '管理员专区'
       },
       FIELDS: {
         NAME: '版块名称',

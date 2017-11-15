@@ -984,7 +984,9 @@
       CATEGORY: {
         AFFAIRS: 'Affairs',
         DISCUSS: 'Discuss',
-        BUSINESS: 'Business'
+        BUSINESS: 'Business',
+        VIP: 'Vip members area',
+        ADMINISTRATION: 'Administration area'
       },
       FIELDS: {
         NAME: 'Forum Name',

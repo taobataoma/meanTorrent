@@ -707,7 +707,7 @@ module.exports = {
      * NOTE: you can change these value at anytime if you understand it
      *
      * @category:               forums category
-     *        @name:            name of forum category
+     *        @name:            name of forum category, for a new item, please add a translate string at 'FORUMS->CATEGORY'
      *        @value:           value of forum category
      *        @index:           list order index of forum category
      *        @roles:           limit access for user type
