@@ -710,14 +710,18 @@ module.exports = {
      *        @name:            name of forum category
      *        @value:           value of forum category
      *        @index:           list order index of forum category
+     *        @roles:           limit access for user type
+     *        @isVip:           set whether is only for VIP user
      * @showThumbsUpUserList:   if true, will show thumbs up users list at eof of topic content or reply content
      * @showUserSignature:      if true, will show user signature info in forum
      */
     forumsConfig: {
       category: [
-        {name: 'AFFAIRS', value: 'affairs', index: 0},
-        {name: 'DISCUSS', value: 'discuss', index: 1},
-        {name: 'BUSINESS', value: 'business', index: 2}
+        {name: 'AFFAIRS', value: 'affairs', index: 0, roles: '*', isVip: false},
+        {name: 'DISCUSS', value: 'discuss', index: 1, roles: '*', isVip: false},
+        {name: 'BUSINESS', value: 'business', index: 2, roles: '*', isVip: false},
+        {name: 'VIP', value: 'vip', index: 3, roles: '*', isVip: true},
+        {name: 'ADMINISTRATION', value: 'Administration', index: 4, roles: ['oper', 'admin'], isVip: false}
       ],
       showThumbsUpUserList: true,
       showUserSignature: true
