@@ -92,6 +92,24 @@
       //},
       table: function (header, body) {
         return '<table class="table table-hover table-bordered table-condensed md-table margin-bottom-10"><thead>' + header + '</thead><tbody>' + body + '</tbody></table>';
+      },
+      text: function (text) {
+        var RexStr = /:([A-Za-z0-9_\-\+]+?):/g;
+        text = text.replace(RexStr, function (match, emoji) {
+          return '<img src="'
+            + '/graphics/emojis/'
+            + encodeURIComponent(emoji)
+            + '.png"'
+            + ' alt="'
+            + emoji
+            + '"'
+            + ' title="'
+            + emoji
+            + '"'
+            + ' class="emoji" align="absmiddle" height="20" width="20">';
+        });
+
+        return text;
       }
     });
   }
