@@ -327,6 +327,9 @@
             background-color: #fff;
             border: 1px solid #d1d5da;
             border-radius: 3px;
+            @media (min-width: @screen-sm-min) {
+                margin-left: 40px;
+            }
             &::before {
                 position: absolute;
                 top: 11px;
@@ -512,8 +515,12 @@
                 float: left;
                 margin-left: -60px;
                 border-radius: 3px;
-                height: 44px;
-                width: 44px;
+                height: 86px;
+                width: 86px;
+                @media (max-width: @screen-xs-max) {
+                    height: 44px;
+                    width: 44px;
+                }
             }
         }
     }
