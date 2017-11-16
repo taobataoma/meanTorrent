@@ -92,6 +92,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 39. Auto get search movie/tvserial result from TMDB by keywords, user can select a result item to load resources info and upload.
 40. Admin can configure to hide all menu header for guest users, usefully for private tracker mode.
 41. Complete emoji support in markdown content, The images for the emoji can be found in the [emoji-cheat-sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/).
+42. complete forum for vip and oper/admin users only, Special access forums not show to normal users.
 
 #### Chat room feature:
 1. Users name list
@@ -104,7 +105,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 ## TODO
 - RSS feeds support.
 - Users follow(friend) support.
-- Forum access check(VIP, admin, oper, user).
 - Emoji on chat room.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - IRC chat
