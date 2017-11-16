@@ -30,6 +30,52 @@
     };
 
     /**
+     * getCatShowedStatus
+     * @param cat
+     * @returns {boolean}
+     */
+    vm.getCatShowedStatus = function (cat) {
+      if (vm.user.isOper) {
+        return true;
+      } else {
+        if (cat.isVip) {
+          if (vm.user.isVip) {
+            return true;
+          } else {
+            return false;
+          }
+        } else if (cat.isOper) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    };
+
+    /**
+     * getForumShowedStatus
+     * @param f
+     * @returns {boolean}
+     */
+    vm.getForumShowedStatus = function (f) {
+      if (vm.user.isOper) {
+        return true;
+      } else {
+        if (f.vipOnly) {
+          if (vm.user.isVip) {
+            return true;
+          } else {
+            return false;
+          }
+        } else if (f.operOnly) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    };
+
+    /**
      * getForumDesc
      * @param f: forum
      * @returns {*}

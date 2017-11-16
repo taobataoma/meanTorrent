@@ -996,6 +996,8 @@
         DESC: 'Description',
         CATEGORY: 'Category',
         READONLY_POST: 'Users are forbidden to post new topics',
+        OPERONLY_POST: 'This forum only for OPER users',
+        VIPONLY_POST: 'This forum only for VIP users',
         READONLY_REPLY: 'Users are forbidden to post new replies',
         TOPIC: 'Topics',
         GLOBAL_TOPIC: 'Global topics',

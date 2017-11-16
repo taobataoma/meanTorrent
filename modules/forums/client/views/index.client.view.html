@@ -11,7 +11,7 @@
         </div>
 
         <div class="table-responsive table-category" ng-repeat="cat in vm.forumsConfig.category | orderBy: 'index'">
-            <table class="table table-hover table-valign-middle">
+            <table class="table table-hover table-valign-middle" ng-if="vm.getCatShowedStatus(cat)">
                 <thead>
                     <tr>
                         <th class="col-md-7">{{'FORUMS.CATEGORY.'+cat.name | translate}}</th>
@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="f in vm.forums | filter: { category: cat.value }">
+                    <tr ng-repeat="f in vm.forums | filter: { category: cat.value }" ng-if="vm.getForumShowedStatus(f)">
                         <td>
                             <span class="forum-icon glyphicon glyphicon-folder-open" ng-class="{'has-new-post': vm.hasNewReply(f.lastTopic)}"></span>
 

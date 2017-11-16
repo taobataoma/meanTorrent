@@ -61,6 +61,8 @@ exports.update = function (req, res) {
   forum.desc = req.body.desc;
   forum.order = req.body.order;
   forum.readOnly = req.body.readOnly;
+  forum.operOnly = req.body.operOnly;
+  forum.vipOnly = req.body.vipOnly;
   forum.category = req.body.category;
 
   forum.save(function (err) {

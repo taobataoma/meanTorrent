@@ -33,6 +33,14 @@ var ForumSchema = new Schema({
     type: Boolean,
     default: false
   },
+  operOnly: {
+    type: Boolean,
+    default: false
+  },
+  vipOnly: {
+    type: Boolean,
+    default: false
+  },
   category: {
     type: String,
     default: 'discuss',

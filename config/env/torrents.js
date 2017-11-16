@@ -717,11 +717,11 @@ module.exports = {
      */
     forumsConfig: {
       category: [
-        {name: 'AFFAIRS', value: 'affairs', index: 0, roles: '*', isVip: false},
-        {name: 'DISCUSS', value: 'discuss', index: 1, roles: '*', isVip: false},
-        {name: 'BUSINESS', value: 'business', index: 2, roles: '*', isVip: false},
-        {name: 'VIP', value: 'vip', index: 3, roles: '*', isVip: true},
-        {name: 'ADMINISTRATION', value: 'Administration', index: 4, roles: ['oper', 'admin'], isVip: false}
+        {name: 'AFFAIRS', value: 'affairs', index: 0, isOper: false, isVip: false},
+        {name: 'DISCUSS', value: 'discuss', index: 1, isOper: false, isVip: false},
+        {name: 'BUSINESS', value: 'business', index: 2, isOper: false, isVip: false},
+        {name: 'VIP', value: 'vip', index: 3, isOper: false, isVip: true},
+        {name: 'ADMINISTRATION', value: 'Administration', index: 4, isOper: true, isVip: false}
       ],
       showThumbsUpUserList: true,
       showUserSignature: true
