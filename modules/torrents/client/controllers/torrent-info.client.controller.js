@@ -252,7 +252,7 @@
      */
     vm.hideCollectionPopup = function () {
       SideOverlay.close(null, 'collectionsCreateSlide');
-      vm.collection = undefined
+      vm.collection = undefined;
     };
 
     /**
