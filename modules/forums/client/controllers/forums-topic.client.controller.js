@@ -125,7 +125,7 @@
      */
     vm.isOwner = function (o) {
       if (o) {
-        if (o.user._id.str === vm.user._id) {
+        if (o.user._id === vm.user._id) {
           return true;
         } else {
           return false;
