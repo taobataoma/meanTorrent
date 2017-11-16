@@ -252,6 +252,7 @@
      */
     vm.hideCollectionPopup = function () {
       SideOverlay.close(null, 'collectionsCreateSlide');
+      vm.collection = undefined
     };
 
     /**
@@ -307,6 +308,7 @@
      */
     vm.hideCollectionInsertPopup = function () {
       SideOverlay.close(null, 'collectionsInsertSlide');
+      vm.collectionsItems = undefined;
     };
 
     /**
