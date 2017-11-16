@@ -43,6 +43,9 @@
                         <button class="btn btn-default btn-xs btn-width-100"
                                 ng-click="vm.addVIPMonths();">{{'STATUS_FIELD.ADD_VIP_MONTHS' | translate}}
                         </button>
+                        <button class="btn btn-default btn-xs btn-width-100" ng-if="vm.user.isVip"
+                                ng-click="vm.resetVIPData();">{{'STATUS_FIELD.RESET_VIP_DATA' | translate}}
+                        </button>
                     </div>
                 </dd>
 

@@ -166,6 +166,13 @@
           userId: '@userId',
           months: '@months'
         }
+      },
+      resetUserVIPData: {
+        method: 'PUT',
+        url: '/api/users/:userId/VIPMonths/reset',
+        params: {
+          userId: '@userId'
+        }
       }
     });
 
@@ -193,6 +200,9 @@
       },
       addVIPMonths: function (params) {
         return this.updateUserVIPMonths(params).$promise;
+      },
+      resetVIPData: function (params) {
+        return this.resetUserVIPData(params).$promise;
       }
     });
 

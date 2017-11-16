@@ -466,6 +466,8 @@
     SET_IMAGE_FAILED: '用户帐号图片修改失败',
     SET_VIP_MONTHS_SUCCESSFULLY: '更新用户vip状态数据成功',
     SET_VIP_MONTHS_FAILED: '更新用户vip状态数据失败',
+    RESET_VIP_DATA_SUCCESSFULLY: '重置用户vip状态数据成功',
+    RESET_VIP_DATA_FAILED: '重置用户vip状态数据失败',
 
     SCORE_NUMBER: '积分数',
     SCORE_TITLE: '修改积分',
@@ -626,6 +628,7 @@
       PICTURE: '头像',
       RESET_DEFAULT_PICTURE: '重置为默认图片',
       ADD_VIP_MONTHS: '+ VIP一个月',
+      RESET_VIP_DATA: '重置 VIP 数据',
       USERNAME: '用户名',
       DISPLAY_NAME: '显示昵称',
       HIDE_MORE_DETAIL: '隐藏更多的帐户详细信息',

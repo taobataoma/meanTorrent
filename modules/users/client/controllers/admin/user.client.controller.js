@@ -155,6 +155,29 @@
     };
 
     /**
+     * resetVIPData
+     */
+    vm.resetVIPData = function () {
+      var user = vm.user;
+      AdminService.resetVIPData({
+        userId: user._id
+      })
+        .then(onSuccess)
+        .catch(onError);
+
+      function onSuccess(response) {
+        vm.user = response;
+        mtDebug.info(response);
+
+        NotifycationService.showSuccessNotify('RESET_VIP_DATA_SUCCESSFULLY');
+      }
+
+      function onError(response) {
+        NotifycationService.showErrorNotify(response.data.message, 'RESET_VIP_DATA_FAILED');
+      }
+    };
+
+    /**
      * showMakerGroup
      * @param evt
      */

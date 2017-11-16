@@ -466,6 +466,8 @@
     SET_IMAGE_FAILED: 'set user image failed',
     SET_VIP_MONTHS_SUCCESSFULLY: 'update user vip data successfully',
     SET_VIP_MONTHS_FAILED: 'update user vip data failed',
+    RESET_VIP_DATA_SUCCESSFULLY: 'reset user vip data successfully',
+    RESET_VIP_DATA_FAILED: 'reset user vip data failed',
 
     SCORE_NUMBER: 'Score number',
     SCORE_TITLE: 'Edit user score',
@@ -626,6 +628,7 @@
       PICTURE: 'Profile picture',
       RESET_DEFAULT_PICTURE: 'Reset to default picture',
       ADD_VIP_MONTHS: '+ VIP a month',
+      RESET_VIP_DATA: 'Reset VIP Data',
       USERNAME: 'Username',
       DISPLAY_NAME: 'Display name',
       HIDE_MORE_DETAIL: 'Hide more account detail info',

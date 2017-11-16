@@ -372,6 +372,7 @@ exports.addVIPMonths = function (req, res) {
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminUpdateUserVIPData, {
         user: user._id,
+        reset: false,
         months: months
       });
     });
@@ -380,6 +381,34 @@ exports.addVIPMonths = function (req, res) {
       message: 'PARAMS_MONTH_ERROR'
     });
   }
+};
+
+/**
+ * resetVIPData
+ * @param req
+ * @param res
+ */
+exports.resetVIPData = function (req, res) {
+  var user = req.model;
+
+  user.vip_start_at = '';
+  user.vip_end_at = '';
+
+  user.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(user);
+
+    //create trace log
+    traceLogCreate(req, traceConfig.action.AdminUpdateUserVIPData, {
+      user: user._id,
+      reset: true
+    });
+  });
 };
 
 /**
