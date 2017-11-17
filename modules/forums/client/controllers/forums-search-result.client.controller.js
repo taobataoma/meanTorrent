@@ -59,6 +59,7 @@
       vm.isLoading = true;
       vm.pagedItems = [];
 
+      console.log($state.params.forumId);
       var fs = new ForumsService({
         forumId: $state.params.forumId || undefined,
         keys: $state.params.keys,

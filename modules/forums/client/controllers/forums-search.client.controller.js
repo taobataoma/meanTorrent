@@ -85,7 +85,20 @@
      */
     vm.routeToSearch = function () {
       if (vm.searchKeys) {
-        $state.go('forums.search', {forumId: vm.selectedForum._id, keys: vm.searchKeys});
+        if (!vm.selectedForum._id) {
+          var fid = [];
+
+          angular.forEach(vm.forumList, function (f) {
+            if (f.show && f._id) {
+              fid.push(f._id);
+            }
+          });
+
+          console.log(fid);
+          $state.go('forums.search', {forumId: fid, keys: vm.searchKeys});
+        } else {
+          $state.go('forums.search', {forumId: vm.selectedForum._id, keys: vm.searchKeys});
+        }
       }
     };
 
@@ -95,7 +108,6 @@
      * @returns {boolean}
      */
     vm.getForumShowedStatus = function (f) {
-      console.log(f);
       if (vm.user.isOper) {
         return true;
       } else {
