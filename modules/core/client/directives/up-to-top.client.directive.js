@@ -81,8 +81,8 @@
           wave.css('border', 'solid 5px #888');
           wave.css('animation', 'sonarWave 2s linear infinite');
 
-          wave.on("webkitAnimationIteration oanimationiteration animationiteration", function () {
-            wave.css("borderColor", colorize());
+          wave.on('webkitAnimationIteration oanimationiteration animationiteration', function () {
+            wave.css('borderColor', colorize());
           });
 
           element.append(iEle);
@@ -92,7 +92,7 @@
 
       function colorize() {
         var hue = Math.random() * 360;
-        return "HSL(" + hue + ",100%,50%)";
+        return 'HSL(' + hue + ',100%,50%)';
       }
     }
   }
