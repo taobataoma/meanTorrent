@@ -92,12 +92,14 @@
                                                        title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
                                                        ng-show="vm.canEdit() || vm.isOwner(vm.topic)"
                                                        ng-click="vm.beginDeleteTopic(vm.topic);"></i>
-                                                    <i class="fa" ng-class="vm.topic.isTop ? 'fa-arrow-circle-down text-primary' : 'fa-arrow-circle-up'"
+                                                    <i class="fa"
+                                                       ng-class="vm.topic.isTop ? 'fa-arrow-circle-down text-primary' : 'fa-arrow-circle-up'"
                                                        aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_TOP_TOPIC' | translate}}: {{vm.topic.isTop}}"
                                                        ng-show="vm.canEdit()"
                                                        ng-click="vm.beginTopTopic(vm.topic);"></i>
-                                                    <i class="fa" ng-class="vm.topic.isGlobal ? 'fa-download text-primary' : 'fa-upload'" aria-hidden="true"
+                                                    <i class="fa" ng-class="vm.topic.isGlobal ? 'fa-download text-primary' : 'fa-upload'"
+                                                       aria-hidden="true"
                                                        title="{{'FORUMS.TITLES.TOPIC_GLOBAL_TOPIC' | translate}}: {{vm.topic.isGlobal}}"
                                                        ng-show="vm.user.isOper;"
                                                        ng-click="vm.beginGlobalTopic(vm.topic);"></i>
@@ -290,4 +292,6 @@
             </div>
         </div>
     </div>
+
+    <div class="up_to_top_div" up-to-top="top_of_reply_list"></div>
 </section>

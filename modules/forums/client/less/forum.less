@@ -750,3 +750,18 @@ em {
     background-color: yellowgreen;
 }
 
+.up_to_top_div {
+    @media (max-width: @screen-xs-max) {
+        display: none !important;
+    }
+}
+
+@keyframes sonarWave {
+    from {
+        opacity: 0.8;
+    }
+    to {
+        transform: scale(3);
+        opacity: 0;
+    }
+}

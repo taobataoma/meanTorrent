@@ -7,11 +7,11 @@
 
   ForumsTopicController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'ScoreLevelService', '$timeout', 'NotifycationService',
     'marked', 'ModalConfirmService', '$stateParams', 'TopicsService', 'localStorageService', '$compile', 'RepliesService', '$filter', 'Upload', 'DownloadService',
-    'DebugConsoleService'];
+    'DebugConsoleService', '$window'];
 
   function ForumsTopicController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, ScoreLevelService, $timeout, NotifycationService,
                                  marked, ModalConfirmService, $stateParams, TopicsService, localStorageService, $compile, RepliesService, $filter, Upload, DownloadService,
-                                 mtDebug) {
+                                 mtDebug, $window) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
@@ -22,6 +22,26 @@
     vm.user = Authentication.user;
     vm.forumPath = [];
     vm.postReplyFields = {};
+
+    angular.element($window).bind('scroll', function (e) {
+      var scTop = angular.element('#top_of_reply_list').prop('offsetTop') - 60;
+      if ($(window).scrollTop() > scTop) {
+        //alert('boom');up-to-top
+        angular.element('.up-to-top').css('display', 'block');
+      } else {
+        angular.element('.up-to-top').css('display', 'none');
+      }
+    });
+
+    /**
+     * upToTop
+     */
+    vm.upToTop = function () {
+      var element = angular.element('#top_of_reply_list');
+      $timeout(function () {
+        $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
+      }, 10);
+    };
 
     /**
      * buildPager
