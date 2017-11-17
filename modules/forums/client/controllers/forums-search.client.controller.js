@@ -26,7 +26,9 @@
         vm.forumList.push({
           _id: undefined,
           name: $translate.instant('FORUMS.ALL_FORUMS'),
-          divider: false
+          divider: false,
+          index: -1,
+          show: true
         });
         vm.selectedForum = vm.forumList[0];
 
@@ -35,20 +37,38 @@
           vm.forumList.push({
             _id: f._id,
             name: f.name,
-            divider: f.category !== cat ? true : false
+            divider: f.category !== cat ? true : false,
+            index: getIndexByCategory(f.category),
+            show: vm.getForumShowedStatus(f)
           });
           cat = f.category;
-        });
 
-        //current forum
-        angular.forEach(vm.forumList, function (f) {
+          //current forum
           if ($state.params.forumId === f._id) {
             vm.selectedForum = f;
           }
         });
+
         vm.searchKeys = $state.params.keys || '';
       });
     };
+
+    /**
+     * getIndexByCategory
+     * @param g
+     * @returns {number}
+     */
+    function getIndexByCategory(g) {
+      var idx = 999;
+
+      angular.forEach(vm.forumsConfig.category, function (c) {
+        if (c.value === g) {
+          idx = c.index;
+        }
+      });
+
+      return idx;
+    }
 
     /**
      * onSearchKeyDown
@@ -66,6 +86,30 @@
     vm.routeToSearch = function () {
       if (vm.searchKeys) {
         $state.go('forums.search', {forumId: vm.selectedForum._id, keys: vm.searchKeys});
+      }
+    };
+
+    /**
+     * getForumShowedStatus
+     * @param f
+     * @returns {boolean}
+     */
+    vm.getForumShowedStatus = function (f) {
+      console.log(f);
+      if (vm.user.isOper) {
+        return true;
+      } else {
+        if (f.vipOnly) {
+          if (vm.user.isVip) {
+            return true;
+          } else {
+            return false;
+          }
+        } else if (f.operOnly) {
+          return false;
+        } else {
+          return true;
+        }
       }
     };
   }

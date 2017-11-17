@@ -19,7 +19,7 @@
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">{{vm.selectedForum.name}} <span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li ng-repeat="f in vm.forumList" ng-class="{'item-divider': f.divider}">
+                            <li ng-repeat="f in vm.forumList | orderBy: 'index'" ng-class="{'item-divider': f.divider}" ng-if="f.show">
                                 <a href="#" ng-click="vm.selectedForum = f;">{{f.name}}</a>
                             </li>
                         </ul>
