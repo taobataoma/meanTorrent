@@ -61,7 +61,7 @@
         $scope.$broadcast('show-errors-reset', 'vm.messageForm');
         NotifycationService.showSuccessNotify('MESSAGE_SEND_SUCCESSFULLY');
 
-        $state.go('messages.send', {reload: true, to: undefined});
+        $state.go($state.previous.state.name || 'messages.send', $state.previous.params, {reload: true, to: undefined});
       }
 
       function errorCallback(res) {
