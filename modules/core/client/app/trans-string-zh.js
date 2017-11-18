@@ -1182,7 +1182,8 @@
 
     //server returned string
     SERVER: {
-      SENDING_ACTIVE_MAIL_SUCCESSFULLY: '欢迎加入 <strong>{{site}}</strong>, 我们已向你的邮箱 <strong>{{mail}}</strong> 发送了一封电子邮件, 请在 <strong>{{hours}}</strong> 小时内检查您的邮箱并点击邮件中的链接地址来验证您的邮箱地址并激您的帐号，谢谢！'
+      SENDING_ACTIVE_MAIL_SUCCESSFULLY: '欢迎加入 <strong>{{site}}</strong>, 我们已向你的邮箱 <strong>{{mail}}</strong> 发送了一封电子邮件, 请在 <strong>{{hours}}</strong> 小时内检查您的邮箱并点击邮件中的链接地址来验证您的邮箱地址并激您的帐号，谢谢！',
+      SCORE_NOT_ENOUGH: '您没有足够的积分进行此操作'
     }
   };
 

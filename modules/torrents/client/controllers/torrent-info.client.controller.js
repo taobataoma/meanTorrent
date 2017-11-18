@@ -1025,7 +1025,7 @@
         });
       }, function (res) {
         Notification.error({
-          message: res.data.message,
+          message: $translate.instant(res.data.message),
           title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_THUMBS_FAILED')
         });
       });

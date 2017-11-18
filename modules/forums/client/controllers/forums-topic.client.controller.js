@@ -525,7 +525,7 @@
           $compile(ele)($scope);
         }, 10);
       }, function (res) {
-        NotifycationService.showErrorNotify(res.data.message, 'ERROR');
+        NotifycationService.showErrorNotify($translate.instant(res.data.message), 'ERROR');
       });
     };
 

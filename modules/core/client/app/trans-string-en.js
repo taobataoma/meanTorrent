@@ -1182,7 +1182,8 @@
 
     //server returned string
     SERVER: {
-      SENDING_ACTIVE_MAIL_SUCCESSFULLY: 'Welcome join <strong>{{site}}</strong>, We`ve sent you an email to <strong>{{mail}}</strong>, please check you mail box and click the active url to verify you mail address and active you account in <strong>{{hours}}</strong> hours, thanks!'
+      SENDING_ACTIVE_MAIL_SUCCESSFULLY: 'Welcome join <strong>{{site}}</strong>, We`ve sent you an email to <strong>{{mail}}</strong>, please check you mail box and click the active url to verify you mail address and active you account in <strong>{{hours}}</strong> hours, thanks!',
+      SCORE_NOT_ENOUGH: 'you don`t have enough score for this operation'
     }
   };
 
