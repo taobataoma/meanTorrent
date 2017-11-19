@@ -101,6 +101,7 @@
       SIZE: 'Size',
       SEEDS_LEECHERS_FINISHED: 'S/L/F',
       TITLE_SEEDS_LEECHERS_FINISHED: 'orderBy Seeders/Leechers/Finished',
+      ABBR_SEEDS_LEECHERS_FINISHED: 'Seeders/Leechers/Finished',
       SORT_S: 'S',
       SORT_L: 'L',
       SORT_F: 'F',

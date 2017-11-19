@@ -101,6 +101,7 @@
       SIZE: '大小',
       SEEDS_LEECHERS_FINISHED: '种/下/完',
       TITLE_SEEDS_LEECHERS_FINISHED: '按 做种用户数/下载用户数/完成用户数 进行排序',
+      ABBR_SEEDS_LEECHERS_FINISHED: '做种/下载/完成',
       SORT_S: '种',
       SORT_L: '下',
       SORT_F: '完',

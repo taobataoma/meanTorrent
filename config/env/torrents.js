@@ -233,6 +233,8 @@ module.exports = {
      *                @name:    type name
      *                @value:   type value
      * @checkUnreadInterval:    set check unread message interval, default 2 minutes
+     *
+     * NOTE: the first value 'user' cannot be deleted
      */
     messages: {
       type: {
