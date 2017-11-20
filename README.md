@@ -105,6 +105,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 ## TODO
 - RSS feeds support.
 - Users follow(friend) support.
+- Poll type topics support in forum.
 - Emoji on chat room.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - IRC chat
