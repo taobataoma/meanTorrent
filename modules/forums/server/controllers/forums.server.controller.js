@@ -280,21 +280,36 @@ exports.listTopics = function (req, res) {
  * @param res
  */
 exports.globalTopics = function (req, res) {
-  Topic.find({
-    isGlobal: true
-  })
-    .sort('-createdAt')
-    .populate('forum', 'name')
-    .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
-    .populate('lastUser', 'username displayName profileImageURL isVip uploaded downloaded')
-    .exec(function (err, topics) {
-      if (err) {
-        return res.status(422).send({
-          message: errorHandler.getErrorMessage(err)
+  Forum.find().exec(function (err, forums) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      var ids = forums.map(function (el) {
+        return el._id;
+      });
+
+      console.log(ids);
+
+      Topic.find({
+        isGlobal: true,
+        forum: {$in: ids}
+      })
+        .sort('-createdAt')
+        .populate('forum', 'name')
+        .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
+        .populate('lastUser', 'username displayName profileImageURL isVip uploaded downloaded')
+        .exec(function (err, topics) {
+          if (err) {
+            return res.status(422).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          }
+          res.json(topics);
         });
-      }
-      res.json(topics);
-    });
+    }
+  });
 };
 
 /**
