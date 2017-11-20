@@ -126,6 +126,14 @@ exports.delete = function (req, res) {
 
   torrent._subtitles.forEach(function (r) {
     if (r._id.equals(req.params.subtitleId)) {
+      //DELETE the torrent file
+      var sfile = config.uploads.subtitle.file.dest + r.subtitle_filename;
+      fs.exists(sfile, function (exists) {
+        if (exists) {
+          fs.unlinkSync(sfile);
+        }
+      });
+
       //torrent.update({
       //  $pull: {_subtitles: r._id}
       //}).exec();
