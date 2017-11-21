@@ -53,8 +53,8 @@
                             <th class="text-center">{{'INVITATION.TITLE_TOKEN' | translate}}</th>
                             <th class="text-center">{{'INVITATION.TITLE_EMAIL' | translate}}</th>
                             <th class="text-center">{{'INVITATION.TITLE_INVITEDAT' | translate}}</th>
-                            <th class="text-center">{{'INVITATION.TITLE_SIGNINAT' | translate}}</th>
-                            <th class="text-center">{{'INVITATION.TITLE_SIGNINID' | translate}}</th>
+                            <th class="text-center">{{'INVITATION.TITLE_SIGNUPAT' | translate}}</th>
+                            <th class="text-center">{{'INVITATION.TITLE_SIGNUPID' | translate}}</th>
                             <th class="text-center">{{'INVITATION.TITLE_STATUS' | translate}}</th>
                         </tr>
                     </thead>
@@ -113,7 +113,7 @@
                     <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{ vm.selectedUser.downloaded | bytes:2 }}
                 </li>
                 <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.RATIO' | translate}}：
-                    <span ng-class="vm.selectedUser.ratio > 1 ? 'ratio-normal' : 'ratio-warning' ">{{ vm.selectedUser.ratio }}</span>
+                    <span ng-class="vm.selectedUser.ratio > 1 ? 'ratio-normal' : 'ratio-warning' ">{{ vm.selectedUser.ratio | ratio}}</span>
                 </li>
 
                 <li class="status-divider" ng-if="vm.announce.privateTorrentCmsMode"></li>
