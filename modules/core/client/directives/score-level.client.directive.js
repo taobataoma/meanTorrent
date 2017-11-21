@@ -4,7 +4,9 @@
   angular.module('core')
     .directive('scoreLevel', scoreLevel);
 
-  function scoreLevel() {
+  scoreLevel.$reject = ['ScoreLevelService'];
+
+  function scoreLevel(ScoreLevelService) {
     var directive = {
       restrict: 'A',
       replace: true,
@@ -14,12 +16,17 @@
     return directive;
 
     function link(scope, element, attrs) {
-      scope.$watch(attrs.scoreLevel, function (level) {
-        var l = 'L' + (level ? level : 0);
-        l = '<kbd>' + l + '</kbd>';
+      scope.$watch(attrs.scoreLevel, function (u) {
+        if (u) {
+          console.log(u);
+          var scoreLevelData = ScoreLevelService.getScoreLevelJson(u.score);
 
-        element.addClass('score-level');
-        element.html(l);
+          var l = 'L' + (scoreLevelData ? scoreLevelData.currLevel : 0);
+          l = '<kbd>' + l + '</kbd>';
+
+          element.addClass('score-level');
+          element.html(l);
+        }
       });
     }
   }

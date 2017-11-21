@@ -70,6 +70,7 @@
                     {{'PAGE_HEADER_RANKING_DOWNLOAD' | translate}}:
                 </h4>
             </span>
+
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-valign-middle">
                     <thead>
@@ -120,6 +121,7 @@
                     {{'PAGE_HEADER_RANKING_RATIO' | translate}}:
                 </h4>
             </span>
+
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-valign-middle">
                     <thead>
@@ -170,6 +172,7 @@
                     {{'PAGE_HEADER_RANKING_SCORE' | translate}}:
                 </h4>
             </span>
+
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-valign-middle">
                     <thead>
@@ -177,7 +180,7 @@
                             <th class="text-center">#</th>
                             <th class="text-center"></th>
                             <th>{{ 'TABLE_FIELDS.USERNAME' | translate}}</th>
-                            <th class="text-center ranking-active-col">{{ 'TABLE_FIELDS.SCORE' | translate}}</th>
+                            <th class="text-right ranking-active-col">{{ 'TABLE_FIELDS.SCORE' | translate}}</th>
                             <th class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{ 'TABLE_FIELDS.UPLOAD' | translate}}</th>
                             <th class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{ 'TABLE_FIELDS.DOWNLOAD' | translate}}</th>
                             <th class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{ 'TABLE_FIELDS.RATIO' | translate}}</th>
@@ -197,7 +200,7 @@
                                 <span vip-flag="user"></span>
                                 <!--<span message-to="user" to-class="message-to-icon"></span>-->
                             </td>
-                            <td class="text-center ranking-active-col">{{user.score}}</td>
+                            <td class="text-right ranking-active-col">{{user.score}} <span score-level="user"></span></td>
                             <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.uploaded | bytes:2}}</td>
                             <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.downloaded | bytes:2}}</td>
                             <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode"><span

@@ -15,7 +15,7 @@ var path = require('path'),
 exports.list = function (req, res) {
   var findUploadRanking = function (callback) {
     User.find({status: 'normal'}, '-salt -password -providerData')
-      .sort('-uploaded')
+      .sort('-uploaded -downloaded -ratio -score')
       .limit(20)
       .exec(function (err, users) {
         if (err) {
@@ -28,7 +28,7 @@ exports.list = function (req, res) {
 
   var findDownloadRanking = function (callback) {
     User.find({status: 'normal'}, '-salt -password -providerData')
-      .sort('-downloaded')
+      .sort('-downloaded -uploaded -ratio -score')
       .limit(20)
       .exec(function (err, users) {
         if (err) {
@@ -41,7 +41,7 @@ exports.list = function (req, res) {
 
   var findScoreRanking = function (callback) {
     User.find({status: 'normal'}, '-salt -password -providerData')
-      .sort('-score')
+      .sort('-score -uploaded -downloaded -ratio')
       .limit(20)
       .exec(function (err, users) {
         if (err) {
@@ -54,13 +54,25 @@ exports.list = function (req, res) {
 
   var findRatioRanking = function (callback) {
     User.find({status: 'normal'}, '-salt -password -providerData')
-      .sort('-ratio')
+      .sort('-ratio -uploaded -downloaded -score')
       .limit(20)
       .exec(function (err, users) {
         if (err) {
           callback(err, null);
         } else {
-          callback(null, users);
+          var ru = [];
+          users.forEach(function (u) {
+            if (u.ratio < 0) {
+              ru.push(u);
+            }
+          });
+          users.forEach(function (u) {
+            if (u.ratio >= 0) {
+              ru.push(u);
+            }
+          });
+
+          callback(null, ru);
         }
       });
   };
