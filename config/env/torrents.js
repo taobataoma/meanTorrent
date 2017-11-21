@@ -757,7 +757,9 @@ module.exports = {
       adminUserListPerPage: 15,
       collectionsListPerPage: 6,
       backupFilesListPerPage: 15,
-      torrentPeersListPerPage: 15
+      torrentPeersListPerPage: 15,
+      homeOrderTorrentListPerType: 9,
+      homeNewestTorrentListPerType: 14
     },
 
     /**

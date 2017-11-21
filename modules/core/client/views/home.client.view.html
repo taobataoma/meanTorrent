@@ -1,8 +1,8 @@
-<section ng-controller="HomeController as vm" ng-init="vm.getWarningInfo();">
+<section ng-controller="HomeController as vm" ng-init="vm.getWarningInfo(); vm.getHomeTorrentList();">
     <!-- **********************************************************************
              movie top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('movie')" ng-init="vm.getMovieTopInfo();">
+    <div ng-if="vm.getTorrentTypeEnabled('movie')">
         <div class="backdrop movie-backdrop" ng-show="vm.movieTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.MOVIE' | translate}}</div>
@@ -150,7 +150,8 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                <span class="h5"><a
+                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -169,7 +170,7 @@
                                     </div>
                                     <table class="table">
                                         <tr ng-repeat="nt in vm.movieNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
-                                            ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
+                                            ng-class="{'show-big': $index == 0, 'hide-more': $index >= 12}">
                                             <td>
                                                 <a class="newest-item-big" ui-sref="torrents.view({torrentId: nt._id})">
                                                     <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_300}}{{nt.resource_detail_info.backdrop_path}}"
@@ -220,7 +221,7 @@
     <!-- **********************************************************************
              tvserial top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('tvserial')" ng-init="vm.getTVTopInfo();">
+    <div ng-if="vm.getTorrentTypeEnabled('tvserial')">
         <div class="backdrop tv-backdrop" ng-show="vm.TVTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.TVSERIAL' | translate}}</div>
@@ -374,7 +375,8 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                <span class="h5"><a
+                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -393,7 +395,7 @@
                                     </div>
                                     <table class="table">
                                         <tr ng-repeat="nt in vm.TVNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
-                                            ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
+                                            ng-class="{'show-big': $index == 0, 'hide-more': $index >= 12}">
                                             <td>
                                                 <a class="newest-item-big" ui-sref="torrents.view({torrentId: nt._id})">
                                                     <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_300}}{{nt.resource_detail_info.backdrop_path}}"
@@ -447,7 +449,7 @@
     <!-- **********************************************************************
              music top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('music')" ng-init="vm.getMusicTopInfo();">
+    <div ng-if="vm.getTorrentTypeEnabled('music')">
         <div class="backdrop music-backdrop" ng-show="vm.musicTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.MUSIC' | translate}}</div>
@@ -548,7 +550,8 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                <span class="h5"><a
+                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -567,7 +570,7 @@
                                     </div>
                                     <table class="table">
                                         <tr ng-repeat="nm in vm.musicNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
-                                            ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 11 ? 'hide-more' : '']">
+                                            ng-class="{'show-big': $index == 0, 'hide-more': $index >= 11}">
                                             <td>
                                                 <a class="newest-item-big music-margin" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
@@ -626,7 +629,7 @@
     <!-- **********************************************************************
              sports top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('sports')" ng-init="vm.getSportsTopInfo();">
+    <div ng-if="vm.getTorrentTypeEnabled('sports')">
         <div class="backdrop sports-backdrop" ng-show="vm.sportsTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.SPORTS' | translate}}</div>
@@ -726,7 +729,8 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                <span class="h5"><a
+                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -745,9 +749,9 @@
                                     </div>
                                     <table class="table">
                                         <tr ng-repeat="nm in vm.sportsNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
-                                            ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
+                                            ng-class="{'show-big': $index == 0, 'hide-more': $index >= 12}">
                                             <td>
-                                                <a class="newest-item-big"  ui-sref="torrents.view({torrentId: nm._id})">
+                                                <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
                                                          ng-src="{{vm.TGI.getTorrentListTopImage(nm)}}"
                                                          alt="{{vm.TGI.getTorrentTitle(nm)}}">
@@ -797,7 +801,7 @@
     <!-- **********************************************************************
              variety top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('variety')" ng-init="vm.getVarietyTopInfo();">
+    <div ng-if="vm.getTorrentTypeEnabled('variety')">
         <div class="backdrop variety-backdrop" ng-show="vm.varietyTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.VARIETY' | translate}}</div>
@@ -897,7 +901,8 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                <span class="h5"><a
+                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -916,7 +921,7 @@
                                     </div>
                                     <table class="table">
                                         <tr ng-repeat="nm in vm.varietyNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
-                                            ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
+                                            ng-class="{'show-big': $index == 0, 'hide-more': $index >= 12}">
                                             <td>
                                                 <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
@@ -968,7 +973,7 @@
     <!-- **********************************************************************
              picture top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('picture')" ng-init="vm.getPictureTopInfo();">
+    <div ng-if="vm.getTorrentTypeEnabled('picture')">
         <div class="backdrop picture-backdrop" ng-show="vm.pictureTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.PICTURE' | translate}}</div>
@@ -1068,7 +1073,8 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                <span class="h5"><a
+                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -1087,7 +1093,7 @@
                                     </div>
                                     <table class="table">
                                         <tr ng-repeat="nm in vm.pictureNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
-                                            ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
+                                            ng-class="{'show-big': $index == 0, 'hide-more': $index >= 12}">
                                             <td>
                                                 <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
@@ -1139,7 +1145,7 @@
     <!-- **********************************************************************
              game top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('game')" ng-init="vm.getGameTopInfo();">
+    <div ng-if="vm.getTorrentTypeEnabled('game')">
         <div class="backdrop game-backdrop" ng-show="vm.gameTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.GAME' | translate}}</div>
@@ -1239,7 +1245,8 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                <span class="h5"><a
+                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -1258,7 +1265,7 @@
                                     </div>
                                     <table class="table">
                                         <tr ng-repeat="nm in vm.gameNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
-                                            ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
+                                            ng-class="{'show-big': $index == 0, 'hide-more': $index >= 12}">
                                             <td>
                                                 <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
@@ -1310,7 +1317,7 @@
     <!-- **********************************************************************
              software top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('software')" ng-init="vm.getSoftwareTopInfo();">
+    <div ng-if="vm.getTorrentTypeEnabled('software')">
         <div class="backdrop software-backdrop" ng-show="vm.softwareTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.SOFTWARE' | translate}}</div>
@@ -1410,7 +1417,8 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                <span class="h5"><a
+                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -1429,7 +1437,7 @@
                                     </div>
                                     <table class="table">
                                         <tr ng-repeat="nm in vm.softwareNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
-                                            ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
+                                            ng-class="{'show-big': $index == 0, 'hide-more': $index >= 12}">
                                             <td>
                                                 <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"
@@ -1481,7 +1489,7 @@
     <!-- **********************************************************************
              ebook top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('ebook')" ng-init="vm.getEbookTopInfo();">
+    <div ng-if="vm.getTorrentTypeEnabled('ebook')">
         <div class="backdrop ebook-backdrop" ng-show="vm.ebookTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.EBOOK' | translate}}</div>
@@ -1581,7 +1589,8 @@
                                     <div class="caption">
                                         <ul class="list-unstyled">
                                             <li class="text-long">
-                                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                <span class="h5"><a
+                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -1600,7 +1609,7 @@
                                     </div>
                                     <table class="table">
                                         <tr ng-repeat="nm in vm.ebookNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
-                                            ng-class="[$index > 0 ? 'hide-big' : 'show-big', $index >= 12 ? 'hide-more' : '']">
+                                            ng-class="{'show-big': $index == 0, 'hide-more': $index >= 12}">
                                             <td>
                                                 <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
                                                     <img class="img-responsive" torrent-logo="nm"

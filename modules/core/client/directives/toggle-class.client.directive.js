@@ -69,6 +69,7 @@
     return directive;
 
     function link(scope, element, attrs) {
+      element.addClass(attrs.baseClass);
       element.bind('mouseenter', function () {
         if (!element.hasClass(attrs.mouseEnterToggleClassGroup)) {
           element.addClass(attrs.mouseEnterToggleClassGroup);

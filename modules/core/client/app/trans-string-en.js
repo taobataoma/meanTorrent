@@ -71,7 +71,7 @@
 
     //HomeController & home views
     LOADING_TOP: 'Loading recommended info, please waiting...',
-    TOP_MOVIE_INFO_ERROR: 'Get movie top info failed',
+    TOP_TORRENTS_INFO_ERROR: 'Get top torrents list info failed',
     NEWEST_MOVIE_LIST: 'Newest Movie Torrents',
     NEWEST_TV_LIST: 'Newest TV Serial Torrents',
     NEWEST_MUSIC_LIST: 'Newest Music Torrents',

@@ -34,6 +34,7 @@ var traceConfig = config.meanTorrentConfig.trace;
 var scoreConfig = config.meanTorrentConfig.score;
 var thumbsUpScore = config.meanTorrentConfig.score.thumbsUpScore;
 var ircConfig = config.meanTorrentConfig.ircAnnounce;
+var itemsPerPageConfig = config.meanTorrentConfig.itemsPerPage;
 var vsprintf = require('sprintf-js').vsprintf;
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
@@ -1131,6 +1132,127 @@ exports.delete = function (req, res) {
       traceLogCreate(req, traceConfig.action.AdminTorrentDelete, {
         torrent: torrent._id
       });
+    }
+  });
+};
+
+/**
+ * getTorrentsHomeList
+ * @param req
+ * @param res
+ */
+exports.getTorrentsHomeList = function (req, res) {
+  var getOrderList = function (callback) {
+    var query = Torrent.aggregate([
+      {'$match': {torrent_status: 'reviewed', torrent_vip: false}},
+      {'$sort': {torrent_recommended: 1, orderedat: -1, createdat: -1}},
+      {
+        '$lookup': {
+          from: 'peers',
+          localField: '_id',
+          foreignField: 'torrent',
+          as: 't_peer'
+        }
+      },
+      {
+        '$addFields': {
+          'my_peers': {
+            '$filter': {
+              'input': '$t_peer',
+              'as': 'p',
+              'cond': {'$eq': ['$$p.user', req.user._id]}
+            }
+          }
+        }
+      },
+      {
+        '$project': {
+          't_peer': 0
+        }
+      },
+      {'$group': {_id: '$torrent_type', typeTorrents: {$push: '$$ROOT'}}},
+      {'$project': {'typeTorrents': {'$slice': ['$typeTorrents', itemsPerPageConfig.homeOrderTorrentListPerType]}}}
+    ]);
+
+    query.exec(function (err, orderList) {
+      if (err) {
+        callback(err, null);
+      } else {
+        Torrent.populate(orderList,
+          [
+            {path: 'typeTorrents.user', select: 'username displayName isVip', model: 'User'},
+            {path: 'typeTorrents.maker', select: 'name', model: 'Maker'}
+          ], function (err, items) {
+            if (err) {
+              return res.status(422).send({
+                message: errorHandler.getErrorMessage(err)
+              });
+            } else {
+              callback(null, items);
+            }
+          });
+      }
+    });
+  };
+
+  var getNewestList = function (callback) {
+    var query = Torrent.aggregate([
+      {'$match': {torrent_status: 'reviewed', torrent_vip: false}},
+      {'$sort': {createdat: -1}},
+      {
+        '$lookup': {
+          from: 'peers',
+          localField: '_id',
+          foreignField: 'torrent',
+          as: 't_peer'
+        }
+      },
+      {
+        '$addFields': {
+          'my_peers': {
+            '$filter': {
+              'input': '$t_peer',
+              'as': 'p',
+              'cond': {'$eq': ['$$p.user', req.user._id]}
+            }
+          }
+        }
+      },
+      {
+        '$project': {
+          't_peer': 0
+        }
+      },
+      {'$group': {_id: '$torrent_type', typeTorrents: {$push: '$$ROOT'}}},
+      {'$project': {'typeTorrents': {'$slice': ['$typeTorrents', itemsPerPageConfig.homeNewestTorrentListPerType]}}}
+    ]);
+
+    query.exec(function (err, newestList) {
+      if (err) {
+        callback(err, null);
+      } else {
+        Torrent.populate(newestList,
+          [
+            {path: 'typeTorrents.user', select: 'username displayName isVip', model: 'User'},
+            {path: 'typeTorrents.maker', select: 'name', model: 'Maker'}
+          ], function (err, items) {
+            if (err) {
+              return res.status(422).send({
+                message: errorHandler.getErrorMessage(err)
+              });
+            } else {
+              callback(null, items);
+            }
+          });
+      }
+    });
+  };
+
+  async.parallel([getOrderList, getNewestList], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({orderList: results[0], newestList: results[1]});
     }
   });
 };

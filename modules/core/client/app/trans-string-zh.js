@@ -71,7 +71,7 @@
 
     //HomeController & home views
     LOADING_TOP: '正在推荐资源，请稍候...',
-    TOP_MOVIE_INFO_ERROR: '获取电影Top列表失败',
+    TOP_TORRENTS_INFO_ERROR: '获取种子Top列表失败',
     NEWEST_MOVIE_LIST: '最新电影资源',
     NEWEST_TV_LIST: '最新电视剧资源',
     NEWEST_MUSIC_LIST: '最新音乐资源',

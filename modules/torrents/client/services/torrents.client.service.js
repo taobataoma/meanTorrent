@@ -120,6 +120,10 @@
         params: {
           torrentId: '@_id'
         }
+      },
+      getHomeTorrent: {
+        method: 'GET',
+        url: '/api/torrents/homeList'
       }
     });
 

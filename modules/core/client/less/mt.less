@@ -122,6 +122,7 @@ body {
         max-height: 400px;
     }
 }
+
 .backdrop {
     background-image: url("http://image.tmdb.org/t/p/w1280/5pAGnkFYSsFJ99ZxDIYnhQbQFXs.jpg");
     background-position: center;
@@ -553,7 +554,7 @@ body {
         right: 15px;
     }
     .hide-more {
-        @media (max-width: @screen-lg-min) {
+        @media (max-width: @screen-md-max) {
             display: none;
         }
     }
@@ -567,10 +568,10 @@ body {
         tr {
             &.show-big {
                 .newest-item-big {
-                    display: block;
+                    display: block !important;
                 }
                 .newest-item-small {
-                    display: none;
+                    display: none !important;;
                 }
             }
             &.hide-big {
@@ -1638,7 +1639,6 @@ body {
     margin: 20px;
     min-height: 200px;
 }
-
 
 //popup overlay----------------------------------------------
 /* csslint ignore:start */
