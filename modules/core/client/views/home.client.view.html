@@ -1,8 +1,8 @@
-<section ng-controller="HomeController as vm" ng-init="vm.getWarningInfo(); vm.getHomeTorrentList();">
+<section ng-controller="HomeController as vm" ng-init="vm.getWarningInfo();">
     <!-- **********************************************************************
              movie top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('movie')">
+    <div ng-if="vm.getTorrentTypeEnabled('movie')" ng-init="vm.getMovieTopInfo();">
         <div class="backdrop movie-backdrop" ng-show="vm.movieTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.MOVIE' | translate}}</div>
@@ -221,7 +221,7 @@
     <!-- **********************************************************************
              tvserial top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('tvserial')">
+    <div ng-if="vm.getTorrentTypeEnabled('tvserial')" ng-init="vm.getTVTopInfo();">
         <div class="backdrop tv-backdrop" ng-show="vm.TVTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.TVSERIAL' | translate}}</div>
@@ -449,7 +449,7 @@
     <!-- **********************************************************************
              music top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('music')">
+    <div ng-if="vm.getTorrentTypeEnabled('music')" ng-init="vm.getMusicTopInfo();">
         <div class="backdrop music-backdrop" ng-show="vm.musicTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.MUSIC' | translate}}</div>
@@ -629,7 +629,7 @@
     <!-- **********************************************************************
              sports top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('sports')">
+    <div ng-if="vm.getTorrentTypeEnabled('sports')" ng-init="vm.getSportsTopInfo();">
         <div class="backdrop sports-backdrop" ng-show="vm.sportsTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.SPORTS' | translate}}</div>
@@ -801,7 +801,7 @@
     <!-- **********************************************************************
              variety top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('variety')">
+    <div ng-if="vm.getTorrentTypeEnabled('variety')" ng-init="vm.getVarietyTopInfo();">
         <div class="backdrop variety-backdrop" ng-show="vm.varietyTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.VARIETY' | translate}}</div>
@@ -973,7 +973,7 @@
     <!-- **********************************************************************
              picture top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('picture')">
+    <div ng-if="vm.getTorrentTypeEnabled('picture')" ng-init="vm.getPictureTopInfo();">
         <div class="backdrop picture-backdrop" ng-show="vm.pictureTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.PICTURE' | translate}}</div>
@@ -1145,7 +1145,7 @@
     <!-- **********************************************************************
              game top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('game')">
+    <div ng-if="vm.getTorrentTypeEnabled('game')" ng-init="vm.getGameTopInfo();">
         <div class="backdrop game-backdrop" ng-show="vm.gameTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.GAME' | translate}}</div>
@@ -1317,7 +1317,7 @@
     <!-- **********************************************************************
              software top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('software')">
+    <div ng-if="vm.getTorrentTypeEnabled('software')" ng-init="vm.getSoftwareTopInfo();">
         <div class="backdrop software-backdrop" ng-show="vm.softwareTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.SOFTWARE' | translate}}</div>
@@ -1489,7 +1489,7 @@
     <!-- **********************************************************************
              ebook top list
     *********************************************************************** -->
-    <div ng-if="vm.getTorrentTypeEnabled('ebook')">
+    <div ng-if="vm.getTorrentTypeEnabled('ebook')" ng-init="vm.getEbookTopInfo();">
         <div class="backdrop ebook-backdrop" ng-show="vm.ebookTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.EBOOK' | translate}}</div>
