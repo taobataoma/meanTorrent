@@ -1,15 +1,15 @@
 <section ng-controller="ScoreController as vm" ng-init="vm.init();">
     <div class="margin-top-40">
         <div class="text-center">
-            <span>{{ 'SCORE.CURRENT_SCORE' | translate }}</span> <span class="curr-score">{{ vm.scoreLevelData.score }}</span> <span
-                score-level="vm.scoreLevelData.currLevel"></span>
+            <span>{{ 'SCORE.CURRENT_SCORE' | translate }}</span> <span class="curr-score">{{ vm.scoreLevelData.score | number: 2}}</span> <span
+                score-level-curr="vm.user"></span>
         </div>
 
         <div class="row margin-top-30">
             <div class="col-sm-8 col-sm-offset-2">
                 <div>
-                    <span>{{ vm.scoreLevelData.currLevelValue }}</span>
-                    <span class="pull-right">{{ vm.scoreLevelData.nextLevelValue }}</span>
+                    <span>{{ vm.scoreLevelData.currLevelValue | number: 2 }}</span>
+                    <span class="pull-right">{{ vm.scoreLevelData.nextLevelValue | number: 2 }}</span>
                 </div>
                 <div class="progress score-progress">
                     <div class="progress-bar progress-bar-success" style="width: {{ vm.scoreLevelData.currPercentString }}">
@@ -17,8 +17,8 @@
                     </div>
                 </div>
                 <div>
-                    <span class="score-level-default" score-level="vm.scoreLevelData.currLevel"></span>
-                    <span class="score-level-default pull-right" score-level="vm.scoreLevelData.nextLevel"></span>
+                    <span class="score-level-default" score-level-curr="vm.user"></span>
+                    <span class="score-level-default pull-right" score-level-next="vm.user"></span>
                 </div>
             </div>
         </div>

@@ -105,7 +105,7 @@
 
                 <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
                 <dd class="h-line">
-                    <span>{{ vm.user.score }}</span> <span score-level="vm.scoreLevelData.currLevel"></span>
+                    <span>{{ vm.user.score | number: 2 }}</span> <span score-level-curr="vm.user"></span>
 
                     <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
                         <button class="btn btn-default btn-xs btn-width-100"

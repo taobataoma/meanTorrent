@@ -57,7 +57,7 @@
             <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="badge menu-badge badge_danger" ng-show="vm.user.hnr_warning>0">{{vm.user.hnr_warning}}</span>
           </li>
           <li ui-sref-active="active" ng-repeat="item in vm.scoreMenu.items" class="menu-parent">
-            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="menu-score" score-level="vm.scoreLevelData.currLevel"></span>
+            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="menu-score" score-level-curr="vm.user"></span>
           </li>
           <li ui-sref-active="active" ng-repeat="item in vm.inviteMenu.items" class="menu-parent">
             <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="badge menu-badge badge_info">{{vm.countMyInvitations}}</span>

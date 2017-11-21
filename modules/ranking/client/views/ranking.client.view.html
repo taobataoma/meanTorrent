@@ -51,7 +51,7 @@
                             <td class="text-center">{{user.downloaded | bytes:2}}</td>
                             <td class="text-center"><span
                                     ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
-                            <td class="text-center">{{user.score}}</td>
+                            <td class="text-center">{{user.score | number: 2}}</td>
                             <td class="text-center">{{user.seeded}}</td>
                             <td class="text-center">{{user.leeched}}</td>
                             <td class="text-center">{{user.finished}}</td>
@@ -102,7 +102,7 @@
                             <td class="text-center">{{user.uploaded | bytes:2}}</td>
                             <td class="text-center"><span
                                     ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
-                            <td class="text-center">{{user.score}}</td>
+                            <td class="text-center">{{user.score | number: 2}}</td>
                             <td class="text-center">{{user.seeded}}</td>
                             <td class="text-center">{{user.leeched}}</td>
                             <td class="text-center">{{user.finished}}</td>
@@ -153,7 +153,7 @@
                                     ng-class="user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ user.ratio | ratio}}</span></td>
                             <td class="text-center">{{user.uploaded | bytes:2}}</td>
                             <td class="text-center">{{user.downloaded | bytes:2}}</td>
-                            <td class="text-center">{{user.score}}</td>
+                            <td class="text-center">{{user.score | number: 2}}</td>
                             <td class="text-center">{{user.seeded}}</td>
                             <td class="text-center">{{user.leeched}}</td>
                             <td class="text-center">{{user.finished}}</td>
@@ -200,7 +200,7 @@
                                 <span vip-flag="user"></span>
                                 <!--<span message-to="user" to-class="message-to-icon"></span>-->
                             </td>
-                            <td class="text-right ranking-active-col">{{user.score}} <span score-level="user"></span></td>
+                            <td class="text-right ranking-active-col">{{user.score | number: 2}} <span score-level-curr="user"></span></td>
                             <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.uploaded | bytes:2}}</td>
                             <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode">{{user.downloaded | bytes:2}}</td>
                             <td class="text-center" ng-if="vm.announce.privateTorrentCmsMode"><span
