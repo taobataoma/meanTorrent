@@ -18,7 +18,6 @@
     function link(scope, element, attrs) {
       scope.$watch(attrs.scoreLevelCurr, function (u) {
         if (u) {
-          console.log(u);
           var scoreLevelData = ScoreLevelService.getScoreLevelJson(u.score);
 
           var l = 'L' + (scoreLevelData ? scoreLevelData.currLevel : 0);
@@ -48,7 +47,6 @@
     function link(scope, element, attrs) {
       scope.$watch(attrs.scoreLevelNext, function (u) {
         if (u) {
-          console.log(u);
           var scoreLevelData = ScoreLevelService.getScoreLevelJson(u.score);
 
           var l = 'L' + (scoreLevelData ? scoreLevelData.nextLevel : 0);
