@@ -107,6 +107,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 - Users follow(friend) support.
 - Poll type topics support in forum.
 - Emoji on chat room.
+- More score get methods.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - IRC chat
 - Business cooperation support(like play box? NAS? etc.)
