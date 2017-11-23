@@ -64,6 +64,10 @@ var CompleteSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  refreshat: {
+    type: Date,
+    default: Date.now
   }
 });
 
@@ -71,15 +75,6 @@ var CompleteSchema = new Schema({
  * Hook a pre save method
  */
 CompleteSchema.pre('save', function (next) {
-  countRatio(this);
-  countSeedDay(this);
-  next();
-});
-
-/**
- * Hook a pre update method
- */
-CompleteSchema.pre('update', function (next) {
   countRatio(this);
   countSeedDay(this);
   next();
@@ -106,6 +101,14 @@ function countRatio(t) {
 function countSeedDay(t) {
   t.total_seed_day = Math.floor(t.total_seed_time / (60 * 60 * 1000 * 24));
 }
+
+/**
+ * globalUpdateMethod
+ */
+CompleteSchema.methods.globalUpdateMethod = function () {
+  this.refreshat = Date.now();
+  this.save();
+};
 
 /**
  * countHnRWarning

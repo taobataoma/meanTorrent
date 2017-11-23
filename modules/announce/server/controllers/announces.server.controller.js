@@ -503,6 +503,10 @@ exports.announce = function (req, res) {
         if (req.completeTorrent) {
           req.completeTorrent.countHnRWarning(req.passkeyuser);
         }
+        //refresh complated data
+        if (req.completeTorrent) {
+          req.completeTorrent.globalUpdateMethod();
+        }
 
         //create trace log
         if (curru > 0 || currd > 0) {

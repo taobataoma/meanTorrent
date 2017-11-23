@@ -210,14 +210,6 @@ TorrentSchema.pre('save', function (next) {
 });
 
 /**
- * Hook a pre save method
- */
-TorrentSchema.pre('update', function (next) {
-  writeIsSaling(this);
-  next();
-});
-
-/**
  * countRatio
  * @param user
  */
@@ -240,9 +232,8 @@ function writeIsSaling(torrent) {
  * globalUpdateMethod
  */
 TorrentSchema.methods.globalUpdateMethod = function () {
-  this.update({
-    $set: {refreshat: Date.now()}
-  }).exec();
+  this.refreshat = Date.now();
+  this.save();
 };
 
 TorrentSchema.index({user: -1, createdat: -1});

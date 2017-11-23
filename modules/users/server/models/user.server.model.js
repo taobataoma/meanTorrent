@@ -266,17 +266,6 @@ UserSchema.pre('save', function (next) {
 });
 
 /**
- * Hook a pre save method to hash the password
- */
-UserSchema.pre('update', function (next) {
-  countRatio(this);
-  updateVipFlag(this);
-  updateOperAdminFlag(this);
-
-  next();
-});
-
-/**
  * countRatio
  * @param user
  */
@@ -379,9 +368,8 @@ UserSchema.methods.addLeechedIp = function (ip) {
  * globalUpdateMethod
  */
 UserSchema.methods.globalUpdateMethod = function () {
-  this.update({
-    $set: {refreshat: Date.now()}
-  }).exec();
+  this.refreshat = Date.now();
+  this.save();
 };
 
 /**
