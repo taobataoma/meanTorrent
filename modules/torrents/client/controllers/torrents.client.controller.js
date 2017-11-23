@@ -320,20 +320,6 @@
     };
 
     /**
-     * getSaleTypeDesc
-     */
-    vm.getSaleTypeDesc = function (item) {
-      var desc = '';
-
-      angular.forEach(vm.torrentSalesType.value, function (st) {
-        if (st.name === item.torrent_sale_status) {
-          desc = st.desc;
-        }
-      });
-      return desc;
-    };
-
-    /**
      * onMoreTagsClicked
      */
     vm.onMoreTagsClicked = function () {

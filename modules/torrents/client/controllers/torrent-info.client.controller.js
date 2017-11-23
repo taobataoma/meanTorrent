@@ -869,20 +869,6 @@
     };
 
     /**
-     * getSaleTypeDesc
-     */
-    vm.getSaleTypeDesc = function () {
-      var desc = '';
-
-      angular.forEach(vm.torrentSalesType.value, function (st) {
-        if (st.name === vm.torrentLocalInfo.torrent_sale_status) {
-          desc = st.desc;
-        }
-      });
-      return desc;
-    };
-
-    /**
      * deleteTorrent
      */
     vm.deleteTorrent = function () {

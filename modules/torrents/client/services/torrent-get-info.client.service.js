@@ -12,6 +12,7 @@
   function TorrentGetInfoServices(MeanTorrentConfig, $state) {
     var voteTitleConfig = MeanTorrentConfig.meanTorrentConfig.voteTitle;
     var tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+    var torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
 
     var service = {
       getTorrentTitle: getTorrentTitle,
@@ -26,7 +27,8 @@
       getTorrentLanguage: getTorrentLanguage,
       getTorrentOverview: getTorrentOverview,
 
-      openTorrentDetailInfo: openTorrentDetailInfo
+      openTorrentDetailInfo: openTorrentDetailInfo,
+      getTorrentSaleTypeDesc: getTorrentSaleTypeDesc
     };
 
     return service;
@@ -258,5 +260,20 @@
     function openTorrentDetailInfo(id) {
       $state.go('torrents.view', {torrentId: id});
     }
+
+    /**
+     * getTorrentSaleTypeDesc
+     */
+    function getTorrentSaleTypeDesc(item) {
+      var desc = '';
+
+      angular.forEach(torrentSalesType.value, function (st) {
+        if (st.name === item.torrent_sale_status) {
+          desc = st.desc;
+        }
+      });
+      return desc;
+    }
+
   }
 }());

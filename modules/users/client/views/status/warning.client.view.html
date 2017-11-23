@@ -86,7 +86,7 @@
                                                 {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent.torrent_recommended.toUpperCase() | translate}}
                                             </span>
                                             <span class="label label-sale" ng-if="item.torrent.isSaling"
-                                                  title="{{vm.getSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
+                                                  title="{{vm.TGI.getTorrentSaleTypeDesc(item.torrent);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
                                                   ng-click="$event.stopPropagation();"
                                                   ng-class="{'label-default': !item.torrent.isSaling, 'label-success': item.torrent.isSaling}">
                                                     {{item.torrent.torrent_sale_status}} {{item.torrent.torrent_sale_expires | unlife}}

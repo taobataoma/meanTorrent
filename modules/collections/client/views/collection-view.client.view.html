@@ -137,7 +137,7 @@
                                                     {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent_recommended.toUpperCase() | translate}}
                                                 </span>
                                                 <span class="label label-sale" ng-if="item.isSaling"
-                                                      title="{{vm.getSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
+                                                      title="{{vm.TGI.getTorrentSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
                                                       ng-click="$event.stopPropagation();"
                                                       ng-class="{'label-default': !item.isSaling, 'label-success': item.isSaling}">
                                                         {{item.torrent_sale_status}} {{item.torrent_sale_expires | unlife}}
