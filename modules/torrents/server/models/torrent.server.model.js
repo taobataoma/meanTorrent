@@ -231,9 +231,11 @@ function writeIsSaling(torrent) {
 /**
  * globalUpdateMethod
  */
-TorrentSchema.methods.globalUpdateMethod = function () {
+TorrentSchema.methods.globalUpdateMethod = function (cb) {
   this.refreshat = Date.now();
-  this.save();
+  this.save(function (err, t) {
+    if (cb) cb(t || this);
+  });
 };
 
 TorrentSchema.index({user: -1, createdat: -1});

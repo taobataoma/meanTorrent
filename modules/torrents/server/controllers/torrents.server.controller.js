@@ -1496,9 +1496,10 @@ function globalUpdateTorrent(torrents, cb) {
       Torrent.findById(t._id).exec(function (err, ft) {
         if (err)
           return callback(ts);
-        ft.globalUpdateMethod();
-        ts[i] = ft;
-        callback(null, ts);
+        ft.globalUpdateMethod(function(sft){
+          ts[i] = sft;
+          callback(null, ts);
+        });
       });
     };
   }
