@@ -37,10 +37,6 @@ var CompleteSchema = new Schema({
     type: Number,
     default: 0
   },
-  total_seed_day: {
-    type: Number,
-    default: 0
-  },
   complete: {
     type: Boolean,
     default: false
@@ -76,7 +72,6 @@ var CompleteSchema = new Schema({
  */
 CompleteSchema.pre('save', function (next) {
   countRatio(this);
-  countSeedDay(this);
   next();
 });
 
@@ -92,14 +87,6 @@ function countRatio(t) {
   } else {
     t.total_ratio = Math.round((t.total_uploaded / t.total_downloaded) * 100) / 100;
   }
-}
-
-/**
- * countSeedDay
- * @param t
- */
-function countSeedDay(t) {
-  t.total_seed_day = Math.floor(t.total_seed_time / (60 * 60 * 1000 * 24));
 }
 
 /**

@@ -71,4 +71,38 @@
       }
     };
   }
+
+  angular.module('core')
+    .filter('seedlife', seedlife);
+
+  seedlife.$inject = ['moment'];
+
+  function seedlife(moment) {
+    return function (stime) {
+      var d = moment(moment()+stime).diff(moment(), 'days');
+      var h = moment(moment()+stime).diff(moment(), 'hours');
+      var m = moment(moment()+stime).diff(moment(), 'minutes');
+      var s = moment(moment()+stime).diff(moment(), 'seconds');
+
+      if (!stime) {
+        d = 0;
+        h = 0;
+        m = 0;
+        s = 0;
+      }
+
+      if (d > 0) {
+        h = h - d * 24;
+        return d + 'd' + h + 'h';
+      } else if (h > 0) {
+        m = m - h * 60;
+        return h + 'h' + m + 'm';
+      } else if (m > 0) {
+        s = s - m * 60;
+        return m + 'm' + s + 's';
+      } else {
+        return s + 's';
+      }
+    };
+  }
 }());
