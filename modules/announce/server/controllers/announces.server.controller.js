@@ -363,9 +363,6 @@ exports.announce = function (req, res) {
       if (event(query.event) === EVENT_STARTED) {
         mtDebug.debugGreen('---------------EVENT_STARTED----------------');
 
-        //active torrent update method to update some fields value
-        req.torrent.globalUpdateMethod();
-
         if (getSelfLeecherCount() >= 1 && !req.seeder) {
           mtDebug.debugGreen(req.selfpeer);
           done(180);
@@ -394,9 +391,6 @@ exports.announce = function (req, res) {
       if (event(query.event) === EVENT_STOPPED) {
         mtDebug.debugGreen('---------------EVENT_STOPPED----------------');
 
-        //active torrent update method to update some fields value
-        req.torrent.globalUpdateMethod();
-
         if (req.currentPeer !== undefined) {
           req.selfpeer.splice(req.selfpeer.indexOf(req.currentPeer), 1);
           removePeer(req.currentPeer);
@@ -414,9 +408,6 @@ exports.announce = function (req, res) {
     function (done) {
       if (event(query.event) === EVENT_COMPLETED) {
         mtDebug.debugGreen('---------------EVENT_COMPLETED----------------');
-
-        //active torrent update method to update some fields value
-        req.torrent.globalUpdateMethod();
 
         if (req.currentPeer === undefined) {
           createCurrentPeer();
@@ -453,6 +444,10 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA----------------');
+      //refresh user`s vip status
+      req.passkeyuser.globalUpdateMethod();
+      //active torrent update method to update some fields value
+      req.torrent.globalUpdateMethod();
 
       var udr = getUDRatio();
 
@@ -472,7 +467,7 @@ exports.announce = function (req, res) {
             $inc: {uploaded: u, downloaded: d}
           }).exec();
 
-          //write complete data to completeTorrent and refresh complated data
+          //write complete data to completeTorrent and refresh completed ratio
           if (req.completeTorrent) {
             req.completeTorrent.update({
               $inc: {
