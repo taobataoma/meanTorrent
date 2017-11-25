@@ -444,10 +444,12 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA----------------');
-      //refresh user`s vip status
+      //refresh user`s vip status and ratio
       req.passkeyuser.globalUpdateMethod();
-      //active torrent update method to update some fields value
-      req.torrent.globalUpdateMethod();
+      //active torrent update method to update torrent isSaling status
+      if (req.torrent.isSaling) {
+        req.torrent.globalUpdateMethod();
+      }
 
       var udr = getUDRatio();
 
