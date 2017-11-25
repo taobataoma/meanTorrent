@@ -472,7 +472,7 @@ exports.announce = function (req, res) {
             $inc: {uploaded: u, downloaded: d}
           }).exec();
 
-          //write complete data to completeTorrent
+          //write complete data to completeTorrent and refresh complated data
           if (req.completeTorrent) {
             req.completeTorrent.update({
               $inc: {
@@ -480,6 +480,7 @@ exports.announce = function (req, res) {
                 total_downloaded: currd
               }
             }).exec();
+            req.completeTorrent.globalUpdateMethod();
           }
 
           //write peer speed
@@ -502,10 +503,6 @@ exports.announce = function (req, res) {
         //update warning status
         if (req.completeTorrent) {
           req.completeTorrent.countHnRWarning(req.passkeyuser);
-        }
-        //refresh complated data
-        if (req.completeTorrent) {
-          req.completeTorrent.globalUpdateMethod();
         }
 
         //create trace log
