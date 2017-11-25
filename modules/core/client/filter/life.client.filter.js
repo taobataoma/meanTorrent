@@ -79,10 +79,10 @@
 
   function seedlife(moment) {
     return function (stime) {
-      var d = moment(moment()+stime).diff(moment(), 'days');
-      var h = moment(moment()+stime).diff(moment(), 'hours');
-      var m = moment(moment()+stime).diff(moment(), 'minutes');
-      var s = moment(moment()+stime).diff(moment(), 'seconds');
+      var d = moment(moment() + stime).diff(moment(), 'days');
+      var h = moment(moment() + stime).diff(moment(), 'hours');
+      var m = moment(moment() + stime).diff(moment(), 'minutes');
+      var s = moment(moment() + stime).diff(moment(), 'seconds');
 
       if (!stime) {
         d = 0;

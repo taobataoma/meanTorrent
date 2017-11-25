@@ -1468,7 +1468,9 @@ exports.list = function (req, res) {
                 message: errorHandler.getErrorMessage(err)
               });
             } else {
-              callback(null, ts);
+              globalUpdateTorrent(ts, function (nts) {
+                callback(null, nts);
+              });
             }
           });
       }
@@ -1483,6 +1485,39 @@ exports.list = function (req, res) {
     }
   });
 };
+
+/**
+ * globalUpdateTorrent
+ * @param torrents
+ */
+function globalUpdateTorrent(torrents, cb) {
+  function updateFunc(ts, t, i) {
+    return function (callback) {
+      Torrent.findById(t._id).exec(function (err, ft) {
+        if (err)
+          return callback(ts);
+        ft.globalUpdateMethod();
+        ts[i] = ft;
+        callback(null, ts);
+      });
+    };
+  }
+
+  var funcs = [];
+  torrents.forEach(function (t, i) {
+    if (t.isSaling) {
+      funcs.push(updateFunc(torrents, t, i));
+    }
+  });
+
+  if (funcs.length <= 0) {
+    cb(torrents);
+  } else {
+    async.parallel(funcs, function (err, result) {
+      cb(result[result.length - 1]);
+    });
+  }
+}
 
 /**
  * siteInfo - get site torrent info, seeders/leechers/torrents count/users etc.
@@ -1673,7 +1708,7 @@ exports.getLeecherUsers = function (req, res) {
     limit = parseInt(req.query.limit, 10);
   }
 
-  var countSeederUsers = function (callback) {
+  var countLeecherUsers = function (callback) {
     Peer.count({
       torrent: req.torrent._id,
       peer_status: PEERSTATE_LEECHER
@@ -1687,7 +1722,7 @@ exports.getLeecherUsers = function (req, res) {
 
   };
 
-  var findSeederUsers = function (callback) {
+  var findLeecherUsers = function (callback) {
     Peer.find({
       torrent: req.torrent._id,
       peer_status: PEERSTATE_LEECHER
@@ -1707,7 +1742,7 @@ exports.getLeecherUsers = function (req, res) {
       });
   };
 
-  async.parallel([countSeederUsers, findSeederUsers], function (err, results) {
+  async.parallel([countLeecherUsers, findLeecherUsers], function (err, results) {
     if (err) {
       return res.status(422).send(err);
     } else {
