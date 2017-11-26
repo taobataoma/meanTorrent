@@ -72,7 +72,7 @@
     /**
      * init
      */
-    vm.init = function(){
+    vm.init = function () {
       vm.getMessageList();
       $interval(vm.getMessageList, vm.messageConfig.checkUnreadInterval);
     };

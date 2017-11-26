@@ -30,9 +30,10 @@
           var scTop = 0;
 
           angular.element($window).bind('scroll', function (e) {
-            var shTop = angular.element('#' + attrs.upToTop).prop('offsetTop') - 60;
+            var eleTop = angular.element('#' + attrs.upToTop).prop('offsetTop');
+            var shTop = eleTop + (attrs.hasOwnProperty('offset') ? parseInt(attrs.offset, 10) : 0);
 
-            if ($(window).scrollTop() > shTop) {
+            if ($(window).scrollTop() > eleTop) {
               element.css('display', 'block');
             } else {
               element.css('display', 'none');
