@@ -6,10 +6,10 @@
     .controller('MessageController', MessageController);
 
   MessageController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$filter', 'NotifycationService', '$stateParams', 'MessagesService',
-    'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope', 'AdminMessagesService', 'SideOverlay'];
+    'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope', 'AdminMessagesService', 'SideOverlay', '$interval'];
 
   function MessageController($scope, $state, $translate, $timeout, Authentication, $filter, NotifycationService, $stateParams, MessagesService,
-                             MeanTorrentConfig, ModalConfirmService, marked, $rootScope, AdminMessagesService, SideOverlay) {
+                             MeanTorrentConfig, ModalConfirmService, marked, $rootScope, AdminMessagesService, SideOverlay, $interval) {
     var vm = this;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.user = Authentication.user;
@@ -70,6 +70,14 @@
     };
 
     /**
+     * init
+     */
+    vm.init = function(){
+      vm.getMessageList();
+      $interval(vm.getMessageList, vm.messageConfig.checkUnreadInterval);
+    };
+
+    /**
      * getMessageList
      */
     vm.getMessageList = function () {
@@ -77,6 +85,8 @@
         vm.messages = data;
         vm.buildPager();
       });
+
+      vm.getCountUnread();
     };
 
     /**
