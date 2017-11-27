@@ -198,12 +198,20 @@ exports.upload = function (req, res) {
           reject(message);
         } else {
           if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
-            if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
-              mtDebug.debugGreen(torrent.metadata.announce);
-              message = 'ANNOUNCE_URL_ERROR';
+            //if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
+            //  mtDebug.debugGreen(torrent.metadata.announce);
+            //  message = 'ANNOUNCE_URL_ERROR';
+            //
+            //  reject(message);
+            //}
 
-              reject(message);
-            }
+            //force change announce url to config value
+            var announce = config.meanTorrentConfig.announce.url;
+            torrent.metadata.announce = announce;
+
+            var cws = fs.createWriteStream(newfile);
+            cws.write(benc.encode(torrent.metadata));
+            cws.end();
           }
           torrentinfo = torrent.metadata;
           torrentinfo.info_hash = torrent.infoHash();
@@ -1302,7 +1310,7 @@ exports.list = function (req, res) {
     release = req.query.torrent_release;
   }
   if (req.query.torrent_hnr !== undefined) {
-    hnr = (req.query.torrent_hnr ===  'true');
+    hnr = (req.query.torrent_hnr === 'true');
   }
   if (req.query.torrent_vip !== undefined) {
     vip = (req.query.torrent_vip === 'true');
