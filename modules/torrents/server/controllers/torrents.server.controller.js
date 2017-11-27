@@ -1270,7 +1270,7 @@ exports.list = function (req, res) {
   var stype = 'movie';
   var newest = false;
   var hnr = false;
-  var vip = undefined;
+  var vip = false;
   var release = undefined;
   var userid = undefined;
   var maker = undefined;
@@ -1302,10 +1302,10 @@ exports.list = function (req, res) {
     release = req.query.torrent_release;
   }
   if (req.query.torrent_hnr !== undefined) {
-    hnr = req.query.torrent_hnr;
+    hnr = (req.query.torrent_hnr ===  'true');
   }
   if (req.query.torrent_vip !== undefined) {
-    vip = req.query.torrent_vip;
+    vip = (req.query.torrent_vip === 'true');
   }
   if (req.query.newest !== undefined) {
     newest = (req.query.newest === 'true');
@@ -1351,12 +1351,12 @@ exports.list = function (req, res) {
   if (stype !== 'all') {
     condition.torrent_type = stype;
   }
-  if (hnr === 'true') {
+  if (hnr === true) {
     condition.torrent_hnr = true;
   }
-  if (vip === 'true') {
+  if (vip === true) {
     condition.torrent_vip = true;
-  } else if (vip === undefined) {
+  } else {
     condition.torrent_vip = false;
   }
 

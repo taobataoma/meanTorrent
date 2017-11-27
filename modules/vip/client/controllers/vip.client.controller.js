@@ -150,15 +150,6 @@
      * @param callback
      */
     vm.getVIPTorrents = function (p, callback) {
-      console.log({
-        skip: (p - 1) * vm.itemsPerPage,
-        limit: vm.itemsPerPage,
-        sort: vm.sort,
-        torrent_type: vm.vipTorrentType,
-        torrent_status: 'reviewed',
-        torrent_vip: true,
-        keys: vm.search
-      });
       TorrentsService.get({
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage,

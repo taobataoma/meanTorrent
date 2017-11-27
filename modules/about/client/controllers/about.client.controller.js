@@ -52,7 +52,7 @@
      * @param callback
      */
     vm.figureOutItemsToDisplay = function (callback) {
-      vm.getVIPTorrents(vm.currentPage, function (items) {
+      vm.getMakerTorrents(vm.currentPage, function (items) {
         vm.filterLength = items.total;
         vm.pagedItems = items.rows;
 
@@ -153,11 +153,11 @@
     };
 
     /**
-     * getVIPTorrents
+     * getMakerTorrents
      * @param p
      * @param callback
      */
-    vm.getVIPTorrents = function (p, callback) {
+    vm.getMakerTorrents = function (p, callback) {
       TorrentsService.get({
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage,
