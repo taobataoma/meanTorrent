@@ -44,7 +44,8 @@ const FAILURE_REASONS = {
   170: 'your account is banned',
   171: 'your account is inactive',
   172: 'your client is not allowed, here is the blacklist: ' + config.meanTorrentConfig.announce.clientBlackListUrl,
-  173: 'this torrent is only for VIP members',
+  173: 'this torrent status is not reviewed by administrators, try again later',
+  174: 'this torrent is only for VIP members',
 
   180: 'You already are downloading the same torrent. You may only leech from one location at a time',
   181: 'You cannot seed the same torrent from more than 3 locations',
@@ -256,8 +257,10 @@ exports.announce = function (req, res) {
             done(160);
           } else if (!t) {
             done(161);
-          } else if (t.torrent_vip && !req.passkeyuser.isVip) {
+          } else if (t.torrent_status === 'new') {
             done(173);
+          } else if (t.torrent_vip && !req.passkeyuser.isVip) {
+            done(174);
           } else {
             req.torrent = t;
 
