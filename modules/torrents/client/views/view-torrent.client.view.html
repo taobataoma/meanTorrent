@@ -169,8 +169,9 @@
 
                             <div ng-if="vm.torrentLocalInfo.resource_detail_info.id">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>
-                                <dd class="h-line"><a href="{{vm.tmdbConfig.tmdbMovieLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.id}}"
-                                                      target="_blank">{{vm.tmdbConfig.tmdbMovieLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.id}}</a>
+                                <dd class="h-line">
+                                    <a href="{{vm.torrentLocalInfo.torrent_type=='movie' ? vm.tmdbConfig.tmdbMovieLinkUrl : vm.tmdbConfig.tmdbTvserialLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.id}}"
+                                       target="_blank">{{vm.torrentLocalInfo.torrent_type=='movie' ? vm.tmdbConfig.tmdbMovieLinkUrl : vm.tmdbConfig.tmdbTvserialLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.id}}</a>
                                 </dd>
                             </div>
 
@@ -750,7 +751,8 @@
                 </table>
             </div>
 
-            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.peerItemsPerPage" total-items="vm.seederFilterLength" ng-model="vm.currentSeederPage"
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.peerItemsPerPage" total-items="vm.seederFilterLength"
+                ng-model="vm.currentSeederPage"
                 ng-change="vm.seederPageChanged()"
                 first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
                 next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
@@ -797,7 +799,8 @@
                 </table>
             </div>
 
-            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.peerItemsPerPage" total-items="vm.leecherFilterLength" ng-model="vm.currentLeecherPage"
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.peerItemsPerPage" total-items="vm.leecherFilterLength"
+                ng-model="vm.currentLeecherPage"
                 ng-change="vm.leecherPageChanged()"
                 first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
                 next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
