@@ -107,6 +107,8 @@ and [AngularJS](http://angularjs.org/) based applications.
 - Users follow(friend) support.
 - Poll type topics support in forum.
 - Emoji on chat room.
+- View all files of torrent.
+- Request system
 - More score get methods.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - IRC chat
