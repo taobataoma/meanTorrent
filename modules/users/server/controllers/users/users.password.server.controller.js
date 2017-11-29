@@ -196,12 +196,12 @@ exports.reset = function (req, res, next) {
             });
           } else {
             return res.status(422).send({
-              message: 'Passwords do not match'
+              message: 'SERVER.PASSWORDS_DO_NOT_MATCH'
             });
           }
         } else {
           return res.status(400).send({
-            message: 'Password reset token is invalid or has expired.'
+            message: 'SERVER.RESET_TOKEN_INVALID'
           });
         }
       });

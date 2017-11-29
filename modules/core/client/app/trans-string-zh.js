@@ -232,12 +232,14 @@
       VERIFY_PASSWORD: '再输入一次新密码',
       VP_REQUIRED: '验证新密码不能为空.',
       NP_VP_NOTMATCH: '两次输入的密码不一致.',
-      BTN_UPDATE_PASSWORD: '修改密码',
+      BTN_UPDATE_PASSWORD: '重设密码',
       ENTER_USERNAME: '请输入你的帐号用户名或注册邮箱',
       RESET_PASS_OK: '密码重置成功',
       RESET_PASS_INVALID: '密码重置失败',
       RE_RESET_PASSWORD: '再次请求重置密码?',
       REST_MAIL_SEND_FAILED: '密码重置邮件发送失败!',
+      PASSWORD_RESET_SUCCESSFULLY: '密码重置成功',
+      PASSWORD_RESET_FAILED: '密码重置失败',
 
       ACTIVE_INVALID: '帐户激活失败, 可能该链接已被使用或者已失效.',
       ACTIVE_ERROR: '帐户激活错误!',
@@ -1194,7 +1196,9 @@
       NO_ACCOUNT_WITH_THAT_USERNAME_OR_EMAIL: '没有您提供的邮箱或ID对应的用户帐户',
       USERNAME_EMAIL_NOT_BE_BLANK: '用户名或邮箱地址不为能空',
       SENDING_RESET_MAIL_SUCCESSFULLY: '系统已向您帐户的注册邮箱发送了一封验证邮件, 请检查邮件并跟据邮件提示进一步重置您的帐户密码',
-      SENDING_RESET_MAIL_FAILED: '密码重置邮件发送失败'
+      SENDING_RESET_MAIL_FAILED: '密码重置邮件发送失败',
+      PASSWORDS_DO_NOT_MATCH: '两次密码不匹配',
+      RESET_TOKEN_INVALID: '密码重置请求无效或已过期'
     }
   };
 

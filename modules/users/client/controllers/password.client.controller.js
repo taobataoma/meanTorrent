@@ -73,13 +73,13 @@
 
       // Attach user profile
       Authentication.user = response;
-      Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Password reset successful!' });
+      NotifycationService.showSuccessNotify('PASSWORD_RESET_SUCCESSFULLY');
       // And redirect to the index page
       $location.path('/password/reset/success');
     }
 
     function onResetPasswordError(response) {
-      Notification.error({ message: response.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Password reset failed!', delay: 4000 });
+      NotifycationService.showErrorNotify(response.data.message, 'SIGN.PASSWORD_RESET_FAILED');
     }
   }
 }());

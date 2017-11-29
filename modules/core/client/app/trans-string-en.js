@@ -232,12 +232,14 @@
       VERIFY_PASSWORD: 'Verify Password',
       VP_REQUIRED: 'Enter the password again to verify.',
       NP_VP_NOTMATCH: 'Passwords do not match.',
-      BTN_UPDATE_PASSWORD: 'Update Password',
+      BTN_UPDATE_PASSWORD: 'Reset Password',
       ENTER_USERNAME: 'Enter your account username or email.',
       RESET_PASS_OK: 'Password successfully reset',
       RESET_PASS_INVALID: 'Password reset is invalid',
       RE_RESET_PASSWORD: 'Ask for a new password reset?',
       REST_MAIL_SEND_FAILED: 'Password reset email sent failed!',
+      PASSWORD_RESET_SUCCESSFULLY: 'password reset successfully',
+      PASSWORD_RESET_FAILED: 'password reset failed',
 
       ACTIVE_INVALID: 'Can not active your account, maybe this token already used or this token is expired.',
       ACTIVE_ERROR: 'Account active ERROR!',
@@ -1194,7 +1196,9 @@
       NO_ACCOUNT_WITH_THAT_USERNAME_OR_EMAIL: 'No account with that username or email has been found',
       USERNAME_EMAIL_NOT_BE_BLANK: 'Username or email field must not be blank',
       SENDING_RESET_MAIL_SUCCESSFULLY: 'An email has been sent to the provided email with further instructions. please check it then reset your password',
-      SENDING_RESET_MAIL_FAILED: 'The password reset mail send failed'
+      SENDING_RESET_MAIL_FAILED: 'The password reset mail send failed',
+      PASSWORDS_DO_NOT_MATCH: 'twice passwords do not match',
+      RESET_TOKEN_INVALID: 'Password reset token is invalid or has expired.'
     }
   };
 
