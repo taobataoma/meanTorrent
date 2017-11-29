@@ -43,7 +43,7 @@ exports.forgot = function (req, res, next) {
         }, '-salt -password', function (err, user) {
           if (err || !user) {
             return res.status(400).send({
-              message: 'No account with that username or email has been found'
+              message: 'SERVER.NO_ACCOUNT_WITH_THAT_USERNAME_OR_EMAIL'
             });
           } else if (user.provider !== 'local') {
             return res.status(400).send({
@@ -60,7 +60,7 @@ exports.forgot = function (req, res, next) {
         });
       } else {
         return res.status(422).send({
-          message: 'Username/email field must not be blank'
+          message: 'SERVER.USERNAME_EMAIL_NOT_BE_BLANK'
         });
       }
     },
@@ -90,11 +90,11 @@ exports.forgot = function (req, res, next) {
       smtpTransport.sendMail(mailOptions, function (err) {
         if (!err) {
           res.send({
-            message: 'An email has been sent to the provided email with further instructions.'
+            message: 'SERVER.SENDING_RESET_MAIL_SUCCESSFULLY'
           });
         } else {
           return res.status(400).send({
-            message: 'Failure sending email'
+            message: 'SERVER.SENDING_RESET_MAIL_FAILED'
           });
         }
 

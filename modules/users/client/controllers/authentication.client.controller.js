@@ -35,7 +35,7 @@
     }
 
     /**
-     * account active successfully, redirect to home after 2 seconds
+     * account active successfully, redirect to home after 3 seconds
      */
     if (vm.activeMethod === 'successfully') {
       $timeout(function () {
@@ -119,7 +119,7 @@
         vm.authentication.user = response;
         $rootScope.$broadcast('auth-user-changed');
         $rootScope.$broadcast('user-invitations-changed');
-        NotifycationService.showNotify('info', null, 'Welcome ' + response.displayName, false);
+        NotifycationService.showNotify('info', null, 'Welcome ' + response.displayName);
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
       }

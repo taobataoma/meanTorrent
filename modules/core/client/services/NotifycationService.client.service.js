@@ -18,8 +18,8 @@
 
     return service;
 
-    function showNotify(type, iconClass, msgid, trans = true) {
-      var msg = trans ? $translate.instant(msgid) : msgid;
+    function showNotify(type, iconClass, msgid) {
+      var msg = $translate.instant(msgid);
       var iconStr = '';
 
       if (iconClass) {
@@ -67,7 +67,8 @@
     }
 
     function showErrorNofity(msg, titleMsgId) {
-      var title_msg = titleMsgId ? $translate.instant(titleMsgId) : '';
+      var title_msg = titleMsgId ? $translate.instant(titleMsgId) : undefined;
+      msg = $translate.instant(msg);
 
       if (msg && titleMsgId) {
         Notification.error({
@@ -75,16 +76,9 @@
           title: '<i class="glyphicon glyphicon-remove"></i> ' + title_msg
         });
       } else {
-        if (!msg && titleMsgId) {
-          Notification.error({
-            message: '<i class="glyphicon glyphicon-remove"></i> ' + title_msg
-          });
-        }
-        if (msg && !titleMsgId) {
-          Notification.error({
-            message: '<i class="glyphicon glyphicon-remove"></i> ' + msg
-          });
-        }
+        Notification.error({
+          message: '<i class="glyphicon glyphicon-remove"></i> ' + msg
+        });
       }
     }
   }

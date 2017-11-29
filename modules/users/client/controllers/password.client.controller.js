@@ -5,9 +5,9 @@
     .module('users')
     .controller('PasswordController', PasswordController);
 
-  PasswordController.$inject = ['$scope', '$stateParams', 'UsersService', '$location', 'Authentication', 'PasswordValidator', 'Notification'];
+  PasswordController.$inject = ['$scope', '$stateParams', 'UsersService', '$location', 'Authentication', 'PasswordValidator', 'NotifycationService'];
 
-  function PasswordController($scope, $stateParams, UsersService, $location, Authentication, PasswordValidator, Notification) {
+  function PasswordController($scope, $stateParams, UsersService, $location, Authentication, PasswordValidator, NotifycationService) {
     var vm = this;
 
     vm.resetUserPassword = resetUserPassword;
@@ -28,6 +28,7 @@
 
         return false;
       }
+      vm.isSendingMail = true;
 
       UsersService.requestPasswordReset(vm.credentials)
         .then(onRequestPasswordResetSuccess)
@@ -53,13 +54,17 @@
     function onRequestPasswordResetSuccess(response) {
       // Show user success message and clear form
       vm.credentials = null;
-      Notification.success({ message: response.message, title: '<i class="glyphicon glyphicon-ok"></i> Password reset email sent successfully!' });
+      vm.isSendingMail = false;
+      vm.isSendingMailOK = true;
+      vm.resetTranslate = response.message;
+      NotifycationService.showSuccessNotify(response.message);
     }
 
     function onRequestPasswordResetError(response) {
       // Show user error message and clear form
       vm.credentials = null;
-      Notification.error({ message: response.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Failed to send password reset email!', delay: 4000 });
+      vm.isSendingMail = false;
+      NotifycationService.showErrorNotify(response.data.message, 'SIGN.REST_MAIL_SEND_FAILED');
     }
 
     function onResetPasswordSuccess(response) {

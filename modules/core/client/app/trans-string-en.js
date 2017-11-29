@@ -237,6 +237,7 @@
       RESET_PASS_OK: 'Password successfully reset',
       RESET_PASS_INVALID: 'Password reset is invalid',
       RE_RESET_PASSWORD: 'Ask for a new password reset?',
+      REST_MAIL_SEND_FAILED: 'Password reset email sent failed!',
 
       ACTIVE_INVALID: 'Can not active your account, maybe this token already used or this token is expired.',
       ACTIVE_ERROR: 'Account active ERROR!',
@@ -1189,7 +1190,11 @@
       SENDING_ACTIVE_MAIL_SUCCESSFULLY: 'Welcome join <strong>{{site}}</strong>, We`ve sent you an email to <strong>{{mail}}</strong>, please check you mail box and click the active url to verify you mail address and active you account in <strong>{{hours}}</strong> hours, thanks!',
       ACTIVE_MAIL_RENDER_ERROR: 'The authentication mail render error',
       SENDING_ACTIVE_MAIL_FAILED: 'The authentication mail send failed',
-      SCORE_NOT_ENOUGH: 'you don`t have enough score for this operation'
+      SCORE_NOT_ENOUGH: 'you don`t have enough score for this operation',
+      NO_ACCOUNT_WITH_THAT_USERNAME_OR_EMAIL: 'No account with that username or email has been found',
+      USERNAME_EMAIL_NOT_BE_BLANK: 'Username or email field must not be blank',
+      SENDING_RESET_MAIL_SUCCESSFULLY: 'An email has been sent to the provided email with further instructions. please check it then reset your password',
+      SENDING_RESET_MAIL_FAILED: 'The password reset mail send failed'
     }
   };
 

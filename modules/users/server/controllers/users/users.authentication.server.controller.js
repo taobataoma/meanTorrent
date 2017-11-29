@@ -80,7 +80,7 @@ exports.signup = function (req, res) {
       }, function (err, emailHTML) {
         if (err) {
           return res.status(400).send({
-            message: 'ACTIVE_MAIL_RENDER_ERROR'
+            message: 'SERVER.ACTIVE_MAIL_RENDER_ERROR'
           });
         } else {
           var mailOptions = {
@@ -92,11 +92,11 @@ exports.signup = function (req, res) {
           smtpTransport.sendMail(mailOptions, function (err) {
             if (!err) {
               res.send({
-                message: 'SENDING_ACTIVE_MAIL_SUCCESSFULLY'
+                message: 'SERVER.SENDING_ACTIVE_MAIL_SUCCESSFULLY'
               });
             } else {
               return res.status(400).send({
-                message: 'SENDING_ACTIVE_MAIL_FAILED'
+                message: 'SERVER.SENDING_ACTIVE_MAIL_FAILED'
               });
             }
 

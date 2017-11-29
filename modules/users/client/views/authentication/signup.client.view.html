@@ -59,7 +59,7 @@
                                     style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></uib-progressbar>
                         </div>
                         <div class="text-center form-group">
-                            <button type="submit" class="btn btn-primary" ng-disabled="vm.isSendingMail">{{ 'SIGN.BTN_SIGN_UP' | translate}}</button>
+                            <button type="submit" class="btn btn-success btn-width-100" ng-disabled="vm.isSendingMail">{{ 'SIGN.BTN_SIGN_UP' | translate}}</button>
                             &nbsp; or&nbsp;
                             <a ui-sref="authentication.signin" class="show-signup">{{ 'SIGN.BTN_SIGN_IN' | translate}}</a>
                         </div>
@@ -74,7 +74,7 @@
         </div>
         <div ng-if="vm.waitToActive">
             <div class="col-sm-10 col-sm-offset-1 margin-top-100 padding-top-20">
-                <span class="active-notice" translate="SERVER.{{vm.waitToActiveTranslate}}"
+                <span class="active-notice" translate="{{vm.waitToActiveTranslate}}"
                       translate-values="{site: vm.appConfig.name, mail: vm.credentials.email, hours: vm.signConfig.signUpActiveTokenExpires / (60*60*1000)}"></span>
             </div>
         </div>

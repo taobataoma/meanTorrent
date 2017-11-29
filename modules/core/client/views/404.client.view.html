@@ -5,7 +5,7 @@
         </div>
         <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span ng-if="vm.errorMessage" ng-bind="vm.errorMessage"></span>
+            <span ng-if="vm.errorMessage" ng-bind="vm.errorMessage | translate"></span>
             <span ng-if="!vm.errorMessage">Page Not Found</span>
         </div>
     </div>
