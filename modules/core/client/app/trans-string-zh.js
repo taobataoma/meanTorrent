@@ -224,6 +224,8 @@
       FORGOT_PASSWORD: '忘记了密码?',
       DN_REQUIRED: '显示昵称不能为空.',
       SENDING_MAIL: '正在发送验证邮件，请稍等...',
+      SIGNIN_ERROR: '登录失败!',
+      SIGNUP_ERROR: '注册失败!',
 
       NEW_PASSWORD: '新密码',
       NP_REQUIRED: '新密码不能为空.',
@@ -1185,6 +1187,8 @@
     //server returned string
     SERVER: {
       SENDING_ACTIVE_MAIL_SUCCESSFULLY: '欢迎加入 <strong>{{site}}</strong>, 我们已向你的邮箱 <strong>{{mail}}</strong> 发送了一封电子邮件, 请在 <strong>{{hours}}</strong> 小时内检查您的邮箱并点击邮件中的链接地址来验证您的邮箱地址并激您的帐号，谢谢！',
+      ACTIVE_MAIL_RENDER_ERROR: '验证与激活邮件渲染失败',
+      SENDING_ACTIVE_MAIL_FAILED: '验证与激活邮件发送失败',
       SCORE_NOT_ENOUGH: '您没有足够的积分进行此操作'
     }
   };

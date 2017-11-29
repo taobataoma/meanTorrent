@@ -5,11 +5,11 @@
     .module('users')
     .controller('AuthenticationController', AuthenticationController);
 
-  AuthenticationController.$inject = ['$scope', '$state', 'UsersService', '$location', '$window', '$timeout', 'Authentication', 'PasswordValidator', 'Notification',
-    'MeanTorrentConfig', 'getStorageLangService', '$rootScope', '$stateParams', 'InvitationsService'];
+  AuthenticationController.$inject = ['$scope', '$state', 'UsersService', '$location', '$window', '$timeout', 'Authentication', 'PasswordValidator', 'NotifycationService',
+    'MeanTorrentConfig', 'getStorageLangService', '$rootScope', '$stateParams', 'InvitationsService', '$translate'];
 
-  function AuthenticationController($scope, $state, UsersService, $location, $window, $timeout, Authentication, PasswordValidator, Notification, MeanTorrentConfig,
-                                    getStorageLangService, $rootScope, $stateParams, InvitationsService) {
+  function AuthenticationController($scope, $state, UsersService, $location, $window, $timeout, Authentication, PasswordValidator, NotifycationService, MeanTorrentConfig,
+                                    getStorageLangService, $rootScope, $stateParams, InvitationsService, $translate) {
     var vm = this;
 
     vm.lang = getStorageLangService.getLang();
@@ -26,7 +26,7 @@
     vm.activeMethod = $state.params.method;
     // Get an eventual error defined in the URL query string:
     if ($location.search().err) {
-      Notification.error({message: $location.search().err});
+      NotifycationService.showErrorNotify($location.search().err);
     }
 
     // If user is signed in then redirect back home
@@ -92,7 +92,7 @@
 
       function onUserSignupError(response) {
         vm.isSendingMail = false;
-        Notification.error({message: response.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Signup Error!', delay: 6000});
+        NotifycationService.showErrorNotify($translate.instant(response.data.message), 'SIGN.SIGNUP_ERROR');
       }
 
     }
@@ -119,13 +119,13 @@
         vm.authentication.user = response;
         $rootScope.$broadcast('auth-user-changed');
         $rootScope.$broadcast('user-invitations-changed');
-        Notification.info({message: 'Welcome ' + response.displayName});
+        NotifycationService.showNotify('info', null, 'Welcome ' + response.displayName, false);
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
       }
 
       function onUserSigninError(response) {
-        Notification.error({message: response.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Signin Error!', delay: 6000});
+        NotifycationService.showErrorNotify(response.data.message, 'SIGN.SIGNIN_ERROR');
       }
     }
 
