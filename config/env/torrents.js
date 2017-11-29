@@ -149,7 +149,7 @@ module.exports = {
      * user register settings
      * NOTE: you can change these value at anytime if you understand it
      *
-     * @openSignup:                 set whether open the signup, if true, the user can signup(register) by heself,
+     * @openSignup:                 set whether open the signup, if true, the user can signup(register) by herself,
      *                              if you create a private web site, and only accept invite to join, please set it to false.
      * @signUpActiveTokenExpires:   sign up account active expires time setting.
      * @allowSocialSignin:          meanTorrent can accept social account to signin, like google, twitter, facebook etc.

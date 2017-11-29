@@ -223,6 +223,7 @@
       P_REQUIRED: '密码不能为空.',
       FORGOT_PASSWORD: '忘记了密码?',
       DN_REQUIRED: '显示昵称不能为空.',
+      SENDING_MAIL: '正在发送验证邮件，请稍等...',
 
       NEW_PASSWORD: '新密码',
       NP_REQUIRED: '新密码不能为空.',

@@ -73,6 +73,8 @@
         return false;
       }
 
+      vm.isSendingMail = true;
+
       if ($stateParams.token) {
         vm.credentials.inviteToken = $stateParams.token;
       }
@@ -84,10 +86,12 @@
 
       function onUserSignupSuccess(response) {
         vm.waitToActive = true;
+        vm.isSendingMail = false;
         vm.waitToActiveTranslate = response.message;
       }
 
       function onUserSignupError(response) {
+        vm.isSendingMail = false;
         Notification.error({message: response.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Signup Error!', delay: 6000});
       }
 

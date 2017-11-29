@@ -223,6 +223,7 @@
       P_REQUIRED: 'Password is required.',
       FORGOT_PASSWORD: 'Forgot your password?',
       DN_REQUIRED: 'Display name is required.',
+      SENDING_MAIL: 'The authentication mail is being sent. Please wait a moment...',
 
       NEW_PASSWORD: 'New Password',
       NP_REQUIRED: 'Enter a new password.',
