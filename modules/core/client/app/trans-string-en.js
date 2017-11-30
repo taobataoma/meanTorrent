@@ -1203,6 +1203,7 @@
       ACTIVE_MAIL_RENDER_ERROR: 'The authentication mail render error',
       SENDING_ACTIVE_MAIL_FAILED: 'The authentication mail send failed',
       SCORE_NOT_ENOUGH: 'you don`t have enough score for this operation',
+      ALREADY_THUMBS_UP: 'you already thumbs up it',
       NO_ACCOUNT_WITH_THAT_USERNAME_OR_EMAIL: 'No account with that username or email has been found',
       USERNAME_EMAIL_NOT_BE_BLANK: 'Username or email field must not be blank',
       SENDING_RESET_MAIL_SUCCESSFULLY: 'An email has been sent to the provided email with further instructions. please check it then reset your password',

@@ -558,7 +558,7 @@ exports.thumbsUp = function (req, res) {
         });
         if (exist) {
           return res.status(422).send({
-            message: 'ALREADY_THUMBS_UP'
+            message: 'SERVER.ALREADY_THUMBS_UP'
           });
         } else {
           if (req.user.score >= thumbsUpScore.topic) {
@@ -569,7 +569,7 @@ exports.thumbsUp = function (req, res) {
             save();
           } else {
             return res.status(422).send({
-              message: 'SCORE_NOT_ENOUGH'
+              message: 'SERVER.SCORE_NOT_ENOUGH'
             });
           }
         }
@@ -585,7 +585,7 @@ exports.thumbsUp = function (req, res) {
     });
     if (exist) {
       return res.status(422).send({
-        message: 'ALREADY_THUMBS_UP'
+        message: 'SERVER.ALREADY_THUMBS_UP'
       });
     } else {
       if (req.user.score >= thumbsUpScore.topic) {
@@ -596,7 +596,7 @@ exports.thumbsUp = function (req, res) {
         save();
       } else {
         return res.status(422).send({
-          message: 'SCORE_NOT_ENOUGH'
+          message: 'SERVER.SCORE_NOT_ENOUGH'
         });
       }
     }

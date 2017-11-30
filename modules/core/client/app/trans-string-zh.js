@@ -1203,6 +1203,7 @@
       ACTIVE_MAIL_RENDER_ERROR: '验证与激活邮件渲染失败',
       SENDING_ACTIVE_MAIL_FAILED: '验证与激活邮件发送失败',
       SCORE_NOT_ENOUGH: '您没有足够的积分进行此操作',
+      ALREADY_THUMBS_UP: '您已经赞过啦~',
       NO_ACCOUNT_WITH_THAT_USERNAME_OR_EMAIL: '没有您提供的邮箱或ID对应的用户帐户',
       USERNAME_EMAIL_NOT_BE_BLANK: '用户名或邮箱地址不为能空',
       SENDING_RESET_MAIL_SUCCESSFULLY: '系统已向您帐户的注册邮箱发送了一封验证邮件, 请检查邮件并跟据邮件提示进一步重置您的帐户密码',

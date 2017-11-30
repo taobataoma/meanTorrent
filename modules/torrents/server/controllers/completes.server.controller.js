@@ -59,7 +59,7 @@ exports.removeWarning = function (req, res) {
     } else {
       if (req.user.score < hnrConfig.scoreToRemoveWarning) {
         return res.status(422).send({
-          message: 'NO_ENOUGH_SCORE_TO_REMOVE_WARNING'
+          message: 'SERVER.SCORE_NOT_ENOUGH'
         });
       } else {
         //update score
