@@ -1,13 +1,13 @@
 <section>
     <div class="container">
         <div class="page-header">
-            <h1>Bad Request</h1>
+            <h3 translate="STATUS_PAGE.BAD_REQUEST"></h3>
         </div>
         <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
-            <span ng-if="vm.errorMessage" ng-bind="vm.errorMessage | translate"></span>
-            <span ng-if="!vm.errorMessage">You made a bad request</span>
+            <span ng-if="vm.errorMessage" translate="{{vm.errorMessage}}" translate-values="{{vm.errorParams}}"></span>
+            <span ng-if="!vm.errorMessage" translate="STATUS_PAGE.MADE_BAD_REQUEST"></span>
         </div>
     </div>
 </section>

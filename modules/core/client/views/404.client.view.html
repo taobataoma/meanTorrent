@@ -1,12 +1,13 @@
 <section>
     <div class="container">
         <div class="page-header">
-            <h1>Not Found</h1>
+            <h3 translate="STATUS_PAGE.NOT_FOUND"></h3>
         </div>
         <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span ng-if="vm.errorMessage" ng-bind="vm.errorMessage | translate"></span>
-            <span ng-if="!vm.errorMessage">Page Not Found</span>
+            <span class="sr-only">Error:</span>
+            <span ng-if="vm.errorMessage" translate="{{vm.errorMessage}}" translate-values="{{vm.errorParams}}"></span>
+            <span ng-if="!vm.errorMessage" translate="STATUS_PAGE.PAGE_NOT_FOUND"></span>
         </div>
     </div>
 </section>
