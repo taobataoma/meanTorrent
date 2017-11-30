@@ -233,6 +233,9 @@ var UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date
+  },
+  nextResetPasswordTime: {
+    type: Date
   }
 });
 

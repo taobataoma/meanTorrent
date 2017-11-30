@@ -1034,6 +1034,16 @@
       }
     },
 
+    //status pages
+    STATUS_PAGE: {
+      BAD_REQUEST: 'Bad Request',
+      FORBIDDEN: 'Forbidden',
+      MADE_BAD_REQUEST: 'You made a bad request',
+      NOT_AUTHORIZED_THIS: 'You are not authorized to access this resource',
+      NOT_FOUND: 'Not Found',
+      PAGE_NOT_FOUND: 'Page Or Resources Not Found'
+    },
+
     /////////////////////////resources tag fields///////////////////////////////////
     RESOURCESTAGS: {
       TYPE: {
@@ -1198,7 +1208,8 @@
       SENDING_RESET_MAIL_SUCCESSFULLY: 'An email has been sent to the provided email with further instructions. please check it then reset your password',
       SENDING_RESET_MAIL_FAILED: 'The password reset mail send failed',
       PASSWORDS_DO_NOT_MATCH: 'twice passwords do not match',
-      RESET_TOKEN_INVALID: 'Password reset token is invalid or has expired.'
+      RESET_TOKEN_INVALID: 'Password reset token is invalid or has expired.',
+      RESET_PASSWORD_TO_FREQUENT: 'Reset password operation is too frequent, you can do once only in {{hours}} hours, next time is: {{nextTime}}'
     }
   };
 

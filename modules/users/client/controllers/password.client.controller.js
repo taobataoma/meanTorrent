@@ -5,9 +5,9 @@
     .module('users')
     .controller('PasswordController', PasswordController);
 
-  PasswordController.$inject = ['$scope', '$stateParams', 'UsersService', '$location', 'Authentication', 'PasswordValidator', 'NotifycationService'];
+  PasswordController.$inject = ['$scope', '$stateParams', 'UsersService', '$location', 'Authentication', 'PasswordValidator', 'NotifycationService', '$translate'];
 
-  function PasswordController($scope, $stateParams, UsersService, $location, Authentication, PasswordValidator, NotifycationService) {
+  function PasswordController($scope, $stateParams, UsersService, $location, Authentication, PasswordValidator, NotifycationService, $translate) {
     var vm = this;
 
     vm.resetUserPassword = resetUserPassword;
@@ -64,6 +64,10 @@
       // Show user error message and clear form
       vm.credentials = null;
       vm.isSendingMail = false;
+
+      if (response.data.params) {
+        response.data.message = $translate.instant(response.data.message, response.data.params);
+      }
       NotifycationService.showErrorNotify(response.data.message, 'SIGN.REST_MAIL_SEND_FAILED');
     }
 

@@ -1034,6 +1034,16 @@
       }
     },
 
+    //status pages
+    STATUS_PAGE: {
+      BAD_REQUEST: '请求错误',
+      FORBIDDEN: '请求禁止',
+      MADE_BAD_REQUEST: '您发起了一个无效的请求',
+      NOT_AUTHORIZED_THIS: '您无权访问此资源',
+      NOT_FOUND: '无法访问',
+      PAGE_NOT_FOUND: '没有找到页面或资源'
+    },
+
     /////////////////////////resources tag fields///////////////////////////////////
     RESOURCESTAGS: {
       TYPE: {
@@ -1198,7 +1208,8 @@
       SENDING_RESET_MAIL_SUCCESSFULLY: '系统已向您帐户的注册邮箱发送了一封验证邮件, 请检查邮件并跟据邮件提示进一步重置您的帐户密码',
       SENDING_RESET_MAIL_FAILED: '密码重置邮件发送失败',
       PASSWORDS_DO_NOT_MATCH: '两次密码不匹配',
-      RESET_TOKEN_INVALID: '密码重置请求无效或已过期'
+      RESET_TOKEN_INVALID: '密码重置请求无效或已过期',
+      RESET_PASSWORD_TO_FREQUENT: '密码重置操作过于频繁, 您在 {{hours}} 小时内只能操作一次, 下次可操作时间为: {{nextTime}}'
     }
   };
 

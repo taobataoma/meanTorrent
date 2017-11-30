@@ -12,10 +12,12 @@ var path = require('path'),
   nodemailer = require('nodemailer'),
   async = require('async'),
   crypto = require('crypto'),
+  moment = require('moment'),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
 var traceConfig = config.meanTorrentConfig.trace;
+var passwordConfig = config.meanTorrentConfig.password;
 
 /**
  * Forgot for reset password (forgot POST)
@@ -49,9 +51,18 @@ exports.forgot = function (req, res, next) {
             return res.status(400).send({
               message: 'It seems like you signed up using your ' + user.provider + ' account, please sign in using that provider.'
             });
+          } else if (user.nextResetPasswordTime > Date.now()) {
+            return res.status(400).send({
+              message: 'SERVER.RESET_PASSWORD_TO_FREQUENT',
+              params: {
+                hours: passwordConfig.resetTimeInterval / (60 * 60 * 1000),
+                nextTime: moment(user.nextResetPasswordTime).format('YYYY-MM-DD HH:mm:ss')
+              }
+            });
           } else {
             user.resetPasswordToken = token;
-            user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+            user.resetPasswordExpires = Date.now() + passwordConfig.resetTokenExpires;
+            user.nextResetPasswordTime = Date.now() + passwordConfig.resetTimeInterval;
 
             user.save(function (err) {
               done(err, token, user);

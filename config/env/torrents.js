@@ -166,6 +166,19 @@ module.exports = {
     },
 
     /**
+     * @password
+     *
+     * password setting
+     *
+     * @resetTokenExpires:    reset password token expires time, default 1 hour
+     * @resetTimeInterval:    reset password time interval, default 24 hours, means only can do once in 24 hours.
+     */
+    password: {
+      resetTokenExpires: 60 * 60 * 1000 * 1,
+      resetTimeInterval: 60 * 60 * 1000 * 24
+    },
+
+    /**
      * @invite
      *
      * invite settings when sign.openSignup is false

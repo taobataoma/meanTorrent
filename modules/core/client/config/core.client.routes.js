@@ -44,6 +44,9 @@
         params: {
           message: function ($stateParams) {
             return $stateParams.message;
+          },
+          params: function ($stateParams) {
+            return $stateParams.params;
           }
         },
         data: {
@@ -58,6 +61,9 @@
         params: {
           message: function ($stateParams) {
             return $stateParams.message;
+          },
+          params: function ($stateParams) {
+            return $stateParams.params;
           }
         },
         data: {
