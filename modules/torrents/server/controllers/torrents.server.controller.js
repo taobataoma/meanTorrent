@@ -1466,21 +1466,22 @@ exports.list = function (req, res) {
       if (err) {
         callback(err, null);
       } else {
-        Torrent.populate(torrents,
-          [
-            {path: 'user', select: 'username displayName isVip'},
-            {path: 'maker', select: 'name'}
-          ], function (err, ts) {
-            if (err) {
-              return res.status(422).send({
-                message: errorHandler.getErrorMessage(err)
-              });
-            } else {
-              globalUpdateTorrent(ts, function (nts) {
-                callback(null, nts);
-              });
-            }
-          });
+        globalUpdateTorrent(torrents, function (ntorrents) {
+
+          Torrent.populate(ntorrents,
+            [
+              {path: 'user', select: 'username displayName isVip'},
+              {path: 'maker', select: 'name'}
+            ], function (err, ts) {
+              if (err) {
+                return res.status(422).send({
+                  message: errorHandler.getErrorMessage(err)
+                });
+              } else {
+                callback(null, ts);
+              }
+            });
+        });
       }
     });
   };
