@@ -12,9 +12,10 @@ module.exports = function () {
   passport.use(new LocalStrategy(
     {
       usernameField: 'usernameOrEmail',
-      passwordField: 'password'
+      passwordField: 'password',
+      passReqToCallback: true
     },
-    function (usernameOrEmail, password, done) {
+    function (req, usernameOrEmail, password, done) {
       User.findOne({
         $or: [{
           username: usernameOrEmail.toLowerCase()
