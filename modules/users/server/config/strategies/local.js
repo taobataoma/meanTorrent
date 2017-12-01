@@ -27,20 +27,25 @@ module.exports = function () {
           if (err) {
             return done(err);
           }
-          if (!user || !user.authenticate(password)) {
+          if (!user) {
             return done(null, false, {
-              message: 'Invalid username or password (' + (new Date()).toLocaleTimeString() + ')'
+              message: 'SERVER.INVALID_USERNAME'
+            });
+          }
+          if (!user.authenticate(password)) {
+            return done(null, false, {
+              message: 'SERVER.INVALID_PASSWORD'
             });
           }
           if (user.status === 'banned') {
             return done(null, false, {
-              message: 'You are banned from the server!'
+              message: 'SERVER.YOU_ARE_BANNED'
             });
           }
 
           if (user.status === 'inactive') {
             return done(null, false, {
-              message: 'You account is not Activated!'
+              message: 'SERVER.ACCOUNT_IS_NOT_ACTIVATED'
             });
           }
 

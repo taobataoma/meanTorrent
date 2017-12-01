@@ -1210,7 +1210,11 @@
       SENDING_RESET_MAIL_FAILED: 'The password reset mail send failed',
       PASSWORDS_DO_NOT_MATCH: 'twice passwords do not match',
       RESET_TOKEN_INVALID: 'Password reset token is invalid or has expired.',
-      RESET_PASSWORD_TO_FREQUENT: 'Reset password operation is too frequent, you can do once only in {{hours}} hours, next time is: {{nextTime}}'
+      RESET_PASSWORD_TO_FREQUENT: 'Reset password operation is too frequent, you can do once only in {{hours}} hours, next time is: {{nextTime}}',
+      INVALID_USERNAME: 'Invalid username!',
+      INVALID_PASSWORD: 'Invalid password!',
+      YOU_ARE_BANNED: 'You are banned from the server!',
+      ACCOUNT_IS_NOT_ACTIVATED: 'Your account is not activated, you should active first!'
     }
   };
 
