@@ -317,12 +317,12 @@
     vm.saveInsertCollection = function () {
       SideOverlay.close(null, 'collectionsInsertSlide');
 
-      var sc = undefined;
-      angular.forEach(vm.collectionsItems, function (c) {
-        if (c._id === vm.collectionTorrent.cid) {
-          sc = c;
-        }
-      });
+      //var sc = undefined;
+      //angular.forEach(vm.collectionsItems, function (c) {
+      //  if (c._id === vm.collectionTorrent.cid) {
+      //    sc = c;
+      //  }
+      //});
 
       CollectionsService.insertIntoCollection({
         collectionId: vm.collectionTorrent.cid,
@@ -331,9 +331,8 @@
         mtDebug.info(res);
         NotifycationService.showSuccessNotify('COLLECTIONS.INSERT_SUCCESSFULLY');
       }, function (res) {
-        NotifycationService.showErrorNotify(res.data.message, 'COLLECTIONS.CREATE_FAILED');
+        NotifycationService.showErrorNotify(res.data.message, 'COLLECTIONS.INSERT_FAILED');
       });
-
     };
 
     /**

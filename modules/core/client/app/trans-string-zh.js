@@ -567,11 +567,19 @@
       NO_COLLECTION: '没有可加入的系列, 如果还没有创建，你可以先创建一个系列, 再执行加入操作.',
       BTN_EDIT_OVERVIEW: '编辑系列简介',
       BTN_REMOVE_COLLECTION: '删除系列',
+      BTN_REMOVE_FROM_COLLECTION: '移出系列',
+      BTN_REMOVE_TITLE: '将其从系列中移出',
       DELETE_CONFIRM_BODY_TEXT: '您确定要删除这个电影系列?',
       DELETE_SUCCESSFULLY: '电影系列删除成功',
       DELETE_FAILED: '电影系列删除失败',
       SETRLEVEL_SUCCESSFULLY: '修改系列的推荐级别成功',
-      SETRLEVEL_ERROR: '修改系列的推荐级别失败'
+      SETRLEVEL_ERROR: '修改系列的推荐级别失败',
+      REMOVE_CONFIRM_OK: '移除',
+      REMOVE_CONFIRM_CANCEL: '取消',
+      REMOVE_CONFIRM_HEADER_TEXT: '移除确认',
+      REMOVE_CONFIRM_BODY_TEXT: '您确认要将此种子移除这个系列?',
+      REMOVE_SUCCESSFULLY: '从系列中移除种子成功',
+      REMOVE_FAILED: '从系列中移除种子失败'
     },
 
     //backup views settings

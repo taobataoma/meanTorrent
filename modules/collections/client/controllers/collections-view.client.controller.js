@@ -174,5 +174,31 @@
       });
     };
 
+    /**
+     * removeFromCollections
+     * @param item
+     */
+    vm.removeFromCollections = function (item) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('COLLECTIONS.REMOVE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('COLLECTIONS.REMOVE_CONFIRM_OK'),
+        headerText: $translate.instant('COLLECTIONS.REMOVE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('COLLECTIONS.REMOVE_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          CollectionsService.removeFromCollection({
+            collectionId: vm.collection._id,
+            torrentId: item._id
+          }, function (res) {
+            mtDebug.info(res);
+            vm.collection = res;
+            NotifycationService.showSuccessNotify('COLLECTIONS.REMOVE_SUCCESSFULLY');
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'COLLECTIONS.REMOVE_FAILED');
+          });
+        });
+    };
   }
 }());

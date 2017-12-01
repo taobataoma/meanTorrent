@@ -184,11 +184,19 @@
                                     </p>
                                 </td>
                                 <td class="col-md-1 td-v-middle text-center td-uploader">
-                                    <span class="coll-item-uploader" user-info="item.user" info-name></span>
+                                    <div class="coll-item-uploader">
+                                        <span user-info="item.user" info-name></span>
 
-                                    <div maker-info="item.maker"></div>
-                                    <!--<span vip-flag="item.user"></span>-->
-                                    <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
+                                        <div maker-info="item.maker"></div>
+                                        <!--<span vip-flag="item.user"></span>-->
+                                        <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
+                                    </div>
+                                    <div class="coll-item-remove">
+                                        <button class="btn btn-default" uib-tooltip="{{ 'COLLECTIONS.BTN_REMOVE_TITLE' | translate}}"
+                                                ng-click="vm.removeFromCollections(item); $event.stopPropagation();">
+                                            {{'COLLECTIONS.BTN_REMOVE_FROM_COLLECTION' | translate}}
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

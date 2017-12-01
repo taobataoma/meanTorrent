@@ -159,15 +159,14 @@ exports.removeFromCollection = function (req, res) {
   var coll = req.collection;
   var torrent = req.torrent;
 
-  coll.update({
-    $pull: {torrents: torrent._id}
-  }).exec(function (err, res) {
+  coll.torrents.pull(torrent);
+  coll.save(function (err) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(res);
+      res.json(coll);
     }
   });
 };

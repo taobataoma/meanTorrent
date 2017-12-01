@@ -567,11 +567,19 @@
       NO_COLLECTION: 'No collection founded can insert movie, you can create first, then insert this movie into it.',
       BTN_EDIT_OVERVIEW: 'Edit Overview',
       BTN_REMOVE_COLLECTION: 'Remove Collection',
+      BTN_REMOVE_FROM_COLLECTION: 'Remove',
+      BTN_REMOVE_TITLE: 'Remove From Collection',
       DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this collection?',
       DELETE_SUCCESSFULLY: 'Movie collection deleted successfully',
       DELETE_FAILED: 'Movie collection deleted failed',
       SETRLEVEL_SUCCESSFULLY: 'Set collection recommend level successfully',
-      SETRLEVEL_ERROR: 'Set collection recommend level faild'
+      SETRLEVEL_ERROR: 'Set collection recommend level faild',
+      REMOVE_CONFIRM_OK: 'Remove',
+      REMOVE_CONFIRM_CANCEL: 'Cancel',
+      REMOVE_CONFIRM_HEADER_TEXT: 'Remove Confirm',
+      REMOVE_CONFIRM_BODY_TEXT: 'Are you sure want to remove the torrent from this collection?',
+      REMOVE_SUCCESSFULLY: 'Remove the torrent from this collection successfully',
+      REMOVE_FAILED: 'Remove the torrent from this collection failed'
     },
 
     //backup views settings
