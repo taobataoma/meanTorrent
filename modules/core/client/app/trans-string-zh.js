@@ -453,7 +453,7 @@
     //admin views
     USERS_LIST: '用户列表',
     USERS_UPDATE: '修改',
-    TORRENT_TYPE_OPTION_NEWEST: '所有示审核的种子',
+    TORRENT_TYPE_OPTION_NEWEST: '所有未审核的种子',
     TORRENT_STATUS_NEW: '未审核',
     TORRENT_STATUS_REVIEWED: '已审核',
     TORRENT_STATUS_DELETED: '已删除',
