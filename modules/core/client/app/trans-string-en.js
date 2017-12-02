@@ -453,6 +453,7 @@
     //admin views
     USERS_LIST: 'Users',
     USERS_UPDATE: 'Update',
+    TORRENT_TYPE_OPTION_NEWEST: 'All Newest Torrents',
     TORRENT_STATUS_NEW: 'NEW',
     TORRENT_STATUS_REVIEWED: 'REVIEWED',
     TORRENT_STATUS_DELETED: 'DELETED',

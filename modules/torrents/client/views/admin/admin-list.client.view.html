@@ -11,6 +11,8 @@
                         <div class="row margin-bottom-5">
                             <div class="col-sm-6 col-md-4">
                                 <select class="form-control" ng-model="vm.selectedType" ng-change="vm.onTorrentTypeChanged();">
+                                    <option value="newest">{{'TORRENT_TYPE_OPTION_NEWEST' | translate}}
+                                    </option>
                                     <option ng-repeat="t in vm.torrentType.value | filter:{enable: true}"
                                             value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}
                                     </option>
@@ -61,29 +63,31 @@
                         </div>
                     </dd>
 
-                    <dt class="h-line">{{ 'CA_TORRENT_STATUS' | translate}}:</dt>
-                    <dd class="h-line">
-                        <div class="btn-group btn-group-xs" role="group">
-                            <button id="torrent_status_reviewed"
-                                    class="btn btn-xs btn-tag" value="reviewed"
-                                    ng-class="{'btn-success': vm.torrentStatus == 'reviewed', 'btn-default': vm.torrentStatus != 'reviewed'}"
-                                    ng-click="vm.onTorrentStatusClicked($event, 'reviewed')">
-                                {{'TORRENT_STATUS_REVIEWED' | translate}}
-                            </button>
-                            <button id="torrent_status_new"
-                                    class="btn btn-xs btn-tag" value="new"
-                                    ng-class="{'btn-success': vm.torrentStatus == 'new', 'btn-default': vm.torrentStatus != 'new'}"
-                                    ng-click="vm.onTorrentStatusClicked($event, 'new')">
-                                {{'TORRENT_STATUS_NEW' | translate}}
-                            </button>
-                            <button id="torrent_status_all"
-                                    class="btn btn-xs btn-tag" value="all"
-                                    ng-class="{'btn-success': vm.torrentStatus == 'all', 'btn-default': vm.torrentStatus != 'all'}"
-                                    ng-click="vm.onTorrentStatusClicked($event, 'all')">
-                                {{'TORRENT_STATUS_ALL' | translate}}
-                            </button>
-                        </div>
-                    </dd>
+                    <div ng-hide="vm.selectedType=='newest'">
+                        <dt class="h-line">{{ 'CA_TORRENT_STATUS' | translate}}:</dt>
+                        <dd class="h-line">
+                            <div class="btn-group btn-group-xs" role="group">
+                                <button id="torrent_status_reviewed"
+                                        class="btn btn-xs btn-tag" value="reviewed"
+                                        ng-class="{'btn-success': vm.torrentStatus == 'reviewed', 'btn-default': vm.torrentStatus != 'reviewed'}"
+                                        ng-click="vm.onTorrentStatusClicked($event, 'reviewed')">
+                                    {{'TORRENT_STATUS_REVIEWED' | translate}}
+                                </button>
+                                <button id="torrent_status_new"
+                                        class="btn btn-xs btn-tag" value="new"
+                                        ng-class="{'btn-success': vm.torrentStatus == 'new', 'btn-default': vm.torrentStatus != 'new'}"
+                                        ng-click="vm.onTorrentStatusClicked($event, 'new')">
+                                    {{'TORRENT_STATUS_NEW' | translate}}
+                                </button>
+                                <button id="torrent_status_all"
+                                        class="btn btn-xs btn-tag" value="all"
+                                        ng-class="{'btn-success': vm.torrentStatus == 'all', 'btn-default': vm.torrentStatus != 'all'}"
+                                        ng-click="vm.onTorrentStatusClicked($event, 'all')">
+                                    {{'TORRENT_STATUS_ALL' | translate}}
+                                </button>
+                            </div>
+                        </dd>
+                    </div>
 
                     <dt class="h-line">{{ 'TORRENT_RECOMMEND_LEVEL' | translate}}:</dt>
                     <dd class="h-line">
@@ -187,6 +191,14 @@
 
                                     <div class="list-all-tags">
                                         <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
+                                        <span class="label label-ttype label-primary" ng-click="$event.stopPropagation();"
+                                              ng-if="vm.selectedType=='newest'">
+                                            {{'TORRENT_TYPE_LABEL.' + item.torrent_type.toUpperCase() | translate}}
+                                        </span>
+                                        <span class="label label-tstatus label-danger" ng-show="item.torrent_status == 'new'"
+                                              ng-click="$event.stopPropagation();">
+                                            {{'TORRENT_STATUS_LABEL.' + item.torrent_status.toUpperCase() | translate}}
+                                        </span>
                                         <span class="label label-release label-warning" ng-show="item.resource_detail_info.release_date"
                                               ng-click="vm.onReleaseClicked(item.resource_detail_info.release_date); $event.stopPropagation();">
                                             {{ item.resource_detail_info.release_date}}
