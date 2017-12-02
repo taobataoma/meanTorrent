@@ -149,13 +149,14 @@ module.exports = {
      * user register settings
      * NOTE: you can change these value at anytime if you understand it
      *
-     * @openSignup:                 set whether open the signup, if true, the user can signup(register) by herself,
-     *                              if you create a private web site, and only accept invite to join, please set it to false.
-     * @signUpActiveTokenExpires:   sign up account active expires time setting.
-     * @allowSocialSignin:          meanTorrent can accept social account to signin, like google, twitter, facebook etc.
-     *                              if you do not want them to login, please set it to false
-     * @showMenuHeaderForGuest:     set whether show menu header for guest user(not sign in)
-     * @showDemoSignMessage:        if true, will show demo sign in message in sign in page, if your site is not demo site, please set it to false
+     * @openSignup:                   set whether open the signup, if true, the user can signup(register) by herself,
+     *                                if you create a private web site, and only accept invite to join, please set it to false.
+     * @signUpActiveTokenExpires:     sign up account active expires time setting.
+     * @allowSocialSignin:            meanTorrent can accept social account to signin, like google, twitter, facebook etc.
+     *                                if you do not want them to login, please set it to false
+     * @showMenuHeaderForGuest:       set whether show menu header for guest user(not sign in)
+     * @showFooterCountInfoForGuest:  set whether show count info at home footer for guest user(not sign in)
+     * @showDemoSignMessage:          if true, will show demo sign in message in sign in page, if your site is not demo site, please set it to false
      */
     sign: {
       openSignup: true,
