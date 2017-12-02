@@ -162,6 +162,7 @@ module.exports = {
       signUpActiveTokenExpires: 60 * 60 * 1000 * 24,
       allowSocialSignin: false,
       showMenuHeaderForGuest: true,
+      showFooterCountInfoForGuest: true,
       showDemoSignMessage: true
     },
 
