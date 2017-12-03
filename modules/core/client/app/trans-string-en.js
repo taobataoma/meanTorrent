@@ -226,6 +226,8 @@
       SENDING_MAIL: 'The authentication mail is being sent. Please wait a moment...',
       SIGNIN_ERROR: 'Signin Error!',
       SIGNUP_ERROR: 'Signup Error!',
+      SIGNIN_WELCOME_NORMAL: 'Welcome, {{name}}',
+      SIGNIN_WELCOME_IDLE: 'Welcome, {{name}}, you not login for long time, your account is IDLE status, before download any things, you should active you account again in profile menu "account status"!',
 
       NEW_PASSWORD: 'New Password',
       NP_REQUIRED: 'Enter a new password.',
@@ -659,6 +661,8 @@
       STATUS: 'Status',
       NORMAL: 'normal',
       BANNED: 'banned',
+      IDLE: 'idle',
+      ACTIVE: 'Active',
       INACTIVE: 'inactive',
       BTN_BAN: 'Ban',
       BTN_UNBAN: 'Unban',
@@ -1224,7 +1228,10 @@
       INVALID_USERNAME: 'Invalid username!',
       INVALID_PASSWORD: 'Invalid password!',
       YOU_ARE_BANNED: 'You are banned from the server!',
-      ACCOUNT_IS_NOT_ACTIVATED: 'Your account is not activated, you should active first!'
+      ACCOUNT_IS_NOT_ACTIVATED: 'Your account is not activated, you should active first!',
+      ONLY_VIP_CAN_DOWNLOAD: 'This torrent is only for Vip users',
+      CAN_NOT_DOWNLOAD_BANNED: 'Download failed, you are banned from server',
+      CAN_NOT_DOWNLOAD_IDLE: 'Download failed, you are idle for long time, before download any things, you should active you account again in profile menu "account status"!'
     }
   };
 

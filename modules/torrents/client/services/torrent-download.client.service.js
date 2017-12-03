@@ -29,7 +29,19 @@
         }
       }, function (err) {
         mtDebug.info(err);
-        NotifycationService.showErrorNotify(err.data.message, 'TORRENT_DOWNLOAD_ERROR');
+        switch (err.status) {
+          case 701:
+            NotifycationService.showErrorNotify('SERVER.ONLY_VIP_CAN_DOWNLOAD', 'TORRENT_DOWNLOAD_ERROR');
+            break;
+          case 702:
+            NotifycationService.showErrorNotify('SERVER.CAN_NOT_DOWNLOAD_BANNED', 'TORRENT_DOWNLOAD_ERROR');
+            break;
+          case 703:
+            NotifycationService.showErrorNotify('SERVER.CAN_NOT_DOWNLOAD_IDLE', 'TORRENT_DOWNLOAD_ERROR');
+            break;
+          default:
+            NotifycationService.showErrorNotify(err.data.message, 'TORRENT_DOWNLOAD_ERROR');
+        }
       });
     }
 

@@ -3,9 +3,14 @@
 /**
  * Module dependencies
  */
-var passport = require('passport'),
+var path = require('path'),
+  config = require(path.resolve('./config/config')),
+  moment = require('moment'),
+  passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   User = require('mongoose').model('User');
+
+var signConfig = config.meanTorrentConfig.sign;
 
 module.exports = function () {
   // Use local strategy
@@ -43,12 +48,20 @@ module.exports = function () {
               message: 'SERVER.YOU_ARE_BANNED'
             });
           }
-
           if (user.status === 'inactive') {
             return done(null, false, {
               message: 'SERVER.ACCOUNT_IS_NOT_ACTIVATED'
             });
           }
+
+          if ((moment(Date.now()) - moment(user.last_signed)) > signConfig.accountIdleForTime) {
+            user.update({
+              $set: {status: 'idle'}
+            }).exec();
+            user.status = 'idle';
+          }
+
+          user.updateSignedTime();
 
           return done(null, user);
         });

@@ -119,7 +119,12 @@
         vm.authentication.user = response;
         $rootScope.$broadcast('auth-user-changed');
         $rootScope.$broadcast('user-invitations-changed');
-        NotifycationService.showNotify('info', null, 'Welcome ' + response.displayName);
+        if (vm.authentication.user.status === 'normal') {
+          NotifycationService.showNotify('info', null, $translate.instant('SIGN.SIGNIN_WELCOME_NORMAL', {name: response.displayName}));
+        }
+        if (vm.authentication.user.status === 'idle') {
+          NotifycationService.showNotify('error', null, $translate.instant('SIGN.SIGNIN_WELCOME_IDLE', {name: response.displayName}));
+        }
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
       }

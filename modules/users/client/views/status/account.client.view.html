@@ -58,6 +58,16 @@
                     <span ng-if="vm.user.makers.length==0">-</span>
                 </dd>
 
+                <dt class="h-line">{{ 'STATUS_FIELD.STATUS' | translate}}：</dt>
+                <dd class="h-line">
+                    <span ng-class="{'span-banned': vm.user.status != 'normal'}">{{ 'STATUS_FIELD.' + vm.user.status.toUpperCase() | translate }}</span>
+
+                    <div class="pull-right"
+                         ng-if="vm.user.status == 'idle'">
+                        <a ui-sref="active">{{ 'STATUS_FIELD.ACTIVE' | translate }}</a>
+                    </div>
+                </dd>
+
                 <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
                 <dd class="h-line">
                     <span class="text-score">{{ vm.user.score | number: 2 }}</span> <span score-level-curr="vm.user"></span> <a
