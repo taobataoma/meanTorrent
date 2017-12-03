@@ -108,7 +108,8 @@
 
                                             <span ng-repeat="t in item.torrent.torrent_tags">
                                                 <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}"
-                                                      ng-click="$event.stopPropagation();">
+                                                      ng-click="$event.stopPropagation();"
+                                                      ng-if="vm.RTS.tagInList(t);">
                                                     {{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
                                                 </span>
                                             </span>
