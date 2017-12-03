@@ -17,7 +17,14 @@ module.exports.create = function (req, action, obj) {
     var trace = new Trace();
 
     obj.action = action.name;
-    trace.user = req.user ? req.user._id : (req.passkeyuser ? req.passkeyuser._id : null);
+
+    if (req.user) {
+      trace.user = req.user._id;
+    } else if (req.passkeyuser) {
+      trace.user = req.passkeyuser._id;
+    } else {
+      trace.user = null;
+    }
     trace.content = obj;
 
     trace.save(function (err) {
