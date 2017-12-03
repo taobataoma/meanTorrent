@@ -94,6 +94,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 41. Complete emoji support in markdown content, The images for the emoji can be found in the [emoji-cheat-sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/).
 42. Complete forum for vip and oper/admin users only, Special access forums not show to normal users.
 43. Add 'All Newest Torrents' in resources type list option of torrent manage admin page, admin can directly management all newest torrents of all category.
+44. New user status 'idle' for long time not login, idle user can not download and can not announce, user can active account with fixed score numbers.
 
 #### Chat room feature:
 1. Users name list
