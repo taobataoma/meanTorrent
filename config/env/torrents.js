@@ -152,6 +152,7 @@ module.exports = {
      * @openSignup:                   set whether open the signup, if true, the user can signup(register) by herself,
      *                                if you create a private web site, and only accept invite to join, please set it to false.
      * @signUpActiveTokenExpires:     sign up account active expires time setting.
+     * @accountIdleForTime:           setting for how many time not login then change account status to idle
      * @allowSocialSignin:            meanTorrent can accept social account to signin, like google, twitter, facebook etc.
      *                                if you do not want them to login, please set it to false
      * @showMenuHeaderForGuest:       set whether show menu header for guest user(not sign in)
@@ -161,6 +162,7 @@ module.exports = {
     sign: {
       openSignup: true,
       signUpActiveTokenExpires: 60 * 60 * 1000 * 24,
+      accountIdleForTime: 60 * 60 * 1000 * 30, //30 days
       allowSocialSignin: false,
       showMenuHeaderForGuest: true,
       showFooterCountInfoForGuest: true,
@@ -554,14 +556,17 @@ module.exports = {
      *      @name:    status name
      *      @value:   status value
      *
-     * banned user is banned from server, can not download any torrent and can not logon chat room
-     * inactive user can not sign in, need active from email verify link
+     * @normal:       normal user
+     * @banned:       user is banned from server, can not sign in, can not download and announce
+     * @idle:         not sign in for long time, can resign in, but can not download and announce, need reactive for score numbers
+     * @inactive:     user can not sign in, need active from email verify link
      */
     userStatus: {
       name: 'STATUS',
       value: [
         {name: 'NORMAL', value: 'normal'},
         {name: 'BANNED', value: 'banned'},
+        {name: 'idle', value: 'idle'},
         {name: 'INACTIVE', value: 'inactive'}
       ]
     },
