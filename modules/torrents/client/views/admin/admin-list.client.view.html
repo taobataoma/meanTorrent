@@ -58,7 +58,8 @@
                     <dd class="h-line">
                         <div class="checkbox checkbox-hnr">
                             <label>
-                                <input type="checkbox" ng-model="vm.filterSale" ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
+                                <input type="checkbox" ng-model="vm.filterSale"
+                                       ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
                             </label>
                         </div>
                     </dd>
@@ -234,7 +235,8 @@
 
                                         <span ng-repeat="t in item.torrent_tags">
                                             <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}"
-                                                  ng-click="vm.onTagClicked(t); $event.stopPropagation();">
+                                                  ng-click="vm.onTagClicked(t); $event.stopPropagation();"
+                                                  ng-if="vm.RTS.tagInList(t);">
                                                 {{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
                                             </span>
                                         </span>
