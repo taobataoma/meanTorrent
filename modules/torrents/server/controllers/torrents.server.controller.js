@@ -1279,6 +1279,7 @@ exports.list = function (req, res) {
   var stype = 'movie';
   var newest = false;
   var hnr = false;
+  var sale = false;
   var vip = false;
   var release = undefined;
   var userid = undefined;
@@ -1312,6 +1313,9 @@ exports.list = function (req, res) {
   }
   if (req.query.torrent_hnr !== undefined) {
     hnr = (req.query.torrent_hnr === 'true');
+  }
+  if (req.query.torrent_sale !== undefined) {
+    sale = (req.query.torrent_sale === 'true');
   }
   if (req.query.torrent_vip !== undefined) {
     vip = (req.query.torrent_vip === 'true');
@@ -1362,6 +1366,11 @@ exports.list = function (req, res) {
   }
   if (hnr === true) {
     condition.torrent_hnr = true;
+  }
+  if (sale === true) {
+    condition.torrent_sale_status = {
+      $ne: 'U1/D1'
+    };
   }
   if (vip === true) {
     condition.torrent_vip = true;

@@ -186,7 +186,8 @@
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
         torrent_hnr: vm.filterHnR,
-        torrent_vip: vm.filterVIP
+        torrent_vip: vm.filterVIP,
+        torrent_sale: vm.filterSale
       }, function (items) {
         if (items.length === 0) {
           Notification.error({
@@ -245,6 +246,17 @@
       vm.torrentBuildPager();
     };
     vm.onHnRChanged = function () {
+      vm.torrentBuildPager();
+    };
+
+    /**
+     * onSaleChanged
+     */
+    vm.onSaleClicked = function () {
+      vm.filterSale = !vm.filterSale;
+      vm.torrentBuildPager();
+    };
+    vm.onSaleChanged = function () {
       vm.torrentBuildPager();
     };
 

@@ -255,6 +255,8 @@
     CA_KEYWORD: '关键字',
     CA_TORRENT_STATUS: '种子状态',
     CA_TORRENT_HNR: 'Hit and Run',
+    CA_TORRENT_SALE_STATUS: '促销状态',
+    CA_TORRENT_SALE_NOW: '正在促销',
     CA_TORRENT_VIP: 'VIP 资源',
     CA_RESOURCE_TYPE: '资源类型',
     PH_KEYWORD: '搜索关键字',
