@@ -19,6 +19,8 @@ var path = require('path'),
 exports.list = function (req, res) {
   var skip = 0;
   var limit = 0;
+  var condition = {};
+  var keysA = [];
 
   if (req.query.skip !== undefined) {
     skip = parseInt(req.query.skip, 10);
@@ -27,8 +29,24 @@ exports.list = function (req, res) {
     limit = parseInt(req.query.limit, 10);
   }
 
+  if (req.query.keys && req.query.keys.length > 0) {
+    var keysS = req.query.keys + '';
+    var keysT = keysS.split(' ');
+
+    keysT.forEach(function (it) {
+      var ti = new RegExp(it, 'i');
+      keysA.push(ti);
+    });
+  }
+
+  if (keysA.length > 0) {
+    condition.$or = [
+      {'content.action': {'$all': keysA}}
+    ];
+  }
+
   var countQuery = function (callback) {
-    Trace.count({}, function (err, count) {
+    Trace.count(condition, function (err, count) {
       if (err) {
         callback(err, null);
       } else {
@@ -38,7 +56,7 @@ exports.list = function (req, res) {
   };
 
   var findQuery = function (callback) {
-    Trace.find({})
+    Trace.find(condition)
       .sort('-createdat')
       .populate('user', 'username displayName isVip')
       .populate({
@@ -71,6 +89,7 @@ exports.list = function (req, res) {
 
   async.parallel([countQuery, findQuery], function (err, results) {
     if (err) {
+      console.log(err);
       return res.status(422).send(err);
     } else {
       res.json({rows: results[1], total: results[0]});

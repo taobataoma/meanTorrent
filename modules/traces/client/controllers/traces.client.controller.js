@@ -58,7 +58,8 @@
     vm.getTraces = function (p, callback) {
       TracesService.get({
         skip: (p - 1) * vm.itemsPerPage,
-        limit: vm.itemsPerPage
+        limit: vm.itemsPerPage,
+        keys: vm.search
       }, function (data) {
         callback(data);
       });
