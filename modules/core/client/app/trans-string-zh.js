@@ -287,6 +287,7 @@
     TORRENT_FILENAME: '种子文件名',
     ATTRIBUTE_TAGS: '视频属性(标签)',
     VIDEO_NFO: '视频 NFO',
+    ALL_FILES_LIST: '文件清单',
     VIDEO_SIZE: '视频文件大小',
     VIDEO_SALE_INFO: '视频促销信息',
     SALE_EXPIRES_TIME: '过期',

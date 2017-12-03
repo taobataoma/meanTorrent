@@ -608,6 +608,15 @@
                     </dd>
                 </div>
 
+                <dt class="h-line">{{ 'ALL_FILES_LIST' | translate}}：</dt>
+                <dd class="h-line">
+                    <div class="row">
+                        <div class="col-md-10 all-files">
+                            <json-tree root-name="vm.torrentLocalInfo._all_files.length + ' files'" object="vm.torrentLocalInfo._all_files"></json-tree>
+                        </div>
+                    </div>
+                </dd>
+
                 <dt class="h-line" ng-if="vm.torrentLocalInfo.torrent_nfo.length>0">{{ 'VIDEO_NFO' | translate}}：</dt>
                 <dd class="h-line" ng-if="vm.torrentLocalInfo.torrent_nfo.length>0">
                     <div class="row">

@@ -1363,6 +1363,32 @@ body {
     background-color: #fff !important;
 }
 
+.all-files {
+    json-tree {
+        json-node.expandable {
+            &::before {
+                content: '\25b6';
+                position: absolute;
+                left: 0;
+                top: -2px;
+                font-size: 10px;
+                transition: transform .1s ease;
+            }
+        }
+        .branch-preview {
+            max-width: 80%;
+            height: 2em;
+        }
+        .branch-value {
+            background-color: #fff;
+            max-height: 300px;
+            overflow: auto;
+            border: solid 1px #ccc;
+            border-radius: 4px;
+            padding: 2px 20px;
+        }
+    }
+}
 .subtitle-list {
     padding-left: 0;
     .glyphicon {

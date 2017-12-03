@@ -6,6 +6,7 @@
 var path = require('path'),
   config = require(path.resolve('./config/config')),
   mongoose = require('mongoose'),
+  common = require(path.resolve('./config/lib/common')),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   multer = require('multer'),
   moment = require('moment'),
@@ -1838,7 +1839,29 @@ exports.torrentByID = function (req, res, next, id) {
     }
   };
 
-  async.waterfall([findTorrents, findOtherTorrents], function (err, torrent) {
+  var writeAllFiles = function (torrent, callback) {
+    var filePath = config.uploads.torrent.file.dest + torrent.torrent_filename;
+    nt.read(filePath, function (err, torrent_data) {
+      if (err) {
+        callback(err);
+      } else {
+        var mdata = torrent_data.metadata;
+
+        if (mdata.info.files) {
+          mdata.info.files.forEach(function (f) {
+            torrent._all_files.push(f.path.join('/') + ', ' + common.fileSizeFormat(f.length, 2));
+          });
+        } else {
+          torrent._all_files.push(mdata.info.name + ', ' + common.fileSizeFormat(mdata.info.length, 2));
+        }
+
+        callback(null, torrent);
+      }
+    });
+
+  };
+
+  async.waterfall([findTorrents, findOtherTorrents, writeAllFiles], function (err, torrent) {
     if (err) {
       next(err);
     } else {

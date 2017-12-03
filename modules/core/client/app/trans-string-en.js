@@ -287,6 +287,7 @@
     TORRENT_FILENAME: 'Torrent Filename',
     ATTRIBUTE_TAGS: 'Video Attribute (tags)',
     VIDEO_NFO: 'Video NFO',
+    ALL_FILES_LIST: 'Files List',
     VIDEO_SIZE: 'Video Size',
     VIDEO_SALE_INFO: 'Video Sale Info',
     SALE_EXPIRES_TIME: 'expires',

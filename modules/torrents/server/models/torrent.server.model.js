@@ -183,7 +183,7 @@ var TorrentSchema = new Schema({
   _thumbs: [ThumbSchema],
   _ratings: [RatingSchema],
   _other_torrents: [],
-
+  _all_files: [],
   //resource info
   resource_detail_info: Object,
 
