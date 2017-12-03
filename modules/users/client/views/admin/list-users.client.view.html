@@ -18,11 +18,19 @@
                 <div>
                     <label class="radio-inline">
                         <input type="radio" name="status_normal" ng-model="vm.userStatus"
+                               id="status_all" value="all" ng-change="vm.buildPager();"> all
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="status_normal" ng-model="vm.userStatus"
                                id="status_normal" value="normal" ng-change="vm.buildPager();"> normal
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="status_banned" ng-model="vm.userStatus"
                                id="status_banned" value="banned" ng-change="vm.buildPager();"> banned
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="status_banned" ng-model="vm.userStatus"
+                               id="status_idle" value="idle" ng-change="vm.buildPager();"> idle
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="status_inactive" ng-model="vm.userStatus"
@@ -38,7 +46,7 @@
     </div>
     <div class="list-group">
         <a ng-repeat="user in vm.pagedItems" ui-sref="admin.user({userId: user._id})" class="list-group-item"
-           ng-class="{'span-banned': user.status == 'banned'}">
+           ng-class="{'span-banned': user.status == 'banned', 'span-idle': user.status == 'idle'}">
             <img class="ulist-avatar" ng-src="{{user.profileImageURL}}">
 
             <h4 class="list-group-item-heading">{{user.displayName}} <span vip-flag="user"></span> -
@@ -47,7 +55,7 @@
 
             <p class="list-group-item-text pull-right small" ng-bind="user.roles"></p>
 
-            <p class="list-group-item-text" ng-bind="user.email"></p>
+            <p class="list-group-item-text"><span ng-bind="user.email"></span> | <strong>{{user.status}}</strong></p>
         </a>
     </div>
 

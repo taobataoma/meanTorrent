@@ -17,7 +17,7 @@
     vm.searchVip = false;
     vm.searchAdmin = false;
     vm.searchOper = false;
-    vm.userStatus = 'normal';
+    vm.userStatus = 'all';
     /**
      * buildPager
      */
@@ -54,7 +54,7 @@
         isOper: vm.searchOper || undefined,
         isAdmin: vm.searchAdmin || undefined,
         keys: vm.search,
-        status: vm.userStatus ? vm.userStatus : 'normal'
+        status: vm.userStatus ? vm.userStatus : 'all'
       }, function (data) {
         mtDebug.info(data);
         callback(data);

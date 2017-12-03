@@ -109,7 +109,7 @@ exports.list = function (req, res) {
   if (req.query.isAdmin !== undefined) {
     isAdmin = req.query.isAdmin;
   }
-  if (req.query.status !== undefined) {
+  if (req.query.status !== undefined && req.query.status !== 'all') {
     status = req.query.status;
   }
 
