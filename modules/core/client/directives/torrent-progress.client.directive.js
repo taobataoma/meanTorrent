@@ -37,6 +37,7 @@
           }
           t_progressbar.progressbarEl.css('background-color', '#dedede');
           t_progressbar.progressbarEl.css('top', '-5px');
+          t_progressbar.progressbarEl.css('z-index', '999');
           //t_progressbar.progressbarEl.css('left', '8px');
           //t_progressbar.progressbarEl.css('right', '8px');
 
@@ -84,6 +85,7 @@
           }
           t_progressbar.progressbarEl.css('background-color', '#dedede');
           t_progressbar.progressbarEl.css('top', '0');
+          t_progressbar.progressbarEl.css('z-index', '999');
           //t_progressbar.progressbarEl.css('left', '8px');
           //t_progressbar.progressbarEl.css('right', '8px');
 
