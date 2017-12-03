@@ -11,6 +11,9 @@
     var vm = this;
     vm.user = Authentication.user;
 
+    /**
+     * resetPasskey
+     */
     vm.resetPasskey = function () {
       var modalOptions = {
         closeButtonText: $translate.instant('RESET_PASSKEY_CONFIRM_CANCEL'),

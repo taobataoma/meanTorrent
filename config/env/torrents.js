@@ -152,21 +152,23 @@ module.exports = {
      * @openSignup:                   set whether open the signup, if true, the user can signup(register) by herself,
      *                                if you create a private web site, and only accept invite to join, please set it to false.
      * @signUpActiveTokenExpires:     sign up account active expires time setting.
-     * @accountIdleForTime:           setting for how many time not login then change account status to idle
      * @allowSocialSignin:            meanTorrent can accept social account to signin, like google, twitter, facebook etc.
      *                                if you do not want them to login, please set it to false
      * @showMenuHeaderForGuest:       set whether show menu header for guest user(not sign in)
      * @showFooterCountInfoForGuest:  set whether show count info at home footer for guest user(not sign in)
      * @showDemoSignMessage:          if true, will show demo sign in message in sign in page, if your site is not demo site, please set it to false
+     * @accountIdleForTime:           setting for how many time not login then change account status to idle
+     * @activeIdleAccountScore:       user active idle account need score numbers
      */
     sign: {
       openSignup: true,
       signUpActiveTokenExpires: 60 * 60 * 1000 * 24,
-      accountIdleForTime: 60 * 60 * 1000 * 30, //30 days
       allowSocialSignin: false,
       showMenuHeaderForGuest: true,
       showFooterCountInfoForGuest: true,
-      showDemoSignMessage: true
+      showDemoSignMessage: true,
+      accountIdleForTime: 60 * 60 * 1000 * 30, //30 days
+      activeIdleAccountScore: 50000
     },
 
     /**
@@ -287,6 +289,8 @@ module.exports = {
         AdminUserEdit: {name: 'AdminUserEdit', enable: true},
         userPasswordReset: {name: 'userPasswordReset', enable: true},
         userSignUp: {name: 'userSignUp', enable: true},
+        userActiveAccount: {name: 'userActiveAccount', enable: true},
+        userUnIdle: {name: 'userUnIdle', enable: true},
 
         AdminTorrentDelete: {name: 'AdminTorrentDelete', enable: true},
         AdminTorrentSetSaleType: {name: 'AdminTorrentSetSaleType', enable: true},

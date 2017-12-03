@@ -645,6 +645,12 @@
     SEEDING_LIST_ERROR: '获取我正做种的列表失败',
     WARNING_LIST_ERROR: '获取正被警告种子列表失败',
     DOWNLOADING_LIST_ERROR: '获取我正下载的列表失败',
+    ACTIVE_IDLE_CONFIRM_OK: '激活',
+    ACTIVE_IDLE_CONFIRM_CANCEL: '取消',
+    ACTIVE_IDLE_CONFIRM_HEADER_TEXT: '激活确认',
+    ACTIVE_IDLE_CONFIRM_BODY_TEXT: '您确认要使用 {{score}} 积分来重新激活您的帐户?',
+    ACTIVE_IDLE_SUCCESSFULLY: '激活帐户成功',
+    ACTIVE_IDLE_ERROR: '激活帐户失败',
     STATUS_FIELD: {
       PICTURE: '头像',
       RESET_DEFAULT_PICTURE: '重置为默认图片',

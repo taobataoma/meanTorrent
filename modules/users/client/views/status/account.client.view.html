@@ -64,7 +64,7 @@
 
                     <div class="pull-right"
                          ng-if="vm.user.status == 'idle'">
-                        <a ui-sref="active">{{ 'STATUS_FIELD.ACTIVE' | translate }}</a>
+                        <button class="btn btn-default btn-xs" ng-click="vm.unIdle(); " style="cursor: pointer">{{ 'STATUS_FIELD.ACTIVE' | translate }}</button>
                     </div>
                 </dd>
 

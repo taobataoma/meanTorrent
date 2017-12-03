@@ -146,6 +146,12 @@ exports.active = function (req, res, next) {
               return res.redirect('/authentication/active?method=successfully');
             }
           });
+
+          //create trace log
+          traceLogCreate(req, traceConfig.action.userActiveAccount, {
+            user: u._id,
+            token: req.params.token
+          });
         }
       });
     }

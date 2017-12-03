@@ -51,6 +51,10 @@
       signin: {
         method: 'POST',
         url: '/api/auth/signin'
+      },
+      unIdle: {
+        method: 'POST',
+        url: '/api/users/unIdle'
       }
     });
 
@@ -85,6 +89,9 @@
       },
       userSignin: function (credentials) {
         return this.signin(credentials).$promise;
+      },
+      userUnIdle: function () {
+        return this.unIdle().$promise;
       }
     });
 

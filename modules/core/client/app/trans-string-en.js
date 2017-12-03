@@ -645,6 +645,12 @@
     SEEDING_LIST_ERROR: 'Get seeding list info failed',
     WARNING_LIST_ERROR: 'Get warning list info failed',
     DOWNLOADING_LIST_ERROR: 'Get downloading list info failed',
+    ACTIVE_IDLE_CONFIRM_OK: 'Active',
+    ACTIVE_IDLE_CONFIRM_CANCEL: 'Cancel',
+    ACTIVE_IDLE_CONFIRM_HEADER_TEXT: 'Active Confirm',
+    ACTIVE_IDLE_CONFIRM_BODY_TEXT: 'Are you sure want to active your account with {{score}} scores?',
+    ACTIVE_IDLE_SUCCESSFULLY: 'Active account successfully',
+    ACTIVE_IDLE_ERROR: 'Active account failed',
     STATUS_FIELD: {
       PICTURE: 'Profile picture',
       RESET_DEFAULT_PICTURE: 'Reset to default picture',

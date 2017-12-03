@@ -14,10 +14,13 @@ var _ = require('lodash'),
   amazonS3URI = require('amazon-s3-uri'),
   config = require(path.resolve('./config/config')),
   User = mongoose.model('User'),
-  validator = require('validator');
+  validator = require('validator'),
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var whitelistedFields = ['firstName', 'lastName', 'email', 'username', 'hideMoreDetail'];
 var mtDebug = require(path.resolve('./config/lib/debug'));
+var signConfig = config.meanTorrentConfig.sign;
+var traceConfig = config.meanTorrentConfig.trace;
 
 var useS3Storage = config.uploads.storage === 's3' && config.aws.s3;
 var s3;
@@ -237,6 +240,51 @@ exports.warningNumber = function (req, res, next) {
     res.json({
       hnr_warning: req.user.hnr_warning
     });
+  } else {
+    res.status(401).send({
+      message: 'User is not signed in'
+    });
+  }
+};
+
+/**
+ * unIdle
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.unIdle = function (req, res, next) {
+  var user = req.user;
+
+  if (user) {
+    if (user.score < signConfig.activeIdleAccountScore) {
+      return res.status(422).send({
+        message: 'SERVER.SCORE_NOT_ENOUGH'
+      });
+    } else {
+      //update score
+      user.update({
+        $set: {
+          score: req.user.score - signConfig.activeIdleAccountScore,
+          status: 'normal'
+        }
+      }).exec();
+
+      user.status = 'normal';
+      req.login(user, function (err) {
+        if (err) {
+          res.status(400).send(err);
+        } else {
+          res.json(user);
+        }
+      });
+
+      //create trace log
+      traceLogCreate(req, traceConfig.action.userUnIdle, {
+        user: req.user._id,
+        score: signConfig.activeIdleAccountScore
+      });
+    }
   } else {
     res.status(401).send({
       message: 'User is not signed in'
