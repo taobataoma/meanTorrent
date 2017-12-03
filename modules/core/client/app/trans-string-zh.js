@@ -1115,9 +1115,7 @@
       RANKING: {
         SELF: '排行榜',
         IMDB_TOP100: 'IMDB TOP100',
-        IMDB_TOP250: 'IMDB TOP250',
-        DOUBAN_TOP100: '豆瓣 TOP100',
-        DOUBAN_TOP250: '豆瓣 TOP250'
+        IMDB_TOP250: 'IMDB TOP250'
       },
 
       REGION: {

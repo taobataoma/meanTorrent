@@ -1115,9 +1115,7 @@
       RANKING: {
         SELF: 'Ranking',
         IMDB_TOP100: 'IMDB TOP100',
-        IMDB_TOP250: 'IMDB TOP250',
-        DOUBAN_TOP100: 'Douban TOP100',
-        DOUBAN_TOP250: 'Douban TOP250'
+        IMDB_TOP250: 'IMDB TOP250'
       },
 
       REGION: {

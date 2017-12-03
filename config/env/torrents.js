@@ -975,9 +975,7 @@ module.exports = {
           cats: ['movie', 'tvserial'],
           value: [
             {name: 'IMDB_TOP100', icon: ''},
-            {name: 'IMDB_TOP250', icon: ''},
-            {name: 'DOUBAN_TOP100', icon: ''},
-            {name: 'DOUBAN_TOP250', icon: ''}
+            {name: 'IMDB_TOP250', icon: ''}
           ]
         }
       ]
