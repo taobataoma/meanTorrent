@@ -359,6 +359,7 @@ exports.addVIPMonths = function (req, res) {
 
     user.vip_start_at = start;
     user.vip_end_at = end;
+    user.status = 'normal';
 
     user.save(function (err) {
       if (err) {
