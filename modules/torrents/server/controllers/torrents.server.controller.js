@@ -501,8 +501,16 @@ exports.download = function (req, res) {
   var filePath = config.uploads.torrent.file.dest + req.torrent.torrent_filename;
 
   if (req.torrent.torrent_vip && !req.user.isVip) {
-    return res.status(422).send({
-      message: 'ONLY_VIP_CAN_DOWNLOAD'
+    return res.status(701).send({
+      message: 'SERVER.ONLY_VIP_CAN_DOWNLOAD'
+    });
+  } else if (req.user.status === 'banned') {
+    return res.status(702).send({
+      message: 'SERVER.CAN_NOT_DOWNLOAD_BANNED'
+    });
+  } else if (req.user.status === 'idle') {
+    return res.status(703).send({
+      message: 'SERVER.CAN_NOT_DOWNLOAD_IDLE'
     });
   } else {
     fs.exists(filePath, function (exists) {
