@@ -90,7 +90,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 37. User email verify and account active support, inactive account can not login and announce torrent data.
 38. User can set a signature info for forum.
 39. Auto get search movie/tvserial result from TMDB by keywords, user can select a result item to load resources info and upload.
-40. Admin can configure to hide all menu header for guest users, usefully for private tracker mode.
+40. Admin can configure to hide all menu header and footer count info for guest users, usefully for private tracker mode.
 41. Complete emoji support in markdown content, The images for the emoji can be found in the [emoji-cheat-sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/).
 42. Complete forum for vip and oper/admin users only, Special access forums not show to normal users.
 43. Add 'All Newest Torrents' in resources type list option of torrent manage admin page, admin can directly management all newest torrents of all category.
