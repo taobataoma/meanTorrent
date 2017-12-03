@@ -22,6 +22,7 @@ var path = require('path'),
 var traceConfig = config.meanTorrentConfig.trace;
 var scoreConfig = config.meanTorrentConfig.score;
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
+var signConfig = config.meanTorrentConfig.sign;
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
 
@@ -41,11 +42,12 @@ const FAILURE_REASONS = {
   161: 'No torrent with that info_hash has been found',
   162: 'ip length error',
 
-  170: 'your account is banned',
-  171: 'your account is inactive',
+  170: 'your account status is banned',
+  p: 'your account status is inactive',
   172: 'your client is not allowed, here is the blacklist: ' + config.meanTorrentConfig.announce.clientBlackListUrl,
   173: 'this torrent status is not reviewed by administrators, try again later',
   174: 'this torrent is only for VIP members',
+  175: 'your account status is idle',
 
   180: 'You already are downloading the same torrent. You may only leech from one location at a time',
   181: 'You cannot seed the same torrent from more than 3 locations',
@@ -210,6 +212,9 @@ exports.announce = function (req, res) {
       switch (req.passkeyuser.status) {
         case 'banned':
           done(170);
+          break;
+        case 'idle':
+          done(175);
           break;
         case 'inactive':
           done(171);
@@ -852,6 +857,14 @@ exports.userByPasskey = function (req, res, next, pk) {
     .exec(function (err, u) {
       if (u) {
         req.passkeyuser = u;
+
+        if ((moment(Date.now()) - moment(req.passkeyuser.last_signed)) > signConfig.accountIdleForTime) {
+          req.passkeyuser.update({
+            $set: {status: 'idle'}
+          }).exec();
+          req.passkeyuser.status = 'idle';
+        }
+
       } else {
         req.passkeyuser = undefined;
       }
