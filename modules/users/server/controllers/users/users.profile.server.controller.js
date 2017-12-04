@@ -271,6 +271,7 @@ exports.unIdle = function (req, res, next) {
       }).exec();
 
       user.status = 'normal';
+      user.score = req.user.score - signConfig.activeIdleAccountScore;
       req.login(user, function (err) {
         if (err) {
           res.status(400).send(err);
