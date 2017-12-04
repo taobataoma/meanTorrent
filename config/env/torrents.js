@@ -570,7 +570,7 @@ module.exports = {
       value: [
         {name: 'NORMAL', value: 'normal'},
         {name: 'BANNED', value: 'banned'},
-        {name: 'idle', value: 'idle'},
+        {name: 'IDLE', value: 'idle'},
         {name: 'INACTIVE', value: 'inactive'}
       ]
     },

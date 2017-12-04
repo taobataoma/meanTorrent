@@ -97,9 +97,10 @@
 
                     <div class="pull-right"
                          ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isOper && !vm.user.isAdmin">
-                        <button class="btn btn-default btn-xs btn-width-100" ng-click="vm.setUserStatus();">
-                            {{ vm.user.status == 'banned' ? ('STATUS_FIELD.BTN_UNBAN' | translate) : ('STATUS_FIELD.BTN_BAN' | translate)}}
-                        </button>
+                        <select class="width-100" ng-model="vm.selectedStatus" ng-change="vm.onUserStatusChanged();">
+                            <option ng-repeat="r in vm.userStatusConfig.value" value="{{r.value}}">{{ 'STATUS_FIELD.' + r.name | translate }}
+                            </option>
+                        </select>
                     </div>
                 </dd>
 

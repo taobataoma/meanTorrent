@@ -15,7 +15,9 @@
     vm.authentication = Authentication;
     vm.user = user;
     vm.selectedRole = vm.user.roles[0];
+    vm.selectedStatus = vm.user.status;
     vm.userRolesConfig = MeanTorrentConfig.meanTorrentConfig.userRoles;
+    vm.userStatusConfig = MeanTorrentConfig.meanTorrentConfig.userStatus;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -247,13 +249,13 @@
     };
 
     /**
-     * setUserStatus
+     * onUserStatusChanged
      */
-    vm.setUserStatus = function () {
+    vm.onUserStatusChanged = function () {
       var user = vm.user;
       AdminService.setUserStatus({
         userId: user._id,
-        userStatus: user.status === 'banned' ? 'normal' : 'banned'
+        userStatus: vm.selectedStatus
       })
         .then(onSuccess)
         .catch(onError);
