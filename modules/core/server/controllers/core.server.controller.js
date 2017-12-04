@@ -18,7 +18,7 @@ exports.renderIndex = function (req, res) {
   res.render('modules/core/server/views/index', {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared),
-    meanTorrentConfig: JSON.stringify(getSafeMeanTorrentConfig(config.meanTorrentConfig)),
+    meanTorrentConfig: JSON.stringify(getSafeMeanTorrentConfig(config.meanTorrentConfig))
   });
 };
 
@@ -68,7 +68,7 @@ exports.renderNotFound = function (req, res) {
  * @param cfg
  * @returns {*}
  */
-function getSafeMeanTorrentConfig(cfg){
+function getSafeMeanTorrentConfig(cfg) {
   //ignore backup settings
   cfg.backup = undefined;
 
@@ -85,4 +85,4 @@ function getSafeMeanTorrentConfig(cfg){
   cfg.tmdbConfig.key = undefined;
 
   return cfg;
-};
+}

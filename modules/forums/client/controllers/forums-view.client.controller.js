@@ -65,14 +65,17 @@
         forumId: $stateParams.forumId
       }, function (item) {
         vm.forum = item;
-
         vm.forumPath.push({name: vm.forum.name, state: undefined});
-      });
-
-      // get global topics list
-      TopicsService.getGlobalTopics(function (topics) {
-        mtDebug.info(topics);
-        vm.globalTopics = topics;
+        vm.buildPager();
+        // get global topics list
+        TopicsService.getGlobalTopics(function (topics) {
+          mtDebug.info(topics);
+          vm.globalTopics = topics;
+        });
+      }, function (res) {
+        if (typeof res.data.redirect == 'string') {
+          $state.go(res.data.redirect);
+        }
       });
     };
 

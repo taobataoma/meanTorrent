@@ -138,7 +138,20 @@ exports.list = function (req, res) {
  * @param res
  */
 exports.read = function (req, res) {
-  res.json(req.forum);
+  var forum = req.forum;
+  var user = req.user;
+
+  if (forum.vipOnly && !user.isVip && !user.isOper) {
+    return res.status(422).send({
+      redirect: 'forums.list'
+    });
+  } else if (forum.operOnly && !user.isOper) {
+    return res.status(422).send({
+      redirect: 'forums.list'
+    });
+  } else {
+    res.json(req.forum);
+  }
 };
 
 /**
@@ -280,6 +293,8 @@ exports.listTopics = function (req, res) {
  * @param res
  */
 exports.globalTopics = function (req, res) {
+  var user = req.user;
+
   Forum.find().exec(function (err, forums) {
     if (err) {
       return res.status(422).send({
@@ -287,10 +302,16 @@ exports.globalTopics = function (req, res) {
       });
     } else {
       var ids = forums.map(function (el) {
-        return el._id;
+        if (el.vipOnly && !user.isVip && !user.isOper) {
+          return undefined;
+        } else if (el.operOnly && !user.isOper) {
+          return undefined;
+        } else {
+          return el._id;
+        }
       });
 
-      console.log(ids);
+      //console.log(ids);
 
       Topic.find({
         isGlobal: true,

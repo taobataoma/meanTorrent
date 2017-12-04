@@ -89,20 +89,23 @@
         forumId: $stateParams.forumId
       }, function (item) {
         vm.forum = item;
-
         vm.forumPath.splice(0, 0, {name: vm.forum.name, state: 'forums.view', params: {forumId: vm.forum._id}});
-      });
 
-      // get topics
-      TopicsService.get({
-        forumId: $stateParams.forumId,
-        topicId: $stateParams.topicId
-      }, function (topic) {
-        mtDebug.info(topic);
-        vm.topic = topic;
-        vm.buildPager();
+        // get topics
+        TopicsService.get({
+          forumId: $stateParams.forumId,
+          topicId: $stateParams.topicId
+        }, function (topic) {
+          mtDebug.info(topic);
+          vm.topic = topic;
+          vm.buildPager();
 
-        vm.forumPath.push({name: topic.title, state: undefined});
+          vm.forumPath.push({name: topic.title, state: undefined});
+        });
+      }, function (res) {
+        if (typeof res.data.redirect == 'string') {
+          $state.go(res.data.redirect);
+        }
       });
     };
 
