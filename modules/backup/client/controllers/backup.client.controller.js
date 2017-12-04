@@ -68,8 +68,6 @@
         mtDebug.info(items);
         vm.buildPager();
       });
-
-      mtDebug.info(vm.backupConfig.dir);
     };
 
     /**
