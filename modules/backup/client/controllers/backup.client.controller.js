@@ -14,7 +14,6 @@
     vm.user = Authentication.user;
     vm.DLS = DownloadService;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
-    vm.backupConfig = MeanTorrentConfig.meanTorrentConfig.backup;
 
     vm.deleteList = [];
 

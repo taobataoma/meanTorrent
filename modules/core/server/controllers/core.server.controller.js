@@ -18,7 +18,7 @@ exports.renderIndex = function (req, res) {
   res.render('modules/core/server/views/index', {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared),
-    meanTorrentConfig: JSON.stringify(config.meanTorrentConfig)
+    meanTorrentConfig: JSON.stringify(getSafeMeanTorrentConfig(config.meanTorrentConfig)),
   });
 };
 
@@ -31,7 +31,7 @@ exports.renderServerError = function (req, res) {
   res.status(500).render('modules/core/server/views/500', {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared),
-    meanTorrentConfig: JSON.stringify(config.meanTorrentConfig),
+    meanTorrentConfig: JSON.stringify(getSafeMeanTorrentConfig(config.meanTorrentConfig)),
     error: 'Oops! Something went wrong...'
   });
 };
@@ -48,7 +48,7 @@ exports.renderNotFound = function (req, res) {
       res.render('modules/core/server/views/404', {
         user: JSON.stringify(safeUserObject),
         sharedConfig: JSON.stringify(config.shared),
-        meanTorrentConfig: JSON.stringify(config.meanTorrentConfig),
+        meanTorrentConfig: JSON.stringify(getSafeMeanTorrentConfig(config.meanTorrentConfig)),
         url: req.originalUrl
       });
     },
@@ -61,4 +61,28 @@ exports.renderNotFound = function (req, res) {
       res.send('Path not found');
     }
   });
+};
+
+/**
+ * getSafeMeanTorrentConfig
+ * @param cfg
+ * @returns {*}
+ */
+function getSafeMeanTorrentConfig(cfg){
+  //ignore backup settings
+  cfg.backup = undefined;
+
+  //ignore ircAnnounce settings
+  cfg.ircAnnounce = undefined;
+
+  //ignore password settings
+  cfg.password = undefined;
+
+  //ignore trace settings
+  cfg.trace = undefined;
+
+  //ignore tmdbConfig.key settings
+  cfg.tmdbConfig.key = undefined;
+
+  return cfg;
 };
