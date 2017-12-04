@@ -1863,6 +1863,7 @@ exports.torrentByID = function (req, res, next, id) {
         callback(err);
       } else {
         var mdata = torrent_data.metadata;
+        torrent._all_files = [];
 
         if (mdata.info.files) {
           mdata.info.files.forEach(function (f) {
