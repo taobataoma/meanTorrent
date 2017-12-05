@@ -1,8 +1,8 @@
 <section class="container" ng-controller="AdminInvitationController as vm" ng-init="vm.getOfficialInvitations();">
-    <div class="margin-top-50 alert alert-success" role="alert">
+    <div class="margin-top-20 alert alert-success" role="alert">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="margin-bottom-20">
+                <div class="margin-top-20 margin-bottom-20">
                     <h4>{{'ADMIN_SEND_OFFICIAL_INVITATION' | translate}}</h4>
                     <li class="status-divider"></li>
                 </div>
@@ -20,6 +20,9 @@
                             {{ 'BUTTON_INVITE' | translate }}
                         </button>
                     </form>
+                </div>
+                <div class="margin-bottom-20 text-center">
+                    <a href="#" ng-click="vm.deleteExpiredOfficialInvitation();">{{ 'BUTTON_DELETE_EXPIRED' | translate }}</a>
                 </div>
             </div>
         </div>

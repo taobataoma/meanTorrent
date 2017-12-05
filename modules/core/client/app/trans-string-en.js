@@ -767,6 +767,7 @@
     },
     GET_INVITATIONS_ERROR: 'Get invitations failed',
     BUTTON_INVITE: 'Send',
+    BUTTON_DELETE_EXPIRED: 'Delete All Expired Official Invitation',
     BUTTON_SEARCH: 'Search',
     INPUT_EMAIL: 'email',
     SEND_INVITE_SUCCESSFULLY: 'Send invitation successfully',
@@ -774,10 +775,15 @@
     INVALID_INVITATION_TIP: 'Invalid invitation, maybe the invitation is expired.',
     INVITATION_IS_EMPTY: 'There are no invitations available!',
     INVITATION_USED_IS_EMPTY: 'There are no used invitations!',
-
-    ADMIN_SEND_OFFICIAL_INVITATION: 'Send official invitation',
+    ADMIN_SEND_OFFICIAL_INVITATION: 'Official invitation',
     ADMIN_INVITATION_SUCCESSFULLY: 'Send official invitation successfully',
     ADMIN_INVITATION_ERROR: 'Send official invitation failed',
+    DELETE_EXPIRED_CONFIRM_OK: 'Delete',
+    DELETE_EXPIRED_CONFIRM_CANCEL: 'Cancel',
+    DELETE_EXPIRED_CONFIRM_HEADER_TEXT: 'Delete Confirm',
+    DELETE_EXPIRED_CONFIRM_BODY_TEXT: 'Are you sure want to delete all the expired official invitations?',
+    DELETE_EXPIRED_SUCCESSFULLY: 'Delete all the expired official invitations successfully',
+    DELETE_EXPIRED_ERROR: 'Delete all the expired official invitations failed',
 
     //user message box
     MESSAGES_BOX: 'Messages Box',

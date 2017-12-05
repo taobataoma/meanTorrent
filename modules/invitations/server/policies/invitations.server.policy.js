@@ -18,7 +18,8 @@ exports.invokeRolesPolicies = function () {
         roles: ['admin', 'oper'],
         allows: [
           {resources: '/api/invitations/official/send', permissions: ['post']},
-          {resources: '/api/invitations/official/list', permissions: ['get']}
+          {resources: '/api/invitations/official/list', permissions: ['get']},
+          {resources: '/api/invitations/official/deleteExpired', permissions: ['delete']}
         ]
       },
       {

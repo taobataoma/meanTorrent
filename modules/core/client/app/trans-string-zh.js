@@ -767,6 +767,7 @@
     },
     GET_INVITATIONS_ERROR: '获取邀请列表失败',
     BUTTON_INVITE: '发送',
+    BUTTON_DELETE_EXPIRED: '删除所有已过期的官方邀请',
     BUTTON_SEARCH: '搜索',
     INPUT_EMAIL: '邮箱地址',
     SEND_INVITE_SUCCESSFULLY: '发送邀请成功',
@@ -774,10 +775,15 @@
     INVALID_INVITATION_TIP: '无效的邀请, 该邀请可能已过期.',
     INVITATION_IS_EMPTY: '没有可用的邀请函!',
     INVITATION_USED_IS_EMPTY: '没有发送过的邀请!',
-
-    ADMIN_SEND_OFFICIAL_INVITATION: '发送官方邀请函',
+    ADMIN_SEND_OFFICIAL_INVITATION: '官方邀请函',
     ADMIN_INVITATION_SUCCESSFULLY: '官方邀请函发送成功',
     ADMIN_INVITATION_ERROR: '官方邀请函发送失败',
+    DELETE_EXPIRED_CONFIRM_OK: '删除',
+    DELETE_EXPIRED_CONFIRM_CANCEL: '取消',
+    DELETE_EXPIRED_CONFIRM_HEADER_TEXT: '删除确认',
+    DELETE_EXPIRED_CONFIRM_BODY_TEXT: '您确定要删除所有已过期的官方邀请吗?',
+    DELETE_EXPIRED_SUCCESSFULLY: '删除过期官方邀请成功',
+    DELETE_EXPIRED_ERROR: '删除过期官方邀请失败',
 
     //user message box
     MESSAGES_BOX: '站内消息',

@@ -23,6 +23,9 @@ module.exports = function (app) {
   app.route('/api/invitations/official/list').all(invitationsPolicy.isAllowed)
     .get(invitations.listOfficial);
 
+  app.route('/api/invitations/official/deleteExpired').all(invitationsPolicy.isAllowed)
+    .delete(invitations.deleteExpiredOfficialInvitation);
+
   app.route('/api/invitations/:invitationId').all(invitationsPolicy.isAllowed)
     .put(invitations.update)
     .delete(invitations.delete);

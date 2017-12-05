@@ -30,10 +30,10 @@
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
           UsersService.userUnIdle()
-            .then(onChangePasswordSuccess)
-            .catch(onChangePasswordError);
+            .then(onSuccess)
+            .catch(onError);
 
-          function onChangePasswordSuccess(response) {
+          function onSuccess(response) {
             vm.user = Authentication.user = response;
 
             NotifycationService.showSuccessNotify('ACTIVE_IDLE_SUCCESSFULLY');
@@ -42,7 +42,7 @@
             }, 100);
           }
 
-          function onChangePasswordError(response) {
+          function onError(response) {
             NotifycationService.showErrorNotify(response.data.message, 'ACTIVE_IDLE_ERROR');
           }
         });

@@ -101,6 +101,30 @@ exports.listOfficial = function (req, res) {
 };
 
 /**
+ * deleteExpiredOfficialInvitation
+ * @param req
+ * @param res
+ */
+exports.deleteExpiredOfficialInvitation = function (req, res) {
+  Invitation.remove({
+    isOfficial: true,
+    status: 1,
+    expiresat: {$lt: Date.now()}
+  }, function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json({
+        message: 'SERVER.DELETE_EXPIRED_OFFICIAL_INVITATION_OK'
+      });
+    }
+  });
+
+};
+
+/**
  * List of Invitations
  */
 exports.list = function (req, res) {

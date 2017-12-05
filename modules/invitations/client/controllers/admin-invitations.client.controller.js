@@ -6,10 +6,10 @@
     .controller('AdminInvitationController', AdminInvitationController);
 
   AdminInvitationController.$inject = ['$scope', '$state', 'Authentication', 'InvitationsService', 'NotifycationService', 'DebugConsoleService', '$translate',
-    'MeanTorrentConfig', '$filter', '$timeout'];
+    'MeanTorrentConfig', '$filter', '$timeout', 'ModalConfirmService'];
 
   function AdminInvitationController($scope, $state, Authentication, InvitationsService, NotifycationService, mtDebug, $translate,
-                                     MeanTorrentConfig, $filter, $timeout) {
+                                     MeanTorrentConfig, $filter, $timeout, ModalConfirmService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
@@ -105,6 +105,30 @@
           return $translate.instant('INVITATION.TITLE_STATUS_EXPIRED');
         }
       }
+    };
+
+    /**
+     * deleteExpiredOfficialInvitation
+     */
+    vm.deleteExpiredOfficialInvitation = function () {
+      var modalOptions = {
+        closeButtonText: $translate.instant('DELETE_EXPIRED_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('DELETE_EXPIRED_CONFIRM_OK'),
+        headerText: $translate.instant('DELETE_EXPIRED_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('DELETE_EXPIRED_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          InvitationsService.deleteExpiredOfficialInvitation(function (response) {
+            NotifycationService.showSuccessNotify('DELETE_EXPIRED_SUCCESSFULLY');
+            $timeout(function () {
+              $state.reload();
+            }, 100);
+          }, function (response) {
+            NotifycationService.showErrorNotify(response.data.message, 'DELETE_EXPIRED_ERROR');
+          });
+        });
     };
   }
 }());

@@ -33,6 +33,10 @@
         method: 'GET',
         url: '/api/invitations/official/list',
         isArray: true
+      },
+      deleteExpiredOfficialInvitation: {
+        method: 'DELETE',
+        url: '/api/invitations/official/deleteExpired'
       }
     });
   }
