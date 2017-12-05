@@ -694,14 +694,20 @@ exports.create = function (req, res) {
  * @param res
  */
 exports.read = function (req, res) {
-  // convert mongoose document to JSON
-  var torrent = req.torrent ? req.torrent.toJSON() : {};
+  if (req.torrent.torrent_vip && !req.user.isVip) {
+    return res.status(403).send({
+      message: 'SERVER.ONLY_VIP_CAN_DOWNLOAD'
+    });
+  } else {
+    // convert mongoose document to JSON
+    var torrent = req.torrent ? req.torrent.toJSON() : {};
 
-  // Add a custom field to the Article, for determining if the current User is the "owner".
-  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  torrent.isCurrentUserOwner = !!(req.user && torrent.user && torrent.user._id.toString() === req.user._id.toString());
+    // Add a custom field to the Article, for determining if the current User is the "owner".
+    // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
+    torrent.isCurrentUserOwner = !!(req.user && torrent.user && torrent.user._id.toString() === req.user._id.toString());
 
-  res.json(torrent);
+    res.json(torrent);
+  }
 };
 
 /**
