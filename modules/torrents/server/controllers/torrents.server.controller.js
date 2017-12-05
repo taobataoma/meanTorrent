@@ -1838,7 +1838,7 @@ exports.torrentByID = function (req, res, next, id) {
 
       mtDebug.debugGreen(condition);
 
-      var fields = 'user maker torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_seasons torrent_episodes torrent_size torrent_sale_status torrent_type torrent_hnr torrent_vip torrent_sale_expires createdat';
+      var fields = 'user maker torrent_filename torrent_tags torrent_seeds torrent_leechers torrent_finished torrent_seasons torrent_episodes torrent_size torrent_sale_status torrent_type torrent_hnr isSaling torrent_vip torrent_sale_expires createdat';
 
       Torrent.find(condition, fields)
         .sort('-createdat')
