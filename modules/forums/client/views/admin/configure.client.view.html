@@ -19,7 +19,7 @@
                             <td>
                                 <h4>{{f.name}} <span class="badge badge_mt" ng-show="f.readOnly">R</span>
                                     <small>[<a href="#" ng-click="vm.popupEditForum($event, f);">{{'FORUMS.LINK_EDIT' | translate}}</a>]</small>
-                                    <small>[<a href="#"
+                                    <small ng-if="!f.operOnly">[<a href="#"
                                                uib-popover-template="vm.addModeratorPopover.templateUrl"
                                                popover-append-to-body="true"
                                                popover-title="{{vm.addModeratorPopover.title | translate}}"
