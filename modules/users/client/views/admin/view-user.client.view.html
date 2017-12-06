@@ -60,10 +60,12 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.EMAIL' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.email }}</dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.PASSKEY' | translate}}：</dt>
-                <dd class="h-line">
-                    <mark>{{ vm.user.passkey }}</mark>
-                </dd>
+                <div ng-if="vm.authentication.user.isAdmin">
+                    <dt class="h-line">{{ 'STATUS_FIELD.PASSKEY' | translate}}：</dt>
+                    <dd class="h-line">
+                        <mark>{{ vm.user.passkey }}</mark>
+                    </dd>
+                </div>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.ROLE' | translate}}：</dt>
                 <dd class="h-line">
