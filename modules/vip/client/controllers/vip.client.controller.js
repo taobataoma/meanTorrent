@@ -20,10 +20,14 @@
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.vipTorrentType = 'movie';
 
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.searchTags = [];
+    vm.searchKey = '';
+    vm.releaseYear = undefined;
+    vm.filterHnR = false;
 
     uibButtonConfig.activeClass = 'btn-success';
 
@@ -157,7 +161,12 @@
         torrent_type: vm.vipTorrentType,
         torrent_status: 'reviewed',
         torrent_vip: true,
-        keys: vm.search
+        keys: vm.searchKey.trim(),
+
+        torrent_release: vm.releaseYear,
+        torrent_tags: vm.searchTags,
+        torrent_hnr: vm.filterHnR,
+        torrent_sale: vm.filterSale
       }, function (data) {
         mtDebug.info(data);
         callback(data);
@@ -167,7 +176,6 @@
         });
       });
     };
-
 
     /**
      * pageChanged
@@ -185,6 +193,131 @@
           }, 100);
         });
       });
+    };
+
+    /**
+     * onRadioTagClicked
+     * @param event
+     * @param n: tag name
+     */
+    vm.onRadioTagClicked = function (event, n) {
+      var e = angular.element(event.currentTarget);
+
+      if (e.hasClass('btn-success')) {
+        e.removeClass('btn-success').addClass('btn-default');
+        vm.searchTags.splice(vm.searchTags.indexOf(n), 1);
+      } else {
+        e.addClass('btn-success').removeClass('btn-default').siblings().removeClass('btn-success').addClass('btn-default');
+        vm.searchTags.push(n);
+
+        angular.forEach(e.siblings(), function (se) {
+          if (vm.searchTags.indexOf(se.value) !== -1) {
+            vm.searchTags.splice(vm.searchTags.indexOf(se.value), 1);
+          }
+        });
+      }
+      e.blur();
+      vm.buildPager();
+    };
+
+    /**
+     * onCheckboxTagClicked
+     * @param event
+     * @param n: tag name
+     */
+    vm.onCheckboxTagClicked = function (event, n) {
+      var e = angular.element(event.currentTarget);
+
+      if (e.hasClass('btn-success')) {
+        vm.searchTags.push(n);
+      } else {
+        vm.searchTags.splice(vm.searchTags.indexOf(n), 1);
+      }
+      vm.buildPager();
+    };
+
+    /**
+     * onKeysKeyDown
+     * @param evt
+     */
+    vm.onKeysKeyDown = function (evt) {
+      if (evt.keyCode === 13) {
+        vm.buildPager();
+      }
+    };
+
+    /**
+     * clearAllCondition
+     */
+    vm.clearAllCondition = function () {
+      vm.searchKey = '';
+      vm.searchTags = [];
+      $('.btn-tag').removeClass('btn-success').addClass('btn-default');
+
+      vm.buildPager();
+    };
+
+    /**
+     * onTagClicked
+     * @param tag: tag name
+     */
+    vm.onTagClicked = function (tag) {
+      $timeout(function () {
+        angular.element('#tag_' + tag).trigger('click');
+      }, 100);
+    };
+
+    /**
+     * onReleaseClicked
+     * @param y
+     */
+    vm.onReleaseClicked = function (y) {
+      if (vm.releaseYear === y) {
+        vm.releaseYear = undefined;
+      } else {
+        vm.releaseYear = y;
+      }
+      vm.buildPager();
+    };
+
+    /**
+     * onHnRClicked
+     */
+    vm.onHnRClicked = function () {
+      vm.filterHnR = !vm.filterHnR;
+      vm.buildPager();
+    };
+    vm.onHnRChanged = function () {
+      vm.buildPager();
+    };
+
+    /**
+     * onSaleChanged
+     */
+    vm.onSaleClicked = function () {
+      vm.filterSale = !vm.filterSale;
+      vm.buildPager();
+    };
+    vm.onSaleChanged = function () {
+      vm.buildPager();
+    };
+
+    /**
+     * onMoreTagsClicked
+     */
+    vm.onMoreTagsClicked = function () {
+      var e = $('.more-tags');
+      var i = $('#more-tags-icon');
+
+      if (!e.hasClass('panel-collapsed')) {
+        e.slideUp();
+        e.addClass('panel-collapsed');
+        i.removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+      } else {
+        e.slideDown();
+        e.removeClass('panel-collapsed');
+        i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+      }
     };
   }
 }());
