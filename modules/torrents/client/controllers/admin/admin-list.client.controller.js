@@ -7,12 +7,12 @@
 
   TorrentsAdminController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$window', 'ModalConfirmService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
-    'ResourcesTagsServices'
+    'ResourcesTagsServices', 'localStorageService'
   ];
 
   function TorrentsAdminController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                    DownloadService, $window, ModalConfirmService, NotifycationService, mtDebug, TorrentGetInfoServices,
-                                   ResourcesTagsServices) {
+                                   ResourcesTagsServices, localStorageService) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -24,12 +24,12 @@
     vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
 
-    vm.selectedType = 'movie';
+    vm.selectedType = localStorageService.get('admin_last_selected_type') || 'movie';
+    vm.filterVIP = isVipType(vm.selectedType);
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
     vm.filterHnR = false;
-    vm.filterVIP = false;
     vm.torrentStatus = 'reviewed';
     vm.torrentRLevel = 'none';
 
@@ -49,8 +49,29 @@
      */
     vm.onTorrentTypeChanged = function () {
       vm.searchTags = [];
+      vm.filterVIP = isVipType(vm.selectedType);
+
       vm.torrentBuildPager();
+      localStorageService.set('admin_last_selected_type', vm.selectedType);
     };
+
+    /**
+     * isVipType
+     * @param type
+     * @returns {boolean}
+     */
+    function isVipType(type) {
+      var v = false;
+      angular.forEach(vm.torrentType.value, function (t) {
+        if (t.value === type) {
+          if (t.role === 'vip') {
+            v = true;
+          }
+        }
+      });
+
+      return v;
+    }
 
     /**
      * commentFigureOutItemsToDisplay
