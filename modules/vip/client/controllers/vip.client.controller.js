@@ -6,10 +6,12 @@
     .controller('VipController', VipController);
 
   VipController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'getStorageLangService', 'MeanTorrentConfig', 'TorrentsService',
-    'DebugConsoleService', '$timeout', 'uibButtonConfig', 'TorrentGetInfoServices', 'DownloadService', 'ResourcesTagsServices', '$window'];
+    'DebugConsoleService', '$timeout', 'uibButtonConfig', 'TorrentGetInfoServices', 'DownloadService', 'ResourcesTagsServices', '$window',
+    'localStorageService'];
 
   function VipController($scope, $state, $translate, Authentication, getStorageLangService, MeanTorrentConfig, TorrentsService,
-                         mtDebug, $timeout, uibButtonConfig, TorrentGetInfoServices, DownloadService, ResourcesTagsServices, $window) {
+                         mtDebug, $timeout, uibButtonConfig, TorrentGetInfoServices, DownloadService, ResourcesTagsServices, $window,
+                         localStorageService) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -21,7 +23,7 @@
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
-    vm.vipTorrentType = 'movie';
+    vm.vipTorrentType = localStorageService.get('vip_last_selected_type') || 'movie';
 
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.searchTags = [];
@@ -235,6 +237,13 @@
           }, 100);
         });
       });
+    };
+
+    /**
+     * onTypeBtnClick
+     */
+    vm.onTypeBtnClick = function () {
+      localStorageService.set('vip_last_selected_type', vm.vipTorrentType);
     };
 
     /**

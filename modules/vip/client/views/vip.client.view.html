@@ -38,7 +38,7 @@
                         <label class="btn btn-default"
                                ng-repeat="t in vm.torrentType.value | filter:{enable: true} | orderBy: 'position'"
                                ng-model="vm.vipTorrentType" uib-btn-radio="'{{t.value}}'"
-                               ng-click="vm.buildPager();">
+                               ng-click="vm.onTypeBtnClick(); vm.buildPager();">
                             {{'MENU_TORRENTS_SUB.'+t.name | translate}}
                         </label>
                     </div>
