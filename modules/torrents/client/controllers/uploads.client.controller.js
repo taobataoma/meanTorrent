@@ -216,6 +216,24 @@
     };
 
     /**
+     * isSelectedVipType
+     * @param type
+     * @returns {boolean}
+     */
+    function isSelectedVipType(type) {
+      var v = false;
+      angular.forEach(vm.torrentType.value, function (t) {
+        if (t.value === type) {
+          if (t.role === 'vip') {
+            v = true;
+          }
+        }
+      });
+
+      return v;
+    }
+
+    /**
      * getIncludeUploadTemplateID
      * @param st
      */
@@ -362,6 +380,7 @@
         maker: vm.maker === 'NULL' ? undefined : vm.maker,
         torrent_filename: vm.torrentInfo.filename,
         torrent_type: 'movie',
+        torrent_vip: isSelectedVipType(vm.selectedType),
         torrent_tags: t,
         torrent_nfo: vm.videoNfo,
         torrent_announce: vm.torrentInfo.announce,
@@ -401,6 +420,7 @@
         maker: vm.maker === 'NULL' ? undefined : vm.maker,
         torrent_filename: vm.torrentInfo.filename,
         torrent_type: 'tvserial',
+        torrent_vip: isSelectedVipType(vm.selectedType),
         torrent_seasons: vm.selectedSeasons,
         torrent_episodes: vm.inputedEpisodes,
         torrent_tags: t,
@@ -461,6 +481,7 @@
         maker: vm.maker === 'NULL' ? undefined : vm.maker,
         torrent_filename: vm.torrentInfo.filename,
         torrent_type: vm.selectedType,
+        torrent_vip: isSelectedVipType(vm.selectedType),
         torrent_tags: t,
         torrent_nfo: vm.videoNfo,
         torrent_announce: vm.torrentInfo.announce,

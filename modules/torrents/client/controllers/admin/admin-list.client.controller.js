@@ -25,7 +25,7 @@
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
 
     vm.selectedType = localStorageService.get('admin_last_selected_type') || 'movie';
-    vm.filterVIP = isVipType(vm.selectedType);
+    vm.filterVIP = isSelectedVipType(vm.selectedType);
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
@@ -49,18 +49,18 @@
      */
     vm.onTorrentTypeChanged = function () {
       vm.searchTags = [];
-      vm.filterVIP = isVipType(vm.selectedType);
+      vm.filterVIP = isSelectedVipType(vm.selectedType);
 
       vm.torrentBuildPager();
       localStorageService.set('admin_last_selected_type', vm.selectedType);
     };
 
     /**
-     * isVipType
+     * isSelectedVipType
      * @param type
      * @returns {boolean}
      */
-    function isVipType(type) {
+    function isSelectedVipType(type) {
       var v = false;
       angular.forEach(vm.torrentType.value, function (t) {
         if (t.value === type) {
