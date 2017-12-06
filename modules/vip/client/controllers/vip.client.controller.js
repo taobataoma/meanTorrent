@@ -66,6 +66,8 @@
      */
     vm.orderByVote = function () {
       vm.sortSLF = undefined;
+      vm.sortSize = undefined;
+      vm.sortLife = undefined;
 
       if (vm.sortVote === undefined) {
         vm.sortVote = '-';
@@ -79,10 +81,50 @@
     };
 
     /**
+     * orderBySize
+     */
+    vm.orderBySize = function () {
+      vm.sortSLF = undefined;
+      vm.sortVote = undefined;
+      vm.sortLife = undefined;
+
+      if (vm.sortSize === undefined) {
+        vm.sortSize = '-';
+        vm.sort = {'torrent_size': -1};
+      } else if (vm.sortSize === '-') {
+        vm.sortSize = undefined;
+        vm.sort = undefined;
+      }
+
+      vm.buildPager();
+    };
+
+    /**
+     * orderByLife
+     */
+    vm.orderByLife = function () {
+      vm.sortSLF = undefined;
+      vm.sortVote = undefined;
+      vm.sortSize = undefined;
+
+      if (vm.sortLife === undefined) {
+        vm.sortLife = '-';
+        vm.sort = {'createdat': 1};
+      } else if (vm.sortLife === '-') {
+        vm.sortLife = undefined;
+        vm.sort = undefined;
+      }
+
+      vm.buildPager();
+    };
+
+    /**
      * orderBySLF
      */
     vm.orderBySLF = function () {
       vm.sortVote = undefined;
+      vm.sortSize = undefined;
+      vm.sortLife = undefined;
 
       if (vm.sortSLF === undefined) {
         vm.sortSLF = '-S';

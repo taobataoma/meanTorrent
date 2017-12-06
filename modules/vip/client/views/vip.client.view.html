@@ -154,8 +154,18 @@
                                        uib-tooltip="{{ 'TABLE_FIELDS.TITLE_VOTES' | translate}}">{{ 'TABLE_FIELDS.VOTES' | translate}}</a>
                                     <i class="fa fa-caret-down text-info" ng-if="vm.sortVote == '-'"></i>
                                 </th>
-                                <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
-                                <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
+                                <th class="text-center">
+                                    <a href="#" tooltip-placement="top"
+                                       ng-click="vm.orderByLife();"
+                                       uib-tooltip="{{ 'TABLE_FIELDS.TITLE_LIFE' | translate}}">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</a>
+                                    <i class="fa fa-caret-down text-info" ng-if="vm.sortLife == '-'"></i>
+                                </th>
+                                <th class="text-center">
+                                    <a href="#" tooltip-placement="top"
+                                       ng-click="vm.orderBySize();"
+                                       uib-tooltip="{{ 'TABLE_FIELDS.TITLE_SIZE' | translate}}">{{ 'TABLE_FIELDS.SIZE' | translate}}</a>
+                                    <i class="fa fa-caret-down text-info" ng-if="vm.sortSize == '-'"></i>
+                                </th>
                                 <th>
                                     <a href="#" tooltip-placement="top"
                                        ng-click="vm.orderBySLF();"

@@ -111,6 +111,8 @@
       LIFETIME: 'Life',
       VOTES: 'Votes',
       TITLE_VOTES: 'orderBy votes',
+      TITLE_SIZE: 'orderBy size',
+      TITLE_LIFE: 'orderBy life',
 
       //status
       UPLOADED_SPEED: 'U/S',

@@ -111,6 +111,8 @@
       LIFETIME: '存活时间',
       VOTES: '评分',
       TITLE_VOTES: '按评分排序',
+      TITLE_SIZE: '按文件大小排序',
+      TITLE_LIFE: '按上传时间排序',
 
       //status
       UPLOADED_SPEED: '上/速',
