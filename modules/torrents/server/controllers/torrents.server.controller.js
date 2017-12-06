@@ -1402,7 +1402,10 @@ exports.list = function (req, res) {
     condition.$or = [
       {torrent_filename: {'$all': keysA}},
       {'resource_detail_info.title': {'$all': keysA}},
-      {'resource_detail_info.original_title': {'$all': keysA}}
+      {'resource_detail_info.subtitle': {'$all': keysA}},
+      {'resource_detail_info.name': {'$all': keysA}},
+      {'resource_detail_info.original_title': {'$all': keysA}},
+      {'resource_detail_info.original_name': {'$all': keysA}}
     ];
   }
   if (userid !== undefined) {
