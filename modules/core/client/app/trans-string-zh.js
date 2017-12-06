@@ -51,7 +51,8 @@
       SOFTWARE: '软件',
       GAME: '游戏',
       EBOOK: '电子书',
-      OTHER: '其它'
+      OTHER: '其它',
+      ADULT: '成人'
     },
 
     //client account menu
@@ -149,16 +150,17 @@
     PAGETITLE: {
       ACCOUNT_ACTIVE: '帐号激活',
       UPLOAD: '上传',
-      MOVIE_LIST: '电影列表',
-      TV_LIST: '电视剧列表',
-      MUSIC_LIST: '音乐列表',
+      MOVIE_LIST: '电影资源列表',
+      TV_LIST: '电视剧资源列表',
+      MUSIC_LIST: '音乐资源列表',
       SPORTS_LIST: '体育资源列表',
       VARIETY_LIST: '综艺资源列表',
       PICTURE_LIST: '图片资源列表',
-      SOFTWARE_LIST: '软件列表',
-      GAME_LIST: '游戏列表',
-      EBOOK_LIST: '电子书列表',
-      OTHER_LIST: '其它列表',
+      SOFTWARE_LIST: '软件资源列表',
+      GAME_LIST: '游戏资源列表',
+      EBOOK_LIST: '电子书资源列表',
+      OTHER_LIST: '其它资源列表',
+      ADULT_LIST: '成人资源列表',
       TORRENT_INFO: '种子信息',
       RANKING: '用户排行榜',
       RULES: '用户规则',
@@ -706,7 +708,8 @@
       SOFTWARE: '软件',
       GAME: '游戏',
       EBOOK: '电子书',
-      OTHER: '其它'
+      OTHER: '其它',
+      ADULT: '成人'
     },
     TORRENT_STATUS_LABEL: {
       NEW: '未审核',

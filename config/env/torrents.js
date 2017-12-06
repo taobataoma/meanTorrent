@@ -167,7 +167,7 @@ module.exports = {
       showMenuHeaderForGuest: true,
       showFooterCountInfoForGuest: true,
       showDemoSignMessage: true,
-      accountIdleForTime: 60 * 60 * 1000 * 30, //30 days
+      accountIdleForTime: 60 * 60 * 1000 * 24 * 30, //30 days
       activeIdleAccountScore: 50000
     },
 
@@ -352,6 +352,7 @@ module.exports = {
           name: 'MOVIE',
           value: 'movie',
           title: 'MENU_TORRENTS_SUB.MOVIE',
+          role: 'user',
           divider: false,
           position: 1,
           state: 'torrents.movie',
@@ -365,6 +366,7 @@ module.exports = {
           name: 'TVSERIAL',
           value: 'tvserial',
           title: 'MENU_TORRENTS_SUB.TVSERIAL',
+          role: 'user',
           divider: false,
           position: 2,
           state: 'torrents.tvserial',
@@ -378,6 +380,7 @@ module.exports = {
           name: 'MUSIC',
           value: 'music',
           title: 'MENU_TORRENTS_SUB.MUSIC',
+          role: 'user',
           divider: true,
           position: 3,
           state: 'torrents.music',
@@ -391,6 +394,7 @@ module.exports = {
           name: 'SPORTS',
           value: 'sports',
           title: 'MENU_TORRENTS_SUB.SPORTS',
+          role: 'user',
           divider: false,
           position: 4,
           state: 'torrents.sports',
@@ -404,6 +408,7 @@ module.exports = {
           name: 'VARIETY',
           value: 'variety',
           title: 'MENU_TORRENTS_SUB.VARIETY',
+          role: 'user',
           divider: false,
           position: 5,
           state: 'torrents.variety',
@@ -417,6 +422,7 @@ module.exports = {
           name: 'PICTURE',
           value: 'picture',
           title: 'MENU_TORRENTS_SUB.PICTURE',
+          role: 'user',
           divider: false,
           position: 6,
           state: 'torrents.picture',
@@ -430,6 +436,7 @@ module.exports = {
           name: 'GAME',
           value: 'game',
           title: 'MENU_TORRENTS_SUB.GAME',
+          role: 'user',
           divider: true,
           position: 7,
           state: 'torrents.game',
@@ -443,6 +450,7 @@ module.exports = {
           name: 'SOFTWARE',
           value: 'software',
           title: 'MENU_TORRENTS_SUB.SOFTWARE',
+          role: 'user',
           divider: false,
           position: 8,
           state: 'torrents.software',
@@ -456,6 +464,7 @@ module.exports = {
           name: 'EBOOK',
           value: 'ebook',
           title: 'MENU_TORRENTS_SUB.EBOOK',
+          role: 'user',
           divider: false,
           position: 9,
           state: 'torrents.ebook',
@@ -469,11 +478,26 @@ module.exports = {
           name: 'OTHER',
           value: 'other',
           title: 'MENU_TORRENTS_SUB.OTHER',
+          role: 'user',
           divider: true,
           position: 10,
           state: 'torrents.other',
           url: '/other',
           pageTitle: 'OTHER_LIST',
+          uploadTemplateID: 'default',
+          showTopListInHome: false
+        },
+        {
+          enable: true,
+          name: 'ADULT',
+          value: 'adult',
+          title: 'MENU_TORRENTS_SUB.ADULT',
+          role: 'vip',
+          divider: true,
+          position: 11,
+          state: 'torrents.adult',
+          url: '/adult',
+          pageTitle: 'ADULT_LIST',
           uploadTemplateID: 'default',
           showTopListInHome: false
         }
@@ -811,7 +835,7 @@ module.exports = {
         },
         {
           name: 'TYPE',
-          cats: ['movie', 'tvserial'],
+          cats: ['movie', 'tvserial', 'adult'],
           value: [
             {name: 'BLU_RAY', icon: ''},
             {name: 'REMUX', icon: ''},
@@ -821,7 +845,7 @@ module.exports = {
         },
         {
           name: 'RESOLUTION',
-          cats: ['movie', 'tvserial', 'music', 'sports', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'sports', 'variety', 'adult'],
           value: [
             {name: 'S4K', icon: ''},
             {name: 'S1080P', icon: ''},
@@ -831,7 +855,7 @@ module.exports = {
         },
         {
           name: 'VIDEO',
-          cats: ['movie', 'tvserial', 'music', 'sports', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'sports', 'variety', 'adult'],
           value: [
             {name: 'AVC', icon: ''},
             {name: 'X265', icon: ''},
@@ -840,7 +864,7 @@ module.exports = {
         },
         {
           name: 'AUDIO',
-          cats: ['movie', 'tvserial', 'music', 'sports', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'sports', 'variety', 'adult'],
           value: [
             {name: 'AAC', icon: ''},
             {name: 'AC3', icon: ''},
@@ -861,7 +885,7 @@ module.exports = {
         },
         {
           name: 'CHANNEL',
-          cats: ['movie', 'tvserial', 'music', 'sports', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'sports', 'variety', 'adult'],
           value: [
             {name: 'C20', icon: ''},
             {name: 'C51', icon: ''},
@@ -870,7 +894,7 @@ module.exports = {
         },
         {
           name: 'THREED',
-          cats: ['movie'],
+          cats: ['movie', 'adult'],
           value: [
             {name: 'T3D', icon: ''},
             {name: 'T2D', icon: ''},
@@ -900,7 +924,7 @@ module.exports = {
         },
         {
           name: 'REGION',
-          cats: ['movie', 'tvserial', 'music', 'sports', 'variety'],
+          cats: ['movie', 'tvserial', 'music', 'sports', 'variety', 'adult'],
           value: [
             {name: 'USA', icon: ''},
             {name: 'CHINA', icon: ''},
@@ -972,7 +996,7 @@ module.exports = {
       checkbox: [
         {
           name: 'MODIFY',
-          cats: ['movie', 'tvserial', 'sports', 'variety'],
+          cats: ['movie', 'tvserial', 'sports', 'variety', 'adult'],
           value: [
             {name: 'DIY', icon: ''},
             {name: 'GUOPEI', icon: ''},

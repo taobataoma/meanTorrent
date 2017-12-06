@@ -27,7 +27,7 @@
 
     // Add the dropdown list item
     angular.forEach(torrentTypeConfig.value, function (cfg) {
-      if (cfg.enable) {
+      if (cfg.enable && cfg.role === 'user') {
         menuService.addSubMenuItem('topbar', 'torrents', {
           title: cfg.title,
           state: cfg.state,

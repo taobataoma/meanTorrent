@@ -107,7 +107,11 @@
      * @returns {boolean}
      */
     function isContextUserSelf() {
-      return vm.user ? vm.user.username === vm.authentication.user.username : false;
+      if(!vm.user || !vm.authentication.user){
+        return false;
+      }else {
+        return vm.user.username === vm.authentication.user.username;
+      }
     }
 
     /**

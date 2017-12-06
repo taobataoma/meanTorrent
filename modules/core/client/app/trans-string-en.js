@@ -51,7 +51,8 @@
       SOFTWARE: 'Software',
       GAME: 'Game',
       EBOOK: 'eBook',
-      OTHER: 'Other'
+      OTHER: 'Other',
+      ADULT: 'Adult'
     },
 
     //client menu
@@ -159,6 +160,7 @@
       GAME_LIST: 'Game List',
       EBOOK_LIST: 'eBook List',
       OTHER_LIST: 'Other List',
+      ADULT_LIST: 'Adult List',
       TORRENT_INFO: 'Torrent Info',
       RANKING: 'Users Ranking',
       RULES: 'User Rules',
@@ -706,7 +708,8 @@
       SOFTWARE: 'Software',
       GAME: 'Game',
       EBOOK: 'eBook',
-      OTHER: 'Other'
+      OTHER: 'Other',
+      ADULT: 'Adult'
     },
     TORRENT_STATUS_LABEL: {
       NEW: 'New',
