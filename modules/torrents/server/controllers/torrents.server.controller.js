@@ -694,7 +694,7 @@ exports.create = function (req, res) {
  * @param res
  */
 exports.read = function (req, res) {
-  if (req.torrent.torrent_vip && !req.user.isVip) {
+  if (req.torrent.torrent_vip && !req.user.isVip && !req.user.isOper) {
     return res.status(403).send({
       message: 'SERVER.ONLY_VIP_CAN_DOWNLOAD'
     });
