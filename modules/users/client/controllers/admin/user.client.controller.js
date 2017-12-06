@@ -107,9 +107,9 @@
      * @returns {boolean}
      */
     function isContextUserSelf() {
-      if(!vm.user || !vm.authentication.user){
+      if (!vm.user || !vm.authentication.user) {
         return false;
-      }else {
+      } else {
         return vm.user.username === vm.authentication.user.username;
       }
     }
