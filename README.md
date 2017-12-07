@@ -96,6 +96,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 43. Add 'All Newest Torrents' in resources type list option of torrent manage admin page, admin can directly management all newest torrents of all category.
 44. New user status 'idle' for long time not login, idle user can not download and can not announce, user can active account with fixed score numbers.
 45. Support anonymous uploader.
+46. In forum, Admin/Moderators and topic owner can edit topic title through click on the title text.
 
 #### Chat room feature:
 1. Users name list
