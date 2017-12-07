@@ -1,0 +1,22 @@
+@import (reference) "mt-var.less";
+
+.editable-line {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: nowrap;
+    &:focus {
+        border: 1px dotted #ccc;
+    }
+}
+
+.editable-line-display {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.editable-line-placeholder {
+    color: #888888;
+    background-color: transparent;
+}

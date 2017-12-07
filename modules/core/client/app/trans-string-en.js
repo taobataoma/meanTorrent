@@ -950,6 +950,7 @@
       BTN_SAVE: 'Save',
       BTN_CANCEL: 'Cancel',
       LINK_EDIT: 'Edit',
+      CLICK_TO_EDIT: 'Click to edit',
       BTN_DELETE: 'Delete',
       BTN_SUBMIT_TOPIC: 'Submit New Topic',
       BTN_SUBMIT_REPLY: 'Submit New Reply',

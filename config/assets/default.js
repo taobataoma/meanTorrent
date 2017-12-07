@@ -74,7 +74,9 @@ module.exports = {
         'public/lib/bootstrap-markdown/js/bootstrap-markdown.js',
         'public/lib/bootstrap-markdown/locale/bootstrap-markdown.zh.js',
         //ngProgress
-        'public/lib/ngprogress/build/ngprogress.js'
+        'public/lib/ngprogress/build/ngprogress.js',
+        //jquery-awesome-cursor
+        'public/lib/jquery-awesome-cursor/dist/jquery.awesome-cursor.js'
 
         // endbower
       ],

@@ -34,7 +34,8 @@
     "angular-side-overlay": "^1.0.3",
     "bootstrap-markdown": "^2.10.0",
     "font-awesome": "^4.7.0",
-    "ngprogress": "^1.1.3"
+    "ngprogress": "^1.1.3",
+    "jquery-awesome-cursor": "^0.3.1"
   },
   "overrides": {
     "bootstrap": {

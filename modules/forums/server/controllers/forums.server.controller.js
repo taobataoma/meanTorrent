@@ -456,6 +456,7 @@ exports.updateTopic = function (req, res) {
     });
   }
 
+  topic.title = req.body.title;
   topic.content = req.body.content;
   topic.updatedAt = Date.now();
   topic.updatedBy = req.user;

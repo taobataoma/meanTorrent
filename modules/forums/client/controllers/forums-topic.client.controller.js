@@ -190,6 +190,21 @@
     };
 
     /**
+     * onTopicTitleEdited
+     */
+    $scope.onTopicTitleEdited = function (modifyed) {
+      console.log(modifyed);
+      if (vm.topic && modifyed) {
+        vm.topic.$update(function (res) {
+          vm.topic = res;
+          NotifycationService.showSuccessNotify('FORUMS.TOPIC_EDIT_SUCCESSFULLY');
+        }, function (res) {
+          NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_EDIT_FAILED');
+        });
+      }
+    };
+
+    /**
      * beginEditTopic
      * @param t
      */

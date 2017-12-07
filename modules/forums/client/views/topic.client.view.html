@@ -49,7 +49,10 @@
                 <thead>
                     <tr>
                         <th>
-                            <div class="text-long"><span>{{vm.topic.title}}</span></div>
+                            <!--<div class="text-long"><span>{{vm.topic.title}}</span></div>-->
+                            <div class="topic-view-title text-long">
+                                <span editable-line readonly="!vm.canEdit() && !vm.isOwner(vm.topic)" ng-model="vm.topic.title" callback="onTopicTitleEdited"></span>
+                            </div>
 
                             <div class="count-info xs-hide sm-hide">
                                 <span>{{'FORUMS.FIELDS.VIEWS' | translate}}: {{vm.topic.viewCount}}</span>,

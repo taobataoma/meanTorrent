@@ -950,6 +950,7 @@
       BTN_SAVE: '保存',
       BTN_CANCEL: '取消',
       LINK_EDIT: '编辑',
+      CLICK_TO_EDIT: '单击修改',
       BTN_DELETE: '删除',
       BTN_SUBMIT_TOPIC: '提交话题',
       BTN_SUBMIT_REPLY: '提交回复',
