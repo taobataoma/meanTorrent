@@ -95,6 +95,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 42. Complete forum for vip and oper/admin users only, Special access forums not show to normal users.
 43. Add 'All Newest Torrents' in resources type list option of torrent manage admin page, admin can directly management all newest torrents of all category.
 44. New user status 'idle' for long time not login, idle user can not download and can not announce, user can active account with fixed score numbers.
+45. Support anonymous uploader.
 
 #### Chat room feature:
 1. Users name list
@@ -109,7 +110,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 - Users follow(friend) support.
 - Poll type topics support in forum.
 - Emoji on chat room.
-- View all files of torrent.
 - Request system
 - More score get methods.
 - torrent more images from [TMDB](https://www.themoviedb.org)
