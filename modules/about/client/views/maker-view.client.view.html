@@ -96,9 +96,9 @@
                 <div class="margin-bottom-20">
                     <div class="btn-group torrent-type-group">
                         <label class="btn btn-default"
-                               ng-repeat="t in vm.torrentType.value | filter:{enable: true} | orderBy: 'position'"
+                               ng-repeat="t in vm.torrentType.value | filter:{enable: true, role: 'user'} | orderBy: 'position'"
                                ng-model="vm.groupTorrentType" uib-btn-radio="'{{t.value}}'"
-                               ng-click="vm.buildPager();">
+                               ng-click="vm.onTypeBtnClick(); vm.buildPager();">
                             {{'MENU_TORRENTS_SUB.'+t.name | translate}}
                         </label>
                     </div>

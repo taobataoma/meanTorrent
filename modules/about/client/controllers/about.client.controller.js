@@ -24,7 +24,7 @@
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
 
-    vm.groupTorrentType = 'movie';
+    vm.groupTorrentType = localStorageService.get('maker_last_selected_type') || 'movie';
     vm.searchTags = [];
 
     uibButtonConfig.activeClass = 'btn-success';
@@ -63,6 +63,13 @@
         }
         if (callback) callback();
       });
+    };
+
+    /**
+     * onTypeBtnClick
+     */
+    vm.onTypeBtnClick = function () {
+      localStorageService.set('maker_last_selected_type', vm.groupTorrentType);
     };
 
     /**
