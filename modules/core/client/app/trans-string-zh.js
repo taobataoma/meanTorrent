@@ -431,6 +431,8 @@
     ENTER_VIDEO_NFO: '6. 请输入视频和音频的NFO信息',
     SELECT_MAKER_GROUP: '7. 请选择你上传时使用的资源压制小组',
     MAKER_NULL: '无',
+    UPLOADER_ANONYMOUS: '匿名上传',
+    ANONYMOUS: '匿名',
     TORRENTS_SUBMIT_UPLOAD: '8. 同意上传协议，并提交',
     SUBMIT_BUTTON: '已备妥，现在提交',
     CANCEL_BUTTON: '算了，以后再说',

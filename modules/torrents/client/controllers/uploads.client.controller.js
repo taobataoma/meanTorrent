@@ -22,6 +22,7 @@
     vm.torrentInfo = null;
     vm.tags = [];
     vm.maker = 'NULL';
+    vm.anonymous = false;
     vm.videoNfo = '';
     vm.customTorrent = {};
 
@@ -385,6 +386,7 @@
         torrent_nfo: vm.videoNfo,
         torrent_announce: vm.torrentInfo.announce,
         torrent_size: l,
+        isAnonymous: vm.anonymous,
 
         resource_detail_info: vm.movieinfo
       });
@@ -427,6 +429,7 @@
         torrent_nfo: vm.videoNfo,
         torrent_announce: vm.torrentInfo.announce,
         torrent_size: l,
+        isAnonymous: vm.anonymous,
 
         resource_detail_info: vm.tvinfo
       });
@@ -486,6 +489,7 @@
         torrent_nfo: vm.videoNfo,
         torrent_announce: vm.torrentInfo.announce,
         torrent_size: l,
+        isAnonymous: vm.anonymous,
 
         resource_detail_info: detail_info,
         _uImage: uimg
@@ -582,6 +586,7 @@
         case 'music':
         case 'sports':
         case 'variety':
+        case 'adult':
           sh = true;
           break;
         default:

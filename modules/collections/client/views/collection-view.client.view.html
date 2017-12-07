@@ -184,7 +184,8 @@
                                 </td>
                                 <td class="col-md-1 td-v-middle text-center td-uploader">
                                     <div class="coll-item-uploader">
-                                        <span user-info="item.user" info-name></span>
+                                        <span ng-if="!item.isAnonymous" user-info="item.user" info-name></span>
+                                        <span ng-if="item.isAnonymous">{{ 'ANONYMOUS' | translate }}</span>
 
                                         <div maker-info="item.maker"></div>
                                         <!--<span vip-flag="item.user"></span>-->

@@ -102,7 +102,8 @@
                     <dd class="h-line">
                         <div class="checkbox checkbox-hnr">
                             <label>
-                                <input type="checkbox" ng-model="vm.filterSale" ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
+                                <input type="checkbox" ng-model="vm.filterSale"
+                                       ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
                             </label>
                         </div>
                     </dd>
@@ -274,7 +275,8 @@
                             </p>
                         </td>
                         <td class="col-md-1 td-v-middle text-center td-uploader">
-                            <span user-info="item.user" info-name></span>
+                            <span ng-if="!item.isAnonymous" user-info="item.user" info-name></span>
+                            <span ng-if="item.isAnonymous">{{ 'ANONYMOUS' | translate }}</span>
 
                             <div maker-info="item.maker"></div>
                             <!--<span vip-flag="item.user"></span>-->
