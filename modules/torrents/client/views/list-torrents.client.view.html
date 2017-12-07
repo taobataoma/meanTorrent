@@ -233,11 +233,14 @@
                                                 {{item.torrent_sale_status}} {{item.torrent_sale_expires | unlife}}
                                         </span>
 
+                                        <span class="label label-se-info" ng-if="vm.torrentType == 'tvserial'"
+                                              ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
+
                                         <span class="label label-hnr-info" ng-if="item.torrent_hnr"
                                               ng-click="vm.onHnRClicked(); $event.stopPropagation();">H&R</span>
 
-                                        <span class="label label-se-info" ng-if="vm.torrentType == 'tvserial'"
-                                              ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
+                                        <span class="label label-vip-info" ng-if="item.torrent_vip" ng-class="{'used': vm.filterVIP}"
+                                              ng-click="vm.onVIPClicked(); $event.stopPropagation();">VIP</span>
 
                                         <span ng-repeat="t in item.torrent_tags">
                                             <span class="label label-tag" ng-class="{'used': vm.searchTags.indexOf(t) !== -1}"

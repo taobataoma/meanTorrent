@@ -1294,7 +1294,7 @@ exports.list = function (req, res) {
   var newest = false;
   var hnr = false;
   var sale = false;
-  var vip = false;
+  var vip = undefined;
   var release = undefined;
   var userid = undefined;
   var maker = undefined;
@@ -1386,10 +1386,12 @@ exports.list = function (req, res) {
       $ne: 'U1/D1'
     };
   }
-  if (vip === true) {
-    condition.torrent_vip = true;
-  } else {
-    condition.torrent_vip = false;
+  if (vip !== undefined) {
+    if (vip === true) {
+      condition.torrent_vip = true;
+    } else {
+      condition.torrent_vip = false;
+    }
   }
 
   if (tagsA.length > 0) {

@@ -69,8 +69,7 @@
       TorrentsService.get({
         userid: vm.user._id,
         torrent_type: 'all',
-        torrent_status: 'all',
-        torrent_vip: false
+        torrent_status: 'all'
       }, function (items) {
         vm.uploadedList = items.rows;
         mtDebug.info(items);

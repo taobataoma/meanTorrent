@@ -69,8 +69,7 @@
       TorrentsService.get({
         userid: $state.params.userId,
         torrent_type: 'all',
-        torrent_status: 'all',
-        torrent_vip: false
+        torrent_status: 'all'
       }, function (items) {
         vm.userUploadedList = items.rows;
         vm.buildPager();

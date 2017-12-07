@@ -207,7 +207,7 @@
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
         torrent_hnr: vm.filterHnR,
-        torrent_vip: vm.filterVIP,
+        torrent_vip: vm.filterVIP ? vm.filterVIP : undefined,
         torrent_sale: vm.filterSale
       }, function (items) {
         if (items.length === 0) {

@@ -162,6 +162,7 @@
       vm.moviesInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'movie',
+        torrent_vip: false,
         limit: 9
       }, function (items) {
         if (items.rows.length > 0) {
@@ -185,6 +186,7 @@
       vm.moviesInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'movie',
+        torrent_vip: false,
         newest: true,
         limit: 14
       }, function (items) {
@@ -209,6 +211,7 @@
       vm.tvsInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'tvserial',
+        torrent_vip: false,
         limit: 9
       }, function (items) {
         if (items.rows.length > 0) {
@@ -228,6 +231,7 @@
       vm.tvsInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'tvserial',
+        torrent_vip: false,
         newest: true,
         limit: 14
       }, function (items) {
@@ -248,6 +252,7 @@
       vm.musicInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'music',
+        torrent_vip: false,
         limit: 9
       }, function (items) {
         if (items.rows.length > 0) {
@@ -267,6 +272,7 @@
       vm.musicInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'music',
+        torrent_vip: false,
         newest: true,
         limit: 13
       }, function (items) {
@@ -287,6 +293,7 @@
       vm.sportsInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'sports',
+        torrent_vip: false,
         limit: 9
       }, function (items) {
         if (items.rows.length > 0) {
@@ -306,6 +313,7 @@
       vm.sportsInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'sports',
+        torrent_vip: false,
         newest: true,
         limit: 14
       }, function (items) {
@@ -326,6 +334,7 @@
       vm.varietyInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'variety',
+        torrent_vip: false,
         limit: 9
       }, function (items) {
         if (items.rows.length > 0) {
@@ -345,6 +354,7 @@
       vm.varietyInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'variety',
+        torrent_vip: false,
         newest: true,
         limit: 14
       }, function (items) {
@@ -365,6 +375,7 @@
       vm.pictureInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'picture',
+        torrent_vip: false,
         limit: 9
       }, function (items) {
         if (items.rows.length > 0) {
@@ -384,6 +395,7 @@
       vm.pictureInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'picture',
+        torrent_vip: false,
         newest: true,
         limit: 14
       }, function (items) {
@@ -404,6 +416,7 @@
       vm.gameInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'game',
+        torrent_vip: false,
         limit: 9
       }, function (items) {
         if (items.rows.length > 0) {
@@ -423,6 +436,7 @@
       vm.gameInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'game',
+        torrent_vip: false,
         newest: true,
         limit: 14
       }, function (items) {
@@ -443,6 +457,7 @@
       vm.softwareInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'software',
+        torrent_vip: false,
         limit: 9
       }, function (items) {
         if (items.rows.length > 0) {
@@ -462,6 +477,7 @@
       vm.softwareInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'software',
+        torrent_vip: false,
         newest: true,
         limit: 14
       }, function (items) {
@@ -482,6 +498,7 @@
       vm.ebookInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'ebook',
+        torrent_vip: false,
         limit: 9
       }, function (items) {
         if (items.rows.length > 0) {
@@ -501,6 +518,7 @@
       vm.ebookInfo = TorrentsService.get({
         torrent_status: 'reviewed',
         torrent_type: 'ebook',
+        torrent_vip: false,
         newest: true,
         limit: 14
       }, function (items) {

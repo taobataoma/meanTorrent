@@ -82,7 +82,8 @@
       TorrentsService.get({
         limit: vm.topItems,
         torrent_status: 'reviewed',
-        torrent_type: vm.torrentType
+        torrent_type: vm.torrentType,
+        torrent_vip: false
       }, function (items) {
         mtDebug.info(items);
         vm.listTopInfo = items.rows;
@@ -295,6 +296,7 @@
         keys: vm.searchKey.trim(),
         torrent_status: 'reviewed',
         torrent_type: vm.torrentType,
+        torrent_vip: false,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
         torrent_hnr: vm.filterHnR,
