@@ -5,11 +5,14 @@
     .module('users')
     .controller('ChangeSignatureController', ChangeSignatureController);
 
-  ChangeSignatureController.$inject = ['$scope', 'Authentication', 'UsersService', 'NotifycationService', 'marked', '$translate', 'localStorageService', '$compile'];
+  ChangeSignatureController.$inject = ['$state', '$scope', 'Authentication', 'UsersService', 'NotifycationService', 'marked', '$translate', 'localStorageService', '$compile',
+    'MeanTorrentConfig'];
 
-  function ChangeSignatureController($scope, Authentication, UsersService, NotifycationService, marked, $translate, localStorageService, $compile) {
+  function ChangeSignatureController($state, $scope, Authentication, UsersService, NotifycationService, marked, $translate, localStorageService, $compile,
+                                     MeanTorrentConfig) {
     var vm = this;
     vm.user = Authentication.user;
+    vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
 
     /**
      * getSignatureContent
@@ -36,9 +39,11 @@
         onSave: function (e) {
           if (e.isDirty()) {
             //save content
-            UsersService.changeSignature({signature: e.getContent()})
+            var newSignature = e.getContent().substr(0, vm.forumsConfig.signatureLength);
+            UsersService.changeSignature({signature: newSignature})
               .then(function (res) {
                 vm.user = Authentication.user = res;
+                $state.reload();
                 NotifycationService.showSuccessNotify('EDIT_SIGNATURE_SUCCESSFULLY');
               })
               .catch(function (res) {

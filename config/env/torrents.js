@@ -774,7 +774,8 @@ module.exports = {
         {name: 'ADMINISTRATION', value: 'Administration', index: 4, isOper: true, isVip: false}
       ],
       showThumbsUpUserList: true,
-      showUserSignature: true
+      showUserSignature: true,
+      signatureLength: 500
     },
 
     /**
