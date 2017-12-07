@@ -57,7 +57,7 @@
                                         <h5 class="media-heading">
                                             <a ui-sref="torrents.view({torrentId: item.torrent._id})">{{vm.TGI.getTorrentDoubleTitle(item.torrent)}}</a>
                                             <span class="upload-by" ng-show="item.torrent.user.displayName"> (By:
-                                            <span user-info="item.torrent.user" info-name></span> )</span>
+                                                <span user-info="item.torrent.user" info-name></span>  <span maker-info="item.torrent.maker"></span>)</span>
                                         </h5>
 
                                         <div class="list-all-genres">

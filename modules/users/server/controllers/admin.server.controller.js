@@ -424,10 +424,10 @@ exports.getUserSeeding = function (req, res) {
   }).sort('-peer_uploaded')
     .populate({
       path: 'torrent',
-      populate: {
-        path: 'user',
-        select: 'displayName profileImageURL'
-      }
+      populate: [
+        {path: 'user', select: 'displayName profileImageURL'},
+        {path: 'maker', select: 'name'}
+      ]
     })
     .exec(function (err, torrents) {
       if (err) {
@@ -452,10 +452,10 @@ exports.getUserLeeching = function (req, res) {
   }).sort('-peer_downloaded')
     .populate({
       path: 'torrent',
-      populate: {
-        path: 'user',
-        select: 'displayName profileImageURL'
-      }
+      populate: [
+        {path: 'user', select: 'displayName profileImageURL'},
+        {path: 'maker', select: 'name'}
+      ]
     })
     .exec(function (err, torrents) {
       if (err) {
@@ -479,10 +479,10 @@ exports.getUserWarning = function (req, res) {
     hnr_warning: true
   }).populate({
     path: 'torrent',
-    populate: {
-      path: 'user',
-      select: 'displayName profileImageURL'
-    }
+    populate: [
+      {path: 'user', select: 'displayName profileImageURL'},
+      {path: 'maker', select: 'name'}
+    ]
   }).exec(function (err, complets) {
     if (err) {
       return res.status(422).send({
