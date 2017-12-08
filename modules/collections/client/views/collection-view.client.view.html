@@ -50,7 +50,7 @@
                                 {{'COLLECTIONS.BTN_REMOVE_COLLECTION' | translate}}
                             </button>
 
-                            <div class="btn-group width-160 margin-top-5" ng-if="vm.user.isOper"  uib-dropdown dropdown-append-to-body>
+                            <div class="btn-group width-160 margin-top-5" ng-if="vm.user.isOper" uib-dropdown dropdown-append-to-body>
                                 <button id="btn-append-to-body" type="button"
                                         class="btn btn-block"
                                         mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
@@ -82,6 +82,7 @@
                     <table class="table table-hover tb-v-middle">
                         <thead>
                             <tr>
+                                <th class="td-width-0"></th>
                                 <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
                                 <th>{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
                                 <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
@@ -96,7 +97,8 @@
                         </thead>
                         <tbody>
                             <tr class="torrent-list-info"
-                                ng-repeat="item in vm.collection.torrents" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
+                                ng-repeat-start="item in vm.collection.torrents" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
+                                <td class="td-width-0" rowspan="2"></td>
                                 <td class="col-md-7 td-text-overflow">
                                     <div class="media">
                                         <div class="media-left">
@@ -197,6 +199,11 @@
                                             {{'COLLECTIONS.BTN_REMOVE_FROM_COLLECTION' | translate}}
                                         </button>
                                     </div>
+                                </td>
+                            </tr>
+                            <tr ng-repeat-end>
+                                <td class="td-progress" colspan="6">
+                                    <div torrent-progress="item.my_peers"></div>
                                 </td>
                             </tr>
                         </tbody>
