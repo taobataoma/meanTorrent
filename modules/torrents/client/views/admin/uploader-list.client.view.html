@@ -1,5 +1,11 @@
 <section class="container padding-top-10" ng-controller="UploaderAdminController as vm" ng-init="vm.init();">
     <div class="row margin-top-20">
+        <div>
+            <div class="alert alert-warning" role="alert" style="padding: 20px 50px;">
+                <span translate="UPLOADER.ACCESS_DESC"></span>
+            </div>
+        </div>
+
         <div class="col-md-12 torrent-list margin-bottom-20" ng-show="vm.uploadMakerList">
             <h3>
                 {{'UPLOADER.CAPTION_MAKER' | translate}}
@@ -45,7 +51,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="pull-right margin-top-10 text-danger h5">{{'UPLOADER.ACCESS_DESC_MAKER' | translate}}</div>
             </div>
         </div>
 
@@ -104,7 +109,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="pull-right margin-top-10 text-danger h5">{{'UPLOADER.ACCESS_DESC_USER' | translate}}</div>
             </div>
 
             <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"

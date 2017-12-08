@@ -524,8 +524,7 @@
       FIELDS_UPLOAD_ACCESS: '上传权限',
       FIELDS_REVIEW: '需要审核',
       FIELDS_PASS: '直接通过',
-      ACCESS_DESC_MAKER: '* 有‘直接通过’上传权限的资源制作小组, 新上传的所有种子不需要管理再次审核!',
-      ACCESS_DESC_USER: '* 有‘直接通过’上传权限的用户, 新上传的所有种子不需要管理再次审核!'
+      ACCESS_DESC: '<h4>上传权限说明: </h4><div>* 有‘直接通过’上传权限的资源制作小组或用户, 新上传的所有种子不需要管理再次审核!</div>'
     },
 
     //vip views
