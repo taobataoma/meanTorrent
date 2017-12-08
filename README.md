@@ -112,6 +112,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 - Users follow(friend) support.
 - Poll type topics support in forum.
 - Emoji on chat room.
+- Emoji toolbar on forum post.
 - Request system
 - More score get methods.
 - torrent more images from [TMDB](https://www.themoviedb.org)
