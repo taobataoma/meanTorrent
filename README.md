@@ -97,6 +97,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 44. New user status 'idle' for long time not login, idle user can not download and can not announce, user can active account with fixed score numbers.
 45. Support anonymous uploader.
 46. In forum, Admin/Moderators and topic owner can edit topic title through click on the title text.
+47. New feature for list all uploader(maker group and user), admin can set uploader access to pass review directly when upload a torrent file.
 
 #### Chat room feature:
 1. Users name list
