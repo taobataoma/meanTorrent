@@ -33,7 +33,7 @@
 
                                 <p class="forum-desc" ng-bind-html="vm.getForumDesc(f);"></p>
 
-                                <p><span class="moderators-title">{{'FORUMS.FIELDS.MODERATORS' | translate}}:</span>
+                                <p ng-if="!f.operOnly"><span class="moderators-title">{{'FORUMS.FIELDS.MODERATORS' | translate}}:</span>
                                     <span class="moderators-list">
                                         <span class="moderators-item" ng-repeat="m in f.moderators">
                                             <span user-info="m" info-name></span>
