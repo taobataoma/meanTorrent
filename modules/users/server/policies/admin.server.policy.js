@@ -17,6 +17,7 @@ exports.invokeRolesPolicies = function () {
       {
         roles: ['admin'],
         allows: [
+          {resources: '/api/users/uploaderList', permissions: '*'},
           {resources: '/api/users/:userId/role', permissions: '*'},
           {resources: '/api/users/:userId/VIPMonths/:months', permissions: '*'},
           {resources: '/api/users/:userId/VIPMonths/reset', permissions: '*'}

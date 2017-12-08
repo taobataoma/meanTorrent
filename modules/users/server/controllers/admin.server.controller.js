@@ -39,6 +39,7 @@ exports.update = function (req, res) {
   user.lastName = req.body.lastName;
   user.displayName = user.firstName + ' ' + user.lastName;
   user.roles = req.body.roles;
+  user.upload_access = req.body.upload_access;
 
   user.save(function (err) {
     if (err) {
@@ -382,6 +383,61 @@ exports.addVIPMonths = function (req, res) {
       message: 'PARAMS_MONTH_ERROR'
     });
   }
+};
+
+/**
+ * uploaderList
+ * @param req
+ * @param res
+ */
+exports.uploaderList = function (req, res) {
+  var skip = 0;
+  var limit = 0;
+
+  if (req.query.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.query.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+
+  var countQuery = function (callback) {
+    User.count({
+      uptotal: {$gt: 0}
+    }, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  var findQuery = function (callback) {
+    User.find({
+      uptotal: {$gt: 0}
+    }, '-salt -password -providerData')
+      .sort('-uptotal')
+      .populate('makers', 'name')
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, users) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, users);
+        }
+      });
+  };
+
+  async.parallel([countQuery, findQuery], function (err, results) {
+    if (err) {
+      mtDebug.debugRed(err);
+      return res.status(422).send(err);
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
+  });
 };
 
 /**

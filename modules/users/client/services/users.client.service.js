@@ -180,6 +180,10 @@
         params: {
           userId: '@userId'
         }
+      },
+      uploaderList: {
+        method: 'GET',
+        url: '/api/users/uploaderList'
       }
     });
 
@@ -210,6 +214,9 @@
       },
       resetVIPData: function (params) {
         return this.resetUserVIPData(params).$promise;
+      },
+      getUploaderList: function (params) {
+        return this.uploaderList(params).$promise;
       }
     });
 

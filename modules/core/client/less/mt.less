@@ -713,6 +713,10 @@ body {
     }
 }
 
+.control-small-height {
+    height: 24px !important;
+}
+
 .panel-body {
     dl {
         margin-bottom: 0;
@@ -744,6 +748,24 @@ body {
 }
 
 .tb-v-middle {
+    &.top-border {
+        > thead {
+            > tr {
+                > th {
+                    border-top: 2px solid #ddd !important;
+                }
+            }
+        }
+    }
+    &.bottom-border {
+        > tbody {
+            > tr:last-child {
+                > td {
+                    border-bottom: 2px solid #ddd !important;
+                }
+            }
+        }
+    }
     > thead,
     > tbody {
         > tr {

@@ -21,6 +21,7 @@
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
+    MENU_UPLOADER_ADMIN: 'Manage Uploader',
     MENU_TORRENTS_ADMIN_EDAU: 'Announce Editor',
     MENU_ADMIN_OFFICIAL_INVITATION: 'Send official invitation',
     MENU_ADMIN_BACKUP: 'System Backup Files Database',
@@ -183,6 +184,7 @@
       ADMIN_USER_UPLIST: 'User uploaded list',
       USER_INFO: 'User Info',
       ADMIN_TORRENTS_LIST: 'Torrents List',
+      ADMIN_UPLOADER_LIST: 'Uploader List',
       ADMIN_ANNOUNCE_EDIT: 'Announce Editor',
       ADMIN_MESSAGES: 'System Messages',
       ADMIN_TRACES_LIST: 'Traces List',
@@ -505,6 +507,24 @@
 
     ANNOUNCE_EDIT_TIP: 'Upload a torrent file, </br>automatic replacement <mark>Announce URL</mark> & <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
+
+    //uploader admin
+    UPLOADER: {
+      CAPTION_MAKER: 'Uploader - Maker Group',
+      CAPTION_USER: 'Uploader - User',
+      FIELDS_NAME: 'Name',
+      FIELDS_DISPLAY_NAME: 'DisplayName',
+      FIELDS_MAKER: 'Maker',
+      FIELDS_LEVEL: 'Level',
+      FIELDS_FOUNDER: 'Founder',
+      FIELDS_USER_COUNT: 'Users',
+      FIELDS_TORRENT_COUNT: 'Torrents',
+      FIELDS_VOTE: 'Votes',
+      FIELDS_UPLOAD_ACCESS: 'Upload Access',
+      FIELDS_REVIEW: 'review',
+      FIELDS_PASS: 'pass',
+      ACCESS_CHANGED_SUCCESSFULLY: 'Upload access changed successfully'
+    },
 
     //vip views
     VIP: {

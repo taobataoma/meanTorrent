@@ -18,6 +18,7 @@
     vm.searchAdmin = false;
     vm.searchOper = false;
     vm.userStatus = 'all';
+
     /**
      * buildPager
      */
@@ -60,7 +61,6 @@
         callback(data);
       });
     };
-
 
     /**
      * pageChanged

@@ -808,7 +808,8 @@ module.exports = {
       backupFilesListPerPage: 15,
       torrentPeersListPerPage: 15,
       homeOrderTorrentListPerType: 9,
-      homeNewestTorrentListPerType: 14
+      homeNewestTorrentListPerType: 14,
+      uploaderUserListPerPage: 15
     },
 
     /**

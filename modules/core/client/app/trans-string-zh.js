@@ -21,6 +21,7 @@
     MENU_CHAT: '聊天室',
     MENU_TORRENTS: '种子',
     MENU_TORRENTS_ADMIN: '种子管理',
+    MENU_UPLOADER_ADMIN: '上传权限管理',
     MENU_TORRENTS_ADMIN_EDAU: '种子修改器',
     MENU_ADMIN_OFFICIAL_INVITATION: '发送官方邀请',
     MENU_ADMIN_BACKUP: '系统备份文件管理',
@@ -182,8 +183,9 @@
       ADMIN_USER_WARNING: '用户正被警告',
       ADMIN_USER_UPLIST: '用户上传的种子',
       USER_INFO: '用户信息',
-      ADMIN_ANNOUNCE_EDIT: '种子修改器',
       ADMIN_TORRENTS_LIST: '种子管理',
+      ADMIN_UPLOADER_LIST: '上传权限列表',
+      ADMIN_ANNOUNCE_EDIT: '种子修改器',
       ADMIN_MESSAGES: '系统消息',
       ADMIN_TRACES_LIST: '系统日志',
       ADMIN_FORUMS_CONFIGURE: '论坛配置',
@@ -505,6 +507,23 @@
 
     ANNOUNCE_EDIT_TIP: '上传一个种子文件, </br>自动替换 <mark>Announce URL</mark> 与 <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
+
+    //uploader admin
+    UPLOADER: {
+      CAPTION_MAKER: '资源制作小组上传',
+      CAPTION_USER: '用户上传',
+      FIELDS_NAME: '名称',
+      FIELDS_DISPLAY_NAME: '用户昵称',
+      FIELDS_MAKER: '资源组',
+      FIELDS_LEVEL: '用户等级',
+      FIELDS_FOUNDER: '创建者',
+      FIELDS_USER_COUNT: '成员数',
+      FIELDS_TORRENT_COUNT: '种子数',
+      FIELDS_VOTE: '评分',
+      FIELDS_UPLOAD_ACCESS: '上传权限',
+      FIELDS_REVIEW: '需要审核',
+      FIELDS_PASS: '直接通过'
+    },
 
     //vip views
     VIP: {

@@ -79,6 +79,7 @@ exports.update = function (req, res) {
 
   maker.name = req.body.name;
   maker.desc = req.body.desc;
+  maker.upload_access = req.body.upload_access;
 
   maker.save(function (err) {
     if (err) {

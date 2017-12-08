@@ -1,0 +1,116 @@
+<section class="container padding-top-10" ng-controller="UploaderAdminController as vm" ng-init="vm.init();">
+    <div class="row margin-top-20">
+        <div class="col-md-12 torrent-list margin-bottom-20" ng-show="vm.uploadMakerList">
+            <h3>
+                {{'UPLOADER.CAPTION_MAKER' | translate}}
+            </h3>
+
+            <div class="table-responsive">
+                <table class="table table-hover tb-v-middle top-border bottom-border">
+                    <thead>
+                        <tr>
+                            <th>{{ 'UPLOADER.FIELDS_NAME' | translate}}</th>
+                            <th>{{ 'UPLOADER.FIELDS_FOUNDER' | translate}}</th>
+                            <th class="text-center">{{ 'UPLOADER.FIELDS_USER_COUNT' | translate}}</th>
+                            <th class="text-center">{{ 'UPLOADER.FIELDS_TORRENT_COUNT' | translate}}</th>
+                            <th>{{ 'UPLOADER.FIELDS_VOTE' | translate}}</th>
+                            <th>{{ 'UPLOADER.FIELDS_UPLOAD_ACCESS' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="m in vm.uploadMakerList">
+                            <td class="col-md-2 td-v-middle width-120">
+                                <span maker-info="m"></span>
+                            </td>
+                            <td class="col-md-2 td-v-middle width-120">
+                                <span user-info="m.user" info-name></span>
+                            </td>
+                            <td class="col-md-1 td-v-middle width-80 text-center">
+                                {{m.members.length}}
+                            </td>
+                            <td class="col-md-1 td-v-middle width-80 text-center">
+                                {{m.torrent_count}}
+                            </td>
+                            <td class="col-md-4 td-v-middle width-150">
+                                <span class="torrent-votes"><kbd>{{vm.TGI.getVoteTitle()}}</kbd> {{m.vote_average | number : 1}} / {{m.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</span>
+                            </td>
+                            <td class="col-md-2 td-v-middle width-120">
+                                <select class="form-control control-small-height" ng-model="m.upload_access" ng-change="vm.onUploaderMakerAccessChanged(m);">
+                                    <option value="review">{{'UPLOADER.FIELDS_REVIEW' | translate}}
+                                    </option>
+                                    <option value="pass">{{'UPLOADER.FIELDS_PASS' | translate}}
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-12 torrent-list" id="top_of_user_list" ng-show="vm.pagedItems">
+            <h3>
+                {{'UPLOADER.CAPTION_USER' | translate}}
+            </h3>
+
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                ng-model="vm.currentPage"
+                ng-change="vm.pageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+            </ul>
+
+            <div class="table-responsive">
+                <table class="table table-hover tb-v-middle top-border bottom-border">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>{{ 'UPLOADER.FIELDS_DISPLAY_NAME' | translate}}</th>
+                            <th>{{ 'UPLOADER.FIELDS_LEVEL' | translate}}</th>
+                            <th>{{ 'UPLOADER.FIELDS_MAKER' | translate}}</th>
+                            <th class="text-center">{{ 'UPLOADER.FIELDS_TORRENT_COUNT' | translate}}</th>
+                            <th>{{ 'UPLOADER.FIELDS_UPLOAD_ACCESS' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="u in vm.pagedItems">
+                            <td class="col-md-1 td-v-middle width-50">
+                                <img class="ranking-user-img" title="{{u.displayName}}" ng-src="{{u.profileImageURL}}">
+                            </td>
+                            <td class="col-md-2 td-v-middle width-120">
+                                <span user-info="u" info-name></span>
+                                <span vip-flag="u"></span>
+                            </td>
+                            <td class="col-md-1 td-v-middle width-100">
+                                <span score-level-curr="u"></span>
+                            </td>
+                            <td class="col-md-4 td-v-middle width-200">
+                                <span class="maker-list" ng-repeat="m in u.makers">
+                                    <span maker-info="m"></span>
+                                </span>
+                            </td>
+                            <td class="col-md-2 td-v-middle width-80 text-center">
+                                {{u.uptotal}}
+                            </td>
+                            <td class="col-md-2 td-v-middle width-120">
+                                <select class="form-control control-small-height" ng-model="u.upload_access" ng-change="vm.onUploaderUserAccessChanged(u);">
+                                    <option value="review">{{'UPLOADER.FIELDS_REVIEW' | translate}}
+                                    </option>
+                                    <option value="pass">{{'UPLOADER.FIELDS_PASS' | translate}}
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                ng-model="vm.currentPage"
+                ng-change="vm.pageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+            </ul>
+        </div>
+    </div>
+</section>

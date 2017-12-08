@@ -14,6 +14,12 @@
       state: 'admin.torrents',
       position: 1
     });
+    menuService.addSubMenuItem('topbar', 'admin', {
+      title: 'MENU_UPLOADER_ADMIN',
+      state: 'admin.uploader',
+      roles: ['admin'],
+      position: 2
+    });
 
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_TORRENTS_ADMIN_EDAU',

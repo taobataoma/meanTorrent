@@ -51,9 +51,9 @@
 
                 <dt class="h-line">{{ 'STATUS_FIELD.MAKER' | translate}}：</dt>
                 <dd class="h-line">
-                        <span ng-class="maker-list" ng-repeat="m in vm.user.makers">
-                            <a ui-sref="about.group({ makerId: m._id })">{{m.name}}</a>
-                        </span>
+                    <span class="maker-list" ng-repeat="m in vm.user.makers">
+                          <span maker-info="m"></span>
+                    </span>
                     <span ng-if="vm.user.makers.length==0">-</span>
                 </dd>
 
