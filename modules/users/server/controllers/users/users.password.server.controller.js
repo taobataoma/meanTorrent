@@ -56,7 +56,7 @@ exports.forgot = function (req, res, next) {
               message: 'SERVER.RESET_PASSWORD_TO_FREQUENT',
               params: {
                 hours: passwordConfig.resetTimeInterval / (60 * 60 * 1000),
-                nextTime: moment(user.nextResetPasswordTime).format('YYYY-MM-DD HH:mm:ss')
+                nextTime: user.nextResetPasswordTime
               }
             });
           } else {

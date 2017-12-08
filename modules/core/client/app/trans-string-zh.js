@@ -1244,7 +1244,7 @@
       SENDING_RESET_MAIL_FAILED: '密码重置邮件发送失败',
       PASSWORDS_DO_NOT_MATCH: '两次密码不匹配',
       RESET_TOKEN_INVALID: '密码重置请求无效或已过期',
-      RESET_PASSWORD_TO_FREQUENT: '密码重置操作过于频繁, 您在 {{hours}} 小时内只能操作一次, 下次可操作时间为: {{nextTime}}',
+      RESET_PASSWORD_TO_FREQUENT: '密码重置操作过于频繁, 您在 {{hours}} 小时内只能操作一次, 下次可操作时间为: {{nextTime | date: "yyyy-MM-dd HH:mm:ss"}}',
       INVALID_USERNAME: '无效的用户名!',
       INVALID_PASSWORD: '无效的密码!',
       YOU_ARE_BANNED: '您已被服务器禁止(banned)!',
