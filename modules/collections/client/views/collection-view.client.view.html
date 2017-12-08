@@ -50,7 +50,7 @@
                                 {{'COLLECTIONS.BTN_REMOVE_COLLECTION' | translate}}
                             </button>
 
-                            <div class="btn-group width-160 margin-top-5" uib-dropdown dropdown-append-to-body>
+                            <div class="btn-group width-160 margin-top-5" ng-if="vm.user.isOper"  uib-dropdown dropdown-append-to-body>
                                 <button id="btn-append-to-body" type="button"
                                         class="btn btn-block"
                                         mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
