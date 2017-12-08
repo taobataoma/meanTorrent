@@ -131,6 +131,10 @@ var UserSchema = new Schema({
     type: Boolean,
     default: false
   },
+  upload_access: {
+    type: String,
+    default: 'review'
+  },
   status: {
     type: String,
     default: 'inactive'
@@ -309,6 +313,10 @@ function updateOperAdminFlag(user) {
   if (user.roles) {
     user.isOper = (user.roles[0] === 'oper' || user.roles[0] === 'admin');
     user.isAdmin = (user.roles[0] === 'admin');
+  }
+
+  if (user.isOper || user.isAdmin) {
+    user.upload_access = 'pass';
   }
 }
 

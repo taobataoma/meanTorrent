@@ -48,6 +48,10 @@ var MakerSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
+  upload_access: {
+    type: String,
+    default: 'review'
+  },
   torrent_count: {
     type: Number,
     default: 0
