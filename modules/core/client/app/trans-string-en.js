@@ -525,7 +525,7 @@
       FIELDS_REVIEW: 'review',
       FIELDS_PASS: 'pass',
       ACCESS_CHANGED_SUCCESSFULLY: 'Upload access changed successfully',
-      ACCESS_DESC: '<h4>Upload access desc: </h4><div>* If maker or user has upload access of "pass", the uploaded new torrents do not need to review by administrators!</div>'
+      ACCESS_DESC: '<h4>Upload access desc: </h4><div>* If maker or user has upload access of "pass", the uploaded new torrents do not need to review by administrators!</div><div>* maker group upload access is preceded by user upload access.</div>'
     },
 
     //vip views
