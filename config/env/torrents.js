@@ -691,6 +691,7 @@ module.exports = {
      *        @expires:    banned expires time setting, in this time, user cannot connect chat server
      */
     chat: {
+      messageMaxLength: 1000,
       ban: {
         expires: 60 * 60 * 1000 * 1
       }

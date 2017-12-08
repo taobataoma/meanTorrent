@@ -129,11 +129,35 @@
     }
 
     /**
+     * selectRange
+     * @param start
+     * @param end
+     * @returns {*}
+     */
+    $.fn.selectRange = function (start, end) {
+      if (!end) end = start;
+      return this.each(function () {
+        if (this.setSelectionRange) {
+          this.focus();
+          this.setSelectionRange(start, end);
+        } else if (this.createTextRange) {
+          var range = this.createTextRange();
+          range.collapse(true);
+          range.moveEnd('character', end);
+          range.moveStart('character', start);
+          range.select();
+        }
+      });
+    };
+    /**
      * $watch 'vm.messages'
      * when changed, scroll to bottom
      */
-    $scope.$watch('vm.messages.length', function (newValue, oldValue) {
-      //mtDebug.info('vm.messages changed');
+    $scope.$watch('vm.messageText', function (newValue, oldValue) {
+      if (newValue.length > vm.chatConfig.messageMaxLength) {
+        vm.messageText = newValue.substr(0, vm.chatConfig.messageMaxLength);
+        $('#messageText').focus().val(vm.messageText).selectRange(vm.cursorPosition + 1);
+      }
     });
     $scope.$watch('vm.fontStyleBold', function (newValue, oldValue) {
       if (newValue) {
@@ -231,6 +255,8 @@
             evt.preventDefault();
           }
         }
+      } else {
+        vm.cursorPosition = evt.currentTarget.selectionStart;
       }
     };
 
