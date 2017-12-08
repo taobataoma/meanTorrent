@@ -5,7 +5,7 @@
                 {{'UPLOADER.CAPTION_MAKER' | translate}}
             </h3>
 
-            <div class="table-responsive">
+            <div class="table-responsive table-uploader">
                 <table class="table table-hover tb-v-middle top-border bottom-border">
                     <thead>
                         <tr>
@@ -35,7 +35,7 @@
                                 <span class="torrent-votes"><kbd>{{vm.TGI.getVoteTitle()}}</kbd> {{m.vote_average | number : 1}} / {{m.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</span>
                             </td>
                             <td class="col-md-2 td-v-middle width-120">
-                                <select class="form-control control-small-height" ng-model="m.upload_access" ng-change="vm.onUploaderMakerAccessChanged(m);">
+                                <select class="form-control" ng-model="m.upload_access" ng-change="vm.onUploaderMakerAccessChanged(m);">
                                     <option value="review">{{'UPLOADER.FIELDS_REVIEW' | translate}}
                                     </option>
                                     <option value="pass">{{'UPLOADER.FIELDS_PASS' | translate}}
@@ -60,7 +60,7 @@
                 next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
             </ul>
 
-            <div class="table-responsive">
+            <div class="table-responsive table-uploader">
                 <table class="table table-hover tb-v-middle top-border bottom-border">
                     <thead>
                         <tr>
@@ -93,7 +93,7 @@
                                 {{u.uptotal}}
                             </td>
                             <td class="col-md-2 td-v-middle width-120">
-                                <select class="form-control control-small-height" ng-model="u.upload_access" ng-change="vm.onUploaderUserAccessChanged(u);">
+                                <select class="form-control" ng-model="u.upload_access" ng-change="vm.onUploaderUserAccessChanged(u);">
                                     <option value="review">{{'UPLOADER.FIELDS_REVIEW' | translate}}
                                     </option>
                                     <option value="pass">{{'UPLOADER.FIELDS_PASS' | translate}}
