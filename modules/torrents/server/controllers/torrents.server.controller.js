@@ -575,7 +575,7 @@ exports.create = function (req, res) {
   var regex = new RegExp(tmp, 'g');
   torrent.resource_detail_info.overview = torrent.resource_detail_info.overview.replace(regex, dst);
 
-  mtDebug.debugGreen(torrent);
+  //mtDebug.debugGreen(torrent);
 
   //move temp torrent file to dest directory
   var oldPath = config.uploads.torrent.file.temp + req.body.torrent_filename;
@@ -632,6 +632,23 @@ exports.create = function (req, res) {
             Maker.update({_id: torrent.maker}, {
               $inc: {torrent_count: 1}
             }).exec();
+
+            //set status to reviewed when maker upload access is pass
+            Maker.find({
+              _id: torrent.maker,
+              upload_access: 'pass'
+            }, function (err, m) {
+              if (!err && m) {
+                torrent.update({torrent_status: 'reviewed'}).exec();
+                announceTorrentToIRC(torrent, req);
+              }
+            });
+          } else {
+            //set status to reviewed when user upload access is pass
+            if (req.user.upload_access === 'pass') {
+              torrent.update({torrent_status: 'reviewed'}).exec();
+              announceTorrentToIRC(torrent, req);
+            }
           }
 
           //scrape torrent status info in public cms mode
@@ -1042,35 +1059,7 @@ exports.setReviewedStatus = function (req, res) {
     } else {
       res.json(torrent);
 
-      //irc announce
-      if (ircConfig.enable) {
-        var msg = '';
-        var client = req.app.get('ircClient');
-
-        if (torrent.torrent_type === 'tvserial') {
-          msg = vsprintf(ircConfig.tvserialMsgFormat, [
-            torrent.user.displayName,
-            torrent.torrent_filename,
-            torrent.torrent_type,
-            torrent.torrent_size,
-            torrent.torrent_seasons,
-            torrent.torrent_episodes,
-            torrent.torrent_sale_status,
-            moment().format('YYYY-MM-DD HH:mm:ss')
-          ]);
-        } else {
-          msg = vsprintf(ircConfig.defaultMsgFormat, [
-            torrent.user.displayName,
-            torrent.torrent_filename,
-            torrent.torrent_type,
-            torrent.torrent_size,
-            torrent.torrent_sale_status,
-            moment().format('YYYY-MM-DD HH:mm:ss')
-          ]);
-        }
-        client.notice(ircConfig.channel, msg);
-      }
-
+      announceTorrentToIRC(torrent, req);
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminTorrentSetReviewedStatus, {
         torrent: torrent._id,
@@ -1079,6 +1068,37 @@ exports.setReviewedStatus = function (req, res) {
     }
   });
 };
+
+function announceTorrentToIRC(torrent, req) {
+  //irc announce
+  if (ircConfig.enable) {
+    var msg = '';
+    var client = req.app.get('ircClient');
+
+    if (torrent.torrent_type === 'tvserial') {
+      msg = vsprintf(ircConfig.tvserialMsgFormat, [
+        torrent.user.displayName,
+        torrent.torrent_filename,
+        torrent.torrent_type,
+        torrent.torrent_size,
+        torrent.torrent_seasons,
+        torrent.torrent_episodes,
+        torrent.torrent_sale_status,
+        moment().format('YYYY-MM-DD HH:mm:ss')
+      ]);
+    } else {
+      msg = vsprintf(ircConfig.defaultMsgFormat, [
+        torrent.user.displayName,
+        torrent.torrent_filename,
+        torrent.torrent_type,
+        torrent.torrent_size,
+        torrent.torrent_sale_status,
+        moment().format('YYYY-MM-DD HH:mm:ss')
+      ]);
+    }
+    client.notice(ircConfig.channel, msg);
+  }
+}
 
 /**
  * delete a torrent
