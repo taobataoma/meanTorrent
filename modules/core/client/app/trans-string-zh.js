@@ -339,6 +339,7 @@
     ADMIN_BASIC_TYPE_SET: '设置促销',
     ADMIN_SALE_TYPE_SET: '种子促销类型',
     ADMIN_BASIC_RLEVEL_SET: '推荐级别',
+    ADMIN_UPLOAD_ACCESS: '上传权限',
     ADMIN_RLEVEL_SET: '推荐级别设置',
     ADMIN_COLLECTION_COMMAND: '电影系列操作命令',
     ADMIN_COLLECTION_CREATE: '创建新系列',

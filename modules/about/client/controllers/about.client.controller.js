@@ -433,6 +433,19 @@
     };
 
     /**
+     * setMakerUploadAccess
+     * @param acc
+     */
+    vm.setMakerUploadAccess = function (acc) {
+      vm.maker.upload_access = acc;
+      vm.maker.$update(function (res) {
+        vm.maker = res;
+        NotifycationService.showSuccessNotify('UPLOADER.ACCESS_CHANGED_SUCCESSFULLY');
+      });
+
+    };
+
+    /**
      * ratingMaker
      * @param item
      */

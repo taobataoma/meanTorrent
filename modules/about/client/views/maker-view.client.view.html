@@ -80,8 +80,28 @@
                                 ng-if="vm.user.isOper || vm.isOwner(vm.maker)" ng-click="vm.beginEditMakerDesc(vm.maker)">
                             {{'ABOUT.BTN_EDIT_DESC' | translate}}
                         </button>
+                        <div class="btn-group width-120 margin-top-5" ng-if="vm.user.isAdmin"  uib-dropdown dropdown-append-to-body>
+                            <button id="btn-append-to-body" type="button"
+                                    class="btn btn-block"
+                                    mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                                    ng-click="$event.stopPropagation();"
+                                    uib-dropdown-toggle>
+                                {{'ADMIN_UPLOAD_ACCESS' | translate }} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu-left" uib-dropdown-menu role="menu"
+                                aria-labelledby="btn-append-to-body">
+                                <li role="menuitem" ng-class="{'active': vm.maker.upload_access == 'review'}">
+                                    <a href="#"
+                                       ng-click="vm.setMakerUploadAccess('review');">{{ 'UPLOADER.FIELDS_REVIEW' | translate}}</a>
+                                </li>
+                                <li role="menuitem" ng-class="{'active': vm.maker.upload_access == 'pass'}">
+                                    <a href="#"
+                                       ng-click="vm.setMakerUploadAccess('pass');">{{ 'UPLOADER.FIELDS_PASS' | translate}}</a>
+                                </li>
+                            </ul>
+                        </div>
                         <button class="btn btn-width-120 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
-                                ng-if="vm.user.isOper" ng-click="vm.beginRemoveMakerGroup(vm.maker)">
+                                ng-if="vm.user.isAdmin" ng-click="vm.beginRemoveMakerGroup(vm.maker)">
                             {{'ABOUT.BTN_REMOVE_GROUP' | translate}}
                         </button>
                     </div>

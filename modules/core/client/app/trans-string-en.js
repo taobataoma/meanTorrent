@@ -339,6 +339,7 @@
     ADMIN_BASIC_TYPE_SET: 'Sale Type',
     ADMIN_SALE_TYPE_SET: 'Sale Type Set',
     ADMIN_BASIC_RLEVEL_SET: 'Recommend Level',
+    ADMIN_UPLOAD_ACCESS: 'Upload Access',
     ADMIN_RLEVEL_SET: 'Recommend Level Set',
     ADMIN_COLLECTION_COMMAND: 'Collections Command',
     ADMIN_COLLECTION_CREATE: 'Create Collection',
