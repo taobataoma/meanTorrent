@@ -564,7 +564,7 @@ exports.download = function (req, res) {
  */
 exports.create = function (req, res) {
   var torrent = new Torrent(req.body);
-  mtDebug.debugGreen(req.body);
+  //mtDebug.debugGreen(req.body);
 
   torrent.user = req.user;
 
@@ -597,7 +597,7 @@ exports.create = function (req, res) {
           }
 
           if (req.body._uImage.indexOf(cv) < 0) {
-            fs.unlink(oc);
+            fs.unlinkSync(oc);
           }
         });
 
@@ -634,7 +634,7 @@ exports.create = function (req, res) {
             }).exec();
 
             //set status to reviewed when maker upload access is pass
-            Maker.find({
+            Maker.findOne({
               _id: torrent.maker,
               upload_access: 'pass'
             }, function (err, m) {
