@@ -84,6 +84,7 @@
     NEWEST_SOFTWARE_LIST: 'Newest Software Torrents',
     NEWEST_EBOOK_LIST: 'Newest eBook Torrents',
     NEWEST_MORE: 'more...',
+    BTN_DOWNLOAD: 'Download',
 
     //element title/alt
     TITLE_ALT: {

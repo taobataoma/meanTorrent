@@ -84,6 +84,7 @@
     NEWEST_SOFTWARE_LIST: '最新软件资源',
     NEWEST_EBOOK_LIST: '最新电子书资源',
     NEWEST_MORE: '更多...',
+    BTN_DOWNLOAD: '下载',
 
     //element title/alt
     TITLE_ALT: {

@@ -141,6 +141,9 @@
                                         <ul class="list-unstyled">
                                             <li>
                                                 <span class="release-date">{{item.resource_detail_info.release_date}}</span>
+                                                <span title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                      ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                                                      class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></span>
                                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                       class="votes-info torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                             </li>
@@ -366,6 +369,9 @@
                                         <ul class="list-unstyled">
                                             <li>
                                                 <span class="se-info">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
+                                                <span title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                      ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                                                      class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></span>
                                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                       class="votes-info torrent-votes"><kbd>IMDB</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                             </li>
@@ -541,6 +547,9 @@
                                             <li>
                                                 <span class="release-date"
                                                       ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
+                                                <span title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                      ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                                                      class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></span>
                                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                       class="votes-info torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                             </li>
@@ -720,6 +729,9 @@
                                             <li>
                                                 <span class="release-date"
                                                       ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
+                                                <span title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                      ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                                                      class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></span>
                                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                       class="votes-info torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                             </li>
@@ -892,6 +904,9 @@
                                             <li>
                                                 <span class="release-date"
                                                       ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
+                                                <span title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                      ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                                                      class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></span>
                                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                       class="votes-info torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                             </li>
@@ -1064,6 +1079,9 @@
                                             <li>
                                                 <span class="release-date"
                                                       ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
+                                                <span title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                      ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                                                      class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></span>
                                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                       class="votes-info torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                             </li>
@@ -1236,6 +1254,9 @@
                                             <li>
                                                 <span class="release-date"
                                                       ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
+                                                <span title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                      ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                                                      class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></span>
                                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                       class="votes-info torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                             </li>
@@ -1408,6 +1429,9 @@
                                             <li>
                                                 <span class="release-date"
                                                       ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
+                                                <span title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                      ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                                                      class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></span>
                                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                       class="votes-info torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                             </li>
@@ -1580,6 +1604,9 @@
                                             <li>
                                                 <span class="release-date"
                                                       ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
+                                                <span title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                      ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                                                      class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></span>
                                                 <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                       class="votes-info torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                             </li>
