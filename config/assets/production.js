@@ -76,7 +76,9 @@ module.exports = {
         //ngProgress
         'public/lib/ngprogress/build/ngprogress.min.js',
         //jquery-awesome-cursor
-        'public/lib/jquery-awesome-cursor/dist/jquery.awesome-cursor.min.js'
+        'public/lib/jquery-awesome-cursor/dist/jquery.awesome-cursor.min.js',
+        //jquery-textcomplete
+        'public/lib/jquery-textcomplete/dist/jquery.textcomplete.min.js'
 
         // endbower
       ]
