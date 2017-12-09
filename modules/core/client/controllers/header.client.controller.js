@@ -5,10 +5,10 @@
     .module('core')
     .controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
+  HeaderController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
     'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'TorrentsService', 'UsersService', 'DebugConsoleService'];
 
-  function HeaderController($scope, $state, $stateParams, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
+  function HeaderController($scope, $state, $timeout, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
                             InvitationsService, $interval, MessagesService, TorrentsService, UsersService, mtDebug) {
     var vm = this;
     vm.user = Authentication.user;
@@ -29,6 +29,19 @@
     vm.scoreLevelData = vm.user ? ScoreLevelService.getScoreLevelJson(vm.user.score) : undefined;
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
+
+    $(document).ready(function () {
+      $('#warning_popup').popup({
+        outline: false,
+        focusdelay: 400,
+        vertical: 'top',
+        autoopen: false,
+        opacity: 0.6,
+        closetransitionend: function () {
+          $('.popup_wrapper').remove();
+        }
+      });
+    });
 
     /**
      * auth-user-changed
@@ -71,6 +84,25 @@
             vm.countMyInvitations = undefined;
           }
         });
+      }
+    };
+
+    /**
+     * getWarningInfo
+     */
+    vm.getWarningInfo = function () {
+      var sw = localStorageService.get('showed_warning');
+      if (vm.appConfig.showDemoWarningPopup && !sw) {
+        $timeout(function () {
+          $('#warning_popup').popup('show');
+          //$('.warning_popup_open').trigger('click');
+          //angular.element('#myselector').triggerHandler('click');
+        }, 300);
+
+        localStorageService.set('showed_warning', true);
+      }
+      if (sw) {
+        $('.popup_wrapper').remove();
       }
     };
 

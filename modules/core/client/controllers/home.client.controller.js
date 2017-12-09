@@ -29,19 +29,6 @@
     vm.TVTopList = undefined;
     vm.TVNewList = undefined;
 
-    $(document).ready(function () {
-      $('#warning_popup').popup({
-        outline: false,
-        focusdelay: 400,
-        vertical: 'top',
-        autoopen: false,
-        opacity: 0.6,
-        closetransitionend: function () {
-          $('.popup_wrapper').remove();
-        }
-      });
-    });
-
     /**
      * initTopOneInfo
      */
@@ -134,25 +121,6 @@
         }
       });
       return enb;
-    };
-
-    /**
-     * getWarningInfo
-     */
-    vm.getWarningInfo = function () {
-      var sw = localStorageService.get('showed_warning');
-      if (vm.appConfig.showDemoWarningPopup && !sw) {
-        $timeout(function () {
-          $('#warning_popup').popup('show');
-          //$('.warning_popup_open').trigger('click');
-          //angular.element('#myselector').triggerHandler('click');
-        }, 300);
-
-        localStorageService.set('showed_warning', true);
-      }
-      if (sw) {
-        $('.popup_wrapper').remove();
-      }
     };
 
     /**
