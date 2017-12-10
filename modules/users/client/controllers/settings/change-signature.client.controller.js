@@ -75,6 +75,12 @@
           });
           $('.md-footer').append(cbtn);
           $compile($('.md-footer').contents())($scope);
+        },
+        onPreview: function (e) {
+          $('.md-footer').css('display', 'none');
+        },
+        onPreviewEnd: function (e) {
+          $('.md-footer').css('display', 'block');
         }
       });
     };

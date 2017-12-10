@@ -141,7 +141,6 @@
           angular.element(elei).css('color', '#333');
 
           var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
-          mtDebug.info(ele);
 
           angular.element(ele).addClass('text-right');
           angular.element(ele[0].childNodes[0]).addClass('btn-width-80');
@@ -155,6 +154,14 @@
           });
           ele.append(cbtn);
           $compile(ele.contents())($scope);
+        },
+        onPreview: function (e) {
+          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
+          ele.css('display', 'none');
+        },
+        onPreviewEnd: function (e) {
+          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
+          ele.css('display', 'block');
         }
       });
     };
