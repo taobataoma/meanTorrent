@@ -114,14 +114,21 @@
             .timeline-comment-sub-list {
                 border-top: 1px solid #d1d5da;
                 //padding-top: 5px;
+                .timeline-comment-sub-item:last-child {
+                    padding-bottom: 8px;
+                }
                 .timeline-comment-sub-item {
-                    padding: 8px 0;
+                    padding-top: 8px;
                     &:not(:last-child) {
                         border-bottom: 1px dashed #d1d5da;
                     }
                     .timeline-comment-sub-body {
-                        span {
-
+                        p {
+                            margin: 0 0 5px;
+                        }
+                        .reply-by {
+                            margin-left: 35px;
+                            margin-top: -5px;
                         }
                         .edit-button {
                             font-size: 12px;
@@ -185,7 +192,6 @@
                 width: 100%;
                 min-height: 200px;
                 max-height: 500px;
-                margin-bottom: 8px;
             }
         }
     }

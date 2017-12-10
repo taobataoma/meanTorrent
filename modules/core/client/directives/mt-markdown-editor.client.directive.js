@@ -28,48 +28,51 @@
           ngModel.$setViewValue($('#' + attrs.mtMarkdownEditor)[0].value);
         },
         onShow: function (e) {
-          scope.uFile = undefined;
-          scope.uProgress = 0;
-          scope.uFiles = [];
-          scope.uImages = [];
-          scope.$parent.uImages = [];
+          if (attrs.uploadMethod) {
+            scope.uFile = undefined;
+            scope.uProgress = 0;
+            scope.uFiles = [];
+            scope.uImages = [];
+            scope.$parent.uImages = [];
 
-          var eleUploadTip = angular.element('<div class="attach-info" ng-show="!uFile"><div class="attach-upload-tooltip text-long"><span>{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP1\' | translate}}</span><input type="file" class="manual-file-chooser" ng-model="selectedFile" ngf-select="onFileSelected($event);"><span class="btn-link manual-file-chooser-text">{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP2\' | translate}}</span>{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP3\' | translate}}</div></div>');
-          var eleUploadBegin = angular.element('<div class="upload-info" ng-show="uFile"><i class="fa fa-cog fa-spin fa-lg fa-fw"></i> <div class="attach-upload-progress" style="width: {{uProgress}}%"></div><div class="attach-upload-filename">{{\'FORUMS.ATTACH_UPLOADING\' | translate}}: {{uFile.name}}</div></div>');
-          var eleUploadList = angular.element('<div class="attach-list" ng-show="uFiles.length"><div><ol><li ng-repeat="f in uFiles track by $index">{{f.name}}　<i class="fa fa-times" ng-click="removeAttach($index)"></i></li></ol></div></div>');
+            var eleUploadTip = angular.element('<div class="attach-info" ng-show="!uFile"><div class="attach-upload-tooltip text-long"><span>{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP1\' | translate}}</span><input type="file" class="manual-file-chooser" ng-model="selectedFile" ngf-select="onFileSelected($event);"><span class="btn-link manual-file-chooser-text">{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP2\' | translate}}</span>{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP3\' | translate}}</div></div>');
+            var eleUploadBegin = angular.element('<div class="upload-info" ng-show="uFile"><i class="fa fa-cog fa-spin fa-lg fa-fw"></i> <div class="attach-upload-progress" style="width: {{uProgress}}%"></div><div class="attach-upload-filename">{{\'FORUMS.ATTACH_UPLOADING\' | translate}}: {{uFile.name}}</div></div>');
+            var eleUploadList = angular.element('<div class="attach-list" ng-show="uFiles.length"><div><ol><li ng-repeat="f in uFiles track by $index">{{f.name}}　<i class="fa fa-times" ng-click="removeAttach($index)"></i></li></ol></div></div>');
 
-          //$compile(eleUploadTip)(scope);
-          //$compile(eleUploadBegin)(scope);
-          //$compile(eleUploadList)(scope);
+            //$compile(eleUploadTip)(scope);
+            //$compile(eleUploadBegin)(scope);
+            //$compile(eleUploadList)(scope);
+            $('.md-editor').append(eleUploadTip);
+            $('.md-editor').append(eleUploadBegin);
+            $('.md-editor').append(eleUploadList);
 
-          $('.md-editor').append(eleUploadTip);
-          $('.md-editor').append(eleUploadBegin);
-          $('.md-editor').append(eleUploadList);
+            scope.removeAttach = function (idx) {
+              scope.uFiles.splice(idx, 1);
+            };
 
-          scope.removeAttach = function (idx) {
-            scope.uFiles.splice(idx, 1);
-          };
+            scope.onFileSelected = function (evt) {
+              doUpload(scope.selectedFile);
+            };
 
-          scope.onFileSelected = function (evt) {
-            doUpload(scope.selectedFile);
-          };
+            $('.md-editor').bind('dragenter', function (evt) {
+              evt.stopPropagation();
+              evt.preventDefault();
+            });
+            $('.md-editor').bind('dragover', function (evt) {
+              evt.stopPropagation();
+              evt.preventDefault();
+            });
 
-          $('.md-editor').bind('dragenter', function (evt) {
-            evt.stopPropagation();
-            evt.preventDefault();
-          });
-          $('.md-editor').bind('dragover', function (evt) {
-            evt.stopPropagation();
-            evt.preventDefault();
-          });
+            $('.md-editor').bind('drop', function (evt) {
+              evt.stopPropagation();
+              evt.preventDefault();
 
-          $('.md-editor').bind('drop', function (evt) {
-            evt.stopPropagation();
-            evt.preventDefault();
+              doUpload(evt.originalEvent.dataTransfer.files[0]);
+              return false;
+            });
 
-            doUpload(evt.originalEvent.dataTransfer.files[0]);
-            return false;
-          });
+            $compile($('.md-editor').contents())(scope);
+          }
 
           function doUpload(sFile) {
             if (!sFile) {
@@ -134,8 +137,6 @@
               });
             }
           }
-
-          $compile($('.md-editor').contents())(scope);
         }
       });
     }

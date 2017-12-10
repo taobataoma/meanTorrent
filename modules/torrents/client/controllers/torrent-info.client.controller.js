@@ -33,6 +33,26 @@
     vm.searchTags = [];
     vm.progress = 0;
 
+    vm.initComplete = function () {
+      $('.new_comment_textarea').textcomplete([
+        { // emoji strategy
+          match: /\B:([\-+\w]*)$/,
+          search: function (term, callback) {
+            callback($.map(window.emojies, function (emoji) {
+              return emoji.indexOf(term) === 0 ? emoji : null;
+            }));
+          },
+          template: function (value) {
+            return '<img class="ac-emoji" src="/graphics/emojis/' + value + '.png" />' + '<span class="ac-emoji-text">' + value + '</span>';
+          },
+          replace: function (value) {
+            return ':' + value + ': ';
+          },
+          index: 1
+        }
+      ]);
+    };
+
     /**
      * commentBuildPager
      * pagination init
@@ -605,8 +625,22 @@
       vm.reply_action = undefined;
     };
 
+    /**
+     * getCommentMarked
+     * @param citem
+     * @returns {*}
+     */
     vm.getCommentMarked = function (citem) {
       return marked(citem.comment, {sanitize: true});
+    };
+
+    /**
+     * getReplyMarked
+     * @param sitem
+     * @returns {*}
+     */
+    vm.getReplyMarked = function (sitem) {
+      return marked(sitem.comment, {sanitize: true});
     };
 
     /**
