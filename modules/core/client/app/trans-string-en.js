@@ -580,7 +580,9 @@
       ADD_MEMBER_FAILED: 'Add group member failed',
       REMOVE_MEMBER_SUCCESSFULLY: 'Remove group member successfully',
       REMOVE_MEMBER_FAILED: 'Remove group member failed',
-      REMOVE_MEMBER_TITLE: 'Remove this member'
+      REMOVE_MEMBER_TITLE: 'Remove this member',
+      EDIT_DESC_SUCCESSFULLY: 'Edit maker group desc successfully',
+      EDIT_DESC_FAILED: 'Edit maker group desc failed'
     },
 
     //collections views
@@ -615,7 +617,9 @@
       REMOVE_CONFIRM_HEADER_TEXT: 'Remove Confirm',
       REMOVE_CONFIRM_BODY_TEXT: 'Are you sure want to remove the torrent from this collection?',
       REMOVE_SUCCESSFULLY: 'Remove the torrent from this collection successfully',
-      REMOVE_FAILED: 'Remove the torrent from this collection failed'
+      REMOVE_FAILED: 'Remove the torrent from this collection failed',
+      EDIT_OVERVIEW_SUCCESSFULLY: 'Edit collections overview successfully',
+      EDIT_OVERVIEW_FAILED: 'Edit collections overview failed'
     },
 
     //backup views settings

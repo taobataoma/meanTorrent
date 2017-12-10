@@ -370,6 +370,9 @@
             vm.maker.desc = e.getContent();
             vm.maker.$update(function (res) {
               vm.maker = res;
+              NotifycationService.showSuccessNotify('ABOUT.EDIT_DESC_SUCCESSFULLY');
+            }, function (res) {
+              NotifycationService.showErrorNotify(res.data.message, 'ABOUT.EDIT_DESC_FAILED');
             });
 
             e.$options.hideable = true;
@@ -383,6 +386,24 @@
           e.$options.hideable = false;
         },
         onShow: function (e) {
+          $('.md-input').textcomplete([
+            { // emoji strategy
+              match: /\B:([\-+\w]*)$/,
+              search: function (term, callback) {
+                callback($.map(window.emojies, function (emoji) {
+                  return emoji.indexOf(term) === 0 ? emoji : null;
+                }));
+              },
+              template: function (value) {
+                return '<img class="ac-emoji" src="/graphics/emojis/' + value + '.png" />' + '<span class="ac-emoji-text">' + value + '</span>';
+              },
+              replace: function (value) {
+                return ':' + value + ': ';
+              },
+              index: 1
+            }
+          ]);
+
           e.setContent(m.desc);
 
           var elei = $('#' + e.$editor.attr('id') + ' .md-input');

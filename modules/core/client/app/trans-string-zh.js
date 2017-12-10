@@ -442,7 +442,6 @@
     CANCEL_BUTTON: '算了，以后再说',
     AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="/about/rules">协议条款</a>',
     DOWNLOAD_TORRENT: '下载种子',
-    FILE_TYPE_ERROR: '文件类型不被接受',
 
     ENTER_MUSIC_TITLE: '3. 请输入艺人名称和音乐/专辑标题',
     MUSIC_ARTIST: '艺人名称',
@@ -453,6 +452,7 @@
     COVER_UPLOAD_FAILED: '封面图片上传失败',
     ENTER_MUSIC_DETAIL_INFO: '4. 请输入音乐/专辑详细信息',
     ERROR_ONLY_IMAGE: '此处只支持图片文件上传(gif, png, bmp, jpg, jpeg)',
+    FILE_TYPE_ERROR: '文件类型不被接受',
 
     ENTER_RESOURCE_TITLE: '3. 请输入资源标题与描述',
     RESOURCE_TITLE: '资源标题',
@@ -526,6 +526,7 @@
       FIELDS_UPLOAD_ACCESS: '上传权限',
       FIELDS_REVIEW: '需要审核',
       FIELDS_PASS: '直接通过',
+      ACCESS_CHANGED_SUCCESSFULLY: '上传权限修改成功',
       ACCESS_DESC: '<h4>上传权限说明: </h4><div>* 有‘直接通过’上传权限的资源制作小组或用户, 新上传的所有种子不需要管理再次审核!</div><div>* 资源组上传权限优先于用户上传权限.</div>'
     },
 
@@ -579,7 +580,9 @@
       ADD_MEMBER_FAILED: '添加小组成员失败',
       REMOVE_MEMBER_SUCCESSFULLY: '删除小组成员成功',
       REMOVE_MEMBER_FAILED: '删除小组成员失败',
-      REMOVE_MEMBER_TITLE: '删除小组成员'
+      REMOVE_MEMBER_TITLE: '删除小组成员',
+      EDIT_DESC_SUCCESSFULLY: '编辑小组简介成功',
+      EDIT_DESC_FAILED: '编辑小组简介失败'
     },
 
     //collections views
@@ -614,7 +617,9 @@
       REMOVE_CONFIRM_HEADER_TEXT: '移除确认',
       REMOVE_CONFIRM_BODY_TEXT: '您确认要将此种子移除这个系列?',
       REMOVE_SUCCESSFULLY: '从系列中移除种子成功',
-      REMOVE_FAILED: '从系列中移除种子失败'
+      REMOVE_FAILED: '从系列中移除种子失败',
+      EDIT_OVERVIEW_SUCCESSFULLY: '编辑电影系列简介成功',
+      EDIT_OVERVIEW_FAILED: '编辑电影系列简介失败'
     },
 
     //backup views settings
