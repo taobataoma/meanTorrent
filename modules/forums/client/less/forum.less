@@ -248,18 +248,18 @@
     .table-category {
         border-radius: 6px;
     }
-    table {
+    .table-valign-middle {
         border-spacing: 0;
         border-collapse: inherit;
         border: solid 3px @brand-primary;
         table-layout: fixed;
-        thead {
+        > thead {
             background-color: @brand-primary;
             border: solid 1px @brand-primary;
             color: #efefef;
-            tr {
+            > tr {
                 height: 48px;
-                th {
+                > th {
                     position: relative;
                     border: solid 2px @brand-primary;
                     padding: 13px 10px;
@@ -273,16 +273,16 @@
                 }
             }
         }
-        tbody {
-            tr {
-                td {
+        > tbody {
+            > tr {
+                > td {
                     border-top: none;
                     white-space: normal !important;
                     border-bottom: solid 2px lighten(@brand-primary, 45%);
                 }
             }
-            tr:last-child {
-                td {
+            > tr:last-child {
+                > td {
                     border-bottom: none;
                 }
             }
@@ -668,11 +668,10 @@
 blockquote {
     color: #999;
     font-size: 14px;
-}
-
-em {
-    color: lighten(@brand-primary, 10%);
-    font-size: 12px;
+    em {
+        color: lighten(@brand-primary, 10%);
+        font-size: 12px;
+    }
 }
 
 .search-group {
@@ -773,10 +772,11 @@ em {
     }
 }
 
-.ac-emoji{
+.ac-emoji {
     width: 30px;
     padding: 0 5px;
 }
-.ac-emoji-text{
+
+.ac-emoji-text {
     margin-left: 5px;
 }

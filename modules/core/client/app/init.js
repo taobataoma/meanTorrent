@@ -91,19 +91,38 @@
       //  return '<a ng-click="vm.markLinkClick($event, item);" href="' + href + '"' + (title ? ' title="' + title + '"' : '') + ' target="_blank">' + text + '</a>';
       //},
       heading: function (text, level) {
-        return '<h'
-          + level
-          + '>'
-          + replaceEmoji(text)
-          + '</h'
-          + level
-          + '>\n';
+        return '<h' + level + '>' + replaceEmoji(text) + '</h' + level + '>\n';
+      },
+      blockquote: function (quote) {
+        return '<blockquote>\n' + replaceEmoji(quote) + '</blockquote>\n';
+      },
+      listitem: function (text) {
+        return '<li>' + replaceEmoji(text) + '</li>\n';
       },
       table: function (header, body) {
-        return '<table class="table table-hover table-bordered table-condensed md-table margin-bottom-10"><thead>' + header + '</thead><tbody>' + body + '</tbody></table>';
+        return '<table class="table table-hover table-striped margin-bottom-10"><thead>' + header + '</thead><tbody>' + body + '</tbody></table>';
+      },
+      tablecell: function (content, flags) {
+        var type = flags.header ? 'th' : 'td';
+        var tag = flags.align
+          ? '<' + type + ' style="text-align:' + flags.align + '">'
+          : '<' + type + '>';
+        return tag + replaceEmoji(content) + '</' + type + '>\n';
       },
       paragraph: function (text) {
         return '<p>' + replaceEmoji(text) + '</p>';
+      },
+      html: function (html) {
+        return replaceEmoji(html);
+      },
+      strong: function (text) {
+        return '<strong>' + replaceEmoji(text) + '</strong>';
+      },
+      em: function (text) {
+        return '<em>' + replaceEmoji(text) + '</em>';
+      },
+      del: function (text) {
+        return '<del>' + replaceEmoji(text) + '</del>';
       },
       text: function (text) {
         return replaceEmoji(text);

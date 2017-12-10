@@ -559,7 +559,7 @@
      * @param obj, topic or reply object, need the content field
      */
     vm.quoteAndReply = function (obj) {
-      var by = obj.user.displayName + ' at ' + $filter('date')(obj.updatedAt ? obj.updatedAt : obj.createdAt, 'yyyy-MM-dd HH:mm:ss');
+      var by = obj.user.displayName + ' at ' + $filter('date')((obj.updatedAt ? obj.updatedAt : obj.createdAt), 'yyyy-MM-dd HH:mm');
       by = '_' + by + '_' + '\n\n';
       var list = [];
 
