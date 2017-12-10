@@ -90,6 +90,15 @@
       //link: function (href, title, text) {
       //  return '<a ng-click="vm.markLinkClick($event, item);" href="' + href + '"' + (title ? ' title="' + title + '"' : '') + ' target="_blank">' + text + '</a>';
       //},
+      heading: function (text, level) {
+        return '<h'
+          + level
+          + '>'
+          + replaceEmoji(text)
+          + '</h'
+          + level
+          + '>\n';
+      },
       table: function (header, body) {
         return '<table class="table table-hover table-bordered table-condensed md-table margin-bottom-10"><thead>' + header + '</thead><tbody>' + body + '</tbody></table>';
       },
