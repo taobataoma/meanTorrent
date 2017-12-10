@@ -442,6 +442,7 @@
     CANCEL_BUTTON: '算了，以后再说',
     AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="/about/rules">协议条款</a>',
     DOWNLOAD_TORRENT: '下载种子',
+    FILE_TYPE_ERROR: '文件类型不被接受',
 
     ENTER_MUSIC_TITLE: '3. 请输入艺人名称和音乐/专辑标题',
     MUSIC_ARTIST: '艺人名称',

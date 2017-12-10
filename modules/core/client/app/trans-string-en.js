@@ -452,6 +452,7 @@
     COVER_UPLOAD_FAILED: 'Failed to upload cover image',
     ENTER_MUSIC_DETAIL_INFO: '4. Please enter the music/album detail info',
     ERROR_ONLY_IMAGE: 'Only image files support(gif, png, bmp, jpg, jpeg)',
+    FILE_TYPE_ERROR: 'File type that is not accepted',
 
     ENTER_RESOURCE_TITLE: '3. Please enter the resource title and desc',
     RESOURCE_TITLE: 'resource title',

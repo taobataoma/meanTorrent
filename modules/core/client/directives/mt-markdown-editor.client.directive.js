@@ -84,6 +84,12 @@
               }
             }
 
+            if (sFile.type === 'text/javascript') {
+              NotifycationService.showErrorNotify($translate.instant('FILE_TYPE_ERROR'), 'ERROR');
+              console.error($translate.instant('FILE_TYPE_ERROR'));
+              return;
+            }
+
             if (attrs.uploadMethod) {
               scope.uFile = sFile;
               scope.uProgress = 0;
