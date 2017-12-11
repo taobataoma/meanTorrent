@@ -33,13 +33,13 @@
                             </dd>
                         </div>
 
-                        <div class="margin-bottom-10 form-group" show-errors>
+                        <div class="margin-bottom-10 form-group" ng-init="vm.initComplete();" show-errors>
                             <dt class="h-line">{{ 'MESSAGES_FIELD.CONTENT' | translate}}</dt>
                             <dd class="h-line">
-                                <textarea class="form-control message-textarea" id="content" name="content"
-                                          ng-model="vm.messageFields.content" required></textarea>
+                                <textarea id="messageContent" name="messageContent" class="form-control message-textarea" ng-model="vm.messageFields.content"
+                                      mt-markdown-editor="messageContent" required></textarea>
 
-                                <div ng-messages="vm.messageForm.content.$error" role="alert">
+                                <div ng-messages="vm.messageForm.messageContent.$error" role="alert">
                                     <p class="help-block error-text" ng-message="required">{{ 'MESSAGES_FIELD.CT_REQUIRED' | translate}}</p>
                                 </div>
 
@@ -85,7 +85,7 @@
                     <tbody>
                         <tr class="message-item" ng-repeat="m in vm.adminMessages">
                             <td>
-                                <h5 ng-bind="m.title"></h5>
+                                <div class="message-title text-long"><span ng-bind="m.title"></span></div>
 
                                 <p class="message-content" ng-bind-html="vm.getContentMarked(m);"></p>
 

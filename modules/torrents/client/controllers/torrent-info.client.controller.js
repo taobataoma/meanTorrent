@@ -33,6 +33,9 @@
     vm.searchTags = [];
     vm.progress = 0;
 
+    /**
+     * initComplete
+     */
     vm.initComplete = function () {
       $('.new_comment_textarea').textcomplete([
         { // emoji strategy
