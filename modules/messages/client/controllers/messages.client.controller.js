@@ -261,7 +261,6 @@
      * @param e
      */
     vm.onReplyKeyDown = function (e) {
-      console.log('onReplyKeyDown: ' + e.keyCode);
       if (e.keyCode === 27) { // ESC
         var hasPopupMenu = false;
         var emojiMenu = $('.textcomplete-dropup');

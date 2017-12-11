@@ -31,7 +31,7 @@
                     </ul>
                 </div>
 
-                <div class="chat-footer">
+                <div class="chat-footer" ng-init="vm.initMessageInputComplete();">
                     <div class="footer-function">
                         <div class="pull-right margin-right-20">
                             <span class="glyphicon glyphicon-refresh" title="{{'CHAT_CLEAN_MESSAGE' | translate}}" aria-hidden="true"
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="footer-input">
-                        <textarea class="form-control" id="messageText" name="messageText" ng-model="vm.messageText"
+                        <textarea class="form-control messageText" id="messageText" name="messageText" ng-model="vm.messageText"
                                   placeholder="{{'CHAT_PLACEHOLDER_INPUT' | translate}}"
                                   ng-keydown="vm.onInputKeyDown($event);"
                                   autofocus>

@@ -129,6 +129,31 @@
     }
 
     /**
+     * initComplete
+     */
+    vm.initMessageInputComplete = function () {
+      $('.messageText').textcomplete([
+        { // emoji strategy
+          match: /\B:([\-+\w]*)$/,
+          search: function (term, callback) {
+            callback($.map(window.emojies, function (emoji) {
+              return emoji.indexOf(term) === 0 ? emoji : null;
+            }));
+          },
+          template: function (value) {
+            return '<img class="ac-emoji" src="/graphics/emojis/' + value + '.png" />' + '<span class="ac-emoji-text">' + value + '</span>';
+          },
+          replace: function (value) {
+            return ':' + value + ': ';
+          },
+          index: 1
+        }
+      ], {
+        dropdownClassName: 'dropdown-menu textcomplete-dropdown textcomplete-dropup-chat'
+      });
+    };
+
+    /**
      * selectRange
      * @param start
      * @param end
@@ -249,10 +274,19 @@
         if (evt.shiftKey) {
           return;
         } else {
-          if (vm.messageText) {
-            vm.sendMessage();
-            //evt.stopPropagation();
-            evt.preventDefault();
+          var hasPopupMenu = false;
+          var emojiMenu = $('.textcomplete-dropup-chat');
+          angular.forEach(emojiMenu, function (e) {
+            if (e.style.display === 'block') {
+              hasPopupMenu = true;
+            }
+          });
+          if (!hasPopupMenu) {
+            if (vm.messageText) {
+              vm.sendMessage();
+              //evt.stopPropagation();
+              evt.preventDefault();
+            }
           }
         }
       } else {
@@ -356,12 +390,37 @@
         newmsg = newmsg.replace(m, atulink);
       });
 
+      newmsg = replaceEmoji(newmsg);
+
       if (msg.fontColor) {
         newmsg = '<font color="' + msg.fontColor + '">' + (newmsg || '&nbsp;') + '</font>';
       }
 
       return newmsg || '&nbsp;';
     };
+
+    /**
+     * replaceEmoji
+     * @param text
+     * @returns {*}
+     */
+    function replaceEmoji(text) {
+      var RexStr = /:([A-Za-z0-9_\-\+]+?):/g;
+      text = text.replace(RexStr, function (match, emoji) {
+        return '<img src="'
+          + '/graphics/emojis/'
+          + encodeURIComponent(emoji)
+          + '.png"'
+          + ' alt="'
+          + emoji
+          + '"'
+          + ' title="'
+          + emoji
+          + '"'
+          + ' class="emoji" align="absmiddle" height="20" width="20">';
+      });
+      return text;
+    }
 
     /**
      * makeAtUserLink
