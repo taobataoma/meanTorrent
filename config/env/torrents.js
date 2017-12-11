@@ -693,7 +693,7 @@ module.exports = {
      *        @expires:    banned expires time setting, in this time, user cannot connect chat server
      */
     chat: {
-      messageMaxLength: 1000,
+      messageMaxLength: 512,
       ban: {
         expires: 60 * 60 * 1000 * 1
       }
@@ -778,7 +778,7 @@ module.exports = {
       ],
       showThumbsUpUserList: true,
       showUserSignature: true,
-      signatureLength: 500
+      signatureLength: 512
     },
 
     /**
