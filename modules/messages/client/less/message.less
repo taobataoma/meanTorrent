@@ -48,6 +48,11 @@
         width: 30px;
     }
     .message-title {
+        font-weight: bold;
+        font-size: 14px;
+        word-break: break-all;
+    }
+    .message-title-admin {
         font-size: 18px;
         margin: 5px 0;
         width: max-content;
@@ -87,6 +92,7 @@
 
 .popup-side-overlay {
     top: 50px !important;
+    z-index: 99;
     @media (min-width: @screen-sm-min) {
         width: 450px;
     }
@@ -99,28 +105,34 @@
     background-color: #fdfdfd;
     border-top: solid 1px #e6e6e6;
     width: 100%;
-    height: 150px;
+    height: 216px;
     position: absolute;
     left: 0;
     bottom: 0;
     padding: 8px 10px;
-    &.not-user-message{
-        height: 50px !important;
+    &.not-user-message {
+        height: 52px !important;
+    }
+    .md-editor {
+        margin-bottom: 8px;
     }
 }
 
 .message-popup {
     background-color: #fdfdfd;
     width: 100%;
-    height: ~"calc(100% - 150px)";
+    height: ~"calc(100% - 216px)";
     overflow: auto;
     padding: 15px;
+    &.not-user-message {
+        height: ~"calc(100% - 52px)" !important;
+    }
 }
 
 .reply-textarea {
     resize: none;
     width: 100%;
-    min-height: 90px;
+    min-height: 90px !important;
     margin-bottom: 8px;
 }
 
@@ -135,4 +147,9 @@
     i {
         top: 2px;
     }
+}
+
+.textcomplete-dropup {
+    top: auto !important;
+    bottom: 140px !important;
 }

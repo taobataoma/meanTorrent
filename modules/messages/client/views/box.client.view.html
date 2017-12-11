@@ -98,8 +98,8 @@
         </div>
     </div>
 
-    <div id="popupSlide" side-overlay="right" side-class="popup-side-overlay" side-close-on-esc side-close-on-outside-click>
-        <div class="message-popup message-item">
+    <div id="popupSlide" side-overlay="right" side-class="popup-side-overlay" side-opened="vm.onPopupMessageOpen();" side-close-on-esc side-close-on-outside-click>
+        <div class="message-popup message-item" ng-class="{'not-user-message':  vm.selectedMessage.type!='user'}">
             <div>
                 <img class="message-avatar" ng-src="{{vm.selectedMessage.from_user.profileImageURL}}">
 
@@ -141,16 +141,22 @@
             </div>
         </div>
 
-        <div class="bottom-control" ng-class="{'not-user-message':  vm.selectedMessage.type!='user'}">
+        <div class="bottom-control" ng-init="vm.initReplyComplete();" ng-class="{'not-user-message':  vm.selectedMessage.type!='user'}">
+            <div ng-show="vm.selectedMessage.type=='user'">
             <textarea class="form-control reply-textarea" id="reply-content" name="reply-content"
-                      ng-model="vm.replyContent" ng-if="vm.selectedMessage.type=='user'" autofocus></textarea>
-            <button class="btn btn-default btn-width-100" ng-click="vm.hideMessage();">{{ 'BUTTON_MESSAGE_CLOSE' | translate }}</button>
-            <button class="btn btn-default btn-width-100" ng-click="vm.delete(vm.selectedMessage);"
-                    ng-if="vm.selectedMessage.type=='user'">{{ 'BUTTON_MESSAGE_DELETE' | translate }}
-            </button>
-            <button class="btn btn-success btn-width-100 pull-right" ng-disabled="!vm.replyContent"
-                    ng-click="vm.replyMessage(vm.selectedMessage);" ng-if="vm.selectedMessage.type=='user'">{{ 'BUTTON_MESSAGE_REPLY' | translate }}
-            </button>
+                      ng-model="vm.replyContent" data-hidden-buttons="cmdPreview" ng-keydown="vm.onReplyKeyDown($event);"
+                      mt-markdown-editor="reply-content"></textarea>
+            </div>
+            <div>
+                <button class="btn btn-default btn-width-100" ng-click="vm.hideMessage();">{{ 'BUTTON_MESSAGE_CLOSE' | translate }}</button>
+                <button class="btn btn-default btn-width-100" ng-click="vm.delete(vm.selectedMessage);"
+                        ng-if="vm.selectedMessage.type=='user'">{{ 'BUTTON_MESSAGE_DELETE' | translate }}
+                </button>
+                <button class="btn btn-success btn-width-100 pull-right" ng-disabled="!vm.replyContent"
+                        ng-click="vm.replyMessage(vm.selectedMessage);"
+                        ng-if="vm.selectedMessage.type=='user'">{{ 'BUTTON_MESSAGE_REPLY' | translate }}
+                </button>
+            </div>
         </div>
     </div>
 </section>
