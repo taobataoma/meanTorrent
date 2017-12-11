@@ -98,6 +98,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 45. Support anonymous uploader.
 46. In forum, Admin/Moderators and topic owner can edit topic title through click on the title text.
 47. New feature for list all uploader(maker group and user), admin can set uploader access to pass review directly when upload a torrent file.
+48. Complete emoji support on chat room, message box.
 
 #### Chat room feature:
 1. Users name list
@@ -106,13 +107,12 @@ and [AngularJS](http://angularjs.org/) based applications.
 4. Banned user can not reconnect to chat server with an expires time(default one hour)
 5. User can not repetitive login from another location at one time
 6. Chat message bubble style
+7. Complete emoji support by enter colon.
 
 ## TODO
 - RSS feeds support.
 - Users follow(friend) support.
 - Poll type topics support in forum.
-- Emoji on chat room.
-- Emoji toolbar on forum post.
 - Request system
 - More score get methods.
 - torrent more images from [TMDB](https://www.themoviedb.org)
