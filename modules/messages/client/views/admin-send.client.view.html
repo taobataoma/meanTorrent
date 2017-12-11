@@ -37,7 +37,7 @@
                             <dt class="h-line">{{ 'MESSAGES_FIELD.CONTENT' | translate}}</dt>
                             <dd class="h-line">
                                 <textarea id="messageContent" name="messageContent" class="form-control message-textarea" ng-model="vm.messageFields.content"
-                                      mt-markdown-editor="messageContent" required></textarea>
+                                      mt-markdown-editor="messageContent" maxlength="{{vm.messageConfig.messageContentLength}}" required></textarea>
 
                                 <div ng-messages="vm.messageForm.messageContent.$error" role="alert">
                                     <p class="help-block error-text" ng-message="required">{{ 'MESSAGES_FIELD.CT_REQUIRED' | translate}}</p>

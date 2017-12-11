@@ -265,7 +265,9 @@ module.exports = {
           {name: 'NOTICE', value: 'notice'}
         ]
       },
-      checkUnreadInterval: 60 * 1000 * 2
+      checkUnreadInterval: 60 * 1000 * 2,
+      messageContentLength: 1024,
+      messageReplyLength: 512
     },
 
     /**

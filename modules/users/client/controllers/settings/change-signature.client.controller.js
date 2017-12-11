@@ -39,8 +39,7 @@
         onSave: function (e) {
           if (e.isDirty()) {
             //save content
-            var newSignature = e.getContent().substr(0, vm.forumsConfig.signatureLength);
-            UsersService.changeSignature({signature: newSignature})
+            UsersService.changeSignature({signature: e.getContent()})
               .then(function (res) {
                 vm.user = Authentication.user = res;
                 $state.reload();
@@ -78,7 +77,7 @@
               index: 1
             }
           ]);
-
+          $('.md-input').attr('maxlength', vm.forumsConfig.signatureLength);
           e.setContent(vm.user.signature || $translate.instant('MAKER_NULL'));
 
           angular.element($('.md-footer')).addClass('text-right');
