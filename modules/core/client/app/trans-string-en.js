@@ -883,7 +883,7 @@
     //chat view
     CHAT_USERS_LIST: 'Users List',
     CHAT_WELCOME: 'Welcome to join the chat room, please follow the chat rules, and have a good time!',
-    CHAT_PLACEHOLDER_INPUT: 'input new message and press enter',
+    CHAT_PLACEHOLDER_INPUT: 'input message and press enter, support emoji images by colon',
     CHAT_USER_JOIN: 'is now connected and join the room.',
     CHAT_USER_QUIT: 'is now disconnect and quit the room.',
     CHAT_CLEAN_MESSAGE: 'Clean message list',

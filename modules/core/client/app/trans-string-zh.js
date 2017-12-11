@@ -883,7 +883,7 @@
     //chat view
     CHAT_USERS_LIST: '用户列表',
     CHAT_WELCOME: '欢迎进入聊天室，请注意自已的言行，共同维护良好的聊天环境！',
-    CHAT_PLACEHOLDER_INPUT: '输入聊天消息，按回车键发送',
+    CHAT_PLACEHOLDER_INPUT: '输入聊天消息，按回车键发送，若要使用emoji请输入冒号',
     CHAT_USER_JOIN: '已加入聊天室~',
     CHAT_USER_QUIT: '已退出聊天室~',
     CHAT_CLEAN_MESSAGE: '清空聊天记录',
