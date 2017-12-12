@@ -436,18 +436,21 @@
     <!-- =================================================================
         side-overlay collections create
     ================================================================== -->
-    <div id="collectionsCreateSlide" side-overlay="right" side-class="collections-side-overlay" side-close-on-esc side-modal>
-        <div class="collection-popup">
+    <div id="collectionsCreateSlide" side-overlay="right" side-class="collections-side-overlay" side-opened="vm.onPopupMessageOpen();"
+         side-close-on-esc side-modal>
+        <div class="collection-popup" ng-init="vm.initOverviewComplete();">
             <legend class="h4"
                     translate="COLLECTIONS.FORM_FOR" translate-values="{cid: vm.torrentLocalInfo.resource_detail_info.belongs_to_collection.id}">
             </legend>
 
             <div class="collection-form">
-                <input type="text" class="form-control" id="name" placeholder="{{'COLLECTIONS.FORM_NAME' | translate}}"
+                <input type="text" class="form-control margin-bottom-10" id="coll-name" placeholder="{{'COLLECTIONS.FORM_NAME' | translate}}"
                        ng-model="vm.collection.name" autofocus>
 
-                <textarea class="form-control" id="overview" placeholder="{{'COLLECTIONS.FORM_DESC' | translate}}"
-                          ng-model="vm.collection.overview"></textarea>
+                <textarea class="form-control overview-textarea" id="overview-textarea" name="overview-textarea"
+                          ng-model="vm.collection.overview" data-hidden-buttons="cmdPreview" ng-keydown="vm.onOverviewKeyDown($event);"
+                          placeholder="{{'COLLECTIONS.FORM_DESC' | translate}}"
+                          mt-markdown-editor="overview-textarea"></textarea>
 
                 <div class="margin-top-10" style="display: table;">
                     <a class="message-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"

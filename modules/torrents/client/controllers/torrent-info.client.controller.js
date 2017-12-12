@@ -203,6 +203,55 @@
     };
 
     /**
+     * initOverviewComplete
+     */
+    vm.initOverviewComplete = function () {
+      $('.overview-textarea').textcomplete([
+        { // emoji strategy
+          match: /\B:([\-+\w]*)$/,
+          search: function (term, callback) {
+            callback($.map(window.emojies, function (emoji) {
+              return emoji.indexOf(term) === 0 ? emoji : null;
+            }));
+          },
+          template: function (value) {
+            return '<img class="ac-emoji" src="/graphics/emojis/' + value + '.png" />' + '<span class="ac-emoji-text">' + value + '</span>';
+          },
+          replace: function (value) {
+            return ':' + value + ': ';
+          },
+          index: 1
+        }
+      ]);
+    };
+
+    /**
+     * onOverviewKeyDown
+     * @param e
+     */
+    vm.onOverviewKeyDown = function (e) {
+      if (e.keyCode === 27) { // ESC
+        var hasPopupMenu = false;
+        var emojiMenu = $('.textcomplete-dropdown');
+        angular.forEach(emojiMenu, function (e) {
+          if (e.style.display === 'block') {
+            hasPopupMenu = true;
+          }
+        });
+        if (hasPopupMenu) {
+          e.stopPropagation();
+        }
+      }
+    };
+
+    /**
+     * onPopupMessageOpen
+     */
+    vm.onPopupMessageOpen = function () {
+      $('#coll-name').focus();
+    };
+
+    /**
      * setTorrentTags
      */
     vm.setTorrentTags = function () {
