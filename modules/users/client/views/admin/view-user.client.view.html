@@ -86,7 +86,7 @@
                     <span ng-if="vm.user.makers.length==0">-</span>
 
                     <div class="pull-right"
-                         ng-if="vm.authentication.user.isOper && vm.user.makers.length==0">
+                         ng-if="vm.authentication.user.isOper && !vm.alreadyIsFounder(vm.user);">
                         <button class="btn btn-default btn-xs btn-width-100" ng-click="vm.showMakerGroup($event);">
                             {{'STATUS_FIELD.BTN_CREATE_MAKER' | translate}}
                         </button>

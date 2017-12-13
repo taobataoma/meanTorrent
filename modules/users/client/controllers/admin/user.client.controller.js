@@ -184,6 +184,25 @@
     };
 
     /**
+     * alreadyIsFounder
+     * @param u
+     * @returns {boolean}
+     */
+    vm.alreadyIsFounder = function (u) {
+      var is = false;
+
+      if (u.makers.length > 0) {
+        angular.forEach(u.makers, function (m) {
+          if (m.user === u._id) {
+            is = true;
+          }
+        });
+      }
+
+      return is;
+    };
+
+    /**
      * showMakerGroup
      * @param evt
      */
