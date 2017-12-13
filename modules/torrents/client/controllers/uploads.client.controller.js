@@ -186,6 +186,13 @@
     };
 
     /**
+     * onPopupSearchOpen
+     */
+    vm.onPopupSearchOpen = function(){
+      $('#skey').focus();
+    };
+
+    /**
      * onTextClick
      * @param $event
      */

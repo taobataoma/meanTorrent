@@ -14,7 +14,7 @@
                             <dt class="h-line">{{ 'MESSAGES_FIELD.TO' | translate}}：</dt>
                             <dd class="h-line">
                                 <input type="text" class="form-control" id="sendTo" name="sendTo"
-                                       ng-model="vm.messageFields.sendTo" required autofocus ng-readonly="vm.sendToReadonly">
+                                       ng-model="vm.messageFields.sendTo" required ng-readonly="vm.sendToReadonly">
 
                                 <div ng-messages="vm.messageForm.sendTo.$error" role="alert">
                                     <p class="help-block error-text" ng-message="required">{{ 'MESSAGES_FIELD.TO_REQUIRED' | translate}}</p>
@@ -26,7 +26,7 @@
                             <dt class="h-line">{{ 'MESSAGES_FIELD.TITLE' | translate}}：</dt>
                             <dd class="h-line">
                                 <input type="text" class="form-control" id="title" name="title"
-                                       ng-model="vm.messageFields.title" required>
+                                       ng-model="vm.messageFields.title" autofocus required>
 
                                 <div ng-messages="vm.messageForm.title.$error" role="alert">
                                     <p class="help-block error-text" ng-message="required">{{ 'MESSAGES_FIELD.TT_REQUIRED' | translate}}</p>

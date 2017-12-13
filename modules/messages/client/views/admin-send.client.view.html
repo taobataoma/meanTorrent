@@ -25,7 +25,7 @@
                             <dt class="h-line">{{ 'MESSAGES_FIELD.TITLE' | translate}}</dt>
                             <dd class="h-line">
                                 <input type="text" class="form-control" id="title" name="title"
-                                       ng-model="vm.messageFields.title" required>
+                                       ng-model="vm.messageFields.title" autofocus required>
 
                                 <div ng-messages="vm.messageForm.title.$error" role="alert">
                                     <p class="help-block error-text" ng-message="required">{{ 'MESSAGES_FIELD.TT_REQUIRED' | translate}}</p>
