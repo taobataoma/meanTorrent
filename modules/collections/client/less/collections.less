@@ -2,12 +2,7 @@
 
 .collections-side-overlay {
     top: 50px !important;
-    @media (min-width: @screen-sm-min) {
-        width: 450px;
-    }
-    @media (max-width: @screen-xs-max) {
-        width: ~"calc(100% - 50px)";
-    }
+    width: 450px;
     .collection-popup {
         background-color: #fdfdfd;
         width: 100%;
@@ -68,7 +63,7 @@
             border-radius: 8px;
             max-width: 400px;
             border: solid 1px #666;
-            z-index:1;
+            z-index: 1;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
             &:hover {
                 img {
