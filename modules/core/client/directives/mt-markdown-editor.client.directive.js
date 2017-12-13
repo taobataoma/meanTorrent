@@ -28,7 +28,7 @@
           ngModel.$setViewValue($('#' + attrs.mtMarkdownEditor)[0].value);
         },
         onShow: function (e) {
-          if(attrs.maxlength){
+          if (attrs.maxlength) {
             var inputInfo = angular.element('<span></span>');
             inputInfo.addClass('pull-right');
             inputInfo.addClass('input-length');
