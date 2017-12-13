@@ -12,6 +12,7 @@
                                   MeanTorrentConfig, ModalConfirmService, marked, $rootScope) {
     var vm = this;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
+    vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.user = Authentication.user;
     vm.messageType = 'system';
 

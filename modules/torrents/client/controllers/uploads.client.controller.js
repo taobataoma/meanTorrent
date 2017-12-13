@@ -188,7 +188,7 @@
     /**
      * onPopupSearchOpen
      */
-    vm.onPopupSearchOpen = function(){
+    vm.onPopupSearchOpen = function () {
       $('#skey').focus();
     };
 

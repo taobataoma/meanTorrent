@@ -28,6 +28,17 @@
           ngModel.$setViewValue($('#' + attrs.mtMarkdownEditor)[0].value);
         },
         onShow: function (e) {
+          if(attrs.maxlength){
+            var inputInfo = angular.element('<span></span>');
+            inputInfo.addClass('pull-right');
+            inputInfo.addClass('input-length');
+            inputInfo.text(e.getContent().length + '/' + attrs.maxlength);
+            $('#' + e.$editor.attr('id') + ' .md-header').append(inputInfo);
+            $('#' + e.$editor.attr('id') + ' .md-input').on('input propertychange', function (evt) {
+              inputInfo.text(e.getContent().length + '/' + attrs.maxlength);
+            });
+          }
+
           if (attrs.uploadMethod) {
             scope.uFile = undefined;
             scope.uProgress = 0;
@@ -42,9 +53,9 @@
             //$compile(eleUploadTip)(scope);
             //$compile(eleUploadBegin)(scope);
             //$compile(eleUploadList)(scope);
-            $('.md-editor').append(eleUploadTip);
-            $('.md-editor').append(eleUploadBegin);
-            $('.md-editor').append(eleUploadList);
+            $('#' + e.$editor.attr('id')).append(eleUploadTip);
+            $('#' + e.$editor.attr('id')).append(eleUploadBegin);
+            $('#' + e.$editor.attr('id')).append(eleUploadList);
 
             scope.removeAttach = function (idx) {
               scope.uFiles.splice(idx, 1);
@@ -54,26 +65,30 @@
               doUpload(scope.selectedFile);
             };
 
-            $('.md-editor').bind('dragenter', function (evt) {
+            $('#' + e.$editor.attr('id')).bind('dragenter', function (evt) {
               evt.stopPropagation();
               evt.preventDefault();
             });
-            $('.md-editor').bind('dragover', function (evt) {
+            $('#' + e.$editor.attr('id')).bind('dragover', function (evt) {
               evt.stopPropagation();
               evt.preventDefault();
             });
 
-            $('.md-editor').bind('drop', function (evt) {
+            $('#' + e.$editor.attr('id')).bind('drop', function (evt) {
               evt.stopPropagation();
               evt.preventDefault();
 
               doUpload(evt.originalEvent.dataTransfer.files[0]);
               return false;
             });
-
-            $compile($('.md-editor').contents())(scope);
           }
 
+          $compile($('#' + e.$editor.attr('id')).contents())(scope);
+
+          /**
+           * doUpload
+           * @param sFile
+           */
           function doUpload(sFile) {
             if (!sFile) {
               return;

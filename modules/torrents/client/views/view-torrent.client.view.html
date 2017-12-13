@@ -343,7 +343,7 @@
                                 </div>
                                 <div class="timeline-comment-body">
                                     <textarea id="commentContent" name="commentContent" class="new_comment_textarea" ng-model="vm.new_comment_content"
-                                              mt-markdown-editor="commentContent"></textarea>
+                                              mt-markdown-editor="commentContent" maxlength="{{vm.inputLengthConfig.torrentCommentLength}}"></textarea>
 
                                     <div class="row margin-top-10">
                                         <div class="col-sm-6" style="display: table;">

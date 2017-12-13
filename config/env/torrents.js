@@ -265,9 +265,22 @@ module.exports = {
           {name: 'NOTICE', value: 'notice'}
         ]
       },
-      checkUnreadInterval: 60 * 1000 * 2,
-      messageContentLength: 1024,
-      messageReplyLength: 512
+      checkUnreadInterval: 60 * 1000 * 2
+    },
+
+    /**
+     *  @inputLength
+     *
+     *  input string length limit settings
+     *
+     *  @messageMaxLength
+     */
+    inputLength: {
+      chatMessageMaxLength: 512,
+      messageBoxContentLength: 1024,
+      messageBoxReplyLength: 512,
+      userSignatureLength: 512,
+      torrentCommentLength: 512
     },
 
     /**
@@ -693,7 +706,6 @@ module.exports = {
      *        @expires:    banned expires time setting, in this time, user cannot connect chat server
      */
     chat: {
-      messageMaxLength: 512,
       ban: {
         expires: 60 * 60 * 1000 * 1
       }
@@ -777,8 +789,7 @@ module.exports = {
         {name: 'ADMINISTRATION', value: 'Administration', index: 4, isOper: true, isVip: false}
       ],
       showThumbsUpUserList: true,
-      showUserSignature: true,
-      signatureLength: 512
+      showUserSignature: true
     },
 
     /**

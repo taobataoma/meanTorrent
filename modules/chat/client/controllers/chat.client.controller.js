@@ -14,6 +14,7 @@
 
     vm.user = Authentication.user;
     vm.chatConfig = MeanTorrentConfig.meanTorrentConfig.chat;
+    vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.messages = [];
     vm.users = [];
     vm.messageText = '';
@@ -179,8 +180,8 @@
      * when changed, scroll to bottom
      */
     $scope.$watch('vm.messageText', function (newValue, oldValue) {
-      if (newValue.length > vm.chatConfig.messageMaxLength) {
-        vm.messageText = newValue.substr(0, vm.chatConfig.messageMaxLength);
+      if (newValue.length > vm.inputLengthConfig.chatMessageMaxLength) {
+        vm.messageText = newValue.substr(0, vm.inputLengthConfig.chatMessageMaxLength);
         $('#messageText').focus().val(vm.messageText).selectRange(vm.cursorPosition + 1);
       }
     });

@@ -12,7 +12,7 @@
                                      MeanTorrentConfig) {
     var vm = this;
     vm.user = Authentication.user;
-    vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
+    vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
 
     /**
      * getSignatureContent
@@ -77,8 +77,17 @@
               index: 1
             }
           ]);
-          $('.md-input').attr('maxlength', vm.forumsConfig.signatureLength);
+          $('.md-input').attr('maxlength', vm.inputLengthConfig.userSignatureLength);
           e.setContent(vm.user.signature || $translate.instant('MAKER_NULL'));
+
+          var inputInfo = angular.element('<span></span>');
+          inputInfo.addClass('pull-right');
+          inputInfo.addClass('input-length');
+          inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.userSignatureLength);
+          $('.md-header').append(inputInfo);
+          $('.md-input').on('input', function (evt) {
+            inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.userSignatureLength);
+          });
 
           angular.element($('.md-footer')).addClass('text-right');
           angular.element($('.md-footer')[0].childNodes[0]).addClass('btn-width-80');
@@ -91,7 +100,7 @@
             e.blur();
           });
           $('.md-footer').append(cbtn);
-          $compile($('.md-footer').contents())($scope);
+          $compile($('.md-editor').contents())($scope);
         },
         onPreview: function (e) {
           $('.md-footer').css('display', 'none');

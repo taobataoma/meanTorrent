@@ -28,6 +28,7 @@
     vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
+    vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
 
     vm.torrentTabs = [];
     vm.searchTags = [];
