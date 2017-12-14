@@ -19,6 +19,7 @@
     vm.RTS = ResourcesTagsServices;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
+    vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
 
     vm.searchTags = [];
     vm.release = [];
@@ -135,7 +136,7 @@
           e.$options.hideable = false;
         },
         onShow: function (e) {
-          $('.md-input').textcomplete([
+          $('#' + e.$editor.attr('id') + ' .md-input').textcomplete([
             { // emoji strategy
               match: /\B:([\-+\w]*)$/,
               search: function (term, callback) {
@@ -154,14 +155,22 @@
           ]);
 
           e.setContent(c.overview);
+          $('#' + e.$editor.attr('id') + ' .md-input').attr('maxlength', vm.inputLengthConfig.collectionsOverviewLength);
 
           var elei = $('#' + e.$editor.attr('id') + ' .md-input');
-          mtDebug.info(elei);
           angular.element(elei).css('height', '200px');
           angular.element(elei).css('color', '#333');
 
-          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
+          var inputInfo = angular.element('<span></span>');
+          inputInfo.addClass('pull-right');
+          inputInfo.addClass('input-length');
+          inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.collectionsOverviewLength);
+          $('#' + e.$editor.attr('id') + ' .md-header').append(inputInfo);
+          $('#' + e.$editor.attr('id') + ' .md-input').on('input propertychange', function (evt) {
+            inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.collectionsOverviewLength);
+          });
 
+          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
           angular.element(ele).addClass('text-right');
           angular.element(ele[0].childNodes[0]).addClass('btn-width-80');
           ele[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
@@ -173,15 +182,13 @@
             e.blur();
           });
           ele.append(cbtn);
-          $compile(ele.contents())($scope);
+          $compile(e.$editor.contents())($scope);
         },
         onPreview: function (e) {
-          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
-          ele.css('display', 'none');
+          $('#' + e.$editor.attr('id') + ' .md-footer').css('display', 'none');
         },
         onPreviewEnd: function (e) {
-          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
-          ele.css('display', 'block');
+          $('#' + e.$editor.attr('id') + ' .md-footer').css('display', 'block');
         }
       });
     };

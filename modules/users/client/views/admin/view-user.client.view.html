@@ -254,16 +254,16 @@
     </div>
 
     <div id="makerSlide" side-overlay="right" side-class="maker-side-overlay" side-opened="vm.onPopupMessageOpen();" side-close-on-esc side-modal>
-        <div class="maker-popup" ng-init="vm.initDescComplete();">
+        <div class="maker-popup">
             <h4 translate="ABOUT.FORM_MAKER_FOR" translate-values="{name: vm.user.displayName}"></h4>
 
             <div class="maker-form">
                 <input type="text" class="form-control margin-bottom-10" id="maker-name" placeholder="{{'ABOUT.FORM_MAKER_NAME' | translate}}"
                        ng-model="vm.maker.name" autofocus>
 
-                <textarea class="form-control desc-textarea" id="desc-textarea" name="desc-textarea"
+                <textarea class="form-control" id="desc-textarea" name="desc-textarea"
                           ng-model="vm.maker.desc" data-hidden-buttons="cmdPreview" ng-keydown="vm.onDescKeyDown($event);"
-                          placeholder="{{'ABOUT.FORM_MAKER_DESC' | translate}}"
+                          placeholder="{{'ABOUT.FORM_MAKER_DESC' | translate}}" maxlength="{{vm.inputLengthConfig.makerGroupDescLength}}"
                           mt-markdown-editor="desc-textarea"></textarea>
 
                 <div class="margin-top-10" style="display: table;">

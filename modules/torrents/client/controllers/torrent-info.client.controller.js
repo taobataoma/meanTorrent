@@ -35,29 +35,6 @@
     vm.progress = 0;
 
     /**
-     * initComplete
-     */
-    vm.initComplete = function () {
-      $('.new_comment_textarea').textcomplete([
-        { // emoji strategy
-          match: /\B:([\-+\w]*)$/,
-          search: function (term, callback) {
-            callback($.map(window.emojies, function (emoji) {
-              return emoji.indexOf(term) === 0 ? emoji : null;
-            }));
-          },
-          template: function (value) {
-            return '<img class="ac-emoji" src="/graphics/emojis/' + value + '.png" />' + '<span class="ac-emoji-text">' + value + '</span>';
-          },
-          replace: function (value) {
-            return ':' + value + ': ';
-          },
-          index: 1
-        }
-      ]);
-    };
-
-    /**
      * commentBuildPager
      * pagination init
      */
@@ -201,29 +178,6 @@
      */
     vm.hideTagsPopup = function () {
       SideOverlay.close(null, 'tagsPopupSlide');
-    };
-
-    /**
-     * initOverviewComplete
-     */
-    vm.initOverviewComplete = function () {
-      $('.overview-textarea').textcomplete([
-        { // emoji strategy
-          match: /\B:([\-+\w]*)$/,
-          search: function (term, callback) {
-            callback($.map(window.emojies, function (emoji) {
-              return emoji.indexOf(term) === 0 ? emoji : null;
-            }));
-          },
-          template: function (value) {
-            return '<img class="ac-emoji" src="/graphics/emojis/' + value + '.png" />' + '<span class="ac-emoji-text">' + value + '</span>';
-          },
-          replace: function (value) {
-            return ':' + value + ': ';
-          },
-          index: 1
-        }
-      ]);
     };
 
     /**
@@ -1184,7 +1138,7 @@
           e.$options.hideable = false;
         },
         onShow: function (e) {
-          $('.md-input').textcomplete([
+          $('#' + e.$editor.attr('id') + ' .md-input').textcomplete([
             { // emoji strategy
               match: /\B:([\-+\w]*)$/,
               search: function (term, callback) {
@@ -1212,7 +1166,6 @@
           angular.element(elei).css('color', '#333');
 
           var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
-
           angular.element(ele).addClass('text-right');
           angular.element(ele[0].childNodes[0]).addClass('btn-width-80');
           ele[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
@@ -1224,15 +1177,13 @@
             e.blur();
           });
           ele.append(cbtn);
-          $compile(ele.contents())($scope);
+          $compile(e.$editor.contents())($scope);
         },
         onPreview: function (e) {
-          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
-          ele.css('display', 'none');
+          $('#' + e.$editor.attr('id') + ' .md-footer').css('display', 'none');
         },
         onPreviewEnd: function (e) {
-          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
-          ele.css('display', 'block');
+          $('#' + e.$editor.attr('id') + ' .md-footer').css('display', 'block');
         }
       });
     };

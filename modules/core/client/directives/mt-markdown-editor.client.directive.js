@@ -28,6 +28,26 @@
           ngModel.$setViewValue($('#' + attrs.mtMarkdownEditor)[0].value);
         },
         onShow: function (e) {
+          $('#' + e.$editor.attr('id') + ' .md-input').textcomplete([
+            { // emoji strategy
+              match: /\B:([\-+\w]*)$/,
+              search: function (term, callback) {
+                callback($.map(window.emojies, function (emoji) {
+                  return emoji.indexOf(term) === 0 ? emoji : null;
+                }));
+              },
+              template: function (value) {
+                return '<img class="ac-emoji" src="/graphics/emojis/' + value + '.png" />' + '<span class="ac-emoji-text">' + value + '</span>';
+              },
+              replace: function (value) {
+                return ':' + value + ': ';
+              },
+              index: 1
+            }
+          ], {
+            dropdownClassName: 'dropdown-menu textcomplete-dropdown' + (attrs.hasOwnProperty('emojiDropup') ? ' textcomplete-dropup' : '')
+          });
+
           if (attrs.maxlength) {
             var inputInfo = angular.element('<span></span>');
             inputInfo.addClass('pull-right');

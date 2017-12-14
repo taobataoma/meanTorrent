@@ -60,7 +60,7 @@
           e.$options.hideable = false;
         },
         onShow: function (e) {
-          $('.md-input').textcomplete([
+          $('#' + e.$editor.attr('id') + ' .md-input').textcomplete([
             { // emoji strategy
               match: /\B:([\-+\w]*)$/,
               search: function (term, callback) {
@@ -77,21 +77,23 @@
               index: 1
             }
           ]);
-          $('.md-input').attr('maxlength', vm.inputLengthConfig.userSignatureLength);
+
           e.setContent(vm.user.signature || $translate.instant('MAKER_NULL'));
+          $('#' + e.$editor.attr('id') + ' .md-input').attr('maxlength', vm.inputLengthConfig.userSignatureLength);
 
           var inputInfo = angular.element('<span></span>');
           inputInfo.addClass('pull-right');
           inputInfo.addClass('input-length');
           inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.userSignatureLength);
-          $('.md-header').append(inputInfo);
-          $('.md-input').on('input', function (evt) {
+          $('#' + e.$editor.attr('id') + ' .md-header').append(inputInfo);
+          $('#' + e.$editor.attr('id') + ' .md-input').on('input propertychange', function (evt) {
             inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.userSignatureLength);
           });
 
-          angular.element($('.md-footer')).addClass('text-right');
-          angular.element($('.md-footer')[0].childNodes[0]).addClass('btn-width-80');
-          $('.md-footer')[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
+          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
+          angular.element(ele).addClass('text-right');
+          angular.element(ele[0].childNodes[0]).addClass('btn-width-80');
+          ele[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
 
           var cbtn = angular.element('<button class="btn btn-default btn-width-80 margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
           cbtn.bind('click', function (evt) {
@@ -99,14 +101,15 @@
             e.$options.hideable = true;
             e.blur();
           });
-          $('.md-footer').append(cbtn);
-          $compile($('.md-editor').contents())($scope);
+
+          ele.append(cbtn);
+          $compile(e.$editor.contents())($scope);
         },
         onPreview: function (e) {
-          $('.md-footer').css('display', 'none');
+          $('#' + e.$editor.attr('id') + ' .md-footer').css('display', 'none');
         },
         onPreviewEnd: function (e) {
-          $('.md-footer').css('display', 'block');
+          $('#' + e.$editor.attr('id') + ' .md-footer').css('display', 'none');
         }
       });
     };

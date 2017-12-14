@@ -141,11 +141,12 @@
             </div>
         </div>
 
-        <div class="bottom-control" ng-init="vm.initReplyComplete();" ng-class="{'not-user-message':  vm.selectedMessage.type!='user'}">
+        <div class="bottom-control" ng-class="{'not-user-message':  vm.selectedMessage.type!='user'}">
             <div ng-show="vm.selectedMessage.type=='user'">
             <textarea class="form-control reply-textarea" id="reply-content" name="reply-content"
                       ng-model="vm.replyContent" data-hidden-buttons="cmdPreview" ng-keydown="vm.onReplyKeyDown($event);"
-                      mt-markdown-editor="reply-content" maxlength="{{vm.inputLengthConfig.messageBoxReplyLength}}"></textarea>
+                      mt-markdown-editor="reply-content" maxlength="{{vm.inputLengthConfig.messageBoxReplyLength}}"
+                      emoji-dropup></textarea>
             </div>
             <div>
                 <button class="btn btn-default btn-width-100" ng-click="vm.hideMessage();">{{ 'BUTTON_MESSAGE_CLOSE' | translate }}</button>

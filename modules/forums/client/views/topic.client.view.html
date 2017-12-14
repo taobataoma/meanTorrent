@@ -267,7 +267,7 @@
                 <div class="col-md-12">
                     <form name="vm.replyForm" ng-submit="vm.postReply(vm.replyForm.$valid)" novalidate autocomplete="off">
                         <div class="form-group" show-errors>
-                            <textarea id="postReplyContent" name="postReplyContent" class="autocomplete" ng-model="vm.postReplyFields.content"
+                            <textarea id="postReplyContent" name="postReplyContent" ng-model="vm.postReplyFields.content"
                                       mt-markdown-editor="postReplyContent" maxlength="{{vm.inputLengthConfig.forumReplyContentLength}}"
                                       upload-dir="/modules/forums/client/attach/temp/"
                                       upload-method="vm.uploadAttach(editor, ufile, progressback, callback, errback);" required></textarea>

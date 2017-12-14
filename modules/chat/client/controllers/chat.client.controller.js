@@ -276,7 +276,7 @@
           return;
         } else {
           var hasPopupMenu = false;
-          var emojiMenu = $('.textcomplete-dropup-chat');
+          var emojiMenu = $('.textcomplete-dropdown');
           angular.forEach(emojiMenu, function (e) {
             if (e.style.display === 'block') {
               hasPopupMenu = true;

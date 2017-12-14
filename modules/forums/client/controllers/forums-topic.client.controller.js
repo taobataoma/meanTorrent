@@ -34,24 +34,6 @@
       }
     });
 
-    $('.autocomplete').textcomplete([
-      { // emoji strategy
-        match: /\B:([\-+\w]*)$/,
-        search: function (term, callback) {
-          callback($.map(window.emojies, function (emoji) {
-            return emoji.indexOf(term) === 0 ? emoji : null;
-          }));
-        },
-        template: function (value) {
-          return '<img class="ac-emoji" src="/graphics/emojis/' + value + '.png" />' + '<span class="ac-emoji-text">' + value + '</span>';
-        },
-        replace: function (value) {
-          return ':' + value + ': ';
-        },
-        index: 1
-      }
-    ]);
-
     /**
      * upToTop
      */
@@ -261,7 +243,7 @@
           e.$options.hideable = false;
         },
         onShow: function (e) {
-          $('.md-input').textcomplete([
+          $('#' + e.$editor.attr('id') + ' .md-input').textcomplete([
             { // emoji strategy
               match: /\B:([\-+\w]*)$/,
               search: function (term, callback) {
@@ -280,10 +262,21 @@
           ]);
 
           e.setContent(t.content);
+          $('#' + e.$editor.attr('id') + ' .md-input').attr('maxlength', vm.inputLengthConfig.forumTopicContentLength);
 
-          angular.element($('.md-footer')).addClass('text-right');
-          angular.element($('.md-footer')[0].childNodes[0]).addClass('btn-width-80');
-          $('.md-footer')[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
+          var inputInfo = angular.element('<span></span>');
+          inputInfo.addClass('pull-right');
+          inputInfo.addClass('input-length');
+          inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.forumTopicContentLength);
+          $('#' + e.$editor.attr('id') + ' .md-header').append(inputInfo);
+          $('#' + e.$editor.attr('id') + ' .md-input').on('input propertychange', function (evt) {
+            inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.forumTopicContentLength);
+          });
+
+          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
+          angular.element(ele).addClass('text-right');
+          angular.element(ele[0].childNodes[0]).addClass('btn-width-80');
+          ele[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
 
           var cbtn = angular.element('<button class="btn btn-default btn-width-80 margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
           cbtn.bind('click', function (evt) {
@@ -291,14 +284,15 @@
             e.$options.hideable = true;
             e.blur();
           });
-          $('.md-footer').append(cbtn);
-          $compile($('.md-footer').contents())($scope);
+
+          ele.append(cbtn);
+          $compile(e.$editor.contents())($scope);
         },
         onPreview: function (e) {
-          $('.md-footer').css('display', 'none');
+          $('#' + e.$editor.attr('id') + ' .md-footer').css('display', 'none');
         },
         onPreviewEnd: function (e) {
-          $('.md-footer').css('display', 'block');
+          $('#' + e.$editor.attr('id') + ' .md-footer').css('display', 'block');
         }
       });
     };
@@ -347,7 +341,7 @@
           e.$options.hideable = false;
         },
         onShow: function (e) {
-          $('.md-input').textcomplete([
+          $('#' + e.$editor.attr('id') + ' .md-input').textcomplete([
             { // emoji strategy
               match: /\B:([\-+\w]*)$/,
               search: function (term, callback) {
@@ -366,8 +360,18 @@
           ]);
 
           e.setContent(r.content);
-          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
+          $('#' + e.$editor.attr('id') + ' .md-input').attr('maxlength', vm.inputLengthConfig.forumReplyContentLength);
 
+          var inputInfo = angular.element('<span></span>');
+          inputInfo.addClass('pull-right');
+          inputInfo.addClass('input-length');
+          inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.forumReplyContentLength);
+          $('#' + e.$editor.attr('id') + ' .md-header').append(inputInfo);
+          $('#' + e.$editor.attr('id') + ' .md-input').on('input propertychange', function (evt) {
+            inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.forumReplyContentLength);
+          });
+
+          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
           angular.element(ele).addClass('text-right');
           angular.element(ele[0].childNodes[0]).addClass('btn-width-80');
           ele[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
@@ -378,16 +382,15 @@
             e.$options.hideable = true;
             e.blur();
           });
+
           ele.append(cbtn);
-          $compile(ele.contents())($scope);
+          $compile(e.$editor.contents())($scope);
         },
         onPreview: function (e) {
-          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
-          ele.css('display', 'none');
+          $('#' + e.$editor.attr('id') + ' .md-footer').css('display', 'none');
         },
         onPreviewEnd: function (e) {
-          var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
-          ele.css('display', 'block');
+          $('#' + e.$editor.attr('id') + ' .md-footer').css('display', 'block');
         }
       });
     };

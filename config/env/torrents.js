@@ -286,7 +286,10 @@ module.exports = {
 
       forumTopicTitleLength: 128,
       forumTopicContentLength: 4096,
-      forumReplyContentLength: 2048
+      forumReplyContentLength: 2048,
+
+      makerGroupDescLength: 2048,
+      collectionsOverviewLength: 2048
     },
 
     /**

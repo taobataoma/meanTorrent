@@ -332,7 +332,7 @@
                     <div class="padding-top-20"></div>
 
                     <div class="comment-new" ng-if="vm.user">
-                        <div class="timeline-comment-wrapper" ng-init="vm.initComplete();">
+                        <div class="timeline-comment-wrapper">
                             <a href="#" class="timeline-comment-avatar">
                                 <img title="{{vm.user.displayName}}" ng-src="{{vm.user.profileImageURL}}">
                             </a>
@@ -342,7 +342,7 @@
                                     <div class="timeline-comment-header-text">{{ vm.reply_action == 'edit' ? 'EDIT_COMMENT' : (vm.reply_action == 'reply' ? 'REPLY_COMMENT' : 'POST_NEW_COMMENT') | translate}}</div>
                                 </div>
                                 <div class="timeline-comment-body">
-                                    <textarea id="commentContent" name="commentContent" class="new_comment_textarea" ng-model="vm.new_comment_content"
+                                    <textarea id="commentContent" name="commentContent" ng-model="vm.new_comment_content"
                                               mt-markdown-editor="commentContent" maxlength="{{vm.inputLengthConfig.torrentCommentLength}}"></textarea>
 
                                     <div class="row margin-top-10">
@@ -438,7 +438,7 @@
     ================================================================== -->
     <div id="collectionsCreateSlide" side-overlay="right" side-class="collections-side-overlay" side-opened="vm.onPopupMessageOpen();"
          side-close-on-esc side-modal>
-        <div class="collection-popup" ng-init="vm.initOverviewComplete();">
+        <div class="collection-popup">
             <legend class="h4"
                     translate="COLLECTIONS.FORM_FOR" translate-values="{cid: vm.torrentLocalInfo.resource_detail_info.belongs_to_collection.id}">
             </legend>
@@ -447,9 +447,9 @@
                 <input type="text" class="form-control margin-bottom-10" id="coll-name" placeholder="{{'COLLECTIONS.FORM_NAME' | translate}}"
                        ng-model="vm.collection.name" autofocus>
 
-                <textarea class="form-control overview-textarea" id="overview-textarea" name="overview-textarea"
+                <textarea class="form-control" id="overview-textarea" name="overview-textarea"
                           ng-model="vm.collection.overview" data-hidden-buttons="cmdPreview" ng-keydown="vm.onOverviewKeyDown($event);"
-                          placeholder="{{'COLLECTIONS.FORM_DESC' | translate}}"
+                          placeholder="{{'COLLECTIONS.FORM_DESC' | translate}}" maxlength="{{vm.inputLengthConfig.collectionsOverviewLength}}"
                           mt-markdown-editor="overview-textarea"></textarea>
 
                 <div class="margin-top-10" style="display: table;">

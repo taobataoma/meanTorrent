@@ -18,60 +18,6 @@
     vm.deleteList = [];
 
     /**
-     * initComplete
-     */
-    vm.initComplete = function () {
-      jQuery.fn.simulateESC = function () {
-        console.log('simulateESC');
-        // Internally calls jQuery.event.trigger with arguments (Event, data, elem).
-        // That last argument, 'elem', is very important!
-        jQuery(this).trigger({type: 'keypress', which: 27});
-      };
-      $('.message-textarea').textcomplete([
-        { // emoji strategy
-          match: /\B:([\-+\w]*)$/,
-          search: function (term, callback) {
-            callback($.map(window.emojies, function (emoji) {
-              return emoji.indexOf(term) === 0 ? emoji : null;
-            }));
-          },
-          template: function (value) {
-            return '<img class="ac-emoji" src="/graphics/emojis/' + value + '.png" />' + '<span class="ac-emoji-text">' + value + '</span>';
-          },
-          replace: function (value) {
-            return ':' + value + ': ';
-          },
-          index: 1
-        }
-      ]);
-    };
-
-    /**
-     * initReplyComplete
-     */
-    vm.initReplyComplete = function () {
-      $('.reply-textarea').textcomplete([
-        { // emoji strategy
-          match: /\B:([\-+\w]*)$/,
-          search: function (term, callback) {
-            callback($.map(window.emojies, function (emoji) {
-              return emoji.indexOf(term) === 0 ? emoji : null;
-            }));
-          },
-          template: function (value) {
-            return '<img class="ac-emoji" src="/graphics/emojis/' + value + '.png" />' + '<span class="ac-emoji-text">' + value + '</span>';
-          },
-          replace: function (value) {
-            return ':' + value + ': ';
-          },
-          index: 1
-        }
-      ], {
-        dropdownClassName: 'dropdown-menu textcomplete-dropdown textcomplete-dropup'
-      });
-    };
-
-    /**
      * user-unread-count-changed
      */
     $scope.$on('user-unread-count-changed', function (event, args) {
@@ -264,7 +210,7 @@
     vm.onReplyKeyDown = function (e) {
       if (e.keyCode === 27) { // ESC
         var hasPopupMenu = false;
-        var emojiMenu = $('.textcomplete-dropup');
+        var emojiMenu = $('.textcomplete-dropdown');
         angular.forEach(emojiMenu, function (e) {
           if (e.style.display === 'block') {
             hasPopupMenu = true;

@@ -26,6 +26,7 @@
     vm.messageTo = messageTo;
     vm.isContextUserSelf = isContextUserSelf;
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
+    vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
 
     vm.searchTags = [];
     vm.maker = {};
@@ -216,29 +217,6 @@
      */
     vm.hideMakerPopup = function () {
       SideOverlay.close(null, 'makerSlide');
-    };
-
-    /**
-     * initDescComplete
-     */
-    vm.initDescComplete = function () {
-      $('.desc-textarea').textcomplete([
-        { // emoji strategy
-          match: /\B:([\-+\w]*)$/,
-          search: function (term, callback) {
-            callback($.map(window.emojies, function (emoji) {
-              return emoji.indexOf(term) === 0 ? emoji : null;
-            }));
-          },
-          template: function (value) {
-            return '<img class="ac-emoji" src="/graphics/emojis/' + value + '.png" />' + '<span class="ac-emoji-text">' + value + '</span>';
-          },
-          replace: function (value) {
-            return ':' + value + ': ';
-          },
-          index: 1
-        }
-      ]);
     };
 
     /**
