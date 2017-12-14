@@ -21,7 +21,7 @@
                         <div class="form-group" show-errors>
                             <input id="postTitle" name="postTitle"
                                    class="form-control margin-bottom-10" ng-model="vm.postFields.title" type="text"
-                                   placeholder="{{'FORUMS.FIELDS.TITLE' | translate}}" required autofocus>
+                                   placeholder="{{'FORUMS.FIELDS.TITLE' | translate}}" maxlength="{{vm.inputLengthConfig.forumTopicTitleLength}}" required autofocus>
 
                             <div ng-messages="vm.postForm.postTitle.$error" role="alert">
                                 <p class="help-block error-text" ng-message="required">{{ 'FORUMS.PT_REQUIRED' | translate}}</p>
@@ -30,7 +30,7 @@
 
                         <div class="form-group" show-errors>
                             <textarea id="postContent" name="postContent" class="autocomplete" ng-model="vm.postFields.content"
-                                      mt-markdown-editor="postContent"
+                                      mt-markdown-editor="postContent" maxlength="{{vm.inputLengthConfig.forumTopicContentLength}}"
                                       upload-dir="/modules/forums/client/attach/temp/"
                                       upload-method="vm.uploadAttach(editor, ufile, progressback, callback, errback);" required></textarea>
 

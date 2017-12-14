@@ -276,11 +276,17 @@ module.exports = {
      *  @messageMaxLength
      */
     inputLength: {
+      userSignatureLength: 512,
       chatMessageMaxLength: 512,
+
       messageBoxContentLength: 1024,
       messageBoxReplyLength: 512,
-      userSignatureLength: 512,
-      torrentCommentLength: 512
+
+      torrentCommentLength: 512,
+
+      forumTopicTitleLength: 128,
+      forumTopicContentLength: 4096,
+      forumReplyContentLength: 2048
     },
 
     /**

@@ -15,6 +15,7 @@
     var vm = this;
     vm.DLS = DownloadService;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
+    vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
@@ -482,14 +483,10 @@
      * beginPostReply
      */
     vm.beginPostReply = function () {
-      vm.scrollToReply = true;
       $('#postReplyContent').focus();
       $timeout(function () {
-        $('#postReplyContent').scrollTop($('#postReplyContent')[0].scrollHeight);
-      }, 100);
-      $timeout(function () {
-        vm.scrollToReply = false;
-      }, 500);
+        $('html,body').animate({scrollTop: $('#post-new-reply-table')[0].offsetTop - 60}, 200);
+      }, 10);
     };
 
     /**

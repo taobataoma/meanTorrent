@@ -12,6 +12,7 @@
                                 marked, $stateParams, TopicsService) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
+    vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.user = Authentication.user;
     vm.forumPath = [];
 
