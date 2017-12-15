@@ -193,17 +193,18 @@
     vm.showMessage = function (evt, msg) {
       if (SideOverlay.isOpened('popupSlide')) {
         SideOverlay.close(evt, 'popupSlide', function () {
+          vm.isClosing = true;
           vm.selectedMessage = vm.contentToJSON(msg);
+          console.log(vm.selectedMessage);
           SideOverlay.open(evt, 'popupSlide');
           vm.replyContent = undefined;
-          console.log(msg);
           vm.updateReadStatus(msg);
         });
       } else {
         vm.selectedMessage = vm.contentToJSON(msg);
         SideOverlay.open(evt, 'popupSlide');
         vm.replyContent = undefined;
-        console.log(msg);
+        console.log(vm.selectedMessage);
         vm.updateReadStatus(msg);
       }
     };
@@ -230,8 +231,11 @@
      * onPopupMessageOpen
      */
     vm.onPopupMessageClose = function () {
-      vm.selectedMessage = undefined;
-      //$('.reply-textarea').focus();
+      if (!vm.isClosing) {
+        vm.selectedMessage = undefined;
+        //$('.reply-textarea').focus();
+      }
+      vm.isClosing = false;
     };
 
     /**
@@ -265,30 +269,32 @@
      * @param m
      */
     vm.updateReadStatus = function (m) {
-      var msg;
-      if (m.type === 'user' || m.type === 'server') {
-        msg = new MessagesService({
-          _messageId: m._id
-        });
+      if (vm.isUnread(m)) {
+        var msg;
+        if (m.type === 'user' || m.type === 'server') {
+          msg = new MessagesService({
+            _messageId: m._id
+          });
 
-        if (fromIsMe(m)) {
-          msg.from_status = 1;
+          if (fromIsMe(m)) {
+            msg.from_status = 1;
+          }
+          if (toIsMe(m)) {
+            msg.to_status = 1;
+          }
+
+          msg.$update(function (res) {
+            updateEnd(res);
+          });
+        } else { //system message
+          msg = new AdminMessagesService({
+            _adminMessageId: m._id
+          });
+
+          msg.$update(function (res) {
+            updateEnd(res);
+          });
         }
-        if (toIsMe(m)) {
-          msg.to_status = 1;
-        }
-
-        msg.$update(function (res) {
-          updateEnd(res);
-        });
-      } else { //system message
-        msg = new AdminMessagesService({
-          _adminMessageId: m._id
-        });
-
-        msg.$update(function (res) {
-          updateEnd(res);
-        });
       }
 
       function updateEnd(res) {
