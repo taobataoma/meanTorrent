@@ -12,7 +12,9 @@ var path = require('path'),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var traceConfig = config.meanTorrentConfig.trace;
+var appConfig = config.meanTorrentConfig.app;
 var mtDebug = require(path.resolve('./config/lib/debug'));
+var serverMessage = require(path.resolve('./config/lib/server-message'));
 
 /**
  * Create an maker
@@ -44,6 +46,9 @@ exports.create = function (req, res) {
             res.json(user);
           }
         });
+
+        //add server message
+        serverMessage.addMessage(user._id, 'TITLE_MAKER_CREATE', 'CONTENT_MAKER_CREATE', {maker_group_name: maker.name, site_name: appConfig.name});
 
         //create trace log
         traceLogCreate(req, traceConfig.action.OperCreateMakerGroup, {

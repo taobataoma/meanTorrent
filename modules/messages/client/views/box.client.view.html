@@ -161,10 +161,7 @@
 
             <li class="status-divider"></li>
             <div class="message-content" ng-bind-html="vm.getContentMarked(vm.selectedMessage);" ng-if="vm.selectedMessage.type!='server'"></div>
-            <div class="message-content"
-                 translate="SERVER_MESSAGE.{{vm.selectedMessage.content.string}}"
-                 translate-values="{{vm.selectedMessage.content.params}}"
-                 ng-if="vm.selectedMessage.type=='server'"></div>
+            <div class="message-content" ng-bind-html="vm.getServerNoticeContentMarked(vm.selectedMessage);" ng-if="vm.selectedMessage.type=='server'"></div>
 
             <div class="message-reply" ng-if="vm.selectedMessage._replies.length>0">
                 <li class="status-divider"></li>

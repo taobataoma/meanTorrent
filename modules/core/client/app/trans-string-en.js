@@ -1288,7 +1288,10 @@
     //server message string
     SERVER_MESSAGE: {
       TITLE_VIP_CHANGED: 'Vip status changed',
-      CONTENT_VIP_CHANGED_ADD: 'Your vip status changed, now end at: {{vip_end_at | date: "yyyy-MM-dd HH:mm:ss"}}'
+      CONTENT_VIP_CHANGED_ADD: '### Welcome! \n Your vip status changed, now end at: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
+
+      TITLE_MAKER_CREATE: 'Maker group has created',
+      CONTENT_MAKER_CREATE: 'Administrator already created a maker group **-={{maker_group_name}}=-** for you, you are the group founder now, Thank you for your contribution on **{{site_name}}** :100:'
     }
   };
 

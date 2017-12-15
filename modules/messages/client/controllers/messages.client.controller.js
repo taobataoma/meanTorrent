@@ -378,6 +378,11 @@
         return marked(m.content, {sanitize: true});
       }
     };
+    vm.getServerNoticeContentMarked = function (m) {
+      if (m) {
+        return marked($translate.instant('SERVER_MESSAGE.' + vm.selectedMessage.content.string, vm.selectedMessage.content.params), {sanitize: true});
+      }
+    };
 
     /**
      * replyMessage

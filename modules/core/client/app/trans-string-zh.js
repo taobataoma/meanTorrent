@@ -1288,7 +1288,10 @@
     //server message string
     SERVER_MESSAGE: {
       TITLE_VIP_CHANGED: 'Vip 状态已改变',
-      CONTENT_VIP_CHANGED_ADD: '您的 Vip 状态已改变, 您的 Vip 将结束于: {{vip_end_at}}'
+      CONTENT_VIP_CHANGED_ADD: '### 恭喜！ \n 您的 Vip 状态已改变, 您的 Vip 将结束于: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
+
+      TITLE_MAKER_CREATE: '资源制作小组已建立',
+      CONTENT_MAKER_CREATE: '管理员已为您创建资源制作小组 **-={{maker_group_name}}=-** , 您现在是该小组的创建人, 感谢您为 **{{site_name}}** 所做的贡献! :100:'
     }
   };
 
