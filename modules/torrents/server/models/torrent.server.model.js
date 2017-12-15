@@ -33,7 +33,7 @@ var CommentSchema = new Schema({
     type: Date,
     default: ''
   }
-});
+}, {usePushEach: true});
 
 /**
  * Thumb Schema
@@ -51,7 +51,7 @@ var ThumbSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 /**
  * rating Schema
@@ -69,7 +69,7 @@ var RatingSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 /**
  * Torrent Schema
@@ -203,7 +203,7 @@ var TorrentSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 /**
  * Hook a pre save method

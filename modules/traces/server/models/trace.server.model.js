@@ -19,6 +19,6 @@ var TraceSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 mongoose.model('Trace', TraceSchema);

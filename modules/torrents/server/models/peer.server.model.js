@@ -87,7 +87,7 @@ var PeerSchema = new Schema({
     type: Date,
     default: ''
   }
-});
+}, {usePushEach: true});
 
 
 /**

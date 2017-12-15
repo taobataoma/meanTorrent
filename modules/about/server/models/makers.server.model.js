@@ -22,7 +22,7 @@ var RatingSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 /**
  * Maker Schema
@@ -73,6 +73,6 @@ var MakerSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 mongoose.model('Maker', MakerSchema);

@@ -65,7 +65,7 @@ var CompleteSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 /**
  * Hook a pre save method

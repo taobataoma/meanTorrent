@@ -31,7 +31,7 @@ var SubtitleSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 SubtitleSchema.index({user: -1, createdat: -1});
 SubtitleSchema.index({torrent: -1, createdat: -1});

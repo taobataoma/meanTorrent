@@ -51,6 +51,6 @@ var InvitationSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 mongoose.model('Invitation', InvitationSchema);

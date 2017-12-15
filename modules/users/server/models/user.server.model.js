@@ -241,7 +241,7 @@ var UserSchema = new Schema({
   nextResetPasswordTime: {
     type: Date
   }
-});
+}, {usePushEach: true});
 
 /**
  * Hook a pre save method to hash the password

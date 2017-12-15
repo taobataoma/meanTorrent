@@ -54,6 +54,6 @@ var CollectionSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 mongoose.model('Collection', CollectionSchema);

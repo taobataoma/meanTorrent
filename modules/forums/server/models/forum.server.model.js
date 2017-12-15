@@ -70,6 +70,6 @@ var ForumSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 mongoose.model('Forum', ForumSchema);

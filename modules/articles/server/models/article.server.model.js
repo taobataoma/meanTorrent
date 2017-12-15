@@ -36,16 +36,16 @@ var ArticleSchema = new Schema({
     type: String,
     default: 'def'
   }
-});
+}, {usePushEach: true});
 
 ArticleSchema.statics.seed = seed;
 
 mongoose.model('Article', ArticleSchema);
 
 /**
-* Seeds the User collection with document (Article)
-* and provided options.
-*/
+ * Seeds the User collection with document (Article)
+ * and provided options.
+ */
 function seed(doc, options) {
   var Article = mongoose.model('Article');
 
@@ -71,7 +71,7 @@ function seed(doc, options) {
 
         User
           .findOne({
-            roles: { $in: ['admin'] }
+            roles: {$in: ['admin']}
           })
           .exec(function (err, admin) {
             if (err) {

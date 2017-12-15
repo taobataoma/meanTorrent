@@ -27,7 +27,7 @@ var AttachSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 /**
  * Sub Thumb Schema
@@ -45,7 +45,7 @@ var ThumbSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 /**
  * Sub Reply Schema
@@ -75,7 +75,7 @@ var ReplySchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 
 /**
@@ -144,7 +144,7 @@ var TopicSchema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, {usePushEach: true});
 
 
 mongoose.model('Topic', TopicSchema);
