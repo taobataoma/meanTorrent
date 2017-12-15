@@ -29,7 +29,8 @@
             </div>
 
             <div class="alert alert-warning" ng-if="vm.messageType=='server'" role="alert" style="padding: 20px 50px;">
-                <span translate="MESSAGE_SERVER_TOOLTIP" translate-values="{count: 100, days: 30}"></span>
+                <span translate="MESSAGE_SERVER_TOOLTIP"
+                      translate-values="{count: vm.messageConfig.serverMessageLimitCount, days: vm.messageConfig.serverMessageLimitDays}"></span>
             </div>
 
             <div class="pagination-div-top">

@@ -266,7 +266,9 @@ module.exports = {
           {name: 'NOTICE', value: 'notice', role: 'admin'}
         ]
       },
-      checkUnreadInterval: 60 * 1000 * 2
+      checkUnreadInterval: 60 * 1000 * 2,
+      serverMessageLimitCount: 100,
+      serverMessageLimitDays: 30
     },
 
     /**
