@@ -5,14 +5,26 @@
             <div class="row margin-bottom-20">
                 <div class="col-xs-12 col-md-9">
                     <h4>{{'MESSAGES_BOX' | translate}}
-                        <small ng-show="vm.unreadCount>0"> - (<span
-                                class="badge badge_info">{{vm.unreadCount}}</span> {{'MESSAGES_FIELD.NEW_MSG' | translate}})
+                        <small ng-show="vm.unreadCountData.countAll>0"> - (<span
+                                class="badge badge_info">{{vm.unreadCountData.countAll}}</span> {{'MESSAGES_FIELD.NEW_MSG' | translate}})
                         </small>
                     </h4>
                 </div>
                 <div class="col-xs-12 col-md-3">
                     <input class="form-control" type="text" ng-model="vm.search" placeholder="Search"
-                           ng-change="vm.figureOutItemsToDisplay()"/>
+                           ng-change="vm.buildPager()"/>
+                </div>
+            </div>
+
+            <div class="margin-bottom-20">
+                <div class="btn-group message-type-group">
+                    <label class="btn btn-default"
+                           ng-repeat="t in vm.messageConfig.type.value"
+                           ng-model="vm.messageType" uib-btn-radio="'{{t.value}}'"
+                           ng-click="vm.onMessageTypeBtnClick(); vm.buildPager();">
+                        {{'MESSAGE_TYPE_'+t.name | translate}}
+                        <span class="message-dot" ng-if="vm.getNewMessageCount(t.value)>0">{{vm.getNewMessageCount(t.value)}}</span>
+                    </label>
                 </div>
             </div>
 
@@ -76,7 +88,7 @@
                             </td>
                             <td class="td-v-middle text-center" ng-click="$event.stopPropagation();">
                                 <input type="checkbox" class="tcheckbox" ng-model="vm.selected[m._id]"
-                                       id="checkbox_{{m._id}}" ng-show="m.type=='user'">
+                                       id="checkbox_{{m._id}}" ng-if="m.type=='user'">
                                 </label>
                             </td>
                         </tr>

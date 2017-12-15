@@ -854,6 +854,7 @@
     MESSAGE_TYPE_SYSTEM: 'System message',
     MESSAGE_TYPE_ADVERT: 'Advert message',
     MESSAGE_TYPE_NOTICE: 'Notice message',
+    MESSAGE_TYPE_SERVER: 'Server message',
     MESSAGE_SEND_SUCCESSFULLY: 'Message send successfully',
     MESSAGE_SEND_FAILED: 'Message send failed',
     MESSAGE_DELETED_SUCCESSFULLY: 'Message deleted successfully',

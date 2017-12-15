@@ -7,6 +7,26 @@
     .pagination-div-top {
         border-bottom: 2px solid lighten(@gray-base, 85%)
     }
+    .message-type-group {
+        position: relative;
+        .btn {
+            text-shadow: none !important;
+        }
+        .message-dot {
+            color: #fff;
+            font-size: 10px;
+            font-family: serif;
+            padding: 0 5px;
+            border: solid 1px #fff;
+            border-radius: 3px;
+        }
+        .btn-default .message-dot {
+            background-color: #5bc0de;
+        }
+        .btn-success .message-dot {
+            background-color: transparent !important;
+        }
+    }
 }
 
 .message-textarea {

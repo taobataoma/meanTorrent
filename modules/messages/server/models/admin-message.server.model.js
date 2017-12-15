@@ -26,7 +26,7 @@ var AdminMessageSchema = new Schema({
   },
   type: {
     type: String,
-    default: 'user'
+    default: 'system'
   },
   _readers: [{
     type: Schema.Types.ObjectId,

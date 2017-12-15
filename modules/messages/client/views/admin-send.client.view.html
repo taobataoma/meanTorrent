@@ -14,7 +14,7 @@
                             <dt class="h-line">{{ 'MESSAGES_FIELD.TYPE' | translate}}</dt>
                             <dd class="h-line">
                                 <select class="form-control" ng-model="vm.messageType">
-                                    <option ng-repeat="t in vm.messageConfig.type.value" ng-if="t.value!='user'"
+                                    <option ng-repeat="t in vm.messageConfig.type.value | filter:{role: 'admin'}"
                                             value="{{t.value}}">{{'MESSAGE_TYPE_'+t.name | translate}}
                                     </option>
                                 </select>

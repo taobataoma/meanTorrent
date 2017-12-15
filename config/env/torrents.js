@@ -259,10 +259,11 @@ module.exports = {
       type: {
         name: 'TYPE',
         value: [
-          {name: 'USER', value: 'user'},
-          {name: 'SYSTEM', value: 'system'},
-          {name: 'ADVERT', value: 'advert'},
-          {name: 'NOTICE', value: 'notice'}
+          {name: 'USER', value: 'user', role: 'user'},
+          {name: 'SERVER', value: 'server', role: 'server'},
+          {name: 'SYSTEM', value: 'system', role: 'admin'},
+          {name: 'ADVERT', value: 'advert', role: 'admin'},
+          {name: 'NOTICE', value: 'notice', role: 'admin'}
         ]
       },
       checkUnreadInterval: 60 * 1000 * 2

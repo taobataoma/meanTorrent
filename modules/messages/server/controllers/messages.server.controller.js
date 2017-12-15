@@ -217,6 +217,7 @@ exports.countUnread = function (req, res) {
 
   var countFrom = function (callback) {
     Message.count({
+      type: 'user',
       from_user: req.user._id,
       from_status: 0
     }, function (err, count) {
@@ -229,6 +230,7 @@ exports.countUnread = function (req, res) {
   };
   var countTo = function (callback) {
     Message.count({
+      type: 'user',
       to_user: req.user._id,
       to_status: 0
     }, function (err, count) {
@@ -239,8 +241,50 @@ exports.countUnread = function (req, res) {
       }
     });
   };
-  var countAdminMessage = function (callback) {
+  var countServer = function (callback) {
+    Message.count({
+      type: 'server',
+      to_user: req.user._id,
+      to_status: 0
+    }, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+  var countAdminSystemMessage = function (callback) {
     AdminMessage.count({
+      type: 'system',
+      createdat: {$gt: req.user.created},
+      _readers: {$not: {$in: [req.user._id]}}
+
+    }, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+  var countAdminAdvertMessage = function (callback) {
+    AdminMessage.count({
+      type: 'advert',
+      createdat: {$gt: req.user.created},
+      _readers: {$not: {$in: [req.user._id]}}
+
+    }, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+  var countAdminNoticeMessage = function (callback) {
+    AdminMessage.count({
+      type: 'notice',
       createdat: {$gt: req.user.created},
       _readers: {$not: {$in: [req.user._id]}}
 
@@ -253,14 +297,18 @@ exports.countUnread = function (req, res) {
     });
   };
 
-  async.parallel([countFrom, countTo, countAdminMessage], function (err, results) {
+  async.parallel([countFrom, countTo, countServer, countAdminSystemMessage, countAdminAdvertMessage, countAdminNoticeMessage], function (err, results) {
     if (err) {
       return res.status(422).send(err);
     } else {
       res.json({
+        countAll: results[0] + results[1] + results[2] + results[3] + results[4] + results[5],
         countFrom: results[0],
         countTo: results[1],
-        countAdmin: results[2]
+        countServer: results[2],
+        countSystem: results[3],
+        countAdvert: results[4],
+        countNotice: results[5]
       });
     }
   });

@@ -6,16 +6,21 @@
     .controller('MessageController', MessageController);
 
   MessageController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$filter', 'NotifycationService', '$stateParams', 'MessagesService',
-    'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope', 'AdminMessagesService', 'SideOverlay', '$interval'];
+    'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope', 'AdminMessagesService', 'SideOverlay', '$interval', 'uibButtonConfig',
+    'DebugConsoleService'];
 
   function MessageController($scope, $state, $translate, $timeout, Authentication, $filter, NotifycationService, $stateParams, MessagesService,
-                             MeanTorrentConfig, ModalConfirmService, marked, $rootScope, AdminMessagesService, SideOverlay, $interval) {
+                             MeanTorrentConfig, ModalConfirmService, marked, $rootScope, AdminMessagesService, SideOverlay, $interval, uibButtonConfig,
+                             mtDebug) {
     var vm = this;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.user = Authentication.user;
     vm.messageFields = {};
     vm.deleteList = [];
+    vm.messageType = 'user';
+
+    uibButtonConfig.activeClass = 'btn-success';
 
     /**
      * user-unread-count-changed
@@ -105,6 +110,7 @@
      */
     vm.figureOutItemsToDisplay = function () {
       vm.filteredItems = $filter('filter')(vm.messages, {
+        type: vm.messageType,
         $: vm.search
       });
       vm.filteredItems = $filter('orderBy')(vm.filteredItems, ['-updatedat']);
@@ -278,8 +284,35 @@
     vm.getCountUnread = function () {
       if (Authentication.user) {
         MessagesService.countUnread(function (data) {
-          vm.unreadCount = data.countFrom + data.countTo + data.countAdmin;
+          mtDebug.info(data);
+          vm.unreadCountData = data;
         });
+      }
+    };
+
+    /**
+     * hasNewMessage
+     * @param t
+     */
+    vm.getNewMessageCount = function (t) {
+      if (vm.unreadCountData) {
+        switch (t) {
+          case 'user':
+            return (vm.unreadCountData.countFrom + vm.unreadCountData.countTo);
+            break;
+          case 'server':
+            return vm.unreadCountData.countServer;
+            break;
+          case 'system':
+            return vm.unreadCountData.countSystem;
+            break;
+          case 'advert':
+            return vm.unreadCountData.countAdvert;
+            break;
+          case 'notice':
+            return vm.unreadCountData.countNotice;
+            break;
+        }
       }
     };
 
