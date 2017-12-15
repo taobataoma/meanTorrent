@@ -10,6 +10,7 @@
     var directive = {
       restrict: 'A',
       require: 'ngModel',
+      scope: {ngModel: '='},
       replace: true,
       link: link
     };
@@ -54,8 +55,8 @@
             inputInfo.addClass('input-length');
             inputInfo.text(e.getContent().length + '/' + attrs.maxlength);
             $('#' + e.$editor.attr('id') + ' .md-header').append(inputInfo);
-            $('#' + e.$editor.attr('id') + ' .md-input').on('input propertychange', function (evt) {
-              inputInfo.text(e.getContent().length + '/' + attrs.maxlength);
+            scope.$watch('ngModel', function () {
+              $timeout(inputInfo.text(e.getContent().length + '/' + attrs.maxlength));
             });
           }
 
