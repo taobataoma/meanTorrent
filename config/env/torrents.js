@@ -246,12 +246,14 @@ module.exports = {
      *
      * site message settings
      *
-     * @type:                   messages type
-     *        @name:            name of messages type, used in $translate
-     *        @value:           messages type value list
-     *                @name:    type name
-     *                @value:   type value
-     * @checkUnreadInterval:    set check unread message interval, default 2 minutes
+     * @type:                     messages type
+     *        @name:              name of messages type, used in $translate
+     *        @value:             messages type value list
+     *                @name:      type name
+     *                @value:     type value
+     * @checkUnreadInterval:      set check unread message interval, default 2 minutes
+     * @serverMessageLimitCount:  limit server notice message count in messagebox
+     * @serverMessageLimitDays:   limit server notice message list latest days
      *
      * NOTE: the first value 'user' cannot be deleted
      */
@@ -276,7 +278,16 @@ module.exports = {
      *
      *  input string length limit settings
      *
-     *  @messageMaxLength
+     *  @userSignatureLength:         user signature of forum string length limit
+     *  @chatMessageMaxLength:        chat room send message string length limit
+     *  @messageBoxContentLength:     user message send content length limit
+     *  @messageBoxReplyLength:       user message send reply content length limit
+     *  @torrentCommentLength:        torrent comment send content length limit
+     *  @forumTopicTitleLength:       forum topic title length limit
+     *  @forumTopicContentLength:     forum topic content length limit
+     *  @forumReplyContentLength:     forum reply content length limit
+     *  @makerGroupDescLength:        maker group desc content length limit
+     *  @collectionsOverviewLength:   movie collections overview content length limit
      */
     inputLength: {
       userSignatureLength: 512,
