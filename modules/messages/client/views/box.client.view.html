@@ -28,6 +28,10 @@
                 </div>
             </div>
 
+            <div class="alert alert-warning" ng-if="vm.messageType=='server'" role="alert" style="padding: 20px 50px;">
+                <span translate="MESSAGE_SERVER_TOOLTIP" translate-values="{count: 100, days: 30}"></span>
+            </div>
+
             <div class="pagination-div-top">
                 <div class="row">
                     <div class="col-sm-12 col-md-7">
@@ -88,7 +92,7 @@
                             </td>
                             <td class="td-v-middle text-center" ng-click="$event.stopPropagation();">
                                 <input type="checkbox" class="tcheckbox" ng-model="vm.selected[m._id]"
-                                       id="checkbox_{{m._id}}" ng-if="m.type=='user'">
+                                       id="checkbox_{{m._id}}" ng-if="m.type=='user' || m.type=='server'">
                                 </label>
                             </td>
                         </tr>
