@@ -98,7 +98,8 @@
         </div>
     </div>
 
-    <div id="popupSlide" side-overlay="right" side-class="popup-side-overlay" side-opened="vm.onPopupMessageOpen();" side-close-on-esc side-close-on-outside-click>
+    <div id="popupSlide" side-overlay="right" side-class="popup-side-overlay" side-opened="vm.onPopupMessageOpen();"
+         side-closed="vm.onPopupMessageClose();" side-close-on-esc side-close-on-outside-click>
         <div class="message-popup message-item" ng-class="{'not-user-message':  vm.selectedMessage.type!='user'}">
             <div>
                 <img class="message-avatar" ng-src="{{vm.selectedMessage.from_user.profileImageURL}}">

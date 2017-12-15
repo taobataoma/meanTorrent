@@ -178,14 +178,15 @@
         SideOverlay.close(evt, 'popupSlide', function () {
           vm.selectedMessage = msg;
           SideOverlay.open(evt, 'popupSlide');
+          vm.replyContent = undefined;
+          vm.updateReadStatus(msg);
         });
       } else {
         vm.selectedMessage = msg;
         SideOverlay.open(evt, 'popupSlide');
+        vm.replyContent = undefined;
+        vm.updateReadStatus(msg);
       }
-
-      vm.replyContent = undefined;
-      vm.updateReadStatus(msg);
     };
 
     /**
@@ -196,10 +197,17 @@
     };
 
     /**
+     * onPopupMessageOpen
+     */
+    vm.onPopupMessageClose = function () {
+      vm.selectedMessage = undefined;
+      //$('.reply-textarea').focus();
+    };
+
+    /**
      * hideMessage
      */
     vm.hideMessage = function () {
-      vm.selectedMessage = undefined;
       SideOverlay.close(null, 'popupSlide');
     };
 
