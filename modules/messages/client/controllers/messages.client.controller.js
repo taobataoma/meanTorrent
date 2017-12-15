@@ -7,18 +7,18 @@
 
   MessageController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$filter', 'NotifycationService', '$stateParams', 'MessagesService',
     'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope', 'AdminMessagesService', 'SideOverlay', '$interval', 'uibButtonConfig',
-    'DebugConsoleService'];
+    'DebugConsoleService', 'localStorageService'];
 
   function MessageController($scope, $state, $translate, $timeout, Authentication, $filter, NotifycationService, $stateParams, MessagesService,
                              MeanTorrentConfig, ModalConfirmService, marked, $rootScope, AdminMessagesService, SideOverlay, $interval, uibButtonConfig,
-                             mtDebug) {
+                             mtDebug, localStorageService) {
     var vm = this;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.user = Authentication.user;
     vm.messageFields = {};
     vm.deleteList = [];
-    vm.messageType = 'user';
+    vm.messageType = localStorageService.get('message_box_selected_type') || 'user';
 
     uibButtonConfig.activeClass = 'btn-success';
 
@@ -89,7 +89,11 @@
     vm.getMessageList = function () {
       MessagesService.query(function (data) {
         vm.messages = data;
-        vm.buildPager();
+        if (vm.currentPage > 1) {
+          vm.figureOutItemsToDisplay();
+        } else {
+          vm.buildPager();
+        }
       });
 
       vm.getCountUnread();
@@ -127,6 +131,13 @@
       vm.selectedMessage = undefined;
       vm.hideMessage();
       vm.figureOutItemsToDisplay();
+    };
+
+    /**
+     * onTypeBtnClick
+     */
+    vm.onTypeBtnClick = function () {
+      localStorageService.set('message_box_selected_type', vm.messageType);
     };
 
     /**
@@ -182,17 +193,30 @@
     vm.showMessage = function (evt, msg) {
       if (SideOverlay.isOpened('popupSlide')) {
         SideOverlay.close(evt, 'popupSlide', function () {
-          vm.selectedMessage = msg;
+          vm.selectedMessage = vm.contentToJSON(msg);
           SideOverlay.open(evt, 'popupSlide');
           vm.replyContent = undefined;
+          console.log(msg);
           vm.updateReadStatus(msg);
         });
       } else {
-        vm.selectedMessage = msg;
+        vm.selectedMessage = vm.contentToJSON(msg);
         SideOverlay.open(evt, 'popupSlide');
         vm.replyContent = undefined;
+        console.log(msg);
         vm.updateReadStatus(msg);
       }
+    };
+
+    /**
+     * contentToJSON
+     * @param cnt
+     */
+    vm.contentToJSON = function (cnt) {
+      if (cnt.type === 'server' && (typeof cnt.content) === 'string') {
+        cnt.content = JSON.parse(cnt.content);
+      }
+      return cnt;
     };
 
     /**
@@ -242,7 +266,7 @@
      */
     vm.updateReadStatus = function (m) {
       var msg;
-      if (m.type === 'user') {
+      if (m.type === 'user' || m.type === 'server') {
         msg = new MessagesService({
           _messageId: m._id
         });
@@ -268,7 +292,7 @@
       }
 
       function updateEnd(res) {
-        vm.selectedMessage = res;
+        vm.selectedMessage = vm.contentToJSON(res);
 
         vm.messages.splice(vm.messages.indexOf(m), 0, res);
         vm.messages.splice(vm.messages.indexOf(m), 1);
@@ -299,19 +323,14 @@
         switch (t) {
           case 'user':
             return (vm.unreadCountData.countFrom + vm.unreadCountData.countTo);
-            break;
           case 'server':
             return vm.unreadCountData.countServer;
-            break;
           case 'system':
             return vm.unreadCountData.countSystem;
-            break;
           case 'advert':
             return vm.unreadCountData.countAdvert;
-            break;
           case 'notice':
             return vm.unreadCountData.countNotice;
-            break;
         }
       }
     };
@@ -323,12 +342,12 @@
      */
     vm.isUnread = function (m) {
       if (m) {
-        if (m.from_user._id === vm.user._id) {
+        if (m.from_user && m.from_user._id === vm.user._id) {
           if (m.from_status === 0) {
             return true;
           }
         }
-        if (m.type === 'user') {
+        if (m.type === 'user' || m.type === 'server') {
           if (m.to_user._id === vm.user._id) {
             if (m.to_status === 0) {
               return true;
@@ -374,7 +393,7 @@
       });
 
       function successCallback(res) {
-        vm.selectedMessage = res;
+        vm.selectedMessage = vm.contentToJSON(res);
 
         vm.messages.splice(vm.messages.indexOf(m), 0, res);
         vm.messages.splice(vm.messages.indexOf(m), 1);
@@ -396,7 +415,7 @@
      * @returns {boolean}
      */
     function fromIsMe(m) {
-      return (m.from_user._id === vm.user._id) ? true : false;
+      return (m.from_user && m.from_user._id === vm.user._id) ? true : false;
     }
 
     /**

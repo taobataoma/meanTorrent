@@ -844,7 +844,8 @@
       INFO_SEND_TO: 'send to',
       INFO_SEND_AT: 'at',
       LAST_REPLY_AT: 'Latest reply at',
-      NEW_MSG: 'New messages'
+      NEW_MSG: 'New messages',
+      SERVER_SEND: 'Server send'
     },
     BUTTON_MESSAGE_DELETE: 'Delete',
     BUTTON_MESSAGE_CLOSE: 'Close(esc)',
@@ -1282,6 +1283,12 @@
       ONLY_VIP_CAN_DOWNLOAD: 'This torrent is only for Vip users',
       CAN_NOT_DOWNLOAD_BANNED: 'Download failed, you are banned from server',
       CAN_NOT_DOWNLOAD_IDLE: 'Download failed, you are idle for long time, before download any things, you should active you account again in profile menu "account status"!'
+    },
+
+    //server message string
+    SERVER_MESSAGE: {
+      TITLE_VIP_CHANGED: 'Vip status changed',
+      CONTENT_VIP_CHANGED_ADD: 'Your vip status changed, now end at: {{vip_end_at | date: "yyyy-MM-dd HH:mm:ss"}}'
     }
   };
 

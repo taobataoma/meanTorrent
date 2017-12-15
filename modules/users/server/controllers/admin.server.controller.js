@@ -20,6 +20,7 @@ const PEERSTATE_LEECHER = 'leecher';
 
 var traceConfig = config.meanTorrentConfig.trace;
 var mtDebug = require(path.resolve('./config/lib/debug'));
+var serverMessage = require(path.resolve('./config/lib/server-message'));
 
 /**
  * Show the current user
@@ -370,6 +371,9 @@ exports.addVIPMonths = function (req, res) {
       }
 
       res.json(user);
+
+      //add server message
+      serverMessage.addMessage(user._id, 'TITLE_VIP_CHANGED', 'CONTENT_VIP_CHANGED_ADD', {vip_end_at: user.vip_end_at});
 
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminUpdateUserVIPData, {

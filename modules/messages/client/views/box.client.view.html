@@ -21,7 +21,7 @@
                     <label class="btn btn-default"
                            ng-repeat="t in vm.messageConfig.type.value"
                            ng-model="vm.messageType" uib-btn-radio="'{{t.value}}'"
-                           ng-click="vm.onMessageTypeBtnClick(); vm.buildPager();">
+                           ng-click="vm.onTypeBtnClick(); vm.buildPager();">
                         {{'MESSAGE_TYPE_'+t.name | translate}}
                         <span class="message-dot" ng-if="vm.getNewMessageCount(t.value)>0">{{vm.getNewMessageCount(t.value)}}</span>
                     </label>
@@ -64,9 +64,13 @@
                         <tr class="message-item" ng-repeat="m in vm.pagedItems" ng-click="vm.showMessage($event, m);">
                             <td>
                                 <img class="message-avatar" ng-src="{{m.from_user.profileImageURL}}" ng-if="m.type=='user'">
-                                <span class="message-avatar glyphicon glyphicon-cog admin-message-avatar" ng-if="m.type!='user'"></span>
+                                <span class="message-avatar glyphicon glyphicon-cog server-message-avatar" ng-if="m.type=='server'"></span>
+                                <i class="fa fa-envelope message-avatar server-message-avatar" ng-if="m.type!='user' && m.type!='server'"></i>
 
-                                <span class="message-title" ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-bind="m.title"></span>
+                                <span class="message-title" ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-if="m.type!='server'"
+                                      ng-bind="m.title"></span>
+                                <span class="message-title" ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-if="m.type=='server'"
+                                      translate="SERVER_MESSAGE.{{m.title}}"></span>
 
                                 <p class="message-info" ng-if="m.type=='user'">
                                     <span user-info="m.from_user"
@@ -76,9 +80,13 @@
                                     <span ng-show="m._replies.length">, {{'MESSAGES_FIELD.LAST_REPLY_AT' | translate}} {{m.updatedat | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
                                 </p>
 
-                                <p class="message-info" ng-if="m.type!='user'">
+                                <p class="message-info" ng-if="m.type!='user' && m.type!='server'">
                                     <span user-info="m.from_user"
                                           info-name></span> {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
+                                </p>
+
+                                <p class="message-info" ng-if="m.type=='server'">
+                                    {{'MESSAGES_FIELD.SERVER_SEND' | translate}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                                 </p>
                             </td>
                             <td class="td-v-middle text-center">
@@ -119,11 +127,18 @@
          side-closed="vm.onPopupMessageClose();" side-close-on-esc side-close-on-outside-click>
         <div class="message-popup message-item" ng-class="{'not-user-message':  vm.selectedMessage.type!='user'}">
             <div>
-                <img class="message-avatar" ng-src="{{vm.selectedMessage.from_user.profileImageURL}}">
+                <img class="message-avatar" ng-src="{{vm.selectedMessage.from_user.profileImageURL}}" ng-if="vm.selectedMessage.type=='user'">
+                <span class="message-avatar glyphicon glyphicon-cog server-message-avatar" ng-if="vm.selectedMessage.type=='server'"></span>
+                <i class="fa fa-envelope message-avatar server-message-avatar"
+                   ng-if="vm.selectedMessage.type!='user' && vm.selectedMessage.type!='server'"></i>
 
                 <div class="title-info">
                     <span class="message-title" ng-class="vm.isUnread(vm.selectedMessage)? 'unread' : 'read'"
+                          ng-if="vm.selectedMessage.type!='server'"
                           ng-bind="vm.selectedMessage.title"></span>
+                    <span class="message-title" ng-class="vm.isUnread(vm.selectedMessage)? 'unread' : 'read'"
+                          ng-if="vm.selectedMessage.type=='server'"
+                          translate="SERVER_MESSAGE.{{vm.selectedMessage.title}}"></span>
 
                     <p class="message-info" ng-if="vm.selectedMessage.type=='user'">
                         <span user-info="vm.selectedMessage.from_user"
@@ -132,15 +147,23 @@
                               info-name></span> {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{vm.selectedMessage.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                     </p>
 
-                    <p class="message-info" ng-if="vm.selectedMessage.type!='user'">
+                    <p class="message-info" ng-if="vm.selectedMessage.type!='user' && vm.selectedMessage.type!='server'">
                         <span user-info="vm.selectedMessage.from_user"
                               info-name></span> {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{vm.selectedMessage.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
+                    </p>
+
+                    <p class="message-info" ng-if="vm.selectedMessage.type=='server'">
+                        {{'MESSAGES_FIELD.SERVER_SEND' | translate}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{vm.selectedMessage.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                     </p>
                 </div>
             </div>
 
             <li class="status-divider"></li>
-            <div class="message-content" ng-bind-html="vm.getContentMarked(vm.selectedMessage);"></div>
+            <div class="message-content" ng-bind-html="vm.getContentMarked(vm.selectedMessage);" ng-if="vm.selectedMessage.type!='server'"></div>
+            <div class="message-content"
+                 translate="SERVER_MESSAGE.{{vm.selectedMessage.content.string}}"
+                 translate-values="{{vm.selectedMessage.content.params}}"
+                 ng-if="vm.selectedMessage.type=='server'"></div>
 
             <div class="message-reply" ng-if="vm.selectedMessage._replies.length>0">
                 <li class="status-divider"></li>

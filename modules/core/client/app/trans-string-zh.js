@@ -844,7 +844,8 @@
       INFO_SEND_TO: '发送给',
       INFO_SEND_AT: '于',
       LAST_REPLY_AT: '最新回复于',
-      NEW_MSG: '条未读消息'
+      NEW_MSG: '条未读消息',
+      SERVER_SEND: '服务器发送'
     },
     BUTTON_MESSAGE_DELETE: '删除',
     BUTTON_MESSAGE_CLOSE: '关闭(esc)',
@@ -1282,6 +1283,12 @@
       ONLY_VIP_CAN_DOWNLOAD: '该种子只有VIP用户才可以下载',
       CAN_NOT_DOWNLOAD_BANNED: '下载失败, 您被服务器禁止(banned)',
       CAN_NOT_DOWNLOAD_IDLE: '下载失败，您闲置了太长时间，在您下载任何种子前, 您必须进入帐户状态页再次激活您的帐户!'
+    },
+
+    //server message string
+    SERVER_MESSAGE: {
+      TITLE_VIP_CHANGED: 'Vip 状态已改变',
+      CONTENT_VIP_CHANGED_ADD: '您的 Vip 状态已改变, 您的 Vip 将结束于: {{vip_end_at}}'
     }
   };
 
