@@ -62,7 +62,7 @@
                     </thead>
                     <tbody>
                         <tr class="message-item" ng-repeat="m in vm.pagedItems" ng-click="vm.showMessage($event, m);">
-                            <td>
+                            <td class="width-400">
                                 <img class="message-avatar" ng-src="{{m.from_user.profileImageURL}}" ng-if="m.type=='user'">
                                 <span class="message-avatar glyphicon glyphicon-cog server-message-avatar" ng-if="m.type=='server'"></span>
                                 <i class="fa fa-envelope message-avatar server-message-avatar" ng-if="m.type!='user' && m.type!='server'"></i>
@@ -103,6 +103,7 @@
                                 <input type="checkbox" class="tcheckbox" ng-model="vm.selected[m._id]"
                                        id="checkbox_{{m._id}}" ng-if="m.type=='user' || m.type=='server'">
                                 </label>
+                                <span ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-if="m.type!='user' && m.type!='server'">-</span>
                             </td>
                         </tr>
                     </tbody>
