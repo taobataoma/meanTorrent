@@ -331,7 +331,10 @@ module.exports = {
         makerCreate: {title: 'TITLE_MAKER_CREATE', content: 'CONTENT_MAKER_CREATE', enable: true},
         vipStatusChanged: {title: 'TITLE_VIP_CHANGED_ADD', content: 'CONTENT_VIP_CHANGED_ADD', enable: true},
         hnrWarningAddByAnnounce: {title: 'TITLE_HNR_WARNING_ADD', content: 'CONTENT_HNR_WARNING_ADD', enable: true},
-        hnrWarningRemoveByAnnounce: {title: 'TITLE_HNR_WARNING_REMOVE', content: 'CONTENT_HNR_WARNING_REMOVE', enable: true}
+        hnrWarningRemoveByAnnounce: {title: 'TITLE_HNR_WARNING_REMOVE', content: 'CONTENT_HNR_WARNING_REMOVE', enable: true},
+        forumTopicNewReply: {title: 'TITLE_FORUM_NEW_TOPIC_REPLY', content: 'CONTENT_FORUM_NEW_TOPIC_REPLY', enable: true},
+        forumTopicThumbsUp: {title: 'TITLE_FORUM_TOPIC_THUMBS_UP', content: 'CONTENT_FORUM_TOPIC_THUMBS_UP', enable: true},
+        forumReplyThumbsUp: {title: 'TITLE_FORUM_REPLY_THUMBS_UP', content: 'CONTENT_FORUM_REPLY_THUMBS_UP', enable: true}
       }
     },
 

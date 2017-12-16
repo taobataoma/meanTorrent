@@ -1294,9 +1294,18 @@
       CONTENT_MAKER_CREATE: '管理员已为您创建资源制作小组 **-={{maker_group_name}}=-** , 您现在是该小组的创建人, 感谢您为 **{{site_name}}** 所做的贡献! :100:',
 
       TITLE_HNR_WARNING_ADD: '新的 H&R 警告',
-      CONTENT_HNR_WARNING_ADD: '###H&R 警告! \n 您刚刚得到一个 h&r 警告在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}), 您需要继续做种, 这个警告会在该种分享率大于 {{hnr_ratio}} 或做种时间大于 {{hnr_days}} 天时自动清除，您也可以从这里 [warning list](/status/warning) 使用系统积分手动清除.',
+      CONTENT_HNR_WARNING_ADD: '### H&R 警告! \n 您刚刚得到一个 h&r 警告在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}), 您需要继续做种, 这个警告会在该种分享率大于 {{hnr_ratio}} 或做种时间大于 {{hnr_days}} 天时自动清除，您也可以从这里 [warning list](/status/warning) 使用系统积分手动清除.',
       TITLE_HNR_WARNING_REMOVE: 'H&R 警告移除',
-      CONTENT_HNR_WARNING_REMOVE: '###H&R 警告已移除! \n 恭喜您, 您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上的 h&r 警告已经移除.'
+      CONTENT_HNR_WARNING_REMOVE: '### H&R 警告已移除! \n 恭喜您, 您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上的 h&r 警告已经移除.',
+
+      TITLE_FORUM_NEW_TOPIC_REPLY: '论坛主题有了新回复',
+      CONTENT_FORUM_NEW_TOPIC_REPLY: '### 新回复! \n :collision: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 有了一个新回复来自用户 [{{by_name}}](/userinfo/{{by_id}})',
+
+      TITLE_FORUM_TOPIC_THUMBS_UP: '论坛主题被点赞',
+      CONTENT_FORUM_TOPIC_THUMBS_UP: '### 点赞! \n :+1: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 收到一个点赞来自用户 [{{by_name}}](/userinfo/{{by_id}})',
+
+      TITLE_FORUM_REPLY_THUMBS_UP: '论坛回复被点赞',
+      CONTENT_FORUM_REPLY_THUMBS_UP: '### 点赞! \n :+1: 您在论坛主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) 发表的回复收到一个点赞来自用户 [{{by_name}}](/userinfo/{{by_id}})'
     }
   };
 

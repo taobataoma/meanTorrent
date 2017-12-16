@@ -20,6 +20,8 @@ var path = require('path'),
 
 var traceConfig = config.meanTorrentConfig.trace;
 var thumbsUpScore = config.meanTorrentConfig.score.thumbsUpScore;
+var serverMessage = require(path.resolve('./config/lib/server-message'));
+var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
 
@@ -564,15 +566,18 @@ exports.thumbsUp = function (req, res) {
   var user = req.user;
   var exist = false;
   var topic = req.topic;
+  var replyUid = undefined;
   var thumb = new Thumb();
   thumb.user = req.user;
   thumb.score = thumbsUpScore.topic;
+
 
   if (req.query.replyId) {
     topic._replies.forEach(function (r) {
       if (r._id.equals(req.query.replyId)) {
         //check if already exist
         exist = false;
+        replyUid = r.user._id;
         r._thumbs.forEach(function (sr) {
           if (sr.user._id.equals(req.user._id)) {
             exist = true;
@@ -589,6 +594,18 @@ exports.thumbsUp = function (req, res) {
               $inc: {score: thumbsUpScore.topic}
             }).exec();
             save();
+
+            //add server message
+            if (serverNoticeConfig.action.forumReplyThumbsUp.enable) {
+              serverMessage.addMessage(replyUid, serverNoticeConfig.action.forumReplyThumbsUp.title, serverNoticeConfig.action.forumReplyThumbsUp.content, {
+                topic_title: topic.title,
+                forum_id: topic.forum,
+                topic_id: topic._id,
+                reply_id: req.query.replyId,
+                by_name: user.displayName,
+                by_id: user._id
+              });
+            }
           } else {
             return res.status(422).send({
               message: 'SERVER.SCORE_NOT_ENOUGH'
@@ -616,6 +633,17 @@ exports.thumbsUp = function (req, res) {
           $inc: {score: thumbsUpScore.topic}
         }).exec();
         save();
+
+        //add server message
+        if (serverNoticeConfig.action.forumTopicThumbsUp.enable) {
+          serverMessage.addMessage(topic.user._id, serverNoticeConfig.action.forumTopicThumbsUp.title, serverNoticeConfig.action.forumTopicThumbsUp.content, {
+            topic_title: topic.title,
+            forum_id: topic.forum,
+            topic_id: topic._id,
+            by_name: user.displayName,
+            by_id: user._id
+          });
+        }
       } else {
         return res.status(422).send({
           message: 'SERVER.SCORE_NOT_ENOUGH'
@@ -755,6 +783,18 @@ exports.postNewReply = function (req, res) {
         $inc: {replyCount: 1},
         lastTopic: topic
       }).exec();
+
+      //add server message
+      if (serverNoticeConfig.action.forumTopicNewReply.enable && !topic.user._id.equals(user._id)) {
+        serverMessage.addMessage(topic.user._id, serverNoticeConfig.action.forumTopicNewReply.title, serverNoticeConfig.action.forumTopicNewReply.content, {
+          topic_title: topic.title,
+          forum_id: topic.forum,
+          topic_id: topic._id,
+          reply_id: reply._id,
+          by_name: user.displayName,
+          by_id: user._id
+        });
+      }
     }
   });
 };
