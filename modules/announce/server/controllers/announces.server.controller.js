@@ -16,6 +16,7 @@ var path = require('path'),
   async = require('async'),
   querystring = require('querystring'),
   url = require('url'),
+  sprintf = require('sprintf-js').sprintf,
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
   scoreUpdate = require(path.resolve('./config/lib/score')).update;
 
@@ -23,6 +24,7 @@ var traceConfig = config.meanTorrentConfig.trace;
 var scoreConfig = config.meanTorrentConfig.score;
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
 var signConfig = config.meanTorrentConfig.sign;
+var announceConfig = config.meanTorrentConfig.announce;
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
 
@@ -32,6 +34,7 @@ const FAILURE_REASONS = {
   102: 'Missing peer_id',
   103: 'Missing port',
   104: 'Missing passkey',
+
   150: 'Invalid infohash: infohash is not 20 bytes long',
   151: 'Invalid peerid: peerid is not 20 bytes long',
   152: 'Invalid numwant. Client requested more peers than allowed by tracker',
@@ -43,7 +46,7 @@ const FAILURE_REASONS = {
   162: 'ip length error',
 
   170: 'your account status is banned',
-  p: 'your account status is inactive',
+  171: 'your account status is inactive',
   172: 'your client is not allowed, here is the blacklist: ' + config.meanTorrentConfig.announce.clientBlackListUrl,
   173: 'this torrent status is not reviewed by administrators, try again later',
   174: 'this torrent is only for VIP members',
@@ -59,6 +62,8 @@ const FAILURE_REASONS = {
 
   190: 'You have more H&R warning, can not download any torrent now!',
   191: 'not find this torrent complete data',
+
+  200: 'Your total ratio is less than %.2f, can not download anything now, you can continue seed and upgrade your ratio',
 
   600: 'This tracker only supports compact mode',
   900: 'Generic error'
@@ -362,8 +367,30 @@ exports.announce = function (req, res) {
     },
 
     /*---------------------------------------------------------------
+     announce download check
+     ratio check, setting in announce.downloadCheck
+     ---------------------------------------------------------------*/
+    function (done) {
+      if (!req.seeder) {
+        if (req.passkeyuser.ratio < announceConfig.downloadCheck.ratio) {
+          var checkTimeBegin = moment(req.passkeyuser.created).add(announceConfig.downloadCheck.checkAfterSignupDays, 'd');
+          if (checkTimeBegin < moment(Date.now())) {
+            var reason = sprintf(FAILURE_REASONS[200], announceConfig.downloadCheck.ratio);
+            done(200, reason);
+          } else {
+            done(null);
+          }
+        } else {
+          done(null);
+        }
+      } else {
+        done(null);
+      }
+    },
+
+    /*---------------------------------------------------------------
      onEventStarted
-     if downloading, check download peer num only 1, torrent leechers +1, ratio check
+     if downloading, check download peer num only 1, torrent leechers +1
      if seeding, check seed peer num less 3, torrent seeds +1
      if no peer founded, create new peer
      ---------------------------------------------------------------*/
@@ -574,9 +601,9 @@ exports.announce = function (req, res) {
 
       done(null, 'done');
     }
-  ], function (err) {
+  ], function (err, reason) {
     if (err) {
-      sendError(new Failure(err));
+      sendError(new Failure(err, reason));
     }
   });
 
