@@ -90,7 +90,5 @@ function getSafeMeanTorrentConfig(cfg) {
   //ignore serverNotice settings
   cfg.serverNotice = undefined;
 
-
-
   return cfg;
 }
