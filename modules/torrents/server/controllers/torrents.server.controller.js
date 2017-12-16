@@ -998,6 +998,17 @@ exports.setSaleType = function (req, res) {
       } else {
         res.json(torrent);
 
+        //add server message
+        if (serverNoticeConfig.action.torrentSaleChanged.enable) {
+          serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.torrentSaleChanged.title, serverNoticeConfig.action.torrentSaleChanged.content, {
+            torrent_file_name: torrent.torrent_filename,
+            torrent_id: torrent._id,
+            by_name: req.user.displayName,
+            by_id: req.user._id,
+            sale_status: torrent.torrent_sale_status
+          });
+        }
+
         //create trace log
         traceLogCreate(req, traceConfig.action.AdminTorrentSetSaleType, {
           torrent: torrent._id,

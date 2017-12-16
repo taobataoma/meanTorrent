@@ -347,9 +347,9 @@ module.exports = {
         torrentReviewed: {title: 'TITLE_TORRENT_REVIEWED', content: 'CONTENT_TORRENT_REVIEWED', enable: true},
         torrentVipChanged: {title: 'TITLE_TORRENT_VIP_CHANGED', content: 'CONTENT_TORRENT_VIP_CHANGED', enable: true},
         torrentHnRChanged: {title: 'TITLE_TORRENT_HNR_CHANGED', content: 'CONTENT_TORRENT_HNR_CHANGED', enable: true},
+        torrentSaleChanged: {title: 'TITLE_TORRENT_SALE_CHANGED', content: 'CONTENT_TORRENT_SALE_CHANGED', enable: true},
 
-        torrentDeleted: {title: 'TITLE_TORRENT_DELETED', content: 'CONTENT_TORRENT_DELETED', enable: true},
-        torrentSaleChanged: {title: 'TITLE_TORRENT_SALE_CHANGED', content: 'CONTENT_TORRENT_SALE_CHANGED', enable: true}
+        torrentDeleted: {title: 'TITLE_TORRENT_DELETED', content: 'CONTENT_TORRENT_DELETED', enable: true}
       }
     },
 

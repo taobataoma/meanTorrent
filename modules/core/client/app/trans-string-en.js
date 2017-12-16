@@ -1332,7 +1332,10 @@
       CONTENT_TORRENT_VIP_CHANGED: '### VIP status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) VIP status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{vip_status}}**.',
 
       TITLE_TORRENT_HNR_CHANGED: 'Torrent H&R status changed',
-      CONTENT_TORRENT_HNR_CHANGED: '### H&R status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) H&R status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{hnr_status}}**.'
+      CONTENT_TORRENT_HNR_CHANGED: '### H&R status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) H&R status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{hnr_status}}**.',
+
+      TITLE_TORRENT_SALE_CHANGED: 'Torrent sale status changed',
+      CONTENT_TORRENT_SALE_CHANGED: '### Sale status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) sale status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{sale_status}}**.'
     }
   };
 

@@ -1332,7 +1332,10 @@
       CONTENT_TORRENT_VIP_CHANGED: '### VIP 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) VIP 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{vip_status}}**.',
 
       TITLE_TORRENT_HNR_CHANGED: '种子 H&R 状态改变',
-      CONTENT_TORRENT_HNR_CHANGED: '### H&R 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) H&R 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{hnr_status}}**.'
+      CONTENT_TORRENT_HNR_CHANGED: '### H&R 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) H&R 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{hnr_status}}**.',
+
+      TITLE_TORRENT_SALE_CHANGED: '种子促销状态改变',
+      CONTENT_TORRENT_SALE_CHANGED: '### 促销状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 促销状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{sale_status}}**.'
     }
   };
 
