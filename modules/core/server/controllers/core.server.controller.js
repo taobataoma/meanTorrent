@@ -84,5 +84,13 @@ function getSafeMeanTorrentConfig(cfg) {
   //ignore tmdbConfig.key settings
   cfg.tmdbConfig.key = undefined;
 
+  //ignore trace config settings
+  cfg.trace = undefined;
+
+  //ignore serverNotice settings
+  cfg.serverNotice = undefined;
+
+
+
   return cfg;
 }
