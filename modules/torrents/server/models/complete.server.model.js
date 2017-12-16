@@ -9,6 +9,9 @@ var path = require('path'),
   Schema = mongoose.Schema;
 
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
+var serverMessage = require(path.resolve('./config/lib/server-message'));
+var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
+
 /**
  * Complete Schema
  */
@@ -113,6 +116,16 @@ CompleteSchema.methods.countHnRWarning = function (u) {
         u.update({
           $inc: {hnr_warning: -1}
         }).exec();
+
+        //add server message
+        if (serverNoticeConfig.action.hnrWarningAddByAnnounce.enable) {
+          serverMessage.addMessage(u._id, serverNoticeConfig.action.hnrWarningAddByAnnounce.title, serverNoticeConfig.action.hnrWarningAddByAnnounce.content, {
+            torrent_file_name: this.torrent.torrent_filename,
+            torrent_id: this.torrent._id,
+            hnr_ratio: hnrConfig.condition.ratio,
+            hnr_days: hnrConfig.condition.seedTime / (60 * 60 * 1000 * 24)
+          });
+        }
       }
     } else {
       if (!this.hnr_warning && !this.remove_by) {
@@ -124,6 +137,14 @@ CompleteSchema.methods.countHnRWarning = function (u) {
         u.update({
           $inc: {hnr_warning: 1}
         }).exec();
+
+        //add server message
+        if (serverNoticeConfig.action.hnrWarningRemoveByAnnounce.enable) {
+          serverMessage.addMessage(u._id, serverNoticeConfig.action.hnrWarningRemoveByAnnounce.title, serverNoticeConfig.action.hnrWarningRemoveByAnnounce.content, {
+            torrent_file_name: this.torrent.torrent_filename,
+            torrent_id: this.torrent._id
+          });
+        }
       }
     }
   }
