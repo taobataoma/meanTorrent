@@ -99,6 +99,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 46. In forum, Admin/Moderators and topic owner can edit topic title through click on the title text.
 47. New feature for list all uploader(maker group and user), admin can set uploader access to pass review directly when upload a torrent file.
 48. Complete emoji support on chat room, message box.
+49. Complete server auto notice function to users.
 
 #### Chat room feature:
 1. Users name list
