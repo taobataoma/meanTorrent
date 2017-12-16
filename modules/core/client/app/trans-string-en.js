@@ -1320,7 +1320,13 @@
       CONTENT_TORRENT_NEW_COMMENT: '### New comment! \n :collision: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) has a new comment submit by user [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_TORRENT_COMMENT_DELETED: 'Torrent comment was deleted',
-      CONTENT_TORRENT_COMMENT_DELETED: 'You posted comment of torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}).'
+      CONTENT_TORRENT_COMMENT_DELETED: 'You posted comment of torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_TORRENT_THUMBS_UP: 'Torrent was be thumbs up',
+      CONTENT_TORRENT_THUMBS_UP: '### Thumbs up! \n :+1: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was be thumbs up by user [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_TORRENT_REVIEWED: 'Torrent was reviewed',
+      CONTENT_TORRENT_REVIEWED: '### Congratulate! \n :clap: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was reviewed by user [{{by_name}}](/userinfo/{{by_id}}).'
     }
   };
 

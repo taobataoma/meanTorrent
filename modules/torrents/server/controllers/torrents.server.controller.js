@@ -39,6 +39,8 @@ var itemsPerPageConfig = config.meanTorrentConfig.itemsPerPage;
 var vsprintf = require('sprintf-js').vsprintf;
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
+var serverMessage = require(path.resolve('./config/lib/server-message'));
+var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -871,6 +873,16 @@ exports.thumbsUp = function (req, res) {
         $inc: {score: thumbsUpScore.torrent}
       }).exec();
       save();
+
+      //add server message
+      if (serverNoticeConfig.action.torrentThumbsUp.enable) {
+        serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.torrentThumbsUp.title, serverNoticeConfig.action.torrentThumbsUp.content, {
+          torrent_file_name: torrent.torrent_filename,
+          torrent_id: torrent._id,
+          by_name: user.displayName,
+          by_id: user._id
+        });
+      }
     } else {
       return res.status(422).send({
         message: 'SERVER.SCORE_NOT_ENOUGH'
@@ -1060,6 +1072,17 @@ exports.setReviewedStatus = function (req, res) {
       res.json(torrent);
 
       announceTorrentToIRC(torrent, req);
+
+      //add server message
+      if (serverNoticeConfig.action.torrentReviewed.enable) {
+        serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.torrentReviewed.title, serverNoticeConfig.action.torrentReviewed.content, {
+          torrent_file_name: torrent.torrent_filename,
+          torrent_id: torrent._id,
+          by_name: req.user.displayName,
+          by_id: req.user._id
+        });
+      }
+
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminTorrentSetReviewedStatus, {
         torrent: torrent._id,

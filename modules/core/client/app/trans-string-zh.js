@@ -1320,7 +1320,13 @@
       CONTENT_TORRENT_NEW_COMMENT: '### 新留言! \n :collision: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 有一条新留言，提交来自用户 [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_TORRENT_COMMENT_DELETED: '种子留言被删除',
-      CONTENT_TORRENT_COMMENT_DELETED: '您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 下的留言被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.'
+      CONTENT_TORRENT_COMMENT_DELETED: '您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 下的留言被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
+
+      TITLE_TORRENT_THUMBS_UP: '种子被点赞',
+      CONTENT_TORRENT_THUMBS_UP: '### 点赞! \n :+1: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被用户 [{{by_name}}](/userinfo/{{by_id}}) 点赞.',
+
+      TITLE_TORRENT_REVIEWED: '种子被审核通过',
+      CONTENT_TORRENT_REVIEWED: '### 恭喜! \n :clap: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 审核通过.'
     }
   };
 

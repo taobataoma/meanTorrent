@@ -96,11 +96,11 @@ exports.update = function (req, res) {
  */
 exports.delete = function (req, res) {
   var torrent = req.torrent;
-  var commentId = undefined;
+  var commentUid = undefined;
 
   torrent._replies.forEach(function (r) {
     if (r._id.equals(req.params.commentId)) {
-      commentId = r.user._id;
+      commentUid = r.user._id;
 
       torrent._replies.pull(r);
       torrent.save(function (err) {
@@ -113,7 +113,7 @@ exports.delete = function (req, res) {
 
           //add server message
           if (serverNoticeConfig.action.torrentCommentDeleted.enable) {
-            serverMessage.addMessage(commentId, serverNoticeConfig.action.torrentCommentDeleted.title, serverNoticeConfig.action.torrentCommentDeleted.content, {
+            serverMessage.addMessage(commentUid, serverNoticeConfig.action.torrentCommentDeleted.title, serverNoticeConfig.action.torrentCommentDeleted.content, {
               torrent_file_name: torrent.torrent_filename,
               torrent_id: torrent._id,
               by_name: req.user.displayName,

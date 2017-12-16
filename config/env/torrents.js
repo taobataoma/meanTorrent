@@ -343,9 +343,9 @@ module.exports = {
 
         torrentNewComment: {title: 'TITLE_TORRENT_NEW_COMMENT', content: 'CONTENT_TORRENT_NEW_COMMENT', enable: true},
         torrentCommentDeleted: {title: 'TITLE_TORRENT_COMMENT_DELETED', content: 'CONTENT_TORRENT_COMMENT_DELETED', enable: true},
-
         torrentThumbsUp: {title: 'TITLE_TORRENT_THUMBS_UP', content: 'CONTENT_TORRENT_THUMBS_UP', enable: true},
         torrentReviewed: {title: 'TITLE_TORRENT_REVIEWED', content: 'CONTENT_TORRENT_REVIEWED', enable: true},
+
         torrentDeleted: {title: 'TITLE_TORRENT_DELETED', content: 'CONTENT_TORRENT_DELETED', enable: true},
         torrentVipChanged: {title: 'TITLE_TORRENT_VIP_CHANGED', content: 'CONTENT_TORRENT_VIP_CHANGED', enable: true},
         torrentHnRChanged: {title: 'TITLE_TORRENT_HNR_CHANGED', content: 'CONTENT_TORRENT_HNR_CHANGED', enable: true},
