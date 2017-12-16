@@ -70,6 +70,7 @@ module.exports = {
      *      @ratio:                 if less than this value, can not download(leech)
      *      @checkAfterSignupDays:  all users download check start {value} days after signup, so the newest register user has {value} days to upgrade his ratio value,
      *                              after {value} days, if less then setting of here, can not download(leech) any things, but can continue seed, unit of day
+     *      @canDownloadOwnSeeding: setting user whether can download from his own seeding
      */
     announce: {
       url: 'http://chd.im:3000/announce',
@@ -82,7 +83,8 @@ module.exports = {
       privateTorrentCmsMode: true,
       downloadCheck: {
         ratio: 1,
-        checkAfterSignupDays: 30
+        checkAfterSignupDays: 30,
+        canDownloadOwnSeeding: false
       }
     },
 

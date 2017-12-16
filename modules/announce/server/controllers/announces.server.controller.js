@@ -64,6 +64,7 @@ const FAILURE_REASONS = {
   191: 'not find this torrent complete data',
 
   200: 'Your total ratio is less than %.2f, can not download anything now, you can continue seed and upgrade your ratio',
+  201: 'You can not download from your own seeding',
 
   600: 'This tracker only supports compact mode',
   900: 'Generic error'
@@ -338,12 +339,12 @@ exports.announce = function (req, res) {
     },
 
     /*---------------------------------------------------------------
-     checkCanDownload
+     check N&R can download
      if user has too more H&R warning numbers, can not download any torrent
      but can continue download the warning status torrent
      ---------------------------------------------------------------*/
     function (done) {
-      if (!req.seeder) {
+      if (!req.seeder && event(query.event) !== EVENT_STOPPED) {
         if (req.passkeyuser.hnr_warning >= hnrConfig.forbiddenDownloadMinWarningNumber) {
           if (!req.torrent.torrent_hnr) {
             done(190);
@@ -371,8 +372,8 @@ exports.announce = function (req, res) {
      ratio check, setting in announce.downloadCheck
      ---------------------------------------------------------------*/
     function (done) {
-      if (!req.seeder) {
-        if (req.passkeyuser.ratio < announceConfig.downloadCheck.ratio) {
+      if (!req.seeder && event(query.event) !== EVENT_STOPPED) {
+        if (req.passkeyuser.ratio !== -1 && req.passkeyuser.ratio < announceConfig.downloadCheck.ratio) {
           var checkTimeBegin = moment(req.passkeyuser.created).add(announceConfig.downloadCheck.checkAfterSignupDays, 'd');
           if (checkTimeBegin < moment(Date.now())) {
             var reason = sprintf(FAILURE_REASONS[200], announceConfig.downloadCheck.ratio);
@@ -380,6 +381,22 @@ exports.announce = function (req, res) {
           } else {
             done(null);
           }
+        } else {
+          done(null);
+        }
+      } else {
+        done(null);
+      }
+    },
+
+    /*---------------------------------------------------------------
+     announce check download from own seeding
+     own seeding check, setting in announce.downloadCheck
+     ---------------------------------------------------------------*/
+    function (done) {
+      if (!req.seeder && event(query.event) !== EVENT_STOPPED) {
+        if (getSelfSeederCount() > 0 && !announceConfig.downloadCheck.canDownloadOwnSeeding) {
+          done(201);
         } else {
           done(null);
         }
@@ -401,7 +418,7 @@ exports.announce = function (req, res) {
         if (getSelfLeecherCount() >= 1 && !req.seeder) {
           mtDebug.debugGreen(req.selfpeer);
           done(180);
-        } else if (getSelfSeederCount >= 3 && req.seeder) {
+        } else if (getSelfSeederCount() >= 3 && req.seeder) {
           mtDebug.debugGreen(req.selfpeer);
           done(181);
         } else {
