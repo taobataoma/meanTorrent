@@ -1299,13 +1299,22 @@
       CONTENT_HNR_WARNING_REMOVE: '### H&R warning removed! \n Congratulate, your h&r warning ont torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) already clean up.',
 
       TITLE_FORUM_NEW_TOPIC_REPLY: 'Topic in forum has new reply',
-      CONTENT_FORUM_NEW_TOPIC_REPLY: '### New reply! \n :collision: Your posted topic in forum [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) has new reply by user [{{by_name}}](/userinfo/{{by_id}})',
+      CONTENT_FORUM_NEW_TOPIC_REPLY: '### New reply! \n :collision: Your posted topic in forum [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) has new reply by user [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_FORUM_TOPIC_THUMBS_UP: 'Topic in forum was be thumbs up',
-      CONTENT_FORUM_TOPIC_THUMBS_UP: '### Thumbs up! \n :+1: Your posted topic [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) in forum was be thumbs up by user [{{by_name}}](/userinfo/{{by_id}})',
+      CONTENT_FORUM_TOPIC_THUMBS_UP: '### Thumbs up! \n :+1: Your posted topic [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) in forum was be thumbs up by user [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_FORUM_REPLY_THUMBS_UP: 'Reply in forum was be thumbs up',
-      CONTENT_FORUM_REPLY_THUMBS_UP: '### Thumbs up! \n :+1: Your posted reply of topic [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) in forum was be thumbs up by user [{{by_name}}](/userinfo/{{by_id}})'
+      CONTENT_FORUM_REPLY_THUMBS_UP: '### Thumbs up! \n :+1: Your posted reply of topic [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) in forum was be thumbs up by user [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_FORUM_TOPIC_DELETED: 'Topic in forum was deleted',
+      CONTENT_FORUM_TOPIC_DELETED: 'Your posted topic [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) in forum was deleted by user [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_FORUM_REPLY_DELETED: 'Reply in forum was deleted',
+      CONTENT_FORUM_REPLY_DELETED: 'Your posted reply of topic [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) in forum was deleted by user [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_FORUM_BECOME_MODERATOR: 'You have become the forum moderator',
+      CONTENT_FORUM_BECOME_MODERATOR: '### Congratulate! \n :clap: You have become the forum [{{forum_name}}](/forums/{{forum_id}}) moderator, Thank you for your contribution.'
     }
   };
 

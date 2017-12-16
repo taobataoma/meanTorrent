@@ -12,6 +12,9 @@ var path = require('path'),
   Topic = mongoose.model('Topic'),
   async = require('async');
 
+var serverMessage = require(path.resolve('./config/lib/server-message'));
+var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
+
 /**
  * create a forum
  * @param req
@@ -103,6 +106,14 @@ exports.addModerator = function (req, res) {
         });
       } else {
         res.json(forum);
+
+        //add server message
+        if (serverNoticeConfig.action.forumBecomeModerator.enable) {
+          serverMessage.addMessage(mu._id, serverNoticeConfig.action.forumBecomeModerator.title, serverNoticeConfig.action.forumBecomeModerator.content, {
+            forum_name: forum.name,
+            forum_id: forum._id
+          });
+        }
       }
     });
   }

@@ -1291,7 +1291,7 @@
       CONTENT_VIP_CHANGED_ADD: '### 恭喜！ \n 您的 Vip 状态已改变, 您的 Vip 将结束于: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
 
       TITLE_MAKER_CREATE: '资源制作小组已建立',
-      CONTENT_MAKER_CREATE: '管理员已为您创建资源制作小组 **-={{maker_group_name}}=-** , 您现在是该小组的创建人, 感谢您为 **{{site_name}}** 所做的贡献! :100:',
+      CONTENT_MAKER_CREATE: '管理员已为您创建资源制作小组 **-={{maker_group_name}}=-** , 您现在是该小组的创建人, 感谢您为 **{{site_name}}** 做出贡献! :100:',
 
       TITLE_HNR_WARNING_ADD: '新的 H&R 警告',
       CONTENT_HNR_WARNING_ADD: '### H&R 警告! \n 您刚刚得到一个 h&r 警告在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}), 您需要继续做种, 这个警告会在该种分享率大于 {{hnr_ratio}} 或做种时间大于 {{hnr_days}} 天时自动清除，您也可以从这里 [warning list](/status/warning) 使用系统积分手动清除.',
@@ -1299,13 +1299,22 @@
       CONTENT_HNR_WARNING_REMOVE: '### H&R 警告已移除! \n 恭喜您, 您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上的 h&r 警告已经移除.',
 
       TITLE_FORUM_NEW_TOPIC_REPLY: '论坛主题有了新回复',
-      CONTENT_FORUM_NEW_TOPIC_REPLY: '### 新回复! \n :collision: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 有了一个新回复来自用户 [{{by_name}}](/userinfo/{{by_id}})',
+      CONTENT_FORUM_NEW_TOPIC_REPLY: '### 新回复! \n :collision: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 有了一个新回复来自用户 [{{by_name}}](/userinfo/{{by_id}})。',
 
       TITLE_FORUM_TOPIC_THUMBS_UP: '论坛主题被点赞',
-      CONTENT_FORUM_TOPIC_THUMBS_UP: '### 点赞! \n :+1: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 收到一个点赞来自用户 [{{by_name}}](/userinfo/{{by_id}})',
+      CONTENT_FORUM_TOPIC_THUMBS_UP: '### 点赞! \n :+1: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 收到一个点赞来自用户 [{{by_name}}](/userinfo/{{by_id}})。',
 
       TITLE_FORUM_REPLY_THUMBS_UP: '论坛回复被点赞',
-      CONTENT_FORUM_REPLY_THUMBS_UP: '### 点赞! \n :+1: 您在论坛主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) 发表的回复收到一个点赞来自用户 [{{by_name}}](/userinfo/{{by_id}})'
+      CONTENT_FORUM_REPLY_THUMBS_UP: '### 点赞! \n :+1: 您在论坛主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) 发表的回复收到一个点赞来自用户 [{{by_name}}](/userinfo/{{by_id}})。',
+
+      TITLE_FORUM_TOPIC_DELETED: '论坛主题被删除',
+      CONTENT_FORUM_TOPIC_DELETED: '您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
+
+      TITLE_FORUM_REPLY_DELETED: '论坛回复被删除',
+      CONTENT_FORUM_REPLY_DELETED: '您在论坛主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) 发表的回复被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
+
+      TITLE_FORUM_BECOME_MODERATOR: '恭喜您成为论坛版主',
+      CONTENT_FORUM_BECOME_MODERATOR: '### 恭喜! \n :clap: 您已成为论坛 [{{forum_name}}](/forums/{{forum_id}}) 的版主, 感谢您为论坛做出贡献.'
     }
   };
 

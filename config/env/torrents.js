@@ -330,11 +330,25 @@ module.exports = {
       action: {
         makerCreate: {title: 'TITLE_MAKER_CREATE', content: 'CONTENT_MAKER_CREATE', enable: true},
         vipStatusChanged: {title: 'TITLE_VIP_CHANGED_ADD', content: 'CONTENT_VIP_CHANGED_ADD', enable: true},
+
         hnrWarningAddByAnnounce: {title: 'TITLE_HNR_WARNING_ADD', content: 'CONTENT_HNR_WARNING_ADD', enable: true},
         hnrWarningRemoveByAnnounce: {title: 'TITLE_HNR_WARNING_REMOVE', content: 'CONTENT_HNR_WARNING_REMOVE', enable: true},
+
         forumTopicNewReply: {title: 'TITLE_FORUM_NEW_TOPIC_REPLY', content: 'CONTENT_FORUM_NEW_TOPIC_REPLY', enable: true},
         forumTopicThumbsUp: {title: 'TITLE_FORUM_TOPIC_THUMBS_UP', content: 'CONTENT_FORUM_TOPIC_THUMBS_UP', enable: true},
-        forumReplyThumbsUp: {title: 'TITLE_FORUM_REPLY_THUMBS_UP', content: 'CONTENT_FORUM_REPLY_THUMBS_UP', enable: true}
+        forumReplyThumbsUp: {title: 'TITLE_FORUM_REPLY_THUMBS_UP', content: 'CONTENT_FORUM_REPLY_THUMBS_UP', enable: true},
+        forumTopicDeleted: {title: 'TITLE_FORUM_TOPIC_DELETED', content: 'CONTENT_FORUM_TOPIC_DELETED', enable: true},
+        forumReplyDeleted: {title: 'TITLE_FORUM_REPLY_DELETED', content: 'CONTENT_FORUM_REPLY_DELETED', enable: true},
+        forumBecomeModerator: {title: 'TITLE_FORUM_BECOME_MODERATOR', content: 'CONTENT_FORUM_BECOME_MODERATOR', enable: true},
+
+        torrentNewComment: {title: 'TITLE_TORRENT_NEW_COMMENT', content: 'CONTENT_TORRENT_NEW_COMMENT', enable: true},
+        torrentCommentDeleted: {title: 'TITLE_TORRENT_COMMENT_DELETED', content: 'CONTENT_TORRENT_COMMENT_DELETED', enable: true},
+        torrentThumbsUp: {title: 'TITLE_TORRENT_THUMBS_UP', content: 'CONTENT_TORRENT_THUMBS_UP', enable: true},
+        torrentReviewed: {title: 'TITLE_TORRENT_REVIEWED', content: 'CONTENT_TORRENT_REVIEWED', enable: true},
+        torrentDeleted: {title: 'TITLE_TORRENT_DELETED', content: 'CONTENT_TORRENT_DELETED', enable: true},
+        torrentVipChanged: {title: 'TITLE_TORRENT_VIP_CHANGED', content: 'CONTENT_TORRENT_VIP_CHANGED', enable: true},
+        torrentHnRChanged: {title: 'TITLE_TORRENT_HNR_CHANGED', content: 'CONTENT_TORRENT_HNR_CHANGED', enable: true},
+        torrentSaleChanged: {title: 'TITLE_TORRENT_SALE_CHANGED', content: 'CONTENT_TORRENT_SALE_CHANGED', enable: true}
       }
     },
 

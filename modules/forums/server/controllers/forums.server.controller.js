@@ -716,6 +716,17 @@ exports.deleteTopic = function (req, res) {
         $inc: {topics: -1}
       }).exec();
 
+      //add server message
+      if (serverNoticeConfig.action.forumTopicDeleted.enable && !topic.user._id.equals(req.user._id)) {
+        serverMessage.addMessage(topic.user._id, serverNoticeConfig.action.forumTopicDeleted.title, serverNoticeConfig.action.forumTopicDeleted.content, {
+          topic_title: topic.title,
+          forum_id: topic.forum,
+          topic_id: topic._id,
+          by_name: req.user.displayName,
+          by_id: req.user._id
+        });
+      }
+
       //create trace log
       traceLogCreate(req, traceConfig.action.forumDeleteTopic, {
         forum: forum._id,
@@ -843,6 +854,7 @@ exports.updateReply = function (req, res) {
 exports.deleteReply = function (req, res) {
   var forum = req.forum;
   var topic = req.topic;
+  var replyUid = undefined;
 
   topic._replies.forEach(function (r) {
     if (r._id.equals(req.params.replyId)) {
@@ -853,6 +865,7 @@ exports.deleteReply = function (req, res) {
         });
       }
 
+      replyUid = r.user._id;
       topic._replies.pull(r);
       topic.replyCount--;
       topic.save(function (err) {
@@ -870,6 +883,18 @@ exports.deleteReply = function (req, res) {
           forum.update({
             $inc: {replyCount: -1}
           }).exec();
+
+          //add server message
+          if (serverNoticeConfig.action.forumReplyDeleted.enable && !replyUid.equals(req.user._id)) {
+            serverMessage.addMessage(replyUid, serverNoticeConfig.action.forumReplyDeleted.title, serverNoticeConfig.action.forumReplyDeleted.content, {
+              topic_title: topic.title,
+              forum_id: topic.forum,
+              topic_id: topic._id,
+              reply_id: req.params.replyId,
+              by_name: req.user.displayName,
+              by_id: req.user._id
+            });
+          }
 
           //create trace log
           traceLogCreate(req, traceConfig.action.forumDeleteReply, {
