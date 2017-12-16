@@ -818,6 +818,17 @@ exports.toggleVIPStatus = function (req, res) {
       });
     } else {
       res.json(torrent);
+
+      //add server message
+      if (serverNoticeConfig.action.torrentVipChanged.enable) {
+        serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.torrentVipChanged.title, serverNoticeConfig.action.torrentVipChanged.content, {
+          torrent_file_name: torrent.torrent_filename,
+          torrent_id: torrent._id,
+          by_name: req.user.displayName,
+          by_id: req.user._id,
+          vip_status: torrent.torrent_vip ? 'ON' : 'OFF'
+        });
+      }
     }
   });
 };

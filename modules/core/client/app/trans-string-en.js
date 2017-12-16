@@ -1285,7 +1285,7 @@
       CAN_NOT_DOWNLOAD_IDLE: 'Download failed, you are idle for long time, before download any things, you should active you account again in profile menu "account status"!'
     },
 
-    //server message string
+    //server message string, content string support markdown and emoji
     SERVER_MESSAGE: {
       TITLE_VIP_CHANGED_ADD: 'Vip status changed',
       CONTENT_VIP_CHANGED_ADD: '### Welcome! \n Your vip status changed, now end at: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
@@ -1326,7 +1326,10 @@
       CONTENT_TORRENT_THUMBS_UP: '### Thumbs up! \n :+1: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was be thumbs up by user [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_TORRENT_REVIEWED: 'Torrent was reviewed',
-      CONTENT_TORRENT_REVIEWED: '### Congratulate! \n :clap: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was reviewed by user [{{by_name}}](/userinfo/{{by_id}}).'
+      CONTENT_TORRENT_REVIEWED: '### Congratulate! \n :clap: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was reviewed by user [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_TORRENT_VIP_CHANGED: 'Torrent VIP status changed',
+      CONTENT_TORRENT_VIP_CHANGED: '### VIP status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) VIP status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{vip_status}}**.'
     }
   };
 

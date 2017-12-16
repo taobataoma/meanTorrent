@@ -1285,7 +1285,7 @@
       CAN_NOT_DOWNLOAD_IDLE: '下载失败，您闲置了太长时间，在您下载任何种子前, 您必须进入帐户状态页再次激活您的帐户!'
     },
 
-    //server message string
+    //server message string, content string support markdown and emoji
     SERVER_MESSAGE: {
       TITLE_VIP_CHANGED_ADD: 'Vip 状态已改变',
       CONTENT_VIP_CHANGED_ADD: '### 恭喜！ \n 您的 Vip 状态已改变, 您的 Vip 将结束于: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
@@ -1326,7 +1326,10 @@
       CONTENT_TORRENT_THUMBS_UP: '### 点赞! \n :+1: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被用户 [{{by_name}}](/userinfo/{{by_id}}) 点赞.',
 
       TITLE_TORRENT_REVIEWED: '种子被审核通过',
-      CONTENT_TORRENT_REVIEWED: '### 恭喜! \n :clap: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 审核通过.'
+      CONTENT_TORRENT_REVIEWED: '### 恭喜! \n :clap: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 审核通过.',
+
+      TITLE_TORRENT_VIP_CHANGED: '种子 VIP 状态改变',
+      CONTENT_TORRENT_VIP_CHANGED: '### VIP 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) VIP 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{vip_status}}**.'
     }
   };
 
