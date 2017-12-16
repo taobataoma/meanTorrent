@@ -1287,11 +1287,16 @@
 
     //server message string
     SERVER_MESSAGE: {
-      TITLE_VIP_CHANGED: 'Vip 状态已改变',
+      TITLE_VIP_CHANGED_ADD: 'Vip 状态已改变',
       CONTENT_VIP_CHANGED_ADD: '### 恭喜！ \n 您的 Vip 状态已改变, 您的 Vip 将结束于: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
 
       TITLE_MAKER_CREATE: '资源制作小组已建立',
-      CONTENT_MAKER_CREATE: '管理员已为您创建资源制作小组 **-={{maker_group_name}}=-** , 您现在是该小组的创建人, 感谢您为 **{{site_name}}** 所做的贡献! :100:'
+      CONTENT_MAKER_CREATE: '管理员已为您创建资源制作小组 **-={{maker_group_name}}=-** , 您现在是该小组的创建人, 感谢您为 **{{site_name}}** 所做的贡献! :100:',
+
+      TITLE_HNR_WARNING_ADD: '新的 H&R 警告',
+      CONTENT_HNR_WARNING_ADD: '###H&R 警告! \n 您刚刚得到一个 h&r 警告在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}), 您需要继续做种, 这个警告会在该种分享率大于 {{hnr_ratio}} 或做种时间大于 {{hnr_days}} 天时自动清除，您也可以从这里 [warning list](/status/warning) 使用系统积分手动清除.',
+      TITLE_HNR_WARNING_REMOVE: 'H&R 警告移除',
+      CONTENT_HNR_WARNING_REMOVE: '###H&R 警告已移除! \n 恭喜您, 您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上的 h&r 警告已经移除.'
     }
   };
 

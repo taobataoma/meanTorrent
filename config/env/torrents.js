@@ -317,6 +317,25 @@ module.exports = {
     },
 
     /**
+     * @serverNotice
+     *
+     * server auto notice settings
+     *
+     * @action:       notice actions
+     *      @title:   notice title in translate string of SERVER_MESSAGE
+     *      @content: notice content in translate string of SERVER_MESSAGE
+     *      @enable:  enable switch
+     */
+    serverNotice: {
+      action: {
+        makerCreate: {title: 'TITLE_MAKER_CREATE', content: 'CONTENT_MAKER_CREATE', enable: true},
+        vipStatusChanged: {title: 'TITLE_VIP_CHANGED_ADD', content: 'CONTENT_VIP_CHANGED_ADD', enable: true},
+        hnrWarningAddByAnnounce: {title: 'TITLE_HNR_WARNING_ADD', content: 'CONTENT_HNR_WARNING_ADD', enable: true},
+        hnrWarningRemoveByAnnounce: {title: 'TITLE_HNR_WARNING_REMOVE', content: 'CONTENT_HNR_WARNING_REMOVE', enable: true}
+      }
+    },
+
+    /**
      * @trace
      *
      * system trace logs settings
@@ -613,7 +632,7 @@ module.exports = {
      */
     hitAndRun: {
       condition: {
-        seedTime: 24 * 60 * 60 * 1000 * 7,
+        seedTime: 60 * 60 * 1000 * 24 * 7,
         ratio: 1.5
       },
       forbiddenDownloadMinWarningNumber: 3,

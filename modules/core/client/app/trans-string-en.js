@@ -1287,11 +1287,16 @@
 
     //server message string
     SERVER_MESSAGE: {
-      TITLE_VIP_CHANGED: 'Vip status changed',
+      TITLE_VIP_CHANGED_ADD: 'Vip status changed',
       CONTENT_VIP_CHANGED_ADD: '### Welcome! \n Your vip status changed, now end at: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
 
       TITLE_MAKER_CREATE: 'Maker group has created',
-      CONTENT_MAKER_CREATE: 'Administrator already created a maker group **-={{maker_group_name}}=-** for you, you are the group founder now, Thank you for your contribution on **{{site_name}}** :100:'
+      CONTENT_MAKER_CREATE: 'Administrator already created a maker group **-={{maker_group_name}}=-** for you, you are the group founder now, Thank you for your contribution on **{{site_name}}** :100:',
+
+      TITLE_HNR_WARNING_ADD: 'New H&R warning',
+      CONTENT_HNR_WARNING_ADD: '###H&R warning! \n You just got a h&r warning on torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}), please continue to seeding, the warning will be auto cleanup when the seed ratio more than {{hnr_ratio}} or seed time more than {{hnr_days}} days or clean up manually at [warning list](/status/warning).',
+      TITLE_HNR_WARNING_REMOVE: 'H&R warning removed',
+      CONTENT_HNR_WARNING_REMOVE: '###H&R warning removed! \n Congratulate, your h&r warning ont torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) already clean up.'
     }
   };
 

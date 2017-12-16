@@ -308,6 +308,7 @@ exports.announce = function (req, res) {
         torrent: req.torrent._id,
         user: req.passkeyuser._id
       })
+        .populate('torrent')
         .exec(function (err, t) {
           if (err) {
             done(185);

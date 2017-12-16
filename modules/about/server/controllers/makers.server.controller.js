@@ -15,6 +15,7 @@ var traceConfig = config.meanTorrentConfig.trace;
 var appConfig = config.meanTorrentConfig.app;
 var mtDebug = require(path.resolve('./config/lib/debug'));
 var serverMessage = require(path.resolve('./config/lib/server-message'));
+var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 
 /**
  * Create an maker
@@ -48,7 +49,12 @@ exports.create = function (req, res) {
         });
 
         //add server message
-        serverMessage.addMessage(user._id, 'TITLE_MAKER_CREATE', 'CONTENT_MAKER_CREATE', {maker_group_name: maker.name, site_name: appConfig.name});
+        if (serverNoticeConfig.action.makerCreate.enable) {
+          serverMessage.addMessage(user._id, serverNoticeConfig.action.makerCreate.title, serverNoticeConfig.action.makerCreate.content, {
+            maker_group_name: maker.name,
+            site_name: appConfig.name
+          });
+        }
 
         //create trace log
         traceLogCreate(req, traceConfig.action.OperCreateMakerGroup, {
