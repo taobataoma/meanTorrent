@@ -1314,7 +1314,13 @@
       CONTENT_FORUM_REPLY_DELETED: '您在论坛主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) 发表的回复被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
 
       TITLE_FORUM_BECOME_MODERATOR: '恭喜您成为论坛版主',
-      CONTENT_FORUM_BECOME_MODERATOR: '### 恭喜! \n :clap: 您已成为论坛 [{{forum_name}}](/forums/{{forum_id}}) 的版主, 感谢您为论坛做出贡献.'
+      CONTENT_FORUM_BECOME_MODERATOR: '### 恭喜! \n :clap: 您已成为论坛 [{{forum_name}}](/forums/{{forum_id}}) 的版主, 感谢您为论坛做出贡献.',
+
+      TITLE_TORRENT_NEW_COMMENT: '上传的种子有新留言',
+      CONTENT_TORRENT_NEW_COMMENT: '### 新留言! \n :collision: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 有一条新留言，提交来自用户 [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_TORRENT_COMMENT_DELETED: '种子留言被删除',
+      CONTENT_TORRENT_COMMENT_DELETED: '您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 下的留言被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.'
     }
   };
 

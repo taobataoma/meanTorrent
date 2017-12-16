@@ -14,6 +14,8 @@ var path = require('path'),
   async = require('async');
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
+var serverMessage = require(path.resolve('./config/lib/server-message'));
+var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 
 /**
  * create a comment of torrent
@@ -44,6 +46,16 @@ exports.create = function (req, res) {
           });
         } else {
           res.json(torrent);
+
+          //add server message
+          if (serverNoticeConfig.action.torrentNewComment.enable && !torrent.user._id.equals(req.user._id)) {
+            serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.torrentNewComment.title, serverNoticeConfig.action.torrentNewComment.content, {
+              torrent_file_name: torrent.torrent_filename,
+              torrent_id: torrent._id,
+              by_name: req.user.displayName,
+              by_id: req.user._id
+            });
+          }
         }
       });
     }
@@ -84,9 +96,12 @@ exports.update = function (req, res) {
  */
 exports.delete = function (req, res) {
   var torrent = req.torrent;
+  var commentId = undefined;
 
   torrent._replies.forEach(function (r) {
     if (r._id.equals(req.params.commentId)) {
+      commentId = r.user._id;
+
       torrent._replies.pull(r);
       torrent.save(function (err) {
         if (err) {
@@ -95,6 +110,16 @@ exports.delete = function (req, res) {
           });
         } else {
           res.json(torrent);
+
+          //add server message
+          if (serverNoticeConfig.action.torrentCommentDeleted.enable) {
+            serverMessage.addMessage(commentId, serverNoticeConfig.action.torrentCommentDeleted.title, serverNoticeConfig.action.torrentCommentDeleted.content, {
+              torrent_file_name: torrent.torrent_filename,
+              torrent_id: torrent._id,
+              by_name: req.user.displayName,
+              by_id: req.user._id
+            });
+          }
         }
       });
     }
