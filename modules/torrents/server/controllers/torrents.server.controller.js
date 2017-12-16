@@ -797,6 +797,17 @@ exports.toggleHnRStatus = function (req, res) {
       //remove the complete data and update user`s warning number when the H&R prop to false
       if (!torrent.torrent_hnr)
         removeTorrentHnRWarning(torrent._id);
+
+      //add server message
+      if (serverNoticeConfig.action.torrentHnRChanged.enable) {
+        serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.torrentHnRChanged.title, serverNoticeConfig.action.torrentHnRChanged.content, {
+          torrent_file_name: torrent.torrent_filename,
+          torrent_id: torrent._id,
+          by_name: req.user.displayName,
+          by_id: req.user._id,
+          hnr_status: torrent.torrent_hnr ? 'ON' : 'OFF'
+        });
+      }
     }
   });
 };
