@@ -1300,8 +1300,20 @@
       TITLE_VIP_CHANGED_ADD: 'Vip 状态已改变',
       CONTENT_VIP_CHANGED_ADD: '### 恭喜！ \n 您的 Vip 状态已改变, 您的 Vip 将结束于: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
 
-      TITLE_MAKER_CREATE: '资源制作小组已建立',
-      CONTENT_MAKER_CREATE: '管理员已为您创建资源制作小组 **-={{maker_group_name}}=-** , 您现在是该小组的创建人, 感谢您为 **{{site_name}}** 做出贡献! :100:',
+      TITLE_MAKER_CREATED: '资源制作小组已建立',
+      CONTENT_MAKER_CREATED: '管理员 [{{by_name}}](/userinfo/{{by_id}}) 已为您创建资源制作小组 [{{maker_name}}](/about/maker/{{maker_id}}), 您现在是该小组的创建人, 感谢您为 **{{site_name}}** 做出贡献! :100:',
+
+      TITLE_MAKER_DELETED: '资源制作小组已删除',
+      CONTENT_MAKER_DELETED: ':warning: 属于您的资源制作小组 **-={{maker_name}}=-** 已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除, 感谢您为 **{{site_name}}** 所做出的贡献!',
+
+      TITLE_MAKER_UPLOAD_ACCESS_CHANGED: '资源制作小组上传权限已变更',
+      CONTENT_MAKER_UPLOAD_ACCESS_CHANGED: '### 上传权限已变更! \n 属于您的资源制作小组 [{{maker_name}}](/about/maker/{{maker_id}}) 的上传权限已由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 变更, 当前权限为 **{{maker_access | translate}}**.',
+
+      TITLE_MAKER_ADD_MEMBER: '欢迎您成为资源制作小组成员',
+      CONTENT_MAKER_ADD_MEMBER: '### 欢迎! \n :clap: 管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 已将您加入资源制作小组 [{{maker_name}}](/about/maker/{{maker_id}}) 并成为其中的一员，感谢您为 **{{site_name}}** 做出贡献! ',
+
+      TITLE_MAKER_REMOVE_MEMBER: '退出资源制作小组',
+      CONTENT_MAKER_REMOVE_MEMBER: ':warning: 管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 已将您移出资源制作小组 [{{maker_name}}](/about/maker/{{maker_id}}), 感谢您为 **{{site_name}}** 所做出的贡献!',
 
       TITLE_HNR_WARNING_ADD: '新的 H&R 警告',
       CONTENT_HNR_WARNING_ADD: '### H&R 警告! \n 您刚刚得到一个 h&r 警告在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}), 您需要继续做种, 这个警告会在该种分享率大于 {{hnr_ratio}} 或做种时间大于 {{hnr_days}} 天时自动清除，您也可以从这里 [warning list](/status/warning) 使用系统积分手动清除.',
@@ -1318,10 +1330,10 @@
       CONTENT_FORUM_REPLY_THUMBS_UP: '### 点赞! \n :+1: 您在论坛主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) 发表的回复收到一个点赞来自用户 [{{by_name}}](/userinfo/{{by_id}})。',
 
       TITLE_FORUM_TOPIC_DELETED: '论坛主题被删除',
-      CONTENT_FORUM_TOPIC_DELETED: '您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
+      CONTENT_FORUM_TOPIC_DELETED: ':warning: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
 
       TITLE_FORUM_REPLY_DELETED: '论坛回复被删除',
-      CONTENT_FORUM_REPLY_DELETED: '您在论坛主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) 发表的回复被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
+      CONTENT_FORUM_REPLY_DELETED: ':warning: 您在论坛主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) 发表的回复被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
 
       TITLE_FORUM_BECOME_MODERATOR: '恭喜您成为论坛版主',
       CONTENT_FORUM_BECOME_MODERATOR: '### 恭喜! \n :clap: 您已成为论坛 [{{forum_name}}](/forums/{{forum_id}}) 的版主, 感谢您为论坛做出贡献.',
@@ -1330,7 +1342,7 @@
       CONTENT_TORRENT_NEW_COMMENT: '### 新留言! \n :collision: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 有一条新留言，提交来自用户 [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_TORRENT_COMMENT_DELETED: '上传的种子留言被删除',
-      CONTENT_TORRENT_COMMENT_DELETED: '您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 下的留言被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
+      CONTENT_TORRENT_COMMENT_DELETED: ':warning: 您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 下的留言被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
 
       TITLE_TORRENT_THUMBS_UP: '上传的种子被点赞',
       CONTENT_TORRENT_THUMBS_UP: '### 点赞! \n :+1: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被用户 [{{by_name}}](/userinfo/{{by_id}}) 点赞.',

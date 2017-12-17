@@ -1300,8 +1300,20 @@
       TITLE_VIP_CHANGED_ADD: 'Vip status changed',
       CONTENT_VIP_CHANGED_ADD: '### Welcome! \n Your vip status changed, now end at: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
 
-      TITLE_MAKER_CREATE: 'Maker group has created',
-      CONTENT_MAKER_CREATE: 'Administrator already created a maker group **-={{maker_group_name}}=-** for you, you are the group founder now, Thank you for your contribution on **{{site_name}}** :100:',
+      TITLE_MAKER_CREATED: 'Maker group has created',
+      CONTENT_MAKER_CREATED: 'Administrator [{{by_name}}](/userinfo/{{by_id}}) already created a maker group [{{maker_name}}](/about/maker/{{maker_id}}) for you, you are the group founder now, Thank you for your contribution on **{{site_name}}** :100:',
+
+      TITLE_MAKER_DELETED: 'Maker group was deleted',
+      CONTENT_MAKER_DELETED: ':warning: Your maker group **-={{maker_name}}=-** was deleted by user [{{by_name}}](/userinfo/{{by_id}}), Thank you for your contribution on **{{site_name}}**.',
+
+      TITLE_MAKER_UPLOAD_ACCESS_CHANGED: 'Maker group upload access changed',
+      CONTENT_MAKER_UPLOAD_ACCESS_CHANGED: '### upload access changed! \n Your maker group [{{maker_name}}](/about/maker/{{maker_id}}) upload access was changed by user [{{by_name}}](/userinfo/{{by_id}}), current access is **{{maker_access | translate}}**.',
+
+      TITLE_MAKER_ADD_MEMBER: 'Welcome become maker group member',
+      CONTENT_MAKER_ADD_MEMBER: '### Welcome! \n :clap: You have become a member of maker group [{{maker_name}}](/about/maker/{{maker_id}}) by user [{{by_name}}](/userinfo/{{by_id}}), Thank you for your contribution on **{{site_name}}**.',
+
+      TITLE_MAKER_REMOVE_MEMBER: 'Quit out of maker group',
+      CONTENT_MAKER_REMOVE_MEMBER: ':warning: You already quit out of maker group [{{maker_name}}](/about/maker/{{maker_id}}) by user [{{by_name}}](/userinfo/{{by_id}}), Thank you for your contribution on **{{site_name}}**.',
 
       TITLE_HNR_WARNING_ADD: 'New H&R warning',
       CONTENT_HNR_WARNING_ADD: '### H&R warning! \n You just got a h&r warning on torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}), please continue to seeding, the warning will be auto cleanup when the seed ratio more than {{hnr_ratio}} or seed time more than {{hnr_days}} days or clean up manually at [warning list](/status/warning).',
@@ -1318,10 +1330,10 @@
       CONTENT_FORUM_REPLY_THUMBS_UP: '### Thumbs up! \n :+1: You posted reply of topic [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) in forum was be thumbs up by user [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_FORUM_TOPIC_DELETED: 'Topic in forum was deleted',
-      CONTENT_FORUM_TOPIC_DELETED: 'You posted topic [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) in forum was deleted by user [{{by_name}}](/userinfo/{{by_id}}).',
+      CONTENT_FORUM_TOPIC_DELETED: ':warning: You posted topic [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) in forum was deleted by user [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_FORUM_REPLY_DELETED: 'Reply in forum was deleted',
-      CONTENT_FORUM_REPLY_DELETED: 'You posted reply of topic [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) in forum was deleted by user [{{by_name}}](/userinfo/{{by_id}}).',
+      CONTENT_FORUM_REPLY_DELETED: ':warning: You posted reply of topic [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) in forum was deleted by user [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_FORUM_BECOME_MODERATOR: 'You have become the forum moderator',
       CONTENT_FORUM_BECOME_MODERATOR: '### Congratulate! \n :clap: You have become the forum [{{forum_name}}](/forums/{{forum_id}}) moderator, Thank you for your contribution.',
@@ -1330,7 +1342,7 @@
       CONTENT_TORRENT_NEW_COMMENT: '### New comment! \n :collision: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) has a new comment submit by user [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_TORRENT_COMMENT_DELETED: 'Torrent comment was deleted',
-      CONTENT_TORRENT_COMMENT_DELETED: 'You posted comment of torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}).',
+      CONTENT_TORRENT_COMMENT_DELETED: ':warning: You posted comment of torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_TORRENT_THUMBS_UP: 'Torrent was be thumbs up',
       CONTENT_TORRENT_THUMBS_UP: '### Thumbs up! \n :+1: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was be thumbs up by user [{{by_name}}](/userinfo/{{by_id}}).',

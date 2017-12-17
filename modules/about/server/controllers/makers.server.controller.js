@@ -49,10 +49,13 @@ exports.create = function (req, res) {
         });
 
         //add server message
-        if (serverNoticeConfig.action.makerCreate.enable) {
-          serverMessage.addMessage(user._id, serverNoticeConfig.action.makerCreate.title, serverNoticeConfig.action.makerCreate.content, {
-            maker_group_name: maker.name,
-            site_name: appConfig.name
+        if (serverNoticeConfig.action.makerCreated.enable) {
+          serverMessage.addMessage(user._id, serverNoticeConfig.action.makerCreated.title, serverNoticeConfig.action.makerCreated.content, {
+            maker_name: maker.name,
+            maker_id: maker._id,
+            site_name: appConfig.name,
+            by_name: req.user.displayName,
+            by_id: req.user._id
           });
         }
 
@@ -87,9 +90,11 @@ exports.read = function (req, res) {
  */
 exports.update = function (req, res) {
   var maker = req.maker;
+  var accessChanged = false;
 
   maker.name = req.body.name;
   maker.desc = req.body.desc;
+  accessChanged = (maker.upload_access !== req.body.upload_access);
   maker.upload_access = req.body.upload_access;
 
   maker.save(function (err) {
@@ -99,6 +104,17 @@ exports.update = function (req, res) {
       });
     } else {
       res.json(maker);
+
+      //add server message
+      if (serverNoticeConfig.action.makerUploadAccessChanged.enable && accessChanged) {
+        serverMessage.addMessage(maker.user._id, serverNoticeConfig.action.makerUploadAccessChanged.title, serverNoticeConfig.action.makerUploadAccessChanged.content, {
+          maker_name: maker.name,
+          maker_id: maker._id,
+          maker_access: maker.upload_access === 'review' ? 'UPLOADER.FIELDS_REVIEW' : 'UPLOADER.FIELDS_PASS',
+          by_name: req.user.displayName,
+          by_id: req.user._id
+        });
+      }
     }
   });
 };
@@ -116,6 +132,16 @@ exports.delete = function (req, res) {
       });
     } else {
       res.json(maker);
+
+      //add server message
+      if (serverNoticeConfig.action.makerDeleted.enable) {
+        serverMessage.addMessage(maker.user._id, serverNoticeConfig.action.makerDeleted.title, serverNoticeConfig.action.makerDeleted.content, {
+          maker_name: maker.name,
+          site_name: appConfig.name,
+          by_name: req.user.displayName,
+          by_id: req.user._id
+        });
+      }
     }
   });
 };
@@ -217,6 +243,17 @@ exports.addMember = function (req, res) {
         }
         mu.makers.push(maker);
         mu.save();
+
+        //add server message
+        if (serverNoticeConfig.action.makerAddMember.enable) {
+          serverMessage.addMessage(mu._id, serverNoticeConfig.action.makerAddMember.title, serverNoticeConfig.action.makerAddMember.content, {
+            maker_name: maker.name,
+            maker_id: maker._id,
+            site_name: appConfig.name,
+            by_name: req.user.displayName,
+            by_id: req.user._id
+          });
+        }
       }
     });
   }
@@ -257,6 +294,17 @@ exports.removeMember = function (req, res) {
             mu.makers.splice(mu.makers.indexOf(maker._id), 1);
             mu.save();
           }
+        }
+
+        //add server message
+        if (serverNoticeConfig.action.makerRemoveMember.enable) {
+          serverMessage.addMessage(mu._id, serverNoticeConfig.action.makerRemoveMember.title, serverNoticeConfig.action.makerRemoveMember.content, {
+            maker_name: maker.name,
+            maker_id: maker._id,
+            site_name: appConfig.name,
+            by_name: req.user.displayName,
+            by_id: req.user._id
+          });
         }
       }
     });
