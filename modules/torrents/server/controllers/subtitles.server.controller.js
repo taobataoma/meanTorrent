@@ -17,6 +17,8 @@ var path = require('path'),
 
 var scoreConfig = config.meanTorrentConfig.score;
 var mtDebug = require(path.resolve('./config/lib/debug'));
+var serverMessage = require(path.resolve('./config/lib/server-message'));
+var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 
 /**
  * create a subtitle of torrent
@@ -80,6 +82,17 @@ exports.create = function (req, res) {
 
                 scoreUpdate(req, req.user, scoreConfig.action.uploadSubtitle);
 
+                //add server message
+                if (serverNoticeConfig.action.torrentSubtitleNew.enable && !torrent.user._id.equals(req.user._id)) {
+                  serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.torrentSubtitleNew.title, serverNoticeConfig.action.torrentSubtitleNew.content, {
+                    torrent_file_name: torrent.torrent_filename,
+                    torrent_id: torrent._id,
+                    subtitle_file_name: subfile.subtitle_filename,
+                    by_name: req.user.displayName,
+                    by_id: req.user._id
+                  });
+                }
+
                 return;
               }
             });
@@ -123,9 +136,11 @@ exports.create = function (req, res) {
  */
 exports.delete = function (req, res) {
   var torrent = req.torrent;
+  var subtitleUid = undefined;
 
   torrent._subtitles.forEach(function (r) {
     if (r._id.equals(req.params.subtitleId)) {
+      subtitleUid = r.user._id;
       //DELETE the torrent file
       var sfile = config.uploads.subtitle.file.dest + r.subtitle_filename;
       fs.exists(sfile, function (exists) {
@@ -143,6 +158,17 @@ exports.delete = function (req, res) {
       res.json(torrent);
 
       scoreUpdate(req, torrent.user, scoreConfig.action.uploadSubtitleBeDeleted);
+
+      //add server message
+      if (serverNoticeConfig.action.torrentSubtitleDeleted.enable) {
+        serverMessage.addMessage(subtitleUid, serverNoticeConfig.action.torrentSubtitleDeleted.title, serverNoticeConfig.action.torrentSubtitleDeleted.content, {
+          torrent_file_name: torrent.torrent_filename,
+          torrent_id: torrent._id,
+          subtitle_file_name: r.subtitle_filename,
+          by_name: req.user.displayName,
+          by_id: req.user._id
+        });
+      }
     }
   });
 };

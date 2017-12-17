@@ -1348,7 +1348,13 @@
       CONTENT_TORRENT_SALE_CHANGED: '### Sale status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) sale status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{sale_status}}**.',
 
       TITLE_TORRENT_DELETED: 'Torrent was deleted',
-      CONTENT_TORRENT_DELETED: ':warning: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}), reason is: **{{reason | translate}}**.'
+      CONTENT_TORRENT_DELETED: ':warning: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}), reason is: **{{reason | translate}}**.',
+
+      TITLE_TORRENT_SUBTITLE_NEW: 'Torrent has new subtitle',
+      CONTENT_TORRENT_SUBTITLE_NEW: '### New subtitle! \n :new: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) has a new subtitle file **{{subtitle_file_name}}** upload by user [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_TORRENT_SUBTITLE_DELETED: 'Torrent subtitle file was deleted',
+      CONTENT_TORRENT_SUBTITLE_DELETED: ':warning: You uploaded subtitle file **{{subtitle_file_name}}** of torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}).'
     }
   };
 

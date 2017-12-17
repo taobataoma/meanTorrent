@@ -375,7 +375,6 @@
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
           var reason = result.reason;
-          if (reason === 'NULL') reason = undefined;
           if (reason === 'CUSTOM') reason = result.custom;
 
           var dt = new TorrentsService(item);

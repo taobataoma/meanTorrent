@@ -1329,26 +1329,32 @@
       TITLE_TORRENT_NEW_COMMENT: '上传的种子有新留言',
       CONTENT_TORRENT_NEW_COMMENT: '### 新留言! \n :collision: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 有一条新留言，提交来自用户 [{{by_name}}](/userinfo/{{by_id}}).',
 
-      TITLE_TORRENT_COMMENT_DELETED: '种子留言被删除',
+      TITLE_TORRENT_COMMENT_DELETED: '上传的种子留言被删除',
       CONTENT_TORRENT_COMMENT_DELETED: '您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 下的留言被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
 
-      TITLE_TORRENT_THUMBS_UP: '种子被点赞',
+      TITLE_TORRENT_THUMBS_UP: '上传的种子被点赞',
       CONTENT_TORRENT_THUMBS_UP: '### 点赞! \n :+1: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被用户 [{{by_name}}](/userinfo/{{by_id}}) 点赞.',
 
-      TITLE_TORRENT_REVIEWED: '种子被审核通过',
+      TITLE_TORRENT_REVIEWED: '上传的种子被审核通过',
       CONTENT_TORRENT_REVIEWED: '### 恭喜! \n :clap: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 审核通过.',
 
-      TITLE_TORRENT_VIP_CHANGED: '种子 VIP 状态改变',
+      TITLE_TORRENT_VIP_CHANGED: '上传的种子 VIP 状态改变',
       CONTENT_TORRENT_VIP_CHANGED: '### VIP 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) VIP 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{vip_status}}**.',
 
-      TITLE_TORRENT_HNR_CHANGED: '种子 H&R 状态改变',
+      TITLE_TORRENT_HNR_CHANGED: '上传的种子 H&R 状态改变',
       CONTENT_TORRENT_HNR_CHANGED: '### H&R 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) H&R 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{hnr_status}}**.',
 
-      TITLE_TORRENT_SALE_CHANGED: '种子促销状态改变',
+      TITLE_TORRENT_SALE_CHANGED: '上传的种子促销状态改变',
       CONTENT_TORRENT_SALE_CHANGED: '### 促销状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 促销状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{sale_status}}**.',
 
-      TITLE_TORRENT_DELETED: '种子被删除',
-      CONTENT_TORRENT_DELETED: ':warning: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除, 理由是: **{{reason | translate}}**.'
+      TITLE_TORRENT_DELETED: '上传的种子被删除',
+      CONTENT_TORRENT_DELETED: ':warning: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除, 理由是: **{{reason | translate}}**.',
+
+      TITLE_TORRENT_SUBTITLE_NEW: '上传的种子有新的字幕文件',
+      CONTENT_TORRENT_SUBTITLE_NEW: '### 新的字幕文件! \n :new: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 有一个新的字幕文件 {{subtitle_file_name}} 由用户 [{{by_name}}](/userinfo/{{by_id}}) 上传.',
+
+      TITLE_TORRENT_SUBTITLE_DELETED: '上传的种子字幕文件被删除',
+      CONTENT_TORRENT_SUBTITLE_DELETED: ':warning: 您为种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上传的字幕文件 {{subtitle_file_name}} 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.'
     }
   };
 
