@@ -92,9 +92,9 @@ exports.update = function (req, res) {
   var maker = req.maker;
   var accessChanged = false;
 
+  accessChanged = (maker.upload_access !== req.body.upload_access);
   maker.name = req.body.name;
   maker.desc = req.body.desc;
-  accessChanged = (maker.upload_access !== req.body.upload_access);
   maker.upload_access = req.body.upload_access;
 
   maker.save(function (err) {
@@ -112,7 +112,8 @@ exports.update = function (req, res) {
           maker_id: maker._id,
           maker_access: maker.upload_access === 'review' ? 'UPLOADER.FIELDS_REVIEW' : 'UPLOADER.FIELDS_PASS',
           by_name: req.user.displayName,
-          by_id: req.user._id
+          by_id: req.user._id,
+          site_name: appConfig.name
         });
       }
     }

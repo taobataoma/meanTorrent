@@ -1297,6 +1297,12 @@
 
     //server message string, content string support markdown and emoji
     SERVER_MESSAGE: {
+      TITLE_USER_ROLE_CHANGED: '用户身份状态已改变',
+      CONTENT_USER_ROLE_CHANGED: '### 身份状态已改变! \n 您的用户身份状态已由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前身份是 **{{user_role}}**, 感谢您为 **{{site_name}}** 做出贡献! ',
+
+      TITLE_USER_UPLOAD_ACCESS_CHANGED: '上传权限已变更',
+      CONTENT_USER_UPLOAD_ACCESS_CHANGED: '### 上传权限已变更! \n 您的上传权限已由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 变更, 当前权限为 **{{upload_access | translate}}**, 感谢您为 **{{site_name}}** 做出贡献! ',
+
       TITLE_VIP_CHANGED_ADD: 'Vip 状态已改变',
       CONTENT_VIP_CHANGED_ADD: '### 恭喜！ \n 您的 Vip 状态已改变, 您的 Vip 将结束于: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
 
@@ -1307,7 +1313,7 @@
       CONTENT_MAKER_DELETED: ':warning: 属于您的资源制作小组 **-={{maker_name}}=-** 已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除, 感谢您为 **{{site_name}}** 所做出的贡献!',
 
       TITLE_MAKER_UPLOAD_ACCESS_CHANGED: '资源制作小组上传权限已变更',
-      CONTENT_MAKER_UPLOAD_ACCESS_CHANGED: '### 上传权限已变更! \n 属于您的资源制作小组 [{{maker_name}}](/about/maker/{{maker_id}}) 的上传权限已由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 变更, 当前权限为 **{{maker_access | translate}}**.',
+      CONTENT_MAKER_UPLOAD_ACCESS_CHANGED: '### 上传权限已变更! \n 属于您的资源制作小组 [{{maker_name}}](/about/maker/{{maker_id}}) 的上传权限已由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 变更, 当前权限为 **{{maker_access | translate}}**, 感谢您为 **{{site_name}}** 做出贡献! ',
 
       TITLE_MAKER_ADD_MEMBER: '欢迎您成为资源制作小组成员',
       CONTENT_MAKER_ADD_MEMBER: '### 欢迎! \n :clap: 管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 已将您加入资源制作小组 [{{maker_name}}](/about/maker/{{maker_id}}) 并成为其中的一员，感谢您为 **{{site_name}}** 做出贡献! ',
@@ -1321,13 +1327,13 @@
       CONTENT_HNR_WARNING_REMOVE: '### H&R 警告已移除! \n 恭喜您, 您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上的 h&r 警告已经移除.',
 
       TITLE_FORUM_NEW_TOPIC_REPLY: '论坛主题有了新回复',
-      CONTENT_FORUM_NEW_TOPIC_REPLY: '### 新回复! \n :collision: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 有了一个新回复来自用户 [{{by_name}}](/userinfo/{{by_id}})。',
+      CONTENT_FORUM_NEW_TOPIC_REPLY: '### 新回复! \n :collision: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 有了一个新回复来自用户 [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_FORUM_TOPIC_THUMBS_UP: '论坛主题被点赞',
-      CONTENT_FORUM_TOPIC_THUMBS_UP: '### 点赞! \n :+1: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 收到一个点赞来自用户 [{{by_name}}](/userinfo/{{by_id}})。',
+      CONTENT_FORUM_TOPIC_THUMBS_UP: '### 点赞! \n :+1: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 收到一个点赞来自用户 [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_FORUM_REPLY_THUMBS_UP: '论坛回复被点赞',
-      CONTENT_FORUM_REPLY_THUMBS_UP: '### 点赞! \n :+1: 您在论坛主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) 发表的回复收到一个点赞来自用户 [{{by_name}}](/userinfo/{{by_id}})。',
+      CONTENT_FORUM_REPLY_THUMBS_UP: '### 点赞! \n :+1: 您在论坛主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) 发表的回复收到一个点赞来自用户 [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_FORUM_TOPIC_DELETED: '论坛主题被删除',
       CONTENT_FORUM_TOPIC_DELETED: ':warning: 您在论坛发表的主题 [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}) 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',

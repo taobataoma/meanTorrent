@@ -1297,6 +1297,12 @@
 
     //server message string, content string support markdown and emoji
     SERVER_MESSAGE: {
+      TITLE_USER_ROLE_CHANGED: 'User role status changed',
+      CONTENT_USER_ROLE_CHANGED: '### Role status changed! \n Your role was modified by user [{{by_name}}](/userinfo/{{by_id}}), current role is **{{user_role}}**, Thank you for your contribution on **{{site_name}}**.',
+
+      TITLE_USER_UPLOAD_ACCESS_CHANGED: 'Upload access changed',
+      CONTENT_USER_UPLOAD_ACCESS_CHANGED: '### upload access changed! \n Your upload was changed by user [{{by_name}}](/userinfo/{{by_id}}), current access is **{{upload_access | translate}}**, Thank you for your contribution on **{{site_name}}**.',
+
       TITLE_VIP_CHANGED_ADD: 'Vip status changed',
       CONTENT_VIP_CHANGED_ADD: '### Welcome! \n Your vip status changed, now end at: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
 
@@ -1307,7 +1313,7 @@
       CONTENT_MAKER_DELETED: ':warning: Your maker group **-={{maker_name}}=-** was deleted by user [{{by_name}}](/userinfo/{{by_id}}), Thank you for your contribution on **{{site_name}}**.',
 
       TITLE_MAKER_UPLOAD_ACCESS_CHANGED: 'Maker group upload access changed',
-      CONTENT_MAKER_UPLOAD_ACCESS_CHANGED: '### upload access changed! \n Your maker group [{{maker_name}}](/about/maker/{{maker_id}}) upload access was changed by user [{{by_name}}](/userinfo/{{by_id}}), current access is **{{maker_access | translate}}**.',
+      CONTENT_MAKER_UPLOAD_ACCESS_CHANGED: '### upload access changed! \n Your upload access of maker group [{{maker_name}}](/about/maker/{{maker_id}}) was changed by user [{{by_name}}](/userinfo/{{by_id}}), current access is **{{maker_access | translate}}**, Thank you for your contribution on **{{site_name}}**.',
 
       TITLE_MAKER_ADD_MEMBER: 'Welcome become maker group member',
       CONTENT_MAKER_ADD_MEMBER: '### Welcome! \n :clap: You have become a member of maker group [{{maker_name}}](/about/maker/{{maker_id}}) by user [{{by_name}}](/userinfo/{{by_id}}), Thank you for your contribution on **{{site_name}}**.',

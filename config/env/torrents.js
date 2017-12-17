@@ -334,7 +334,9 @@ module.exports = {
         makerAddMember: {title: 'TITLE_MAKER_ADD_MEMBER', content: 'CONTENT_MAKER_ADD_MEMBER', enable: true},
         makerRemoveMember: {title: 'TITLE_MAKER_REMOVE_MEMBER', content: 'CONTENT_MAKER_REMOVE_MEMBER', enable: true},
 
-        vipStatusChanged: {title: 'TITLE_VIP_CHANGED_ADD', content: 'CONTENT_VIP_CHANGED_ADD', enable: true},
+        userVipStatusChanged: {title: 'TITLE_USER_VIP_CHANGED_ADD', content: 'CONTENT_USER_VIP_CHANGED_ADD', enable: true},
+        userRoleChanged: {title: 'TITLE_USER_ROLE_CHANGED', content: 'CONTENT_USER_ROLE_CHANGED', enable: true},
+        userUploadAccessChanged: {title: 'TITLE_USER_UPLOAD_ACCESS_CHANGED', content: 'CONTENT_USER_UPLOAD_ACCESS_CHANGED', enable: true},
 
         hnrWarningAddByAnnounce: {title: 'TITLE_HNR_WARNING_ADD', content: 'CONTENT_HNR_WARNING_ADD', enable: true},
         hnrWarningRemoveByAnnounce: {title: 'TITLE_HNR_WARNING_REMOVE', content: 'CONTENT_HNR_WARNING_REMOVE', enable: true},
@@ -355,10 +357,7 @@ module.exports = {
         torrentSaleChanged: {title: 'TITLE_TORRENT_SALE_CHANGED', content: 'CONTENT_TORRENT_SALE_CHANGED', enable: true},
         torrentDeleted: {title: 'TITLE_TORRENT_DELETED', content: 'CONTENT_TORRENT_DELETED', enable: true},
         torrentSubtitleNew: {title: 'TITLE_TORRENT_SUBTITLE_NEW', content: 'CONTENT_TORRENT_SUBTITLE_NEW', enable: true},
-        torrentSubtitleDeleted: {title: 'TITLE_TORRENT_SUBTITLE_DELETED', content: 'CONTENT_TORRENT_SUBTITLE_DELETED', enable: true},
-
-        userRoleChanged: {title: 'TITLE_USER_ROLE_CHANGED', content: 'CONTENT_USER_ROLE_CHANGED', enable: true},
-        userUploadAccessChanged: {title: 'TITLE_USER_UPLOAD_ACCESS_CHANGED', content: 'CONTENT_USER_UPLOAD_ACCESS_CHANGED', enable: true}
+        torrentSubtitleDeleted: {title: 'TITLE_TORRENT_SUBTITLE_DELETED', content: 'CONTENT_TORRENT_SUBTITLE_DELETED', enable: true}
       }
     },
 

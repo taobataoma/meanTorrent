@@ -20,8 +20,10 @@ const PEERSTATE_LEECHER = 'leecher';
 
 var traceConfig = config.meanTorrentConfig.trace;
 var mtDebug = require(path.resolve('./config/lib/debug'));
+var appConfig = config.meanTorrentConfig.app;
 var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
+
 /**
  * Show the current user
  */
@@ -34,7 +36,9 @@ exports.read = function (req, res) {
  */
 exports.update = function (req, res) {
   var user = req.model;
+  var accessChanged = false;
 
+  accessChanged = (user.upload_access !== req.body.upload_access);
   // For security purposes only merge these parameters
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;
@@ -50,6 +54,16 @@ exports.update = function (req, res) {
     }
 
     res.json(user);
+
+    //add server message
+    if (serverNoticeConfig.action.userUploadAccessChanged.enable && accessChanged) {
+      serverMessage.addMessage(user._id, serverNoticeConfig.action.userUploadAccessChanged.title, serverNoticeConfig.action.userUploadAccessChanged.content, {
+        upload_access: user.upload_access === 'review' ? 'UPLOADER.FIELDS_REVIEW' : 'UPLOADER.FIELDS_PASS',
+        by_name: req.user.displayName,
+        by_id: req.user._id,
+        site_name: appConfig.name
+      });
+    }
 
     //create trace log
     traceLogCreate(req, traceConfig.action.AdminUserEdit, {
@@ -204,6 +218,16 @@ exports.updateUserRole = function (req, res) {
     } else {
       user.roles = req.body.userRole;
       res.json(user);
+
+      //add server message
+      if (serverNoticeConfig.action.userRoleChanged.enable) {
+        serverMessage.addMessage(user._id, serverNoticeConfig.action.userRoleChanged.title, serverNoticeConfig.action.userRoleChanged.content, {
+          by_name: req.user.displayName,
+          by_id: req.user._id,
+          user_role: req.body.userRole[0],
+          site_name: appConfig.name
+        });
+      }
 
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminUpdateUserRole, {
@@ -373,8 +397,10 @@ exports.addVIPMonths = function (req, res) {
       res.json(user);
 
       //add server message
-      if (serverNoticeConfig.action.vipStatusChanged.enable) {
-        serverMessage.addMessage(user._id, serverNoticeConfig.action.vipStatusChanged.title, serverNoticeConfig.action.vipStatusChanged.content, {vip_end_at: user.vip_end_at});
+      if (serverNoticeConfig.action.userVipStatusChanged.enable) {
+        serverMessage.addMessage(user._id, serverNoticeConfig.action.userVipStatusChanged.title, serverNoticeConfig.action.userVipStatusChanged.content, {
+          vip_end_at: user.vip_end_at
+        });
       }
 
       //create trace log
