@@ -575,6 +575,9 @@
                 <dt class="h-line">{{ 'VIDEO_SIZE' | translate}}：</dt>
                 <dd class="h-line">{{vm.torrentLocalInfo.torrent_size | bytes:2}}</dd>
 
+                <dt class="h-line">{{ 'UPLOAD_TIME' | translate}}：</dt>
+                <dd class="h-line">{{vm.torrentLocalInfo.createdat | date: 'yyyy-MM-dd HH:mm:ss'}}</dd>
+
                 <dt class="h-line">{{ 'ATTRIBUTE_TAGS' | translate}}：</dt>
                 <dd class="h-line">
                     <div class="list-all-tags">

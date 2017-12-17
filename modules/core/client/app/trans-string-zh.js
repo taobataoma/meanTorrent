@@ -300,6 +300,7 @@
     VIDEO_NFO: '视频 NFO',
     ALL_FILES_LIST: '文件清单',
     VIDEO_SIZE: '视频文件大小',
+    UPLOAD_TIME: '上传时间',
     VIDEO_SALE_INFO: '视频促销信息',
     SALE_EXPIRES_TIME: '过期',
     UPLOAD_SUBTITLE: '上传字幕文件',
