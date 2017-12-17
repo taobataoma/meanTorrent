@@ -118,12 +118,10 @@ CompleteSchema.methods.countHnRWarning = function (u) {
         }).exec();
 
         //add server message
-        if (serverNoticeConfig.action.hnrWarningAddByAnnounce.enable) {
-          serverMessage.addMessage(u._id, serverNoticeConfig.action.hnrWarningAddByAnnounce.title, serverNoticeConfig.action.hnrWarningAddByAnnounce.content, {
+        if (serverNoticeConfig.action.hnrWarningRemoveByAnnounce.enable) {
+          serverMessage.addMessage(u._id, serverNoticeConfig.action.hnrWarningRemoveByAnnounce.title, serverNoticeConfig.action.hnrWarningRemoveByAnnounce.content, {
             torrent_file_name: this.torrent.torrent_filename,
-            torrent_id: this.torrent._id,
-            hnr_ratio: hnrConfig.condition.ratio,
-            hnr_days: hnrConfig.condition.seedTime / (60 * 60 * 1000 * 24)
+            torrent_id: this.torrent._id
           });
         }
       }
@@ -139,10 +137,12 @@ CompleteSchema.methods.countHnRWarning = function (u) {
         }).exec();
 
         //add server message
-        if (serverNoticeConfig.action.hnrWarningRemoveByAnnounce.enable) {
-          serverMessage.addMessage(u._id, serverNoticeConfig.action.hnrWarningRemoveByAnnounce.title, serverNoticeConfig.action.hnrWarningRemoveByAnnounce.content, {
+        if (serverNoticeConfig.action.hnrWarningAddByAnnounce.enable) {
+          serverMessage.addMessage(u._id, serverNoticeConfig.action.hnrWarningAddByAnnounce.title, serverNoticeConfig.action.hnrWarningAddByAnnounce.content, {
             torrent_file_name: this.torrent.torrent_filename,
-            torrent_id: this.torrent._id
+            torrent_id: this.torrent._id,
+            hnr_ratio: hnrConfig.condition.ratio,
+            hnr_days: hnrConfig.condition.seedTime / (60 * 60 * 1000 * 24)
           });
         }
       }
