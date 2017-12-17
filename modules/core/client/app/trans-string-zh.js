@@ -17,6 +17,9 @@
     DEMO_INFO: '欢迎进入meanTorrent演示站点, 您可以手动注册一个普通帐户或者使用admin演示帐号 <mark>demo</mark> 与密码 <mark>demoAdmin12#</mark>登录, 但请不要删除我们的演示数据, 谢谢!',
     WARNING_POPUP_STRING: '这里是一个 <strong style="color:#f00">DEMO SITE</strong>, 所有资源仅供下载测试使用, 请在测试完毕后24小时内立即删除, 我们推荐您使用正版资源!',
 
+    VALUE_NULL: '无',
+    VALUE_CUSTOM: '自定义',
+
     //client topbar menu
     MENU_CHAT: '聊天室',
     MENU_TORRENTS: '种子',
@@ -357,6 +360,12 @@
     TORRENT_DELETE_CONFIRM_BODY_TEXT: '你确定要删除这条种子吗?',
     TORRENT_DELETE_SUCCESSFULLY: '种子删除成功',
     TORRENT_DELETE_ERROR: '种子删除失败',
+    TORRENT_DELETE_REASON: '请选择或输入一个删除种子的理由给上传者:',
+    TORRENT_ENTER_DELETE_REASON: '请输入自定义删除理由',
+    TORRENT_DELETE_REASON_OVERVIEW: '种子简介信息缺少或者不完整',
+    TORRENT_DELETE_REASON_NFO: '种子NFO信息缺少或者不完整',
+    TORRENT_DELETE_REASON_QUALITY: '种子资源质量太低下',
+    TORRENT_DELETE_REASON_ILLEGAL: '该种子是非法的',
     TORRENT_UPDATE_CONFIRM_OK: '更新',
     TORRENT_UPDATE_CONFIRM_CANCEL: '取消',
     TORRENT_UPDATE_CONFIRM_HEADER_TEXT: '更新确认',
@@ -1336,7 +1345,10 @@
       CONTENT_TORRENT_HNR_CHANGED: '### H&R 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) H&R 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{hnr_status}}**.',
 
       TITLE_TORRENT_SALE_CHANGED: '种子促销状态改变',
-      CONTENT_TORRENT_SALE_CHANGED: '### 促销状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 促销状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{sale_status}}**.'
+      CONTENT_TORRENT_SALE_CHANGED: '### 促销状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 促销状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{sale_status}}**.',
+
+      TITLE_TORRENT_DELETED: '种子被删除',
+      CONTENT_TORRENT_DELETED: ':warning: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除, 理由是: **{{reason | translate}}**.'
     }
   };
 

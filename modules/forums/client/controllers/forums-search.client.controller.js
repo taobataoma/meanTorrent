@@ -5,9 +5,9 @@
     .module('forums')
     .controller('ForumsSearchController', ForumsSearchController);
 
-  ForumsSearchController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService'];
+  ForumsSearchController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'DebugConsoleService'];
 
-  function ForumsSearchController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService) {
+  function ForumsSearchController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, mtDebug) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.user = Authentication.user;
@@ -94,7 +94,7 @@
             }
           });
 
-          console.log(fid);
+          mtDebug.info(fid);
           $state.go('forums.search', {forumId: fid, keys: vm.searchKeys});
         } else {
           $state.go('forums.search', {forumId: vm.selectedForum._id, keys: vm.searchKeys});

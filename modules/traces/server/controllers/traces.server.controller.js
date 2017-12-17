@@ -11,6 +11,8 @@ var path = require('path'),
   Trace = mongoose.model('Trace'),
   async = require('async');
 
+var mtDebug = require(path.resolve('./config/lib/debug'));
+
 /**
  * list Traces
  * @param req
@@ -89,7 +91,7 @@ exports.list = function (req, res) {
 
   async.parallel([countQuery, findQuery], function (err, results) {
     if (err) {
-      console.log(err);
+      mtDebug.debugRed(err);
       return res.status(422).send(err);
     } else {
       res.json({rows: results[1], total: results[0]});

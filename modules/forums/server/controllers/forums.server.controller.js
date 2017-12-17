@@ -313,7 +313,7 @@ exports.globalTopics = function (req, res) {
         }
       });
 
-      //console.log(ids);
+      mtDebug.debugBlue(ids);
 
       Topic.find({
         isGlobal: true,

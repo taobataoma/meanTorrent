@@ -358,13 +358,30 @@
         actionButtonText: $translate.instant('TORRENT_DELETE_CONFIRM_OK'),
         headerText: $translate.instant('TORRENT_DELETE_CONFIRM_HEADER_TEXT'),
         bodyText: $translate.instant('TORRENT_DELETE_CONFIRM_BODY_TEXT'),
-        bodyParams: item.torrent_filename
+        bodyParams: item.torrent_filename,
+
+        selectOptions: {
+          enable: true,
+          title: 'TORRENT_DELETE_REASON',
+          options: [
+            'TORRENT_DELETE_REASON_OVERVIEW',
+            'TORRENT_DELETE_REASON_NFO',
+            'TORRENT_DELETE_REASON_QUALITY',
+            'TORRENT_DELETE_REASON_ILLEGAL'
+          ]
+        }
       };
 
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
+          var reason = result.reason;
+          if (reason === 'NULL') reason = undefined;
+          if (reason === 'CUSTOM') reason = result.custom;
+
           var dt = new TorrentsService(item);
-          dt.$remove(function (response) {
+          dt.$remove({
+            reason: reason
+          }, function (response) {
             successCallback(response);
           }, function (errorResponse) {
             errorCallback(errorResponse);

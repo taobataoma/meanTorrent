@@ -195,7 +195,7 @@
         SideOverlay.close(evt, 'popupSlide', function () {
           vm.isClosing = true;
           vm.selectedMessage = vm.contentToJSON(msg);
-          console.log(vm.selectedMessage);
+          mtDebug.info(vm.selectedMessage);
           SideOverlay.open(evt, 'popupSlide');
           vm.replyContent = undefined;
           vm.updateReadStatus(msg);
@@ -204,7 +204,7 @@
         vm.selectedMessage = vm.contentToJSON(msg);
         SideOverlay.open(evt, 'popupSlide');
         vm.replyContent = undefined;
-        console.log(vm.selectedMessage);
+        mtDebug.info(vm.selectedMessage);
         vm.updateReadStatus(msg);
       }
     };

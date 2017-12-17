@@ -916,12 +916,30 @@
         closeButtonText: $translate.instant('TORRENT_DELETE_CONFIRM_CANCEL'),
         actionButtonText: $translate.instant('TORRENT_DELETE_CONFIRM_OK'),
         headerText: $translate.instant('TORRENT_DELETE_CONFIRM_HEADER_TEXT'),
-        bodyText: $translate.instant('TORRENT_DELETE_CONFIRM_BODY_TEXT')
+        bodyText: $translate.instant('TORRENT_DELETE_CONFIRM_BODY_TEXT'),
+        bodyParams: vm.torrentLocalInfo.torrent_filename,
+
+        selectOptions: {
+          enable: true,
+          title: 'TORRENT_DELETE_REASON',
+          options: [
+            'TORRENT_DELETE_REASON_OVERVIEW',
+            'TORRENT_DELETE_REASON_NFO',
+            'TORRENT_DELETE_REASON_QUALITY',
+            'TORRENT_DELETE_REASON_ILLEGAL'
+          ]
+        }
       };
 
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
-          vm.torrentLocalInfo.$remove(function (response) {
+          var reason = result.reason;
+          if (reason === 'NULL') reason = undefined;
+          if (reason === 'CUSTOM') reason = result.custom;
+
+          vm.torrentLocalInfo.$remove({
+            reason: reason
+          }, function (response) {
             successCallback(response);
           }, function (errorResponse) {
             errorCallback(errorResponse);

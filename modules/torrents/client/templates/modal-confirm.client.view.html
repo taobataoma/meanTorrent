@@ -3,11 +3,43 @@
 </div>
 <div class="modal-body">
     <p>{{modalOptions.bodyText}}</p>
+
     <p ng-show="modalOptions.bodyParams">{{modalOptions.bodyParams}}</p>
+
+    <div class="modal-options margin-top-30 margin-left-10 margin-right-10" ng-show="modalOptions.selectOptions.enable">
+
+        <p class="h5" translate="{{modalOptions.selectOptions.title}}"></p>
+
+        <div class="margin-left-10">
+            <div class="radio">
+                <label>
+                    <input type="radio" id="option_x" name="option_item" ng-model="optionSelected.value" value="NULL"> {{'VALUE_NULL' | translate}}
+                </label>
+            </div>
+            <div class="radio" ng-repeat="o in modalOptions.selectOptions.options">
+                <label>
+                    <input type="radio" id="option_{{$index}}" name="option_item" ng-model="optionSelected.value"
+                           value="{{o}}"> {{o | translate}}
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" id="option_y" name="option_item" ng-model="optionSelected.value"
+                           value="CUSTOM"> {{'VALUE_CUSTOM' | translate}}
+                </label>
+                <input type="text" ng-show="optionSelected.value == 'CUSTOM'" class="form-control margin-top-10" maxlength="200"
+                       placeholder="{{'TORRENT_ENTER_DELETE_REASON' | translate}}"
+                       ng-model="optionSelected.custom">
+            </div>
+
+        </div>
+    </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default btn-width-100"
-            data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+            data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}
+    </button>
     <button class="btn btn-success btn-width-100"
-            data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+            data-ng-click="modalOptions.ok({reason: optionSelected.value, custom: optionSelected.custom});">{{modalOptions.actionButtonText}}
+    </button>
 </div>

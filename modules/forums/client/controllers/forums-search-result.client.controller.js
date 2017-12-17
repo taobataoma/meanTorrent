@@ -5,9 +5,11 @@
     .module('forums')
     .controller('ForumsSearchResultController', ForumsSearchResultController);
 
-  ForumsSearchResultController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'MeanTorrentConfig', 'ForumsService', '$sanitize', 'NotifycationService'];
+  ForumsSearchResultController.$inject = ['$scope', '$state', '$timeout', 'Authentication', 'MeanTorrentConfig', 'ForumsService', '$sanitize', 'NotifycationService',
+    'DebugConsoleService'];
 
-  function ForumsSearchResultController($scope, $state, $timeout, Authentication, MeanTorrentConfig, ForumsService, $sanitize, NotifycationService) {
+  function ForumsSearchResultController($scope, $state, $timeout, Authentication, MeanTorrentConfig, ForumsService, $sanitize, NotifycationService,
+                                        mtDebug) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
@@ -59,7 +61,7 @@
       vm.isLoading = true;
       vm.pagedItems = [];
 
-      console.log($state.params.forumId);
+      mtDebug.info($state.params.forumId);
       var fs = new ForumsService({
         forumId: $state.params.forumId || undefined,
         keys: $state.params.keys,

@@ -17,6 +17,9 @@
     DEMO_INFO: 'Welcome to demo site, you can sign up manual to create a normal account or sign in as demo admin with account <mark>demo</mark> and password <mark>demoAdmin12#</mark>, but don`t delete any demo data please, thanks!',
     WARNING_POPUP_STRING: 'This is a <strong style="color:#f00">DEMO SITE</strong>, all resources are for download testing only, please delete it within 24 hours after the test is completed, we recommend that you buy genuine resources!',
 
+    VALUE_NULL: 'NULL',
+    VALUE_CUSTOM: 'CUSTOM',
+
     //client topbar menu
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',
@@ -357,6 +360,12 @@
     TORRENT_DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this torrent?',
     TORRENT_DELETE_SUCCESSFULLY: 'Torrent delete successfully',
     TORRENT_DELETE_ERROR: 'Torrent delete failed',
+    TORRENT_DELETE_REASON: 'Please select or enter the delete reason for uploader:',
+    TORRENT_ENTER_DELETE_REASON: 'Please enter custom delete reason',
+    TORRENT_DELETE_REASON_OVERVIEW: 'The torrent overview info is not complete or missing',
+    TORRENT_DELETE_REASON_NFO: 'The torrent NFO info is not complete or missing',
+    TORRENT_DELETE_REASON_QUALITY: 'The torrent quality is too low',
+    TORRENT_DELETE_REASON_ILLEGAL: 'The torrent is illegal',
     TORRENT_UPDATE_CONFIRM_OK: 'Update',
     TORRENT_UPDATE_CONFIRM_CANCEL: 'Cancel',
     TORRENT_UPDATE_CONFIRM_HEADER_TEXT: 'Update Confirm',
@@ -1336,7 +1345,10 @@
       CONTENT_TORRENT_HNR_CHANGED: '### H&R status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) H&R status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{hnr_status}}**.',
 
       TITLE_TORRENT_SALE_CHANGED: 'Torrent sale status changed',
-      CONTENT_TORRENT_SALE_CHANGED: '### Sale status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) sale status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{sale_status}}**.'
+      CONTENT_TORRENT_SALE_CHANGED: '### Sale status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) sale status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{sale_status}}**.',
+
+      TITLE_TORRENT_DELETED: 'Torrent was deleted',
+      CONTENT_TORRENT_DELETED: ':warning: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}), reason is: **{{reason | translate}}**.'
     }
   };
 

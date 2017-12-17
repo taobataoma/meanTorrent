@@ -16,7 +16,12 @@
       actionButtonText: 'Yes',
       headerText: 'Confirm?',
       bodyText: 'Confirm this action?',
-      bodyParams: undefined
+      bodyParams: undefined,
+      selectOptions: {
+        enable: false,
+        title: undefined,
+        options: []
+      }
     };
 
     var modalDefaults = {
@@ -67,6 +72,11 @@
   ModalConfirmController.$inject = ['$scope', '$uibModalInstance', 'modalOptions'];
 
   function ModalConfirmController($scope, $uibModalInstance, modalOptions) {
+    $scope.optionSelected = {
+      value: 'NULL',
+      custom: undefined
+    };
+
     $scope.modalOptions = modalOptions;
     $scope.modalOptions.ok = function (result) {
       $uibModalInstance.close(result);

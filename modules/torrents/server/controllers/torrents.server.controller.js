@@ -1226,10 +1226,22 @@ exports.delete = function (req, res) {
     } else {
       res.json(torrent);
 
+      //add server message
+      if (serverNoticeConfig.action.torrentDeleted.enable) {
+        serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.torrentDeleted.title, serverNoticeConfig.action.torrentDeleted.content, {
+          torrent_file_name: torrent.torrent_filename,
+          torrent_id: torrent._id,
+          by_name: req.user.displayName,
+          by_id: req.user._id,
+          reason: req.query.reason
+        });
+      }
+
       scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrentBeDeleted);
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminTorrentDelete, {
-        torrent: torrent._id
+        torrent: torrent._id,
+        reason: req.query.reason
       });
     }
   });

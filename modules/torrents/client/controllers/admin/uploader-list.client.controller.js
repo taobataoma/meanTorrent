@@ -106,7 +106,6 @@
     vm.onUploaderUserAccessChanged = function (u) {
       var user = new AdminService(u);
       user.$update(function (res) {
-        console.log(res);
         vm.pagedItems[vm.pagedItems.indexOf(u)] = res;
         NotifycationService.showSuccessNotify('UPLOADER.ACCESS_CHANGED_SUCCESSFULLY');
       });

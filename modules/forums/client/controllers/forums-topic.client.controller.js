@@ -194,7 +194,6 @@
      * onTopicTitleEdited
      */
     $scope.onTopicTitleEdited = function (modifyed) {
-      console.log(modifyed);
       if (vm.topic && modifyed) {
         vm.topic.$update(function (res) {
           vm.topic = res;
