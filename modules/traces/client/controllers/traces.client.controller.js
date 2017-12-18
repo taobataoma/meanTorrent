@@ -18,7 +18,6 @@
      * pagination init
      */
     vm.buildPager = function () {
-      vm.resultMsg = 'TRACES_IS_LOADING';
       vm.pagedItems = [];
       vm.itemsPerPage = vm.itemsPerPageConfig.tracesPerPage;
       vm.currentPage = 1;
@@ -30,6 +29,7 @@
      * @param callback
      */
     vm.figureOutItemsToDisplay = function (callback) {
+      vm.resultMsg = 'TRACES_IS_LOADING';
       vm.getTraces(vm.currentPage, function (items) {
         vm.filterLength = items.total;
         vm.pagedItems = items.rows;

@@ -41,7 +41,6 @@
       vm.itemsPerPage = vm.itemsPerPageConfig.torrentsPerPage;
       vm.currentPage = 1;
 
-      vm.tooltipMsg = 'VIP.VIP_TORRENTS_IS_LOADING';
       vm.figureOutItemsToDisplay();
     };
 
@@ -50,6 +49,7 @@
      * @param callback
      */
     vm.figureOutItemsToDisplay = function (callback) {
+      vm.tooltipMsg = 'VIP.VIP_TORRENTS_IS_LOADING';
       vm.getVIPTorrents(vm.currentPage, function (items) {
         vm.filterLength = items.total;
         vm.pagedItems = items.rows;
