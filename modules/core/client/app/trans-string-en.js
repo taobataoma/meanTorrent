@@ -871,7 +871,7 @@
     MESSAGE_SEND_FAILED: 'Message send failed',
     MESSAGE_DELETED_SUCCESSFULLY: 'Message deleted successfully',
     MESSAGE_DELETED_ERROR: 'Message deleted failed',
-    MESSAGE_SERVER_TOOLTIP: '<h4>Server message</h4>Server message is send to you by server automatic when you do some operations or your account status make some change or some important things about you, There may be a lot of messages, so you need to check and delete them in time. The system only keeps {{count}} messages in the last {{days}} days.',
+    MESSAGE_SERVER_TOOLTIP: '<h4>Server message</h4>Server message is send to you by server automatic when you do some operations or your account status make some change or some important things about you, There may be a lot of messages, so you need to check and delete them in time. The system only keeps the last {{count}} messages.',
 
     MESSAGE_DELETE_CONFIRM_OK: 'Delete',
     MESSAGE_DELETE_CONFIRM_CANCEL: 'Cancel',

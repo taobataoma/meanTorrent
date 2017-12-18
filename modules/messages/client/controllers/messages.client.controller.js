@@ -160,7 +160,7 @@
         }
       });
 
-      return role === 'admin' ? 'admin' : 'user';
+      return role;
     };
 
     /**

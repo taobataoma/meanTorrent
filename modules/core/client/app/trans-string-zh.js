@@ -871,7 +871,7 @@
     MESSAGE_SEND_FAILED: '消息发送失败',
     MESSAGE_DELETED_SUCCESSFULLY: '消息删除成功',
     MESSAGE_DELETED_ERROR: '消息删除失败',
-    MESSAGE_SERVER_TOOLTIP: '<h4>服务器事件通知</h4> 当您做了一些重要的操作或者您的帐户状态发生变化以及某些重要事情与你有关时，服务器会自动发送消息给你，这种消息可能会很多，所以请及时查看及删除，服务器只保留最后 {{days}} 天的 {{count}} 条消息.',
+    MESSAGE_SERVER_TOOLTIP: '<h4>服务器事件通知</h4> 当您做了一些重要的操作或者您的帐户状态发生变化以及某些重要事情与你有关时，服务器会自动发送消息给你，这种消息可能会很多，所以请及时查看及删除，服务器只保留最后的 {{count}} 条消息.',
 
     MESSAGE_DELETE_CONFIRM_OK: '删除',
     MESSAGE_DELETE_CONFIRM_CANCEL: '取消',

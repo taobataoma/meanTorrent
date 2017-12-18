@@ -58,36 +58,30 @@ exports.list = function (req, res) {
     role = req.query.role;
   }
 
-  db = role === 'user' ? Message : AdminMessage;
+  db = role === 'admin' ? AdminMessage : Message;
   condition.type = type;
 
-  var countQuery = function (callback) {
-    if (role === 'user') {
-      condition.$or = [
-        {from_user: req.user._id},
-        {to_user: req.user._id}
-      ];
-    } else {
-      condition.createdat = {$gt: req.user.created};
-    }
-
-    db.count(condition, function (err, count) {
-      if (err) {
-        callback(err, null);
-      } else {
-        callback(null, count);
-      }
-    });
-  };
-
   var findMessage = function (callback) {
-    if (role === 'user') {
+    if (role === 'admin') {
+      condition.createdat = {$gt: req.user.created};
+      AdminMessage.find(condition)
+        .sort('-createdat')
+        .populate('from_user', 'displayName profileImageURL uploaded downloaded')
+        .exec(function (err, messages) {
+          if (err) {
+            callback(err, null);
+          } else {
+            callback(null, messages);
+          }
+        });
+    } else {
       condition.$or = [
         {from_user: req.user._id},
         {to_user: req.user._id}
       ];
 
       db.find(condition)
+        .limit(role === 'server' ? 100 : 0)
         .sort('-updatedat -createdat')
         .populate('from_user', 'displayName profileImageURL uploaded downloaded')
         .populate('to_user', 'displayName profileImageURL uploaded downloaded')
@@ -108,26 +102,14 @@ exports.list = function (req, res) {
             callback(null, messages);
           }
         });
-    } else {
-      condition.createdat = {$gt: req.user.created};
-      AdminMessage.find(condition)
-        .sort('-createdat')
-        .populate('from_user', 'displayName profileImageURL uploaded downloaded')
-        .exec(function (err, messages) {
-          if (err) {
-            callback(err, null);
-          } else {
-            callback(null, messages);
-          }
-        });
     }
   };
 
-  async.parallel([countQuery, findMessage], function (err, results) {
+  async.parallel([findMessage], function (err, results) {
     if (err) {
       return res.status(422).send(err);
     } else {
-      res.json({rows: results[1], total: results[0]});
+      res.json({rows: results[0]});
     }
   });
 };

@@ -26,7 +26,7 @@
 
             <div class="alert alert-warning" ng-if="vm.messageType=='server'" role="alert" style="padding: 20px 50px;">
                 <span translate="MESSAGE_SERVER_TOOLTIP"
-                      translate-values="{count: vm.messageConfig.serverMessageLimitCount, days: vm.messageConfig.serverMessageLimitDays}"></span>
+                      translate-values="{count: vm.messageConfig.serverMessageLimitCount}"></span>
             </div>
 
             <div class="pagination-div-top">
@@ -54,10 +54,10 @@
                     <thead>
                         <tr>
                             <th>{{ 'MESSAGES_FIELD.LIST_TITLE' | translate}}</th>
-                            <th class="text-center" ng-if="vm.getMessageTypeRole()=='user'">{{ 'MESSAGES_FIELD.LIST_REPLIES' | translate}}</th>
+                            <th class="text-center" ng-if="vm.getMessageTypeRole()!='admin'">{{ 'MESSAGES_FIELD.LIST_REPLIES' | translate}}</th>
                             <th class="text-center">{{ 'MESSAGES_FIELD.LIST_TYPE' | translate}}</th>
                             <th class="text-center">{{ 'MESSAGES_FIELD.LIST_SENDAT' | translate}}</th>
-                            <th class="text-right" ng-if="vm.getMessageTypeRole()=='user'">
+                            <th class="text-right" ng-if="vm.getMessageTypeRole()!='admin'">
                                 {{ 'MESSAGES_FIELD.LIST_SELECT' | translate}} &nbsp;
                                 <input type="checkbox" class="tcheckbox margin-right-10" ng-model="vm.selectedAll" ng-click="vm.selectAllItems();"
                                        uib-tooltip="{{ 'VALUE_SELECT_ALL' | translate}}">
@@ -93,7 +93,7 @@
                                     {{'MESSAGES_FIELD.SERVER_SEND' | translate}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                                 </p>
                             </td>
-                            <td class="td-v-middle text-center" ng-if="vm.getMessageTypeRole()=='user'">
+                            <td class="td-v-middle text-center" ng-if="vm.getMessageTypeRole()!='admin'">
                                 <span ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-if="m.type=='user'">{{m._replies.length}}</span>
                                 <span ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-if="m.type!='user'">-</span>
                             </td>
@@ -103,7 +103,7 @@
                             <td class="td-v-middle text-center">
                                 <span ng-class="vm.isUnread(m)? 'unread' : 'read'">{{m.createdat | life}}</span>
                             </td>
-                            <td class="td-v-middle text-right" ng-click="$event.stopPropagation();" ng-if="vm.getMessageTypeRole()=='user'">
+                            <td class="td-v-middle text-right" ng-click="$event.stopPropagation();" ng-if="vm.getMessageTypeRole()!='admin'">
                                 <input type="checkbox" class="tcheckbox margin-right-10" ng-model="m.selected"
                                        id="checkbox_{{m._id}}" ng-click="vm.checkIfAllSelected()">
                             </td>
