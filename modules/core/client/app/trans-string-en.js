@@ -836,6 +836,7 @@
     MESSAGES_SEND: 'Send Messages',
     ADMIN_MESSAGES_SEND: 'Send System Messages',
     MESSAGES_SEND_BUTTON: 'Send',
+    MESSAGES_IS_LOADING: 'Loading messages, please wait ...',
     MESSAGES_IS_EMPTY: 'Messages Box is empty!',
     MESSAGES_FIELD: {
       TO: 'Send to:',

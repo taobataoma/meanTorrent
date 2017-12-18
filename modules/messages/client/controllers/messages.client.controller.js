@@ -89,6 +89,8 @@
      * getMessageList
      */
     vm.getMessageList = function () {
+      vm.pagedItems = [];
+      vm.resultMsg = 'MESSAGES_IS_LOADING';
       MessagesService.get({
         type: vm.messageType,
         role: vm.getMessageTypeRole()
@@ -123,6 +125,11 @@
       var end = begin + vm.itemsPerPage;
       vm.pagedItems = vm.filteredItems.slice(begin, end);
 
+      if (vm.pagedItems.length === 0) {
+        vm.resultMsg = 'MESSAGES_IS_EMPTY'
+      } else {
+        vm.resultMsg = undefined;
+      }
       if (callback) callback();
     };
 

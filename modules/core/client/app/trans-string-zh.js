@@ -836,7 +836,8 @@
     MESSAGES_SEND: '发送消息',
     ADMIN_MESSAGES_SEND: '发送系统消息',
     MESSAGES_SEND_BUTTON: '发送',
-    MESSAGES_IS_EMPTY: '消息盒子为空!',
+    MESSAGES_IS_LOADING: '正在装载, 请稍候 ...',
+    MESSAGES_IS_EMPTY: '消息列表为空!',
     MESSAGES_FIELD: {
       TO: '发送至:',
       TYPE: '消息类型:',
