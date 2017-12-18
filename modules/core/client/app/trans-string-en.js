@@ -19,6 +19,7 @@
 
     VALUE_NULL: 'NULL',
     VALUE_CUSTOM: 'CUSTOM',
+    VALUE_SELECT_ALL: 'Select All',
 
     //client topbar menu
     MENU_CHAT: 'Chat',

@@ -168,6 +168,7 @@
      */
     vm.onTypeBtnClick = function () {
       vm.getMessageList();
+      vm.selectedAll = false;
       localStorageService.set('message_box_selected_type', vm.messageType);
     };
 
@@ -183,9 +184,9 @@
         bodyText: $translate.instant('MESSAGE_DELETE_CONFIRM_BODY_TEXT_MANY')
       };
 
-      angular.forEach(vm.selected, function (item, id) {
-        if (item) {
-          vm.deleteList.push(id);
+      angular.forEach(vm.pagedItems, function (item) {
+        if (item.selected) {
+          vm.deleteList.push(item._id);
         }
       });
 
@@ -240,6 +241,23 @@
       }
     };
 
+    /**
+     * selectAllItems
+     */
+    vm.selectAllItems = function () {
+      angular.forEach(vm.pagedItems, function (item) {
+        item.selected = vm.selectedAll;
+      });
+    };
+
+    /**
+     * checkIfAllSelected
+     */
+    vm.checkIfAllSelected = function () {
+      vm.selectedAll = vm.pagedItems.every(function (item) {
+        return item.selected == true;
+      })
+    };
     /**
      * contentToJSON
      * @param cnt

@@ -19,6 +19,7 @@
 
     VALUE_NULL: '无',
     VALUE_CUSTOM: '自定义',
+    VALUE_SELECT_ALL: '全选',
 
     //client topbar menu
     MENU_CHAT: '聊天室',

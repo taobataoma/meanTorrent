@@ -1,0 +1,16 @@
+@import (reference) "mt-var.less";
+
+.tooltip {
+    min-width: 100px;
+    .tooltip-inner {
+        background-color: @mt-body-background-color;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 3px;
+    }
+    &.top {
+        .tooltip-arrow {
+            border-top-color: @mt-body-background-color;
+            border-top-color: rgba(0, 0, 0, 0.8);
+        }
+    }
+}
