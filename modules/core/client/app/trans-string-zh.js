@@ -887,6 +887,7 @@
 
     //traces
     ADMIN_TRACES_LIST: '系统日志',
+    TRACES_IS_LOADING: '正在装载系统日志，请稍候 ...',
     TRACES_IS_EMPTY: '系统日志为空!',
     TRACES_FIELDS: {
       USERNAME: '操作用户',
