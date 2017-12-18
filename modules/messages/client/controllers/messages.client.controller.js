@@ -19,6 +19,7 @@
     vm.messageFields = {};
     vm.deleteList = [];
     vm.messageType = localStorageService.get('message_box_selected_type') || 'user';
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     uibButtonConfig.activeClass = 'btn-success';
 
@@ -79,24 +80,24 @@
      * init
      */
     vm.init = function () {
-      vm.getMessageList();
       $interval(vm.getMessageList, vm.messageConfig.checkUnreadInterval);
+      vm.getCountUnread();
+      vm.getMessageList();
     };
 
     /**
      * getMessageList
      */
     vm.getMessageList = function () {
-      MessagesService.query(function (data) {
-        vm.messages = data;
-        if (vm.currentPage > 1) {
-          vm.figureOutItemsToDisplay();
-        } else {
-          vm.buildPager();
-        }
-      });
+      MessagesService.get({
+        type: vm.messageType,
+        role: vm.getMessageTypeRole()
+      }, function (data) {
+        mtDebug.info(data);
+        vm.messages = data.rows;
 
-      vm.getCountUnread();
+        vm.buildPager();
+      });
     };
 
     /**
@@ -104,7 +105,7 @@
      */
     vm.buildPager = function () {
       vm.pagedItems = [];
-      vm.itemsPerPage = 10;
+      vm.itemsPerPage = vm.itemsPerPageConfig.messageBoxListPerPage;
       vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     };
@@ -112,9 +113,8 @@
     /**
      * figureOutItemsToDisplay
      */
-    vm.figureOutItemsToDisplay = function () {
+    vm.figureOutItemsToDisplay = function (callback) {
       vm.filteredItems = $filter('filter')(vm.messages, {
-        type: vm.messageType,
         $: vm.search
       });
       vm.filteredItems = $filter('orderBy')(vm.filteredItems, ['-updatedat']);
@@ -122,21 +122,52 @@
       var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
       var end = begin + vm.itemsPerPage;
       vm.pagedItems = vm.filteredItems.slice(begin, end);
+
+      if (callback) callback();
     };
 
     /**
      * pageChanged
      */
     vm.pageChanged = function () {
+      var element = angular.element('#top_of_message_list');
+
       vm.selectedMessage = undefined;
       vm.hideMessage();
-      vm.figureOutItemsToDisplay();
+
+      $('.tb-v-middle').fadeTo(100, 0.01, function () {
+        vm.figureOutItemsToDisplay(function () {
+          $timeout(function () {
+            $('.tb-v-middle').fadeTo(400, 1, function () {
+              //window.scrollTo(0, element[0].offsetTop - 60);
+              $('html,body').animate({scrollTop: element[0].offsetTop}, 200);
+            });
+          }, 100);
+        });
+      });
+    };
+
+    /**
+     * getMessageTypeRole
+     * @returns {string}
+     */
+    vm.getMessageTypeRole = function () {
+      var role = 'user';
+
+      angular.forEach(vm.messageConfig.type.value, function (m) {
+        if (m.value === vm.messageType) {
+          role = m.role;
+        }
+      });
+
+      return role === 'admin' ? 'admin' : 'user';
     };
 
     /**
      * onTypeBtnClick
      */
     vm.onTypeBtnClick = function () {
+      vm.getMessageList();
       localStorageService.set('message_box_selected_type', vm.messageType);
     };
 

@@ -10,18 +10,14 @@
                         </small>
                     </h4>
                 </div>
-                <div class="col-xs-12 col-md-3">
-                    <input class="form-control" type="text" ng-model="vm.search" placeholder="Search"
-                           ng-change="vm.buildPager()"/>
-                </div>
             </div>
 
-            <div class="margin-bottom-20">
+            <div class="margin-bottom-20" id="top_of_message_list">
                 <div class="btn-group message-type-group">
                     <label class="btn btn-default"
                            ng-repeat="t in vm.messageConfig.type.value"
                            ng-model="vm.messageType" uib-btn-radio="'{{t.value}}'"
-                           ng-click="vm.onTypeBtnClick(); vm.buildPager();">
+                           ng-click="vm.onTypeBtnClick();">
                         {{'MESSAGE_TYPE_'+t.name | translate}}
                         <span class="message-dot" ng-if="vm.getNewMessageCount(t.value)>0">{{vm.getNewMessageCount(t.value)}}</span>
                     </label>
@@ -35,13 +31,17 @@
 
             <div class="pagination-div-top">
                 <div class="row">
-                    <div class="col-sm-12 col-md-7">
+                    <div class="col-sm-12 col-md-9">
                         <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
                             ng-model="vm.currentPage"
                             ng-change="vm.pageChanged()"
                             first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
                             next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <input class="form-control margin-top-20 margin-bottom-20" type="text" ng-model="vm.search" placeholder="Search"
+                               ng-change="vm.buildPager()"/>
                     </div>
                 </div>
             </div>
@@ -161,7 +161,8 @@
 
             <li class="status-divider"></li>
             <div class="message-content" ng-bind-html="vm.getContentMarked(vm.selectedMessage);" ng-if="vm.selectedMessage.type!='server'"></div>
-            <div class="message-content" ng-bind-html="vm.getServerNoticeContentMarked(vm.selectedMessage);" ng-if="vm.selectedMessage.type=='server'"></div>
+            <div class="message-content" ng-bind-html="vm.getServerNoticeContentMarked(vm.selectedMessage);"
+                 ng-if="vm.selectedMessage.type=='server'"></div>
 
             <div class="message-reply" ng-if="vm.selectedMessage._replies.length>0">
                 <li class="status-divider"></li>

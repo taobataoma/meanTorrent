@@ -2,10 +2,15 @@
 
 .messages-list {
     .pagination-div-bottom {
-        border-top: 2px solid lighten(@gray-base, 85%)
+        border-top: 2px solid lighten(@gray-base, 85%);
     }
     .pagination-div-top {
-        border-bottom: 2px solid lighten(@gray-base, 85%)
+        border-bottom: 2px solid lighten(@gray-base, 85%);
+        input {
+            @media (max-width: @screen-sm-max) {
+                margin-top: 0 !important;
+            }
+        }
     }
     .message-type-group {
         position: relative;

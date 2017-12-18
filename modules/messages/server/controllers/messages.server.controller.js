@@ -46,55 +46,88 @@ exports.create = function (req, res) {
  * @param res
  */
 exports.list = function (req, res) {
-  var findMessage = function (callback) {
-    Message.find({
-      $or: [
+  var condition = {};
+  var type = 'user';
+  var role = 'user';
+  var db = undefined;
+
+  if (req.query.type !== undefined) {
+    type = req.query.type;
+  }
+  if (req.query.role !== undefined) {
+    role = req.query.role;
+  }
+
+  db = role === 'user' ? Message : AdminMessage;
+  condition.type = type;
+
+  var countQuery = function (callback) {
+    if (role === 'user') {
+      condition.$or = [
         {from_user: req.user._id},
         {to_user: req.user._id}
-      ]
-    })
-      .sort('-updatedat -createdat')
-      .populate('from_user', 'displayName profileImageURL uploaded downloaded')
-      .populate('to_user', 'displayName profileImageURL uploaded downloaded')
-      .populate({
-        path: '_replies.from_user',
-        select: 'displayName profileImageURL uploaded downloaded',
-        model: 'User'
-      })
-      .populate({
-        path: '_replies.to_user',
-        select: 'displayName profileImageURL uploaded downloaded',
-        model: 'User'
-      })
-      .exec(function (err, messages) {
-        if (err) {
-          callback(err, null);
-        } else {
-          callback(null, messages);
-        }
-      });
+      ];
+    } else {
+      condition.createdat = {$gt: req.user.created};
+    }
+
+    db.count(condition, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
   };
 
-  var findAdminMessage = function (callback) {
-    AdminMessage.find({
-      createdat: {$gt: req.user.created}
-    })
-      .sort('-createdat')
-      .populate('from_user', 'displayName profileImageURL uploaded downloaded')
-      .exec(function (err, messages) {
-        if (err) {
-          callback(err, null);
-        } else {
-          callback(null, messages);
-        }
-      });
+  var findMessage = function (callback) {
+    if (role === 'user') {
+      condition.$or = [
+        {from_user: req.user._id},
+        {to_user: req.user._id}
+      ];
+
+      db.find(condition)
+        .sort('-updatedat -createdat')
+        .populate('from_user', 'displayName profileImageURL uploaded downloaded')
+        .populate('to_user', 'displayName profileImageURL uploaded downloaded')
+        .populate({
+          path: '_replies.from_user',
+          select: 'displayName profileImageURL uploaded downloaded',
+          model: 'User'
+        })
+        .populate({
+          path: '_replies.to_user',
+          select: 'displayName profileImageURL uploaded downloaded',
+          model: 'User'
+        })
+        .exec(function (err, messages) {
+          if (err) {
+            callback(err, null);
+          } else {
+            callback(null, messages);
+          }
+        });
+    } else {
+      condition.createdat = {$gt: req.user.created};
+      AdminMessage.find(condition)
+        .sort('-createdat')
+        .populate('from_user', 'displayName profileImageURL uploaded downloaded')
+        .exec(function (err, messages) {
+          if (err) {
+            callback(err, null);
+          } else {
+            callback(null, messages);
+          }
+        });
+    }
   };
 
-  async.parallel([findMessage, findAdminMessage], function (err, results) {
+  async.parallel([countQuery, findMessage], function (err, results) {
     if (err) {
       return res.status(422).send(err);
     } else {
-      res.json(results[0].concat(results[1]));
+      res.json({rows: results[1], total: results[0]});
     }
   });
 };

@@ -380,6 +380,7 @@ module.exports = {
         AdminUpdateUserVIPData: {name: 'AdminUpdateUserVIPData', enable: true},
         AdminUserDelete: {name: 'AdminUserDelete', enable: true},
         AdminUserEdit: {name: 'AdminUserEdit', enable: true},
+
         userPasswordReset: {name: 'userPasswordReset', enable: true},
         userSignUp: {name: 'userSignUp', enable: true},
         userActiveAccount: {name: 'userActiveAccount', enable: true},
@@ -901,7 +902,8 @@ module.exports = {
       torrentPeersListPerPage: 15,
       homeOrderTorrentListPerType: 9,
       homeNewestTorrentListPerType: 14,
-      uploaderUserListPerPage: 15
+      uploaderUserListPerPage: 15,
+      messageBoxListPerPage: 10
     },
 
     /**
