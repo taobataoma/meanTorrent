@@ -54,10 +54,10 @@
                     <thead>
                         <tr>
                             <th>{{ 'MESSAGES_FIELD.LIST_TITLE' | translate}}</th>
-                            <th class="text-center">{{ 'MESSAGES_FIELD.LIST_REPLIES' | translate}}</th>
+                            <th class="text-center" ng-if="vm.getMessageTypeRole()=='user'">{{ 'MESSAGES_FIELD.LIST_REPLIES' | translate}}</th>
                             <th class="text-center">{{ 'MESSAGES_FIELD.LIST_TYPE' | translate}}</th>
                             <th class="text-center">{{ 'MESSAGES_FIELD.LIST_SENDAT' | translate}}</th>
-                            <th class="text-center">{{ 'MESSAGES_FIELD.LIST_SELECT' | translate}}</th>
+                            <th class="text-center" ng-if="vm.getMessageTypeRole()=='user'">{{ 'MESSAGES_FIELD.LIST_SELECT' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,7 +89,7 @@
                                     {{'MESSAGES_FIELD.SERVER_SEND' | translate}} {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                                 </p>
                             </td>
-                            <td class="td-v-middle text-center">
+                            <td class="td-v-middle text-center" ng-if="vm.getMessageTypeRole()=='user'">
                                 <span ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-if="m.type=='user'">{{m._replies.length}}</span>
                                 <span ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-if="m.type!='user'">-</span>
                             </td>
@@ -99,7 +99,7 @@
                             <td class="td-v-middle text-center">
                                 <span ng-class="vm.isUnread(m)? 'unread' : 'read'">{{m.createdat | life}}</span>
                             </td>
-                            <td class="td-v-middle text-center" ng-click="$event.stopPropagation();">
+                            <td class="td-v-middle text-center" ng-click="$event.stopPropagation();" ng-if="vm.getMessageTypeRole()=='user'">
                                 <input type="checkbox" class="tcheckbox" ng-model="vm.selected[m._id]"
                                        id="checkbox_{{m._id}}" ng-if="m.type=='user' || m.type=='server'">
                                 </label>
