@@ -255,8 +255,8 @@
      */
     vm.checkIfAllSelected = function () {
       vm.selectedAll = vm.pagedItems.every(function (item) {
-        return item.selected == true;
-      })
+        return item.selected === true;
+      });
     };
     /**
      * contentToJSON
