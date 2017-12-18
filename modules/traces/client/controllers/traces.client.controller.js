@@ -18,6 +18,7 @@
      * pagination init
      */
     vm.buildPager = function () {
+      vm.resultMsg = 'TRACES_IS_LOADING';
       vm.pagedItems = [];
       vm.itemsPerPage = vm.itemsPerPageConfig.tracesPerPage;
       vm.currentPage = 1;
@@ -32,6 +33,12 @@
       vm.getTraces(vm.currentPage, function (items) {
         vm.filterLength = items.total;
         vm.pagedItems = items.rows;
+
+        if (vm.pagedItems.length === 0) {
+          vm.resultMsg = 'TRACES_IS_EMPTY';
+        } else {
+          vm.resultMsg = undefined;
+        }
 
         if (callback) callback();
       });

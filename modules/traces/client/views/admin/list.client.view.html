@@ -25,10 +25,7 @@
                 </div>
             </div>
 
-            <div class="table-responsive margin-top-50 margin-bottom-50 padding-top-40 padding-bottom-50 text-center" ng-if="!vm.pagedItems.length">
-                <h4>{{ 'TRACES_IS_EMPTY' | translate }}</h4>
-            </div>
-            <div class="table-responsive" ng-if="vm.pagedItems.length">
+            <div class="table-responsive">
                 <table class="table table-hover tb-v-middle">
                     <thead>
                         <tr>
@@ -39,7 +36,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="message-item" ng-repeat="m in vm.pagedItems" ng-click="vm.showMessage(m);">
+                        <tr ng-if="vm.resultMsg">
+                            <td colspan="4">
+                                <div class="text-center margin-top-50 margin-bottom-30 padding-top-20 padding-bottom-50">
+                                    <h3>{{vm.resultMsg | translate}}</h3>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="message-item" ng-if="!vm.resultMsg" ng-repeat="m in vm.pagedItems" ng-click="vm.showMessage(m);">
                             <td class="td-v-middle text-center">
                                 <span user-info="m.user" info-name></span>
                                 <!--<span vip-flag="m.user"></span>-->

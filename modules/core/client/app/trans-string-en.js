@@ -887,6 +887,7 @@
 
     //traces
     ADMIN_TRACES_LIST: 'Traces List',
+    TRACES_IS_LOADING: 'Traces is loading, please wait ...',
     TRACES_IS_EMPTY: 'Traces is empty!',
     TRACES_FIELDS: {
       USERNAME: 'Username',
