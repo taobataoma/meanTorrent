@@ -75,10 +75,7 @@
                                 <span class="message-avatar glyphicon glyphicon-cog server-message-avatar" ng-if="m.type=='server'"></span>
                                 <i class="fa fa-envelope message-avatar server-message-avatar" ng-if="m.type!='user' && m.type!='server'"></i>
 
-                                <span class="message-title" ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-if="m.type!='server'"
-                                      ng-bind="m.title"></span>
-                                <span class="message-title" ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-if="m.type=='server'"
-                                      translate="SERVER_MESSAGE.{{m.title}}"></span>
+                                <span class="message-title" ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-bind="m.title"></span>
 
                                 <p class="message-info" ng-if="m.type=='user'">
                                     <span user-info="m.from_user"
@@ -141,11 +138,7 @@
 
                 <div class="title-info">
                     <span class="message-title" ng-class="vm.isUnread(vm.selectedMessage)? 'unread' : 'read'"
-                          ng-if="vm.selectedMessage.type!='server'"
                           ng-bind="vm.selectedMessage.title"></span>
-                    <span class="message-title" ng-class="vm.isUnread(vm.selectedMessage)? 'unread' : 'read'"
-                          ng-if="vm.selectedMessage.type=='server'"
-                          translate="SERVER_MESSAGE.{{vm.selectedMessage.title}}"></span>
 
                     <p class="message-info" ng-if="vm.selectedMessage.type=='user'">
                         <span user-info="vm.selectedMessage.from_user"
@@ -166,9 +159,7 @@
             </div>
 
             <li class="status-divider"></li>
-            <div class="message-content" ng-bind-html="vm.getContentMarked(vm.selectedMessage);" ng-if="vm.selectedMessage.type!='server'"></div>
-            <div class="message-content" ng-bind-html="vm.getServerNoticeContentMarked(vm.selectedMessage);"
-                 ng-if="vm.selectedMessage.type=='server'"></div>
+            <div class="message-content" ng-bind-html="vm.getContentMarked(vm.selectedMessage);"></div>
 
             <div class="message-reply" ng-if="vm.selectedMessage._replies.length>0">
                 <li class="status-divider"></li>

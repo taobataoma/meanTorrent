@@ -98,6 +98,13 @@
         mtDebug.info(data);
         vm.messages = data.rows;
 
+        if (vm.messageType === 'server') {
+          angular.forEach(vm.messages, function (m) {
+            m.title = $translate.instant('SERVER_MESSAGE.' + m.title);
+            m.content = $translate.instant('SERVER_MESSAGE.' + m.content.string, m.content.params);
+          });
+        }
+
         vm.buildPager();
       });
     };
@@ -126,7 +133,7 @@
       vm.pagedItems = vm.filteredItems.slice(begin, end);
 
       if (vm.pagedItems.length === 0) {
-        vm.resultMsg = 'MESSAGES_IS_EMPTY'
+        vm.resultMsg = 'MESSAGES_IS_EMPTY';
       } else {
         vm.resultMsg = undefined;
       }
@@ -432,11 +439,6 @@
     vm.getContentMarked = function (m) {
       if (m) {
         return marked(m.content, {sanitize: true});
-      }
-    };
-    vm.getServerNoticeContentMarked = function (m) {
-      if (m) {
-        return marked($translate.instant('SERVER_MESSAGE.' + vm.selectedMessage.content.string, vm.selectedMessage.content.params), {sanitize: true});
       }
     };
 
