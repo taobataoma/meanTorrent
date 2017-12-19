@@ -98,12 +98,9 @@
         mtDebug.info(data);
         vm.messages = data.rows;
 
-        if (vm.messageType === 'server') {
-          angular.forEach(vm.messages, function (m) {
-            m.title = $translate.instant('SERVER_MESSAGE.' + m.title);
-            m.content = $translate.instant('SERVER_MESSAGE.' + m.content.string, m.content.params);
-          });
-        }
+        angular.forEach(vm.messages, function (m) {
+          vm.contentToJSON(m);
+        });
 
         vm.buildPager();
       });
@@ -240,14 +237,14 @@
       if (SideOverlay.isOpened('popupSlide')) {
         SideOverlay.close(evt, 'popupSlide', function () {
           vm.isClosing = true;
-          vm.selectedMessage = vm.contentToJSON(msg);
+          vm.selectedMessage = msg;
           mtDebug.info(vm.selectedMessage);
           SideOverlay.open(evt, 'popupSlide');
           vm.replyContent = undefined;
           vm.updateReadStatus(msg);
         });
       } else {
-        vm.selectedMessage = vm.contentToJSON(msg);
+        vm.selectedMessage = msg;
         SideOverlay.open(evt, 'popupSlide');
         vm.replyContent = undefined;
         mtDebug.info(vm.selectedMessage);
@@ -277,9 +274,14 @@
      * @param cnt
      */
     vm.contentToJSON = function (cnt) {
+      console.log(cnt);
       if (cnt.type === 'server' && (typeof cnt.content) === 'string') {
         cnt.content = JSON.parse(cnt.content);
+
+        cnt.title = $translate.instant('SERVER_MESSAGE.' + cnt.title);
+        cnt.content.string = $translate.instant('SERVER_MESSAGE.' + cnt.content.string, cnt.content.params);
       }
+
       return cnt;
     };
 
@@ -438,7 +440,7 @@
      */
     vm.getContentMarked = function (m) {
       if (m) {
-        return marked(m.content, {sanitize: true});
+        return marked(m.content.string || m.content, {sanitize: true});
       }
     };
 
