@@ -154,7 +154,8 @@ exports.delete = function (req, res) {
       //}).exec();
       torrent._subtitles.pull(r._id);
 
-      r.remove().exec();
+      r.remove();
+
       res.json(torrent);
 
       scoreUpdate(req, torrent.user, scoreConfig.action.uploadSubtitleBeDeleted);

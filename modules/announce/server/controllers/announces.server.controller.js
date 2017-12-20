@@ -741,7 +741,8 @@ exports.announce = function (req, res) {
       $pull: {_peers: p._id}
     }).exec();
 
-    p.remove().exec();
+    p.remove();
+
     mtDebug.debugGreen('---------------removePeer()----------------');
   }
 
