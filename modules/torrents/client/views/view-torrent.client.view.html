@@ -759,7 +759,7 @@
                             </td>
                             <td class="text-center">{{item.peer_uploaded | bytes:2}} | {{item.peer_uspeed | bytes:2}}/s</td>
                             <td class="text-center">{{item.peer_downloaded | bytes:2}} | {{item.peer_dspeed | bytes:2}}/s</td>
-                            <td class="text-center">{{item.peer_ratio}}</td>
+                            <td class="text-center">{{item.peer_ratio | ratio}}</td>
                             <td class="text-center">{{item.peer_percent}}%</td>
                             <td class="text-center">{{item.startedat | life}}</td>
                             <td class="text-center">{{item.last_announce_at | life}}</td>
@@ -807,7 +807,7 @@
                             </td>
                             <td class="text-center">{{item.peer_uploaded | bytes:2}} | {{item.peer_uspeed | bytes:2}}/s</td>
                             <td class="text-center">{{item.peer_downloaded | bytes:2}} | {{item.peer_dspeed | bytes:2}}/s</td>
-                            <td class="text-center">{{item.peer_ratio}}</td>
+                            <td class="text-center">{{item.peer_ratio | ratio}}</td>
                             <td class="text-center">{{item.peer_percent}}%</td>
                             <td class="text-center">{{item.startedat | life}}</td>
                             <td class="text-center">{{item.last_announce_at | life}}</td>

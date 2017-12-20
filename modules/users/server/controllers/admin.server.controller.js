@@ -245,9 +245,14 @@ exports.updateUserRole = function (req, res) {
  */
 exports.updateUserStatus = function (req, res) {
   var user = req.model;
+  var tp = {status: req.body.userStatus};
+
+  if (user.status === 'idle' && req.body.userStatus === 'normal') {
+    tp.last_signed = Date.now();
+  }
 
   user.update({
-    $set: {status: req.body.userStatus}
+    $set: tp
   }).exec(function (err, result) {
     if (err) {
       return res.status(422).send({

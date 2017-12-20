@@ -11,6 +11,16 @@ var appConfig = config.meanTorrentConfig.app;
  * debug
  * @param obj
  */
+module.exports.info = function (obj) {
+  if (appConfig.showDebugLog) {
+    console.log(obj);
+  }
+};
+
+/**
+ * debug
+ * @param obj
+ */
 module.exports.debug = function (obj) {
   if (appConfig.showDebugLog) {
     console.log('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']');

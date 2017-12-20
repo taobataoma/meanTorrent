@@ -795,8 +795,12 @@ exports.toggleHnRStatus = function (req, res) {
       res.json(torrent);
 
       //remove the complete data and update user`s warning number when the H&R prop to false
-      if (!torrent.torrent_hnr)
+      if (!torrent.torrent_hnr) {
         removeTorrentHnRWarning(torrent._id);
+        Complete.remove({
+          torrent: torrent._id
+        });
+      }
 
       //add server message
       if (serverNoticeConfig.action.torrentHnRChanged.enable) {

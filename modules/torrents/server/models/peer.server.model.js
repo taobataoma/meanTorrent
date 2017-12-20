@@ -20,8 +20,7 @@ var PeerSchema = new Schema({
   },
   peer_id: {
     type: String,
-    default: '',
-    trim: true
+    default: ''
   },
   peer_ip: {
     type: String,
@@ -86,6 +85,10 @@ var PeerSchema = new Schema({
   finishedat: {
     type: Date,
     default: ''
+  },
+  refreshat: {
+    type: Date,
+    default: Date.now
   }
 }, {usePushEach: true});
 
@@ -99,14 +102,14 @@ PeerSchema.pre('save', function (next) {
   next();
 });
 
+
 /**
- * Hook a pre update method
+ * globalUpdateMethod
  */
-PeerSchema.pre('update', function (next) {
-  countRatio(this);
-  countPercent(this);
-  next();
-});
+PeerSchema.methods.globalUpdateMethod = function () {
+  this.refreshat = Date.now();
+  this.save();
+};
 
 /**
  * countRatio
@@ -127,13 +130,16 @@ function countRatio(p) {
  * @param p
  */
 function countPercent(p) {
-  p.peer_percent = Math.round((p.peer_downloaded / (p.peer_downloaded + p.peer_left)) * 10000) / 100;
+  if (p.peer_status === 'seeder') {
+    p.peer_percent = 100;
+  } else {
+    p.peer_percent = (Math.round((p.peer_downloaded / (p.peer_downloaded + p.peer_left)) * 10000) / 100) || 0;
+  }
 }
 
 
 PeerSchema.index({user: -1, startedat: -1});
-PeerSchema.index({info_hash: -1, startedat: -1});
 PeerSchema.index({torrent: -1, startedat: -1});
-PeerSchema.index({passkey: -1, startedat: -1});
+PeerSchema.index({peer_status: 1});
 
 mongoose.model('Peer', PeerSchema);
