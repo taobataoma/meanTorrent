@@ -799,7 +799,7 @@ exports.toggleHnRStatus = function (req, res) {
         removeTorrentHnRWarning(torrent._id);
         Complete.remove({
           torrent: torrent._id
-        });
+        }).exec();
       }
 
       //add server message
@@ -1199,11 +1199,11 @@ exports.delete = function (req, res) {
   //remove all peers of the torrent
   Peer.remove({
     torrent: torrent._id
-  });
+  }).exec();
   //remove all subtitle of the torrent
   Subtitle.remove({
     torrent: torrent._id
-  });
+  }).exec();
   //update maker torrent count
   if (torrent.maker) {
     torrent.maker.update({
@@ -1220,7 +1220,7 @@ exports.delete = function (req, res) {
   removeTorrentHnRWarning(torrent._id);
   Complete.remove({
     torrent: torrent._id
-  });
+  }).exec();
 
   torrent.remove(function (err) {
     if (err) {

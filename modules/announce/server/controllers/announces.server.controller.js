@@ -327,7 +327,7 @@ exports.announce = function (req, res) {
         Peer.remove({
           torrent: req.torrent._id,
           _id: {$nin: req.torrent._peers}
-        });
+        }).exec();
       }
 
       done(null);
@@ -741,7 +741,7 @@ exports.announce = function (req, res) {
       $pull: {_peers: p._id}
     }).exec();
 
-    p.remove();
+    p.remove().exec();
     mtDebug.debugGreen('---------------removePeer()----------------');
   }
 
