@@ -41,6 +41,7 @@ var vsprintf = require('sprintf-js').vsprintf;
 var mtDebug = require(path.resolve('./config/lib/debug'));
 var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
+var announceConfig = config.meanTorrentConfig.announce;
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -1783,7 +1784,8 @@ exports.getSeederUsers = function (req, res) {
   var countSeederUsers = function (callback) {
     Peer.count({
       torrent: req.torrent._id,
-      peer_status: PEERSTATE_SEEDER
+      peer_status: PEERSTATE_SEEDER,
+      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval * 2}
     }, function (err, count) {
       if (err) {
         callback(err, null);
@@ -1797,7 +1799,8 @@ exports.getSeederUsers = function (req, res) {
   var findSeederUsers = function (callback) {
     Peer.find({
       torrent: req.torrent._id,
-      peer_status: PEERSTATE_SEEDER
+      peer_status: PEERSTATE_SEEDER,
+      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval * 2}
     })
       .sort('-peer_uploaded')
       .populate('user', 'username displayName profileImageURL isVip')
@@ -1842,7 +1845,8 @@ exports.getLeecherUsers = function (req, res) {
   var countLeecherUsers = function (callback) {
     Peer.count({
       torrent: req.torrent._id,
-      peer_status: PEERSTATE_LEECHER
+      peer_status: PEERSTATE_LEECHER,
+      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval * 2}
     }, function (err, count) {
       if (err) {
         callback(err, null);
@@ -1856,7 +1860,8 @@ exports.getLeecherUsers = function (req, res) {
   var findLeecherUsers = function (callback) {
     Peer.find({
       torrent: req.torrent._id,
-      peer_status: PEERSTATE_LEECHER
+      peer_status: PEERSTATE_LEECHER,
+      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval * 2}
     })
       .sort('-peer_uploaded')
       .populate('user', 'username displayName profileImageURL isVip')

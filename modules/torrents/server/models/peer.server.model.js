@@ -141,5 +141,6 @@ function countPercent(p) {
 PeerSchema.index({user: -1, startedat: -1});
 PeerSchema.index({torrent: -1, startedat: -1});
 PeerSchema.index({peer_status: 1});
+PeerSchema.index({torrent: 1, peer_status: 1, last_announce_at: 1});
 
 mongoose.model('Peer', PeerSchema);
