@@ -96,6 +96,9 @@ module.exports = {
       },
       peersCheck: {
         peersSendListIncludeOwnSeed: true
+      },
+      ghostPeersCheck: {
+        ghostPeersIdleTime: 60 * 60 * 1000 * 24
       }
     },
 
