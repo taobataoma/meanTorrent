@@ -35,7 +35,7 @@ module.exports.debug = function (obj) {
 module.exports.debugGreen = function (obj) {
   if (appConfig.showDebugLog) {
     console.log(chalk.green('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']'));
-    console.log(obj);
+    console.log(chalk.green(obj));
   }
 };
 
@@ -46,7 +46,7 @@ module.exports.debugGreen = function (obj) {
 module.exports.debugRed = function (obj) {
   if (appConfig.showDebugLog) {
     console.log(chalk.red('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']'));
-    console.log(obj);
+    console.log(chalk.red(obj));
   }
 };
 module.exports.debugError = function (obj) {
@@ -60,7 +60,7 @@ module.exports.debugError = function (obj) {
 module.exports.debugBlue = function (obj) {
   if (appConfig.showDebugLog) {
     console.log(chalk.blue('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']'));
-    console.log(obj);
+    console.log(chalk.blue(obj));
   }
 };
 
@@ -71,7 +71,7 @@ module.exports.debugBlue = function (obj) {
 module.exports.debugYellow = function (obj) {
   if (appConfig.showDebugLog) {
     console.log(chalk.yellow('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']'));
-    console.log(obj);
+    console.log(chalk.yellow(obj));
   }
 };
 
