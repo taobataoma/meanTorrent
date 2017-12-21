@@ -424,11 +424,16 @@ exports.announce = function (req, res) {
       if (event(query.event) === EVENT_STARTED) {
         mtDebug.debugGreen('---------------EVENT_STARTED----------------');
 
-        if (getSelfLeecherCount() > announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent && !req.seeder) {
-          mtDebug.debugGreen(req.selfpeer);
+        var lcount = getSelfLeecherCount();
+        var scount = getSelfSeederCount();
+
+        if (lcount > announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent && !req.seeder) {
+          mtDebug.debugYellow('getSelfLeecherCount = ' + lcount);
+          //mtDebug.debugYellow(req.selfpeer);
           done(180);
-        } else if (getSelfSeederCount() > announceConfig.announceCheck.maxSeedNumberPerUserPerTorrent && req.seeder) {
-          mtDebug.debugGreen(req.selfpeer);
+        } else if (scount > announceConfig.announceCheck.maxSeedNumberPerUserPerTorrent && req.seeder) {
+          mtDebug.debugYellow('getSelfSeederCount = ' + scount);
+          //mtDebug.debugYellow(req.selfpeer);
           done(181);
         } else {
           done(null);
@@ -447,28 +452,7 @@ exports.announce = function (req, res) {
     function (done) {
       if (event(query.event) === EVENT_COMPLETED) {
         mtDebug.debugGreen('---------------EVENT_COMPLETED----------------');
-
-        req.currentPeer.update({
-          $set: {peer_status: PEERSTATE_SEEDER, finishedat: Date.now()}
-        }).exec();
-
-        req.torrent.update({
-          $inc: {torrent_seeds: 1, torrent_finished: 1, torrent_leechers: -1}
-        }).exec();
-        req.torrent.torrent_seeds++;
-        req.torrent.torrent_finished++;
-        req.torrent.torrent_leechers--;
-
-        req.passkeyuser.update({
-          $inc: {seeded: 1, finished: 1, leeched: -1}
-        }).exec();
-
-        //update completeTorrent complete status
-        if (req.completeTorrent) {
-          req.completeTorrent.update({
-            $set: {complete: true}
-          }).exec();
-        }
+        doCompleteEvent();
       }
       done(null);
     },
@@ -489,104 +473,117 @@ exports.announce = function (req, res) {
         req.torrent.globalUpdateMethod();
       }
 
-      var udr = getUDRatio();
+      if (!req.currentPeer.isNewCreated) {
+        var udr = getUDRatio();
 
-      var curru = query.uploaded - req.currentPeer.peer_uploaded;
-      var currd = query.downloaded - req.currentPeer.peer_downloaded;
-
-      if (curru > 0 || currd > 0) {
-        var u = Math.round(curru * udr.ur);
-        var d = Math.round(currd * udr.dr);
-
-        if (req.passkeyuser.isVip) {
-          u = u * config.meanTorrentConfig.torrentSalesValue.vip.Ur;
-          d = d * config.meanTorrentConfig.torrentSalesValue.vip.Dr;
+        /*when leeching
+         some client not announced the download bytes in request params, but has left bytes, like Auze 5.7.6
+         so get the download value by query.left - req.currentPeer.peer_downloaded
+         */
+        if (query.downloaded === 0) {
+          if (event(query.event) !== EVENT_STARTED) {
+            query.downloaded = req.currentPeer.peer_left - query.left + req.currentPeer.peer_downloaded;
+          }
         }
 
-        req.passkeyuser.update({
-          $inc: {uploaded: u, downloaded: d}
-        }).exec();
+        var curru = query.uploaded - req.currentPeer.peer_uploaded;
+        var currd = query.downloaded - req.currentPeer.peer_downloaded;
 
-        //write complete data to completeTorrent and refresh completed ratio
-        if (req.completeTorrent) {
+        if (curru > 0 || currd > 0) {
+          var u = Math.round(curru * udr.ur);
+          var d = Math.round(currd * udr.dr);
+
+          if (req.passkeyuser.isVip) {
+            u = u * config.meanTorrentConfig.torrentSalesValue.vip.Ur;
+            d = d * config.meanTorrentConfig.torrentSalesValue.vip.Dr;
+          }
+
+          req.passkeyuser.update({
+            $inc: {uploaded: u, downloaded: d}
+          }).exec();
+
+          //write complete data to completeTorrent and refresh completed ratio
+          if (req.completeTorrent) {
+            req.completeTorrent.update({
+              $inc: {
+                total_uploaded: curru,
+                total_downloaded: currd
+              }
+            }).exec(function () {
+              req.completeTorrent.globalUpdateMethod();
+            });
+          }
+
+          //write peer speed
+          req.currentPeer.update({
+            $set: {
+              peer_uspeed: curru / config.meanTorrentConfig.announce.announceInterval * 1000,
+              peer_dspeed: currd / config.meanTorrentConfig.announce.announceInterval * 1000
+            }
+          }).exec();
+
+          //create trace log
+          traceLogCreate(req, traceConfig.action.userAnnounceData, {
+            user: req.passkeyuser._id,
+            torrent: req.torrent._id,
+
+            query_uploaded: query.uploaded,
+            query_downloaded: query.downloaded,
+            currentPeer_uploaded: req.currentPeer.peer_uploaded,
+            currentPeer_downloaded: req.currentPeer.peer_downloaded,
+
+            curr_uploaded: curru,
+            curr_downloaded: currd,
+            write_uploaded: u,
+            write_downloaded: d,
+
+            isVip: req.passkeyuser.isVip,
+            torrentSalesValue: req.torrent.torrent_sale_status,
+            globalSalesValue: config.meanTorrentConfig.torrentSalesValue.global,
+            vipSalesValue: config.meanTorrentConfig.torrentSalesValue.vip,
+
+            agent: req.get('User-Agent'),
+            ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+            port: query.port
+          });
+
+          //update score
+          var action = scoreConfig.action.seedAnnounce;
+          if (curru > 0 && action.enable) {
+            var unitScore = 1;
+            if (req.torrent.torrent_size > action.additionSize) {
+              unitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
+            }
+            var upScore = Math.round((curru / action.perlSize) * 100) / 100;
+            var score = unitScore * action.value * upScore;
+
+            scoreUpdate(req, req.passkeyuser, action, score);
+          }
+        }
+
+        //only add seed time for completed torrent
+        if (req.completeTorrent && req.completeTorrent.complete) {
           req.completeTorrent.update({
             $inc: {
-              total_uploaded: curru,
-              total_downloaded: currd
+              total_seed_time: config.meanTorrentConfig.announce.announceInterval
             }
           }).exec(function () {
             req.completeTorrent.globalUpdateMethod();
           });
         }
-
-        //write peer speed
-        req.currentPeer.update({
-          $set: {
-            peer_uploaded: query.uploaded,
-            peer_downloaded: query.downloaded,
-            peer_left: query.left,
-
-            peer_uspeed: curru / config.meanTorrentConfig.announce.announceInterval * 1000,
-            peer_dspeed: currd / config.meanTorrentConfig.announce.announceInterval * 1000
-          }
-        }).exec();
-
-        //create trace log
-        traceLogCreate(req, traceConfig.action.userAnnounceData, {
-          user: req.passkeyuser._id,
-          torrent: req.torrent._id,
-
-          query_uploaded: query.uploaded,
-          query_downloaded: query.downloaded,
-          currentPeer_uploaded: req.currentPeer.peer_uploaded,
-          currentPeer_downloaded: req.currentPeer.peer_downloaded,
-
-          curr_uploaded: curru,
-          curr_downloaded: currd,
-          write_uploaded: u,
-          write_downloaded: d,
-
-          isVip: req.passkeyuser.isVip,
-          torrentSalesValue: req.torrent.torrent_sale_status,
-          globalSalesValue: config.meanTorrentConfig.torrentSalesValue.global,
-          vipSalesValue: config.meanTorrentConfig.torrentSalesValue.vip,
-
-          agent: req.get('User-Agent'),
-          ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-          port: query.port
-        });
-
-        //update score
-        var action = scoreConfig.action.seedAnnounce;
-        if (curru > 0 && action.enable) {
-          var unitScore = 1;
-          if (req.torrent.torrent_size > action.additionSize) {
-            unitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
-          }
-          var upScore = Math.round((curru / action.perlSize) * 100) / 100;
-          var score = unitScore * action.value * upScore;
-
-          scoreUpdate(req, req.passkeyuser, action, score);
-        }
       }
 
-      //only add seed time for completed torrent
-      if (req.completeTorrent && req.completeTorrent.complete) {
-        req.completeTorrent.update({
-          $inc: {
-            total_seed_time: config.meanTorrentConfig.announce.announceInterval
-          }
-        }).exec(function () {
-          req.completeTorrent.globalUpdateMethod();
-        });
-      }
       //update warning status
       if (req.completeTorrent) {
         req.completeTorrent.countHnRWarning(req.passkeyuser);
       }
+
       //write peer last_announce_at time
       req.currentPeer.update({
         $set: {
+          peer_uploaded: query.uploaded,
+          peer_downloaded: query.downloaded,
+          peer_left: query.left,
           last_announce_at: Date.now()
         }
       }).exec(function () {
@@ -632,7 +629,7 @@ exports.announce = function (req, res) {
       });
 
       if (len > 0) {
-        mtDebug.debugGreen(peerBuffer);
+        mtDebug.debug(peerBuffer);
       }
       res.write(resp);
       res.write(peerBuffer);
@@ -654,11 +651,45 @@ exports.announce = function (req, res) {
     req.selfpeer.forEach(function (p) {
       if (p.peer_id === query.peer_id) {
         req.currentPeer = p;
+        req.currentPeer.isNewCreated = false;
+
+        if (req.seeder && req.currentPeer.peer_status !== PEERSTATE_SEEDER && event(query.event) === EVENT_NONE) {
+          mtDebug.debugGreen('---------------PEER STATUS CHANGED: Seeder----------------');
+          doCompleteEvent();
+        }
       }
     });
 
     if (!req.currentPeer) {
       createCurrentPeer();
+    }
+  }
+
+  /**
+   * doCompleteEvent
+   */
+  function doCompleteEvent() {
+    req.currentPeer.update({
+      $set: {peer_status: PEERSTATE_SEEDER, finishedat: Date.now()}
+    }).exec();
+    req.currentPeer.peer_status = PEERSTATE_SEEDER;
+
+    req.torrent.update({
+      $inc: {torrent_seeds: 1, torrent_finished: 1, torrent_leechers: -1}
+    }).exec();
+    req.torrent.torrent_seeds++;
+    req.torrent.torrent_finished++;
+    req.torrent.torrent_leechers--;
+
+    req.passkeyuser.update({
+      $inc: {seeded: 1, finished: 1, leeched: -1}
+    }).exec();
+
+    //update completeTorrent complete status
+    if (req.completeTorrent) {
+      req.completeTorrent.update({
+        $set: {complete: true}
+      }).exec();
     }
   }
 
@@ -673,8 +704,16 @@ exports.announce = function (req, res) {
     //peer.peer_ip = req.connection.remoteAddress;
     peer.peer_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     peer.peer_port = query.port;
+    peer.peer_left = query.left;
     peer.peer_status = req.seeder ? PEERSTATE_SEEDER : PEERSTATE_LEECHER;
     peer.user_agent = req.get('User-Agent');
+
+    peer.isNewCreated = true;
+
+    peer.last_announce_at = Date.now();
+    if (req.seeder) {
+      peer.finishedat = Date.now();
+    }
     peer.save();
 
     req.selfpeer.push(peer);
