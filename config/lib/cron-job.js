@@ -8,10 +8,15 @@ var path = require('path'),
   moment = require('moment'),
   Torrent = mongoose.model('Torrent'),
   User = mongoose.model('User'),
+  Peer = mongoose.model('Peer'),
   backup = require('mongodb-backup');
 
 var appConfig = config.meanTorrentConfig.app;
 var backupConfig = config.meanTorrentConfig.backup;
+var announceConfig = config.meanTorrentConfig.announce;
+
+const PEERSTATE_SEEDER = 'seeder';
+const PEERSTATE_LEECHER = 'leecher';
 
 /**
  * cron params of time
@@ -52,6 +57,7 @@ module.exports = function (app) {
 
   if (backupConfig.enable) {
     cronJobs.push(cronJobBackupMongoDB());
+    cronJobs.push(removeGhostPeers());
   }
 
   return cronJobs;
@@ -101,6 +107,62 @@ function cronJobBackupMongoDB() {
     },
     onComplete: function () {
       console.log(chalk.green('cronJobBackupMongoDB: complete!'));
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  cronJob.start();
+
+  return cronJob;
+}
+
+function removeGhostPeers() {
+  var cronJob = new CronJob({
+    cronTime: '00 00 1 * * *',
+    //cronTime: '*/5 * * * * *',
+    onTick: function () {
+      console.log(chalk.green('removeGhostPeers: process!'));
+
+      Peer.find({
+        last_announce_at: {$lt: Date.now() - announceConfig.ghostPeersCheck.ghostPeersIdleTime}
+      })
+        .populate('user')
+        .populate('torrent')
+        .exec(function (err, peers) {
+          if (!err && peers) {
+            var count = peers.length;
+
+            peers.forEach(function (p) {
+              if (p.peer_status === PEERSTATE_LEECHER) {
+                p.torrent.update({
+                  $inc: {torrent_leechers: -1}
+                }).exec();
+                p.user.update({
+                  $inc: {leeched: -1}
+                }).exec();
+              } else if (p.peer_status === PEERSTATE_SEEDER) {
+                p.torrent.update({
+                  $inc: {torrent_seeds: -1}
+                }).exec();
+                p.user.update({
+                  $inc: {seeded: -1}
+                }).exec();
+              }
+
+              p.torrent.update({
+                $pull: {_peers: p._id}
+              }).exec();
+
+              p.remove();
+            });
+
+            console.log(chalk.green('removed ghost peers: ' + count));
+          }
+        });
+    },
+    onComplete: function () {
+      console.log(chalk.green('removeGhostPeers: complete!'));
     },
     start: false,
     timeZone: appConfig.cronTimeZone
