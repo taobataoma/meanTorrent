@@ -243,8 +243,27 @@ TorrentSchema.methods.globalUpdateMethod = function (cb) {
 };
 
 TorrentSchema.index({user: -1, createdat: -1});
-TorrentSchema.index({info_hash: -1, createdat: -1});
-TorrentSchema.index({torrent_tmdb_id: -1, createdat: -1});
+TorrentSchema.index({maker: 1, createdat: -1});
+TorrentSchema.index({info_hash: 1, createdat: -1});
+TorrentSchema.index({torrent_tmdb_id: 1, createdat: -1});
+TorrentSchema.index({torrent_status: 1, createdat: -1});
+TorrentSchema.index({torrent_type: 1, createdat: -1});
+TorrentSchema.index({torrent_hnr: 1, createdat: -1});
+TorrentSchema.index({torrent_vip: 1, createdat: -1});
+TorrentSchema.index({torrent_recommended: 1, createdat: -1});
+TorrentSchema.index({torrent_sale_status: 1, createdat: -1});
+
+TorrentSchema.index({user: 1, torrent_recommended: 1, orderedat: -1, createdat: -1, '_peers.id': 1});
+
+TorrentSchema.index({
+  user: 1,
+  maker: 1,
+  torrent_status: 1,
+  torrent_type: 1,
+  torrent_hnr: 1,
+  torrent_vip: 1,
+  createdat: -1
+});
 
 mongoose.model('Torrent', TorrentSchema);
 mongoose.model('Comment', CommentSchema);
