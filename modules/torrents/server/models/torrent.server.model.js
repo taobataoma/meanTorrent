@@ -254,6 +254,14 @@ TorrentSchema.index({torrent_recommended: 1, createdat: -1});
 TorrentSchema.index({torrent_sale_status: 1, createdat: -1});
 
 TorrentSchema.index({user: 1, torrent_recommended: 1, orderedat: -1, createdat: -1, '_peers.id': 1});
+TorrentSchema.index({
+  torrent_status: 1,
+  torrent_type: 1,
+  torrent_vip: 1,
+  torrent_recommended: 1,
+  orderedat: -1,
+  createdat: -1,
+  '_peers.id': 1});
 
 TorrentSchema.index({
   user: 1,
