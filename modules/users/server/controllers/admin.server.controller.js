@@ -23,6 +23,7 @@ var mtDebug = require(path.resolve('./config/lib/debug'));
 var appConfig = config.meanTorrentConfig.app;
 var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
+var announceConfig = config.meanTorrentConfig.announce;
 
 /**
  * Show the current user
@@ -513,7 +514,8 @@ exports.resetVIPData = function (req, res) {
 exports.getUserSeeding = function (req, res) {
   Peer.find({
     user: req.model._id,
-    peer_status: PEERSTATE_SEEDER
+    peer_status: PEERSTATE_SEEDER,
+    last_announce_at: {$gt: Date.now() - announceConfig.announceInterval * 2}
   }).sort('-peer_uploaded')
     .populate({
       path: 'torrent',
@@ -541,7 +543,8 @@ exports.getUserSeeding = function (req, res) {
 exports.getUserLeeching = function (req, res) {
   Peer.find({
     user: req.model._id,
-    peer_status: PEERSTATE_LEECHER
+    peer_status: PEERSTATE_LEECHER,
+    last_announce_at: {$gt: Date.now() - announceConfig.announceInterval * 2}
   }).sort('-peer_downloaded')
     .populate({
       path: 'torrent',

@@ -18,6 +18,8 @@ var path = require('path'),
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
 
+var announceConfig = config.meanTorrentConfig.announce;
+
 /**
  * list my seeding torrents
  * @param req
@@ -26,7 +28,8 @@ const PEERSTATE_LEECHER = 'leecher';
 exports.getMySeeding = function (req, res) {
   Peer.find({
     user: req.user._id,
-    peer_status: PEERSTATE_SEEDER
+    peer_status: PEERSTATE_SEEDER,
+    last_announce_at: {$gt: Date.now() - announceConfig.announceInterval * 2}
   }).sort('-peer_uploaded')
     .populate({
       path: 'torrent',
@@ -54,7 +57,8 @@ exports.getMySeeding = function (req, res) {
 exports.getMyDownloading = function (req, res) {
   Peer.find({
     user: req.user._id,
-    peer_status: PEERSTATE_LEECHER
+    peer_status: PEERSTATE_LEECHER,
+    last_announce_at: {$gt: Date.now() - announceConfig.announceInterval * 2}
   }).sort('-peer_downloaded')
     .populate({
       path: 'torrent',
