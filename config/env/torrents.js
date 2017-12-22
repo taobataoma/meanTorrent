@@ -726,13 +726,14 @@ module.exports = {
      * @name:  client software name
      */
     clientBlackList: [
-      {name: 'Transmission/2.93', type: 'client'},
       {name: 'Mozilla', type: 'browser'},
       {name: 'AppleWebKit', type: 'browser'},
       {name: 'Safari', type: 'browser'},
       {name: 'Chrome', type: 'browser'},
       {name: 'Lynx', type: 'browser'},
-      {name: 'Opera', type: 'browser'}
+      {name: 'Opera', type: 'browser'},
+      {name: 'Transmission/2.93', type: 'client'},
+      {name: 'Azureus 5.7.6.0', type: 'client'}
     ],
 
     /**
