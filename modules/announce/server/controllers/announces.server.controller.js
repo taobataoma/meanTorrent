@@ -39,7 +39,7 @@ const FAILURE_REASONS = {
   151: 'Invalid peerid: peerid is not 20 bytes long',
   152: 'Invalid numwant. Client requested more peers than allowed by tracker',
   153: 'Passkey length error (length=32)',
-  154: 'Invalid passkey, if you changed you passkey, please re-download the torrent file from ' + config.meanTorrentConfig.announce.baseUrl,
+  154: 'Invalid passkey, if you changed you passkey, please redownload the torrent file from ' + config.meanTorrentConfig.announce.baseUrl,
 
   160: 'Invalid torrent info_hash',
   161: 'No torrent with that info_hash has been found',
@@ -64,7 +64,6 @@ const FAILURE_REASONS = {
   191: 'not find this torrent complete data',
 
   200: 'Your total ratio is less than %.2f, can not download anything now, you can continue seed and upgrade your ratio',
-  201: 'You can not download from your own seeding',
 
   600: 'This tracker only supports compact mode',
   900: 'Generic error'
@@ -903,8 +902,8 @@ exports.announce = function (req, res) {
    */
   function sendError(failure) {
     var respc = failure.bencode();
-    mtDebug.debugGreen(respc);
-    res.writeHead(500, {
+    mtDebug.debugRed(respc);
+    res.writeHead(200, {
       'Content-Length': respc.length,
       'Content-Type': 'text/plain'
     });

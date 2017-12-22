@@ -107,8 +107,8 @@ exports.scrape = function (req, res) {
    */
   function sendError(failure) {
     var respc = failure.bencode();
-    mtDebug.debugGreen(respc);
-    res.writeHead(500, {
+    mtDebug.debugRed(respc);
+    res.writeHead(200, {
       'Content-Length': respc.length,
       'Content-Type': 'text/plain'
     });
