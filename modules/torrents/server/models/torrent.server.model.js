@@ -4,7 +4,15 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
+  path = require('path'),
+  config = require(path.resolve('./config/config')),
+  Peer = mongoose.model('Peer'),
   Schema = mongoose.Schema;
+
+var announceConfig = config.meanTorrentConfig.announce;
+
+const PEERSTATE_SEEDER = 'seeder';
+const PEERSTATE_LEECHER = 'leecher';
 
 /**
  * Sub Comment Schema
@@ -233,6 +241,47 @@ function writeIsSaling(torrent) {
 }
 
 /**
+ * updateSeedLeechNumbers
+ */
+TorrentSchema.methods.updateSeedLeechNumbers = function () {
+  var torrent = this;
+
+  Peer.aggregate({
+    $match: {
+      torrent: torrent._id,
+      last_announce_at: {$gt: new Date(Date.now() - announceConfig.announceInterval - 60 * 1000)}
+    }
+  }, {
+    $group: {
+      _id: '$peer_status',
+      count: {$sum: 1}
+    }
+  }).exec(function (err, counts) {
+    if (!err) {
+      var sc = 0;
+      var lc = 0;
+      counts.forEach(function (c) {
+        switch (c._id) {
+          case PEERSTATE_SEEDER:
+            sc = c.count;
+            break;
+          case PEERSTATE_LEECHER:
+            lc = c.count;
+            break;
+        }
+      });
+
+      torrent.update({
+        $set: {
+          torrent_seeds: sc,
+          torrent_leechers: lc
+        }
+      }).exec();
+    }
+  });
+};
+
+/**
  * globalUpdateMethod
  */
 TorrentSchema.methods.globalUpdateMethod = function (cb) {
@@ -261,7 +310,8 @@ TorrentSchema.index({
   torrent_recommended: 1,
   orderedat: -1,
   createdat: -1,
-  '_peers.id': 1});
+  '_peers.id': 1
+});
 
 TorrentSchema.index({
   user: 1,

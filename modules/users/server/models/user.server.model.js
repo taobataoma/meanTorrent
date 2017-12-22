@@ -12,10 +12,15 @@ var mongoose = require('mongoose'),
   generatePassword = require('generate-password'),
   owasp = require('owasp-password-strength-test'),
   moment = require('moment'),
+  Peer = mongoose.model('Peer'),
   chalk = require('chalk');
 
 owasp.config(config.shared.owasp);
 
+var announceConfig = config.meanTorrentConfig.announce;
+
+const PEERSTATE_SEEDER = 'seeder';
+const PEERSTATE_LEECHER = 'leecher';
 
 /**
  * A Validation function for local strategy properties
@@ -381,6 +386,47 @@ UserSchema.methods.addLeechedIp = function (ip) {
 UserSchema.methods.globalUpdateMethod = function () {
   this.refreshat = Date.now();
   this.save();
+};
+
+/**
+ * updateSeedLeechNumbers
+ */
+UserSchema.methods.updateSeedLeechNumbers = function () {
+  var user = this;
+
+  Peer.aggregate({
+    $match: {
+      user: user._id,
+      last_announce_at: {$gt: new Date(Date.now() - announceConfig.announceInterval - 60 * 1000)}
+    }
+  }, {
+    $group: {
+      _id: '$peer_status',
+      count: {$sum: 1}
+    }
+  }).exec(function (err, counts) {
+    if (!err) {
+      var sc = 0;
+      var lc = 0;
+      counts.forEach(function (c) {
+        switch (c._id) {
+          case PEERSTATE_SEEDER:
+            sc = c.count;
+            break;
+          case PEERSTATE_LEECHER:
+            lc = c.count;
+            break;
+        }
+      });
+
+      user.update({
+        $set: {
+          seeded: sc,
+          leeched: lc
+        }
+      }).exec();
+    }
+  });
 };
 
 /**

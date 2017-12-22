@@ -269,6 +269,7 @@ exports.announce = function (req, res) {
             done(174);
           } else {
             req.torrent = t;
+            t.updateSeedLeechNumbers();
             done(null);
           }
         });
@@ -988,6 +989,7 @@ exports.userByPasskey = function (req, res, next, pk) {
           req.passkeyuser.status = 'idle';
         }
 
+        u.updateSeedLeechNumbers();
       } else {
         req.passkeyuser = undefined;
       }
