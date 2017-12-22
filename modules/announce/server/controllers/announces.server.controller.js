@@ -39,15 +39,14 @@ const FAILURE_REASONS = {
   151: 'Invalid peerid: peerid is not 20 bytes long',
   152: 'Invalid numwant. Client requested more peers than allowed by tracker',
   153: 'Passkey length error (length=32)',
-  154: 'Invalid passkey, if you changed you passkey, please redownload the torrent file from ' + config.meanTorrentConfig.announce.baseUrl,
+  154: 'Invalid passkey, if you changed you passkey, please redownload the torrent file from ' + announceConfig.baseUrl,
 
   160: 'Invalid torrent info_hash',
   161: 'No torrent with that info_hash has been found',
-  162: 'ip length error',
 
   170: 'your account status is banned',
   171: 'your account status is inactive',
-  172: 'your client is not allowed, here is the blacklist: ' + config.meanTorrentConfig.announce.clientBlackListUrl,
+  172: 'your client is not allowed, here is the blacklist: ' + announceConfig.baseUrl + announceConfig.clientBlackListUrl,
   173: 'this torrent status is not reviewed by administrators, try again later',
   174: 'this torrent is only for VIP members',
   175: 'your account status is idle',
@@ -80,8 +79,7 @@ const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
 
 const PEER_COMPACT_SIZE = 6;
-const ANNOUNCE_INTERVAL = Math.floor(config.meanTorrentConfig.announce.announceInterval / 1000);
-const ANNOUNCE_GHOST = 2;
+const ANNOUNCE_INTERVAL = Math.floor(announceConfig.announceInterval / 1000);
 
 const PARAMS_INTEGER = [
   'port', 'uploaded', 'downloaded', 'left', 'compact', 'numwant'
@@ -475,16 +473,6 @@ exports.announce = function (req, res) {
       if (!req.currentPeer.isNewCreated) {
         var udr = getUDRatio();
 
-        /*when leeching
-         some client not announced the download bytes in request params, but has left bytes, like Auze 5.7.6
-         so get the download value by query.left - req.currentPeer.peer_downloaded
-         */
-        if (query.downloaded === 0) {
-          if (event(query.event) !== EVENT_STARTED) {
-            query.downloaded = req.currentPeer.peer_left - query.left + req.currentPeer.peer_downloaded;
-          }
-        }
-
         var curru = query.uploaded - req.currentPeer.peer_uploaded;
         var currd = query.downloaded - req.currentPeer.peer_downloaded;
 
@@ -516,8 +504,8 @@ exports.announce = function (req, res) {
           //write peer speed
           req.currentPeer.update({
             $set: {
-              peer_uspeed: curru / config.meanTorrentConfig.announce.announceInterval * 1000,
-              peer_dspeed: currd / config.meanTorrentConfig.announce.announceInterval * 1000
+              peer_uspeed: Math.round(curru / (Date.now() - req.last_announce_at) * 1000),
+              peer_dspeed: Math.round(currd / (Date.now() - req.last_announce_at) * 1000)
             }
           }).exec();
 
