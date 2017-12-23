@@ -52,5 +52,6 @@ var MessageSchema = new Schema({
   }
 }, {usePushEach: true});
 
+MessageSchema.index({type: 1, from_user: 1, to_user: 1, updatedat: -1, createdat: -1});
 
 mongoose.model('Message', MessageSchema);

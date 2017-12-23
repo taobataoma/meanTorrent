@@ -72,4 +72,7 @@ var ForumSchema = new Schema({
   }
 }, {usePushEach: true});
 
+ForumSchema.index({order: 1, createdat: -1});
+ForumSchema.index({category: 1, order: 1, createdat: -1});
+
 mongoose.model('Forum', ForumSchema);

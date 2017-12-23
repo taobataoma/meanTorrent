@@ -42,5 +42,6 @@ var AdminMessageSchema = new Schema({
   }
 }, {usePushEach: true});
 
+AdminMessageSchema.index({type: 1, createdat: -1});
 
 mongoose.model('AdminMessage', AdminMessageSchema);

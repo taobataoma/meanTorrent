@@ -251,6 +251,7 @@ exports.announce = function (req, res) {
     /*---------------------------------------------------------------
      getTorrentItemData
      torrent data include peers
+     and update the seeding/leeching users count number
      ---------------------------------------------------------------*/
     function (done) {
       Torrent.findOne({

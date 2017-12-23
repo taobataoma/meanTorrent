@@ -75,4 +75,8 @@ var MakerSchema = new Schema({
   }
 }, {usePushEach: true});
 
+MakerSchema.index({torrent_count: -1});
+MakerSchema.index({upload_access: -1});
+
+
 mongoose.model('Maker', MakerSchema);

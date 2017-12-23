@@ -53,4 +53,12 @@ var InvitationSchema = new Schema({
   }
 }, {usePushEach: true});
 
+InvitationSchema.index({user: 1, status: 1, invitedat: 1});
+InvitationSchema.index({user: 1, status: 1, expiresat: 1, createdat: 1});
+InvitationSchema.index({isOfficial: 1, invitedat: -1});
+InvitationSchema.index({isOfficial: 1, status: 1, expiresat: 1});
+InvitationSchema.index({to_email: 1});
+InvitationSchema.index({token: 1});
+InvitationSchema.index({token: 1, status: 1, expiresat: 1});
+
 mongoose.model('Invitation', InvitationSchema);

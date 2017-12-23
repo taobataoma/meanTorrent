@@ -21,4 +21,7 @@ var TraceSchema = new Schema({
   }
 }, {usePushEach: true});
 
+TraceSchema.index({createdat: -1});
+TraceSchema.index({'content.action': -1});
+
 mongoose.model('Trace', TraceSchema);

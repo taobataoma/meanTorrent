@@ -146,6 +146,8 @@ var TopicSchema = new Schema({
   }
 }, {usePushEach: true});
 
+TopicSchema.index({forum: 1, isTop: -1, lastReplyAt: -1, createdAt: -1});
+TopicSchema.index({isGlobal: 1, forum: -1});
 
 mongoose.model('Topic', TopicSchema);
 mongoose.model('Attach', AttachSchema);

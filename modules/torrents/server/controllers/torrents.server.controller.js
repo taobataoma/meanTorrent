@@ -1863,7 +1863,7 @@ exports.getLeecherUsers = function (req, res) {
       peer_status: PEERSTATE_LEECHER,
       last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - 60 * 1000}
     })
-      .sort('-peer_uploaded')
+      .sort('-peer_downloaded')
       .populate('user', 'username displayName profileImageURL isVip')
       .skip(skip)
       .limit(limit)

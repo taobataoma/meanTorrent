@@ -168,8 +168,9 @@ CompleteSchema.methods.removeHnRWarning = function (u) {
 };
 
 
+CompleteSchema.index({torrent: 1, user: 1});
+CompleteSchema.index({user: 1, hnr_warning: 1});
 CompleteSchema.index({user: -1, createdAt: -1});
 CompleteSchema.index({torrent: 1, createdAt: -1});
-CompleteSchema.index({torrent: 1, user: 1});
 
 mongoose.model('Complete', CompleteSchema);

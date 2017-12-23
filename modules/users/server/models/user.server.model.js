@@ -543,10 +543,6 @@ UserSchema.statics.generateRandomPassphrase = function () {
   });
 };
 
-UserSchema.statics.seed = seed;
-
-mongoose.model('User', UserSchema);
-
 /**
  * Seeds the User collection with document (User)
  * and provided options.
@@ -632,3 +628,21 @@ function seed(doc, options) {
 
   });
 }
+
+UserSchema.statics.seed = seed;
+
+UserSchema.index({passkey: 1});
+UserSchema.index({email: 1});
+UserSchema.index({uptotal: 1});
+UserSchema.index({status: 1, uploaded: -1, downloaded: -1, ratio: -1, score: -1});
+UserSchema.index({status: 1, downloaded: -1, uploaded: -1, ratio: -1, score: -1});
+UserSchema.index({status: 1, score: -1, uploaded: -1, downloaded: -1, ratio: -1});
+UserSchema.index({status: 1, ratio: -1, uploaded: -1, downloaded: -1, score: -1});
+UserSchema.index({isVip: 1, username: 1, displayName: 1, email: 1, created: -1});
+UserSchema.index({roles: 1, username: 1, displayName: 1, email: 1, created: -1});
+UserSchema.index({status: 1, username: 1, displayName: 1, email: 1, created: -1});
+UserSchema.index({username: 1, email: 1});
+UserSchema.index({resetPasswordToken: 1, resetPasswordExpires: 1});
+UserSchema.index({signUpActiveToken: 1, status: 1, signUpActiveExpires: 1});
+
+mongoose.model('User', UserSchema);

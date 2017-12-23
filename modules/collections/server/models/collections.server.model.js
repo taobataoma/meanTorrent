@@ -56,4 +56,6 @@ var CollectionSchema = new Schema({
   }
 }, {usePushEach: true});
 
+CollectionSchema.index({recommend_level: 1, ordered_at: -1, created_at: -1});
+
 mongoose.model('Collection', CollectionSchema);
