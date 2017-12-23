@@ -243,7 +243,7 @@ function writeIsSaling(torrent) {
 /**
  * updateSeedLeechNumbers
  */
-TorrentSchema.methods.updateSeedLeechNumbers = function () {
+TorrentSchema.methods.updateSeedLeechNumbers = function (callback) {
   var torrent = this;
 
   Peer.aggregate({
@@ -277,6 +277,14 @@ TorrentSchema.methods.updateSeedLeechNumbers = function () {
           torrent_leechers: lc
         }
       }).exec();
+
+      if (callback) {
+        callback({seedCount: sc, leechCount: lc});
+      }
+    } else {
+      if (callback) {
+        callback(null);
+      }
     }
   });
 };
@@ -315,7 +323,6 @@ TorrentSchema.index({
 TorrentSchema.index({
   torrent_status: 1,
   torrent_type: 1,
-  torrent_hnr: 1,
   torrent_vip: 1,
   torrent_recommended: 1,
   orderedat: -1,

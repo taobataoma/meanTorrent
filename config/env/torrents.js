@@ -80,7 +80,7 @@ module.exports = {
     announce: {
       url: 'http://chd.im:3000/announce',
       comment: 'meanTorrent group',
-      announceInterval: 60 * 1000,
+      announceInterval: 60 * 1000 * 5,
       announcePrefix: '{CHD.im}.',
       admin: 'admin@chd.im',
       baseUrl: 'http://chd.im:3000',
@@ -732,8 +732,7 @@ module.exports = {
       {name: 'Chrome', type: 'browser'},
       {name: 'Lynx', type: 'browser'},
       {name: 'Opera', type: 'browser'},
-      {name: 'Transmission/2.93', type: 'client'},
-      {name: 'Azureus 5.7.6.0', type: 'client'}
+      {name: 'Transmission/2.93', type: 'client'}
     ],
 
     /**

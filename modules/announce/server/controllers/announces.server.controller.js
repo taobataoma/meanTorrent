@@ -251,14 +251,15 @@ exports.announce = function (req, res) {
     /*---------------------------------------------------------------
      getTorrentItemData
      torrent data include peers
-     and update the seeding/leeching users count number
      ---------------------------------------------------------------*/
     function (done) {
       Torrent.findOne({
         info_hash: query.info_hash
       })
         .populate('user')
-        .populate('_peers')
+        .populate({
+          path: '_peers'
+        })
         .exec(function (err, t) {
           if (err) {
             done(160);
@@ -270,7 +271,6 @@ exports.announce = function (req, res) {
             done(174);
           } else {
             req.torrent = t;
-            t.updateSeedLeechNumbers();
             done(null);
           }
         });
@@ -326,37 +326,29 @@ exports.announce = function (req, res) {
         Peer.remove({
           torrent: req.torrent._id,
           _id: {$nin: req.torrent._peers}
-        }).exec();
+        }, function (err, removed) {
+          if (removed.n > 0) {
+            mtDebug.debugRed('Removed ' + removed + ' peers not in torrent._peers: ' + req.torrent._id);
+          }
+        });
       }
 
       done(null);
     },
 
     /*---------------------------------------------------------------
-     find myself peers
-     ghost leech & seed function
-     if the peer is ghost, deleted it
-     if not found current peer with peer_id, create it
+     find myself peers and get current peer with same peer_id
      ----------------------------------------------------------------*/
     function (done) {
       if (req.torrent._peers.length > 0) {
         for (var i = req.torrent._peers.length; i > 0; i--) {
           var p = req.torrent._peers[i - 1];
           if (p.user.equals(req.passkeyuser._id)) {
-            //if (p.peer_id !== query.peer_id) {
-            //  var diff = moment(Date.now()).diff(moment(p.last_announce_at || p.startedat), 'seconds');
-            //  if (diff > ANNOUNCE_INTERVAL * ANNOUNCE_GHOST) {
-            //    removePeer(p);
-            //  }
-            //} else {
-            //  req.selfpeer.push(p);
-            //}
             req.selfpeer.push(p);
           }
         }
       }
 
-      //getcurrentPeer, if undefined then create req.currentPeer
       getCurrentPeer();
 
       done(null);
@@ -428,11 +420,9 @@ exports.announce = function (req, res) {
 
         if (lcount > announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent && !req.seeder) {
           mtDebug.debugYellow('getSelfLeecherCount = ' + lcount);
-          //mtDebug.debugYellow(req.selfpeer);
           done(180);
         } else if (scount > announceConfig.announceCheck.maxSeedNumberPerUserPerTorrent && req.seeder) {
           mtDebug.debugYellow('getSelfSeederCount = ' + scount);
-          //mtDebug.debugYellow(req.selfpeer);
           done(181);
         } else {
           done(null);
@@ -444,9 +434,6 @@ exports.announce = function (req, res) {
 
     /*---------------------------------------------------------------
      onEventCompleted
-     torrent leechers -1
-     torrent finished +1
-     torrent seeds +1, auto change to seeder?
      ---------------------------------------------------------------*/
     function (done) {
       if (event(query.event) === EVENT_COMPLETED) {
@@ -506,8 +493,8 @@ exports.announce = function (req, res) {
           //write peer speed
           req.currentPeer.update({
             $set: {
-              peer_uspeed: Math.round(curru / (Date.now() - req.last_announce_at) * 1000),
-              peer_dspeed: Math.round(currd / (Date.now() - req.last_announce_at) * 1000)
+              peer_uspeed: Math.round(curru / (Date.now() - req.currentPeer.last_announce_at) * 1000),
+              peer_dspeed: Math.round(currd / (Date.now() - req.currentPeer.last_announce_at) * 1000)
             }
           }).exec();
 
@@ -554,7 +541,7 @@ exports.announce = function (req, res) {
         if (req.completeTorrent && req.completeTorrent.complete) {
           req.completeTorrent.update({
             $inc: {
-              total_seed_time: config.meanTorrentConfig.announce.announceInterval
+              total_seed_time: Date.now() - req.currentPeer.last_announce_at
             }
           }).exec(function () {
             req.completeTorrent.globalUpdateMethod();
@@ -590,10 +577,24 @@ exports.announce = function (req, res) {
       if (event(query.event) === EVENT_STOPPED) {
         mtDebug.debugGreen('---------------EVENT_STOPPED----------------');
 
-        req.selfpeer.splice(req.selfpeer.indexOf(req.currentPeer), 1);
         removePeer(req.currentPeer);
       }
       done(null);
+    },
+
+    /*---------------------------------------------------------------
+     update torrent and user seeding/leeching count numbers
+     ---------------------------------------------------------------*/
+    function (done) {
+      req.passkeyuser.updateSeedLeechNumbers();
+
+      req.torrent.updateSeedLeechNumbers(function (slCount) {
+        if (slCount) {
+          req.torrent.torrent_seeds = slCount.seedCount;
+          req.torrent.torrent_leechers = slCount.leechCount;
+        }
+        done(null);
+      });
     },
 
     /*---------------------------------------------------------------
@@ -642,13 +643,14 @@ exports.announce = function (req, res) {
         req.currentPeer = p;
         req.currentPeer.isNewCreated = false;
 
-        if (req.seeder && req.currentPeer.peer_status !== PEERSTATE_SEEDER && event(query.event) === EVENT_NONE) {
+        if (req.seeder && req.currentPeer.peer_status !== PEERSTATE_SEEDER && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------PEER STATUS CHANGED: Seeder----------------');
           doCompleteEvent();
         }
       }
     });
 
+    //if not found then create req.currentPeer
     if (!req.currentPeer) {
       createCurrentPeer();
     }
@@ -664,14 +666,12 @@ exports.announce = function (req, res) {
     req.currentPeer.peer_status = PEERSTATE_SEEDER;
 
     req.torrent.update({
-      $inc: {torrent_seeds: 1, torrent_finished: 1, torrent_leechers: -1}
+      $inc: {torrent_finished: 1}
     }).exec();
-    req.torrent.torrent_seeds++;
     req.torrent.torrent_finished++;
-    req.torrent.torrent_leechers--;
 
     req.passkeyuser.update({
-      $inc: {seeded: 1, finished: 1, leeched: -1}
+      $inc: {finished: 1}
     }).exec();
 
     //update completeTorrent complete status
@@ -687,45 +687,24 @@ exports.announce = function (req, res) {
    */
   function createCurrentPeer() {
     var peer = new Peer();
+
     peer.user = req.passkeyuser;
     peer.torrent = req.torrent;
     peer.peer_id = query.peer_id;
-    //peer.peer_ip = req.connection.remoteAddress;
     peer.peer_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     peer.peer_port = query.port;
     peer.peer_left = query.left;
     peer.peer_status = req.seeder ? PEERSTATE_SEEDER : PEERSTATE_LEECHER;
     peer.user_agent = req.get('User-Agent');
-
     peer.isNewCreated = true;
-
     peer.last_announce_at = Date.now();
+
     if (req.seeder) {
       peer.finishedat = Date.now();
     }
     peer.save();
 
     req.selfpeer.push(peer);
-
-    if (req.seeder) {
-      req.torrent.update({
-        $inc: {torrent_seeds: 1}
-      }).exec();
-      req.passkeyuser.update({
-        $inc: {seeded: 1}
-      }).exec();
-
-      req.torrent.torrent_seeds++;
-    } else {
-      req.torrent.update({
-        $inc: {torrent_leechers: 1}
-      }).exec();
-      req.passkeyuser.update({
-        $inc: {leeched: 1}
-      }).exec();
-
-      req.torrent.torrent_leechers++;
-    }
 
     req.torrent.update({
       $addToSet: {_peers: peer}
@@ -744,26 +723,7 @@ exports.announce = function (req, res) {
    * @param p
    */
   function removePeer(p) {
-
-    if (p.peer_status === PEERSTATE_LEECHER) {
-      req.torrent.update({
-        $inc: {torrent_leechers: -1}
-      }).exec();
-      req.passkeyuser.update({
-        $inc: {leeched: -1}
-      }).exec();
-
-      req.torrent.torrent_leechers--;
-    } else if (p.peer_status === PEERSTATE_SEEDER) {
-      req.torrent.update({
-        $inc: {torrent_seeds: -1}
-      }).exec();
-      req.passkeyuser.update({
-        $inc: {seeded: -1}
-      }).exec();
-
-      req.torrent.torrent_seeds--;
-    }
+    req.selfpeer.splice(req.selfpeer.indexOf(req.currentPeer), 1);
 
     req.torrent.update({
       $pull: {_peers: p._id}
@@ -925,19 +885,21 @@ exports.announce = function (req, res) {
         p = peers[index];
 
         if (p !== undefined && p !== req.currentPeer) {
-          if (p.user.equals(req.passkeyuser._id)) {
-            if (announceConfig.peersCheck.peersSendListIncludeOwnSeed) {
+          if (p.last_announce_at > (Date.now() - announceConfig.announceInterval - 60 * 1000)) { //do not send ghost peer
+            if (p.user.equals(req.passkeyuser._id)) {
+              if (announceConfig.peersCheck.peersSendListIncludeOwnSeed) {
+                mtDebug.info(p._id);
+                bc = compact(p);
+                if (bc) {
+                  bc.copy(buf, c++ * PEER_COMPACT_SIZE);
+                }
+              }
+            } else {
               mtDebug.info(p._id);
               bc = compact(p);
               if (bc) {
                 bc.copy(buf, c++ * PEER_COMPACT_SIZE);
               }
-            }
-          } else {
-            mtDebug.info(p._id);
-            bc = compact(p);
-            if (bc) {
-              bc.copy(buf, c++ * PEER_COMPACT_SIZE);
             }
           }
         }
@@ -989,8 +951,6 @@ exports.userByPasskey = function (req, res, next, pk) {
           }).exec();
           req.passkeyuser.status = 'idle';
         }
-
-        u.updateSeedLeechNumbers();
       } else {
         req.passkeyuser = undefined;
       }
