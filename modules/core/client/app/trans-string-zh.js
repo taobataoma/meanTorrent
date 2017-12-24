@@ -1306,8 +1306,8 @@
       TITLE_USER_UPLOAD_ACCESS_CHANGED: '上传权限已变更',
       CONTENT_USER_UPLOAD_ACCESS_CHANGED: '### 上传权限已变更! \n 您的上传权限已由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 变更, 当前权限为 **{{upload_access | translate}}**, 感谢您为 **{{site_name}}** 做出贡献! ',
 
-      TITLE_VIP_CHANGED_ADD: 'Vip 状态已改变',
-      CONTENT_VIP_CHANGED_ADD: '### 恭喜！ \n 您的 Vip 状态已改变, 您的 Vip 将结束于: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
+      TITLE_USER_VIP_CHANGED_ADD: 'Vip 状态已改变',
+      CONTENT_USER_VIP_CHANGED_ADD: '### 恭喜！ \n 您的 Vip 状态已改变, 您的 Vip 将结束于: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}**, 所有的 H&R 警告已经清除. :four_leaf_clover:',
 
       TITLE_MAKER_CREATED: '资源制作小组已建立',
       CONTENT_MAKER_CREATED: '管理员 [{{by_name}}](/userinfo/{{by_id}}) 已为您创建资源制作小组 [{{maker_name}}](/about/maker/{{maker_id}}), 您现在是该小组的创建人, 感谢您为 **{{site_name}}** 做出贡献! :100:',

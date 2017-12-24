@@ -267,13 +267,22 @@ exports.announce = function (req, res) {
             done(161);
           } else if (t.torrent_status === 'new') {
             done(173);
-          } else if (t.torrent_vip && !req.passkeyuser.isVip) {
-            done(174);
           } else {
             req.torrent = t;
             done(null);
           }
         });
+    },
+
+    /*---------------------------------------------------------------
+     check torrent_vip and user_vip status
+     ---------------------------------------------------------------*/
+    function (done) {
+      if (!req.seeder && req.torrent.torrent_vip && !req.passkeyuser.isVip) {
+        done(174);
+      } else {
+        done(null);
+      }
     },
 
     /*---------------------------------------------------------------
@@ -478,20 +487,15 @@ exports.announce = function (req, res) {
             d = d * config.meanTorrentConfig.torrentSalesValue.vip.Dr;
           }
 
-          req.passkeyuser.update({
-            $inc: {uploaded: u, downloaded: d}
-          }).exec();
+          req.passkeyuser.uploaded += u;
+          req.passkeyuser.downloaded += d;
+          req.passkeyuser.save();
 
           //write complete data to completeTorrent and refresh completed ratio
           if (req.completeTorrent) {
             req.completeTorrent.total_uploaded += curru;
             req.completeTorrent.total_downloaded += currd;
-            req.completeTorrent.update({
-              $inc: {
-                total_uploaded: curru,
-                total_downloaded: currd
-              }
-            }).exec();
+            req.completeTorrent.save();
           }
 
           //write peer speed
@@ -547,35 +551,22 @@ exports.announce = function (req, res) {
       req.currentPeer.peer_downloaded = query.downloaded;
       req.currentPeer.peer_left = query.peer_left;
       req.currentPeer.last_announce_at = Date.now();
-      req.currentPeer.update({
-        $set: {
-          peer_uploaded: query.uploaded,
-          peer_downloaded: query.downloaded,
-          peer_left: query.left,
-          last_announce_at: Date.now()
-        }
-      }, function () {
-        req.currentPeer.globalUpdateMethod();
-      });
+      req.currentPeer.save();
 
       done(null);
     },
 
     /*---------------------------------------------------------------
      update H&R completeTorrent.total_seed_time
-     update H&R ratio in globalUpdateMethod
+     update H&R ratio in save
      update H&R warning in countHnRWarning
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.currentPeer.isNewCreated) {
         if (req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
           req.completeTorrent.total_seed_time += Date.now() - req.currentPeer.last_announce_at;
-          req.completeTorrent.update({
-            $inc: {total_seed_time: Date.now() - req.currentPeer.last_announce_at}
-          }, function () {
-            req.completeTorrent.globalUpdateMethod(function () {
-              req.completeTorrent.countHnRWarning(req.passkeyuser);
-            });
+          req.completeTorrent.save(function () {
+            req.completeTorrent.countHnRWarning(req.passkeyuser);
             done(null);
           });
         } else {
@@ -700,30 +691,20 @@ exports.announce = function (req, res) {
    * doCompleteEvent
    */
   function doCompleteEvent(callback) {
-    req.currentPeer.update({
-      $set: {peer_status: PEERSTATE_SEEDER, finishedat: Date.now()}
-    }).exec();
     req.currentPeer.peer_status = PEERSTATE_SEEDER;
+    req.currentPeer.save();
 
-    req.torrent.update({
-      $inc: {torrent_finished: 1}
-    }).exec();
     req.torrent.torrent_finished += 1;
+    req.torrent.save();
 
-    req.passkeyuser.update({
-      $inc: {finished: 1}
-    }).exec();
+    req.passkeyuser.finished += 1;
+    req.passkeyuser.save();
 
     //update completeTorrent complete status
     if (req.completeTorrent) {
       req.completeTorrent.complete = true;
-      req.completeTorrent.update({
-        $set: {complete: true}
-      }, function () {
-        req.completeTorrent.globalUpdateMethod(function () {
-          req.completeTorrent.countHnRWarning(req.passkeyuser);
-        });
-
+      req.completeTorrent.save(function () {
+        req.completeTorrent.countHnRWarning(req.passkeyuser);
         if (callback) callback();
       });
     } else {

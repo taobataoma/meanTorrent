@@ -1306,8 +1306,8 @@
       TITLE_USER_UPLOAD_ACCESS_CHANGED: 'Upload access changed',
       CONTENT_USER_UPLOAD_ACCESS_CHANGED: '### upload access changed! \n Your upload was changed by user [{{by_name}}](/userinfo/{{by_id}}), current access is **{{upload_access | translate}}**, Thank you for your contribution on **{{site_name}}**.',
 
-      TITLE_VIP_CHANGED_ADD: 'Vip status changed',
-      CONTENT_VIP_CHANGED_ADD: '### Welcome! \n Your vip status changed, now end at: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}** :four_leaf_clover:',
+      TITLE_USER_VIP_CHANGED_ADD: 'Vip status changed',
+      CONTENT_USER_VIP_CHANGED_ADD: '### Welcome! \n Your vip status changed, now end at: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}**, all H&R warning already clean. :four_leaf_clover:',
 
       TITLE_MAKER_CREATED: 'Maker group has created',
       CONTENT_MAKER_CREATED: 'Administrator [{{by_name}}](/userinfo/{{by_id}}) already created a maker group [{{maker_name}}](/about/maker/{{maker_id}}) for you, you are the group founder now, Thank you for your contribution on **{{site_name}}** :100:',

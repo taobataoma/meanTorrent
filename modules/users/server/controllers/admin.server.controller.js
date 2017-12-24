@@ -392,6 +392,7 @@ exports.addVIPMonths = function (req, res) {
     user.vip_start_at = start;
     user.vip_end_at = end;
     user.status = 'normal';
+    user.hnr_warning = 0;
 
     user.save(function (err) {
       if (err) {
@@ -401,6 +402,11 @@ exports.addVIPMonths = function (req, res) {
       }
 
       res.json(user);
+
+      //clean all H&R record
+      Complete.remove({
+        user: user._id
+      }).exec();
 
       //add server message
       if (serverNoticeConfig.action.userVipStatusChanged.enable) {
