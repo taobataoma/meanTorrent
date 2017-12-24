@@ -1,10 +1,10 @@
-<section class="container" ng-controller="UserUploadedController as vm" ng-init="vm.getUserUploadedTorrent();">
+<section class="container" ng-init="vm.getUserUploadedTorrent();">
     <div class="row margin-top-50">
         <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.pagedItems">
             <span>
-                <h4 class="margin-bottom-30">
+                <h3 class="margin-bottom-30">
                     {{vm.user.displayName}} - {{'PAGETITLE.STATUS_UPLOADED' | translate}}
-                </h4>
+                </h3>
             </span>
 
             <div class="pagination-div-top">

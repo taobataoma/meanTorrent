@@ -5,15 +5,15 @@
     .module('users')
     .controller('UserUploadedController', UserUploadedController);
 
-  UserUploadedController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
+  UserUploadedController.$inject = ['$scope', '$state', '$translate', 'userResolve', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices'];
 
-  function UserUploadedController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
+  function UserUploadedController($scope, $state, $translate, user, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   $window, $filter, DownloadService, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
-    vm.user = Authentication.user;
+    vm.user = user;
     vm.RTS = ResourcesTagsServices;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 

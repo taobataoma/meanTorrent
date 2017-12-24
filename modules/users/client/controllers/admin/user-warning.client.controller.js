@@ -5,17 +5,17 @@
     .module('users')
     .controller('UserWarningController', UserWarningController);
 
-  UserWarningController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'PeersService',
+  UserWarningController.$inject = ['$scope', '$state', '$translate', 'userResolve', '$timeout', 'Authentication', 'Notification', 'PeersService',
     'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'DebugConsoleService', 'TorrentGetInfoServices', 'ModalConfirmService',
     'NotifycationService', 'CompleteService', 'ResourcesTagsServices'];
 
-  function UserWarningController($scope, $state, $translate, $timeout, Authentication, Notification, PeersService, MeanTorrentConfig,
+  function UserWarningController($scope, $state, $translate, user, $timeout, Authentication, Notification, PeersService, MeanTorrentConfig,
                                  $window, $filter, DownloadService, mtDebug, TorrentGetInfoServices, ModalConfirmService,
                                  NotifycationService, CompleteService, ResourcesTagsServices) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
-    vm.user = Authentication.user;
+    vm.user = user;
     vm.RTS = ResourcesTagsServices;
 
     vm.searchTags = [];
