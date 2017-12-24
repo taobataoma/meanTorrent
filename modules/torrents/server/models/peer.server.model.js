@@ -106,9 +106,11 @@ PeerSchema.pre('save', function (next) {
 /**
  * globalUpdateMethod
  */
-PeerSchema.methods.globalUpdateMethod = function () {
+PeerSchema.methods.globalUpdateMethod = function (cb) {
   this.refreshat = Date.now();
-  this.save();
+  this.save(function (err, p) {
+    if (cb) cb(p || this);
+  });
 };
 
 /**

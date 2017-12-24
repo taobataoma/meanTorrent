@@ -437,7 +437,6 @@ exports.announce = function (req, res) {
         var lcount = getSelfLeecherCount();
         var scount = getSelfSeederCount();
 
-        console.log('lcount=' + lcount + ', scount=' + scount);
         if (lcount > announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent && !req.seeder) {
           mtDebug.debugYellow('getSelfLeecherCount = ' + lcount, 'ANNOUNCE_REQUEST');
           removeCurrPeer();
@@ -543,7 +542,11 @@ exports.announce = function (req, res) {
         }
       }
 
-      //write peer last_announce_at time
+      //write peer data and last_announce_at time
+      req.currentPeer.peer_uploaded = query.uploaded;
+      req.currentPeer.peer_downloaded = query.downloaded;
+      req.currentPeer.peer_left = query.peer_left;
+      req.currentPeer.last_announce_at = Date.now();
       req.currentPeer.update({
         $set: {
           peer_uploaded: query.uploaded,
@@ -551,7 +554,7 @@ exports.announce = function (req, res) {
           peer_left: query.left,
           last_announce_at: Date.now()
         }
-      }).exec(function () {
+      }, function () {
         req.currentPeer.globalUpdateMethod();
       });
 
@@ -565,7 +568,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.currentPeer.isNewCreated) {
-        if (req.completeTorrent && req.completeTorrent.complete) {
+        if (req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
           req.completeTorrent.total_seed_time += Date.now() - req.currentPeer.last_announce_at;
           req.completeTorrent.update({
             $inc: {total_seed_time: Date.now() - req.currentPeer.last_announce_at}
