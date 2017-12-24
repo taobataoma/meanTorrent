@@ -95,9 +95,11 @@ function countRatio(t) {
 /**
  * globalUpdateMethod
  */
-CompleteSchema.methods.globalUpdateMethod = function () {
+CompleteSchema.methods.globalUpdateMethod = function (callback) {
   this.refreshat = Date.now();
-  this.save();
+  this.save(function () {
+    if (callback) callback();
+  });
 };
 
 /**

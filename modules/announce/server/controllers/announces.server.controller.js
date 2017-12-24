@@ -51,18 +51,18 @@ const FAILURE_REASONS = {
   174: 'this torrent is only for VIP members',
   175: 'your account status is idle',
 
-  180: 'You already are downloading the same torrent. You may only leech from one location at a time',
-  181: 'You cannot seed the same torrent from more than 3 locations',
+  180: 'You can not open more than 1 downloading processes on the same torrent',
+  181: 'You can not open more than 3 seeding processes on the same torrent',
   182: 'save peer failed',
   183: 'save torrent failed',
   184: 'save passkeyuser failed',
-  185: 'get completeTorrent failed',
-  186: 'create completeTorrent failed',
+  185: 'get H&R completeTorrent failed',
+  186: 'create H&R completeTorrent failed',
 
   190: 'You have more H&R warning, can not download any torrent now!',
-  191: 'not find this torrent complete data',
+  191: 'not find this torrent H&R complete data',
 
-  200: 'Your total ratio is less than %.2f, can not download anything now, you can continue seed and upgrade your ratio',
+  200: 'Your total ratio is less than %.2f, can not download anything',
 
   600: 'This tracker only supports compact mode',
   900: 'Generic error'
@@ -337,24 +337,6 @@ exports.announce = function (req, res) {
     },
 
     /*---------------------------------------------------------------
-     find myself peers and get current peer with same peer_id
-     ----------------------------------------------------------------*/
-    function (done) {
-      if (req.torrent._peers.length > 0) {
-        for (var i = req.torrent._peers.length; i > 0; i--) {
-          var p = req.torrent._peers[i - 1];
-          if (p.user.equals(req.passkeyuser._id)) {
-            req.selfpeer.push(p);
-          }
-        }
-      }
-
-      getCurrentPeer(function () {
-        done(null);
-      });
-    },
-
-    /*---------------------------------------------------------------
      check N&R can download
      if user has too more H&R warning numbers, can not download any torrent
      but can continue download the warning status torrent
@@ -384,6 +366,25 @@ exports.announce = function (req, res) {
     },
 
     /*---------------------------------------------------------------
+     refresh user`s vip status and ratio
+     update torrent isSaling status
+     ---------------------------------------------------------------*/
+    function (done) {
+      req.passkeyuser.globalUpdateMethod(function (u) {
+        req.passkeyuser = u;
+
+        if (req.torrent.isSaling) {
+          req.torrent.globalUpdateMethod(function (t) {
+            req.torrent = t;
+            done(null);
+          });
+        } else {
+          done(null);
+        }
+      });
+    },
+
+    /*---------------------------------------------------------------
      announce download check
      ratio check, setting in announce.downloadCheck
      ---------------------------------------------------------------*/
@@ -406,6 +407,24 @@ exports.announce = function (req, res) {
     },
 
     /*---------------------------------------------------------------
+     find myself peers and get current peer with same peer_id
+     ----------------------------------------------------------------*/
+    function (done) {
+      if (req.torrent._peers.length > 0) {
+        for (var i = req.torrent._peers.length; i > 0; i--) {
+          var p = req.torrent._peers[i - 1];
+          if (p.user.equals(req.passkeyuser._id)) {
+            req.selfpeer.push(p);
+          }
+        }
+      }
+
+      getCurrentPeer(function () {
+        done(null);
+      });
+    },
+
+    /*---------------------------------------------------------------
      onEventStarted
      if downloading, check download peer num only 1
      if seeding, check seed peer num can not more than 3
@@ -418,11 +437,14 @@ exports.announce = function (req, res) {
         var lcount = getSelfLeecherCount();
         var scount = getSelfSeederCount();
 
+        console.log('lcount=' + lcount + ', scount=' + scount);
         if (lcount > announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent && !req.seeder) {
           mtDebug.debugYellow('getSelfLeecherCount = ' + lcount, 'ANNOUNCE_REQUEST');
+          removeCurrPeer();
           done(180);
         } else if (scount > announceConfig.announceCheck.maxSeedNumberPerUserPerTorrent && req.seeder) {
           mtDebug.debugYellow('getSelfSeederCount = ' + scount, 'ANNOUNCE_REQUEST');
+          removeCurrPeer();
           done(181);
         } else {
           done(null);
@@ -430,17 +452,6 @@ exports.announce = function (req, res) {
       } else {
         done(null);
       }
-    },
-
-    /*---------------------------------------------------------------
-     onEventCompleted
-     ---------------------------------------------------------------*/
-    function (done) {
-      if (event(query.event) === EVENT_COMPLETED) {
-        mtDebug.debugGreen('---------------EVENT_COMPLETED----------------', 'ANNOUNCE_REQUEST');
-        doCompleteEvent();
-      }
-      done(null);
     },
 
     /*---------------------------------------------------------------
@@ -452,12 +463,6 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA----------------', 'ANNOUNCE_REQUEST');
-      //refresh user`s vip status and ratio
-      req.passkeyuser.globalUpdateMethod();
-      //active torrent update method to update torrent isSaling status
-      if (req.torrent.isSaling) {
-        req.torrent.globalUpdateMethod();
-      }
 
       if (!req.currentPeer.isNewCreated) {
         var udr = getUDRatio();
@@ -480,14 +485,14 @@ exports.announce = function (req, res) {
 
           //write complete data to completeTorrent and refresh completed ratio
           if (req.completeTorrent) {
+            req.completeTorrent.total_uploaded += curru;
+            req.completeTorrent.total_downloaded += currd;
             req.completeTorrent.update({
               $inc: {
                 total_uploaded: curru,
                 total_downloaded: currd
               }
-            }).exec(function () {
-              req.completeTorrent.globalUpdateMethod();
-            });
+            }).exec();
           }
 
           //write peer speed
@@ -536,22 +541,6 @@ exports.announce = function (req, res) {
             scoreUpdate(req, req.passkeyuser, action, score);
           }
         }
-
-        //only add seed time for completed torrent
-        if (req.completeTorrent && req.completeTorrent.complete) {
-          req.completeTorrent.update({
-            $inc: {
-              total_seed_time: Date.now() - req.currentPeer.last_announce_at
-            }
-          }).exec(function () {
-            req.completeTorrent.globalUpdateMethod();
-          });
-        }
-      }
-
-      //update warning status
-      if (req.completeTorrent) {
-        req.completeTorrent.countHnRWarning(req.passkeyuser);
       }
 
       //write peer last_announce_at time
@@ -567,6 +556,44 @@ exports.announce = function (req, res) {
       });
 
       done(null);
+    },
+
+    /*---------------------------------------------------------------
+     update H&R completeTorrent.total_seed_time
+     update H&R ratio in globalUpdateMethod
+     update H&R warning in countHnRWarning
+     ---------------------------------------------------------------*/
+    function (done) {
+      if (!req.currentPeer.isNewCreated) {
+        if (req.completeTorrent && req.completeTorrent.complete) {
+          req.completeTorrent.total_seed_time += Date.now() - req.currentPeer.last_announce_at;
+          req.completeTorrent.update({
+            $inc: {total_seed_time: Date.now() - req.currentPeer.last_announce_at}
+          }, function () {
+            req.completeTorrent.globalUpdateMethod(function () {
+              req.completeTorrent.countHnRWarning(req.passkeyuser);
+            });
+            done(null);
+          });
+        } else {
+          done(null);
+        }
+      } else {
+        done(null);
+      }
+    },
+    /*---------------------------------------------------------------
+     onEventCompleted
+     ---------------------------------------------------------------*/
+    function (done) {
+      if (event(query.event) === EVENT_COMPLETED) {
+        mtDebug.debugGreen('---------------EVENT_COMPLETED----------------', 'ANNOUNCE_REQUEST');
+        doCompleteEvent(function () {
+          done(null);
+        });
+      } else {
+        done(null);
+      }
     },
 
     /*---------------------------------------------------------------
@@ -593,7 +620,7 @@ exports.announce = function (req, res) {
         req.passkeyuser.updateSeedLeechNumbers();
 
         if (slCount) {
-          console.log(slCount);
+          mtDebug.debugYellow(slCount, 'ANNOUNCE_REQUEST');
           req.torrent.torrent_seeds = slCount.seedCount;
           req.torrent.torrent_leechers = slCount.leechCount;
         }
@@ -649,10 +676,12 @@ exports.announce = function (req, res) {
 
         if (req.seeder && req.currentPeer.peer_status !== PEERSTATE_SEEDER && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------PEER STATUS CHANGED: Seeder----------------', 'ANNOUNCE_REQUEST');
-          doCompleteEvent();
+          doCompleteEvent(function () {
+            if (callback) callback();
+          });
+        } else {
+          if (callback) callback();
         }
-
-        if (callback) callback();
       }
     });
 
@@ -667,7 +696,7 @@ exports.announce = function (req, res) {
   /**
    * doCompleteEvent
    */
-  function doCompleteEvent() {
+  function doCompleteEvent(callback) {
     req.currentPeer.update({
       $set: {peer_status: PEERSTATE_SEEDER, finishedat: Date.now()}
     }).exec();
@@ -684,9 +713,18 @@ exports.announce = function (req, res) {
 
     //update completeTorrent complete status
     if (req.completeTorrent) {
+      req.completeTorrent.complete = true;
       req.completeTorrent.update({
         $set: {complete: true}
-      }).exec();
+      }, function () {
+        req.completeTorrent.globalUpdateMethod(function () {
+          req.completeTorrent.countHnRWarning(req.passkeyuser);
+        });
+
+        if (callback) callback();
+      });
+    } else {
+      if (callback) callback();
     }
   }
 
@@ -900,14 +938,14 @@ exports.announce = function (req, res) {
           if (p.last_announce_at > (Date.now() - announceConfig.announceInterval - 60 * 1000)) { //do not send ghost peer
             if (p.user.equals(req.passkeyuser._id)) {
               if (announceConfig.peersCheck.peersSendListIncludeOwnSeed) {
-                mtDebug.info(p._id, 'ANNOUNCE_REQUEST');
+                mtDebug.info(p._id);
                 bc = compact(p);
                 if (bc) {
                   bc.copy(buf, c++ * PEER_COMPACT_SIZE);
                 }
               }
             } else {
-              mtDebug.info(p._id, 'ANNOUNCE_REQUEST');
+              mtDebug.info(p._id);
               bc = compact(p);
               if (bc) {
                 bc.copy(buf, c++ * PEER_COMPACT_SIZE);

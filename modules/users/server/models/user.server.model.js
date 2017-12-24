@@ -383,9 +383,11 @@ UserSchema.methods.addLeechedIp = function (ip) {
 /**
  * globalUpdateMethod
  */
-UserSchema.methods.globalUpdateMethod = function () {
+UserSchema.methods.globalUpdateMethod = function (cb) {
   this.refreshat = Date.now();
-  this.save();
+  this.save(function (err, u) {
+    if (cb) cb(u || this);
+  });
 };
 
 /**
