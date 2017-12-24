@@ -163,7 +163,7 @@ exports.list = function (req, res) {
     ];
   }
 
-  mtDebug.debugBlue(condition);
+  mtDebug.debugBlue(condition, 'ADMIN_USERS_LIST');
 
   var countQuery = function (callback) {
     User.count(condition, function (err, count) {

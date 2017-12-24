@@ -391,7 +391,7 @@ UserSchema.methods.globalUpdateMethod = function () {
 /**
  * updateSeedLeechNumbers
  */
-UserSchema.methods.updateSeedLeechNumbers = function () {
+UserSchema.methods.updateSeedLeechNumbers = function (callback) {
   var user = this;
 
   Peer.aggregate({
@@ -424,7 +424,15 @@ UserSchema.methods.updateSeedLeechNumbers = function () {
           seeded: sc,
           leeched: lc
         }
-      }).exec();
+      }, function (err) {
+        if (callback) {
+          callback({seedCount: sc, leechCount: lc});
+        }
+      });
+    } else {
+      if (callback) {
+        callback(null);
+      }
     }
   });
 };

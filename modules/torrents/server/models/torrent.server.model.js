@@ -276,11 +276,11 @@ TorrentSchema.methods.updateSeedLeechNumbers = function (callback) {
           torrent_seeds: sc,
           torrent_leechers: lc
         }
-      }).exec();
-
-      if (callback) {
-        callback({seedCount: sc, leechCount: lc});
-      }
+      }, function (err) {
+        if (callback) {
+          callback({seedCount: sc, leechCount: lc});
+        }
+      });
     } else {
       if (callback) {
         callback(null);
