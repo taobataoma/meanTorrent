@@ -14,7 +14,9 @@ var appConfig = config.meanTorrentConfig.app;
  */
 module.exports.info = function (obj, section) {
   if (appConfig.showDebugLog) {
-    console.log(section ? ' - ' + section : '');
+    if (section) {
+      console.log(section);
+    }
     console.log(obj);
   }
 };
