@@ -9,6 +9,7 @@ var path = require('path'),
   Torrent = mongoose.model('Torrent'),
   User = mongoose.model('User'),
   Peer = mongoose.model('Peer'),
+  Complete = mongoose.model('Complete'),
   backup = require('mongodb-backup');
 
 var appConfig = config.meanTorrentConfig.app;
@@ -57,8 +58,10 @@ module.exports = function (app) {
 
   if (backupConfig.enable) {
     cronJobs.push(cronJobBackupMongoDB());
-    cronJobs.push(removeGhostPeers());
   }
+
+  cronJobs.push(removeGhostPeers());
+  cronJobs.push(countUsersHnrWarning());
 
   return cronJobs;
 };
@@ -98,7 +101,7 @@ function cronJobBackupMongoDB() {
       console.log(chalk.green('cronJobBackupMongoDB: process!'));
 
       backup({
-        uri: config.db.uri, // mongodb://<dbuser>:<dbpassword>@<dbdomain>.mongolab.com:<dbport>/<dbdatabase>
+        uri: config.db.uri,
         options: config.db.options || {},
         root: backupConfig.dir,
         parser: 'json',
@@ -117,15 +120,18 @@ function cronJobBackupMongoDB() {
   return cronJob;
 }
 
+/**
+ * removeGhostPeers
+ */
 function removeGhostPeers() {
   var cronJob = new CronJob({
-    cronTime: '00 00 1 * * *',
+    cronTime: '00 05 1 * * *',
     //cronTime: '*/5 * * * * *',
     onTick: function () {
       console.log(chalk.green('removeGhostPeers: process!'));
 
       Peer.find({
-        last_announce_at: {$lt: Date.now() - announceConfig.ghostPeersCheck.ghostPeersIdleTime}
+        last_announce_at: {$lt: Date.now() - announceConfig.ghostCheck.ghostPeersIdleTime}
       })
         .populate('user')
         .populate('torrent')
@@ -163,6 +169,42 @@ function removeGhostPeers() {
     },
     onComplete: function () {
       console.log(chalk.green('removeGhostPeers: complete!'));
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  cronJob.start();
+
+  return cronJob;
+}
+
+/**
+ * countUsersHnrWarning
+ */
+function countUsersHnrWarning() {
+  var cronJob = new CronJob({
+    cronTime: '00 00 */' + announceConfig.warningCheck.userHnrWarningCheckInterval + ' * * *',
+    //cronTime: '*/5 * * * * *',
+    onTick: function () {
+      console.log(chalk.green('countHnrWarning: process!'));
+
+      Complete.find({
+        complete: true,
+        hnr_warning: false,
+        refreshat: {$lt: Date.now() - announceConfig.warningCheck.userHnrWarningCheckInterval * 60 * 60 * 1000}
+      })
+        .populate('user')
+        .exec(function (err, comps) {
+          if (!err && comps) {
+            comps.forEach(function (c) {
+              c.countHnRWarning(true, false);
+            });
+          }
+        });
+    },
+    onComplete: function () {
+      console.log(chalk.green('countHnrWarning: complete!'));
     },
     start: false,
     timeZone: appConfig.cronTimeZone

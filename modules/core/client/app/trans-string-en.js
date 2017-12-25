@@ -1327,7 +1327,7 @@
       TITLE_HNR_WARNING_ADD: 'New H&R warning',
       CONTENT_HNR_WARNING_ADD: '### H&R warning! \n You just got a h&r warning on torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}), please continue to seeding, the warning will be auto cleanup when the seed ratio more than {{hnr_ratio}} or seed time more than {{hnr_days}} days or clean up manually at [warning list](/status/warning).',
       TITLE_HNR_WARNING_REMOVE: 'H&R warning removed',
-      CONTENT_HNR_WARNING_REMOVE: '### H&R warning removed! \n Congratulate, your h&r warning ont torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) already clean up.',
+      CONTENT_HNR_WARNING_REMOVE: '### H&R warning removed! \n Congratulate, your h&r warning on torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) already clean up.',
 
       TITLE_FORUM_NEW_TOPIC_REPLY: 'Topic in forum has new reply',
       CONTENT_FORUM_NEW_TOPIC_REPLY: '### New reply! \n :collision: You posted topic in forum [{{topic_title}}](/forums/{{forum_id}}/{{topic_id}}#{{reply_id}}) has new reply by user [{{by_name}}](/userinfo/{{by_id}}).',

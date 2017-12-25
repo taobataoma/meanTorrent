@@ -7,15 +7,12 @@ var path = require('path'),
   config = require(path.resolve('./config/config')),
   common = require(path.resolve('./config/lib/common')),
   mongoose = require('mongoose'),
-  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   User = mongoose.model('User'),
   Torrent = mongoose.model('Torrent'),
   Peer = mongoose.model('Peer'),
   Complete = mongoose.model('Complete'),
   moment = require('moment'),
   async = require('async'),
-  querystring = require('querystring'),
-  url = require('url'),
   sprintf = require('sprintf-js').sprintf,
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
   scoreUpdate = require(path.resolve('./config/lib/score')).update;
@@ -275,6 +272,25 @@ exports.announce = function (req, res) {
     },
 
     /*---------------------------------------------------------------
+     refresh user`s vip status and ratio
+     update torrent isSaling status
+     ---------------------------------------------------------------*/
+    function (done) {
+      req.passkeyuser.globalUpdateMethod(function (u) {
+        req.passkeyuser = u;
+
+        if (req.torrent.isSaling) {
+          req.torrent.globalUpdateMethod(function (t) {
+            req.torrent = t;
+            done(null);
+          });
+        } else {
+          done(null);
+        }
+      });
+    },
+
+    /*---------------------------------------------------------------
      check torrent_vip and user_vip status
      ---------------------------------------------------------------*/
     function (done) {
@@ -287,10 +303,10 @@ exports.announce = function (req, res) {
 
     /*---------------------------------------------------------------
      find complete torrent data
-     if not find and torrent is h&r, then create complete record
+     if not find and torrent is h&r and user isn`t vip, then create complete record
      ---------------------------------------------------------------*/
     function (done) {
-      if (req.torrent.torrent_hnr) {
+      if (req.torrent.torrent_hnr && !req.passkeyuser.isVip) {
         Complete.findOne({
           torrent: req.torrent._id,
           user: req.passkeyuser._id
@@ -349,9 +365,10 @@ exports.announce = function (req, res) {
      check N&R can download
      if user has too more H&R warning numbers, can not download any torrent
      but can continue download the warning status torrent
+     vip user not checked
      ---------------------------------------------------------------*/
     function (done) {
-      if (!req.seeder && event(query.event) === EVENT_STARTED) {
+      if (!req.seeder && !req.passkeyuser.isVip && event(query.event) === EVENT_STARTED) {
         if (req.passkeyuser.hnr_warning >= hnrConfig.forbiddenDownloadMinWarningNumber) {
           if (!req.torrent.torrent_hnr) {
             done(190);
@@ -375,30 +392,12 @@ exports.announce = function (req, res) {
     },
 
     /*---------------------------------------------------------------
-     refresh user`s vip status and ratio
-     update torrent isSaling status
-     ---------------------------------------------------------------*/
-    function (done) {
-      req.passkeyuser.globalUpdateMethod(function (u) {
-        req.passkeyuser = u;
-
-        if (req.torrent.isSaling) {
-          req.torrent.globalUpdateMethod(function (t) {
-            req.torrent = t;
-            done(null);
-          });
-        } else {
-          done(null);
-        }
-      });
-    },
-
-    /*---------------------------------------------------------------
      announce download check
      ratio check, setting in announce.downloadCheck
+     vip user not checked
      ---------------------------------------------------------------*/
     function (done) {
-      if (!req.seeder && event(query.event) === EVENT_STARTED) {
+      if (!req.seeder && !req.passkeyuser.isVip && event(query.event) === EVENT_STARTED) {
         if (req.passkeyuser.ratio !== -1 && req.passkeyuser.ratio < announceConfig.downloadCheck.ratio) {
           var checkTimeBegin = moment(req.passkeyuser.created).add(announceConfig.downloadCheck.checkAfterSignupDays, 'd');
           if (checkTimeBegin < moment(Date.now())) {
@@ -558,32 +557,31 @@ exports.announce = function (req, res) {
     /*---------------------------------------------------------------
      update H&R completeTorrent.total_seed_time
      update H&R ratio in save
-     update H&R warning in countHnRWarning
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.currentPeer.isNewCreated) {
         if (req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
           req.completeTorrent.total_seed_time += (Date.now() - req.currentPeer.last_announce_at);
-          req.completeTorrent.save(function () {
-            req.completeTorrent.countHnRWarning(req.passkeyuser);
-            done(null);
-          });
-        } else {
-          done(null);
+          req.completeTorrent.save();
         }
-      } else {
-        done(null);
       }
+      done(null);
     },
 
     /*---------------------------------------------------------------
      update currentPeer.last_announce_at
+     update complateTorrent refreshat
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.currentPeer.isNewCreated) {
         req.currentPeer.last_announce_at = Date.now();
         req.currentPeer.save();
       }
+
+      if (req.completeTorrent) {
+        req.completeTorrent.globalUpdateMethod();
+      }
+
       done(null);
     },
 
@@ -602,13 +600,29 @@ exports.announce = function (req, res) {
     },
 
     /*---------------------------------------------------------------
+     count H&R warning for user on normal up/down process
+     ---------------------------------------------------------------*/
+    function (done) {
+      if (!req.currentPeer.isNewCreated) {
+        if (req.completeTorrent && event(query.event) !== EVENT_COMPLETED) {
+          req.completeTorrent.countHnRWarning(false, true);
+        }
+      }
+      done(null);
+    },
+
+    /*---------------------------------------------------------------
      onEventStopped
+     count H&R warning for user when EVENT_STOPPED
      delete peers
      ---------------------------------------------------------------*/
     function (done) {
       if (event(query.event) === EVENT_STOPPED) {
         mtDebug.debugGreen('---------------EVENT_STOPPED----------------', 'ANNOUNCE_REQUEST');
 
+        if (req.completeTorrent) {
+          req.completeTorrent.countHnRWarning(true, false);
+        }
         removeCurrPeer(function () {
           done(null);
         });
@@ -670,7 +684,7 @@ exports.announce = function (req, res) {
   });
 
   /**
-   * getSelfCurrentPeer
+   * getCurrentPeer
    * @returns {boolean}
    */
   function getCurrentPeer(callback) {
@@ -715,7 +729,6 @@ exports.announce = function (req, res) {
     if (req.completeTorrent) {
       req.completeTorrent.complete = true;
       req.completeTorrent.save(function () {
-        req.completeTorrent.countHnRWarning(req.passkeyuser);
         if (callback) callback();
       });
     } else {

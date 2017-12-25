@@ -76,6 +76,9 @@ module.exports = {
      * @peersCheck:                 send peers list of downloading announce request settings
      *      @peersSendListIncludeOwnSeed: settings whether include own seed peer in download announce request
      *                                    NOTE: the best value is false, In order to prevent cheating, user can not download data from own seeding.
+     * @ghostCheck
+     *      @ghostPeersIdleTime:          setting idle time more than this value is a ghost peer(died), remove it
+     *      @ghostCompletesIdleTime:      setting check users H&R warning interval time, unit of hours, default to 2
      */
     announce: {
       url: 'http://chd.im:3000/announce',
@@ -97,8 +100,11 @@ module.exports = {
       peersCheck: {
         peersSendListIncludeOwnSeed: true
       },
-      ghostPeersCheck: {
+      ghostCheck: {
         ghostPeersIdleTime: 60 * 60 * 1000 * 24
+      },
+      warningCheck: {
+        userHnrWarningCheckInterval: 2
       }
     },
 

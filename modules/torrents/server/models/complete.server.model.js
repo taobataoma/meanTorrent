@@ -106,46 +106,50 @@ CompleteSchema.methods.globalUpdateMethod = function (callback) {
  * countHnRWarning
  * only for completed torrents to count warning
  */
-CompleteSchema.methods.countHnRWarning = function (u) {
+CompleteSchema.methods.countHnRWarning = function (countAdd = true, countRemove = true) {
   if (this.complete) {
-    if (u.isVip || this.total_seed_time >= hnrConfig.condition.seedTime || this.total_downloaded === 0 || this.total_ratio >= hnrConfig.condition.ratio) {
-      if (this.hnr_warning) {
-        this.update({
-          $set: {hnr_warning: false}
-        }).exec();
+    if (this.user.isVip || this.total_seed_time >= hnrConfig.condition.seedTime || this.total_downloaded === 0 || this.total_ratio >= hnrConfig.condition.ratio) {
+      if (countRemove) {
+        if (this.hnr_warning) {
+          this.update({
+            $set: {hnr_warning: false}
+          }).exec();
 
-        //update user warning numbers
-        u.update({
-          $inc: {hnr_warning: -1}
-        }).exec();
+          //update user warning numbers
+          this.user.update({
+            $inc: {hnr_warning: -1}
+          }).exec();
 
-        //add server message
-        if (serverNoticeConfig.action.hnrWarningRemoveByAnnounce.enable) {
-          serverMessage.addMessage(u._id, serverNoticeConfig.action.hnrWarningRemoveByAnnounce.title, serverNoticeConfig.action.hnrWarningRemoveByAnnounce.content, {
-            torrent_file_name: this.torrent.torrent_filename,
-            torrent_id: this.torrent._id
-          });
+          //add server message
+          if (serverNoticeConfig.action.hnrWarningRemoveByAnnounce.enable) {
+            serverMessage.addMessage(this.user._id, serverNoticeConfig.action.hnrWarningRemoveByAnnounce.title, serverNoticeConfig.action.hnrWarningRemoveByAnnounce.content, {
+              torrent_file_name: this.torrent.torrent_filename,
+              torrent_id: this.torrent._id
+            });
+          }
         }
       }
     } else {
-      if (!this.hnr_warning && !this.remove_by) {
-        this.update({
-          $set: {hnr_warning: true}
-        }).exec();
+      if (countAdd) {
+        if (!this.hnr_warning && !this.remove_by) {
+          this.update({
+            $set: {hnr_warning: true}
+          }).exec();
 
-        //update user warning numbers
-        u.update({
-          $inc: {hnr_warning: 1}
-        }).exec();
+          //update user warning numbers
+          this.user.update({
+            $inc: {hnr_warning: 1}
+          }).exec();
 
-        //add server message
-        if (serverNoticeConfig.action.hnrWarningAddByAnnounce.enable) {
-          serverMessage.addMessage(u._id, serverNoticeConfig.action.hnrWarningAddByAnnounce.title, serverNoticeConfig.action.hnrWarningAddByAnnounce.content, {
-            torrent_file_name: this.torrent.torrent_filename,
-            torrent_id: this.torrent._id,
-            hnr_ratio: hnrConfig.condition.ratio,
-            hnr_days: hnrConfig.condition.seedTime / (60 * 60 * 1000 * 24)
-          });
+          //add server message
+          if (serverNoticeConfig.action.hnrWarningAddByAnnounce.enable) {
+            serverMessage.addMessage(this.user._id, serverNoticeConfig.action.hnrWarningAddByAnnounce.title, serverNoticeConfig.action.hnrWarningAddByAnnounce.content, {
+              torrent_file_name: this.torrent.torrent_filename,
+              torrent_id: this.torrent._id,
+              hnr_ratio: hnrConfig.condition.ratio,
+              hnr_days: hnrConfig.condition.seedTime / (60 * 60 * 1000 * 24)
+            });
+          }
         }
       }
     }
@@ -174,5 +178,6 @@ CompleteSchema.index({torrent: 1, user: 1});
 CompleteSchema.index({user: 1, hnr_warning: 1});
 CompleteSchema.index({user: -1, createdAt: -1});
 CompleteSchema.index({torrent: 1, createdAt: -1});
+CompleteSchema.index({complete: 1, refreshat: -1});
 
 mongoose.model('Complete', CompleteSchema);

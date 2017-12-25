@@ -142,6 +142,7 @@ function countPercent(p) {
 
 PeerSchema.index({user: -1, startedat: -1});
 PeerSchema.index({torrent: -1, startedat: -1});
+PeerSchema.index({last_announce_at: -1});
 PeerSchema.index({torrent: 1, peer_status: 1, last_announce_at: 1, peer_uploaded: 1});
 PeerSchema.index({torrent: 1, peer_status: 1, last_announce_at: 1, peer_downloaded: 1});
 PeerSchema.index({user: 1, peer_status: 1, last_announce_at: 1, peer_uploaded: 1});
