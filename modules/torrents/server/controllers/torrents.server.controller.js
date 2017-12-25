@@ -797,10 +797,7 @@ exports.toggleHnRStatus = function (req, res) {
 
       //remove the complete data and update user`s warning number when the H&R prop to false
       if (!torrent.torrent_hnr) {
-        removeTorrentHnRWarning(torrent._id);
-        Complete.remove({
-          torrent: torrent._id
-        }).exec();
+        removeTorrentHnRWarning(torrent._id, true);
       }
 
       //add server message
@@ -853,7 +850,7 @@ exports.toggleVIPStatus = function (req, res) {
  * removeTorrentHnRWarning
  * @param torrent
  */
-function removeTorrentHnRWarning(tid) {
+function removeTorrentHnRWarning(tid, removeComplete) {
   Complete.find({
     torrent: tid
   })
@@ -863,6 +860,9 @@ function removeTorrentHnRWarning(tid) {
         cs.forEach(function (c) {
           if (c.hnr_warning) {
             c.removeHnRWarning(c.user);
+          }
+          if (removeComplete) {
+            c.remove();
           }
         });
       }
@@ -1218,10 +1218,7 @@ exports.delete = function (req, res) {
   }).exec();
 
   //remove the complete data and update user`s warning number if the torrent has H&R prop
-  removeTorrentHnRWarning(torrent._id);
-  Complete.remove({
-    torrent: torrent._id
-  }).exec();
+  removeTorrentHnRWarning(torrent._id, true);
 
   torrent.remove(function (err) {
     if (err) {

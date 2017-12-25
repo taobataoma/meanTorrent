@@ -546,11 +546,10 @@ exports.announce = function (req, res) {
         }
       }
 
-      //write peer data and last_announce_at time
+      //write peer data
       req.currentPeer.peer_uploaded = query.uploaded;
       req.currentPeer.peer_downloaded = query.downloaded;
       req.currentPeer.peer_left = query.peer_left;
-      req.currentPeer.last_announce_at = Date.now();
       req.currentPeer.save();
 
       done(null);
@@ -564,7 +563,7 @@ exports.announce = function (req, res) {
     function (done) {
       if (!req.currentPeer.isNewCreated) {
         if (req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
-          req.completeTorrent.total_seed_time += Date.now() - req.currentPeer.last_announce_at;
+          req.completeTorrent.total_seed_time += (Date.now() - req.currentPeer.last_announce_at);
           req.completeTorrent.save(function () {
             req.completeTorrent.countHnRWarning(req.passkeyuser);
             done(null);
@@ -576,6 +575,18 @@ exports.announce = function (req, res) {
         done(null);
       }
     },
+
+    /*---------------------------------------------------------------
+     update currentPeer.last_announce_at
+     ---------------------------------------------------------------*/
+    function (done) {
+      if (!req.currentPeer.isNewCreated) {
+        req.currentPeer.last_announce_at = Date.now();
+        req.currentPeer.save();
+      }
+      done(null);
+    },
+
     /*---------------------------------------------------------------
      onEventCompleted
      ---------------------------------------------------------------*/
