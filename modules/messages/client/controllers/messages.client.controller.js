@@ -219,6 +219,9 @@
                 vm.messages.splice(vm.messages.indexOf(m), 1);
               });
               vm.figureOutItemsToDisplay();
+              vm.selectedAll = false;
+
+              $rootScope.$broadcast('user-unread-count-changed');
 
               NotifycationService.showSuccessNotify('MESSAGE_DELETED_SUCCESSFULLY');
             }, function (res) {
@@ -520,6 +523,8 @@
             vm.messages.splice(vm.messages.indexOf(m), 1);
             vm.figureOutItemsToDisplay();
             vm.hideMessage();
+
+            $rootScope.$broadcast('user-unread-count-changed');
 
             NotifycationService.showSuccessNotify('MESSAGE_DELETED_SUCCESSFULLY');
           }, function (res) {

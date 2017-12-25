@@ -121,7 +121,10 @@
                     next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
                 </ul>
                 <div class="pull-right margin-top-20">
-                    <button class="btn btn-success btn-width-100" ng-click="vm.deleteSelected()">{{ 'BUTTON_MESSAGE_DELETE' | translate }}</button>
+                    <button class="btn btn-success btn-width-100"
+                            ng-if="vm.messageType=='user' || vm.messageType=='server'"
+                            ng-click="vm.deleteSelected()">{{ 'BUTTON_MESSAGE_DELETE' | translate }}
+                    </button>
                 </div>
             </div>
         </div>
