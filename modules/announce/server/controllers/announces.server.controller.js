@@ -471,11 +471,14 @@ exports.announce = function (req, res) {
     function (done) {
       mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA----------------', 'ANNOUNCE_REQUEST');
 
+      var curru = 0;
+      var currd = 0;
+
       if (!req.currentPeer.isNewCreated) {
         var udr = getUDRatio();
 
-        var curru = query.uploaded - req.currentPeer.peer_uploaded;
-        var currd = query.downloaded - req.currentPeer.peer_downloaded;
+        curru = query.uploaded - req.currentPeer.peer_uploaded;
+        currd = query.downloaded - req.currentPeer.peer_downloaded;
 
         if (curru > 0 || currd > 0) {
           var u = Math.round(curru * udr.ur);
@@ -489,13 +492,6 @@ exports.announce = function (req, res) {
           req.passkeyuser.uploaded += u;
           req.passkeyuser.downloaded += d;
           req.passkeyuser.save();
-
-          //write complete data to completeTorrent and refresh completed ratio
-          if (req.completeTorrent) {
-            req.completeTorrent.total_uploaded += curru;
-            req.completeTorrent.total_downloaded += currd;
-            req.completeTorrent.save();
-          }
 
           //write peer speed
           req.currentPeer.update({
@@ -551,7 +547,24 @@ exports.announce = function (req, res) {
       req.currentPeer.peer_left = query.peer_left;
       req.currentPeer.save();
 
-      done(null);
+      done(null, curru, currd);
+    },
+
+    /*---------------------------------------------------------------
+      write complete data to completeTorrent and refresh completed ratio
+     ---------------------------------------------------------------*/
+    function (curru, currd, done) {
+      if (curru > 0 || currd > 0) {
+        if (req.completeTorrent) {
+          req.completeTorrent.total_uploaded += curru;
+          req.completeTorrent.total_downloaded += currd;
+          req.completeTorrent.save(function () {
+            done(null);
+          });
+        }
+      } else {
+        done(null);
+      }
     },
 
     /*---------------------------------------------------------------
@@ -562,10 +575,15 @@ exports.announce = function (req, res) {
       if (!req.currentPeer.isNewCreated) {
         if (req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
           req.completeTorrent.total_seed_time += (Date.now() - req.currentPeer.last_announce_at);
-          req.completeTorrent.save();
+          req.completeTorrent.save(function () {
+            done(null);
+          });
+        } else {
+          done(null);
         }
+      } else {
+        done(null);
       }
-      done(null);
     },
 
     /*---------------------------------------------------------------
