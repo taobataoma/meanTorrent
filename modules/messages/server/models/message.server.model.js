@@ -52,6 +52,11 @@ var MessageSchema = new Schema({
   }
 }, {usePushEach: true});
 
-MessageSchema.index({type: 1, from_user: 1, to_user: 1, updatedat: -1, createdat: -1});
+//for countUnread
+MessageSchema.index({to_user: 1, type: 1, to_status: 1});
+//for countUnread
+MessageSchema.index({from_user: 1, type: 1, from_status: 1});
+//for messagebox list
+MessageSchema.index({updatedat: -1, createdat: -1, type: 1, from_user: 1, to_user: 1});
 
 mongoose.model('Message', MessageSchema);

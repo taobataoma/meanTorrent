@@ -95,6 +95,7 @@ var TorrentSchema = new Schema({
     type: String,
     default: '',
     trim: true,
+    unique: true,
     required: 'info_hash cannot be blank'
   },
   torrent_filename: {
@@ -299,13 +300,7 @@ TorrentSchema.methods.globalUpdateMethod = function (cb) {
   });
 };
 
-TorrentSchema.index({info_hash: 1});
-
-TorrentSchema.index({user: -1, createdat: -1});
-TorrentSchema.index({maker: 1, createdat: -1});
-TorrentSchema.index({torrent_tmdb_id: 1, createdat: -1});
-TorrentSchema.index({torrent_recommended: 1, createdat: -1});
-TorrentSchema.index({torrent_sale_status: 1, createdat: -1});
+TorrentSchema.index({info_hash: 'hashed'});
 
 TorrentSchema.index({
   torrent_sale_status: 1,
@@ -316,27 +311,33 @@ TorrentSchema.index({
   user: 1,
   torrent_recommended: 1,
   orderedat: -1,
-  createdat: -1,
-  '_peers.id': 1
+  createdat: -1
 });
 
 TorrentSchema.index({
-  torrent_status: 1,
+  orderedat: -1,
+  createdat: -1,
   torrent_type: 1,
+  torrent_status: 1,
   torrent_vip: 1,
   torrent_recommended: 1,
-  orderedat: -1,
-  createdat: -1,
-  '_peers.id': 1
 });
 
 TorrentSchema.index({
-  torrent_status: 1,
+  orderedat: -1,
+  createdat: -1,
   torrent_type: 1,
-  torrent_vip: 1,
+  torrent_status: 1,
+  torrent_recommended: 1
+});
+
+TorrentSchema.index({
   maker: 1,
   orderedat: -1,
-  createdat: -1
+  createdat: -1,
+  torrent_type: 1,
+  torrent_status: 1,
+  torrent_vip: 1,
 });
 
 mongoose.model('Torrent', TorrentSchema);

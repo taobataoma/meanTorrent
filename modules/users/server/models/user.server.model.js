@@ -101,6 +101,7 @@ var UserSchema = new Schema({
   },
   passkey: {
     type: String,
+    unique: true,
     default: ''
   },
   salt: {
@@ -644,10 +645,13 @@ UserSchema.statics.seed = seed;
 UserSchema.index({passkey: 1});
 UserSchema.index({email: 1});
 UserSchema.index({uptotal: 1});
-UserSchema.index({status: 1, uploaded: -1, downloaded: -1, ratio: -1, score: -1});
-UserSchema.index({status: 1, downloaded: -1, uploaded: -1, ratio: -1, score: -1});
-UserSchema.index({status: 1, score: -1, uploaded: -1, downloaded: -1, ratio: -1});
-UserSchema.index({status: 1, ratio: -1, uploaded: -1, downloaded: -1, score: -1});
+
+//for rank list
+UserSchema.index({uploaded: -1, downloaded: -1, ratio: -1, score: -1, status: 1});
+
+UserSchema.index({created: -1, status: 1});
+UserSchema.index({created: -1, status: 1, roles: 1, isVip: 1});
+
 UserSchema.index({isVip: 1, username: 1, displayName: 1, email: 1, created: -1});
 UserSchema.index({roles: 1, username: 1, displayName: 1, email: 1, created: -1});
 UserSchema.index({status: 1, username: 1, displayName: 1, email: 1, created: -1});
