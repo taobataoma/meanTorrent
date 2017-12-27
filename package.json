@@ -103,6 +103,7 @@
     "passport-local": "~1.0.0",
     "passport-paypal-openidconnect": "~0.1.1",
     "passport-twitter": "~1.0.4",
+    "rss": "^1.2.2",
     "run-sequence": "~2.1.0",
     "serve-favicon": "^2.4.5",
     "snyk": "^1.34.3",
