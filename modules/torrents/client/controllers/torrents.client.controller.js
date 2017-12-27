@@ -20,11 +20,13 @@
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
 
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
     vm.filterHnR = false;
+    vm.filterSale = false;
     vm.topItems = 6;
 
     vm.torrentType = $state.current.data.torrentType;
@@ -317,6 +319,17 @@
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('LIST_PAGE_INFO_ERROR')
         });
       });
+
+      //make rss url
+      vm.rssUrl = vm.appConfig.domain;
+      vm.rssUrl += '/api/rss';
+      vm.rssUrl += '?limit=' + vm.torrentItemsPerPage;
+      vm.rssUrl += vm.searchKey.trim() ? '&keys=' + vm.searchKey.trim() : '';
+      vm.rssUrl += '&torrent_type=' + vm.torrentType;
+      vm.rssUrl += vm.releaseYear ? '&torrent_release=' + vm.releaseYear : '';
+      vm.rssUrl += vm.searchTags.length ? '&torrent_tags=' + vm.searchTags : '';
+      vm.rssUrl += '&torrent_hnr=' + vm.filterHnR;
+      vm.rssUrl += vm.filterSale ? '&torrent_sale=' + vm.filterSale : '';
     };
 
     /**
@@ -326,6 +339,9 @@
       vm.searchKey = '';
       vm.searchTags = [];
       $('.btn-tag').removeClass('btn-success').addClass('btn-default');
+      vm.releaseYear = undefined;
+      vm.filterHnR = false;
+      vm.filterSale = false;
 
       vm.torrentBuildPager();
     };

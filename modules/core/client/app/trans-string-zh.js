@@ -272,6 +272,8 @@
     CA_TORRENT_SALE_NOW: '正在促销',
     CA_TORRENT_VIP: 'VIP 资源',
     CA_RESOURCE_TYPE: '资源类型',
+    CA_MAKE_RSS_URL: 'RSS连接',
+    DESC_MAKE_RSS_URL: '这个 RSS 地址是通过上面的过滤条件生成的，您可以使用支持 RSS 订阅功能的BT客户端（如uTorrent）来自动下载您想要的这些种子和资源文件.',
     PH_KEYWORD: '搜索关键字',
     CLEAR_ALL_CONDITION: '清空所有条件',
     MORE_TAGS: '显示更多标签',

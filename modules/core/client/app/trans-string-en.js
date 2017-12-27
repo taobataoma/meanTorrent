@@ -272,6 +272,8 @@
     CA_TORRENT_SALE_NOW: 'Sale now',
     CA_TORRENT_VIP: 'VIP resources',
     CA_RESOURCE_TYPE: 'Resource type',
+    CA_MAKE_RSS_URL: 'Rss Url',
+    DESC_MAKE_RSS_URL: 'This RSS url is make with above filter conditions, you can used it in the BT client (such as uTorrent) that supports the RSS subscription function to download torrent and resources automatic.',
     PH_KEYWORD: 'Search keyword',
     CLEAR_ALL_CONDITION: 'Clear All Condition',
     MORE_TAGS: 'More Tags',

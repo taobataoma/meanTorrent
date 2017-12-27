@@ -93,7 +93,7 @@
                                     </div>
                                 </dd>
 
-                                <div class="more-tags panel-collapsed" style="display: none;">
+                                <div class="more-tags panel-collapsed" style="display: none; margin-bottom: 20px;">
                                     <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.vipTorrentType">
                                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
                                         <dd class="h-line">
@@ -123,6 +123,15 @@
                                             </div>
                                         </dd>
                                     </div>
+                                </div>
+
+                                <div>
+                                    <dt class="h-line">{{'CA_MAKE_RSS_URL' | translate}}:</dt>
+                                    <dd class="h-line rss-desc-line">{{'DESC_MAKE_RSS_URL' | translate}}
+                                        <div class="margin-top-5">
+                                            <a href="{{vm.rssUrl}}">{{vm.rssUrl}}</a>
+                                        </div>
+                                    </dd>
                                 </div>
                             </dl>
                         </div>

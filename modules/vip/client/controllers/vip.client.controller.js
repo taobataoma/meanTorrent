@@ -220,6 +220,18 @@
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('VIP.TORRENTS_LIST_ERROR')
         });
       });
+
+      //make rss url
+      vm.rssUrl = vm.appConfig.domain;
+      vm.rssUrl += '/api/rss';
+      vm.rssUrl += '?limit=' + vm.itemsPerPage;
+      vm.rssUrl += vm.searchKey.trim() ? '&keys=' + vm.searchKey.trim() : '';
+      vm.rssUrl += '&torrent_type=' + vm.vipTorrentType;
+      vm.rssUrl += vm.releaseYear ? '&torrent_release=' + vm.releaseYear : '';
+      vm.rssUrl += vm.searchTags.length ? '&torrent_tags=' + vm.searchTags : '';
+      vm.rssUrl += '&torrent_hnr=' + vm.filterHnR;
+      vm.rssUrl += vm.filterSale ? '&torrent_sale=' + vm.filterSale : '';
+      vm.rssUrl += '&torrent_vip=true';
     };
 
     /**
