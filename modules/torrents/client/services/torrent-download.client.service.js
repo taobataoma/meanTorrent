@@ -115,7 +115,7 @@
         responseType: 'blob'
       }).then(function successCallback(response) {
         var contentDisposition = response.headers('Content-Disposition');
-        var fileName = decodeURI(contentDisposition.substr(contentDisposition.indexOf('filename=') + 9));
+        var fileName = decodeURI(contentDisposition.substr(contentDisposition.indexOf('filename*=UTF-8\'\'') + 17));
         FileSaver.saveAs(response.data, fileName);
 
         if (successcb) successcb(response.status);

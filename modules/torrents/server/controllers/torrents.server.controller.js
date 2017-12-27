@@ -422,7 +422,7 @@ exports.announceEdit = function (req, res) {
             getTorrentFileData(filePath)
               .then(function () {
                 res.set('Content-Type', 'application/x-bittorrent');
-                res.set('Content-Disposition', 'attachment; filename=' + encodeURI(req.file.filename));
+                res.set('Content-Disposition', 'attachment; filename*=UTF-8\'\'' + encodeURIComponent(req.file.filename));
                 res.set('Content-Length', stat.size);
 
                 res.send(benc.encode(torrent_data));
@@ -503,39 +503,47 @@ exports.download = function (req, res) {
   var torrent_data = null;
   var filePath = config.uploads.torrent.file.dest + req.torrent.torrent_filename;
 
-  if (req.torrent.torrent_vip && !req.user.isVip) {
-    return res.status(701).send({
-      message: 'SERVER.ONLY_VIP_CAN_DOWNLOAD'
-    });
-  } else if (req.user.status === 'banned') {
-    return res.status(702).send({
-      message: 'SERVER.CAN_NOT_DOWNLOAD_BANNED'
-    });
-  } else if (req.user.status === 'idle') {
-    return res.status(703).send({
-      message: 'SERVER.CAN_NOT_DOWNLOAD_IDLE'
-    });
-  } else {
-    fs.exists(filePath, function (exists) {
-      if (exists) {
-        var stat = fs.statSync(filePath);
-        getTorrentFileData(filePath)
-          .then(function () {
-            res.set('Content-Type', 'application/x-bittorrent');
-            res.set('Content-Disposition', 'attachment; filename=' + config.meanTorrentConfig.announce.announcePrefix + encodeURI(req.torrent.torrent_filename));
-            res.set('Content-Length', stat.size);
+  var user = req.user || req.passkeyuser || undefined;
 
-            res.send(benc.encode(torrent_data));
-          })
-          .catch(function (err) {
-            mtDebug.debugRed(err);
-            res.status(422).send(err);
+  if (user) {
+    if (req.torrent.torrent_vip && !user.isVip) {
+      return res.status(701).send({
+        message: 'SERVER.ONLY_VIP_CAN_DOWNLOAD'
+      });
+    } else if (user.status === 'banned') {
+      return res.status(702).send({
+        message: 'SERVER.CAN_NOT_DOWNLOAD_BANNED'
+      });
+    } else if (user.status === 'idle') {
+      return res.status(703).send({
+        message: 'SERVER.CAN_NOT_DOWNLOAD_IDLE'
+      });
+    } else {
+      fs.exists(filePath, function (exists) {
+        if (exists) {
+          var stat = fs.statSync(filePath);
+          getTorrentFileData(filePath)
+            .then(function () {
+              res.set('Content-Type', 'application/x-bittorrent');
+              res.set('Content-Disposition', 'attachment; filename*=UTF-8\'\'' + config.meanTorrentConfig.announce.announcePrefix + encodeURIComponent(req.torrent.torrent_filename));
+              res.set('Content-Length', stat.size);
+
+              res.send(benc.encode(torrent_data));
+            })
+            .catch(function (err) {
+              mtDebug.debugRed(err);
+              res.status(422).send(err);
+            });
+        } else {
+          res.status(422).send({
+            message: 'SERVER.FILE_DOES_NOT_EXISTS'
           });
-      } else {
-        res.status(422).send({
-          message: 'FILE_DOES_NOT_EXISTS'
-        });
-      }
+        }
+      });
+    }
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
     });
   }
 
@@ -549,7 +557,7 @@ exports.download = function (req, res) {
           reject(message);
         } else {
           if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
-            var announce = config.meanTorrentConfig.announce.url + '/' + req.user.passkey;
+            var announce = config.meanTorrentConfig.announce.url + '/' + user.passkey;
             torrent.metadata.announce = announce;
           }
           torrent_data = torrent.metadata;

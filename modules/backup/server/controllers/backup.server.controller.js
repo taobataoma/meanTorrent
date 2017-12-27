@@ -74,7 +74,7 @@ exports.download = function (req, res) {
 
       try {
         res.set('Content-Type', 'application/octet-stream');
-        res.set('Content-Disposition', 'attachment; filename=' + encodeURI(req.params.filename));
+        res.set('Content-Disposition', 'attachment; filename*=UTF-8\'\'' + encodeURIComponent(req.params.filename));
         res.set('Content-Length', stat.size);
 
         fs.createReadStream(filePath).pipe(res);

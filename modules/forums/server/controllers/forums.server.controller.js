@@ -1025,7 +1025,7 @@ exports.attachDownload = function (req, res) {
 
         try {
           //res.set('Content-Type', 'application/x-bittorrent');
-          res.set('Content-Disposition', 'attachment; filename=' + encodeURI(filename));
+          res.set('Content-Disposition', 'attachment; filename*=UTF-8\'\'' + encodeURIComponent(filename));
           res.set('Content-Length', stat.size);
 
           fs.createReadStream(filePath).pipe(res);
