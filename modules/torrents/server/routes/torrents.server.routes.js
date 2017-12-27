@@ -30,6 +30,8 @@ module.exports = function (app) {
 
   app.route('/api/torrents/download/:torrentId').all(torrentsPolicy.isAllowed)
     .get(torrents.download);
+  app.route('/api/torrents/download/:torrentId/:passkey').all(torrentsPolicy.isAllowed)
+    .get(torrents.download);
 
   app.route('/api/torrents').all(torrentsPolicy.isAllowed)
     .get(torrents.list)

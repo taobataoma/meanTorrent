@@ -100,7 +100,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/torrents/:torrentId', permissions: ['get']},
           {resources: '/api/torrents/:torrentId/seederUsers', permissions: ['get']},
           {resources: '/api/torrents/:torrentId/leecherUsers', permissions: ['get']},
-          {resources: '/api/torrents/siteInfo', permissions: ['get']}
+          {resources: '/api/torrents/siteInfo', permissions: ['get']},
+          {resources: '/api/torrents/download/:torrentId/:passkey', permissions: ['get']}
         ]
       }
     ]

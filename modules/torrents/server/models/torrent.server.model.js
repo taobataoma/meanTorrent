@@ -320,7 +320,7 @@ TorrentSchema.index({
   torrent_type: 1,
   torrent_status: 1,
   torrent_vip: 1,
-  torrent_recommended: 1,
+  torrent_recommended: 1
 });
 
 TorrentSchema.index({
@@ -337,7 +337,7 @@ TorrentSchema.index({
   createdat: -1,
   torrent_type: 1,
   torrent_status: 1,
-  torrent_vip: 1,
+  torrent_vip: 1
 });
 
 mongoose.model('Torrent', TorrentSchema);
