@@ -30,6 +30,7 @@
     vm.searchKey = '';
     vm.releaseYear = undefined;
     vm.filterHnR = false;
+    vm.filterSale = false;
     vm.torrentStatus = 'reviewed';
     vm.torrentRLevel = 'none';
 
@@ -231,7 +232,14 @@
     vm.clearAllCondition = function () {
       vm.searchKey = '';
       vm.searchTags = [];
-      $('.btn-tag').removeClass('btn-success').addClass('btn-default');
+      $('.more-tags .btn-tag').removeClass('btn-success').addClass('btn-default');
+      vm.filterVIP = isSelectedVipType(vm.selectedType);
+      vm.releaseYear = undefined;
+      vm.filterHnR = false;
+      vm.filterSale = false;
+      vm.torrentStatus = 'reviewed';
+      vm.torrentRLevel = 'none';
+
 
       vm.torrentBuildPager();
     };

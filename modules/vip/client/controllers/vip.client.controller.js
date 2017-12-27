@@ -30,6 +30,7 @@
     vm.searchKey = '';
     vm.releaseYear = undefined;
     vm.filterHnR = false;
+    vm.filterSale = false;
 
     uibButtonConfig.activeClass = 'btn-success';
 
@@ -304,6 +305,9 @@
       vm.searchKey = '';
       vm.searchTags = [];
       $('.btn-tag').removeClass('btn-success').addClass('btn-default');
+      vm.releaseYear = undefined;
+      vm.filterHnR = false;
+      vm.filterSale = false;
 
       vm.buildPager();
     };
