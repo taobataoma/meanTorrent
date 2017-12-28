@@ -26,7 +26,6 @@ var path = require('path'),
   benc = require('bncode'),
   scrape = require(path.resolve('./config/lib/scrape')),
   async = require('async'),
-  validator = require('validator'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
   scoreUpdate = require(path.resolve('./config/lib/score')).update;
@@ -42,6 +41,8 @@ var mtDebug = require(path.resolve('./config/lib/debug'));
 var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 var announceConfig = config.meanTorrentConfig.announce;
+var appConfig = config.meanTorrentConfig.app;
+var rssConfig = config.meanTorrentConfig.rss;
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -202,15 +203,8 @@ exports.upload = function (req, res) {
           reject(message);
         } else {
           if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
-            //if (torrent.metadata.announce !== config.meanTorrentConfig.announce.url) {
-            //  mtDebug.debugGreen(torrent.metadata.announce);
-            //  message = 'ANNOUNCE_URL_ERROR';
-            //
-            //  reject(message);
-            //}
-
             //force change announce url to config value
-            var announce = config.meanTorrentConfig.announce.url;
+            var announce = appConfig.domain + config.meanTorrentConfig.announce.url;
             torrent.metadata.announce = announce;
 
             var cws = fs.createWriteStream(newfile);
@@ -483,7 +477,7 @@ exports.announceEdit = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          var announce = config.meanTorrentConfig.announce.url;
+          var announce = appConfig.domain + config.meanTorrentConfig.announce.url;
           torrent.metadata.announce = announce;
           torrent.metadata.comment = req.query.comment;
           torrent_data = torrent.metadata;
@@ -557,7 +551,7 @@ exports.download = function (req, res) {
           reject(message);
         } else {
           if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
-            var announce = config.meanTorrentConfig.announce.url + '/' + user.passkey;
+            var announce = appConfig.domain + config.meanTorrentConfig.announce.url + '/' + user.passkey;
             torrent.metadata.announce = announce;
           }
           torrent_data = torrent.metadata;
@@ -1153,6 +1147,7 @@ function announceTorrentToIRC(torrent, req) {
         torrent.torrent_seasons,
         torrent.torrent_episodes,
         torrent.torrent_sale_status,
+        appConfig.domain + '/api/torrents/download/' + torrent._id + '/' + torrent.user.passkey,
         moment().format('YYYY-MM-DD HH:mm:ss')
       ]);
     } else {
@@ -1162,6 +1157,7 @@ function announceTorrentToIRC(torrent, req) {
         torrent.torrent_type,
         torrent.torrent_size,
         torrent.torrent_sale_status,
+        appConfig.domain + '/api/torrents/download/' + torrent._id + '/' + torrent.user.passkey,
         moment().format('YYYY-MM-DD HH:mm:ss')
       ]);
     }
@@ -1620,6 +1616,179 @@ exports.list = function (req, res) {
       res.json({rows: results[1], total: results[0]});
     }
   });
+};
+
+/**
+ * makeRss
+ * @param req
+ * @param res
+ */
+exports.makeRss = function (req, res) {
+  var limit = 0;
+  var status = 'reviewed';
+  var stype = 'movie';
+  var hnr = false;
+  var sale = false;
+  var vip = false;
+  var release = undefined;
+  var tagsA = [];
+  var keysA = [];
+  var language = 'en';
+
+  var sort = '-createdat';
+
+  if (req.query.torrent_vip !== undefined) {
+    vip = (req.query.torrent_vip === 'true');
+  }
+
+  if (!req.passkeyuser) {
+    res.end('user is not authorized');
+  } else {
+    if (vip && !req.passkeyuser.isVip && !req.passkeyuser.isOper) {
+      res.end('You are not vip user!');
+    } else {
+      if (req.query.limit !== undefined) {
+        limit = parseInt(req.query.limit, 10);
+      }
+      if (req.query.torrent_type !== undefined) {
+        stype = req.query.torrent_type;
+      }
+      if (req.query.torrent_release !== undefined) {
+        release = req.query.torrent_release;
+      }
+      if (req.query.torrent_hnr !== undefined) {
+        hnr = (req.query.torrent_hnr === 'true');
+      }
+      if (req.query.torrent_sale !== undefined) {
+        sale = (req.query.torrent_sale === 'true');
+      }
+      if (req.query.language !== undefined) {
+        language = req.query.language;
+      }
+
+      if (req.query.torrent_tags !== undefined) {
+        var tagsS = req.query.torrent_tags + '';
+        var tagsT = tagsS.split(',');
+
+        tagsT.forEach(function (it) {
+          tagsA.push(it + '');
+        });
+      }
+      if (req.query.keys !== undefined && req.query.keys.length > 0) {
+        var keysS = req.query.keys + '';
+        var keysT = keysS.split(' ');
+
+        keysT.forEach(function (it) {
+          if (!isNaN(it)) {
+            if (it > 1900 && it < 2050) {
+              release = it;
+            }
+          } else {
+            var ti = new RegExp(it, 'i');
+            keysA.push(ti);
+          }
+        });
+      }
+
+      var condition = {};
+      condition.torrent_status = status;
+      condition.torrent_type = stype;
+      if (hnr === true) {
+        condition.torrent_hnr = true;
+      }
+      if (sale === true) {
+        condition.torrent_sale_status = {
+          $ne: 'U1/D1'
+        };
+      }
+      if (vip === true) {
+        condition.torrent_vip = true;
+      } else {
+        condition.torrent_vip = false;
+      }
+
+      if (tagsA.length > 0) {
+        condition.torrent_tags = {$all: tagsA};
+      }
+      if (release !== undefined) {
+        condition['resource_detail_info.release_date'] = release;
+      }
+      if (keysA.length > 0) {
+        condition.$or = [
+          {torrent_filename: {'$all': keysA}},
+          {'resource_detail_info.title': {'$all': keysA}},
+          {'resource_detail_info.subtitle': {'$all': keysA}},
+          {'resource_detail_info.name': {'$all': keysA}},
+          {'resource_detail_info.original_title': {'$all': keysA}},
+          {'resource_detail_info.original_name': {'$all': keysA}}
+        ];
+      }
+
+      mtDebug.debugGreen(JSON.stringify(condition));
+      mtDebug.debugGreen(sort);
+
+
+      Torrent.find(condition)
+        .sort(sort)
+        .populate('user', 'username displayName isVip')
+        .populate('maker', 'name')
+        .limit(limit)
+        .exec(function (err, torrents) {
+          if (err) {
+            return res.status(422).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          } else {
+            res.writeHead(200, {
+              'Content-Type': 'text/xml'
+            });
+
+            res.write('<?xml version="1.0" encoding="utf-8" ?>');
+            res.write('<rss version="2.0">');
+            res.write('<channel>');
+
+            res.write('<title>' + vsprintf(rssConfig.title, [appConfig.name + ' - ' + stype]) + '</title>');
+            res.write('<link><![CDATA[' + appConfig.domain + ']]></link>');
+            res.write('<description><![CDATA[' + vsprintf(rssConfig.description, [appConfig.name]) + ']]></description>');
+            res.write('<language>' + language + '</language>');
+            res.write('<copyright>' + vsprintf(rssConfig.copyright, [appConfig.name]) + '</copyright>');
+            res.write('<managingEditor>' + vsprintf(rssConfig.managingEditor, [appConfig.name]) + '</managingEditor>');
+            res.write('<webMaster>' + vsprintf(rssConfig.webMaster, [appConfig.name]) + '</webMaster>');
+            res.write('<lastBuildDate>' + moment().format('YYYY-MM-DD HH:mm:ss') + '</lastBuildDate>');
+            res.write('<generator>' + rssConfig.generator + '</generator>');
+            res.write('<docs><![CDATA[http://www.rssboard.org/rss-specification]]></docs>');
+            res.write('<ttl>' + rssConfig.ttl + '</ttl>');
+            res.write('<image>');
+            res.write('<title>' + vsprintf(rssConfig.title, [appConfig.name]) + '</title>');
+            res.write('<link><![CDATA[' + appConfig.domain + ']]></link>');
+            res.write('<url><![CDATA[' + appConfig.domain + '/modules/core/client/img/rss.jpeg]]></url>');
+            res.write('<width>100</width>');
+            res.write('<height>100</height>');
+            res.write('<description>' + vsprintf(rssConfig.description, [appConfig.name]) + '</description>');
+            res.write('</image>');
+
+            torrents.forEach(function (t) {
+              res.write('<item>');
+              res.write('<title><![CDATA[' + t.torrent_filename + ']]></title>');
+              res.write('<link>' + appConfig.domain + '/torrents/' + t._id + '</link>');
+              res.write('<description><![CDATA[' + t.resource_detail_info.overview + ']]></description>');
+              res.write('<author>' + t.user.displayName + '</author>');
+              res.write('<category domain="' + appConfig.domain + '/torrents/' + stype + '">' + stype + '</category>');
+              res.write('<comments><![CDATA[' + appConfig.domain + '/torrents/' + t._id + ']]></comments>');
+              res.write('<enclosure url="' + appConfig.domain + '/api/torrents/download/' + t._id + '/' + req.passkeyuser.passkey + '" length="' + t.torrent_size + '" type="application/x-bittorrent" />');
+              res.write('<guid isPermaLink="false">' + t.info_hash + '</guid>');
+              res.write('<pubDate>' + moment(t.createdat).format('YYYY-MM-DD HH:mm:ss') + '</pubDate>');
+              res.write('</item>');
+
+            });
+
+            res.write('</channel>');
+            res.write('</rss>');
+            res.end();
+          }
+        });
+    }
+  }
 };
 
 /**

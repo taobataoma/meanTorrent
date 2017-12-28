@@ -22,6 +22,7 @@ var scoreConfig = config.meanTorrentConfig.score;
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
 var signConfig = config.meanTorrentConfig.sign;
 var announceConfig = config.meanTorrentConfig.announce;
+var appConfig = config.meanTorrentConfig.app;
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
 
@@ -36,14 +37,14 @@ const FAILURE_REASONS = {
   151: 'Invalid peerid: peerid is not 20 bytes long',
   152: 'Invalid numwant. Client requested more peers than allowed by tracker',
   153: 'Passkey length error (length=32)',
-  154: 'Invalid passkey, if you changed you passkey, please redownload the torrent file from ' + announceConfig.baseUrl,
+  154: 'Invalid passkey, if you changed you passkey, please redownload the torrent file from ' + appConfig.domain,
 
   160: 'Invalid torrent info_hash',
   161: 'No torrent with that info_hash has been found',
 
   170: 'your account status is banned',
   171: 'your account status is inactive',
-  172: 'your client is not allowed, here is the blacklist: ' + announceConfig.baseUrl + announceConfig.clientBlackListUrl,
+  172: 'your client is not allowed, here is the blacklist: ' + appConfig.domain + announceConfig.clientBlackListUrl,
   173: 'this torrent status is not reviewed by administrators, try again later',
   174: 'this torrent is only for VIP members',
   175: 'your account status is idle',

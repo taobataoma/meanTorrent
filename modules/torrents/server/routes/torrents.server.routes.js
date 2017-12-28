@@ -36,6 +36,8 @@ module.exports = function (app) {
   app.route('/api/torrents').all(torrentsPolicy.isAllowed)
     .get(torrents.list)
     .post(torrents.create);
+  app.route('/api/rss/:passkey').all(torrentsPolicy.isAllowed)
+    .get(torrents.makeRss);
 
   app.route('/api/torrents/siteInfo')
     .get(torrents.siteInfo);

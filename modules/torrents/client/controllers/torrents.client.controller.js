@@ -5,16 +5,17 @@
     .module('torrents')
     .controller('TorrentsController', TorrentsController);
 
-  TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
+  TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService', 'getStorageLangService',
     'MeanTorrentConfig', 'DownloadService', '$window', 'ScrapeService', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices'];
 
-  function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
+  function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, getStorageLangService, MeanTorrentConfig,
                               DownloadService, $window, ScrapeService, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
     vm.user = Authentication.user;
     vm.RTS = ResourcesTagsServices;
+    vm.lang = getStorageLangService.getLang();
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
@@ -323,7 +324,8 @@
       //make rss url
       vm.rssUrl = vm.appConfig.domain;
       vm.rssUrl += '/api/rss';
-      vm.rssUrl += '?passkey=' + vm.user.passkey;
+      vm.rssUrl += '/' + vm.user.passkey;
+      vm.rssUrl += '?language=' + vm.lang;
       vm.rssUrl += '&limit=' + vm.torrentItemsPerPage;
       vm.rssUrl += vm.searchKey.trim() ? '&keys=' + vm.searchKey.trim() : '';
       vm.rssUrl += '&torrent_type=' + vm.torrentType;

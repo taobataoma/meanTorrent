@@ -16,7 +16,7 @@ module.exports = {
      */
     app: {
       name: 'CHD.im',
-      domain: 'http://chd.im:3000',
+      domain: 'http://127.0.0.1:3000',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: true
@@ -56,37 +56,36 @@ module.exports = {
      * tracker server announce settings
      * NOTE: you can change these value at anytime if you understand it
      *
-     * @url:                        announce url, download client will request this url to report uploads and downloads data
-     * @comment:                    used in admin tools, auto replace torrent make group info with this setting
-     * @announceInterval:           interval of twice announce request
-     * @announcePrefix:             prefix of torrent file name, is will auto add when user download the torrent files
-     * @admin:                      site admin mail address
-     * @baseUrl:                    torrent announce url base url, system will check it when user upload torrent file
-     * @clientBlackListUrl:         forbidden download client list url, user can view this list to check forbidden client software
-     * @privateTorrentCmsMode:      meanTorrent default tracker server mode is private (value true), the tracker server only accept private mode.
-     *                              but, you can set this value to false to make a public torrent cms web site without tracker server and announce function.
-     *                              if this value is false(public mode), server can scrape all torrent status from owner tracker server
-     * @downloadCheck:              announce download(leech) settings
-     *      @ratio:                 if less than this value, can not download(leech)
-     *      @checkAfterSignupDays:  all users download check start {value} days after signup, so the newest register user has {value} days to upgrade his ratio value,
-     *                              after {value} days, if less then setting of here, can not download(leech) any things, but can continue seed, unit of day
-     * @announceCheck:              announce seed/leech numbers settings
+     * @url:                                  announce url, download client will request this url to report uploads and downloads data
+     * @comment:                              used in admin tools, auto replace torrent make group info with this setting
+     * @announceInterval:                     interval of twice announce request
+     * @announcePrefix:                       prefix of torrent file name, is will auto add when user download the torrent files
+     * @admin:                                site admin mail address
+     * @clientBlackListUrl:                   forbidden download client list url, user can view this list to check forbidden client software
+     * @privateTorrentCmsMode:                meanTorrent default tracker server mode is private (value true), the tracker server only accept private mode.
+     *                                        but, you can set this value to false to make a public torrent cms web site without tracker server and announce function.
+     *                                        if this value is false(public mode), server can scrape all torrent status from owner tracker server
+     * @downloadCheck:                        announce download(leech) settings
+     *      @ratio:                           if less than this value, can not download(leech)
+     *      @checkAfterSignupDays:            all users download check start {value} days after signup, so the newest register user has {value} days to upgrade his ratio value,
+     *                                        after {value} days, if less then setting of here, can not download(leech) any things, but can continue seed, unit of day
+     * @announceCheck:                        announce seed/leech numbers settings
      *      @maxLeechNumberPerUserPerTorrent: settings the max leech numbers of same user on same torrent
-     *      @maxSeedNumberPerUserPerTorrent: settings the max seed numbers of same user on same torrent
-     * @peersCheck:                 send peers list of downloading announce request settings
-     *      @peersSendListIncludeOwnSeed: settings whether include own seed peer in download announce request
-     *                                    NOTE: the best value is false, In order to prevent cheating, user can not download data from own seeding.
-     * @ghostCheck
-     *      @ghostPeersIdleTime:          setting idle time more than this value is a ghost peer(died), remove it
-     *      @ghostCompletesIdleTime:      setting check users H&R warning interval time, unit of hours, default to 2
+     *      @maxSeedNumberPerUserPerTorrent:  settings the max seed numbers of same user on same torrent
+     * @peersCheck:                           send peers list of downloading announce request settings
+     *      @peersSendListIncludeOwnSeed:     settings whether include own seed peer in download announce request
+     *                                        NOTE: the best value is false, In order to prevent cheating, user can not download data from own seeding.
+     * @ghostCheck:
+     *      @ghostPeersIdleTime:              setting idle time more than this value is a ghost peer(died), remove it
+     * @warningCheck:
+     *      @userHnrWarningCheckInterval:     setting check users H&R warning interval time, unit of hours, default to 2
      */
     announce: {
-      url: 'http://chd.im:3000/announce',
+      url: '/announce',
       comment: 'meanTorrent group',
       announceInterval: 60 * 1000 * 5,
       announcePrefix: '{CHD.im}.',
       admin: 'admin@chd.im',
-      baseUrl: 'http://chd.im:3000',
       clientBlackListUrl: '/about/black',
       privateTorrentCmsMode: true,
       downloadCheck: {
@@ -106,6 +105,31 @@ module.exports = {
       warningCheck: {
         userHnrWarningCheckInterval: 2
       }
+    },
+
+    /**
+     * @rss
+     *
+     * rss field value settings
+     *
+     * @title:              setting title info of rss document
+     * @description:        setting description info of rss document
+     * @copyright:          setting copyright info of rss document
+     * @managingEditor:     setting managingEditor info of rss document
+     * @webMaster:          setting webMaster info of rss document
+     * @generator:          setting generator info of rss document
+     * @ttl:                setting ttl info of rss document
+     * @image_url:          setting image_url info of rss document
+     */
+    rss: {
+      title: '[%s] - RSS torrents',
+      description: 'Latest torrents from [%s]',
+      copyright: 'Copyright (c) [%s] 2012-2017, all rights reserved',
+      managingEditor: 'admin@chd.im (%s Admin)',
+      webMaster: 'webmaster@chd.im (%s Webmaster)',
+      generator: 'meanTorrent RSS Generator',
+      ttl: 60,
+      image_url: '/modules/core/client/img/rss.jpeg'
     },
 
     /**
@@ -163,8 +187,8 @@ module.exports = {
       userName: 'meanTorrent',
       realName: 'IRC announce client',
       channel: '#chdAnnounce',
-      defaultMsgFormat: '%s upload - torrent: %s, type: %s, size: %d, sale: %s, at %s',
-      tvserialMsgFormat: '%s upload - torrent: %s, type: %s, size: %d, seasons: %d, episodes: %s, sale: %s, at %s',
+      defaultMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, sale: %s, url: %s, at %s',
+      tvserialMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, seasons: %d, episodes: %s, sale: %s, url: %s, at %s',
       showErrors: true,
       autoRejoin: true,
       autoConnect: true,
