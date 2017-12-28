@@ -100,6 +100,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 47. New feature for list all uploader(maker group and user), admin can set uploader access to pass review directly when upload a torrent file.
 48. Complete emoji support on chat room, message box.
 49. Complete server auto notice function to users.
+50. Complete RSS subscription support.
 
 #### Chat room feature:
 1. Users name list
@@ -111,7 +112,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 7. Complete emoji support by enter colon.
 
 ## TODO
-- RSS feeds support.
 - Users follow(friend) support.
 - Poll type topics support in forum.
 - Request system
