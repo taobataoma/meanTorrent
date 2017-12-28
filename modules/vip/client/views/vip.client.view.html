@@ -5,7 +5,9 @@
                 <div class="col-sm-9">
                     <h3>{{'VIP.VIP_TITLE' | translate}}
                         <small>{{'VIP.VIP_SUB_TITLE' | translate}}
-                            <small class="text-mt" ng-if="vm.user.isVip">{{ vm.user.vip_start_at | date: 'yyyy-MM-dd' }} - {{ vm.user.vip_end_at | date: 'yyyy-MM-dd' }}</small>
+                            <small class="text-mt"
+                                   ng-if="vm.user.isVip">{{ vm.user.vip_start_at | date: 'yyyy-MM-dd' }} - {{ vm.user.vip_end_at | date: 'yyyy-MM-dd' }}
+                            </small>
                         </small>
                     </h3>
                 </div>
@@ -65,9 +67,9 @@
                                       ng-click="vm.onMoreTagsClicked();">
                                     <i class="glyphicon glyphicon-chevron-down" id="more-tags-icon"></i> {{ 'MORE_TAGS' | translate}}
                                 </span>
-                                <span class="label label-tag text-uppercase incline-block-valign"
-                                      title="{{ 'TITLE_ALT.RESET_TAGS' | translate}}"
-                                      ng-click="vm.clearAllCondition();">
+                                            <span class="label label-tag text-uppercase incline-block-valign"
+                                                  title="{{ 'TITLE_ALT.RESET_TAGS' | translate}}"
+                                                  ng-click="vm.clearAllCondition();">
                                     <i class="glyphicon glyphicon-repeat"></i> {{ 'CA_RESET' | translate}}
                                 </span>
 
@@ -79,7 +81,8 @@
                                 <dd class="h-line">
                                     <div class="checkbox checkbox-hnr">
                                         <label>
-                                            <input type="checkbox" ng-model="vm.filterHnR" ng-change="vm.onHnRChanged();"> {{ 'CA_TORRENT_HNR' | translate}}
+                                            <input type="checkbox" ng-model="vm.filterHnR"
+                                                   ng-change="vm.onHnRChanged();"> {{ 'CA_TORRENT_HNR' | translate}}
                                         </label>
                                     </div>
                                 </dd>
@@ -88,7 +91,8 @@
                                 <dd class="h-line">
                                     <div class="checkbox checkbox-hnr">
                                         <label>
-                                            <input type="checkbox" ng-model="vm.filterSale" ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
+                                            <input type="checkbox" ng-model="vm.filterSale"
+                                                   ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
                                         </label>
                                     </div>
                                 </dd>
@@ -130,6 +134,12 @@
                                     <dd class="h-line rss-desc-line">{{'DESC_MAKE_RSS_URL' | translate}}
                                         <div class="margin-top-5">
                                             <a href="{{vm.rssUrl}}">{{vm.rssUrl}}</a>
+                                            <span style="position: relative">
+                                                <i class="fa fa-clipboard color-mt-base" aria-hidden="true"
+                                                   title="{{'COPY_TO_CLIPBOARD' | translate}}"
+                                                   mt-scale-by-click="{scale: 2, duration: '.3s'}"
+                                                   mt-copy-to-clipboard="{{vm.rssUrl}}"></i>
+                                            </span>
                                         </div>
                                     </dd>
                                 </div>

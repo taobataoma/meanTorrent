@@ -224,7 +224,8 @@
       //make rss url
       vm.rssUrl = vm.appConfig.domain;
       vm.rssUrl += '/api/rss';
-      vm.rssUrl += '?limit=' + vm.itemsPerPage;
+      vm.rssUrl += '?passkey=' + vm.user.passkey;
+      vm.rssUrl += '&limit=' + vm.itemsPerPage;
       vm.rssUrl += vm.searchKey.trim() ? '&keys=' + vm.searchKey.trim() : '';
       vm.rssUrl += '&torrent_type=' + vm.vipTorrentType;
       vm.rssUrl += vm.releaseYear ? '&torrent_release=' + vm.releaseYear : '';
