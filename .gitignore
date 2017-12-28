@@ -29,6 +29,7 @@ modules/forums/client/attach
 config/env/local.js
 config/env/local-*.js
 *.pem
+package-lock.json
 
 # Compiled less and sass files
 # ============================
