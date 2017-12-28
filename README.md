@@ -48,6 +48,8 @@ and [AngularJS](http://angularjs.org/) based applications.
 ![collectionitem](https://user-images.githubusercontent.com/7778550/31987808-a3e4ad54-b932-11e7-8544-7a4acc5753ff.jpg)
 - __VIP Donate payment page__
 ![donate](https://user-images.githubusercontent.com/7778550/32096312-b303a750-bacb-11e7-91e3-d3dfec86e5b7.jpg)
+- __Uploader access manager__
+![uploader-access](https://user-images.githubusercontent.com/7778550/34406667-4d2a1800-ebf5-11e7-9884-cb6cfb03705b.jpg)
 
 #### meanTorrent some feature:
 1. Multilingual support, now English & Chinese, please read the guide of [how to add a complete translated language](#howToAddTranslate).
