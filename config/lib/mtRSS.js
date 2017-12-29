@@ -40,7 +40,7 @@ module.exports.sendRSS = function (req, res, torrents) {
   var copy = vsprintf(rssConfig.copyright, [appConfig.name]);
   var editor = vsprintf(rssConfig.managingEditor, [appConfig.name]);
   var master = vsprintf(rssConfig.webMaster, [appConfig.name]);
-  var lastBuild = moment().format('YYYY-MM-DD HH:mm:ss');
+  var lastBuild = moment().toString();
   var gen = rssConfig.generator;
   var docs = 'http://www.rssboard.org/rss-specification';
   var ttl = rssConfig.ttl;
@@ -77,7 +77,7 @@ module.exports.sendRSS = function (req, res, torrents) {
     var tDesc = t.resource_detail_info.overview;
     var tAuth = t.user.displayName;
     var tComm = tLink;
-    var tPub = moment(t.createdat).format('YYYY-MM-DD HH:mm:ss');
+    var tPub = moment(t.createdat).toString();
     var tGuid = t.info_hash;
     var tCat = {
       value: stype,
