@@ -54,14 +54,14 @@ module.exports.sendRSS = function (req, res, torrents) {
   res.write('<title>' + getEscapeData(title) + '</title>');
   res.write('<link>' + getEscapeData(link) + '</link>');
   res.write('<description>' + getEscapeData(desc) + '</description>');
-  res.write('<language>' + getEscapeData(lang) + '</language>');
+  res.write('<language>' + getEscapeData(lang, false) + '</language>');
   res.write('<copyright>' + getEscapeData(copy) + '</copyright>');
   res.write('<managingEditor>' + getEscapeData(editor) + '</managingEditor>');
   res.write('<webMaster>' + getEscapeData(master) + '</webMaster>');
-  res.write('<lastBuildDate>' + getEscapeData(lastBuild) + '</lastBuildDate>');
+  res.write('<lastBuildDate>' + getEscapeData(lastBuild, false) + '</lastBuildDate>');
   res.write('<generator>' + getEscapeData(gen) + '</generator>');
   res.write('<docs>' + getEscapeData(docs) + '</docs>');
-  res.write('<ttl>' + getEscapeData(ttl) + '</ttl>');
+  res.write('<ttl>' + getEscapeData(ttl, false) + '</ttl>');
   res.write('<image>');
   res.write('<title>' + getEscapeData(img.title) + '</title>');
   res.write('<link>' + getEscapeData(img.link) + '</link>');
@@ -98,8 +98,8 @@ module.exports.sendRSS = function (req, res, torrents) {
     res.write('<category domain="' + getEscapeData(tCat.domain, false) + '">' + getEscapeData(tCat.value) + '</category>');
     res.write('<comments>' + getEscapeData(tComm) + '</comments>');
     res.write('<enclosure url="' + getEscapeData(tEnc.url, false) + '" length="' + getEscapeData(tEnc.length, false) + '" type="' + getEscapeData(tEnc.type, false) + '" />');
-    res.write('<guid isPermaLink="false">' + getEscapeData(tGuid) + '</guid>');
-    res.write('<pubDate>' + getEscapeData(tPub) + '</pubDate>');
+    res.write('<guid isPermaLink="false">' + getEscapeData(tGuid, false) + '</guid>');
+    res.write('<pubDate>' + getEscapeData(tPub, false) + '</pubDate>');
     res.write('</item>');
 
   });
