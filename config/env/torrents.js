@@ -16,7 +16,7 @@ module.exports = {
      */
     app: {
       name: 'CHD.im',
-      domain: 'http://chd.im:3000',
+      domain: 'http://chd:3000',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: true

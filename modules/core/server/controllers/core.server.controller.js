@@ -1,8 +1,6 @@
 'use strict';
 
-var validator = require('validator'),
-  path = require('path'),
-  moment = require('moment'),
+var path = require('path'),
   config = require(path.resolve('./config/config'));
 
 /**
@@ -14,6 +12,8 @@ exports.renderIndex = function (req, res) {
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     req.user.addSignedIp(ip);
   }
+
+  setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
 
   res.render('modules/core/server/views/index', {
     user: JSON.stringify(safeUserObject),
@@ -27,6 +27,8 @@ exports.renderIndex = function (req, res) {
  */
 exports.renderServerError = function (req, res) {
   var safeUserObject = req.user || null;
+
+  setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
 
   res.status(500).render('modules/core/server/views/500', {
     user: JSON.stringify(safeUserObject),
@@ -42,6 +44,8 @@ exports.renderServerError = function (req, res) {
  */
 exports.renderNotFound = function (req, res) {
   var safeUserObject = req.user || null;
+
+  setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
 
   res.status(404).format({
     'text/html': function () {
@@ -91,4 +95,21 @@ function getSafeMeanTorrentConfig(cfg) {
   cfg.serverNotice = undefined;
 
   return cfg;
+}
+
+/**
+ * setMeanTorrentConfigDefaultValue
+ * @param cfg
+ */
+function setMeanTorrentConfigDefaultValue(req, res, cfg) {
+  var httpTransport = 'http://';
+  if (config.secure && config.secure.ssl === true) {
+    httpTransport = 'https://';
+  }
+  var baseUrl = req.app.get('domain') || httpTransport + req.headers.host;
+
+  cfg.app.domain = baseUrl;
+  if (!cfg.announce.url.startsWith('http')) {
+    cfg.announce.url = baseUrl + cfg.announce.url;
+  }
 }

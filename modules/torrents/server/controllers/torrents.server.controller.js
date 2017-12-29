@@ -204,7 +204,7 @@ exports.upload = function (req, res) {
         } else {
           if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
             //force change announce url to config value
-            var announce = appConfig.domain + config.meanTorrentConfig.announce.url;
+            var announce = config.meanTorrentConfig.announce.url;
             torrent.metadata.announce = announce;
 
             var cws = fs.createWriteStream(newfile);
@@ -477,7 +477,7 @@ exports.announceEdit = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          var announce = appConfig.domain + config.meanTorrentConfig.announce.url;
+          var announce = config.meanTorrentConfig.announce.url;
           torrent.metadata.announce = announce;
           torrent.metadata.comment = req.query.comment;
           torrent_data = torrent.metadata;
@@ -551,7 +551,7 @@ exports.download = function (req, res) {
           reject(message);
         } else {
           if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
-            var announce = appConfig.domain + config.meanTorrentConfig.announce.url + '/' + user.passkey;
+            var announce = config.meanTorrentConfig.announce.url + '/' + user.passkey;
             torrent.metadata.announce = announce;
           }
           torrent_data = torrent.metadata;
