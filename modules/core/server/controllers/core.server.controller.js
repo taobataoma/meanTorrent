@@ -13,12 +13,13 @@ exports.renderIndex = function (req, res) {
     req.user.addSignedIp(ip);
   }
 
-  setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
+  var cfg = setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
+  cfg = getSafeMeanTorrentConfig(cfg);
 
   res.render('modules/core/server/views/index', {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared),
-    meanTorrentConfig: JSON.stringify(getSafeMeanTorrentConfig(config.meanTorrentConfig))
+    meanTorrentConfig: JSON.stringify(cfg)
   });
 };
 
@@ -28,12 +29,13 @@ exports.renderIndex = function (req, res) {
 exports.renderServerError = function (req, res) {
   var safeUserObject = req.user || null;
 
-  setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
+  var cfg = setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
+  cfg = getSafeMeanTorrentConfig(cfg);
 
   res.status(500).render('modules/core/server/views/500', {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared),
-    meanTorrentConfig: JSON.stringify(getSafeMeanTorrentConfig(config.meanTorrentConfig)),
+    meanTorrentConfig: JSON.stringify(cfg),
     error: 'Oops! Something went wrong...'
   });
 };
@@ -45,14 +47,15 @@ exports.renderServerError = function (req, res) {
 exports.renderNotFound = function (req, res) {
   var safeUserObject = req.user || null;
 
-  setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
+  var cfg = setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
+  cfg = getSafeMeanTorrentConfig(cfg);
 
   res.status(404).format({
     'text/html': function () {
       res.render('modules/core/server/views/404', {
         user: JSON.stringify(safeUserObject),
         sharedConfig: JSON.stringify(config.shared),
-        meanTorrentConfig: JSON.stringify(getSafeMeanTorrentConfig(config.meanTorrentConfig)),
+        meanTorrentConfig: JSON.stringify(cfg),
         url: req.originalUrl
       });
     },
@@ -109,7 +112,10 @@ function setMeanTorrentConfigDefaultValue(req, res, cfg) {
   var baseUrl = req.app.get('domain') || httpTransport + req.headers.host;
 
   cfg.app.domain = baseUrl;
-  if (!cfg.announce.url.startsWith('http')) {
-    cfg.announce.url = baseUrl + cfg.announce.url;
+  if (!cfg.announce.abs) {
+    cfg.announce.abs = cfg.announce.url;
   }
+  cfg.announce.url = baseUrl + cfg.announce.abs;
+
+  return cfg;
 }
