@@ -28,6 +28,7 @@ var path = require('path'),
   async = require('async'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
+  mtRSS = require(path.resolve('./config/lib/mtRSS')),
   scoreUpdate = require(path.resolve('./config/lib/score')).update;
 
 var traceConfig = config.meanTorrentConfig.trace;
@@ -42,7 +43,6 @@ var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 var announceConfig = config.meanTorrentConfig.announce;
 var appConfig = config.meanTorrentConfig.app;
-var rssConfig = config.meanTorrentConfig.rss;
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -1633,7 +1633,6 @@ exports.makeRss = function (req, res) {
   var release = undefined;
   var tagsA = [];
   var keysA = [];
-  var language = 'en';
 
   var sort = '-createdat';
 
@@ -1661,9 +1660,6 @@ exports.makeRss = function (req, res) {
       }
       if (req.query.torrent_sale !== undefined) {
         sale = (req.query.torrent_sale === 'true');
-      }
-      if (req.query.language !== undefined) {
-        language = req.query.language;
       }
 
       if (req.query.torrent_tags !== undefined) {
@@ -1739,56 +1735,12 @@ exports.makeRss = function (req, res) {
               message: errorHandler.getErrorMessage(err)
             });
           } else {
-            res.writeHead(200, {
-              'Content-Type': 'text/xml'
-            });
-
-            res.write('<?xml version="1.0" encoding="utf-8" ?>');
-            res.write('<rss version="2.0">');
-            res.write('<channel>');
-
-            res.write('<title>' + vsprintf(rssConfig.title, [appConfig.name + ' - ' + stype]) + '</title>');
-            res.write('<link><![CDATA[' + appConfig.domain + ']]></link>');
-            res.write('<description><![CDATA[' + vsprintf(rssConfig.description, [appConfig.name]) + ']]></description>');
-            res.write('<language>' + language + '</language>');
-            res.write('<copyright>' + vsprintf(rssConfig.copyright, [appConfig.name]) + '</copyright>');
-            res.write('<managingEditor>' + vsprintf(rssConfig.managingEditor, [appConfig.name]) + '</managingEditor>');
-            res.write('<webMaster>' + vsprintf(rssConfig.webMaster, [appConfig.name]) + '</webMaster>');
-            res.write('<lastBuildDate>' + moment().format('YYYY-MM-DD HH:mm:ss') + '</lastBuildDate>');
-            res.write('<generator>' + rssConfig.generator + '</generator>');
-            res.write('<docs><![CDATA[http://www.rssboard.org/rss-specification]]></docs>');
-            res.write('<ttl>' + rssConfig.ttl + '</ttl>');
-            res.write('<image>');
-            res.write('<title>' + vsprintf(rssConfig.title, [appConfig.name]) + '</title>');
-            res.write('<link><![CDATA[' + appConfig.domain + ']]></link>');
-            res.write('<url><![CDATA[' + appConfig.domain + '/modules/core/client/img/rss.jpeg]]></url>');
-            res.write('<width>100</width>');
-            res.write('<height>100</height>');
-            res.write('<description>' + vsprintf(rssConfig.description, [appConfig.name]) + '</description>');
-            res.write('</image>');
-
-            torrents.forEach(function (t) {
-              res.write('<item>');
-              res.write('<title><![CDATA[' + t.torrent_filename + ']]></title>');
-              res.write('<link>' + appConfig.domain + '/torrents/' + t._id + '</link>');
-              res.write('<description><![CDATA[' + t.resource_detail_info.overview + ']]></description>');
-              res.write('<author>' + t.user.displayName + '</author>');
-              res.write('<category domain="' + appConfig.domain + '/torrents/' + stype + '">' + stype + '</category>');
-              res.write('<comments><![CDATA[' + appConfig.domain + '/torrents/' + t._id + ']]></comments>');
-              res.write('<enclosure url="' + appConfig.domain + '/api/torrents/download/' + t._id + '/' + req.passkeyuser.passkey + '" length="' + t.torrent_size + '" type="application/x-bittorrent" />');
-              res.write('<guid isPermaLink="false">' + t.info_hash + '</guid>');
-              res.write('<pubDate>' + moment(t.createdat).format('YYYY-MM-DD HH:mm:ss') + '</pubDate>');
-              res.write('</item>');
-
-            });
-
-            res.write('</channel>');
-            res.write('</rss>');
-            res.end();
+            mtRSS.sendRSS(req, res, torrents);
           }
         });
     }
   }
+
 };
 
 /**
