@@ -701,7 +701,13 @@
     ACTIVE_IDLE_CONFIRM_BODY_TEXT: '您确认要使用 {{score}} 积分来重新激活您的帐户?',
     ACTIVE_IDLE_SUCCESSFULLY: '激活帐户成功',
     ACTIVE_IDLE_ERROR: '激活帐户失败',
+    FOLLOW_SUCCESSFULLY: '添加关注成功',
+    FOLLOW_ERROR: '添加关注失败',
+    UNFOLLOW_SUCCESSFULLY: '取消关注成功',
+    UNFOLLOW_ERROR: '取消关注失败',
     STATUS_FIELD: {
+      BTN_FOLLOW: '关注',
+      BTN_UNFOLLOW: '取消关注',
       PICTURE: '头像',
       RESET_DEFAULT_PICTURE: '重置为默认图片',
       ADD_VIP_MONTHS: '+ VIP一个月',

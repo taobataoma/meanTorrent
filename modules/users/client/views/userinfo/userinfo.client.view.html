@@ -1,16 +1,26 @@
 <section class="container">
     <div class="page-header">
         <div class="row">
-            <div class="col-md-5 col-md-offset-1">
-                <h3 ng-bind="vm.user.displayName"></h3>
+            <div class="col-sm-3 col-md-3 col-md-offset-1">
+                <h3 class="userinfo-name" ng-bind="vm.user.displayName"></h3>
             </div>
-            <div class="col-md-5">
+            <div class="col-sm-9 col-md-7">
                 <a class="btn btn-primary pull-right margin-left-10" ng-click="vm.messageTo()" ng-if="!vm.isContextUserSelf()">
                     <i class="glyphicon glyphicon-envelope"></i>
                 </a>
                 <a class="btn btn-primary pull-right margin-left-10" ui-sref="admin.user({userId: vm.user._id})"
                    ng-if="vm.authentication.user.isOper">
                     <i class="glyphicon glyphicon-cog"></i>
+                </a>
+                <a class="btn btn-default pull-right btn-bold btn-width-120 margin-left-10"
+                   ng-click="vm.followTo()"
+                   ng-if="!vm.isContextUserSelf() && !vm.inMyFollowing()">
+                    {{ 'STATUS_FIELD.BTN_FOLLOW' | translate}}
+                </a>
+                <a class="btn btn-default pull-right btn-bold btn-width-120 margin-left-10"
+                   ng-click="vm.unFollowTo()"
+                   ng-if="!vm.isContextUserSelf() && vm.inMyFollowing()">
+                    {{ 'STATUS_FIELD.BTN_UNFOLLOW' | translate}}
                 </a>
             </div>
         </div>

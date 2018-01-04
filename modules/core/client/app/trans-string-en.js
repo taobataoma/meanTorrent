@@ -701,7 +701,13 @@
     ACTIVE_IDLE_CONFIRM_BODY_TEXT: 'Are you sure want to active your account with {{score}} scores?',
     ACTIVE_IDLE_SUCCESSFULLY: 'Active account successfully',
     ACTIVE_IDLE_ERROR: 'Active account failed',
+    FOLLOW_SUCCESSFULLY: 'Follow successfully',
+    FOLLOW_ERROR: 'Follow failed',
+    UNFOLLOW_SUCCESSFULLY: 'Unfollow successfully',
+    UNFOLLOW_ERROR: 'Unfollow failed',
     STATUS_FIELD: {
+      BTN_FOLLOW: 'Follow',
+      BTN_UNFOLLOW: 'Unfollow',
       PICTURE: 'Profile picture',
       RESET_DEFAULT_PICTURE: 'Reset to default picture',
       ADD_VIP_MONTHS: '+ VIP a month',

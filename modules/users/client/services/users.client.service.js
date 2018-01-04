@@ -55,6 +55,20 @@
       unIdle: {
         method: 'POST',
         url: '/api/users/unIdle'
+      },
+      followTo: {
+        method: 'POST',
+        url: '/api/users/followTo/:userId',
+        params: {
+          userId: '@userId'
+        }
+      },
+      unFollowTo: {
+        method: 'POST',
+        url: '/api/users/unFollowTo/:userId',
+        params: {
+          userId: '@userId'
+        }
       }
     });
 
@@ -92,6 +106,12 @@
       },
       userUnIdle: function () {
         return this.unIdle().$promise;
+      },
+      userFollowTo: function (uid) {
+        return this.followTo(uid).$promise;
+      },
+      userUnfollowTo: function (uid) {
+        return this.unFollowTo(uid).$promise;
       }
     });
 

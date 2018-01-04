@@ -77,6 +77,13 @@
     });
 
     /**
+     * user-follow-changed
+     */
+    $scope.$on('user-follow-changed', function (event, u) {
+      vm.user = Authentication.user = u;
+    });
+
+    /**
      * getInvitationsCount
      */
     vm.getInvitationsCount = function () {
@@ -97,9 +104,9 @@
      */
     vm.getFollowCount = function (item) {
       if (item.state.indexOf('followers') >= 0) {
-        return vm.user.followers.length;
+        return vm.user ? vm.user.followers.length : 0;
       } else {
-        return vm.user.following.length;
+        return vm.user ? vm.user.following.length : 0;
       }
     };
 
