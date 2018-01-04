@@ -50,6 +50,10 @@
             </span>
           </li>
           <li class="divider"></li>
+          <li ui-sref-active="active" ng-repeat="item in vm.followMenu.items" class="menu-parent">
+            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="badge menu-badge badge_default" ng-show="vm.getFollowCount(item)>0">{{vm.getFollowCount(item)}}</span>
+          </li>
+          <li class="divider"></li>
           <li ui-sref-active="active" ng-repeat="item in vm.messagesMenu.items" class="menu-parent">
             <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="badge menu-badge badge_info" ng-show="vm.unreadCount>0">{{vm.unreadCount}}</span>
           </li>

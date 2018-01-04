@@ -201,6 +201,14 @@ var UserSchema = new Schema({
     type: Number,
     default: 0
   },
+  followers: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  following: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   updated: {
     type: Date
   },

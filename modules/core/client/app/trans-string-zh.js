@@ -64,6 +64,8 @@
     SIGNOUT: '退出登录',
     SIGNIN: '登录',
     SIGNUP: '注册',
+    MENU_FOLLOWERS: '关注我的',
+    MENU_FOLLOWING: '我的关注',
     MENU_MESSAGE_BOX: '站内消息',
     MENU_SCORE_LEVEL: '积分等级',
     MENU_MY_INVITE: '我的邀请',

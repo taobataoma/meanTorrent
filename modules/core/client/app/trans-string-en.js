@@ -64,6 +64,8 @@
     SIGNOUT: 'Sign out',
     SIGNIN: 'Sign In',
     SIGNUP: 'Sign Up',
+    MENU_FOLLOWERS: 'Followers',
+    MENU_FOLLOWING: 'Following',
     MENU_MESSAGE_BOX: 'Message Box',
     MENU_SCORE_LEVEL: 'Score Level',
     MENU_MY_INVITE: 'My Invitations',

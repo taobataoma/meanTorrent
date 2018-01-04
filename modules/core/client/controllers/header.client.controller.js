@@ -22,6 +22,7 @@
     vm.messagesMenu = menuService.getMenu('mt-message').items[0];
     vm.statusMenu = menuService.getMenu('mt-user').items[0];
     vm.scoreMenu = menuService.getMenu('mt-user').items[1];
+    vm.followMenu = menuService.getMenu('mt-user').items[2];
     vm.inviteMenu = menuService.getMenu('mt-invite').items[0];
     vm.authentication = Authentication;
     vm.isCollapsed = false;
@@ -87,6 +88,18 @@
             vm.countMyInvitations = undefined;
           }
         });
+      }
+    };
+
+    /**
+     * getFollowCount
+     * @param item
+     */
+    vm.getFollowCount = function (item) {
+      if (item.state.indexOf('followers') >= 0) {
+        return vm.user.followers.length;
+      } else {
+        return vm.user.following.length;
       }
     };
 
