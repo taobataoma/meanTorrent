@@ -12,7 +12,7 @@
                 <a ui-sref="status.warning">{{'WARNING_DETAIL_LINK' | translate}}</a>
             </div>
 
-            <dl class="dl-horizontal">
+            <dl class="dl-horizontal dl-hover">
                 <dt class="h-line">{{ 'STATUS_FIELD.PICTURE' | translate}}：</dt>
                 <dd class="h-line">
                     <img class="status-avatar" ng-src="{{vm.user.profileImageURL}}">
@@ -64,7 +64,9 @@
 
                     <div class="pull-right"
                          ng-if="vm.user.status == 'idle'">
-                        <button class="btn btn-default btn-xs" ng-click="vm.unIdle(); " style="cursor: pointer">{{ 'STATUS_FIELD.ACTIVE' | translate }}</button>
+                        <button class="btn btn-default btn-xs" ng-click="vm.unIdle(); "
+                                style="cursor: pointer">{{ 'STATUS_FIELD.ACTIVE' | translate }}
+                        </button>
                     </div>
                 </dd>
 
@@ -124,8 +126,22 @@
                             <span class="client-item" ng-repeat="t in vm.user.client_agent">{{t}}</span>
                         </div>
                     </dd>
-
                     <li class="status-divider"></li>
+                </div>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.MY_FOLLOWERS' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.followers.length }}
+                    <a class="pull-right" ui-sref="follow.followers" ng-if="vm.user.followers.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                </dd>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.MY_FOLLOWING' | translate}}：</dt>
+                <dd class="h-line">{{ vm.user.following.length }}
+                    <a class="pull-right" ui-sref="follow.following" ng-if="vm.user.following.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                </dd>
+
+                <li class="status-divider"></li>
+
+                <div ng-if="vm.announce.privateTorrentCmsMode">
 
                     <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
                     <dd class="h-line">
@@ -166,9 +182,9 @@
                             <a class="pull-right" ui-sref="status.warning" ng-if="vm.user.hnr_warning>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
                         </dd>
                     </div>
-                </div>
 
-                <li class="status-divider"></li>
+                    <li class="status-divider"></li>
+                </div>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.FORUM_TOPICS' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.topics }}</a></dd>

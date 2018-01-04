@@ -1447,6 +1447,22 @@ body {
     line-height: 2;
 }
 
+.dl-hover {
+    @media (min-width: @screen-sm-min) {
+        dt {
+            width: 170px !important;
+        }
+        dd {
+            padding: 0 10px;
+        }
+        dt, dd {
+            &:hover {
+                background-color: #f8f8f8;
+            }
+        }
+    }
+}
+
 .rss-desc-line {
     line-height: 1.5 !important;
     padding-top: 4px;

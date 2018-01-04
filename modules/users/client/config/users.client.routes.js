@@ -75,6 +75,28 @@
           pageTitle: 'EDIT_SIGNATURE'
         }
       })
+      .state('follow', {
+        abstract: true,
+        url: '/follow',
+        template: '<ui-view/>',
+        data: {
+          roles: ['user', 'oper', 'admin']
+        }
+      })
+      .state('follow.followers', {
+        url: '/followers',
+        templateUrl: '/modules/users/client/views/follow/followers.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.MY_FOLLOWERS'
+        }
+      })
+      .state('follow.following', {
+        url: '/following',
+        templateUrl: '/modules/users/client/views/follow/following.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.MY_FOLLOWING'
+        }
+      })
       .state('status', {
         abstract: true,
         url: '/status',

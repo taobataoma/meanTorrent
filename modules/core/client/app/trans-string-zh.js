@@ -211,7 +211,11 @@
       STATUS_WARNING: '正被警告',
       SCORE_DETAIL: '积分详情',
       INVITATIONS: '我的邀请',
-      INVITE_INVALID: '无效的邀请'
+      INVITE_INVALID: '无效的邀请',
+      MY_FOLLOWERS: '关注我的',
+      MY_FOLLOWING: '我关注的',
+      USER_FOLLOWERS: '关注他的',
+      USER_FOLLOWING: '他的关注'
     },
 
     //sign in, sign up, password
@@ -684,6 +688,12 @@
     EDIT_SIGNATURE_SUCCESSFULLY: '修改签名成功',
     EDIT_SIGNATURE_ERROR: '修改签名失败',
 
+    //follow
+    FOLLOW: {
+      NO_FOLLOWERS: '还没有任何用户关注到您.',
+      NO_FOLLOWING: '您还没有关注任何人.'
+    },
+
     //user status
     STATUS_ACCOUNT: '帐户状态',
     STATUS_UPLOADED: '我上传的种子',
@@ -733,6 +743,10 @@
       MAKER: '资源压制小组',
       VIP_START_AT: 'Vip 资格开始于',
       VIP_END_AT: 'Vip 资格结束于',
+      MY_FOLLOWERS: '关注我的',
+      MY_FOLLOWING: '我关注的',
+      FOLLOWERS: '被关注',
+      FOLLOWING: '关注',
       UPLOADED: '总上传量',
       DOWNLOADED: '总下载量',
       RATIO: '总分享率',

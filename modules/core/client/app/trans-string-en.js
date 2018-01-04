@@ -211,7 +211,11 @@
       STATUS_WARNING: 'Warning',
       SCORE_DETAIL: 'Score detail',
       INVITATIONS: 'Invitations',
-      INVITE_INVALID: 'invalid invitation'
+      INVITE_INVALID: 'invalid invitation',
+      MY_FOLLOWERS: 'My Followers',
+      MY_FOLLOWING: 'My Following',
+      USER_FOLLOWERS: 'User`s Followers',
+      USER_FOLLOWING: 'User`s Following'
     },
 
     //sign in, sign up, password
@@ -684,6 +688,12 @@
     EDIT_SIGNATURE_SUCCESSFULLY: 'Edit signature successfully',
     EDIT_SIGNATURE_ERROR: 'Edit signature failed',
 
+    //follow
+    FOLLOW: {
+      NO_FOLLOWERS: 'Has no anybody following you.',
+      NO_FOLLOWING: 'You aren’t following anybody.'
+    },
+
     //user status
     STATUS_ACCOUNT: 'Account Status',
     STATUS_UPLOADED: 'Uploaded torrents',
@@ -733,6 +743,10 @@
       MAKER: 'Maker Group',
       VIP_START_AT: 'Vip start at',
       VIP_END_AT: 'Vip end at',
+      MY_FOLLOWERS: 'My Followers',
+      MY_FOLLOWING: 'My Following',
+      FOLLOWERS: 'Followers',
+      FOLLOWING: 'Following',
       UPLOADED: 'Total uploaded',
       DOWNLOADED: 'Total downloaded',
       RATIO: 'Total ratio',
