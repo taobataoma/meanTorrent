@@ -945,7 +945,8 @@ module.exports = {
       homeOrderTorrentListPerType: 9,
       homeNewestTorrentListPerType: 14,
       uploaderUserListPerPage: 15,
-      messageBoxListPerPage: 10
+      messageBoxListPerPage: 10,
+      followListPerPage: 30
     },
 
     /**
