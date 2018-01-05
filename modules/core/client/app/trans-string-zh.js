@@ -691,7 +691,9 @@
     //follow
     FOLLOW: {
       NO_FOLLOWERS: '还没有任何用户关注到您.',
-      NO_FOLLOWING: '您还没有关注任何人.'
+      NO_FOLLOWING: '您还没有关注任何人.',
+      STATUS_GETTING: '正在加载数据，请稍候 ...',
+      STATUS_GETTING_ERROR: '数据加载错误!'
     },
 
     //user status
@@ -909,6 +911,8 @@
     USER_INFO_TITLE: '{{name}} 的用户信息',
     MAKER_INFO_TITLE: '资源压制小组 [{{name}}]',
     USER_IS_VIP: '{{name}} 是一个VIP用户',
+    USER_UPLOADED_FLAG: '{{name}} 的上传量',
+    USER_DOWNLOADED_FLAG: '{{name}} 的下载量',
 
     //traces
     ADMIN_TRACES_LIST: '系统日志',
@@ -1321,7 +1325,8 @@
       ACCOUNT_IS_NOT_ACTIVATED: '您的帐户未激活, 请激活后再试!',
       ONLY_VIP_CAN_DOWNLOAD: '该种子只有VIP用户才可以下载',
       CAN_NOT_DOWNLOAD_BANNED: '下载失败, 您被服务器禁止(banned)',
-      CAN_NOT_DOWNLOAD_IDLE: '下载失败，您闲置了太长时间，在您下载任何种子前, 您必须进入帐户状态页再次激活您的帐户!'
+      CAN_NOT_DOWNLOAD_IDLE: '下载失败，您闲置了太长时间，在您下载任何种子前, 您必须进入帐户状态页再次激活您的帐户!',
+      ALREADY_FOLLOWING: '您已经关注过 {{name}} 了'
     },
 
     //server message string, content string support markdown and emoji

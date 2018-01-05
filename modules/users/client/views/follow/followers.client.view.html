@@ -1,12 +1,16 @@
-<div ng-controller="FollowController as vm" ng-init="vm.init();">
+<div ng-controller="FollowersController as vm" ng-init="vm.buildPager();">
     <div class="pagetop">
         <div class="container padding-top-30 padding-bottom-30">
             <div class="row">
                 <div class="col-xs-6 col-sm-4 col-sm-offset-2">
-                    <a class="btn btn-success btn-block" ui-sref="follow.followers">{{'PAGETITLE.MY_FOLLOWERS' | translate}}</a>
+                    <a class="btn btn-success btn-lg btn-block" ui-sref="follow.followers">
+                        {{'PAGETITLE.MY_FOLLOWERS' | translate}} <span class="badge">{{vm.user.followers.length}}</span>
+                    </a>
                 </div>
                 <div class="col-xs-6 col-sm-4">
-                    <a class="btn btn-default btn-block" ui-sref="follow.following">{{'PAGETITLE.MY_FOLLOWING' | translate}}</a>
+                    <a class="btn btn-default btn-lg btn-block" ui-sref="follow.following">
+                        {{'PAGETITLE.MY_FOLLOWING' | translate}} <span class="badge badge_default">{{vm.user.following.length}}</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -14,14 +18,64 @@
 
     <div class="container">
         <div class="margin-bottom-30 margin-top-30">
-            <div ng-if="vm.user.followers.length<=0">
-                <div class="jumbotron text-center">
+            <div class="jumbotron text-center" ng-if="vm.statusMsg || vm.pagedItems.length<=0">
+                <div ng-if="vm.statusMsg">
+                    <h3 class="text-muted">{{vm.statusMsg | translate}}</h3>
+                </div>
+                <div ng-if="!vm.statusMsg && vm.pagedItems.length<=0">
                     <i class="fa fa-users fa-2x text-muted" aria-hidden="true"></i>
                     <h3 class="text-muted">{{'FOLLOW.NO_FOLLOWERS' | translate}}</h3>
                 </div>
             </div>
-            <div ng-if="vm.user.followers.length>0">
+            <div ng-if="vm.pagedItems.length>0">
+                <div id="top_of_follow_list">
+                    <div class="pagination-border-bottom">
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                            ng-model="vm.currentPage"
+                            ng-change="vm.pageChanged()"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                    </div>
 
+                    <div class="follow-list row">
+                        <div ng-repeat="item in vm.pagedItems">
+                            <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block "></div>
+                            <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="follow-item" mt-scale-by-mouse="{scale: 1.1, duration: '.5s'}">
+                                    <span user-info="item" info-class="follow-avatar" info-avatar></span>
+                                    <p user-info="item" info-class="follow-name" info-name></p>
+                                    <span vip-flag="item" vip-class="follow-vip"></span>
+                                    <span score-level-curr="item" class="follow-level"></span>
+                                    <span class="user-ud-text" ng-if="vm.announceConfig.privateTorrentCmsMode">
+                                        <span up-down-flag="item" up-down-class="follow-up-down"></span>
+                                    </span>
+
+                                    <a class="btn btn-default btn-sm btn-bold btn-width-80 btn-unfollow"
+                                       ng-click="vm.followTo(item)"
+                                       ng-if="!vm.inMyFollowing(item)">
+                                        {{ 'STATUS_FIELD.BTN_FOLLOW' | translate}}
+                                    </a>
+                                    <a class="btn btn-default btn-sm btn-bold btn-width-80 btn-unfollow"
+                                       ng-click="vm.unFollowTo(item)"
+                                       ng-if="vm.inMyFollowing(item)">
+                                        {{ 'STATUS_FIELD.BTN_UNFOLLOW' | translate}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pagination-border-top">
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                            ng-model="vm.currentPage"
+                            ng-change="vm.pageChanged()"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

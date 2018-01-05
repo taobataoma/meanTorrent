@@ -691,7 +691,9 @@
     //follow
     FOLLOW: {
       NO_FOLLOWERS: 'Has no anybody following you.',
-      NO_FOLLOWING: 'You aren’t following anybody.'
+      NO_FOLLOWING: 'You aren’t following anybody.',
+      STATUS_GETTING: 'Getting data, please waiting ...',
+      STATUS_GETTING_ERROR: 'Getting data ERROR!'
     },
 
     //user status
@@ -909,6 +911,8 @@
     USER_INFO_TITLE: 'user info of {{name}}',
     MAKER_INFO_TITLE: 'maker group info of {{name}}',
     USER_IS_VIP: '{{name}} is a VIP',
+    USER_UPLOADED_FLAG: '{{name}} uploaded',
+    USER_DOWNLOADED_FLAG: '{{name}} downloaded',
 
     //traces
     ADMIN_TRACES_LIST: 'Traces List',
@@ -1321,7 +1325,8 @@
       ACCOUNT_IS_NOT_ACTIVATED: 'Your account is not activated, you should active first!',
       ONLY_VIP_CAN_DOWNLOAD: 'This torrent is only for Vip users',
       CAN_NOT_DOWNLOAD_BANNED: 'Download failed, you are banned from server',
-      CAN_NOT_DOWNLOAD_IDLE: 'Download failed, you are idle for long time, before download any things, you should active you account again in profile menu "account status"!'
+      CAN_NOT_DOWNLOAD_IDLE: 'Download failed, you are idle for long time, before download any things, you should active you account again in profile menu "account status"!',
+      ALREADY_FOLLOWING: 'You have already following {{name}}'
     },
 
     //server message string, content string support markdown and emoji

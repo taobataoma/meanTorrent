@@ -69,6 +69,16 @@
         params: {
           userId: '@userId'
         }
+      },
+      myFollowers: {
+        method: 'GET',
+        url: '/api/users/followers',
+        isArray: true
+      },
+      myFollowing: {
+        method: 'GET',
+        url: '/api/users/following',
+        isArray: true
       }
     });
 
@@ -112,6 +122,12 @@
       },
       userUnfollowTo: function (uid) {
         return this.unFollowTo(uid).$promise;
+      },
+      getMyFollowers: function (params) {
+        return this.myFollowers(params).$promise;
+      },
+      getMyFollowing: function (params) {
+        return this.myFollowing(params).$promise;
       }
     });
 

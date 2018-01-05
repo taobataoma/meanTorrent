@@ -14,6 +14,8 @@ module.exports = function (app) {
   app.route('/api/users/warningNumber').get(users.warningNumber);
   app.route('/api/users/picture').post(users.changeProfilePicture);
   app.route('/api/users/signature').post(users.changeSignature);
+  app.route('/api/users/followers').get(users.myFollowers);
+  app.route('/api/users/following').get(users.myFollowing);
   app.route('/api/users/followTo/:userId').post(users.followTo);
   app.route('/api/users/unFollowTo/:userId').post(users.unFollowTo);
 
