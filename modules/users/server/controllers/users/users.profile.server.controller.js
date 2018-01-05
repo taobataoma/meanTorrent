@@ -292,39 +292,3 @@ exports.unIdle = function (req, res, next) {
     });
   }
 };
-
-/**
- * followTo
- * @param req
- * @param res
- */
-exports.followTo = function (req, res) {
-  var user = req.user;
-  var toUser = req.model;
-
-  toUser.followers.push(user._id);
-  toUser.save();
-
-  user.following.push(toUser._id);
-  user.save(function (err) {
-    res.json(user);
-  });
-};
-
-/**
- * unFollowTo
- * @param req
- * @param res
- */
-exports.unFollowTo = function (req, res) {
-  var user = req.user;
-  var toUser = req.model;
-
-  toUser.followers.pull(user._id);
-  toUser.save();
-
-  user.following.pull(toUser._id);
-  user.save(function (err) {
-    res.json(user);
-  });
-};
