@@ -103,6 +103,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 48. Complete emoji support on chat room, message box.
 49. Complete server auto notice function to users.
 50. Complete RSS subscription support.
+51. Complete user follow system.
 
 #### Chat room feature:
 1. Users name list
@@ -114,7 +115,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 7. Complete emoji support by enter colon.
 
 ## TODO
-- Users follow(friend) support.
 - Poll type topics support in forum.
 - Request system
 - More score get methods.
