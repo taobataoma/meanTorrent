@@ -913,6 +913,7 @@
     USER_IS_VIP: '{{name}} 是一个VIP用户',
     USER_UPLOADED_FLAG: '{{name}} 的上传量',
     USER_DOWNLOADED_FLAG: '{{name}} 的下载量',
+    USER_SCORE_LEVEL: '{{name}} 的积分等级',
 
     //traces
     ADMIN_TRACES_LIST: '系统日志',

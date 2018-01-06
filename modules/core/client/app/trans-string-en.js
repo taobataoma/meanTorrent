@@ -913,6 +913,7 @@
     USER_IS_VIP: '{{name}} is a VIP',
     USER_UPLOADED_FLAG: '{{name}} uploaded',
     USER_DOWNLOADED_FLAG: '{{name}} downloaded',
+    USER_SCORE_LEVEL: '{{name}} score level',
 
     //traces
     ADMIN_TRACES_LIST: 'Traces List',
