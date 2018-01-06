@@ -2,7 +2,7 @@
     <div class="page-header">
         <div class="row">
             <div class="col-md-5 col-md-offset-1">
-                <h3 ng-bind="vm.user.displayName"></h3>
+                <h3 class="userinfo-name" ng-bind="vm.user.displayName"></h3>
             </div>
             <div class="col-md-5">
                 <a class="btn btn-primary pull-right margin-left-10" ng-if="vm.authentication.user.isAdmin"
@@ -173,10 +173,14 @@
                 <li class="status-divider"></li>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.FOLLOWERS' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.followers.length }}</dd>
+                <dd class="h-line">{{ vm.user.followers.length }}
+                    <a class="pull-right" ui-sref="follow.userFollowers({userId: vm.user._id})" ng-if="vm.user.followers.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                </dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.FOLLOWING' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.following.length }}</dd>
+                <dd class="h-line">{{ vm.user.following.length }}
+                    <a class="pull-right" ui-sref="follow.userFollowing({userId: vm.user._id})" ng-if="vm.user.following.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                </dd>
 
                 <li class="status-divider"></li>
 

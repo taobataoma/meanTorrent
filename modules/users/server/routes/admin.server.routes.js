@@ -4,7 +4,8 @@
  * Module dependencies
  */
 var adminPolicy = require('../policies/admin.server.policy'),
-  admin = require('../controllers/admin.server.controller');
+  admin = require('../controllers/admin.server.controller'),
+  follow = require('../controllers/users/users.follow.server.controller');
 
 module.exports = function (app) {
   // User route registration first. Ref: #713
@@ -43,6 +44,10 @@ module.exports = function (app) {
     .get(admin.getUserWarning);
   app.route('/api/users/:userId/uptotal').all(adminPolicy.isAllowed)
     .get(admin.getUserUploadedTotal);
+  app.route('/api/users/:userId/followers').all(adminPolicy.isAllowed)
+    .get(follow.getUserFollowers);
+  app.route('/api/users/:userId/following').all(adminPolicy.isAllowed)
+    .get(follow.getUserFollowing);
   app.route('/api/users/:userId/resetImage').all(adminPolicy.isAllowed)
     .put(admin.resetUserProfileImage);
 

@@ -97,6 +97,30 @@
           pageTitle: 'PAGETITLE.MY_FOLLOWING'
         }
       })
+      .state('follow.userFollowers', {
+        url: '/:userId/followers',
+        templateUrl: '/modules/users/client/views/follow/user-followers.client.view.html',
+        controller: 'UserFollowersController',
+        controllerAs: 'vm',
+        resolve: {
+          userResolve: getUser
+        },
+        data: {
+          pageTitle: 'PAGETITLE.USER_FOLLOWERS'
+        }
+      })
+      .state('follow.userFollowing', {
+        url: '/:userId/following',
+        templateUrl: '/modules/users/client/views/follow/user-following.client.view.html',
+        controller: 'UserFollowingController',
+        controllerAs: 'vm',
+        resolve: {
+          userResolve: getUser
+        },
+        data: {
+          pageTitle: 'PAGETITLE.USER_FOLLOWING'
+        }
+      })
       .state('status', {
         abstract: true,
         url: '/status',
@@ -246,5 +270,13 @@
           pageTitle: 'PAGETITLE.PASSWORD_RESET'
         }
       });
+
+    getUser.$inject = ['$stateParams', 'AdminService'];
+
+    function getUser($stateParams, AdminService) {
+      return AdminService.get({
+        userId: $stateParams.userId
+      }).$promise;
+    }
   }
 }());

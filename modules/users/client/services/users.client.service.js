@@ -79,6 +79,16 @@
         method: 'GET',
         url: '/api/users/following',
         isArray: true
+      },
+      userFollowers: {
+        method: 'GET',
+        url: '/api/users/:userId/followers',
+        isArray: true
+      },
+      userFollowing: {
+        method: 'GET',
+        url: '/api/users/:userId/following',
+        isArray: true
       }
     });
 
@@ -128,6 +138,12 @@
       },
       getMyFollowing: function (params) {
         return this.myFollowing(params).$promise;
+      },
+      getUserFollowers: function (params) {
+        return this.userFollowers(params).$promise;
+      },
+      getUserFollowing: function (params) {
+        return this.userFollowing(params).$promise;
       }
     });
 

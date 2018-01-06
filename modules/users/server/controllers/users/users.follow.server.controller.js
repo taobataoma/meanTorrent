@@ -115,3 +115,79 @@ exports.myFollowing = function (req, res) {
     }
   });
 };
+
+/**
+ * getUserFollowers
+ * @param req
+ * @param res
+ */
+exports.getUserFollowers = function (req, res) {
+  var skip = 0;
+  var limit = 0;
+  var user = req.model;
+  var me = req.user;
+
+  if (req.query.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.query.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+
+  if (me.followers.indexOf(user._id) >= 0 || me.following.indexOf(user._id) >= 0 || me.isOper) {
+    User.populate(user, {
+      path: 'followers',
+      select: 'username displayName profileImageURL uploaded downloaded isVip score'
+    }, function (err, u) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(u.followers ? u.followers.slice(skip, skip + limit) : []);
+      }
+    });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+};
+
+/**
+ * getUserFollowing
+ * @param req
+ * @param res
+ */
+exports.getUserFollowing = function (req, res) {
+  var skip = 0;
+  var limit = 0;
+  var user = req.model;
+  var me = req.user;
+
+  if (req.query.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.query.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+
+  if (me.followers.indexOf(user._id) >= 0 || me.following.indexOf(user._id) >= 0 || me.isOper) {
+    User.populate(user, {
+      path: 'following',
+      select: 'username displayName profileImageURL uploaded downloaded isVip score'
+    }, function (err, u) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(u.following ? u.following.slice(skip, skip + limit) : []);
+      }
+    });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+};
