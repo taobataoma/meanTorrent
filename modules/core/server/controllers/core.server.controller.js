@@ -105,17 +105,20 @@ function getSafeMeanTorrentConfig(cfg) {
  * @param cfg
  */
 function setMeanTorrentConfigDefaultValue(req, res, cfg) {
-  var httpTransport = 'http://';
-  if (config.secure && config.secure.ssl === true) {
-    httpTransport = 'https://';
-  }
-  var baseUrl = req.app.get('domain') || httpTransport + req.headers.host;
+  if (config.meanTorrentConfig.app.setDefaultValueOnIndex) {
+    var httpTransport = 'http://';
+    if (config.secure && config.secure.ssl === true) {
+      httpTransport = 'https://';
+    }
+    var baseUrl = req.app.get('domain') || httpTransport + req.headers.host;
 
-  cfg.app.domain = baseUrl;
+    cfg.app.domain = baseUrl;
+  }
+
   if (!cfg.announce.abs) {
     cfg.announce.abs = cfg.announce.url;
   }
-  cfg.announce.url = baseUrl + cfg.announce.abs;
+  cfg.announce.url = cfg.app.domain + cfg.announce.abs;
 
   return cfg;
 }

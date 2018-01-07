@@ -13,13 +13,18 @@ module.exports = {
      * @cronTimeZone:           timezone of cron
      * @showDebugLog:           if true, will console.log all debug info at server side and client side. when your site is prod env, please change this
      *                          value to false, then console.log info is not output
+     * @setDefaultValueOnIndex: set app.domain and announce.url on renderer index
+     *                          if false, app.domain and announce.url used these config settings value
+     *                          if true, app.domain and announce.url used req.app.get('domain') || req.headers.host
+     *                          if web server used proxyPass setting, this should set to false
      */
     app: {
       name: 'CHD.im',
-      domain: 'http://chd.im:3000',
+      domain: 'http://chd.im',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
-      showDebugLog: true
+      showDebugLog: true,
+      setDefaultValueOnIndex: true
     },
 
     /**

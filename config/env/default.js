@@ -14,7 +14,7 @@ module.exports = {
   host: process.env.HOST || '0.0.0.0',
   // DOMAIN config should be set to the fully qualified application accessible
   // URL. For example: https://www.myapp.com (including port if required).
-  domain: process.env.DOMAIN || 'chd.im:3000',
+  domain: process.env.DOMAIN || 'chd.im',
   // Session Cookie settings
   sessionCookie: {
     // session expiration is set by default to 24 hours
