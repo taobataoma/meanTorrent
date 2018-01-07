@@ -136,7 +136,7 @@
      */
     vm.isContextUserSelf = function (u) {
       return vm.me.username === u.username;
-    }
+    };
 
   }
 }());
