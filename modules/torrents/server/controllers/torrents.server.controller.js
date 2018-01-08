@@ -626,8 +626,6 @@ exports.create = function (req, res) {
         } else {
           res.json(torrent);
 
-          scoreUpdate(req, req.user, scoreConfig.action.uploadTorrent);
-
           //update user uptotal fields
           req.user.update({
             $inc: {uptotal: 1}
@@ -646,6 +644,7 @@ exports.create = function (req, res) {
               if (!err && m) {
                 torrent.update({torrent_status: 'reviewed'}).exec();
                 announceTorrentToIRC(torrent, req);
+                scoreUpdate(req, req.user, scoreConfig.action.uploadTorrent);
               }
             });
           } else {
@@ -653,6 +652,7 @@ exports.create = function (req, res) {
             if (req.user.upload_access === 'pass') {
               torrent.update({torrent_status: 'reviewed'}).exec();
               announceTorrentToIRC(torrent, req);
+              scoreUpdate(req, req.user, scoreConfig.action.uploadTorrent);
             }
           }
 
@@ -1112,6 +1112,7 @@ exports.setReviewedStatus = function (req, res) {
       res.json(torrent);
 
       announceTorrentToIRC(torrent, req);
+      scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrent);
 
       //add server message
       if (serverNoticeConfig.action.torrentReviewed.enable) {
