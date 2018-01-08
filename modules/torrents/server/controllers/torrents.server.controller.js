@@ -1051,6 +1051,7 @@ exports.setRecommendLevel = function (req, res) {
         res.json(torrent);
 
         scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrentBeRecommend);
+
         //create trace log
         traceLogCreate(req, traceConfig.action.AdminTorrentSetRecommendLevel, {
           torrent: torrent._id,
@@ -1244,7 +1245,11 @@ exports.delete = function (req, res) {
         });
       }
 
-      scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrentBeDeleted);
+      //only update score when torrent status is reviewed
+      if(torrent.torrent_status === 'reviewed') {
+        scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrentBeDeleted);
+      }
+
       //create trace log
       traceLogCreate(req, traceConfig.action.AdminTorrentDelete, {
         torrent: torrent._id,
