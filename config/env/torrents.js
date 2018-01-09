@@ -263,6 +263,19 @@ module.exports = {
     },
 
     /**
+     * @requests
+     *
+     * requests settings
+     *
+     * @scoreForAddRequest:       score numbers for add one request, system deduct automatic, this score is not rewards for final accepted user
+     * @requestExpires:           request expires time setting, default 7 days
+     */
+    requests: {
+      scoreForAddRequest: 100,
+      requestExpires: 60 * 60 * 1000 * 24 * 7
+    },
+
+    /**
      * @score
      *
      * score system settings
@@ -951,7 +964,8 @@ module.exports = {
       homeNewestTorrentListPerType: 14,
       uploaderUserListPerPage: 15,
       messageBoxListPerPage: 10,
-      followListPerPage: 30
+      followListPerPage: 30,
+      requestListPerPage: 15
     },
 
     /**
