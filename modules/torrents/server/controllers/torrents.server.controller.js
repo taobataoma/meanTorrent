@@ -1246,7 +1246,7 @@ exports.delete = function (req, res) {
       }
 
       //only update score when torrent status is reviewed
-      if(torrent.torrent_status === 'reviewed') {
+      if (torrent.torrent_status === 'reviewed') {
         scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrentBeDeleted);
       }
 

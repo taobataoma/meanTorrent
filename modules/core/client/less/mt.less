@@ -1240,8 +1240,25 @@ body {
     color: #aaa;
 }
 
-.nav {
-    padding-left: 15px;
+.nav-tabs {
+    padding-left: 10px;
+}
+
+.navbar-nav {
+    li {
+        @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+            a {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+        @media (min-width: @screen-md) and (max-width: @screen-md-max) {
+            a {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+    }
 }
 
 .torrent-info-tabs {
@@ -1454,9 +1471,11 @@ body {
         dt {
             width: 170px !important;
         }
+
         dd {
             padding: 0 10px;
         }
+
         dt, dd {
             &:hover {
                 background-color: #f8f8f8;

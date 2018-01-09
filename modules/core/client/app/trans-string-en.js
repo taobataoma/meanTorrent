@@ -35,6 +35,7 @@
     MENU_USERS_ADMIN: 'Manage User',
     MENU_UPLOAD: 'Upload',
     MENU_FORUMS: 'Forums',
+    MENU_REQUESTS: 'Requests',
     MENU_ABOUT: 'About',
     MENU_ABOUT_RULES: 'User Rules',
     MENU_ABOUT_BLACKLIST: 'Client Black List',
@@ -182,6 +183,9 @@
       VIP_DONATE: 'Vip Donate',
       VIP_RULES: 'Vip Rules',
       FORUM: 'Forum',
+      REQUESTS: 'Requests',
+      REQUESTS_MY: 'My Requests',
+      REQUESTS_ADD: 'Add Requests',
       ADMIN_USER_LIST: 'User List',
       ADMIN_USER_VIEW: 'View User',
       ADMIN_USER_EDIT: 'Edit User',
@@ -694,6 +698,16 @@
       NO_FOLLOWING: 'You aren’t following anybody.',
       STATUS_GETTING: 'Getting data, please waiting ...',
       STATUS_GETTING_ERROR: 'Getting data ERROR!'
+    },
+
+    //requests
+    REQUESTS: {
+      NAV_LIST: 'Requests List',
+      NAV_MY: 'My Requests',
+      NAV_ADD: 'Add Request',
+      DESC_LIST: '### NOTE: \n - The list contains only the last `{{days}}` days of the requests. \n - If your response is accepted, the requestor\'s reward score will be automatically transferred to your account. \n - Only the torrents reviewed by the administrator can be accepted by the requestor. \n - The requester can only accept one of the responses. \n - If your response is complains, your account may be punished, Please respond to the user\'s request carefully.',
+      DESC_MY: '### NOTE: \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - You can only accept one of the responses. \n - If your score is maliciously damaged, please mail to the [administrator](mailto:{{admin}})',
+      DESC_ADD: '### NOTE: \n - Each request will be automatically deducted from `{{add_score}}` points, but your reward score will only be transferred to the responder\'s account that you eventually accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - Each request is only valid for 7 days. After expiry, you can only post the request again. \n - Please give a clear resources description of your request when you post the request.'
     },
 
     //user status
@@ -1417,6 +1431,7 @@
 
   // config $translateProvider
   transConfig.$inject = ['$translateProvider'];
+
   function transConfig($translateProvider) {
     $translateProvider.translations('en', string_en);
   }

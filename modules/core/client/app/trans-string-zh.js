@@ -35,6 +35,7 @@
     MENU_USERS_ADMIN: '用户管理',
     MENU_UPLOAD: '发布',
     MENU_FORUMS: '论坛',
+    MENU_REQUESTS: '求种',
     MENU_ABOUT: '关于',
     MENU_ABOUT_RULES: '站内用户规则',
     MENU_ABOUT_BLACKLIST: '禁止客户端列表',
@@ -182,6 +183,9 @@
       VIP_DONATE: '捐赠VIP',
       VIP_RULES: 'Vip用户协议',
       FORUM: '论坛',
+      REQUESTS: '求种',
+      REQUESTS_MY: '我的求种',
+      REQUESTS_ADD: '我要求种',
       ADMIN_USER_LIST: '用户管理',
       ADMIN_USER_VIEW: '查看用户',
       ADMIN_USER_EDIT: '编辑用户',
@@ -694,6 +698,16 @@
       NO_FOLLOWING: '您还没有关注任何人.',
       STATUS_GETTING: '正在加载数据，请稍候 ...',
       STATUS_GETTING_ERROR: '数据加载错误!'
+    },
+
+    //requests
+    REQUESTS: {
+      NAV_LIST: '求种请求列表',
+      NAV_MY: '我的求种请求',
+      NAV_ADD: '发起求种请求',
+      DESC_LIST: '### 提示: \n - 此列表只包含最近 `{{days}}` 天内发布的求种请求. \n - 如果你的回应被采纳，请求者悬赏的积分将自动转入你的帐户. \n - 只有被管理员审核通过的种子才能被请求者接受. \n - 请求者只能接受多个响应中的一个. \n - 如果你的响应被请求者投诉，你的帐号就可能会受到惩罚, 请认真响应用户的请求.',
+      DESC_MY: '### 提示: \n - 如果您接受一个响应，你的悬赏积分就会转入你接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 您只能接受多个响应中的一个. \n - 如果您的积分受到恶意损害，请向管理员[投诉](mailto:{{admin}}).',
+      DESC_ADD: '### 提示: \n - 每发布一个请求会被自动扣除 `{{add_score}}` 积分，而你的悬赏积分会转入你最终接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 每一个发布的请求只有7天的有效期，过期后你只能再次发起请求. \n - 请在发布请求时明确描述您对资源的要求.'
     },
 
     //user status

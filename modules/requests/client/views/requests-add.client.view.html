@@ -1,0 +1,64 @@
+<div ng-controller="RequestsAddController as vm">
+    <div class="pagetop">
+        <div class="container">
+            <div class="padding-top-30 padding-bottom-30 text-center">
+                <div class="btn-group requests-group">
+                    <a class="btn btn-default btn-width-200"
+                       ui-sref="requests.list">
+                        {{'REQUESTS.NAV_LIST' | translate}}
+                    </a>
+                    <a class="btn btn-success btn-width-200"
+                       ui-sref="requests.add">
+                        {{'REQUESTS.NAV_ADD' | translate}}
+                    </a>
+                    <a class="btn btn-default btn-width-200"
+                       ui-sref="requests.my">
+                        {{'REQUESTS.NAV_MY' | translate}}
+                    </a>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="requests-desc" ng-bind-html="vm.getRequestsDesc();"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h3>ADD</h3>
+        <div class="margin-bottom-30 margin-top-30">
+            <div class="jumbotron text-center" ng-if="vm.statusMsg || vm.pagedItems.length<=0">
+                <div ng-if="vm.statusMsg">
+                    <h3 class="text-muted">{{vm.statusMsg | translate}}</h3>
+                </div>
+                <div ng-if="!vm.statusMsg && vm.pagedItems.length<=0">
+                    <i class="fa fa-users fa-2x text-muted" aria-hidden="true"></i>
+                    <h3 class="text-muted">{{'FOLLOW.NO_FOLLOWERS' | translate}}</h3>
+                </div>
+            </div>
+            <div ng-if="vm.pagedItems.length>0">
+                <div id="top_of_follow_list">
+                    <div class="pagination-border-bottom">
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                            ng-model="vm.currentPage"
+                            ng-change="vm.pageChanged()"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                    </div>
+
+                    <div class="pagination-border-top">
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                            ng-model="vm.currentPage"
+                            ng-change="vm.pageChanged()"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

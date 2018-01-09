@@ -13,8 +13,7 @@
       state: 'about',
       type: 'dropdown',
       roles: ['*'],
-      class: 'sm-hide',
-      position: 6
+      position: 7
     });
 
     menuService.addSubMenuItem('topbar', 'about', {
