@@ -9,15 +9,15 @@
           <label for="firstName">{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}</label>
           <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName" placeholder="{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}" required autofocus />
           <div ng-messages="vm.userForm.firstName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">{{ 'STATUS_FIELD.DN_REQUIRED' | translate}}</p>
+            <p class="help-block error-text" ng-message="required">{{ 'SIGN.DN_REQUIRED' | translate}}</p>
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label class="control-label" for="roles">Roles</label>
+          <label class="control-label" for="roles">{{ 'STATUS_FIELD.ROLES' | translate}}</label>
           <div class="controls">
-            <input class="form-control" type="text" name="roles" ng-model="vm.user.roles" id="roles" ng-list required />
+            <input class="form-control" type="text" name="roles" ng-model="vm.user.roles" id="roles"  placeholder="{{ 'STATUS_FIELD.ROLES' | translate}}" ng-list required />
             <div ng-messages="vm.userForm.roles.$error" role="alert">
-              <p class="help-block error-text" ng-message="required">At least one role is required.</p>
+              <p class="help-block error-text" ng-message="required">{{ 'SIGN.RO_REQUIRED' | translate}}</p>
             </div>
           </div>
         </div>
