@@ -10,10 +10,11 @@ var traceConfig = config.meanTorrentConfig.trace;
 
 /**
  * update
+ *
  * @param req
- * @param obj
- * @param callback
- * @returns {*}
+ * @param user
+ * @param action
+ * @param value
  */
 module.exports.update = function (req, user, action, value) {
   if (action.enable) {

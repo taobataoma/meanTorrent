@@ -298,6 +298,7 @@ module.exports = {
         uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', value: 10, enable: true},
         uploadSubtitle: {name: 'uploadSubtitle', value: 20, enable: true},
         uploadSubtitleBeDeleted: {name: 'uploadSubtitleBeDeleted', value: -20, enable: true},
+        postRequest: {name: 'postRequest', value: -100, enable: true},
 
         seedAnnounce: {
           name: 'seedAnnounce',

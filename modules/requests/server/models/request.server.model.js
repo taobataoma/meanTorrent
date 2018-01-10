@@ -50,7 +50,7 @@ var RequestSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  acceptAt: {
+  acceptedAt: {
     type: Date,
     default: Date.now
   }
