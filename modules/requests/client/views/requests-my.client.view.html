@@ -27,7 +27,7 @@
     </div>
 
     <div class="container">
-        <div class="margin-bottom-30 margin-top-30">
+        <div class="margin-bottom-10 margin-top-10">
             <div class="jumbotron text-center" ng-if="vm.statusMsg || vm.pagedItems.length<=0">
                 <div ng-if="vm.statusMsg">
                     <h3 class="text-muted">{{vm.statusMsg | translate}}</h3>
@@ -68,10 +68,10 @@
                                             </h4>
                                             <div class="item-desc text-long">{{item.desc}}</div>
                                         </td>
-                                        <td class="col-md-1 td-v-middle text-center">{{'MENU_TORRENTS_SUB.'+item.type.toUpperCase() | translate}}</td>
+                                        <td class="col-md-1 td-v-middle text-center width-80">{{'MENU_TORRENTS_SUB.'+item.type.toUpperCase() | translate}}</td>
                                         <td class="col-md-2 td-v-middle text-center width-160">{{item.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
-                                        <td class="col-md-1 td-v-middle text-center width-140">{{item.rewards}}</td>
-                                        <td class="col-md-1 td-v-middle text-center">
+                                        <td class="col-md-1 td-v-middle text-center width-80">{{item.rewards}}</td>
+                                        <td class="col-md-1 td-v-middle text-center width-80">
                                             <span user-info="item.user" info-name></span>
                                         </td>
                                     </tr>

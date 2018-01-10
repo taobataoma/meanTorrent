@@ -1,4 +1,4 @@
-<div ng-controller="RequestsListController as vm">
+<div ng-controller="RequestsListController as vm" ng-init="vm.buildPager();">
     <div class="pagetop">
         <div class="container">
             <div class="padding-top-30 padding-bottom-30 text-center">
@@ -27,8 +27,7 @@
     </div>
 
     <div class="container">
-        <h3>LIST</h3>
-        <div class="margin-bottom-30 margin-top-30">
+        <div class="margin-bottom-10 margin-top-10">
             <div class="jumbotron text-center" ng-if="vm.statusMsg || vm.pagedItems.length<=0">
                 <div ng-if="vm.statusMsg">
                     <h3 class="text-muted">{{vm.statusMsg | translate}}</h3>
@@ -47,6 +46,38 @@
                             first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
                             next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
                         </ul>
+                    </div>
+
+                    <div class="request-list">
+                        <div class="table-responsive">
+                            <table class="table table-hover tb-v-middle">
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'REQUESTS.FIELD_TITLE' | translate}}</th>
+                                        <th class="text-center">{{ 'REQUESTS.FIELD_TYPE' | translate}}</th>
+                                        <th class="text-center">{{ 'REQUESTS.FIELD_CREATEDAT' | translate}}</th>
+                                        <th class="text-center">{{ 'REQUESTS.FIELD_REWARDS' | translate}}</th>
+                                        <th class="text-center">{{ 'REQUESTS.FIELD_USER' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="request-item" ng-repeat="item in vm.pagedItems">
+                                        <td class="col-md-7 td-text-overflow">
+                                            <h4>
+                                                <a ui-sref="requests.view({requestId: item._id})">{{item.title}}</a>
+                                            </h4>
+                                            <div class="item-desc text-long">{{item.desc}}</div>
+                                        </td>
+                                        <td class="col-md-1 td-v-middle text-center width-80">{{'MENU_TORRENTS_SUB.'+item.type.toUpperCase() | translate}}</td>
+                                        <td class="col-md-2 td-v-middle text-center width-160">{{item.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+                                        <td class="col-md-1 td-v-middle text-center width-80">{{item.rewards}}</td>
+                                        <td class="col-md-1 td-v-middle text-center width-80">
+                                            <span user-info="item.user" info-name></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div class="pagination-border-top">

@@ -5,10 +5,10 @@
     .module('requests')
     .controller('RequestsListController', RequestsListController);
 
-  RequestsListController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$translate', 'Authentication', 'UsersService', 'ScoreLevelService', 'MeanTorrentConfig', 'DebugConsoleService',
+  RequestsListController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$translate', 'Authentication', 'RequestsService', 'ScoreLevelService', 'MeanTorrentConfig', 'DebugConsoleService',
     'NotifycationService', 'uibButtonConfig', 'marked'];
 
-  function RequestsListController($scope, $rootScope, $state, $timeout, $translate, Authentication, UsersService, ScoreLevelService, MeanTorrentConfig, mtDebug,
+  function RequestsListController($scope, $rootScope, $state, $timeout, $translate, Authentication, RequestsService, ScoreLevelService, MeanTorrentConfig, mtDebug,
                                  NotifycationService, uibButtonConfig, marked) {
     var vm = this;
     vm.user = Authentication.user;
@@ -44,7 +44,7 @@
     vm.figureOutItemsToDisplay = function (callback) {
       vm.getRequests(vm.currentPage, function (items) {
         vm.filterLength = items.total;
-        vm.pagedItems = items;
+        vm.pagedItems = items.rows;
 
         if (callback) callback();
       });
@@ -54,24 +54,18 @@
      * getRequests
      */
     vm.getRequests = function (p, callback) {
-      vm.statusMsg = 'FOLLOW.STATUS_GETTING';
+      vm.statusMsg = 'REQUESTS.STATUS_GETTING';
 
-      UsersService.getMyFollowers({
+      RequestsService.get({
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage
-      })
-        .then(onSuccess)
-        .catch(onError);
-
-      function onSuccess(data) {
+      }, function (data) {
         vm.statusMsg = undefined;
         mtDebug.info(data);
         callback(data);
-      }
-
-      function onError(data) {
-        vm.statusMsg = 'FOLLOW.STATUS_GETTING_ERROR';
-      }
+      }, function (res) {
+        vm.statusMsg = 'REQUESTS.STATUS_GETTING_ERROR';
+      });
     };
 
     /**
