@@ -25,7 +25,7 @@
      * messageTo
      */
     function messageTo() {
-      var to = vm.user._id + '|' + vm.user.username;
+      var to = vm.user._id + '|' + vm.user.displayName;
       $state.go('messages.send', {to: to});
     }
 
