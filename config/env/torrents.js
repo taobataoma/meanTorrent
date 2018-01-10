@@ -83,7 +83,7 @@ module.exports = {
      * @ghostCheck:
      *      @ghostPeersIdleTime:              setting idle time more than this value is a ghost peer(died), remove it
      * @warningCheck:
-     *      @userHnrWarningCheckInterval:     setting check users H&R warning interval time, unit of hours, default to 2
+     *      @userHnrWarningCheckInterval:     setting check users H&R warning interval time, default to 2 hours
      */
     announce: {
       url: '/announce',
@@ -108,7 +108,7 @@ module.exports = {
         ghostPeersIdleTime: 60 * 60 * 1000 * 24
       },
       warningCheck: {
-        userHnrWarningCheckInterval: 2
+        userHnrWarningCheckInterval: 60 * 60 * 1000 * 2
       }
     },
 
@@ -123,7 +123,7 @@ module.exports = {
      * @managingEditor:     setting managingEditor info of rss document
      * @webMaster:          setting webMaster info of rss document
      * @generator:          setting generator info of rss document
-     * @ttl:                setting ttl info of rss document
+     * @ttl:                setting ttl info of rss document, unit of seconds
      * @image_url:          setting image_url info of rss document
      */
     rss: {

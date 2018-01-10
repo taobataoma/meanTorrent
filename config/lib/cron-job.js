@@ -183,8 +183,9 @@ function removeGhostPeers() {
  * countUsersHnrWarning
  */
 function countUsersHnrWarning() {
+  var hours = announceConfig.warningCheck.userHnrWarningCheckInterval / (60 * 60 * 1000);
   var cronJob = new CronJob({
-    cronTime: '00 00 */' + announceConfig.warningCheck.userHnrWarningCheckInterval + ' * * *',
+    cronTime: '00 00 */' + hours + ' * * *',
     //cronTime: '*/5 * * * * *',
     onTick: function () {
       console.log(chalk.green('countHnrWarning: process!'));
@@ -192,7 +193,7 @@ function countUsersHnrWarning() {
       Complete.find({
         complete: true,
         hnr_warning: false,
-        refreshat: {$lt: Date.now() - announceConfig.warningCheck.userHnrWarningCheckInterval * 60 * 60 * 1000}
+        refreshat: {$lt: Date.now() - announceConfig.warningCheck.userHnrWarningCheckInterval}
       })
         .populate('user')
         .exec(function (err, comps) {
