@@ -27,37 +27,60 @@
     </div>
 
     <div class="container">
-        <h3>ADD</h3>
-        <div class="margin-bottom-30 margin-top-30">
-            <div class="jumbotron text-center" ng-if="vm.statusMsg || vm.pagedItems.length<=0">
-                <div ng-if="vm.statusMsg">
-                    <h3 class="text-muted">{{vm.statusMsg | translate}}</h3>
-                </div>
-                <div ng-if="!vm.statusMsg && vm.pagedItems.length<=0">
-                    <i class="fa fa-users fa-2x text-muted" aria-hidden="true"></i>
-                    <h3 class="text-muted">{{'FOLLOW.NO_FOLLOWERS' | translate}}</h3>
-                </div>
-            </div>
-            <div ng-if="vm.pagedItems.length>0">
-                <div id="top_of_follow_list">
-                    <div class="pagination-border-bottom">
-                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                            ng-model="vm.currentPage"
-                            ng-change="vm.pageChanged()"
-                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                        </ul>
+        <div class="row">
+            <div class="col-sm-9 col-sm-offset-1">
+                <form name="vm.requestForm" class="form-horizontal request-form" ng-submit="vm.create(vm.requestForm.$valid)" novalidate>
+                    <div class="form-group">
+                        <label for="type" class="col-sm-3 control-label">{{ 'CA_RESOURCE_TYPE' | translate }}:</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="type" name="type" ng-model="vm.request.type">
+                                <option ng-repeat="t in vm.torrentTypeConfig.value | filter:{enable: true, role: 'user'}"
+                                        value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" show-errors>
+                        <label for="title" class="col-sm-3 control-label">{{ 'REQUESTS.FORM_TITLE' | translate}}:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="title" name="title" class="form-control"
+                                   ng-model="vm.request.title" required autofocus/>
+                            <div ng-messages="vm.requestForm.title.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">{{ 'REQUESTS.FORM_TITLE_REQUIRED' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" show-errors>
+                        <label for="desc" class="col-sm-3 control-label">{{ 'REQUESTS.FORM_DESC' | translate}}:</label>
+                        <div class="col-sm-9">
+                            <textarea id="desc" name="desc" class="form-control"
+                                      ng-model="vm.request.desc" required/>
+                            <div ng-messages="vm.requestForm.desc.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">{{ 'REQUESTS.FORM_DESC_REQUIRED' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" show-errors>
+                        <label for="rewards" class="col-sm-3 control-label">{{ 'REQUESTS.FORM_REWARDS' | translate}}:</label>
+                        <div class="col-sm-3">
+                            <input type="number" id="rewards" name="rewards" class="form-control"
+                                   min="1" ng-max="vm.user.score - 100"
+                                   ng-model="vm.request.rewards" required/>
+                        </div>
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <div ng-messages="vm.requestForm.rewards.$error" role="alert">
+                                <p class="help-block error-text"
+                                   ng-message="max || min">{{ 'REQUESTS.FORM_REWARDS_MAX_MIN' | translate:{min: 1, max: vm.user.score-100} }}</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="pagination-border-top">
-                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                            ng-model="vm.currentPage"
-                            ng-change="vm.pageChanged()"
-                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                        </ul>
+                    <div class="form-group">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <input type="submit" value="{{'REQUESTS.BTN_SUBMIT_REQUEST' | translate}}" class="btn btn-success">
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

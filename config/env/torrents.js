@@ -268,10 +268,12 @@ module.exports = {
      * requests settings
      *
      * @scoreForAddRequest:       score numbers for add one request, system deduct automatic, this score is not rewards for final accepted user
+     * @rewardsFormDefaultValue:  setting default rewards value of request post form input control
      * @requestExpires:           request expires time setting, default 7 days
      */
     requests: {
       scoreForAddRequest: 100,
+      rewardsFormDefaultValue: 1000,
       requestExpires: 60 * 60 * 1000 * 24 * 7
     },
 

@@ -23,23 +23,23 @@ var requestsConfig = config.meanTorrentConfig.requests;
  * Create an request
  */
 exports.create = function (req, res) {
-  var user = req.model;
+  var user = req.user;
   var request = new Request(req.body);
 
   request.user = user._id;
 
   mtDebug.debugRed(request);
 
-  if (req.user.score >= requestsConfig.scoreForAddRequest) {
+  if (user.score >= requestsConfig.scoreForAddRequest) {
     request.save(function (err) {
       if (err) {
         return res.status(422).send({
           message: errorHandler.getErrorMessage(err)
         });
       } else {
-        req.json(request);
+        res.json(request);
 
-        scoreUpdate(req, req.user, scoreConfig.action.uploadTorrent, -requestsConfig.scoreForAddRequest);
+        scoreUpdate(req, user, scoreConfig.action.uploadTorrent, -requestsConfig.scoreForAddRequest);
       }
     });
   } else {

@@ -5,15 +5,21 @@
     .module('requests')
     .controller('RequestsAddController', RequestsAddController);
 
-  RequestsAddController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$translate', 'Authentication', 'UsersService', 'ScoreLevelService', 'MeanTorrentConfig', 'DebugConsoleService',
-    'NotifycationService', 'uibButtonConfig', 'marked'];
+  RequestsAddController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$translate', 'Authentication', 'RequestsService', 'ScoreLevelService', 'MeanTorrentConfig', 'DebugConsoleService',
+    'NotifycationService', 'marked'];
 
-  function RequestsAddController($scope, $rootScope, $state, $timeout, $translate, Authentication, UsersService, ScoreLevelService, MeanTorrentConfig, mtDebug,
-                                NotifycationService, uibButtonConfig, marked) {
+  function RequestsAddController($scope, $rootScope, $state, $timeout, $translate, Authentication, RequestsService, ScoreLevelService, MeanTorrentConfig, mtDebug,
+                                 NotifycationService, marked) {
     var vm = this;
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
+    vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
+
+    vm.request = {
+      type: 'movie',
+      rewards: vm.requestsConfig.rewardsFormDefaultValue
+    };
 
     /**
      * getRequestsDesc
@@ -29,64 +35,33 @@
     };
 
     /**
-     * buildPager
+     * create
+     * @param isValid
+     * @returns {boolean}
      */
-    vm.buildPager = function () {
-      vm.pagedItems = [];
-      vm.itemsPerPage = vm.itemsPerPageConfig.requestListPerPage;
-      vm.currentPage = 1;
-      vm.figureOutItemsToDisplay();
-    };
-
-    /**
-     * figureOutItemsToDisplay
-     * @param callback
-     */
-    vm.figureOutItemsToDisplay = function (callback) {
-      vm.getRequests(vm.currentPage, function (items) {
-        vm.filterLength = items.total;
-        vm.pagedItems = items;
-
-        if (callback) callback();
-      });
-    };
-
-    /**
-     * getRequests
-     */
-    vm.getRequests = function (p, callback) {
-      vm.statusMsg = 'FOLLOW.STATUS_GETTING';
-
-      UsersService.getMyFollowers({
-        skip: (p - 1) * vm.itemsPerPage,
-        limit: vm.itemsPerPage
-      })
-        .then(onSuccess)
-        .catch(onError);
-
-      function onSuccess(data) {
-        vm.statusMsg = undefined;
-        mtDebug.info(data);
-        callback(data);
+    vm.create = function (isValid) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.requestForm');
+        return false;
       }
 
-      function onError(data) {
-        vm.statusMsg = 'FOLLOW.STATUS_GETTING_ERROR';
+      var request = new RequestsService(vm.request);
+
+      mtDebug.info(request);
+      request.$save(function (response) {
+        success(response);
+      }, function (errorResponse) {
+        error(errorResponse);
+      });
+
+      function success(res) {
+        NotifycationService.showSuccessNotify('REQUESTS.POST_REQUEST_SUCCESSFULLY');
+        $state.go('requests.my');
+      }
+
+      function error(res) {
+        NotifycationService.showErrorNotify(res.data.message, 'REQUESTS.POST_REQUEST_FAILED');
       }
     };
-
-    /**
-     * pageChanged
-     */
-    vm.pageChanged = function () {
-      var element = angular.element('#top_of_follow_list');
-
-      vm.figureOutItemsToDisplay(function () {
-        $timeout(function () {
-          $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
-        }, 10);
-      });
-    };
-
   }
 }());

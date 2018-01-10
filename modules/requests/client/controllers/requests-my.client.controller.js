@@ -22,6 +22,7 @@
      */
     vm.getRequestsDesc = function () {
       var ts = $translate.instant('REQUESTS.DESC_MY', {
+        days: vm.requestsConfig.requestExpires / (60 * 60 * 1000 * 24),
         admin: vm.announceConfig.admin
       });
 

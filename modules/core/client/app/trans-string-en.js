@@ -244,6 +244,7 @@
       P_REQUIRED: 'Password is required.',
       FORGOT_PASSWORD: 'Forgot your password?',
       DN_REQUIRED: 'Display name is required.',
+      RO_REQUIRED: 'At least one role is required.',
       SENDING_MAIL: 'The authentication mail is being sent. Please wait a moment...',
       SIGNIN_ERROR: 'Signin Error!',
       SIGNUP_ERROR: 'Signup Error!',
@@ -705,9 +706,18 @@
       NAV_LIST: 'Requests List',
       NAV_MY: 'My Requests',
       NAV_ADD: 'Add Request',
+      FORM_TITLE: 'Resource Title',
+      FORM_TITLE_REQUIRED: 'Resource title is required',
+      FORM_DESC: 'Resource Desc',
+      FORM_DESC_REQUIRED: 'Resource desc is required',
+      FORM_REWARDS: 'Rewards Score',
+      FORM_REWARDS_MAX_MIN: 'Rewards score numbers must more than {{min}} and less than {{max}}',
+      BTN_SUBMIT_REQUEST: 'Submit Request',
+      POST_REQUEST_SUCCESSFULLY: 'Create request successfully',
+      POST_REQUEST_FAILED: 'Create request failed',
       DESC_LIST: '### NOTE: \n - The list contains only the last `{{days}}` days of the requests. \n - If your response is accepted, the requestor\'s reward score will be automatically transferred to your account. \n - Only the torrents reviewed by the administrator can be accepted by the requestor. \n - The requester can only accept one of the responses. \n - If your response is complains, your account may be punished, Please respond to the user\'s request carefully.',
-      DESC_MY: '### NOTE: \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - You can only accept one of the responses. \n - If your score is maliciously damaged, please mail to the [administrator](mailto:{{admin}})',
-      DESC_ADD: '### NOTE: \n - Each request will be automatically deducted from `{{add_score}}` points, but your reward score will only be transferred to the responder\'s account that you eventually accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - Each request is only valid for 7 days. After expiry, you can only post the request again. \n - Please give a clear resources description of your request when you post the request.'
+      DESC_MY: '### NOTE: \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - You can only accept one of the responses. \n - The request over `{{days}}` days has expired and cannot accept the response,  you can only post the request again. \n - If your score is maliciously damaged, please mail to the [administrator](mailto:{{admin}})',
+      DESC_ADD: '### NOTE: \n - Each request will be automatically deducted from `{{add_score}}` points, but your reward score will only be transferred to the responder\'s account that you eventually accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - Each request is only valid for `{{days}}` days. After expiry, you can only post the request again. \n - Please give a clear resources description of your request when you post the request.'
     },
 
     //user status
@@ -740,6 +750,7 @@
       RESET_VIP_DATA: 'Reset VIP Data',
       USERNAME: 'Username',
       DISPLAY_NAME: 'Display name',
+      ROLES: 'Roles',
       HIDE_MORE_DETAIL: 'Hide more account detail info',
       HIDE_MORE_DETAIL_DESC: 'More account detail info hidden by user!',
       INVITED_BY: 'Invited by',
