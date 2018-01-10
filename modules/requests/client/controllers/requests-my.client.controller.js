@@ -5,10 +5,10 @@
     .module('requests')
     .controller('RequestsMyController', RequestsMyController);
 
-  RequestsMyController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$translate', 'Authentication', 'UsersService', 'ScoreLevelService', 'MeanTorrentConfig', 'DebugConsoleService',
+  RequestsMyController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$translate', 'Authentication', 'RequestsService', 'ScoreLevelService', 'MeanTorrentConfig', 'DebugConsoleService',
     'NotifycationService', 'uibButtonConfig', 'marked'];
 
-  function RequestsMyController($scope, $rootScope, $state, $timeout, $translate, Authentication, UsersService, ScoreLevelService, MeanTorrentConfig, mtDebug,
+  function RequestsMyController($scope, $rootScope, $state, $timeout, $translate, Authentication, RequestsService, ScoreLevelService, MeanTorrentConfig, mtDebug,
                                 NotifycationService, uibButtonConfig, marked) {
     var vm = this;
     vm.user = Authentication.user;
@@ -44,36 +44,31 @@
      * @param callback
      */
     vm.figureOutItemsToDisplay = function (callback) {
-      vm.getRequests(vm.currentPage, function (items) {
+      vm.getMyRequests(vm.currentPage, function (items) {
         vm.filterLength = items.total;
-        vm.pagedItems = items;
+        vm.pagedItems = items.rows;
 
         if (callback) callback();
       });
     };
 
     /**
-     * getRequests
+     * getMyRequests
      */
-    vm.getRequests = function (p, callback) {
-      vm.statusMsg = 'FOLLOW.STATUS_GETTING';
+    vm.getMyRequests = function (p, callback) {
+      vm.statusMsg = 'REQUESTS.STATUS_GETTING';
 
-      UsersService.getMyFollowers({
+      RequestsService.get({
         skip: (p - 1) * vm.itemsPerPage,
-        limit: vm.itemsPerPage
-      })
-        .then(onSuccess)
-        .catch(onError);
-
-      function onSuccess(data) {
+        limit: vm.itemsPerPage,
+        user_id: vm.user._id
+      }, function (data) {
         vm.statusMsg = undefined;
         mtDebug.info(data);
         callback(data);
-      }
-
-      function onError(data) {
-        vm.statusMsg = 'FOLLOW.STATUS_GETTING_ERROR';
-      }
+      }, function (res) {
+        vm.statusMsg = 'REQUESTS.STATUS_GETTING_ERROR';
+      });
     };
 
     /**

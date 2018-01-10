@@ -8,6 +8,7 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Request = mongoose.model('Request'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  async = require('async'),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
   scoreUpdate = require(path.resolve('./config/lib/score')).update;
 
@@ -90,7 +91,7 @@ exports.update = function (req, res) {
 };
 
 /**
- * Delete an maker
+ * Delete an request
  */
 exports.delete = function (req, res) {
   var request = req.request;
@@ -113,21 +114,61 @@ exports.delete = function (req, res) {
 };
 
 /**
- * List of makers
+ * List of request
  */
 exports.list = function (req, res) {
-  Request.find()
-    .sort('-createdAt')
-    .populate('user', 'username displayName profileImageURL isVip')
-    .exec(function (err, requests) {
+  var skip = 0;
+  var limit = 0;
+  var user_id = undefined;
+
+  if (req.query.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.query.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+  if (req.query.user_id !== undefined) {
+    user_id = req.query.user_id;
+  }
+
+  var condition = {};
+  if (user_id !== undefined) {
+    condition.user = user_id;
+  }
+
+  var countQuery = function (callback) {
+    Request.count(condition, function (err, count) {
       if (err) {
-        return res.status(422).send({
-          message: errorHandler.getErrorMessage(err)
-        });
+        callback(err, null);
       } else {
-        res.json(requests);
+        callback(null, count);
       }
     });
+  };
+
+  var findQuery = function (callback) {
+    Request.find(condition)
+      .sort('-createdAt')
+      .populate('user', 'username displayName profileImageURL isVip')
+      .exec(function (err, requests) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          callback(null, requests);
+        }
+      });
+  };
+
+  async.parallel([countQuery, findQuery], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
+  });
+
 };
 
 /**

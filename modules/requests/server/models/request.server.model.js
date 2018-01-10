@@ -51,8 +51,7 @@ var RequestSchema = new Schema({
     default: Date.now
   },
   acceptedAt: {
-    type: Date,
-    default: Date.now
+    type: Date
   }
 }, {usePushEach: true});
 
