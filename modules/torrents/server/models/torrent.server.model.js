@@ -7,77 +7,13 @@ var mongoose = require('mongoose'),
   path = require('path'),
   config = require(path.resolve('./config/config')),
   Peer = mongoose.model('Peer'),
-  Schema = mongoose.Schema;
+  Schema = mongoose.Schema,
+  CommonSchema = require(path.resolve('./modules/core/server/models/common.server.model'));
 
 var announceConfig = config.meanTorrentConfig.announce;
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
-
-/**
- * Sub Comment Schema
- */
-var CommentSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  comment: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  _replies: [this],
-  createdat: {
-    type: Date,
-    default: Date.now
-  },
-  editedby: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  editedat: {
-    type: Date,
-    default: ''
-  }
-}, {usePushEach: true});
-
-/**
- * Thumb Schema
- */
-var ThumbSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  score: {
-    type: Number,
-    default: 0
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-}, {usePushEach: true});
-
-/**
- * rating Schema
- */
-var RatingSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  vote: {
-    type: Number,
-    default: 0
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-}, {usePushEach: true});
 
 /**
  * Torrent Schema
@@ -188,13 +124,13 @@ var TorrentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Peer'
   }],
-  _replies: [CommentSchema],
+  _replies: [CommonSchema.CommentSchema],
   last_scrape: {
     type: Date,
     default: Date.now
   },
-  _thumbs: [ThumbSchema],
-  _ratings: [RatingSchema],
+  _thumbs: [CommonSchema.ThumbSchema],
+  _ratings: [CommonSchema.RatingSchema],
   _other_torrents: [],
   _all_files: [],
   //resource info
@@ -341,5 +277,3 @@ TorrentSchema.index({
 });
 
 mongoose.model('Torrent', TorrentSchema);
-mongoose.model('Comment', CommentSchema);
-mongoose.model('Rating', RatingSchema);

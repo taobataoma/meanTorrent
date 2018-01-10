@@ -4,25 +4,9 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
-
-/**
- * rating Schema
- */
-var RatingSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  vote: {
-    type: Number,
-    default: 0
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-}, {usePushEach: true});
+  Schema = mongoose.Schema,
+  path = require('path'),
+  CommonSchema = require(path.resolve('./modules/core/server/models/common.server.model'));
 
 /**
  * Maker Schema
@@ -68,7 +52,7 @@ var MakerSchema = new Schema({
     type: Number,
     default: 0
   },
-  _ratings: [RatingSchema],
+  _ratings: [CommonSchema.RatingSchema],
   createdAt: {
     type: Date,
     default: Date.now

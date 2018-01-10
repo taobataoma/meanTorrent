@@ -4,7 +4,9 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+  Schema = mongoose.Schema,
+  path = require('path'),
+  CommonSchema = require(path.resolve('./modules/core/server/models/common.server.model'));
 
 /**
  * Sub Attach Schema
@@ -30,24 +32,6 @@ var AttachSchema = new Schema({
 }, {usePushEach: true});
 
 /**
- * Sub Thumb Schema
- */
-var ThumbSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  score: {
-    type: Number,
-    default: 0
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-}, {usePushEach: true});
-
-/**
  * Sub Reply Schema
  */
 var ReplySchema = new Schema({
@@ -62,7 +46,7 @@ var ReplySchema = new Schema({
   },
 
   _attach: [AttachSchema],
-  _thumbs: [ThumbSchema],
+  _thumbs: [CommonSchema.ThumbSchema],
 
   updatedAt: {
     type: Date
@@ -115,7 +99,7 @@ var TopicSchema = new Schema({
   },
   _replies: [ReplySchema],
   _attach: [AttachSchema],
-  _thumbs: [ThumbSchema],
+  _thumbs: [CommonSchema.ThumbSchema],
 
   isTop: {
     type: Boolean,
@@ -151,5 +135,4 @@ TopicSchema.index({createdAt: -1, isGlobal: 1, forum: -1});
 
 mongoose.model('Topic', TopicSchema);
 mongoose.model('Attach', AttachSchema);
-mongoose.model('Thumb', ThumbSchema);
 mongoose.model('Reply', ReplySchema);
