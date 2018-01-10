@@ -714,6 +714,7 @@
       FORM_REWARDS_MAX_MIN: 'Rewards score numbers must more than {{min}} and less than {{max}}',
       BTN_SUBMIT_REQUEST: 'Submit Request',
       NO_MY_REQUESTS: 'You aren’t post any request.',
+      NO_REQUESTS: 'Has no anybody post request.',
       STATUS_GETTING: 'Getting requests, please waiting ...',
       STATUS_GETTING_ERROR: 'Getting requests ERROR!',
       POST_REQUEST_SUCCESSFULLY: 'Create request successfully',
