@@ -24,8 +24,14 @@
     }
 }
 
-.xs-show, .sm-show, .md-show, .lg-show {
+.xxs-show .xs-show, .sm-show, .md-show, .lg-show {
     display: none;
+}
+
+@media (max-width: @screen-xs) {
+    .xxs-show {
+        display: block !important;
+    }
 }
 
 @media (max-width: @screen-xs-max) {
