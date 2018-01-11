@@ -59,6 +59,21 @@
         tbody {
             tr {
                 cursor: auto !important;
+                .td-text-overflow {
+                    .text-long {
+                        @media (min-width: @screen-lg-min) {
+                            max-width: 500px;
+                            min-width: 500px;
+                        }
+                        @media (max-width: @screen-lg-min) {
+                            max-width: 420px;
+                            min-width: 420px;
+                        }
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
             }
         }
     }
@@ -106,5 +121,10 @@
         @media (max-width: @screen-xs-max) {
             margin-left: 60px;
         }
+    }
+    .response-title {
+        margin: 20px 0 5px 0;
+        font-size: 18px;
+        font-weight: 500;
     }
 }
