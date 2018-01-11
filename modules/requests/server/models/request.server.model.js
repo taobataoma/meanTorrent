@@ -39,12 +39,16 @@ var RequestSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Torrent'
   }],
+  responses: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   accept: {
     type: Schema.Types.ObjectId,
     ref: 'Torrent'
   },
 
-  comment: [CommonSchema.CommentSchema],
+  comments: [CommonSchema.CommentSchema],
 
   createdAt: {
     type: Date,

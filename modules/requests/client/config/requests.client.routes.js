@@ -31,6 +31,13 @@
           pageTitle: 'PAGETITLE.REQUESTS_MY'
         }
       })
+      .state('requests.res', {
+        url: '/res',
+        templateUrl: '/modules/requests/client/views/requests-res.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.REQUESTS_RES'
+        }
+      })
       .state('requests.add', {
         url: '/add',
         templateUrl: '/modules/requests/client/views/requests-add.client.view.html',

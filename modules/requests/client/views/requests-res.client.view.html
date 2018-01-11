@@ -1,9 +1,9 @@
-<div ng-controller="RequestsListController as vm" ng-init="vm.buildPager();">
+<div ng-controller="RequestsResController as vm" ng-init="vm.buildPager();">
     <div class="pagetop">
         <div class="container">
             <div class="padding-top-30 padding-bottom-30 text-center">
                 <div class="btn-group requests-group">
-                    <a class="btn btn-success btn-width-180"
+                    <a class="btn btn-default btn-width-180"
                        ui-sref="requests.list">
                         {{'REQUESTS.NAV_LIST' | translate}}
                     </a>
@@ -16,7 +16,7 @@
                        ui-sref="requests.my">
                         {{'REQUESTS.NAV_MY' | translate}}
                     </a>
-                    <a class="btn btn-default btn-width-180"
+                    <a class="btn btn-success btn-width-180"
                        ui-sref="requests.res">
                         {{'REQUESTS.NAV_RES' | translate}}
                     </a>
@@ -39,7 +39,7 @@
                 </div>
                 <div ng-if="!vm.statusMsg && vm.pagedItems.length<=0">
                     <i class="fa fa-users fa-2x text-muted" aria-hidden="true"></i>
-                    <h3 class="text-muted">{{'REQUESTS.NO_REQUESTS' | translate}}</h3>
+                    <h3 class="text-muted">{{'REQUESTS.NO_RES_REQUESTS' | translate}}</h3>
                 </div>
             </div>
             <div ng-if="vm.pagedItems.length>0">
@@ -78,8 +78,8 @@
                                         <td class="col-md-1 td-v-middle text-center width-80">{{'MENU_TORRENTS_SUB.'+item.type.toUpperCase() | translate}}</td>
                                         <td class="col-md-1 td-v-middle text-center width-80">{{item.createdAt | life }}</td>
                                         <td class="col-md-1 td-v-middle text-center width-80">{{item.rewards}}</td>
-                                        <td class="col-md-1 td-v-middle text-center width-80">{{item.torrents.length}}</td>
                                         <td class="col-md-1 td-v-middle text-center width-80">{{item.comments.length}}</td>
+                                        <td class="col-md-1 td-v-middle text-center width-80">{{item.torrents.length}}</td>
                                         <td class="col-md-1 td-v-middle text-center width-80">
                                             <span user-info="item.user" info-name></span>
                                         </td>

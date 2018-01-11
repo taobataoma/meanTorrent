@@ -15,6 +15,7 @@
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
     vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
 
     vm.request = {
       type: 'movie',

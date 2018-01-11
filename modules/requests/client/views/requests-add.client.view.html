@@ -3,17 +3,22 @@
         <div class="container">
             <div class="padding-top-30 padding-bottom-30 text-center">
                 <div class="btn-group requests-group">
-                    <a class="btn btn-default btn-width-200"
+                    <a class="btn btn-default btn-width-180"
                        ui-sref="requests.list">
                         {{'REQUESTS.NAV_LIST' | translate}}
                     </a>
-                    <a class="btn btn-success btn-width-200"
+                    <a class="btn btn-success btn-width-180"
                        ui-sref="requests.add">
                         {{'REQUESTS.NAV_ADD' | translate}}
                     </a>
-                    <a class="btn btn-default btn-width-200"
+                    <div class="clearfix visible-xxs-block "></div>
+                    <a class="btn btn-default btn-width-180"
                        ui-sref="requests.my">
                         {{'REQUESTS.NAV_MY' | translate}}
+                    </a>
+                    <a class="btn btn-default btn-width-180"
+                       ui-sref="requests.res">
+                        {{'REQUESTS.NAV_RES' | translate}}
                     </a>
                 </div>
 
@@ -51,10 +56,11 @@
                         </div>
                     </div>
                     <div class="form-group" show-errors>
-                        <label for="desc" class="col-sm-3 control-label">{{ 'REQUESTS.FORM_DESC' | translate}}:</label>
+                        <label for="requestDesc" class="col-sm-3 control-label">{{ 'REQUESTS.FORM_DESC' | translate}}:</label>
                         <div class="col-sm-9">
-                            <textarea id="desc" name="desc" class="form-control"
-                                      ng-model="vm.request.desc" required/>
+                            <textarea id="requestDesc" name="requestDesc" ng-model="vm.request.desc"
+                                      mt-markdown-editor="requestDesc" maxlength="{{vm.inputLengthConfig.requestDescLength}}"
+                                      required></textarea>
                             <div ng-messages="vm.requestForm.desc.$error" role="alert">
                                 <p class="help-block error-text" ng-message="required">{{ 'REQUESTS.FORM_DESC_REQUIRED' | translate}}</p>
                             </div>

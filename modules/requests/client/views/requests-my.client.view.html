@@ -3,17 +3,22 @@
         <div class="container">
             <div class="padding-top-30 padding-bottom-30 text-center">
                 <div class="btn-group requests-group">
-                    <a class="btn btn-default btn-width-200"
+                    <a class="btn btn-default btn-width-180"
                        ui-sref="requests.list">
                         {{'REQUESTS.NAV_LIST' | translate}}
                     </a>
-                    <a class="btn btn-default btn-width-200"
+                    <a class="btn btn-default btn-width-180"
                        ui-sref="requests.add">
                         {{'REQUESTS.NAV_ADD' | translate}}
                     </a>
-                    <a class="btn btn-success btn-width-200"
+                    <div class="clearfix visible-xxs-block "></div>
+                    <a class="btn btn-success btn-width-180"
                        ui-sref="requests.my">
                         {{'REQUESTS.NAV_MY' | translate}}
+                    </a>
+                    <a class="btn btn-default btn-width-180"
+                       ui-sref="requests.res">
+                        {{'REQUESTS.NAV_RES' | translate}}
                     </a>
                 </div>
 
@@ -28,7 +33,7 @@
 
     <div class="container">
         <div class="margin-bottom-10 margin-top-10">
-            <div class="jumbotron text-center" ng-if="vm.statusMsg || vm.pagedItems.length<=0">
+            <div class="jumbotron margin-top-20 text-center" ng-if="vm.statusMsg || vm.pagedItems.length<=0">
                 <div ng-if="vm.statusMsg">
                     <h3 class="text-muted">{{vm.statusMsg | translate}}</h3>
                 </div>
@@ -55,22 +60,26 @@
                                     <tr>
                                         <th>{{ 'REQUESTS.FIELD_TITLE' | translate}}</th>
                                         <th class="text-center">{{ 'REQUESTS.FIELD_TYPE' | translate}}</th>
-                                        <th class="text-center">{{ 'REQUESTS.FIELD_CREATEDAT' | translate}}</th>
+                                        <th class="text-center">{{ 'REQUESTS.FIELD_LIFE' | translate}}</th>
                                         <th class="text-center">{{ 'REQUESTS.FIELD_REWARDS' | translate}}</th>
+                                        <th class="text-center">{{ 'REQUESTS.FIELD_RESPONSES' | translate}}</th>
+                                        <th class="text-center">{{ 'REQUESTS.FIELD_COMMENTS' | translate}}</th>
                                         <th class="text-center">{{ 'REQUESTS.FIELD_USER' | translate}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="request-item" ng-repeat="item in vm.pagedItems">
-                                        <td class="col-md-7 td-text-overflow">
+                                        <td class="col-md-6 td-text-overflow">
                                             <h4>
                                                 <a ui-sref="requests.view({requestId: item._id})">{{item.title}}</a>
                                             </h4>
                                             <div class="item-desc text-long">{{item.desc}}</div>
                                         </td>
                                         <td class="col-md-1 td-v-middle text-center width-80">{{'MENU_TORRENTS_SUB.'+item.type.toUpperCase() | translate}}</td>
-                                        <td class="col-md-2 td-v-middle text-center width-160">{{item.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+                                        <td class="col-md-1 td-v-middle text-center width-80">{{item.createdAt | life }}</td>
                                         <td class="col-md-1 td-v-middle text-center width-80">{{item.rewards}}</td>
+                                        <td class="col-md-1 td-v-middle text-center width-80">{{item.comments.length}}</td>
+                                        <td class="col-md-1 td-v-middle text-center width-80">{{item.torrents.length}}</td>
                                         <td class="col-md-1 td-v-middle text-center width-80">
                                             <span user-info="item.user" info-name></span>
                                         </td>

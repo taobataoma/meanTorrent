@@ -120,6 +120,7 @@ exports.list = function (req, res) {
   var skip = 0;
   var limit = 0;
   var user_id = undefined;
+  var res_id = undefined;
 
   if (req.query.skip !== undefined) {
     skip = parseInt(req.query.skip, 10);
@@ -130,10 +131,16 @@ exports.list = function (req, res) {
   if (req.query.user_id !== undefined) {
     user_id = req.query.user_id;
   }
+  if (req.query.res_id !== undefined) {
+    res_id = req.query.res_id;
+  }
 
   var condition = {};
   if (user_id !== undefined) {
     condition.user = user_id;
+  }
+  if (res_id !== undefined) {
+    condition.responses = {$in: [res_id]};
   }
 
   var countQuery = function (callback) {
@@ -150,6 +157,8 @@ exports.list = function (req, res) {
     Request.find(condition)
       .sort('-createdAt')
       .populate('user', 'username displayName profileImageURL isVip')
+      .skip(skip)
+      .limit(limit)
       .exec(function (err, requests) {
         if (err) {
           return res.status(422).send({
