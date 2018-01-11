@@ -1,0 +1,91 @@
+<div ng-controller="RequestsViewController as vm" ng-init="vm.init();">
+    <div class="pagetop">
+        <div class="container">
+            <div class="padding-top-30">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="requests-desc" ng-bind-html="vm.getRequestsDesc();"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="margin-bottom-10 margin-top-10">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="request-wrapper">
+                        <span user-info="vm.request.user" info-class="request-avatar" info-avatar></span>
+                        <div class="request-list">
+                            <div class="table-responsive request-item">
+                                <table class="table table-hover tb-v-middle top-border bottom-border">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ 'REQUESTS.FIELD_TITLE' | translate}}</th>
+                                            <th class="text-center">{{ 'REQUESTS.FIELD_TYPE' | translate}}</th>
+                                            <th class="text-center">{{ 'REQUESTS.FIELD_LIFE' | translate}}</th>
+                                            <th class="text-center">{{ 'REQUESTS.FIELD_REWARDS' | translate}}</th>
+                                            <th class="text-center">{{ 'REQUESTS.FIELD_RESPONSES' | translate}}</th>
+                                            <th class="text-center">{{ 'REQUESTS.FIELD_COMMENTS' | translate}}</th>
+                                            <th class="text-center">{{ 'REQUESTS.FIELD_USER' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-md-6 width-300 td-text-overflow">
+                                                <h4>
+                                                    <div class="text-long">
+                                                        <a ui-sref="#">
+                                                            <span editable-line readonly="!vm.request.isCurrentUserOwner && !vm.user.isOper"
+                                                                  ng-model="vm.request.title"
+                                                                  callback="onRequestTitleEdited"></span>
+                                                        </a>
+                                                    </div>
+                                                </h4>
+                                            </td>
+                                            <td class="col-md-1 td-v-middle text-center">{{'MENU_TORRENTS_SUB.'+vm.request.type.toUpperCase() | translate}}</td>
+                                            <td class="col-md-1 td-v-middle text-center">{{vm.request.createdAt | life }}</td>
+                                            <td class="col-md-1 td-v-middle text-center">{{vm.request.rewards}}</td>
+                                            <td class="col-md-1 td-v-middle text-center">{{vm.request.comments.length}}</td>
+                                            <td class="col-md-1 td-v-middle text-center">{{vm.request.torrents.length}}</td>
+                                            <td class="col-md-1 td-v-middle text-center">
+                                                <span user-info="vm.request.user" info-name></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7">
+                                                <div class="item-marked-desc" id="{{vm.request._id}}" data-provide="markdown"
+                                                     ng-bind-html="vm.getRequestDescContent(vm.request)">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7">
+                                                <a ui-sref="torrents.uploads({req: vm.request._id})"
+                                                   ng-if="!vm.request.isCurrentUserOwner"
+                                                   class="btn btn-success btn-width-120">
+                                                    {{ 'DO_UPLOAD' | translate}}
+                                                </a>
+                                                <button class="btn btn-default btn-width-120"
+                                                        ng-if="vm.request.isCurrentUserOwner || vm.user.isOper"
+                                                        ng-click="vm.beginEditMakerDesc(vm.request)">
+                                                    {{ 'REQUESTS.BTN_EDIT_DESC' | translate}}
+                                                </button>
+                                                <button class="btn btn-default btn-width-120"
+                                                        ng-if="vm.request.isCurrentUserOwner || vm.user.isOper"
+                                                        ng-click="vm.removeRequest();">
+                                                    {{ 'BTN_REMOVE' | translate}}
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

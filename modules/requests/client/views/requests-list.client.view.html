@@ -69,18 +69,18 @@
                                 </thead>
                                 <tbody>
                                     <tr class="request-item" ng-repeat="item in vm.pagedItems">
-                                        <td class="col-md-6 td-text-overflow">
+                                        <td class="col-md-6 width-300 td-text-overflow">
                                             <h4>
                                                 <a ui-sref="requests.view({requestId: item._id})">{{item.title}}</a>
                                             </h4>
                                             <div class="item-desc text-long">{{item.desc}}</div>
                                         </td>
-                                        <td class="col-md-1 td-v-middle text-center width-80">{{'MENU_TORRENTS_SUB.'+item.type.toUpperCase() | translate}}</td>
-                                        <td class="col-md-1 td-v-middle text-center width-80">{{item.createdAt | life }}</td>
-                                        <td class="col-md-1 td-v-middle text-center width-80">{{item.rewards}}</td>
-                                        <td class="col-md-1 td-v-middle text-center width-80">{{item.torrents.length}}</td>
-                                        <td class="col-md-1 td-v-middle text-center width-80">{{item.comments.length}}</td>
-                                        <td class="col-md-1 td-v-middle text-center width-80">
+                                        <td class="col-md-1 td-v-middle text-center">{{'MENU_TORRENTS_SUB.'+item.type.toUpperCase() | translate}}</td>
+                                        <td class="col-md-1 td-v-middle text-center">{{item.createdAt | life }}</td>
+                                        <td class="col-md-1 td-v-middle text-center">{{item.rewards}}</td>
+                                        <td class="col-md-1 td-v-middle text-center">{{item.torrents.length}}</td>
+                                        <td class="col-md-1 td-v-middle text-center">{{item.comments.length}}</td>
+                                        <td class="col-md-1 td-v-middle text-center">
                                             <span user-info="item.user" info-name></span>
                                         </td>
                                     </tr>

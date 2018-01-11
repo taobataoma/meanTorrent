@@ -20,6 +20,7 @@
             border-radius: 4px !important;
             min-width: 160px !important;
         }
+
         .visible-xxs-block {
             margin-bottom: 10px;
         }
@@ -65,7 +66,36 @@
         margin: 5px 0;
         font-size: 16px;
     }
-    .item-desc {
-        color: #999;
+    .request-item {
+        .item-desc {
+            color: #999;
+        }
+        .item-marked-desc {
+            color: #999;
+            margin-top: 10px;
+        }
+    }
+}
+
+.request-wrapper {
+    padding: 20px 0;
+    .request-avatar {
+        img {
+            cursor: pointer;
+            float: left;
+            border-radius: 3px;
+            height: 60px;
+            width: 60px;
+            @media (max-width: @screen-xs-max) {
+                height: 40px;
+                width: 40px;
+            }
+        }
+    }
+    .request-list {
+        margin-left: 80px;
+        @media (max-width: @screen-xs-max) {
+            margin-left: 60px;
+        }
     }
 }

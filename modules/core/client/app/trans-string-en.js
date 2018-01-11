@@ -20,6 +20,7 @@
     VALUE_NULL: 'NULL',
     VALUE_CUSTOM: 'CUSTOM',
     VALUE_SELECT_ALL: 'Select All',
+    BTN_REMOVE: 'Remove',
 
     //client topbar menu
     MENU_CHAT: 'Chat',
@@ -187,6 +188,7 @@
       REQUESTS_MY: 'My Requests',
       REQUESTS_RES: 'My Responses',
       REQUESTS_ADD: 'Add Requests',
+      REQUESTS_VIEW: 'Requests Detail',
       ADMIN_USER_LIST: 'User List',
       ADMIN_USER_VIEW: 'View User',
       ADMIN_USER_EDIT: 'Edit User',
@@ -722,17 +724,27 @@
       STATUS_GETTING_ERROR: 'Getting requests ERROR!',
       POST_REQUEST_SUCCESSFULLY: 'Create request successfully',
       POST_REQUEST_FAILED: 'Create request failed',
-      FIELD_TITLE: 'Title',
+      FIELD_TITLE: 'Title & Desc',
       FIELD_TYPE: 'Type',
       FIELD_LIFE: 'Life',
       FIELD_REWARDS: 'Rewards',
       FIELD_COMMENTS: 'Comments',
       FIELD_RESPONSES: 'responses',
       FIELD_USER: 'User',
+      BTN_EDIT_DESC: 'Edit Desc',
+      EDIT_SUCCESSFULLY: 'Edit request successfully',
+      EDIT_FAILED: 'Edit request failed',
+      DELETE_CONFIRM_OK: 'Delete',
+      DELETE_CONFIRM_CANCEL: 'Cancel',
+      DELETE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
+      DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this request?',
+      DELETE_SUCCESSFULLY: 'Request deleted successfully',
+      DELETE_FAILED: 'Request deleted failed',
       DESC_LIST: '### NOTE: \n - The list contains only the last `{{days}}` days of the requests. \n - If your response is accepted, the requestor\'s reward score will be automatically transferred to your account. \n - Only the torrents reviewed by the administrator can be accepted by the requestor. \n - The requester can only accept one of the responses. \n - If your response is complains, your account may be punished, Please respond to the user\'s request carefully.',
       DESC_MY: '### NOTE: \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - You can only accept one of the responses. \n - The request over `{{days}}` days has expired and cannot accept the response,  you can only post the request again. \n - If your score is maliciously damaged, please mail to the [administrator](mailto:{{admin}})',
       DESC_ADD: '### NOTE: \n - Each request will be automatically deducted from `{{add_score}}` points, but your reward score will only be transferred to the responder\'s account that you eventually accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - Each request is only valid for `{{days}}` days. After expiry, you can only post the request again. \n - Please give a clear resources description of your request when you post the request.',
-      DESC_RES: '### NOTE: \n - If requestor accept your response, the reward score will be transferred to your account. \n - Only the torrents reviewed by the administrator can be accepted by requestor. \n - Requestor can only accept one of the responses.'
+      DESC_RES: '### NOTE: \n - If requestor accept your response, the reward score will be transferred to your account. \n - Only the torrents reviewed by the administrator can be accepted by requestor. \n - Requestor can only accept one of the responses.',
+      DESC_VIEW: '### NOTE: \n - If you want to response a request, please upload the torrent file and seed, Please respond to the user\'s request carefully. \n - If you are a requestor, you can choose a responder and accept it, and only the torrents reviewed by the administrator can be accepted. \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - The request over `{{days}}` days has expired and cannot accept or response(upload).'
     },
 
     //user status

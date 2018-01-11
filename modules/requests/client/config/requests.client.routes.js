@@ -44,6 +44,13 @@
         data: {
           pageTitle: 'PAGETITLE.REQUESTS_ADD'
         }
+      })
+      .state('requests.view', {
+        url: '/:requestId',
+        templateUrl: '/modules/requests/client/views/requests-view.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.REQUESTS_VIEW'
+        }
       });
   }
 }());

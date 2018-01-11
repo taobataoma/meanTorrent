@@ -22,7 +22,7 @@
 
     $stateProvider
       .state('torrents.uploads', {
-        url: '/uploads',
+        url: '/uploads?req',
         templateUrl: '/modules/torrents/client/views/uploads-torrents.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.UPLOAD'

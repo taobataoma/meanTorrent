@@ -971,7 +971,8 @@ module.exports = {
       uploaderUserListPerPage: 15,
       messageBoxListPerPage: 10,
       followListPerPage: 30,
-      requestListPerPage: 15
+      requestListPerPage: 15,
+      requestCommentsPerPage: 10
     },
 
     /**
