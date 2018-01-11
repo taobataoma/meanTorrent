@@ -71,7 +71,9 @@
                                     <tr class="request-item" ng-repeat="item in vm.pagedItems">
                                         <td class="col-md-6 width-300 td-text-overflow">
                                             <h4>
-                                                <a ui-sref="requests.view({requestId: item._id})">{{item.title}}</a>
+                                                <div class="text-long">
+                                                    <a ui-sref="requests.view({requestId: item._id})">{{item.title}}</a>
+                                                </div>
                                             </h4>
                                             <div class="item-desc text-long">{{item.desc}}</div>
                                         </td>
