@@ -46,8 +46,8 @@
                                             <td class="col-md-1 td-v-middle text-center">{{'MENU_TORRENTS_SUB.'+vm.request.type.toUpperCase() | translate}}</td>
                                             <td class="col-md-1 td-v-middle text-center">{{vm.request.createdAt | life }}</td>
                                             <td class="col-md-1 td-v-middle text-center">{{vm.request.rewards}}</td>
-                                            <td class="col-md-1 td-v-middle text-center">{{vm.request.comments.length}}</td>
                                             <td class="col-md-1 td-v-middle text-center">{{vm.request.torrents.length}}</td>
+                                            <td class="col-md-1 td-v-middle text-center">{{vm.request.comments.length}}</td>
                                             <td class="col-md-1 td-v-middle text-center">
                                                 <span user-info="vm.request.user" info-name></span>
                                             </td>
@@ -61,8 +61,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="7">
-                                                <a ui-sref="torrents.uploads({req: vm.request._id})"
-                                                   ng-if="!vm.request.isCurrentUserOwner"
+                                                <a ui-sref="torrents.uploads({reqId: vm.request._id})"
                                                    class="btn btn-success btn-width-120">
                                                     {{ 'DO_UPLOAD' | translate}}
                                                 </a>
@@ -82,6 +81,19 @@
                                 </table>
                             </div>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="response-wrapper">
+                        <div class="response-list">
+                            <div class="jumbotron text-center" ng-if="vm.request.torrents<=0">
+                                <i class="fa fa-users fa-2x text-muted" aria-hidden="true"></i>
+                                <h3 class="text-muted">{{'REQUESTS.NO_RESPONSES' | translate}}</h3>
+                            </div>
                         </div>
                     </div>
                 </div>

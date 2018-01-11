@@ -394,6 +394,7 @@
         torrent_announce: vm.torrentInfo.announce,
         torrent_size: l,
         isAnonymous: vm.anonymous,
+        reqId: $state.params.reqId || undefined,
 
         resource_detail_info: vm.movieinfo
       });
@@ -437,6 +438,7 @@
         torrent_announce: vm.torrentInfo.announce,
         torrent_size: l,
         isAnonymous: vm.anonymous,
+        reqId: $state.params.reqId || undefined,
 
         resource_detail_info: vm.tvinfo
       });
@@ -497,6 +499,7 @@
         torrent_announce: vm.torrentInfo.announce,
         torrent_size: l,
         isAnonymous: vm.anonymous,
+        reqId: $state.params.reqId || undefined,
 
         resource_detail_info: detail_info,
         _uImage: uimg

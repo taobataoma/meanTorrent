@@ -20,6 +20,7 @@ var path = require('path'),
   Complete = mongoose.model('Complete'),
   Forum = mongoose.model('Forum'),
   Topic = mongoose.model('Topic'),
+  Request = mongoose.model('Request'),
   objectId = require('mongodb').ObjectId,
   fs = require('fs'),
   nt = require('nt'),
@@ -569,6 +570,7 @@ exports.download = function (req, res) {
  */
 exports.create = function (req, res) {
   var torrent = new Torrent(req.body);
+  var reqId = req.body.reqId;
   //mtDebug.debugGreen(req.body);
 
   torrent.user = req.user;
@@ -654,6 +656,29 @@ exports.create = function (req, res) {
               announceTorrentToIRC(torrent, req);
               scoreUpdate(req, req.user, scoreConfig.action.uploadTorrent);
             }
+          }
+
+          //write request data if reqId is not undefined and send server notice
+          if (reqId) {
+            Request.findOneAndUpdate({_id: reqId}, {
+              $addToSet: {torrents: torrent, responses: req.user._id}
+            }, {new: true}, function (err, doc) {
+              if (err) {
+                mtDebug.debugError(err);
+              } else {
+                //add server message
+                if (serverNoticeConfig.action.torrentUploadRequest.enable) {
+                  serverMessage.addMessage(doc.user, serverNoticeConfig.action.torrentUploadRequest.title, serverNoticeConfig.action.torrentUploadRequest.content, {
+                    request_title: doc.title,
+                    request_id: doc._id,
+                    torrent_file_name: torrent.torrent_filename,
+                    torrent_id: torrent._id,
+                    by_name: req.user.displayName,
+                    by_id: req.user._id
+                  });
+                }
+              }
+            });
           }
 
           //scrape torrent status info in public cms mode

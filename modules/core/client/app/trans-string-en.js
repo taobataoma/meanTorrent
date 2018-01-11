@@ -720,6 +720,7 @@
       NO_MY_REQUESTS: 'You aren’t post any request.',
       NO_RES_REQUESTS: 'You aren’t response any request.',
       NO_REQUESTS: 'Has no anybody post request.',
+      NO_RESPONSES: 'Has no anybody respond this request.',
       STATUS_GETTING: 'Getting requests, please waiting ...',
       STATUS_GETTING_ERROR: 'Getting requests ERROR!',
       POST_REQUEST_SUCCESSFULLY: 'Create request successfully',
@@ -1459,7 +1460,10 @@
       CONTENT_TORRENT_SUBTITLE_NEW: '### New subtitle! \n :new: You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) has a new subtitle file **{{subtitle_file_name}}** upload by user [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_TORRENT_SUBTITLE_DELETED: 'Torrent subtitle file was deleted',
-      CONTENT_TORRENT_SUBTITLE_DELETED: ':warning: You uploaded subtitle file **{{subtitle_file_name}}** of torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}).'
+      CONTENT_TORRENT_SUBTITLE_DELETED: ':warning: You uploaded subtitle file **{{subtitle_file_name}}** of torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_TORRENT_UPLOAD_REQUEST: 'Request has new response uploaded',
+      CONTENT_TORRENT_UPLOAD_REQUEST: '### New response! \n :new: You posted request [{{request_title}}](/requests/{{request_id}}) has a new response [{{torrent_file_name}}](/torrents/{{torrent_id}}) upload by user [{{by_name}}](/userinfo/{{by_id}}).'
     }
   };
 

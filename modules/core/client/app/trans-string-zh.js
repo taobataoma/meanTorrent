@@ -720,6 +720,7 @@
       NO_MY_REQUESTS: '您没有提交过任何求种请求.',
       NO_RES_REQUESTS: '您没有响应过任何求种请求.',
       NO_REQUESTS: '还有没任何用户发起求种请求.',
+      NO_RESPONSES: '还有没任何用户响应此请求.',
       STATUS_GETTING: '正在获取求种请求, 请稍候 ...',
       STATUS_GETTING_ERROR: '获取求种请求失败!',
       POST_REQUEST_SUCCESSFULLY: '创建求种请求成功!',
@@ -1451,7 +1452,10 @@
       CONTENT_TORRENT_SUBTITLE_NEW: '### 新的字幕文件! \n :new: 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 有一个新的字幕文件 {{subtitle_file_name}} 由用户 [{{by_name}}](/userinfo/{{by_id}}) 上传.',
 
       TITLE_TORRENT_SUBTITLE_DELETED: '上传的种子字幕文件被删除',
-      CONTENT_TORRENT_SUBTITLE_DELETED: ':warning: 您为种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上传的字幕文件 {{subtitle_file_name}} 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.'
+      CONTENT_TORRENT_SUBTITLE_DELETED: ':warning: 您为种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上传的字幕文件 {{subtitle_file_name}} 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
+
+      TITLE_TORRENT_UPLOAD_REQUEST: '求种请求有新的响应',
+      CONTENT_TORRENT_UPLOAD_REQUEST: '### 新的求种响应! \n :new: 您发布的求种请求 [{{request_title}}](/requests/{{request_id}}) 有一个新的上传响应 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 来自用户 [{{by_name}}](/userinfo/{{by_id}}).'
     }
   };
 
