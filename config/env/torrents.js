@@ -274,7 +274,7 @@ module.exports = {
     requests: {
       scoreForAddRequest: 100,
       rewardsFormDefaultValue: 1000,
-      requestExpires: 60 * 60 * 1000 * 24 * 1
+      requestExpires: 60 * 60 * 1000 * 24 * 7
     },
 
     /**
