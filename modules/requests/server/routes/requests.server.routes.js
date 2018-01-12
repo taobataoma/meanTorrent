@@ -16,5 +16,8 @@ module.exports = function (app) {
     .put(requests.update)
     .delete(requests.delete);
 
+  app.route('/api/requests/:requestId/accept/:torrentId').all(requestsPolicy.isAllowed)
+    .put(requests.accept);
+
   app.param('requestId', requests.requestByID);
 };

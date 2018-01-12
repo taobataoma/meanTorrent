@@ -84,5 +84,18 @@
       });
     };
 
+    /**
+     * isExpired
+     * @returns {boolean}
+     */
+    vm.isExpired = function (r) {
+      var exp = false;
+      if (r) {
+        exp = (r.createdAt + vm.requestsConfig.requestExpires) > Date.now() ? false : true;
+      }
+
+      return exp;
+    }
+
   }
 }());

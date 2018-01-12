@@ -733,6 +733,7 @@
       FIELD_RESPONSES: 'responses',
       FIELD_USER: 'User',
       BTN_EDIT_DESC: 'Edit Desc',
+      BTN_ACCEPT: 'Accept',
       EDIT_SUCCESSFULLY: 'Edit request successfully',
       EDIT_FAILED: 'Edit request failed',
       DELETE_CONFIRM_OK: 'Delete',
@@ -741,6 +742,12 @@
       DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this request?',
       DELETE_SUCCESSFULLY: 'Request deleted successfully',
       DELETE_FAILED: 'Request deleted failed',
+      ACCEPT_CONFIRM_OK: 'Accept',
+      ACCEPT_CONFIRM_CANCEL: 'Cancel',
+      ACCEPT_CONFIRM_HEADER_TEXT: 'Accept Response Confirm',
+      ACCEPT_CONFIRM_BODY_TEXT: 'The acceptance of the result can not be changed, Are you sure want to accept this response?',
+      ACCEPT_SUCCESSFULLY: 'Accept response successfully',
+      ACCEPT_FAILED: 'Accept response failed',
       RESPONSE_TITLE: 'Response torrent list:',
       DESC_LIST: '### NOTE: \n - The list contains only the last `{{days}}` days of the requests. \n - If your response is accepted, the requestor\'s reward score will be automatically transferred to your account. \n - Only the torrents reviewed by the administrator can be accepted by the requestor. \n - The requester can only accept one of the responses. \n - If your response is complains, your account may be punished, Please respond to the user\'s request carefully.',
       DESC_MY: '### NOTE: \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - You can only accept one of the responses. \n - The request over `{{days}}` days has expired and cannot accept the response,  you can only post the request again. \n - If your score is maliciously damaged, please mail to the [administrator](mailto:{{admin}})',
@@ -1381,7 +1388,10 @@
       ONLY_VIP_CAN_DOWNLOAD: 'This torrent is only for Vip users',
       CAN_NOT_DOWNLOAD_BANNED: 'Download failed, you are banned from server',
       CAN_NOT_DOWNLOAD_IDLE: 'Download failed, you are idle for long time, before download any things, you should active you account again in profile menu "account status"!',
-      ALREADY_FOLLOWING: 'You have already following {{name}}'
+      ALREADY_FOLLOWING: 'You have already following {{name}}',
+      INVALID_OBJECTID: 'Invalid object id',
+      REQUEST_STATUS_FINISHED: 'Status error! Request already finished.',
+      REQUEST_STATUS_EXPIRED: 'Status error! Request already expired.'
     },
 
     //server message string, content string support markdown and emoji
@@ -1463,8 +1473,11 @@
       TITLE_TORRENT_SUBTITLE_DELETED: 'Torrent subtitle file was deleted',
       CONTENT_TORRENT_SUBTITLE_DELETED: ':warning: You uploaded subtitle file **{{subtitle_file_name}}** of torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}).',
 
-      TITLE_TORRENT_UPLOAD_REQUEST: 'Request has new response uploaded',
-      CONTENT_TORRENT_UPLOAD_REQUEST: '### New response! \n :new: You posted request [{{request_title}}](/requests/{{request_id}}) has a new response [{{torrent_file_name}}](/torrents/{{torrent_id}}) upload by user [{{by_name}}](/userinfo/{{by_id}}).'
+      TITLE_REQUEST_TORRENT_UPLOAD: 'Request has new response uploaded',
+      CONTENT_REQUEST_TORRENT_UPLOAD: '### New response! \n :new: You posted request [{{request_title}}](/requests/{{request_id}}) has a new response torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) upload by user [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_REQUEST_TORRENT_RESPOND: 'Response of request was accepted',
+      CONTENT_REQUEST_TORRENT_RESPOND: '### Response was accepted! \n :clap: Yor uploaded response torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) of request [{{request_title}}](/requests/{{request_id}}) was accepted by user [{{by_name}}](/userinfo/{{by_id}}), and the rewards score `{{rewards}}` already be automatically transferred to your account.'
     }
   };
 

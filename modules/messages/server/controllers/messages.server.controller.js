@@ -334,10 +334,9 @@ exports.countUnread = function (req, res) {
  * Invitation middleware
  */
 exports.messageByID = function (req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Message is invalid'
+      message: 'SERVER.INVALID_OBJECTID'
     });
   }
 

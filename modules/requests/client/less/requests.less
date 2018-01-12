@@ -53,40 +53,44 @@
     }
 }
 
-.request-list {
+.response-list {
     table {
         margin-bottom: 0;
         tbody {
             tr {
-                cursor: auto !important;
                 .td-text-overflow {
                     .text-long {
                         @media (min-width: @screen-lg-min) {
-                            max-width: 500px;
-                            min-width: 500px;
+                            max-width: 480px;
+                            min-width: 470px;
                         }
-                        @media (max-width: @screen-lg-min) {
-                            max-width: 420px;
-                            min-width: 420px;
+                        @media (max-width: @screen-md-max) {
+                            max-width: 370px;
+                            min-width: 360px;
                         }
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
+                    }
+                }
+                &:hover {
+                    .btn-response-accept {
+                        display: block;
                     }
                 }
             }
         }
     }
+}
+
+.request-list {
     h4, .h4 {
         margin: 5px 0;
         font-size: 16px;
     }
     .request-item {
         .item-desc {
-            color: #999;
+            color: #888;
         }
         .item-marked-desc {
-            color: #999;
+            color: #888;
             margin-top: 10px;
         }
     }
@@ -101,30 +105,102 @@
             border-radius: 3px;
             height: 60px;
             width: 60px;
-            @media (max-width: @screen-xs-max) {
-                height: 40px;
-                width: 40px;
-            }
         }
     }
     .request-list {
         margin-left: 80px;
-        @media (max-width: @screen-xs-max) {
-            margin-left: 60px;
+        table {
+            margin-bottom: 0;
+            tbody {
+                tr {
+                    cursor: auto !important;
+                    .td-text-overflow {
+                        .text-long {
+                            @media (min-width: @screen-lg-min) {
+                                max-width: 510px;
+                                min-width: 500px;
+                            }
+                            @media (max-width: @screen-md-max) {
+                                max-width: 410px;
+                                min-width: 400px;
+                            }
+                        }
+                    }
+                }
+            }
         }
+    }
+    fieldset {
+        float: left;
+        margin-right: 5px;
     }
 }
 
 .response-wrapper {
+    margin-bottom: 30px;
     .response-list {
-        margin-left: 80px;
-        @media (max-width: @screen-xs-max) {
-            margin-left: 60px;
+        .div-accept {
+            width: 80px !important;
+            padding: 0 5px;
+        }
+        .btn-response-accept {
+            display: none;
+        }
+        .accepted-item {
+            td:not(:first-child) {
+                background-color: lighten(@brand-success, 30%);
+            }
+        }
+        .tb-v-middle {
+            tbody {
+                tr {
+                    td:first-child {
+                        padding: 0;
+                    }
+                }
+            }
+            @media (min-width: @screen-sm-min) {
+                thead {
+                    tr {
+                        th {
+                            &:first-child {
+                                border-top: none !important;
+                                border-bottom: none !important;
+                            }
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        td {
+                            &:first-child {
+                                border-top: none;
+                            }
+                        }
+                        &:hover {
+                            td {
+                                &:first-child {
+                                    background-color: #fff;
+                                }
+                            }
+                        }
+                    }
+                    &:last-child {
+                        td {
+                            &:first-child {
+                                border-bottom: none !important;
+                            }
+                        }
+                    }
+                }
+            }
+        ;
         }
     }
     .response-title {
-        margin: 20px 0 5px 0;
-        font-size: 18px;
+        margin: 20px 0 5px 88px;
+        font-size: 16px;
         font-weight: 500;
     }
 }

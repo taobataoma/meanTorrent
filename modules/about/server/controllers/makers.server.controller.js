@@ -316,10 +316,9 @@ exports.removeMember = function (req, res) {
  * Maker middleware
  */
 exports.makerByID = function (req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Maker is invalid'
+      message: 'SERVER.INVALID_OBJECTID'
     });
   }
 

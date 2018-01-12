@@ -174,10 +174,9 @@ exports.delete = function (req, res) {
  * Invitation middleware
  */
 exports.forumByID = function (req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Forum is invalid'
+      message: 'SERVER.INVALID_OBJECTID'
     });
   }
 

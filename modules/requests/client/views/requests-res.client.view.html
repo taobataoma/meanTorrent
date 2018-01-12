@@ -69,7 +69,7 @@
                                 </thead>
                                 <tbody>
                                     <tr class="request-item" ng-repeat="item in vm.pagedItems">
-                                        <td class="col-md-6 width-300 td-text-overflow">
+                                        <td class="col-md-6 td-v-middle td-text-overflow">
                                             <h4>
                                                 <div class="text-long">
                                                     <a ui-sref="requests.view({requestId: item._id})">{{item.title}}</a>
@@ -78,7 +78,13 @@
                                             <div class="item-desc text-long">{{item.desc}}</div>
                                         </td>
                                         <td class="col-md-1 td-v-middle text-center">{{'MENU_TORRENTS_SUB.'+item.type.toUpperCase() | translate}}</td>
-                                        <td class="col-md-1 td-v-middle text-center">{{item.createdAt | life }}</td>
+                                        <td class="col-md-1 td-v-middle text-center">
+                                            {{item.createdAt | life }}
+                                            <div>
+                                                <span class="badge badge_danger" ng-if="vm.isExpired(item) && !item.accept">Expired</span>
+                                                <span class="badge badge_success" ng-if="item.accept">Finished</span>
+                                            </div>
+                                        </td>
                                         <td class="col-md-1 td-v-middle text-center">{{item.rewards}}</td>
                                         <td class="col-md-1 td-v-middle text-center">{{item.torrents.length}}</td>
                                         <td class="col-md-1 td-v-middle text-center">{{item.comments.length}}</td>

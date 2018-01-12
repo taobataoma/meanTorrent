@@ -13,6 +13,14 @@
     }, {
       update: {
         method: 'PUT'
+      },
+      accept: {
+        method: 'PUT',
+        url: '/api/requests/:requestId/accept/:torrentId',
+        params: {
+          requestId: '@_id',
+          torrentId: 'torrentId'
+        }
       }
     });
   }

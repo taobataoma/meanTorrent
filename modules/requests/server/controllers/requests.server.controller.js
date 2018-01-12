@@ -40,7 +40,7 @@ exports.create = function (req, res) {
       } else {
         res.json(request);
 
-        scoreUpdate(req, user, scoreConfig.action.uploadTorrent, -requestsConfig.scoreForAddRequest);
+        scoreUpdate(req, user, scoreConfig.action.postRequest, -requestsConfig.scoreForAddRequest);
       }
     });
   } else {
@@ -68,21 +68,33 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var request = req.request;
 
-  if (request.user._id === req.user._id || req.user.isOper) {
-    request.title = req.body.title;
-    request.desc = req.body.desc;
-    request.rewards = req.body.rewards;
-    request.type = req.body.type;
+  if (request.user._id.equals(req.user._id) || req.user.isOper) {
+    if ((request.createdAt + requestsConfig.requestExpires) >= Date.now()) {
+      if (!request.accept) {
+        request.title = req.body.title;
+        request.desc = req.body.desc;
+        request.rewards = req.body.rewards;
+        request.type = req.body.type;
 
-    request.save(function (err) {
-      if (err) {
-        return res.status(422).send({
-          message: errorHandler.getErrorMessage(err)
+        request.save(function (err) {
+          if (err) {
+            return res.status(422).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          } else {
+            res.json(request);
+          }
         });
       } else {
-        res.json(request);
+        return res.status(422).send({
+          message: 'SERVER.REQUEST_STATUS_FINISHED'
+        });
       }
-    });
+    } else {
+      return res.status(422).send({
+        message: 'SERVER.REQUEST_STATUS_EXPIRED'
+      });
+    }
   } else {
     return res.status(403).json({
       message: 'SERVER.USER_IS_NOT_AUTHORIZED'
@@ -96,16 +108,102 @@ exports.update = function (req, res) {
 exports.delete = function (req, res) {
   var request = req.request;
 
-  if (request.user._id === req.user._id || req.user.isOper) {
-    request.remove(function (err) {
-      if (err) {
-        return res.status(422).send({
-          message: errorHandler.getErrorMessage(err)
-        });
-      } else {
-        res.json(request);
-      }
+  if (request.user._id.equals(req.user._id) || req.user.isOper) {
+    if (!request.accept) {
+      request.remove(function (err) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.json(request);
+        }
+      });
+    } else {
+      return res.status(422).send({
+        message: 'SERVER.REQUEST_STATUS_FINISHED'
+      });
+    }
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
     });
+  }
+};
+
+/**
+ * accept
+ * @param req
+ * @param res
+ */
+exports.accept = function (req, res) {
+  var request = req.request;
+  var torrent = req.torrent;
+
+  if (request.user._id.equals(req.user._id)) {
+    if ((request.createdAt + requestsConfig.requestExpires) >= Date.now()) {
+      if (!request.accept) {
+        var exist = false;
+        request.torrents.forEach(function (r) {
+          if (r._id.equals(torrent._id)) {
+            exist = true;
+          }
+        });
+        if (exist) {
+          if (request.user.score >= request.rewards) {
+            request.acceptedAt = Date.now();
+            request.accept = torrent._id;
+
+            request.save(function (err) {
+              if (err) {
+                return res.status(422).send({
+                  message: errorHandler.getErrorMessage(err)
+                });
+              } else {
+                res.json(request);
+
+                //transfer reward score
+                request.user.update({
+                  $inc: {score: -request.rewards}
+                }).exec();
+                torrent.user.update({
+                  $inc: {score: request.rewards}
+                }).exec();
+
+                //add server message
+                if (serverNoticeConfig.action.RequestTorrentRespond.enable) {
+                  serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.RequestTorrentRespond.title, serverNoticeConfig.action.RequestTorrentRespond.content, {
+                    request_title: request.title,
+                    request_id: request._id,
+                    torrent_file_name: torrent.torrent_filename,
+                    torrent_id: torrent._id,
+                    by_name: request.user.displayName,
+                    by_id: request.user._id,
+                    rewards: request.rewards
+                  });
+                }
+              }
+            });
+          } else {
+            return res.status(422).send({
+              message: 'SERVER.SCORE_NOT_ENOUGH'
+            });
+          }
+        } else {
+          return res.status(403).json({
+            message: 'SERVER.INVALID_OBJECTID'
+          });
+        }
+      } else {
+        return res.status(422).send({
+          message: 'SERVER.REQUEST_STATUS_FINISHED'
+        });
+      }
+    } else {
+      return res.status(422).send({
+        message: 'SERVER.REQUEST_STATUS_EXPIRED'
+      });
+    }
   } else {
     return res.status(403).json({
       message: 'SERVER.USER_IS_NOT_AUTHORIZED'
@@ -136,6 +234,12 @@ exports.list = function (req, res) {
   }
 
   var condition = {};
+
+  if (!user_id && !res_id) {
+    condition.createdAt = {
+      $gt: Date.now() - requestsConfig.requestExpires
+    };
+  }
   if (user_id !== undefined) {
     condition.user = user_id;
   }
@@ -184,7 +288,6 @@ exports.list = function (req, res) {
  * Maker middleware
  */
 exports.requestByID = function (req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
       message: 'SERVER.INVALID_OBJECTID'
@@ -192,7 +295,7 @@ exports.requestByID = function (req, res, next, id) {
   }
 
   Request.findById(id)
-    .populate('user', 'username displayName profileImageURL isVip')
+    .populate('user', 'username displayName profileImageURL isVip score')
     .populate({
       path: 'torrents',
       populate: {

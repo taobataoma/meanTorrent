@@ -230,5 +230,41 @@
       }
     };
 
+    /**
+     * acceptResponse
+     */
+    vm.acceptResponse = function (t) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('REQUESTS.ACCEPT_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('REQUESTS.ACCEPT_CONFIRM_OK'),
+        headerText: $translate.instant('REQUESTS.ACCEPT_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('REQUESTS.ACCEPT_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          vm.request.$accept({
+            torrentId: t._id
+          }, function (res) {
+            vm.request = res;
+            NotifycationService.showSuccessNotify('REQUESTS.ACCEPT_SUCCESSFULLY');
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'REQUESTS.ACCEPT_FAILED');
+          });
+        });
+    };
+
+    /**
+     * isExpired
+     * @returns {boolean}
+     */
+    vm.isExpired = function (r) {
+      var exp = false;
+      if (r) {
+        exp = (r.createdAt + vm.requestsConfig.requestExpires) > Date.now() ? false : true;
+      }
+
+      return exp;
+    }
   }
 }());

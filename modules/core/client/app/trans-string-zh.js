@@ -733,6 +733,7 @@
       FIELD_RESPONSES: '响应',
       FIELD_USER: '求种用户',
       BTN_EDIT_DESC: '编辑描述',
+      BTN_ACCEPT: '接受',
       EDIT_SUCCESSFULLY: '请求编辑成功',
       EDIT_FAILED: '请求编辑失败',
       DELETE_CONFIRM_OK: '删除',
@@ -741,7 +742,12 @@
       DELETE_CONFIRM_BODY_TEXT: '您确定要删除该条求种请求吗?',
       DELETE_SUCCESSFULLY: '请求删除成功',
       DELETE_FAILED: '请求删除失败',
-      DETAIL_TITLE: '求种详情',
+      ACCEPT_CONFIRM_OK: '接受',
+      ACCEPT_CONFIRM_CANCEL: '取消',
+      ACCEPT_CONFIRM_HEADER_TEXT: '接受响应确认',
+      ACCEPT_CONFIRM_BODY_TEXT: '接受结果不可更改, 您确定要接受此响应吗?',
+      ACCEPT_SUCCESSFULLY: '接受响应成功',
+      ACCEPT_FAILED: '接受响应失败',
       RESPONSE_TITLE: '响应列表',
       DESC_LIST: '### 提示: \n - 此列表只包含最近 `{{days}}` 天内发布的求种请求. \n - 如果你的回应被采纳, 请求者悬赏的积分将自动转入你的帐户. \n - 只有被管理员审核通过的种子才能被请求者接受. \n - 请求者只能接受多个响应中的一个. \n - 如果你的响应被请求者投诉，你的帐号就可能会受到惩罚, 请认真响应用户的请求.',
       DESC_MY: '### 提示: \n - 如果您接受一个响应, 你的悬赏积分就会转入你接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 您只能接受多个响应中的一个. \n - 超过 `{{days}}` 天的请求已经过期且不能接受响应, 如果需要你只能再次发起请求. \n - 如果您的积分受到恶意损害, 请向管理员[投诉](mailto:{{admin}}).',
@@ -1382,7 +1388,10 @@
       ONLY_VIP_CAN_DOWNLOAD: '该种子只有VIP用户才可以下载',
       CAN_NOT_DOWNLOAD_BANNED: '下载失败, 您被服务器禁止(banned)',
       CAN_NOT_DOWNLOAD_IDLE: '下载失败，您闲置了太长时间，在您下载任何种子前, 您必须进入帐户状态页再次激活您的帐户!',
-      ALREADY_FOLLOWING: '您已经关注过 {{name}} 了'
+      ALREADY_FOLLOWING: '您已经关注过 {{name}} 了',
+      INVALID_OBJECTID: '无效的数据记录ID',
+      REQUEST_STATUS_FINISHED: '状态错误! 求种请求已完成.',
+      REQUEST_STATUS_EXPIRED: '状态错误! 求种请求已过期.'
     },
 
     //server message string, content string support markdown and emoji
@@ -1464,8 +1473,11 @@
       TITLE_TORRENT_SUBTITLE_DELETED: '上传的种子字幕文件被删除',
       CONTENT_TORRENT_SUBTITLE_DELETED: ':warning: 您为种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上传的字幕文件 {{subtitle_file_name}} 被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.',
 
-      TITLE_TORRENT_UPLOAD_REQUEST: '求种请求有新的响应',
-      CONTENT_TORRENT_UPLOAD_REQUEST: '### 新的求种响应! \n :new: 您发布的求种请求 [{{request_title}}](/requests/{{request_id}}) 有一个新的上传响应 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 来自用户 [{{by_name}}](/userinfo/{{by_id}}).'
+      TITLE_REQUEST_TORRENT_UPLOAD: '求种请求有新的响应',
+      CONTENT_REQUEST_TORRENT_UPLOAD: '### 新的求种响应! \n :new: 您发布的求种请求 [{{request_title}}](/requests/{{request_id}}) 有一个新的上传响应 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 来自用户 [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_REQUEST_TORRENT_RESPOND: '求种响应被接受',
+      CONTENT_REQUEST_TORRENT_RESPOND: '### 响应被接受! \n :clap: 您对求种请求 [{{request_title}}](/requests/{{request_id}}) 响应的上传种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 已经被用户 [{{by_name}}](/userinfo/{{by_id}}) 接受, 悬赏的 `{{rewards}}` 积分已经转入您的帐户.'
     }
   };
 

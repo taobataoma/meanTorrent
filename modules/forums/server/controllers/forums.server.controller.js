@@ -1047,10 +1047,9 @@ exports.attachDownload = function (req, res) {
  * Invitation middleware
  */
 exports.topicById = function (req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Topic is invalid'
+      message: 'SERVER.INVALID_OBJECTID'
     });
   }
 

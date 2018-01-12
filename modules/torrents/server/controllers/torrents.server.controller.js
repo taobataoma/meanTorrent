@@ -667,8 +667,8 @@ exports.create = function (req, res) {
                 mtDebug.debugError(err);
               } else {
                 //add server message
-                if (serverNoticeConfig.action.torrentUploadRequest.enable) {
-                  serverMessage.addMessage(doc.user, serverNoticeConfig.action.torrentUploadRequest.title, serverNoticeConfig.action.torrentUploadRequest.content, {
+                if (serverNoticeConfig.action.RequestTorrentUpload.enable) {
+                  serverMessage.addMessage(doc.user, serverNoticeConfig.action.RequestTorrentUpload.title, serverNoticeConfig.action.RequestTorrentUpload.content, {
                     request_title: doc.title,
                     request_id: doc._id,
                     torrent_file_name: torrent.torrent_filename,
@@ -2048,10 +2048,9 @@ exports.getLeecherUsers = function (req, res) {
  * Torrent middleware
  */
 exports.torrentByID = function (req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'TORRENT_ID_INVALID'
+      message: 'SERVER.INVALID_OBJECTID'
     });
   }
 

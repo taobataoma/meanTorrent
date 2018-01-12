@@ -452,10 +452,9 @@ exports.countInvitations = function (req, res) {
  * Invitation middleware
  */
 exports.invitationByID = function (req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Invitation is invalid'
+      message: 'SERVER.INVALID_OBJECTID'
     });
   }
 

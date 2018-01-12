@@ -102,10 +102,9 @@ exports.removeWarning = function (req, res) {
  * complete middleware
  */
 exports.completeByID = function (req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'COMPLETE_ID_INVALID'
+      message: 'SERVER.INVALID_OBJECTID'
     });
   }
 

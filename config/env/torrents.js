@@ -274,7 +274,7 @@ module.exports = {
     requests: {
       scoreForAddRequest: 100,
       rewardsFormDefaultValue: 1000,
-      requestExpires: 60 * 60 * 1000 * 24 * 7
+      requestExpires: 60 * 60 * 1000 * 24 * 1
     },
 
     /**
@@ -300,7 +300,8 @@ module.exports = {
         uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', value: 10, enable: true},
         uploadSubtitle: {name: 'uploadSubtitle', value: 20, enable: true},
         uploadSubtitleBeDeleted: {name: 'uploadSubtitleBeDeleted', value: -20, enable: true},
-        postRequest: {name: 'postRequest', value: -100, enable: true},
+
+        postRequest: {name: 'postRequest', value: -100, enable: true}, //value used requests.scoreForAddRequest, default -100
 
         seedAnnounce: {
           name: 'seedAnnounce',
@@ -424,7 +425,9 @@ module.exports = {
         torrentDeleted: {title: 'TITLE_TORRENT_DELETED', content: 'CONTENT_TORRENT_DELETED', enable: true},
         torrentSubtitleNew: {title: 'TITLE_TORRENT_SUBTITLE_NEW', content: 'CONTENT_TORRENT_SUBTITLE_NEW', enable: true},
         torrentSubtitleDeleted: {title: 'TITLE_TORRENT_SUBTITLE_DELETED', content: 'CONTENT_TORRENT_SUBTITLE_DELETED', enable: true},
-        torrentUploadRequest: {title: 'TITLE_TORRENT_UPLOAD_REQUEST', content: 'CONTENT_TORRENT_UPLOAD_REQUEST', enable: true}
+
+        RequestTorrentUpload: {title: 'TITLE_REQUEST_TORRENT_UPLOAD', content: 'CONTENT_REQUEST_TORRENT_UPLOAD', enable: true},
+        RequestTorrentRespond: {title: 'TITLE_REQUEST_TORRENT_RESPOND', content: 'CONTENT_REQUEST_TORRENT_RESPOND', enable: true}
       }
     },
 
