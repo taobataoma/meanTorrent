@@ -70,7 +70,7 @@ exports.update = function (req, res) {
   var request = req.request;
 
   if (request.user._id.equals(req.user._id) || req.user.isOper) {
-    if ((request.createdAt + requestsConfig.requestExpires) >= Date.now()) {
+    if ((moment(request.createdAt) + requestsConfig.requestExpires) >= Date.now()) {
       if (!request.accept) {
         request.title = req.body.title;
         request.desc = req.body.desc;
