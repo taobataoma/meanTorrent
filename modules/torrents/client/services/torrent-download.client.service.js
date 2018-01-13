@@ -39,6 +39,9 @@
           case 703:
             NotifycationService.showErrorNotify('SERVER.CAN_NOT_DOWNLOAD_IDLE', 'TORRENT_DOWNLOAD_ERROR');
             break;
+          case 704:
+            NotifycationService.showErrorNotify('SERVER.TORRENT_STATUS_ERROR', 'TORRENT_DOWNLOAD_ERROR');
+            break;
           default:
             NotifycationService.showErrorNotify(err.data.message, 'TORRENT_DOWNLOAD_ERROR');
         }
