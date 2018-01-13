@@ -9,6 +9,7 @@ var path = require('path'),
   Request = mongoose.model('Request'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   async = require('async'),
+  moment = require('moment'),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
   scoreUpdate = require(path.resolve('./config/lib/score')).update;
 
@@ -141,7 +142,7 @@ exports.accept = function (req, res) {
   var torrent = req.torrent;
 
   if (request.user._id.equals(req.user._id)) {
-    if ((request.createdAt + requestsConfig.requestExpires) >= Date.now()) {
+    if ((moment(request.createdAt) + requestsConfig.requestExpires) >= Date.now()) {
       if (!request.accept) {
         if (torrent.torrent_status === 'reviewed') {
           var exist = false;
