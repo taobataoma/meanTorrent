@@ -148,18 +148,38 @@
             width: 80px !important;
             padding: 0 5px;
         }
+        .div-overlay-accept {
+            position: absolute;
+            background-color: #444;
+            background-color: rgba(128, 128, 128, 0.7);
+            left: 95px;
+            right: 15px;
+            height: 116px;
+            z-index: 5;
+            font-size: 24px;
+            font-weight: 500;
+            color: #eee;
+            padding-top: 35px !important;
+            &:hover {
+                background-color: #444 !important;
+                background-color: rgba(128, 128, 128, 0.5) !important;
+            }
+            span {
+                margin-top: 50%;
+            }
+        }
         .btn-response-accept {
             display: none;
         }
         .accepted-item {
-            td:not(:first-child) {
+            td:not(:first-child), td:not(:last-child) {
                 background-color: lighten(@brand-success, 30%);
             }
         }
         .tb-v-middle {
             tbody {
                 tr {
-                    td:first-child {
+                    td:first-child, td:last-child {
                         padding: 0;
                     }
                 }
@@ -179,7 +199,7 @@
                 tbody {
                     tr {
                         td {
-                            &:first-child {
+                            &:first-child, &:last-child {
                                 border-top: none;
                             }
                         }
@@ -193,7 +213,7 @@
                     }
                     &:last-child {
                         td {
-                            &:first-child {
+                            &:first-child, &:last-child {
                                 border-bottom: none !important;
                             }
                         }

@@ -734,6 +734,7 @@
       FIELD_USER: 'User',
       BTN_EDIT_DESC: 'Edit Desc',
       BTN_ACCEPT: 'Accept',
+      WAITING_REVIEW: 'Waiting for review ...',
       EDIT_SUCCESSFULLY: 'Edit request successfully',
       EDIT_FAILED: 'Edit request failed',
       DELETE_CONFIRM_OK: 'Delete',
@@ -1391,7 +1392,8 @@
       ALREADY_FOLLOWING: 'You have already following {{name}}',
       INVALID_OBJECTID: 'Invalid object id',
       REQUEST_STATUS_FINISHED: 'Status error! Request already finished.',
-      REQUEST_STATUS_EXPIRED: 'Status error! Request already expired.'
+      REQUEST_STATUS_EXPIRED: 'Status error! Request already expired.',
+      TORRENT_STATUS_ERROR: 'Status error! Torrent status is not reviewed'
     },
 
     //server message string, content string support markdown and emoji

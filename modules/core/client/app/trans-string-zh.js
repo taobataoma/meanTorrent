@@ -734,6 +734,7 @@
       FIELD_USER: '求种用户',
       BTN_EDIT_DESC: '编辑描述',
       BTN_ACCEPT: '接受',
+      WAITING_REVIEW: '等特审核 ...',
       EDIT_SUCCESSFULLY: '请求编辑成功',
       EDIT_FAILED: '请求编辑失败',
       DELETE_CONFIRM_OK: '删除',
@@ -1391,7 +1392,8 @@
       ALREADY_FOLLOWING: '您已经关注过 {{name}} 了',
       INVALID_OBJECTID: '无效的数据记录ID',
       REQUEST_STATUS_FINISHED: '状态错误! 求种请求已完成.',
-      REQUEST_STATUS_EXPIRED: '状态错误! 求种请求已过期.'
+      REQUEST_STATUS_EXPIRED: '状态错误! 求种请求已过期.',
+      TORRENT_STATUS_ERROR: '状态错误! 种子状态为未审核'
     },
 
     //server message string, content string support markdown and emoji

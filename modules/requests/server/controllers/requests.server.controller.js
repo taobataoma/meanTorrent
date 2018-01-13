@@ -143,55 +143,61 @@ exports.accept = function (req, res) {
   if (request.user._id.equals(req.user._id)) {
     if ((request.createdAt + requestsConfig.requestExpires) >= Date.now()) {
       if (!request.accept) {
-        var exist = false;
-        request.torrents.forEach(function (r) {
-          if (r._id.equals(torrent._id)) {
-            exist = true;
-          }
-        });
-        if (exist) {
-          if (request.user.score >= request.rewards) {
-            request.acceptedAt = Date.now();
-            request.accept = torrent._id;
+        if (torrent.torrent_status === 'reviewed') {
+          var exist = false;
+          request.torrents.forEach(function (r) {
+            if (r._id.equals(torrent._id)) {
+              exist = true;
+            }
+          });
+          if (exist) {
+            if (request.user.score >= request.rewards) {
+              request.acceptedAt = Date.now();
+              request.accept = torrent._id;
 
-            request.save(function (err) {
-              if (err) {
-                return res.status(422).send({
-                  message: errorHandler.getErrorMessage(err)
-                });
-              } else {
-                res.json(request);
-
-                //transfer reward score
-                request.user.update({
-                  $inc: {score: -request.rewards}
-                }).exec();
-                torrent.user.update({
-                  $inc: {score: request.rewards}
-                }).exec();
-
-                //add server message
-                if (serverNoticeConfig.action.RequestTorrentRespond.enable) {
-                  serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.RequestTorrentRespond.title, serverNoticeConfig.action.RequestTorrentRespond.content, {
-                    request_title: request.title,
-                    request_id: request._id,
-                    torrent_file_name: torrent.torrent_filename,
-                    torrent_id: torrent._id,
-                    by_name: request.user.displayName,
-                    by_id: request.user._id,
-                    rewards: request.rewards
+              request.save(function (err) {
+                if (err) {
+                  return res.status(422).send({
+                    message: errorHandler.getErrorMessage(err)
                   });
+                } else {
+                  res.json(request);
+
+                  //transfer reward score
+                  request.user.update({
+                    $inc: {score: -request.rewards}
+                  }).exec();
+                  torrent.user.update({
+                    $inc: {score: request.rewards}
+                  }).exec();
+
+                  //add server message
+                  if (serverNoticeConfig.action.RequestTorrentRespond.enable) {
+                    serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.RequestTorrentRespond.title, serverNoticeConfig.action.RequestTorrentRespond.content, {
+                      request_title: request.title,
+                      request_id: request._id,
+                      torrent_file_name: torrent.torrent_filename,
+                      torrent_id: torrent._id,
+                      by_name: request.user.displayName,
+                      by_id: request.user._id,
+                      rewards: request.rewards
+                    });
+                  }
                 }
-              }
-            });
+              });
+            } else {
+              return res.status(422).send({
+                message: 'SERVER.SCORE_NOT_ENOUGH'
+              });
+            }
           } else {
-            return res.status(422).send({
-              message: 'SERVER.SCORE_NOT_ENOUGH'
+            return res.status(403).json({
+              message: 'SERVER.INVALID_OBJECTID'
             });
           }
         } else {
-          return res.status(403).json({
-            message: 'SERVER.INVALID_OBJECTID'
+          return res.status(422).send({
+            message: 'SERVER.TORRENT_STATUS_ERROR'
           });
         }
       } else {

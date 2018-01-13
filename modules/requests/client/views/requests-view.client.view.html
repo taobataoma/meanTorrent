@@ -47,7 +47,8 @@
                                             <td class="col-md-1 td-v-middle text-center">
                                                 {{vm.request.createdAt | life }}
                                                 <div>
-                                                    <span class="badge badge_danger" ng-if="vm.isExpired(vm.request) && !vm.request.accept">Expired</span>
+                                                    <span class="badge badge_danger"
+                                                          ng-if="vm.isExpired(vm.request) && !vm.request.accept">Expired</span>
                                                     <span class="badge badge_success" ng-if="vm.request.accept">Finished</span>
                                                 </div>
                                             </td>
@@ -128,15 +129,16 @@
                                         <tbody>
                                             <tr class="torrent-list-info" ng-repeat="item in vm.request.torrents"
                                                 ng-click="vm.TGI.openTorrentDetailInfo(item._id);"
-                                                ng-class="{'accepted-item': vm.request.accept == item._id}">
+                                                ng-class="{'accepted-item': vm.request.accept == item._id}" ng-disabled="true">
                                                 <td class="td-v-middle">
                                                     <div class="div-accept">
                                                         <button class="btn btn-success btn-block btn-response-accept"
                                                                 ng-click="vm.acceptResponse(item); $event.stopPropagation();"
-                                                                ng-if="!vm.request.accept && !vm.isExpired(vm.request)">
+                                                                ng-if="!vm.request.accept && !vm.isExpired(vm.request) && item.torrent_status == 'reviewed'">
                                                             {{ 'REQUESTS.BTN_ACCEPT' | translate}}
                                                         </button>
-                                                        <i class="fa fa-lock fa-accept pull-right" aria-hidden="true" ng-if="vm.request.accept == item._id"></i>
+                                                        <i class="fa fa-lock fa-accept pull-right" aria-hidden="true"
+                                                           ng-if="vm.request.accept == item._id"></i>
                                                     </div>
                                                 </td>
                                                 <td class="col-md-7 td-v-middle td-text-overflow">
@@ -236,6 +238,13 @@
                                                 </td>
                                                 <td class="col-md-1 td-v-middle text-center td-uploader">
                                                     <span user-info="item.user" info-name></span>
+                                                </td>
+
+                                                <td class="td-v-middle text-center"
+                                                    ng-class="{'div-overlay-accept': item.torrent_status != 'reviewed'}"
+                                                    ng-click="$event.stopPropagation();"
+                                                    ng-if="item.torrent_status != 'reviewed'">
+                                                    <p>{{ 'REQUESTS.WAITING_REVIEW' | translate}}</p>
                                                 </td>
                                             </tr>
                                         </tbody>
