@@ -513,6 +513,10 @@ exports.download = function (req, res) {
       return res.status(703).send({
         message: 'SERVER.CAN_NOT_DOWNLOAD_IDLE'
       });
+    } else if (req.torrent.torrent_status !== 'reviewed') {
+      return res.status(704).send({
+        message: 'SERVER.TORRENT_STATUS_ERROR'
+      });
     } else {
       fs.exists(filePath, function (exists) {
         if (exists) {
