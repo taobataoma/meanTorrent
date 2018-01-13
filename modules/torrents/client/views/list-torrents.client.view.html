@@ -52,7 +52,8 @@
                     <div class="caption">
                         <ul class="list-unstyled">
                             <li class="text-long">
-                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                <span class="h5"><a ui-sref="torrents.view({torrentId: item._id})"
+                                                    title="{{vm.TGI.getTorrentTitle(item)}}">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                             </li>
                         </ul>
                     </div>

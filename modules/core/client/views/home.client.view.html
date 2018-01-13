@@ -154,7 +154,8 @@
                                         <ul class="list-unstyled">
                                             <li class="text-long">
                                                 <span class="h5"><a
-                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                        ui-sref="torrents.view({torrentId: item._id})"
+                                                        title="{{vm.TGI.getTorrentTitle(item)}}">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -177,7 +178,8 @@
                                             <td>
                                                 <a class="newest-item-big" ui-sref="torrents.view({torrentId: nt._id})">
                                                     <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_300}}{{nt.resource_detail_info.backdrop_path}}"
-                                                         on-error-src="/modules/torrents/client/img/default_backdrop_300.jpg">
+                                                         on-error-src="/modules/torrents/client/img/default_backdrop_300.jpg"
+                                                         alt="{{vm.TGI.getTorrentTitle(nt)}}" title="{{vm.TGI.getTorrentTitle(nt)}}">
 
                                                     <div class="newest-user-info">
                                                         <table>
@@ -199,8 +201,8 @@
                                                     </div>
 
                                                     <div title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
-                                                          ng-click="vm.DLS.downloadTorrent(nt._id); $event.stopPropagation(); $event.preventDefault();"
-                                                          class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></div>
+                                                         ng-click="vm.DLS.downloadTorrent(nt._id); $event.stopPropagation(); $event.preventDefault();"
+                                                         class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></div>
 
                                                     <div class="newest-info">
                                                         <div card-progress="nt.my_peers"></div>
@@ -386,7 +388,8 @@
                                         <ul class="list-unstyled">
                                             <li class="text-long">
                                                 <span class="h5"><a
-                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                        ui-sref="torrents.view({torrentId: item._id})"
+                                                        title="{{vm.TGI.getTorrentTitle(item)}}">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -409,7 +412,8 @@
                                             <td>
                                                 <a class="newest-item-big" ui-sref="torrents.view({torrentId: nt._id})">
                                                     <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_300}}{{nt.resource_detail_info.backdrop_path}}"
-                                                         on-error-src="/modules/torrents/client/img/default_backdrop_300.jpg">
+                                                         on-error-src="/modules/torrents/client/img/default_backdrop_300.jpg"
+                                                         alt="{{vm.TGI.getTorrentTitle(nt)}}" title="{{vm.TGI.getTorrentTitle(nt)}}">
 
                                                     <div class="newest-user-info">
                                                         <table>
@@ -568,7 +572,8 @@
                                         <ul class="list-unstyled">
                                             <li class="text-long">
                                                 <span class="h5"><a
-                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                        ui-sref="torrents.view({torrentId: item._id})"
+                                                        title="{{vm.TGI.getTorrentTitle(item)}}">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -754,7 +759,8 @@
                                         <ul class="list-unstyled">
                                             <li class="text-long">
                                                 <span class="h5"><a
-                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                        ui-sref="torrents.view({torrentId: item._id})"
+                                                        title="{{vm.TGI.getTorrentTitle(item)}}">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -933,7 +939,8 @@
                                         <ul class="list-unstyled">
                                             <li class="text-long">
                                                 <span class="h5"><a
-                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                        ui-sref="torrents.view({torrentId: item._id})"
+                                                        title="{{vm.TGI.getTorrentTitle(item)}}">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -1112,7 +1119,8 @@
                                         <ul class="list-unstyled">
                                             <li class="text-long">
                                                 <span class="h5"><a
-                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                        ui-sref="torrents.view({torrentId: item._id})"
+                                                        title="{{vm.TGI.getTorrentTitle(item)}}">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -1291,7 +1299,8 @@
                                         <ul class="list-unstyled">
                                             <li class="text-long">
                                                 <span class="h5"><a
-                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                        ui-sref="torrents.view({torrentId: item._id})"
+                                                        title="{{vm.TGI.getTorrentTitle(item)}}">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -1470,7 +1479,8 @@
                                         <ul class="list-unstyled">
                                             <li class="text-long">
                                                 <span class="h5"><a
-                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                        ui-sref="torrents.view({torrentId: item._id})"
+                                                        title="{{vm.TGI.getTorrentTitle(item)}}">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -1649,7 +1659,8 @@
                                         <ul class="list-unstyled">
                                             <li class="text-long">
                                                 <span class="h5"><a
-                                                        ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                                        ui-sref="torrents.view({torrentId: item._id})"
+                                                        title="{{vm.TGI.getTorrentTitle(item)}}">{{vm.TGI.getTorrentTitle(item)}}</a></span>
                                             </li>
                                         </ul>
                                     </div>
