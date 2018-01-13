@@ -130,7 +130,7 @@
                                             <tr class="torrent-list-info" ng-repeat="item in vm.request.torrents"
                                                 ng-click="vm.TGI.openTorrentDetailInfo(item._id);"
                                                 ng-class="{'accepted-item': vm.request.accept == item._id}" ng-disabled="true">
-                                                <td class="td-v-middle">
+                                                <td class="td-v-middle" ng-click="$event.stopPropagation();">
                                                     <div class="div-accept">
                                                         <button class="btn btn-success btn-block btn-response-accept"
                                                                 ng-click="vm.acceptResponse(item); $event.stopPropagation();"
