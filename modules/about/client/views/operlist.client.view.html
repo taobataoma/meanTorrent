@@ -14,12 +14,13 @@
             </div>
 
             <div class="row oper-list">
-                <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="o in vm.operList">
+                <div class="col-sm-6 col-md-4" ng-repeat="o in vm.operList">
                     <div class="text-center oper-item"
                          ui-sref="userinfo({userId: o._id})"
                          ng-class="{'is-admin': o.isAdmin}">
-                        <span info-class="h3" user-info="o" info-name></span>
-                        <span to-class="h4" message-to="o" to-class="message-to-icon"></span>
+                        <span user-info="o" info-class="oper-avatar" info-avatar></span>
+                        <span info-class="h4" user-info="o" info-name></span>
+                        <span to-class="h5" message-to="o" to-class="message-to-icon"></span>
 
                         <div class="margin-top-10">ID: {{o.username}}</div>
                         <div>{{o.isAdmin ? 'Administrator' : 'Operator'}}</div>
