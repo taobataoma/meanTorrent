@@ -9,7 +9,7 @@
     'NotifycationService', '$stateParams', 'marked', 'ModalConfirmService', '$compile', 'DownloadService', 'TorrentGetInfoServices', 'ResourcesTagsServices'];
 
   function RequestsViewController($scope, $rootScope, $state, $timeout, $translate, Authentication, RequestsService, localStorageService, MeanTorrentConfig, mtDebug,
-                                  NotifycationService, $stateParams, marked, ModalConfirmService, $compile, DownloadService, TorrentGetInfoServices, ResourcesTagsServices,) {
+                                  NotifycationService, $stateParams, marked, ModalConfirmService, $compile, DownloadService, TorrentGetInfoServices, ResourcesTagsServices) {
     var vm = this;
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
