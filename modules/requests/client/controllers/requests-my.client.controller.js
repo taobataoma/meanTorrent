@@ -6,15 +6,16 @@
     .controller('RequestsMyController', RequestsMyController);
 
   RequestsMyController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$translate', 'Authentication', 'RequestsService', 'ScoreLevelService', 'MeanTorrentConfig', 'DebugConsoleService',
-    'NotifycationService', 'uibButtonConfig', 'marked'];
+    'NotifycationService', 'uibButtonConfig', 'marked', 'localStorageService'];
 
   function RequestsMyController($scope, $rootScope, $state, $timeout, $translate, Authentication, RequestsService, ScoreLevelService, MeanTorrentConfig, mtDebug,
-                                NotifycationService, uibButtonConfig, marked) {
+                                NotifycationService, uibButtonConfig, marked, localStorageService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.show_desc_help = localStorageService.get('requests_my_show_help') || 'yes';
 
     /**
      * getRequestsDesc
@@ -95,6 +96,36 @@
       }
 
       return exp;
+    };
+
+    /**
+     * onShowHelpClicked
+     */
+    vm.onShowHelpClicked = function () {
+      var e = $('.requests-desc');
+
+      if (e.hasClass('panel-collapsed')) {
+        e.slideDown();
+        e.removeClass('panel-collapsed');
+        localStorageService.set('requests_my_show_help', 'yes');
+      } else {
+        e.slideUp();
+        e.addClass('panel-collapsed');
+        localStorageService.set('requests_my_show_help', 'no');
+      }
+    };
+
+    /**
+     * onCloseHelpClicked
+     */
+    vm.onCloseHelpClicked = function () {
+      var e = $('.requests-desc');
+
+      if (!e.hasClass('panel-collapsed')) {
+        e.slideUp();
+        e.addClass('panel-collapsed');
+        localStorageService.set('requests_my_show_help', 'no');
+      }
     };
 
   }

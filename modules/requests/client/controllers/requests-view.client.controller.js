@@ -9,7 +9,7 @@
     'NotifycationService', '$stateParams', 'marked', 'ModalConfirmService', '$compile', 'DownloadService', 'TorrentGetInfoServices', 'ResourcesTagsServices'];
 
   function RequestsViewController($scope, $rootScope, $state, $timeout, $translate, Authentication, RequestsService, localStorageService, MeanTorrentConfig, mtDebug,
-                                  NotifycationService, $stateParams, marked, ModalConfirmService, $compile, DownloadService, TorrentGetInfoServices, ResourcesTagsServices) {
+                                  NotifycationService, $stateParams, marked, ModalConfirmService, $compile, DownloadService, TorrentGetInfoServices, ResourcesTagsServices,) {
     var vm = this;
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
@@ -18,6 +18,7 @@
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
     vm.RTS = ResourcesTagsServices;
+    vm.show_desc_help = localStorageService.get('requests_view_show_help') || 'yes';
 
     vm.searchTags = [];
 
@@ -265,6 +266,36 @@
       }
 
       return exp;
+    };
+
+    /**
+     * onShowHelpClicked
+     */
+    vm.onShowHelpClicked = function () {
+      var e = $('.requests-desc');
+
+      if (e.hasClass('panel-collapsed')) {
+        e.slideDown();
+        e.removeClass('panel-collapsed');
+        localStorageService.set('requests_view_show_help', 'yes');
+      } else {
+        e.slideUp();
+        e.addClass('panel-collapsed');
+        localStorageService.set('requests_view_show_help', 'no');
+      }
+    };
+
+    /**
+     * onCloseHelpClicked
+     */
+    vm.onCloseHelpClicked = function () {
+      var e = $('.requests-desc');
+
+      if (!e.hasClass('panel-collapsed')) {
+        e.slideUp();
+        e.addClass('panel-collapsed');
+        localStorageService.set('requests_view_show_help', 'no');
+      }
     };
   }
 }());

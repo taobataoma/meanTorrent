@@ -27,7 +27,23 @@
     }
 }
 
+.pagetop {
+    .request-help {
+        margin-left: 20px;
+        color: #337ab7;
+        cursor: pointer;
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+.requests-desc-hide {
+    display: none;
+}
+
 .requests-desc {
+    position: relative;
     text-shadow: 0 0 0.1em #000, 0 0 0.1em #000;
     margin-bottom: 30px;
     padding: 0 20px 20px;
@@ -40,6 +56,15 @@
         font-size: 15px;
         code {
             text-shadow: none;
+        }
+    }
+    .fa-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        &:hover {
+            color: @brand-danger;
         }
     }
 }
