@@ -1050,6 +1050,11 @@ body {
 }
 
 .list-all-ips {
+    overflow-y: hidden;
+    max-height: 10em;
+    &:hover {
+        overflow-y: auto;
+    }
     .ip-item {
         &:not(:first-child) {
             &::before {
@@ -1472,15 +1477,16 @@ body {
         dt {
             width: 170px !important;
         }
-
         dd {
-            padding: 0 10px;
+            padding: 0 0 0 10px;
         }
-
         dt, dd {
             &:hover {
                 background-color: #f8f8f8;
             }
+        }
+        .h-line {
+            margin-bottom: 1px;
         }
     }
 }
