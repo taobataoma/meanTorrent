@@ -4,9 +4,9 @@
     .black-item {
         cursor: pointer;
         position: relative;
-        border: solid 1px #333;
+        border: solid 1px #1a1a1a;
         border-radius: 4px;
-        background-color: #555;
+        background-color: #2a2a2a;
         padding: 10px 0 15px 0;
         margin: 20px 0 0 0;
         overflow: hidden;
@@ -56,65 +56,30 @@
     .oper-item {
         cursor: pointer;
         position: relative;
-        border: solid 1px darken(@state-danger-text, 15%);
-        border-radius: 4px;
-        background-color: lighten(@state-danger-text, 5%);
         padding: 10px 0 10px 0;
-        margin: 20px 0 0 0;
+        //margin: 10px 0 0 0;
         overflow: hidden;
 
         &.is-admin {
-            background-color: darken(@state-danger-text, 10%);
-        }
-
-        .fa {
-            transition-property: transform, opacity;
-            transition-duration: .5s;
-            transition-timing-function: ease;
-            font-size: 7em;
-            color: #888;
-        }
-        span {
-            color: #ddd;
-            position: relative;
-            z-index: 100;
-        }
-        div {
-            color: #999;
-            position: relative;
-            z-index: 100;
-        }
-
-        &:hover {
-            .fa {
-                /* csslint ignore:start */
-                transform: scale(1.5);
-                /* csslint ignore:end */
-            }
-            .h3, .h4, div {
-                color: #fff;
-            }
-            .oper-icon {
-                opacity: 0.3;
-            }
+            //background-color: #ccc;
         }
         .oper-avatar {
             img {
                 cursor: pointer;
                 float: left;
-                margin-left: 10px;
+                margin: 0 10px;
                 border-radius: 3px;
                 height: 80px;
                 width: 80px;
             }
         }
-    }
-
-    .oper-icon {
-        position: absolute;
-        top: 2px;
-        right: -40px;
-        opacity: 0.5;
+        .oper-info {
+            margin-top: 5px;
+            .oper-name, oper-msg {
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
     }
 }
 

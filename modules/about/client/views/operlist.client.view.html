@@ -1,6 +1,6 @@
 <section class="container" ng-controller="AboutController as vm" ng-init="vm.getOperList();">
     <div class="row margin-top-20">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
+        <div class="col-sm-12">
             <span>
                 <h3 class="margin-bottom-30">
                     {{'ABOUT.OPER_LIST' | translate}}
@@ -14,17 +14,18 @@
             </div>
 
             <div class="row oper-list">
-                <div class="col-sm-6 col-md-4" ng-repeat="o in vm.operList">
-                    <div class="text-center oper-item"
+                <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="o in vm.operList">
+                    <div class="oper-item" mt-scale-by-mouse="{scale: 1.1, duration: '.5s'}"
                          ui-sref="userinfo({userId: o._id})"
                          ng-class="{'is-admin': o.isAdmin}">
                         <span user-info="o" info-class="oper-avatar" info-avatar></span>
-                        <span info-class="h4" user-info="o" info-name></span>
-                        <span to-class="h5" message-to="o" to-class="message-to-icon"></span>
+                        <div class="oper-info">
+                            <span info-class="oper-name" user-info="o" info-name></span>
+                            <span to-class="oper-msg" message-to="o" to-class="message-to-icon"></span>
 
-                        <div class="margin-top-10">ID: {{o.username}}</div>
-                        <div>{{o.isAdmin ? 'Administrator' : 'Operator'}}</div>
-                        <i class="fa fa-user-circle-o text-danger oper-icon"></i>
+                            <div class="margin-top-10">ID: {{o.username}}</div>
+                            <div>{{o.isAdmin ? 'Administrator' : 'Operator'}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
