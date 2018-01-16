@@ -106,6 +106,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 49. Complete server auto notice function to users.
 50. Complete RSS subscription support.
 51. Complete user follow system.
+52. Request system support. User can post a request to find any torrent and respond a request to upload torrent, rewards score support. 
 
 #### Chat room feature:
 1. Users name list
@@ -118,7 +119,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 
 ## TODO
 - Poll type topics support in forum.
-- Request system
 - More score get methods.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - IRC chat
