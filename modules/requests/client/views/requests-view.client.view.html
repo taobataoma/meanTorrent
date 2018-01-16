@@ -48,7 +48,7 @@
                         <span user-info="vm.request.user" info-class="request-avatar" info-avatar></span>
                         <div class="request-list">
                             <div class="table-responsive request-item">
-                                <table class="table table-hover table-bordered tb-v-middle top-border bottom-border">
+                                <table class="table table-hover table-bordered tb-v-middle top-border">
                                     <thead>
                                         <tr>
                                             <th>{{ 'REQUESTS.FIELD_TITLE' | translate}}</th>
@@ -96,6 +96,19 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        <tr class="tr-comments">
+                                            <td colspan="7">
+                                                <div class="request-comments">
+                                                    <div class="comments-form pull-right">
+                                                        <textarea id="commentsForm" name="commentsForm"
+                                                                  ng-model="vm.comment.content"
+                                                                  mt-markdown-editor="commentsForm"
+                                                                  maxlength="{{vm.inputLengthConfig.requestCommentLength}}"
+                                                                  required></textarea>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td colspan="7">
                                                 <div class="form-inline">
@@ -137,13 +150,12 @@
                                 <h3 class="text-muted">{{'REQUESTS.NO_RESPONSES' | translate}}</h3>
                             </div>
 
-                            <div ng-if="vm.request.torrents.length>0">
+                            <div class="margin-left-80" ng-if="vm.request.torrents.length>0">
                                 <div class="response-title">{{ 'REQUESTS.RESPONSE_TITLE' | translate}}</div>
                                 <div class="table-responsive">
-                                    <table class="table table-hover tb-v-middle top-border bottom-border">
+                                    <table class="table table-hover tb-v-middle top-border">
                                         <thead>
                                             <tr>
-                                                <th></th>
                                                 <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
                                                 <th>{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
                                                 <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
@@ -160,17 +172,6 @@
                                             <tr class="torrent-list-info" ng-repeat="item in vm.request.torrents"
                                                 ng-click="vm.TGI.openTorrentDetailInfo(item._id);"
                                                 ng-class="{'accepted-item': vm.request.accept == item._id}" ng-disabled="true">
-                                                <td class="td-v-middle" ng-click="$event.stopPropagation();">
-                                                    <div class="div-accept">
-                                                        <button class="btn btn-success btn-block btn-response-accept"
-                                                                ng-click="vm.acceptResponse(item); $event.stopPropagation();"
-                                                                ng-if="!vm.request.accept && !vm.isExpired(vm.request) && item.torrent_status == 'reviewed'">
-                                                            {{ 'REQUESTS.BTN_ACCEPT' | translate}}
-                                                        </button>
-                                                        <i class="fa fa-lock fa-accept pull-right" aria-hidden="true"
-                                                           ng-if="vm.request.accept == item._id"></i>
-                                                    </div>
-                                                </td>
                                                 <td class="col-md-7 td-v-middle td-text-overflow">
                                                     <div class="media">
                                                         <div class="media-left">
@@ -241,6 +242,7 @@
                                                                     </span>
                                                                 </span>
                                                             </div>
+                                                            <i class="fa fa-check fa-stack-1x fa-accept" ng-if="vm.request.accept == item._id"></i>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -267,7 +269,12 @@
                                                     </p>
                                                 </td>
                                                 <td class="col-md-1 td-v-middle text-center td-uploader">
-                                                    <span user-info="item.user" info-name></span>
+                                                    <p user-info="item.user" info-name></p>
+                                                    <button class="btn btn-success btn-block btn-response-accept"
+                                                            ng-click="vm.acceptResponse(item); $event.stopPropagation();"
+                                                            ng-if="!vm.request.accept && !vm.isExpired(vm.request) && item.torrent_status == 'reviewed'">
+                                                        {{ 'REQUESTS.BTN_ACCEPT' | translate}}
+                                                    </button>
                                                 </td>
 
                                                 <td class="td-v-middle text-center"
