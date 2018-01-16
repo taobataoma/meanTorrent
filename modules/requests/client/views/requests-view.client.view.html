@@ -108,22 +108,22 @@
                                                     <fieldset ng-disabled="vm.request.accept || vm.isExpired(vm.request);">
                                                         <a ui-sref="torrents.uploads({req: vm.request._id})"
                                                            ng-if="!vm.request.isCurrentUserOwner"
-                                                           class="btn btn-success btn-width-120">
+                                                           class="btn btn-success btn-width-100">
                                                             {{ 'DO_UPLOAD' | translate}}
                                                         </a>
-                                                        <button class="btn btn-default btn-width-120"
+                                                        <button class="btn btn-default btn-width-100"
                                                                 ng-if="vm.request.isCurrentUserOwner || vm.user.isOper"
                                                                 ng-click="vm.beginEditMakerDesc(vm.request)">
                                                             {{ 'REQUESTS.BTN_EDIT_DESC' | translate}}
                                                         </button>
                                                     </fieldset>
-                                                    <button class="btn btn-default btn-width-120"
+                                                    <button class="btn btn-default btn-width-100"
                                                             ng-disabled="vm.request.accept"
                                                             ng-if="vm.request.isCurrentUserOwner || vm.user.isOper"
                                                             ng-click="vm.removeRequest();">
                                                         {{ 'BTN_REMOVE' | translate}}
                                                     </button>
-                                                    <btn class="btn btn-default btn-width-120"
+                                                    <btn class="btn btn-default btn-width-100"
                                                          ng-click="vm.scrollToElement('#top_of_new_comment');">
                                                         {{ 'REQUESTS.BTN_COMMENT' | translate}}
                                                     </btn>
