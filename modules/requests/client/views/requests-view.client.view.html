@@ -48,7 +48,7 @@
                 <div class="col-sm-12">
                     <div class="request-wrapper">
                         <span user-info="vm.request.user" info-class="request-avatar" info-avatar></span>
-                        <div class="request-list">
+                        <div class="request-list" ng-if="vm.request">
                             <div class="table-responsive request-item">
                                 <table class="table table-hover table-bordered tb-v-middle top-border">
                                     <thead>
@@ -68,7 +68,7 @@
                                                 <h4>
                                                     <div class="text-long">
                                                         <a ui-sref="#">
-                                                            <span editable-line readonly="!vm.request.isCurrentUserOwner && !vm.user.isOper"
+                                                            <span editable-line readonly="!vm.isCurrentUserOwner && !vm.user.isOper"
                                                                   ng-model="vm.request.title"
                                                                   callback="onRequestTitleEdited"></span>
                                                         </a>
@@ -107,19 +107,19 @@
                                                 <div class="form-inline">
                                                     <fieldset ng-disabled="vm.request.accept || vm.isExpired(vm.request);">
                                                         <a ui-sref="torrents.uploads({req: vm.request._id})"
-                                                           ng-if="!vm.request.isCurrentUserOwner"
+                                                           ng-if="!vm.isCurrentUserOwner"
                                                            class="btn btn-success btn-width-100">
                                                             {{ 'DO_UPLOAD' | translate}}
                                                         </a>
                                                         <button class="btn btn-default btn-width-100"
-                                                                ng-if="vm.request.isCurrentUserOwner || vm.user.isOper"
+                                                                ng-if="vm.isCurrentUserOwner || vm.user.isOper"
                                                                 ng-click="vm.beginEditMakerDesc(vm.request)">
                                                             {{ 'REQUESTS.BTN_EDIT_DESC' | translate}}
                                                         </button>
                                                     </fieldset>
                                                     <button class="btn btn-default btn-width-100"
                                                             ng-disabled="vm.request.accept"
-                                                            ng-if="vm.request.isCurrentUserOwner || vm.user.isOper"
+                                                            ng-if="vm.isCurrentUserOwner || vm.user.isOper"
                                                             ng-click="vm.removeRequest();">
                                                         {{ 'BTN_REMOVE' | translate}}
                                                     </button>

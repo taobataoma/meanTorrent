@@ -100,6 +100,18 @@
     };
 
     /**
+     * isCurrentUserOwner
+     * @returns {boolean}
+     */
+    vm.isCurrentUserOwner = function () {
+      if (vm.request) {
+        return vm.request.user._id === vm.user._id
+      } else {
+        return false;
+      }
+    };
+
+    /**
      * commentBuildPager
      * pagination init
      */
