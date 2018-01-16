@@ -52,6 +52,10 @@ and [AngularJS](http://angularjs.org/) based applications.
 ![uploader-access](https://user-images.githubusercontent.com/7778550/34406667-4d2a1800-ebf5-11e7-9884-cb6cfb03705b.jpg)
 - __Follow list page__
 ![follow](https://user-images.githubusercontent.com/7778550/34604741-ecdda598-f243-11e7-9363-70545b113eb9.jpg)
+- __Requests list page__
+![request-list](https://user-images.githubusercontent.com/7778550/34977882-4e8368be-fad7-11e7-8177-1023cfd754ec.jpg)
+- __Request view page__
+![request-view](https://user-images.githubusercontent.com/7778550/34977885-511679ae-fad7-11e7-9026-75b568012d49.jpg)
 
 #### meanTorrent some feature:
 1. Multilingual support, now English & Chinese, please read the guide of [how to add a complete translated language](#howToAddTranslate).
