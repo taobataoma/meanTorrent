@@ -106,7 +106,7 @@
                                             <td colspan="7">
                                                 <div class="form-inline">
                                                     <fieldset ng-disabled="vm.request.accept || vm.isExpired(vm.request);">
-                                                        <a ui-sref="torrents.uploads({req: vm.request._id})"
+                                                        <a ui-sref="torrents.uploads({reqId: vm.request._id})"
                                                            ng-if="!vm.isCurrentUserOwner()"
                                                            class="btn btn-success btn-width-100">
                                                             {{ 'DO_UPLOAD' | translate}}
