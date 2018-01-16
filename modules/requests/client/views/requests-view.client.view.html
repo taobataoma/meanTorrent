@@ -75,8 +75,8 @@
                                                     </div>
                                                 </h4>
                                             </td>
-                                            <td class="col-md-1 td-v-middle text-center">{{'MENU_TORRENTS_SUB.'+vm.request.type.toUpperCase() | translate}}</td>
-                                            <td class="col-md-1 td-v-middle text-center">
+                                            <td class="col-md-1 td-v-middle text-center width-80">{{'MENU_TORRENTS_SUB.'+vm.request.type.toUpperCase() | translate}}</td>
+                                            <td class="col-md-1 td-v-middle text-center width-80">
                                                 {{vm.request.createdAt | life }}
                                                 <div>
                                                     <span class="badge badge_danger"
@@ -84,14 +84,14 @@
                                                     <span class="badge badge_success" ng-if="vm.request.accept">Finished</span>
                                                 </div>
                                             </td>
-                                            <td class="col-md-1 td-v-middle text-center">{{vm.request.rewards}}</td>
-                                            <td class="col-md-1 td-v-middle text-center">
+                                            <td class="col-md-1 td-v-middle text-center width-80">{{vm.request.rewards}}</td>
+                                            <td class="col-md-1 td-v-middle text-center width-60">
                                                 <a href="#" ng-click="vm.scrollToElement('#top_of_responses');">{{vm.request.torrents.length}}</a>
                                             </td>
-                                            <td class="col-md-1 td-v-middle text-center">
+                                            <td class="col-md-1 td-v-middle text-center width-60">
                                                 <a href="#" ng-click="vm.scrollToElement('#top_of_comments');">{{vm.request.comments.length}}</a>
                                             </td>
-                                            <td class="col-md-1 td-v-middle text-center">
+                                            <td class="col-md-1 td-v-middle text-center width-80">
                                                 <span user-info="vm.request.user" info-name></span>
                                             </td>
                                         </tr>
@@ -247,7 +247,7 @@
                                                     <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
                                                           class="torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
                                                 </td>
-                                                <td class="col-md-1 td-v-middle text-center">{{item.createdat | life}}</td>
+                                                <td class="col-md-1 td-v-middle text-center width-80">{{item.createdat | life}}</td>
                                                 <td class="col-md-1 td-v-middle text-center td-size">{{item.torrent_size | bytes:2}}</td>
                                                 <td class="col-md-1 td-v-middle list-user-info td-user-info">
                                                     <p class="no-margin-p" title="{{ 'TITLE_ALT.SEEDS' | translate}}">

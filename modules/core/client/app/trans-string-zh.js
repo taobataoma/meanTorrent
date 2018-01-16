@@ -726,7 +726,7 @@
       POST_REQUEST_SUCCESSFULLY: '创建求种请求成功!',
       POST_REQUEST_FAILED: '创建求种请求失败!',
       FIELD_TITLE: '求种标题与描述',
-      FIELD_TYPE: '求种类型',
+      FIELD_TYPE: '类型',
       FIELD_LIFE: '创建时间',
       FIELD_REWARDS: '悬赏积分',
       FIELD_COMMENTS: '评论',
