@@ -44,7 +44,7 @@
 
               element.bind('click', function (e) {
                 $timeout(function () {
-                  $('html,body').animate({scrollTop: scTop}, 200);
+                  $('html,body').animate({scrollTop: scTop}, 300);
                 }, 10);
               });
             }

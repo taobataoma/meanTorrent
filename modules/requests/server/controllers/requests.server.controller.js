@@ -173,8 +173,8 @@ exports.accept = function (req, res) {
                   }).exec();
 
                   //add server message
-                  if (serverNoticeConfig.action.RequestTorrentRespond.enable) {
-                    serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.RequestTorrentRespond.title, serverNoticeConfig.action.RequestTorrentRespond.content, {
+                  if (serverNoticeConfig.action.requestTorrentRespond.enable) {
+                    serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.requestTorrentRespond.title, serverNoticeConfig.action.requestTorrentRespond.content, {
                       request_title: request.title,
                       request_id: request._id,
                       torrent_file_name: torrent.torrent_filename,
@@ -309,6 +309,16 @@ exports.requestByID = function (req, res, next, id) {
         path: 'user',
         select: 'username displayName profileImageURL isVip'
       }
+    })
+    .populate({
+      path: 'comments.user',
+      select: 'username displayName profileImageURL isVip uploaded downloaded',
+      model: 'User'
+    })
+    .populate({
+      path: 'comments._replies.user',
+      select: 'username displayName profileImageURL isVip uploaded downloaded',
+      model: 'User'
     })
     .exec(function (err, request) {
       if (err) {

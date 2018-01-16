@@ -660,7 +660,7 @@
       vm.reply_action = 'reply';
 
       vm.new_comment_content = vm.comment_to_at;
-      angular.element('.new_comment_textarea').trigger('focus');
+      angular.element('#commentContent').trigger('focus');
     };
 
     /**
@@ -673,7 +673,7 @@
       vm.reply_action = 'reply';
 
       vm.new_comment_content = vm.comment_to_at;
-      angular.element('.new_comment_textarea').trigger('focus');
+      angular.element('#commentContent').trigger('focus');
     };
 
     /**
@@ -689,7 +689,7 @@
         vm.reply_action = 'reply';
 
         vm.new_comment_content = vm.comment_to_at;
-        angular.element('.new_comment_textarea').trigger('focus');
+        angular.element('#commentContent').trigger('focus');
       }
     };
 
@@ -702,7 +702,7 @@
       vm.reply_action = 'edit';
 
       vm.new_comment_content = citem.comment;
-      angular.element('.new_comment_textarea').trigger('focus');
+      angular.element('#commentContent').trigger('focus');
     };
 
     /**
@@ -716,7 +716,7 @@
       vm.reply_action = 'edit';
 
       vm.new_comment_content = sitem.comment;
-      angular.element('.new_comment_textarea').trigger('focus');
+      angular.element('#commentContent').trigger('focus');
     };
 
     /**

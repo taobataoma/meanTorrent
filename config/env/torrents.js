@@ -426,8 +426,10 @@ module.exports = {
         torrentSubtitleNew: {title: 'TITLE_TORRENT_SUBTITLE_NEW', content: 'CONTENT_TORRENT_SUBTITLE_NEW', enable: true},
         torrentSubtitleDeleted: {title: 'TITLE_TORRENT_SUBTITLE_DELETED', content: 'CONTENT_TORRENT_SUBTITLE_DELETED', enable: true},
 
-        RequestTorrentUpload: {title: 'TITLE_REQUEST_TORRENT_UPLOAD', content: 'CONTENT_REQUEST_TORRENT_UPLOAD', enable: true},
-        RequestTorrentRespond: {title: 'TITLE_REQUEST_TORRENT_RESPOND', content: 'CONTENT_REQUEST_TORRENT_RESPOND', enable: true}
+        requestTorrentUpload: {title: 'TITLE_REQUEST_TORRENT_UPLOAD', content: 'CONTENT_REQUEST_TORRENT_UPLOAD', enable: true},
+        requestTorrentRespond: {title: 'TITLE_REQUEST_TORRENT_RESPOND', content: 'CONTENT_REQUEST_TORRENT_RESPOND', enable: true},
+        requestNewComment: {title: 'TITLE_REQUEST_NEW_COMMENT', content: 'CONTENT_REQUEST_NEW_COMMENT', enable: true},
+        requestCommentDeleted: {title: 'TITLE_REQUEST_COMMENT_DELETED', content: 'CONTENT_REQUEST_COMMENT_DELETED', enable: true}
       }
     },
 

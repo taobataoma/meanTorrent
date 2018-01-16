@@ -734,6 +734,7 @@
       FIELD_USER: 'User',
       BTN_EDIT_DESC: 'Edit Desc',
       BTN_ACCEPT: 'Accept',
+      BTN_COMMENT: 'Comment',
       WAITING_REVIEW: 'Waiting for review ...',
       EDIT_SUCCESSFULLY: 'Edit request successfully',
       EDIT_FAILED: 'Edit request failed',
@@ -752,6 +753,12 @@
       RESPONSE_TITLE: 'Response torrent list:',
       DESC_HELP_TITLE: 'Show help tooltip',
       CLOSE_HELP_TITLE: 'Close help tooltip',
+      COMMENT_CREATE_SUCCESS: 'Comment created successfully!',
+      COMMENT_CREATE_ERROR: 'Comment created failed!',
+      COMMENT_EDIT_SUCCESS: 'Comment edited successfully!',
+      COMMENT_EDIT_ERROR: 'Comment edited failed!',
+      COMMENT_REMOVE_SUCCESS: 'Comment removed successfully!',
+      COMMENT_REMOVE_ERROR: 'Comment removed failed!',
       DESC_LIST: '### NOTE: \n - The list contains only the last `{{days}}` days of the requests. \n - If your response is accepted, the requestor\'s reward score will be automatically transferred to your account. \n - Only the torrents reviewed by the administrator can be accepted by the requestor. \n - The requester can only accept one of the responses. \n - If your response is complains, your account may be punished, Please respond to the user\'s request carefully.',
       DESC_MY: '### NOTE: \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - You can only accept one of the responses. \n - The request over `{{days}}` days has expired and cannot accept the response,  you can only post the request again. \n - If your score is maliciously damaged, please mail to the [administrator](mailto:{{admin}})',
       DESC_ADD: '### NOTE: \n - Each request will be automatically deducted from `{{add_score}}` points, but your reward score will only be transferred to the responder\'s account that you eventually accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - Each request is only valid for `{{days}}` days. After expiry, you can only post the request again. \n - Please give a clear resources description of your request when you post the request.',
@@ -1481,7 +1488,13 @@
       CONTENT_REQUEST_TORRENT_UPLOAD: '### New response! \n :new: You posted request [{{request_title}}](/requests/{{request_id}}) has a new response torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) upload by user [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_REQUEST_TORRENT_RESPOND: 'Response of request was accepted',
-      CONTENT_REQUEST_TORRENT_RESPOND: '### Response was accepted! \n :clap: Yor uploaded response torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) of request [{{request_title}}](/requests/{{request_id}}) was accepted by user [{{by_name}}](/userinfo/{{by_id}}), and the rewards score `{{rewards}}` already be automatically transferred to your account.'
+      CONTENT_REQUEST_TORRENT_RESPOND: '### Response was accepted! \n :clap: Yor uploaded response torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) of request [{{request_title}}](/requests/{{request_id}}) was accepted by user [{{by_name}}](/userinfo/{{by_id}}), and the rewards score `{{rewards}}` already be automatically transferred to your account.',
+
+      TITLE_REQUEST_NEW_COMMENT: 'Request has new comment',
+      CONTENT_REQUEST_NEW_COMMENT: '### New comment! \n :collision: You posted request [{{request_title}}](/requests/{{request_id}}) has a new comment submit by user [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_REQUEST_COMMENT_DELETED: 'Request comment was deleted',
+      CONTENT_REQUEST_COMMENT_DELETED: ':warning: You posted comment of request [{{request_title}}](/requests/{{request_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}).'
     }
   };
 

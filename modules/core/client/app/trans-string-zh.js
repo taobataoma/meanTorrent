@@ -734,6 +734,7 @@
       FIELD_USER: '求种用户',
       BTN_EDIT_DESC: '编辑描述',
       BTN_ACCEPT: '接受',
+      BTN_COMMENT: '留言',
       WAITING_REVIEW: '等特审核 ...',
       EDIT_SUCCESSFULLY: '请求编辑成功',
       EDIT_FAILED: '请求编辑失败',
@@ -752,6 +753,12 @@
       RESPONSE_TITLE: '响应列表',
       DESC_HELP_TITLE: '显示帮助提示',
       CLOSE_HELP_TITLE: '关闭帮助提示',
+      COMMENT_CREATE_SUCCESS: '留言创建成功!',
+      COMMENT_CREATE_ERROR: '留言创建失败!',
+      COMMENT_EDIT_SUCCESS: '留言编辑成功!',
+      COMMENT_EDIT_ERROR: '留言编辑失败!',
+      COMMENT_REMOVE_SUCCESS: '留言删除成功!',
+      COMMENT_REMOVE_ERROR: '留言删除失败!',
       DESC_LIST: '### 提示: \n - 此列表只包含最近 `{{days}}` 天内发布的求种请求. \n - 如果你的回应被采纳, 请求者悬赏的积分将自动转入你的帐户. \n - 只有被管理员审核通过的种子才能被请求者接受. \n - 请求者只能接受多个响应中的一个. \n - 如果你的响应被请求者投诉，你的帐号就可能会受到惩罚, 请认真响应用户的请求.',
       DESC_MY: '### 提示: \n - 如果您接受一个响应, 你的悬赏积分就会转入你接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 您只能接受多个响应中的一个. \n - 超过 `{{days}}` 天的请求已经过期且不能接受响应, 如果需要你只能再次发起请求. \n - 如果您的积分受到恶意损害, 请向管理员[投诉](mailto:{{admin}}).',
       DESC_ADD: '### 提示: \n - 每发布一个请求会被自动扣除 `{{add_score}}` 积分, 而你的悬赏积分会转入你最终接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 每一个发布的请求只有 `{{days}}` 天的有效期, 过期后你只能再次发起请求. \n - 请在发布请求时明确描述您对资源的要求.',
@@ -1481,7 +1488,13 @@
       CONTENT_REQUEST_TORRENT_UPLOAD: '### 新的求种响应! \n :new: 您发布的求种请求 [{{request_title}}](/requests/{{request_id}}) 有一个新的上传响应 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 来自用户 [{{by_name}}](/userinfo/{{by_id}}).',
 
       TITLE_REQUEST_TORRENT_RESPOND: '求种响应被接受',
-      CONTENT_REQUEST_TORRENT_RESPOND: '### 响应被接受! \n :clap: 您对求种请求 [{{request_title}}](/requests/{{request_id}}) 响应的上传种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 已经被用户 [{{by_name}}](/userinfo/{{by_id}}) 接受, 悬赏的 `{{rewards}}` 积分已经转入您的帐户.'
+      CONTENT_REQUEST_TORRENT_RESPOND: '### 响应被接受! \n :clap: 您对求种请求 [{{request_title}}](/requests/{{request_id}}) 响应的上传种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 已经被用户 [{{by_name}}](/userinfo/{{by_id}}) 接受, 悬赏的 `{{rewards}}` 积分已经转入您的帐户.',
+
+      TITLE_REQUEST_NEW_COMMENT: '求种请求有新留言',
+      CONTENT_REQUEST_NEW_COMMENT: '### 新留言! \n :collision: 您发布的求种请求 [{{request_title}}](/requests/{{request_id}}) 有一条新留言，提交来自用户 [{{by_name}}](/userinfo/{{by_id}}).',
+
+      TITLE_REQUEST_COMMENT_DELETED: '求种请求的留言被删除',
+      CONTENT_REQUEST_COMMENT_DELETED: ':warning: 您在求种请求 [{{request_title}}](/requests/{{request_id}}) 下的留言被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.'
     }
   };
 

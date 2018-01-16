@@ -671,8 +671,8 @@ exports.create = function (req, res) {
                 mtDebug.debugError(err);
               } else {
                 //add server message
-                if (serverNoticeConfig.action.RequestTorrentUpload.enable) {
-                  serverMessage.addMessage(doc.user, serverNoticeConfig.action.RequestTorrentUpload.title, serverNoticeConfig.action.RequestTorrentUpload.content, {
+                if (serverNoticeConfig.action.requestTorrentUpload.enable) {
+                  serverMessage.addMessage(doc.user, serverNoticeConfig.action.requestTorrentUpload.title, serverNoticeConfig.action.requestTorrentUpload.content, {
                     request_title: doc.title,
                     request_id: doc._id,
                     torrent_file_name: torrent.torrent_filename,

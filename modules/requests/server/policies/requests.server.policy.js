@@ -13,11 +13,26 @@ acl = new acl(new acl.memoryBackend());
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
-    roles: ['user', 'oper', 'admin'],
+    roles: ['oper', 'admin'],
     allows: [
       {resources: '/api/requests', permissions: '*'},
       {resources: '/api/requests/:requestId', permissions: '*'},
-      {resources: '/api/requests/:requestId/accept/:torrentId', permissions: '*'}
+      {resources: '/api/requests/:requestId/accept/:torrentId', permissions: '*'},
+
+      {resources: '/api/comments/:requestId', permissions: '*'},
+      {resources: '/api/comments/:requestId/:commentId', permissions: '*'},
+      {resources: '/api/comments/:requestId/:commentId/:subCommentId', permissions: '*'}
+    ]
+  }, {
+    roles: ['user'],
+    allows: [
+      {resources: '/api/requests', permissions: '*'},
+      {resources: '/api/requests/:requestId', permissions: '*'},
+      {resources: '/api/requests/:requestId/accept/:torrentId', permissions: '*'},
+
+      {resources: '/api/comments/:requestId', permissions: ['post']},
+      {resources: '/api/comments/:requestId/:commentId', permissions: ['post', 'put', 'delete']},
+      {resources: '/api/comments/:requestId/:commentId/:subCommentId', permissions: ['put', 'delete']}
     ]
   }]);
 };

@@ -40,9 +40,11 @@
         </div>
     </div>
 
+    <div class="up_to_top_div" up-to-top="top_of_requests" offset="-3000"></div>
+
     <div class="container">
         <div class="margin-bottom-10 margin-top-10">
-            <div class="row">
+            <div class="row" id="top_of_requests">
                 <div class="col-sm-12">
                     <div class="request-wrapper">
                         <span user-info="vm.request.user" info-class="request-avatar" info-avatar></span>
@@ -83,8 +85,12 @@
                                                 </div>
                                             </td>
                                             <td class="col-md-1 td-v-middle text-center">{{vm.request.rewards}}</td>
-                                            <td class="col-md-1 td-v-middle text-center">{{vm.request.torrents.length}}</td>
-                                            <td class="col-md-1 td-v-middle text-center">{{vm.request.comments.length}}</td>
+                                            <td class="col-md-1 td-v-middle text-center">
+                                                <a href="#" ng-click="vm.scrollToElement('#top_of_responses');">{{vm.request.torrents.length}}</a>
+                                            </td>
+                                            <td class="col-md-1 td-v-middle text-center">
+                                                <a href="#" ng-click="vm.scrollToElement('#top_of_comments');">{{vm.request.comments.length}}</a>
+                                            </td>
                                             <td class="col-md-1 td-v-middle text-center">
                                                 <span user-info="vm.request.user" info-name></span>
                                             </td>
@@ -93,19 +99,6 @@
                                             <td colspan="7">
                                                 <div class="item-marked-desc" id="{{vm.request._id}}" data-provide="markdown"
                                                      ng-bind-html="vm.getRequestDescContent(vm.request)">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="tr-comments">
-                                            <td colspan="7">
-                                                <div class="request-comments">
-                                                    <div class="comments-form pull-right">
-                                                        <textarea id="commentsForm" name="commentsForm"
-                                                                  ng-model="vm.comment.content"
-                                                                  mt-markdown-editor="commentsForm"
-                                                                  maxlength="{{vm.inputLengthConfig.requestCommentLength}}"
-                                                                  required></textarea>
-                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -130,6 +123,10 @@
                                                             ng-click="vm.removeRequest();">
                                                         {{ 'BTN_REMOVE' | translate}}
                                                     </button>
+                                                    <btn class="btn btn-default btn-width-120"
+                                                         ng-click="vm.scrollToElement('#top_of_new_comment');">
+                                                        {{ 'REQUESTS.BTN_COMMENT' | translate}}
+                                                    </btn>
                                                 </div>
                                             </td>
                                         </tr>
@@ -141,7 +138,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="top_of_responses">
                 <div class="col-sm-12">
                     <div class="response-wrapper">
                         <div class="response-list">
@@ -292,6 +289,152 @@
                     </div>
                 </div>
             </div>
+
+            <div class="margin-left-80" id="top_of_comments" ng-if="vm.request.comments">
+                <div class="panel panel-default panel-comment">
+                    <div class="panel-heading text-center"><strong>{{ 'USER_COMMENT_LIST' | translate}}</strong> <span
+                            class="badge badge_info">{{vm.request.comments.length}}</span></div>
+                    <div class="panel-body">
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.commentItemsPerPage"
+                            total-items="vm.commentFilterLength"
+                            ng-model="vm.commentCurrentPage" ng-change="vm.commentPageChanged(true)"
+                            ng-if="vm.request.comments.length > 0"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                        <div id="comment-list-div">
+                            <div class="comment-list" id="{{item._id}}" scroll-if="item._id==vm.scrollToId" offset-top="-60"
+                                 ng-repeat="item in vm.commentPagedItems">
+                                <div class="timeline-comment-wrapper">
+                                    <a class="timeline-comment-avatar" ng-click="vm.replyComment(item);">
+                                        <img title="{{item.user.displayName}}" ng-src="{{item.user.profileImageURL}}">
+                                    </a>
+
+                                    <div class="timeline-comment">
+                                        <div class="timeline-comment-header">
+                                            <div class="timeline-comment-header-text">
+                                                <span user-info="item.user" info-name></span>
+                                                <span vip-flag="item.user"></span>
+                                                <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
+                                                <span class="user-ud-text" ng-if="vm.announceConfig.privateTorrentCmsMode">
+                                                (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{item.user.uploaded | bytes}}
+                                                <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{item.user.downloaded | bytes}}
+                                                )
+                                            </span>
+                                            </div>
+                                            <span class="timeline-comment-header-time-text">{{item.createdat | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                                        </div>
+                                        <div class="timeline-comment-body">
+                                            <div class="timeline-comment-body-text" ng-bind-html="vm.getCommentMarked(item);"></div>
+                                            <div class="row text-right" ng-if="item.editedat">
+                                                <p class="timeline-comment-body-edited-text">[ {{item.editedby}} {{ 'COMMENT_EDITED_INFO' | translate}} {{item.editedat | date:'yyyy-MM-dd HH:mm:ss'}} ]</p>
+                                            </div>
+                                            <div class="row" ng-if="item._replies.length>0">
+                                                <div class="col-sm-10 col-sm-offset-2 timeline-comment-sub-list">
+                                                    <div class="timeline-comment-sub-item" ng-repeat="sitem in item._replies">
+                                                        <a class="timeline-comment-sub-avatar" ng-click="vm.replySubComment(item, sitem);">
+                                                            <img title="{{sitem.user.displayName}}" ng-src="{{sitem.user.profileImageURL}}">
+                                                        </a>
+
+                                                        <div class="timeline-comment-sub-body">
+                                                            <span ng-bind-html="vm.getReplyMarked(sitem);"></span>
+
+                                                            <p class="reply-by">
+                                                            <span style="font-size: 12px;"> -
+                                                                <a ng-click="vm.markLinkClick($event, item);"
+                                                                   ng-href="#">@{{sitem.user.displayName}}</a>
+                                                            </span>
+                                                                <span style="font-size: 12px; color: #999999;">{{sitem.createdat | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+
+                                                                <span class="glyphicon glyphicon-edit edit-button"
+                                                                      title="{{ 'COMMENT_EDIT_ICON_TITLE' | translate}}"
+                                                                      ng-if="sitem.user._id.toString()==vm.user._id || vm.user.roles[0] == 'admin'"
+                                                                      ng-click="vm.editSubComment(item,sitem);">
+                                                            </span>
+
+                                                                <span class="glyphicon glyphicon-remove-circle delete-button"
+                                                                      title="{{ 'COMMENT_DELETE_ICON_TITLE' | translate}}"
+                                                                      ng-if="sitem.user._id.toString()==vm.user._id || vm.user.roles[0] == 'admin'"
+                                                                      ng-click="vm.deleteSubComment(item,sitem);">
+                                                       </span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-comment-footer">
+                                            <div class="timeline-comment-footer-button text-right">
+                                                <button class="btn btn-default btn-xs"
+                                                        ng-if="item.user._id.toString()==vm.user._id || vm.user.roles[0] == 'admin'"
+                                                        translate="COMMENT_REPLY_EDIT" ng-click="vm.editComment(item);"></button>
+                                                <button class="btn btn-default btn-xs"
+                                                        ng-if="item.user._id.toString()==vm.user._id || vm.user.roles[0] == 'admin'"
+                                                        translate="COMMENT_REPLY_DELETE" ng-click="vm.deleteComment(item);"></button>
+                                                <button class="btn btn-default btn-xs"
+                                                        ng-if="vm.user"
+                                                        translate="COMMENT_REPLY_BUTTON" ng-click="vm.replyComment(item);"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.commentItemsPerPage"
+                            total-items="vm.commentFilterLength"
+                            ng-model="vm.commentCurrentPage" ng-change="vm.commentPageChanged(true)"
+                            ng-if="vm.request.comments.length > 0"
+                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                        </ul>
+                        <div class="padding-top-20"></div>
+
+                        <div class="comment-new" id="top_of_new_comment" ng-if="vm.user">
+                            <div class="timeline-comment-wrapper">
+                                <a href="#" class="timeline-comment-avatar">
+                                    <img title="{{vm.user.displayName}}" ng-src="{{vm.user.profileImageURL}}">
+                                </a>
+
+                                <div class="timeline-comment timeline-new-comment">
+                                    <div class="timeline-comment-header">
+                                        <div class="timeline-comment-header-text">{{ vm.comment.action == 'edit' ? 'EDIT_COMMENT' : (vm.comment.action == 'reply' ? 'REPLY_COMMENT' : 'POST_NEW_COMMENT') | translate}}</div>
+                                    </div>
+                                    <div class="timeline-comment-body">
+                                    <textarea id="commentContent" name="commentContent" ng-model="vm.comment.content"
+                                              mt-markdown-editor="commentContent"
+                                              maxlength="{{vm.inputLengthConfig.requestCommentLength}}"></textarea>
+
+                                        <div class="row margin-top-10">
+                                            <div class="col-sm-6" style="display: table;">
+                                                <a class="tabnav-extra" href="https://guides.github.com/features/mastering-markdown/"
+                                                   target="_blank"
+                                                   data-ga-click="Markdown Toolbar, click, help">
+                                                    <svg aria-hidden="true" height="16" version="1.1"
+                                                         viewBox="0 0 16 16" width="16">
+                                                        <path fill-rule="evenodd"
+                                                              d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"/>
+                                                    </svg>
+                                                    {{ 'MARKDOWN_LINK' | translate }}
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6 text-right">
+                                                <button class="btn btn-warning btn-width-80" translate="SUBMIT_CANCEL"
+                                                        ng-click="vm.submitInit();"></button>
+                                                <button class="btn btn-success"
+                                                        translate="{{vm.comment.action == 'reply' ? 'SUBMIT_REPLY' : 'SUBMIT_COMMENT'}}"
+                                                        ng-click="vm.submitComment();"
+                                                        ng-disabled="!vm.comment.content"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
