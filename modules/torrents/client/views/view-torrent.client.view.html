@@ -182,9 +182,10 @@
                                         {{vm.TGI.getTorrentOverview(vm.torrentLocalInfo)}}
                                     </div>
                                     <div ng-if="vm.torrentLocalInfo.torrent_type!='movie' && vm.torrentLocalInfo.torrent_type!='tvserial'">
-                                        <div id="{{vm.torrentLocalInfo._id}}" data-provide="markdown"
-                                             ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.torrentLocalInfo))"
-                                             torrent-image-list="vm.torrentLocalInfo">
+                                        <div id="til_{{vm.torrentLocalInfo._id}}" torrent-image-list="til_{{vm.torrentLocalInfo._id}}">
+                                            <div id="{{vm.torrentLocalInfo._id}}" data-provide="markdown"
+                                                 ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.torrentLocalInfo))">
+                                            </div>
                                         </div>
                                         <div class="edit-overview-div" ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper">
                                             <a href="#" ng-click="vm.beginEditOverview(vm.torrentLocalInfo)">{{'EDIT_THIS_OVERVIEW' | translate}}</a>
@@ -344,7 +345,8 @@
                                 </div>
                                 <div class="timeline-comment-body">
                                     <textarea id="commentContent" name="commentContent" ng-model="vm.new_comment_content"
-                                              mt-markdown-editor="commentContent" maxlength="{{vm.inputLengthConfig.torrentCommentLength}}"></textarea>
+                                              mt-markdown-editor="commentContent"
+                                              maxlength="{{vm.inputLengthConfig.torrentCommentLength}}"></textarea>
 
                                     <div class="row margin-top-10">
                                         <div class="col-sm-6" style="display: table;">
