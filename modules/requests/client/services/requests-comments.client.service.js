@@ -9,7 +9,7 @@
   RequestsCommentsService.$inject = ['$resource'];
 
   function RequestsCommentsService($resource) {
-    var Comments = $resource('/api/comments/:requestId/:commentId/:subCommentId', {
+    var Comments = $resource('/api/reqComments/:requestId/:commentId/:subCommentId', {
       requestId: '@_requestId',
       commentId: '@_commentId',
       subCommentId: '@_subCommentId'

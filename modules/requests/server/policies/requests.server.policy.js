@@ -19,9 +19,9 @@ exports.invokeRolesPolicies = function () {
       {resources: '/api/requests/:requestId', permissions: '*'},
       {resources: '/api/requests/:requestId/accept/:torrentId', permissions: '*'},
 
-      {resources: '/api/comments/:requestId', permissions: '*'},
-      {resources: '/api/comments/:requestId/:commentId', permissions: '*'},
-      {resources: '/api/comments/:requestId/:commentId/:subCommentId', permissions: '*'}
+      {resources: '/api/reqComments/:requestId', permissions: '*'},
+      {resources: '/api/reqComments/:requestId/:commentId', permissions: '*'},
+      {resources: '/api/reqComments/:requestId/:commentId/:subCommentId', permissions: '*'}
     ]
   }, {
     roles: ['user'],
@@ -30,9 +30,9 @@ exports.invokeRolesPolicies = function () {
       {resources: '/api/requests/:requestId', permissions: '*'},
       {resources: '/api/requests/:requestId/accept/:torrentId', permissions: '*'},
 
-      {resources: '/api/comments/:requestId', permissions: ['post']},
-      {resources: '/api/comments/:requestId/:commentId', permissions: ['post', 'put', 'delete']},
-      {resources: '/api/comments/:requestId/:commentId/:subCommentId', permissions: ['put', 'delete']}
+      {resources: '/api/reqComments/:requestId', permissions: ['post']},
+      {resources: '/api/reqComments/:requestId/:commentId', permissions: ['post', 'put', 'delete']},
+      {resources: '/api/reqComments/:requestId/:commentId/:subCommentId', permissions: ['put', 'delete']}
     ]
   }]);
 };
