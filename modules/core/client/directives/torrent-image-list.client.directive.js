@@ -20,11 +20,11 @@
         var targetNode = element[0];
         var config = {childList: true};
         var callback = function (mutationsList) {
-          for (var mutation of mutationsList) {
+          angular.forEach(mutationsList, function (mutation) {
             if (mutation.type === 'childList') {
               organizeImage();
             }
-          }
+          });
         };
 
         if (til) {
