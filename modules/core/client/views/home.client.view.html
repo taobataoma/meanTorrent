@@ -3,7 +3,7 @@
              movie top list
     *********************************************************************** -->
     <div ng-if="vm.getTorrentTypeEnabled('movie')" ng-init="vm.getMovieTopInfo();">
-        <div class="backdrop movie-backdrop" ng-show="vm.movieTopOne">
+        <div class="backdrop movie-backdrop" ng-if="vm.movieTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.MOVIE' | translate}}</div>
                 <div class="container">
@@ -231,7 +231,7 @@
              tvserial top list
     *********************************************************************** -->
     <div ng-if="vm.getTorrentTypeEnabled('tvserial')" ng-init="vm.getTVTopInfo();">
-        <div class="backdrop tv-backdrop" ng-show="vm.TVTopOne">
+        <div class="backdrop tv-backdrop" ng-if="vm.TVTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.TVSERIAL' | translate}}</div>
                 <div class="container">
@@ -468,7 +468,7 @@
              music top list
     *********************************************************************** -->
     <div ng-if="vm.getTorrentTypeEnabled('music')" ng-init="vm.getMusicTopInfo();">
-        <div class="backdrop music-backdrop" ng-show="vm.musicTopOne">
+        <div class="backdrop music-backdrop" ng-if="vm.musicTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.MUSIC' | translate}}</div>
                 <div class="container">
@@ -510,8 +510,10 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div class="torrent-overview" id="music_overview_markdown" data-provide="markdown"
-                                         ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.musicTopOne))">
+                                    <div torrent-image-list="true">
+                                        <div class="torrent-overview" id="music_overview_markdown" data-provide="markdown"
+                                             ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.musicTopOne))">
+                                        </div>
                                     </div>
                                 </dd>
                             </dl>
@@ -656,7 +658,7 @@
              sports top list
     *********************************************************************** -->
     <div ng-if="vm.getTorrentTypeEnabled('sports')" ng-init="vm.getSportsTopInfo();">
-        <div class="backdrop sports-backdrop" ng-show="vm.sportsTopOne">
+        <div class="backdrop sports-backdrop" ng-if="vm.sportsTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.SPORTS' | translate}}</div>
                 <div class="container">
@@ -695,8 +697,10 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div class="torrent-overview" id="sports_overview_markdown" data-provide="markdown"
-                                         ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.sportsTopOne))">
+                                    <div torrent-image-list="true">
+                                        <div class="torrent-overview" id="sports_overview_markdown" data-provide="markdown"
+                                             ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.sportsTopOne))">
+                                        </div>
                                     </div>
                                 </dd>
                             </dl>
@@ -836,7 +840,7 @@
              variety top list
     *********************************************************************** -->
     <div ng-if="vm.getTorrentTypeEnabled('variety')" ng-init="vm.getVarietyTopInfo();">
-        <div class="backdrop variety-backdrop" ng-show="vm.varietyTopOne">
+        <div class="backdrop variety-backdrop" ng-if="vm.varietyTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.VARIETY' | translate}}</div>
                 <div class="container">
@@ -875,8 +879,10 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div class="torrent-overview" id="variety_overview_markdown" data-provide="markdown"
-                                         ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.varietyTopOne))">
+                                    <div torrent-image-list="true">
+                                        <div class="torrent-overview" id="variety_overview_markdown" data-provide="markdown"
+                                             ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.varietyTopOne))">
+                                        </div>
                                     </div>
                                 </dd>
                             </dl>
@@ -1016,7 +1022,7 @@
              picture top list
     *********************************************************************** -->
     <div ng-if="vm.getTorrentTypeEnabled('picture')" ng-init="vm.getPictureTopInfo();">
-        <div class="backdrop picture-backdrop" ng-show="vm.pictureTopOne">
+        <div class="backdrop picture-backdrop" ng-if="vm.pictureTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.PICTURE' | translate}}</div>
                 <div class="container">
@@ -1055,8 +1061,10 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div class="torrent-overview" id="picture_overview_markdown" data-provide="markdown"
-                                         ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.pictureTopOne))">
+                                    <div torrent-image-list="true">
+                                        <div class="torrent-overview" id="picture_overview_markdown" data-provide="markdown"
+                                             ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.pictureTopOne))">
+                                        </div>
                                     </div>
                                 </dd>
                             </dl>
@@ -1196,7 +1204,7 @@
              game top list
     *********************************************************************** -->
     <div ng-if="vm.getTorrentTypeEnabled('game')" ng-init="vm.getGameTopInfo();">
-        <div class="backdrop game-backdrop" ng-show="vm.gameTopOne">
+        <div class="backdrop game-backdrop" ng-if="vm.gameTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.GAME' | translate}}</div>
                 <div class="container">
@@ -1235,8 +1243,10 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div class="torrent-overview" id="game_overview_markdown" data-provide="markdown"
-                                         ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.gameTopOne))">
+                                    <div torrent-image-list="true">
+                                        <div class="torrent-overview" id="game_overview_markdown" data-provide="markdown"
+                                             ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.gameTopOne))">
+                                        </div>
                                     </div>
                                 </dd>
                             </dl>
@@ -1376,7 +1386,7 @@
              software top list
     *********************************************************************** -->
     <div ng-if="vm.getTorrentTypeEnabled('software')" ng-init="vm.getSoftwareTopInfo();">
-        <div class="backdrop software-backdrop" ng-show="vm.softwareTopOne">
+        <div class="backdrop software-backdrop" ng-if="vm.softwareTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.SOFTWARE' | translate}}</div>
                 <div class="container">
@@ -1415,8 +1425,10 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div class="torrent-overview" id="software_overview_markdown" data-provide="markdown"
-                                         ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.softwareTopOne))">
+                                    <div torrent-image-list="true">
+                                        <div class="torrent-overview" id="software_overview_markdown" data-provide="markdown"
+                                             ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.softwareTopOne))">
+                                        </div>
                                     </div>
                                 </dd>
                             </dl>
@@ -1556,7 +1568,7 @@
              ebook top list
     *********************************************************************** -->
     <div ng-if="vm.getTorrentTypeEnabled('ebook')" ng-init="vm.getEbookTopInfo();">
-        <div class="backdrop ebook-backdrop" ng-show="vm.ebookTopOne">
+        <div class="backdrop ebook-backdrop" ng-if="vm.ebookTopOne">
             <div class="filter">
                 <div class="type-flag">{{'MENU_TORRENTS_SUB.EBOOK' | translate}}</div>
                 <div class="container">
@@ -1595,8 +1607,10 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div class="torrent-overview" id="ebook_overview_markdown" data-provide="markdown"
-                                         ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.ebookTopOne))">
+                                    <div torrent-image-list="true">
+                                        <div class="torrent-overview" id="ebook_overview_markdown" data-provide="markdown"
+                                             ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.ebookTopOne))">
+                                        </div>
                                     </div>
                                 </dd>
                             </dl>

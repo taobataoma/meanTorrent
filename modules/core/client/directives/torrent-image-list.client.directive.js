@@ -17,12 +17,8 @@
 
     function link(scope, element, attrs) {
       scope.$watch(attrs.torrentImageList, function (til) {
-        organizeImage();
-
-        var targetNode = document.getElementById(attrs.torrentImageList);
-
+        var targetNode = element[0];
         var config = {childList: true};
-
         var callback = function (mutationsList) {
           for (var mutation of mutationsList) {
             if (mutation.type === 'childList') {
@@ -31,16 +27,19 @@
           }
         };
 
-        var observer = new MutationObserver(callback);
-        observer.observe(targetNode, config);
+        if (til) {
+          organizeImage();
+          var observer = new MutationObserver(callback);
+          observer.observe(targetNode, config);
 
-        //observer.disconnect();
+          //observer.disconnect();
+        }
 
         /**
          * organizeImage
          */
         function organizeImage() {
-          var imgs = element[0].querySelectorAll('img:not(.emoji)');
+          var imgs = targetNode.querySelectorAll('img:not(.emoji)');
           console.log(imgs);
 
           //remove
@@ -56,10 +55,10 @@
           });
           //reorganize
           if (imgs.length > 0) {
-            var imgDiv = angular.element('.torrent-img-list');
-            imgDiv.remove();
+            var imgDiv = targetNode.parentNode.querySelectorAll('.torrent-img-list');
+            angular.element(imgDiv).remove();
 
-            var imgCap = angular.element('<div class="list-caption">{{}}</div>');
+            // var imgCap = angular.element('<div class="list-caption">{{}}</div>');
             var imgList = angular.element('<div class="torrent-img-list film-strip"></div>');
 
             angular.forEach(imgs, function (i) {
@@ -69,6 +68,11 @@
             });
 
             element.after(imgList);
+
+            //change overview height
+            var overviewDiv = targetNode.parentNode.querySelectorAll('.torrent-overview');
+            angular.element(overviewDiv).css('max-height', '200px');
+
           }
         }
       });

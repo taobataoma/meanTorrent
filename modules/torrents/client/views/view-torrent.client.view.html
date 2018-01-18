@@ -182,7 +182,7 @@
                                         {{vm.TGI.getTorrentOverview(vm.torrentLocalInfo)}}
                                     </div>
                                     <div ng-if="vm.torrentLocalInfo.torrent_type!='movie' && vm.torrentLocalInfo.torrent_type!='tvserial'">
-                                        <div id="til_{{vm.torrentLocalInfo._id}}" torrent-image-list="til_{{vm.torrentLocalInfo._id}}">
+                                        <div torrent-image-list="true">
                                             <div id="{{vm.torrentLocalInfo._id}}" data-provide="markdown"
                                                  ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.torrentLocalInfo))">
                                             </div>
