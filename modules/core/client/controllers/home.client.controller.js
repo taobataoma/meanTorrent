@@ -33,81 +33,99 @@
      * initTopOneInfo
      */
     vm.initTopOneMovieInfo = function () {
-      if (vm.movieTopOne.resource_detail_info.backdrop_path) {
-        $('.movie-backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdropImgBaseUrl + vm.movieTopOne.resource_detail_info.backdrop_path + ')');
-      }
+      $timeout(function () {
+        if (vm.movieTopOne.resource_detail_info.backdrop_path) {
+          $('.movie-backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdropImgBaseUrl + vm.movieTopOne.resource_detail_info.backdrop_path + ')');
+        }
+      }, 10);
     };
 
     /**
      * initTopOneTVInfo
      */
     vm.initTopOneTVInfo = function () {
-      if (vm.TVTopOne.resource_detail_info.backdrop_path) {
-        $('.tv-backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdropImgBaseUrl + vm.TVTopOne.resource_detail_info.backdrop_path + ')');
-      }
+      $timeout(function () {
+        if (vm.TVTopOne.resource_detail_info.backdrop_path) {
+          $('.tv-backdrop').css('backgroundImage', 'url(' + vm.tmdbConfig.backdropImgBaseUrl + vm.TVTopOne.resource_detail_info.backdrop_path + ')');
+        }
+      }, 10);
     };
 
     /**
      * initTopOneMusicInfo
      */
     vm.initTopOneMusicInfo = function () {
-      if (vm.musicTopOne.resource_detail_info.cover) {
-        $('.music-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.musicTopOne.resource_detail_info.cover + '")');
-      }
+      $timeout(function () {
+        if (vm.musicTopOne.resource_detail_info.cover) {
+          $('.music-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.musicTopOne.resource_detail_info.cover + '")');
+        }
+      }, 10);
     };
 
     /**
      * initTopOneSportsInfo
      */
     vm.initTopOneSportsInfo = function () {
-      if (vm.sportsTopOne.resource_detail_info.cover) {
-        $('.sports-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.sportsTopOne.resource_detail_info.cover + '")');
-      }
+      $timeout(function () {
+        if (vm.sportsTopOne.resource_detail_info.cover) {
+          $('.sports-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.sportsTopOne.resource_detail_info.cover + '")');
+        }
+      }, 10);
     };
 
     /**
      * initTopOneVarietyInfo
      */
     vm.initTopOneVarietyInfo = function () {
-      if (vm.varietyTopOne.resource_detail_info.cover) {
-        $('.variety-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.varietyTopOne.resource_detail_info.cover + '")');
-      }
+      $timeout(function () {
+        if (vm.varietyTopOne.resource_detail_info.cover) {
+          $('.variety-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.varietyTopOne.resource_detail_info.cover + '")');
+        }
+      }, 10);
     };
 
     /**
      * initTopOnePictureInfo
      */
     vm.initTopOnePictureInfo = function () {
-      if (vm.pictureTopOne.resource_detail_info.cover) {
-        $('.picture-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.pictureTopOne.resource_detail_info.cover + '")');
-      }
+      $timeout(function () {
+        if (vm.pictureTopOne.resource_detail_info.cover) {
+          $('.picture-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.pictureTopOne.resource_detail_info.cover + '")');
+        }
+      }, 10);
     };
 
     /**
      * initTopOneGameInfo
      */
     vm.initTopOneGameInfo = function () {
-      if (vm.gameTopOne.resource_detail_info.cover) {
-        $('.game-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.gameTopOne.resource_detail_info.cover + '")');
-      }
+      $timeout(function () {
+        if (vm.gameTopOne.resource_detail_info.cover) {
+          $('.game-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.gameTopOne.resource_detail_info.cover + '")');
+        }
+      }, 10);
     };
 
     /**
      * initTopOneSoftwareInfo
      */
     vm.initTopOneSoftwareInfo = function () {
-      if (vm.softwareTopOne.resource_detail_info.cover) {
-        $('.software-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.softwareTopOne.resource_detail_info.cover + '")');
-      }
+      $timeout(function () {
+        if (vm.softwareTopOne.resource_detail_info.cover) {
+          $('.software-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.softwareTopOne.resource_detail_info.cover + '")');
+        }
+      }, 10);
     };
 
     /**
      * initTopOneEbookInfo
      */
     vm.initTopOneEbookInfo = function () {
-      if (vm.ebookTopOne.resource_detail_info.cover) {
-        $('.ebook-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.ebookTopOne.resource_detail_info.cover + '")');
-      }
+      $timeout(function () {
+        if (vm.ebookTopOne.resource_detail_info.cover) {
+          $('.ebook-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.ebookTopOne.resource_detail_info.cover + '")');
+        }
+      }, 10);
     };
 
     /**
