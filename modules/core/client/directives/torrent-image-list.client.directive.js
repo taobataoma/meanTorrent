@@ -17,7 +17,7 @@
 
     function link(scope, element, attrs) {
       scope.$watch(attrs.torrentImageList, function (til) {
-        hideImage();
+        organizeImage();
 
         var targetNode = document.getElementById(attrs.torrentImageList);
 
@@ -26,7 +26,7 @@
         var callback = function (mutationsList) {
           for (var mutation of mutationsList) {
             if (mutation.type === 'childList') {
-              hideImage();
+              organizeImage();
             }
           }
         };
@@ -36,9 +36,14 @@
 
         //observer.disconnect();
 
-        function hideImage() {
+        /**
+         * organizeImage
+         */
+        function organizeImage() {
           var imgs = element[0].querySelectorAll('img:not(.emoji)');
           console.log(imgs);
+
+          //remove
           angular.forEach(imgs, function (i) {
             if (i.previousSibling && i.previousSibling.tagName.toUpperCase() === 'BR') {
               i.previousSibling.remove();
@@ -49,6 +54,22 @@
               angular.element(i).remove();
             }
           });
+          //reorganize
+          if (imgs.length > 0) {
+            var imgDiv = angular.element('.torrent-img-list');
+            imgDiv.remove();
+
+            var imgCap = angular.element('<div class="list-caption">{{}}</div>');
+            var imgList = angular.element('<div class="torrent-img-list film-strip"></div>');
+
+            angular.forEach(imgs, function (i) {
+              var item = angular.element(i);
+              item.addClass('img-item');
+              imgList.append(item);
+            });
+
+            element.after(imgList);
+          }
         }
       });
     }

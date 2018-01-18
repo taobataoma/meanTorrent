@@ -46,3 +46,51 @@
     border: solid 1px #efefef;
     padding: 10px;
 }
+
+.torrent-img-list {
+    margin-top: 30px;
+    overflow-x: auto;
+    height: auto;
+    display: inline-flex;
+    width: 100% !important;
+    .img-item {
+        max-height: 160px;
+        cursor: pointer;
+        opacity: 0.8;
+        margin-left: 8px !important;
+        width: auto !important;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.film-strip {
+    border-top: solid 26px;
+    border-bottom: solid 26px;
+    border-left: none;
+    border-right: none;
+    border-image: url("../img/film-strip-black.png") 42 30;
+    border-image-repeat: repeat;
+    background-color: #2a2a2a;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-bottom: 1px;
+    &:hover {
+        &::-webkit-scrollbar-track {
+            background-color: darken(@brand-primary, 30%);
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: @brand-primary;
+        }
+    }
+    &::-webkit-scrollbar {
+        height: 5px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: #333;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #444;
+    }
+}
