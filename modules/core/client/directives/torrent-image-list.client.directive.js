@@ -56,7 +56,9 @@
           //reorganize
           if (imgs.length > 0) {
             var imgDiv = targetNode.parentNode.querySelectorAll('.torrent-img-list');
-            angular.element(imgDiv).remove();
+            if (imgDiv) {
+              angular.element(imgDiv).remove();
+            }
 
             // var imgCap = angular.element('<div class="list-caption">{{}}</div>');
             var imgList = angular.element('<div class="torrent-img-list film-strip"></div>');
@@ -71,7 +73,9 @@
 
             //change overview height
             var overviewDiv = targetNode.parentNode.querySelectorAll('.torrent-overview');
-            angular.element(overviewDiv).css('max-height', '200px');
+            if (overviewDiv) {
+              angular.element(overviewDiv).css('max-height', '200px');
+            }
 
           }
         }
