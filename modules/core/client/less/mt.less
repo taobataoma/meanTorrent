@@ -124,7 +124,7 @@ body {
 }
 
 .backdrop {
-    background-image: url("http://image.tmdb.org/t/p/w1280/5pAGnkFYSsFJ99ZxDIYnhQbQFXs.jpg");
+    background-image: url("/modules/core/client/img/default-background.jpg");
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -138,7 +138,7 @@ body {
     //filter: blur(1px);
     .filter {
         background-color: @mt-body-background-color;
-        background-color: rgba(0, 0, 0, .7);
+        background-color: rgba(0, 0, 0, .65);
         //opacity: 0.5;
         padding-top: 30px;
         padding-bottom: 30px;
@@ -176,7 +176,7 @@ body {
             transition-timing-function: ease;
 
             cursor: pointer;
-            max-width: 120px;
+            max-width: 100px;
             //transition: transform .5s ease-in-out;
             &:hover {
                 /* csslint ignore:start */
@@ -282,7 +282,6 @@ body {
             border-radius: 6px;
         }
         .edit-overview-div {
-            border-top: solid 1px #999;
             margin-top: 10px;
         }
     }
@@ -308,8 +307,14 @@ body {
 }
 
 .cast-list {
+    @media (min-width: @screen-md) {
+        margin-left: 60px;
+    }
+    legend {
+        border-color: #8b8b8b;
+    }
     .img-thumbnail {
-        max-width: 110px;
+        max-width: 100px;
         padding: 1px !important;
     }
 }

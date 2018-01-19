@@ -193,15 +193,15 @@
                                     </div>
                                 </dd>
                             </div>
-
-                            <div id="img_container_{{vm.torrentLocalInfo._id}}" class="img-container">
-                                <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
-                            </div>
                         </dl>
 
-                        <div ng-if="vm.torrentLocalInfo.resource_detail_info.credits.cast.length > 0">
+                        <div id="img_container_{{vm.torrentLocalInfo._id}}" class="img-container">
+                            <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                        </div>
+
+                        <div class="cast-list" ng-if="vm.torrentLocalInfo.resource_detail_info.credits.cast.length > 0">
                             <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
-                            <div class="row cast-list">
+                            <div class="row">
                                 <div ng-repeat="cast in vm.torrentLocalInfo.resource_detail_info.credits.cast | limitTo: 6">
                                     <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-xs-block visible-sm-block"></div>
                                     <div data-ng-if="$index != 0 && $index % 6 == 0" class="clearfix visible-md-block visible-lg-block"></div>
