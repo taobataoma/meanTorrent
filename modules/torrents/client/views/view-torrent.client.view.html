@@ -393,18 +393,22 @@
     <div id="popup_img_preview" class="popup_well">
         <div class="img_item center-block">
             <img class="img-thumbnail img-responsive" src="">
-            <div class="img_nav text-center">
-                <span class="img_page_info"></span>
-                <button class="btn btn-bold btn-width-120 btn-mt-o" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
-                        ng-click="vm.previousImage()">
-                    {{'PAGE_TEXT_PREVIOUS' | translate}}
-                </button>
-                <button class="btn btn-bold btn-width-120 btn-mt-o" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
-                        ng-click="vm.nextImage()">
-                    {{'PAGE_TEXT_NEXT' | translate}}
-                </button>
-            </div>
             <i class="fa fa-2x fa-times-circle-o popup_img_preview_close" mt-scale-by-mouse="{scale: 1.5, duration: '.5s'}" aria-hidden="true"></i>
+        </div>
+        <div class="img_nav text-center">
+            <span class="img_page_info"></span>
+            <button class="btn btn-bold btn-width-120 btn-mt-o popup_img_preview_close" mouse-enter-toggle-class="btn-mt-o-light"
+                    base-class="btn-mt-o-success">
+                {{'BUTTON_MESSAGE_CLOSE' | translate}}
+            </button>
+            <button class="btn btn-bold btn-width-120 btn-mt-o" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
+                    ng-click="vm.previousImage()">
+                {{'PAGE_TEXT_PREVIOUS' | translate}}
+            </button>
+            <button class="btn btn-bold btn-width-120 btn-mt-o" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
+                    ng-click="vm.nextImage()">
+                {{'PAGE_TEXT_NEXT' | translate}}
+            </button>
         </div>
     </div>
 

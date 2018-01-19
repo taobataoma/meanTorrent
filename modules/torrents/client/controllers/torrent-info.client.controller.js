@@ -34,11 +34,16 @@
     vm.searchTags = [];
     vm.progress = 0;
 
-    $('#sideBackground_tagsPopupSlide').remove();
-    $('#sideBackground_collectionsCreateSlide').remove();
-    $('#sideBackground_collectionsInsertSlide').remove();
+    /**
+     * remove side_overlay background
+     */
+    $scope.$on('$stateChangeStart', function(){
+    $('#popup_img_preview').popup('hide');
     $('#popup_img_preview_background').remove();
     $('#popup_img_preview_wrapper').remove();
+    });
+
+
     /**
      * commentBuildPager
      * pagination init
@@ -1098,15 +1103,14 @@
       vm.previewImageEvent = evt;
       vm.previewImageIndex = evt.index;
       $('#popup_img_preview').popup({
-        transition: 'all 0.3s',
-        scrolllock: true,
+        transition: 'all 0.5s',
         autoopen: false,
         color: '#000',
         opacity: 0.7
       });
       console.log(vm.previewImageIndex);
       $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
-      $('#popup_img_preview .img_item .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
+      $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
         index: vm.previewImageIndex + 1,
         total: vm.previewImageEvent.imgs.length
       }));
@@ -1125,7 +1129,7 @@
       }
       console.log(vm.previewImageIndex);
       $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
-      $('#popup_img_preview .img_item .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
+      $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
         index: vm.previewImageIndex + 1,
         total: vm.previewImageEvent.imgs.length
       }));
@@ -1143,7 +1147,7 @@
       }
       console.log(vm.previewImageIndex);
       $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
-      $('#popup_img_preview .img_item .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
+      $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
         index: vm.previewImageIndex + 1,
         total: vm.previewImageEvent.imgs.length
       }));
