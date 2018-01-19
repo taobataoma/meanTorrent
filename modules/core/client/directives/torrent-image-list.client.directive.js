@@ -43,12 +43,12 @@
 
           //remove
           angular.forEach(imgs, function (i) {
-            if (i.previousSibling && i.previousSibling.tagName.toUpperCase() === 'BR') {
-              i.previousSibling.remove();
-            }
             if (i.parentElement.childElementCount === 1) {
               angular.element(i.parentElement).remove();
             } else {
+              if (i.previousSibling && i.previousSibling.tagName.toUpperCase() === 'BR') {
+                i.previousSibling.remove();
+              }
               angular.element(i).remove();
             }
           });
