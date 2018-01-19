@@ -37,10 +37,10 @@
     /**
      * remove side_overlay background
      */
-    $scope.$on('$stateChangeStart', function(){
-    $('#popup_img_preview').popup('hide');
-    $('#popup_img_preview_background').remove();
-    $('#popup_img_preview_wrapper').remove();
+    $scope.$on('$stateChangeStart', function () {
+      $('#popup_img_preview').popup('hide');
+      $('#popup_img_preview_background').remove();
+      $('#popup_img_preview_wrapper').remove();
     });
 
 
