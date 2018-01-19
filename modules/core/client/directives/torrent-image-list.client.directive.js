@@ -16,7 +16,7 @@
     return directive;
 
     function link(scope, element, attrs) {
-      scope.$watch(attrs.torrentImageList, function (til) {
+      attrs.$observe('torrentImageList', function (til) {
         var targetNode = element[0];
         var config = {childList: true};
         var callback = function (mutationsList) {
@@ -40,7 +40,6 @@
          */
         function organizeImage() {
           var imgs = targetNode.querySelectorAll('img:not(.emoji)');
-          console.log(imgs);
 
           //remove
           angular.forEach(imgs, function (i) {
@@ -55,12 +54,16 @@
           });
           //reorganize
           if (imgs.length > 0) {
-            var imgDiv = targetNode.parentNode.querySelectorAll('.torrent-img-list');
+            var container = targetNode.parentNode;
+            if (attrs.hasOwnProperty('imgContainer')) {
+              container = document.getElementById(attrs.imgContainer);
+            }
+
+            var imgDiv = container.querySelectorAll('.torrent-img-list');
             if (imgDiv) {
               angular.element(imgDiv).remove();
             }
 
-            // var imgCap = angular.element('<div class="list-caption">{{}}</div>');
             var imgList = angular.element('<div class="torrent-img-list film-strip"></div>');
 
             angular.forEach(imgs, function (i) {
@@ -69,7 +72,8 @@
               imgList.append(item);
             });
 
-            element.after(imgList);
+            angular.element(container).append(imgList);
+            angular.element(container).css('display', 'block');
 
             //change overview height
             var overviewDiv = targetNode.parentNode.querySelectorAll('.torrent-overview');

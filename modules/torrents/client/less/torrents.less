@@ -48,20 +48,33 @@
 }
 
 .torrent-img-list {
-    margin-top: 30px;
     overflow-x: auto;
     height: auto;
     display: inline-flex;
     width: 100% !important;
+    text-align: center;
     .img-item {
         max-height: 160px;
         cursor: pointer;
         opacity: 0.8;
-        margin-left: 8px !important;
         width: auto !important;
         &:hover {
             opacity: 1;
         }
+        &:not(:first-child){
+            margin-left: 8px !important;
+        }
+    }
+}
+
+.img-container {
+    display: none;
+    margin-top: 30px;
+    @media (min-width: @screen-md) {
+        margin-left: 50px;
+    }
+    legend {
+        border-color: #8b8b8b;
     }
 }
 
@@ -71,7 +84,7 @@
     border-bottom: solid 26px;
     border-left: none;
     border-right: none;
-    border-image: url("../img/film-strip-back.png") 42 30;
+    border-image: url("/modules/torrents/client/img/film-strip-back.png") 42 30;
     border-image-repeat: repeat;
     background-color: #2a2a2a;
     background-color: rgba(0, 0, 0, 0.3);

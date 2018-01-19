@@ -510,12 +510,16 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div torrent-image-list="true">
+                                    <div torrent-image-list="true" img-container="img_container_{{vm.musicTopOne._id}}">
                                         <div class="torrent-overview" id="music_overview_markdown" data-provide="markdown"
                                              ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.musicTopOne))">
                                         </div>
                                     </div>
                                 </dd>
+
+                                <div id="img_container_{{vm.musicTopOne._id}}" class="img-container">
+                                    <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -697,12 +701,16 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div torrent-image-list="true">
+                                    <div torrent-image-list="true" img-container="img_container_{{vm.sportsTopOne._id}}">
                                         <div class="torrent-overview" id="sports_overview_markdown" data-provide="markdown"
                                              ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.sportsTopOne))">
                                         </div>
                                     </div>
                                 </dd>
+
+                                <div id="img_container_{{vm.sportsTopOne._id}}" class="img-container">
+                                    <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -879,12 +887,16 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div torrent-image-list="true">
+                                    <div torrent-image-list="true" img-container="img_container_{{vm.varietyTopOne._id}}">
                                         <div class="torrent-overview" id="variety_overview_markdown" data-provide="markdown"
                                              ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.varietyTopOne))">
                                         </div>
                                     </div>
                                 </dd>
+
+                                <div id="img_container_{{vm.varietyTopOne._id}}" class="img-container">
+                                    <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -1061,12 +1073,16 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div torrent-image-list="true">
+                                    <div torrent-image-list="true" img-container="img_container_{{vm.pictureTopOne._id}}">
                                         <div class="torrent-overview" id="picture_overview_markdown" data-provide="markdown"
                                              ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.pictureTopOne))">
                                         </div>
                                     </div>
                                 </dd>
+
+                                <div id="img_container_{{vm.pictureTopOne._id}}" class="img-container">
+                                    <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -1243,12 +1259,16 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div torrent-image-list="true">
+                                    <div torrent-image-list="true" img-container="img_container_{{vm.gameTopOne._id}}">
                                         <div class="torrent-overview" id="game_overview_markdown" data-provide="markdown"
                                              ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.gameTopOne))">
                                         </div>
                                     </div>
                                 </dd>
+
+                                <div id="img_container_{{vm.gameTopOne._id}}" class="img-container">
+                                    <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -1425,12 +1445,16 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div torrent-image-list="true">
+                                    <div torrent-image-list="true" img-container="img_container_{{vm.softwareTopOne._id}}">
                                         <div class="torrent-overview" id="software_overview_markdown" data-provide="markdown"
                                              ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.softwareTopOne))">
                                         </div>
                                     </div>
                                 </dd>
+
+                                <div id="img_container_{{vm.softwareTopOne._id}}" class="img-container">
+                                    <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -1607,12 +1631,16 @@
 
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div torrent-image-list="true">
+                                    <div torrent-image-list="true" img-container="img_container_{{vm.ebookTopOne._id}}">
                                         <div class="torrent-overview" id="ebook_overview_markdown" data-provide="markdown"
                                              ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.ebookTopOne))">
                                         </div>
                                     </div>
                                 </dd>
+
+                                <div id="img_container_{{vm.ebookTopOne._id}}" class="img-container">
+                                    <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                </div>
                             </dl>
                         </div>
                     </div>

@@ -1066,7 +1066,8 @@
       VOTE_UNIT: 'users',
       BACKDROP_PATH: 'backdrop path',
       POSTER_PATH: 'poster path',
-      CAST: 'cast:',
+      CAST: 'cast：',
+      IMAGE_OVERVIEW: 'image overview：',
       DIRECTOR: 'Director',
 
       ORIGINAL_NAME: 'original name',

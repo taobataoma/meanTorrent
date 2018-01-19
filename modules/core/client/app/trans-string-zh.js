@@ -1067,6 +1067,7 @@
       BACKDROP_PATH: '背景海报',
       POSTER_PATH: '海报',
       CAST: '主演：',
+      IMAGE_OVERVIEW: '图片预览：',
       DIRECTOR: '导演',
 
       ORIGINAL_NAME: '原剧名',
