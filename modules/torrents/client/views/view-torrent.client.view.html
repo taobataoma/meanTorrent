@@ -187,9 +187,12 @@
                                                  ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.torrentLocalInfo))">
                                             </div>
                                         </div>
-                                        <span class="edit-overview-div" ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper">
-                                            <a href="#" ng-click="vm.beginEditOverview(vm.torrentLocalInfo)">{{'EDIT_THIS_OVERVIEW' | translate}}</a>
-                                        </span>
+
+                                        <button class="btn btn-xs btn-mt-o" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
+                                                ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
+                                                ng-click="vm.beginEditOverview(vm.torrentLocalInfo)">
+                                            {{'EDIT_THIS_OVERVIEW' | translate}}
+                                        </button>
                                     </div>
                                 </dd>
                             </div>

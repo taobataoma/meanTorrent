@@ -120,14 +120,32 @@
         color: #efefef;
         border-color: #ccc;
     }
+}
 
-    &.btn-mt-o-success {
+.btn-mt-o-success {
+    color: @state-success-text;
+    border: solid 1px @state-success-text;
+    &:focus {
         color: @state-success-text;
-        border: solid 1px @state-success-text;
-        &:focus {
-            color: @state-success-text;
-            border-color: @state-success-text;
-        }
+        border-color: @state-success-text;
+    }
+}
+
+.btn-mt-o-primary {
+    color: @brand-primary;
+    border: solid 1px @brand-primary;
+    &:focus {
+        color: @brand-primary;
+        border-color: @brand-primary;
+    }
+}
+
+.btn-mt-o-light {
+    color: #fff !important;
+    border: solid 1px #fff !important;
+    &:focus {
+        color: #fff !important;
+        border-color: #fff !important;
     }
 }
 
