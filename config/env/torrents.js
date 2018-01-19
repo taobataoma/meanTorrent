@@ -567,7 +567,7 @@ module.exports = {
           url: '/sports',
           pageTitle: 'SPORTS_LIST',
           uploadTemplateID: 'default',
-          showTopListInHome: true
+          showTopListInHome: false
         },
         {
           enable: true,
@@ -581,7 +581,7 @@ module.exports = {
           url: '/variety',
           pageTitle: 'VARIETY_LIST',
           uploadTemplateID: 'default',
-          showTopListInHome: true
+          showTopListInHome: false
         },
         {
           enable: true,
@@ -595,7 +595,7 @@ module.exports = {
           url: '/picture',
           pageTitle: 'PICTURE_LIST',
           uploadTemplateID: 'default',
-          showTopListInHome: true
+          showTopListInHome: false
         },
         {
           enable: true,
@@ -609,7 +609,7 @@ module.exports = {
           url: '/game',
           pageTitle: 'GAME_LIST',
           uploadTemplateID: 'default',
-          showTopListInHome: true
+          showTopListInHome: false
         },
         {
           enable: true,
@@ -623,7 +623,7 @@ module.exports = {
           url: '/software',
           pageTitle: 'SOFTWARE_LIST',
           uploadTemplateID: 'default',
-          showTopListInHome: true
+          showTopListInHome: false
         },
         {
           enable: true,
@@ -637,7 +637,7 @@ module.exports = {
           url: '/ebook',
           pageTitle: 'EBOOK_LIST',
           uploadTemplateID: 'default',
-          showTopListInHome: true
+          showTopListInHome: false
         },
         {
           enable: true,
