@@ -222,8 +222,10 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="torrent-info-tabs">
+    <div class="torrent-info-tabs">
+        <div class="info-tabs-top">
+        </div>
+        <div class="container">
             <uib-tabset class="mt-responsive-tabs-sm">
                 <uib-tab index="$index" ng-repeat="tab in vm.torrentTabs" disabled="tab.disabled" ng-if="tab.ng_show" title="{{tab.title}}">
                     <uib-tab-heading>
@@ -541,7 +543,7 @@
         torrentInfo.html
     ================================================================== -->
     <script type="text/ng-template" id="torrentInfo.html">
-        <div class="padding-top-30">
+        <div>
             <span class="xs-show sm-show">
                 <h4 class="margin-bottom-30">
                     {{'TAB_TORRENT_INFO' | translate}}:
@@ -659,7 +661,7 @@
         subtitleInfo.html
     ================================================================== -->
     <script type="text/ng-template" id="subtitleInfo.html">
-        <div class="padding-top-30">
+        <div>
             <span class="xs-show sm-show">
                 <h4 class="margin-bottom-30">
                     {{'TAB_USER_SUBTITLE' | translate}}:
@@ -725,7 +727,7 @@
         userInfo.html
     ================================================================== -->
     <script type="text/ng-template" id="userInfo.html">
-        <div class="padding-top-30 peer-dlist">
+        <div class="peer-dlist">
             <span class="xs-show sm-show">
                 <h4 class="margin-bottom-30">
                     {{'TAB_USER_INFO' | translate}}:
@@ -936,7 +938,7 @@
         thumbsInfo.html
     ================================================================== -->
     <script type="text/ng-template" id="thumbsInfo.html">
-        <div class="padding-top-30">
+        <div>
             <span class="xs-show sm-show">
                 <h4 class="margin-bottom-30">
                     {{'TAB_THUMBS_LIST' | translate}}:
@@ -967,7 +969,7 @@
         myPanel.html
     ================================================================== -->
     <script type="text/ng-template" id="myPanel.html">
-        <div class="padding-top-30">
+        <div>
             <span class="xs-show sm-show">
                 <h4 class="margin-bottom-30">
                     {{'TAB_MY_PANEL' | translate}}:
@@ -994,7 +996,7 @@
         adminPanel.html
     ================================================================== -->
     <script type="text/ng-template" id="adminPanel.html">
-        <div class="padding-top-30">
+        <div>
             <span class="xs-show sm-show">
                 <h4 class="margin-bottom-30">
                     {{'TAB_ADMIN_PANEL' | translate}}:

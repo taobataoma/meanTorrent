@@ -129,7 +129,6 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-bottom: 20px;
     height: 100%;
     width: 100%;
     &.attachment-scroll {
@@ -1273,6 +1272,14 @@ body {
 }
 
 .torrent-info-tabs {
+    .info-tabs-top {
+        height: 70px;
+        background-color: #fafbfc;
+        border-bottom: solid 1px #ddd;
+    }
+    .mt-responsive-tabs-sm {
+        margin-top: -44px;
+    }
     .nav-tabs {
         > li {
             @media (max-width: @screen-xs-max) {
@@ -1301,6 +1308,7 @@ body {
             > a {
                 margin-right: 2px;
                 border-top: 3px solid transparent;
+                max-height: 44px;
                 .fa-2x {
                     font-size: 1.4em;
                 }
@@ -1311,7 +1319,6 @@ body {
                     &:hover,
                     &:focus {
                         border-top: 3px solid @brand-danger;
-                        background-color: @comment-background-default;
                     }
                 }
             }
@@ -1413,11 +1420,11 @@ body {
 }
 
 .tab-border-view {
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     background-color: @comment-background-default;
     padding: 30px 30px;
+    margin-top: 30px;
 }
 
 .video-nfo {
@@ -1482,14 +1489,17 @@ body {
         dt {
             width: 170px !important;
         }
+
         dd {
             padding: 0 0 0 10px;
         }
+
         dt, dd {
             &:hover {
                 background-color: #f8f8f8;
             }
         }
+
         .h-line {
             margin-bottom: 1px;
         }
