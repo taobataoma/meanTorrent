@@ -314,6 +314,7 @@
     TORRENT_RATING_SUCCESSFULLY: '为种子投票成功',
     TORRENT_RATING_FAILED: '为种子投票失败',
     EDIT_THIS_OVERVIEW: '编辑详情介绍',
+    IMG_PAGE_INFO: '当前页: {{index}} / {{total}}',
 
     ANNOUNCE_URL: 'Tracker 地址',
     TORRENT_FILENAME: '种子文件名',

@@ -1106,6 +1106,10 @@
       });
       console.log(vm.previewImageIndex);
       $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
+      $('#popup_img_preview .img_item .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
+        index: vm.previewImageIndex + 1,
+        total: vm.previewImageEvent.imgs.length
+      }));
       $('#popup_img_preview').popup('show');
     };
 
@@ -1121,6 +1125,10 @@
       }
       console.log(vm.previewImageIndex);
       $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
+      $('#popup_img_preview .img_item .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
+        index: vm.previewImageIndex + 1,
+        total: vm.previewImageEvent.imgs.length
+      }));
     };
 
     /**
@@ -1135,6 +1143,10 @@
       }
       console.log(vm.previewImageIndex);
       $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
+      $('#popup_img_preview .img_item .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
+        index: vm.previewImageIndex + 1,
+        total: vm.previewImageEvent.imgs.length
+      }));
     };
 
     /**

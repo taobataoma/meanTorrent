@@ -314,6 +314,7 @@
     TORRENT_RATING_SUCCESSFULLY: 'Rating torrent successfully',
     TORRENT_RATING_FAILED: 'Rating torrent failed',
     EDIT_THIS_OVERVIEW: 'Edit this Overview',
+    IMG_PAGE_INFO: 'Current: {{index}} / {{total}}',
 
     ANNOUNCE_URL: 'Announce Url',
     TORRENT_FILENAME: 'Torrent Filename',
