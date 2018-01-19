@@ -34,6 +34,11 @@
     vm.searchTags = [];
     vm.progress = 0;
 
+    $('#sideBackground_tagsPopupSlide').remove();
+    $('#sideBackground_collectionsCreateSlide').remove();
+    $('#sideBackground_collectionsInsertSlide').remove();
+    $('#popup_img_preview_background').remove();
+    $('#popup_img_preview_wrapper').remove();
     /**
      * commentBuildPager
      * pagination init
@@ -1081,6 +1086,55 @@
      */
     vm.getOverviewMarkedContent = function (c) {
       return marked(c, {sanitize: true});
+    };
+
+    /**
+     * onImageClick
+     * @param evt
+     */
+    vm.onImageClick = function (evt) {
+      console.log('onImageClick');
+      console.log(evt);
+      vm.previewImageEvent = evt;
+      vm.previewImageIndex = evt.index;
+      $('#popup_img_preview').popup({
+        transition: 'all 0.3s',
+        scrolllock: true,
+        autoopen: false,
+        color: '#000',
+        opacity: 0.7
+      });
+      console.log(vm.previewImageIndex);
+      $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
+      $('#popup_img_preview').popup('show');
+    };
+
+    /**
+     * previousImage
+     */
+    vm.previousImage = function () {
+      console.log('previousImage');
+      if (vm.previewImageIndex === 0) {
+        vm.previewImageIndex = vm.previewImageEvent.imgs.length - 1;
+      } else {
+        vm.previewImageIndex -= 1;
+      }
+      console.log(vm.previewImageIndex);
+      $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
+    };
+
+    /**
+     * nextImage
+     */
+    vm.nextImage = function () {
+      console.log('nextImage');
+      if (vm.previewImageIndex >= vm.previewImageEvent.imgs.length - 1) {
+        vm.previewImageIndex = 0;
+      } else {
+        vm.previewImageIndex += 1;
+      }
+      console.log(vm.previewImageIndex);
+      $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
     };
 
     /**

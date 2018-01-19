@@ -182,7 +182,9 @@
                                         {{vm.TGI.getTorrentOverview(vm.torrentLocalInfo)}}
                                     </div>
                                     <div ng-if="vm.torrentLocalInfo.torrent_type!='movie' && vm.torrentLocalInfo.torrent_type!='tvserial'">
-                                        <div torrent-image-list="true" img-container="img_container_{{vm.torrentLocalInfo._id}}">
+                                        <div torrent-image-list="true"
+                                             img-container="img_container_{{vm.torrentLocalInfo._id}}"
+                                             img-click-event="vm.onImageClick(event)">
                                             <div id="{{vm.torrentLocalInfo._id}}" data-provide="markdown"
                                                  ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.torrentLocalInfo))">
                                             </div>
@@ -387,6 +389,23 @@
     </div>
 
     <div class="up_to_top_div" up-to-top="top_of_comments" offset="-30"></div>
+
+    <div id="popup_img_preview" class="popup_well">
+        <div class="img_item center-block">
+            <img class="img-thumbnail img-responsive" src="">
+            <div class="img_nav text-center">
+                <button class="btn btn-bold btn-width-120 btn-mt-o" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
+                        ng-click="vm.previousImage()">
+                    {{'PAGE_TEXT_PREVIOUS' | translate}}
+                </button>
+                <button class="btn btn-bold btn-width-120 btn-mt-o" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
+                        ng-click="vm.nextImage()">
+                    {{'PAGE_TEXT_NEXT' | translate}}
+                </button>
+            </div>
+            <i class="fa fa-2x fa-times-circle-o popup_img_preview_close" mt-scale-by-mouse="{scale: 1.5, duration: '.5s'}" aria-hidden="true"></i>
+        </div>
+    </div>
 
     <!-- =================================================================
         side-overlay tags

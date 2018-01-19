@@ -66,9 +66,14 @@
 
             var imgList = angular.element('<div class="torrent-img-list film-strip"></div>');
 
-            angular.forEach(imgs, function (i) {
+            angular.forEach(imgs, function (i, idx) {
               var item = angular.element(i);
               item.addClass('img-item');
+              item.on('click', function (evt) {
+                if (attrs.imgClickEvent) {
+                  scope.$eval(attrs.imgClickEvent, {event: {event: evt, imgs: imgs, index: idx}});
+                }
+              });
               imgList.append(item);
             });
 
