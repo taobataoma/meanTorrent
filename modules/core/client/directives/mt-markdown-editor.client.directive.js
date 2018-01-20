@@ -26,7 +26,7 @@
         language: localStorageService.get('storage_user_lang'),
         fullscreen: {enable: false},
         onChange: function (e) {
-          ngModel.$setViewValue($('#' + attrs.mtMarkdownEditor)[0].value);
+          scope.ngModel = $('#' + attrs.mtMarkdownEditor)[0].value;
         },
         onShow: function (e) {
           $('#' + e.$editor.attr('id') + ' .md-input').textcomplete([
@@ -57,6 +57,7 @@
             $('#' + e.$editor.attr('id') + ' .md-header').append(inputInfo);
             scope.$watch('ngModel', function () {
               $timeout(inputInfo.text(e.getContent().length + '/' + attrs.maxlength));
+              scope.$eval(attrs.ngModel + ' = ngModel');
             });
           }
 
@@ -64,6 +65,7 @@
             scope.uFile = undefined;
             scope.uProgress = 0;
             scope.uFiles = [];
+            scope.$parent.uFiles = [];
             scope.uImages = [];
             scope.$parent.uImages = [];
 
@@ -80,6 +82,7 @@
 
             scope.removeAttach = function (idx) {
               scope.uFiles.splice(idx, 1);
+              scope.$parent.uFiles.splice(idx, 1);
             };
 
             scope.onFileSelected = function (evt) {
@@ -138,7 +141,7 @@
                 return;
               }
 
-              scope.$eval(attrs.uploadMethod, {
+              scope.$parent.$eval(attrs.uploadMethod, {
                 editor: e,
                 ufile: scope.uFile,
                 progressback: function (pr) {
@@ -154,11 +157,13 @@
                   if (ext === 'jpg' || ext === 'jpeg' || ext === 'bmp' || ext === 'gif' || ext === 'png') {
                     status = '\n![' + uFile.name + '](' + attrs.uploadDir + uFile.name + ')\n';
                     e.replaceSelection(status);
-                    ngModel.$setViewValue($('#' + attrs.mtMarkdownEditor)[0].value);
+                    scope.ngModel = $('#' + attrs.mtMarkdownEditor)[0].value;
+
                     scope.uImages.push(uFile);
                     scope.$parent.uImages.push(uFile);
                   } else {
                     scope.uFiles.push(uFile);
+                    scope.$parent.uFiles.push(uFile);
                   }
 
                   scope.uFile = undefined;
