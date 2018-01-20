@@ -305,10 +305,13 @@ exports.requestByID = function (req, res, next, id) {
     .populate('user', 'username displayName profileImageURL isVip score')
     .populate({
       path: 'torrents',
-      populate: {
+      populate: [{
         path: 'user',
         select: 'username displayName profileImageURL isVip'
-      }
+      }, {
+        path: 'maker',
+        select: 'name'
+      }]
     })
     .populate({
       path: 'comments.user',

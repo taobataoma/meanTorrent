@@ -266,7 +266,17 @@
                                                     </p>
                                                 </td>
                                                 <td class="col-md-1 td-v-middle text-center td-uploader">
-                                                    <p user-info="item.user" info-name></p>
+                                                    <div ng-if="!vm.isCurrentUserOwner()">
+                                                        <span ng-if="!item.isAnonymous" user-info="item.user" info-name></span>
+                                                        <span ng-if="item.isAnonymous">{{ 'ANONYMOUS' | translate }}</span>
+                                                        <div maker-info="item.maker"></div>
+                                                    </div>
+
+                                                    <div ng-if="vm.isCurrentUserOwner()">
+                                                        <span user-info="item.user" info-name></span>
+                                                        <div maker-info="item.maker"></div>
+                                                    </div>
+
                                                     <button class="btn btn-success btn-block btn-response-accept"
                                                             ng-click="vm.acceptResponse(item); $event.stopPropagation();"
                                                             ng-if="!vm.request.accept && !vm.isExpired(vm.request) && item.torrent_status == 'reviewed' && vm.isCurrentUserOwner()">
