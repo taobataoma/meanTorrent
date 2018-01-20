@@ -1098,8 +1098,7 @@
      * @param evt
      */
     vm.onImageClick = function (evt) {
-      console.log('onImageClick');
-      console.log(evt);
+      mtDebug.info(evt);
       vm.previewImageEvent = evt;
       vm.previewImageIndex = evt.index;
       $('#popup_img_preview').popup({
@@ -1108,8 +1107,9 @@
         color: '#000',
         opacity: 0.7
       });
-      console.log(vm.previewImageIndex);
-      $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
+
+      var src = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('on-error-src');
+      $('#popup_img_preview .img_item img').attr('src', src);
       $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
         index: vm.previewImageIndex + 1,
         total: vm.previewImageEvent.imgs.length
@@ -1121,14 +1121,13 @@
      * previousImage
      */
     vm.previousImage = function () {
-      console.log('previousImage');
       if (vm.previewImageIndex === 0) {
         vm.previewImageIndex = vm.previewImageEvent.imgs.length - 1;
       } else {
         vm.previewImageIndex -= 1;
       }
-      console.log(vm.previewImageIndex);
-      $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
+      var src = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('on-error-src');
+      $('#popup_img_preview .img_item img').attr('src', src);
       $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
         index: vm.previewImageIndex + 1,
         total: vm.previewImageEvent.imgs.length
@@ -1139,14 +1138,13 @@
      * nextImage
      */
     vm.nextImage = function () {
-      console.log('nextImage');
       if (vm.previewImageIndex >= vm.previewImageEvent.imgs.length - 1) {
         vm.previewImageIndex = 0;
       } else {
         vm.previewImageIndex += 1;
       }
-      console.log(vm.previewImageIndex);
-      $('#popup_img_preview .img_item img').attr('src', vm.previewImageEvent.imgs[vm.previewImageIndex].src);
+      var src = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('on-error-src');
+      $('#popup_img_preview .img_item img').attr('src', src);
       $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
         index: vm.previewImageIndex + 1,
         total: vm.previewImageEvent.imgs.length

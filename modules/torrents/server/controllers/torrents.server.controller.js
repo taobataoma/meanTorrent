@@ -22,6 +22,7 @@ var path = require('path'),
   Topic = mongoose.model('Topic'),
   Request = mongoose.model('Request'),
   objectId = require('mongodb').ObjectId,
+  sharp = require('sharp'),
   fs = require('fs'),
   nt = require('nt'),
   benc = require('bncode'),
@@ -616,9 +617,19 @@ exports.create = function (req, res) {
         req.body._uImage.forEach(function (f) {
           var oi = config.uploads.torrent.image.temp + f;
           var ni = config.uploads.torrent.image.dest + f;
+          var cr = config.uploads.torrent.image.crop + f;
+
           move(oi, ni, function (err) {
             if (err) {
               mtDebug.debugRed(err);
+            } else {
+              sharp(ni)
+                .resize(200)
+                .toFile(cr, function (err) {
+                  if (err) {
+                    mtDebug.debugError(err);
+                  }
+                });
             }
           });
         });

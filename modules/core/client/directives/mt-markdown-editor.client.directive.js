@@ -66,8 +66,10 @@
             scope.uProgress = 0;
             scope.uFiles = [];
             scope.$parent.uFiles = [];
+            scope.$parent.$parent.uFiles = [];
             scope.uImages = [];
             scope.$parent.uImages = [];
+            scope.$parent.$parent.uImages = [];
 
             var eleUploadTip = angular.element('<div class="attach-info" ng-show="!uFile"><div class="attach-upload-tooltip text-long"><span>{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP1\' | translate}}</span><input type="file" class="manual-file-chooser" ng-model="selectedFile" ngf-select="onFileSelected($event);"><span class="btn-link manual-file-chooser-text">{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP2\' | translate}}</span>{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP3\' | translate}}</div></div>');
             var eleUploadBegin = angular.element('<div class="upload-info" ng-show="uFile"><i class="fa fa-cog fa-spin fa-lg fa-fw"></i> <div class="attach-upload-progress" style="width: {{uProgress}}%"></div><div class="attach-upload-filename">{{\'FORUMS.ATTACH_UPLOADING\' | translate}}: {{uFile.name}}</div></div>');
@@ -83,6 +85,7 @@
             scope.removeAttach = function (idx) {
               scope.uFiles.splice(idx, 1);
               scope.$parent.uFiles.splice(idx, 1);
+              scope.$parent.$parent.uFiles.splice(idx, 1);
             };
 
             scope.onFileSelected = function (evt) {
@@ -161,9 +164,11 @@
 
                     scope.uImages.push(uFile);
                     scope.$parent.uImages.push(uFile);
+                    scope.$parent.$parent.uImages.push(uFile);
                   } else {
                     scope.uFiles.push(uFile);
                     scope.$parent.uFiles.push(uFile);
+                    scope.$parent.$parent.uFiles.push(uFile);
                   }
 
                   scope.uFile = undefined;

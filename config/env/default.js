@@ -80,6 +80,7 @@ module.exports = {
       },
       image: {
         dest: './modules/torrents/client/uploads/image/',
+        crop: './modules/torrents/client/uploads/image/crop/',
         temp: './modules/torrents/client/uploads/temp/',
         limits: {
           fileSize: 2 * 1024 * 1024 // Max file size in bytes (2 MB)

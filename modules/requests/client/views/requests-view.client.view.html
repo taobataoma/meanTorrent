@@ -277,7 +277,7 @@
                                                         <div maker-info="item.maker"></div>
                                                     </div>
 
-                                                    <button class="btn btn-success btn-block btn-response-accept"
+                                                    <button class="btn btn-success btn-block btn-response-accept margin-top-10"
                                                             ng-click="vm.acceptResponse(item); $event.stopPropagation();"
                                                             ng-if="!vm.request.accept && !vm.isExpired(vm.request) && item.torrent_status == 'reviewed' && vm.isCurrentUserOwner()">
                                                         {{ 'REQUESTS.BTN_ACCEPT' | translate}}

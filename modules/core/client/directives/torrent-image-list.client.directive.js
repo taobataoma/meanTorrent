@@ -68,6 +68,11 @@
 
             angular.forEach(imgs, function (i, idx) {
               var item = angular.element(i);
+              var src = item.attr('src');
+              var nsrc = src.substr(0, src.lastIndexOf('/') + 1) + 'crop/' + src.substr(src.lastIndexOf('/') + 1);
+              console.log(nsrc);
+              item.attr('on-error-src', item.attr('src'));
+              item.attr('src', nsrc);
               item.addClass('img-item');
               item.on('click', function (evt) {
                 if (attrs.imgClickEvent) {
@@ -79,6 +84,7 @@
 
             angular.element(container).append(imgList);
             angular.element(container).css('display', 'block');
+            $compile(imgList.contents())(scope);
 
             //change overview height
             var overviewDiv = targetNode.parentNode.querySelectorAll('.torrent-overview');

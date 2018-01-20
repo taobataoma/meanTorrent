@@ -292,6 +292,11 @@ gulp.task('makeUploadsDir', function () {
       console.error(err);
     }
   });
+  fs.mkdir('modules/torrents/client/uploads/image/crop', function (err) {
+    if (err && err.code !== 'EEXIST') {
+      console.error(err);
+    }
+  });
 
   return;
 });
