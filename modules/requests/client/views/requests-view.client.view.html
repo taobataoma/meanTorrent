@@ -269,7 +269,7 @@
                                                     <p user-info="item.user" info-name></p>
                                                     <button class="btn btn-success btn-block btn-response-accept"
                                                             ng-click="vm.acceptResponse(item); $event.stopPropagation();"
-                                                            ng-if="!vm.request.accept && !vm.isExpired(vm.request) && item.torrent_status == 'reviewed'">
+                                                            ng-if="!vm.request.accept && !vm.isExpired(vm.request) && item.torrent_status == 'reviewed' && vm.isCurrentUserOwner()">
                                                         {{ 'REQUESTS.BTN_ACCEPT' | translate}}
                                                     </button>
                                                 </td>
