@@ -134,9 +134,7 @@ exports.traceByID = function (req, res, next, id) {
       if (err) {
         return next(err);
       } else if (!trace) {
-        return res.status(404).send({
-          message: 'No trace with that identifier has been found'
-        });
+        return res.status(404).send();
       }
       req.trace = trace;
       next();

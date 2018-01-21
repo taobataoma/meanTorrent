@@ -330,9 +330,7 @@ exports.makerByID = function (req, res, next, id) {
       if (err) {
         return next(err);
       } else if (!maker) {
-        return res.status(404).send({
-          message: 'No maker with that identifier has been found'
-        });
+        return res.status(404).send();
       }
       req.maker = maker;
       next();

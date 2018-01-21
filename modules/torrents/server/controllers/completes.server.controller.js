@@ -115,9 +115,7 @@ exports.completeByID = function (req, res, next, id) {
       if (err) {
         return next(err);
       } else if (!complete) {
-        return res.status(404).send({
-          message: 'No complete with that identifier has been found'
-        });
+        return res.status(404).send();
       }
       req.complate = complete;
       next();

@@ -2103,7 +2103,7 @@ exports.torrentByID = function (req, res, next, id) {
   };
 
   var findOtherTorrents = function (torrent, callback) {
-    if (torrent.resource_detail_info.id) {
+    if (torrent && torrent.resource_detail_info.id) {
       var condition = {
         torrent_status: 'reviewed',
         'resource_detail_info.id': torrent.resource_detail_info.id
@@ -2136,33 +2136,40 @@ exports.torrentByID = function (req, res, next, id) {
   };
 
   var writeAllFiles = function (torrent, callback) {
-    var filePath = config.uploads.torrent.file.dest + torrent.torrent_filename;
-    nt.read(filePath, function (err, torrent_data) {
-      if (err) {
-        callback(err);
-      } else {
-        var mdata = torrent_data.metadata;
-        torrent._all_files = [];
-
-        if (mdata.info.files) {
-          mdata.info.files.forEach(function (f) {
-            torrent._all_files.push(f.path.join('/') + ', ' + common.fileSizeFormat(f.length, 2));
-          });
+    if (torrent) {
+      var filePath = config.uploads.torrent.file.dest + torrent.torrent_filename;
+      nt.read(filePath, function (err, torrent_data) {
+        if (err) {
+          callback(err);
         } else {
-          torrent._all_files.push(mdata.info.name + ', ' + common.fileSizeFormat(mdata.info.length, 2));
+          var mdata = torrent_data.metadata;
+          torrent._all_files = [];
+
+          if (mdata.info.files) {
+            mdata.info.files.forEach(function (f) {
+              torrent._all_files.push(f.path.join('/') + ', ' + common.fileSizeFormat(f.length, 2));
+            });
+          } else {
+            torrent._all_files.push(mdata.info.name + ', ' + common.fileSizeFormat(mdata.info.length, 2));
+          }
+
+          callback(null, torrent);
         }
-
-        callback(null, torrent);
-      }
-    });
-
+      });
+    } else {
+      callback(null, torrent);
+    }
   };
 
   async.waterfall([findTorrents, findOtherTorrents, writeAllFiles], function (err, torrent) {
     if (err) {
       next(err);
     } else {
-      req.torrent = torrent;
+      if (torrent) {
+        req.torrent = torrent;
+      } else {
+        return res.status(404).send();
+      }
       next();
     }
   });

@@ -327,9 +327,7 @@ exports.requestByID = function (req, res, next, id) {
       if (err) {
         return next(err);
       } else if (!request) {
-        return res.status(404).send({
-          message: 'No request with that identifier has been found'
-        });
+        return res.status(404).send();
       }
       req.request = request;
       next();

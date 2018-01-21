@@ -462,9 +462,7 @@ exports.invitationByID = function (req, res, next, id) {
     if (err) {
       return next(err);
     } else if (!invitation) {
-      return res.status(404).send({
-        message: 'No invitation with that identifier has been found'
-      });
+      return res.status(404).send();
     }
     req.invitation = invitation;
     next();

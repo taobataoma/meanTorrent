@@ -187,9 +187,7 @@ exports.forumByID = function (req, res, next, id) {
       if (err) {
         return next(err);
       } else if (!forum) {
-        return res.status(404).send({
-          message: 'No forum with that identifier has been found'
-        });
+        return res.status(404).send();
       }
       req.forum = forum;
       next();

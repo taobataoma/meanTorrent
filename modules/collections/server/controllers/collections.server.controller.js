@@ -326,9 +326,7 @@ exports.collectionByID = function (req, res, next, id) {
       if (err) {
         return next(err);
       } else if (!coll) {
-        return res.status(404).send({
-          message: 'No collection with that identifier has been found'
-        });
+        return res.status(404).send();
       }
       req.collection = coll;
       next();

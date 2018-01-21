@@ -1065,9 +1065,7 @@ exports.topicById = function (req, res, next, id) {
       if (err) {
         return next(err);
       } else if (!topic) {
-        return res.status(404).send({
-          message: 'No topic with that identifier has been found'
-        });
+        return res.status(404).send();
       }
       req.topic = topic;
       next();

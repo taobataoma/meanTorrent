@@ -107,9 +107,7 @@ exports.adminMessageByID = function (req, res, next, id) {
       if (err) {
         return next(err);
       } else if (!message) {
-        return res.status(404).send({
-          message: 'No message with that identifier has been found'
-        });
+        return res.status(404).send();
       }
       req.adminMessage = message;
       next();
