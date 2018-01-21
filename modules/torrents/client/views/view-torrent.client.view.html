@@ -185,7 +185,7 @@
                                         <div torrent-image-list="true"
                                              img-container="img_container_{{vm.torrentLocalInfo._id}}"
                                              img-click-event="vm.onImageClick(event)">
-                                            <div id="{{vm.torrentLocalInfo._id}}" data-provide="markdown"
+                                            <div id="{{vm.torrentLocalInfo._id}}" class="torrent-long-overview" data-provide="markdown"
                                                  ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.torrentLocalInfo))">
                                             </div>
                                         </div>
