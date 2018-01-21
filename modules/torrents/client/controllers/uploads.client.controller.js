@@ -478,7 +478,8 @@
 
         vote_average: 0,
         vote_total: 0,
-        vote_count: 0
+        vote_count: 0,
+        cover_crop: false
       };
 
       mtDebug.info($scope.uImages);

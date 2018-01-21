@@ -110,7 +110,7 @@
             result = tmdbConfig.posterListBaseUrl + item.resource_detail_info.poster_path;
             break;
           default:
-            result = '/modules/torrents/client/uploads/cover/' + item.resource_detail_info.cover;
+            result = '/modules/torrents/client/uploads/cover/' + (item.resource_detail_info.cover_crop ? 'crop/' : '') + item.resource_detail_info.cover;
             break;
         }
       }
@@ -132,7 +132,7 @@
             result = tmdbConfig.posterImgBaseUrl + item.resource_detail_info.poster_path;
             break;
           default:
-            result = '/modules/torrents/client/uploads/cover/' + item.resource_detail_info.cover;
+            result = '/modules/torrents/client/uploads/cover/' + (item.resource_detail_info.cover_crop ? 'crop/' : '') + item.resource_detail_info.cover;
             break;
         }
       }
@@ -154,7 +154,7 @@
             result = tmdbConfig.posterImgBaseUrl + item.resource_detail_info.poster_path;
             break;
           default:
-            result = '/modules/torrents/client/uploads/cover/' + item.resource_detail_info.cover;
+            result = '/modules/torrents/client/uploads/cover/' + (item.resource_detail_info.cover_crop ? 'crop/' : '') + item.resource_detail_info.cover;
             break;
         }
       }

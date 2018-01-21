@@ -603,9 +603,22 @@ exports.create = function (req, res) {
         var cv = req.body.resource_detail_info.cover;
         var oc = config.uploads.torrent.cover.temp + cv;
         var nc = config.uploads.torrent.cover.dest + cv;
+        var cc = config.uploads.torrent.cover.crop + cv;
         copy(oc, nc, function (err) {
           if (err) {
             mtDebug.debugRed(err);
+          } else {
+            sharp(nc)
+              .resize(400)
+              .toFile(cc, function (err) {
+                if (err) {
+                  mtDebug.debugError(err);
+                } else {
+                  torrent.resource_detail_info.cover_crop = true;
+                  torrent.markModified('resource_detail_info');
+                  torrent.save();
+                }
+              });
           }
 
           if (req.body._uImage.indexOf(cv) < 0) {
@@ -617,7 +630,7 @@ exports.create = function (req, res) {
         req.body._uImage.forEach(function (f) {
           var oi = config.uploads.torrent.image.temp + f;
           var ni = config.uploads.torrent.image.dest + f;
-          var cr = config.uploads.torrent.image.crop + f;
+          var ci = config.uploads.torrent.image.crop + f;
 
           move(oi, ni, function (err) {
             if (err) {
@@ -625,7 +638,7 @@ exports.create = function (req, res) {
             } else {
               sharp(ni)
                 .resize(200)
-                .toFile(cr, function (err) {
+                .toFile(ci, function (err) {
                   if (err) {
                     mtDebug.debugError(err);
                   }

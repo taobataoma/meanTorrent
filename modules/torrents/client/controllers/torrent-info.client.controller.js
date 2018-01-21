@@ -959,7 +959,7 @@
               message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_DELETE_SUCCESSFULLY')
             });
 
-            $state.go('torrents.movie');
+            $state.go($state.previous.state.name || 'torrents.movie');
           }
 
           function errorCallback(res) {
