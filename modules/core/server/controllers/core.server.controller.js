@@ -114,7 +114,6 @@ function setMeanTorrentConfigDefaultValue(req, res, cfg) {
       httpTransport = 'https://';
     }
     var baseUrl = httpTransport + req.headers.host;
-    console.log(baseUrl);
 
     cfg.app.domain = baseUrl;
   }

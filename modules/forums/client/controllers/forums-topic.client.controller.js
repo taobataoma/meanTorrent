@@ -551,13 +551,13 @@
 
       function successCallback(res) {
         vm.postReplyFields = {};
-        $scope.uFiles = [];
-        $scope.uImages = [];
         vm.currentPage = Math.ceil(res._replies.length / vm.itemsPerPage);
         vm.topic = res;
         vm.pageChanged();
 
         $scope.$broadcast('show-errors-reset', 'vm.replyForm');
+        $scope.clearnAttach();
+        $scope.hidePreview();
         NotifycationService.showSuccessNotify('FORUMS.POST_REPLY_SUCCESSFULLY');
       }
 

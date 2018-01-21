@@ -62,14 +62,7 @@
           }
 
           if (attrs.uploadMethod) {
-            scope.uFile = undefined;
-            scope.uProgress = 0;
-            scope.uFiles = [];
-            scope.$parent.uFiles = [];
-            scope.$parent.$parent.uFiles = [];
-            scope.uImages = [];
-            scope.$parent.uImages = [];
-            scope.$parent.$parent.uImages = [];
+            initVariable();
 
             var eleUploadTip = angular.element('<div class="attach-info" ng-show="!uFile"><div class="attach-upload-tooltip text-long"><span>{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP1\' | translate}}</span><input type="file" class="manual-file-chooser" ng-model="selectedFile" ngf-select="onFileSelected($event);"><span class="btn-link manual-file-chooser-text">{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP2\' | translate}}</span>{{\'FORUMS.ATTACH_UPLOAD_TOOLTIP3\' | translate}}</div></div>');
             var eleUploadBegin = angular.element('<div class="upload-info" ng-show="uFile"><i class="fa fa-cog fa-spin fa-lg fa-fw"></i> <div class="attach-upload-progress" style="width: {{uProgress}}%"></div><div class="attach-upload-filename">{{\'FORUMS.ATTACH_UPLOADING\' | translate}}: {{uFile.name}}</div></div>');
@@ -108,9 +101,37 @@
               doUpload(evt.originalEvent.dataTransfer.files[0]);
               return false;
             });
+
+            //define method called from parent scope
+            //init all variable
+            scope.$parent.clearnAttach = function () {
+              initVariable();
+            };
+            scope.$parent.$parent.clearnAttach = scope.$parent.clearnAttach;
+
+            //hide preview
+            scope.$parent.hidePreview = function () {
+              e.hidePreview();
+            };
+            scope.$parent.$parent.hidePreview = scope.$parent.hidePreview;
+
           }
 
           $compile($('#' + e.$editor.attr('id')).contents())(scope);
+
+          /**
+           * initVariable
+           */
+          function initVariable() {
+            scope.uFile = undefined;
+            scope.uProgress = 0;
+            scope.uFiles = [];
+            scope.$parent.uFiles = [];
+            scope.$parent.$parent.uFiles = [];
+            scope.uImages = [];
+            scope.$parent.uImages = [];
+            scope.$parent.$parent.uImages = [];
+          }
 
           /**
            * doUpload
