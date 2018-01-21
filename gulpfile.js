@@ -287,6 +287,11 @@ gulp.task('makeUploadsDir', function () {
       console.error(err);
     }
   });
+  fs.mkdir('modules/torrents/client/uploads/cover/crop', function (err) {
+    if (err && err.code !== 'EEXIST') {
+      console.error(err);
+    }
+  });
   fs.mkdir('modules/torrents/client/uploads/image', function (err) {
     if (err && err.code !== 'EEXIST') {
       console.error(err);
@@ -531,6 +536,11 @@ gulp.task('default', function (done) {
 // Run the project in production mode
 gulp.task('prod', function (done) {
   runSequence(['copyLocalEnvConfig', 'makeUploadsDir', 'templatecache'], 'build', 'env:prod', 'lint', ['nodemon-nodebug', 'watch'], done);
+});
+
+// Run the makeUploadsDir
+gulp.task('init', function (done) {
+  runSequence(['makeUploadsDir'], done);
 });
 
 // Run Mongo Seed with default environment config
