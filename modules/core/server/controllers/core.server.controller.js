@@ -1,6 +1,7 @@
 'use strict';
 
 var path = require('path'),
+  _ = require('lodash'),
   config = require(path.resolve('./config/config'));
 
 /**
@@ -76,28 +77,30 @@ exports.renderNotFound = function (req, res) {
  * @returns {*}
  */
 function getSafeMeanTorrentConfig(cfg) {
+  var newCfg = _.cloneDeep(cfg);
+
   //ignore backup settings
-  cfg.backup = undefined;
+  newCfg.backup = undefined;
 
   //ignore ircAnnounce settings
-  cfg.ircAnnounce = undefined;
+  newCfg.ircAnnounce = undefined;
 
   //ignore password settings
-  cfg.password = undefined;
+  newCfg.password = undefined;
 
   //ignore trace settings
-  cfg.trace = undefined;
+  newCfg.trace = undefined;
 
   //ignore tmdbConfig.key settings
-  cfg.tmdbConfig.key = undefined;
+  newCfg.tmdbConfig.key = undefined;
 
   //ignore trace config settings
-  cfg.trace = undefined;
+  newCfg.trace = undefined;
 
   //ignore serverNotice settings
-  cfg.serverNotice = undefined;
+  newCfg.serverNotice = undefined;
 
-  return cfg;
+  return newCfg;
 }
 
 /**
@@ -110,7 +113,8 @@ function setMeanTorrentConfigDefaultValue(req, res, cfg) {
     if (config.secure && config.secure.ssl === true) {
       httpTransport = 'https://';
     }
-    var baseUrl = req.app.get('domain') || httpTransport + req.headers.host;
+    var baseUrl = httpTransport + req.headers.host;
+    console.log(baseUrl);
 
     cfg.app.domain = baseUrl;
   }

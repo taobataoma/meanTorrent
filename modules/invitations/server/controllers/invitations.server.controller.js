@@ -213,7 +213,7 @@ exports.update = function (req, res) {
         if (config.secure && config.secure.ssl === true) {
           httpTransport = 'https://';
         }
-        var baseUrl = req.app.get('domain') || httpTransport + req.headers.host;
+        var baseUrl = httpTransport + req.headers.host;
         res.render(path.resolve('modules/invitations/server/templates/invite-sign-up-email'), {
           to_email: req.query.to_email,
           name: req.user.displayName,
@@ -332,7 +332,7 @@ exports.sendOfficial = function (req, res) {
           if (config.secure && config.secure.ssl === true) {
             httpTransport = 'https://';
           }
-          var baseUrl = req.app.get('domain') || httpTransport + req.headers.host;
+          var baseUrl = httpTransport + req.headers.host;
           res.render(path.resolve('modules/invitations/server/templates/invite-sign-up-email'), {
             to_email: req.body.email,
             name: req.user.displayName,
