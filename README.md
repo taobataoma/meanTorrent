@@ -125,7 +125,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 - Poll type topics support in forum.
 - Global search on home page for all categories torrents
 - Score on seed, The older torrent get the higher score, the few seeding people got the higher score.
-- User can set uploaded torrent sale type by score.
 - More score get methods.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - IRC chat
