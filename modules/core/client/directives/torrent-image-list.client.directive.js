@@ -47,7 +47,7 @@
               angular.element(i.parentElement).remove();
             } else {
               if (i.previousSibling && i.previousSibling.tagName.toUpperCase() === 'BR') {
-                i.previousSibling.remove();
+                angular.element(i.previousSibling).remove();
               }
               angular.element(i).remove();
             }
@@ -70,7 +70,7 @@
               var item = angular.element(i);
               var src = item.attr('src');
               var nsrc = src.substr(0, src.lastIndexOf('/') + 1) + 'crop/' + src.substr(src.lastIndexOf('/') + 1);
-              console.log(nsrc);
+
               item.attr('on-error-src', item.attr('src'));
               item.attr('src', nsrc);
               item.addClass('img-item');
