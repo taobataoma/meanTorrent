@@ -61,6 +61,6 @@
         e.slideDown(800);
         e.removeClass('panel-collapsed');
       }, 1000);
-    }
+    };
   }
 }());
