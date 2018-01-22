@@ -830,20 +830,28 @@ module.exports = {
     },
 
     /**
-     * @torrentSalesValue
+     * @torrentGlobalSales
      *
-     * torrent sales settings
+     * Global torrent sales settings
      *
-     * @global:       number value of @torrentSalesType, like 'U2/Free' etc, this value priority torrent @torrentSalesType
-     * @vip:          vip sale settings
-     *        @Ur:    upload ratio, like 1.25 is upload scaling plus 25%
-     *        @Dr:    download ratio
+     * @global:           global sale settings
+     *        @value:     number value of @torrentSalesType, like 'U2/Free' etc, this value priority torrent @torrentSalesType
+     * @vip:              vip sale settings
+     *        @value:     upload and download ratio
+     *            @Ur:    upload ratio, like 1.25 is upload scaling plus 25%
+     *            @Dr:    download ratio
      */
-    torrentSalesValue: {
-      global: undefined,
+    torrentGlobalSales: {
+      global: {
+        value: 'U2/FREE',
+        startAt: '2018-01-29 00:00:00',
+        expires: 60 * 60 * 1000 * 24 * 3,
+        noticeMsg: 'SITE_NOTICE.GLOBAL_SALES_NOTICE',
+        noticeShowAt: '2018-01-22 00:00:00',
+        timeFormats: 'YYYY-MM-DD HH:mm:ss'
+      },
       vip: {
-        Ur: 1.25,
-        Dr: 0
+        value: {Ur: 1.25, Dr: 0}
       }
     },
 

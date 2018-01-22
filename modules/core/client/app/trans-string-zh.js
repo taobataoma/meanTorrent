@@ -1497,7 +1497,12 @@
 
       TITLE_REQUEST_COMMENT_DELETED: '求种请求的评论被删除',
       CONTENT_REQUEST_COMMENT_DELETED: ':warning: 您在求种请求 [{{request_title}}](/requests/{{request_id}}) 下的评论被管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 删除.'
+    },
+
+    SITE_NOTICE: {
+      GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快乐 2018**, **{{site_name}}** 新年促销活动已准备就绪, 促销活动类型为 <span class="sale_key">**{{sale_value}}**</span> , 活动将开始于 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 并持续 <span class="sale_key">**{{sale_days}}**</span> 天, 结束于 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 并感谢所有会员用户一直以来给予我们的帮助与支持!'
     }
+
   };
 
   // **************************************************

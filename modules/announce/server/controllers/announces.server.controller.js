@@ -22,6 +22,8 @@ var scoreConfig = config.meanTorrentConfig.score;
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
 var signConfig = config.meanTorrentConfig.sign;
 var announceConfig = config.meanTorrentConfig.announce;
+var globalSalesConfig = config.meanTorrentConfig.torrentGlobalSales;
+
 var appConfig = config.meanTorrentConfig.app;
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
@@ -86,6 +88,8 @@ const PARAMS_INTEGER = [
 const PARAMS_STRING = [
   'event'
 ];
+
+var isGlobalSaleValid = false;
 
 /**
  * event
@@ -486,8 +490,8 @@ exports.announce = function (req, res) {
           var d = Math.round(currd * udr.dr);
 
           if (req.passkeyuser.isVip) {
-            u = u * config.meanTorrentConfig.torrentSalesValue.vip.Ur;
-            d = d * config.meanTorrentConfig.torrentSalesValue.vip.Dr;
+            u = u * globalSalesConfig.vip.value.Ur;
+            d = d * globalSalesConfig.vip.value.Dr;
           }
 
           req.passkeyuser.uploaded += u;
@@ -519,8 +523,8 @@ exports.announce = function (req, res) {
 
             isVip: req.passkeyuser.isVip,
             torrentSalesValue: req.torrent.torrent_sale_status,
-            globalSalesValue: config.meanTorrentConfig.torrentSalesValue.global,
-            vipSalesValue: config.meanTorrentConfig.torrentSalesValue.vip,
+            globalSalesValue: isGlobalSaleValid ? globalSalesConfig.global.value : undefined,
+            vipSalesValue: globalSalesConfig.vip.value,
 
             agent: req.get('User-Agent'),
             ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
@@ -859,8 +863,13 @@ exports.announce = function (req, res) {
     var udr = {};
     var sale = req.torrent.torrent_sale_status;
 
-    if (config.meanTorrentConfig.torrentSalesValue.global !== undefined) {
-      sale = config.meanTorrentConfig.torrentSalesValue.global;
+    var start = moment(globalSalesConfig.global.startAt, globalSalesConfig.global.timeFormats).utc().valueOf();
+    var end = start + globalSalesConfig.global.expires;
+    var now = Date.now();
+    isGlobalSaleValid = (now > start && now < end) ? true : false;
+
+    if (isGlobalSaleValid) {
+      sale = globalSalesConfig.global.value;
     }
 
     switch (sale) {

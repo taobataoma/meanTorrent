@@ -16,7 +16,6 @@
     vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
     vm.show_desc_help = localStorageService.get('requests_list_show_help') || 'yes';
 
-    console.log(vm.show_desc_help);
     /**
      * getRequestsDesc
      * @returns {*}

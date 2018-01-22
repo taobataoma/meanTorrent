@@ -1497,6 +1497,10 @@
 
       TITLE_REQUEST_COMMENT_DELETED: 'Request comment was deleted',
       CONTENT_REQUEST_COMMENT_DELETED: ':warning: You posted comment of request [{{request_title}}](/requests/{{request_id}}) was deleted by user [{{by_name}}](/userinfo/{{by_id}}).'
+    },
+
+    SITE_NOTICE: {
+      GLOBAL_SALES_NOTICE: '### IMPORTANT NOTICE: \n :radio: **Happy new year 2018**, **{{site_name}}** global sale is coming, sales value is <span class="sale_key">**{{sale_value}}**</span>, sales start at **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** and continued <span class="sale_key">**{{sale_days}}**</span> days and end at **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, Thank you for all the help and support you have been giving us all the time!'
     }
   };
 
