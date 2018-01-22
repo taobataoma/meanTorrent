@@ -111,6 +111,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 50. Complete RSS subscription support.
 51. Complete user follow system.
 52. Request system support. User can post a request to find any torrent and respond a request to upload torrent, rewards score support. 
+53. Global sales setting support, admin can redefined the upload and download ratio in sales, the value is priority to the torrent sales settings. And show global sales notice message at home page.
 
 #### Chat room feature:
 1. Users name list
