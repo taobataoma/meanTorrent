@@ -866,9 +866,9 @@ exports.announce = function (req, res) {
     var start = moment(globalSalesConfig.global.startAt, globalSalesConfig.global.timeFormats).utc().valueOf();
     var end = start + globalSalesConfig.global.expires;
     var now = Date.now();
-    isGlobalSaleValid = (now > start && now < end) ? true : false;
+    isGlobalSaleValid = (now > start && now < end && globalSalesConfig.global.value) ? true : false;
 
-    if (isGlobalSaleValid) {
+    if (isGlobalSaleValid && globalSalesConfig.global.value) {
       sale = globalSalesConfig.global.value;
     }
 

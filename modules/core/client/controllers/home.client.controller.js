@@ -44,7 +44,7 @@
       var end = start + vm.globalSalesConfig.global.expires;
       var now = Date.now();
 
-      if (now > showat && now < end) {
+      if (now > showat && now < end && vm.globalSalesConfig.global.value) {
         return true;
       } else {
         return false;

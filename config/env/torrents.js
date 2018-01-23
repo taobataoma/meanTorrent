@@ -843,7 +843,7 @@ module.exports = {
      */
     torrentGlobalSales: {
       global: {
-        value: 'U2/FREE',
+        value: 'U3/FREE',
         startAt: '2018-01-29 00:00:00',
         expires: 60 * 60 * 1000 * 24 * 3,
         noticeMsg: 'SITE_NOTICE.GLOBAL_SALES_NOTICE',
