@@ -44,6 +44,22 @@
           topicId: '@_id'
         }
       },
+      toggleTopicHomeHelpStatus: {
+        method: 'PUT',
+        url: '/api/topics/:forumId/:topicId/toggleTopicHomeHelpStatus',
+        params: {
+          forumId: '@forum',
+          topicId: '@_id'
+        }
+      },
+      toggleTopicHomeNoticeStatus: {
+        method: 'PUT',
+        url: '/api/topics/:forumId/:topicId/toggleTopicHomeNoticeStatus',
+        params: {
+          forumId: '@forum',
+          topicId: '@_id'
+        }
+      },
       thumbsUp: {
         method: 'PUT',
         url: '/api/topics/:forumId/:topicId/thumbsUp',

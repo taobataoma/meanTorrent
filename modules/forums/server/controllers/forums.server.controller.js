@@ -454,7 +454,7 @@ exports.updateTopic = function (req, res) {
 
   if (!canEdit(req.user, forum) && !isOwner(req.user, topic)) {
     return res.status(403).json({
-      message: 'ERROR: User is not authorized'
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
     });
   }
 
@@ -485,7 +485,7 @@ exports.toggleTopicReadonly = function (req, res) {
 
   if (!canEdit(req.user, forum) && !isOwner(req.user, topic)) {
     return res.status(403).json({
-      message: 'ERROR: User is not authorized'
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
     });
   }
 
@@ -513,7 +513,7 @@ exports.toggleTopicTopStatus = function (req, res) {
 
   if (!canEdit(req.user, forum)) {
     return res.status(403).json({
-      message: 'ERROR: User is not authorized'
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
     });
   }
 
@@ -540,11 +540,65 @@ exports.toggleTopicGlobalStatus = function (req, res) {
 
   if (!req.user.isOper && !req.user.isAdmin) {
     return res.status(403).json({
-      message: 'ERROR: User is not authorized'
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
     });
   }
 
   topic.isGlobal = !topic.isGlobal;
+
+  topic.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(topic);
+    }
+  });
+};
+
+/**
+ * toggleTopicHomeHelpStatus
+ * @param req
+ * @param res
+ */
+exports.toggleTopicHomeHelpStatus = function (req, res) {
+  var topic = req.topic;
+
+  if (!req.user.isOper && !req.user.isAdmin) {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+
+  topic.isHomeHelp = !topic.isHomeHelp;
+
+  topic.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(topic);
+    }
+  });
+};
+
+/**
+ * toggleTopicHomeNoticeStatus
+ * @param req
+ * @param res
+ */
+exports.toggleTopicHomeNoticeStatus = function (req, res) {
+  var topic = req.topic;
+
+  if (!req.user.isOper && !req.user.isAdmin) {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+
+  topic.isHomeNotice = !topic.isHomeNotice;
 
   topic.save(function (err) {
     if (err) {
@@ -681,7 +735,7 @@ exports.deleteTopic = function (req, res) {
 
   if (!canEdit(req.user, forum) && !isOwner(req.user, topic)) {
     return res.status(403).json({
-      message: 'ERROR: User is not authorized'
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
     });
   }
 
@@ -824,7 +878,7 @@ exports.updateReply = function (req, res) {
 
       if (!canEdit(req.user, forum) && !isOwner(req.user, r)) {
         return res.status(403).json({
-          message: 'ERROR: User is not authorized'
+          message: 'SERVER.USER_IS_NOT_AUTHORIZED'
         });
       }
 
@@ -861,7 +915,7 @@ exports.deleteReply = function (req, res) {
 
       if (!canEdit(req.user, forum) && !isOwner(req.user, r)) {
         return res.status(403).json({
-          message: 'ERROR: User is not authorized'
+          message: 'SERVER.USER_IS_NOT_AUTHORIZED'
         });
       }
 

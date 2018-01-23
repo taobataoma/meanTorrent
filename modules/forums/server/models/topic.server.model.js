@@ -109,6 +109,14 @@ var TopicSchema = new Schema({
     type: Boolean,
     default: false
   },
+  isHomeHelp: {
+    type: Boolean,
+    default: false
+  },
+  isHomeNotice: {
+    type: Boolean,
+    default: false
+  },
   lastUser: {
     type: Schema.Types.ObjectId,
     ref: 'User'

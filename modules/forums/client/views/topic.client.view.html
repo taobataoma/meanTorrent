@@ -85,17 +85,14 @@
                                                 <span class="reply-comment-header-time-text">{{vm.topic.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</span>
 
                                                 <div class="reply-comment-header-command pull-right">
-                                                    <i class="fa fa-quote-left" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.REPLY_QUOTE' | translate}}"
-                                                       ng-click="vm.quoteAndReply(vm.topic);"></i>
-                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
-                                                       ng-show="vm.canEdit() || vm.isOwner(vm.topic)"
-                                                       ng-click="vm.beginEditTopic(vm.topic)"></i>
-                                                    <i class="fa fa-times" aria-hidden="true"
-                                                       title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
-                                                       ng-show="vm.canEdit() || vm.isOwner(vm.topic)"
-                                                       ng-click="vm.beginDeleteTopic(vm.topic);"></i>
+                                                    <i class="fa fa-question-circle-o" aria-hidden="true"
+                                                       ng-class="{'text-primary': vm.topic.isHomeHelp}"
+                                                       title="{{'FORUMS.TITLES.HOME_HELP' | translate: ({status: vm.topic.isHomeHelp}) }}"
+                                                       ng-click="vm.beginHomeHelpTopic(vm.topic);"></i>
+                                                    <i class="fa fa-list" aria-hidden="true"
+                                                       ng-class="{'text-primary': vm.topic.isHomeNotice}"
+                                                       title="{{'FORUMS.TITLES.HOME_NOTICE' | translate: ({status: vm.topic.isHomeNotice}) }}"
+                                                       ng-click="vm.beginHomeNoticeTopic(vm.topic);"></i>
                                                     <i class="fa"
                                                        ng-class="vm.topic.isTop ? 'fa-arrow-circle-down text-primary' : 'fa-arrow-circle-up'"
                                                        aria-hidden="true"
@@ -107,6 +104,17 @@
                                                        title="{{'FORUMS.TITLES.TOPIC_GLOBAL_TOPIC' | translate}}: {{vm.topic.isGlobal}}"
                                                        ng-show="vm.user.isOper;"
                                                        ng-click="vm.beginGlobalTopic(vm.topic);"></i>
+                                                    <i class="fa fa-quote-left" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.REPLY_QUOTE' | translate}}"
+                                                       ng-click="vm.quoteAndReply(vm.topic);"></i>
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
+                                                       ng-show="vm.canEdit() || vm.isOwner(vm.topic)"
+                                                       ng-click="vm.beginEditTopic(vm.topic)"></i>
+                                                    <i class="fa fa-times" aria-hidden="true"
+                                                       title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
+                                                       ng-show="vm.canEdit() || vm.isOwner(vm.topic)"
+                                                       ng-click="vm.beginDeleteTopic(vm.topic);"></i>
                                                     <span ng-click="vm.beginThumbsUp($event, vm.topic, null);" style="position: relative">
                                                         <i id="thumbs_{{vm.topic._id}}" class="fa fa-thumbs-up" aria-hidden="true"
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"

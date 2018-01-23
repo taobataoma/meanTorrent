@@ -46,6 +46,12 @@ module.exports = function (app) {
   app.route('/api/topics/:forumId/:topicId/toggleTopicGlobalStatus').all(forumsPolicy.isAllowed)
     .put(forums.toggleTopicGlobalStatus);
 
+  app.route('/api/topics/:forumId/:topicId/toggleTopicHomeHelpStatus').all(forumsPolicy.isAllowed)
+    .put(forums.toggleTopicHomeHelpStatus);
+
+  app.route('/api/topics/:forumId/:topicId/toggleTopicHomeNoticeStatus').all(forumsPolicy.isAllowed)
+    .put(forums.toggleTopicHomeNoticeStatus);
+
   app.route('/api/topics/:forumId/:topicId/thumbsUp').all(forumsPolicy.isAllowed)
     .put(forums.thumbsUp);
 

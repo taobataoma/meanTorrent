@@ -454,6 +454,42 @@
     };
 
     /**
+     * beginHomeHelpTopic
+     * @param t
+     */
+    vm.beginHomeHelpTopic = function (t) {
+      var topic = new TopicsService({
+        forum: vm.forum._id,
+        _id: t._id
+      });
+
+      topic.$toggleTopicHomeHelpStatus(function (res) {
+        vm.topic = res;
+        NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_HOME_HELP_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_TOGGLE_HOME_HELP_FAILED');
+      });
+    };
+
+    /**
+     * beginHomeNoticeTopic
+     * @param t
+     */
+    vm.beginHomeNoticeTopic = function (t) {
+      var topic = new TopicsService({
+        forum: vm.forum._id,
+        _id: t._id
+      });
+
+      topic.$toggleTopicHomeNoticeStatus(function (res) {
+        vm.topic = res;
+        NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_HOME_NOTICE_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_TOGGLE_HOME_NOTICE_FAILED');
+      });
+    };
+
+    /**
      * beginDeleteReply
      * @param reply
      */

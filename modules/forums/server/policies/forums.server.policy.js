@@ -30,6 +30,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/topics/:forumId/:topicId/toggleTopicReadonly', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/toggleTopicTopStatus', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/toggleTopicGlobalStatus', permissions: '*'},
+          {resources: '/api/topics/:forumId/:topicId/toggleTopicHomeHelpStatus', permissions: '*'},
+          {resources: '/api/topics/:forumId/:topicId/toggleTopicHomeNoticeStatus', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/thumbsUp', permissions: '*'}
         ]
       },
