@@ -1827,8 +1827,11 @@ body {
 }
 
 .sales_notice {
-    background-color: #fafbfc;
+    background-color: @brand-success;
     padding-top: 20px;
+    .alert {
+        position: relative;
+    }
     h3, .h3 {
         margin-top: 10px;
     }
@@ -1837,6 +1840,15 @@ body {
     }
     .sale_key {
         color: @brand-danger;
+    }
+    .fa-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        &:hover {
+            color: @brand-danger;
+        }
     }
 }
 

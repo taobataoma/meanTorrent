@@ -62,5 +62,18 @@
         e.removeClass('panel-collapsed');
       }, 1000);
     };
+
+    /**
+     * onCloseNoticeClicked
+     * @param cls
+     */
+    vm.onCloseNoticeClicked = function (cls) {
+      var e = $('.' + cls);
+
+      $timeout(function () {
+        e.slideUp(800);
+        e.addClass('panel-collapsed');
+      }, 100);
+    };
   }
 }());

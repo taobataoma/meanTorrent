@@ -3,6 +3,8 @@
         <div class="container">
             <div class="alert alert-success" role="alert" style="padding: 20px 50px;">
                 <span ng-bind-html="vm.getSaleNoticeMessage();"></span>
+                <i class="fa fa-close" aria-hidden="true" ng-click="vm.onCloseNoticeClicked('sales_notice');">
+                </i>
             </div>
         </div>
     </div>
