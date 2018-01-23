@@ -88,10 +88,12 @@
                                                     <i class="fa fa-question-circle-o" aria-hidden="true"
                                                        ng-class="{'text-primary': vm.topic.isHomeHelp}"
                                                        title="{{'FORUMS.TITLES.HOME_HELP' | translate: ({status: vm.topic.isHomeHelp}) }}"
+                                                       ng-if="vm.user.isOper && !vm.forum.vipOnly && !vm.forum.operOnly"
                                                        ng-click="vm.beginHomeHelpTopic(vm.topic);"></i>
                                                     <i class="fa fa-list" aria-hidden="true"
                                                        ng-class="{'text-primary': vm.topic.isHomeNotice}"
                                                        title="{{'FORUMS.TITLES.HOME_NOTICE' | translate: ({status: vm.topic.isHomeNotice}) }}"
+                                                       ng-if="vm.user.isOper && !vm.forum.vipOnly && !vm.forum.operOnly"
                                                        ng-click="vm.beginHomeNoticeTopic(vm.topic);"></i>
                                                     <i class="fa"
                                                        ng-class="vm.topic.isTop ? 'fa-arrow-circle-down text-primary' : 'fa-arrow-circle-up'"

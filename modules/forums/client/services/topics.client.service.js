@@ -68,6 +68,18 @@
           topicId: '@_id',
           replyId: '@_replyId'
         }
+      },
+      getHomeHelp: {
+        method: 'GET',
+        url: '/api/topics/getHomeHelpTopic'
+      },
+      getHomeNotice: {
+        method: 'GET',
+        url: '/api/topics/getHomeNoticeTopic'
+      },
+      getHomeNewTopic: {
+        method: 'GET',
+        url: '/api/topics/getHomeNewTopic'
       }
     });
   }
