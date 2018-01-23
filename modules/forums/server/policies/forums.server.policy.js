@@ -32,7 +32,10 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/topics/:forumId/:topicId/toggleTopicGlobalStatus', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/toggleTopicHomeHelpStatus', permissions: '*'},
           {resources: '/api/topics/:forumId/:topicId/toggleTopicHomeNoticeStatus', permissions: '*'},
-          {resources: '/api/topics/:forumId/:topicId/thumbsUp', permissions: '*'}
+          {resources: '/api/topics/:forumId/:topicId/thumbsUp', permissions: '*'},
+          {resources: '/api/topics/getHomeHelpTopic', permissions: '*'},
+          {resources: '/api/topics/getHomeNoticeTopic', permissions: '*'},
+          {resources: '/api/topics/getHomeNewTopic', permissions: '*'}
         ]
       },
       {
@@ -42,7 +45,10 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/forums/:forumId', permissions: ['get']},
           {resources: '/api/topics/:forumId', permissions: ['get']},
           {resources: '/api/topics/:forumId/:topicId', permissions: ['get']},
-          {resources: '/api/topics/:forumId/:topicId/:replyId', permissions: ['get']}
+          {resources: '/api/topics/:forumId/:topicId/:replyId', permissions: ['get']},
+          {resources: '/api/topics/getHomeHelpTopic', permissions: ['get']},
+          {resources: '/api/topics/getHomeNoticeTopic', permissions: ['get']},
+          {resources: '/api/topics/getHomeNewTopic', permissions: ['get']}
         ]
       }
     ]

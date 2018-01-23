@@ -9,5 +9,62 @@
         </div>
     </div>
 
+    <!--<div class="home_vip_info">-->
+        <!--<div class="container text-center">-->
+            <!--<h4>Join as VIP</h4>-->
+            <!--<div class="">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="home-help" ng-init="vm.getHomeHelp()">
+                    <div class="list-title">
+                        <span class="fa-stack">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-question-circle-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="h4" translate="HOME.TITLE_HELP"></span>
+                        <a ui-sref="forums.view({ forumId: vm.forumsConfig.rulesForumID})" title="{{'HOME.MORE_HELP_RULES' | translate}}">
+                            <i class="fa fa-ellipsis-h fa-more"></i>
+                        </a>
+                    </div>
+                    <div class="list-items">
+                        <p class="text-long" ng-repeat="t in vm.homeHelpTopics">
+                            <span class="item-date">{{t.pushHomeAt | date: 'MM-dd HH:mm'}} - </span>
+                            <a ui-sref="forums.topic({ forumId: t.forum, topicId: t._id })" title="{{t.title}}">{{t.title}}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="home-notice" ng-init="vm.getHomeNotice()">
+                    <div class="list-title">
+                        <span class="fa-stack">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-podcast fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="h4" translate="HOME.TITLE_NOTICE"></span>
+                    </div>
+                    <div class="list-items">
+                        <p class="text-long" ng-repeat="t in vm.homeNoticeTopics">
+                            <span class="item-date">{{t.pushHomeAt | date: 'MM-dd HH:mm'}} - </span>
+                            <a ui-sref="forums.topic({ forumId: t.forum, topicId: t._id })" title="{{t.title}}">{{t.title}}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="home_global_search">-->
+        <!--<div class="container text-center">-->
+            <!--<div class="">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
     <div ng-include="'/modules/core/client/views/home_torrents.client.view.html'"></div>
 </section>

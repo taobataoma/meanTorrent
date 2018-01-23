@@ -938,6 +938,8 @@ module.exports = {
      *        @isVip:           set whether is only for VIP user
      * @showThumbsUpUserList:   if true, will show thumbs up users list at eof of topic content or reply content
      * @showUserSignature:      if true, will show user signature info in forum
+     *
+     * @rulesForumID:           if you create a forum for user rules and helpers, here is the forumID, it will link to from home help items more
      */
     forumsConfig: {
       category: [
@@ -948,7 +950,9 @@ module.exports = {
         {name: 'ADMINISTRATION', value: 'Administration', index: 4, isOper: true, isVip: false}
       ],
       showThumbsUpUserList: true,
-      showUserSignature: true
+      showUserSignature: true,
+
+      rulesForumID: '595b0c31235c3405a290d737'
     },
 
     /**
@@ -962,11 +966,25 @@ module.exports = {
      * @topicsSearchPerPage:      forum topic search list page settings
      * @torrentsPerPage:          torrents list page settings
      * @torrentsCommentsPerPage:  torrent comments list settings
+     * @makeGroupTorrentsPerPage: torrent of make group list page settings
      * @tracesPerPage:            system traces log list page settings
      * @adminUserListPerPage:     admin manage users list page settings
      * @collectionsListPerPage:   movie collections list page settings
      * @backupFilesListPerPage:   system backup files list page settings
      * @torrentPeersListPerPage:  torrent detail seeder & leecher users list page settings
+     *
+     * @uploaderUserListPerPage:  admin management uploader access list page settings
+     * @messageBoxListPerPage:    message box list page settings
+     * @followListPerPage:        users follow list page settings
+     *
+     * @requestListPerPage:       request list page settings
+     * @requestCommentsPerPage:   request comments list settings
+     *
+     * @homeOrderTorrentListPerType:    every type of torrent showed in home settings
+     * @homeNewestTorrentListPerType:   every type of torrent of newest showed in home settings
+     * @homeHelpListLimit:        help items number of home settings
+     * @homeNoticeListLimit:      notice items number of home settings
+     * @homeNewTopicListLimit:    new topic items number of home settings
      */
     itemsPerPage: {
       topicsPerPage: 10,
@@ -980,13 +998,19 @@ module.exports = {
       collectionsListPerPage: 6,
       backupFilesListPerPage: 15,
       torrentPeersListPerPage: 15,
-      homeOrderTorrentListPerType: 9,
-      homeNewestTorrentListPerType: 14,
+
       uploaderUserListPerPage: 15,
       messageBoxListPerPage: 10,
       followListPerPage: 30,
+
       requestListPerPage: 15,
-      requestCommentsPerPage: 10
+      requestCommentsPerPage: 10,
+
+      homeOrderTorrentListPerType: 9,
+      homeNewestTorrentListPerType: 14,
+      homeHelpListLimit: 8,
+      homeNoticeListLimit: 8,
+      homeNewTopicListLimit: 8
     },
 
     /**

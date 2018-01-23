@@ -22,6 +22,7 @@ var traceConfig = config.meanTorrentConfig.trace;
 var thumbsUpScore = config.meanTorrentConfig.score.thumbsUpScore;
 var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
+var itemsPerPageConfig = config.meanTorrentConfig.itemsPerPage;
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
 
@@ -287,6 +288,79 @@ exports.listTopics = function (req, res) {
       res.json({rows: results[1], total: results[0]});
     }
   });
+};
+
+/**
+ * getHomeHelpTopic
+ * @param req
+ * @param res
+ */
+exports.getHomeHelpTopic = function (req, res) {
+  var skip = 0;
+  var limit = itemsPerPageConfig.homeHelpListLimit;
+
+  Topic.find({
+    isHomeHelp: true
+  })
+    .sort('-pushHomeAt')
+    .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
+    .skip(skip)
+    .limit(limit)
+    .exec(function (err, topics) {
+      if (err) {
+        return res.status(422).send(err);
+      } else {
+        res.json(topics);
+      }
+    });
+};
+
+/**
+ * getHomeNoticeTopic
+ * @param req
+ * @param res
+ */
+exports.getHomeNoticeTopic = function (req, res) {
+  var skip = 0;
+  var limit = itemsPerPageConfig.homeNoticeListLimit;
+
+  Topic.find({
+    isHomeNotice: true
+  })
+    .sort('-pushHomeAt')
+    .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
+    .skip(skip)
+    .limit(limit)
+    .exec(function (err, topics) {
+      if (err) {
+        return res.status(422).send(err);
+      } else {
+        res.json(topics);
+      }
+    });
+};
+
+/**
+ * getHomeNewTopic
+ * @param req
+ * @param res
+ */
+exports.getHomeNewTopic = function (req, res) {
+  var skip = 0;
+  var limit = itemsPerPageConfig.homeNewTopicListLimit;
+
+  Topic.find()
+    .sort('-pushHomeAt')
+    .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
+    .skip(skip)
+    .limit(limit)
+    .exec(function (err, topics) {
+      if (err) {
+        return res.status(422).send(err);
+      } else {
+        res.json(topics);
+      }
+    });
 };
 
 /**
@@ -572,6 +646,7 @@ exports.toggleTopicHomeHelpStatus = function (req, res) {
   }
 
   topic.isHomeHelp = !topic.isHomeHelp;
+  topic.pushHomeAt = Date.now();
 
   topic.save(function (err) {
     if (err) {
@@ -599,6 +674,7 @@ exports.toggleTopicHomeNoticeStatus = function (req, res) {
   }
 
   topic.isHomeNotice = !topic.isHomeNotice;
+  topic.pushHomeAt = Date.now();
 
   topic.save(function (err) {
     if (err) {

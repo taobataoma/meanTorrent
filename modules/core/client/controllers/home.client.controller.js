@@ -6,15 +6,16 @@
     .controller('HomeController', HomeController);
 
   HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'Notification', 'MeanTorrentConfig',
-    'getStorageLangService', 'DownloadService', '$timeout', 'localStorageService', 'ScrapeService', 'TorrentGetInfoServices', 'DebugConsoleService',
+    'getStorageLangService', 'DownloadService', '$timeout', 'localStorageService', 'TopicsService', 'TorrentGetInfoServices', 'DebugConsoleService',
     'marked'];
 
   function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService,
-                          DownloadService, $timeout, localStorageService, ScrapeService, TorrentGetInfoServices, mtDebug,
+                          DownloadService, $timeout, localStorageService, TopicsService, TorrentGetInfoServices, mtDebug,
                           marked) {
     var vm = this;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.globalSalesConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
+    vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
 
     /**
      * getSaleNoticeMessage
@@ -74,6 +75,36 @@
         e.slideUp(800);
         e.addClass('panel-collapsed');
       }, 100);
+    };
+
+    /**
+     * getHomeHelp
+     */
+    vm.getHomeHelp = function () {
+      TopicsService.getHomeHelp(function (topics) {
+        console.log(topics);
+        vm.homeHelpTopics = topics;
+      });
+    };
+
+    /**
+     * getHomeNotice
+     */
+    vm.getHomeNotice = function () {
+      TopicsService.getHomeNotice(function (topics) {
+        console.log(topics);
+        vm.homeNoticeTopics = topics;
+      });
+    };
+
+    /**
+     * getForumNewTopic
+     */
+    vm.getForumNewTopic = function () {
+      TopicsService.getHomeNewTopic(function (topics) {
+        console.log(topics);
+        vm.homeNewTopics = topics;
+      });
     };
   }
 }());

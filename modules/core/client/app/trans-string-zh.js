@@ -94,6 +94,13 @@
     NEWEST_MORE: '更多...',
     BTN_DOWNLOAD: '下载',
 
+    HOME: {
+      TITLE_HELP: '用户规则与帮助',
+      TITLE_NOTICE: '系统动态与通知',
+      TITLE_NEW_TOPIC: '论坛最新话题',
+      MORE_HELP_RULES: '更多规则以及帮助内容'
+    },
+
     //element title/alt
     TITLE_ALT: {
       SEEDS: '做种用户数',

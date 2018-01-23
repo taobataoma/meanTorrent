@@ -94,6 +94,13 @@
     NEWEST_MORE: 'more...',
     BTN_DOWNLOAD: 'Download',
 
+    HOME: {
+      TITLE_HELP: 'Rules And Helper',
+      TITLE_NOTICE: 'System Broadcast',
+      TITLE_NEW_TOPIC: 'Forum New Topics',
+      MORE_HELP_RULES: 'More rules and help contents'
+    },
+
     //element title/alt
     TITLE_ALT: {
       SEEDS: 'Seeds users',

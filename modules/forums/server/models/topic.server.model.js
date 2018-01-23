@@ -132,6 +132,9 @@ var TopicSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  pushHomeAt: {
+    type: Date
+  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -140,6 +143,7 @@ var TopicSchema = new Schema({
 
 TopicSchema.index({forum: 1, isTop: -1, lastReplyAt: -1, createdAt: -1});
 TopicSchema.index({createdAt: -1, isGlobal: 1, forum: -1});
+TopicSchema.index({pushHomeAt: -1});
 
 mongoose.model('Topic', TopicSchema);
 mongoose.model('Attach', AttachSchema);

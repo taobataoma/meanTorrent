@@ -27,6 +27,15 @@ module.exports = function (app) {
   app.route('/api/forums/:forumId').all(forumsPolicy.isAllowed)
     .get(forums.read);
 
+  app.route('/api/topics/getHomeHelpTopic').all(forumsPolicy.isAllowed)
+    .get(forums.getHomeHelpTopic);
+
+  app.route('/api/topics/getHomeNoticeTopic').all(forumsPolicy.isAllowed)
+    .get(forums.getHomeNoticeTopic);
+
+  app.route('/api/topics/getHomeNewTopic').all(forumsPolicy.isAllowed)
+    .get(forums.getHomeNewTopic);
+
   app.route('/api/topics/:forumId').all(forumsPolicy.isAllowed)
     .post(forums.postNewTopic)
     .get(forums.listTopics);

@@ -71,15 +71,18 @@
       },
       getHomeHelp: {
         method: 'GET',
-        url: '/api/topics/getHomeHelpTopic'
+        url: '/api/topics/getHomeHelpTopic',
+        isArray: true
       },
       getHomeNotice: {
         method: 'GET',
-        url: '/api/topics/getHomeNoticeTopic'
+        url: '/api/topics/getHomeNoticeTopic',
+        isArray: true
       },
       getHomeNewTopic: {
         method: 'GET',
-        url: '/api/topics/getHomeNewTopic'
+        url: '/api/topics/getHomeNewTopic',
+        isArray: true
       }
     });
   }

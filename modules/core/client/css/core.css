@@ -1,3 +1,7 @@
+body {
+    font-family: 'ProximaNova', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'
+}
+
 .content {
     margin-top: 50px;
 }
@@ -83,7 +87,7 @@ a:hover .header-profile-image {
     min-width: 150px;
 }
 
-.view-footer{
+.view-footer {
     color: #aaa;
     font-size: 12px;
 }
