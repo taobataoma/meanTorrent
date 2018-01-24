@@ -123,7 +123,17 @@
           vm.homeNewestTorrents = items.rows;
         }
       });
-
     };
+
+    /**
+     * getVipTooltip
+     * @returns {*}
+     */
+    vm.getVipTooltip = function () {
+      var ts = $translate.instant('HOME.VIP_TOOLTIP');
+
+      return marked(ts, {sanitize: true});
+    };
+
   }
 }());

@@ -102,8 +102,11 @@
       TITLE_SEARCH: 'Torrents and forum global search',
       MORE_HELP_RULES: 'More rules and help contents',
       MORE_GO_FORUM: 'Go to forum home',
+      MORE_VIP_RULES_AND_RIGHT: 'more vip rules and right here',
       SEARCH_TYPE_TORRENTS: 'Torrents',
-      SEARCH_TYPE_FORUM: 'Forum'
+      SEARCH_TYPE_FORUM: 'Forum',
+      BTN_JOIN_VIP: 'Join as vip »',
+      VIP_TOOLTIP: ' - Full free download, higher upload ratio. \n - Exempt from regular system assessment tasks. \n - Exclusive resource download area. \n - Exclusive forum discussion area. \n - H&R download warning immunity.'
     },
 
     //element title/alt

@@ -26,7 +26,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="search-type text-center margin-top-20">
+                <div class="search-type text-center margin-top-10">
                     <label class="radio-inline">
                         <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
                                ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
@@ -83,8 +83,25 @@
     </div>
 
     <div class="home_vip_info">
-        <div class="container text-center">
-            <div class="">
+        <div class="container">
+            <div class="row vip-content">
+                <div class="col-sm-6 col-md-5 col-md-offset-1 vip-left">
+                    <img class="vip-img img-thumbnail img-responsive" src="http://image.tmdb.org/t/p/w500/rsZmANIzl7Ut27uBFWGz1tgPWVs.jpg">
+                </div>
+                <div class="col-sm-6 col-md-5 col-md-offset-1 vip-right">
+                    <div class="vip-title">
+                        <h3>{{'VIP.VIP_TITLE' | translate}}
+                            <small>{{'VIP.VIP_SUB_TITLE' | translate}}</small>
+                        </h3>
+                    </div>
+                    <div class="vip-tooltip" ng-bind-html="vm.getVipTooltip();"></div>
+                    <div class="vip-more margin-bottom-10">
+                        <a ui-sref="vip.rules">{{'HOME.MORE_VIP_RULES_AND_RIGHT' | translate}}</a>
+                    </div>
+                    <a ui-sref="vip.donate" class="btn btn-width-150 btn-mt-success-light" mt-scale-by-mouse="{scale: 1.2, duration: '.5s'}">
+                        {{'HOME.BTN_JOIN_VIP' | translate}}
+                    </a>
+                </div>
             </div>
         </div>
     </div>
