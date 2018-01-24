@@ -17,6 +17,8 @@
     vm.globalSalesConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
 
+    vm.searchType = 'torrents';
+
     /**
      * getSaleNoticeMessage
      * @returns {*}

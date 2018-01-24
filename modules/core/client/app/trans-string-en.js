@@ -98,7 +98,11 @@
       TITLE_HELP: 'Rules And Helper',
       TITLE_NOTICE: 'System Broadcast',
       TITLE_NEW_TOPIC: 'Forum New Topics',
-      MORE_HELP_RULES: 'More rules and help contents'
+      TITLE_SEARCH: 'Torrents and forum global search',
+      MORE_HELP_RULES: 'More rules and help contents',
+      MORE_GO_FORUM: 'Go to forum home',
+      SEARCH_TYPE_TORRENTS: 'Torrents',
+      SEARCH_TYPE_FORUM: 'Forum'
     },
 
     //element title/alt

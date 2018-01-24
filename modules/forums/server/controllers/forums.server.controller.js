@@ -350,7 +350,7 @@ exports.getHomeNewTopic = function (req, res) {
   var limit = itemsPerPageConfig.homeNewTopicListLimit;
 
   Topic.find()
-    .sort('-pushHomeAt')
+    .sort('-createdAt')
     .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
     .skip(skip)
     .limit(limit)

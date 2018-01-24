@@ -9,13 +9,36 @@
         </div>
     </div>
 
-    <!--<div class="home_vip_info">-->
-        <!--<div class="container text-center">-->
-            <!--<h4>Join as VIP</h4>-->
-            <!--<div class="">-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="home_global_search">
+        <div class="search-panel">
+            <div class="container text-center">
+                <p class="search-title" translate="HOME.TITLE_SEARCH"></p>
+                <div class="input-group search-group">
+                    <input type="text" class="form-control"
+                           ng-model="vm.searchKeys"
+                           ng-keydown="vm.onSearchKeyDown($event);"
+                           aria-label="search" placeholder="Search">
+
+                    <div class="input-group-btn">
+                        <button class="btn btn-width-100 btn-search" id="search-button" aria-label="Search"
+                                mouse-enter-toggle-class="btn-success" base-class="btn-default">
+                            {{'BTN_SEARCH' | translate}}
+                        </button>
+                    </div>
+                </div>
+                <div class="search-type text-center margin-top-20">
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
+                               ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio_forum" value="forum"
+                               ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_FORUM' | translate}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
@@ -59,11 +82,39 @@
         </div>
     </div>
 
-    <!--<div class="home_global_search">-->
-        <!--<div class="container text-center">-->
-            <!--<div class="">-->
-            <!--</div>-->
-        <!--</div>-->
+    <div class="container padding-bottom-20">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="home-new-topic" ng-init="vm.getForumNewTopic()">
+                    <div class="list-title">
+                        <span class="fa-stack">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-comments-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="h4" translate="HOME.TITLE_NEW_TOPIC"></span>
+                        <a ui-sref="forums.list" title="{{'HOME.MORE_GO_FORUM' | translate}}">
+                            <i class="fa fa-ellipsis-h fa-more"></i>
+                        </a>
+                    </div>
+                    <div class="list-items">
+                        <p class="text-long" ng-repeat="t in vm.homeNewTopics">
+                            <span class="item-date">{{t.createdAt | date: 'MM-dd HH:mm'}} - </span>
+                            <a ui-sref="forums.topic({ forumId: t.forum, topicId: t._id })" title="{{t.title}}">{{t.title}}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="home_vip_info">-->
+    <!--<div class="container text-center">-->
+    <!--<div class="">-->
+    <!--</div>-->
+    <!--</div>-->
     <!--</div>-->
 
     <div ng-include="'/modules/core/client/views/home_torrents.client.view.html'"></div>

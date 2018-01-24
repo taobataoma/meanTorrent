@@ -1,7 +1,7 @@
 @import (reference) "../../../core/client/less/mt-var.less";
 
 .home-help, .home-notice, .home-new-topic {
-    margin: 20px 0;
+    margin: 20px 0 0;
     color: #4d4e53;
     .list-items {
         background-color: #fafbfc;
@@ -46,12 +46,6 @@
     }
 }
 
-.home-new-topic {
-    @media (max-width: @screen-md-max) {
-        display: none;
-    }
-}
-
 .home_vip_info {
     padding: 20px;
     min-height: 300px;
@@ -59,7 +53,56 @@
 }
 
 .home_global_search {
-    padding: 20px;
-    min-height: 300px;
-    background-color: #9d9e9f;
+    min-height: 150px;
+    background-image: url("/modules/core/client/img/default-background.jpg");
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .search-panel {
+        min-height: 150px;
+        padding: 20px;
+        background-color: #666;
+        background-color: rgba(0, 0, 0, 0.2);
+
+        color: #eee;
+        text-shadow: 1px 1px 3px rgba(0, 1, 0, 0.5), 0 0 9px rgba(0, 1, 0, 0.2);
+
+        .search-title {
+            font-size: 2.2em;
+            font-weight: 300;
+        }
+        .search-group {
+            max-width: 40em;
+            margin-right: auto;
+            margin-left: auto;
+            input {
+                color: #eee;
+                background-color: #ccc;
+                background-color: rgba(255, 255, 255, 0.2);
+                border-bottom-left-radius: 17px;
+                border-top-left-radius: 17px;
+            }
+            .btn-search {
+                border-bottom-right-radius: 17px;
+                border-top-right-radius: 17px;
+                opacity: 0.6;
+                &:hover,
+                &:focus {
+                    opacity: 1;
+                }
+            }
+        }
+        .search-type {
+            font-size: 18px;
+            text-shadow: 1px 1px 3px rgba(0, 1, 0, 0.5), 0 0 9px rgba(0, 1, 0, 0.2);
+            input {
+                opacity: 0.6;
+                &:hover,
+                &:checked,
+                &:focus {
+                    opacity: 1;
+                }
+            }
+        }
+    }
 }
