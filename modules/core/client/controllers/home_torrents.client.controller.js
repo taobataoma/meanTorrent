@@ -10,8 +10,8 @@
     'marked'];
 
   function HomeTorrentsController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService,
-                          DownloadService, $timeout, localStorageService, ScrapeService, TorrentGetInfoServices, mtDebug,
-                          marked) {
+                                  DownloadService, $timeout, localStorageService, ScrapeService, TorrentGetInfoServices, mtDebug,
+                                  marked) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -20,6 +20,7 @@
     vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.movieTopOne = undefined;
     vm.movieTopList = undefined;
@@ -174,7 +175,7 @@
         torrent_type: 'movie',
         torrent_vip: false,
         newest: true,
-        limit: 14
+        limit: vm.itemsPerPageConfig.homeNewestTorrentListPerType
       }, function (items) {
         if (items.rows.length > 0) {
           vm.movieNewList = items.rows;
@@ -219,7 +220,7 @@
         torrent_type: 'tvserial',
         torrent_vip: false,
         newest: true,
-        limit: 14
+        limit: vm.itemsPerPageConfig.homeNewestTorrentListPerType
       }, function (items) {
         if (items.rows.length > 0) {
           vm.TVNewList = items.rows;
@@ -260,7 +261,7 @@
         torrent_type: 'music',
         torrent_vip: false,
         newest: true,
-        limit: 13
+        limit: vm.itemsPerPageConfig.homeNewestTorrentListPerType - 1
       }, function (items) {
         if (items.rows.length > 0) {
           vm.musicNewList = items.rows;
@@ -301,7 +302,7 @@
         torrent_type: 'sports',
         torrent_vip: false,
         newest: true,
-        limit: 14
+        limit: vm.itemsPerPageConfig.homeNewestTorrentListPerType
       }, function (items) {
         if (items.rows.length > 0) {
           vm.sportsNewList = items.rows;
@@ -342,7 +343,7 @@
         torrent_type: 'variety',
         torrent_vip: false,
         newest: true,
-        limit: 14
+        limit: vm.itemsPerPageConfig.homeNewestTorrentListPerType
       }, function (items) {
         if (items.rows.length > 0) {
           vm.varietyNewList = items.rows;
@@ -383,7 +384,7 @@
         torrent_type: 'picture',
         torrent_vip: false,
         newest: true,
-        limit: 14
+        limit: vm.itemsPerPageConfig.homeNewestTorrentListPerType
       }, function (items) {
         if (items.rows.length > 0) {
           vm.pictureNewList = items.rows;
@@ -424,7 +425,7 @@
         torrent_type: 'game',
         torrent_vip: false,
         newest: true,
-        limit: 14
+        limit: vm.itemsPerPageConfig.homeNewestTorrentListPerType
       }, function (items) {
         if (items.rows.length > 0) {
           vm.gameNewList = items.rows;
@@ -465,7 +466,7 @@
         torrent_type: 'software',
         torrent_vip: false,
         newest: true,
-        limit: 14
+        limit: vm.itemsPerPageConfig.homeNewestTorrentListPerType
       }, function (items) {
         if (items.rows.length > 0) {
           vm.softwareNewList = items.rows;
@@ -506,7 +507,7 @@
         torrent_type: 'ebook',
         torrent_vip: false,
         newest: true,
-        limit: 14
+        limit: vm.itemsPerPageConfig.homeNewestTorrentListPerType
       }, function (items) {
         if (items.rows.length > 0) {
           vm.ebookNewList = items.rows;

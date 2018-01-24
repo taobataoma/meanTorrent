@@ -98,6 +98,7 @@
       TITLE_HELP: '用户规则与帮助',
       TITLE_NOTICE: '系统动态与通知',
       TITLE_NEW_TOPIC: '论坛最新话题',
+      TITLE_NEWEST_TORRENTS: '最近上传的种子',
       TITLE_SEARCH: '种子以及论坛关键字搜索',
       MORE_HELP_RULES: '更多规则以及帮助内容',
       MORE_GO_FORUM: '去论坛逛一下',

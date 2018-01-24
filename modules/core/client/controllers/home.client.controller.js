@@ -14,8 +14,10 @@
                           marked) {
     var vm = this;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.TGI = TorrentGetInfoServices;
     vm.globalSalesConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.searchType = 'torrents';
 
@@ -84,7 +86,6 @@
      */
     vm.getHomeHelp = function () {
       TopicsService.getHomeHelp(function (topics) {
-        console.log(topics);
         vm.homeHelpTopics = topics;
       });
     };
@@ -94,7 +95,6 @@
      */
     vm.getHomeNotice = function () {
       TopicsService.getHomeNotice(function (topics) {
-        console.log(topics);
         vm.homeNoticeTopics = topics;
       });
     };
@@ -104,9 +104,26 @@
      */
     vm.getForumNewTopic = function () {
       TopicsService.getHomeNewTopic(function (topics) {
-        console.log(topics);
         vm.homeNewTopics = topics;
       });
+    };
+
+    /**
+     * getNewestTorrents
+     */
+    vm.getNewestTorrents = function () {
+      TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'all',
+        torrent_vip: false,
+        newest: true,
+        limit: vm.itemsPerPageConfig.homeNewestTorrentsListLimit
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.homeNewestTorrents = items.rows;
+        }
+      });
+
     };
   }
 }());

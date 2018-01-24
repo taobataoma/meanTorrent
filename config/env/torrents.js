@@ -1008,9 +1008,10 @@ module.exports = {
 
       homeOrderTorrentListPerType: 9,
       homeNewestTorrentListPerType: 14,
-      homeHelpListLimit: 8,
-      homeNoticeListLimit: 8,
-      homeNewTopicListLimit: 8
+      homeHelpListLimit: 10,
+      homeNoticeListLimit: 10,
+      homeNewTopicListLimit: 10,
+      homeNewestTorrentsListLimit: 10
     },
 
     /**

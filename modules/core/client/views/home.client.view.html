@@ -82,7 +82,14 @@
         </div>
     </div>
 
-    <div class="container padding-bottom-20">
+    <div class="home_vip_info">
+        <div class="container text-center">
+            <div class="">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="home-new-topic" ng-init="vm.getForumNewTopic()">
@@ -105,17 +112,25 @@
                 </div>
             </div>
             <div class="col-md-6">
-
+                <div class="home-new-torrents" ng-init="vm.getNewestTorrents()">
+                    <div class="list-title">
+                        <span class="fa-stack">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-th fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="h4" translate="HOME.TITLE_NEWEST_TORRENTS"></span>
+                    </div>
+                    <div class="list-items">
+                        <p class="text-long" ng-repeat="t in vm.homeNewestTorrents">
+                            <span class="item-date">{{t.createdat | date: 'MM-dd HH:mm'}} - </span>
+                            <a ui-sref="torrents.view({ torrentId: t._id })"
+                               title="{{vm.TGI.getTorrentTitle(t)}}">{{t.torrent_filename}}</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <!--<div class="home_vip_info">-->
-    <!--<div class="container text-center">-->
-    <!--<div class="">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
 
     <div ng-include="'/modules/core/client/views/home_torrents.client.view.html'"></div>
 </section>

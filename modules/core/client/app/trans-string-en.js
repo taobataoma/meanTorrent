@@ -95,9 +95,10 @@
     BTN_DOWNLOAD: 'Download',
 
     HOME: {
-      TITLE_HELP: 'Rules And Helper',
-      TITLE_NOTICE: 'System Broadcast',
-      TITLE_NEW_TOPIC: 'Forum New Topics',
+      TITLE_HELP: 'Rules and helper',
+      TITLE_NOTICE: 'System broadcast',
+      TITLE_NEW_TOPIC: 'Forum new topics',
+      TITLE_NEWEST_TORRENTS: 'The newest torrents',
       TITLE_SEARCH: 'Torrents and forum global search',
       MORE_HELP_RULES: 'More rules and help contents',
       MORE_GO_FORUM: 'Go to forum home',
