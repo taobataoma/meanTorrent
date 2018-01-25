@@ -10,31 +10,36 @@
     </div>
 
     <div class="home_global_search">
-        <div class="search-panel">
-            <div class="container text-center">
-                <p class="search-title" translate="HOME.TITLE_SEARCH"></p>
-                <div class="input-group search-group">
-                    <input type="text" class="form-control"
-                           ng-model="vm.searchKeys"
-                           ng-keydown="vm.onSearchKeyDown($event);"
-                           aria-label="search" placeholder="Search">
-
-                    <div class="input-group-btn">
-                        <button class="btn btn-width-100 btn-search" id="search-button" aria-label="Search"
-                                mouse-enter-toggle-class="btn-success" base-class="btn-default">
-                            {{'BTN_SEARCH' | translate}}
-                        </button>
-                    </div>
+        <div class="search-panel pagetop">
+            <div class="container">
+                <div class="col-sm-7">
+                    <p class="search-title" translate="HOME.TITLE_SEARCH"></p>
+                    <p class="text-muted" translate="FORUMS.FORUM_SUB_TITLE"></p>
                 </div>
-                <div class="search-type text-center margin-top-10">
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
-                               ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio_forum" value="forum"
-                               ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_FORUM' | translate}}
-                    </label>
+                <div class="col-sm-5">
+                    <div class="input-group search-group margin-top-10">
+                        <input type="text" class="form-control"
+                               ng-model="vm.searchKeys"
+                               ng-keydown="vm.onSearchKeyDown($event);"
+                               aria-label="search" placeholder="Search">
+
+                        <div class="input-group-btn">
+                            <button class="btn btn-width-100 btn-search" id="search-button" aria-label="Search"
+                                    mouse-enter-toggle-class="btn-success" base-class="btn-default">
+                                {{'BTN_SEARCH' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="search-type text-center margin-top-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
+                                   ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio_forum" value="forum"
+                                   ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_FORUM' | translate}}
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,24 +88,26 @@
     </div>
 
     <div class="home_vip_info">
-        <div class="container">
-            <div class="row vip-content">
-                <div class="col-sm-6 col-md-5 col-md-offset-1 vip-left">
-                    <img class="vip-img img-thumbnail img-responsive" src="http://image.tmdb.org/t/p/w500/rsZmANIzl7Ut27uBFWGz1tgPWVs.jpg">
-                </div>
-                <div class="col-sm-6 col-md-5 col-md-offset-1 vip-right">
-                    <div class="vip-title">
-                        <h3>{{'VIP.VIP_TITLE' | translate}}
-                            <small>{{'VIP.VIP_SUB_TITLE' | translate}}</small>
-                        </h3>
+        <div class="vip-half-background">
+            <div class="container">
+                <div class="row vip-content">
+                    <div class="col-sm-6 col-md-5 col-md-offset-1 vip-left">
+                        <!--<img class="vip-img img-thumbnail img-responsive" src="http://image.tmdb.org/t/p/w500/rsZmANIzl7Ut27uBFWGz1tgPWVs.jpg">-->
                     </div>
-                    <div class="vip-tooltip" ng-bind-html="vm.getVipTooltip();"></div>
-                    <div class="vip-more margin-bottom-10">
-                        <a ui-sref="vip.rules">{{'HOME.MORE_VIP_RULES_AND_RIGHT' | translate}}</a>
+                    <div class="col-sm-6 col-md-5 col-md-offset-1 vip-right">
+                        <div class="vip-title">
+                            <h3>{{'VIP.VIP_TITLE' | translate}}
+                                <small>{{'VIP.VIP_SUB_TITLE' | translate}}</small>
+                            </h3>
+                        </div>
+                        <div class="vip-tooltip" ng-bind-html="vm.getVipTooltip();"></div>
+                        <div class="vip-more margin-bottom-10">
+                            <a ui-sref="vip.rules">{{'HOME.MORE_VIP_RULES_AND_RIGHT' | translate}}</a>
+                        </div>
+                        <a ui-sref="vip.donate" class="btn btn-width-150 btn-mt-success-light" mt-scale-by-mouse="{scale: 1.2, duration: '.5s'}">
+                            {{'HOME.BTN_JOIN_VIP' | translate}}
+                        </a>
                     </div>
-                    <a ui-sref="vip.donate" class="btn btn-width-150 btn-mt-success-light" mt-scale-by-mouse="{scale: 1.2, duration: '.5s'}">
-                        {{'HOME.BTN_JOIN_VIP' | translate}}
-                    </a>
                 </div>
             </div>
         </div>

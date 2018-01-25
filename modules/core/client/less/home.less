@@ -49,6 +49,33 @@
 
 .home_vip_info {
     background-color: #f7f7f7;
+    background-color: #f7f7f7;
+    background-image: url("http://image.tmdb.org/t/p/w1280/wwPWKRteE3vxTMta2IxdRgEhYsq.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+    .vip-half-background {
+        width: 100%;
+        min-height: 300px;
+        background-color: #2a2a2a;
+        background-color: rgba(0, 0, 0, 0.6);
+        @media (min-width: @screen-sm-min) {
+            &:before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 42%;
+                right: 0;
+                border-right: 5000px solid transparent;
+                border-right: 5000px solid rgba(128, 128, 128, 0.3);
+                border-top: 30000px solid transparent;
+            }
+        }
+    }
     .vip-content {
         @media (min-width: @screen-sm-min) {
             display: table;
@@ -76,16 +103,18 @@
             }
         }
         .vip-right {
-            padding-bottom: 20px;
+            padding: 20px 20px;
             .vip-title {
                 color: @brand-success;
+                text-shadow: 0 0 0.1em #3a3a3a,-0 -0 0.1em #3a3a3a;
                 margin-bottom: 20px;
                 small {
                     color: @brand-success;
                 }
             }
             .vip-tooltip {
-                color: #343231;
+                color: #ddd;
+                text-shadow: 0 0 0.1em #3a3a3a,-0 -0 0.1em #3a3a3a;
                 ul {
                     @media (max-width: @screen-xs-max) {
                         margin-bottom: 20px !important;
@@ -104,12 +133,7 @@
                 }
             }
             .vip-more {
-                a {
-                    color: @brand-success;
-                    &:hover {
-                        color: @state-success-text;
-                    }
-                }
+                text-shadow: 0 0 0.1em #3a3a3a,-0 -0 0.1em #3a3a3a;
             }
             @media (min-width: @screen-sm-min) {
                 display: table-cell;
@@ -121,23 +145,14 @@
 }
 
 .home_global_search {
-    min-height: 150px;
+    min-height: 120px;
     background-color: #f7f7f7;
-    background-image: url("/modules/core/client/img/default-background.jpg");
-    background-position: 0 -200px;
-    background-repeat: no-repeat;
-    background-size: cover;
     .search-panel {
-        min-height: 150px;
+        min-height: 120px;
         padding: 20px;
-        background-color: #666;
-        background-color: rgba(0, 0, 0, 0.4);
-
-        color: #eee;
-        text-shadow: 1px 1px 3px rgba(0, 1, 0, 0.5), 0 0 9px rgba(0, 1, 0, 0.2);
-
+        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
         .search-title {
-            font-size: 2.2em;
+            font-size: 2em;
             font-weight: 400;
         }
         .search-group {
@@ -162,7 +177,6 @@
             }
         }
         .search-type {
-            font-size: 18px;
             text-shadow: 1px 1px 3px rgba(0, 1, 0, 0.5), 0 0 9px rgba(0, 1, 0, 0.2);
             input {
                 opacity: 0.6;
