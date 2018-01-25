@@ -124,6 +124,8 @@ and [AngularJS](http://angularjs.org/) based applications.
 
 ## TODO
 - Poll type topics support in forum.
+- Examine tasks system, to check user upload、download and score incremental value.
+- Admin configure system timely, translate string change timely.
 - Global search on home page for all categories torrents
 - Score on seed, The older torrent get the higher score, the few seeding people got the higher score.
 - More score get methods.
