@@ -100,6 +100,7 @@
       TITLE_NEW_TOPIC: 'Forum new topics',
       TITLE_NEWEST_TORRENTS: 'The newest torrents',
       TITLE_SEARCH: 'Torrents and forum global search',
+      SEARCH_SUB_TITLE: 'Type keywords and press enter.',
       MORE_HELP_RULES: 'More rules and help contents',
       MORE_GO_FORUM: 'Go to forum home',
       MORE_VIP_RULES_AND_RIGHT: 'more vip rules and right here',

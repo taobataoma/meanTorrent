@@ -100,6 +100,7 @@
       TITLE_NEW_TOPIC: '论坛最新话题',
       TITLE_NEWEST_TORRENTS: '最近上传的种子',
       TITLE_SEARCH: '种子以及论坛关键字搜索',
+      SEARCH_SUB_TITLE: '请输入关键字并回车.',
       MORE_HELP_RULES: '更多规则以及帮助内容',
       MORE_GO_FORUM: '去论坛逛一下',
       MORE_VIP_RULES_AND_RIGHT: '更多 vip 规则及权益请看这里',
