@@ -134,6 +134,11 @@ body {
     &.attachment-scroll {
         background-attachment: scroll !important;
     }
+    &:hover {
+        .type-flag {
+            opacity: 0.4;
+        }
+    }
     //filter: blur(1px);
     .filter {
         background-color: @mt-body-background-color;
@@ -149,12 +154,15 @@ body {
     }
     .type-flag {
         color: #fff;
-        opacity: 0.3;
+        opacity: 0.15;
         position: absolute;
         right: 20px;
-        top: -10px;
+        top: 0;
         font-size: 100px;
         font-weight: bold;
+        transition-property: opacity;
+        transition-duration: .5s;
+        transition-timing-function: ease-in;
     }
     .topone {
         color: #ccc;
