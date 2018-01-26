@@ -27,7 +27,9 @@ module.exports = {
         //bootstrap-markdown
         'public/lib/bootstrap-markdown/css/bootstrap-markdown.min.css',
         //ngProgress
-        'public/lib/ngprogress/ngProgress.css'
+        'public/lib/ngprogress/ngProgress.css',
+        //codeMirror
+        'public/lib/codemirror/lib/codemirror.css'
 
         // endbower
       ],
@@ -78,7 +80,11 @@ module.exports = {
         //jquery-awesome-cursor
         'public/lib/jquery-awesome-cursor/dist/jquery.awesome-cursor.min.js',
         //jquery-textcomplete
-        'public/lib/jquery-textcomplete/dist/jquery.textcomplete.min.js'
+        'public/lib/jquery-textcomplete/dist/jquery.textcomplete.min.js',
+        //codeMirror
+        'public/lib/codemirror/lib/codemirror.js',
+        'public/lib/angular-ui-codemirror/ui-codemirror.min.js',
+        'public/lib/codemirror/mode/javascript/javascript.js'
 
         // endbower
       ]

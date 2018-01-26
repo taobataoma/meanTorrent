@@ -36,7 +36,9 @@
     "ngprogress": "^1.1.3",
     "jquery-awesome-cursor": "^0.3.1",
     "jquery-textcomplete": "^1.8.4",
-    "angular-side-overlay": "^1.1.4"
+    "angular-side-overlay": "^1.1.4",
+    "angular-ui-codemirror": "^0.3.0",
+    "codemirror": "^5.33.0"
   },
   "overrides": {
     "bootstrap": {
