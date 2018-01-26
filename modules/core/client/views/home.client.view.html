@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="home_global_search">
+    <div class="home_global_search" ng-init="vm.getForumList()">
         <div class="search-panel pagetop">
             <div class="container">
                 <div class="col-sm-7">
@@ -25,7 +25,8 @@
 
                         <div class="input-group-btn">
                             <button class="btn btn-width-100 btn-search" id="search-button" aria-label="Search"
-                                    mouse-enter-toggle-class="btn-success" base-class="btn-default">
+                                    mouse-enter-toggle-class="btn-success" base-class="btn-default"
+                                    ng-click="vm.doGlobalSearch()">
                                 {{'BTN_SEARCH' | translate}}
                             </button>
                         </div>

@@ -28,6 +28,8 @@
                             <div class="forum-info">
                                 <h4><a ui-sref="forums.view({ forumId: f._id})">{{f.name}}</a>
                                     <small class="badge badge_default readonly" title="{{'FORUMS.TITLE_READONLY' | translate}}" ng-show="f.readOnly">R</small>
+                                    <small class="badge badge_default readonly" title="{{'FORUMS.TITLE_VIPONLY' | translate}}" ng-show="f.vipOnly">V</small>
+                                    <small class="badge badge_default readonly" title="{{'FORUMS.TITLE_OPERONLY' | translate}}" ng-show="f.operOnly">O</small>
                                     <span class="today-new-count" ng-if="vm.getTodayNewCount(f);" ng-bind-html="vm.getTodayNewCount(f);"></span>
                                 </h4>
 

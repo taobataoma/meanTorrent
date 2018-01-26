@@ -6,11 +6,11 @@
     .controller('HomeController', HomeController);
 
   HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'Notification', 'MeanTorrentConfig',
-    'getStorageLangService', 'DownloadService', '$timeout', 'localStorageService', 'TopicsService', 'TorrentGetInfoServices', 'DebugConsoleService',
+    'getStorageLangService', 'ForumsService', '$timeout', 'localStorageService', 'TopicsService', 'TorrentGetInfoServices', 'DebugConsoleService',
     'marked'];
 
   function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService,
-                          DownloadService, $timeout, localStorageService, TopicsService, TorrentGetInfoServices, mtDebug,
+                          ForumsService, $timeout, localStorageService, TopicsService, TorrentGetInfoServices, mtDebug,
                           marked) {
     var vm = this;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
@@ -20,6 +20,45 @@
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.searchType = 'torrents';
+
+    /**
+     * getForumList
+     */
+    vm.getForumList = function () {
+      ForumsService.get({}, function (items) {
+        vm.forums = items.forumsList;
+        console.log(items);
+      });
+    };
+
+    /**
+     * doGlobalSearch
+     */
+    vm.doGlobalSearch = function () {
+      if (vm.searchKeys) {
+        if (vm.searchType === 'forum') {     //search from forum
+          var fid = [];
+
+          angular.forEach(vm.forums, function (f) {
+            fid.push(f._id);
+          });
+
+          $state.go('forums.search', {forumId: fid, keys: vm.searchKeys});
+        } else {                            //search from torrents
+
+        }
+      }
+    };
+
+    /**
+     * onSearchKeyDown
+     * @param evt
+     */
+    vm.onSearchKeyDown = function (evt) {
+      if (evt.keyCode === 13 && vm.searchKeys) {
+        vm.doGlobalSearch();
+      }
+    };
 
     /**
      * getSaleNoticeMessage
