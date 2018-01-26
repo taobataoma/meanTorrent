@@ -41,9 +41,6 @@ exports.list = function (req, res) {
     condition.vipOnly = false;
   }
 
-  console.log('------------------------condition------------------------');
-  console.log(condition);
-
   var findForumsList = function (callback) {
     Forum.find(condition)
       .sort('category order -createdat')

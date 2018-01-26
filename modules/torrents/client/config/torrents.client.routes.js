@@ -44,6 +44,13 @@
     });
 
     $stateProvider
+      .state('torrents.search', {
+        url: '/search?keys',
+        templateUrl: '/modules/torrents/client/views/search-torrents.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.TORRENT_SEARCH'
+        }
+      })
       .state('torrents.view', {
         url: '/:torrentId',
         templateUrl: '/modules/torrents/client/views/view-torrent.client.view.html',
