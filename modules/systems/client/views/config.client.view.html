@@ -1,0 +1,14 @@
+<div class="panel panel-default system-panel" ng-controller="SystemConfigController as vm" ng-init="vm.getConfigFile()">
+    <div class="panel-heading">{{'SYSTEMS.TORRENTS_CONFIG' | translate}} - <small>/config/env/torrent.js</small></div>
+    <div class="panel-desc">
+
+    </div>
+    <div class="panel-body">
+        <textarea class="form-control config-content" id="configContent" name="configContent" ng-model="vm.systemConfigContent"></textarea>
+    </div>
+    <div class="panel-footer">
+        <div class="text-right">
+            <button class="btn btn-success btn-width-100">{{'BUTTON_SAVE' | translate}}</button>
+        </div>
+    </div>
+</div>

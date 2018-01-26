@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = {
+
+  //[!config_content]//
   meanTorrentConfig: {
     /**
      * @app
@@ -1218,4 +1220,5 @@ module.exports = {
       ]
     }
   }
+  //[!config_content]//
 };

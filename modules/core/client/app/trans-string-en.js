@@ -33,6 +33,7 @@
     MENU_ADMIN_MESSAGES: 'System Messages',
     MENU_ADMIN_TRACE: 'System Traces',
     MENU_ADMIN_FORUMS_CONFIGURE: 'Forums Configure',
+    MENU_ADMIN_SYSTEMS: 'System control panel',
     MENU_USERS_ADMIN: 'Manage User',
     MENU_UPLOAD: 'Upload',
     MENU_FORUMS: 'Forums',
@@ -223,6 +224,7 @@
       ADMIN_FORUMS_MANAGEMENT: 'Forums Management',
       ADMIN_OFFICIAL_INVITATION: 'Official invitations',
       ADMIN_BACKUP: 'System Backup Files Manager',
+      ADMIN_SYSTEMS: 'System Control Panel',
       PASSWORD_FORGOT: 'Password forgot',
       PASSWORD_RESET: 'Password reset',
       MESSAGES_BOX: 'Message Box',
@@ -1252,6 +1254,12 @@
       NOT_AUTHORIZED_THIS: 'You are not authorized to access this resource',
       NOT_FOUND: 'Not Found',
       PAGE_NOT_FOUND: 'Page Or Resources Not Found'
+    },
+
+    //systems control panel
+    SYSTEMS: {
+      TORRENTS_CONFIG: 'System configure',
+      TEMPLATE_EDIT: 'Template editor'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

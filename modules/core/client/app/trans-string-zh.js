@@ -33,6 +33,7 @@
     MENU_ADMIN_MESSAGES: '系统消息',
     MENU_ADMIN_TRACE: '系统日志',
     MENU_ADMIN_FORUMS_CONFIGURE: '论坛配置管理',
+    MENU_ADMIN_SYSTEMS: '系统控制面板',
     MENU_USERS_ADMIN: '用户管理',
     MENU_UPLOAD: '发布',
     MENU_FORUMS: '论坛',
@@ -223,6 +224,7 @@
       ADMIN_FORUMS_MANAGEMENT: '论坛管理',
       ADMIN_OFFICIAL_INVITATION: '官方邀请',
       ADMIN_BACKUP: '系统备份文件管理',
+      ADMIN_SYSTEMS: '系统控制面板',
       PASSWORD_FORGOT: '找回密码',
       PASSWORD_RESET: '重设密码',
       MESSAGES_BOX: '站内消息',
@@ -1252,6 +1254,12 @@
       NOT_AUTHORIZED_THIS: '您无权访问此资源',
       NOT_FOUND: '无法访问',
       PAGE_NOT_FOUND: '没有找到页面或资源'
+    },
+
+    //systems control panel
+    SYSTEMS: {
+      TORRENTS_CONFIG: '系统配置调整',
+      TEMPLATE_EDIT: '模板在线编辑'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////
