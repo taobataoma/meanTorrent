@@ -8,5 +8,6 @@ var systemsPolicy = require('../policies/systems.server.policy'),
 
 module.exports = function (app) {
   app.route('/api/systems/systemConfig').all(systemsPolicy.isAllowed)
-    .get(systems.getSystemConfig);
+    .get(systems.getSystemConfig)
+    .put(systems.setSystemConfig);
 };

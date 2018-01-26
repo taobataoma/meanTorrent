@@ -1259,7 +1259,14 @@
     //systems control panel
     SYSTEMS: {
       TORRENTS_CONFIG: '系统配置调整',
-      TEMPLATE_EDIT: '模板在线编辑'
+      TEMPLATE_EDIT: '模板在线编辑',
+
+      CONFIG_BLUR_CONFIRM_CANCEL: '取消',
+      CONFIG_BLUR_CONFIRM_SAVE: '保存',
+      CONFIG_BLUR_HEADER_TEXT: '系统配置已更改',
+      CONFIG_BLUR_BODY_TEXT: '系统配置已被修改, 您确定要退出并放弃保存吗?',
+      CONFIG_SAVE_SUCCESSFULLY: '系统配置保存成功',
+      CONFIG_SAVE_FAILED: '系统配置保存失败'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

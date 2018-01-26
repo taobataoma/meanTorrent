@@ -17,6 +17,10 @@
       getSystemConfig: {
         method: 'GET',
         url: '/api/systems/systemConfig'
+      },
+      setSystemConfig: {
+        method: 'PUT',
+        url: '/api/systems/systemConfig'
       }
     });
   }

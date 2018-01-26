@@ -1259,7 +1259,14 @@
     //systems control panel
     SYSTEMS: {
       TORRENTS_CONFIG: 'System configure',
-      TEMPLATE_EDIT: 'Template editor'
+      TEMPLATE_EDIT: 'Template editor',
+
+      CONFIG_BLUR_CONFIRM_CANCEL: 'Cancel',
+      CONFIG_BLUR_CONFIRM_SAVE: 'Save',
+      CONFIG_BLUR_HEADER_TEXT: 'Configure was changed',
+      CONFIG_BLUR_BODY_TEXT: 'Configure was changed, are you sure to quit and don`t save it?',
+      CONFIG_SAVE_SUCCESSFULLY: 'Configure save successfully',
+      CONFIG_SAVE_FAILED: 'Configure save failed'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////
