@@ -17,7 +17,10 @@
                     <tbody>
                         <tr ng-repeat="f in vm.forums | filter: { category: cat.value }">
                             <td>
-                                <h4>{{f.name}} <span class="badge badge_mt" ng-show="f.readOnly">R</span>
+                                <h4>{{f.name}}
+                                    <span class="badge badge_mt" ng-show="f.readOnly">R</span>
+                                    <span class="badge badge_mt" ng-show="f.vipOnly">V</span>
+                                    <span class="badge badge_mt" ng-show="f.operOnly">O</span>
                                     <small>[<a href="#" ng-click="vm.popupEditForum($event, f);">{{'FORUMS.LINK_EDIT' | translate}}</a>]</small>
                                     <small ng-if="!f.operOnly">[<a href="#"
                                                uib-popover-template="vm.addModeratorPopover.templateUrl"

@@ -32,8 +32,20 @@ var mtDebug = require(path.resolve('./config/lib/debug'));
  * @param res
  */
 exports.list = function (req, res) {
+  var condition = {};
+
+  if (!req.user.isOper) {
+    condition.operOnly = false;
+  }
+  if (!req.user.isOper && !req.user.isVip) {
+    condition.vipOnly = false;
+  }
+
+  console.log('------------------------condition------------------------');
+  console.log(condition);
+
   var findForumsList = function (callback) {
-    Forum.find()
+    Forum.find(condition)
       .sort('category order -createdat')
       .populate({
         path: 'lastTopic',
@@ -54,6 +66,7 @@ exports.list = function (req, res) {
 
   var forumsTopicsCount = function (callback) {
     Topic.aggregate({
+      // $match: condition,
       $project: {
         'forum': '$forum',
         'year': {
