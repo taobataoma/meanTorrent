@@ -66,9 +66,8 @@
         content: vm.systemConfigContent
       });
       sc.$setSystemConfig(function (res) {
-        console.log(res);
-        // NotifycationService.showSuccessNotify('SYSTEMS.CONFIG_SAVE_SUCCESSFULLY');
-        // vm.contentChanged = false;
+        NotifycationService.showSuccessNotify('SYSTEMS.CONFIG_SAVE_SUCCESSFULLY');
+        vm.contentChanged = false;
       });
     };
   }
