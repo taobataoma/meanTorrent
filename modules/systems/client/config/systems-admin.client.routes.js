@@ -23,9 +23,17 @@
         url: '/config',
         templateUrl: '/modules/systems/client/views/config.client.view.html'
       })
-      .state('admin.systems.template', {
-        url: '/template',
-        templateUrl: '/modules/systems/client/views/template.client.view.html'
+      .state('admin.systems.templates', {
+        url: '/templates',
+        templateUrl: '/modules/systems/client/views/templates.client.view.html'
+      })
+      .state('admin.systems.strings', {
+        url: '/strings',
+        templateUrl: '/modules/systems/client/views/strings.client.view.html'
+      })
+      .state('admin.systems.commands', {
+        url: '/commands',
+        templateUrl: '/modules/systems/client/views/commands.client.view.html'
       });
   }
 }());

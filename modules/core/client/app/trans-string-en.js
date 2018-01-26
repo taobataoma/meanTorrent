@@ -1259,7 +1259,9 @@
     //systems control panel
     SYSTEMS: {
       TORRENTS_CONFIG: 'System configure',
-      TEMPLATE_EDIT: 'Template editor',
+      TEMPLATES_EDIT: 'Templates editor',
+      STRINGS_EDIT: 'Translate strings editor',
+      COMMANDS_EXECUTE: 'Server commands execute',
 
       CONFIG_BLUR_CONFIRM_CANCEL: 'Cancel',
       CONFIG_BLUR_CONFIRM_SAVE: 'Save',

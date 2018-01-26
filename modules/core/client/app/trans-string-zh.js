@@ -1259,7 +1259,9 @@
     //systems control panel
     SYSTEMS: {
       TORRENTS_CONFIG: '系统配置调整',
-      TEMPLATE_EDIT: '模板在线编辑',
+      TEMPLATES_EDIT: '模板在线编辑',
+      STRINGS_EDIT: '多语言字符串在线编辑',
+      COMMANDS_EXECUTE: '服务器命令在线执行',
 
       CONFIG_BLUR_CONFIRM_CANCEL: '取消',
       CONFIG_BLUR_CONFIRM_SAVE: '保存',
