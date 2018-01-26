@@ -12,34 +12,36 @@
     <div class="home_global_search" ng-init="vm.getForumList()">
         <div class="search-panel pagetop">
             <div class="container">
-                <div class="col-sm-7">
-                    <p class="search-title" translate="HOME.TITLE_SEARCH"></p>
-                    <p class="text-muted" translate="HOME.SEARCH_SUB_TITLE"></p>
-                </div>
-                <div class="col-sm-5">
-                    <div class="input-group search-group margin-top-10">
-                        <input type="text" class="form-control"
-                               ng-model="vm.searchKeys"
-                               ng-keydown="vm.onSearchKeyDown($event);"
-                               aria-label="search" placeholder="Search">
-
-                        <div class="input-group-btn">
-                            <button class="btn btn-width-100 btn-search" id="search-button" aria-label="Search"
-                                    mouse-enter-toggle-class="btn-success" base-class="btn-default"
-                                    ng-click="vm.doGlobalSearch()">
-                                {{'BTN_SEARCH' | translate}}
-                            </button>
+                <div class="row">
+                    <div class="search-row">
+                        <div class="col-sm-7 search-col">
+                            <p class="search-title" translate="HOME.TITLE_SEARCH"></p>
+                            <p class="text-muted" translate="HOME.SEARCH_SUB_TITLE"></p>
                         </div>
-                    </div>
-                    <div class="search-type text-center margin-top-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
-                                   ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio_forum" value="forum"
-                                   ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_FORUM' | translate}}
-                        </label>
+                        <div class="col-sm-5 search-col">
+                            <div class="input-group search-group margin-top-10">
+                                <input type="text" class="form-control"
+                                       ng-model="vm.searchKeys"
+                                       ng-keydown="vm.onSearchKeyDown($event);"
+                                       aria-label="search" placeholder="Search">
+
+                                <button class="btn btn-width-100 btn-search" id="search-button" aria-label="Search"
+                                        mouse-enter-toggle-class="btn-success" base-class="btn-default"
+                                        ng-click="vm.doGlobalSearch()">
+                                    {{'BTN_SEARCH' | translate}}
+                                </button>
+                            </div>
+                            <div class="search-type text-center margin-top-10">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
+                                           ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio_forum" value="forum"
+                                           ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_FORUM' | translate}}
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
