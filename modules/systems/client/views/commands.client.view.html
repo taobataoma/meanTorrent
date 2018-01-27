@@ -1,15 +1,31 @@
-<div class="panel panel-default system-panel" ng-controller="SystemConfigController as vm">
+<div class="panel panel-default system-panel command-panel" ng-controller="SystemConfigController as vm">
     <div class="panel-heading">
         {{'SYSTEMS.COMMANDS_EXECUTE' | translate}}
     </div>
-
+    <div class="panel-desc" ng-bind-html="vm.getDescCommand()"></div>
     <ul class="list-group commands-list">
-        <li class="list-group-item" ng-repeat="cmd in vm.shellCommandConfig">
+        <li class="list-group-item" id="{{cmd.eid}}" ng-repeat="cmd in vm.shellCommandConfig">
             <div>
-                <button class="btn btn-sm btn-success btn-width-100" ng-click="vm.runCommand(cmd.command)">{{'SYSTEMS.BTN_RUN_COMMAND' | translate}}</button>
-                <a class="cmd-name">{{cmd.command}}</a>
+                <button class="btn btn-sm btn-success btn-width-100" ng-disabled="vm.shellIsRunning"
+                        ng-click="vm.runCommand(cmd.command, cmd.eid)">
+                    <i class="fa fa-spinner fa-spin"
+                       ng-if="vm.shellIsRunning && vm.runningId==cmd.eid"></i> {{'SYSTEMS.BTN_RUN_COMMAND' | translate}}
+                </button>
+                <span class="cmd-name">{{cmd.command}}</span>
             </div>
             <div class="cmd-desc">{{cmd.desc | translate}}</div>
         </li>
+        <li class="list-group-item" id="command-custom">
+            <div class="cmd-desc">{{'SYSTEMS.CUSTOM_COMMAND' | translate}}</div>
+            <div>
+                <input type="text" class="form-control cmd-name" ng-model="vm.customCommand" ng-keydown="vm.commandKeydown($event)">
+                <button class="btn btn-sm btn-success btn-width-100 margin-top-10" ng-disabled="vm.shellIsRunning"
+                        ng-click="vm.runCommand(vm.customCommand, 'command-custom')">
+                    <i class="fa fa-spinner fa-spin"
+                       ng-if="vm.shellIsRunning && vm.runningId=='command-custom'"></i> {{'SYSTEMS.BTN_RUN_COMMAND' | translate}}
+                </button>
+            </div>
+        </li>
     </ul>
+    <textarea class="form-control" ui-codemirror="vm.cmdOption"></textarea>
 </div>

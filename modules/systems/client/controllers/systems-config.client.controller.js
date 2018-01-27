@@ -6,15 +6,19 @@
     .controller('SystemConfigController', SystemConfigController);
 
   SystemConfigController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'SystemsService', 'ModalConfirmService', 'NotifycationService', 'marked',
-    'DebugConsoleService', 'MeanTorrentConfig'];
+    'DebugConsoleService', 'MeanTorrentConfig', '$compile'];
 
   function SystemConfigController($scope, $state, $timeout, $translate, Authentication, SystemsService, ModalConfirmService, NotifycationService, marked,
-                                  mtDebug, MeanTorrentConfig) {
+                                  mtDebug, MeanTorrentConfig, $compile) {
     var vm = this;
     vm.user = Authentication.user;
     vm.selectedFilename = 'null';
     vm.shellCommandConfig = MeanTorrentConfig.meanTorrentConfig.shellCommand;
 
+    /**
+     * cmOption
+     * @type {{lineNumbers: boolean, tabSize: number, onLoad: SystemConfigController.cmOption.onLoad}}
+     */
     vm.cmOption = {
       lineNumbers: true,
       tabSize: 2,
@@ -80,6 +84,27 @@
     };
 
     /**
+     * cmdOption
+     * @type {{lineNumbers: boolean, tabSize: number, readOnly: boolean, onLoad: SystemConfigController.cmdOption.onLoad}}
+     */
+    vm.cmdOption = {
+      lineNumbers: true,
+      tabSize: 2,
+      readOnly: true,
+      onLoad: function (_cm) {
+        $('.CodeMirror').css('height', '0');
+
+        /**
+         * initCommandContent
+         * @param value
+         */
+        vm.initCommandContent = function (value) {
+          _cm.setOption('value', value);
+        };
+      }
+    };
+
+    /**
      * remove side_overlay background
      */
     $scope.$on('$stateChangeStart', function () {
@@ -104,6 +129,16 @@
      */
     vm.getDescConfig = function () {
       var ts = $translate.instant('SYSTEMS.DESC_CONFIG');
+
+      return marked(ts, {sanitize: true});
+    };
+
+    /**
+     * getDescCommand
+     * @returns {*}
+     */
+    vm.getDescCommand = function () {
+      var ts = $translate.instant('SYSTEMS.DESC_COMMAND');
 
       return marked(ts, {sanitize: true});
     };
@@ -170,18 +205,62 @@
     };
 
     /**
+     * commandKeydown
+     * @param evt
+     */
+    vm.commandKeydown = function (evt) {
+      if (evt.keyCode === 13) {
+        vm.runCommand(vm.customCommand, 'command-custom');
+      }
+    };
+
+    /**
      * runCommand
      * @param cmd
      */
-    vm.runCommand = function (cmd) {
-      SystemsService.shellCommand({
-        command: cmd
-      }, function (res) {
-        console.log(res.stdout);
-      }, function (err) {
-        console.log(err);
-      });
+    vm.runCommand = function (cmd, eid) {
+      if (cmd) {
+        vm.shellIsRunning = true;
+        vm.runningId = eid;
 
+        $('.CodeMirror').css('height', '0');
+        $('.CodeMirror').css('border', 'none');
+        $('.CodeMirror').css('margin-top', '0');
+
+        SystemsService.shellCommand({
+          command: cmd
+        }, function (res) {
+          showCommandStdout(res);
+        }, function (err) {
+          showCommandStdout(err);
+        });
+      }
+
+      function showCommandStdout(res) {
+        console.log(res);
+        vm.shellIsRunning = false;
+
+        var stdoutElement = $('#stdout-message');
+        if (stdoutElement) {
+          stdoutElement.remove();
+        }
+
+        var outString = 'COMMAND: ' + cmd;
+        outString += '\nCODE: ' + res.code;
+        outString += '\nSTDOUT:\n---------------------------------\n' + (res.stdout || 'null');
+        outString += '\nSTDERR:\n---------------------------------\n' + (res.stderr || 'null');
+
+        vm.initCommandContent(outString);
+
+        var element = $('.CodeMirror');
+        $('.CodeMirror').css('height', '300px');
+        $('.CodeMirror').css('border', 'solid 1px #ddd');
+        $('.CodeMirror').css('margin-top', '10px');
+        $('.CodeMirror').css('background-color', '#fafbfc');
+
+        $('#' + eid).append(element);
+      }
     };
+
   }
 }());

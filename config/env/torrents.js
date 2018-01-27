@@ -1027,13 +1027,14 @@ module.exports = {
      * online shell command execute settings
      *
      * @cmd:        command name
+     * @eid:        element id, will append command stdout message to it
      * @desc:       command desc
      */
     shellCommand: [
-      {command: 'git pull', desc: 'COMMAND.GIT_PULL'},
-      {command: 'npm install', desc: 'COMMAND.NPM_INSTALL'},
-      {command: 'bower install', desc: 'COMMAND.BOWER_INSTALL'},
-      {command: 'gulp build', desc: 'COMMAND.GULP_BUILD'}
+      {command: 'git pull', eid: 'git-pull', desc: 'COMMAND.GIT_PULL'},
+      {command: 'npm install', eid: 'npm-install', desc: 'COMMAND.NPM_INSTALL'},
+      {command: 'bower install', eid: 'bower-install', desc: 'COMMAND.BOWER_INSTALL'},
+      {command: 'gulp build', eid: 'gulp-build', desc: 'COMMAND.GULP_BUILD'}
     ],
 
     /**

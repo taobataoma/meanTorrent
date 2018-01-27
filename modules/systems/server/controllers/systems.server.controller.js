@@ -140,19 +140,11 @@ exports.setSystemConfigContent = function (req, res) {
 exports.shellCommand = function (req, res) {
   if (req.user.isAdmin) {
     shell.exec(req.body.command, function (code, stdout, stderr) {
-      if (code !== 0) {
-        return res.status(422).send({
-          code: code,
-          stdout: stdout,
-          stderr: stderr
-        });
-      } else {
-        res.json({
-          code: code,
-          stdout: stdout,
-          stderr: stderr
-        });
-      }
+      res.json({
+        code: code,
+        stdout: stdout,
+        stderr: stderr
+      });
     });
   } else {
     return res.status(403).json({

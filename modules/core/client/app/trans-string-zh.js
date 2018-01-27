@@ -1267,6 +1267,7 @@
       COMMANDS_EXECUTE: '服务器命令在线执行',
       SELECT_FILE: '请选择文件',
       BTN_RUN_COMMAND: '执行',
+      CUSTOM_COMMAND: '输入命令行并执行:',
 
       CONFIG_CHANGED_CONFIRM_CANCEL: '取消',
       CONFIG_CHANGED_CONFIRM_SAVE: '保存',
@@ -1275,7 +1276,8 @@
       CONFIG_SAVE_SUCCESSFULLY: '系统配置保存成功',
       CONFIG_SAVE_FAILED: '系统配置保存失败',
 
-      DESC_CONFIG: ':warning: 这是 **meantorrent** 的系统配置文件, 如果您知道你在干什么, 您可以修改它们, 否则不要随便改动, 不正确的设置可能会导致系统不能正常工作. 您也可以在修改前咨询相关系统维护人员.'
+      DESC_CONFIG: ':warning: 这是 **meantorrent** 的系统配置文件, 如果您知道你在干什么, 您可以修改它们, 否则不要随便改动, 不正确的设置可能会导致系统不能正常工作. 您也可以在修改前咨询相关系统维护人员.',
+      DESC_COMMAND: ':warning: 下面的命令用来维护 **meanTorrent**, 如果你不明白它们的作用，请不要随意的执行，错误的执行将使服务器不能正常的工作. 您也可以在执行前咨询相关系统维护人员.'
     },
 
     //shell command
