@@ -15,6 +15,19 @@
         padding: 10px 15px 5px;
         background-color: @alert-warning-bg;
     }
+    .panel-loading {
+        text-align: center;
+        color: #888;
+        border-bottom: solid 1px #ddd;
+        padding: 15px;
+        background-color: #fafbfc;
+        &.show-loading {
+            display: block;
+        }
+        &.hide-loading {
+            display: none;
+        }
+    }
     .panel-filelist {
         border-bottom: solid 1px #ddd;
         padding: 10px 15px;
@@ -24,6 +37,20 @@
         padding: 0;
         .CodeMirror {
             min-height: 450px;
+        }
+        &.show-body {
+            display: block;
+        }
+        &.hide-body {
+            display: none;
+        }
+    }
+    .panel-footer {
+        &.show-footer {
+            display: block;
+        }
+        &.hide-footer {
+            display: none;
         }
     }
     .panel-markdown {

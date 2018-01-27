@@ -1268,6 +1268,7 @@
       SELECT_FILE: 'Select file, please',
       BTN_RUN_COMMAND: 'Run',
       CUSTOM_COMMAND: 'Type command line and rut it:',
+      CONFIG_LOADING: 'Loading file, please wait ...',
 
       CONFIG_CHANGED_CONFIRM_CANCEL: 'Cancel',
       CONFIG_CHANGED_CONFIRM_SAVE: 'Save',

@@ -6,10 +6,10 @@
     .controller('SystemConfigController', SystemConfigController);
 
   SystemConfigController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'SystemsService', 'ModalConfirmService', 'NotifycationService', 'marked',
-    'DebugConsoleService', 'MeanTorrentConfig', '$compile'];
+    'DebugConsoleService', 'MeanTorrentConfig'];
 
   function SystemConfigController($scope, $state, $timeout, $translate, Authentication, SystemsService, ModalConfirmService, NotifycationService, marked,
-                                  mtDebug, MeanTorrentConfig, $compile) {
+                                  mtDebug, MeanTorrentConfig) {
     var vm = this;
     vm.user = Authentication.user;
     vm.selectedFilename = 'null';
@@ -30,6 +30,12 @@
         vm.initConfigContent = function (value) {
           _cm.setOption('value', value);
           vm.contentChanged = false;
+          vm.showFooter = true;
+          vm.showBody = true;
+          vm.showLoading = false;
+          $timeout(function () {
+            _cm.refresh();
+          }, 100);
         };
 
         /**
@@ -60,6 +66,10 @@
 
         function loadNewFile() {
           _cm.setOption('value', '');
+          vm.showFooter = false;
+          vm.showBody = false;
+          vm.showLoading = true;
+
           SystemsService.getSystemConfigContent({
             filename: vm.selectedFilename
           }, function (res) {
@@ -100,6 +110,9 @@
          */
         vm.initCommandContent = function (value) {
           _cm.setOption('value', value);
+          $timeout(function () {
+            _cm.refresh();
+          }, 100);
         };
       }
     };
@@ -250,15 +263,14 @@
         outString += '\nSTDOUT:\n---------------------------------\n' + (res.stdout || 'null');
         outString += '\nSTDERR:\n---------------------------------\n' + (res.stderr || 'null');
 
-        vm.initCommandContent(outString);
-
         var element = $('.CodeMirror');
+        $('#' + eid).append(element);
         $('.CodeMirror').css('height', '300px');
         $('.CodeMirror').css('border', 'solid 1px #ddd');
         $('.CodeMirror').css('margin-top', '10px');
         $('.CodeMirror').css('background-color', '#fafbfc');
 
-        $('#' + eid).append(element);
+        vm.initCommandContent(outString);
       }
     };
 

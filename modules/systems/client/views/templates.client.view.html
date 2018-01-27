@@ -12,12 +12,13 @@
             </option>
         </select>
     </div>
-    <div class="panel-body panel-markdown" ng-class="{'content-dirty': vm.contentChanged}">
+    <div class="panel-loading" ng-class="vm.showLoading ? 'show-loading' : 'hide-loading'" translate="SYSTEMS.CONFIG_LOADING"></div>
+    <div class="panel-body panel-markdown" ng-class="{'content-dirty': vm.contentChanged, 'show-body': vm.showBody, 'hide-body': !vm.showBody}">
         <textarea class="form-control config-content" id="configContent" name="configContent" ng-model="vm.systemConfigContentValue"
                   ui-codemirror="vm.cmOption"></textarea>
         <div class="panel-preview" ng-if="vm.systemConfigContentValue" ng-bind-html="vm.getMarkedConfigContent()"></div>
     </div>
-    <div class="panel-footer">
+    <div class="panel-footer" ng-class="vm.showFooter ? 'show-footer' : 'hide-footer'">
         <div class="text-right">
             <button class="btn btn-success btn-width-100" ng-disabled="!vm.contentChanged"
                     ng-click="vm.saveConfigFileContent()">{{'BUTTON_SAVE' | translate}}

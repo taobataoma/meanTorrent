@@ -1268,6 +1268,7 @@
       SELECT_FILE: '请选择文件',
       BTN_RUN_COMMAND: '执行',
       CUSTOM_COMMAND: '输入命令行并执行:',
+      CONFIG_LOADING: '正在装载文件, 请稍候 ...',
 
       CONFIG_CHANGED_CONFIRM_CANCEL: '取消',
       CONFIG_CHANGED_CONFIRM_SAVE: '保存',
