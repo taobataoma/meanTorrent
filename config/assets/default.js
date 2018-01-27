@@ -84,7 +84,9 @@ module.exports = {
         //codeMirror
         'public/lib/codemirror/lib/codemirror.js',
         'public/lib/angular-ui-codemirror/ui-codemirror.js',
-        'public/lib/codemirror/mode/javascript/javascript.js'
+        'public/lib/codemirror/mode/javascript/javascript.js',
+        //angular-lazy-img
+        'public/lib/angular-lazy-img/release/angular-lazy-img.js'
 
         // endbower
       ],
