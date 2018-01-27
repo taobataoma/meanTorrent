@@ -147,7 +147,7 @@
      * getMarkedConfigContent
      * @returns {*}
      */
-    vm.getMarkedConfigContent = function(){
+    vm.getMarkedConfigContent = function () {
       return marked(vm.systemConfigContentValue, {sanitize: true});
     };
 
