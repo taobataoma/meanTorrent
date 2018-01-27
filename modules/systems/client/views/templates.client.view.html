@@ -12,7 +12,7 @@
             </option>
         </select>
     </div>
-    <div class="panel-body panel-markdown">
+    <div class="panel-body panel-markdown" ng-class="{'content-dirty': vm.contentChanged}">
         <textarea class="form-control config-content" id="configContent" name="configContent" ng-model="vm.systemConfigContentValue"
                   ui-codemirror="vm.cmOption"></textarea>
         <div class="panel-preview" ng-if="vm.systemConfigContentValue" ng-bind-html="vm.getMarkedConfigContent()"></div>

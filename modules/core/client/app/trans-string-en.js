@@ -1282,7 +1282,8 @@
     COMMAND: {
       GIT_PULL: 'If your meanTorrent is install from git repository, you can run it to pull the newest code.',
       NPM_INSTALL: 'If you added any server side dependencies package into meanTorrent, then need run it to install the package.',
-      BOWER_INSTALL: 'If you added any client side dependencies package into meanTorrent, then need run it to install the package.'
+      BOWER_INSTALL: 'If you added any client side dependencies package into meanTorrent, then need run it to install the package.',
+      GULP_BUILD: 'Run it compile all .js and .css to min files and ready for production mode of meanTorrent.'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

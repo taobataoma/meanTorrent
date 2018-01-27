@@ -1032,7 +1032,8 @@ module.exports = {
     shellCommand: [
       {command: 'git pull', desc: 'COMMAND.GIT_PULL'},
       {command: 'npm install', desc: 'COMMAND.NPM_INSTALL'},
-      {command: 'bower install', desc: 'COMMAND.BOWER_INSTALL'}
+      {command: 'bower install', desc: 'COMMAND.BOWER_INSTALL'},
+      {command: 'gulp build', desc: 'COMMAND.GULP_BUILD'}
     ],
 
     /**

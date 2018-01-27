@@ -1282,7 +1282,8 @@
     COMMAND: {
       GIT_PULL: '如果您的 meanTorrent 安装来自于某个 Git 仓库, 您可以运行这个命令来拉取最新的源代码.',
       NPM_INSTALL: '如果您向 meanTorrent 手动添加了任何服务器端依赖模块, 则需要运行此命令来安装这些新添加的模块.',
-      BOWER_INSTALL: '如果您向 meanTorrent 手动添加了任何浏览器端依赖模块, 则需要运行此命令来安装这些新添加的模块.'
+      BOWER_INSTALL: '如果您向 meanTorrent 手动添加了任何浏览器端依赖模块, 则需要运行此命令来安装这些新添加的模块.',
+      GULP_BUILD: '对所有 .js 文件以及 .css 文件进行编译压缩, 为 meanTorrent 准备生产模式.'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////
