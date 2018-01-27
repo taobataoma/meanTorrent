@@ -16,7 +16,6 @@
 
     vm.cmOption = {
       lineNumbers: true,
-      mode: {name: 'javascript', json: true},
       tabSize: 2,
       onLoad: function (_cm) {
         /**
@@ -59,6 +58,15 @@
           SystemsService.getSystemConfigContent({
             filename: vm.selectedFilename
           }, function (res) {
+            var ext = vm.selectedFilename.split('.').pop();
+            switch (ext) {
+              case 'md':
+                _cm.setOption('mode', 'markdown');
+                break;
+              default:
+                _cm.setOption('mode', {name: 'javascript', json: true});
+            }
+
             vm.loadedFilename = vm.selectedFilename;
             vm.initConfigContent(res.configContent);
           });
@@ -124,6 +132,23 @@
       SystemsService.getSystemAssetsConfigFiles(function (res) {
         vm.assetsConfigFiles = res;
       });
+    };
+
+    /**
+     * getTemplateConfigFiles
+     */
+    vm.getTemplateConfigFiles = function () {
+      SystemsService.getSystemTemplateConfigFiles(function (res) {
+        vm.templateConfigFiles = res;
+      });
+    };
+
+    /**
+     * getMarkedConfigContent
+     * @returns {*}
+     */
+    vm.getMarkedConfigContent = function(){
+      return marked(vm.systemConfigContentValue, {sanitize: true});
     };
 
     /**

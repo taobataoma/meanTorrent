@@ -1,11 +1,27 @@
-<div class="panel panel-default system-panel">
-    <div class="panel-heading">
-        {{'SYSTEMS.TEMPLATES_EDIT' | translate}}
+<div class="panel panel-default system-panel" ng-controller="SystemConfigController as vm" ng-init="vm.getTemplateConfigFiles()">
+    <div class="panel-heading">{{'SYSTEMS.TEMPLATES_EDIT' | translate}}
+        <small> - {{vm.loadedFilename}}</small>
     </div>
-    <div class="panel-desc">
-
+    <div class="panel-desc" ng-bind-html="vm.getDescConfig()"></div>
+    <div class="panel-filelist">
+        <select class="form-control" ng-model="vm.selectedFilename" ng-change="vm.onSelectedFileChanged();" autofocus>
+            <option value="null">{{'SYSTEMS.SELECT_FILE' | translate}}
+            </option>
+            <option ng-repeat="t in vm.templateConfigFiles.files"
+                    value="{{t}}">{{t}}
+            </option>
+        </select>
     </div>
-    <div class="panel-body">
-        <p>...</p>
+    <div class="panel-body panel-markdown">
+        <textarea class="form-control config-content" id="configContent" name="configContent" ng-model="vm.systemConfigContentValue"
+                  ui-codemirror="vm.cmOption"></textarea>
+        <div class="panel-preview" ng-if="vm.systemConfigContentValue" ng-bind-html="vm.getMarkedConfigContent()"></div>
+    </div>
+    <div class="panel-footer">
+        <div class="text-right">
+            <button class="btn btn-success btn-width-100" ng-disabled="!vm.contentChanged"
+                    ng-click="vm.saveConfigFileContent()">{{'BUTTON_SAVE' | translate}}
+            </button>
+        </div>
     </div>
 </div>

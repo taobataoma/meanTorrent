@@ -16,6 +16,9 @@ module.exports = function (app) {
   app.route('/api/systems/systemTransConfigFiles').all(systemsPolicy.isAllowed)
     .get(systems.getSystemTransConfigFiles);
 
+  app.route('/api/systems/systemTemplateConfigFiles').all(systemsPolicy.isAllowed)
+    .get(systems.getSystemTemplateConfigFiles);
+
   app.route('/api/systems/systemConfigContent').all(systemsPolicy.isAllowed)
     .get(systems.getSystemConfigContent)
     .put(systems.setSystemConfigContent);

@@ -18,7 +18,8 @@ exports.invokeRolesPolicies = function () {
       {resources: '/api/systems/systemConfigContent', permissions: '*'},
       {resources: '/api/systems/systemEnvConfigFiles', permissions: '*'},
       {resources: '/api/systems/systemAssetsConfigFiles', permissions: '*'},
-      {resources: '/api/systems/systemTransConfigFiles', permissions: '*'}
+      {resources: '/api/systems/systemTransConfigFiles', permissions: '*'},
+      {resources: '/api/systems/systemTemplateConfigFiles', permissions: '*'}
     ]
   }]);
 };
