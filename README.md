@@ -112,6 +112,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 51. Complete user follow system.
 52. Request system support. User can post a request to find any torrent and respond a request to upload torrent, rewards score support. 
 53. Global sales setting support, admin can redefined the upload and download ratio in sales, the value is priority to the torrent sales settings. And show global sales notice message at home page.
+54. New feature for system control panel, only admin can edit markdown templates or system configure files online or execute some shell command online, but this is danger, if you do not understand it, don`t do it please.
 
 #### Chat room feature:
 1. Users name list
@@ -125,7 +126,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 ## TODO
 - Poll type topics support in forum.
 - Examine tasks system, to check user upload、download and score incremental value.
-- Admin configure system timely, translate string change timely.
 - Global search on home page for all categories torrents.
 - Score on seed, The older torrent get the higher score, the few seeding people got the higher score.
 - More score get methods.
