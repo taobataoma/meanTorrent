@@ -6,11 +6,13 @@
     .module(app.applicationModuleName)
     .config(transConfig);
 
-  // **************************************************
-  // 中 文 翻 译
-  // --------------------------------------------------
-  // 请不要修改翻译部分之外的代码
-  // **************************************************
+  /**------------------------------------------------------------------------------------------------
+   * !重要提示
+   * MEANTORRENT 配置开始
+   * 请不要修改在这之前的任何代码 ！！！
+   *
+   * 中文字符串
+   --------------------------------------------------------------------------------------------------*/
 
   var string_zh = {
     COMINGSOON: '开发中，请稍候...',
@@ -1258,17 +1260,21 @@
 
     //systems control panel
     SYSTEMS: {
-      TORRENTS_CONFIG: '系统配置调整',
+      ASSETS_CONFIG: 'Assets 资源配置调整',
+      ENV_CONFIG: 'Env 环境配置调整',
       TEMPLATES_EDIT: '模板在线编辑',
-      STRINGS_EDIT: '多语言字符串在线编辑',
+      TRANS_EDIT: '多语言字符串在线编辑',
       COMMANDS_EXECUTE: '服务器命令在线执行',
+      SELECT_FILE: '请选择文件',
 
-      CONFIG_BLUR_CONFIRM_CANCEL: '取消',
-      CONFIG_BLUR_CONFIRM_SAVE: '保存',
-      CONFIG_BLUR_HEADER_TEXT: '系统配置已更改',
-      CONFIG_BLUR_BODY_TEXT: '系统配置已被修改, 您确定要退出并放弃保存吗?',
+      CONFIG_CHANGED_CONFIRM_CANCEL: '取消',
+      CONFIG_CHANGED_CONFIRM_SAVE: '保存',
+      CONFIG_CHANGED_HEADER_TEXT: '系统配置已更改',
+      CONFIG_CHANGED_BODY_TEXT: '系统配置已被修改, 您确定要退出并放弃保存吗?',
       CONFIG_SAVE_SUCCESSFULLY: '系统配置保存成功',
-      CONFIG_SAVE_FAILED: '系统配置保存失败'
+      CONFIG_SAVE_FAILED: '系统配置保存失败',
+
+      DESC_CONFIG: ':warning: 这是 **meantorrent** 的系统配置文件, 如果您知道你在干什么, 您可以修改它们, 否则不要随便改动, 不正确的设置可能会导致系统不能正常工作. 您也可以在修改前咨询相关系统维护人员.'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////
@@ -1546,12 +1552,15 @@
     SITE_NOTICE: {
       GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快乐 2018**, **{{site_name}}** 新年促销活动已准备就绪, 促销活动类型为 <span class="sale_key">**{{sale_value}}**</span> , 活动将开始于 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 并持续 <span class="sale_key">**{{sale_days}}**</span> 天, 结束于 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 并感谢所有会员用户一直以来给予我们的帮助与支持!'
     }
-
   };
 
-  // **************************************************
-  // 中文翻译结束
-  // **************************************************
+  /**------------------------------------------------------------------------------------------------
+   * !重要提示
+   * MEANTORRENT 配置结束
+   * 请不要修改在这之前的任何代码 ！！！
+   *
+   * 中文字符串
+   --------------------------------------------------------------------------------------------------*/
 
   // config $translateProvider
   transConfig.$inject = ['$translateProvider'];

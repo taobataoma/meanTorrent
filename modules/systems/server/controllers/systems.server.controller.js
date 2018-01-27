@@ -17,12 +17,69 @@ var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 
 /**
- * getSystemConfig
+ * getSystemEnvConfigFiles
  * @param req
  * @param res
  */
-exports.getSystemConfig = function (req, res) {
-  var config = shell.cat(path.resolve('./config/env/torrents.js'));
+exports.getSystemEnvConfigFiles = function (req, res) {
+  var files = shell.ls('./config/env/*.js');
+
+  if (req.user.isAdmin) {
+    res.json({
+      files: files
+    });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+};
+
+/**
+ * getSystemAssetsConfigFiles
+ * @param req
+ * @param res
+ */
+exports.getSystemAssetsConfigFiles = function (req, res) {
+  var files = shell.ls('./config/assets/*.js');
+
+  if (req.user.isAdmin) {
+    res.json({
+      files: files
+    });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+};
+
+/**
+ * getSystemTransConfigFiles
+ * @param req
+ * @param res
+ */
+exports.getSystemTransConfigFiles = function (req, res) {
+  var files = shell.ls('./modules/core/client/app/trans*.js');
+
+  if (req.user.isAdmin) {
+    res.json({
+      files: files
+    });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+};
+
+/**
+ * getSystemConfigContent
+ * @param req
+ * @param res
+ */
+exports.getSystemConfigContent = function (req, res) {
+  var config = shell.cat(path.resolve(req.query.filename));
 
   if (req.user.isAdmin) {
     res.json({
@@ -36,18 +93,18 @@ exports.getSystemConfig = function (req, res) {
 };
 
 /**
- * setSystemConfig
+ * setSystemConfigContent
  * @param req
  * @param res
  */
-exports.setSystemConfig = function (req, res) {
+exports.setSystemConfigContent = function (req, res) {
   // eslint-disable-next-line new-cap
   var cc = shell.ShellString(req.body.content);
 
   if (req.user.isAdmin) {
-    cc.to('./config/env/torrents.js');
+    cc.to(path.resolve(req.body.filename));
     res.json({
-      message: 'SERVER.TORRENT_CONFIG_SAVE_SUCCESSFULLY'
+      message: 'SERVER.SYSTEM_CONFIG_SAVE_SUCCESSFULLY'
     });
   } else {
     return res.status(403).json({

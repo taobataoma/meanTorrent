@@ -15,7 +15,10 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [
-      {resources: '/api/systems/systemConfig', permissions: '*'}
+      {resources: '/api/systems/systemConfigContent', permissions: '*'},
+      {resources: '/api/systems/systemEnvConfigFiles', permissions: '*'},
+      {resources: '/api/systems/systemAssetsConfigFiles', permissions: '*'},
+      {resources: '/api/systems/systemTransConfigFiles', permissions: '*'}
     ]
   }]);
 };

@@ -14,13 +14,25 @@
       update: {
         method: 'PUT'
       },
-      getSystemConfig: {
+      getSystemEnvConfigFiles: {
         method: 'GET',
-        url: '/api/systems/systemConfig'
+        url: '/api/systems/systemEnvConfigFiles'
       },
-      setSystemConfig: {
+      getSystemAssetsConfigFiles: {
+        method: 'GET',
+        url: '/api/systems/systemAssetsConfigFiles'
+      },
+      getSystemTransConfigFiles: {
+        method: 'GET',
+        url: '/api/systems/systemTransConfigFiles'
+      },
+      getSystemConfigContent: {
+        method: 'GET',
+        url: '/api/systems/systemConfigContent'
+      },
+      setSystemConfigContent: {
         method: 'PUT',
-        url: '/api/systems/systemConfig'
+        url: '/api/systems/systemConfigContent'
       }
     });
   }

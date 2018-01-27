@@ -6,11 +6,13 @@
     .module(app.applicationModuleName)
     .config(transConfig);
 
-  // **************************************************
-  // English Strings
-  // --------------------------------------------------
-  // Don`t change other code
-  // **************************************************
+  /**------------------------------------------------------------------------------------------------
+   * !IMPORTANT
+   * MEANTORRENT CONFIG START
+   * PLEASE DO NOT MODIFY THE ABOVE LINES ！！！
+   *
+   * English strings
+   --------------------------------------------------------------------------------------------------*/
 
   var string_en = {
     COMINGSOON: 'coming soon...',
@@ -1258,17 +1260,21 @@
 
     //systems control panel
     SYSTEMS: {
-      TORRENTS_CONFIG: 'System configure',
+      ASSETS_CONFIG: 'System assets configure',
+      ENV_CONFIG: 'System env configure',
       TEMPLATES_EDIT: 'Templates editor',
-      STRINGS_EDIT: 'Translate strings editor',
+      TRANS_EDIT: 'Translate strings editor',
       COMMANDS_EXECUTE: 'Server commands execute',
+      SELECT_FILE: 'Select file, please',
 
-      CONFIG_BLUR_CONFIRM_CANCEL: 'Cancel',
-      CONFIG_BLUR_CONFIRM_SAVE: 'Save',
-      CONFIG_BLUR_HEADER_TEXT: 'Configure was changed',
-      CONFIG_BLUR_BODY_TEXT: 'Configure was changed, are you sure to quit and don`t save it?',
+      CONFIG_CHANGED_CONFIRM_CANCEL: 'Cancel',
+      CONFIG_CHANGED_CONFIRM_SAVE: 'Save',
+      CONFIG_CHANGED_HEADER_TEXT: 'Configure was changed',
+      CONFIG_CHANGED_BODY_TEXT: 'Configure was changed, are you sure to quit and don`t save it?',
       CONFIG_SAVE_SUCCESSFULLY: 'Configure save successfully',
-      CONFIG_SAVE_FAILED: 'Configure save failed'
+      CONFIG_SAVE_FAILED: 'Configure save failed',
+
+      DESC_CONFIG: ':warning: This is the system configuration file of **meanTorrent**. If you know what you are doing, you can modify them. Otherwise, don\'t change it arbitrarily. Incorrect settings may cause the system to not work properly. You can also consult the related system maintenance personnel before modification.'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////
@@ -1548,9 +1554,13 @@
     }
   };
 
-  // **************************************************
-  // English Strings end
-  // **************************************************
+  /**------------------------------------------------------------------------------------------------
+   * !IMPORTANT
+   * MEANTORRENT CONFIG END
+   * PLEASE DO NOT MODIFY THE FOLLOWING LINES ！！！
+   *
+   * English strings
+   --------------------------------------------------------------------------------------------------*/
 
   // config $translateProvider
   transConfig.$inject = ['$translateProvider'];

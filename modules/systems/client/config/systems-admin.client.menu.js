@@ -11,7 +11,7 @@
   function menuConfig(menuService) {
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_ADMIN_SYSTEMS',
-      state: 'admin.systems.config',
+      state: 'admin.systems.env',
       position: 1000,
       roles: ['admin'],
       divider: true

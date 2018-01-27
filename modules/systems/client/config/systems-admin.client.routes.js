@@ -19,17 +19,21 @@
           roles: ['admin']
         }
       })
-      .state('admin.systems.config', {
-        url: '/config',
-        templateUrl: '/modules/systems/client/views/config.client.view.html'
+      .state('admin.systems.assets', {
+        url: '/assets',
+        templateUrl: '/modules/systems/client/views/assets.client.view.html'
+      })
+      .state('admin.systems.env', {
+        url: '/env',
+        templateUrl: '/modules/systems/client/views/env.client.view.html'
       })
       .state('admin.systems.templates', {
         url: '/templates',
         templateUrl: '/modules/systems/client/views/templates.client.view.html'
       })
-      .state('admin.systems.strings', {
-        url: '/strings',
-        templateUrl: '/modules/systems/client/views/strings.client.view.html'
+      .state('admin.systems.trans', {
+        url: '/trans',
+        templateUrl: '/modules/systems/client/views/trans.client.view.html'
       })
       .state('admin.systems.commands', {
         url: '/commands',

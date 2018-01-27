@@ -9,7 +9,7 @@
     'NotifycationService', 'uibButtonConfig', 'marked', 'localStorageService'];
 
   function RequestsListController($scope, $rootScope, $state, $timeout, $translate, Authentication, RequestsService, ScoreLevelService, MeanTorrentConfig, mtDebug,
-                                 NotifycationService, uibButtonConfig, marked, localStorageService) {
+                                  NotifycationService, uibButtonConfig, marked, localStorageService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
