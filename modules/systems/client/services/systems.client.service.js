@@ -37,6 +37,10 @@
       setSystemConfigContent: {
         method: 'PUT',
         url: '/api/systems/systemConfigContent'
+      },
+      shellCommand: {
+        method: 'PUT',
+        url: '/api/systems/shellCommand'
       }
     });
   }

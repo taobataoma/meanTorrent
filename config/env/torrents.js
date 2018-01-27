@@ -1022,6 +1022,20 @@ module.exports = {
     },
 
     /**
+     * @shellCommand
+     *
+     * online shell command execute settings
+     *
+     * @cmd:        command name
+     * @desc:       command desc
+     */
+    shellCommand: [
+      {command: 'git pull', desc: 'COMMAND.GIT_PULL'},
+      {command: 'npm install', desc: 'COMMAND.NPM_INSTALL'},
+      {command: 'bower install', desc: 'COMMAND.BOWER_INSTALL'}
+    ],
+
+    /**
      * @resourcesTags
      *
      * resources search tags settings, can configure more tags of torrentType at here

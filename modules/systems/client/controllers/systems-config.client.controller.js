@@ -6,13 +6,14 @@
     .controller('SystemConfigController', SystemConfigController);
 
   SystemConfigController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'SystemsService', 'ModalConfirmService', 'NotifycationService', 'marked',
-    'DebugConsoleService'];
+    'DebugConsoleService', 'MeanTorrentConfig'];
 
   function SystemConfigController($scope, $state, $timeout, $translate, Authentication, SystemsService, ModalConfirmService, NotifycationService, marked,
-                                  mtDebug) {
+                                  mtDebug, MeanTorrentConfig) {
     var vm = this;
     vm.user = Authentication.user;
     vm.selectedFilename = 'null';
+    vm.shellCommandConfig = MeanTorrentConfig.meanTorrentConfig.shellCommand;
 
     vm.cmOption = {
       lineNumbers: true,
@@ -166,6 +167,21 @@
         if (callback)
           callback();
       });
+    };
+
+    /**
+     * runCommand
+     * @param cmd
+     */
+    vm.runCommand = function (cmd) {
+      SystemsService.shellCommand({
+        command: cmd
+      }, function (res) {
+        console.log(res.stdout);
+      }, function (err) {
+        console.log(err);
+      });
+
     };
   }
 }());

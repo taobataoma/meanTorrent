@@ -1266,6 +1266,7 @@
       TRANS_EDIT: 'Translate strings editor',
       COMMANDS_EXECUTE: 'Server commands execute',
       SELECT_FILE: 'Select file, please',
+      BTN_RUN_COMMAND: 'Run',
 
       CONFIG_CHANGED_CONFIRM_CANCEL: 'Cancel',
       CONFIG_CHANGED_CONFIRM_SAVE: 'Save',
@@ -1275,6 +1276,13 @@
       CONFIG_SAVE_FAILED: 'Configure save failed',
 
       DESC_CONFIG: ':warning: This is the system configuration file of **meanTorrent**. If you know what you are doing, you can modify them. Otherwise, don\'t change it arbitrarily. Incorrect settings may cause the system to not work properly. You can also consult the related system maintenance personnel before modification.'
+    },
+
+    //shell command
+    COMMAND: {
+      GIT_PULL: 'If your meanTorrent is install from git repository, you can run it to pull the newest code.',
+      NPM_INSTALL: 'If you added any server side dependencies package into meanTorrent, then need run it to install the package.',
+      BOWER_INSTALL: 'If you added any client side dependencies package into meanTorrent, then need run it to install the package.'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

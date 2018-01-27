@@ -22,4 +22,7 @@ module.exports = function (app) {
   app.route('/api/systems/systemConfigContent').all(systemsPolicy.isAllowed)
     .get(systems.getSystemConfigContent)
     .put(systems.setSystemConfigContent);
+
+  app.route('/api/systems/shellCommand').all(systemsPolicy.isAllowed)
+    .put(systems.shellCommand);
 };

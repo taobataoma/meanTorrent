@@ -131,3 +131,29 @@ exports.setSystemConfigContent = function (req, res) {
     });
   }
 };
+
+/**
+ * shellCommand
+ * @param req
+ * @param res
+ */
+exports.shellCommand = function (req, res) {
+  if (req.user.isAdmin) {
+    shell.exec(req.body.command, function (code, stdout, stderr) {
+      if (stderr) {
+        return res.status(422).send({
+          code: code,
+          stderr: stderr
+        });
+      } else {
+        res.json({
+          stdout: stdout
+        });
+      }
+    });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+};

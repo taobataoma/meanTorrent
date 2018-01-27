@@ -1,11 +1,15 @@
-<div class="panel panel-default system-panel">
+<div class="panel panel-default system-panel" ng-controller="SystemConfigController as vm">
     <div class="panel-heading">
         {{'SYSTEMS.COMMANDS_EXECUTE' | translate}}
     </div>
-    <div class="panel-desc">
 
-    </div>
-    <div class="panel-body">
-        <p>...</p>
-    </div>
+    <ul class="list-group commands-list">
+        <li class="list-group-item" ng-repeat="cmd in vm.shellCommandConfig">
+            <div>
+                <button class="btn btn-sm btn-success btn-width-100" ng-click="vm.runCommand(cmd.command)">{{'SYSTEMS.BTN_RUN_COMMAND' | translate}}</button>
+                <a class="cmd-name">{{cmd.command}}</a>
+            </div>
+            <div class="cmd-desc">{{cmd.desc | translate}}</div>
+        </li>
+    </ul>
 </div>
