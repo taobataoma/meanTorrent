@@ -1278,7 +1278,7 @@
       CONFIG_SAVE_FAILED: 'Configure save failed',
 
       DESC_CONFIG: ':warning: This is the system configuration file of **meanTorrent**. If you know what you are doing, you can modify them. Otherwise, don\'t change it arbitrarily. Incorrect settings may cause the system to not work properly. You can also consult the related system maintenance personnel before modification.',
-      DESC_COMMAND: ':warning: The following commands are used to maintain **meanTorrent**. If you don\'t understand their functions, please don\'t execute arbitrarily. Erroneous execution will make the server unable to work normally. You can also consult the related system maintenance personnel before modification.'
+      DESC_COMMAND: ':warning: The following commands are used to maintain **meanTorrent**. If you don\'t understand their functions, please don\'t execute arbitrarily. Erroneous execution will make the server unable to work normally. You can also consult the related system maintenance personnel before execution.'
     },
 
     //shell command
