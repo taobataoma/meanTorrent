@@ -20,9 +20,11 @@
      * @type {{lineNumbers: boolean, tabSize: number, onLoad: SystemConfigController.cmOption.onLoad}}
      */
     vm.cmOption = {
-      lineNumbers: true,
-      tabSize: 2,
       onLoad: function (_cm) {
+        _cm.setOption('lineNumbers', true);
+        _cm.setOption('tabSize', 2);
+        _cm.setOption('gutters', ['CodeMirror-lint-markers', 'CodeMirror-linenumbers']);
+        _cm.setOption('lint', true);
         /**
          * initConfigContent
          * @param value
@@ -98,10 +100,11 @@
      * @type {{lineNumbers: boolean, tabSize: number, readOnly: boolean, onLoad: SystemConfigController.cmdOption.onLoad}}
      */
     vm.cmdOption = {
-      lineNumbers: true,
-      tabSize: 2,
-      readOnly: true,
       onLoad: function (_cm) {
+        _cm.setOption('lineNumbers', true);
+        _cm.setOption('tabSize', 2);
+        _cm.setOption('readOnly', true);
+
         $('.CodeMirror').css('height', '0');
 
         /**
