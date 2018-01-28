@@ -321,6 +321,11 @@ module.exports = {
           downloadEnable: true,
           vipRatio: 2,
 
+          seederBasicRatio: 1,
+          seederCoefficient: 0.1,
+          lifeBasicRatio: 1,
+          lifeCoefficientOfDay: 0.01,
+
           enable: true
         },
 
@@ -329,6 +334,11 @@ module.exports = {
           additionTime: 60 * 1000 * 5,
           timedValue: 1,
           vipRatio: 2,
+
+          seederBasicRatio: 1,
+          seederCoefficient: 0.1,
+          lifeBasicRatio: 1,
+          lifeCoefficientOfDay: 0.01,
 
           enable: true
         }
@@ -873,7 +883,7 @@ module.exports = {
         timeFormats: 'YYYY-MM-DD HH:mm:ss'
       },
       vip: {
-        value: {Ur: 1.25, Dr: 0}
+        value: {Ur: 1.5, Dr: 0}
       }
     },
 
