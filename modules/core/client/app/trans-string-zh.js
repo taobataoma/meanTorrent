@@ -110,7 +110,7 @@
       SEARCH_TYPE_TORRENTS: '搜索种子',
       SEARCH_TYPE_FORUM: '搜索论坛',
       BTN_JOIN_VIP: '加入 vip 会员 »',
-      VIP_TOOLTIP: ' - 全免费下载以及更高的上传加成. \n - 免于定期的系统考评任务. \n - 专属的资源下载区域. \n - 专属的论坛讨论区. \n - 对 H&R 下载警告免疫.'
+      VIP_TOOLTIP: ' - 全免费下载以及更高的上传加成. \n - 更高的上传下载以及做种积分加成. \n - 免于定期的系统考评任务. \n - 专属的资源下载区域. \n - 专属的论坛讨论区. \n - 对 H&R 下载警告免疫.'
     },
 
     //element title/alt

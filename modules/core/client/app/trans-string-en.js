@@ -110,7 +110,7 @@
       SEARCH_TYPE_TORRENTS: 'Torrents',
       SEARCH_TYPE_FORUM: 'Forum',
       BTN_JOIN_VIP: 'Join as vip »',
-      VIP_TOOLTIP: ' - Full free download, higher upload ratio. \n - Exempt from regular system examine tasks. \n - Exclusive resource download area. \n - Exclusive forum discussion area. \n - H&R download warning immunity.'
+      VIP_TOOLTIP: ' - Full free download, higher upload size addition. \n - Higher upload download and timed seeding score addition. \n - Exempt from regular system examine tasks. \n - Exclusive resource download area. \n - Exclusive forum discussion area. \n - H&R download warning immunity.'
     },
 
     //element title/alt
