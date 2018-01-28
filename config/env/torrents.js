@@ -310,12 +310,16 @@ module.exports = {
 
         postRequest: {name: 'postRequest', value: -100, enable: true}, //value used requests.scoreForAddRequest, default -100
 
-        seedAnnounce: {
-          name: 'seedAnnounce',
+        seedUpDownload: {
+          name: 'seedUpDownload',
           additionSize: 1024 * 1024 * 1024 * 10,  //10G
           perlSize: 1024 * 1024 * 1024,   //1G
-          value: 5,
-          enable: true
+
+          uploadValue: 5,
+          uploadEnable: true,
+
+          downloadValue: 5,
+          downloadEnable: true
         }
       },
       thumbsUpScore: {

@@ -532,16 +532,28 @@ exports.announce = function (req, res) {
           });
 
           //update score
-          var action = scoreConfig.action.seedAnnounce;
-          if (curru > 0 && action.enable) {
+          var action = scoreConfig.action.seedUpDownload;
+          var uploadScore = 0, downloadScore = 0;
+          if (curru > 0 && action.uploadEnable) {
             var unitScore = 1;
             if (req.torrent.torrent_size > action.additionSize) {
               unitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
             }
             var upScore = Math.round((curru / action.perlSize) * 100) / 100;
-            var score = unitScore * action.value * upScore;
+            uploadScore = unitScore * action.uploadValue * upScore;
+          }
+          if (currd > 0 && action.downloadEnable) {
+            var unitScore = 1;
+            if (req.torrent.torrent_size > action.additionSize) {
+              unitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
+            }
+            var downScore = Math.round((curru / action.perlSize) * 100) / 100;
+            downloadScore = unitScore * action.downloadValue * downScore;
+          }
 
-            scoreUpdate(req, req.passkeyuser, action, score);
+          var totalScore = uploadScore + downloadScore;
+          if (totalScore > 0) {
+            scoreUpdate(req, req.passkeyuser, action, totalScore);
           }
         }
       }
