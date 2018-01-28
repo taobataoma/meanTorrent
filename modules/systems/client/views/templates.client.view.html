@@ -3,7 +3,7 @@
         <small> - {{vm.loadedFilename}}</small>
     </div>
     <div class="panel-desc" ng-bind-html="vm.getDescConfig()"></div>
-    <div class="panel-filelist">
+    <div class="panel-filelist" ng-class="{'show-border-bottom': vm.showBody, 'hide-border-bottom': !vm.showBody}">
         <select class="form-control" ng-model="vm.selectedFilename" ng-change="vm.onSelectedFileChanged();" autofocus>
             <option value="null">{{'SYSTEMS.SELECT_FILE' | translate}}
             </option>
