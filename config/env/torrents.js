@@ -319,6 +319,7 @@ module.exports = {
           uploadEnable: true,
           downloadValue: 2,
           downloadEnable: true,
+          vipRatio: 2,
 
           enable: true
         },
@@ -327,6 +328,8 @@ module.exports = {
           name: 'seedTimed',
           additionTime: 60 * 1000 * 5,
           timedValue: 1,
+          vipRatio: 2,
+
           enable: true
         }
       },

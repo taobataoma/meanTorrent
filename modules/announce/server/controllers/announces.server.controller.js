@@ -556,6 +556,9 @@ exports.announce = function (req, res) {
 
             var totalScore = uploadScore + downloadScore;
             if (totalScore > 0) {
+              if (req.passkeyuser.isVip) {
+                totalScore = totalScore * action.vipRatio;
+              }
               scoreUpdate(req, req.passkeyuser, action, totalScore);
             }
           }
@@ -620,6 +623,9 @@ exports.announce = function (req, res) {
             var seedScore = seedUnit * action.timedValue;
 
             if (seedScore > 0) {
+              if (req.passkeyuser.isVip) {
+                seedScore = seedScore * action.vipRatio;
+              }
               scoreUpdate(req, req.passkeyuser, action, seedScore);
             }
           }
