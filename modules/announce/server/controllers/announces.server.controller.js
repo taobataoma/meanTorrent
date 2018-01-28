@@ -572,6 +572,7 @@ exports.announce = function (req, res) {
               var days = Math.floor(life / (60 * 60 * 1000 * 24));
               var lifeUnit = action.lifeBasicRatio + action.lifeCoefficientOfDay * days;
               totalScore = totalScore * lifeUnit;
+              totalScore = Math.round(totalScore * 100) / 100;
 
               scoreUpdate(req, req.passkeyuser, action, totalScore);
             }
@@ -654,6 +655,7 @@ exports.announce = function (req, res) {
               var days = Math.floor(life / (60 * 60 * 1000 * 24));
               var lifeUnit = action.lifeBasicRatio + action.lifeCoefficientOfDay * days;
               seedScore = seedScore * lifeUnit;
+              seedScore = Math.round(seedScore * 100) / 100;
 
               scoreUpdate(req, req.passkeyuser, action, seedScore);
             }
