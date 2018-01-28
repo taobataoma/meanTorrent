@@ -16,6 +16,7 @@
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.TGI = TorrentGetInfoServices;
     vm.globalSalesConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
+    vm.examinationConfig = MeanTorrentConfig.meanTorrentConfig.examination;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
@@ -100,6 +101,53 @@
      */
     vm.openSalesNotice = function () {
       var e = $('.sales_notice');
+
+      $timeout(function () {
+        e.slideDown(800);
+        e.removeClass('panel-collapsed');
+      }, 1000);
+    };
+
+    /**
+     * getExaminationNoticeMessage
+     * @returns {*}
+     */
+    vm.getExaminationNoticeMessage = function () {
+      var start = moment(vm.examinationConfig.timeSet.startAt, vm.examinationConfig.timeSet.timeFormats).valueOf();
+      var end = moment(vm.examinationConfig.timeSet.endAt, vm.examinationConfig.timeSet.timeFormats).valueOf();
+      var ts = $translate.instant('SITE_NOTICE.EXAMINATION_NOTICE', {
+        site_name: vm.appConfig.name,
+        examination_start_at: start,
+        examination_end_at: end,
+        data_upload: vm.examinationConfig.incrementData.upload,
+        data_download: vm.examinationConfig.incrementData.download,
+        data_score: vm.examinationConfig.incrementData.score
+      });
+
+      return marked(ts, {sanitize: false});
+    };
+
+    /**
+     * showExaminationNotice
+     * @returns {boolean}
+     */
+    vm.showExaminationNotice = function () {
+      var showat = moment(vm.examinationConfig.timeSet.noticeShowAt, vm.examinationConfig.timeSet.timeFormats).valueOf();
+      var start = moment(vm.examinationConfig.timeSet.startAt, vm.examinationConfig.timeSet.timeFormats).valueOf();
+      var now = Date.now();
+
+      if (now > showat && now < start) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    /**
+     * openExaminationNotice
+     */
+    vm.openExaminationNotice = function () {
+      var e = $('.examination_notice');
 
       $timeout(function () {
         e.slideDown(800);

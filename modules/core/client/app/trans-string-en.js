@@ -1563,7 +1563,8 @@
     },
 
     SITE_NOTICE: {
-      GLOBAL_SALES_NOTICE: '### IMPORTANT NOTICE: \n :radio: **Happy new year 2018**, **{{site_name}}** global sale is coming, sales value is <span class="sale_key">**{{sale_value}}**</span>, sales start at **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** and continued <span class="sale_key">**{{sale_days}}**</span> days and end at **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, Thank you for all the help and support you have been giving us all the time!'
+      GLOBAL_SALES_NOTICE: '### IMPORTANT NOTICE: \n :radio: **Happy new year 2018**, **{{site_name}}** global sale is coming, sales value is <span class="sale_key">**{{sale_value}}**</span>, sales start at **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** and continued <span class="sale_key">**{{sale_days}}**</span> days and end at **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, Thank you for all the help and support you have been giving us all the time!',
+      EXAMINATION_NOTICE: '### IMPORTANT NOTICE: \n :radio: **{{site_name}}** will take a new incremental examination from **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** to **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}**, Incremental data requirements: upload **{{data_upload | bytes:2}}**, download **{{data_download | bytes:2}}**, score **{{data_score}}**, Please arrange your own time and hope to pass the exam smoothly. All VIP users are exempt from this examination, The unfinished user account will be banned.'
     }
   };
 

@@ -1,9 +1,19 @@
 <section ng-controller="HomeController as vm">
-    <div class="sales_notice panel-collapsed" ng-if="vm.showSaleNotice()" ng-init="vm.openSalesNotice()" style="display: none;">
+    <div class="home_notice sales_notice panel-collapsed" ng-if="vm.showSaleNotice()" ng-init="vm.openSalesNotice()" style="display: none;">
         <div class="container">
             <div class="alert alert-success" role="alert" style="padding: 20px 50px;">
                 <span ng-bind-html="vm.getSaleNoticeMessage();"></span>
                 <i class="fa fa-close" aria-hidden="true" ng-click="vm.onCloseNoticeClicked('sales_notice');">
+                </i>
+            </div>
+        </div>
+    </div>
+
+    <div class="home_notice examination_notice panel-collapsed" ng-if="vm.showExaminationNotice()" ng-init="vm.openExaminationNotice()" style="display: none;">
+        <div class="container">
+            <div class="alert alert-danger" role="alert" style="padding: 20px 50px;">
+                <span ng-bind-html="vm.getExaminationNoticeMessage();"></span>
+                <i class="fa fa-close" aria-hidden="true" ng-click="vm.onCloseNoticeClicked('examination_notice');">
                 </i>
             </div>
         </div>

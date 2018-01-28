@@ -1563,7 +1563,8 @@
     },
 
     SITE_NOTICE: {
-      GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快乐 2018**, **{{site_name}}** 新年促销活动已准备就绪, 促销活动类型为 <span class="sale_key">**{{sale_value}}**</span> , 活动将开始于 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 并持续 <span class="sale_key">**{{sale_days}}**</span> 天, 结束于 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 并感谢所有会员用户一直以来给予我们的帮助与支持!'
+      GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快乐 2018**, **{{site_name}}** 新年促销活动已准备就绪, 促销活动类型为 <span class="sale_key">**{{sale_value}}**</span> , 活动将开始于 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 并持续 <span class="sale_key">**{{sale_days}}**</span> 天, 结束于 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 并感谢所有会员用户一直以来给予我们的帮助与支持!',
+      EXAMINATION_NOTICE: '### 重要通知!: \n :radio: **{{site_name}}** 将从 **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** 到 **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}** 进行一次新的增量考试, 增量数据要求: 上传 **{{data_upload | bytes:2}}**, 下载 **{{data_download | bytes:2}}**, 积分 **{{data_score}}**, 请各位会员安排好自已的时间，并祝您顺利通过这次考试. 所有vip用户可免于此次考试, 考试未达标的用户帐号将会被禁止.'
     }
   };
 

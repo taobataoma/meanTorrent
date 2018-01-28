@@ -866,12 +866,17 @@ module.exports = {
      *
      * Global torrent sales settings
      *
-     * @global:           global sale settings
-     *        @value:     number value of @torrentSalesType, like 'U2/Free' etc, this value priority torrent @torrentSalesType
-     * @vip:              vip sale settings
-     *        @value:     upload and download ratio
-     *            @Ur:    upload ratio, like 1.25 is upload scaling plus 25%
-     *            @Dr:    download ratio
+     * @global:             global sale settings
+     *      @value:         number value of @torrentSalesType, like 'U2/Free' etc, this value priority torrent @torrentSalesType
+     *      @startAt:       sale start time
+     *      @expires:       sale expires time
+     *      @noticeMsg:     notice translate string show at top of home
+     *      @noticeShowAt:  notice begin time to show
+     *      @timeFormats:   time string format
+     * @vip:                vip sale settings
+     *      @value:         upload and download ratio
+     *          @Ur:        upload ratio, like 1.5 is upload scaling plus 50%
+     *          @Dr:        download ratio
      */
     torrentGlobalSales: {
       global: {
@@ -884,6 +889,43 @@ module.exports = {
       },
       vip: {
         value: {Ur: 1.5, Dr: 0}
+      }
+    },
+
+    /**
+     * @examination
+     *
+     * examination system settings
+     *
+     * @incrementData:      examination requirements data settings
+     *      @upload:        increment uploaded data size
+     *      @download:      increment downloaded data size
+     *      @score:         increment score number
+     * @timeSet:            examination time settings
+     *      @startAt:       examination start time
+     *      @endAt:         examination end time
+     *      @noticeMsg:     notice translate string show at top of home
+     *      @noticeShowAt:  notice begin time to show
+     *      @timeFormats:   time string format
+     *
+     * ------------------------------------------------------------------------------
+     *  !IMPORTANT NOTE:
+     *  IF YOU START A NEW EXAMINATION, PLEASE SETTING THESE CONFIGURE ITEMS,
+     *  AND INIT ALL USER ACCOUNT`S EXAMINATION INFO BEFORE THE EXAMINATION STARTING
+     * ------------------------------------------------------------------------------
+     */
+    examination: {
+      incrementData: {
+        upload: 1024 * 1024 * 1024 * 500,   //500G
+        download: 1024 * 1024 * 1024 * 300, //300G
+        score: 20000
+      },
+      timeSet: {
+        startAt: '2018-02-01 00:00:00',
+        endAt: '2018-03-01 00:00:00',
+        noticeMsg: 'SITE_NOTICE.EXAMINATION_NOTICE',
+        noticeShowAt: '2018-01-28 00:00:00',
+        timeFormats: 'YYYY-MM-DD HH:mm:ss'
       }
     },
 
