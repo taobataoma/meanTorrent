@@ -532,28 +532,32 @@ exports.announce = function (req, res) {
           });
 
           //update score
+          //upload score and download score
           var action = scoreConfig.action.seedUpDownload;
-          var uploadScore = 0, downloadScore = 0;
-          if (curru > 0 && action.uploadEnable) {
-            var unitScore = 1;
-            if (req.torrent.torrent_size > action.additionSize) {
-              unitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
+          if (action.enable) {
+            var uploadScore = 0;
+            var downloadScore = 0;
+            if (curru > 0 && action.uploadEnable) {
+              var upUnitScore = 1;
+              if (req.torrent.torrent_size > action.additionSize) {
+                upUnitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
+              }
+              var upScore = Math.round((curru / action.perlSize) * 100) / 100;
+              uploadScore = upUnitScore * action.uploadValue * upScore;
             }
-            var upScore = Math.round((curru / action.perlSize) * 100) / 100;
-            uploadScore = unitScore * action.uploadValue * upScore;
-          }
-          if (currd > 0 && action.downloadEnable) {
-            var unitScore = 1;
-            if (req.torrent.torrent_size > action.additionSize) {
-              unitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
+            if (currd > 0 && action.downloadEnable) {
+              var downUnitScore = 1;
+              if (req.torrent.torrent_size > action.additionSize) {
+                downUnitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
+              }
+              var downScore = Math.round((curru / action.perlSize) * 100) / 100;
+              downloadScore = downUnitScore * action.downloadValue * downScore;
             }
-            var downScore = Math.round((curru / action.perlSize) * 100) / 100;
-            downloadScore = unitScore * action.downloadValue * downScore;
-          }
 
-          var totalScore = uploadScore + downloadScore;
-          if (totalScore > 0) {
-            scoreUpdate(req, req.passkeyuser, action, totalScore);
+            var totalScore = uploadScore + downloadScore;
+            if (totalScore > 0) {
+              scoreUpdate(req, req.passkeyuser, action, totalScore);
+            }
           }
         }
       }
@@ -595,6 +599,30 @@ exports.announce = function (req, res) {
           req.completeTorrent.save(function () {
             done(null);
           });
+        } else {
+          done(null);
+        }
+      } else {
+        done(null);
+      }
+    },
+
+    /*---------------------------------------------------------------
+     upload user getting score through seed timed
+     ---------------------------------------------------------------*/
+    function (done) {
+      if (!req.currentPeer.isNewCreated) {
+        if (req.seeder && event(query.event) !== EVENT_COMPLETED) {
+          var action = scoreConfig.action.seedTimed;
+          if (action.enable) {
+            var timed = Date.now() - req.currentPeer.last_announce_at;
+            var seedUnit = Math.round((timed / action.additionTime) * 100) / 100;
+            var seedScore = seedUnit * action.timedValue;
+
+            if (seedScore > 0) {
+              scoreUpdate(req, req.passkeyuser, action, seedScore);
+            }
+          }
         } else {
           done(null);
         }

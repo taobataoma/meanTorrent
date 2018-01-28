@@ -317,9 +317,17 @@ module.exports = {
 
           uploadValue: 5,
           uploadEnable: true,
+          downloadValue: 2,
+          downloadEnable: true,
 
-          downloadValue: 5,
-          downloadEnable: true
+          enable: true
+        },
+
+        seedTimed: {
+          name: 'seedTimed',
+          additionTime: 60 * 1000 * 5,
+          timedValue: 1,
+          enable: true
         }
       },
       thumbsUpScore: {
