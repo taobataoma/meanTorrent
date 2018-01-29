@@ -676,7 +676,7 @@
 
     //backup views settings
     BACKUP: {
-      VIEW_CAPTION: 'System Backup Database Files List',
+      VIEW_CAPTION: 'Database Backup Files List',
       LIST_ERROR: 'Files list error',
       FIELD_NAME: 'File info',
       DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete these files?',

@@ -676,7 +676,7 @@
 
     //backup views settings
     BACKUP: {
-      VIEW_CAPTION: '系统备份数据文件列表',
+      VIEW_CAPTION: '数据库备份文件列表',
       LIST_ERROR: '备份文件列表错误',
       FIELD_NAME: '备份文件信息',
       DELETE_CONFIRM_BODY_TEXT: '您确定要删除这些备份文件吗?',
