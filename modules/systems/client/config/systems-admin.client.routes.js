@@ -41,10 +41,7 @@
       })
       .state('admin.systems.backup', {
         url: '/backup',
-        templateUrl: '/modules/backup/client/views/backup.client.view.html',
-        data: {
-          pageTitle: 'PAGETITLE.ADMIN_BACKUP'
-        }
+        templateUrl: '/modules/backup/client/views/backup.client.view.html'
       });
 
   }

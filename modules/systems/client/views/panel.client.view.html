@@ -1,15 +1,19 @@
 <section class="container padding-top-30">
     <div class="row">
         <div class="col-sm-4 col-md-3">
-            <div class="list-group">
-                <a ui-sref="admin.systems.env" class="list-group-item" ui-sref-active="active">{{'SYSTEMS.ENV_CONFIG' | translate}}</a>
-                <a ui-sref="admin.systems.assets" class="list-group-item" ui-sref-active="active">{{'SYSTEMS.ASSETS_CONFIG' | translate}}</a>
-                <a ui-sref="admin.systems.trans" class="list-group-item" ui-sref-active="active">{{'SYSTEMS.TRANS_EDIT' | translate}}</a>
-                <a ui-sref="admin.systems.templates" class="list-group-item" ui-sref-active="active">{{'SYSTEMS.TEMPLATES_EDIT' | translate}}</a>
-                <a ui-sref="admin.systems.commands" class="list-group-item" ui-sref-active="active">{{'SYSTEMS.COMMANDS_EXECUTE' | translate}}</a>
-            </div>
-            <div class="list-group">
-                <a ui-sref="admin.systems.backup" class="list-group-item" ui-sref-active="active">{{'MENU_ADMIN_DATABASE_BACKUP' | translate}}</a>
+            <div class="list-group panel-menu-list">
+                <a ui-sref="admin.systems.env" class="list-group-item"
+                   ui-sref-active="active">{{'SYSTEMS.ENV_CONFIG' | translate}}</a>
+                <a ui-sref="admin.systems.assets" class="list-group-item"
+                   ui-sref-active="active">{{'SYSTEMS.ASSETS_CONFIG' | translate}}</a>
+                <a ui-sref="admin.systems.trans" class="list-group-item"
+                   ui-sref-active="active">{{'SYSTEMS.TRANS_EDIT' | translate}}</a>
+                <a ui-sref="admin.systems.templates" class="list-group-item"
+                   ui-sref-active="active">{{'SYSTEMS.TEMPLATES_EDIT' | translate}}</a>
+                <a ui-sref="admin.systems.backup" class="list-group-item divider"
+                   ui-sref-active="active">{{'SYSTEMS.DATABASE_BACKUP' | translate}}</a>
+                <a ui-sref="admin.systems.commands" class="list-group-item divider"
+                   ui-sref-active="active">{{'SYSTEMS.COMMANDS_EXECUTE' | translate}}</a>
             </div>
         </div>
         <div class="col-sm-8 col-md-9">
