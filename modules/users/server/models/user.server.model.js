@@ -227,7 +227,10 @@ var UserSchema = new Schema({
     ref: 'Maker'
   }],
   /* examination data */
-  examinationData: Object,
+  examinationData: {
+    type: Object,
+    default: undefined
+  },
 
   signature: {
     type: String,

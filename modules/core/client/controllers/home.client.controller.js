@@ -13,12 +13,14 @@
                           ForumsService, $timeout, localStorageService, TopicsService, TorrentGetInfoServices, mtDebug,
                           marked) {
     var vm = this;
+    vm.user = Authentication.user;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.TGI = TorrentGetInfoServices;
     vm.globalSalesConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
     vm.examinationConfig = MeanTorrentConfig.meanTorrentConfig.examination;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+    vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
 
     vm.searchType = 'torrents';
 
@@ -121,7 +123,8 @@
         examination_end_at: end,
         data_upload: vm.examinationConfig.incrementData.upload,
         data_download: vm.examinationConfig.incrementData.download,
-        data_score: vm.examinationConfig.incrementData.score
+        data_score: vm.examinationConfig.incrementData.score,
+        join_days: vm.announceConfig.downloadCheck.checkAfterSignupDays
       });
 
       return marked(ts, {sanitize: false});
@@ -148,6 +151,57 @@
      */
     vm.openExaminationNotice = function () {
       var e = $('.examination_notice');
+
+      $timeout(function () {
+        e.slideDown(800);
+        e.removeClass('panel-collapsed');
+      }, 1000);
+    };
+
+    /**
+     * getExaminationStatusMessage
+     * @returns {*}
+     */
+    vm.getExaminationStatusMessage = function () {
+      var start = moment(vm.examinationConfig.timeSet.startAt, vm.examinationConfig.timeSet.timeFormats).valueOf();
+      var end = moment(vm.examinationConfig.timeSet.endAt, vm.examinationConfig.timeSet.timeFormats).valueOf();
+      var ts = $translate.instant('SITE_NOTICE.EXAMINATION_STATUS', {
+        site_name: vm.appConfig.name,
+        examination_start_at: start,
+        examination_end_at: end,
+        data_upload: vm.examinationConfig.incrementData.upload,
+        data_download: vm.examinationConfig.incrementData.download,
+        data_score: vm.examinationConfig.incrementData.score,
+        finished_upload: vm.user.examinationData.upload,
+        finished_download: vm.user.examinationData.download,
+        finished_score: vm.user.examinationData.score || '-',
+        data_status: vm.user.examinationData.isFinished ? 'SITE_NOTICE.EXAMINATION_FINISHED' : 'SITE_NOTICE.EXAMINATION_UNFINISHED'
+      });
+
+      return marked(ts, {sanitize: false});
+    };
+
+    /**
+     * showExaminationStatus
+     * @returns {boolean}
+     */
+    vm.showExaminationStatus = function () {
+      var start = moment(vm.examinationConfig.timeSet.startAt, vm.examinationConfig.timeSet.timeFormats).valueOf();
+      var end = moment(vm.examinationConfig.timeSet.endAt, vm.examinationConfig.timeSet.timeFormats).valueOf();
+      var now = Date.now();
+
+      if (now > start && now < end && vm.user && vm.user.examinationData) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    /**
+     * openExaminationStatus
+     */
+    vm.openExaminationStatus = function () {
+      var e = $('.examination_status');
 
       $timeout(function () {
         e.slideDown(800);

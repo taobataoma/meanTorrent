@@ -29,8 +29,28 @@
 .sales_notice {
     background-color: @brand-success;
 }
+
 .examination_notice {
     background-color: @brand-danger;
+}
+
+.examination_status {
+    background-color: @brand-danger;
+    @media (min-width: @screen-sm-min) {
+        dl {
+            font-size: 16px;
+            margin-bottom: 0;
+            dt {
+                width: 280px;
+            }
+            dd {
+                margin-left: 300px;
+            }
+        }
+    }
+    &.examination_finished {
+        background-color: @brand-success;
+    }
 }
 
 .home-help, .home-notice, .home-new-topic, .home-new-torrents {

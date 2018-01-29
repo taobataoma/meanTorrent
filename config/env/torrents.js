@@ -921,7 +921,7 @@ module.exports = {
         score: 20000
       },
       timeSet: {
-        startAt: '2018-02-01 00:00:00',
+        startAt: '2018-01-01 00:00:00',
         endAt: '2018-03-01 00:00:00',
         noticeMsg: 'SITE_NOTICE.EXAMINATION_NOTICE',
         noticeShowAt: '2018-01-28 00:00:00',

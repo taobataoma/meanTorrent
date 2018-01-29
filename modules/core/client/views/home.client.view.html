@@ -9,11 +9,27 @@
         </div>
     </div>
 
-    <div class="home_notice examination_notice panel-collapsed" ng-if="vm.showExaminationNotice()" ng-init="vm.openExaminationNotice()" style="display: none;">
+    <div class="home_notice examination_notice panel-collapsed" ng-if="vm.showExaminationNotice()" ng-init="vm.openExaminationNotice()"
+         style="display: none;">
         <div class="container">
             <div class="alert alert-danger" role="alert" style="padding: 20px 50px;">
                 <span ng-bind-html="vm.getExaminationNoticeMessage();"></span>
                 <i class="fa fa-close" aria-hidden="true" ng-click="vm.onCloseNoticeClicked('examination_notice');">
+                </i>
+            </div>
+        </div>
+    </div>
+
+    <div class="home_notice examination_status panel-collapsed"
+         ng-class="{'examination_finished': vm.user.examinationData.isFinished}"
+         ng-if="vm.showExaminationStatus()"
+         ng-init="vm.openExaminationStatus()"
+         style="display: none;">
+        <div class="container">
+            <div class="alert" role="alert" ng-class="vm.user.examinationData.isFinished ? 'alert-success' : 'alert-danger'"
+                 style="padding: 20px 50px;">
+                <span ng-bind-html="vm.getExaminationStatusMessage();"></span>
+                <i class="fa fa-close" aria-hidden="true" ng-click="vm.onCloseNoticeClicked('examination_status');">
                 </i>
             </div>
         </div>
@@ -117,7 +133,8 @@
                         <div class="vip-more margin-bottom-10">
                             <a ui-sref="vip.rules">{{'HOME.MORE_VIP_RULES_AND_RIGHT' | translate}}</a>
                         </div>
-                        <a ui-sref="vip.donate" class="btn btn-width-150 btn-mt-success-light margin-bottom-20" mt-scale-by-mouse="{scale: 1.2, duration: '.5s'}">
+                        <a ui-sref="vip.donate" class="btn btn-width-150 btn-mt-success-light margin-bottom-20"
+                           mt-scale-by-mouse="{scale: 1.2, duration: '.5s'}">
                             {{'HOME.BTN_JOIN_VIP' | translate}}
                         </a>
                     </div>

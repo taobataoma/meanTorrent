@@ -1272,7 +1272,7 @@
       BTN_CURR_EXAMINATION_STATUS: '当前考核的数据状态',
 
       CONFIRM_CANCEL: '取消',
-      INIT_EXAMINATION_CONFIRM_SAVE: '继续',
+      INIT_EXAMINATION_CONFIRM_CONTINUE: '继续',
       INIT_EXAMINATION_CONFIRM_HEADER_TEXT: '操作确认',
       INIT_EXAMINATION_CONFIRM_BODY_TEXT: '您正在进行一个危险的操作, 确定要继续初始化吗?',
       INIT_EXAMINATION_SUCCESSFULLY: '初始化用户考核数据成功',
@@ -1573,7 +1573,10 @@
 
     SITE_NOTICE: {
       GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快乐 2018**, **{{site_name}}** 新年促销活动已准备就绪, 促销活动类型为 <span class="sale_key">**{{sale_value}}**</span> , 活动将开始于 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 并持续 <span class="sale_key">**{{sale_days}}**</span> 天, 结束于 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 并感谢所有会员用户一直以来给予我们的帮助与支持!',
-      EXAMINATION_NOTICE: '### 重要通知!: \n :radio: **{{site_name}}** 将从 **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** 到 **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}** 进行一次新的增量考核, 增量数据要求: 上传 **{{data_upload | bytes:2}}**, 下载 **{{data_download | bytes:2}}**, 积分 **{{data_score}}**, 请各位会员安排好自已的时间，并祝您顺利通过这次考核. 所有vip用户免考, 考核未达标的用户帐号将会被禁止.'
+      EXAMINATION_NOTICE: '### 重要通知! \n :radio: **{{site_name}}** 将从 **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** 到 **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}** 进行一次新的增量考核, 增量数据要求: 上传 **{{data_upload | bytes:2}}**, 下载 **{{data_download | bytes:2}}**, 积分 **{{data_score}}**, 请各位会员安排好自已的时间，并祝您顺利通过这次考核. 所有 **vip** 用户以及最近 **{{join_days}}** 天内注册的新用户免考, 考核未达标的用户帐号将会被禁止.',
+      EXAMINATION_STATUS: '### 考核状态信息: \n <dl class="dl-horizontal"><dt>考核时间区间:</dt><dd>{{examination_start_at | date: "yyyy-MM-dd HH:mm"}} - {{examination_end_at | date: "yyyy-MM-dd HH:mm"}}</dd><dt>增量上传数据:</dt><dd>{{data_upload | bytes:2}}, 已完成 {{finished_upload | bytes:2}}</dd><dt>增量下载数据:</dt><dd>{{data_download | bytes:2}}, 已完成 {{finished_download | bytes:2}}</dd><dt>增量积分:</dt><dd>{{data_score}}, 已完成 {{finished_score}}</dd><dt>当前考核状态:</dt><dd>{{data_status | translate}}</dd></dl>',
+      EXAMINATION_FINISHED: '已通过',
+      EXAMINATION_UNFINISHED: '未通过'
     }
   };
 
@@ -1587,6 +1590,7 @@
 
   // config $translateProvider
   transConfig.$inject = ['$translateProvider'];
+
   function transConfig($translateProvider) {
     $translateProvider.translations('zh', string_zh);
   }
