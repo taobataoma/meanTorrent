@@ -17,6 +17,7 @@ var traceConfig = config.meanTorrentConfig.trace;
 var mtDebug = require(path.resolve('./config/lib/debug'));
 var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
+var announceConfig = config.meanTorrentConfig.announce;
 
 /**
  * getSystemEnvConfigFiles
@@ -169,16 +170,34 @@ exports.initExaminationData = function (req, res) {
       isFinished: false
     };
 
-    User.update({}, {examinationData: exami}, {multi: true},
+    User.update({}, {examinationData: undefined}, {multi: true},
       function (err, num) {
         if (err) {
           return res.status(422).send({
             message: errorHandler.getErrorMessage(err)
           });
         } else {
-          res.json({
-            num: num
-          });
+          User.update(
+            {
+              created: {
+                $lt: Date.now() - announceConfig.downloadCheck.checkAfterSignupDays * 60 * 60 * 1000 * 24
+              },
+              isVip: false,
+              isOper: false,
+              isAdmin: false
+            }, {examinationData: exami}, {multi: true},
+            function (err, num) {
+              if (err) {
+                return res.status(422).send({
+                  message: errorHandler.getErrorMessage(err)
+                });
+              } else {
+                res.json({
+                  num: num
+                });
+              }
+            }
+          );
         }
       }
     );
