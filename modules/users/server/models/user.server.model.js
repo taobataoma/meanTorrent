@@ -226,6 +226,9 @@ var UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Maker'
   }],
+  /* examination data */
+  examinationData: Object,
+
   signature: {
     type: String,
     default: ''

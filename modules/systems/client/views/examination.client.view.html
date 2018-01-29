@@ -1,4 +1,4 @@
-<div class="panel panel-default system-panel examination-panel" ng-controller="SystemConfigController as vm">
+<div class="panel panel-default system-panel examination-panel" ng-controller="ExaminationController as vm">
     <div class="panel-heading">{{'SYSTEMS.EXAMINATION_MANAGE' | translate}}</div>
     <div class="panel-config">
         <p translate="SYSTEMS.CURR_EXAMINATION_CONFIG"></p>
@@ -21,10 +21,14 @@
                 <p class="op-desc"><span translate="SYSTEMS.DESC_CURR_EXAMINATION_STATUS"></span></p>
             </div>
             <div class="col-xs-6 text-center">
-                <button class="btn btn-success">{{'SYSTEMS.BTN_INIT_EXAMINATION_DATA' | translate}}</button>
+                <button class="btn btn-success" ng-click="vm.initExaminationData()">
+                    {{'SYSTEMS.BTN_INIT_EXAMINATION_DATA' | translate}}
+                </button>
             </div>
             <div class="col-xs-6 text-center">
-                <button class="btn btn-success">{{'SYSTEMS.BTN_CURR_EXAMINATION_STATUS' | translate}}</button>
+                <button class="btn btn-success">
+                    {{'SYSTEMS.BTN_CURR_EXAMINATION_STATUS' | translate}}
+                </button>
             </div>
         </div>
     </div>

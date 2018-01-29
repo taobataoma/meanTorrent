@@ -5,13 +5,15 @@
  */
 var path = require('path'),
   config = require(path.resolve('./config/config')),
-  shell = require('shelljs'),
+  mongoose = require('mongoose'),
+  common = require(path.resolve('./config/lib/common')),
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   moment = require('moment'),
-  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
-  scoreUpdate = require(path.resolve('./config/lib/score')).update;
+  User = mongoose.model('User'),
+  shell = require('shelljs'),
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var traceConfig = config.meanTorrentConfig.trace;
-var appConfig = config.meanTorrentConfig.app;
 var mtDebug = require(path.resolve('./config/lib/debug'));
 var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
@@ -146,6 +148,40 @@ exports.shellCommand = function (req, res) {
         stderr: stderr
       });
     });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+};
+
+/**
+ * initExaminationData
+ * @param req
+ * @param res
+ */
+exports.initExaminationData = function (req, res) {
+  if (req.user.isAdmin) {
+    var exami = {
+      upload: 0,
+      download: 0,
+      score: 0,
+      isFinished: false
+    };
+
+    User.update({}, {examinationData: exami}, {multi: true},
+      function (err, num) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.json({
+            num: num
+          });
+        }
+      }
+    );
   } else {
     return res.status(403).json({
       message: 'SERVER.USER_IS_NOT_AUTHORIZED'

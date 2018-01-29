@@ -41,6 +41,10 @@
       shellCommand: {
         method: 'PUT',
         url: '/api/systems/shellCommand'
+      },
+      initExaminationData: {
+        method: 'PUT',
+        url: '/api/systems/initExaminationData'
       }
     });
   }

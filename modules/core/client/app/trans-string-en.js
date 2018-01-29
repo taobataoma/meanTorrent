@@ -1271,10 +1271,16 @@
       BTN_INIT_EXAMINATION_DATA: 'Init examination data',
       BTN_CURR_EXAMINATION_STATUS: 'Curr examination status',
 
-      CONFIG_CHANGED_CONFIRM_CANCEL: 'Cancel',
+      CONFIRM_CANCEL: 'Cancel',
+      INIT_EXAMINATION_CONFIRM_CONTINUE: 'Continue',
+      INIT_EXAMINATION_CONFIRM_HEADER_TEXT: 'Operate confirm',
+      INIT_EXAMINATION_CONFIRM_BODY_TEXT: 'Your are doing a dangerous operate, are you sure to continue init?',
+      INIT_EXAMINATION_SUCCESSFULLY: 'Init examination data successfully',
+      INIT_EXAMINATION_ERROR: 'Init examination data failed',
+
       CONFIG_CHANGED_CONFIRM_SAVE: 'Save',
-      CONFIG_CHANGED_HEADER_TEXT: 'Configure was changed',
-      CONFIG_CHANGED_BODY_TEXT: 'Configure was changed, are you sure to quit and don`t save it?',
+      CONFIG_CHANGED_CONFIRM_HEADER_TEXT: 'Configure was changed',
+      CONFIG_CHANGED_CONFIRM_BODY_TEXT: 'Configure was changed, are you sure to quit and don`t save it?',
       CONFIG_SAVE_SUCCESSFULLY: 'Configure save successfully',
       CONFIG_SAVE_FAILED: 'Configure save failed',
 

@@ -25,4 +25,7 @@ module.exports = function (app) {
 
   app.route('/api/systems/shellCommand').all(systemsPolicy.isAllowed)
     .put(systems.shellCommand);
+
+  app.route('/api/systems/initExaminationData').all(systemsPolicy.isAllowed)
+    .put(systems.initExaminationData);
 };

@@ -20,7 +20,8 @@ exports.invokeRolesPolicies = function () {
       {resources: '/api/systems/systemAssetsConfigFiles', permissions: '*'},
       {resources: '/api/systems/systemTransConfigFiles', permissions: '*'},
       {resources: '/api/systems/systemTemplateConfigFiles', permissions: '*'},
-      {resources: '/api/systems/shellCommand', permissions: '*'}
+      {resources: '/api/systems/shellCommand', permissions: '*'},
+      {resources: '/api/systems/initExaminationData', permissions: '*'}
     ]
   }]);
 };

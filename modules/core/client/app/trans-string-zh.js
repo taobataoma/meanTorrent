@@ -1271,10 +1271,16 @@
       BTN_INIT_EXAMINATION_DATA: '初始化用户的考核数据',
       BTN_CURR_EXAMINATION_STATUS: '当前考核的数据状态',
 
-      CONFIG_CHANGED_CONFIRM_CANCEL: '取消',
+      CONFIRM_CANCEL: '取消',
+      INIT_EXAMINATION_CONFIRM_SAVE: '继续',
+      INIT_EXAMINATION_CONFIRM_HEADER_TEXT: '操作确认',
+      INIT_EXAMINATION_CONFIRM_BODY_TEXT: '您正在进行一个危险的操作, 确定要继续初始化吗?',
+      INIT_EXAMINATION_SUCCESSFULLY: '初始化用户考核数据成功',
+      INIT_EXAMINATION_ERROR: '初始化用户考核数据失败',
+
       CONFIG_CHANGED_CONFIRM_SAVE: '保存',
-      CONFIG_CHANGED_HEADER_TEXT: '系统配置已更改',
-      CONFIG_CHANGED_BODY_TEXT: '系统配置已被修改, 您确定要退出并放弃保存吗?',
+      CONFIG_CHANGED_CONFIRM_HEADER_TEXT: '系统配置已更改',
+      CONFIG_CHANGED_CONFIRM_BODY_TEXT: '系统配置已被修改, 您确定要退出并放弃保存吗?',
       CONFIG_SAVE_SUCCESSFULLY: '系统配置保存成功',
       CONFIG_SAVE_FAILED: '系统配置保存失败',
 
