@@ -1262,10 +1262,14 @@
       DATABASE_BACKUP: '数据库备份文件',
       TRANS_EDIT: '多语言字符串在线编辑',
       COMMANDS_EXECUTE: '服务器命令在线执行',
+      EXAMINATION_MANAGE: '考核数据管理',
       SELECT_FILE: '请选择文件',
       BTN_RUN_COMMAND: '执行',
       CUSTOM_COMMAND: '输入命令行并执行:',
       CONFIG_LOADING: '正在装载文件, 请稍候 ...',
+      CURR_EXAMINATION_CONFIG: '当前考核配置: <small>./config/env/torrents.js</small>',
+      BTN_INIT_EXAMINATION_DATA: '初始化用户的考核数据',
+      BTN_CURR_EXAMINATION_STATUS: '当前考核的数据状态',
 
       CONFIG_CHANGED_CONFIRM_CANCEL: '取消',
       CONFIG_CHANGED_CONFIRM_SAVE: '保存',
@@ -1275,7 +1279,9 @@
       CONFIG_SAVE_FAILED: '系统配置保存失败',
 
       DESC_CONFIG: ':warning: 这是 **meantorrent** 的系统配置文件, 如果您知道你在干什么, 您可以修改它们, 否则不要随便改动, 不正确的设置可能会导致系统不能正常工作. 您也可以在修改前咨询相关系统维护人员.',
-      DESC_COMMAND: ':warning: 下面的命令用来维护 **meanTorrent**, 如果你不明白它们的作用，请不要随意的执行，错误的执行将使服务器不能正常的工作. 您也可以在执行前咨询相关系统维护人员.'
+      DESC_COMMAND: ':warning: 下面的命令用来维护 **meanTorrent**, 如果你不明白它们的作用，请不要随意的执行，错误的执行将使服务器不能正常的工作. 您也可以在执行前咨询相关系统维护人员.',
+      DESC_INIT_EXAMINATION_DATA: '在您重新开启一次新的考核之前, 您必须初始化所有用户帐户的考核数据, 请注意这是一个危险的操作, 请谨慎对待哦!',
+      DESC_CURR_EXAMINATION_STATUS: '当前考核的进展状态, 您可以查看用户的完成情况统计信息, 如果考核已经结束, 您可以根据这些统计信息对未完成任务的帐户进行禁止.'
     },
 
     //shell command
@@ -1561,7 +1567,7 @@
 
     SITE_NOTICE: {
       GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快乐 2018**, **{{site_name}}** 新年促销活动已准备就绪, 促销活动类型为 <span class="sale_key">**{{sale_value}}**</span> , 活动将开始于 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 并持续 <span class="sale_key">**{{sale_days}}**</span> 天, 结束于 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 并感谢所有会员用户一直以来给予我们的帮助与支持!',
-      EXAMINATION_NOTICE: '### 重要通知!: \n :radio: **{{site_name}}** 将从 **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** 到 **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}** 进行一次新的增量考试, 增量数据要求: 上传 **{{data_upload | bytes:2}}**, 下载 **{{data_download | bytes:2}}**, 积分 **{{data_score}}**, 请各位会员安排好自已的时间，并祝您顺利通过这次考试. 所有vip用户可免于此次考试, 考试未达标的用户帐号将会被禁止.'
+      EXAMINATION_NOTICE: '### 重要通知!: \n :radio: **{{site_name}}** 将从 **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** 到 **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}** 进行一次新的增量考核, 增量数据要求: 上传 **{{data_upload | bytes:2}}**, 下载 **{{data_download | bytes:2}}**, 积分 **{{data_score}}**, 请各位会员安排好自已的时间，并祝您顺利通过这次考核. 所有vip用户免考, 考核未达标的用户帐号将会被禁止.'
     }
   };
 

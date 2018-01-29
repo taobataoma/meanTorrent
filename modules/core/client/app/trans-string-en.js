@@ -1262,10 +1262,14 @@
       DATABASE_BACKUP: 'Database backup files',
       TRANS_EDIT: 'Translate strings editor',
       COMMANDS_EXECUTE: 'Server commands execute',
+      EXAMINATION_MANAGE: 'Examination data manage',
       SELECT_FILE: 'Select file, please',
       BTN_RUN_COMMAND: 'Run',
       CUSTOM_COMMAND: 'Type command line and rut it:',
       CONFIG_LOADING: 'Loading file, please wait ...',
+      CURR_EXAMINATION_CONFIG: 'Current examination config: <small>./config/env/torrents.js</small>',
+      BTN_INIT_EXAMINATION_DATA: 'Init examination data',
+      BTN_CURR_EXAMINATION_STATUS: 'Curr examination status',
 
       CONFIG_CHANGED_CONFIRM_CANCEL: 'Cancel',
       CONFIG_CHANGED_CONFIRM_SAVE: 'Save',
@@ -1275,7 +1279,9 @@
       CONFIG_SAVE_FAILED: 'Configure save failed',
 
       DESC_CONFIG: ':warning: This is the system configuration file of **meanTorrent**. If you know what you are doing, you can modify them. Otherwise, don\'t change it arbitrarily. Incorrect settings may cause the system to not work properly. You can also consult the related system maintenance personnel before modification.',
-      DESC_COMMAND: ':warning: The following commands are used to maintain **meanTorrent**. If you don\'t understand their functions, please don\'t execute arbitrarily. Erroneous execution will make the server unable to work normally. You can also consult the related system maintenance personnel before execution.'
+      DESC_COMMAND: ':warning: The following commands are used to maintain **meanTorrent**. If you don\'t understand their functions, please don\'t execute arbitrarily. Erroneous execution will make the server unable to work normally. You can also consult the related system maintenance personnel before execution.',
+      DESC_INIT_EXAMINATION_DATA: 'Before you restart a new examination, you must init the user`s examination data, this is a dangerous operate.',
+      DESC_CURR_EXAMINATION_STATUS: 'The status of current examination, you can look at the user`s completion statistical info, if the examination is over, you can ban the unfinished user`s account.'
     },
 
     //shell command
@@ -1561,7 +1567,7 @@
 
     SITE_NOTICE: {
       GLOBAL_SALES_NOTICE: '### IMPORTANT NOTICE: \n :radio: **Happy new year 2018**, **{{site_name}}** global sale is coming, sales value is <span class="sale_key">**{{sale_value}}**</span>, sales start at **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** and continued <span class="sale_key">**{{sale_days}}**</span> days and end at **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, Thank you for all the help and support you have been giving us all the time!',
-      EXAMINATION_NOTICE: '### IMPORTANT NOTICE: \n :radio: **{{site_name}}** will take a new incremental examination from **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** to **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}**, Incremental data requirements: upload **{{data_upload | bytes:2}}**, download **{{data_download | bytes:2}}**, score **{{data_score}}**, Please arrange your own time and hope to pass the exam smoothly. All VIP users are exempt from this examination, The unfinished user account will be banned.'
+      EXAMINATION_NOTICE: '### IMPORTANT NOTICE: \n :radio: **{{site_name}}** will take a new incremental examination from **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** to **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}**, Incremental data requirements: upload **{{data_upload | bytes:2}}**, download **{{data_download | bytes:2}}**, score **{{data_score}}**, Please arrange your own time and hope to pass the exam smoothly. All VIP users are exempt, The unfinished user account will be banned.'
     }
   };
 

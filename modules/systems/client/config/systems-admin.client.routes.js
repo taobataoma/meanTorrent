@@ -35,6 +35,10 @@
         url: '/trans',
         templateUrl: '/modules/systems/client/views/trans.client.view.html'
       })
+      .state('admin.systems.examination', {
+        url: '/examination',
+        templateUrl: '/modules/systems/client/views/examination.client.view.html'
+      })
       .state('admin.systems.commands', {
         url: '/commands',
         templateUrl: '/modules/systems/client/views/commands.client.view.html'

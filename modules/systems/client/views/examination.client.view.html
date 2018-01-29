@@ -1,0 +1,31 @@
+<div class="panel panel-default system-panel examination-panel" ng-controller="SystemConfigController as vm">
+    <div class="panel-heading">{{'SYSTEMS.EXAMINATION_MANAGE' | translate}}</div>
+    <div class="panel-config">
+        <p translate="SYSTEMS.CURR_EXAMINATION_CONFIG"></p>
+        <div class="config-tree margin-left-20">
+            <json-tree object="vm.examinationConfig"></json-tree>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row" style="display: table">
+            <div class="col-xs-6 text-center">
+                <p><i class="fa fa-database" aria-hidden="true"></i></p>
+            </div>
+            <div class="col-xs-6 text-center">
+                <p><i class="fa fa-signal" aria-hidden="true"></i></p>
+            </div>
+            <div class="col-xs-6 text-center">
+                <p class="op-desc"><span translate="SYSTEMS.DESC_INIT_EXAMINATION_DATA"></span></p>
+            </div>
+            <div class="col-xs-6 text-center">
+                <p class="op-desc"><span translate="SYSTEMS.DESC_CURR_EXAMINATION_STATUS"></span></p>
+            </div>
+            <div class="col-xs-6 text-center">
+                <button class="btn btn-success">{{'SYSTEMS.BTN_INIT_EXAMINATION_DATA' | translate}}</button>
+            </div>
+            <div class="col-xs-6 text-center">
+                <button class="btn btn-success">{{'SYSTEMS.BTN_CURR_EXAMINATION_STATUS' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -21,6 +21,20 @@
         padding: 10px 15px 5px;
         background-color: @alert-warning-bg;
     }
+    .panel-config {
+        border-bottom: solid 1px #ddd;
+        padding: 10px 15px 5px;
+        background-color: #fafbfc;
+        small {
+            color: #aaa;
+        }
+        .config-tree {
+            padding: 5px 15px;
+            background-color: @alert-warning-bg;
+            border: solid 1px @alert-warning-border;
+            border-radius: 4px;
+        }
+    }
     .panel-loading {
         text-align: center;
         color: #888;
@@ -118,5 +132,18 @@
     .stdout {
         max-height: 300px;
         overflow: auto;
+    }
+}
+
+.examination-panel {
+    .panel-body {
+        padding: 15px;
+        .op-desc {
+            color: #555;
+        }
+        .fa {
+            color: @mt-base-color;
+            font-size: 4em;
+        }
     }
 }

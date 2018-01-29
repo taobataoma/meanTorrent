@@ -14,6 +14,7 @@
     vm.user = Authentication.user;
     vm.selectedFilename = 'null';
     vm.shellCommandConfig = MeanTorrentConfig.meanTorrentConfig.shellCommand;
+    vm.examinationConfig = MeanTorrentConfig.meanTorrentConfig.examination;
 
     /**
      * cmOption
@@ -277,5 +278,8 @@
       }
     };
 
+    vm.getCurrExaminationConfig = function () {
+      return JSON.stringify(vm.examinationConfig);
+    };
   }
 }());
