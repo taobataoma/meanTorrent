@@ -1,0 +1,20 @@
+@import (reference) "../../../core/client/less/mt-var.less";
+
+.backup-list {
+    .pagination-div-bottom {
+        margin-top: 20px;
+        border-top: 2px solid lighten(@gray-base, 85%);
+    }
+    .pagination-div-top {
+        border-bottom: 2px solid lighten(@gray-base, 85%);
+        input {
+            @media (max-width: @screen-sm-max) {
+                margin-top: 0 !important;
+            }
+        }
+    }
+    .file-info {
+        color: #888;
+        font-size: 12px;
+    }
+}

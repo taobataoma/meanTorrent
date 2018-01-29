@@ -1,67 +1,56 @@
-<section class="container" ng-controller="BackupController as vm" ng-init="vm.getBackupFilesList()">
-    <div class="row margin-top-20">
-        <div class="col-sm-12">
-            <span id="top_of_backup_list">
-                <h3 class="margin-bottom-30">
-                    {{'BACKUP.VIEW_CAPTION' | translate}}
-                </h3>
-            </span>
+<section ng-controller="BackupController as vm" ng-init="vm.getBackupFilesList()">
+    <span id="top_of_backup_list">
+        <h3>
+            {{'BACKUP.VIEW_CAPTION' | translate}}
+        </h3>
+    </span>
 
-            <div class="collections-list">
-                <div class="pagination-div-top">
-                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                        ng-model="vm.currentPage"
-                        ng-change="vm.pageChanged()"
-                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                    </ul>
-                </div>
+    <div class="backup-list">
+        <div class="pagination-div-top">
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                ng-model="vm.currentPage"
+                ng-change="vm.pageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+            </ul>
+        </div>
 
-                <div class="table-responsive" ng-if="vm.fileList">
-                    <table class="table table-hover tb-v-middle">
-                        <thead>
-                            <tr>
-                                <th>{{ 'BACKUP.FIELD_NAME' | translate}}</th>
-                                <th class="text-center">{{ 'BACKUP.FIELD_SIZE' | translate}}</th>
-                                <th class="text-center">{{ 'BACKUP.FIELD_TIME' | translate}}</th>
-                                <th class="text-center">{{ 'MESSAGES_FIELD.LIST_SELECT' | translate}}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="message-item" ng-repeat="f in vm.pagedItems">
-                                <td class="td-v-middle">
-                                    <a href="/api/backup/{{f.name}}" target="_self">{{f.name}}</a>
-                                </td>
-                                <td class="td-v-middle text-center">
-                                    {{f.size | bytes}}
-                                </td>
-                                <td class="td-v-middle text-center">
-                                    {{f.ctime | date: 'yyyy-MM-dd HH:mm:ss'}}
-                                </td>
-                                <td class="td-v-middle text-center">
-                                    <input type="checkbox" class="tcheckbox" ng-model="vm.selected[f.name]" id="checkbox_{{f.name}}">
-                                    </label>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="table-responsive" ng-if="vm.fileList">
+            <table class="table table-hover tb-v-middle">
+                <thead>
+                    <tr>
+                        <th>{{ 'BACKUP.FIELD_NAME' | translate}}</th>
+                        <th class="text-center">{{ 'MESSAGES_FIELD.LIST_SELECT' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="f in vm.pagedItems">
+                        <td class="td-v-middle">
+                            <a href="/api/backup/{{f.name}}" target="_self">{{f.name}}</a>
+                            <div class="file-info">
+                                {{f.ctime | date: 'yyyy-MM-dd HH:mm:ss'}} - {{f.size | bytes}}
+                            </div>
+                        </td>
+                        <td class="td-v-middle text-center">
+                            <input type="checkbox" class="tcheckbox" ng-model="vm.selected[f.name]" id="checkbox_{{f.name}}">
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-                <div class="pagination-div-bottom">
-                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                        ng-model="vm.currentPage"
-                        ng-change="vm.pageChanged()"
-                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                    </ul>
-                    <div class="pull-right margin-top-20 margin-bottom-30">
-                        <button class="btn btn-success btn-width-100" ng-click="vm.deleteSelected()">{{ 'BUTTON_MESSAGE_DELETE' | translate }}
-                        </button>
-                    </div>
-                </div>
-
+        <div class="pagination-div-bottom">
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                ng-model="vm.currentPage"
+                ng-change="vm.pageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+            </ul>
+            <div class="pull-right margin-top-20 margin-bottom-30">
+                <button class="btn btn-success btn-width-100" ng-click="vm.deleteSelected()">{{ 'BUTTON_MESSAGE_DELETE' | translate }}
+                </button>
             </div>
         </div>
     </div>
-
 </section>

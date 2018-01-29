@@ -38,7 +38,15 @@
       .state('admin.systems.commands', {
         url: '/commands',
         templateUrl: '/modules/systems/client/views/commands.client.view.html'
+      })
+      .state('admin.systems.backup', {
+        url: '/backup',
+        templateUrl: '/modules/backup/client/views/backup.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.ADMIN_BACKUP'
+        }
       });
+
   }
 }());
 

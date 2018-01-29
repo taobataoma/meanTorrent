@@ -24,7 +24,8 @@
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_TORRENTS_ADMIN_EDAU',
       state: 'admin.announce',
-      position: 60
+      position: 60,
+      divider: true
     });
   }
 }());
