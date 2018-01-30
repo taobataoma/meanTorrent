@@ -164,8 +164,8 @@ exports.shellCommand = function (req, res) {
 exports.initExaminationData = function (req, res) {
   if (req.user.isAdmin) {
     var exami = {
-      upload: 0,
-      download: 0,
+      uploaded: 0,
+      downloaded: 0,
       score: 0,
       isFinished: false
     };
