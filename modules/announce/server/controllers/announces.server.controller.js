@@ -23,6 +23,7 @@ var hnrConfig = config.meanTorrentConfig.hitAndRun;
 var signConfig = config.meanTorrentConfig.sign;
 var announceConfig = config.meanTorrentConfig.announce;
 var globalSalesConfig = config.meanTorrentConfig.torrentGlobalSales;
+var examinationConfig = config.meanTorrentConfig.examination;
 
 var appConfig = config.meanTorrentConfig.app;
 
@@ -494,8 +495,22 @@ exports.announce = function (req, res) {
             d = d * globalSalesConfig.vip.value.Dr;
           }
 
+          //write user uploaded and downloaded
           req.passkeyuser.uploaded += u;
           req.passkeyuser.downloaded += d;
+          //write examination uploaded and downloaded
+          if (common.examinationIsValid(req.passkeyuser)) {
+            req.passkeyuser.examinationData.uploaded = req.passkeyuser.examinationData.uploaded || 0;
+            req.passkeyuser.examinationData.uploaded += u;
+            req.passkeyuser.examinationData.downloaded = req.passkeyuser.examinationData.downloaded || 0;
+            req.passkeyuser.examinationData.downloaded += d;
+
+            var uploadFinished = req.passkeyuser.examinationData.uploaded >= examinationConfig.incrementData.upload;
+            var downloadFinished = req.passkeyuser.examinationData.downloaded >= examinationConfig.incrementData.download;
+            var scoreFinished = req.passkeyuser.examinationData.score >= examinationConfig.incrementData.score;
+            examinationConfig.examinationData.isFinished = uploadFinished && downloadFinished && scoreFinished;
+            examinationConfig.markModified('examinationData');
+          }
           req.passkeyuser.save();
 
           //write peer speed

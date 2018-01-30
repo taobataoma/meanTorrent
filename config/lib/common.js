@@ -1,6 +1,11 @@
 'use strict';
 
+var path = require('path'),
+  config = require(path.resolve('./config/config')),
+  moment = require('moment');
+
 var querystring = require('querystring');
+var examinationConfig = config.meanTorrentConfig.examination;
 
 /**
  * binaryToHex
@@ -46,4 +51,21 @@ module.exports.fileSizeFormat = function (bytes, precision) {
   var units = ['b', 'K', 'M', 'G', 'T', 'P'],
     number = Math.floor(Math.log(bytes) / Math.log(1024));
   return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) + units[number];
+};
+
+/**
+ * examinationIsValid
+ * @param user
+ * @returns {boolean}
+ */
+module.exports.examinationIsValid = function (user) {
+  var start = moment(examinationConfig.timeSet.startAt, examinationConfig.timeSet.timeFormats).valueOf();
+  var end = moment(examinationConfig.timeSet.endAt, examinationConfig.timeSet.timeFormats).valueOf();
+  var now = Date.now();
+
+  if (now > start && now < end && user.examinationData) {
+    return true;
+  } else {
+    return false;
+  }
 };
