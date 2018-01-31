@@ -294,13 +294,13 @@ module.exports = {
      *        @name:      action name
      *        @value:     action score value
      *        @enable:    action enable status, if false, system will not change user`s score at this action
-     * @thumbsUpScore:    thumbs up score setting
-     *        @torrent:   thumbs up of torrent score change value
-     *        @topic:     thumbs up of forum topic/reply score change value
+     *                    NOTE: ENABLE VALUE OF DEFAULTACTION MUST BE TRUE
      */
     score: {
       levelStep: 500,
       action: {
+        defaultAction: {name: 'defaultAction', value: 0, enable: true},
+
         signEveryday: {name: 'signEveryday', value: 10, enable: true},
         uploadTorrent: {name: 'uploadTorrent', value: 50, enable: true},
         uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', value: -50, enable: true},
@@ -308,7 +308,12 @@ module.exports = {
         uploadSubtitle: {name: 'uploadSubtitle', value: 20, enable: true},
         uploadSubtitleBeDeleted: {name: 'uploadSubtitleBeDeleted', value: -20, enable: true},
 
-        postRequest: {name: 'postRequest', value: -100, enable: true}, //value used requests.scoreForAddRequest, default -100
+        thumbsUpScoreOfTorrentFrom: {name: 'thumbsUpScoreOfTorrentFrom', value: -10, enable: true},
+        thumbsUpScoreOfTorrentTo: {name: 'thumbsUpScoreOfTorrentTo', value: 10, enable: true},
+        thumbsUpScoreOfTopicFrom: {name: 'thumbsUpScoreOfTopicFrom', value: -10, enable: true},
+        thumbsUpScoreOfTopicTo: {name: 'thumbsUpScoreOfTopicTo', value: 10, enable: true},
+
+        postRequest: {name: 'postRequest', value: 0, enable: true}, //value used requests.scoreForAddRequest
 
         seedUpDownload: {
           name: 'seedUpDownload',
@@ -342,10 +347,6 @@ module.exports = {
 
           enable: true
         }
-      },
-      thumbsUpScore: {
-        torrent: 10,
-        topic: 10
       }
     },
 

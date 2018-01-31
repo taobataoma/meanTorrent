@@ -16,10 +16,11 @@ var path = require('path'),
   Reply = mongoose.model('Reply'),
   Thumb = mongoose.model('Thumb'),
   async = require('async'),
+  scoreUpdate = require(path.resolve('./config/lib/score')).update,
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var traceConfig = config.meanTorrentConfig.trace;
-var thumbsUpScore = config.meanTorrentConfig.score.thumbsUpScore;
+var scoreConfig = config.meanTorrentConfig.score;
 var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 var itemsPerPageConfig = config.meanTorrentConfig.itemsPerPage;
@@ -709,8 +710,7 @@ exports.thumbsUp = function (req, res) {
   var replyUid = undefined;
   var thumb = new Thumb();
   thumb.user = req.user;
-  thumb.score = thumbsUpScore.topic;
-
+  thumb.score = scoreConfig.action.thumbsUpScoreOfTopicTo.value;
 
   if (req.query.replyId) {
     topic._replies.forEach(function (r) {
@@ -728,11 +728,9 @@ exports.thumbsUp = function (req, res) {
             message: 'SERVER.ALREADY_THUMBS_UP'
           });
         } else {
-          if (req.user.score >= thumbsUpScore.topic) {
+          if (req.user.score >= thumb.score) {
             r._thumbs.push(thumb);
-            r.user.update({
-              $inc: {score: thumbsUpScore.topic}
-            }).exec();
+            scoreUpdate(req, r.user, scoreConfig.action.thumbsUpScoreOfTopicTo);
             save();
 
             //add server message
@@ -767,11 +765,9 @@ exports.thumbsUp = function (req, res) {
         message: 'SERVER.ALREADY_THUMBS_UP'
       });
     } else {
-      if (req.user.score >= thumbsUpScore.topic) {
+      if (req.user.score >= thumb.score) {
         topic._thumbs.push(thumb);
-        topic.user.update({
-          $inc: {score: thumbsUpScore.topic}
-        }).exec();
+        scoreUpdate(req, topic.user, scoreConfig.action.thumbsUpScoreOfTopicTo);
         save();
 
         //add server message
@@ -803,9 +799,7 @@ exports.thumbsUp = function (req, res) {
       }
     });
 
-    user.update({
-      $inc: {score: -thumbsUpScore.topic}
-    }).exec();
+    scoreUpdate(req, user, scoreConfig.action.thumbsUpScoreOfTopicFrom);
   }
 };
 

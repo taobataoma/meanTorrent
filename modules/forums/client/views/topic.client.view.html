@@ -121,7 +121,7 @@
                                                         <i id="thumbs_{{vm.topic._id}}" class="fa fa-thumbs-up" aria-hidden="true"
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"
                                                            mt-scale-start="false"
-                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.scoreConfig.thumbsUpScore.topic}) }}">
+                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.scoreConfig.action.thumbsUpScoreOfTopicTo.value}) }}">
                                                             ({{vm.topic._thumbs.length}})
                                                         </i>
                                                     </span>
@@ -203,7 +203,7 @@
                                                         <i id="thumbs_{{rep._id}}" class="fa fa-thumbs-up" aria-hidden="true"
                                                            mt-scale-by-param="{scale: 3, duration: '.5s'}"
                                                            mt-scale-start="false"
-                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.scoreConfig.thumbsUpScore.topic}) }}"
+                                                           title="{{'FORUMS.TITLES.TOPIC_THUMBS_UP' | translate: ({number: vm.scoreConfig.action.thumbsUpScoreOfTopicTo.value}) }}"
                                                         >({{rep._thumbs.length}})</i>
                                                     </span>
                                                 </div>

@@ -35,7 +35,6 @@ var path = require('path'),
 
 var traceConfig = config.meanTorrentConfig.trace;
 var scoreConfig = config.meanTorrentConfig.score;
-var thumbsUpScore = config.meanTorrentConfig.score.thumbsUpScore;
 var ircConfig = config.meanTorrentConfig.ircAnnounce;
 var itemsPerPageConfig = config.meanTorrentConfig.itemsPerPage;
 var vsprintf = require('sprintf-js').vsprintf;
@@ -935,7 +934,7 @@ exports.thumbsUp = function (req, res) {
   var torrent = req.torrent;
   var thumb = new Thumb();
   thumb.user = req.user;
-  thumb.score = thumbsUpScore.torrent;
+  thumb.score = scoreConfig.action.thumbsUpScoreOfTorrentTo.value;
 
   //check if already exist
   exist = false;
@@ -949,11 +948,9 @@ exports.thumbsUp = function (req, res) {
       message: 'SERVER.ALREADY_THUMBS_UP'
     });
   } else {
-    if (req.user.score >= thumbsUpScore.torrent) {
+    if (req.user.score >= thumb.score) {
       torrent._thumbs.push(thumb);
-      torrent.user.update({
-        $inc: {score: thumbsUpScore.torrent}
-      }).exec();
+      scoreUpdate(req, torrent.user, scoreConfig.action.thumbsUpScoreOfTorrentTo);
       save();
 
       //add server message
@@ -983,9 +980,7 @@ exports.thumbsUp = function (req, res) {
       }
     });
 
-    user.update({
-      $inc: {score: -thumbsUpScore.torrent}
-    }).exec();
+    scoreUpdate(req, user, scoreConfig.action.thumbsUpScoreOfTorrentFrom);
   }
 };
 
