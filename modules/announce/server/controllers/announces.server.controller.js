@@ -549,6 +549,7 @@ exports.announce = function (req, res) {
           //update score
           //upload score and download score
           var action = scoreConfig.action.seedUpDownload;
+          var slAction = scoreConfig.action.seedSeederAndLife;
           if (action.enable) {
             var uploadScore = 0;
             var downloadScore = 0;
@@ -574,22 +575,26 @@ exports.announce = function (req, res) {
             var totalScore = uploadScore + downloadScore;
             if (totalScore > 0) {
               //vip addition
-              if (req.passkeyuser.isVip) {
+              if (action.vipRatio && req.passkeyuser.isVip) {
                 totalScore = totalScore * action.vipRatio;
               }
 
-              //torrent seeders count addition
-              if (req.torrent.torrent_seeds <= 10) {
-                var seederUnit = action.seederBasicRatio + 1 - ((req.torrent.torrent_seeds - 1) * action.seederCoefficient);
-                totalScore = totalScore * seederUnit;
-              }
+              if (slAction.enable) {
+                //torrent seeders count addition
+                if (req.torrent.torrent_seeds <= slAction.seederCount) {
+                  var seederUnit = slAction.seederBasicRatio + slAction.seederCoefficient * (slAction.seederCount - req.torrent.torrent_seeds + 1);
+                  totalScore = totalScore * seederUnit;
+                }
 
-              //torrent life addition
-              var life = moment(Date.now()) - moment(req.torrent.createdat);
-              var days = Math.floor(life / (60 * 60 * 1000 * 24));
-              var lifeUnit = action.lifeBasicRatio + action.lifeCoefficientOfDay * days;
-              totalScore = totalScore * lifeUnit;
-              totalScore = Math.round(totalScore * 100) / 100;
+                //torrent life addition
+                var life = moment(Date.now()) - moment(req.torrent.createdat);
+                var days = Math.floor(life / (60 * 60 * 1000 * 24));
+                var lifeUnit = slAction.lifeBasicRatio + slAction.lifeCoefficientOfDay * days;
+
+                lifeUnit = lifeUnit > slAction.lifeMaxRatio ? slAction.lifeMaxRatio : lifeUnit;
+                totalScore = totalScore * lifeUnit;
+                totalScore = Math.round(totalScore * 100) / 100;
+              }
 
               scoreUpdate(req, req.passkeyuser, action, totalScore);
             }
@@ -650,6 +655,8 @@ exports.announce = function (req, res) {
       if (!req.currentPeer.isNewCreated) {
         if (req.seeder && event(query.event) !== EVENT_COMPLETED) {
           var action = scoreConfig.action.seedTimed;
+          var slAction = scoreConfig.action.seedSeederAndLife;
+
           if (action.enable) {
             var timed = Date.now() - req.currentPeer.last_announce_at;
             var seedUnit = Math.round((timed / action.additionTime) * 100) / 100;
@@ -657,23 +664,26 @@ exports.announce = function (req, res) {
 
             if (seedScore > 0) {
               //vip addition
-              if (req.passkeyuser.isVip) {
+              if (action.vipRatio && req.passkeyuser.isVip) {
                 seedScore = seedScore * action.vipRatio;
               }
 
-              //torrent seeders count addition
-              if (req.torrent.torrent_seeds <= 10) {
-                var seederUnit = action.seederBasicRatio + 1 - ((req.torrent.torrent_seeds - 1) * action.seederCoefficient);
-                seedScore = seedScore * seederUnit;
+              if (slAction.enable) {
+                //torrent seeders count addition
+                if (req.torrent.torrent_seeds <= slAction.seederCount) {
+                  var seederUnit = slAction.seederBasicRatio + slAction.seederCoefficient * (slAction.seederCount - req.torrent.torrent_seeds + 1);
+                  seedScore = seedScore * seederUnit;
+                }
+
+                //torrent life addition
+                var life = moment(Date.now()) - moment(req.torrent.createdat);
+                var days = Math.floor(life / (60 * 60 * 1000 * 24));
+                var lifeUnit = slAction.lifeBasicRatio + slAction.lifeCoefficientOfDay * days;
+
+                lifeUnit = lifeUnit > slAction.lifeMaxRatio ? slAction.lifeMaxRatio : lifeUnit;
+                seedScore = seedScore * lifeUnit;
+                seedScore = Math.round(seedScore * 100) / 100;
               }
-
-              //torrent life addition
-              var life = moment(Date.now()) - moment(req.torrent.createdat);
-              var days = Math.floor(life / (60 * 60 * 1000 * 24));
-              var lifeUnit = action.lifeBasicRatio + action.lifeCoefficientOfDay * days;
-              seedScore = seedScore * lifeUnit;
-              seedScore = Math.round(seedScore * 100) / 100;
-
               scoreUpdate(req, req.passkeyuser, action, seedScore);
 
               done(null);

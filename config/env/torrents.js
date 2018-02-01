@@ -329,11 +329,6 @@ module.exports = {
           downloadEnable: true,
           vipRatio: 1.5,
 
-          seederBasicRatio: 1,
-          seederCoefficient: 0.1,
-          lifeBasicRatio: 1,
-          lifeCoefficientOfDay: 0.005,
-
           enable: true
         },
 
@@ -343,10 +338,16 @@ module.exports = {
           timedValue: 1,
           vipRatio: 1.5,
 
+          enable: true
+        },
+
+        seedSeederAndLife: {
           seederBasicRatio: 1,
-          seederCoefficient: 0.1,
+          seederCoefficient: 0.5,
+          seederCount: 10,
           lifeBasicRatio: 1,
           lifeCoefficientOfDay: 0.005,
+          lifeMaxRatio: 5,
 
           enable: true
         }
