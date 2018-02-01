@@ -323,16 +323,16 @@ module.exports = {
           additionSize: 1024 * 1024 * 1024 * 10,  //10G
           perlSize: 1024 * 1024 * 1024,   //1G
 
-          uploadValue: 5,
+          uploadValue: 2,
           uploadEnable: true,
-          downloadValue: 2,
+          downloadValue: 1,
           downloadEnable: true,
-          vipRatio: 2,
+          vipRatio: 1.5,
 
           seederBasicRatio: 1,
           seederCoefficient: 0.1,
           lifeBasicRatio: 1,
-          lifeCoefficientOfDay: 0.01,
+          lifeCoefficientOfDay: 0.005,
 
           enable: true
         },
@@ -341,12 +341,12 @@ module.exports = {
           name: 'seedTimed',
           additionTime: 60 * 1000 * 5,
           timedValue: 1,
-          vipRatio: 2,
+          vipRatio: 1.5,
 
           seederBasicRatio: 1,
           seederCoefficient: 0.1,
           lifeBasicRatio: 1,
-          lifeCoefficientOfDay: 0.01,
+          lifeCoefficientOfDay: 0.005,
 
           enable: true
         }

@@ -552,6 +552,7 @@ exports.announce = function (req, res) {
           if (action.enable) {
             var uploadScore = 0;
             var downloadScore = 0;
+
             if (curru > 0 && action.uploadEnable) {
               var upUnitScore = 1;
               if (req.torrent.torrent_size > action.additionSize) {
@@ -560,12 +561,13 @@ exports.announce = function (req, res) {
               var upScore = Math.round((curru / action.perlSize) * 100) / 100;
               uploadScore = upUnitScore * action.uploadValue * upScore;
             }
+
             if (currd > 0 && action.downloadEnable) {
               var downUnitScore = 1;
               if (req.torrent.torrent_size > action.additionSize) {
                 downUnitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
               }
-              var downScore = Math.round((curru / action.perlSize) * 100) / 100;
+              var downScore = Math.round((currd / action.perlSize) * 100) / 100;
               downloadScore = downUnitScore * action.downloadValue * downScore;
             }
 
