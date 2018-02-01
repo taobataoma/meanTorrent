@@ -12,10 +12,12 @@ var path = require('path'),
   Torrent = mongoose.model('Torrent'),
   async = require('async'),
   validator = require('validator'),
+  scoreUpdate = require(path.resolve('./config/lib/score')).update,
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
 var traceConfig = config.meanTorrentConfig.trace;
+var scoreConfig = config.meanTorrentConfig.score;
 
 /**
  * removeWarning
@@ -63,9 +65,7 @@ exports.removeWarning = function (req, res) {
         });
       } else {
         //update score
-        req.user.update({
-          $set: {score: req.user.score - hnrConfig.scoreToRemoveWarning}
-        }).exec();
+        scoreUpdate(req, req.user, scoreConfig.action.scoreToRemoveWarning, -(hnrConfig.scoreToRemoveWarning));
 
         comp.hnr_warning = false;
         comp.remove_warning_at = Date.now();

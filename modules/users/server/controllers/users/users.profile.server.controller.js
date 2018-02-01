@@ -15,12 +15,14 @@ var _ = require('lodash'),
   config = require(path.resolve('./config/config')),
   User = mongoose.model('User'),
   validator = require('validator'),
+  scoreUpdate = require(path.resolve('./config/lib/score')).update,
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var whitelistedFields = ['firstName', 'lastName', 'email', 'username', 'hideMoreDetail'];
 var mtDebug = require(path.resolve('./config/lib/debug'));
 var signConfig = config.meanTorrentConfig.sign;
 var traceConfig = config.meanTorrentConfig.trace;
+var scoreConfig = config.meanTorrentConfig.score;
 
 var useS3Storage = config.uploads.storage === 's3' && config.aws.s3;
 var s3;
@@ -263,15 +265,9 @@ exports.unIdle = function (req, res, next) {
       });
     } else {
       //update score
-      user.update({
-        $set: {
-          score: req.user.score - signConfig.activeIdleAccountScore,
-          status: 'normal'
-        }
-      }).exec();
+      scoreUpdate(req, user, scoreConfig.action.activeIdleAccount, -(signConfig.activeIdleAccountScore));
 
       user.status = 'normal';
-      user.score = req.user.score - signConfig.activeIdleAccountScore;
       req.login(user, function (err) {
         if (err) {
           res.status(400).send(err);

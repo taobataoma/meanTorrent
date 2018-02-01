@@ -12,12 +12,14 @@ var path = require('path'),
   User = mongoose.model('User'),
   Invitation = mongoose.model('Invitation'),
   async = require('async'),
+  scoreUpdate = require(path.resolve('./config/lib/score')).update,
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
 var traceConfig = config.meanTorrentConfig.trace;
 var mtDebug = require(path.resolve('./config/lib/debug'));
-
+var inviteConfig = config.meanTorrentConfig.invite;
+var scoreConfig = config.meanTorrentConfig.score;
 
 /**
  * A Validation function for local strategy email
@@ -47,25 +49,16 @@ exports.create = function (req, res) {
       //res.json(invitation);
       var user = req.user;
 
-      if (user.score >= config.meanTorrentConfig.invite.scoreExchange) {
-        user.update({
-          $set: {score: user.score - config.meanTorrentConfig.invite.scoreExchange}
-        }).exec(function (err, result) {
-          if (err) {
-            return res.status(422).send({
-              message: errorHandler.getErrorMessage(err)
-            });
-          } else {
-            user.score = user.score - config.meanTorrentConfig.invite.scoreExchange;
-            res.json(user);
+      if (user.score >= inviteConfig.scoreExchange) {
+        scoreUpdate(req, user, scoreConfig.action.scoreExchangeInvitation, -(inviteConfig.scoreExchange));
 
-            //create trace log
-            traceLogCreate(req, traceConfig.action.userInvitationExchange, {
-              user: req.user._id,
-              token: invitation.token,
-              score: config.meanTorrentConfig.invite.scoreExchange
-            });
-          }
+        res.json(user);
+
+        //create trace log
+        traceLogCreate(req, traceConfig.action.userInvitationExchange, {
+          user: req.user._id,
+          token: invitation.token,
+          score: inviteConfig.scoreExchange
         });
       } else {
         return res.status(422).send({

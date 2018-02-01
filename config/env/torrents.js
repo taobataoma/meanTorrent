@@ -314,6 +314,9 @@ module.exports = {
         thumbsUpScoreOfTopicTo: {name: 'thumbsUpScoreOfTopicTo', value: 10, enable: true},
 
         postRequest: {name: 'postRequest', value: 0, enable: true}, //value used requests.scoreForAddRequest
+        scoreExchangeInvitation: {name: 'scoreExchangeInvitation', value: 0, enable: true}, //value used invite.scoreExchange
+        scoreToRemoveWarning: {name: 'scoreToRemoveWarning', value: 0, enable: true}, //value used hitAndRun.scoreToRemoveWarning
+        activeIdleAccount: {name: 'activeIdleAccountScore', value: 0, enable: true}, //value used sign.activeIdleAccountScore
 
         seedUpDownload: {
           name: 'seedUpDownload',
@@ -474,6 +477,9 @@ module.exports = {
      * @action:         trace action list
      *        @name:    action name
      *        @enable:  action enable status, if false, system will not to trace log this action
+     *
+     * !IMPORTANT NOTE:
+     * @userAnnounceData AND @userScoreChange MAKE LARGEST NUMBER DATA RECORD, IF YOU RUNNING MEANTORRENT AT PROD MODE, MUST SET IT TO FALSE
      */
     trace: {
       action: {
