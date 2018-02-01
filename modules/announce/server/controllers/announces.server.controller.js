@@ -673,7 +673,13 @@ exports.announce = function (req, res) {
               seedScore = Math.round(seedScore * 100) / 100;
 
               scoreUpdate(req, req.passkeyuser, action, seedScore);
+
+              done(null);
+            } else {
+              done(null);
             }
+          } else {
+            done(null);
           }
         } else {
           done(null);
