@@ -915,7 +915,7 @@ module.exports = {
      *      @noticeMsg:     notice translate string show at top of home
      *      @noticeShowAt:  notice begin time to show
      *      @timeFormats:   time string format
-     *
+     * @detailUrl:          detail info of examination, maybe a forum link url
      * ------------------------------------------------------------------------------
      *  !IMPORTANT NOTE:
      *  IF YOU START A NEW EXAMINATION, PLEASE SETTING THESE CONFIGURE ITEMS,
@@ -934,7 +934,8 @@ module.exports = {
         noticeMsg: 'SITE_NOTICE.EXAMINATION_NOTICE',
         noticeShowAt: '2018-01-28 00:00:00',
         timeFormats: 'YYYY-MM-DD HH:mm:ss'
-      }
+      },
+      detailUrl: '/forums/595c4491d5706705f67d93cf/59684780f928f42a9c79c613'
     },
 
     /**

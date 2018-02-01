@@ -124,7 +124,8 @@
         data_upload: vm.examinationConfig.incrementData.upload,
         data_download: vm.examinationConfig.incrementData.download,
         data_score: vm.examinationConfig.incrementData.score,
-        join_days: vm.announceConfig.downloadCheck.checkAfterSignupDays
+        join_days: vm.announceConfig.downloadCheck.checkAfterSignupDays,
+        detail_url: vm.examinationConfig.detailUrl
       });
 
       return marked(ts, {sanitize: false});
@@ -175,7 +176,8 @@
         finished_upload: vm.user.examinationData.uploaded,
         finished_download: vm.user.examinationData.downloaded,
         finished_score: vm.user.examinationData.score || '-',
-        data_status: vm.user.examinationData.isFinished ? 'SITE_NOTICE.EXAMINATION_FINISHED' : 'SITE_NOTICE.EXAMINATION_UNFINISHED'
+        data_status: vm.user.examinationData.isFinished ? 'SITE_NOTICE.EXAMINATION_FINISHED' : 'SITE_NOTICE.EXAMINATION_UNFINISHED',
+        detail_url: vm.examinationConfig.detailUrl
       });
 
       return marked(ts, {sanitize: false});
