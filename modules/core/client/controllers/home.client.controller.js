@@ -172,8 +172,8 @@
         data_upload: vm.examinationConfig.incrementData.upload,
         data_download: vm.examinationConfig.incrementData.download,
         data_score: vm.examinationConfig.incrementData.score,
-        finished_uploaded: vm.user.examinationData.uploaded,
-        finished_downloaded: vm.user.examinationData.downloaded,
+        finished_upload: vm.user.examinationData.uploaded,
+        finished_download: vm.user.examinationData.downloaded,
         finished_score: vm.user.examinationData.score || '-',
         data_status: vm.user.examinationData.isFinished ? 'SITE_NOTICE.EXAMINATION_FINISHED' : 'SITE_NOTICE.EXAMINATION_UNFINISHED'
       });
