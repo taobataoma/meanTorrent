@@ -339,7 +339,7 @@ module.exports = {
 
         seedTimed: {
           name: 'seedTimed',
-          additionTime: 60 * 1000 * 5,
+          additionTime: 60 * 60 * 1000,
           timedValue: 1,
           vipRatio: 1.5,
 
