@@ -37,12 +37,12 @@ module.exports.update = function (req, user, action, value) {
         user.markModified('examinationData');
       }
       user.score += v;
-      user.save();
-
-      traceLogCreate(req, traceConfig.action.userScoreChange, {
-        user: user._id,
-        score: v,
-        scoreActionName: action.name
+      user.save(function () {
+        traceLogCreate(req, traceConfig.action.userScoreChange, {
+          user: user._id,
+          score: v,
+          scoreActionName: action.name
+        });
       });
     }
   }

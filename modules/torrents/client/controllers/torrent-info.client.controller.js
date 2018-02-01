@@ -1072,7 +1072,7 @@
     vm.beginThumbsUp = function (t) {
       t.$thumbsUp(function (res) {
         vm.torrentLocalInfo = res;
-
+        vm.torrentTabs[3].badges[0].value += 1;
         Notification.success({
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_THUMBS_SUCCESSFULLY')
         });
