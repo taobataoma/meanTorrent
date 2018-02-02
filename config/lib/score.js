@@ -24,7 +24,6 @@ module.exports.update = function (req, user, action, value) {
   if (action.enable) {
     if (user) {
       if (common.examinationIsValid(user)) {
-        console.log(user.examinationData);
         user.examinationData.score = user.examinationData.score || 0;
         user.examinationData.score += v;
 
@@ -32,8 +31,8 @@ module.exports.update = function (req, user, action, value) {
         var downloadFinished = user.examinationData.downloaded >= examinationConfig.incrementData.download;
         var scoreFinished = user.examinationData.score >= examinationConfig.incrementData.score;
         user.examinationData.isFinished = uploadFinished && downloadFinished && scoreFinished;
+        user.examinationData.finishedTime = user.examinationData.isFinished ? Date.now() : null;
 
-        console.log(user.examinationData);
         user.markModified('examinationData');
       }
       user.score += v;

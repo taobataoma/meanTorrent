@@ -509,6 +509,7 @@ exports.announce = function (req, res) {
             var downloadFinished = req.passkeyuser.examinationData.downloaded >= examinationConfig.incrementData.download;
             var scoreFinished = req.passkeyuser.examinationData.score >= examinationConfig.incrementData.score;
             req.passkeyuser.examinationData.isFinished = uploadFinished && downloadFinished && scoreFinished;
+            req.passkeyuser.examinationData.finishedTime = req.passkeyuser.examinationData.isFinished ? Date.now() : null;
             req.passkeyuser.markModified('examinationData');
           }
           req.passkeyuser.save();

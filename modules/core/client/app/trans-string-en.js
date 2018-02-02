@@ -1270,6 +1270,12 @@
       CURR_EXAMINATION_CONFIG: 'Current examination config: <small>./config/env/torrents.js</small>',
       BTN_INIT_EXAMINATION_DATA: 'Init examination data',
       BTN_CURR_EXAMINATION_STATUS: 'Curr examination status',
+      EXAMINATION_STATUS: 'Examination status',
+      ALL_USER: 'Total: <strong>{{all_user}}</strong> users',
+      FINISHED_USER: 'Finished: <strong>{{finished_user}}</strong> users',
+      UNFINISHED_USER: 'Unfinished: <strong>{{unfinished_user}}</strong> users',
+      STATUS_USERS_IS_LOADING: 'Examination users is loading, please wait ...',
+      STATUS_USERS_IS_EMPTY: 'Examination users is empty!',
 
       CONFIRM_CANCEL: 'Cancel',
       INIT_EXAMINATION_CONFIRM_CONTINUE: 'Continue',

@@ -1270,6 +1270,12 @@
       CURR_EXAMINATION_CONFIG: '当前考核配置: <small>./config/env/torrents.js</small>',
       BTN_INIT_EXAMINATION_DATA: '初始化用户的考核数据',
       BTN_CURR_EXAMINATION_STATUS: '当前考核的数据状态',
+      EXAMINATION_STATUS: '考核状态',
+      ALL_USER: '参考用户: <strong>{{all_user}}</strong> 人',
+      FINISHED_USER: '考核已完成用户: <strong>{{finished_user}}</strong> 人',
+      UNFINISHED_USER: '考核未完成用户: <strong>{{unfinished_user}}</strong> 人',
+      STATUS_USERS_IS_LOADING: '正在装载考核用户数据, 请稍候...',
+      STATUS_USERS_IS_EMPTY: '考核数据为空!',
 
       CONFIRM_CANCEL: '取消',
       INIT_EXAMINATION_CONFIRM_CONTINUE: '继续',

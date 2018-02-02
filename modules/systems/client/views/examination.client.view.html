@@ -1,34 +1,113 @@
-<div class="panel panel-default system-panel examination-panel" ng-controller="ExaminationController as vm">
-    <div class="panel-heading">{{'SYSTEMS.EXAMINATION_MANAGE' | translate}}</div>
-    <div class="panel-config">
-        <p translate="SYSTEMS.CURR_EXAMINATION_CONFIG"></p>
-        <div class="config-tree margin-left-20">
-            <json-tree object="vm.examinationConfig"></json-tree>
+<div ng-controller="ExaminationController as vm">
+    <div class="panel panel-default system-panel examination-panel">
+        <div class="panel-heading">{{'SYSTEMS.EXAMINATION_MANAGE' | translate}}</div>
+        <div class="panel-config">
+            <p translate="SYSTEMS.CURR_EXAMINATION_CONFIG"></p>
+            <div class="config-tree margin-left-20">
+                <json-tree object="vm.examinationConfig"></json-tree>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6 text-center">
+                    <p><i class="fa fa-database" aria-hidden="true"></i></p>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <p><i class="fa fa-signal" aria-hidden="true"></i></p>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <p class="op-desc"><span translate="SYSTEMS.DESC_INIT_EXAMINATION_DATA"></span></p>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <p class="op-desc"><span translate="SYSTEMS.DESC_CURR_EXAMINATION_STATUS"></span></p>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <button class="btn btn-success" ng-click="vm.initExaminationData()">
+                        {{'SYSTEMS.BTN_INIT_EXAMINATION_DATA' | translate}}
+                    </button>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <button class="btn btn-success" ng-click="vm.getExaminationStatus()">
+                        {{'SYSTEMS.BTN_CURR_EXAMINATION_STATUS' | translate}}
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-xs-6 text-center">
-                <p><i class="fa fa-database" aria-hidden="true"></i></p>
-            </div>
-            <div class="col-xs-6 text-center">
-                <p><i class="fa fa-signal" aria-hidden="true"></i></p>
-            </div>
-            <div class="col-xs-6 text-center">
-                <p class="op-desc"><span translate="SYSTEMS.DESC_INIT_EXAMINATION_DATA"></span></p>
-            </div>
-            <div class="col-xs-6 text-center">
-                <p class="op-desc"><span translate="SYSTEMS.DESC_CURR_EXAMINATION_STATUS"></span></p>
-            </div>
-            <div class="col-xs-6 text-center">
-                <button class="btn btn-success" ng-click="vm.initExaminationData()">
-                    {{'SYSTEMS.BTN_INIT_EXAMINATION_DATA' | translate}}
-                </button>
-            </div>
-            <div class="col-xs-6 text-center">
-                <button class="btn btn-success">
-                    {{'SYSTEMS.BTN_CURR_EXAMINATION_STATUS' | translate}}
-                </button>
+
+    <div class="panel panel-default panel-status" id="top_of_status" ng-if="vm.examinationStatusResult">
+        <div class="panel-heading" translate="SYSTEMS.EXAMINATION_STATUS"></div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span translate="SYSTEMS.ALL_USER" translate-values="{all_user: vm.examinationStatusResult.countAll}"></span>
+            </li>
+            <li class="list-group-item">
+                <a ui-sref="#" ng-click="vm.buildPager('finished')">
+                    <span translate="SYSTEMS.FINISHED_USER" translate-values="{finished_user: vm.examinationStatusResult.countFinished}"></span>
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a ui-sref="#" ng-click="vm.buildPager('unfinished')">
+                    <span translate="SYSTEMS.UNFINISHED_USER" translate-values="{unfinished_user: vm.examinationStatusResult.countUnfinished}"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="up_to_top_div" up-to-top="top_of_status" offset="20"></div>
+
+    <div id="top_of_status_list">
+        <div class="panel panel-default panel-users" ng-if="vm.showStatusUsers">
+            <div class="panel-heading" translate="SYSTEMS.EXAMINATION_STATUS"></div>
+            <div class="table-responsive">
+                <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                    ng-model="vm.currentPage"
+                    ng-change="vm.pageChanged()"
+                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                </ul>
+
+                <table class="table table-hover table-striped tb-v-middle top-border bottom-border">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center"></th>
+                            <th>{{ 'TABLE_FIELDS.USERNAME' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.UPLOAD' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.DOWNLOAD' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.SCORE' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="vm.resultMsg">
+                            <td colspan="6">
+                                <div class="text-center margin-top-50 margin-bottom-30 padding-top-20 padding-bottom-50">
+                                    <h3>{{vm.resultMsg | translate}}</h3>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="ranking-list-info" ng-repeat="user in vm.pagedItems">
+                            <td class="text-center">{{$index + 1}}</td>
+                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="{{user.profileImageURL}}">
+                            </td>
+                            <td>
+                                <span user-info="user" info-name></span>
+                                <span vip-flag="user"></span>
+                                <!--<span message-to="user" to-class="message-to-icon"></span>-->
+                            </td>
+                            <td class="text-center">{{user.examinationData.uploaded | bytes:2}}</td>
+                            <td class="text-center">{{user.examinationData.downloaded | bytes:2}}</td>
+                            <td class="text-center">{{user.examinationData.score | number: 2}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                    ng-model="vm.currentPage"
+                    ng-change="vm.pageChanged()"
+                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                </ul>
             </div>
         </div>
     </div>

@@ -28,4 +28,13 @@ module.exports = function (app) {
 
   app.route('/api/systems/initExaminationData').all(systemsPolicy.isAllowed)
     .put(systems.initExaminationData);
+
+  app.route('/api/systems/getExaminationStatus').all(systemsPolicy.isAllowed)
+    .get(systems.getExaminationStatus);
+
+  app.route('/api/systems/listFinishedUsers').all(systemsPolicy.isAllowed)
+    .get(systems.listFinishedUsers);
+
+  app.route('/api/systems/listUnfinishedUsers').all(systemsPolicy.isAllowed)
+    .get(systems.listUnfinishedUsers);
 };

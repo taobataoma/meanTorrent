@@ -45,6 +45,18 @@
       initExaminationData: {
         method: 'PUT',
         url: '/api/systems/initExaminationData'
+      },
+      getExaminationStatus: {
+        method: 'GET',
+        url: '/api/systems/getExaminationStatus'
+      },
+      listFinishedUsers: {
+        method: 'GET',
+        url: '/api/systems/listFinishedUsers'
+      },
+      listUnfinishedUsers: {
+        method: 'GET',
+        url: '/api/systems/listUnfinishedUsers'
       }
     });
   }

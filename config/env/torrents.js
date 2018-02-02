@@ -1094,7 +1094,9 @@ module.exports = {
       homeHelpListLimit: 10,
       homeNoticeListLimit: 10,
       homeNewTopicListLimit: 10,
-      homeNewestTorrentsListLimit: 10
+      homeNewestTorrentsListLimit: 10,
+
+      examinationUserListPerPage: 20
     },
 
     /**

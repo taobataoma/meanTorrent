@@ -11,6 +11,7 @@ var path = require('path'),
   moment = require('moment'),
   User = mongoose.model('User'),
   shell = require('shelljs'),
+  async = require('async'),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var traceConfig = config.meanTorrentConfig.trace;
@@ -167,7 +168,8 @@ exports.initExaminationData = function (req, res) {
       uploaded: 0,
       downloaded: 0,
       score: 0,
-      isFinished: false
+      isFinished: false,
+      finishedTime: null
     };
 
     User.update({}, {examinationData: undefined}, {multi: true},
@@ -206,4 +208,153 @@ exports.initExaminationData = function (req, res) {
       message: 'SERVER.USER_IS_NOT_AUTHORIZED'
     });
   }
+};
+
+/**
+ * getExaminationStatus
+ * @param req
+ * @param res
+ */
+exports.getExaminationStatus = function (req, res) {
+  if (req.user.isAdmin) {
+    var countFinished = function (callback) {
+      User.count({
+        'examinationData.isFinished': true
+      }, function (err, count) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, count);
+        }
+      });
+    };
+
+    var countUnfinished = function (callback) {
+      User.count({
+        'examinationData.isFinished': false
+      }, function (err, count) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, count);
+        }
+      });
+    };
+
+    async.parallel([countFinished, countUnfinished], function (err, results) {
+      if (err) {
+        return res.status(422).send(err);
+      } else {
+        res.json({
+          countFinished: results[0],
+          countUnfinished: results[1],
+          countAll: results[0] + results[1]
+        });
+      }
+    });
+
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+};
+
+/**
+ * listFinishedUsers
+ * @param req
+ * @param res
+ */
+exports.listFinishedUsers = function (req, res) {
+  var skip = 0;
+  var limit = 0;
+
+  if (req.query.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.query.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+
+  var countQuery = function (callback) {
+    User.count({'examinationData.isFinished': true}, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  var findQuery = function (callback) {
+    User.find({'examinationData.isFinished': true})
+      .sort('-examinationData.finishedTime')
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, users) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, users);
+        }
+      });
+  };
+
+  async.parallel([countQuery, findQuery], function (err, results) {
+    if (err) {
+      mtDebug.debugRed(err);
+      return res.status(422).send(err);
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
+  });
+};
+
+/**
+ * listUnfinishedUsers
+ * @param req
+ * @param res
+ */
+exports.listUnfinishedUsers = function (req, res) {
+  var skip = 0;
+  var limit = 0;
+
+  if (req.query.skip !== undefined) {
+    skip = parseInt(req.query.skip, 10);
+  }
+  if (req.query.limit !== undefined) {
+    limit = parseInt(req.query.limit, 10);
+  }
+
+  var countQuery = function (callback) {
+    User.count({'examinationData.isFinished': false}, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  var findQuery = function (callback) {
+    User.find({'examinationData.isFinished': false})
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, users) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, users);
+        }
+      });
+  };
+
+  async.parallel([countQuery, findQuery], function (err, results) {
+    if (err) {
+      mtDebug.debugRed(err);
+      return res.status(422).send(err);
+    } else {
+      res.json({rows: results[1], total: results[0]});
+    }
+  });
 };
