@@ -91,7 +91,7 @@
                             </td>
                         </tr>
                         <tr class="ranking-list-info" ng-repeat="user in vm.pagedItems">
-                            <td class="td-v-middle text-center">{{$index + 1}}</td>
+                            <td class="td-v-middle text-center">{{(vm.currentPage-1) * vm.itemsPerPage + $index + 1}}</td>
                             <td class="td-v-middle text-center"><img class="ranking-user-img" title="{{user.displayName}}"
                                                                      ng-src="{{user.profileImageURL}}">
                             </td>
