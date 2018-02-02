@@ -72,6 +72,7 @@
      * @param callback
      */
     vm.figureOutItemsToDisplay = function (callback) {
+      vm.pagedItems = undefined;
       vm.resultMsg = 'SYSTEMS.STATUS_USERS_IS_LOADING';
       vm.getStatusUsers(vm.currentPage, function (items) {
         vm.filterLength = items.total;
