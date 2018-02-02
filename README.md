@@ -403,7 +403,7 @@ Note: the `name` is value of [ISO_639-1](https://en.wikipedia.org/wiki/List_of_I
 The class is used origin [flag-icon-css](https://github.com/lipis/flag-icon-css),
 you can find flag icon at `/public/lib/flag-icon-css/flags/`.
 
-3. Copy and translate all the .md files in `modules/*/client/templates/*.md`, notice the naming rules of files please.
+3. Copy and translate all the .md files in `modules/*/client/templates/*.md`, notice the naming rules of files please, these files can edit online now.
 4. meanTorrent used richtext box of [bootstrap-markdown](http://www.codingdrama.com/bootstrap-markdown/), It has already translated some
 language, you can find them at `/public/lib/bootstrap-markdown/locale/`, then inset into config file `/config/assets/default.js` and `/config/assets/production.js`, such as:
 ```javascript
