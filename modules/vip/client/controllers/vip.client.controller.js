@@ -7,11 +7,11 @@
 
   VipController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'getStorageLangService', 'MeanTorrentConfig', 'TorrentsService',
     'DebugConsoleService', '$timeout', 'uibButtonConfig', 'TorrentGetInfoServices', 'DownloadService', 'ResourcesTagsServices', '$window',
-    'localStorageService'];
+    'localStorageService', 'marked'];
 
   function VipController($scope, $state, $translate, Authentication, getStorageLangService, MeanTorrentConfig, TorrentsService,
                          mtDebug, $timeout, uibButtonConfig, TorrentGetInfoServices, DownloadService, ResourcesTagsServices, $window,
-                         localStorageService) {
+                         localStorageService, marked) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -387,6 +387,16 @@
         e.removeClass('panel-collapsed');
         i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
       }
+    };
+
+    /**
+     * getVipTooltip
+     * @returns {*}
+     */
+    vm.getVipTooltip = function () {
+      var ts = $translate.instant('HOME.VIP_TOOLTIP');
+
+      return marked(ts, {sanitize: true});
     };
   }
 }());

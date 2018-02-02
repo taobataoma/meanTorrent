@@ -1,11 +1,12 @@
 <div ng-controller="VipController as vm">
     <div class="pagetop">
         <div class="container">
-            <div class="row margin-top-20 margin-bottom-30">
+            <div class="row margin-top-10 margin-bottom-10">
                 <div class="col-sm-9">
                     <h3>{{'VIP.VIP_TITLE' | translate}}
                         <small>{{'VIP.VIP_SUB_TITLE' | translate}}</small>
                     </h3>
+                    <div class="vip-tooltip margin-left-100" ng-bind-html="vm.getVipTooltip();"></div>
                 </div>
                 <div class="col-sm-3 text-right donate-button">
                     <a ui-sref="vip.donate" class="btn btn-width-120 margin-top-5"

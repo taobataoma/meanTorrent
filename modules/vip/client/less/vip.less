@@ -36,3 +36,24 @@
     }
 }
 
+.vip-tooltip {
+    color: #bbb;
+    text-shadow: 0 0 0.1em #3a3a3a,-0 -0 0.1em #3a3a3a;
+    ul {
+        @media (max-width: @screen-xs-max) {
+            margin-bottom: 20px !important;
+        }
+        padding-left: 0;
+        li {
+            padding-left: 0;
+            list-style: none;
+            &:before {
+                content: '+';
+                display: inline-block;
+                color: @brand-success;
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
