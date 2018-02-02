@@ -17,27 +17,27 @@
 
     vm.statusType = 'finished';
 
-      /**
-       * initExaminationData
-       */
-      vm.initExaminationData = function () {
-        var modalOptions = {
-          closeButtonText: $translate.instant('SYSTEMS.CONFIRM_CANCEL'),
-          actionButtonText: $translate.instant('SYSTEMS.INIT_EXAMINATION_CONFIRM_CONTINUE'),
-          headerText: $translate.instant('SYSTEMS.INIT_EXAMINATION_CONFIRM_HEADER_TEXT'),
-          bodyText: $translate.instant('SYSTEMS.INIT_EXAMINATION_CONFIRM_BODY_TEXT')
-        };
-
-        ModalConfirmService.showModal({}, modalOptions)
-          .then(function (result) {
-            SystemsService.initExaminationData(function (res) {
-              console.log(res);
-              NotifycationService.showSuccessNotify('SYSTEMS.INIT_EXAMINATION_SUCCESSFULLY');
-            }, function (err) {
-              NotifycationService.showErrorNotify(err.data.message, 'SYSTEMS.INIT_EXAMINATION_ERRORU');
-            });
-          });
+    /**
+     * initExaminationData
+     */
+    vm.initExaminationData = function () {
+      var modalOptions = {
+        closeButtonText: $translate.instant('SYSTEMS.CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('SYSTEMS.INIT_EXAMINATION_CONFIRM_CONTINUE'),
+        headerText: $translate.instant('SYSTEMS.INIT_EXAMINATION_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('SYSTEMS.INIT_EXAMINATION_CONFIRM_BODY_TEXT')
       };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          SystemsService.initExaminationData(function (res) {
+            console.log(res);
+            NotifycationService.showSuccessNotify('SYSTEMS.INIT_EXAMINATION_SUCCESSFULLY');
+          }, function (err) {
+            NotifycationService.showErrorNotify(err.data.message, 'SYSTEMS.INIT_EXAMINATION_ERRORU');
+          });
+        });
+    };
 
     /**
      * getExaminationStatus
@@ -123,5 +123,26 @@
       });
     };
 
+    /**
+     * banAllUnfinishedUser
+     */
+    vm.banAllUnfinishedUser = function () {
+      var modalOptions = {
+        closeButtonText: $translate.instant('SYSTEMS.CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('SYSTEMS.BAN_CONFIRM_SAVE'),
+        headerText: $translate.instant('SYSTEMS.BAN_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('SYSTEMS.BAN_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          SystemsService.banAllUnfinishedUser(function (res) {
+            mtDebug.info(res);
+            NotifycationService.showSuccessNotify('SYSTEMS.BAN_SUCCESSFULLY');
+          }, function (err) {
+            NotifycationService.showErrorNotify(err.data.message, 'SYSTEMS.BAN_FAILED');
+          });
+        });
+    };
   }
 }());

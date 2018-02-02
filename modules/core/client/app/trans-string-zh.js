@@ -173,7 +173,8 @@
       LEECHED: '正在下载',
       LEVEL: '用户级别',
       SCORE: '积分',
-      JOINED: '加入时间'
+      JOINED: '加入时间',
+      ACCOUNT_STATUS: '状态'
     },
 
     //page title
@@ -1270,6 +1271,7 @@
       CURR_EXAMINATION_CONFIG: '当前考核配置: <small>./config/env/torrents.js</small>',
       BTN_INIT_EXAMINATION_DATA: '初始化用户的考核数据',
       BTN_CURR_EXAMINATION_STATUS: '当前考核的数据状态',
+      BTN_BAN_ALL_UNFINISHED: '禁止掉所有未完成考核的帐户',
       EXAMINATION_STATUS: '考核状态',
       ALL_USER: '参考用户: <strong>{{all_user}}</strong> 人',
       FINISHED_USER: '考核已完成用户: <strong>{{finished_user}}</strong> 人',
@@ -1289,6 +1291,12 @@
       CONFIG_CHANGED_CONFIRM_BODY_TEXT: '系统配置已被修改, 您确定要退出并放弃保存吗?',
       CONFIG_SAVE_SUCCESSFULLY: '系统配置保存成功',
       CONFIG_SAVE_FAILED: '系统配置保存失败',
+
+      BAN_CONFIRM_SAVE: '禁止',
+      BAN_CONFIRM_HEADER_TEXT: '禁止确认',
+      BAN_CONFIRM_BODY_TEXT: '您确定要禁止掉所有未完成考核的用户帐号吗?',
+      BAN_SUCCESSFULLY: '禁止成功',
+      BAN_FAILED: '禁止失败',
 
       DESC_CONFIG: ':warning: 这是 **meantorrent** 的系统配置文件, 如果您知道你在干什么, 您可以修改它们, 否则不要随便改动, 不正确的设置可能会导致系统不能正常工作. 您也可以在修改前咨询相关系统维护人员.',
       DESC_COMMAND: ':warning: 下面的命令用来维护 **meanTorrent**, 如果你不明白它们的作用，请不要随意的执行，错误的执行将使服务器不能正常的工作. 您也可以在执行前咨询相关系统维护人员.',

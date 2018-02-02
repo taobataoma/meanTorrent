@@ -173,7 +173,8 @@
       LEECHED: 'Leeching',
       LEVEL: 'Level',
       SCORE: 'Score',
-      JOINED: 'Joined'
+      JOINED: 'Joined',
+      ACCOUNT_STATUS: 'Status'
     },
 
     //page title
@@ -1270,6 +1271,7 @@
       CURR_EXAMINATION_CONFIG: 'Current examination config: <small>./config/env/torrents.js</small>',
       BTN_INIT_EXAMINATION_DATA: 'Init examination data',
       BTN_CURR_EXAMINATION_STATUS: 'Curr examination status',
+      BTN_BAN_ALL_UNFINISHED: 'Ban all unfinished users',
       EXAMINATION_STATUS: 'Examination status',
       ALL_USER: 'Total: <strong>{{all_user}}</strong> users',
       FINISHED_USER: 'Finished: <strong>{{finished_user}}</strong> users',
@@ -1289,6 +1291,12 @@
       CONFIG_CHANGED_CONFIRM_BODY_TEXT: 'Configure was changed, are you sure to quit and don`t save it?',
       CONFIG_SAVE_SUCCESSFULLY: 'Configure save successfully',
       CONFIG_SAVE_FAILED: 'Configure save failed',
+
+      BAN_CONFIRM_SAVE: 'Ban',
+      BAN_CONFIRM_HEADER_TEXT: 'Ban confirm',
+      BAN_CONFIRM_BODY_TEXT: 'are you sure want to ban the examination unfinished users?',
+      BAN_SUCCESSFULLY: 'BAN successfully',
+      BAN_FAILED: 'BAN failed',
 
       DESC_CONFIG: ':warning: This is the system configuration file of **meanTorrent**. If you know what you are doing, you can modify them. Otherwise, don\'t change it arbitrarily. Incorrect settings may cause the system to not work properly. You can also consult the related system maintenance personnel before modification.',
       DESC_COMMAND: ':warning: The following commands are used to maintain **meanTorrent**. If you don\'t understand their functions, please don\'t execute arbitrarily. Erroneous execution will make the server unable to work normally. You can also consult the related system maintenance personnel before execution.',

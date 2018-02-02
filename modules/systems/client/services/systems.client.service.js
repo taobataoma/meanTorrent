@@ -57,6 +57,10 @@
       listUnfinishedUsers: {
         method: 'GET',
         url: '/api/systems/listUnfinishedUsers'
+      },
+      banAllUnfinishedUser: {
+        method: 'PUT',
+        url: '/api/systems/banAllUnfinishedUser'
       }
     });
   }

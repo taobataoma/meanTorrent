@@ -492,6 +492,7 @@ module.exports = {
         AdminUpdateUserVIPData: {name: 'AdminUpdateUserVIPData', enable: true},
         AdminUserDelete: {name: 'AdminUserDelete', enable: true},
         AdminUserEdit: {name: 'AdminUserEdit', enable: true},
+        AdminBanAllExaminationUnfinishedUsers: {name: 'AdminBanAllExaminationUnfinishedUsers', enable: true},
 
         userPasswordReset: {name: 'userPasswordReset', enable: true},
         userSignUp: {name: 'userSignUp', enable: true},

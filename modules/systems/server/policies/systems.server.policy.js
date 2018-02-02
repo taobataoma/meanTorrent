@@ -24,7 +24,8 @@ exports.invokeRolesPolicies = function () {
       {resources: '/api/systems/initExaminationData', permissions: '*'},
       {resources: '/api/systems/getExaminationStatus', permissions: '*'},
       {resources: '/api/systems/listFinishedUsers', permissions: '*'},
-      {resources: '/api/systems/listUnfinishedUsers', permissions: '*'}
+      {resources: '/api/systems/listUnfinishedUsers', permissions: '*'},
+      {resources: '/api/systems/banAllUnfinishedUser', permissions: '*'}
     ]
   }]);
 };

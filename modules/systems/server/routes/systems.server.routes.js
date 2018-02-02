@@ -37,4 +37,7 @@ module.exports = function (app) {
 
   app.route('/api/systems/listUnfinishedUsers').all(systemsPolicy.isAllowed)
     .get(systems.listUnfinishedUsers);
+
+  app.route('/api/systems/banAllUnfinishedUser').all(systemsPolicy.isAllowed)
+    .put(systems.banAllUnfinishedUser);
 };

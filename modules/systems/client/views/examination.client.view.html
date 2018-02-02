@@ -50,6 +50,9 @@
                 <a ui-sref="#" ng-click="vm.buildPager('unfinished')">
                     <span translate="SYSTEMS.UNFINISHED_USER" translate-values="{unfinished_user: vm.examinationStatusResult.countUnfinished}"></span>
                 </a>
+                <button class="btn btn-default btn-sm margin-left-50"
+                        ng-click="vm.banAllUnfinishedUser()"
+                        translate="SYSTEMS.BTN_BAN_ALL_UNFINISHED"></button>
             </li>
         </ul>
     </div>
@@ -76,28 +79,33 @@
                             <th class="text-center">{{ 'TABLE_FIELDS.UPLOAD' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.DOWNLOAD' | translate}}</th>
                             <th class="text-center">{{ 'TABLE_FIELDS.SCORE' | translate}}</th>
+                            <th class="text-center">{{ 'TABLE_FIELDS.ACCOUNT_STATUS' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-if="vm.resultMsg">
-                            <td colspan="6">
+                            <td colspan="7">
                                 <div class="text-center margin-top-50 margin-bottom-30 padding-top-20 padding-bottom-50">
                                     <h3>{{vm.resultMsg | translate}}</h3>
                                 </div>
                             </td>
                         </tr>
                         <tr class="ranking-list-info" ng-repeat="user in vm.pagedItems">
-                            <td class="text-center">{{$index + 1}}</td>
-                            <td class="text-center"><img class="ranking-user-img" title="{{user.displayName}}" ng-src="{{user.profileImageURL}}">
+                            <td class="td-v-middle text-center">{{$index + 1}}</td>
+                            <td class="td-v-middle text-center"><img class="ranking-user-img" title="{{user.displayName}}"
+                                                                     ng-src="{{user.profileImageURL}}">
                             </td>
-                            <td>
+                            <td class="td-v-middle ">
                                 <span user-info="user" info-name></span>
                                 <span vip-flag="user"></span>
                                 <!--<span message-to="user" to-class="message-to-icon"></span>-->
                             </td>
-                            <td class="text-center">{{user.examinationData.uploaded | bytes:2}}</td>
-                            <td class="text-center">{{user.examinationData.downloaded | bytes:2}}</td>
-                            <td class="text-center">{{user.examinationData.score | number: 2}}</td>
+                            <td class="td-v-middle text-center">{{user.examinationData.uploaded | bytes:2}}</td>
+                            <td class="td-v-middle text-center">{{user.examinationData.downloaded | bytes:2}}</td>
+                            <td class="td-v-middle text-center">{{user.examinationData.score | number: 2}}</td>
+                            <td class="td-v-middle text-center">
+                                <span ng-class="{'span-banned': user.status != 'normal'}">{{ 'STATUS_FIELD.' + user.status.toUpperCase() | translate }}</span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
