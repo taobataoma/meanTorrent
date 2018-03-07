@@ -1004,7 +1004,7 @@ module.exports = {
      */
     voteTitle: {
       imdb: 'IMDB',
-      mt: 'MIN'
+      mt: 'MINE'
     },
 
     /**
