@@ -971,10 +971,10 @@ module.exports = {
      * @castImgBaseUrl:           image link url
      */
     tmdbConfig: {
+      key: '7888f0042a366f63289ff571b68b7ce0',
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',
-      key: '7888f0042a366f63289ff571b68b7ce0',
       backdropImgBaseUrl: 'http://image.tmdb.org/t/p/w1280',
       backdropImgBaseUrl_300: 'http://image.tmdb.org/t/p/w300',
       backdropImgBaseUrl_780: 'http://image.tmdb.org/t/p/w780',
