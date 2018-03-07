@@ -26,8 +26,8 @@ module.exports = {
      *                          if web server used proxyPass setting, this should set to false
      */
     app: {
-      name: 'CHD.im',
-      domain: 'http://chd.im',
+      name: 'MEAN.im',
+      domain: 'http://MEAN.im',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: true,
@@ -96,8 +96,8 @@ module.exports = {
       url: '/announce',
       comment: 'meanTorrent group',
       announceInterval: 60 * 1000 * 5,
-      announcePrefix: '{CHD.im}.',
-      admin: 'admin@chd.im',
+      announcePrefix: '{MEAN.im}.',
+      admin: 'admin@MEAN.im',
       clientBlackListUrl: '/about/black',
       privateTorrentCmsMode: true,
       downloadCheck: {
@@ -137,8 +137,8 @@ module.exports = {
       title: '[%s] - RSS torrents',
       description: 'Latest torrents from [%s]',
       copyright: 'Copyright (c) [%s] 2012-2017, all rights reserved',
-      managingEditor: 'admin@chd.im (%s Admin)',
-      webMaster: 'webmaster@chd.im (%s Webmaster)',
+      managingEditor: 'admin@MEAN.im (%s Admin)',
+      webMaster: 'webmaster@MEAN.im (%s Webmaster)',
       generator: 'meanTorrent RSS Generator',
       ttl: 60,
       image_url: '/modules/core/client/img/rss.jpeg'
@@ -193,12 +193,12 @@ module.exports = {
     ircAnnounce: {
       enable: true,
       debug: false,
-      server: 'chd.im',
+      server: 'MEAN.im',
       port: 16667,
-      nick: 'chdAnnounce',
+      nick: 'demoAnnouncer',
       userName: 'meanTorrent',
       realName: 'IRC announce client',
-      channel: '#chdAnnounce',
+      channel: '#demoAnnounce',
       defaultMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, sale: %s, url: %s, at %s',
       tvserialMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, seasons: %d, episodes: %s, sale: %s, url: %s, at %s',
       showErrors: true,
@@ -959,10 +959,10 @@ module.exports = {
      *
      * movie info web www.themoviedb.com settings
      *
+     * @key:                      access key fro TMDB, when u first install and runing this system, please register a key from TMDB and replace here
      * @tmdbHome:                 TMDB website home link url
      * @tmdbMovieLinkUrl:         linked url, link to movie detail info page, system get movie detail info from here
      * @tmdbTvserialLinkUrl:      linked url, link to tv serial detail info page, system get tv serial detail info from here
-     * @key:                      access key fro TMDB, when u first install and runing this system, please register a key from TMDB and replace here
      * @backdropImgBaseUrl:       image link url
      * @backdropImgBaseUrl_300:   image link url
      * @backdropImgBaseUrl_780:   image link url
@@ -971,10 +971,10 @@ module.exports = {
      * @castImgBaseUrl:           image link url
      */
     tmdbConfig: {
+      key: '7888f0042a366f63289ff571b68b7ce0',
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',
-      key: '7888f0042a366f63289ff571b68b7ce0',
       backdropImgBaseUrl: 'http://image.tmdb.org/t/p/w1280',
       backdropImgBaseUrl_300: 'http://image.tmdb.org/t/p/w300',
       backdropImgBaseUrl_780: 'http://image.tmdb.org/t/p/w780',
@@ -1004,7 +1004,7 @@ module.exports = {
      */
     voteTitle: {
       imdb: 'IMDB',
-      mt: 'CHD'
+      mt: 'MEAN'
     },
 
     /**
