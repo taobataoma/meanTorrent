@@ -193,9 +193,9 @@ module.exports = {
     ircAnnounce: {
       enable: true,
       debug: false,
-      server: 'chd.im',
+      server: 'MEAN.im',
       port: 16667,
-      nick: 'Announcer',
+      nick: 'mineAnnouncer',
       userName: 'meanTorrent',
       realName: 'IRC announce client',
       channel: '#mineAnnounce',
@@ -959,10 +959,10 @@ module.exports = {
      *
      * movie info web www.themoviedb.com settings
      *
+     * @key:                      access key fro TMDB, when u first install and runing this system, please register a key from TMDB and replace here
      * @tmdbHome:                 TMDB website home link url
      * @tmdbMovieLinkUrl:         linked url, link to movie detail info page, system get movie detail info from here
      * @tmdbTvserialLinkUrl:      linked url, link to tv serial detail info page, system get tv serial detail info from here
-     * @key:                      access key fro TMDB, when u first install and runing this system, please register a key from TMDB and replace here
      * @backdropImgBaseUrl:       image link url
      * @backdropImgBaseUrl_300:   image link url
      * @backdropImgBaseUrl_780:   image link url

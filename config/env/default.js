@@ -11,7 +11,7 @@ module.exports = {
     promise: global.Promise
   },
   port: process.env.PORT || 3000,
-  host: process.env.HOST || '0.0.0.0',
+  host: process.env.HOST || '127.0.0.1',
   // DOMAIN config should be set to the fully qualified application accessible
   // URL. For example: https://www.myapp.com (including port if required).
   domain: process.env.DOMAIN || 'mine.pt',
@@ -42,7 +42,7 @@ module.exports = {
   },
   logo: 'modules/core/client/img/brand/logo.png',
   favicon: 'modules/core/client/img/brand/favicon.ico',
-  illegalUsernames: ['meanjs', 'administrator', 'password', 'admin', 'user',
+  illegalUsernames: ['meanjs', 'administrator', 'password', 'admin', 'user', 'mean', 'meanTorrent', 'torrent', 'bit', 'bits', 'oper', 'operator',
     'unknown', 'anonymous', 'null', 'undefined', 'api'
   ],
   aws: {
