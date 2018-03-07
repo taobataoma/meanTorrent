@@ -26,8 +26,8 @@ module.exports = {
      *                          if web server used proxyPass setting, this should set to false
      */
     app: {
-      name: 'CHD.im',
-      domain: 'http://chd.im',
+      name: 'MINE.pt',
+      domain: 'http://MINE.pt',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: true,
@@ -96,8 +96,8 @@ module.exports = {
       url: '/announce',
       comment: 'meanTorrent group',
       announceInterval: 60 * 1000 * 5,
-      announcePrefix: '{CHD.im}.',
-      admin: 'admin@chd.im',
+      announcePrefix: '{MINE.pt}.',
+      admin: 'meetuspt@gmail.com',
       clientBlackListUrl: '/about/black',
       privateTorrentCmsMode: true,
       downloadCheck: {
@@ -137,8 +137,8 @@ module.exports = {
       title: '[%s] - RSS torrents',
       description: 'Latest torrents from [%s]',
       copyright: 'Copyright (c) [%s] 2012-2017, all rights reserved',
-      managingEditor: 'admin@chd.im (%s Admin)',
-      webMaster: 'webmaster@chd.im (%s Webmaster)',
+      managingEditor: 'admin@mine.pt (%s Admin)',
+      webMaster: 'webmaster@mine.pt (%s Webmaster)',
       generator: 'meanTorrent RSS Generator',
       ttl: 60,
       image_url: '/modules/core/client/img/rss.jpeg'
@@ -195,10 +195,10 @@ module.exports = {
       debug: false,
       server: 'chd.im',
       port: 16667,
-      nick: 'chdAnnounce',
+      nick: 'Announcer',
       userName: 'meanTorrent',
       realName: 'IRC announce client',
-      channel: '#chdAnnounce',
+      channel: '#mineAnnounce',
       defaultMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, sale: %s, url: %s, at %s',
       tvserialMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, seasons: %d, episodes: %s, sale: %s, url: %s, at %s',
       showErrors: true,
@@ -1004,7 +1004,7 @@ module.exports = {
      */
     voteTitle: {
       imdb: 'IMDB',
-      mt: 'CHD'
+      mt: 'MIN'
     },
 
     /**

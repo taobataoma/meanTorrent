@@ -79,7 +79,7 @@ module.exports = {
     sandbox: false
   },
   mailer: {
-    from: process.env.MAILER_FROM || 'admin@chd.im',
+    from: process.env.MAILER_FROM || 'admin@mine.pt',
     options: {
       service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
       auth: {
