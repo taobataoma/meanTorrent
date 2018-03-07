@@ -10,8 +10,7 @@ module.exports = {
     caBundle: './config/sslcerts/cabundle.crt'
   },
   port: process.env.PORT || 3000,
-  // Binding to 127.0.0.1 is safer in production.
-  host: process.env.HOST || '127.0.0.1',
+  host: process.env.HOST || '0.0.0.0',
   db: {
     uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev-v2',
     options: {
