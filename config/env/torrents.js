@@ -227,12 +227,12 @@ module.exports = {
      * @activeIdleAccountScore:       user active idle account need score numbers
      */
     sign: {
-      openSignup: true,
+      openSignup: false,
       signUpActiveTokenExpires: 60 * 60 * 1000 * 24,
       allowSocialSignin: false,
       showMenuHeaderForGuest: true,
       showFooterCountInfoForGuest: true,
-      showDemoSignMessage: true,
+      showDemoSignMessage: false,
       accountIdleForTime: 60 * 60 * 1000 * 24 * 30, //30 days
       activeIdleAccountScore: 50000
     },
