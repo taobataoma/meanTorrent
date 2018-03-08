@@ -27,7 +27,7 @@ module.exports = {
      */
     app: {
       name: 'MEAN.im',
-      domain: 'http://MEAN.im',
+      domain: 'http://mean.im',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: true,
@@ -97,7 +97,7 @@ module.exports = {
       comment: 'meanTorrent group',
       announceInterval: 60 * 1000 * 5,
       announcePrefix: '{MEAN.im}.',
-      admin: 'admin@MEAN.im',
+      admin: 'admin@mean.im',
       clientBlackListUrl: '/about/black',
       privateTorrentCmsMode: true,
       downloadCheck: {
@@ -137,8 +137,8 @@ module.exports = {
       title: '[%s] - RSS torrents',
       description: 'Latest torrents from [%s]',
       copyright: 'Copyright (c) [%s] 2012-2017, all rights reserved',
-      managingEditor: 'admin@MEAN.im (%s Admin)',
-      webMaster: 'webmaster@MEAN.im (%s Webmaster)',
+      managingEditor: 'admin@mean.im (%s Admin)',
+      webMaster: 'webmaster@mean.im (%s Webmaster)',
       generator: 'meanTorrent RSS Generator',
       ttl: 60,
       image_url: '/modules/core/client/img/rss.jpeg'
@@ -193,10 +193,10 @@ module.exports = {
     ircAnnounce: {
       enable: true,
       debug: false,
-      server: 'MEAN.im',
+      server: 'irc.mean.im',
       port: 16667,
       nick: 'demoAnnouncer',
-      userName: 'meanTorrent',
+      userName: 'demoTorrent',
       realName: 'IRC announce client',
       channel: '#demoAnnounce',
       defaultMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, sale: %s, url: %s, at %s',
