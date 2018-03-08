@@ -196,7 +196,7 @@ module.exports = {
       server: 'irc.mean.im',
       port: 16667,
       nick: 'demoAnnouncer',
-      userName: 'demoTorrent',
+      userName: 'meanTorrent',
       realName: 'IRC announce client',
       channel: '#demoAnnounce',
       defaultMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, sale: %s, url: %s, at %s',
