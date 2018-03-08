@@ -27,7 +27,7 @@ module.exports = {
      */
     app: {
       name: 'MINE.pt',
-      domain: 'http://MINE.pt',
+      domain: 'http://mine.pt',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: true,
@@ -193,7 +193,7 @@ module.exports = {
     ircAnnounce: {
       enable: true,
       debug: false,
-      server: 'MEAN.im',
+      server: 'irc.mean.im',
       port: 16667,
       nick: 'mineAnnouncer',
       userName: 'meanTorrent',
