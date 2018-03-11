@@ -35,20 +35,32 @@
      * @returns {boolean}
      */
     vm.getCatShowedStatus = function (cat) {
-      if (vm.user.isOper) {
-        return true;
-      } else {
-        if (cat.isVip) {
-          if (vm.user.isVip) {
-            return true;
-          } else {
-            return false;
-          }
-        } else if (cat.isOper) {
+      if (vm.forums) {
+        var catForums = vm.forums.filter(function (fm) {
+          return fm.category === cat.value;
+        });
+
+        if (catForums.length === 0) {
           return false;
-        } else {
-          return true;
         }
+
+        if (vm.user.isOper) {
+          return true;
+        } else {
+          if (cat.isVip) {
+            if (vm.user.isVip) {
+              return true;
+            } else {
+              return false;
+            }
+          } else if (cat.isOper) {
+            return false;
+          } else {
+            return true;
+          }
+        }
+      } else {
+        return true;
       }
     };
 
