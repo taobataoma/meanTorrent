@@ -30,6 +30,7 @@ config/env/local.js
 config/env/local-*.js
 *.pem
 package-lock.json
+*.script.sh
 
 # Compiled less and sass files
 # ============================
@@ -84,4 +85,4 @@ mongod
 *.ntvs*
 *.njsproj
 *.sln
-*.script.sh
+
