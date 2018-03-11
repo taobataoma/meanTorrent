@@ -975,12 +975,12 @@ module.exports = {
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',
-      backdropImgBaseUrl: 'http://image.tmdb.org/t/p/w1280',
-      backdropImgBaseUrl_300: 'http://image.tmdb.org/t/p/w300',
-      backdropImgBaseUrl_780: 'http://image.tmdb.org/t/p/w780',
-      posterImgBaseUrl: 'http://image.tmdb.org/t/p/w500',
-      posterListBaseUrl: 'http://image.tmdb.org/t/p/w92',
-      castImgBaseUrl: 'http://image.tmdb.org/t/p/w132_and_h132_bestv2'
+      backdropImgBaseUrl: 'https://image.tmdb.org/t/p/w1280',
+      backdropImgBaseUrl_300: 'https://image.tmdb.org/t/p/w300',
+      backdropImgBaseUrl_780: 'https://image.tmdb.org/t/p/w780',
+      posterImgBaseUrl: 'https://image.tmdb.org/t/p/w500',
+      posterListBaseUrl: 'https://image.tmdb.org/t/p/w92',
+      castImgBaseUrl: 'https://image.tmdb.org/t/p/w132_and_h132_bestv2'
     },
 
     /**
@@ -991,7 +991,7 @@ module.exports = {
      * @imdbLinkUrl: linked url, will nav to imdb website
      */
     imdbConfig: {
-      imdbLinkUrl: 'http://www.imdb.com/title/'
+      imdbLinkUrl: 'https://www.imdb.com/title/'
     },
 
     /**

@@ -502,7 +502,7 @@
 
                 <img class="img-thumbnail" ng-if="vm.collection.backdrop_path"
                      ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_780 + vm.collection.backdrop_path}}"
-                     on-error-src="http://image.tmdb.org/t/p/w1280/5pAGnkFYSsFJ99ZxDIYnhQbQFXs.jpg">
+                     on-error-src="https://image.tmdb.org/t/p/w1280/5pAGnkFYSsFJ99ZxDIYnhQbQFXs.jpg">
 
                 <div class="margin-top-20 h5" ng-class="vm.collection.status == 'loading' ? 'text-success' : 'text-danger'"
                      ng-if="vm.collection.status != 'ok'">{{vm.collection.status_msg | translate}}
