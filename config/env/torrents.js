@@ -27,7 +27,7 @@ module.exports = {
      */
     app: {
       name: 'MINE.pt',
-      domain: 'http://mine.pt',
+      domain: 'https://mine.pt',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: true,
