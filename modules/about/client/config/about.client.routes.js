@@ -18,6 +18,7 @@
         url: '/rules',
         templateUrl: '/modules/about/client/views/rules.client.view.html',
         data: {
+          roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.RULES'
         }
       })
@@ -25,6 +26,7 @@
         url: '/black',
         templateUrl: '/modules/about/client/views/black.client.view.html',
         data: {
+          roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.BLACK'
         }
       })
