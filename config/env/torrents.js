@@ -31,7 +31,7 @@ module.exports = {
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: true,
-      setDefaultValueOnIndex: true
+      setDefaultValueOnIndex: false
     },
 
     /**
