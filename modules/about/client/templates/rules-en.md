@@ -1,4 +1,4 @@
-## This is the `USER RULES` of CHD.im
+## This is the `USER RULES` of mine.pt
 
 The rules content is read from rules.md file, it is support `markdown` style.
 
