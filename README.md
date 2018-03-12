@@ -1,4 +1,4 @@
-# meanTorrent - A Private BitTorrent Tracker CMS based on [meanjs/mean](https://github.com/meanjs/mean),  and here is the [DEMO Site](http://chd.im:3000)
+# meanTorrent - A Private BitTorrent Tracker CMS based on [meanjs/mean](https://github.com/meanjs/mean),  and here is the [DEMO Site](http://mean.im)
 
 meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support__ and a full-stack JavaScript open-source solution,
 which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/),
@@ -251,10 +251,10 @@ such as:
 
 ```javascript
     announce: {
-      url: 'http://chd.im/announce',
-      announcePrefix: '[CHD.im].',
-      admin: 'admin@chd.im',
-      baseUrl: 'http://chd.im',
+      url: 'http://mean.im/announce',
+      announcePrefix: '[mean.im].',
+      admin: 'admin@mean.im',
+      baseUrl: 'http://mean.im',
       clientBlackListUrl: '/about/black',
       privateTorrentCmsMode: true
     },
@@ -320,9 +320,9 @@ All the sign up account need verify & active by mail, and must completed within 
     ircAnnounce: {
       enable: true,
       debug: false,
-      server: 'chd.im',
+      server: 'irc.mean.im',
       port: 16667,
-      nick: 'chdAnnounce',
+      nick: 'meanAnnouncer',
       userName: 'meanTorrent',
       realName: 'IRC announce client',
       channel: '#chdAnnounce',
