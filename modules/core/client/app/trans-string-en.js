@@ -1107,8 +1107,8 @@
 
     //forum
     FORUMS: {
-      FORUM_TITLE: 'meanTorrent Forums',
-      FORUM_SUB_TITLE: 'Welcome to meanTorrent forums!',
+      FORUM_TITLE: '{{site_name}} Official Forums',
+      FORUM_SUB_TITLE: 'Welcome to ours official forums, have a good day!',
       HOME_INDEX: 'Forums Home',
       BTN_ADD_FORUM: 'Add New Forum',
       BTN_EDIT_FORUM: 'Edit Forum',
