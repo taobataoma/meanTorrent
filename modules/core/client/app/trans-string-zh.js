@@ -1107,8 +1107,8 @@
 
     //forum
     FORUMS: {
-      FORUM_TITLE: 'meanTorrent 官方论坛',
-      FORUM_SUB_TITLE: '欢迎您进入 meanTorrent 官方论坛，请文明发言，谢谢!',
+      FORUM_TITLE: '{{site_name}} 官方论坛',
+      FORUM_SUB_TITLE: '欢迎您进入我们的官方论坛，请文明发言，谢谢!',
       HOME_INDEX: '论坛首页',
       BTN_ADD_FORUM: '添加版块',
       BTN_EDIT_FORUM: '编辑版块',
