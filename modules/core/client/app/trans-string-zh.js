@@ -1178,7 +1178,7 @@
       READ_ONLY_REPLY: '*** 只读话题，不能发表回复!',
       TITLE_READONLY: '只读',
       TITLE_VIPONLY: 'vip 专区',
-      TITLE_OPERONLY: 'oper 专区',
+      TITLE_OPERONLY: '管理员专区',
       TODAY_NEW_COUNT_ALL: '(今日: <mark class="text-danger">{{topic}}</mark> 话题, <mark class="text-danger">{{reply}}</mark> 回复)',
       TODAY_NEW_COUNT_TOPIC: '(今日: <mark class="text-danger">{{topic}}</mark> 话题)',
       TODAY_NEW_COUNT_REPLY: '(今日: <mark class="text-danger">{{reply}}</mark> 回复)',
