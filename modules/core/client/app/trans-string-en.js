@@ -1141,6 +1141,7 @@
       REMOVE_MODERATOR_SUCCESSFULLY: 'Remove moderator successfully',
       REMOVE_MODERATOR_FAILED: 'Remove moderator failed',
       REMOVE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this moderator?',
+      NONE_MODERATOR: 'NONE',
       PT_REQUIRED: 'Please enter topic title',
       PC_REQUIRED: 'Please enter topic content',
       PRC_REQUIRED: 'Please enter reply content',

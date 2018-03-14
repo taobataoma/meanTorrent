@@ -1141,6 +1141,7 @@
       REMOVE_MODERATOR_SUCCESSFULLY: '删除版主成功',
       REMOVE_MODERATOR_FAILED: '删除版主失败',
       REMOVE_CONFIRM_BODY_TEXT: '您确定要删除该版主吗?',
+      NONE_MODERATOR: '暂无',
       PT_REQUIRED: '请输入话题标题',
       PC_REQUIRED: '请输入话题内容',
       PRC_REQUIRED: '请输入回复内容',
