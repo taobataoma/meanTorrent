@@ -10,6 +10,7 @@
   function ForumsSearchController($scope, $state, $translate, Authentication, MeanTorrentConfig, ForumsService, mtDebug) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
+    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.user = Authentication.user;
 
     vm.forumList = [];

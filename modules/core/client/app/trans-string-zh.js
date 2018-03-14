@@ -1107,8 +1107,8 @@
 
     //forum
     FORUMS: {
-      FORUM_TITLE: 'meanTorrent 官方论坛',
-      FORUM_SUB_TITLE: '欢迎您进入 meanTorrent 官方论坛，请文明发言，谢谢!',
+      FORUM_TITLE: '{{site_name}} 官方论坛',
+      FORUM_SUB_TITLE: '欢迎您进入我们的官方论坛，请文明发言，谢谢!',
       HOME_INDEX: '论坛首页',
       BTN_ADD_FORUM: '添加版块',
       BTN_EDIT_FORUM: '编辑版块',
@@ -1141,6 +1141,7 @@
       REMOVE_MODERATOR_SUCCESSFULLY: '删除版主成功',
       REMOVE_MODERATOR_FAILED: '删除版主失败',
       REMOVE_CONFIRM_BODY_TEXT: '您确定要删除该版主吗?',
+      NONE_MODERATOR: '暂无',
       PT_REQUIRED: '请输入话题标题',
       PC_REQUIRED: '请输入话题内容',
       PRC_REQUIRED: '请输入回复内容',

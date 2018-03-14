@@ -37,6 +37,7 @@
 
                                 <p ng-if="!f.operOnly"><span class="moderators-title">{{'FORUMS.FIELDS.MODERATORS' | translate}}:</span>
                                     <span class="moderators-list">
+                                        <span class="moderators-item" ng-if="!f.moderators.length">{{'FORUMS.NONE_MODERATOR' | translate}}</span>
                                         <span class="moderators-item" ng-repeat="m in f.moderators">
                                             <span user-info="m" info-name></span>
                                             <!--<span message-to="m" to-class="message-to-icon"></span>-->

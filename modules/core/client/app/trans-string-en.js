@@ -1107,8 +1107,8 @@
 
     //forum
     FORUMS: {
-      FORUM_TITLE: 'meanTorrent Forums',
-      FORUM_SUB_TITLE: 'Welcome to meanTorrent forums!',
+      FORUM_TITLE: '{{site_name}} Official Forums',
+      FORUM_SUB_TITLE: 'Welcome to ours official forums, have a good day!',
       HOME_INDEX: 'Forums Home',
       BTN_ADD_FORUM: 'Add New Forum',
       BTN_EDIT_FORUM: 'Edit Forum',
@@ -1141,6 +1141,7 @@
       REMOVE_MODERATOR_SUCCESSFULLY: 'Remove moderator successfully',
       REMOVE_MODERATOR_FAILED: 'Remove moderator failed',
       REMOVE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this moderator?',
+      NONE_MODERATOR: 'NONE',
       PT_REQUIRED: 'Please enter topic title',
       PC_REQUIRED: 'Please enter topic content',
       PRC_REQUIRED: 'Please enter reply content',
