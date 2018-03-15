@@ -10,7 +10,7 @@ module.exports = {
   db: {
     promise: global.Promise
   },
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || 3001,
   host: process.env.HOST || '0.0.0.0',
   // DOMAIN config should be set to the fully qualified application accessible
   // URL. For example: https://www.myapp.com (including port if required).

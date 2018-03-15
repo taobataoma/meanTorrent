@@ -195,10 +195,10 @@ module.exports = {
       debug: false,
       server: 'irc.mean.im',
       port: 16667,
-      nick: 'meanAnnouncer',
+      nick: 'demoAnnouncer',
       userName: 'meanTorrent',
       realName: 'IRC announce client',
-      channel: '#meanAnnounce',
+      channel: '#demoAnnounce',
       defaultMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, sale: %s, url: %s, at %s',
       tvserialMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, seasons: %d, episodes: %s, sale: %s, url: %s, at %s',
       showErrors: true,
@@ -971,7 +971,7 @@ module.exports = {
      * @castImgBaseUrl:           image link url
      */
     tmdbConfig: {
-      key: 'api key from tmdb',
+      key: '7888f0042a366f63289ff571b68b7ce0',
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',

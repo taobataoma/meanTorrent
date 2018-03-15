@@ -9,10 +9,10 @@ module.exports = {
     certificate: './config/sslcerts/cert.pem',
     caBundle: './config/sslcerts/cabundle.crt'
   },
-  port: process.env.PORT || 3000,
-  host: process.env.HOST || '0.0.0.0',
+  port: process.env.PORT || 3001,
+  host: process.env.HOST || 'mean.im',
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev-v2',
+    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-demo-v2',
     options: {
       /**
       * Uncomment to enable ssl certificate based authentication to mongodb
@@ -78,12 +78,12 @@ module.exports = {
     sandbox: false
   },
   mailer: {
-    from: process.env.MAILER_FROM || 'admin@mean.im',
+    from: process.env.MAILER_FROM || 'admin@chd.im',
     options: {
-      service: process.env.MAILER_SERVICE_PROVIDER || 'service name like as: Gmail',
+      service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
       auth: {
-        user: process.env.MAILER_EMAIL_ID || 'example@gmail.com',
-        pass: process.env.MAILER_PASSWORD || 'mail password'
+        user: process.env.MAILER_EMAIL_ID || 'taobataoma@gmail.com',
+        pass: process.env.MAILER_PASSWORD || 'ykyghbmpjfdliyph'
       }
     }
   },
