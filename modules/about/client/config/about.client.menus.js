@@ -17,8 +17,8 @@
     });
 
     menuService.addSubMenuItem('topbar', 'about', {
-      title: 'MENU_ABOUT_RULES',
-      state: 'about.rules',
+      title: 'MENU_ABOUT_MANUAL',
+      state: 'about.manual.userRules',
       position: 1
     });
     // 2 is item of Users Ranking configure in module ranking
