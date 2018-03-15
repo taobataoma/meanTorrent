@@ -971,7 +971,7 @@ module.exports = {
      * @castImgBaseUrl:           image link url
      */
     tmdbConfig: {
-      key: 'api key from tmdb',
+      key: '7888f0042a366f63289ff571b68b7ce0',
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',
