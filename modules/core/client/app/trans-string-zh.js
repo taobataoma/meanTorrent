@@ -1274,7 +1274,8 @@
     SYSTEMS: {
       ASSETS_CONFIG: 'Assets 资源配置调整',
       ENV_CONFIG: 'Env 环境配置调整',
-      TEMPLATES_EDIT: '模板在线编辑',
+      TEMPLATES_EDIT_FRONTEND: '前端模板在线编辑',
+      TEMPLATES_EDIT_BACKEND: '后端模板在线编辑',
       DATABASE_BACKUP: '数据库备份文件',
       TRANS_EDIT: '多语言字符串在线编辑',
       COMMANDS_EXECUTE: '服务器命令在线执行',

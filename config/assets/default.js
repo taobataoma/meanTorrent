@@ -86,6 +86,7 @@ module.exports = {
         'public/lib/angular-ui-codemirror/ui-codemirror.js',
         'public/lib/codemirror/mode/javascript/javascript.js',
         'public/lib/codemirror/mode/markdown/markdown.js',
+        'public/lib/codemirror/mode/xml/xml.js',
         //angular-lazy-img
         'public/lib/angular-lazy-img/release/angular-lazy-img.js'
 

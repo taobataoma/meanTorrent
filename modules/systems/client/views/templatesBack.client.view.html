@@ -1,5 +1,5 @@
-<div class="panel panel-default system-panel" ng-controller="SystemConfigController as vm" ng-init="vm.getTemplateConfigFiles()">
-    <div class="panel-heading">{{'SYSTEMS.TEMPLATES_EDIT' | translate}}
+<div class="panel panel-default system-panel" ng-controller="SystemConfigController as vm" ng-init="vm.getTemplateBackConfigFiles()">
+    <div class="panel-heading">{{'SYSTEMS.TEMPLATES_EDIT_BACKEND' | translate}}
         <small> - {{vm.loadedFilename}}</small>
     </div>
     <div class="panel-desc" ng-bind-html="vm.getDescConfig()"></div>
@@ -7,16 +7,15 @@
         <select class="form-control" ng-model="vm.selectedFilename" ng-change="vm.onSelectedFileChanged();" autofocus>
             <option value="null">{{'SYSTEMS.SELECT_FILE' | translate}}
             </option>
-            <option ng-repeat="t in vm.templateConfigFiles.files"
+            <option ng-repeat="t in vm.templateBackConfigFiles.files"
                     value="{{t}}">{{t}}
             </option>
         </select>
     </div>
     <div class="panel-loading" ng-class="vm.showLoading ? 'show-loading' : 'hide-loading'" translate="SYSTEMS.CONFIG_LOADING"></div>
-    <div class="panel-body panel-markdown" ng-class="{'content-dirty': vm.contentChanged, 'show-body': vm.showBody, 'hide-body': !vm.showBody}">
+    <div class="panel-body" ng-class="{'content-dirty': vm.contentChanged, 'show-body': vm.showBody, 'hide-body': !vm.showBody}">
         <textarea class="form-control config-content" id="configContent" name="configContent" ng-model="vm.systemConfigContentValue"
                   ui-codemirror="vm.cmOption"></textarea>
-        <div class="panel-preview" ng-if="vm.systemConfigContentValue" ng-bind-html="vm.getMarkedConfigContent()"></div>
     </div>
     <div class="panel-footer" ng-class="vm.showFooter ? 'show-footer' : 'hide-footer'">
         <div class="text-right">

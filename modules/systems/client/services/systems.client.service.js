@@ -26,9 +26,13 @@
         method: 'GET',
         url: '/api/systems/systemTransConfigFiles'
       },
-      getSystemTemplateConfigFiles: {
+      getSystemTemplateFrontConfigFiles: {
         method: 'GET',
-        url: '/api/systems/systemTemplateConfigFiles'
+        url: '/api/systems/systemTemplateFrontConfigFiles'
+      },
+      getSystemTemplateBackConfigFiles: {
+        method: 'GET',
+        url: '/api/systems/systemTemplateBackConfigFiles'
       },
       getSystemConfigContent: {
         method: 'GET',

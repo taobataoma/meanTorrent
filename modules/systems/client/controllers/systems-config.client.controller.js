@@ -80,6 +80,10 @@
               case 'md':
                 _cm.setOption('mode', 'markdown');
                 break;
+              case 'html':
+                _cm.setOption('mode', 'xml');
+                _cm.setOption('htmlMode', true);
+                break;
               default:
                 _cm.setOption('mode', {name: 'javascript', json: true});
             }
@@ -126,10 +130,10 @@
     $scope.$on('$stateChangeStart', function () {
       if (vm.contentChanged) {
         var modalOptions = {
-          closeButtonText: $translate.instant('SYSTEMS.CONFIG_CHANGED_CONFIRM_CANCEL'),
+          closeButtonText: $translate.instant('SYSTEMS.CONFIRM_CANCEL'),
           actionButtonText: $translate.instant('SYSTEMS.CONFIG_CHANGED_CONFIRM_SAVE'),
-          headerText: $translate.instant('SYSTEMS.CONFIG_CHANGED_HEADER_TEXT'),
-          bodyText: $translate.instant('SYSTEMS.CONFIG_CHANGED_BODY_TEXT')
+          headerText: $translate.instant('SYSTEMS.CONFIG_CHANGED_CONFIRM_HEADER_TEXT'),
+          bodyText: $translate.instant('SYSTEMS.CONFIG_CHANGED_CONFIRM_BODY_TEXT')
         };
 
         ModalConfirmService.showModal({}, modalOptions)
@@ -187,11 +191,20 @@
     };
 
     /**
-     * getTemplateConfigFiles
+     * getTemplateFrontConfigFiles
      */
-    vm.getTemplateConfigFiles = function () {
-      SystemsService.getSystemTemplateConfigFiles(function (res) {
-        vm.templateConfigFiles = res;
+    vm.getTemplateFrontConfigFiles = function () {
+      SystemsService.getSystemTemplateFrontConfigFiles(function (res) {
+        vm.templateFrontConfigFiles = res;
+      });
+    };
+
+    /**
+     * getTemplateBackConfigFiles
+     */
+    vm.getTemplateBackConfigFiles = function () {
+      SystemsService.getSystemTemplateBackConfigFiles(function (res) {
+        vm.templateBackConfigFiles = res;
       });
     };
 

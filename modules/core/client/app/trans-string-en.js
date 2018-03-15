@@ -1274,7 +1274,8 @@
     SYSTEMS: {
       ASSETS_CONFIG: 'System assets configure',
       ENV_CONFIG: 'System env configure',
-      TEMPLATES_EDIT: 'Templates editor',
+      TEMPLATES_EDIT_FRONTEND: 'Front-end templates editor',
+      TEMPLATES_EDIT_BACKEND: 'Back-end templates editor',
       DATABASE_BACKUP: 'Database backup files',
       TRANS_EDIT: 'Translate strings editor',
       COMMANDS_EXECUTE: 'Server commands execute',

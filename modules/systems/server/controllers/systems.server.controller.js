@@ -78,12 +78,31 @@ exports.getSystemTransConfigFiles = function (req, res) {
 };
 
 /**
- * getSystemTemplateConfigFiles
+ * getSystemTemplateFrontConfigFiles
  * @param req
  * @param res
  */
-exports.getSystemTemplateConfigFiles = function (req, res) {
+exports.getSystemTemplateFrontConfigFiles = function (req, res) {
   var files = shell.ls('./modules/*/client/templates/*.md');
+
+  if (req.user.isAdmin) {
+    res.json({
+      files: files
+    });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+};
+
+/**
+ * getSystemTemplateBackConfigFiles
+ * @param req
+ * @param res
+ */
+exports.getSystemTemplateBackConfigFiles = function (req, res) {
+  var files = shell.ls('./modules/*/server/templates/*');
 
   if (req.user.isAdmin) {
     res.json({

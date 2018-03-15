@@ -27,9 +27,13 @@
         url: '/env',
         templateUrl: '/modules/systems/client/views/env.client.view.html'
       })
-      .state('admin.systems.templates', {
-        url: '/templates',
-        templateUrl: '/modules/systems/client/views/templates.client.view.html'
+      .state('admin.systems.templatesFront', {
+        url: '/templatesFront',
+        templateUrl: '/modules/systems/client/views/templatesFront.client.view.html'
+      })
+      .state('admin.systems.templatesBack', {
+        url: '/templatesBack',
+        templateUrl: '/modules/systems/client/views/templatesBack.client.view.html'
       })
       .state('admin.systems.trans', {
         url: '/trans',
