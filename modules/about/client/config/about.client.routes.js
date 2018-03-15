@@ -75,6 +75,22 @@
           pageTitle: 'PAGETITLE.VIP_DETAIL_RULES'
         }
       })
+      .state('about.manual.chatRules', {
+        url: '/chatRules',
+        templateUrl: '/modules/about/client/views/chatRules.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.CHAT_RULES'
+        }
+      })
+      .state('about.manual.requestRules', {
+        url: '/requestRules',
+        templateUrl: '/modules/about/client/views/requestRules.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.REQUEST_RULES'
+        }
+      })
       .state('about.black', {
         url: '/black',
         templateUrl: '/modules/about/client/views/black.client.view.html',
