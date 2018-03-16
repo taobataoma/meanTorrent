@@ -22,6 +22,7 @@
     vm.cmOption = {
       onLoad: function (_cm) {
         _cm.setOption('lineNumbers', true);
+        _cm.setOption('lineWrapping', true);
         _cm.setOption('tabSize', 2);
         _cm.setOption('gutters', ['CodeMirror-lint-markers', 'CodeMirror-linenumbers']);
         _cm.setOption('lint', true);
@@ -106,6 +107,7 @@
     vm.cmdOption = {
       onLoad: function (_cm) {
         _cm.setOption('lineNumbers', true);
+        _cm.setOption('lineWrapping', true);
         _cm.setOption('tabSize', 2);
         _cm.setOption('readOnly', true);
 
