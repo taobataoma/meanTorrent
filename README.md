@@ -246,7 +246,7 @@ Finally, execute prod task `npm run start:prod`
 * enable/disable SSL mode in production environment change the `secure` option in `config/env/production.js`
 
 ## Getting Started With meanTorrent
-Before you to start the meanTorrent application, Please explore `config/env/torrent.js` for many environment configuration options, you can change all  configuration items of you Caring,
+Before you to start the meanTorrent application, Please explore `config/env/comm-variable.js` and `config/env/torrent.js` for many environment configuration options, you can change all  configuration items of you Caring,
 such as:
 
 ```javascript
@@ -374,7 +374,7 @@ meanTorrent can backup mongo database into to a .tar files automatic at midnight
 if you want to disabled this feature, please set `enable` to `false`, `dir` is the saved path.
 
 #### mail sender configure
-meanTorrent need send mail to user when restore password, send invitations etc. before send these mail, you need change the mail options in file `env/development.js` or `env/production.js`,
+meanTorrent need send mail to user when restore password, send invitations etc. before send these mail, you need change the mail options in file `env/comm-variable.js`,
 meanTorrent used module `nodemailer`, if you have any config question you can find at [nodemailer](https://nodemailer.com/about/).
 
 ```javascript
