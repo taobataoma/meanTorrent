@@ -51,8 +51,10 @@
                     </dd>
                 </div>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.EMAIL' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.email }}</dd>
+                <div ng-if="!vm.user.hideMoreDetail">
+                    <dt class="h-line">{{ 'STATUS_FIELD.EMAIL' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.email }}</dd>
+                </div>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.ROLE' | translate}}：</dt>
                 <dd class="h-line">
