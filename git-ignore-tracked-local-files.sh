@@ -1,1 +1,0 @@
-git update-index --assume-unchanged config/env/comm-variable.js
