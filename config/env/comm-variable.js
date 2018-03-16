@@ -22,6 +22,13 @@ module.exports = {
     },
 
     /**
+     * settings of system
+     */
+    settings: {
+      console_debug_info: true
+    },
+
+    /**
      * mongodb settings
      */
     db: {
