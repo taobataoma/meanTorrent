@@ -10,7 +10,7 @@ module.exports = {
       site_namekey: 'MEAN',
       site_host: 'localhost',
       site_port: 3000,
-      site_domain: 'http://localhost',
+      site_domain: 'http://localhost:3000',
       site_sessionSecret: 'mean.im.session.secret',
 
       site_admin_mail: 'admin@mean.im',
