@@ -240,7 +240,7 @@
      */
     function sanitizeHTML(msg, white, black) {
       if (!white) white = 'b|i|p|u';//allowed tags
-      if (!black) black = 'script|object|embed';//complete remove tags
+      if (!black) black = 'script|script<|object|embed';//complete remove tags
       var e = new RegExp('(<(' + black + ')[^>]*>.*</\\2>|(?!<[/]?(' + white + ')(\\s[^<]*>|[/]>|>))<[^<>]*>|(?!<[^<>\\s]+)\\s[^</>]+(?=[/>]))', 'gi');
       msg = msg.replace(e, '');
 
