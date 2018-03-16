@@ -24,7 +24,7 @@ module.exports = {
      *                          value to false, then console.log info is not output
      * @setDefaultValueOnIndex: set app.domain and announce.url on renderer index
      *                          if false, app.domain and announce.url used these config settings value
-     *                          if true, app.domain and announce.url req.headers.host
+     *                          if true, app.domain and announce.url used req.headers.host
      *                          if web server used proxyPass setting, this should set to false
      */
     app: {
@@ -33,7 +33,7 @@ module.exports = {
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: true,
-      setDefaultValueOnIndex: true
+      setDefaultValueOnIndex: false
     },
 
     /**
