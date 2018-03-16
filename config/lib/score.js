@@ -1,6 +1,5 @@
 'use strict';
 
-/* this is test */
 var path = require('path'),
   config = require(path.resolve('./config/config')),
   common = require(path.resolve('./config/lib/common')),
