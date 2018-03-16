@@ -1,5 +1,7 @@
 'use strict';
 
+var commonEnvConfig = require('./comm-variable');
+
 module.exports = {
 
   /**------------------------------------------------------------------------------------------------
@@ -26,8 +28,8 @@ module.exports = {
      *                          if web server used proxyPass setting, this should set to false
      */
     app: {
-      name: 'MEAN.im',
-      domain: 'http://mean.im',
+      name: commonEnvConfig.variable.site.site_name,
+      domain: commonEnvConfig.variable.site.site_domain,
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: true,
@@ -94,10 +96,10 @@ module.exports = {
      */
     announce: {
       url: '/announce',
-      comment: 'meanTorrent group',
+      comment: commonEnvConfig.variable.site.site_name + ' group',
       announceInterval: 60 * 1000 * 5,
-      announcePrefix: '{MEAN.im}.',
-      admin: 'admin@mean.im',
+      announcePrefix: '{' + commonEnvConfig.variable.site.site_namekey + '}.',
+      admin: commonEnvConfig.variable.site.site_admin_mail,
       clientBlackListUrl: '/about/black',
       privateTorrentCmsMode: true,
       downloadCheck: {
@@ -137,9 +139,9 @@ module.exports = {
       title: '[%s] - RSS torrents',
       description: 'Latest torrents from [%s]',
       copyright: 'Copyright (c) [%s] 2012-2017, all rights reserved',
-      managingEditor: 'admin@mean.im (%s Admin)',
-      webMaster: 'webmaster@mean.im (%s Webmaster)',
-      generator: 'meanTorrent RSS Generator',
+      managingEditor: commonEnvConfig.variable.site.site_admin_mail + ' (%s Admin)',
+      webMaster: commonEnvConfig.variable.site.site_webmaster_mail + ' (%s Webmaster)',
+      generator: commonEnvConfig.variable.site.site_name + ' RSS Generator',
       ttl: 60,
       image_url: '/modules/core/client/img/rss.jpeg'
     },
@@ -195,10 +197,10 @@ module.exports = {
       debug: false,
       server: 'irc.mean.im',
       port: 16667,
-      nick: 'meanAnnouncer',
+      nick: commonEnvConfig.variable.site.site_namekey.toLowerCase() + 'Announcer',
       userName: 'meanTorrent',
       realName: 'IRC announce client',
-      channel: '#meanAnnounce',
+      channel: '#' + commonEnvConfig.variable.site.site_namekey.toLowerCase() + 'Announce',
       defaultMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, sale: %s, url: %s, at %s',
       tvserialMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, seasons: %d, episodes: %s, sale: %s, url: %s, at %s',
       showErrors: true,
@@ -971,7 +973,7 @@ module.exports = {
      * @castImgBaseUrl:           image link url
      */
     tmdbConfig: {
-      key: '7888f0042a366f63289ff571b68b7ce0',
+      key: commonEnvConfig.variable.tmdb.key,
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',
@@ -1004,7 +1006,7 @@ module.exports = {
      */
     voteTitle: {
       imdb: 'IMDB',
-      mt: 'MEAN'
+      mt: commonEnvConfig.variable.site.site_namekey
     },
 
     /**
