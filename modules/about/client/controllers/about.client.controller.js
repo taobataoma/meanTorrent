@@ -20,10 +20,17 @@
     vm.lang = getStorageLangService.getLang();
     vm.blackListConfig = MeanTorrentConfig.meanTorrentConfig.clientBlackList;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
+    vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
+    vm.ircConfig = MeanTorrentConfig.meanTorrentConfig.ircAnnounce;
+    vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
+    vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
+    vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
 
     vm.groupTorrentType = localStorageService.get('maker_last_selected_type') || 'movie';
     vm.searchTags = [];
