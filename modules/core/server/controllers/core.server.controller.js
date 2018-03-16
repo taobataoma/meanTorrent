@@ -14,8 +14,7 @@ exports.renderIndex = function (req, res) {
     req.user.addSignedIp(ip);
   }
 
-  var cfg = setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
-  cfg = getSafeMeanTorrentConfig(cfg);
+  var cfg = getSafeMeanTorrentConfig(config.meanTorrentConfig);
 
   res.render('modules/core/server/views/index', {
     user: JSON.stringify(safeUserObject),
@@ -30,8 +29,7 @@ exports.renderIndex = function (req, res) {
 exports.renderServerError = function (req, res) {
   var safeUserObject = req.user || null;
 
-  var cfg = setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
-  cfg = getSafeMeanTorrentConfig(cfg);
+  var cfg = getSafeMeanTorrentConfig(config.meanTorrentConfig);
 
   res.status(500).render('modules/core/server/views/500', {
     user: JSON.stringify(safeUserObject),
@@ -48,8 +46,7 @@ exports.renderServerError = function (req, res) {
 exports.renderNotFound = function (req, res) {
   var safeUserObject = req.user || null;
 
-  var cfg = setMeanTorrentConfigDefaultValue(req, res, config.meanTorrentConfig);
-  cfg = getSafeMeanTorrentConfig(cfg);
+  var cfg = getSafeMeanTorrentConfig(config.meanTorrentConfig);
 
   res.status(404).format({
     'text/html': function () {
@@ -101,27 +98,4 @@ function getSafeMeanTorrentConfig(cfg) {
   newCfg.serverNotice = undefined;
 
   return newCfg;
-}
-
-/**
- * setMeanTorrentConfigDefaultValue
- * @param cfg
- */
-function setMeanTorrentConfigDefaultValue(req, res, cfg) {
-  if (config.meanTorrentConfig.app.setDefaultValueOnIndex) {
-    var httpTransport = 'http://';
-    if (config.secure && config.secure.ssl === true) {
-      httpTransport = 'https://';
-    }
-    var baseUrl = httpTransport + req.headers.host;
-
-    cfg.app.domain = baseUrl;
-  }
-
-  if (!cfg.announce.abs) {
-    cfg.announce.abs = cfg.announce.url;
-  }
-  cfg.announce.url = cfg.app.domain + cfg.announce.abs;
-
-  return cfg;
 }

@@ -15,6 +15,7 @@ var path = require('path'),
 
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
 var mtConfig = config.meanTorrentConfig;
+var appConfig = config.meanTorrentConfig.app;
 
 // URLs for which user can't be redirected on signin
 var noReturnUrls = [
@@ -67,16 +68,11 @@ exports.signup = function (req, res) {
       user.salt = undefined;
 
       /* send an account active mail */
-      var httpTransport = 'http://';
-      if (config.secure && config.secure.ssl === true) {
-        httpTransport = 'https://';
-      }
-      var baseUrl = httpTransport + req.headers.host;
       res.render(path.resolve('modules/users/server/templates/sign-up-active-email'), {
         name: user.displayName,
         appName: config.app.title,
         hours: mtConfig.sign.signUpActiveTokenExpires / (60 * 60 * 1000),
-        url: baseUrl + '/api/auth/active/' + user.signUpActiveToken
+        url: appConfig.domain + '/api/auth/active/' + user.signUpActiveToken
       }, function (err, emailHTML) {
         if (err) {
           return res.status(400).send({

@@ -18,6 +18,7 @@ var path = require('path'),
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
 var traceConfig = config.meanTorrentConfig.trace;
 var passwordConfig = config.meanTorrentConfig.password;
+var appConfig = config.meanTorrentConfig.app;
 
 /**
  * Forgot for reset password (forgot POST)
@@ -76,16 +77,10 @@ exports.forgot = function (req, res, next) {
       }
     },
     function (token, user, done) {
-
-      var httpTransport = 'http://';
-      if (config.secure && config.secure.ssl === true) {
-        httpTransport = 'https://';
-      }
-      var baseUrl = httpTransport + req.headers.host;
       res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
         name: user.displayName,
         appName: config.app.title,
-        url: baseUrl + '/api/auth/reset/' + token
+        url: appConfig.domain + '/api/auth/reset/' + token
       }, function (err, emailHTML) {
         done(err, emailHTML, user);
       });

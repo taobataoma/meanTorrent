@@ -20,6 +20,7 @@ var traceConfig = config.meanTorrentConfig.trace;
 var mtDebug = require(path.resolve('./config/lib/debug'));
 var inviteConfig = config.meanTorrentConfig.invite;
 var scoreConfig = config.meanTorrentConfig.score;
+var appConfig = config.meanTorrentConfig.app;
 
 /**
  * A Validation function for local strategy email
@@ -202,16 +203,11 @@ exports.update = function (req, res) {
         return res.status(422).send({message: 'EMAIL_ALREADY_EXIST'});
       } else {
         //send invitation mail
-        var httpTransport = 'http://';
-        if (config.secure && config.secure.ssl === true) {
-          httpTransport = 'https://';
-        }
-        var baseUrl = httpTransport + req.headers.host;
         res.render(path.resolve('modules/invitations/server/templates/invite-sign-up-email'), {
           to_email: req.query.to_email,
           name: req.user.displayName,
           appName: config.app.title,
-          url: baseUrl + '/api/auth/invite/' + invitation.token,
+          url: appConfig.domain + '/api/auth/invite/' + invitation.token,
           hours: config.meanTorrentConfig.invite.expires / (60 * 60 * 1000)
         }, function (err, emailHTML) {
           if (err) {
@@ -321,16 +317,11 @@ exports.sendOfficial = function (req, res) {
           });
 
           //send invitation mail
-          var httpTransport = 'http://';
-          if (config.secure && config.secure.ssl === true) {
-            httpTransport = 'https://';
-          }
-          var baseUrl = httpTransport + req.headers.host;
           res.render(path.resolve('modules/invitations/server/templates/invite-sign-up-email'), {
             to_email: req.body.email,
             name: req.user.displayName,
             appName: config.app.title,
-            url: baseUrl + '/api/auth/invite/' + invitation.token,
+            url: appConfig.domain + '/api/auth/invite/' + invitation.token,
             hours: config.meanTorrentConfig.invite.expires / (60 * 60 * 1000)
           }, function (err, emailHTML) {
             if (err) {

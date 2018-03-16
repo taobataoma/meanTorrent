@@ -22,18 +22,13 @@ module.exports = {
      * @cronTimeZone:           timezone of cron
      * @showDebugLog:           if true, will console.log all debug info at server side and client side. when your site is prod env, please change this
      *                          value to false, then console.log info is not output
-     * @setDefaultValueOnIndex: set app.domain and announce.url on renderer index
-     *                          if false, app.domain and announce.url used these config settings value
-     *                          if true, app.domain and announce.url used req.headers.host
-     *                          if web server used proxyPass setting, this should set to false
      */
     app: {
       name: commonEnvConfig.variable.site.site_name,
       domain: commonEnvConfig.variable.site.site_domain,
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
-      showDebugLog: true,
-      setDefaultValueOnIndex: false
+      showDebugLog: commonEnvConfig.variable.settings.console_debug_info || true
     },
 
     /**
@@ -95,7 +90,7 @@ module.exports = {
      *      @userHnrWarningCheckInterval:     setting check users H&R warning interval time, default to 2 hours
      */
     announce: {
-      url: '/announce',
+      url: commonEnvConfig.variable.site.site_domain + '/announce',
       comment: commonEnvConfig.variable.site.site_name + ' group',
       announceInterval: 60 * 1000 * 5,
       announcePrefix: '{' + commonEnvConfig.variable.site.site_namekey + '}.',
