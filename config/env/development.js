@@ -1,10 +1,11 @@
 'use strict';
 
 var defaultEnvConfig = require('./default');
+var commonEnvConfig = require('./comm-variable');
 
 module.exports = {
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev-v2',
+    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || commonEnvConfig.variable.db.db_host) + '/' + commonEnvConfig.variable.db.db_name + '-dev',
     options: {},
     // Enable mongoose debug mode
     debug: process.env.MONGODB_DEBUG || false
@@ -56,16 +57,7 @@ module.exports = {
     callbackURL: '/api/auth/paypal/callback',
     sandbox: true
   },
-  mailer: {
-    from: process.env.MAILER_FROM || 'admin@mine.pt',
-    options: {
-      service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
-      auth: {
-        user: process.env.MAILER_EMAIL_ID || 'taobataoma@gmail.com',
-        pass: process.env.MAILER_PASSWORD || 'ykyghbmpjfdliyph'
-      }
-    }
-  },
+  mailer: commonEnvConfig.variable.mailer,
   livereload: true,
   seedDB: {
     seed: process.env.MONGO_SEED === 'true',

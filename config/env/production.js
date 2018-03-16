@@ -1,6 +1,6 @@
 'use strict';
 
-var fs = require('fs');
+var commonEnvConfig = require('./comm-variable');
 
 module.exports = {
   secure: {
@@ -9,10 +9,10 @@ module.exports = {
     certificate: './config/sslcerts/cert.pem',
     caBundle: './config/sslcerts/cabundle.crt'
   },
-  port: process.env.PORT || 3000,
-  host: process.env.HOST || 'mine.pt',
+  port: process.env.PORT || commonEnvConfig.variable.site.site_port,
+  host: process.env.HOST || commonEnvConfig.variable.site.site_host,
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev-v2',
+    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || commonEnvConfig.variable.db.db_host) + '/' + commonEnvConfig.variable.db.db_name,
     options: {
       /**
       * Uncomment to enable ssl certificate based authentication to mongodb
@@ -77,16 +77,7 @@ module.exports = {
     callbackURL: '/api/auth/paypal/callback',
     sandbox: false
   },
-  mailer: {
-    from: process.env.MAILER_FROM || 'admin@mine.pt',
-    options: {
-      service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
-      auth: {
-        user: process.env.MAILER_EMAIL_ID || 'taobataoma@gmail.com',
-        pass: process.env.MAILER_PASSWORD || 'ykyghbmpjfdliyph'
-      }
-    }
-  },
+  mailer: commonEnvConfig.variable.mailer,
   seedDB: {
     seed: process.env.MONGO_SEED === 'true',
     options: {

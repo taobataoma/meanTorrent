@@ -1,20 +1,22 @@
 'use strict';
 
+var commonEnvConfig = require('./comm-variable');
+
 module.exports = {
   app: {
-    title: 'meanTorrent',
-    description: 'MEAN.JS BitTorrent - Full-Stack JavaScript Using MongoDB, Express, AngularJS, and Node.js, a Private/Public BitTorrent Tracker CMS with Multilingual and IRC announce support',
-    keywords: 'mongodb, express, angularjs, node.js, mongoose, passport, torrent, bitTorrent, tracker, announce',
+    title: commonEnvConfig.variable.site.site_title,
+    description: commonEnvConfig.variable.site.site_description,
+    keywords: commonEnvConfig.variable.site.site_keywords,
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
   db: {
     promise: global.Promise
   },
-  port: process.env.PORT || 3000,
-  host: process.env.HOST || '0.0.0.0',
+  port: process.env.PORT || commonEnvConfig.variable.site.site_port,
+  host: process.env.HOST || commonEnvConfig.variable.site.site_host,
   // DOMAIN config should be set to the fully qualified application accessible
   // URL. For example: https://www.myapp.com (including port if required).
-  domain: process.env.DOMAIN || 'mine.pt',
+  domain: process.env.DOMAIN || commonEnvConfig.variable.site.site_domain,
   // Session Cookie settings
   sessionCookie: {
     // session expiration is set by default to 24 hours
@@ -28,7 +30,7 @@ module.exports = {
     secure: false
   },
   // sessionSecret should be changed for security measures and concerns
-  sessionSecret: process.env.SESSION_SECRET || 'imean.io.secret',
+  sessionSecret: process.env.SESSION_SECRET || commonEnvConfig.variable.site.site_sessionSecret,
   // sessionKey is the cookie session name
   sessionKey: 'sessionId',
   sessionCollection: 'sessions',
