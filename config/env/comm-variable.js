@@ -8,7 +8,7 @@ module.exports = {
     site: {
       site_name: 'MEAN.im',
       site_namekey: 'MEAN',
-      site_host: '127.0.0.1',
+      site_host: 'localhost',
       site_port: 3000,
       site_domain: 'http://localhost',
       site_sessionSecret: 'mean.im.session.secret',
