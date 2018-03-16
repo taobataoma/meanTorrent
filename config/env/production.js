@@ -9,8 +9,8 @@ module.exports = {
     certificate: './config/sslcerts/cert.pem',
     caBundle: './config/sslcerts/cabundle.crt'
   },
-  port: process.env.PORT || 3001,
-  host: process.env.HOST || 'mean.im',
+  port: process.env.PORT || commonEnvConfig.variable.site.site_port,
+  host: process.env.HOST || commonEnvConfig.variable.site.site_host,
   db: {
     uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || commonEnvConfig.variable.db.db_host) + '/' + commonEnvConfig.variable.db.db_name,
     options: {
