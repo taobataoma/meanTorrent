@@ -131,43 +131,39 @@
 
                     <li class="status-divider"></li>
 
-                    <div ng-if="vm.announce.privateTorrentCmsMode">
-                        <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
-                        <dd class="h-line">
-                            <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
-                            <span>{{ vm.user.uploaded | bytes:2 }}</span>
-                        </dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                        <span>{{ vm.user.uploaded | bytes:2 }}</span>
+                    </dd>
 
-                        <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
-                        <dd class="h-line">
-                            <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
-                            <span>{{ vm.user.downloaded | bytes:2 }}</span>
-                        </dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                        <span>{{ vm.user.downloaded | bytes:2 }}</span>
+                    </dd>
 
-                        <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
-                        <dd class="h-line"><span ng-class="vm.user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ vm.user.ratio | ratio}}</span>
-                        </dd>
-                    </div>
+                    <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
+                    <dd class="h-line"><span ng-class="vm.user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ vm.user.ratio | ratio}}</span>
+                    </dd>
 
-                    <div ng-if="vm.announce.privateTorrentCmsMode">
-                        <li class="status-divider"></li>
+                    <li class="status-divider"></li>
 
-                        <dt class="h-line">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：</dt>
-                        <dd class="h-line">{{ vm.user.uptotal }}</dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.uptotal }}</dd>
 
-                        <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
-                        <dd class="h-line">{{ vm.user.seeded }}</dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.seeded }}</dd>
 
-                        <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
-                        <dd class="h-line">{{ vm.user.leeched }}</dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.leeched }}</dd>
 
-                        <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
-                        <dd class="h-line">{{ vm.user.finished }}</span></dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.finished }}</span></dd>
 
-                        <div ng-if="vm.user.hnr_warning>0">
-                            <dt class="h-line">{{ 'STATUS_FIELD.HNR_WARNING' | translate}}：</dt>
-                            <dd class="h-line"><span class="badge badge_danger">{{vm.user.hnr_warning}}</span></dd>
-                        </div>
+                    <div ng-if="vm.user.hnr_warning>0">
+                        <dt class="h-line">{{ 'STATUS_FIELD.HNR_WARNING' | translate}}：</dt>
+                        <dd class="h-line"><span class="badge badge_danger">{{vm.user.hnr_warning}}</span></dd>
                     </div>
 
                     <li class="status-divider"></li>

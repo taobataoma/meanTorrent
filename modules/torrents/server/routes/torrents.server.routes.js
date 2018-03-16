@@ -56,9 +56,6 @@ module.exports = function (app) {
   app.route('/api/torrents/:torrentId/rating').all(torrentsPolicy.isAllowed)
     .put(torrents.rating);
 
-  app.route('/api/torrents/:torrentId/scrape').all(torrentsPolicy.isAllowed)
-    .get(torrents.scrape);
-
   app.route('/api/torrents/:torrentId/seederUsers').all(torrentsPolicy.isAllowed)
     .get(torrents.getSeederUsers);
 

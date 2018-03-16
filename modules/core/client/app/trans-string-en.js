@@ -383,7 +383,6 @@
     ADMIN_BASIC_REVIEWED: 'Review',
     ADMIN_BASIC_UPDATE: 'Update torrent info from TMDB',
     ADMIN_BASIC_DELETE: 'Delete torrent',
-    ADMIN_BASIC_SCRAPE: 'Scrape torrent status',
     ADMIN_BASIC_SET_HNR: 'SetHnR',
     ADMIN_BASIC_UNSET_HNR: 'UnsetHnR',
     ADMIN_BASIC_SET_VIP: 'SetVIP',

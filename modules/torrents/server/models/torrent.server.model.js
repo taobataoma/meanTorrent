@@ -125,10 +125,6 @@ var TorrentSchema = new Schema({
     ref: 'Peer'
   }],
   _replies: [CommonSchema.CommentSchema],
-  last_scrape: {
-    type: Date,
-    default: Date.now
-  },
   _thumbs: [CommonSchema.ThumbSchema],
   _ratings: [CommonSchema.RatingSchema],
   _other_torrents: [],

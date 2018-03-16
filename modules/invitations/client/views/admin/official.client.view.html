@@ -109,27 +109,27 @@
     <script type="text/ng-template" id="userinfo.html">
         <div>
             <ul class="list-unstyled margin-left-10 margin-right-10">
-                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.UPLOADED' | translate}}：
+                <li>{{ 'STATUS_FIELD.UPLOADED' | translate}}：
                     <span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{ vm.selectedUser.uploaded | bytes:2 }}
                 </li>
-                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：
+                <li>{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：
                     <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{ vm.selectedUser.downloaded | bytes:2 }}
                 </li>
-                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.RATIO' | translate}}：
+                <li>{{ 'STATUS_FIELD.RATIO' | translate}}：
                     <span ng-class="vm.selectedUser.ratio > 1 ? 'ratio-normal' : 'ratio-warning' ">{{ vm.selectedUser.ratio | ratio}}</span>
                 </li>
 
-                <li class="status-divider" ng-if="vm.announce.privateTorrentCmsMode"></li>
+                <li class="status-divider"></li>
 
-                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：{{ vm.selectedUser.uptotal }}</li>
-                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.SEEDED' | translate}}：{{ vm.selectedUser.seeded }}</li>
-                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.LEECHED' | translate}}：{{ vm.selectedUser.leeched }}</li>
-                <li ng-if="vm.announce.privateTorrentCmsMode">{{ 'STATUS_FIELD.FINISHED' | translate}}：{{ vm.selectedUser.finished }}</li>
-                <li ng-if="vm.announce.privateTorrentCmsMode && vm.selectedUser.hnr_warning>0">
+                <li>{{ 'STATUS_FIELD.UPTOTAL' | translate}}：{{ vm.selectedUser.uptotal }}</li>
+                <li>{{ 'STATUS_FIELD.SEEDED' | translate}}：{{ vm.selectedUser.seeded }}</li>
+                <li>{{ 'STATUS_FIELD.LEECHED' | translate}}：{{ vm.selectedUser.leeched }}</li>
+                <li>{{ 'STATUS_FIELD.FINISHED' | translate}}：{{ vm.selectedUser.finished }}</li>
+                <li ng-if="vm.selectedUser.hnr_warning>0">
                     {{ 'STATUS_FIELD.HNR_WARNING' | translate}}：<span class="badge badge_danger">{{vm.selectedUser.hnr_warning}}</span>
                 </li>
 
-                <li class="status-divider" ng-if="vm.announce.privateTorrentCmsMode"></li>
+                <li class="status-divider"></li>
 
                 <li>{{ 'STATUS_FIELD.FORUM_TOPICS' | translate}}：{{ vm.selectedUser.topics }}</li>
                 <li>{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：{{ vm.selectedUser.replies }}</li>

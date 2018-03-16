@@ -71,9 +71,6 @@ module.exports = {
      * @announcePrefix:                       prefix of torrent file name, is will auto add when user download the torrent files
      * @admin:                                site admin mail address
      * @clientBlackListUrl:                   forbidden download client list url, user can view this list to check forbidden client software
-     * @privateTorrentCmsMode:                meanTorrent default tracker server mode is private (value true), the tracker server only accept private mode.
-     *                                        but, you can set this value to false to make a public torrent cms web site without tracker server and announce function.
-     *                                        if this value is false(public mode), server can scrape all torrent status from owner tracker server
      * @downloadCheck:                        announce download(leech) settings
      *      @ratio:                           if less than this value, can not download(leech)
      *      @checkAfterSignupDays:            all users download check start {value} days after signup, so the newest register user has {value} days to upgrade his ratio value,
@@ -96,7 +93,6 @@ module.exports = {
       announcePrefix: '{' + commonEnvConfig.variable.site.site_namekey + '}.',
       admin: commonEnvConfig.variable.site.site_admin_mail,
       clientBlackListUrl: '/about/black',
-      privateTorrentCmsMode: true,
       downloadCheck: {
         ratio: 1,
         checkAfterSignupDays: 30
@@ -139,29 +135,6 @@ module.exports = {
       generator: commonEnvConfig.variable.site.site_name + ' RSS Generator',
       ttl: 60,
       image_url: '/modules/core/client/img/rss.jpeg'
-    },
-
-    /**
-     * @scrapeTorrentsStatus
-     *
-     * This option used only when public cms mode (announce.privateTorrentCmsMode = false),
-     * This defines the timing of scrape torrent status from other tracker server
-     * NOTE: you can change these value at anytime if you understand it
-     *
-     * @scrapeInterval:     scrape interval with torrent last_scrape, Avoid frequent scrape, unit in hours
-     * @onTorrentUpload:    scrape status at server side when the torrent uploaded by a user (= init the status info)
-     * @onTorrentInHome:    scrape each torrent status at client side when load into home page (= update the status info)
-     * @onTorrentInList:    scrape each torrent status at client side when load into torrent list page (= update the status info)
-     *                      if too more items list in one page, this will make efficiency very low
-     * @onTorrentInDetail:  scrape current torrent status at client side when load torrent detail info,
-     *                      if onTorrentInHome and onTorrentInList is true, this value recommend to false
-     */
-    scrapeTorrentStatus: {
-      scrapeInterval: 2,
-      onTorrentUpload: true,
-      onTorrentInHome: true,
-      onTorrentInList: true,
-      onTorrentInDetail: false
     },
 
     /**

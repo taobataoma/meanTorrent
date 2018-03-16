@@ -22,19 +22,19 @@
         icon: 'fa-arrow-up',
         title: $translate.instant('PAGE_HEADER_RANKING_UPLOAD'),
         templateUrl: 'upload_ranking.html',
-        ng_show: vm.announce.privateTorrentCmsMode
+        ng_show: true
       },
       {
         icon: 'fa-arrow-down',
         title: $translate.instant('PAGE_HEADER_RANKING_DOWNLOAD'),
         templateUrl: 'download_ranking.html',
-        ng_show: vm.announce.privateTorrentCmsMode
+        ng_show: true
       },
       {
         icon: 'fa-exchange',
         title: $translate.instant('PAGE_HEADER_RANKING_RATIO'),
         templateUrl: 'ratio_ranking.html',
-        ng_show: vm.announce.privateTorrentCmsMode
+        ng_show: true
       }
     ];
 

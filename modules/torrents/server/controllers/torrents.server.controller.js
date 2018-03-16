@@ -26,7 +26,6 @@ var path = require('path'),
   fs = require('fs'),
   nt = require('nt'),
   benc = require('bncode'),
-  scrape = require(path.resolve('./config/lib/scrape')),
   async = require('async'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
@@ -203,15 +202,14 @@ exports.upload = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
-            //force change announce url to config value
-            var announce = config.meanTorrentConfig.announce.url;
-            torrent.metadata.announce = announce;
+          //force change announce url to config value
+          var announce = config.meanTorrentConfig.announce.url;
+          torrent.metadata.announce = announce;
 
-            var cws = fs.createWriteStream(newfile);
-            cws.write(benc.encode(torrent.metadata));
-            cws.end();
-          }
+          var cws = fs.createWriteStream(newfile);
+          cws.write(benc.encode(torrent.metadata));
+          cws.end();
+
           torrentinfo = torrent.metadata;
           torrentinfo.info_hash = torrent.infoHash();
           torrentinfo.filename = req.file.filename;
@@ -555,10 +553,8 @@ exports.download = function (req, res) {
           message = 'Read torrent file faild';
           reject(message);
         } else {
-          if (config.meanTorrentConfig.announce.privateTorrentCmsMode) {
-            var announce = config.meanTorrentConfig.announce.url + '/' + user.passkey;
-            torrent.metadata.announce = announce;
-          }
+          var announce = config.meanTorrentConfig.announce.url + '/' + user.passkey;
+          torrent.metadata.announce = announce;
           torrent_data = torrent.metadata;
           resolve();
         }
@@ -707,15 +703,6 @@ exports.create = function (req, res) {
               }
             });
           }
-
-          //scrape torrent status info in public cms mode
-          if (!config.meanTorrentConfig.announce.privateTorrentCmsMode && config.meanTorrentConfig.scrapeTorrentStatus.onTorrentUpload) {
-            scrape.doScrape(torrent, function (err, result) {
-              if (err) {
-                mtDebug.debugRed(err);
-              }
-            });
-          }
         }
       });
     }
@@ -803,32 +790,6 @@ exports.update = function (req, res) {
       res.json(torrent);
     }
   });
-};
-
-/**
- * scrape
- * scrape torrent status info in public cms mode
- * @param req
- * @param res
- */
-exports.scrape = function (req, res) {
-  if (!config.meanTorrentConfig.announce.privateTorrentCmsMode) {
-    scrape.doScrape(req.torrent, function (err, result) {
-      if (err) {
-        mtDebug.debugRed(err);
-        return res.status(422).send({
-          message: err
-        });
-      }
-      if (result && result.length === 1) {
-        res.json(result[0]);
-      }
-    });
-  } else {
-    return res.status(422).send({
-      message: 'privateTorrentCmsMode do not support scrape method'
-    });
-  }
 };
 
 /**

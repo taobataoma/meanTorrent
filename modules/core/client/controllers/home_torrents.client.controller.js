@@ -6,18 +6,17 @@
     .controller('HomeTorrentsController', HomeTorrentsController);
 
   HomeTorrentsController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'Notification', 'MeanTorrentConfig',
-    'getStorageLangService', 'DownloadService', '$timeout', 'localStorageService', 'ScrapeService', 'TorrentGetInfoServices', 'DebugConsoleService',
+    'getStorageLangService', 'DownloadService', '$timeout', 'localStorageService', 'TorrentGetInfoServices', 'DebugConsoleService',
     'marked'];
 
   function HomeTorrentsController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService,
-                                  DownloadService, $timeout, localStorageService, ScrapeService, TorrentGetInfoServices, mtDebug,
+                                  DownloadService, $timeout, localStorageService, TorrentGetInfoServices, mtDebug,
                                   marked) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
-    vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
@@ -158,11 +157,6 @@
           vm.movieTopList = items.rows;
 
           vm.initTopOneMovieInfo();
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.movieTopOne);
-            ScrapeService.scrapeTorrent(vm.movieTopList);
-          }
         }
       }, function (err) {
         Notification.error({
@@ -179,10 +173,6 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.movieNewList = items.rows;
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.movieNewList);
-          }
         }
       }, function (err) {
         Notification.error({
@@ -207,11 +197,6 @@
           vm.TVTopList = items.rows;
 
           vm.initTopOneTVInfo();
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.TVTopOne);
-            ScrapeService.scrapeTorrent(vm.TVTopList);
-          }
         }
       });
 
@@ -224,10 +209,6 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.TVNewList = items.rows;
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.TVNewList);
-          }
         }
       });
     };
@@ -248,11 +229,6 @@
           vm.musicTopList = items.rows;
 
           vm.initTopOneMusicInfo();
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.musicTopOne);
-            ScrapeService.scrapeTorrent(vm.musicTopList);
-          }
         }
       });
 
@@ -265,10 +241,6 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.musicNewList = items.rows;
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.musicNewList);
-          }
         }
       });
     };
@@ -289,11 +261,6 @@
           vm.sportsTopList = items.rows;
 
           vm.initTopOneSportsInfo();
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.sportsTopOne);
-            ScrapeService.scrapeTorrent(vm.sportsTopList);
-          }
         }
       });
 
@@ -306,10 +273,6 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.sportsNewList = items.rows;
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.sportsNewList);
-          }
         }
       });
     };
@@ -330,11 +293,6 @@
           vm.varietyTopList = items.rows;
 
           vm.initTopOneVarietyInfo();
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.varietyTopOne);
-            ScrapeService.scrapeTorrent(vm.varietyTopList);
-          }
         }
       });
 
@@ -347,10 +305,6 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.varietyNewList = items.rows;
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.varietyNewList);
-          }
         }
       });
     };
@@ -371,11 +325,6 @@
           vm.pictureTopList = items.rows;
 
           vm.initTopOnePictureInfo();
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.pictureTopOne);
-            ScrapeService.scrapeTorrent(vm.pictureTopList);
-          }
         }
       });
 
@@ -388,10 +337,6 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.pictureNewList = items.rows;
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.pictureNewList);
-          }
         }
       });
     };
@@ -412,11 +357,6 @@
           vm.gameTopList = items.rows;
 
           vm.initTopOneGameInfo();
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.gameTopOne);
-            ScrapeService.scrapeTorrent(vm.gameTopList);
-          }
         }
       });
 
@@ -429,10 +369,6 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.gameNewList = items.rows;
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.gameNewList);
-          }
         }
       });
     };
@@ -453,11 +389,6 @@
           vm.softwareTopList = items.rows;
 
           vm.initTopOneSoftwareInfo();
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.softwareTopOne);
-            ScrapeService.scrapeTorrent(vm.softwareTopList);
-          }
         }
       });
 
@@ -470,10 +401,6 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.softwareNewList = items.rows;
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.softwareNewList);
-          }
         }
       });
     };
@@ -494,11 +421,6 @@
           vm.ebookTopList = items.rows;
 
           vm.initTopOneEbookInfo();
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.ebookTopOne);
-            ScrapeService.scrapeTorrent(vm.ebookTopList);
-          }
         }
       });
 
@@ -511,10 +433,6 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.ebookNewList = items.rows;
-
-          if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInHome) {
-            ScrapeService.scrapeTorrent(vm.ebookNewList);
-          }
         }
       });
     };

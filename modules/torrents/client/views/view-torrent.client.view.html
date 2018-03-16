@@ -271,7 +271,7 @@
                                             <span user-info="item.user" info-name></span>
                                             <span vip-flag="item.user"></span>
                                             <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
-                                            <span class="user-ud-text" ng-if="vm.announce.privateTorrentCmsMode">
+                                            <span class="user-ud-text">
                                                 (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{item.user.uploaded | bytes}}
                                                 <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{item.user.downloaded | bytes}}
                                                 )
@@ -592,14 +592,12 @@
                 <dt class="h-line">{{ 'ANNOUNCE_URL' | translate}}：</dt>
                 <dd class="h-line">{{vm.torrentLocalInfo.torrent_announce}}</dd>
 
-                <div ng-if="!vm.announce.privateTorrentCmsMode">
-                    <dt class="h-line">{{ 'TABLE_FIELDS.SEEDED' | translate}}：</dt>
-                    <dd class="h-line"><span class="glyphicon glyphicon-arrow-up torrent-up"></span> {{vm.torrentLocalInfo.torrent_seeds}}</dd>
-                    <dt class="h-line">{{ 'TABLE_FIELDS.LEECHED' | translate}}：</dt>
-                    <dd class="h-line"><span class="glyphicon glyphicon-arrow-down torrent-down"></span> {{vm.torrentLocalInfo.torrent_leechers}}</dd>
-                    <dt class="h-line">{{ 'TABLE_FIELDS.DOWNLOAD' | translate}}：</dt>
-                    <dd class="h-line"><span class="glyphicon glyphicon-ok torrent-finished"></span> {{vm.torrentLocalInfo.torrent_finished}}</dd>
-                </div>
+                <dt class="h-line">{{ 'TABLE_FIELDS.SEEDED' | translate}}：</dt>
+                <dd class="h-line"><span class="glyphicon glyphicon-arrow-up torrent-up"></span> {{vm.torrentLocalInfo.torrent_seeds}}</dd>
+                <dt class="h-line">{{ 'TABLE_FIELDS.LEECHED' | translate}}：</dt>
+                <dd class="h-line"><span class="glyphicon glyphicon-arrow-down torrent-down"></span> {{vm.torrentLocalInfo.torrent_leechers}}</dd>
+                <dt class="h-line">{{ 'TABLE_FIELDS.DOWNLOAD' | translate}}：</dt>
+                <dd class="h-line"><span class="glyphicon glyphicon-ok torrent-finished"></span> {{vm.torrentLocalInfo.torrent_finished}}</dd>
 
                 <div ng-if="vm.torrentLocalInfo.torrent_type == 'tvserial'">
                     <dt class="h-line">{{ 'TMDB_FIELDS.THIS_SE' | translate}}：</dt>
@@ -630,19 +628,17 @@
                     </div>
                 </dd>
 
-                <div ng-if="vm.announce.privateTorrentCmsMode">
-                    <dt class="h-line">{{ 'VIDEO_SALE_INFO' | translate}}：</dt>
-                    <dd class="h-line">
+                <dt class="h-line">{{ 'VIDEO_SALE_INFO' | translate}}：</dt>
+                <dd class="h-line">
                     <span class="label label-sale"
                           title="{{vm.TGI.getTorrentSaleTypeDesc(vm.torrentLocalInfo);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{vm.torrentLocalInfo.isSaling ? (vm.torrentLocalInfo.torrent_sale_expires | date: 'MM-dd HH:mm') : 'NO'}}"
                           ng-class="{'label-default': !vm.torrentLocalInfo.isSaling, 'label-success': vm.torrentLocalInfo.isSaling}">
                         {{vm.torrentLocalInfo.torrent_sale_status}} {{vm.torrentLocalInfo.isSaling ? (vm.torrentLocalInfo.torrent_sale_expires | unlife) : ''}}
                     </span>
-                        <!--<span ng-if="vm.torrentLocalInfo.isSaling">-->
-                        <!--[{{ 'SALE_EXPIRES_TIME' | translate}}: {{vm.torrentLocalInfo.torrent_sale_expires | unlife}}]-->
-                        <!--</span>-->
-                    </dd>
-                </div>
+                    <!--<span ng-if="vm.torrentLocalInfo.isSaling">-->
+                    <!--[{{ 'SALE_EXPIRES_TIME' | translate}}: {{vm.torrentLocalInfo.torrent_sale_expires | unlife}}]-->
+                    <!--</span>-->
+                </dd>
 
                 <div ng-if="vm.torrentLocalInfo.torrent_recommended != 'none'">
                     <dt class="h-line">{{ 'ADMIN_BASIC_RLEVEL_SET' | translate}}：</dt>
@@ -1048,9 +1044,6 @@
                     <button class="btn btn-default btn-sm"
                             ng-click="vm.editTags($event);">{{ 'ADMIN_BASIC_EDIT_TAGS' | translate}}
                     </button>
-                    <button class="btn btn-default btn-sm" ng-click="vm.doScrape();"
-                            ng-if="!vm.announce.privateTorrentCmsMode">{{ 'ADMIN_BASIC_SCRAPE' | translate}}
-                    </button>
                 </dd>
 
                 <div class="margin-top-10" ng-if="vm.torrentLocalInfo.torrent_type=='movie' && vm.showCollectionCommand()">
@@ -1065,21 +1058,19 @@
                     </dd>
                 </div>
 
-                <div class="margin-top-20" ng-if="vm.announce.privateTorrentCmsMode">
-                    <dt class="h-line">{{ 'ADMIN_SALE_TYPE_SET' | translate}}:</dt>
-                    <dd class="h-line">
-                        <mark>{{vm.TGI.getTorrentSaleTypeDesc(vm.torrentLocalInfo);}}</mark>
-                    </dd>
+                <dt class="h-line">{{ 'ADMIN_SALE_TYPE_SET' | translate}}:</dt>
+                <dd class="h-line">
+                    <mark>{{vm.TGI.getTorrentSaleTypeDesc(vm.torrentLocalInfo);}}</mark>
+                </dd>
 
-                    <div class="padding-top-10 margin-left-50">
-                        <div class="btn-group sales-btn-group text-center">
-                            <label ng-repeat="st in vm.torrentSalesType.value"
-                                   class="btn btn-sm" ng-model="vm.model_salestype" uib-btn-radio="'{{st.name}}'" uncheckable
-                                   ng-class="{'btn-default':vm.torrentLocalInfo.torrent_sale_status != st.name, 'btn-success':vm.torrentLocalInfo.torrent_sale_status == st.name}"
-                                   ng-click="vm.setSaleType();">
-                                <small>{{st.name}}</small>
-                            </label>
-                        </div>
+                <div class="padding-top-10 margin-left-50">
+                    <div class="btn-group sales-btn-group text-center">
+                        <label ng-repeat="st in vm.torrentSalesType.value"
+                               class="btn btn-sm" ng-model="vm.model_salestype" uib-btn-radio="'{{st.name}}'" uncheckable
+                               ng-class="{'btn-default':vm.torrentLocalInfo.torrent_sale_status != st.name, 'btn-success':vm.torrentLocalInfo.torrent_sale_status == st.name}"
+                               ng-click="vm.setSaleType();">
+                            <small>{{st.name}}</small>
+                        </label>
                     </div>
                 </div>
 

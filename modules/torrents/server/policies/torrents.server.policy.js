@@ -32,7 +32,6 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/torrents/:torrentId', permissions: '*'},
           {resources: '/api/torrents/:torrentId/thumbsUp', permissions: '*'},
           {resources: '/api/torrents/:torrentId/rating', permissions: '*'},
-          {resources: '/api/torrents/:torrentId/scrape', permissions: '*'},
           {resources: '/api/torrents/:torrentId/seederUsers', permissions: '*'},
           {resources: '/api/torrents/:torrentId/leecherUsers', permissions: '*'},
           {resources: '/api/torrents/:torrentId/toggleHnRStatus', permissions: '*'},
@@ -74,7 +73,6 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/torrents/:torrentId', permissions: ['get', 'put']},
           {resources: '/api/torrents/:torrentId/thumbsUp', permissions: ['put']},
           {resources: '/api/torrents/:torrentId/rating', permissions: ['put']},
-          {resources: '/api/torrents/:torrentId/scrape', permissions: ['get']},
           {resources: '/api/torrents/:torrentId/seederUsers', permissions: ['get']},
           {resources: '/api/torrents/:torrentId/leecherUsers', permissions: ['get']},
 

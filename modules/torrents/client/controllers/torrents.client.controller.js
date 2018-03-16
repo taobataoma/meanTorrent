@@ -6,10 +6,10 @@
     .controller('TorrentsController', TorrentsController);
 
   TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService', 'getStorageLangService',
-    'MeanTorrentConfig', 'DownloadService', '$window', 'ScrapeService', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices'];
+    'MeanTorrentConfig', 'DownloadService', '$window', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices'];
 
   function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, getStorageLangService, MeanTorrentConfig,
-                              DownloadService, $window, ScrapeService, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
+                              DownloadService, $window, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -17,7 +17,6 @@
     vm.RTS = ResourcesTagsServices;
     vm.lang = getStorageLangService.getLang();
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
-    vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
@@ -53,10 +52,6 @@
         vm.torrentFilterLength = items.total;
         vm.torrentPagedItems = items.rows;
 
-        if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInList) {
-          ScrapeService.scrapeTorrent(vm.torrentPagedItems);
-        }
-
         if (callback) callback();
       });
     };
@@ -91,10 +86,6 @@
       }, function (items) {
         mtDebug.info(items);
         vm.listTopInfo = items.rows;
-
-        if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInList) {
-          ScrapeService.scrapeTorrent(vm.listTopInfo);
-        }
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_LIST_INFO_ERROR')

@@ -7,12 +7,12 @@
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
-    'SubtitlesService', 'getStorageLangService', 'ScrapeService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
+    'SubtitlesService', 'getStorageLangService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
     'localStorageService', '$compile', 'SideOverlay', 'ResourcesTagsServices', 'CollectionsService'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
-                                  getStorageLangService, ScrapeService, NotifycationService, mtDebug, TorrentGetInfoServices,
+                                  getStorageLangService, NotifycationService, mtDebug, TorrentGetInfoServices,
                                   localStorageService, $compile, SideOverlay, ResourcesTagsServices, CollectionsService) {
     var vm = this;
     vm.DLS = DownloadService;
@@ -20,7 +20,6 @@
     vm.user = Authentication.user;
     vm.RTS = ResourcesTagsServices;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
-    vm.scrapeConfig = MeanTorrentConfig.meanTorrentConfig.scrapeTorrentStatus;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
@@ -142,9 +141,6 @@
         vm.initTabLists();
         vm.commentBuildPager();
         vm.buildPeersPager();
-        if (!vm.announce.privateTorrentCmsMode && vm.scrapeConfig.onTorrentInDetail) {
-          ScrapeService.scrapeTorrent(vm.torrentLocalInfo);
-        }
       });
     };
 
@@ -428,13 +424,6 @@
     };
 
     /**
-     * doScrape
-     */
-    vm.doScrape = function () {
-      ScrapeService.scrapeTorrent(vm.torrentLocalInfo, true);
-    };
-
-    /**
      * initTabLists
      */
     vm.initTabLists = function () {
@@ -464,7 +453,7 @@
           icon: 'fa-users',
           title: $translate.instant('TAB_USER_INFO'),
           templateUrl: 'userInfo.html',
-          ng_show: vm.announce.privateTorrentCmsMode,
+          ng_show: true,
           badges: [
             {
               value: '↑ ' + vm.torrentLocalInfo.torrent_seeds + '　↓ ' + vm.torrentLocalInfo.torrent_leechers + '　√ ' + vm.torrentLocalInfo.torrent_finished,
