@@ -28,7 +28,6 @@ modules/torrents/client/uploads
 modules/forums/client/attach
 config/env/local.js
 config/env/local-*.js
-config/env/comm-variable.js
 *.pem
 package-lock.json
 *.script.sh
