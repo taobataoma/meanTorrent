@@ -204,7 +204,23 @@ exports.upload = function (req, res) {
         } else {
           //force change announce url to config value
           var announce = config.meanTorrentConfig.announce.url;
+
+          //Prevent metadata.announce is failure
+          if (!!torrent.metadata['announce-list']) {
+            delete torrent.metadata['announce-list'];
+          }
           torrent.metadata.announce = announce;
+          torrent.metadata.comment = config.meanTorrentConfig.announce.comment;
+
+          //Add filed "private" into the torrent file and set it true to
+          //transform a public torrent into a private one.
+          torrent.metadata.info.private = 1;
+          //Add filed "sourceInto" the torrent file to distingush it
+          //from the uploaded file which may be downloaded directly from
+          //other private tracker, avoiding to be treated as cheating at
+          //the original tracker.
+          var sourceInfo = config.meanTorrentConfig.announce.sourceInfo;
+          torrent.metadata.info.sourceInfo = sourceInfo;
 
           var cws = fs.createWriteStream(newfile);
           cws.write(benc.encode(torrent.metadata));
@@ -477,8 +493,23 @@ exports.announceEdit = function (req, res) {
           reject(message);
         } else {
           var announce = config.meanTorrentConfig.announce.url;
+          //Prevent metadata.announce is failure
+          if (!!torrent.metadata['announce-list']) {
+            delete torrent.metadata['announce-list'];
+          }
           torrent.metadata.announce = announce;
           torrent.metadata.comment = req.query.comment;
+
+          //Add filed "private" into the torrent file and set it true to
+          //transform a public torrent into a private one.
+          torrent.metadata.info.private = 1;
+          //Add filed "sourceInto" the torrent file to distingush it
+          //from the uploaded file which may be downloaded directly from
+          //other private tracker, avoiding to be treated as cheating at
+          //the original tracker.
+          var sourceInfo = config.meanTorrentConfig.announce.sourceInfo;
+          torrent.metadata.info.sourceInfo = sourceInfo;
+
           torrent_data = torrent.metadata;
           resolve();
         }

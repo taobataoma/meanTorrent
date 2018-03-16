@@ -117,7 +117,7 @@
       SEEDS: '做种用户数',
       LEECHERS: '正在下载数',
       FINISHED: '完成下载数',
-      IMDB_VOTES: 'IMDB 评分',
+      IMDB_VOTES: '用户评分',
       MORE_TAGS: '显示更多检索标签',
       RESET_TAGS: '重置检索条件与标签',
       DOWNLOAD_TORRENT: '下载种子文件'
@@ -1099,7 +1099,7 @@
       STATUS: '状态',
       TAGLINE: '推广语',
       VIDEO: 'video',
-      VOTE_AVERAGE: 'IMDB评分',
+      VOTE_AVERAGE: '用户评分',
       VOTE_COUNT: '参评人数',
       VOTE_UNIT: '人',
       BACKDROP_PATH: '背景海报',

@@ -88,9 +88,10 @@ module.exports = {
      */
     announce: {
       url: commonEnvConfig.variable.site.site_domain + '/announce',
-      comment: commonEnvConfig.variable.site.site_name + ' group',
+      comment: commonEnvConfig.variable.site.site_name + ' GROUP',
       announceInterval: 60 * 1000 * 5,
       announcePrefix: '{' + commonEnvConfig.variable.site.site_namekey + '}.',
+      sourceInfo: '{' + commonEnvConfig.variable.site.site_name + '}' + ' Present by meanTorrent.',
       admin: commonEnvConfig.variable.site.site_admin_mail,
       clientBlackListUrl: '/about/black',
       downloadCheck: {
@@ -132,7 +133,7 @@ module.exports = {
       copyright: 'Copyright (c) [%s] 2012-2017, all rights reserved',
       managingEditor: commonEnvConfig.variable.site.site_admin_mail + ' (%s Admin)',
       webMaster: commonEnvConfig.variable.site.site_webmaster_mail + ' (%s Webmaster)',
-      generator: commonEnvConfig.variable.site.site_name + ' RSS Generator',
+      generator: commonEnvConfig.variable.site.site_name + ' RSS Generator by meanTorrent',
       ttl: 60,
       image_url: '/modules/core/client/img/rss.jpeg'
     },
