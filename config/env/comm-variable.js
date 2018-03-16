@@ -6,19 +6,19 @@ module.exports = {
      * site settings
      */
     site: {
-      site_name: 'MEAN.im',
-      site_namekey: 'MEAN',
-      site_host: 'localhost',
+      site_name: 'MINE.pt',
+      site_namekey: 'MINE',
+      site_host: 'mine.pt',
       site_port: 3000,
-      site_domain: 'http://localhost:3000',
-      site_sessionSecret: 'mean.im.session.secret',
+      site_domain: 'https://mine.pt',
+      site_sessionSecret: 'mine.pt.session.secret',
 
-      site_admin_mail: 'admin@mean.im',
-      site_webmaster_mail: 'webmaster@mean.im',
+      site_admin_mail: 'meetuspt@gmail.com',
+      site_webmaster_mail: 'webmaster@mine.pt',
 
-      site_title: 'meanTorrent',
-      site_description: 'MEAN.JS BitTorrent - Full-Stack JavaScript Using MongoDB, Express, AngularJS, and Node.js, a Private/Public BitTorrent Tracker CMS with Multilingual and IRC announce support',
-      site_keywords: 'mongodb, express, angularjs, node.js, mongoose, passport, torrent, bitTorrent, tracker, announce'
+      site_title: 'mine.pt',
+      site_description: 'meanTorrent - a Private BitTorrent Tracker site, include movie, tvserial, music, game, sports, software, ebook etc.',
+      site_keywords: 'BitTorrent, tracker, movie, tvserial, music, game, sports, software, ebook'
     },
 
     /**
@@ -33,7 +33,7 @@ module.exports = {
      * meanTorrent load movie and tvserial info from TMDB[https://www.themoviedb.org/], please get a access key at there and config in here
      */
     tmdb: {
-      key: 'this is access key from tmdb'
+      key: '7888f0042a366f63289ff571b68b7ce0'
     },
 
     /**
@@ -46,8 +46,8 @@ module.exports = {
       options: {
         service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
         auth: {
-          user: process.env.MAILER_EMAIL_ID || 'sample@gmail.com',
-          pass: process.env.MAILER_PASSWORD || 'password'
+          user: process.env.MAILER_EMAIL_ID || 'meetuspt@gmail.com',
+          pass: process.env.MAILER_PASSWORD || 'meetus740729'
         }
       }
     }
