@@ -25,7 +25,7 @@
         <div class="col-sm-8 col-md-9 padding-bottom-30">
             <div ui-view></div>
             <div ng-init="vm.getTemplateFileContent('/modules/about/client/templates/rules-footer-'+vm.lang+'.md')">
-                <span ng-bind-html="vm.getTemplateMarkedContent()"></span>
+                <span class="templates-footer" ng-bind-html="vm.getTemplateMarkedContent()"></span>
             </div>
         </div>
     </div>
