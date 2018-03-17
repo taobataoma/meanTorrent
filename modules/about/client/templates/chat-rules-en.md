@@ -1,4 +1,4 @@
-## This is the `GLOBAL CHAT RULES` of {{vm.appConfig.name}}
+## This is the `GLOBAL CHAT RULES` of %(appConfig.name)s
 
 The rules content is read from template file, it is support `markdown` style.
 

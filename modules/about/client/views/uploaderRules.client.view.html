@@ -1,4 +1,4 @@
-<section ng-controller="AboutController as vm">
-    <div marked src="'/modules/about/client/templates/uploader-rules-'+vm.lang+'.md'" compile="true">
-    </div>
+<section ng-controller="AboutController as vm"
+         ng-init="vm.getTemplateFileContent('/modules/about/client/templates/uploader-rules-'+vm.lang+'.md')">
+    <span ng-bind-html="vm.getTemplateMarkedContent()"></span>
 </section>

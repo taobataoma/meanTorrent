@@ -7,11 +7,11 @@
 
   AboutController.$inject = ['$scope', '$state', 'getStorageLangService', 'MeanTorrentConfig', 'AdminService', 'MakerGroupService', 'DebugConsoleService', 'marked',
     'localStorageService', '$translate', '$compile', 'Authentication', 'DownloadService', 'TorrentGetInfoServices', 'ResourcesTagsServices',
-    'uibButtonConfig', '$window', '$timeout', 'TorrentsService', 'ModalConfirmService', 'NotifycationService'];
+    'uibButtonConfig', '$window', '$timeout', 'TorrentsService', 'ModalConfirmService', 'NotifycationService', '$templateRequest', '$filter'];
 
   function AboutController($scope, $state, getStorageLangService, MeanTorrentConfig, AdminService, MakerGroupService, mtDebug, marked,
                            localStorageService, $translate, $compile, Authentication, DownloadService, TorrentGetInfoServices, ResourcesTagsServices,
-                           uibButtonConfig, $window, $timeout, TorrentsService, ModalConfirmService, NotifycationService) {
+                           uibButtonConfig, $window, $timeout, TorrentsService, ModalConfirmService, NotifycationService, $templateRequest, $filter) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -43,6 +43,21 @@
       isOpen: false
     };
 
+    vm.getTemplateFileContent = function (file) {
+      $templateRequest(file, true).then(function (response) {
+        console.log(response);
+        vm.templateFileContent = response;
+      });
+    };
+
+    vm.getTemplateMarkedContent = function () {
+      var tmp = $filter('fmt')(vm.templateFileContent, {
+        appConfig: vm.appConfig,
+        scoreConfig: vm.scoreConfig,
+        requestsConfig: vm.requestsConfig
+      });
+      return marked(tmp, {sanitize: false});
+    };
     /**
      * buildPager
      */

@@ -1,4 +1,4 @@
-## This is the `H&R RULES` of {{vm.appConfig.name}}
+## This is the `H&R RULES` of %(appConfig.name)s
 
 The rules content is read from template file, it is support `markdown` style.
 
