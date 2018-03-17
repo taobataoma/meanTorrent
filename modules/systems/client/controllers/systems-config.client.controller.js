@@ -6,14 +6,23 @@
     .controller('SystemConfigController', SystemConfigController);
 
   SystemConfigController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'SystemsService', 'ModalConfirmService', 'NotifycationService', 'marked',
-    'DebugConsoleService', 'MeanTorrentConfig'];
+    'DebugConsoleService', 'MeanTorrentConfig', '$filter'];
 
   function SystemConfigController($scope, $state, $timeout, $translate, Authentication, SystemsService, ModalConfirmService, NotifycationService, marked,
-                                  mtDebug, MeanTorrentConfig) {
+                                  mtDebug, MeanTorrentConfig, $filter) {
     var vm = this;
     vm.user = Authentication.user;
     vm.selectedFilename = 'null';
     vm.shellCommandConfig = MeanTorrentConfig.meanTorrentConfig.shellCommand;
+    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
+    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
+    vm.ircConfig = MeanTorrentConfig.meanTorrentConfig.ircAnnounce;
+    vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
+    vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
+    vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
 
     /**
      * cmOption
@@ -215,7 +224,18 @@
      * @returns {*}
      */
     vm.getMarkedConfigContent = function () {
-      return marked(vm.systemConfigContentValue, {sanitize: true});
+      var tmp = $filter('fmt')(vm.systemConfigContentValue, {
+        appConfig: vm.appConfig,
+        announceConfig: vm.announce,
+        scoreConfig: vm.scoreConfig,
+        rssConfig: vm.rssConfig,
+        ircConfig: vm.ircConfig,
+        signConfig: vm.signConfig,
+        inviteConfig: vm.inviteConfig,
+        requestsConfig: vm.requestsConfig,
+        hnrConfig: vm.hnrConfig
+      });
+      return marked(tmp, {sanitize: true});
     };
 
     /**

@@ -53,8 +53,14 @@
     vm.getTemplateMarkedContent = function () {
       var tmp = $filter('fmt')(vm.templateFileContent, {
         appConfig: vm.appConfig,
+        announceConfig: vm.announce,
         scoreConfig: vm.scoreConfig,
-        requestsConfig: vm.requestsConfig
+        rssConfig: vm.rssConfig,
+        ircConfig: vm.ircConfig,
+        signConfig: vm.signConfig,
+        inviteConfig: vm.inviteConfig,
+        requestsConfig: vm.requestsConfig,
+        hnrConfig: vm.hnrConfig
       });
       return marked(tmp, {sanitize: false});
     };
