@@ -1,7 +1,24 @@
-## This is the `SCORE RULES` of %(appConfig.name)s
+### USER SCORE rules detail - %(appConfig.name)s
+---
+%(appConfig.name)s provide a **user level** system, there are many ways for users to earn scores, and scores are also very useful. The user's scores are also the basis for calculating the user's level. Different user's levels correspond to different access rights. [Details of the user's level details can be viewed here](/about/manual/userLevelRules).
 
-The rules content is read from template file, it is support `markdown` style.
+&emsp;
 
-If you want to change these rules, please modify the .md file at `modules/about/client/templates/score-rules-xx.md`.
+#### Score increase rules
+* Check-in every day to get `%(scoreConfig.checkInEveryDay)d` scores, continuous check-in to get additional `%(scoreConfig.checkInConsday)d` scores per day.
 
-The `xx` is the language flag, like `zh`,`en` etc.
+&emsp;
+
+#### Score deduction rules
+* Reactivate a long unused user account, account status changed from **inactive** to **normal**, deducted `%(signConfig.activeIdleAccountScore)d` scores.
+* Exchange an invitation, need to deduct `%(inviteConfig.scoreExchange)d` scores.
+* Each time a user post a request, the system will automatically reclaim `%(requestsConfig.scoreForAddRequest)d` scores. If the request is answered and accepted by the requester, the system will automatically deduct the scores the requester rewards.
+* Remove an H&R warning, need to deduct `%(hnrConfig.scoreToRemoveWarning)d` scores.
+
+&emsp;
+
+#### Prohibited behavior
+
+&emsp;
+
+#### Penalties for violation
