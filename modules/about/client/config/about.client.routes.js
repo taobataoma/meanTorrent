@@ -20,7 +20,7 @@
         templateUrl: '/modules/about/client/views/manual.client.view.html'
       })
       .state('about.manual.userRules', {
-        url: '/usrRules',
+        url: '/userRules',
         templateUrl: '/modules/about/client/views/userRules.client.view.html',
         data: {
           roles: ['user', 'oper', 'admin'],
