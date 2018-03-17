@@ -272,8 +272,8 @@ module.exports = {
       action: {
         defaultAction: {name: 'defaultAction', value: 0, enable: true},
 
-        checkInEveryday: {name: 'checkInEveryday', value: 10, enable: true},
-        checkInConsday: {name: 'checkInConsday', value: 2, enable: true},
+        checkInEveryDay: {name: 'checkInEveryDay', value: 10, enable: true},
+        checkInConsDay: {name: 'checkInConsDay', value: 2, enable: true},
         uploadTorrent: {name: 'uploadTorrent', value: 50, enable: true},
         uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', value: -50, enable: true},
         uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', value: 10, enable: true},
