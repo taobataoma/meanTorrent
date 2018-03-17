@@ -507,6 +507,9 @@ module.exports = {
      *        @name:              name of type, used by $translate at TORRENT_TYPE_LABEL, will show translate result as torrent tag in torrent list
      *        @value:             value of type, torrent type value in model, will write this value into mongodb and query torrents by this value
      *        @title:             title of type, used by $translate at MENU_TORRENTS_SUB, will show translate result in header submenu item
+     *        @role:              role of type, limit none access users join
+     *        @faIcon:            fontawesome icon front of menu item
+     *        @faClass:           fontawesome icon class
      *        @divider:           divider status of submenu item
      *        @position:          position of submenu item(ordered index)
      *        @state:             angular state of torrent type, this state value used in module route config
@@ -531,6 +534,8 @@ module.exports = {
           value: 'movie',
           title: 'MENU_TORRENTS_SUB.MOVIE',
           role: 'user',
+          faIcon: 'fa-film',
+          faClass: 'text-mt',
           divider: false,
           position: 1,
           state: 'torrents.movie',
@@ -545,6 +550,8 @@ module.exports = {
           value: 'tvserial',
           title: 'MENU_TORRENTS_SUB.TVSERIAL',
           role: 'user',
+          faIcon: 'fa-tv',
+          faClass: 'text-mt',
           divider: false,
           position: 2,
           state: 'torrents.tvserial',
@@ -559,6 +566,8 @@ module.exports = {
           value: 'music',
           title: 'MENU_TORRENTS_SUB.MUSIC',
           role: 'user',
+          faIcon: 'fa-music',
+          faClass: 'text-success',
           divider: true,
           position: 3,
           state: 'torrents.music',
@@ -573,6 +582,8 @@ module.exports = {
           value: 'sports',
           title: 'MENU_TORRENTS_SUB.SPORTS',
           role: 'user',
+          faIcon: 'fa-futbol-o',
+          faClass: 'text-danger',
           divider: false,
           position: 4,
           state: 'torrents.sports',
@@ -587,6 +598,8 @@ module.exports = {
           value: 'variety',
           title: 'MENU_TORRENTS_SUB.VARIETY',
           role: 'user',
+          faIcon: 'fa-video-camera',
+          faClass: 'text-primary',
           divider: false,
           position: 5,
           state: 'torrents.variety',
@@ -601,6 +614,8 @@ module.exports = {
           value: 'picture',
           title: 'MENU_TORRENTS_SUB.PICTURE',
           role: 'user',
+          faIcon: 'fa-photo',
+          faClass: 'text-info',
           divider: false,
           position: 6,
           state: 'torrents.picture',
@@ -615,6 +630,8 @@ module.exports = {
           value: 'game',
           title: 'MENU_TORRENTS_SUB.GAME',
           role: 'user',
+          faIcon: 'fa-gamepad',
+          faClass: 'text-danger',
           divider: true,
           position: 7,
           state: 'torrents.game',
@@ -629,6 +646,8 @@ module.exports = {
           value: 'software',
           title: 'MENU_TORRENTS_SUB.SOFTWARE',
           role: 'user',
+          faIcon: 'fa-hdd-o',
+          faClass: 'text-success',
           divider: false,
           position: 8,
           state: 'torrents.software',
@@ -643,6 +662,8 @@ module.exports = {
           value: 'ebook',
           title: 'MENU_TORRENTS_SUB.EBOOK',
           role: 'user',
+          faIcon: 'fa-book',
+          faClass: 'text-info',
           divider: false,
           position: 9,
           state: 'torrents.ebook',
@@ -657,6 +678,8 @@ module.exports = {
           value: 'other',
           title: 'MENU_TORRENTS_SUB.OTHER',
           role: 'user',
+          faIcon: null,
+          faClass: null,
           divider: true,
           position: 10,
           state: 'torrents.other',
@@ -671,6 +694,8 @@ module.exports = {
           value: 'adult',
           title: 'MENU_TORRENTS_SUB.ADULT',
           role: 'vip',
+          faIcon: null,
+          faClass: null,
           divider: true,
           position: 11,
           state: 'torrents.adult',

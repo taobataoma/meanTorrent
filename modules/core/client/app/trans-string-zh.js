@@ -40,7 +40,7 @@
     MENU_FORUMS: '论坛',
     MENU_REQUESTS: '求种',
     MENU_ABOUT: '关于',
-    MENU_ABOUT_MANUAL: '站点手册',
+    MENU_ABOUT_MANUAL: '用户手册',
     MENU_ABOUT_BLACKLIST: '禁止客户端列表',
     MENU_ABOUT_MAKERGROUP: '资源压制小组',
     MENU_ABOUT_OPERLIST: 'Admin/Oper 列表',

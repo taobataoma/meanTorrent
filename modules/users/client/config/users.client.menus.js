@@ -35,12 +35,16 @@
 
     menuService.addSubMenuItem('mt-user', 'status', {
       title: 'MENU_ACCOUNT_STATUS',
-      state: 'status.account'
+      state: 'status.account',
+      faIcon: 'fa-eye',
+      faClass: 'text-success'
     });
 
     menuService.addSubMenuItem('mt-user', 'score', {
       title: 'MENU_SCORE_LEVEL',
-      state: 'score.detail'
+      state: 'score.detail',
+      faIcon: 'fa-ticket',
+      faClass: 'text-mt'
     });
 
     menuService.addSubMenuItem('mt-user', 'follow', {

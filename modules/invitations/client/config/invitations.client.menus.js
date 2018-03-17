@@ -21,7 +21,9 @@
 
     menuService.addSubMenuItem('mt-invite', 'invite', {
       title: 'MENU_MY_INVITE',
-      state: 'invitations.detail'
+      state: 'invitations.detail',
+      faIcon: 'fa-user-plus',
+      faClass: 'text-mt'
     });
   }
 }());

@@ -1,84 +1,117 @@
 <div class="container" ng-controller="HeaderController as vm" ng-init="vm.getInvitationsCount(); vm.checkMessageUnread(); vm.checkHnRWarning();">
-  <div class="navbar-header">
-    <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a ui-sref="home" class="navbar-brand"><span class="brand-title">{{vm.appConfig.name}}</span></a>
-  </div>
-  <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
-    <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);" ng-hide="!vm.authentication.user && !vm.signConfig.showMenuHeaderForGuest">
-      <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
-        <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button"><span menu-title="{{item.title}}">{{::item.title}}</span>&nbsp;<span class="caret"></span></a>
-        <ul ng-switch-when="dropdown" class="dropdown-menu">
-          <li ui-sref-active="active" ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);" ng-class="{'menu-divider': subitem.divider}">
-            <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title" mt-target="{{subitem.target}}" menu-title="{{subitem.title}}"></a>
-          </li>
+    <div class="navbar-header">
+        <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a ui-sref="home" class="navbar-brand"><span class="brand-title">{{vm.appConfig.name}}</span></a>
+    </div>
+    <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
+        <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);"
+            ng-hide="!vm.authentication.user && !vm.signConfig.showMenuHeaderForGuest">
+            <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type"
+                ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}"
+                uib-dropdown="item.type === 'dropdown'">
+                <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button"><span
+                        menu-title="{{item.title}}">{{::item.title}}</span>&nbsp;<span class="caret"></span></a>
+                <ul ng-switch-when="dropdown" class="dropdown-menu">
+                    <li ui-sref-active="active" ng-repeat="subitem in item.items | orderBy: 'position'"
+                        ng-if="subitem.shouldRender(vm.authentication.user);" ng-class="{'menu-divider': subitem.divider}">
+                        <a ui-sref="{{subitem.state}}({{subitem.params}})" mt-target="{{subitem.target}}"
+                           ng-class="{'fa-class-revers': $state.is(subitem.state)}">
+                            <i class="fa fa-fw {{subitem.faIcon}} {{subitem.faClass}}"></i><span ng-bind="subitem.title"
+                                                                                                 menu-title="{{subitem.title}}"></span>
+                        </a>
+                    </li>
+                </ul>
+                <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title" mt-target="{{item.target}}" menu-title="{{item.title}}"></a>
+            </li>
         </ul>
-        <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title" mt-target="{{item.target}}" menu-title="{{item.title}}"></a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
-      <li ui-sref-active="active">
-        <a ui-sref="authentication.signup">{{'SIGNUP' | translate}}</a>
-      </li>
-      <li class="divider-vertical"></li>
-      <li ui-sref-active="active">
-        <a ui-sref="authentication.signin">{{'SIGNIN' | translate}}</a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
-      <li class="scroll-info xs-hide sm-hide" ui-sref="status.account" ng-if="vm.authentication.user">
+        <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
+            <li ui-sref-active="active">
+                <a ui-sref="authentication.signup">{{'SIGNUP' | translate}}</a>
+            </li>
+            <li class="divider-vertical"></li>
+            <li ui-sref-active="active">
+                <a ui-sref="authentication.signin">{{'SIGNIN' | translate}}</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+            <li class="scroll-info xs-hide sm-hide" ui-sref="status.account" ng-if="vm.authentication.user">
         <span>
             {{'TABLE_FIELDS.RATIO' | translate}}: {{vm.authentication.user.ratio | ratio}},　
             {{'TABLE_FIELDS.LEVEL' | translate}}: {{vm.scoreLevelData.currLevel}},　
             {{'TABLE_FIELDS.SEEDED' | translate}}: {{vm.authentication.user.seeded}},　
             {{'TABLE_FIELDS.LEECHED' | translate}}: {{vm.authentication.user.leeched}}</span>
-      </li>
-      <li class="dropdown" uib-dropdown>
-        <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
-          <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
-          <span class="sm-hide" ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
-          <span class="header-red-dot" ng-if="vm.unreadCount>0 || vm.user.hnr_warning>0" ng-class="{'bg-hnr': vm.user.hnr_warning>0, 'bg-msg': vm.unreadCount>0}"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-          <li>
+            </li>
+            <li class="dropdown" uib-dropdown>
+                <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+                    <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}"
+                         class="header-profile-image"/>
+                    <span class="sm-hide" ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
+                    <span class="header-red-dot" ng-if="vm.unreadCount>0 || vm.user.hnr_warning>0"
+                          ng-class="{'bg-hnr': vm.user.hnr_warning>0, 'bg-msg': vm.unreadCount>0}"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
             <span class="lang-list">
-              <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);" ng-repeat="l in vm.language | orderBy: '-index'"></span>
+              <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);"
+                    ng-repeat="l in vm.language | orderBy: '-index'"></span>
             </span>
-          </li>
-          <li class="divider"></li>
-          <li ui-sref-active="active" ng-repeat="item in vm.followMenu.items" class="menu-parent">
-            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="badge menu-badge badge_default" ng-show="vm.getFollowCount(item)>0">{{vm.getFollowCount(item)}}</span>
-          </li>
-          <li class="divider"></li>
-          <li ui-sref-active="active" ng-repeat="item in vm.messagesMenu.items" class="menu-parent">
-            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="badge menu-badge badge_info" ng-show="vm.unreadCount>0">{{vm.unreadCount}}</span>
-          </li>
-          <li ui-sref-active="active" ng-repeat="item in vm.statusMenu.items" class="menu-parent">
-            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="badge menu-badge badge_danger" ng-show="vm.user.hnr_warning>0">{{vm.user.hnr_warning}}</span>
-          </li>
-          <li ui-sref-active="active" ng-repeat="item in vm.scoreMenu.items" class="menu-parent">
-            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="menu-score" score-level-curr="vm.user"></span>
-          </li>
-          <li ui-sref-active="active" ng-repeat="item in vm.inviteMenu.items" class="menu-parent">
-            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a><span class="badge menu-badge badge_info">{{vm.countMyInvitations}}</span>
-          </li>
-          <li class="divider"></li>
-          <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
-            <a ui-sref="{{item.state}}" ng-bind="item.title" menu-title="{{item.title}}"></a>
-          </li>
-          <li ui-sref-active="active" ng-if="vm.signConfig.allowSocialSignin">
-            <a ui-sref="settings.accounts" ng-bind="MANAGE_SOCIAL_ACCOUNTS" menu-title="MANAGE_SOCIAL_ACCOUNTS"></a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="/api/auth/signout" target="_self">{{'SIGNOUT' | translate}}</a>
-          </li>
+                    </li>
+                    <li class="divider"></li>
+                    <li ui-sref-active="active" ng-repeat="item in vm.followMenu.items" class="menu-parent">
+                        <a ui-sref="{{item.state}}">
+                            <i class="fa fa-fw {{item.faIcon}} {{item.faClass}}"></i><span ng-bind="item.title" menu-title="{{item.title}}"></span>
+                        </a>
+                        <span class="badge menu-badge badge_default" ng-show="vm.getFollowCount(item)>0">{{vm.getFollowCount(item)}}</span>
+                    </li>
+                    <li class="divider"></li>
+                    <li ui-sref-active="active" ng-repeat="item in vm.messagesMenu.items" class="menu-parent">
+                        <a ui-sref="{{item.state}}">
+                            <i class="fa fa-fw {{item.faIcon}} {{item.faClass}}"></i><span ng-bind="item.title" menu-title="{{item.title}}"></span>
+                        </a>
+                        <span class="badge menu-badge badge_info" ng-show="vm.unreadCount>0">{{vm.unreadCount}}</span>
+                    </li>
+                    <li ui-sref-active="active" ng-repeat="item in vm.statusMenu.items" class="menu-parent">
+                        <a ui-sref="{{item.state}}">
+                            <i class="fa fa-fw {{item.faIcon}} {{item.faClass}}"></i><span ng-bind="item.title" menu-title="{{item.title}}"></span>
+                        </a>
+                        <span class="badge menu-badge badge_danger" ng-show="vm.user.hnr_warning>0">{{vm.user.hnr_warning}}</span>
+                    </li>
+                    <li ui-sref-active="active" ng-repeat="item in vm.scoreMenu.items" class="menu-parent">
+                        <a ui-sref="{{item.state}}">
+                            <i class="fa fa-fw {{item.faIcon}} {{item.faClass}}"></i><span ng-bind="item.title" menu-title="{{item.title}}"></span>
+                        </a>
+                        <span class="menu-score" score-level-curr="vm.user"></span>
+                    </li>
+                    <li ui-sref-active="active" ng-repeat="item in vm.inviteMenu.items" class="menu-parent">
+                        <a ui-sref="{{item.state}}">
+                            <i class="fa fa-fw {{item.faIcon}} {{item.faClass}}"></i><span ng-bind="item.title" menu-title="{{item.title}}"></span>
+                        </a>
+                        <span class="badge menu-badge badge_info">{{vm.countMyInvitations}}</span>
+                    </li>
+                    <li class="divider"></li>
+                    <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
+                        <a ui-sref="{{item.state}}">
+                            <i class="fa fa-fw {{item.faIcon}} {{item.faClass}}"></i><span ng-bind="item.title" menu-title="{{item.title}}"></span>
+                        </a>
+                    </li>
+                    <li ui-sref-active="active" ng-if="vm.signConfig.allowSocialSignin">
+                        <a ui-sref="settings.accounts" ng-bind="MANAGE_SOCIAL_ACCOUNTS">
+                            <i class="fa fa-fw"></i><span menu-title="MANAGE_SOCIAL_ACCOUNTS"></span>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="/api/auth/signout" target="_self">
+                            <i class="fa fa-fw fa-sign-out text-danger"></i><span>{{'SIGNOUT' | translate}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
-      </li>
-    </ul>
-  </nav>
+    </nav>
 </div>

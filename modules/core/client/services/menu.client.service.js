@@ -59,7 +59,9 @@
         items: [],
         shouldRender: shouldRender,
         target: options.target || undefined,
-        divider: options.divider || false
+        divider: options.divider || false,
+        faClass: options.faClass || null,
+        faIcon: options.faIcon || null
       });
 
       // Add submenu items
@@ -92,7 +94,9 @@
           position: options.position || 0,
           shouldRender: shouldRender,
           target: options.target || undefined,
-          divider: options.divider || false
+          divider: options.divider || false,
+          faClass: options.faClass || null,
+          faIcon: options.faIcon || null
         });
       });
 

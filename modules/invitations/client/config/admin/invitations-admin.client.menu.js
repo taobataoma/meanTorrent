@@ -12,6 +12,8 @@
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_ADMIN_OFFICIAL_INVITATION',
       state: 'admin.invitations.official',
+      faIcon: 'fa-user-plus',
+      faClass: 'fa-class-admin-official',
       position: 40
     });
   }

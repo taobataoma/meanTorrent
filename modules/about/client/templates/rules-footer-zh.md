@@ -1,7 +1,7 @@
 &emsp;
 
 ---
-##### More manual link
+##### 更多手册内容连接
 * [用户守则](/about/manual/userRules)
 * [公共言论行为准则](/about/manual/chatRules)
 * [用户积分细则](/about/manual/scoreRules)

@@ -11,7 +11,9 @@
   function menuConfig(menuService) {
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_USERS_ADMIN',
-      state: 'admin.users'
+      state: 'admin.users',
+      faIcon: 'fa-users',
+      faClass: 'fa-class-admin-users'
     });
   }
 }());

@@ -21,12 +21,16 @@
 
     menuService.addSubMenuItem('account', 'settings', {
       title: 'EDIT_PROFILE',
-      state: 'settings.profile'
+      state: 'settings.profile',
+      faIcon: 'fa-vcard',
+      faClass: 'text-primary'
     });
 
     menuService.addSubMenuItem('account', 'settings', {
       title: 'EDIT_PROFILE_PIC',
-      state: 'settings.picture'
+      state: 'settings.picture',
+      faIcon: 'fa-photo',
+      faClass: 'text-warning'
     });
 
     menuService.addSubMenuItem('account', 'settings', {
@@ -36,12 +40,16 @@
 
     menuService.addSubMenuItem('account', 'settings', {
       title: 'CHANGE_PASSWORD',
-      state: 'settings.password'
+      state: 'settings.password',
+      faIcon: 'fa-lock',
+      faClass: 'text-danger'
     });
 
     menuService.addSubMenuItem('account', 'settings', {
       title: 'RESET_PASSKEY',
-      state: 'settings.passkey'
+      state: 'settings.passkey',
+      faIcon: 'fa-key',
+      faClass: 'text-success'
     });
   }
 }());

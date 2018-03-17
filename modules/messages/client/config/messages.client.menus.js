@@ -21,7 +21,9 @@
 
     menuService.addSubMenuItem('mt-message', 'messages', {
       title: 'MENU_MESSAGE_BOX',
-      state: 'messages.box'
+      state: 'messages.box',
+      faIcon: 'fa-comments',
+      faClass: 'fa-class-user-message'
     });
   }
 }());

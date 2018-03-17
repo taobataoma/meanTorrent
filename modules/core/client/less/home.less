@@ -1,5 +1,35 @@
 @import (reference) "../../../core/client/less/mt-var.less";
 
+.navbar-nav {
+    .fa-class-user-manual, .fa-class-admin-users {
+        color: @brand-primary;
+    }
+    .fa-class-user-ranking, .fa-class-operlist, .fa-class-admin-official {
+        color: @mt-base-color;
+    }
+    .fa-class-admin-torrents {
+        color: @brand-info;
+    }
+    .fa-class-admin-upload {
+        color: @brand-success;
+    }
+    .fa-class-admin-messages {
+        color: @state-danger-text;
+    }
+    .fa-class-user-message {
+        color: @brand-info;
+    }
+    .fa-class-revers {
+        .fa-fw {
+            color: #fafbfc;
+        }
+    }
+    .fa-fw {
+        margin: 0 5px 0 -15px;
+        //font-size: 16px;
+    }
+}
+
 .home_notice {
     padding-top: 20px;
     .alert {

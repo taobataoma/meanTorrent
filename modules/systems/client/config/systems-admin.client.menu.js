@@ -12,8 +12,10 @@
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_ADMIN_SYSTEMS',
       state: 'admin.systems.env',
-      position: 1000,
       roles: ['admin'],
+      faIcon: 'fa-cog',
+      faClass: 'text-danger',
+      position: 1000,
       divider: true
     });
   }

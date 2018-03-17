@@ -12,6 +12,8 @@
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_ADMIN_MESSAGES',
       state: 'admin.messages',
+      faIcon: 'fa-podcast',
+      faClass: 'fa-class-admin-messages',
       position: 10,
       divider: true
     });

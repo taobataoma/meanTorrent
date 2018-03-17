@@ -10,6 +10,7 @@
 
   function HeaderController($scope, $state, $timeout, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
                             InvitationsService, $interval, MessagesService, TorrentsService, UsersService, mtDebug) {
+    $scope.$state = $state;
     var vm = this;
     vm.user = Authentication.user;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;

@@ -12,12 +12,16 @@
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_TORRENTS_ADMIN',
       state: 'admin.torrents',
+      faIcon: 'fa-indent',
+      faClass: 'fa-class-admin-torrents',
       position: 1
     });
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_UPLOADER_ADMIN',
       state: 'admin.uploader',
       roles: ['admin'],
+      faIcon: 'fa-cloud-upload',
+      faClass: 'fa-class-admin-upload',
       position: 2
     });
 

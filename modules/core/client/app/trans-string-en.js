@@ -40,7 +40,7 @@
     MENU_FORUMS: 'Forums',
     MENU_REQUESTS: 'Requests',
     MENU_ABOUT: 'About',
-    MENU_ABOUT_MANUAL: 'Site Manual',
+    MENU_ABOUT_MANUAL: 'User Manual',
     MENU_ABOUT_BLACKLIST: 'Client Black List',
     MENU_ABOUT_MAKERGROUP: 'Torrents Maker Group',
     MENU_ABOUT_OPERLIST: 'Admin/Oper List',

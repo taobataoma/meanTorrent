@@ -12,6 +12,8 @@
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_ADMIN_TRACE',
       state: 'admin.traces',
+      faIcon: 'fa-table',
+      faClass: 'text-warning',
       position: 20
     });
   }

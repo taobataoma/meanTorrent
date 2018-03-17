@@ -33,6 +33,8 @@
           state: cfg.state,
           divider: cfg.divider,
           roles: ['*'],
+          faIcon: cfg.faIcon,
+          faClass: cfg.faClass,
           position: cfg.position
         });
 
@@ -41,7 +43,7 @@
             title: 'MENU_TORRENTS_SUB.MOVIE_COLLECTIONS',
             state: 'collections.list',
             roles: ['*'],
-            position: 1
+            position: cfg.position
           });
         }
       }
