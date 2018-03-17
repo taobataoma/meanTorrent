@@ -1,11 +1,9 @@
 <section class="container" ng-controller="TorrentsUploadController as vm">
-    <div class="jumbotron margin-top-10">
+    <div class="jumbotron margin-top-10" ng-init="vm.getTemplateFileContent('/modules/torrents/client/templates/upload-rules-'+vm.lang+'.md')">
         <div class="row">
             <div class="col-xs-12">
                 <h4 translate="UPLOAD_RULES"></h4>
-
-                <div marked src="'/modules/torrents/client/templates/upload-rules-'+vm.lang+'.md'" compile="true" style="line-height: 1.6;">
-                </div>
+                <span ng-bind-html="vm.getTemplateMarkedContent()" style="line-height: 1.6;"></span>
             </div>
         </div>
     </div>
@@ -103,7 +101,8 @@
     <!-- =================================================================
         side-overlay search movies
     ================================================================== -->
-    <div id="searchFromTMDBSlide" side-overlay="right" side-class="search-from-tmdb-side-overlay" side-opened="vm.onPopupSearchOpen()" side-close-on-esc side-modal>
+    <div id="searchFromTMDBSlide" side-overlay="right" side-class="search-from-tmdb-side-overlay" side-opened="vm.onPopupSearchOpen()"
+         side-close-on-esc side-modal>
         <div class="search-popup">
             <legend class="h4"
                     translate="SEARCH_FROM_TMDB_TITLE" translate-values="{type: ('MENU_TORRENTS_SUB.'+vm.selectedType.toUpperCase() | translate)}">

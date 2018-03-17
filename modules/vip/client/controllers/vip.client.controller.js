@@ -7,11 +7,11 @@
 
   VipController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'getStorageLangService', 'MeanTorrentConfig', 'TorrentsService',
     'DebugConsoleService', '$timeout', 'uibButtonConfig', 'TorrentGetInfoServices', 'DownloadService', 'ResourcesTagsServices', '$window',
-    'localStorageService', 'marked'];
+    'localStorageService', 'marked', '$templateRequest', '$filter'];
 
   function VipController($scope, $state, $translate, Authentication, getStorageLangService, MeanTorrentConfig, TorrentsService,
                          mtDebug, $timeout, uibButtonConfig, TorrentGetInfoServices, DownloadService, ResourcesTagsServices, $window,
-                         localStorageService, marked) {
+                         localStorageService, marked, $templateRequest, $filter) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -21,11 +21,19 @@
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
+    vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
+    vm.ircConfig = MeanTorrentConfig.meanTorrentConfig.ircAnnounce;
+    vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
+    vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
+    vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+    vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.vipTorrentType = localStorageService.get('vip_last_selected_type') || 'movie';
 
-    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
@@ -33,6 +41,38 @@
     vm.filterSale = false;
 
     uibButtonConfig.activeClass = 'btn-success';
+
+    /**
+     * getTemplateFileContent
+     * @param file
+     */
+    vm.getTemplateFileContent = function (file) {
+      $templateRequest(file, true).then(function (response) {
+        vm.templateFileContent = response;
+      });
+    };
+
+    /**
+     * getTemplateMarkedContent
+     * @returns {*}
+     */
+    vm.getTemplateMarkedContent = function () {
+      var tmp = $filter('fmt')(vm.templateFileContent, {
+        appConfig: vm.appConfig,
+        announceConfig: vm.announceConfig,
+        scoreConfig: vm.scoreConfig,
+        rssConfig: vm.rssConfig,
+        ircConfig: vm.ircConfig,
+        signConfig: vm.signConfig,
+        inviteConfig: vm.inviteConfig,
+        requestsConfig: vm.requestsConfig,
+        hnrConfig: vm.hnrConfig,
+        tmdbConfig: vm.tmdbConfig,
+
+        user: vm.user
+      });
+      return marked(tmp, {sanitize: false});
+    };
 
     /**
      * buildPager

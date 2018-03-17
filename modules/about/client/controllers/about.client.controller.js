@@ -31,6 +31,7 @@
     vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
     vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+    vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
 
     vm.groupTorrentType = localStorageService.get('maker_last_selected_type') || 'movie';
     vm.searchTags = [];
@@ -43,13 +44,20 @@
       isOpen: false
     };
 
+    /**
+     * getTemplateFileContent
+     * @param file
+     */
     vm.getTemplateFileContent = function (file) {
       $templateRequest(file, true).then(function (response) {
-        console.log(response);
         vm.templateFileContent = response;
       });
     };
 
+    /**
+     * getTemplateMarkedContent
+     * @returns {*}
+     */
     vm.getTemplateMarkedContent = function () {
       var tmp = $filter('fmt')(vm.templateFileContent, {
         appConfig: vm.appConfig,
@@ -60,10 +68,14 @@
         signConfig: vm.signConfig,
         inviteConfig: vm.inviteConfig,
         requestsConfig: vm.requestsConfig,
-        hnrConfig: vm.hnrConfig
+        hnrConfig: vm.hnrConfig,
+        tmdbConfig: vm.tmdbConfig,
+
+        user: vm.user
       });
       return marked(tmp, {sanitize: false});
     };
+
     /**
      * buildPager
      */

@@ -8,7 +8,7 @@ The `xx` is the language flag, like `zh`,`en` etc.
 
 `sqrt(score number / %(scoreConfig.levelStep)s)`
 
-```
+```javascript
 requests: {
       scoreForAddRequest: %(requestsConfig.scoreForAddRequest)d,
       rewardsFormDefaultValue: %(requestsConfig.rewardsFormDefaultValue)d,

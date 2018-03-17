@@ -6,15 +6,24 @@
     .controller('AuthenticationController', AuthenticationController);
 
   AuthenticationController.$inject = ['$scope', '$state', 'UsersService', '$location', '$window', '$timeout', 'Authentication', 'PasswordValidator', 'NotifycationService',
-    'MeanTorrentConfig', 'getStorageLangService', '$rootScope', '$stateParams', 'InvitationsService', '$translate'];
+    'MeanTorrentConfig', 'getStorageLangService', '$rootScope', '$stateParams', 'InvitationsService', '$translate', '$templateRequest', 'marked', '$filter'];
 
   function AuthenticationController($scope, $state, UsersService, $location, $window, $timeout, Authentication, PasswordValidator, NotifycationService, MeanTorrentConfig,
-                                    getStorageLangService, $rootScope, $stateParams, InvitationsService, $translate) {
+                                    getStorageLangService, $rootScope, $stateParams, InvitationsService, $translate, $templateRequest, marked, $filter) {
     var vm = this;
 
     vm.lang = getStorageLangService.getLang();
-    vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
+    vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
+    vm.ircConfig = MeanTorrentConfig.meanTorrentConfig.ircAnnounce;
+    vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
+    vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
+    vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+    vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+
     vm.authentication = Authentication;
     vm.getPopoverMsg = PasswordValidator.getPopoverMsg;
     vm.signup = signup;
@@ -42,6 +51,38 @@
         $state.go('home');
       }, 3000);
     }
+
+    /**
+     * getTemplateFileContent
+     * @param file
+     */
+    vm.getTemplateFileContent = function (file) {
+      $templateRequest(file, true).then(function (response) {
+        vm.templateFileContent = response;
+      });
+    };
+
+    /**
+     * getTemplateMarkedContent
+     * @returns {*}
+     */
+    vm.getTemplateMarkedContent = function () {
+      var tmp = $filter('fmt')(vm.templateFileContent, {
+        appConfig: vm.appConfig,
+        announceConfig: vm.announce,
+        scoreConfig: vm.scoreConfig,
+        rssConfig: vm.rssConfig,
+        ircConfig: vm.ircConfig,
+        signConfig: vm.signConfig,
+        inviteConfig: vm.inviteConfig,
+        requestsConfig: vm.requestsConfig,
+        hnrConfig: vm.hnrConfig,
+        tmdbConfig: vm.tmdbConfig,
+
+        user: vm.authentication.user
+      });
+      return marked(tmp, {sanitize: false});
+    };
 
     /**
      * verifyToken

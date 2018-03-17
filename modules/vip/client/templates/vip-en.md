@@ -1,4 +1,4 @@
-## This is the `VIP RULES` of {{vm.appConfig.name}}
+## This is the `VIP RULES` of %(appConfig.name)s
 
 The rules content is read from vip.md file, it is support `markdown` style.
 

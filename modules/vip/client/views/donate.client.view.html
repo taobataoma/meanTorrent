@@ -13,10 +13,9 @@
     </div>
 
     <div class="container">
-        <div class="margin-top-30 margin-bottom-50">
+        <div class="margin-top-30 margin-bottom-50" ng-init="vm.getTemplateFileContent('/modules/vip/client/templates/pay-'+vm.lang+'.md')">
             <div class="alert alert-warning" role="alert" style="padding: 10px 50px;">
-                <div marked src="'/modules/vip/client/templates/pay-'+vm.lang+'.md'" compile="true">
-                </div>
+                <span ng-bind-html="vm.getTemplateMarkedContent()"></span>
             </div>
         </div>
 

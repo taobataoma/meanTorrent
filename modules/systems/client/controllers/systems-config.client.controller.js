@@ -23,6 +23,7 @@
     vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
     vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+    vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
 
     /**
      * cmOption
@@ -211,15 +212,6 @@
     };
 
     /**
-     * getTemplateBackConfigFiles
-     */
-    vm.getTemplateBackConfigFiles = function () {
-      SystemsService.getSystemTemplateBackConfigFiles(function (res) {
-        vm.templateBackConfigFiles = res;
-      });
-    };
-
-    /**
      * getMarkedConfigContent
      * @returns {*}
      */
@@ -233,7 +225,10 @@
         signConfig: vm.signConfig,
         inviteConfig: vm.inviteConfig,
         requestsConfig: vm.requestsConfig,
-        hnrConfig: vm.hnrConfig
+        hnrConfig: vm.hnrConfig,
+        tmdbConfig: vm.tmdbConfig,
+
+        user: vm.user
       });
       return marked(tmp, {sanitize: true});
     };

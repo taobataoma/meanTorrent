@@ -1,7 +1,7 @@
 <div ng-init="vm.verifyToken();">
-    <div class="margin-top-50 padding-top-20" ng-if="!vm.signConfig.openSignup && !vm.validToken">
-        <div class="col-sm-10 col-sm-offset-1" marked src="'/modules/users/client/templates/sign-up-closed-message-'+vm.lang+'.md'" compile="true">
-        </div>
+    <div class="margin-top-50 padding-top-20" ng-if="!vm.signConfig.openSignup && !vm.validToken"
+         ng-init="vm.getTemplateFileContent('/modules/users/client/templates/sign-up-closed-message-'+vm.lang+'.md')">
+        <span ng-bind-html="vm.getTemplateMarkedContent()"></span>
     </div>
     <div ng-if="vm.signConfig.openSignup || vm.validToken">
         <div ng-if="!vm.waitToActive && !vm.isSendingMail">
@@ -59,7 +59,9 @@
                                     style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></uib-progressbar>
                         </div>
                         <div class="text-center form-group">
-                            <button type="submit" class="btn btn-success btn-width-100" ng-disabled="vm.isSendingMail">{{ 'SIGN.BTN_SIGN_UP' | translate}}</button>
+                            <button type="submit" class="btn btn-success btn-width-100"
+                                    ng-disabled="vm.isSendingMail">{{ 'SIGN.BTN_SIGN_UP' | translate}}
+                            </button>
                             &nbsp; or&nbsp;
                             <a ui-sref="authentication.signin" class="show-signup">{{ 'SIGN.BTN_SIGN_IN' | translate}}</a>
                         </div>
@@ -69,7 +71,8 @@
         </div>
         <div ng-if="vm.isSendingMail">
             <div class="col-sm-10 col-sm-offset-1 margin-top-100 padding-top-20 text-center">
-                <i class="fa fa-spinner fa-pulse fa-2x text-primary"></i> <div class="active-notice margin-top-20" translate="SIGN.SENDING_MAIL"></div>
+                <i class="fa fa-spinner fa-pulse fa-2x text-primary"></i>
+                <div class="active-notice margin-top-20" translate="SIGN.SENDING_MAIL"></div>
             </div>
         </div>
         <div ng-if="vm.waitToActive">

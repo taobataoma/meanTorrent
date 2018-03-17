@@ -7,10 +7,9 @@
                 </h4>
             </span>
 
-            <div class="margin-top-10">
+            <div class="margin-top-10" ng-init="vm.getTemplateFileContent('/modules/users/client/templates/status-hnr-warning-'+vm.lang+'.md')">
                 <div class="alert alert-warning" role="alert" style="padding: 10px 50px;">
-                    <div marked src="'/modules/users/client/templates/status-hnr-warning-'+vm.lang+'.md'" compile="true">
-                    </div>
+                    <span ng-bind-html="vm.getTemplateMarkedContent()"></span>
                 </div>
             </div>
 

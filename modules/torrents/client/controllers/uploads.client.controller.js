@@ -6,14 +6,28 @@
     .controller('TorrentsUploadController', TorrentsUploadController);
 
   TorrentsUploadController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
-    'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService', 'DebugConsoleService', 'NotifycationService', 'SideOverlay'];
+    'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService', 'DebugConsoleService', 'NotifycationService', 'SideOverlay',
+    '$templateRequest', 'marked'];
 
   function TorrentsUploadController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
-                                    TorrentsService, getStorageLangService, $filter, DownloadService, mtDebug, NotifycationService, SideOverlay) {
+                                    TorrentsService, getStorageLangService, $filter, DownloadService, mtDebug, NotifycationService, SideOverlay,
+                                    $templateRequest, marked) {
     var vm = this;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
+    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+    vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
+    vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
+    vm.ircConfig = MeanTorrentConfig.meanTorrentConfig.ircAnnounce;
+    vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
+    vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
+    vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.lang = getStorageLangService.getLang();
@@ -25,6 +39,38 @@
     vm.anonymous = false;
     vm.videoNfo = '';
     vm.customTorrent = {};
+
+    /**
+     * getTemplateFileContent
+     * @param file
+     */
+    vm.getTemplateFileContent = function (file) {
+      $templateRequest(file, true).then(function (response) {
+        vm.templateFileContent = response;
+      });
+    };
+
+    /**
+     * getTemplateMarkedContent
+     * @returns {*}
+     */
+    vm.getTemplateMarkedContent = function () {
+      var tmp = $filter('fmt')(vm.templateFileContent, {
+        appConfig: vm.appConfig,
+        announceConfig: vm.announceConfig,
+        scoreConfig: vm.scoreConfig,
+        rssConfig: vm.rssConfig,
+        ircConfig: vm.ircConfig,
+        signConfig: vm.signConfig,
+        inviteConfig: vm.inviteConfig,
+        requestsConfig: vm.requestsConfig,
+        hnrConfig: vm.hnrConfig,
+        tmdbConfig: vm.tmdbConfig,
+
+        user: vm.user
+      });
+      return marked(tmp, {sanitize: false});
+    };
 
     /**
      * upload
