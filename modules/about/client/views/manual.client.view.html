@@ -1,4 +1,4 @@
-<section class="container padding-top-30">
+<section class="container padding-top-30" ng-controller="AboutController as vm">
     <div class="row">
         <div class="col-sm-4 col-md-3">
             <div class="list-group panel-menu-list">
@@ -24,6 +24,9 @@
         </div>
         <div class="col-sm-8 col-md-9 padding-bottom-30">
             <div ui-view></div>
+            <div ng-init="vm.getTemplateFileContent('/modules/about/client/templates/rules-footer-'+vm.lang+'.md')">
+                <span ng-bind-html="vm.getTemplateMarkedContent()"></span>
+            </div>
         </div>
     </div>
 </section>

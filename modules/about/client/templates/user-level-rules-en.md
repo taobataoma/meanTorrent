@@ -16,17 +16,3 @@
 
 #### How to use the level?
 _The management group is making relevant level rights and interests, please keep the attention, thank you!_
-
-&emsp;
-
----
-##### More manual link
-* [User Detail Rules](userRules)
-* [Global Speech Rules](chatRules)
-* [Score Detail Rules](scoreRules)
-* [User Level Rules](userLevelRules)
-* [Uploader Detail Rules](uploaderRules)
-* [Invitations Detail Rules](invitationsRules)
-* [H&R Detail Rules](hnrRules)
-* [VIP Detail Rules](vipRules)
-* [Requests Rules](requestRules)

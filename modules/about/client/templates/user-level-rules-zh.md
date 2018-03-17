@@ -16,17 +16,3 @@
 
 #### 如何使用用户等级?
 _管理组正在制定相关的级别权益，请保持关注，谢谢！_
-
-&emsp;
-
----
-##### More manual link
-* [用户守则](userRules)
-* [公共言论行为准则](chatRules)
-* [用户积分细则](scoreRules)
-* [用户等级细则](userLevelRules)
-* [发种细则](uploaderRules)
-* [邀请函细则](invitationsRules)
-* [H&R 细则](hnrRules)
-* [VIP 细则](vipRules)
-* [求种细则](requestRules)
