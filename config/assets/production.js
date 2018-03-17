@@ -88,7 +88,10 @@ module.exports = {
         'public/lib/codemirror/mode/markdown/markdown.js',
         'public/lib/codemirror/mode/xml/xml.js',
         //angular-lazy-img
-        'public/lib/angular-lazy-img/release/angular-lazy-img.min.js'
+        'public/lib/angular-lazy-img/release/angular-lazy-img.min.js',
+        //sprintf
+        'public/lib/sprintf/dist/sprintf.min.js',
+        'public/lib/sprintf/dist/angular-sprintf.min.js'
 
         // endbower
       ]
