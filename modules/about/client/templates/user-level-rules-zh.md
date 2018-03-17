@@ -1,7 +1,32 @@
-## 这是 `USER LEVEL RULES` 用户等级规则文档
+### :orange_book: 用户等级细则详细说明 - %(appConfig.name)s
+---
+%(appConfig.name)s 提供一个 **用户等级** 系统, 用户的等级数是由 **用户积分** 计算而来, 不同的等级会对应不同的访问权限，您要提高用户等级的唯一途径就是尽可能多的赚取更多的积分.
 
-这些规则内容是从模板文件读取, 它完全支持 `markdown` 语法风格.
+&emsp;
 
-如果你想修改规则内容, 请编辑 .md 文件, 它存放于 `modules/about/client/templates/user-level-rules-xx.md`.
+#### 如何计算用户等级?
+1. 用户积分级别数学计算公式为: `sqrt(score number / %(scoreConfig.levelStep)s)`.
+1. 级别`1` 需要积分累计: `1 * 1 * %(scoreConfig.levelStep)s`.
+1. 级别`2` 需要积分累计: `2 * 2 * %(scoreConfig.levelStep)s`.
+1. 级别`3` 需要积分累计: `3 * 3 * %(scoreConfig.levelStep)s`.
+1. 级别`4` 需要积分累计: `4 * 4 * %(scoreConfig.levelStep)s`.
+1. 级别`x` 需要积分累计: `x * x * %(scoreConfig.levelStep)s`.
 
-`xx` 代表语言标识符, 如 `zh`,`en` 等.
+&emsp;
+
+#### 如何使用用户等级?
+_管理组正在制定相关的级别权益，请保持关注，谢谢！_
+
+&emsp;
+
+---
+##### More manual link
+* [用户守则](userRules)
+* [公共言论行为准则](chatRules)
+* [用户积分细则](scoreRules)
+* [用户等级细则](userLevelRules)
+* [发种细则](uploaderRules)
+* [邀请函细则](invitationsRules)
+* [H&R 细则](hnrRules)
+* [VIP 细则](vipRules)
+* [求种细则](requestRules)

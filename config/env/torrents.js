@@ -268,7 +268,7 @@ module.exports = {
      *                    NOTE: ENABLE VALUE OF DEFAULTACTION MUST BE TRUE
      */
     score: {
-      levelStep: 500,
+      levelStep: 1000,
       action: {
         defaultAction: {name: 'defaultAction', value: 0, enable: true},
 
