@@ -32,7 +32,6 @@
     vm.cmOption = {
       onLoad: function (_cm) {
         _cm.setOption('lineNumbers', true);
-        _cm.setOption('lineWrapping', true);
         _cm.setOption('tabSize', 2);
         _cm.setOption('gutters', ['CodeMirror-lint-markers', 'CodeMirror-linenumbers']);
         _cm.setOption('lint', true);
@@ -90,13 +89,16 @@
             switch (ext) {
               case 'md':
                 _cm.setOption('mode', 'markdown');
+                _cm.setOption('lineWrapping', true);
                 break;
               case 'html':
                 _cm.setOption('mode', 'xml');
                 _cm.setOption('htmlMode', true);
+                _cm.setOption('lineWrapping', true);
                 break;
               default:
                 _cm.setOption('mode', {name: 'javascript', json: true});
+                _cm.setOption('lineWrapping', false);
             }
 
             vm.loadedFilename = vm.selectedFilename;
