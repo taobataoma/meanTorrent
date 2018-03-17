@@ -212,6 +212,15 @@
     };
 
     /**
+     * getTemplateBackConfigFiles
+     */
+    vm.getTemplateBackConfigFiles = function () {
+      SystemsService.getSystemTemplateBackConfigFiles(function (res) {
+        vm.templateBackConfigFiles = res;
+      });
+    };
+
+    /**
      * getMarkedConfigContent
      * @returns {*}
      */
