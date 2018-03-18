@@ -68,6 +68,7 @@ module.exports = {
      * @url:                                  announce url, download client will request this url to report uploads and downloads data
      * @comment:                              used in admin tools, auto replace torrent make group info with this setting
      * @announceInterval:                     interval of twice announce request
+     * @announceInterval_str:                 string desc of @announceInterval
      * @announcePrefix:                       prefix of torrent file name, is will auto add when user download the torrent files
      * @admin:                                site admin mail address
      * @clientBlackListUrl:                   forbidden download client list url, user can view this list to check forbidden client software
@@ -83,13 +84,16 @@ module.exports = {
      *                                        NOTE: the best value is false, In order to prevent cheating, user can not download data from own seeding.
      * @ghostCheck:
      *      @ghostPeersIdleTime:              setting idle time more than this value is a ghost peer(died), remove it
+     *      @ghostPeersIdleTime_str:          string desc of @ghostPeersIdleTime
      * @warningCheck:
      *      @userHnrWarningCheckInterval:     setting check users H&R warning interval time, default to 2 hours
+     *      @userHnrWarningCheckInterval_str: string desc of @userHnrWarningCheckInterval
      */
     announce: {
       url: commonEnvConfig.variable.site.site_domain + '/announce',
       comment: commonEnvConfig.variable.site.site_name + ' GROUP',
       announceInterval: 60 * 1000 * 5,
+      announceInterval_str: '5m',
       announcePrefix: '{' + commonEnvConfig.variable.site.site_namekey + '}.',
       sourceInfo: '{' + commonEnvConfig.variable.site.site_name + '}' + ' Present by meanTorrent.',
       admin: commonEnvConfig.variable.site.site_admin_mail,
@@ -106,10 +110,12 @@ module.exports = {
         peersSendListIncludeOwnSeed: true
       },
       ghostCheck: {
-        ghostPeersIdleTime: 60 * 60 * 1000 * 24
+        ghostPeersIdleTime: 60 * 60 * 1000 * 24,
+        ghostPeersIdleTime_str: '24h'
       },
       warningCheck: {
-        userHnrWarningCheckInterval: 60 * 60 * 1000 * 2
+        userHnrWarningCheckInterval: 60 * 60 * 1000 * 2,
+        userHnrWarningCheckInterval_str: '2h'
       }
     },
 
@@ -189,22 +195,26 @@ module.exports = {
      * @openSignup:                   set whether open the signup, if true, the user can signup(register) by herself,
      *                                if you create a private web site, and only accept invite to join, please set it to false.
      * @signUpActiveTokenExpires:     sign up account active expires time setting.
+     * @signUpActiveTokenExpires_str: string desc of @signUpActiveTokenExpires
      * @allowSocialSignin:            meanTorrent can accept social account to signin, like google, twitter, facebook etc.
      *                                if you do not want them to login, please set it to false
      * @showMenuHeaderForGuest:       set whether show menu header for guest user(not sign in)
      * @showFooterCountInfoForGuest:  set whether show count info at home footer for guest user(not sign in)
      * @showDemoSignMessage:          if true, will show demo sign in message in sign in page, if your site is not demo site, please set it to false
      * @accountIdleForTime:           setting for how many time not login then change account status to idle
+     * @accountIdleForTime_str:       string desc of @accountIdleForTime
      * @activeIdleAccountScore:       user active idle account need score numbers
      */
     sign: {
       openSignup: true,
       signUpActiveTokenExpires: 60 * 60 * 1000 * 24,
+      signUpActiveTokenExpires_str: '24h',
       allowSocialSignin: false,
       showMenuHeaderForGuest: true,
       showFooterCountInfoForGuest: true,
       showDemoSignMessage: true,
       accountIdleForTime: 60 * 60 * 1000 * 24 * 30, //30 days
+      accountIdleForTime_str: '30d',
       activeIdleAccountScore: 50000
     },
 
@@ -213,12 +223,16 @@ module.exports = {
      *
      * password setting
      *
-     * @resetTokenExpires:    reset password token expires time, default 1 hour
-     * @resetTimeInterval:    reset password time interval, default 24 hours, means only can do once in 24 hours.
+     * @resetTokenExpires:      reset password token expires time, default 1 hour
+     * @resetTokenExpires_str:  string desc of @resetTokenExpires
+     * @resetTimeInterval:      reset password time interval, default 24 hours, means only can do once in 24 hours.
+     * @resetTimeInterval_str:  string desc of @resetTimeInterval
      */
     password: {
       resetTokenExpires: 60 * 60 * 1000 * 1,
-      resetTimeInterval: 60 * 60 * 1000 * 24
+      resetTokenExpires_str: '1h',
+      resetTimeInterval: 60 * 60 * 1000 * 24,
+      resetTimeInterval_str: '24h'
     },
 
     /**
@@ -233,11 +247,13 @@ module.exports = {
      * @expires:        if user exchange an invite send qualifications, then must send it out within the expiration time
      *                  if user received an invite mail, must signin(register) within the expiration time
      *                  if exceed the expiration time, the invite send qualifications will invalid and user also can not signin(register).
+     * @expires_str:    string desc of @expires
      */
     invite: {
       openInvite: true,
       scoreExchange: 10000,
-      expires: 60 * 60 * 1000 * 24
+      expires: 60 * 60 * 1000 * 24,
+      expires_str: '24h'
     },
 
     /**
@@ -248,11 +264,13 @@ module.exports = {
      * @scoreForAddRequest:       score numbers for add one request, system deduct automatic, this score is not rewards for final accepted user
      * @rewardsFormDefaultValue:  setting default rewards value of request post form input control
      * @requestExpires:           request expires time setting, default 7 days
+     * @requestExpires_str:       string desc of @requestExpires
      */
     requests: {
       scoreForAddRequest: 100,
       rewardsFormDefaultValue: 1000,
-      requestExpires: 60 * 60 * 1000 * 24 * 7
+      requestExpires: 60 * 60 * 1000 * 24 * 7,
+      requestExpires_str: '7d'
     },
 
     /**
@@ -293,7 +311,9 @@ module.exports = {
         seedUpDownload: {
           name: 'seedUpDownload',
           additionSize: 1024 * 1024 * 1024 * 10,  //10G
+          additionSize_str: '10G',
           perlSize: 1024 * 1024 * 1024,   //1G
+          perlSize_str: '1G',
 
           uploadValue: 2,
           uploadEnable: true,
@@ -307,6 +327,7 @@ module.exports = {
         seedTimed: {
           name: 'seedTimed',
           additionTime: 60 * 60 * 1000,
+          additionTime_str: '1h',
           timedValue: 1,
           vipRatio: 1.5,
 
@@ -337,6 +358,7 @@ module.exports = {
      *                @name:      type name
      *                @value:     type value
      * @checkUnreadInterval:      set check unread message interval, default 2 minutes
+     * @checkUnreadInterval_str:  string desc of @checkUnreadInterval
      * @serverMessageLimitCount:  limit server notice message count in messagebox
      *
      * NOTE: the first value 'user' cannot be deleted
@@ -353,6 +375,7 @@ module.exports = {
         ]
       },
       checkUnreadInterval: 60 * 1000 * 2,
+      checkUnreadInterval_str: '2m',
       serverMessageLimitCount: 100
     },
 
@@ -761,20 +784,24 @@ module.exports = {
      *
      * @condition:                          the condition of HnR warning, user must meet one of them before you receive the warning
      *        @seedTime:                    torrent seed time, unit of day, default to 7 days
+     *        @seedTime_str:                string desc of @seedTime
      *        @ratio:                       seed ratio, default to 1.5
      * @forbiddenDownloadMinWarningNumber:  when user get this number of warning, then can not to download any torrents, but can continue download the warning status torrent
      * @scoreToRemoveWarning:               if user has any warning, user can remove one warning by score number, if the user has not enough score, user still can remove these
      *                                      warning by donate the VIP class.
      * @checkWaringInterval:                set check warning number interval, default 2 minutes
+     * @checkWaringInterval_str:            string desc of @checkWaringInterval
      */
     hitAndRun: {
       condition: {
         seedTime: 60 * 60 * 1000 * 24 * 7,
+        seedTime_str: '7d',
         ratio: 1.5
       },
       forbiddenDownloadMinWarningNumber: 3,
       scoreToRemoveWarning: 10000,
-      checkWaringInterval: 60 * 1000 * 2
+      checkWaringInterval: 60 * 1000 * 2,
+      checkWaringInterval_str: '2m'
     },
 
     /**
@@ -864,7 +891,12 @@ module.exports = {
         {name: 'U3/D.8', desc: 'Upload * 3, Download * 0.8'},
         {name: 'U3/D1', desc: 'Upload * 3, Download * 1'}
       ],
-      expires: {size: 1024 * 1024 * 1024, time: 60 * 60 * 1000}
+      expires: {
+        size: 1024 * 1024 * 1024,
+        size_str: '1G',
+        time: 60 * 60 * 1000,
+        time_str: '1h',
+      }
     },
 
     /**
@@ -876,6 +908,7 @@ module.exports = {
      *      @value:         number value of @torrentSalesType, like 'U2/Free' etc, this value priority torrent @torrentSalesType
      *      @startAt:       sale start time
      *      @expires:       sale expires time
+     *      @expires_str:   string desc of @expires
      *      @noticeMsg:     notice translate string show at top of home
      *      @noticeShowAt:  notice begin time to show
      *      @timeFormats:   time string format
@@ -889,6 +922,7 @@ module.exports = {
         value: 'U3/FREE',
         startAt: '2018-01-29 00:00:00',
         expires: 60 * 60 * 1000 * 24 * 3,
+        expires_str: '3d',
         noticeMsg: 'SITE_NOTICE.GLOBAL_SALES_NOTICE',
         noticeShowAt: '2018-01-22 00:00:00',
         timeFormats: 'YYYY-MM-DD HH:mm:ss'
@@ -905,7 +939,9 @@ module.exports = {
      *
      * @incrementData:      examination requirements data settings
      *      @upload:        increment uploaded data size
+     *      @upload_str:    string desc of @upload
      *      @download:      increment downloaded data size
+     *      @download_str:  string desc of @download
      *      @score:         increment score number
      * @timeSet:            examination time settings
      *      @startAt:       examination start time
@@ -923,7 +959,9 @@ module.exports = {
     examination: {
       incrementData: {
         upload: 1024 * 1024 * 1024 * 500,   //500G
+        upload_str: '500G',
         download: 1024 * 1024 * 1024 * 300, //300G
+        download_str: '300G',
         score: 20000
       },
       timeSet: {
@@ -947,7 +985,8 @@ module.exports = {
      */
     chat: {
       ban: {
-        expires: 60 * 60 * 1000 * 1
+        expires: 60 * 60 * 1000 * 1,
+        expires_str: '1h'
       }
     },
 
