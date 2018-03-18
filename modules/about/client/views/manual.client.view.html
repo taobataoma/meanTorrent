@@ -22,7 +22,7 @@
                    ui-sref-active="active">{{'ABOUT.MENU_ABOUT_MANUAL_REQUEST_RULES' | translate}}</a>
             </div>
         </div>
-        <div class="col-sm-8 col-md-9 padding-bottom-30">
+        <div class="col-sm-8 col-md-9 padding-bottom-30 manual-line-height">
             <div ui-view></div>
             <div ng-init="vm.getTemplateFileContent('/modules/about/client/templates/rules-footer-'+vm.lang+'.md')">
                 <span class="templates-footer" ng-bind-html="vm.getTemplateMarkedContent()"></span>
