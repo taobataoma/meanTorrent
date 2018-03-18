@@ -2,12 +2,12 @@
 
 ---
 ##### More manual link
-* [User Detail Rules](/about/manual/userRules)
-* [Global Speech Rules](/about/manual/chatRules)
-* [Score Detail Rules](/about/manual/scoreRules)
-* [User Level Rules](/about/manual/userLevelRules)
-* [Uploader Detail Rules](/about/manual/uploaderRules)
-* [Invitations Detail Rules](/about/manual/invitationsRules)
-* [H&R Detail Rules](/about/manual/hnrRules)
-* [VIP Detail Rules](/about/manual/vipRules)
-* [Requests Rules](/about/manual/requestRules)
+* [User Rules Detail](/about/manual/userRules)
+* [Global Speech Rules Detail](/about/manual/chatRules)
+* [User Score Rules Detail](/about/manual/scoreRules)
+* [User Level Rules Detail](/about/manual/userLevelRules)
+* [Uploader Rules Detail](/about/manual/uploaderRules)
+* [Invitations Rules Detail](/about/manual/invitationsRules)
+* [H&R Rules Detail](/about/manual/hnrRules)
+* [VIP Rights Rules Detail](/about/manual/vipRules)
+* [Requests Rules Detail](/about/manual/requestRules)
