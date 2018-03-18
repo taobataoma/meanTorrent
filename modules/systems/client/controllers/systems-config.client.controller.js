@@ -241,7 +241,7 @@
 
         user: vm.user
       });
-      return marked(tmp, {sanitize: true});
+      return marked(tmp, {sanitize: false});
     };
 
     /**
