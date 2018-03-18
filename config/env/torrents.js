@@ -895,7 +895,7 @@ module.exports = {
         size: 1024 * 1024 * 1024,
         size_str: '1G',
         time: 60 * 60 * 1000,
-        time_str: '1h',
+        time_str: '1h'
       }
     },
 
