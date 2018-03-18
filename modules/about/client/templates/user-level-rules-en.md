@@ -1,6 +1,6 @@
 ### :orange_book: User Level Rules Detail - %(appConfig.name)s
 ---
-%(appConfig.name)s provide a `user level` system, use\`s level is calculation from user\`s score, different level corresponding to different access rights, the only way to improve your level is to increase your score as much as possible.
+**%(appConfig.name)s** provide a <mark>user level</mark> system, user\`s level is calculation from <mark>user score</mark>, different level corresponding to different access rights, the only way to improve your level is to increase your score as much as possible.
 
 &emsp;
 
