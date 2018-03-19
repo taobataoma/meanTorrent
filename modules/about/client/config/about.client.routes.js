@@ -27,6 +27,14 @@
           pageTitle: 'PAGETITLE.USER_RULES'
         }
       })
+      .state('about.manual.userAccountRules', {
+        url: '/userAccountRules',
+        templateUrl: '/modules/about/client/views/userAccountRules.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.USER_ACCOUNT_RULES'
+        }
+      })
       .state('about.manual.userLevelRules', {
         url: '/userLevelRules',
         templateUrl: '/modules/about/client/views/userLevelRules.client.view.html',
@@ -49,6 +57,22 @@
         data: {
           roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.UPLOADER_RULES'
+        }
+      })
+      .state('about.manual.downloadRules', {
+        url: '/downloadRules',
+        templateUrl: '/modules/about/client/views/downloadRules.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.DOWNLOAD_RULES'
+        }
+      })
+      .state('about.manual.salesRules', {
+        url: '/salesRules',
+        templateUrl: '/modules/about/client/views/salesRules.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.SALES_RULES'
         }
       })
       .state('about.manual.invitationsRules', {
@@ -75,12 +99,12 @@
           pageTitle: 'PAGETITLE.VIP_DETAIL_RULES'
         }
       })
-      .state('about.manual.chatRules', {
-        url: '/chatRules',
-        templateUrl: '/modules/about/client/views/chatRules.client.view.html',
+      .state('about.manual.forbidRules', {
+        url: '/forbidRules',
+        templateUrl: '/modules/about/client/views/forbidRules.client.view.html',
         data: {
           roles: ['user', 'oper', 'admin'],
-          pageTitle: 'PAGETITLE.CHAT_RULES'
+          pageTitle: 'PAGETITLE.FORBID_RULES'
         }
       })
       .state('about.manual.requestRules', {
@@ -89,6 +113,14 @@
         data: {
           roles: ['user', 'oper', 'admin'],
           pageTitle: 'PAGETITLE.REQUEST_RULES'
+        }
+      })
+      .state('about.manual.reportRules', {
+        url: '/reportRules',
+        templateUrl: '/modules/about/client/views/reportRules.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.REPORT_RULES'
         }
       })
       .state('about.black', {
