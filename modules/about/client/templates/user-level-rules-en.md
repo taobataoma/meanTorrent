@@ -4,7 +4,7 @@
 
 &emsp;
 
-#### How to calculate the level?
+#### :white_small_square: How to calculate the level?
 1. User score level calculation formula is: `sqrt(score number / %(scoreConfig.levelStep)s)`.
 1. Level`1` score is: `1 * 1 * %(scoreConfig.levelStep)s`.
 1. Level`2` score is: `2 * 2 * %(scoreConfig.levelStep)s`.
@@ -14,5 +14,5 @@
 
 &emsp;
 
-#### How to use the level?
+#### :white_small_square: How to use the level?
 _The management group is making relevant level rights and interests, please keep the attention, thank you!_

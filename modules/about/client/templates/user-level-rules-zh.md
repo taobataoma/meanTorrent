@@ -4,7 +4,7 @@
 
 &emsp;
 
-#### 如何计算用户等级?
+#### :white_small_square: 如何计算用户等级?
 1. 用户积分级别数学计算公式为: `sqrt(score number / %(scoreConfig.levelStep)s)`.
 1. 级别`1` 需要积分累计: `1 * 1 * %(scoreConfig.levelStep)s`.
 1. 级别`2` 需要积分累计: `2 * 2 * %(scoreConfig.levelStep)s`.
@@ -14,5 +14,5 @@
 
 &emsp;
 
-#### 如何使用用户等级?
+#### :white_small_square: 如何使用用户等级?
 _管理组正在制定相关的级别权益，请保持关注，谢谢！_

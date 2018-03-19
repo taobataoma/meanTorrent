@@ -123,6 +123,14 @@
           pageTitle: 'PAGETITLE.REPORT_RULES'
         }
       })
+      .state('about.manual.faq', {
+        url: '/faq',
+        templateUrl: '/modules/about/client/views/faq.client.view.html',
+        data: {
+          roles: ['user', 'oper', 'admin'],
+          pageTitle: 'PAGETITLE.MANUAL_FAQ'
+        }
+      })
       .state('about.black', {
         url: '/black',
         templateUrl: '/modules/about/client/views/black.client.view.html',
