@@ -55,10 +55,3 @@
 * 发布的资源字幕被删除，需要 `%(scoreConfig.action.uploadSubtitleBeDeleted.value)d` 积分。
 * 为种子资源点赞，需要 `%(scoreConfig.action.thumbsUpScoreOfTorrentFrom.value)d` 积分。
 * 为论坛主题或回复点赞，需要 `%(scoreConfig.action.thumbsUpScoreOfTopicFrom.value)d` 积分。
-
-&emsp;
-#### :white_small_square: 禁止的行为
-
-&emsp;
-
-#### :white_small_square: 违禁处罚

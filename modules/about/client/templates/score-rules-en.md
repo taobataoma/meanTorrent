@@ -57,11 +57,3 @@ For every seed, `%(scoreConfig.action.seedTimed.timedValue)d` scores per `%(scor
 * Uploaded resource subtitle was deleted to `%(scoreConfig.action.uploadSubtitleBeDeleted.value)d` scores.
 * Thumbs up for torrent resource to `%(scoreConfig.action.thumbsUpScoreOfTorrentFrom.value)d` scores.
 * Thumbs up for forum topic or reply to `%(scoreConfig.action.thumbsUpScoreOfTopicFrom.value)d` scores.
-
-&emsp;
-
-#### :white_small_square: Prohibited behavior
-
-&emsp;
-
-#### :white_small_square: Penalties for violation
