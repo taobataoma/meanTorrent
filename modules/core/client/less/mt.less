@@ -1280,18 +1280,31 @@ body {
     padding-left: 10px;
 }
 
-.navbar-nav {
-    li {
-        @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
-            a {
-                padding-left: 10px;
-                padding-right: 10px;
+.navbar-mt {
+    .navbar-brand {
+        padding-right: 5px;
+    }
+    .navbar-nav {
+        > li {
+            @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+                > a {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+            }
+            @media (min-width: @screen-md) and (max-width: @screen-md-max) {
+                > a {
+                    padding-left: 12px;
+                    padding-right: 12px;
+                }
             }
         }
-        @media (min-width: @screen-md) and (max-width: @screen-md-max) {
-            a {
-                padding-left: 12px;
-                padding-right: 12px;
+    }
+    .dropdown-menu {
+        > li {
+            > a {
+                padding-left: 10px;
+                padding-right: 15px;
             }
         }
     }
