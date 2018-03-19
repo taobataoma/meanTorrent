@@ -1,4 +1,4 @@
-### :orange_book: 用户积分细则详细说明 - %(appConfig.name)s
+### :orange_book: 用户积分细则 - %(appConfig.name)s
 ---
 **%(appConfig.name)s** 提供一个 <mark>用户积分</mark> 系统，用户有很多种获取积分的办法，而且积分也有非常大的用处。用户积分也是计算用户等级的基础，不同的用户等级对应不同的访问权限，[这里可以查看有关用户等级的细则详情](/about/manual/userLevelRules)。
 
@@ -33,16 +33,16 @@
   加成系数: %(scoreConfig.action.seedSeederAndLife.seederCoefficient).2f
   最多保种人数: %(scoreConfig.action.seedSeederAndLife.seederCount)d
   
-  如果只有 1 个保种用户: 加成系数为 6, [2 用户为 5.5], [3 用户为 5], [4 用户为 4.5], [5 用户为 4], [6 用户为 3.5], [7 用户为 3], [8 用户为], [9 用户为], [10 用户为 1.5], [超过 10 用户为 1, 相当于没有加成]。
+  如果只有 1 个保种用户: 加成系数为 6, [2 用户为 5.5], [3 用户为 5], [4 用户为 4.5], [5 用户为 4], [6 用户为 3.5], [7 用户为 3], [8 用户为 2.5], [9 用户为 2], [10 用户为 1.5], [超过 10 用户为 1, 相当于没有加成]。
 ```
 ```javascript
   种子生命加成:
   ===========
   加成系数: %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f
-  最大加成系数: %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).3f
+  最大加成系数: %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f
   
   加成基础系数为 1, 根据种子生命每天增加 %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f。
-  如果种子生命(发布时间)为 10 天，则加成系数为 1.05, [100 天是 1.5], [200 天是 2], 以此类推，但是最大加成系数为 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).3f。
+  如果种子生命(发布时间)为 10 天，则加成系数为 1.05, [100 天是 1.5], [200 天是 2.0], 以此类推，最大加成系数为 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f。
 ```
 &emsp;
 

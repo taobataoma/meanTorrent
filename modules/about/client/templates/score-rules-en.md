@@ -1,6 +1,6 @@
 ### :orange_book: User Score Rules Detail - %(appConfig.name)s
 
-**%(appConfig.name)s** provide a <mark>user level</mark> system, there are many ways for users to earn scores, and scores are also very useful. The user's scores are also the basis for calculating the user's level. Different user's levels correspond to different access rights. [Details of the user's level details can be viewed here](/about/manual/userLevelRules).
+**%(appConfig.name)s** provide a <mark>user level</mark> system, there are many ways for users to earn scores, and scores are also very useful. The user's scores are also the basis for calculating the user's level. Different user's levels correspond to different access rights. [user level rules detail can be viewed here](/about/manual/userLevelRules).
 
 &emsp;
 
@@ -12,7 +12,7 @@
 * The uploaded resources receive every thumb up to get `%(scoreConfig.action.thumbsUpScoreOfTorrentTo.value)d` scores.
 * The posted forum topic or reply receive every thumbs up to get `%(scoreConfig.action.thumbsUpScoreOfTopicTo.value)d` scores.
 * Response to the user's request and accepted by the requester, to get the requester's reward points.
-* When the client software announce the upload or download amount, it will get the corresponding scores. and the bigger the torrent size, <mark>the more the scores will be, Torrent size less than %(scoreConfig.action.seedUpDownload.additionSize_str)s no extra addition</mark>.
+* When the client software announce the upload or download amount, it will get the corresponding scores. <mark>and the bigger the torrent size, the more the scores will be, Torrent size less than %(scoreConfig.action.seedUpDownload.additionSize_str)s no extra addition</mark>.
   <span class="text-danger">**NOTE: The system calculates the points based on the actual upload and download amount.**</span>
 ```javascript
   Torrent size addition ratio: sqrt(torrent_size / %(scoreConfig.action.seedUpDownload.additionSize_str)s).
@@ -40,10 +40,10 @@ For every seed, `%(scoreConfig.action.seedTimed.timedValue)d` scores per `%(scor
   With seed life:
   ===============
   Coefficient is: %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f
-  Max ratio is: %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).3f
+  Max ratio is: %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f
   
   The basic ratio is 1, increase %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f every day.
-  For 10 days life ratio is 1.05, [100 days is 1.5], [200 days is 2] etc, but the max ratio is %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).3f.
+  For 10 days life ratio is 1.05, [100 days is 1.5], [200 days is 2.0] etc, the max ratio is %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f.
 ```
 
 &emsp;
