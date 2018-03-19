@@ -13,7 +13,7 @@
       title: 'MENU_ADMIN_MESSAGES',
       state: 'admin.messages',
       faIcon: 'fa-podcast',
-      faClass: 'fa-class-admin-messages',
+      faClass: 'text-mt',
       position: 10,
       divider: true
     });

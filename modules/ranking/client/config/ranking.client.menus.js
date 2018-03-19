@@ -12,7 +12,7 @@
       title: 'MENU_ABOUT_RANKING',
       state: 'ranking',
       faIcon: 'fa-user-circle-o',
-      faClass: 'fa-class-user-ranking',
+      faClass: 'text-mt',
       position: 2,
       divider: true
     });

@@ -13,7 +13,7 @@
       title: 'MENU_ADMIN_TRACE',
       state: 'admin.traces',
       faIcon: 'fa-table',
-      faClass: 'text-warning',
+      faClass: 'text-mt',
       position: 20
     });
   }

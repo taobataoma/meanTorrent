@@ -13,7 +13,7 @@
       title: 'MENU_TORRENTS_ADMIN',
       state: 'admin.torrents',
       faIcon: 'fa-indent',
-      faClass: 'fa-class-admin-torrents',
+      faClass: 'text-mt',
       position: 1
     });
     menuService.addSubMenuItem('topbar', 'admin', {
@@ -21,7 +21,7 @@
       state: 'admin.uploader',
       roles: ['admin'],
       faIcon: 'fa-cloud-upload',
-      faClass: 'fa-class-admin-upload',
+      faClass: 'text-mt',
       position: 2
     });
 

@@ -14,7 +14,7 @@
       state: 'admin.systems.env',
       roles: ['admin'],
       faIcon: 'fa-cog',
-      faClass: 'text-danger',
+      faClass: 'text-mt',
       position: 1000,
       divider: true
     });

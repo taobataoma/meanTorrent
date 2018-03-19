@@ -20,7 +20,7 @@
       title: 'MENU_ABOUT_MANUAL',
       state: 'about.manual.userRules',
       faIcon: 'fa-question-circle',
-      faClass: 'fa-class-user-manual',
+      faClass: 'text-mt',
       position: 1
     });
     // 2 is item of Users Ranking configure in module ranking
@@ -33,14 +33,14 @@
       title: 'MENU_ABOUT_OPERLIST',
       state: 'about.operlist',
       faIcon: 'fa-user-secret',
-      faClass: 'fa-class-operlist',
+      faClass: 'text-mt',
       position: 4
     });
     menuService.addSubMenuItem('topbar', 'about', {
       title: 'MENU_ABOUT_BLACKLIST',
       state: 'about.black',
       faIcon: 'fa-ban',
-      faClass: 'text-danger',
+      faClass: 'text-mt',
       position: 5,
       divider: true
     });

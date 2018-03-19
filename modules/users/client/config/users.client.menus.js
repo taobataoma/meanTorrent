@@ -37,7 +37,7 @@
       title: 'MENU_ACCOUNT_STATUS',
       state: 'status.account',
       faIcon: 'fa-eye',
-      faClass: 'text-success'
+      faClass: 'text-mt'
     });
 
     menuService.addSubMenuItem('mt-user', 'score', {

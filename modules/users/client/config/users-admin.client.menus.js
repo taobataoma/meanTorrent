@@ -13,7 +13,7 @@
       title: 'MENU_USERS_ADMIN',
       state: 'admin.users',
       faIcon: 'fa-users',
-      faClass: 'fa-class-admin-users'
+      faClass: 'text-mt'
     });
   }
 }());
