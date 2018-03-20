@@ -11,6 +11,7 @@ var path = require('path'),
   Torrent = mongoose.model('Torrent'),
   Peer = mongoose.model('Peer'),
   Complete = mongoose.model('Complete'),
+  Finished = mongoose.model('Finished'),
   moment = require('moment'),
   async = require('async'),
   sprintf = require('sprintf-js').sprintf,
@@ -725,6 +726,14 @@ exports.announce = function (req, res) {
     function (done) {
       if (event(query.event) === EVENT_COMPLETED) {
         mtDebug.debugGreen('---------------EVENT_COMPLETED----------------', 'ANNOUNCE_REQUEST');
+        //write completed torrent data into finished
+        var finished = new Finished();
+        finished.user = req.passkeyuser;
+        finished.torrent = req.torrent;
+        finished.user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        finished.user_agent = req.get('User-Agent');
+        finished.save();
+
         doCompleteEvent(function () {
           done(null);
         });
