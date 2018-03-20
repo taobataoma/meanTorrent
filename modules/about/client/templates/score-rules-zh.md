@@ -47,7 +47,7 @@
 &emsp;
 
 #### :white_small_square: 积分扣除规则
-* 重新激活长时间未使用的用户帐户，帐户状态由 <mark>非激活</mark> 变为 <mark>正常</mark>, 扣除 `%(signConfig.activeIdleAccountScore)d` 积分。
+* 重新激活长时间未使用的用户帐户，帐户状态由 <mark>空闲</mark> 变为 <mark>正常</mark>, 扣除 `%(signConfig.activeIdleAccountScore)d` 积分。
 * 兑换一张邀请函，需要扣除 `%(inviteConfig.scoreExchange)d` 积分。
 * 用户每发布一条请求，系统会自动回收 `%(requestsConfig.scoreForAddRequest)d` 积分，如果请求被回应而且被请求者采纳，系统会自动扣除请求者悬赏的积分。
 * 移除一条 H&R 警告，需要扣除 `%(hnrConfig.scoreToRemoveWarning)d` 积分。
