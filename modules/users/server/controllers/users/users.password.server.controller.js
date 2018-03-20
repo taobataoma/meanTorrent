@@ -5,6 +5,7 @@
  */
 var path = require('path'),
   config = require(path.resolve('./config/config')),
+  common = require(path.resolve('./config/lib/common')),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
@@ -77,7 +78,9 @@ exports.forgot = function (req, res, next) {
       }
     },
     function (token, user, done) {
-      res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
+      var lang = common.getRequestLanguage(req);
+
+      res.render(path.resolve('modules/users/server/templates/reset-password-email-' + lang), {
         name: user.displayName,
         appName: config.app.title,
         url: appConfig.domain + '/api/auth/reset/' + token
@@ -213,7 +216,9 @@ exports.reset = function (req, res, next) {
       });
     },
     function (user, done) {
-      res.render('modules/users/server/templates/reset-password-confirm-email', {
+      var lang = common.getRequestLanguage(req);
+
+      res.render(path.resolve('modules/users/server/templates/reset-password-confirm-email-' + lang), {
         name: user.displayName,
         appName: config.app.title
       }, function (err, emailHTML) {

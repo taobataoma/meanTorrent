@@ -55,8 +55,8 @@ module.exports = {
      *
      */
     language: [
-      {name: 'en', index: 0, class: 'flag-icon-gb', title: 'English'},
-      {name: 'zh', index: 1, class: 'flag-icon-cn', title: '中文'}
+      {name: 'zh', index: 0, class: 'flag-icon-cn', title: '中文'},
+      {name: 'en', index: 1, class: 'flag-icon-gb', title: 'English'}
     ],
 
     /**

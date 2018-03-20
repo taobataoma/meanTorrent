@@ -5,6 +5,7 @@
  */
 var path = require('path'),
   config = require(path.resolve('./config/config')),
+  common = require(path.resolve('./config/lib/common')),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   mongoose = require('mongoose'),
   passport = require('passport'),
@@ -68,7 +69,8 @@ exports.signup = function (req, res) {
       user.salt = undefined;
 
       /* send an account active mail */
-      res.render(path.resolve('modules/users/server/templates/sign-up-active-email'), {
+      var lang = common.getRequestLanguage(req);
+      res.render(path.resolve('modules/users/server/templates/sign-up-active-email-' + lang), {
         name: user.displayName,
         appName: config.app.title,
         hours: mtConfig.sign.signUpActiveTokenExpires / (60 * 60 * 1000),

@@ -6,6 +6,7 @@ var path = require('path'),
 
 var querystring = require('querystring');
 var examinationConfig = config.meanTorrentConfig.examination;
+var languageConfig = config.meanTorrentConfig.language;
 
 /**
  * binaryToHex
@@ -68,4 +69,16 @@ module.exports.examinationIsValid = function (user) {
   } else {
     return false;
   }
+};
+
+/**
+ * getRequestLanguage
+ * @param req
+ */
+module.exports.getRequestLanguage = function (req) {
+  var mtLang = languageConfig.map(function (l) {
+    return l.name;
+  });
+  var lang = req.acceptsLanguages(mtLang);
+  return lang || 'en';
 };
