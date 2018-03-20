@@ -79,15 +79,6 @@ function getSafeMeanTorrentConfig(cfg) {
   //ignore backup settings
   newCfg.backup = undefined;
 
-  //ignore ircAnnounce settings
-  newCfg.ircAnnounce = undefined;
-
-  //ignore password settings
-  newCfg.password = undefined;
-
-  //ignore trace settings
-  newCfg.trace = undefined;
-
   //ignore tmdbConfig.key settings
   newCfg.tmdbConfig.key = undefined;
 

@@ -23,6 +23,12 @@
     vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+    vm.salesTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
+    vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
+    vm.ircAnnounceConfig = MeanTorrentConfig.meanTorrentConfig.ircAnnounce;
+    vm.passwordConfig = MeanTorrentConfig.meanTorrentConfig.password;
+    vm.examinationConfig = MeanTorrentConfig.meanTorrentConfig.examination;
+    vm.chatConfig = MeanTorrentConfig.meanTorrentConfig.chat;
 
     vm.authentication = Authentication;
     vm.getPopoverMsg = PasswordValidator.getPopoverMsg;
@@ -78,6 +84,12 @@
         requestsConfig: vm.requestsConfig,
         hnrConfig: vm.hnrConfig,
         tmdbConfig: vm.tmdbConfig,
+        salesTypeConfig: vm.salesTypeConfig,
+        salesGlobalConfig: vm.salesGlobalConfig,
+        ircAnnounceConfig: vm.ircAnnounceConfig,
+        passwordConfig: vm.passwordConfig,
+        examinationConfig: vm.examinationConfig,
+        chatConfig: vm.chatConfig,
 
         user: vm.authentication.user
       });
