@@ -72,6 +72,7 @@ module.exports = {
      * @announcePrefix:                       prefix of torrent file name, is will auto add when user download the torrent files
      * @admin:                                site admin mail address
      * @clientBlackListUrl:                   forbidden download client list url, user can view this list to check forbidden client software
+     * @seedingInFinishedCheck:               settings to check whether can seeding an un-download finished torrent
      * @downloadCheck:                        announce download(leech) settings
      *      @ratio:                           if less than this value, can not download(leech)
      *      @checkAfterSignupDays:            all users download check start {value} days after signup, so the newest register user has {value} days to upgrade his ratio value,
