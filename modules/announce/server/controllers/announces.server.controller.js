@@ -491,9 +491,16 @@ exports.announce = function (req, res) {
           var u = Math.round(curru * udr.ur);
           var d = Math.round(currd * udr.dr);
 
+          //check if is vip
           if (req.passkeyuser.isVip) {
             u = u * globalSalesConfig.vip.value.Ur;
             d = d * globalSalesConfig.vip.value.Dr;
+          }
+
+          //check if is torrent uploader
+          if (req.passkeyuser._id.equals(req.torrent.user._id)) {
+            u = u * globalSalesConfig.uploader.value.Ur;
+            d = d * globalSalesConfig.uploader.value.Dr;
           }
 
           //write user uploaded and downloaded
@@ -539,9 +546,11 @@ exports.announce = function (req, res) {
             write_downloaded: d,
 
             isVip: req.passkeyuser.isVip,
+            isUploader: req.passkeyuser._id.equals(req.torrent.user._id),
             torrentSalesValue: req.torrent.torrent_sale_status,
             globalSalesValue: isGlobalSaleValid ? globalSalesConfig.global.value : undefined,
             vipSalesValue: globalSalesConfig.vip.value,
+            uploaderSalesValue: globalSalesConfig.uploader.value,
 
             agent: req.get('User-Agent'),
             ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
@@ -732,7 +741,16 @@ exports.announce = function (req, res) {
         finished.torrent = req.torrent;
         finished.user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         finished.user_agent = req.get('User-Agent');
+        finished.user_port = query.port;
         finished.save();
+
+        traceLogCreate(req, traceConfig.action.userAnnounceFinished, {
+          user: req.passkeyuser._id,
+          torrent: req.torrent._id,
+          agent: req.get('User-Agent'),
+          ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+          port: query.port
+        });
 
         doCompleteEvent(function () {
           done(null);

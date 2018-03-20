@@ -30,6 +30,10 @@ var FinishedSchema = new Schema({
     default: '',
     trim: true
   },
+  user_port: {
+    type: Number,
+    default: 0
+  },
   createdAt: {
     type: Date,
     default: Date.now

@@ -510,6 +510,7 @@ module.exports = {
         adminSendOfficialInvitation: {name: 'adminSendOfficialInvitation', enable: true},
 
         userAnnounceData: {name: 'userAnnounceData', enable: true},
+        userAnnounceFinished: {name: 'userAnnounceFinished', enable: true},
         userScoreChange: {name: 'userScoreChange', enable: true},
 
         forumDeleteTopic: {name: 'forumDeleteTopic', enable: true},
@@ -916,6 +917,10 @@ module.exports = {
      *      @value:         upload and download ratio
      *          @Ur:        upload ratio, like 1.5 is upload scaling plus 50%
      *          @Dr:        download ratio
+     * @uploader:           sale settings for torrent uploader
+     *      @value:         upload and download ratio
+     *          @Ur:        upload ratio
+     *          @Dr:        download ratio
      */
     torrentGlobalSales: {
       global: {
@@ -929,6 +934,9 @@ module.exports = {
       },
       vip: {
         value: {Ur: 1.5, Dr: 0}
+      },
+      uploader: {
+        value: {Ur: 1.5, Dr: 1}
       }
     },
 
