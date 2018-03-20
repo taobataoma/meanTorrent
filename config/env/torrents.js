@@ -98,6 +98,7 @@ module.exports = {
       sourceInfo: '{' + commonEnvConfig.variable.site.site_name + '}' + ' Present by meanTorrent.',
       admin: commonEnvConfig.variable.site.site_admin_mail,
       clientBlackListUrl: '/about/black',
+      seedingInFinishedCheck: true,
       downloadCheck: {
         ratio: 1,
         checkAfterSignupDays: 30

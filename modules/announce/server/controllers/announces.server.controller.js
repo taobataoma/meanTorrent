@@ -52,6 +52,7 @@ const FAILURE_REASONS = {
   173: 'this torrent status is not reviewed by administrators, try again later',
   174: 'this torrent is only for VIP members',
   175: 'your account status is idle',
+  176: 'you can not seeding an un-download finished torrent',
 
   180: 'You can not open more than 1 downloading processes on the same torrent',
   181: 'You can not open more than 3 seeding processes on the same torrent',
@@ -309,6 +310,35 @@ exports.announce = function (req, res) {
     },
 
     /*---------------------------------------------------------------
+     check whether can seeding
+     if torrent is not exist in user`s finished list
+     ---------------------------------------------------------------*/
+    function (done) {
+      if (req.seeder && event(query.event) !== EVENT_COMPLETED) {
+        if (announceConfig.seedingInFinishedCheck) {
+          if (!req.passkeyuser._id.equals(req.torrent.user._id)) {
+            Finished.findOne({
+              user: req.passkeyuser._id,
+              torrent: req.torrent._id
+            }).exec(function (err, fini) {
+              if (!fini) {
+                done(176);
+              } else {
+                done(null);
+              }
+            });
+          } else {
+            done(null);
+          }
+        } else {
+          done(null);
+        }
+      } else {
+        done(null);
+      }
+    },
+
+    /*---------------------------------------------------------------
      find complete torrent data
      if not find and torrent is h&r and user isn`t vip, then create complete record
      ---------------------------------------------------------------*/
@@ -362,10 +392,11 @@ exports.announce = function (req, res) {
           if (removed.n > 0) {
             mtDebug.debugRed('Removed ' + removed + ' peers not in torrent._peers: ' + req.torrent._id, 'ANNOUNCE_REQUEST');
           }
+          done(null);
         });
+      } else {
+        done(null);
       }
-
-      done(null);
     },
 
     /*---------------------------------------------------------------
