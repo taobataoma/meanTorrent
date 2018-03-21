@@ -216,7 +216,7 @@ exports.update = function (req, res) {
             var mailOptions = {
               to: req.query.to_email,
               from: config.mailer.from,
-              subject: config.app.title + ' invitation',
+              subject: config.app.title + ' - Invitation is here!',
               html: emailHTML
             };
             smtpTransport.sendMail(mailOptions, function (err) {
@@ -302,20 +302,6 @@ exports.sendOfficial = function (req, res) {
           invitation.expiresat = Date.now() + config.meanTorrentConfig.invite.expires;
           invitation.isOfficial = true;
 
-          invitation.save(function (err) {
-            if (err) {
-              return res.status(422).send({
-                message: errorHandler.getErrorMessage(err)
-              });
-            } else {
-              //create trace log
-              traceLogCreate(req, traceConfig.action.adminSendOfficialInvitation, {
-                to: req.body.email,
-                token: invitation.token
-              });
-            }
-          });
-
           //send invitation mail
           res.render(path.resolve('modules/invitations/server/templates/invite-sign-up-email'), {
             to_email: req.body.email,
@@ -330,14 +316,29 @@ exports.sendOfficial = function (req, res) {
               var mailOptions = {
                 to: req.body.email,
                 from: config.mailer.from,
-                subject: config.app.title + ' invitation',
+                subject: config.app.title + ' - Official invitation is here!',
                 html: emailHTML
               };
               smtpTransport.sendMail(mailOptions, function (err) {
                 if (err) {
                   return res.status(422).send({message: 'INVITE_MAIL_SEND_FAILED'});
                 } else {
-                  res.json(invitation);
+                  //save invitation data
+                  invitation.save(function (err) {
+                    if (err) {
+                      return res.status(422).send({
+                        message: errorHandler.getErrorMessage(err)
+                      });
+                    } else {
+                      res.json(invitation);
+
+                      //create trace log
+                      traceLogCreate(req, traceConfig.action.adminSendOfficialInvitation, {
+                        to: req.body.email,
+                        token: invitation.token
+                      });
+                    }
+                  });
                 }
               });
             }
