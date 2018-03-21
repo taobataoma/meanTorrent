@@ -75,7 +75,7 @@
           mtDebug.info(res);
           NotifycationService.showSuccessNotify('ADMIN_INVITATION_SUCCESSFULLY');
         }, function (res) {
-          NotifycationService.showErrorNotify(res.data.message, 'EXCHANGE_INVITATION_ERROR');
+          NotifycationService.showErrorNotify(res.data.message, 'ADMIN_INVITATION_ERROR');
         });
       }
     };

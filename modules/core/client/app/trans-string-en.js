@@ -1498,6 +1498,8 @@
       USER_IS_NOT_AUTHORIZED: 'User is not authorized',
       SENDING_ACTIVE_MAIL_SUCCESSFULLY: 'Welcome join <strong>{{site}}</strong>, We`ve sent you an email to <strong>{{mail}}</strong>, please check you mail box and click the active url to verify you mail address and active you account in <strong>{{hours}}</strong> hours, thanks!',
       ACTIVE_MAIL_RENDER_ERROR: 'The authentication mail render error',
+      INVITE_MAIL_RENDER_FAILED: 'The invitation mail render error',
+      DELETE_EXPIRED_OFFICIAL_INVITATION_OK: 'Delete all expired official invitation successfully',
       SENDING_ACTIVE_MAIL_FAILED: 'The authentication mail send failed',
       SCORE_NOT_ENOUGH: 'you don`t have enough score for this operation',
       ALREADY_THUMBS_UP: 'you already thumbs up it',
@@ -1516,10 +1518,13 @@
       CAN_NOT_DOWNLOAD_BANNED: 'Download failed, you are banned from server',
       CAN_NOT_DOWNLOAD_IDLE: 'Download failed, you are idle for long time, before download any things, you should active you account again in profile menu "account status"!',
       ALREADY_FOLLOWING: 'You have already following {{name}}',
-      INVALID_OBJECTID: 'Invalid object id',
+      INVALID_OBJECTID: 'Invalid object id (SERVER)',
       REQUEST_STATUS_FINISHED: 'Status error! Request already finished.',
       REQUEST_STATUS_EXPIRED: 'Status error! Request already expired.',
-      TORRENT_STATUS_ERROR: 'Status error! Torrent status is not reviewed'
+      TORRENT_STATUS_ERROR: 'Status error! Torrent status is not reviewed',
+      EMAIL_ALREADY_REGISTERED: 'This mail address has been used by other user',
+      EMAIL_ALREADY_INVITED: 'This mail address has been invited',
+      INVITE_MAIL_SEND_FAILED: 'Invitation mail send failed (SERVER)'
     },
 
     //server message string, content string support markdown and emoji

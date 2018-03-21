@@ -198,9 +198,9 @@ exports.update = function (req, res) {
       return res.status(422).send(err);
     } else {
       if (results[0] > 0) {
-        return res.status(422).send({message: 'EMAIL_ALREADY_REGISTERED'});
+        return res.status(422).send({message: 'SERVER.EMAIL_ALREADY_REGISTERED'});
       } else if (results[1] > 0) {
-        return res.status(422).send({message: 'EMAIL_ALREADY_EXIST'});
+        return res.status(422).send({message: 'SERVER.EMAIL_ALREADY_INVITED'});
       } else {
         //send invitation mail
         res.render(path.resolve('modules/invitations/server/templates/invite-sign-up-email'), {
@@ -211,7 +211,7 @@ exports.update = function (req, res) {
           hours: config.meanTorrentConfig.invite.expires / (60 * 60 * 1000)
         }, function (err, emailHTML) {
           if (err) {
-            return res.status(422).send({message: 'INVITE_MAIL_RENDER_FAILED'});
+            return res.status(422).send({message: 'SERVER.INVITE_MAIL_RENDER_FAILED'});
           } else {
             var mailOptions = {
               to: req.query.to_email,
@@ -221,7 +221,7 @@ exports.update = function (req, res) {
             };
             smtpTransport.sendMail(mailOptions, function (err) {
               if (err) {
-                return res.status(422).send({message: 'INVITE_MAIL_SEND_FAILED'});
+                return res.status(422).send({message: 'SERVER.INVITE_MAIL_SEND_FAILED'});
               } else {
                 invitation.to_email = req.query.to_email;
                 invitation.status = 1;
@@ -288,9 +288,9 @@ exports.sendOfficial = function (req, res) {
         return res.status(422).send(err);
       } else {
         if (results[0] > 0) {
-          return res.status(422).send({message: 'EMAIL_ALREADY_REGISTERED'});
+          return res.status(422).send({message: 'SERVER.EMAIL_ALREADY_REGISTERED'});
         } else if (results[1] > 0) {
-          return res.status(422).send({message: 'EMAIL_ALREADY_EXIST'});
+          return res.status(422).send({message: 'SERVER.EMAIL_ALREADY_INVITED'});
         } else {
           //write invitation data
           var invitation = new Invitation();
@@ -311,7 +311,7 @@ exports.sendOfficial = function (req, res) {
             hours: config.meanTorrentConfig.invite.expires / (60 * 60 * 1000)
           }, function (err, emailHTML) {
             if (err) {
-              return res.status(422).send({message: 'INVITE_MAIL_RENDER_FAILED'});
+              return res.status(422).send({message: 'SERVER.INVITE_MAIL_RENDER_FAILED'});
             } else {
               var mailOptions = {
                 to: req.body.email,
@@ -321,7 +321,7 @@ exports.sendOfficial = function (req, res) {
               };
               smtpTransport.sendMail(mailOptions, function (err) {
                 if (err) {
-                  return res.status(422).send({message: 'INVITE_MAIL_SEND_FAILED'});
+                  return res.status(422).send({message: 'SERVER.INVITE_MAIL_SEND_FAILED'});
                 } else {
                   //save invitation data
                   invitation.save(function (err) {

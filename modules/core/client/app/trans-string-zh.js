@@ -1498,6 +1498,8 @@
       USER_IS_NOT_AUTHORIZED: '用户身份验证未通过',
       SENDING_ACTIVE_MAIL_SUCCESSFULLY: '欢迎加入 <strong>{{site}}</strong>, 我们已向你的邮箱 <strong>{{mail}}</strong> 发送了一封电子邮件, 请在 <strong>{{hours}}</strong> 小时内检查您的邮箱并点击邮件中的链接地址来验证您的邮箱地址并激您的帐号，谢谢！',
       ACTIVE_MAIL_RENDER_ERROR: '验证与激活邮件渲染失败',
+      INVITE_MAIL_RENDER_FAILED: '邀请邮件渲染失败',
+      DELETE_EXPIRED_OFFICIAL_INVITATION_OK: '删除所有已过期的官方邀请成功',
       SENDING_ACTIVE_MAIL_FAILED: '验证与激活邮件发送失败',
       SCORE_NOT_ENOUGH: '您没有足够的积分进行此操作',
       ALREADY_THUMBS_UP: '您已经赞过啦~',
@@ -1516,10 +1518,13 @@
       CAN_NOT_DOWNLOAD_BANNED: '下载失败, 您被服务器禁止(banned)',
       CAN_NOT_DOWNLOAD_IDLE: '下载失败，您闲置了太长时间，在您下载任何种子前, 您必须进入帐户状态页再次激活您的帐户!',
       ALREADY_FOLLOWING: '您已经关注过 {{name}} 了',
-      INVALID_OBJECTID: '无效的数据记录ID',
+      INVALID_OBJECTID: '无效的数据记录ID (SERVER)',
       REQUEST_STATUS_FINISHED: '状态错误! 求种请求已完成.',
       REQUEST_STATUS_EXPIRED: '状态错误! 求种请求已过期.',
-      TORRENT_STATUS_ERROR: '状态错误! 种子状态为未审核'
+      TORRENT_STATUS_ERROR: '状态错误! 种子状态为未审核',
+      EMAIL_ALREADY_REGISTERED: '这个邮件地址已被其它用户注册使用了',
+      EMAIL_ALREADY_INVITED: '这个邮件地址已经被邀请过了',
+      INVITE_MAIL_SEND_FAILED: '邀请邮件发送失败(SERVER)'
     },
 
     //server message string, content string support markdown and emoji
