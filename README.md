@@ -130,6 +130,11 @@ and [AngularJS](http://angularjs.org/) based applications.
 7. Complete emoji support by enter colon.
 
 ## TODO
+- Fetch service email box message into administrator group message box of site, oper and admin can select any item to handling.
+- Write user`s detail data of upload download and score into log db.
+- Change curve with upload download and score of user`s account.  
+- Add configure item for whether ban user with his inviter.
+- Add ban reason.
 - Poll type topics support in forum.
 - More score get methods.
 - torrent more images from [TMDB](https://www.themoviedb.org)
