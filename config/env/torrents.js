@@ -26,6 +26,7 @@ module.exports = {
     app: {
       name: commonEnvConfig.variable.site.site_name,
       domain: commonEnvConfig.variable.site.site_domain,
+      mailTicketService: true,
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: commonEnvConfig.variable.settings.console_debug_info || true

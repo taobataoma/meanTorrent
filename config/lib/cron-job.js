@@ -67,7 +67,10 @@ module.exports = function (app) {
 
   cronJobs.push(removeGhostPeers());
   cronJobs.push(countUsersHnrWarning());
-  cronJobs.push(listenServiceEmail());
+
+  if (appConfig.mailTicketService) {
+    cronJobs.push(listenServiceEmail());
+  }
 
   return cronJobs;
 };
