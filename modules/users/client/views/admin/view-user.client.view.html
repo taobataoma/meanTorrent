@@ -146,6 +146,12 @@
                 <dd class="h-line">{{ vm.user.refreshat | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
                 <div ng-hide="!vm.authentication.user.isAdmin && vm.user.isAdmin">
+                    <dt class="h-line">{{ 'STATUS_FIELD.CURR_SIGNED_IP' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.curr_signed_ip }}</dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.CURR_LEECHED_IP' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.curr_leeched_ip }}</dd>
+
                     <dt class="h-line">{{ 'STATUS_FIELD.SIGNED_IP' | translate}}：</dt>
                     <dd class="h-line">
                         <div class="list-all-ips">

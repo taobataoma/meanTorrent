@@ -217,6 +217,8 @@ var UserSchema = new Schema({
   },
   signed_ip: [String],
   leeched_ip: [String],
+  curr_signed_ip: String,
+  curr_leeched_ip: String,
   client_agent: [String],
   invited_by: {
     type: Schema.Types.ObjectId,
@@ -381,6 +383,7 @@ UserSchema.methods.updateSignedTime = function () {
  */
 UserSchema.methods.addSignedIp = function (ip) {
   this.update({
+    curr_signed_ip: ip,
     $addToSet: {signed_ip: ip}
   }).exec();
 };
@@ -391,6 +394,7 @@ UserSchema.methods.addSignedIp = function (ip) {
  */
 UserSchema.methods.addLeechedIp = function (ip) {
   this.update({
+    curr_leeched_ip: ip,
     $addToSet: {leeched_ip: ip}
   }).exec();
 };

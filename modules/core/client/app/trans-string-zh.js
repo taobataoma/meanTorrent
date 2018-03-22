@@ -885,6 +885,8 @@
       LATEST_REFRESH_TIME: '最近一次刷新时间',
       SIGNED_IP: '登录过网站的IP列表',
       LEECHED_IP: '下载过的IP列表',
+      CURR_SIGNED_IP: '最近一次登录网站的IP',
+      CURR_LEECHED_IP: '最近一次下载IP',
       BT_CLIENT: '下载过的BT客户端'
     },
     TORRENT_TYPE_LABEL: {
