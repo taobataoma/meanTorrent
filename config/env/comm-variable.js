@@ -25,6 +25,7 @@ module.exports = {
      * settings of system
      */
     settings: {
+      mailTicketService: false,
       console_debug_info: true
     },
 

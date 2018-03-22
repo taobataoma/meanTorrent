@@ -18,6 +18,7 @@ module.exports = {
      * NOTE: you can change these value at anytime if you understand it
      *
      * @domain:                 site domain
+     * @mailTicketService:      settings mailTicketService status, true is enable, false is disable
      * @showDemoWarningPopup:   if is demo site, show warning popup whene home is opened for the first time.
      * @cronTimeZone:           timezone of cron
      * @showDebugLog:           if true, will console.log all debug info at server side and client side. when your site is prod env, please change this
@@ -26,7 +27,7 @@ module.exports = {
     app: {
       name: commonEnvConfig.variable.site.site_name,
       domain: commonEnvConfig.variable.site.site_domain,
-      mailTicketService: true,
+      mailTicketService: commonEnvConfig.variable.settings.mailTicketService || false,
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: commonEnvConfig.variable.settings.console_debug_info || true
