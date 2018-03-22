@@ -10,13 +10,16 @@ var path = require('path'),
   User = mongoose.model('User'),
   Peer = mongoose.model('Peer'),
   Complete = mongoose.model('Complete'),
+  MailTicket = mongoose.model('MailTicket'),
   backup = require('mongodb-backup');
 
+var mtDebug = require(path.resolve('./config/lib/debug'));
 var commonEnvConfig = require(path.resolve('./config/env/comm-variable'));
 var appConfig = config.meanTorrentConfig.app;
 var backupConfig = config.meanTorrentConfig.backup;
 var announceConfig = config.meanTorrentConfig.announce;
 var inbox = require('inbox');
+var simpleParser = require('mailparser').simpleParser;
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -64,7 +67,7 @@ module.exports = function (app) {
 
   cronJobs.push(removeGhostPeers());
   cronJobs.push(countUsersHnrWarning());
-  // cronJobs.push(listenServiceEmail());
+  cronJobs.push(listenServiceEmail());
 
   return cronJobs;
 };
@@ -213,8 +216,8 @@ function countUsersHnrWarning() {
 function listenServiceEmail() {
   var listenServiceEmailJob = new CronJob({
     //cronTime: '00 00 1 * * *',
-    cronTime: '*/10 * * * * *',
-    //cronTime: '00 00 * * * *',
+    // cronTime: '*/10 * * * * *',
+    cronTime: '00 00 * * * *',
     onTick: function () {
       // console.log(chalk.green('listenServiceEmail: process!'));
       // console.log(chalk.green(listenServiceEmailJob.running));
@@ -234,13 +237,13 @@ function listenServiceEmail() {
         client.on('connect', function () {
           console.log(chalk.green('CONNECT to ' + commonEnvConfig.variable.mailer.options.auth.user + ' successfully!'));
           listenServiceEmailJob.listeningServiceEmail = true;
-          client.openMailbox('INBOX', function (error, info) {
+          client.openMailbox('INBOX', false, function (error, info) {
             if (error) throw error;
 
             client.listMessages(-20, function (err, messages) {
               messages.forEach(function (message) {
                 if (message.flags.indexOf('\\Seen') < 0) {
-                  addNewMessageToTicket(client, message);
+                  addNewMessageToTicket(client, message, false);
                 }
               });
             });
@@ -270,13 +273,20 @@ function listenServiceEmail() {
   });
 
   listenServiceEmailJob.listeningServiceEmail = false;
+  listenServiceEmailJob.fireOnTick();
   listenServiceEmailJob.start();
 
   return listenServiceEmailJob;
 
-  function addNewMessageToTicket(client, message) {
-    console.log(message);
-    var messageStream = client.createMessageStream(message.UID);
-    messageStream.pipe(process.stdout, {end: false});
+  function addNewMessageToTicket(client, message, isNew = true) {
+    simpleParser(client.createMessageStream(message.UID), function (err, mail_object) {
+      client.addFlags(message.UID, ['\\Seen'], function (err, flags) {
+        console.log(chalk.blue('Check-out ' + (isNew ? 'new' : 'unseen') + ' email from ' + commonEnvConfig.variable.mailer.options.auth.user));
+        console.log('From: ', mail_object.from.text);
+        console.log('Subject: ', mail_object.subject);
+        // console.log('Text body:', mail_object.text);
+        console.log('Add flag: ', flags);
+      });
+    });
   }
 }

@@ -85,6 +85,7 @@
     "jasmine-core": "~2.7.0",
     "lodash": "~4.17.4",
     "lusca": "~1.5.1",
+    "mailparser": "^2.2.0",
     "method-override": "~2.3.8",
     "mocha": "~3.4.2",
     "moment": "^2.18.1",
