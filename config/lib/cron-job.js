@@ -12,9 +12,11 @@ var path = require('path'),
   Complete = mongoose.model('Complete'),
   backup = require('mongodb-backup');
 
+var commonEnvConfig = require(path.resolve('./config/env/comm-variable'));
 var appConfig = config.meanTorrentConfig.app;
 var backupConfig = config.meanTorrentConfig.backup;
 var announceConfig = config.meanTorrentConfig.announce;
+var inbox = require('inbox');
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -62,6 +64,7 @@ module.exports = function (app) {
 
   cronJobs.push(removeGhostPeers());
   cronJobs.push(countUsersHnrWarning());
+  // cronJobs.push(listenServiceEmail());
 
   return cronJobs;
 };
@@ -76,9 +79,6 @@ function cronJobHnR() {
     cronTime: '00 00 * * * *',
     onTick: function () {
       console.log(chalk.green('cronJob: process!'));
-    },
-    onComplete: function () {
-      console.log(chalk.green('cronJob: complete!'));
     },
     start: false,
     timeZone: appConfig.cronTimeZone
@@ -107,9 +107,6 @@ function cronJobBackupMongoDB() {
         parser: 'json',
         tar: appConfig.name + '-backup-mongodb-' + moment().format('YYYYMMDD-HHmmss') + '.tar'
       });
-    },
-    onComplete: function () {
-      console.log(chalk.green('cronJobBackupMongoDB: complete!'));
     },
     start: false,
     timeZone: appConfig.cronTimeZone
@@ -167,9 +164,6 @@ function removeGhostPeers() {
           }
         });
     },
-    onComplete: function () {
-      console.log(chalk.green('removeGhostPeers: complete!'));
-    },
     start: false,
     timeZone: appConfig.cronTimeZone
   });
@@ -204,9 +198,6 @@ function countUsersHnrWarning() {
           }
         });
     },
-    onComplete: function () {
-      console.log(chalk.green('countHnrWarning: complete!'));
-    },
     start: false,
     timeZone: appConfig.cronTimeZone
   });
@@ -214,4 +205,78 @@ function countUsersHnrWarning() {
   cronJob.start();
 
   return cronJob;
+}
+
+/**
+ * listenServiceEmail
+ */
+function listenServiceEmail() {
+  var listenServiceEmailJob = new CronJob({
+    //cronTime: '00 00 1 * * *',
+    cronTime: '*/10 * * * * *',
+    //cronTime: '00 00 * * * *',
+    onTick: function () {
+      // console.log(chalk.green('listenServiceEmail: process!'));
+      // console.log(chalk.green(listenServiceEmailJob.running));
+
+      if (!listenServiceEmailJob.listeningServiceEmail) {
+        var client = inbox.createConnection(false, commonEnvConfig.variable.mailer.options.imap, {
+          secureConnection: true,
+          auth: {
+            user: 'service.mine.pt@gmail.com',  //commonEnvConfig.variable.mailer.options.auth.user,
+            pass: 'minept740729'  //commonEnvConfig.variable.mailer.options.auth.pass
+          }
+        });
+
+        /**
+         * on connect
+         */
+        client.on('connect', function () {
+          console.log(chalk.green('CONNECT to ' + commonEnvConfig.variable.mailer.options.auth.user + ' successfully!'));
+          listenServiceEmailJob.listeningServiceEmail = true;
+          client.openMailbox('INBOX', function (error, info) {
+            if (error) throw error;
+
+            client.listMessages(-20, function (err, messages) {
+              messages.forEach(function (message) {
+                if (message.flags.indexOf('\\Seen') < 0) {
+                  addNewMessageToTicket(client, message);
+                }
+              });
+            });
+          });
+        });
+
+        /**
+         * on close
+         */
+        client.on('close', function () {
+          listenServiceEmailJob.listeningServiceEmail = false;
+          console.log('DISCONNECTED from ' + commonEnvConfig.variable.mailer.options.auth.user);
+        });
+
+        /**
+         * on new
+         */
+        client.on('new', function (message) {
+          addNewMessageToTicket(client, message);
+        });
+
+        client.connect();
+      }
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  listenServiceEmailJob.listeningServiceEmail = false;
+  listenServiceEmailJob.start();
+
+  return listenServiceEmailJob;
+
+  function addNewMessageToTicket(client, message) {
+    console.log(message);
+    var messageStream = client.createMessageStream(message.UID);
+    messageStream.pipe(process.stdout, {end: false});
+  }
 }

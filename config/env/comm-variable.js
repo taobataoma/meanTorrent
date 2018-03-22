@@ -52,6 +52,7 @@ module.exports = {
       from: process.env.MAILER_FROM || 'admin@mean.im',
       options: {
         service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
+        imap: process.env.MAILER_IMAP || 'imap.gmail.com',
         auth: {
           user: process.env.MAILER_EMAIL_ID || 'sample@gmail.com',
           pass: process.env.MAILER_PASSWORD || 'password'

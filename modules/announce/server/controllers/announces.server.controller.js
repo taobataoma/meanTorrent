@@ -584,7 +584,7 @@ exports.announce = function (req, res) {
             uploaderSalesValue: globalSalesConfig.uploader.value,
 
             agent: req.get('User-Agent'),
-            ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+            ip: req.cf_ip,
             port: query.port
           });
 
@@ -770,7 +770,7 @@ exports.announce = function (req, res) {
         var finished = new Finished();
         finished.user = req.passkeyuser;
         finished.torrent = req.torrent;
-        finished.user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        finished.user_ip = req.cf_ip;
         finished.user_agent = req.get('User-Agent');
         finished.user_port = query.port;
         finished.save();
@@ -779,7 +779,7 @@ exports.announce = function (req, res) {
           user: req.passkeyuser._id,
           torrent: req.torrent._id,
           agent: req.get('User-Agent'),
-          ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+          ip: req.cf_ip,
           port: query.port
         });
 
@@ -937,7 +937,7 @@ exports.announce = function (req, res) {
     peer.user = req.passkeyuser;
     peer.torrent = req.torrent;
     peer.peer_id = query.peer_id;
-    peer.peer_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    peer.peer_ip = req.cf_ip;
     peer.peer_port = query.port;
     peer.peer_left = query.left;
     peer.peer_status = req.seeder ? PEERSTATE_SEEDER : PEERSTATE_LEECHER;

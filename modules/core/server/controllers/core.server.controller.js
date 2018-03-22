@@ -10,8 +10,7 @@ var path = require('path'),
 exports.renderIndex = function (req, res) {
   var safeUserObject = req.user || null;
   if (req.user) {
-    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    req.user.addSignedIp(ip);
+    req.user.addSignedIp(req.cf_ip);
   }
 
   var cfg = getSafeMeanTorrentConfig(config.meanTorrentConfig);

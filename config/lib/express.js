@@ -20,6 +20,7 @@ var config = require('../config'),
   path = require('path'),
   _ = require('lodash'),
   lusca = require('lusca'),
+  cloudflare = require('cloudflare-express'),
   ircConfig = config.meanTorrentConfig.ircAnnounce;
 
 /**
@@ -50,6 +51,14 @@ module.exports.initLocalVariables = function (app) {
     res.locals.url = req.protocol + '://' + req.headers.host + req.originalUrl;
     next();
   });
+};
+
+/**
+ * Initialize application cloudflare middleware
+ * @param app
+ */
+module.exports.initCloudflare = function (app) {
+  app.use(cloudflare.restore({update_on_start: true}));
 };
 
 /**
@@ -242,6 +251,9 @@ module.exports.initCronJob = function (app) {
 module.exports.init = function (db) {
   // Initialize express app
   var app = express();
+
+  //Initialize cloudflare middleware
+  this.initCloudflare(app);
 
   // Initialize local variables
   this.initLocalVariables(app);

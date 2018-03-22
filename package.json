@@ -46,6 +46,7 @@
     "body-parser": "^1.18.2",
     "bower": "^1.8.2",
     "chalk": "~2.1.0",
+    "cloudflare-express": "^1.0.1",
     "compression": "~1.7.0",
     "connect-flash": "~0.1.1",
     "connect-mongo": "~2.0.0",
