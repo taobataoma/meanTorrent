@@ -10,6 +10,7 @@ var path = require('path'),
 exports.renderIndex = function (req, res) {
   var safeUserObject = req.user || null;
   if (req.user) {
+    req.user.curr_signed_ip = req.cf_ip;
     req.user.addSignedIp(req.cf_ip);
   }
 
