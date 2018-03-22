@@ -59,7 +59,7 @@ module.exports.initLocalVariables = function (app) {
  */
 module.exports.initCloudflare = function (app) {
   app.use(cloudflare.restore({update_on_start: true}));
-  app.set('trust proxy', 'loopback');
+  app.set('trust proxy', true);
 };
 
 /**
