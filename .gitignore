@@ -30,6 +30,7 @@ config/env/local.js
 config/env/local-*.js
 *.pem
 package-lock.json
+cloudflare_ip.json
 *.script.sh
 *.config.sh
 
