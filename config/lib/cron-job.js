@@ -226,8 +226,8 @@ function listenServiceEmail() {
         var client = inbox.createConnection(false, commonEnvConfig.variable.mailer.options.imap, {
           secureConnection: true,
           auth: {
-            user: 'service.mine.pt@gmail.com',  //commonEnvConfig.variable.mailer.options.auth.user,
-            pass: 'minept740729'  //commonEnvConfig.variable.mailer.options.auth.pass
+            user: commonEnvConfig.variable.mailer.options.auth.user,
+            pass: commonEnvConfig.variable.mailer.options.auth.pass
           }
         });
 
