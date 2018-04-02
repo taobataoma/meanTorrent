@@ -41,7 +41,7 @@ var MessageTicketSchema = new Schema({
 
   status: {
     type: Number,
-    default: 0      //0 new, 1 handling, 2 solved
+    default: 0      //0 open(waiting handling), 1 wait(waiting reply), 2 solved
   },
   createdAt: {
     type: Date,

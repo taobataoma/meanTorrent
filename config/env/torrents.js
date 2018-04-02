@@ -25,7 +25,7 @@ module.exports = {
     app: {
       name: 'MEAN.im',
       domain: 'http://localhost:3000',
-      mailTicketService: false,
+      mailTicketService: true,
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: false

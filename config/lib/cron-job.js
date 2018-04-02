@@ -284,10 +284,57 @@ function listenServiceEmail() {
     simpleParser(client.createMessageStream(message.UID), function (err, mail_object) {
       client.addFlags(message.UID, ['\\Seen'], function (err, flags) {
         console.log(chalk.blue('Check-out ' + (isNew ? 'new' : 'unseen') + ' email from ' + config.mailer.options.auth.user));
-        console.log('From: ', mail_object.from.text);
-        console.log('Subject: ', mail_object.subject);
-        // console.log('Text body:', mail_object.text);
-        console.log('Add flag: ', flags);
+        // console.log(mail_object);
+
+        // write unseen/new message into mail-tickets db table
+        if (mail_object.references) { //reply message
+          MailTicket.findOne({
+            messageId: mail_object.references[0]
+          }, function (err, m) {
+            if (!err && m) {
+              var subTicket = new MailTicket();
+              subTicket.messageId = mail_object.messageId;
+              subTicket.from = mail_object.from.text;
+              subTicket.to = config.mailer.options.auth.user;
+              subTicket.title = mail_object.subject;
+              subTicket.content = mail_object.text;
+
+              m._replies.push(subTicket);
+              m.save(function (err) {
+                if (err) {
+                  mtDebug.debugError('write reply mail ticket info db failed!');
+                } else {
+                  console.log('From: ', mail_object.from.text);
+                  console.log('MessageId: ', mail_object.messageId);
+                  console.log('References: ', mail_object.references ? mail_object.references[0] : 'origin');
+                  console.log('Subject: ', mail_object.subject);
+                  // console.log('Text body:', mail_object.text);
+                  // console.log('Add flag: ', flags);
+                }
+              });
+            }
+          });
+        } else {                      //new message
+          var newTicket = new MailTicket();
+          newTicket.messageId = mail_object.messageId;
+          newTicket.from = mail_object.from.text;
+          newTicket.to = config.mailer.options.auth.user;
+          newTicket.title = mail_object.subject;
+          newTicket.content = mail_object.text;
+
+          newTicket.save(function (err) {
+            if (err) {
+              mtDebug.debugError('write new mail ticket info db failed!');
+            } else {
+              console.log('From: ', mail_object.from.text);
+              console.log('MessageId: ', mail_object.messageId);
+              console.log('References: ', mail_object.references ? mail_object.references[0] : 'origin');
+              console.log('Subject: ', mail_object.subject);
+              // console.log('Text body:', mail_object.text);
+              // console.log('Add flag: ', flags);
+            }
+          });
+        }
       });
     });
   }
