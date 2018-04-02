@@ -225,7 +225,7 @@ function listenServiceEmail() {
       // console.log(chalk.green(listenServiceEmailJob.running));
 
       if (!listenServiceEmailJob.listeningServiceEmail) {
-        var client = inbox.createConnection(false, config.mailer.imap, {
+        var client = inbox.createConnection(false, config.mailer.options.imap, {
           secureConnection: true,
           auth: {
             user: config.mailer.options.auth.user,
