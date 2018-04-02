@@ -14,7 +14,6 @@ var path = require('path'),
   backup = require('mongodb-backup');
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
-var commonEnvConfig = require(path.resolve('./config/env/comm-variable'));
 var appConfig = config.meanTorrentConfig.app;
 var backupConfig = config.meanTorrentConfig.backup;
 var announceConfig = config.meanTorrentConfig.announce;
@@ -226,11 +225,11 @@ function listenServiceEmail() {
       // console.log(chalk.green(listenServiceEmailJob.running));
 
       if (!listenServiceEmailJob.listeningServiceEmail) {
-        var client = inbox.createConnection(false, commonEnvConfig.variable.mailer.options.imap, {
+        var client = inbox.createConnection(false, config.mailer.imap, {
           secureConnection: true,
           auth: {
-            user: commonEnvConfig.variable.mailer.options.auth.user,
-            pass: commonEnvConfig.variable.mailer.options.auth.pass
+            user: config.mailer.options.auth.user,
+            pass: config.mailer.options.auth.pass
           }
         });
 
@@ -238,7 +237,7 @@ function listenServiceEmail() {
          * on connect
          */
         client.on('connect', function () {
-          console.log(chalk.green('CONNECT to ' + commonEnvConfig.variable.mailer.options.auth.user + ' successfully!'));
+          console.log(chalk.green('CONNECT to ' + config.mailer.options.auth.user + ' successfully!'));
           listenServiceEmailJob.listeningServiceEmail = true;
           client.openMailbox('INBOX', false, function (error, info) {
             if (error) throw error;
@@ -258,7 +257,7 @@ function listenServiceEmail() {
          */
         client.on('close', function () {
           listenServiceEmailJob.listeningServiceEmail = false;
-          console.log('DISCONNECTED from ' + commonEnvConfig.variable.mailer.options.auth.user);
+          console.log('DISCONNECTED from ' + config.mailer.options.auth.user);
         });
 
         /**
@@ -284,7 +283,7 @@ function listenServiceEmail() {
   function addNewMessageToTicket(client, message, isNew = true) {
     simpleParser(client.createMessageStream(message.UID), function (err, mail_object) {
       client.addFlags(message.UID, ['\\Seen'], function (err, flags) {
-        console.log(chalk.blue('Check-out ' + (isNew ? 'new' : 'unseen') + ' email from ' + commonEnvConfig.variable.mailer.options.auth.user));
+        console.log(chalk.blue('Check-out ' + (isNew ? 'new' : 'unseen') + ' email from ' + config.mailer.options.auth.user));
         console.log('From: ', mail_object.from.text);
         console.log('Subject: ', mail_object.subject);
         // console.log('Text body:', mail_object.text);

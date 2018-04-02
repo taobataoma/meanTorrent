@@ -1,7 +1,5 @@
 'use strict';
 
-var commonEnvConfig = require('./comm-variable');
-
 module.exports = {
 
   /**------------------------------------------------------------------------------------------------
@@ -25,12 +23,12 @@ module.exports = {
      *                          value to false, then console.log info is not output
      */
     app: {
-      name: commonEnvConfig.variable.site.site_name,
-      domain: commonEnvConfig.variable.site.site_domain,
-      mailTicketService: commonEnvConfig.variable.settings.mailTicketService || false,
+      name: 'MEAN.im',
+      domain: 'http://localhost:3000',
+      mailTicketService: false,
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
-      showDebugLog: commonEnvConfig.variable.settings.console_debug_info || true
+      showDebugLog: false
     },
 
     /**
@@ -93,13 +91,13 @@ module.exports = {
      *      @userHnrWarningCheckInterval_str: string desc of @userHnrWarningCheckInterval
      */
     announce: {
-      url: commonEnvConfig.variable.site.site_domain + '/announce',
-      comment: commonEnvConfig.variable.site.site_name + ' GROUP',
+      url: 'http://localhost:3000/announce',
+      comment: 'MEAN.im GROUP',
       announceInterval: 60 * 1000 * 5,
       announceInterval_str: '5m',
-      announcePrefix: '{' + commonEnvConfig.variable.site.site_namekey + '}.',
-      sourceInfo: '{' + commonEnvConfig.variable.site.site_name + '}' + ' Present by meanTorrent.',
-      admin: commonEnvConfig.variable.site.site_admin_mail,
+      announcePrefix: '{MEAN}.',
+      sourceInfo: '{MEAN.im} Present by meanTorrent.',
+      admin: 'admin@mean.im',
       clientBlackListUrl: '/about/black',
       seedingInFinishedCheck: true,
       downloadCheck: {
@@ -141,9 +139,9 @@ module.exports = {
       title: '[%s] - RSS torrents',
       description: 'Latest torrents from [%s]',
       copyright: 'Copyright (c) [%s] 2012-2017, all rights reserved',
-      managingEditor: commonEnvConfig.variable.site.site_admin_mail + ' (%s Admin)',
-      webMaster: commonEnvConfig.variable.site.site_webmaster_mail + ' (%s Webmaster)',
-      generator: commonEnvConfig.variable.site.site_name + ' RSS Generator by meanTorrent',
+      managingEditor: 'admin@mean.im (%s Admin)',
+      webMaster: 'webmaster@mean.im (%s Webmaster)',
+      generator: '{MEAN.im} RSS Generator by meanTorrent',
       ttl: 60,
       image_url: '/modules/core/client/img/rss.jpeg'
     },
@@ -176,10 +174,10 @@ module.exports = {
       debug: false,
       server: 'irc.mean.im',
       port: 16667,
-      nick: commonEnvConfig.variable.site.site_namekey.toLowerCase() + 'Announcer',
+      nick: 'meanAnnouncer',
       userName: 'meanTorrent',
       realName: 'IRC announce client',
-      channel: '#' + commonEnvConfig.variable.site.site_namekey.toLowerCase() + 'Announce',
+      channel: '#meanAnnounce',
       defaultMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, sale: %s, url: %s, at %s',
       tvserialMsgFormat: '%s uploaded - torrent: %s, type: %s, size: %d, seasons: %d, episodes: %s, sale: %s, url: %s, at %s',
       showErrors: true,
@@ -1019,7 +1017,7 @@ module.exports = {
      * @castImgBaseUrl:           image link url
      */
     tmdbConfig: {
-      key: commonEnvConfig.variable.tmdb.key,
+      key: 'this is access key from tmdb',
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',
@@ -1052,7 +1050,7 @@ module.exports = {
      */
     voteTitle: {
       imdb: 'IMDB',
-      mt: commonEnvConfig.variable.site.site_namekey
+      mt: 'MEAN'
     },
 
     /**

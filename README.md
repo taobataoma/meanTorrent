@@ -251,7 +251,7 @@ Finally, execute prod task `npm run start:prod`
 * enable/disable SSL mode in production environment change the `secure` option in `config/env/production.js`
 
 ## Getting Started With meanTorrent
-Before you to start the meanTorrent application, Please explore `config/env/comm-variable.js` and `config/env/torrent.js` for many environment configuration options, you can change all  configuration items of you Caring,
+Before you to start the meanTorrent application, Please explore `config/env/torrent.js` for many environment configuration options, you can change all  configuration items of you Caring,
 such as:
 
 ```javascript
@@ -268,7 +268,7 @@ meanTorrent tracker is private, please set the `announce.url` to your server url
 ```javascript
     tmdbConfig: {
       //please change it to your api key from themoviedb.org
-      key: '7888f0042a366f63289ff571b68b7ce0',
+      key: 'key from themoviedb.org',
     },
 ```
 
@@ -327,7 +327,7 @@ All the sign up account need verify & active by mail, and must completed within 
       nick: 'meanAnnouncer',
       userName: 'meanTorrent',
       realName: 'IRC announce client',
-      channel: '#chdAnnounce',
+      channel: '#meanAnnounce',
       showErrors: true,
       autoRejoin: true,
       autoConnect: true,
@@ -384,6 +384,7 @@ meanTorrent used module `nodemailer`, if you have any config question you can fi
     from: process.env.MAILER_FROM || 'admin@domain.com',
     options: {
       service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
+      imap: process.env.MAILER_IMAP || 'imap.gmail.com',
       auth: {
         user: process.env.MAILER_EMAIL_ID || 'username@gmail.com',
         pass: process.env.MAILER_PASSWORD || 'mailpassword'

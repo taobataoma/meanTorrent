@@ -1,7 +1,5 @@
 'use strict';
 
-var commonEnvConfig = require('./comm-variable');
-
 module.exports = {
   secure: {
     ssl: false,
@@ -9,10 +7,10 @@ module.exports = {
     certificate: './config/sslcerts/cert.pem',
     caBundle: './config/sslcerts/cabundle.crt'
   },
-  port: process.env.PORT || commonEnvConfig.variable.site.site_port,
-  host: process.env.HOST || commonEnvConfig.variable.site.site_host,
+  port: process.env.PORT || 3000,
+  host: process.env.HOST || 'localhost',
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || commonEnvConfig.variable.db.db_host) + '/' + commonEnvConfig.variable.db.db_name,
+    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-v2',
     options: {
       /**
       * Uncomment to enable ssl certificate based authentication to mongodb
@@ -77,7 +75,17 @@ module.exports = {
     callbackURL: '/api/auth/paypal/callback',
     sandbox: false
   },
-  mailer: commonEnvConfig.variable.mailer,
+  mailer: {
+    from: process.env.MAILER_FROM || 'admin@mean.im',
+    options: {
+      service: process.env.MAILER_SERVICE_PROVIDER || 'service name like as: Gmail',
+      imap: process.env.MAILER_IMAP || 'imap.gmail.com',
+      auth: {
+        user: process.env.MAILER_EMAIL_ID || 'example@gmail.com',
+        pass: process.env.MAILER_PASSWORD || 'mail password'
+      }
+    }
+  },
   seedDB: {
     seed: process.env.MONGO_SEED === 'true',
     options: {

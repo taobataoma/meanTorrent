@@ -1,22 +1,20 @@
 'use strict';
 
-var commonEnvConfig = require('./comm-variable');
-
 module.exports = {
   app: {
-    title: commonEnvConfig.variable.site.site_title,
-    description: commonEnvConfig.variable.site.site_description,
-    keywords: commonEnvConfig.variable.site.site_keywords,
+    title: 'meanTorrent',
+    description: 'MEAN.JS BitTorrent - Full-Stack JavaScript Using MongoDB, Express, AngularJS, and Node.js, a Private BitTorrent Tracker CMS with Multilingual and IRC announce support',
+    keywords: 'mongodb, express, angularjs, node.js, mongoose, passport, torrent, bitTorrent, tracker, announce, meanTorrent',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
   db: {
     promise: global.Promise
   },
-  port: process.env.PORT || commonEnvConfig.variable.site.site_port,
-  host: process.env.HOST || commonEnvConfig.variable.site.site_host,
+  port: process.env.PORT || 3000,
+  host: process.env.HOST || 'localhost',
   // DOMAIN config should be set to the fully qualified application accessible
   // URL. For example: https://www.myapp.com (including port if required).
-  domain: process.env.DOMAIN || commonEnvConfig.variable.site.site_domain,
+  domain: process.env.DOMAIN || 'mean.im',
   // Session Cookie settings
   sessionCookie: {
     // session expiration is set by default to 24 hours
@@ -30,7 +28,7 @@ module.exports = {
     secure: false
   },
   // sessionSecret should be changed for security measures and concerns
-  sessionSecret: process.env.SESSION_SECRET || commonEnvConfig.variable.site.site_sessionSecret,
+  sessionSecret: process.env.SESSION_SECRET || 'mean.im.session.secret',
   // sessionKey is the cookie session name
   sessionKey: 'sessionId',
   sessionCollection: 'sessions',
@@ -45,7 +43,7 @@ module.exports = {
   logo: 'modules/core/client/img/brand/logo.png',
   favicon: 'modules/core/client/img/brand/favicon.ico',
   illegalUsernames: ['meanjs', 'administrator', 'password', 'admin', 'user', 'mean', 'meanTorrent', 'torrent', 'bit', 'bits', 'oper', 'operator',
-    'unknown', 'anonymous', 'null', 'undefined', 'api'
+    'unknown', 'anonymous', 'null', 'undefined', 'api', 'tracker'
   ],
   aws: {
     s3: {
