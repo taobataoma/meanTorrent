@@ -879,7 +879,8 @@ module.exports = {
       {name: 'Safari', type: 'browser', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'},
       {name: 'Chrome', type: 'browser', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'},
       {name: 'Lynx', type: 'browser', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'},
-      {name: 'Opera', type: 'browser', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'}
+      {name: 'Opera', type: 'browser', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'},
+      {name: 'curl', type: 'curl', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'}
     ],
 
     /**
