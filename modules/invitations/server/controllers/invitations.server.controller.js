@@ -5,6 +5,7 @@
  */
 var path = require('path'),
   config = require(path.resolve('./config/config')),
+  common = require(path.resolve('./config/lib/common')),
   mongoose = require('mongoose'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   validator = require('validator'),
@@ -203,7 +204,8 @@ exports.update = function (req, res) {
         return res.status(422).send({message: 'SERVER.EMAIL_ALREADY_INVITED'});
       } else {
         //send invitation mail
-        res.render(path.resolve('modules/invitations/server/templates/invite-sign-up-email'), {
+        var lang = common.getRequestLanguage(req);
+        res.render(path.resolve('modules/invitations/server/templates/invite-sign-up-email-' + lang), {
           to_email: req.query.to_email,
           name: req.user.displayName,
           appName: config.app.title,
@@ -303,7 +305,8 @@ exports.sendOfficial = function (req, res) {
           invitation.isOfficial = true;
 
           //send invitation mail
-          res.render(path.resolve('modules/invitations/server/templates/invite-sign-up-email'), {
+          var lang = common.getRequestLanguage(req);
+          res.render(path.resolve('modules/invitations/server/templates/invite-sign-up-email-' + lang), {
             to_email: req.body.email,
             name: req.user.displayName,
             appName: config.app.title,
