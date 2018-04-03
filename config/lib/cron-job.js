@@ -67,7 +67,7 @@ module.exports = function (app) {
   cronJobs.push(removeGhostPeers());
   cronJobs.push(countUsersHnrWarning());
 
-  if (appConfig.mailTicketService) {
+  if (appConfig.mailTicketSupportService) {
     cronJobs.push(listenServiceEmail());
   }
 
@@ -296,8 +296,8 @@ function listenServiceEmail() {
               subTicket.messageId = mail_object.messageId;
               subTicket.from = mail_object.from.text;
               subTicket.to = config.mailer.options.auth.user;
-              subTicket.title = mail_object.subject;
-              subTicket.content = mail_object.text;
+              subTicket.title = mail_object.subject || 'Null title';
+              subTicket.content = mail_object.text || 'Null content';
 
               m._replies.push(subTicket);
               m.save(function (err) {
@@ -319,8 +319,8 @@ function listenServiceEmail() {
           newTicket.messageId = mail_object.messageId;
           newTicket.from = mail_object.from.text;
           newTicket.to = config.mailer.options.auth.user;
-          newTicket.title = mail_object.subject;
-          newTicket.content = mail_object.text;
+          newTicket.title = mail_object.subject || 'Null title';
+          newTicket.content = mail_object.text || 'Null content';
 
           newTicket.save(function (err) {
             if (err) {

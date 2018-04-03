@@ -57,13 +57,13 @@ module.exports = {
     sandbox: true
   },
   mailer: {
-    from: process.env.MAILER_FROM || 'service.mine.pt@gmail.com',
+    from: process.env.MAILER_FROM || 'admin@mean.im',
     options: {
-      service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
+      service: process.env.MAILER_SERVICE_PROVIDER || 'service name like as: Gmail',
       imap: process.env.MAILER_IMAP || 'imap.gmail.com',
       auth: {
-        user: process.env.MAILER_EMAIL_ID || 'service.mine.pt@gmail.com',
-        pass: process.env.MAILER_PASSWORD || 'minept740729'
+        user: process.env.MAILER_EMAIL_ID || 'example@gmail.com',
+        pass: process.env.MAILER_PASSWORD || 'mail password'
       }
     }
   },

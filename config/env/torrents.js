@@ -15,20 +15,20 @@ module.exports = {
      * App & site settings
      * NOTE: you can change these value at anytime if you understand it
      *
-     * @name:                   site logo name
-     * @domain:                 site domain
-     * @admin:                  site admin mail address
-     * @mailTicketService:      settings mailTicketService status, true is enable, false is disable
-     * @showDemoWarningPopup:   if is demo site, show warning popup whene home is opened for the first time.
-     * @cronTimeZone:           timezone of cron
-     * @showDebugLog:           if true, will console.log all debug info at server side and client side. when your site is prod env, please change this
-     *                          value to false, then console.log info is not output
+     * @name:                           site logo name
+     * @domain:                         site domain
+     * @admin:                          site admin mail address
+     * @mailTicketSupportService:       settings mailTicketService status, true is enable, false is disable
+     * @showDemoWarningPopup:           if is demo site, show warning popup whene home is opened for the first time.
+     * @cronTimeZone:                   timezone of cron
+     * @showDebugLog:                   if true, will console.log all debug info at server side and client side. when your site is prod env, please change this
+     *                                  value to false, then console.log info is not output
      */
     app: {
       name: 'MEAN.im',
       domain: 'http://localhost:3000',
       admin: 'admin@mean.im',
-      mailTicketService: true,
+      mailTicketSupportService: true,
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: false
