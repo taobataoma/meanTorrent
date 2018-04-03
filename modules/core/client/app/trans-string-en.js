@@ -24,6 +24,9 @@
     VALUE_SELECT_ALL: 'Select All',
     BTN_REMOVE: 'Remove',
 
+    //Support
+    SUPPORT_GROUP_NAME_DESC: '客户服务支持组',
+
     //client topbar menu
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',

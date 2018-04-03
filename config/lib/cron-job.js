@@ -15,6 +15,7 @@ var path = require('path'),
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
 var appConfig = config.meanTorrentConfig.app;
+var supportConfig = config.meanTorrentConfig.support;
 var backupConfig = config.meanTorrentConfig.backup;
 var announceConfig = config.meanTorrentConfig.announce;
 var inbox = require('inbox');
@@ -67,7 +68,7 @@ module.exports = function (app) {
   cronJobs.push(removeGhostPeers());
   cronJobs.push(countUsersHnrWarning());
 
-  if (appConfig.mailTicketSupportService) {
+  if (supportConfig.mailTicketSupportService) {
     cronJobs.push(listenServiceEmail());
   }
 

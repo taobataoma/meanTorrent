@@ -18,7 +18,6 @@ module.exports = {
      * @name:                           site logo name
      * @domain:                         site domain
      * @admin:                          site admin mail address
-     * @mailTicketSupportService:       settings mailTicketService status, true is enable, false is disable
      * @showDemoWarningPopup:           if is demo site, show warning popup whene home is opened for the first time.
      * @cronTimeZone:                   timezone of cron
      * @showDebugLog:                   if true, will console.log all debug info at server side and client side. when your site is prod env, please change this
@@ -28,10 +27,30 @@ module.exports = {
       name: 'MEAN.im',
       domain: 'http://localhost:3000',
       admin: 'admin@mean.im',
-      mailTicketSupportService: true,
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
       showDebugLog: false
+    },
+
+    /**
+     * @supported
+     *
+     * Support services settings
+     *
+     * @supportGroupName:               site support group name, user can send message to this group
+     * @supportGroupNameDesc:           desc of support group name, value of translate string
+     * @mailTicketSupportService:       settings mailTicketSupportService status, true is enable, false is disable
+     * @messageTicketSupportService:    settings messageTicketSupportService status, true is enable, false is disable
+     *
+     * NOTE:
+     * =====
+     * If mailTicketSupportService is set to true, you MUST set the mailer options in file config/env/development.js and config/env/production.js
+     */
+    support: {
+      supportGroupName: 'Support',
+      supportGroupNameDesc: 'SUPPORT_GROUP_NAME_DESC',
+      mailTicketSupportService: false,
+      messageTicketSupportService: true
     },
 
     /**

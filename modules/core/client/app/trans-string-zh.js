@@ -24,6 +24,9 @@
     VALUE_SELECT_ALL: '全选',
     BTN_REMOVE: '删除',
 
+    //Support
+    SUPPORT_GROUP_NAME_DESC: 'Service Group',
+
     //client topbar menu
     MENU_CHAT: '聊天室',
     MENU_TORRENTS: '种子',
