@@ -25,7 +25,10 @@
     BTN_REMOVE: '删除',
 
     //Support
-    SUPPORT_GROUP_NAME_DESC: 'Service Group',
+    SUPPORT_GROUP_NAME_DESC: '客户服务支持组',
+    CLIENT_BLOCK_REASON: {
+      BROWSER: '禁止通过浏览器上报数据'
+    },
 
     //client topbar menu
     MENU_CHAT: '聊天室',

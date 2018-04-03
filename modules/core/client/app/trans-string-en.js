@@ -25,7 +25,10 @@
     BTN_REMOVE: 'Remove',
 
     //Support
-    SUPPORT_GROUP_NAME_DESC: '客户服务支持组',
+    SUPPORT_GROUP_NAME_DESC: 'Service Group',
+    CLIENT_BLOCK_REASON: {
+      BROWSER: 'Prohibits announce through browsers'
+    },
 
     //client topbar menu
     MENU_CHAT: 'Chat',
