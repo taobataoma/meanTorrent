@@ -40,8 +40,9 @@ var MessageTicketSchema = new Schema({
   _replies: [this],
 
   status: {
-    type: Number,
-    default: 0      //0 open(waiting handling), 1 wait(waiting reply), 2 solved
+    type: String,
+    enum: ['open', 'wait', 'solved'],
+    default: 'open'
   },
   createdAt: {
     type: Date,
