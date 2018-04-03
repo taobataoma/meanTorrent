@@ -20,6 +20,7 @@
     vm.user = Authentication.user;
     vm.RTS = ResourcesTagsServices;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;

@@ -15,7 +15,9 @@ module.exports = {
      * App & site settings
      * NOTE: you can change these value at anytime if you understand it
      *
+     * @name:                   site logo name
      * @domain:                 site domain
+     * @admin:                  site admin mail address
      * @mailTicketService:      settings mailTicketService status, true is enable, false is disable
      * @showDemoWarningPopup:   if is demo site, show warning popup whene home is opened for the first time.
      * @cronTimeZone:           timezone of cron
@@ -25,6 +27,7 @@ module.exports = {
     app: {
       name: 'MEAN.im',
       domain: 'http://localhost:3000',
+      admin: 'admin@mean.im',
       mailTicketService: true,
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
@@ -70,7 +73,6 @@ module.exports = {
      * @announceInterval:                     interval of twice announce request
      * @announceInterval_str:                 string desc of @announceInterval
      * @announcePrefix:                       prefix of torrent file name, is will auto add when user download the torrent files
-     * @admin:                                site admin mail address
      * @clientBlackListUrl:                   forbidden download client list url, user can view this list to check forbidden client software
      * @seedingInFinishedCheck:               settings to check whether can seeding an un-download finished torrent
      * @downloadCheck:                        announce download(leech) settings
@@ -97,7 +99,6 @@ module.exports = {
       announceInterval_str: '5m',
       announcePrefix: '{MEAN}.',
       sourceInfo: '{MEAN.im} Present by meanTorrent.',
-      admin: 'admin@mean.im',
       clientBlackListUrl: '/about/black',
       seedingInFinishedCheck: true,
       downloadCheck: {
