@@ -18,6 +18,7 @@
     vm.user = Authentication.user;
     vm.RTS = ResourcesTagsServices;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
@@ -55,6 +56,7 @@
     vm.getTemplateMarkedContent = function () {
       var tmp = $filter('fmt')(vm.templateFileContent, {
         appConfig: vm.appConfig,
+        supportConfig: vm.supportConfig,
         announceConfig: vm.announce,
         scoreConfig: vm.scoreConfig,
         rssConfig: vm.rssConfig,

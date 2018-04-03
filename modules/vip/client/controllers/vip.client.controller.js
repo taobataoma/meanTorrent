@@ -21,6 +21,7 @@
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
     vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
     vm.ircConfig = MeanTorrentConfig.meanTorrentConfig.ircAnnounce;
@@ -65,6 +66,7 @@
     vm.getTemplateMarkedContent = function () {
       var tmp = $filter('fmt')(vm.templateFileContent, {
         appConfig: vm.appConfig,
+        supportConfig: vm.supportConfig,
         announceConfig: vm.announceConfig,
         scoreConfig: vm.scoreConfig,
         rssConfig: vm.rssConfig,

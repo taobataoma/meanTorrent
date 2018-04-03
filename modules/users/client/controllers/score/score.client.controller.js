@@ -15,6 +15,7 @@
     vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
@@ -68,6 +69,7 @@
     vm.getTemplateMarkedContent = function (cnt) {
       var tmp = $filter('fmt')(cnt, {
         appConfig: vm.appConfig,
+        supportConfig: vm.supportConfig,
         announceConfig: vm.announceConfig,
         scoreConfig: vm.scoreConfig,
         rssConfig: vm.rssConfig,
