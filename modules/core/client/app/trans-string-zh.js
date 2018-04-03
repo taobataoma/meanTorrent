@@ -27,7 +27,7 @@
     //Support
     SUPPORT_GROUP_NAME_DESC: '客户服务支持组',
     CLIENT_BLOCK_REASON: {
-      BROWSER: '禁止通过浏览器上报数据'
+      NON_BT_CLIENT: '非BT客户端软件'
     },
 
     //client topbar menu

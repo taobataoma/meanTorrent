@@ -27,7 +27,7 @@
     //Support
     SUPPORT_GROUP_NAME_DESC: 'Service Group',
     CLIENT_BLOCK_REASON: {
-      BROWSER: 'Prohibits announce through browsers'
+      NON_BT_CLIENT: 'Non BT client software'
     },
 
     //client topbar menu

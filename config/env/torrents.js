@@ -874,12 +874,12 @@ module.exports = {
      * @name:  client software name
      */
     clientBlackList: [
-      {name: 'Mozilla', type: 'browser', reason: 'CLIENT_BLOCK_REASON.BROWSER'},
-      {name: 'AppleWebKit', type: 'browser', reason: 'CLIENT_BLOCK_REASON.BROWSER'},
-      {name: 'Safari', type: 'browser', reason: 'CLIENT_BLOCK_REASON.BROWSER'},
-      {name: 'Chrome', type: 'browser', reason: 'CLIENT_BLOCK_REASON.BROWSER'},
-      {name: 'Lynx', type: 'browser', reason: 'CLIENT_BLOCK_REASON.BROWSER'},
-      {name: 'Opera', type: 'browser', reason: 'CLIENT_BLOCK_REASON.BROWSER'}
+      {name: 'Mozilla', type: 'browser', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'},
+      {name: 'AppleWebKit', type: 'browser', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'},
+      {name: 'Safari', type: 'browser', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'},
+      {name: 'Chrome', type: 'browser', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'},
+      {name: 'Lynx', type: 'browser', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'},
+      {name: 'Opera', type: 'browser', reason: 'CLIENT_BLOCK_REASON.NON_BT_CLIENT'}
     ],
 
     /**
