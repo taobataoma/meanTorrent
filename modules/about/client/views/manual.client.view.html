@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="col-sm-8 col-md-9 padding-bottom-30 manual-line-height">
-            <div ui-view></div>
+            <div class="templates-content" ui-view></div>
             <div ng-init="vm.getTemplateFileContent('/modules/about/client/templates/rules-footer-'+vm.lang+'.md')">
                 <span class="templates-footer" ng-bind-html="vm.getTemplateMarkedContent()"></span>
             </div>
