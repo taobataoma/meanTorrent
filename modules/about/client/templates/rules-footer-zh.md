@@ -8,4 +8,3 @@
 [用户积分细则](/about/manual/scoreRules) | [用户等级细则](/about/manual/userLevelRules) | [资源发布细则](/about/manual/uploaderRules)
 [做种与下载细则](/about/manual/downloadRules) | [种子促销细则](/about/manual/salesRules) | [邀请函细则](/about/manual/invitationsRules)
 [H&R 黑种细则](/about/manual/hnrRules) | [VIP 用户权益细则](/about/manual/vipRules) | [求种细则](/about/manual/requestRules)
-[投诉与举报细则](/about/manual/reportRules) | | 

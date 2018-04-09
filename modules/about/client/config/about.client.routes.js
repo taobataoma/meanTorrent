@@ -115,14 +115,6 @@
           pageTitle: 'PAGETITLE.REQUEST_RULES'
         }
       })
-      .state('about.manual.reportRules', {
-        url: '/reportRules',
-        templateUrl: '/modules/about/client/views/reportRules.client.view.html',
-        data: {
-          roles: ['user', 'oper', 'admin'],
-          pageTitle: 'PAGETITLE.REPORT_RULES'
-        }
-      })
       .state('about.manual.faq', {
         url: '/faq',
         templateUrl: '/modules/about/client/views/faq.client.view.html',

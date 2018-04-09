@@ -37,6 +37,6 @@ invite.banUserInviter = %(inviteConfig.banUserInviter)s
 #### :white_small_square: Account examination
 
 1. %(appConfig.name)s in order to maintain a high-quality user group, it may be possible to hold an incremental examination of the all users at a specific time. Prior to the examination, the station will send a notification of the message and highlight it at the top of the website's home page.
-1. VIP users, management users, and days of registration date '%(announceConfig.downloadCheck.checkAfterSignupDays)' do not participate in the examination.
+1. VIP users, management users, and days of registration date `%(announceConfig.downloadCheck.checkAfterSignupDays)d` days do not participate in the examination.
 1. During the examination period, your examination progress will be highlighted at the top of the homepage of the website. Users who do not participate in the examination will not be able to see relevant examination information.
 1. After the examination is completed, the system will automatically ban the accounts that have not been completed.
