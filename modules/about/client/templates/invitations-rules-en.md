@@ -18,6 +18,10 @@
 ```javascript
   invite.openInvite: %(inviteConfig.openInvite)s
 ```
+1. If you invite friends, you should help them as much as possible. If their account is forbidden, your account may also be banned. The current related ban is set to:
+```javascript
+invite.banUserInviter = %(inviteConfig.banUserInviter)s
+```
 
 &emsp;
 
