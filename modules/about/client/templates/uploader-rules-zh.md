@@ -1,4 +1,4 @@
-### :orange_book: 资源发布细则详细说明 - %(appConfig.name)s
+### :orange_book: 资源发布细则 - %(appConfig.name)s
 ---
 **%(appConfig.name)s** 是一个自由分享资源的平台，请在发布资源或上传附件的过程中，请遵守如下的规则，否则可能会受到管理组的严厉处罚甚至帐号被禁止。
 

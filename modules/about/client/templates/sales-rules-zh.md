@@ -1,4 +1,4 @@
-### :orange_book: 种子促销细则详细说明 - %(appConfig.name)s
+### :orange_book: 种子促销细则 - %(appConfig.name)s
 ---
 **%(appConfig.name)s** 提供多种种子促销手段，管理员可以对每个种子设置不同的促销级别，站点也可能会在一个特殊的时间推出一个特别的促销活动，具体的促销活动请注意站内的消息通知。
 

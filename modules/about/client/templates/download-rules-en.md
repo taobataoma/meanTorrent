@@ -49,3 +49,15 @@
 #### :white_small_square: Client limit
 
 * %(appConfig.name)s prohibits specific client software access, click here to view [Client black list](/about/blank)。
+
+&emsp;
+
+#### :white_small_square: Malicious behavior and punishment
+
+1. Use disallowed clients or use disallowed access methods for uploading or downloading.
+1. Use third-party tools to tamper with reporting data.
+1. Other abnormal behaviors upload or download.
+
+&emsp;
+
+<span class="text-danger">** NOTE: Once your behavior is defined as malicious behavior, you may be subject to very severe penalties. Please visit the [Forbid And Punish Rules Detail](/about/manual/forbidRules)**</span>

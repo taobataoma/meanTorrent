@@ -1,4 +1,4 @@
-### :orange_book: 做种与下载细则详细说明 - %(appConfig.name)s
+### :orange_book: 做种与下载细则 - %(appConfig.name)s
 ---
 **%(appConfig.name)s** 是一个自由分享资源的平台，请在做种或下载的过程中，遵守如下的规则，否则可能会受到管理组的严厉处罚甚至帐号被禁止。
 
@@ -49,3 +49,15 @@
 #### :white_small_square: 客户端限制
 
 * %(appConfig.name)s 禁止一些特定的客户端软件访问，点此查看 [禁止客户端列表](/about/blank)。
+
+&emsp;
+
+#### :white_small_square: 恶意行为的界定与处罚
+
+1. 使用不允许的客户端或使用不允许的访问方式进行上传或下载。
+1. 使用第三方工具篡改上报数据。
+1. 其它非正常行为上传或下载。
+
+&emsp;
+
+<span class="text-danger">** 注意：一旦您的行为被界定为恶意行为，您将可能受到非常严厉的处罚，具体请参阅 [禁令与处罚细则](/about/manual/forbidRules)**</span>

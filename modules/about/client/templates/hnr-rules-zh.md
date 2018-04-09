@@ -1,4 +1,4 @@
-### :orange_book: H&R 黑种细则详细说明 - %(appConfig.name)s
+### :orange_book: H&R 黑种细则 - %(appConfig.name)s
 ---
 **%(appConfig.name)s** 提供一个完备的 <mark>H&R</mark> 系统, 带有<mark>H&R</mark>标识的种子又被用户称为黑种，用户下载黑种时，必须遵循一定的特殊要求，如果操作不当，您会收到警告甚至不能下载上传任何资源。**%(appConfig.name)s** 的黑种规则如下：
 

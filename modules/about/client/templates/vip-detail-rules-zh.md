@@ -1,4 +1,4 @@
-### :orange_book: VIP 用户权益细则详细说明 - %(appConfig.name)s
+### :orange_book: VIP 用户权益细则 - %(appConfig.name)s
 ---
 **%(appConfig.name)s** 用户分为普通用户与VIP用户，VIP是一种身份与权利的像征，系统为VIP用户设计了一系列的权益条款，为VIP用户在各方面提供便捷的服务，同时也感谢所有VIP用户为站点的发展所做出的贡献。
 
