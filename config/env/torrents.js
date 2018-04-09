@@ -270,12 +270,14 @@ module.exports = {
      *                  if user received an invite mail, must signin(register) within the expiration time
      *                  if exceed the expiration time, the invite send qualifications will invalid and user also can not signin(register).
      * @expires_str:    string desc of @expires
+     * @banUserInviter: settings whether ban the user`s inviter when a user banned
      */
     invite: {
       openInvite: true,
       scoreExchange: 10000,
       expires: 60 * 60 * 1000 * 24,
-      expires_str: '24h'
+      expires_str: '24h',
+      banUserInviter: true
     },
 
     /**
