@@ -1,6 +1,6 @@
 ### :orange_book: Uploader Rules Detail - %(appConfig.name)s
 ---
-**%(appConfig.name)s** is a platform for free sharing of resources. Please follow the rules below in the process of releasing resources or uploading and seeding. Otherwise, it may be severely punished by the management team and even the account is prohibited.
+**%(appConfig.name)s** is a platform for free sharing of resources. Please follow the rules below in the process of uploading resources or uploading forum attachment. Otherwise, it may be severely punished by the management team and even the account is prohibited.
 
 &emsp;
 
@@ -27,15 +27,9 @@
 
 &emsp;
 
-#### :white_small_square: Seeding
+#### :white_small_square: Upload forum attachment
 
-1. The system has a share rate requirement for all download behaviors. The current requirement is `%(announceConfig.downloadCheck.ratio).2f`, so after you publish, extend the time for planting as much as possible to earn as much upload and scores as possible.
-1. The system does not check the sharing rate for users who have newly registered `%(announceConfig.downloadCheck.checkAfterSignupDays)d` days. Therefore, new users should increase their sharing rate as much as possible during this time.
-1. Don't stop seeding without anyone finished download. If you have special circumstances, please leave a message under the relevant torrent detail page.
-
-&emsp;
-
-#### :white_small_square: Upload and download data size
-
-* Seed uploaders calculate the upload volume of `* %(salesGlobalConfig.uploader.value.Ur).2f`.
-* Other users calculate the normal upload amount.
+1. The Forum is a place for users to exchange ideas and it is forbidden to publish torrent resources on the forum.
+1. Do not upload any documents and images that violate the local laws and regulations at any time in forum. The administrator will directly delete and give <mark>**stricken punishment**</mark>.
+1. It is forbidden to publish on the forum any attachment that is detrimental to the user's computer data and security. Once discovered, the account is deleted directly.
+1. Please observe the special rules of the relevant forums.
