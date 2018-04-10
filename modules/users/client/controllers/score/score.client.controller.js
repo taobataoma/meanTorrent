@@ -88,6 +88,9 @@
 
         user: vm.user
       });
+
+      tmp = $filter('translate')(tmp);
+
       return marked(tmp, {sanitize: false});
     };
 

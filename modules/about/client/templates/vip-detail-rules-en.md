@@ -25,4 +25,4 @@
 1. VIP users in the station only accept donations, if you want to join our VIP club, [click here to join](/vip/rules)。
 1. After your VIP identity is confirmed successfully, you will receive notification message sent automatically by the system.
 1. The VIP status is calculated on a monthly basis. Upon expiration, the VIP status automatically becomes an ordinary user and no longer enjoys all the rights of VIP users.
-1. For additional help, please [send us an email](mailto:%(appConfig.admin)s) and we will send someone to serve you.
+1. For additional help, please contact our {{'%(supportConfig.supportGroupNameDesc)s' | translate}} by **[Message](/messages/send?to=%(supportConfig.supportGroupName)s)** or **[Email](mailto: %(supportConfig.supportMailAddress)s)** and we will send someone to serve you.

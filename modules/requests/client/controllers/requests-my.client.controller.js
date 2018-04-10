@@ -15,6 +15,7 @@
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.requestsConfig = MeanTorrentConfig.meanTorrentConfig.requests;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
     vm.show_desc_help = localStorageService.get('requests_my_show_help') || 'yes';
 
     /**
@@ -24,7 +25,9 @@
     vm.getRequestsDesc = function () {
       var ts = $translate.instant('REQUESTS.DESC_MY', {
         days: vm.requestsConfig.requestExpires / (60 * 60 * 1000 * 24),
-        admin: vm.appConfig.admin
+        sMail: vm.supportConfig.supportMailAddress,
+        sNameDesc: vm.supportConfig.supportGroupNameDesc,
+        sName: vm.supportConfig.supportGroupName
       });
 
       return marked(ts, {sanitize: true});

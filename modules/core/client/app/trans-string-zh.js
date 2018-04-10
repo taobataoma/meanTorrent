@@ -25,7 +25,7 @@
     BTN_REMOVE: '删除',
 
     //Support
-    SUPPORT_GROUP_NAME_DESC: '客户服务支持组',
+    SUPPORT_GROUP_NAME_DESC: '管理组',
     CLIENT_BLOCK_REASON: {
       NON_BT_CLIENT: '非BT客户端软件'
     },
@@ -372,7 +372,7 @@
     },
     MY_TORRENT_RULES: {
       0: '这个种子文件是由你自己上传的，你可以对其做如下操作.',
-      1: '如需其它帮助，请与我们的 <strong><a href="mailto:{{admin}}">系统管理员</a></strong> 联系.'
+      1: '如需其它帮助，请给{{sNameDesc | translate}}发送 <strong><a href="/messages/send?to={{sName}}">消息</a></strong> 或 <strong><a href="mailto:{{sMail}}">邮件</a></strong>.'
     },
     TORRENT_SEED_USERS: '做种用户列表',
     TORRENT_LEECHER_USERS: '下载用户列表',
@@ -632,14 +632,14 @@
       MENU_ABOUT_MANUAL_FAQ: '问题解答',
       CLIENT_BLACK_LIST: '禁止客户端列表',
       MAKER_GROUP: '资源压制小组',
-      BLACK_TOOLTIP: '<h4>提示:</h4>下面列出的所有客户端都已被服务器禁止，使用它们将不能下载到任何数据, 如需其它帮助，请与我们的 <strong><a href="mailto:{{admin}}">系统管理员</a> </strong>联系.',
+      BLACK_TOOLTIP: '<h4>提示:</h4>下面列出的所有客户端都已被服务器禁止，使用它们将不能下载到任何数据, 如需其它帮助，请给{{sNameDesc | translate}}发送 <strong><a href="/messages/send?to={{sName}}">消息</a></strong> 或 <strong><a href="mailto:{{sMail}}">邮件</a></strong>.',
       FORM_MAKER_NAME: '资源压制小组名称',
       FORM_MAKER_DESC: '资源压制小组简介',
       FORM_MAKER_FOR: '创建资源压制小组 - {{name}}',
       MAKER_CREATE_SUCCESSFULLY: '资源压制小组创建成功',
       MAKER_CREATE_FAILED: '资源压制小组创建失败',
       OPER_LIST: 'Admin & Oper 列表',
-      OPER_LIST_TOOLTIP: '<h4>提示:</h4>下面列出的所有用户都是 <strong>{{site}}</strong> 站点的 Administrator 或 Operator, 如果你需要帮助, 请向我们的 <strong><a href="mailto:{{admin}}">系统管理员</a></strong> 发送邮件或向下面列出的管理员发送站内消息.',
+      OPER_LIST_TOOLTIP: '<h4>提示:</h4>下面列出的所有用户都是 <strong>{{site}}</strong> 站点的 Administrator 或 Operator, 如果你需要帮助, 请给{{sNameDesc | translate}}发送 <strong><a href="/messages/send?to={{sName}}">消息</a></strong> 或 <strong><a href="mailto:{{sMail}}">邮件</a></strong> 或者向下面列出的管理员直接发送站内消息.',
       MAKER_LIST_TOOLTIP: '下面列出的所有资源压制小组都是入驻 <strong>{{site}}</strong> 的官方小组, 感谢这些压制小组对站点做出的贡献, 如果您想加入其中的小组, 请向小组创始人发送站内消息并欢迎您成为其中的一份子.',
       GROUP_FOUNDER: '创始人: ',
       BTN_EDIT_DESC: '编辑简介',
@@ -812,7 +812,7 @@
       COMMENT_REMOVE_SUCCESS: '评论删除成功!',
       COMMENT_REMOVE_ERROR: '评论删除失败!',
       DESC_LIST: '### 提示: \n - 此列表只包含最近 `{{days}}` 天内发布的求种请求. \n - 如果你的回应被采纳, 请求者悬赏的积分将自动转入你的帐户. \n - 只有被管理员审核通过的种子才能被请求者接受. \n - 请求者只能接受多个响应中的一个. \n - 如果你的响应被请求者投诉，你的帐号就可能会受到惩罚, 请认真响应用户的请求.',
-      DESC_MY: '### 提示: \n - 如果您接受一个响应, 你的悬赏积分就会转入你接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 您只能接受多个响应中的一个. \n - 超过 `{{days}}` 天的请求已经过期且不能接受响应, 如果需要你只能再次发起请求. \n - 如果您的积分受到恶意损害, 请向管理员[投诉](mailto:{{admin}}).',
+      DESC_MY: '### 提示: \n - 如果您接受一个响应, 你的悬赏积分就会转入你接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 您只能接受多个响应中的一个. \n - 超过 `{{days}}` 天的请求已经过期且不能接受响应, 如果需要你只能再次发起请求. \n - 如果您的积分受到恶意损害, 请给{{sNameDesc | translate}}发送 **[消息](/messages/send?to={{sName}})** 或 **[邮件](mailto:{{sMail}})** 进行投诉.',
       DESC_ADD: '### 提示: \n - 每发布一个请求会被自动扣除 `{{add_score}}` 积分, 而你的悬赏积分会转入你最终接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 每一个发布的请求只有 `{{days}}` 天的有效期, 过期后你只能再次发起请求. \n - 请在发布请求时明确描述您对资源的要求.',
       DESC_RES: '### NOTE: \n - 如果请求者接受了您的响应, 悬赏积分将自动转入您的帐户. \n - 只有被管理员审核通过的种子才能被请求者接受. \n - 请求者只会接受多个响应中的一个.',
       DESC_VIEW: '### NOTE: \n - 如果你是一个响应者, 请上传您的种子文件并开始做种, 请认真响应用户的请求. \n - 如果你是一个请求者, 您可以选择一个响应并接受它, 只有被管理员审核通过的种子才能被您接受. \n - 如果您接受一个响应, 你的悬赏积分就会转入你接受的响应者的帐户. \n - 超过 `{{days}}` 天的请求已经过期且不能接受响应或上传种子.'

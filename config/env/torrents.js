@@ -39,6 +39,7 @@ module.exports = {
      *
      * @supportGroupName:               site support group name, user can send message to this group
      * @supportGroupNameDesc:           desc of support group name, value of translate string
+     * @supportMailAddress:             support group mail address
      * @mailTicketSupportService:       settings mailTicketSupportService status, true is enable, false is disable
      * @messageTicketSupportService:    settings messageTicketSupportService status, true is enable, false is disable
      *
@@ -49,6 +50,7 @@ module.exports = {
     support: {
       supportGroupName: 'Support',
       supportGroupNameDesc: 'SUPPORT_GROUP_NAME_DESC',
+      supportMailAddress: 'support@mean.im',
       mailTicketSupportService: false,
       messageTicketSupportService: true
     },

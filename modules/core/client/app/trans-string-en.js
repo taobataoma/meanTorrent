@@ -25,7 +25,7 @@
     BTN_REMOVE: 'Remove',
 
     //Support
-    SUPPORT_GROUP_NAME_DESC: 'Service Group',
+    SUPPORT_GROUP_NAME_DESC: 'Management group',
     CLIENT_BLOCK_REASON: {
       NON_BT_CLIENT: 'Non BT client software'
     },
@@ -372,7 +372,7 @@
     },
     MY_TORRENT_RULES: {
       0: 'This torrent file is uploaded by yourself, you have actions bellow.',
-      1: 'For additional assistance, please contact our <strong><a href="mailto:{{admin}}">administrator</a></strong>.'
+      1: 'For additional assistance, please contact our {{sNameDesc | translate}} by <strong><a href="/messages/send?to={{sName}}">Message</a></strong> or <strong><a href="mailto:{{sMail}}">Email</a></strong>.'
     },
     TORRENT_SEED_USERS: 'Seed Users',
     TORRENT_LEECHER_USERS: 'Leecher Users',
@@ -632,14 +632,14 @@
       MENU_ABOUT_MANUAL_FAQ: 'FAQ',
       CLIENT_BLACK_LIST: 'Client Black List',
       MAKER_GROUP: 'Torrents Maker Group',
-      BLACK_TOOLTIP: '<h4>Note:</h4>All the clients in the list was forbidden by server and can not announce or get any torrent data, For more help, please contact our <strong><a href="mailto:{{admin}}">administrator</a></strong>.',
+      BLACK_TOOLTIP: '<h4>Note:</h4>All the clients in the list was forbidden by server and can not announce or get any torrent data, For more help, please contact our {{sNameDesc | translate}} by <strong><a href="/messages/send?to={{sName}}">Message</a></strong> or <strong><a href="mailto:{{sMail}}">Email</a></strong>.',
       FORM_MAKER_NAME: 'Maker Group Name',
       FORM_MAKER_DESC: 'Maker Group Description',
       FORM_MAKER_FOR: 'Create maker group for - {{name}}',
       MAKER_CREATE_SUCCESSFULLY: 'Create maker group successfully',
       MAKER_CREATE_FAILED: 'Create maker group failed',
       OPER_LIST: 'Admin and Oper List',
-      OPER_LIST_TOOLTIP: '<h4>Note:</h4>All the users in the list was the Administrator or Operator of <strong>{{site}}</strong>, If you need any help, please mailto our <strong><a href="mailto:{{admin}}">administrator</a></strong> or send a message to them from below.',
+      OPER_LIST_TOOLTIP: '<h4>Note:</h4>All the users in the list was the Administrator or Operator of <strong>{{site}}</strong>, If you need any help, please contact our {{sNameDesc | translate}} by <strong><a href="/messages/send?to={{sName}}">Message</a></strong> or <strong><a href="mailto:{{sMail}}">Email</a></strong> or send a message to them from below.',
       MAKER_LIST_TOOLTIP: 'All the <strong>torrent maker group</strong> in the list was the official group of <strong>{{site}}</strong>, Thanks to the contributions of these groups. If you want to join one of these groups, send the station message to the group founder.',
       GROUP_FOUNDER: 'Founder: ',
       BTN_EDIT_DESC: 'Edit Desc',
@@ -812,7 +812,7 @@
       COMMENT_REMOVE_SUCCESS: 'Comment removed successfully!',
       COMMENT_REMOVE_ERROR: 'Comment removed failed!',
       DESC_LIST: '### NOTE: \n - The list contains only the last `{{days}}` days of the requests. \n - If your response is accepted, the requestor\'s reward score will be automatically transferred to your account. \n - Only the torrents reviewed by the administrator can be accepted by the requestor. \n - The requester can only accept one of the responses. \n - If your response is complains, your account may be punished, Please respond to the user\'s request carefully.',
-      DESC_MY: '### NOTE: \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - You can only accept one of the responses. \n - The request over `{{days}}` days has expired and cannot accept the response,  you can only post the request again. \n - If your score is maliciously damaged, please mail to the [administrator](mailto:{{admin}})',
+      DESC_MY: '### NOTE: \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - You can only accept one of the responses. \n - The request over `{{days}}` days has expired and cannot accept the response,  you can only post the request again. \n - If your score is maliciously damaged, Please contact our {{sNameDesc | translate}} by **[Message](/messages/send?to={{sName}})** or **[Email](mailto:{{sMail}})** to complaints.',
       DESC_ADD: '### NOTE: \n - Each request will be automatically deducted from `{{add_score}}` points, but your reward score will only be transferred to the responder\'s account that you eventually accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - Each request is only valid for `{{days}}` days. After expiry, you can only post the request again. \n - Please give a clear resources description of your request when you post the request.',
       DESC_RES: '### NOTE: \n - If requestor accept your response, the reward score will be transferred to your account. \n - Only the torrents reviewed by the administrator can be accepted by requestor. \n - Requestor can only accept one of the responses.',
       DESC_VIEW: '### NOTE: \n - If you want to response a request, please upload the torrent file and seed, Please respond to the user\'s request carefully. \n - If you are a requestor, you can choose a responder and accept it, and only the torrents reviewed by the administrator can be accepted. \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - The request over `{{days}}` days has expired and cannot accept or response(upload).'

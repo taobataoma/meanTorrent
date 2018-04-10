@@ -95,6 +95,9 @@
 
         user: vm.authentication.user
       });
+
+      tmp = $filter('translate')(tmp);
+
       return marked(tmp, {sanitize: false});
     };
 

@@ -25,4 +25,4 @@
 1. 站内 VIP 用户只接受捐赠加入，如果您想加入我们的 VIP 俱乐部，[请点这里加入](/vip/rules)。
 1. 当您的 VIP 身份确认成功后，会收到系统自动发送的站内确认消息通知。
 1. VIP 身份按月计算，期满后，自动变成普通用户身份，不再享受 VIP 用户的所有权益。
-1. 如需其它帮助, 请 [给我们发邮件](mailto:%(appConfig.admin)s)，我们将派专人为您服务。
+1. 如需其它帮助, 请向{{'%(supportConfig.supportGroupNameDesc)s' | translate}}发送 **[消息](/messages/send?to=%(supportConfig.supportGroupName)s)** 或 **[邮件](mailto: %(supportConfig.supportMailAddress)s)**，我们将派专人为您服务。

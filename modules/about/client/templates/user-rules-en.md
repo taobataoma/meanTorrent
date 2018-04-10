@@ -2,7 +2,7 @@
 ---
 First, we look forward to and welcome your joining!
 
-**%(appConfig.name)s** is a private resource sharing platform. You have to register to access. Before doing anything in %(appConfig.name)s s, the management group recommends that you read the rules of the site carefully, while the management group has the right to further explain or modify the rules, and the management group keeps the undefined part of the rules, but it is obviously harmful to the right to conduct the behavior of the site. If you have any suggestions or comments on rules, you are welcome to directly contact [management group](mailto:%(appConfig.admin)s) or put forward in the station forum.
+**%(appConfig.name)s** is a private resource sharing platform. You have to register to access. Before doing anything in %(appConfig.name)s s, the management group recommends that you read the rules of the site carefully, while the management group has the right to further explain or modify the rules, and the management group keeps the undefined part of the rules, but it is obviously harmful to the right to conduct the behavior of the site. If you have any suggestions or comments on rules, you are welcome to directly contact our {{'%(supportConfig.supportGroupNameDesc)s' | translate}} by **[Message](/messages/send?to=%(supportConfig.supportGroupName)s)** or **[Email](mailto: %(supportConfig.supportMailAddress)s)** or put forward in the station forum.
 
 &emsp;
 

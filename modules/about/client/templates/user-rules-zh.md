@@ -2,7 +2,7 @@
 ---
 首先，我们期待并欢迎您的加入！
 
-**%(appConfig.name)s** 是一个私有的资源分享平台，您必须注册才能访问。在 %(appConfig.name)s 做任何事情之前，管理组都建议您仔细阅读站点的各项规则，同时，管理组对规则拥有对规则进一步解释或修改的权利，管理组保留规则中未明确规定的部分，但显然有害于网站的行为进行处理的权利。如果您对规则有任何建议或意见，欢迎您直接 [联系管理组](mailto:%(appConfig.admin)s) 或在站内论坛提出。
+**%(appConfig.name)s** 是一个私有的资源分享平台，您必须注册才能访问。在 %(appConfig.name)s 做任何事情之前，管理组都建议您仔细阅读站点的各项规则，同时，管理组对规则拥有对规则进一步解释或修改的权利，管理组保留规则中未明确规定的部分，但显然有害于网站的行为进行处理的权利。如果您对规则有任何建议或意见，欢迎您向{{'%(supportConfig.supportGroupNameDesc)s' | translate}}发送 **[消息](/messages/send?to=%(supportConfig.supportGroupName)s)** 或 **[邮件](mailto: %(supportConfig.supportMailAddress)s)** 或在站内论坛提出。
 
 &emsp;
 

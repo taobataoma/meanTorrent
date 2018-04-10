@@ -7,7 +7,7 @@
 #### :white_small_square: 发布种子
 1. 我们主张自由的分享资源，但任何时间任何地点都不要上传带有密码的压缩包文件，管理员发现后会直接删除并给予处罚。
 1. 任何时候都不要上传有违反当地法律法规的任何文件，管理员发现后会直接删除并给予 <mark>**严厉处罚**</mark>。
-1. 上传的任何文件都要注意文件名的规范，否则会被管理直接删除并给予处罚，具体的规范请查阅论坛的相关主题或是向 [客户服务中心](mailto:%(appConfig.admin)s) 提问。
+1. 上传的任何文件都要注意文件名的规范，否则会被管理直接删除并给予处罚，具体的规范请查阅论坛的相关主题或是向{{'%(supportConfig.supportGroupNameDesc)s' | translate}}发送 **[消息](/messages/send?to=%(supportConfig.supportGroupName)s)** 或 **[邮件](mailto: %(supportConfig.supportMailAddress)s)** 提问。
 1. 禁止在论坛或其它可以发表个人意见的地方发布种子资源。
 1. 种子发布后，不会在列表中立即显示，除非经过管理员审核或者管理员赋予您上传直接通过的上传权限。
 1. 您上传的任何种子，管理员都可以对其设置更多的附加属性，比如推荐级别、促销级别、资源标签等。
@@ -15,14 +15,14 @@
 1. 种子发布成功后，系统会给予一定的积分奖励，同样，种子被删除时，奖励的积分会被扣除，具体的 [积分细则请看这里](/about/manual/scoreRules)。
 1. 严禁在种子描述区域内上传与资源内容无关的图片和文字。
 1. 严禁在任何区域进行未经许可的商业推广行为。
-1. 如果您有0-day资源途径或者高超的压制本领，请不要迟疑立即 [与我们联系](mailto: %(appConfig.admin)s)。
+1. 如果您有0-day资源途径或者高超的压制本领，请不要迟疑立即向{{'%(supportConfig.supportGroupNameDesc)s' | translate}}发送 **[消息](/messages/send?to=%(supportConfig.supportGroupName)s)** 或 **[邮件](mailto: %(supportConfig.supportMailAddress)s)** 与我们联系。
 
 &emsp;
 
 #### :white_small_square: 发布字幕
 
 1. 任何用户都可以在种子详情页面上传字幕文件。
-1. 请遵守字幕文件的命名规范，否则会被管理直接删除并给予处罚，具体的规范请查阅论坛的相关主题或是向 [客户服务中心](mailto:%(appConfig.admin)s) 提问。
+1. 请遵守字幕文件的命名规范，否则会被管理直接删除并给予处罚，具体的规范请查阅论坛的相关主题或是向{{'%(supportConfig.supportGroupNameDesc)s' | translate}}发送 **[消息](/messages/send?to=%(supportConfig.supportGroupName)s)** 或 **[邮件](mailto: %(supportConfig.supportMailAddress)s)** 提问。
 1. 请不要上传与当前资源无关或不匹配的字幕文件，否则会被管理直接删除并给予处罚。
 1. 字幕发布成功后，系统会给予一定的积分奖励，同样，字幕被删除时，奖励的积分会被扣除，具体的 [积分细则请看这里](/about/manual/scoreRules)。
 
