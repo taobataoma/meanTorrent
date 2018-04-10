@@ -15,7 +15,7 @@
 1. After the torrent is released successfully, the system will give a certain scores reward. Similarly, when the torrent is deleted, the reward scores will be deducted. [User score rules detail is here](/about/manual/scoreRules).
 1. It is forbidden to upload images and texts that are not related to the content of the resources in the seed description area.
 1. Unauthorized commercial promotion in any area is strictly prohibited.
-
+1. If you have 0-day resources or superb repression skills, please do not hesitate to [contact us immediately](mailto: %(appConfig.admin)s).
 &emsp;
 
 #### :white_small_square: Upload subtitles
