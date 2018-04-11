@@ -11,7 +11,7 @@
                 <form name="vm.messageForm" ng-submit="vm.sendMessage(vm.messageForm.$valid)" novalidate autocomplete="off">
                     <dl class="dl-horizontal">
                         <div class="margin-bottom-10 form-group" show-errors>
-                            <dt class="h-line">{{ 'MESSAGES_FIELD.TO' | translate}}：</dt>
+                            <dt class="h-line">{{ 'MESSAGES_FIELD.TO' | translate}}</dt>
                             <dd class="h-line">
                                 <input type="text" class="form-control" id="sendTo" name="sendTo"
                                        ng-model="vm.messageFields.sendTo" required ng-readonly="vm.sendToReadonly">
@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="margin-bottom-10 form-group" show-errors>
-                            <dt class="h-line">{{ 'MESSAGES_FIELD.TITLE' | translate}}：</dt>
+                            <dt class="h-line">{{ 'MESSAGES_FIELD.TITLE' | translate}}</dt>
                             <dd class="h-line">
                                 <input type="text" class="form-control" id="title" name="title"
                                        ng-model="vm.messageFields.title" autofocus required>
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="margin-bottom-10 form-group" show-errors>
-                            <dt class="h-line">{{ 'MESSAGES_FIELD.CONTENT' | translate}}：</dt>
+                            <dt class="h-line">{{ 'MESSAGES_FIELD.CONTENT' | translate}}</dt>
                             <dd class="h-line">
                                 <textarea id="messageContent" name="messageContent" class="form-control message-textarea" ng-model="vm.messageFields.content"
                                           mt-markdown-editor="messageContent" maxlength="{{vm.inputLengthConfig.messageBoxContentLength}}" required></textarea>

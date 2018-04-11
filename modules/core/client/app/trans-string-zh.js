@@ -41,6 +41,7 @@
     MENU_ADMIN_TRACE: '系统日志',
     MENU_ADMIN_FORUMS_CONFIGURE: '论坛配置管理',
     MENU_ADMIN_SYSTEMS: '系统控制面板',
+    MENU_ADMIN_TICKETS: '客户服务中心',
     MENU_USERS_ADMIN: '用户管理',
     MENU_UPLOAD: '发布',
     MENU_FORUMS: '论坛',
