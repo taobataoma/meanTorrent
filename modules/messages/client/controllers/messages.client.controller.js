@@ -7,13 +7,14 @@
 
   MessageController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$filter', 'NotifycationService', '$stateParams', 'MessagesService',
     'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope', 'AdminMessagesService', 'SideOverlay', '$interval', 'uibButtonConfig',
-    'DebugConsoleService', 'localStorageService'];
+    'DebugConsoleService', 'localStorageService', 'MessageTicketsService'];
 
   function MessageController($scope, $state, $translate, $timeout, Authentication, $filter, NotifycationService, $stateParams, MessagesService,
                              MeanTorrentConfig, ModalConfirmService, marked, $rootScope, AdminMessagesService, SideOverlay, $interval, uibButtonConfig,
-                             mtDebug, localStorageService) {
+                             mtDebug, localStorageService, MessageTicketsService) {
     var vm = this;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
+    vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.user = Authentication.user;
     vm.messageFields = {};
@@ -35,11 +36,17 @@
      */
     vm.checkSendTo = function () {
       if ($stateParams.to) {
-        var t = $stateParams.to.split('|');
-        if (t.length === 2) {
-          vm.messageFields.to_user = t[0];
-          vm.messageFields.sendTo = t[1];
+        if ($stateParams.to === vm.supportConfig.supportGroupName) {  //message to support group
+          vm.messageFields.to = vm.supportConfig.supportGroupName;
+          vm.messageFields.sendTo = $translate.instant(vm.supportConfig.supportGroupNameDesc);
           vm.sendToReadonly = true;
+        } else {
+          var t = $stateParams.to.split('|');
+          if (t.length === 2) {
+            vm.messageFields.to_user = t[0];
+            vm.messageFields.sendTo = t[1];
+            vm.sendToReadonly = true;
+          }
         }
       }
     };
@@ -54,14 +61,22 @@
         return false;
       }
 
-      var msg = new MessagesService(vm.messageFields);
-      msg.type = 'user';
-
-      msg.$save(function (response) {
-        successCallback(response);
-      }, function (errorResponse) {
-        errorCallback(errorResponse);
-      });
+      if ($stateParams.to === vm.supportConfig.supportGroupName) {
+        var ticket = new MessageTicketsService(vm.messageFields);
+        ticket.$save(function (response) {
+          successCallback(response);
+        }, function (errorResponse) {
+          errorCallback(errorResponse);
+        });
+      } else {
+        var msg = new MessagesService(vm.messageFields);
+        msg.type = 'user';
+        msg.$save(function (response) {
+          successCallback(response);
+        }, function (errorResponse) {
+          errorCallback(errorResponse);
+        });
+      }
 
       function successCallback(res) {
         vm.messageFields = {};

@@ -11,7 +11,7 @@
   function menuConfig(menuService) {
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_ADMIN_TICKETS',
-      state: 'admin.tickets.support',
+      state: 'admin.tickets.support.message',
       roles: ['admin'],
       faIcon: 'fa-volume-control-phone',
       faClass: 'text-mt',

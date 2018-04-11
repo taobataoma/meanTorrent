@@ -261,7 +261,8 @@
       MY_FOLLOWERS: 'My Followers',
       MY_FOLLOWING: 'My Following',
       USER_FOLLOWERS: 'User`s Followers',
-      USER_FOLLOWING: 'User`s Following'
+      USER_FOLLOWING: 'User`s Following',
+      ADMIN_TICKETS: 'Support Services Center'
     },
 
     //sign in, sign up, password
@@ -1347,6 +1348,22 @@
       BOWER_INSTALL: 'If you added any client side dependencies package into meanTorrent, then need run it to install the package.',
       GULP_BUILD: 'Run it compile all .js and .css to min files and ready for production mode of meanTorrent.',
       RESTART: 'If you have a restart script named \'restart.sh\', you can run it to restart meanTorrent.'
+    },
+
+    //support
+    SUPPORT: {
+      TITLE_MESSAGE_SUPPORT: 'Message Tickets',
+      TITLE_MAIL_SUPPORT: 'Mail Tickets',
+      STATUS_GETTING: 'Getting tickets data, please waiting ...',
+      STATUS_GETTING_ERROR: 'Getting tickets data ERROR!',
+      NO_TICKETS_DATA: 'There are not any tickets now.',
+      FIELDS_FROM: 'From',
+      FIELDS_TITLE: 'Title',
+      FIELDS_HANDLER: 'Handler',
+      FIELDS_REPLIES: 'Replies',
+      FIELDS_STATUS: 'Status',
+      FIELDS_CREATEDAT: 'Created At',
+      FIELDS_UPDATEDAT: 'Updated At'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

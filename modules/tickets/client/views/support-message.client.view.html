@@ -1,0 +1,81 @@
+<section class="container padding-top-30" ng-controller="MessageTicketController as vm" ng-init="vm.buildPager()">
+    <div class="jumbotron margin-top-20 text-center" ng-if="vm.statusMsg || vm.pagedItems.length<=0">
+        <div ng-if="vm.statusMsg">
+            <h3 class="text-muted">{{vm.statusMsg | translate}}</h3>
+        </div>
+        <div ng-if="!vm.statusMsg && vm.pagedItems.length<=0">
+            <i class="fa fa-users fa-2x text-muted" aria-hidden="true"></i>
+            <h3 class="text-muted">{{'SUPPORT.NO_TICKETS_DATA' | translate}}</h3>
+        </div>
+    </div>
+    <div ng-if="vm.pagedItems.length>0">
+        <div id="top_of_tickets_list">
+            <div class="pagination-border-bottom">
+                <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                    ng-model="vm.currentPage"
+                    ng-change="vm.pageChanged()"
+                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                </ul>
+            </div>
+
+            <div class="request-list">
+                <div class="table-responsive">
+                    <table class="table table-hover tb-v-middle">
+                        <thead>
+                            <tr>
+                                <th>{{ 'SUPPORT.FIELDS_FROM' | translate}}</th>
+                                <th>{{ 'SUPPORT.FIELDS_TITLE' | translate}}</th>
+                                <th class="text-center">{{ 'SUPPORT.FIELDS_REPLIES' | translate}}</th>
+                                <th class="text-center">{{ 'SUPPORT.FIELDS_CREATEDAT' | translate}}</th>
+                                <th class="text-center">{{ 'SUPPORT.FIELDS_UPDATEDAT' | translate}}</th>
+                                <th class="text-center">{{ 'SUPPORT.FIELDS_STATUS' | translate}}</th>
+                                <th class="text-center">{{ 'SUPPORT.FIELDS_HANDLER' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="ticket-item" ng-repeat="item in vm.pagedItems">
+                                <td class="col-md-1 td-v-middle">
+                                    <span user-info="item.from" info-class="ticket-avatar" info-avatar></span>
+                                    <span user-info="item.from" info-name></span>
+                                </td>
+                                <td class="col-md-4 td-v-middle td-text-overflow">
+                                    <div class="text-long">
+                                        <a ui-sref="requests.view({requestId: item._id})">{{item.title}}</a>
+                                    </div>
+                                </td>
+                                <td class="col-md-1 td-v-middle text-center">{{item.replies ? item.replies.length : 0}}</td>
+                                <td class="col-md-1 td-v-middle text-center width-100">{{item.createdAt | life}}</td>
+                                <td class="col-md-1 td-v-middle text-center width-100">
+                                    <span ng-if="item.updatedAt">
+                                        {{item.updatedAt | life}}
+                                    </span>
+                                </td>
+                                <td class="col-md-1 td-v-middle text-center">
+                                    <span class="badge badge_danger"
+                                          ng-if="item.status=='open'"> {{item.status}} </span>
+                                    <span class="badge badge_success"
+                                          ng-if="item.status=='wait'"> {{item.status}} </span>
+                                    <span class="badge badge_default"
+                                          ng-if="item.status=='solved'"> {{item.status}} </span>
+                                </td>
+                                <td class="col-md-2 td-v-middle text-center width-150">
+                                    <span user-info="item.handler" info-name></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="pagination-border-top">
+                <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                    ng-model="vm.currentPage"
+                    ng-change="vm.pageChanged()"
+                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

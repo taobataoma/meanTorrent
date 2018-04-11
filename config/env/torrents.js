@@ -29,7 +29,7 @@ module.exports = {
       admin: 'admin@mean.im',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
-      showDebugLog: false
+      showDebugLog: true
     },
 
     /**
@@ -1139,6 +1139,11 @@ module.exports = {
      * @homeHelpListLimit:        help items number of home settings
      * @homeNoticeListLimit:      notice items number of home settings
      * @homeNewTopicListLimit:    new topic items number of home settings
+     * @homeNewestTorrentsListLimit:    newest torrents items number of home settings
+     *
+     * @examinationUserListPerPage:     users item number of examination result page
+     * @messageTicketsListPerPage:      message tickets items number of support list page
+     * @mailTicketsListPerPage:         mail tickets items number of support list page
      */
     itemsPerPage: {
       topicsPerPage: 10,
@@ -1167,7 +1172,9 @@ module.exports = {
       homeNewTopicListLimit: 10,
       homeNewestTorrentsListLimit: 10,
 
-      examinationUserListPerPage: 20
+      examinationUserListPerPage: 20,
+      messageTicketsListPerPage: 15,
+      mailTicketsListPerPage: 15
     },
 
     /**

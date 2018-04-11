@@ -261,7 +261,8 @@
       MY_FOLLOWERS: '关注我的',
       MY_FOLLOWING: '我关注的',
       USER_FOLLOWERS: '关注他的',
-      USER_FOLLOWING: '他的关注'
+      USER_FOLLOWING: '他的关注',
+      ADMIN_TICKETS: '客户服务中心'
     },
 
     //sign in, sign up, password
@@ -1347,6 +1348,22 @@
       BOWER_INSTALL: '如果您向 meanTorrent 手动添加了任何浏览器端依赖模块, 则需要运行此命令来安装这些新添加的模块.',
       GULP_BUILD: '对所有 .js 文件以及 .css 文件进行编译压缩, 为 meanTorrent 准备生产模式.',
       RESTART: '如果您有一个名为 \'restart.sh\' 的脚本文件, 您可以运行它来重启 meanTorrent.'
+    },
+
+    //support
+    SUPPORT: {
+      TITLE_MESSAGE_SUPPORT: '管理组 消息 中心',
+      TITLE_MAIL_SUPPORT: '管理组 邮件 中心',
+      STATUS_GETTING: '正在获取客服数据，请稍候 ...',
+      STATUS_GETTING_ERROR: '获取客服数据失败!',
+      NO_TICKETS_DATA: '现在还没有任何客服数据.',
+      FIELDS_FROM: '来自',
+      FIELDS_TITLE: '标题',
+      FIELDS_HANDLER: '接手人',
+      FIELDS_REPLIES: '回复数',
+      FIELDS_STATUS: '状态',
+      FIELDS_CREATEDAT: '创建日期',
+      FIELDS_UPDATEDAT: '更新日期'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

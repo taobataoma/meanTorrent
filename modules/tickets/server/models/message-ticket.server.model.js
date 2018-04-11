@@ -15,8 +15,9 @@ var MessageTicketSchema = new Schema({
     ref: 'User'
   },
   to: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+    type: String,
+    default: '',
+    trim: true
   },
   title: {
     type: String,
