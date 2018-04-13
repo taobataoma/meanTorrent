@@ -25,7 +25,7 @@
                         <div class="margin-bottom-10 form-group" show-errors>
                             <dt class="h-line">{{ 'MESSAGES_FIELD.TITLE' | translate}}</dt>
                             <dd class="h-line">
-                                <input type="text" class="form-control" id="title" name="title"
+                                <input type="text" class="form-control" id="title" name="title" maxlength="{{vm.inputLengthConfig.messageTitleLength}}"
                                        ng-model="vm.messageFields.title" autofocus required>
 
                                 <div ng-messages="vm.messageForm.title.$error" role="alert">
