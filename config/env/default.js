@@ -104,6 +104,16 @@ module.exports = {
           fileSize: 2 * 1024 * 1024 // Max file size in bytes (2 MB)
         }
       }
+    },
+    tickets: {
+      image: {
+        dest: './modules/tickets/client/uploads/image/',
+        crop: './modules/tickets/client/uploads/image/crop/',
+        temp: './modules/tickets/client/uploads/temp/',
+        limits: {
+          fileSize: 2 * 1024 * 1024 // Max file size in bytes (2 MB)
+        }
+      }
     }
   },
   shared: {
