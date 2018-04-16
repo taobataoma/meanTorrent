@@ -332,17 +332,27 @@ exports.deleteReply = function (req, res) {
         });
       } else {
         message._replies.pull(r);
-        message.markModified('_replies');
 
-        message.save(function (err) {
+        MessageTicket.update({_id: message._id}, {$pull: {_replies: {_id: r._id}}}, function (err) {
           if (err) {
             return res.status(422).send({
               message: errorHandler.getErrorMessage(err)
             });
           } else {
-            res.json(message);
+            return res.json(message);
           }
         });
+
+        // message.markModified('_replies');
+        // message.save(function (err) {
+        //   if (err) {
+        //     return res.status(422).send({
+        //       message: errorHandler.getErrorMessage(err)
+        //     });
+        //   } else {
+        //     return res.json(message);
+        //   }
+        // });
       }
     }
   });
@@ -373,7 +383,7 @@ exports.updateReply = function (req, res) {
             message: errorHandler.getErrorMessage(err)
           });
         } else {
-          res.json(message);
+          return res.json(message);
         }
       });
     }
