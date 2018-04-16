@@ -30,25 +30,24 @@
                                 <th class="text-center">{{ 'SUPPORT.FIELDS_CREATEDAT' | translate}}</th>
                                 <th class="text-center">{{ 'SUPPORT.FIELDS_UPDATEDAT' | translate}}</th>
                                 <th class="text-center">{{ 'SUPPORT.FIELDS_STATUS' | translate}}</th>
-                                <th class="text-center">{{ 'SUPPORT.FIELDS_HANDLER' | translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="ticket-item" ng-repeat="item in vm.pagedItems">
-                                <td class="col-md-1 td-v-middle">
+                                <td class="col-md-2 td-v-middle width-150">
                                     <span user-info="item.from" info-class="ticket-avatar" info-avatar></span>
                                     <span user-info="item.from" info-name></span>
                                 </td>
-                                <td class="col-md-4 td-v-middle td-text-overflow">
+                                <td class="col-md-6 td-v-middle td-text-overflow">
                                     <div class="text-long">
                                         <a ui-sref="admin.tickets.support.viewMessage({messageTicketId: item._id})">{{item.title}}</a>
                                     </div>
                                 </td>
                                 <td class="col-md-1 td-v-middle text-center">{{item._replies ? item._replies.length : 0}}</td>
-                                <td class="col-md-1 td-v-middle text-center width-100">{{item.createdAt | life}}</td>
-                                <td class="col-md-1 td-v-middle text-center width-100">
+                                <td class="col-md-1 td-v-middle text-center width-150">{{item.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                <td class="col-md-1 td-v-middle text-center width-150">
                                     <span ng-if="item.updatedAt">
-                                        {{item.updatedAt | life}}
+                                        {{item.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}}
                                     </span>
                                 </td>
                                 <td class="col-md-1 td-v-middle text-center">
@@ -58,10 +57,6 @@
                                           ng-if="item.status=='wait'"> {{item.status}} </span>
                                     <span class="badge badge_default"
                                           ng-if="item.status=='solved'"> {{item.status}} </span>
-                                </td>
-                                <td class="col-md-2 td-v-middle text-center width-150">
-                                    <span user-info="item.handler" ng-if="item.handler" info-name></span>
-                                    <a class="btn btn-success" ui-sref="admin.tickets.support.viewMessage({messageTicketId: item._id})">{{'SUPPORT.LINK_HANDLE' | translate}}</a>
                                 </td>
                             </tr>
                         </tbody>
