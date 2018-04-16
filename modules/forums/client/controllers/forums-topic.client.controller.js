@@ -326,7 +326,7 @@
               vm.figureOutItemsToDisplay();
               NotifycationService.showSuccessNotify('FORUMS.REPLY_EDIT_SUCCESSFULLY');
             }, function (res) {
-              NotifycationService.showErrorNotify(res.data.message, 'FORUMS.FORUMS');
+              NotifycationService.showErrorNotify(res.data.message, 'FORUMS.REPLY_EDIT_FAILED');
             });
 
             e.$options.hideable = true;

@@ -1,0 +1,136 @@
+<section ng-controller="ViewMessageTicketController as vm" ng-init="vm.init();">
+    <div class="container reply-list ticket-reply-list">
+
+        <div id="top_of_reply_list" class="margin-top-20">
+            <div class="text-long text-center">
+                <h3 editable-line readonly="!vm.canEdit() && !vm.isOwner(vm.ticket)" ng-model="vm.ticket.title"
+                      callback="onTopicTitleEdited"></h3>
+            </div>
+            <div class="reply-item">
+                <!-- topic content -->
+                <div class="reply-wrapper">
+                    <span user-info="vm.ticket.from" info-class="reply-avatar" info-avatar></span>
+
+                    <div class="reply-comment">
+                        <div class="reply-comment-header">
+                            <div class="reply-comment-header-text">
+                                <span user-info="vm.ticket.from" info-name></span>
+                                <span vip-flag="vm.ticket.from"></span>
+                                <!--<span score-level-curr="vm.topic.user"></span>-->
+                                <!--<span message-to="vm.topic.user" to-class="message-to-icon"></span>-->
+                                <span class="user-ud-text xs-hide">
+                                                    (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{vm.ticket.from.uploaded | bytes}}
+                                                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{vm.ticket.from.downloaded | bytes}}
+                                                    )
+                                                </span>
+                                <span class="reply-comment-header-time-text">{{vm.ticket.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+
+                                <div class="reply-comment-header-command pull-right">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"
+                                       title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
+                                       ng-show="vm.canEdit() || vm.isOwner(vm.ticket)"
+                                       ng-click="vm.beginEditTicket(vm.ticket)"></i>
+                                    <i class="fa fa-times" aria-hidden="true"
+                                       title="{{'FORUMS.TITLES.TOPIC_DELETE' | translate}}"
+                                       ng-show="vm.canEdit()"
+                                       ng-click="vm.beginDeleteTicket(vm.ticket);"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reply-comment-body">
+                            <div id="{{vm.ticket._id}}" data-provide="markdown" class="reply-comment-body-text"
+                                 ng-bind-html="vm.getTicketContent(vm.ticket)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- topic replies -->
+                <div class="reply-wrapper" ng-repeat="rep in vm.pagedItems">
+                    <span user-info="rep.from" info-class="reply-avatar" info-avatar></span>
+
+                    <div class="reply-comment">
+                        <div class="reply-comment-header">
+                            <div class="reply-comment-header-text">
+                                <span user-info="rep.from" info-name></span>
+                                <span vip-flag="rep.from"></span>
+                                <!--<span score-level="vm.getUserScoreLevel(vm.topic.user);"></span>-->
+                                <!--<span message-to="vm.topic.user" to-class="message-to-icon"></span>-->
+                                <span class="user-ud-text xs-hide">
+                                                    (<span class="glyphicon glyphicon-arrow-up torrent-up"></span>{{rep.from.uploaded | bytes}}
+                                                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>{{rep.from.downloaded | bytes}}
+                                                    )
+                                                </span>
+                                <span class="reply-comment-header-time-text">{{rep.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+
+                                <div class="reply-comment-header-command pull-right">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"
+                                       title="{{'FORUMS.TITLES.REPLY_EDIT' | translate}}"
+                                       ng-show="vm.canEdit() || vm.isOwner(rep)"
+                                       ng-click="vm.beginEditReply(rep)"></i>
+                                    <i class="fa fa-times" aria-hidden="true"
+                                       title="{{'FORUMS.TITLES.REPLY_DELETE' | translate}}"
+                                       ng-show="vm.canEdit() || vm.isOwner(rep)"
+                                       ng-click="vm.beginDeleteReply(rep);"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reply-comment-body">
+                            <div id="{{rep._id}}" data-provide="markdown" class="reply-comment-body-text"
+                                 ng-bind-html="vm.getTicketContent(rep)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="vm.pagedItems.length>0">
+            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                ng-model="vm.currentPage" ng-change="vm.pageChanged()"
+                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+            </ul>
+        </div>
+
+        <div class="reply-post-title" id="post-new-reply-table">
+            <span>{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</span>
+        </div>
+
+        <div class="reply-post margin-bottom-30">
+            <div class="row">
+                <div class="col-md-12">
+                    <form name="vm.replyForm" ng-submit="vm.postReply(vm.replyForm.$valid)" novalidate autocomplete="off">
+                        <div class="form-group" show-errors>
+                            <textarea id="postReplyContent" name="postReplyContent" ng-model="vm.postReplyFields.content"
+                                      mt-markdown-editor="postReplyContent" maxlength="{{vm.inputLengthConfig.ticketContentLength}}"
+                                      upload-dir="/modules/tickets/client/uploads/temp/"
+                                      upload-only-image="true"
+                                      upload-method="vm.uploadTicketImage(editor, ufile, progressback, callback, errback);" required></textarea>
+
+                            <div ng-messages="vm.replyForm.postReplyContent.$error" role="alert">
+                                <p class="help-block error-text" ng-message="required">{{ 'FORUMS.PRC_REQUIRED' | translate}}</p>
+                            </div>
+                        </div>
+
+                        <div class="margin-top-5 xs-hide" style="display: table;">
+                            <a class="message-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"
+                               data-ga-click="Markdown Toolbar, click, help">
+                                <svg aria-hidden="true" height="16" version="1.1"
+                                     viewBox="0 0 16 16" width="16">
+                                    <path fill-rule="evenodd"
+                                          d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"/>
+                                </svg>
+                                {{ 'MARKDOWN_LINK' | translate }}
+                            </a>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-width-100 pull-right">{{'FORUMS.BTN_SUBMIT_REPLY' | translate}}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="up_to_top_div" up-to-top="top_of_reply_list" offset="-60"></div>
+</section>

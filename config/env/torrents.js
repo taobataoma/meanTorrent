@@ -412,8 +412,10 @@ module.exports = {
      *
      *  @userSignatureLength:         user signature of forum string length limit
      *  @chatMessageMaxLength:        chat room send message string length limit
+     *  @messageTitleLength:          user message send title length limit
      *  @messageBoxContentLength:     user message send content length limit
      *  @messageBoxReplyLength:       user message send reply content length limit
+     *  @ticketContentLength:         ticket content length limit
      *  @torrentCommentLength:        torrent comment send content length limit
      *  @forumTopicTitleLength:       forum topic title length limit
      *  @forumTopicContentLength:     forum topic content length limit
@@ -425,8 +427,10 @@ module.exports = {
       userSignatureLength: 512,
       chatMessageMaxLength: 512,
 
+      messageTitleLength: 128,
       messageBoxContentLength: 1024,
       messageBoxReplyLength: 512,
+      ticketContentLength: 2048,
 
       torrentCommentLength: 512,
 
@@ -1143,7 +1147,9 @@ module.exports = {
      *
      * @examinationUserListPerPage:     users item number of examination result page
      * @messageTicketsListPerPage:      message tickets items number of support list page
+     * @messageTicketRepliesPerPage:    message ticket replies list page settings
      * @mailTicketsListPerPage:         mail tickets items number of support list page
+     * @mailTicketRepliesPerPage:       mail ticket replies list page settings
      */
     itemsPerPage: {
       topicsPerPage: 10,
@@ -1174,7 +1180,9 @@ module.exports = {
 
       examinationUserListPerPage: 20,
       messageTicketsListPerPage: 15,
-      mailTicketsListPerPage: 15
+      messageTicketRepliesPerPage: 10,
+      mailTicketsListPerPage: 15,
+      mailTicketRepliesPerPage: 10
     },
 
     /**

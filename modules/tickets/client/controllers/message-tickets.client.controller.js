@@ -6,11 +6,12 @@
     .controller('MessageTicketController', MessageTicketController);
 
   MessageTicketController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'MessageTicketsService', 'ModalConfirmService', 'NotifycationService', 'marked',
-    'DebugConsoleService', 'MeanTorrentConfig', '$filter'];
+    'DebugConsoleService', 'MeanTorrentConfig', '$filter', '$rootScope'];
 
   function MessageTicketController($scope, $state, $timeout, $translate, Authentication, MessageTicketsService, ModalConfirmService, NotifycationService, marked,
-                                   mtDebug, MeanTorrentConfig, $filter) {
+                                   mtDebug, MeanTorrentConfig, $filter, $rootScope) {
     var vm = this;
+    $rootScope.$state = $state;
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;

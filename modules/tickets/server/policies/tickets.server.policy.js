@@ -19,8 +19,11 @@ exports.invokeRolesPolicies = function () {
         allows: [
           {resources: '/api/messageTickets', permissions: '*'},
           {resources: '/api/messageTickets/:messageTicketId', permissions: '*'},
+          {resources: '/api/messageTickets/:messageTicketId/:replyId', permissions: '*'},
           {resources: '/api/mailTickets', permissions: '*'},
-          {resources: '/api/mailTickets/:mailTicketId', permissions: '*'}
+          {resources: '/api/mailTickets/:mailTicketId', permissions: '*'},
+          {resources: '/api/mailTickets/:mailTicketId/:replyId', permissions: '*'},
+          {resources: '/api/messageTickets/uploadTicketImage', permissions: '*'}
         ]
       }
     ]

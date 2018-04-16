@@ -1184,8 +1184,8 @@
       POST_TOPIC_FAILED: 'Post new topic failed',
       POST_REPLY_SUCCESSFULLY: 'Post new reply successfully',
       POST_REPLY_FAILED: 'Post new reply failed',
-      TOPIC_EDIT_SUCCESSFULLY: 'Reply content modify successfully',
-      TOPIC_EDIT_FAILED: 'Reply content modify failed',
+      TOPIC_EDIT_SUCCESSFULLY: 'Topic content modify successfully',
+      TOPIC_EDIT_FAILED: 'Topic content modify failed',
       TOPIC_TOGGLE_READONLY_SUCCESSFULLY: 'Toggle set topic readonly successfully',
       TOPIC_TOGGLE_READONLY_FAILED: 'Toggle set topic readonly failed',
       TOPIC_SEARCH_FAILED: 'Topics search failed',
@@ -1363,7 +1363,16 @@
       FIELDS_REPLIES: 'Replies',
       FIELDS_STATUS: 'Status',
       FIELDS_CREATEDAT: 'Created At',
-      FIELDS_UPDATEDAT: 'Updated At'
+      FIELDS_UPDATEDAT: 'Updated At',
+      LINK_HANDLE: 'Handle',
+      TICKET_EDIT_SUCCESSFULLY: 'Ticket content modify successfully',
+      TICKET_EDIT_FAILED: 'Ticket content modify failed',
+      DELETE_TICKET_CONFIRM_OK: 'Delete',
+      DELETE_TICKET_CONFIRM_CANCEL: 'Cancel',
+      DELETE_TICKET_CONFIRM_HEADER_TEXT: 'Delete Ticket',
+      DELETE_TICKET_CONFIRM_BODY_TEXT: 'Are you sure want to delete this ticket?',
+      DELETE_TICKET_SUCCESSFULLY: 'Ticket deleted successfully',
+      DELETE_TICKET_FAILED: 'Ticket deleted failed'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

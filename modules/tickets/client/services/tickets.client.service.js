@@ -8,8 +8,9 @@
   MessageTicketsService.$inject = ['$resource'];
 
   function MessageTicketsService($resource) {
-    return $resource('/api/messageTickets/:messageTicketId', {
-      requestId: '@_id'
+    return $resource('/api/messageTickets/:messageTicketId/:replyId', {
+      messageTicketId: '@_id',
+      replyId: '@_rid'
     }, {
       update: {
         method: 'PUT'
@@ -25,7 +26,7 @@
 
   function MailTicketsService($resource) {
     return $resource('/api/mailTickets/:mailTicketId', {
-      requestId: '@_id'
+      mailTicketId: '@_id'
     }, {
       update: {
         method: 'PUT'

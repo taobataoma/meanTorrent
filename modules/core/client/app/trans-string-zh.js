@@ -1363,7 +1363,16 @@
       FIELDS_REPLIES: '回复数',
       FIELDS_STATUS: '状态',
       FIELDS_CREATEDAT: '创建日期',
-      FIELDS_UPDATEDAT: '更新日期'
+      FIELDS_UPDATEDAT: '更新日期',
+      LINK_HANDLE: '接手服务',
+      TICKET_EDIT_SUCCESSFULLY: '客服内容修改成功',
+      TICKET_EDIT_FAILED: '客服内容修改失败',
+      DELETE_TICKET_CONFIRM_OK: '删除',
+      DELETE_TICKET_CONFIRM_CANCEL: '取消',
+      DELETE_TICKET_CONFIRM_HEADER_TEXT: '删除客服条目',
+      DELETE_TICKET_CONFIRM_BODY_TEXT: '您确定要删除此客户服务内容条目?',
+      DELETE_TICKET_SUCCESSFULLY: '客服条目删除成功',
+      DELETE_TICKET_FAILED: '客服条目删除失败'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

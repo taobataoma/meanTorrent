@@ -202,3 +202,42 @@ module.exports.createUploadTorrentImageFilename = function (req, file, cb) {
 module.exports.getUploadTorrentImageDestination = function (req, file, cb) {
   cb(null, config.uploads.torrent.image.temp);
 };
+
+
+module.exports.createUploadTicketImageFilename = function (req, file, cb) {
+  var RexStr = /\(|\)|\[|\]|\,/g;
+  var filename = file.originalname.replace(RexStr, function (MatchStr) {
+    switch (MatchStr) {
+      case '(':
+        return '<';
+      case ')':
+        return '>';
+      case '[':
+        return '{';
+      case ']':
+        return '}';
+      case ',':
+        return ' ';
+      default:
+        break;
+    }
+  });
+
+  if (fs.existsSync(config.uploads.tickets.image.temp + filename)) {
+    fs.unlinkSync(config.uploads.tickets.image.temp + filename);
+  }
+
+  if (fs.existsSync(config.uploads.tickets.image.dest + filename)) {
+    var ext = file.originalname.replace(/^.+\./, '');
+    var regex = new RegExp(ext, 'g');
+    filename = filename.replace(regex, Date.now() + '.' + ext);
+
+    cb(null, filename);
+  } else {
+    cb(null, filename);
+  }
+};
+
+module.exports.getUploadTicketImageDestination = function (req, file, cb) {
+  cb(null, config.uploads.tickets.image.temp);
+};
