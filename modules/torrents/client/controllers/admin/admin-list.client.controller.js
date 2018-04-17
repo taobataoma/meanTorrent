@@ -32,7 +32,7 @@
     vm.filterHnR = false;
     vm.filterSale = false;
     vm.torrentStatus = 'reviewed';
-    vm.torrentRLevel = 'none';
+    vm.torrentRLevel = 'level0';
 
     /**
      * commentBuildPager
@@ -133,7 +133,7 @@
       var e = angular.element(event.currentTarget);
 
       if (vm.torrentRLevel === l) {
-        vm.torrentRLevel = 'none';
+        vm.torrentRLevel = 'level0';
       } else {
         vm.torrentRLevel = l;
       }
@@ -238,7 +238,7 @@
       vm.filterHnR = false;
       vm.filterSale = false;
       vm.torrentStatus = 'reviewed';
-      vm.torrentRLevel = 'none';
+      vm.torrentRLevel = 'level0';
 
 
       vm.torrentBuildPager();
@@ -306,7 +306,7 @@
      */
     vm.onRLevelClicked = function (l) {
       if (vm.torrentRLevel === l) {
-        vm.torrentRLevel = 'none';
+        vm.torrentRLevel = 'level0';
       } else {
         vm.torrentRLevel = l;
       }

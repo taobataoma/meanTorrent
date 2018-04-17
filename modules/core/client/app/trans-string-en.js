@@ -549,7 +549,8 @@
       LEVEL0: 'NONE',
       LEVEL1: 'LEVEL1',
       LEVEL2: 'LEVEL2',
-      LEVEL3: 'LEVEL3'
+      LEVEL3: 'LEVEL3',
+      LEVEL4: 'LEVEL4'
     },
 
     SET_ROLE_SUCCESSFULLY: 'set user role successfully',

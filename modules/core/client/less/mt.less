@@ -909,7 +909,7 @@ body {
                 }
             }
             .td-progress {
-                padding: 0 8px;
+                padding: 0 8px !important;
                 border-top: none;
                 position: relative;
             }
@@ -1067,6 +1067,7 @@ body {
 }
 
 .list-all-genres {
+    margin-top: 5px;
     .genres-item {
         color: @gray-light;
         font-size: 12px;
@@ -1586,6 +1587,15 @@ body {
     .torrent-type-group {
         .btn {
             text-shadow: none !important;
+        }
+    }
+    .tb-v-middle {
+        > tbody {
+            > tr {
+                > td {
+                    padding: 15px 8px;
+                }
+            }
         }
     }
 }

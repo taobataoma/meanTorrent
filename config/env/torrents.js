@@ -798,10 +798,11 @@ module.exports = {
     torrentRecommendLevel: {
       name: 'RECOMMENDLEVEL',
       value: [
-        {name: 'LEVEL0', value: 'none'},
+        {name: 'LEVEL0', value: 'level0'},
         {name: 'LEVEL1', value: 'level1'},
         {name: 'LEVEL2', value: 'level2'},
-        {name: 'LEVEL3', value: 'level3'}
+        {name: 'LEVEL3', value: 'level3'},
+        {name: 'LEVEL4', value: 'level4'}
       ]
     },
 

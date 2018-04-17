@@ -1308,7 +1308,7 @@ exports.getTorrentsHomeList = function (req, res) {
   var getOrderList = function (callback) {
     var query = Torrent.aggregate([
       {'$match': {torrent_status: 'reviewed', torrent_vip: false}},
-      {'$sort': {torrent_recommended: 1, orderedat: -1, createdat: -1}},
+      {'$sort': {torrent_recommended: -1, orderedat: -1, createdat: -1}},
       {
         '$lookup': {
           from: 'peers',
@@ -1429,7 +1429,7 @@ exports.list = function (req, res) {
   var skip = 0;
   var limit = 0;
   var status = 'reviewed';
-  var rlevel = 'none';
+  var rlevel = 'level0';
   var stype = 'movie';
   var newest = false;
   var hnr = false;
@@ -1442,7 +1442,7 @@ exports.list = function (req, res) {
   var keysA = [];
 
   //var sort = 'torrent_recommended -orderedat -createdat';
-  var sort = {torrent_recommended: 1, orderedat: -1, createdat: -1};
+  var sort = {torrent_recommended: -1, orderedat: -1, createdat: -1};
 
   if (req.query.skip !== undefined) {
     skip = parseInt(req.query.skip, 10);
@@ -1512,7 +1512,7 @@ exports.list = function (req, res) {
   if (status !== 'all') {
     condition.torrent_status = status;
   }
-  if (rlevel !== 'none') {
+  if (rlevel !== 'level0') {
     condition.torrent_recommended = rlevel;
   }
   if (stype !== 'all') {

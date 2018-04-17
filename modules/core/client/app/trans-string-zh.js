@@ -549,7 +549,8 @@
       LEVEL0: '无',
       LEVEL1: '一级推荐',
       LEVEL2: '二级推荐',
-      LEVEL3: '三级推荐'
+      LEVEL3: '三级推荐',
+      LEVEL4: '特别推荐'
     },
 
     SET_ROLE_SUCCESSFULLY: '用户角色权限设置成功',
