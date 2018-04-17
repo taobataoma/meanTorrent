@@ -41,7 +41,7 @@
                                 </td>
                                 <td class="col-md-6 td-v-middle td-text-overflow">
                                     <div class="text-long">
-                                        <a ui-sref="admin.tickets.support.viewMessage({messageTicketId: item._id})">{{item.title}}</a>
+                                        <a class="ticket-title" ui-sref="admin.tickets.support.viewMessage({messageTicketId: item._id})">{{item.title}}</a>
                                     </div>
                                 </td>
                                 <td class="col-md-1 td-v-middle text-center">{{item._replies ? item._replies.length : 0}}</td>
