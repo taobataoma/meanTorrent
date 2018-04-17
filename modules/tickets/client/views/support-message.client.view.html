@@ -30,6 +30,7 @@
                                 <th class="text-center">{{ 'SUPPORT.FIELDS_CREATEDAT' | translate}}</th>
                                 <th class="text-center">{{ 'SUPPORT.FIELDS_UPDATEDAT' | translate}}</th>
                                 <th class="text-center">{{ 'SUPPORT.FIELDS_STATUS' | translate}}</th>
+                                <th class="text-center">{{ 'SUPPORT.FIELDS_HANDLER' | translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,10 +45,10 @@
                                     </div>
                                 </td>
                                 <td class="col-md-1 td-v-middle text-center">{{item._replies ? item._replies.length : 0}}</td>
-                                <td class="col-md-1 td-v-middle text-center width-150">{{item.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                                <td class="col-md-1 td-v-middle text-center width-150">
+                                <td class="col-md-1 td-v-middle text-center width-100">{{item.createdAt | date:'MM-dd HH:mm'}}</td>
+                                <td class="col-md-1 td-v-middle text-center width-100">
                                     <span ng-if="item.updatedAt">
-                                        {{item.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}}
+                                        {{item.updatedAt | date:'MM-dd HH:mm'}}
                                     </span>
                                 </td>
                                 <td class="col-md-1 td-v-middle text-center">
@@ -57,6 +58,10 @@
                                           ng-if="item.status=='wait'"> {{item.status}} </span>
                                     <span class="badge badge_default"
                                           ng-if="item.status=='solved'"> {{item.status}} </span>
+                                </td>
+                                <td class="col-md-1 td-v-middle text-center width-120">
+                                    <span user-info="item.handler" ng-if="item.handler" info-name></span>
+                                    <a class="btn btn-success" ng-if="!item.handler" ng-click="vm.handleTicket(item)">{{'SUPPORT.LINK_HANDLE' | translate}}</a>
                                 </td>
                             </tr>
                         </tbody>

@@ -1365,6 +1365,7 @@
       FIELDS_CREATEDAT: '创建日期',
       FIELDS_UPDATEDAT: '更新日期',
       LINK_HANDLE: '接手服务',
+      LINK_SOLVED: '问题已解决',
       TICKET_EDIT_SUCCESSFULLY: '客服内容修改成功',
       TICKET_EDIT_FAILED: '客服内容修改失败',
       DELETE_TICKET_CONFIRM_OK: '删除',
@@ -1372,7 +1373,19 @@
       DELETE_TICKET_CONFIRM_HEADER_TEXT: '删除客服条目',
       DELETE_TICKET_CONFIRM_BODY_TEXT: '您确定要删除此客户服务内容条目?',
       DELETE_TICKET_SUCCESSFULLY: '客服条目删除成功',
-      DELETE_TICKET_FAILED: '客服条目删除失败'
+      DELETE_TICKET_FAILED: '客服条目删除失败',
+      HANDLE_TICKET_CONFIRM_OK: '接受',
+      HANDLE_TICKET_CONFIRM_CANCEL: '取消',
+      HANDLE_TICKET_CONFIRM_HEADER_TEXT: '接受客服',
+      HANDLE_TICKET_CONFIRM_BODY_TEXT: '您确定要接受此客服条目? 如果您接受, 您就需要一直服务于该用户直接问题解决.',
+      HANDLE_TICKET_SUCCESSFULLY: '接受客服条目成功',
+      HANDLE_TICKET_FAILED: '接受客服条目失败',
+      SOLVED_TICKET_CONFIRM_OK: '已解决',
+      SOLVED_TICKET_CONFIRM_CANCEL: '取消',
+      SOLVED_TICKET_CONFIRM_HEADER_TEXT: '完成客服',
+      SOLVED_TICKET_CONFIRM_BODY_TEXT: '您确定要将此客服条目的状态设置为 已解决？任何新的回复将重新打开此条目.',
+      SOLVED_TICKET_SUCCESSFULLY: '完成客服条目成功',
+      SOLVED_TICKET_FAILED: '完成客服条目失败'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

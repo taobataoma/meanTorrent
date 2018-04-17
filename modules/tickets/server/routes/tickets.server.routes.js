@@ -15,6 +15,12 @@ module.exports = function (app) {
   app.route('/api/messageTickets/uploadTicketImage').all(ticketsPolicy.isAllowed)
     .post(messageTickets.uploadTicketImage);
 
+  app.route('/api/messageTickets/handle/:messageTicketId').all(ticketsPolicy.isAllowed)
+    .put(messageTickets.handle);
+
+  app.route('/api/messageTickets/solved/:messageTicketId').all(ticketsPolicy.isAllowed)
+    .put(messageTickets.solved);
+
   app.route('/api/messageTickets/:messageTicketId').all(ticketsPolicy.isAllowed)
     .get(messageTickets.read)
     .delete(messageTickets.delete)

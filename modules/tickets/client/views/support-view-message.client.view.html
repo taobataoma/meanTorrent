@@ -4,7 +4,7 @@
         <div id="top_of_reply_list" class="margin-top-20">
             <div class="text-long text-center">
                 <h3 editable-line readonly="!vm.canEdit() && !vm.isOwner(vm.ticket)" ng-model="vm.ticket.title"
-                      callback="onTopicTitleEdited"></h3>
+                    callback="onTopicTitleEdited"></h3>
             </div>
             <div class="reply-item">
                 <!-- topic content -->
@@ -40,6 +40,12 @@
                         <div class="reply-comment-body">
                             <div id="{{vm.ticket._id}}" data-provide="markdown" class="reply-comment-body-text"
                                  ng-bind-html="vm.getTicketContent(vm.ticket)">
+                            </div>
+                            <div class="ticket-buttons text-right" ng-if="vm.ticket.status!='solved'">
+                                <a class="btn btn-sm btn-width-100" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
+                                   ng-if="!vm.ticket.handler" ng-click="vm.handleTicket(vm.ticket)">{{'SUPPORT.LINK_HANDLE' | translate}}</a>
+                                <a class="btn btn-sm btn-width-100" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
+                                   ng-if="vm.ticket.status!='solved'" ng-click="vm.solvedTicket(vm.ticket)">{{'SUPPORT.LINK_SOLVED' | translate}}</a>
                             </div>
                         </div>
                     </div>

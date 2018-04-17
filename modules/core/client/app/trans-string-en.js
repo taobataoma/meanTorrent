@@ -1365,6 +1365,7 @@
       FIELDS_CREATEDAT: 'Created At',
       FIELDS_UPDATEDAT: 'Updated At',
       LINK_HANDLE: 'Handle',
+      LINK_SOLVED: 'Solved',
       TICKET_EDIT_SUCCESSFULLY: 'Ticket content modify successfully',
       TICKET_EDIT_FAILED: 'Ticket content modify failed',
       DELETE_TICKET_CONFIRM_OK: 'Delete',
@@ -1372,7 +1373,19 @@
       DELETE_TICKET_CONFIRM_HEADER_TEXT: 'Delete Ticket',
       DELETE_TICKET_CONFIRM_BODY_TEXT: 'Are you sure want to delete this ticket?',
       DELETE_TICKET_SUCCESSFULLY: 'Ticket deleted successfully',
-      DELETE_TICKET_FAILED: 'Ticket deleted failed'
+      DELETE_TICKET_FAILED: 'Ticket deleted failed',
+      HANDLE_TICKET_CONFIRM_OK: 'Handle',
+      HANDLE_TICKET_CONFIRM_CANCEL: 'Cancel',
+      HANDLE_TICKET_CONFIRM_HEADER_TEXT: 'Handle Ticket',
+      HANDLE_TICKET_CONFIRM_BODY_TEXT: 'Are you sure want to handle this ticket? If you handle it, you should support this user until the problem is solved.',
+      HANDLE_TICKET_SUCCESSFULLY: 'Handle ticket successfully',
+      HANDLE_TICKET_FAILED: 'Handle ticket failed',
+      SOLVED_TICKET_CONFIRM_OK: 'Solved',
+      SOLVED_TICKET_CONFIRM_CANCEL: 'Cancel',
+      SOLVED_TICKET_CONFIRM_HEADER_TEXT: 'Solved Ticket',
+      SOLVED_TICKET_CONFIRM_BODY_TEXT: 'Are you sure want to set this ticket status to solved? any new reply can reopen it.',
+      SOLVED_TICKET_SUCCESSFULLY: 'Solved ticket successfully',
+      SOLVED_TICKET_FAILED: 'Solved ticket failed'
     },
 
     /////////////////////////resources tag fields///////////////////////////////////

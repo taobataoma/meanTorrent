@@ -442,6 +442,54 @@
       });
     };
 
+    /**
+     * handleTicket
+     */
+    vm.handleTicket = function (t) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('SUPPORT.HANDLE_TICKET_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('SUPPORT.HANDLE_TICKET_CONFIRM_OK'),
+        headerText: $translate.instant('SUPPORT.HANDLE_TICKET_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('SUPPORT.HANDLE_TICKET_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          MessageTicketsService.handle({
+            messageTicketId: t._id
+          }, function (res) {
+            vm.ticket = res;
+            NotifycationService.showSuccessNotify('SUPPORT.HANDLE_TICKET_SUCCESSFULLY');
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'SUPPORT.HANDLE_TICKET_FAILED');
+          });
+        });
+    };
+
+    /**
+     * solvedTicket
+     */
+    vm.solvedTicket = function (t) {
+      var modalOptions = {
+        closeButtonText: $translate.instant('SUPPORT.SOLVED_TICKET_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('SUPPORT.SOLVED_TICKET_CONFIRM_OK'),
+        headerText: $translate.instant('SUPPORT.SOLVED_TICKET_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('SUPPORT.SOLVED_TICKET_CONFIRM_BODY_TEXT')
+      };
+
+      ModalConfirmService.showModal({}, modalOptions)
+        .then(function (result) {
+          MessageTicketsService.solved({
+            messageTicketId: t._id
+          }, function (res) {
+            vm.ticket = res;
+            NotifycationService.showSuccessNotify('SUPPORT.SOLVED_TICKET_SUCCESSFULLY');
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'SUPPORT.SOLVED_TICKET_FAILED');
+          });
+        });
+    };
+
 
   }
 }());

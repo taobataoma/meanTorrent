@@ -15,8 +15,14 @@
         }
     }
     .td-text-overflow .text-long {
-        max-width: 450px !important;
-        min-width: 300px !important;
+        @media (max-width: @screen-md-max) {
+            max-width: 300px !important;
+            min-width: 290px !important;
+        }
+        @media (min-width: @screen-lg-min) {
+            max-width: 450px !important;
+            min-width: 300px !important;
+        }
     }
 }
 
@@ -42,6 +48,15 @@
             }
             .reply-comment-header-command {
                 margin-right: 0 !important;
+            }
+            .ticket-buttons {
+                border-top: dotted 1px #d0d0d0;
+                padding-top: 10px;
+                margin-top: 15px;
+                .btn-mt-o {
+                    color: @brand-primary;
+                    background-color: #f7f7f7;
+                }
             }
         }
     }

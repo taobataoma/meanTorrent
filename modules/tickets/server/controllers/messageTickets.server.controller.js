@@ -148,7 +148,6 @@ exports.update = function (req, res) {
 
   message.title = req.body.title;
   message.content = req.body.content;
-  message.updatedAt = Date.now();
 
   message.save(function (err) {
     if (err) {
@@ -191,6 +190,19 @@ exports.createReply = function (req, res) {
       }
     });
   });
+
+  //message status
+  if (message.from._id.equals(req.user._id)) {
+    message.status = 'open';
+  } else if (req.user.isOper) {
+    message.status = 'wait';
+  }
+
+  //set handler
+  if (req.user.isOper && message._replies.length === 1) {
+    message.handler = req.user;
+    message.handlerAt = Date.now();
+  }
 
   //message save
   message.save(function (err) {
@@ -451,3 +463,58 @@ function isOwner(u, o) {
     return false;
   }
 }
+
+/**
+ * handle
+ * @param req
+ * @param res
+ */
+exports.handle = function (req, res) {
+  var message = req.messageTicket;
+
+  if (req.user.isOper) {
+    message.handler = req.user;
+    message.handlerAt = Date.now();
+    message.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        return res.json(message);
+      }
+    });
+
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+};
+
+/**
+ * solved
+ * @param req
+ * @param res
+ */
+exports.solved = function (req, res) {
+  var message = req.messageTicket;
+
+  if (req.user.isOper) {
+    message.status = 'solved';
+    message.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        return res.json(message);
+      }
+    });
+
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
+};

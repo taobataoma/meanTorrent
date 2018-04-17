@@ -18,6 +18,8 @@ exports.invokeRolesPolicies = function () {
         roles: ['admin', 'oper', 'user'],
         allows: [
           {resources: '/api/messageTickets', permissions: '*'},
+          {resources: '/api/messageTickets/handle/:messageTicketId', permissions: '*'},
+          {resources: '/api/messageTickets/solved/:messageTicketId', permissions: '*'},
           {resources: '/api/messageTickets/:messageTicketId', permissions: '*'},
           {resources: '/api/messageTickets/:messageTicketId/:replyId', permissions: '*'},
           {resources: '/api/mailTickets', permissions: '*'},

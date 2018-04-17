@@ -14,6 +14,20 @@
     }, {
       update: {
         method: 'PUT'
+      },
+      handle: {
+        method: 'PUT',
+        url: '/api/messageTickets/handle/:messageTicketId',
+        params: {
+          messageTicketId: '@messageTicketId'
+        }
+      },
+      solved: {
+        method: 'PUT',
+        url: '/api/messageTickets/solved/:messageTicketId',
+        params: {
+          messageTicketId: '@messageTicketId'
+        }
       }
     });
   }
