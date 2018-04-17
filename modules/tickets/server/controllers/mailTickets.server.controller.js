@@ -172,6 +172,23 @@ exports.createReply = function (req, res) {
 };
 
 /**
+ * openedCount
+ * @param req
+ * @param res
+ */
+exports.openedCount = function (req, res) {
+  MailTicket.count({status: 'open'}, function (err, count) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json({opened: count});
+    }
+  });
+};
+
+/**
  * Invitation middleware
  */
 exports.mailTicketById = function (req, res, next, id) {

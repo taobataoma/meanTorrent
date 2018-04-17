@@ -86,6 +86,16 @@ exports.list = function (req, res) {
     });
   };
 
+  var countUnSolvedMessage = function (callback) {
+    MessageTicket.count({status: 'open'}, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
   var findMessage = function (callback) {
     MessageTicket.find(condition)
       .sort('-updatedAt -createdAt')
@@ -107,11 +117,11 @@ exports.list = function (req, res) {
       });
   };
 
-  async.parallel([countMessage, findMessage], function (err, results) {
+  async.parallel([countMessage, findMessage, countUnSolvedMessage], function (err, results) {
     if (err) {
       return res.status(422).send(err);
     } else {
-      res.json({rows: results[1], total: results[0]});
+      res.json({rows: results[1], total: results[0], opened: results[2]});
     }
   });
 };
@@ -259,6 +269,23 @@ function move(oldPath, newPath, callback) {
     readStream.pipe(writeStream);
   }
 }
+
+/**
+ * openedCount
+ * @param req
+ * @param res
+ */
+exports.openedCount = function (req, res) {
+  MessageTicket.count({status: 'open'}, function (err, count) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json({opened: count});
+    }
+  });
+};
 
 /**
  * uploadTicketImage

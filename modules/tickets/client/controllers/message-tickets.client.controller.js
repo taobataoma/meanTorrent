@@ -6,16 +6,29 @@
     .controller('MessageTicketController', MessageTicketController);
 
   MessageTicketController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'MessageTicketsService', 'ModalConfirmService', 'NotifycationService', 'marked',
-    'DebugConsoleService', 'MeanTorrentConfig', '$filter', '$rootScope'];
+    'DebugConsoleService', 'MeanTorrentConfig', '$filter', '$rootScope', 'MailTicketsService'];
 
   function MessageTicketController($scope, $state, $timeout, $translate, Authentication, MessageTicketsService, ModalConfirmService, NotifycationService, marked,
-                                   mtDebug, MeanTorrentConfig, $filter, $rootScope) {
+                                   mtDebug, MeanTorrentConfig, $filter, $rootScope, MailTicketsService) {
     var vm = this;
     $rootScope.$state = $state;
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
 
+    /**
+     * getOpenedTicketsNumber
+     */
+    vm.getOpenedTicketsNumber = function () {
+      MessageTicketsService.getOpenedCount(function (res) {
+        console.log(res);
+        $scope.messageOpened = res.opened;
+      });
+      MailTicketsService.getOpenedCount(function (res) {
+        console.log(res);
+        $scope.mailOpened = res.opened;
+      });
+    };
 
     /**
      * buildPager
@@ -35,6 +48,7 @@
       vm.getMessageTickets(vm.currentPage, function (items) {
         vm.filterLength = items.total;
         vm.pagedItems = items.rows;
+        $rootScope.messageOpened = items.opened;
 
         if (callback) callback();
       });

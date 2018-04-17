@@ -15,6 +15,9 @@ module.exports = function (app) {
   app.route('/api/messageTickets/uploadTicketImage').all(ticketsPolicy.isAllowed)
     .post(messageTickets.uploadTicketImage);
 
+  app.route('/api/messageTickets/openedCount').all(ticketsPolicy.isAllowed)
+    .get(messageTickets.openedCount);
+
   app.route('/api/messageTickets/handle/:messageTicketId').all(ticketsPolicy.isAllowed)
     .put(messageTickets.handle);
 
@@ -35,6 +38,9 @@ module.exports = function (app) {
   app.route('/api/mailTickets').all(ticketsPolicy.isAllowed)
     .get(mailTickets.list)
     .delete(mailTickets.delete);
+
+  app.route('/api/mailTickets/openedCount').all(ticketsPolicy.isAllowed)
+    .get(mailTickets.openedCount);
 
   app.route('/api/mailTickets/:mailTicketId').all(ticketsPolicy.isAllowed)
     .get(mailTickets.read)

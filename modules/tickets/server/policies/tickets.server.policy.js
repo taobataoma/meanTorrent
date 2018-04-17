@@ -22,10 +22,13 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/messageTickets/solved/:messageTicketId', permissions: '*'},
           {resources: '/api/messageTickets/:messageTicketId', permissions: '*'},
           {resources: '/api/messageTickets/:messageTicketId/:replyId', permissions: '*'},
+          {resources: '/api/messageTickets/uploadTicketImage', permissions: '*'},
+          {resources: '/api/messageTickets/openedCount', permissions: '*'},
+
           {resources: '/api/mailTickets', permissions: '*'},
           {resources: '/api/mailTickets/:mailTicketId', permissions: '*'},
           {resources: '/api/mailTickets/:mailTicketId/:replyId', permissions: '*'},
-          {resources: '/api/messageTickets/uploadTicketImage', permissions: '*'}
+          {resources: '/api/mailTickets/openedCount', permissions: '*'}
         ]
       }
     ]

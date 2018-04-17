@@ -28,6 +28,10 @@
         params: {
           messageTicketId: '@messageTicketId'
         }
+      },
+      getOpenedCount: {
+        method: 'GET',
+        url: '/api/messageTickets/openedCount'
       }
     });
   }
@@ -44,6 +48,10 @@
     }, {
       update: {
         method: 'PUT'
+      },
+      getOpenedCount: {
+        method: 'GET',
+        url: '/api/mailTickets/openedCount'
       }
     });
   }
