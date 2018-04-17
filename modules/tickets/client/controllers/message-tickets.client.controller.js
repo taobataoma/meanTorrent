@@ -21,11 +21,9 @@
      */
     vm.getOpenedTicketsNumber = function () {
       MessageTicketsService.getOpenedCount(function (res) {
-        console.log(res);
         $scope.messageOpened = res.opened;
       });
       MailTicketsService.getOpenedCount(function (res) {
-        console.log(res);
         $scope.mailOpened = res.opened;
       });
     };

@@ -1,5 +1,5 @@
 <section ng-controller="MessageTicketController as vm" ng-init="vm.getOpenedTicketsNumber()">
-    <div class="pagetop">
+    <div class="pagetop page-support">
         <div class="container padding-top-30 padding-bottom-30">
             <div class="row">
                 <div class="col-xs-6 col-sm-4 col-sm-offset-2">
@@ -13,7 +13,7 @@
                     <a class="btn btn-default btn-lg btn-block" ui-sref="admin.tickets.support.mail"
                        ui-sref-active="btn-success btn-un-default"
                        ng-class="{'btn-success btn-un-default': $state.current.name.indexOf('viewMail')}>=0">
-                        {{'SUPPORT.TITLE_MAIL_SUPPORT' | translate}} <span class="badge badge_default">{{mailOpened || 0}}</span>
+                        {{'SUPPORT.TITLE_MAIL_SUPPORT' | translate}} <span class="badge">{{mailOpened || 0}}</span>
                     </a>
                 </div>
             </div>

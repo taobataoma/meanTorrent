@@ -151,7 +151,6 @@
       });
 
       function successCallback(res) {
-        console.log(res);
         vm.postReplyFields = {};
         vm.currentPage = Math.ceil(res._replies.length / vm.itemsPerPage);
         vm.ticket = res;
@@ -215,11 +214,9 @@
             messageTicketId: t._id,
             replyId: undefined
           }, function (res) {
-            console.log(res);
             NotifycationService.showSuccessNotify('SUPPORT.DELETE_TICKET_SUCCESSFULLY');
             $state.go('admin.tickets.support.message');
           }, function (res) {
-            console.log(res);
             NotifycationService.showErrorNotify(res.data.message, 'SUPPORT.DELETE_TICKET_FAILED');
           });
         });
@@ -243,7 +240,6 @@
             messageTicketId: vm.ticket._id,
             replyId: reply._id
           }, function (res) {
-            console.log(res);
             vm.ticket = res;
             vm.figureOutItemsToDisplay();
             NotifycationService.showSuccessNotify('FORUMS.DELETE_REPLY_SUCCESSFULLY');
