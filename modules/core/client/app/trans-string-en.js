@@ -472,7 +472,7 @@
     COMMENT_DELETE_ICON_TITLE: 'Delete this reply',
 
     //TorrentsUploadController & views
-    UPLOAD_RULES: 'Upload Rules:',
+    UPLOAD_RULES: 'Upload Tips:',
     TORRENTS_UPLOAD_SUCCESSFULLY: 'Successfully upload file',
     TORRENTS_UPLOAD_FAILED: 'Failed to upload file',
     TORRENTS_NO_FILE_SELECTED: 'No file selected',

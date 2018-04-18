@@ -472,7 +472,7 @@
     COMMENT_DELETE_ICON_TITLE: '删除回复',
 
     //TorrentsUploadController
-    UPLOAD_RULES: '上传规则：',
+    UPLOAD_RULES: '上传提示：',
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',
     TORRENTS_UPLOAD_FAILED: '文件上传失败',
     TORRENTS_NO_FILE_SELECTED: '请选择种子文件后再做尝试',

@@ -469,6 +469,7 @@
       });
 
       function successCallback(res) {
+        vm.downloadTorrent(res._id);
         Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
 
         $state.reload('torrents.uploads');
@@ -513,6 +514,7 @@
       });
 
       function successCallback(res) {
+        vm.downloadTorrent(res._id);
         Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
 
         $state.reload('torrents.uploads');
@@ -578,6 +580,7 @@
       });
 
       function successCallback(res) {
+        vm.downloadTorrent(res._id);
         Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
 
         $state.reload('torrents.uploads');
@@ -646,6 +649,15 @@
      */
     vm.clearAllCondition = function () {
       vm.tags = [];
+    };
+
+    /**
+     * downloadTorrent
+     * @param id
+     */
+    vm.downloadTorrent = function (id) {
+      var url = '/api/torrents/download/' + id;
+      DownloadService.downloadFile(url, null);
     };
 
     /**
