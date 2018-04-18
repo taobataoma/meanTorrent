@@ -57,7 +57,7 @@
                 <table class="table table-hover table-valign-middle">
                     <thead>
                         <tr>
-                            <th></th>
+                            <!--<th></th>-->
                             <th class="text-center">{{'INVITATION.TITLE_SENDER' | translate}}</th>
                             <th class="text-center">{{'INVITATION.TITLE_TOKEN' | translate}}</th>
                             <th class="text-center">{{'INVITATION.TITLE_EMAIL' | translate}}</th>
@@ -69,17 +69,17 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="r in vm.pagedItems">
-                            <th scope="row">{{$index+1}}</th>
-                            <td class="text-center">
+                            <!--<td class="text-center">{{$index+1}}</td>-->
+                            <td class="col-sm-2 text-center">
                                 <span user-info="r.user" info-name></span>
                                 <span vip-flag="r.user"></span>
                                 <!--<span message-to="r.user" to-class="message-to-icon"></span>-->
                             </td>
-                            <td class="text-center">{{r.token}}</td>
-                            <td class="text-center">{{r.to_email}}</td>
-                            <td class="text-center">{{r.invitedat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                            <td class="text-center">{{r.registeredat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                            <td class="text-center" ng-if="r.to_user"
+                            <td class="col-sm-1 text-center">{{r.token}}</td>
+                            <td class="col-sm-3 text-center">{{r.to_email}}</td>
+                            <td class="col-sm-2 text-center width-120">{{r.invitedat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td class="col-sm-2 text-center width-120">{{r.registeredat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td class="col-sm-1 text-center" ng-if="r.to_user"
                                 uib-popover-template="vm.subuserPopover.templateUrl"
                                 popover-append-to-body="true"
                                 popover-trigger="'mouseenter'"
@@ -91,10 +91,10 @@
                                     <!--<span message-to="r.to_user" to-class="message-to-icon"></span>-->
                                 </abbr>
                             </td>
-                            <td class="text-center" ng-if="!r.to_user">
+                            <td class="col-sm-1 text-center" ng-if="!r.to_user">
                             </td>
-                            <td class="text-center" ng-class="r.status == 2 ? 'text-success' : 'text-danger'">
-                                <strong>{{vm.getInvitationStatus(r);}}</strong>
+                            <td class="col-sm-1 text-center">
+                                <span class="badge" ng-class="r.status == 2 ? 'badge_success' : 'badge_danger'">{{vm.getInvitationStatus(r);}}</span>
                             </td>
                         </tr>
                     </tbody>

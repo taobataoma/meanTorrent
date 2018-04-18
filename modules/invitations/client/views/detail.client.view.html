@@ -1,7 +1,7 @@
 <section class="container" ng-controller="InviteController as vm" ng-init="vm.getMyInvitations();">
     <div class="margin-top-30">
         <div class="row" ng-hide="vm.inviteConfig.openInvite">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
+            <div class="col-sm-12">
                 <div class="alert alert-warning" role="alert">
                     <strong>{{ 'NOTE_CAPTION' | translate }}</strong> <span translate="INVITE_INFO"></span>
                 </div>
@@ -9,7 +9,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
+            <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center mt-title">
                         {{ 'INVITATION.MY_INVITATION' | translate }} <span
@@ -38,10 +38,10 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="r in vm.my_invitations">
-                                    <th scope="row">{{$index+1}}</th>
+                                    <td class="text-center">{{$index+1}}</th>
                                     <td class="text-center">{{r.token}}</td>
-                                    <td class="text-center">{{r.createdat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                                    <td class="text-center">{{r.expiresat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                    <td class="text-center width-120">{{r.createdat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                    <td class="text-center width-120">{{r.expiresat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                     <td class="text-center">
                                         <button class="btn btn-default btn-xs" js-popover
                                                 uib-popover-template="vm.invitePopover.templateUrl"
@@ -63,7 +63,7 @@
         </div>
 
         <div class="row margin-top-10">
-            <div class="col-sm-10 col-sm-offset-1">
+            <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center mt-title">
                         {{ 'INVITATION.USED_INVITATION' | translate }} <span
@@ -94,11 +94,11 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="r in vm.used_invitations">
-                                    <th scope="row">{{$index+1}}</th>
+                                    <td class="text-center">{{$index+1}}</td>
                                     <td class="text-center">{{r.token}}</td>
                                     <td class="text-center">{{r.to_email}}</td>
-                                    <td class="text-center">{{r.invitedat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                                    <td class="text-center">{{r.registeredat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                    <td class="text-center width-120">{{r.invitedat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                    <td class="text-center width-120">{{r.registeredat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                     <td class="text-center" ng-if="r.to_user"
                                         uib-popover-template="vm.subuserPopover.templateUrl"
                                         popover-append-to-body="true"
@@ -112,8 +112,8 @@
                                     </td>
                                     <td class="text-center" ng-if="!r.to_user">
                                     </td>
-                                    <td class="text-center" ng-class="r.status == 2 ? 'text-success' : 'text-danger'">
-                                        <strong>{{vm.getInvitationStatus(r);}}</strong>
+                                    <td class="col-sm-1 text-center">
+                                        <span class="badge" ng-class="r.status == 2 ? 'badge_success' : 'badge_danger'">{{vm.getInvitationStatus(r);}}</span>
                                     </td>
                                 </tr>
                             </tbody>

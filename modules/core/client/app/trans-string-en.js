@@ -963,9 +963,9 @@
       TITLE_EMAIL: 'Email',
       TITLE_SEND: 'Send an invitation',
       TITLE_STATUS: 'Status',
-      TITLE_STATUS_REGED: 'Signed',
-      TITLE_STATUS_UNREGED: 'Unsigned',
-      TITLE_STATUS_EXPIRED: 'Expired'
+      TITLE_STATUS_REGED: 'signed',
+      TITLE_STATUS_UNREGED: 'unsigned',
+      TITLE_STATUS_EXPIRED: 'expired'
     },
     GET_INVITATIONS_ERROR: 'Get invitations failed',
     BUTTON_INVITE: 'Send',
