@@ -15,6 +15,11 @@
   
 1. When you receive the invitation email, you can complete the registration through the registered connection address in the email and activate your account with the address in the account activation email. The invitation email is valid for `%(inviteConfig.expires_str)s` hours.
 1. Registration and activation connections are valid for `%(signConfig.signUpActiveTokenExpires_str)s` hours.
+1. The current system only supports email addresses that contain the following domain names to be invited or registere:
+```
+%(signConfig.emailAllowable[0])s
+%(signConfig.emailAllowable[1])s
+```
 
 &emsp;
 

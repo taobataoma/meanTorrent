@@ -28,5 +28,10 @@ invite.banUserInviter = %(inviteConfig.banUserInviter)s
 #### :white_small_square: 收到邀请函后如何注册
 
 1. 如果您收到朋友发来的邀请函，您必须在 `%(inviteConfig.expires_str)s` 内点击邮件内的注册连接地址完成注册，否则收到的邀请连接会自动过期。
+1. 当前系统仅支持包含下例域名的邮箱地址被邀请或注册：
+```
+%(signConfig.emailAllowable[0])s
+%(signConfig.emailAllowable[1])s
+```
 1. 注册完成后，您可能需要通过注册邮件内的连接地址完成最后的帐户激活操作。
 1. 对于刚加入的普通新用户，您可能需要了解站内的 [用户帐号细则](/about/manual/userAccountRules) 以及站内的各项规章制度。

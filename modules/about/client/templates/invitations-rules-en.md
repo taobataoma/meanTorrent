@@ -28,5 +28,10 @@ invite.banUserInviter = %(inviteConfig.banUserInviter)s
 #### :white_small_square: How to register after receiving the invitation
 
 1. If you receive an invitation from a friend, you must click the registered connection address within the `%(inviteConfig.expires_str)s` to complete the registration, otherwise the invitation will expire automatically.
+1. The current system only supports email addresses that contain the following domain names to be invited or registere:
+```
+%(signConfig.emailAllowable[0])s
+%(signConfig.emailAllowable[1])s
+```
 1. After registration is complete, you may need to complete the last account activation by registering the connection address in the email.
 1. For new ordinary users who just joined, you may need to understand the [user account rules detail](/about/manual/userAccountRules) and various rules and regulations within the site.

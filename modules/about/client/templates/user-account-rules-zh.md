@@ -15,6 +15,11 @@
   
 1. 当您收到邀请邮件时，您可以通过邮件中的注册连接地址完成注册，然后通过帐户激活邮件中的地址激活您的帐户，邀请邮件的有效期为 `%(inviteConfig.expires_str)s` 小时。
 1. 注册连接与激活连接的有效期为 `%(signConfig.signUpActiveTokenExpires_str)s` 小时。
+1. 当前系统仅支持包含下例域名的邮箱地址被邀请或注册：
+```
+%(signConfig.emailAllowable[0])s
+%(signConfig.emailAllowable[1])s
+```
 
 &emsp;
 
