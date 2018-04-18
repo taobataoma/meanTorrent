@@ -7,6 +7,7 @@ var path = require('path'),
 var querystring = require('querystring');
 var examinationConfig = config.meanTorrentConfig.examination;
 var languageConfig = config.meanTorrentConfig.language;
+var signConfig = config.meanTorrentConfig.sign;
 
 /**
  * binaryToHex
@@ -81,4 +82,11 @@ module.exports.getRequestLanguage = function (req) {
   });
   var lang = req.acceptsLanguages(mtLang);
   return lang || 'en';
+};
+
+module.exports.emailIsAllowable = function (email) {
+  var domain = email.replace(/.*@/, '');
+  var ec = signConfig.emailAllowable;
+
+  return ec.includes(domain);
 };

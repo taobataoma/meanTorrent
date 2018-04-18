@@ -30,87 +30,90 @@ var traceConfig = config.meanTorrentConfig.trace;
  * Signup
  */
 exports.signup = function (req, res) {
-  // For security measurement we remove the roles from the req.body object
-  delete req.body.roles;
+  if (!common.emailIsAllowable(req.body.email)) {
+    return res.status(422).send({message: 'SERVER.EMAIL_ADDRESS_IS_NOT_ALLOW'});
+  } else {
+    // For security measurement we remove the roles from the req.body object
+    delete req.body.roles;
 
-  // Init user and add missing fields
-  var user = new User(req.body);
-  user.provider = 'local';
-  user.displayName = user.firstName + ' ' + user.lastName;
-  user.passkey = user.randomAsciiString(32);
+    // Init user and add missing fields
+    var user = new User(req.body);
+    user.provider = 'local';
+    user.displayName = user.firstName + ' ' + user.lastName;
+    user.passkey = user.randomAsciiString(32);
 
-  user.signUpActiveToken = user.randomAsciiString(32);
-  user.signUpActiveExpires = Date.now() + mtConfig.sign.signUpActiveTokenExpires;
+    user.signUpActiveToken = user.randomAsciiString(32);
+    user.signUpActiveExpires = Date.now() + mtConfig.sign.signUpActiveTokenExpires;
 
-  // Then save the user
-  user.save(function (err) {
-    if (err) {
-      return res.status(422).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      //if is invited, update invite data
-      if (req.body.inviteToken) {
-        Invitation.update({token: req.body.inviteToken}, {$set: {status: 2, to_user: user._id, registeredat: Date.now()}}, function (err) {
+    // Then save the user
+    user.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
         });
-        //update user invited_by
-        Invitation.findOne({
-          token: req.body.inviteToken
-        }, function (err, inv) {
-          if (inv) {
-            user.update({
-              $set: {invited_by: inv.user}
-            }).exec();
-          }
-        });
-      }
-      // Remove sensitive data before login
-      user.password = undefined;
-      user.salt = undefined;
-
-      /* send an account active mail */
-      var lang = common.getRequestLanguage(req);
-      res.render(path.resolve('modules/users/server/templates/sign-up-active-email-' + lang), {
-        name: user.displayName,
-        appName: config.app.title,
-        hours: mtConfig.sign.signUpActiveTokenExpires / (60 * 60 * 1000),
-        url: appConfig.domain + '/api/auth/active/' + user.signUpActiveToken
-      }, function (err, emailHTML) {
-        if (err) {
-          return res.status(400).send({
-            message: 'SERVER.ACTIVE_MAIL_RENDER_ERROR'
+      } else {
+        //if is invited, update invite data
+        if (req.body.inviteToken) {
+          Invitation.update({token: req.body.inviteToken}, {$set: {status: 2, to_user: user._id, registeredat: Date.now()}}, function (err) {
           });
-        } else {
-          var mailOptions = {
-            to: user.email,
-            from: config.mailer.from,
-            subject: 'Sign up account active of ' + config.app.title,
-            html: emailHTML
-          };
-          smtpTransport.sendMail(mailOptions, function (err) {
-            if (!err) {
-              res.send({
-                message: 'SERVER.SENDING_ACTIVE_MAIL_SUCCESSFULLY'
-              });
-            } else {
-              return res.status(400).send({
-                message: 'SERVER.SENDING_ACTIVE_MAIL_FAILED'
-              });
+          //update user invited_by
+          Invitation.findOne({
+            token: req.body.inviteToken
+          }, function (err, inv) {
+            if (inv) {
+              user.update({
+                $set: {invited_by: inv.user}
+              }).exec();
             }
-
           });
         }
-      });
+        // Remove sensitive data before login
+        user.password = undefined;
+        user.salt = undefined;
 
+        /* send an account active mail */
+        var lang = common.getRequestLanguage(req);
+        res.render(path.resolve('modules/users/server/templates/sign-up-active-email-' + lang), {
+          name: user.displayName,
+          appName: config.app.title,
+          hours: mtConfig.sign.signUpActiveTokenExpires / (60 * 60 * 1000),
+          url: appConfig.domain + '/api/auth/active/' + user.signUpActiveToken
+        }, function (err, emailHTML) {
+          if (err) {
+            return res.status(400).send({
+              message: 'SERVER.ACTIVE_MAIL_RENDER_ERROR'
+            });
+          } else {
+            var mailOptions = {
+              to: user.email,
+              from: config.mailer.from,
+              subject: 'Sign up account active of ' + config.app.title,
+              html: emailHTML
+            };
+            smtpTransport.sendMail(mailOptions, function (err) {
+              if (!err) {
+                res.send({
+                  message: 'SERVER.SENDING_ACTIVE_MAIL_SUCCESSFULLY'
+                });
+              } else {
+                return res.status(400).send({
+                  message: 'SERVER.SENDING_ACTIVE_MAIL_FAILED'
+                });
+              }
 
-      //create trace log
-      traceLogCreate(req, traceConfig.action.userSignUp, {
-        user: user._id,
-        inviteToken: req.body.inviteToken || null,
-        ip: req.cf_ip
-      });
-    }
-  });
+            });
+          }
+        });
+
+        //create trace log
+        traceLogCreate(req, traceConfig.action.userSignUp, {
+          user: user._id,
+          inviteToken: req.body.inviteToken || null,
+          ip: req.cf_ip
+        });
+      }
+    });
+  }
 };
 
 /**

@@ -202,6 +202,8 @@ exports.update = function (req, res) {
         return res.status(422).send({message: 'SERVER.EMAIL_ALREADY_REGISTERED'});
       } else if (results[1] > 0) {
         return res.status(422).send({message: 'SERVER.EMAIL_ALREADY_INVITED'});
+      } else if (!common.emailIsAllowable(req.query.to_email)) {
+        return res.status(422).send({message: 'SERVER.EMAIL_ADDRESS_IS_NOT_ALLOW'});
       } else {
         //send invitation mail
         var lang = common.getRequestLanguage(req);
@@ -293,6 +295,8 @@ exports.sendOfficial = function (req, res) {
           return res.status(422).send({message: 'SERVER.EMAIL_ALREADY_REGISTERED'});
         } else if (results[1] > 0) {
           return res.status(422).send({message: 'SERVER.EMAIL_ALREADY_INVITED'});
+        } else if (!common.emailIsAllowable(req.body.email)) {
+          return res.status(422).send({message: 'SERVER.EMAIL_ADDRESS_IS_NOT_ALLOW'});
         } else {
           //write invitation data
           var invitation = new Invitation();

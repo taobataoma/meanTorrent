@@ -951,6 +951,7 @@
       USED_INVITATION: 'Used invitations',
       INVITE_NOTE: 'Please attention to the expiration time of the time limit invitation is {{hours}} hours.',
       SIGN_NOTE: 'Please attention to the expiration time of sign in with the invitation is {{hours}} hours.',
+      EMAIL_ALLOWABLE: 'Only the email domain below is allowable:',
       TITLE_CREATEDAT: 'CreatedAt',
       TITLE_EXPIRESAT: 'ExpiresAt',
       TITLE_INVITEDAT: 'InvitedAt',
@@ -1569,9 +1570,10 @@
       REQUEST_STATUS_FINISHED: 'Status error! Request already finished.',
       REQUEST_STATUS_EXPIRED: 'Status error! Request already expired.',
       TORRENT_STATUS_ERROR: 'Status error! Torrent status is not reviewed',
-      EMAIL_ALREADY_REGISTERED: 'This mail address has been used by other user',
-      EMAIL_ALREADY_INVITED: 'This mail address has been invited',
-      INVITE_MAIL_SEND_FAILED: 'Invitation mail send failed (SERVER)'
+      EMAIL_ALREADY_REGISTERED: 'This email address has been used by other user',
+      EMAIL_ALREADY_INVITED: 'This email address has been invited',
+      INVITE_MAIL_SEND_FAILED: 'Invitation mail send failed (SERVER)',
+      EMAIL_ADDRESS_IS_NOT_ALLOW: 'The domain of this email address is not allowable from server'
     },
 
     //server message string, content string support markdown and emoji

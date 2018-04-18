@@ -218,6 +218,7 @@ module.exports = {
      *
      * @openSignup:                   set whether open the signup, if true, the user can signup(register) by herself,
      *                                if you create a private web site, and only accept invite to join, please set it to false.
+     * @emailAllowable:                allowable email address white list, only these address can be invited and sign up
      * @signUpActiveTokenExpires:     sign up account active expires time setting.
      * @signUpActiveTokenExpires_str: string desc of @signUpActiveTokenExpires
      * @allowSocialSignin:            meanTorrent can accept social account to signin, like google, twitter, facebook etc.
@@ -231,6 +232,7 @@ module.exports = {
      */
     sign: {
       openSignup: true,
+      emailAllowable: ['gmail.com', 'qq.com'],
       signUpActiveTokenExpires: 60 * 60 * 1000 * 24,
       signUpActiveTokenExpires_str: '24h',
       allowSocialSignin: false,

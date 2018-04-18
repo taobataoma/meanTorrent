@@ -1,13 +1,16 @@
 <section class="container" ng-controller="AdminInvitationController as vm" ng-init="vm.getOfficialInvitations();">
     <div class="margin-top-20 alert alert-success" role="alert">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-sm-12 text-center">
                 <div class="margin-top-20 margin-bottom-20">
-                    <h4>{{'ADMIN_SEND_OFFICIAL_INVITATION' | translate}}</h4>
+                    <h4>{{'ADMIN_SEND_OFFICIAL_INVITATION' | translate}} - {{vm.appConfig.name}}</h4>
                     <li class="status-divider"></li>
                 </div>
-
-                <div class="margin-bottom-20 text-center">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <div class="margin-bottom-10">
                     <form class="form-inline">
                         <div class="form-group">
                             <input type="email" class="form-control width-300" id="title" name="title"
@@ -21,7 +24,10 @@
                         </button>
                     </form>
                 </div>
-                <div class="margin-bottom-20 text-center">
+                <div class="small margin-bottom-20">
+                    <span translate="INVITATION.EMAIL_ALLOWABLE"></span> <span>{{vm.signConfig.emailAllowable}}</span>
+                </div>
+                <div class="margin-bottom-20">
                     <a href="#" ng-click="vm.deleteExpiredOfficialInvitation();">{{ 'BUTTON_DELETE_EXPIRED' | translate }}</a>
                 </div>
             </div>

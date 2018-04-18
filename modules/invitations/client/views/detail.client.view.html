@@ -125,7 +125,15 @@
     </div>
 
     <script type="text/ng-template" id="invite.html">
-        <form class="form-inline invite-popover-form text-center">
+        <div class="small margin-bottom-15 text-muted">
+            <div translate="INVITATION.EMAIL_ALLOWABLE"></div>
+            <ul>
+                <li class="text-danger" ng-repeat="ea in vm.signConfig.emailAllowable">
+                    {{ea}}
+                </li>
+            </ul>
+        </div>
+        <form class="form-inline invite-popover-form">
             <div class="form-group">
                 <input type="email" ng-disabled="vm.invitePopover.sending" ng-model="vm.invitePopover.email" class="form-control"
                        placeholder="{{ 'INPUT_EMAIL' | translate }}" autofocus>

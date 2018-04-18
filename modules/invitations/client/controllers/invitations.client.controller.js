@@ -12,6 +12,7 @@
                             InvitationsService, $rootScope, moment) {
     var vm = this;
     vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
+    vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
 

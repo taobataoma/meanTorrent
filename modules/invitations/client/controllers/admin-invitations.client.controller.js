@@ -12,6 +12,8 @@
                                      MeanTorrentConfig, $filter, $timeout, ModalConfirmService) {
     var vm = this;
     vm.user = Authentication.user;
+    vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+    vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.invitationFields = {
       isOfficial: true
