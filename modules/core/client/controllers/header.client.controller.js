@@ -119,9 +119,7 @@
       if (vm.appConfig.showDemoWarningPopup && !sw) {
         $timeout(function () {
           $('#warning_popup').popup('show');
-          //$('.warning_popup_open').trigger('click');
-          //angular.element('#myselector').triggerHandler('click');
-        }, 300);
+        }, 10);
 
         localStorageService.set('showed_warning', true);
       }

@@ -14,6 +14,7 @@
     function stateChangeStart(event, toState, toParams, fromState, fromParams) {
       $('.side-background').remove();
       $('.textcomplete-dropdown').remove();
+      $('.popup_wrapper').remove();
       // Check authentication before changing state
       if (toState.data && toState.data.roles && toState.data.roles.length > 0) {
         var allowed = false;

@@ -175,3 +175,47 @@ pre.prettyprint {
     }
 }
 /* csslint ignore:end */
+
+//popup overlay----------------------------------------------
+/* csslint ignore:start */
+.uploaded_popup {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+#uploaded_popup_background {
+    transition: all 0.3s 0.05s;
+}
+
+#uploaded_popup,
+#uploaded_popup_wrapper {
+    transition: all 0.3s ease-out;
+}
+
+#uploaded_popup {
+    transform: translateX(0) translateY(-40%);
+}
+
+.popup_visible #uploaded_popup {
+    transform: translateX(0) translateY(0);
+}
+
+#uploaded_popup,
+#uploaded_popup_wrapper {
+    .popup_content {
+        background-color: #fff;
+        opacity: 0.8 !important;
+        width: 80%;
+        top: 20%;
+        border-radius: 4px;
+        h3,
+        .h3 {
+            line-height: 1.6 !important;
+        }
+    }
+    .downloading-filename {
+        word-break: break-all;
+    }
+}
+/* csslint ignore:end */
+//popup overlay end -------------------------------------------

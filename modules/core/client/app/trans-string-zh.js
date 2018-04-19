@@ -476,6 +476,9 @@
     TORRENTS_UPLOAD_SUCCESSFULLY: '文件上传成功',
     TORRENTS_UPLOAD_FAILED: '文件上传失败',
     TORRENTS_NO_FILE_SELECTED: '请选择种子文件后再做尝试',
+    BUTTON_UPLOADED_POPUP_CLOSE: '确定',
+    POPUP_UPLOADED_TOOLTIP:'种子<strong style="color:#f00">上传成功</strong>并等待管理员的审核，带有您 Passkey 的种子文件会在您点击 "确定" 按钮后被<strong style="color:#f00">自动下载</strong>，然后您就可以使用这个新的种子文件开始做种了。',
+    TORRENT_DOWNLOADING_FILENAME: '种子文件名:',
 
     SELECT_RESOURCE_TYPE: '2. 请选择上传资源类型',
     SELECT_TORRENT_FILE: '1. 请选择种子文件',

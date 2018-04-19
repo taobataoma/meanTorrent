@@ -7,11 +7,11 @@
 
   TorrentsUploadController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
     'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService', 'DebugConsoleService', 'NotifycationService', 'SideOverlay',
-    '$templateRequest', 'marked'];
+    '$templateRequest', 'marked', '$rootScope'];
 
   function TorrentsUploadController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
                                     TorrentsService, getStorageLangService, $filter, DownloadService, mtDebug, NotifycationService, SideOverlay,
-                                    $templateRequest, marked) {
+                                    $templateRequest, marked, $rootScope) {
     var vm = this;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -46,6 +46,31 @@
     vm.anonymous = false;
     vm.videoNfo = '';
     vm.customTorrent = {};
+
+    $rootScope.announceConfig = vm.announceConfig;
+    /**
+     * document.ready
+     * #uploaded_popup.popup
+     */
+    $(document).ready(function () {
+      $('#uploaded_popup').popup({
+        outline: false,
+        focusdelay: 400,
+        vertical: 'top',
+        autoopen: false,
+        opacity: 0.6,
+        blur: false,
+        escape: false,
+        closetransitionend: function () {
+          // Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
+          if (vm.downloadingTorrent) {
+            vm.downloadTorrent(vm.downloadingTorrent._id);
+          }
+          $state.reload('torrents.uploads');
+          document.body.scrollTop = document.documentElement.scrollTop = 0;
+        }
+      });
+    });
 
     /**
      * getTemplateFileContent
@@ -469,11 +494,7 @@
       });
 
       function successCallback(res) {
-        vm.downloadTorrent(res._id);
-        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
-
-        $state.reload('torrents.uploads');
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        vm.showUploadedPopup(res);
       }
 
       function errorCallback(res) {
@@ -514,11 +535,7 @@
       });
 
       function successCallback(res) {
-        vm.downloadTorrent(res._id);
-        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
-
-        $state.reload('torrents.uploads');
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        vm.showUploadedPopup(res);
       }
 
       function errorCallback(res) {
@@ -580,11 +597,7 @@
       });
 
       function successCallback(res) {
-        vm.downloadTorrent(res._id);
-        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
-
-        $state.reload('torrents.uploads');
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        vm.showUploadedPopup(res);
       }
 
       function errorCallback(res) {
@@ -649,6 +662,18 @@
      */
     vm.clearAllCondition = function () {
       vm.tags = [];
+    };
+
+    /**
+     * showUploadedPopup
+     * @param t
+     */
+    vm.showUploadedPopup = function (t) {
+      vm.downloadingTorrent = t;
+      $rootScope.downloadingTorrent = t;
+      $timeout(function () {
+        $('#uploaded_popup').popup('show');
+      }, 10);
     };
 
     /**
