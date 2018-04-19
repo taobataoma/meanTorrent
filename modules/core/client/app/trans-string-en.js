@@ -477,7 +477,7 @@
     TORRENTS_UPLOAD_FAILED: 'Failed to upload file',
     TORRENTS_NO_FILE_SELECTED: 'No file selected',
     BUTTON_UPLOADED_POPUP_CLOSE: 'OK',
-    POPUP_UPLOADED_TOOLTIP:'The torrent is uploaded <strong style="color:#f00">successfully</strong> and is waiting for the administrator to review. The new torrent file with your Passkey will be <strong style="color:#f00">automatically downloaded</strong> after you click the "OK" button, and you can use this new torrent file to start seeding.',
+    POPUP_UPLOADED_TOOLTIP: 'The torrent is uploaded <strong style="color:#f00">successfully</strong> and is waiting for the administrator to review. The new torrent file with your Passkey will be <strong style="color:#f00">automatically downloaded</strong> after you click the "OK" button, and you can use this new torrent file to start seeding.',
     TORRENT_DOWNLOADING_FILENAME: 'Downloading file name:',
 
     SELECT_RESOURCE_TYPE: '2. Please select the resource type',
