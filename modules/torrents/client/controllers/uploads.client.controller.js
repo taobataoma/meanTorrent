@@ -63,7 +63,6 @@
         blur: false,
         escape: false,
         closetransitionend: function () {
-          console.log($scope.uploadPopupNotShowNextTime);
           if ($scope.uploadPopupNotShowNextTime) {
             localStorageService.set('upload_popup_not_show_next_time', true);
           }
