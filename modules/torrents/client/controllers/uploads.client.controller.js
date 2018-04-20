@@ -7,11 +7,11 @@
 
   TorrentsUploadController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
     'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService', 'DebugConsoleService', 'NotifycationService', 'SideOverlay',
-    '$templateRequest', 'marked', '$rootScope'];
+    '$templateRequest', 'marked', '$rootScope', 'localStorageService'];
 
   function TorrentsUploadController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
                                     TorrentsService, getStorageLangService, $filter, DownloadService, mtDebug, NotifycationService, SideOverlay,
-                                    $templateRequest, marked, $rootScope) {
+                                    $templateRequest, marked, $rootScope, localStorageService) {
     var vm = this;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
@@ -47,6 +47,7 @@
     vm.videoNfo = '';
     vm.customTorrent = {};
 
+    $rootScope.uploadPopupNotShowNextTime = localStorageService.get('upload_popup_not_show_next_time');
     $rootScope.announceConfig = vm.announceConfig;
     /**
      * document.ready
@@ -62,7 +63,11 @@
         blur: false,
         escape: false,
         closetransitionend: function () {
-          // Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> Torrent created successfully!'});
+          console.log($scope.uploadPopupNotShowNextTime);
+          if ($scope.uploadPopupNotShowNextTime) {
+            localStorageService.set('upload_popup_not_show_next_time', true);
+          }
+
           if (vm.downloadingTorrent) {
             vm.downloadTorrent(vm.downloadingTorrent._id);
           }
@@ -70,6 +75,11 @@
           document.body.scrollTop = document.documentElement.scrollTop = 0;
         }
       });
+
+      if ($scope.uploadPopupNotShowNextTime) {
+        $('#uploaded_popup_wrapper').remove();
+        $('#uploaded_popup_background').remove();
+      }
     });
 
     /**
@@ -671,9 +681,13 @@
     vm.showUploadedPopup = function (t) {
       vm.downloadingTorrent = t;
       $rootScope.downloadingTorrent = t;
-      $timeout(function () {
-        $('#uploaded_popup').popup('show');
-      }, 10);
+
+      $rootScope.uploadPopupNotShowNextTime = localStorageService.get('upload_popup_not_show_next_time');
+      if (!$rootScope.uploadPopupNotShowNextTime) {
+        $timeout(function () {
+          $('#uploaded_popup').popup('show');
+        }, 10);
+      }
     };
 
     /**

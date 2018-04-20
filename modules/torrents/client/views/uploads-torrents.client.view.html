@@ -1,8 +1,8 @@
-<section class="container" ng-controller="TorrentsUploadController as vm">
+<section class="container" ng-controller="TorrentsUploadController as vm" xmlns="http://www.w3.org/1999/html">
     <div class="jumbotron margin-top-10" ng-init="vm.getTemplateFileContent('/modules/torrents/client/templates/upload-rules-'+vm.lang+'.md')">
         <div class="row">
             <div class="col-xs-12">
-                <h4 translate="UPLOAD_RULES"></h4>
+                <h4 translate="UPLOAD_RULES" ng-click="vm.showUploadedPopup(null)"></h4>
                 <span ng-bind-html="vm.getTemplateMarkedContent()" style="line-height: 1.6;"></span>
             </div>
         </div>
@@ -775,14 +775,20 @@
 <div id="uploaded_popup" style="display: none;">
     <div class="row padding-top-30 padding-bottom-30">
         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-            <h3 translate="POPUP_UPLOADED_TOOLTIP"></h3>
+            <h4 translate="POPUP_UPLOADED_TOOLTIP"></h4>
         </div>
-        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-            <h6 class="text-muted">{{'TORRENT_DOWNLOADING_FILENAME' | translate}}</h6>
-            <h6 class="text-muted downloading-filename margin-left-30">{{announceConfig.announcePrefix}}{{downloadingTorrent.torrent_filename}}</h6>
+        <!--<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">-->
+        <!--<h6 class="text-muted downloading-filename margin-left-30">{{'TORRENT_DOWNLOADING_FILENAME' | translate}} {{announceConfig.announcePrefix}}{{downloadingTorrent.torrent_filename}}</h6>-->
+        <!--</div>-->
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-center">
+            <div class="checkbox text-muted">
+                <label>
+                    <input type="checkbox" ng-model="uploadPopupNotShowNextTime">{{'BUTTON_UNSHOW_NEXT_TIME' | translate}}
+                </label>
+            </div>
         </div>
         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-center">
-            <button class="uploaded_popup_close btn btn-lg btn-success btn-width-100 margin-top-20">{{'BUTTON_UPLOADED_POPUP_CLOSE' | translate}}</button>
+            <button class="uploaded_popup_close btn btn-success btn-width-100">{{'BUTTON_UPLOADED_POPUP_CLOSE' | translate}}</button>
         </div>
     </div>
 </div>
