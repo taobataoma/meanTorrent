@@ -119,6 +119,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 54. New feature for system control panel, only admin can edit markdown templates or system configure files online or execute some shell command online, but this is danger, if you do not understand it, don`t do it please.
 55. Feature for user score getting. upload/download the older torrent get the higher score, the few seeding people got the higher score.
 56. An examination tasks system to check user`s incremental uploaded, download and score value within a specified period of time, if the value failed to reach the standard, admin can banned them.
+57. Add email white list, user can not to receive invite mail and active mail if the email domain not in the list.
 
 #### Chat room feature:
 1. Users name list

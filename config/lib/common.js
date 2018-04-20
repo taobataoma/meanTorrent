@@ -84,6 +84,11 @@ module.exports.getRequestLanguage = function (req) {
   return lang || 'en';
 };
 
+/**
+ * emailIsAllowable
+ * @param email
+ * @returns {boolean}
+ */
 module.exports.emailIsAllowable = function (email) {
   var domain = email.replace(/.*@/, '');
   var ec = signConfig.emailAllowable;
