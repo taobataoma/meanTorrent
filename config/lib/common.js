@@ -81,6 +81,10 @@ module.exports.getRequestLanguage = function (req) {
     return l.name;
   });
   var lang = req.acceptsLanguages(mtLang);
+  if (lang.length > 2) {
+    lang = lang.substring(0, 2);
+  }
+
   return lang || 'en';
 };
 

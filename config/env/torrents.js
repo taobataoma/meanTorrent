@@ -1046,9 +1046,10 @@ module.exports = {
      * @posterImgBaseUrl:         image link url
      * @posterListBaseUrl:        image link url
      * @castImgBaseUrl:           image link url
+     * @resourcesLanguage:        settings for language of dropdown resource info
      */
     tmdbConfig: {
-      key: 'this is access key from tmdb',
+      key: '7888f0042a366f63289ff571b68b7ce0',
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',
@@ -1057,7 +1058,8 @@ module.exports = {
       backdropImgBaseUrl_780: 'https://image.tmdb.org/t/p/w780',
       posterImgBaseUrl: 'https://image.tmdb.org/t/p/w500',
       posterListBaseUrl: 'https://image.tmdb.org/t/p/w92',
-      castImgBaseUrl: 'https://image.tmdb.org/t/p/w132_and_h132_bestv2'
+      castImgBaseUrl: 'https://image.tmdb.org/t/p/w132_and_h132_bestv2',
+      resourcesLanguage: 'zh'
     },
 
     /**

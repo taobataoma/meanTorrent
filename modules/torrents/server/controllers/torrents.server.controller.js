@@ -43,6 +43,7 @@ var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 var announceConfig = config.meanTorrentConfig.announce;
 var appConfig = config.meanTorrentConfig.app;
+var tmdbConfig = config.meanTorrentConfig.tmdbConfig;
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -56,9 +57,9 @@ exports.movieinfo = function (req, res) {
 
   tmdb.movieInfo({
     id: req.params.tmdbid,
-    language: req.params.language,
+    language: tmdbConfig.resourcesLanguage,
     append_to_response: 'credits,images,alternative_titles,release_dates',
-    include_image_language: req.params.language + ',null'
+    include_image_language: tmdbConfig.resourcesLanguage + ',null'
   }, function (err, info) {
     if (err) {
       res.status(900).send(err);
@@ -81,7 +82,7 @@ exports.searchmovie = function (req, res) {
 
   if (type === 'movie') {
     tmdb.searchMovie({
-      language: req.params.language,
+      language: tmdbConfig.resourcesLanguage,
       query: req.query.query
     }, function (err, info) {
       if (err) {
@@ -92,7 +93,7 @@ exports.searchmovie = function (req, res) {
     });
   } else if (type === 'tvserial') {
     tmdb.searchTv({
-      language: req.params.language,
+      language: tmdbConfig.resourcesLanguage,
       query: req.query.query
     }, function (err, info) {
       if (err) {
@@ -113,9 +114,9 @@ exports.tvinfo = function (req, res) {
 
   tmdb.tvInfo({
     id: req.params.tmdbid,
-    language: req.params.language,
+    language: tmdbConfig.resourcesLanguage,
     append_to_response: 'credits,images,alternative_titles',
-    include_image_language: req.params.language + ',null'
+    include_image_language: tmdbConfig.resourcesLanguage + ',null'
   }, function (err, info) {
     if (err) {
       res.status(900).send(err);
