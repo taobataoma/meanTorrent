@@ -44,6 +44,7 @@
 
             if (adminAccessConfig.limit) {
               UsersService.getMyIp(function (res) {
+                console.log('Your current ip is: ' + res.ip + ' for admin center');
                 if (Authentication.user && !adminAccessConfig.limitedIp.includes(res.ip)) {
                   event.preventDefault();
                   $state.transitionTo('access-deny');

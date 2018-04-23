@@ -296,6 +296,6 @@ exports.unIdle = function (req, res, next) {
  */
 exports.getMyIp = function (req, res) {
   res.status(200).send({
-    ip: req.user.curr_signed_ip
+    ip: req.cf_ip
   });
 };
