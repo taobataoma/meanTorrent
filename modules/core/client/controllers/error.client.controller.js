@@ -5,10 +5,11 @@
     .module('core')
     .controller('ErrorController', ErrorController);
 
-  ErrorController.$inject = ['$stateParams'];
+  ErrorController.$inject = ['$stateParams', 'MeanTorrentConfig'];
 
-  function ErrorController($stateParams) {
+  function ErrorController($stateParams, MeanTorrentConfig) {
     var vm = this;
+    vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
     vm.errorMessage = null;
     vm.errorParams = null;
 
