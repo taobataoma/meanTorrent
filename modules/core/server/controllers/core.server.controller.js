@@ -14,7 +14,7 @@ exports.renderIndex = function (req, res) {
     req.user.addSignedIp(req.cf_ip);
   }
 
-  var cfg = getSafeMeanTorrentConfig(config.meanTorrentConfig);
+  var cfg = getSafeMeanTorrentConfig(req, config.meanTorrentConfig);
 
   res.render('modules/core/server/views/index', {
     user: JSON.stringify(safeUserObject),
@@ -29,7 +29,7 @@ exports.renderIndex = function (req, res) {
 exports.renderServerError = function (req, res) {
   var safeUserObject = req.user || null;
 
-  var cfg = getSafeMeanTorrentConfig(config.meanTorrentConfig);
+  var cfg = getSafeMeanTorrentConfig(req, config.meanTorrentConfig);
 
   res.status(500).render('modules/core/server/views/500', {
     user: JSON.stringify(safeUserObject),
@@ -46,7 +46,7 @@ exports.renderServerError = function (req, res) {
 exports.renderNotFound = function (req, res) {
   var safeUserObject = req.user || null;
 
-  var cfg = getSafeMeanTorrentConfig(config.meanTorrentConfig);
+  var cfg = getSafeMeanTorrentConfig(req, config.meanTorrentConfig);
 
   res.status(404).format({
     'text/html': function () {
@@ -70,10 +70,11 @@ exports.renderNotFound = function (req, res) {
 
 /**
  * getSafeMeanTorrentConfig
+ * @param req
  * @param cfg
  * @returns {*}
  */
-function getSafeMeanTorrentConfig(cfg) {
+function getSafeMeanTorrentConfig(req, cfg) {
   var newCfg = _.cloneDeep(cfg);
 
   //ignore backup settings
@@ -87,6 +88,11 @@ function getSafeMeanTorrentConfig(cfg) {
 
   //ignore serverNotice settings
   newCfg.serverNotice = undefined;
+
+  //ignore adminAccess config items for normal users
+  if (req.user && !req.user.isOper) {
+    newCfg.adminAccess = undefined;
+  }
 
   return newCfg;
 }

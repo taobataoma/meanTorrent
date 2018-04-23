@@ -1294,7 +1294,8 @@
       MADE_BAD_REQUEST: '您发起了一个无效的请求',
       NOT_AUTHORIZED_THIS: '您无权访问此资源',
       NOT_FOUND: '无法访问',
-      PAGE_NOT_FOUND: '没有找到页面或资源'
+      PAGE_NOT_FOUND: '没有找到页面或资源',
+      ACCESS_DENY: '您的当前IP被限制访问此资源，如需帮助请给{{sNameDesc | translate}}发送 <strong><a href="/messages/send?to={{sName}}">消息</a></strong> 或 <strong><a href="mailto:{{sMail}}">邮件</a></strong>.'
     },
 
     //systems control panel

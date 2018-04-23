@@ -76,6 +76,15 @@
         data: {
           ignoreState: true
         }
+      })
+      .state('access-deny', {
+        url: '/access-deny',
+        templateUrl: '/modules/core/client/views/deny.client.view.html',
+        controller: 'ErrorController',
+        controllerAs: 'vm',
+        data: {
+          ignoreState: true
+        }
       });
   }
 }());

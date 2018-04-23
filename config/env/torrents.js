@@ -211,6 +211,19 @@ module.exports = {
     },
 
     /**
+     * @adminAccess
+     *
+     * setting ip access for menu of admin center
+     *
+     * @limit:            set whether to limit ip to access admin center
+     * @limitedIp:        list all allow ip to access admin center, otherwise can not to access
+     */
+    adminAccess: {
+      limit: false,
+      limitedIp: ['127.0.0.1']
+    },
+
+    /**
      * @sign
      *
      * user register settings

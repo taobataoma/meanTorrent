@@ -5,9 +5,9 @@
     .module('core')
     .run(routeFilter);
 
-  routeFilter.$inject = ['$rootScope', '$state', 'Authentication'];
+  routeFilter.$inject = ['$rootScope', '$state', 'Authentication', 'MeanTorrentConfig'];
 
-  function routeFilter($rootScope, $state, Authentication) {
+  function routeFilter($rootScope, $state, Authentication, MeanTorrentConfig) {
     $rootScope.$on('$stateChangeStart', stateChangeStart);
     $rootScope.$on('$stateChangeSuccess', stateChangeSuccess);
 
@@ -28,13 +28,25 @@
 
         if (!allowed) {
           event.preventDefault();
-          if (Authentication.user !== null && typeof Authentication.user === 'object') {
+          if (toState.data.rolesStateTo) {
+            $state.go(toState.data.rolesStateTo);
+          } else if (Authentication.user !== null && typeof Authentication.user === 'object') {
             $state.transitionTo('forbidden');
           } else {
             $state.go('authentication.signin').then(function () {
               // Record previous state
               storePreviousState(toState, toParams);
             });
+          }
+        } else {
+          if (toState.name.startsWith('admin.')) {
+            var adminAccessConfig = MeanTorrentConfig.meanTorrentConfig.adminAccess;
+            if (adminAccessConfig.limit) {
+              if (Authentication.user && !adminAccessConfig.limitedIp.includes(Authentication.user.curr_signed_ip)) {
+                event.preventDefault();
+                $state.transitionTo('access-deny');
+              }
+            }
           }
         }
       }

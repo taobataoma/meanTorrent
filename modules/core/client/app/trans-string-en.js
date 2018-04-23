@@ -1294,7 +1294,8 @@
       MADE_BAD_REQUEST: 'You made a bad request',
       NOT_AUTHORIZED_THIS: 'You are not authorized to access this resource',
       NOT_FOUND: 'Not Found',
-      PAGE_NOT_FOUND: 'Page Or Resources Not Found'
+      PAGE_NOT_FOUND: 'Page Or Resources Not Found',
+      ACCESS_DENY: 'Your current IP is restricted to access this resource，For more help, please contact our {{sNameDesc | translate}} by <strong><a href="/messages/send?to={{sName}}">Message</a></strong> or <strong><a href="mailto:{{sMail}}">Email</a></strong>.'
     },
 
     //systems control panel
