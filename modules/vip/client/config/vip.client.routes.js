@@ -18,6 +18,8 @@
         url: '',
         templateUrl: '/modules/vip/client/views/vip.client.view.html',
         data: {
+          roles: ['user', 'oper', 'admin'],
+          rolesStateTo: 'vip.rules',
           pageTitle: 'PAGETITLE.VIP'
         }
       })
