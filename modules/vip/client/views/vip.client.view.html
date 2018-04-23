@@ -23,9 +23,8 @@
     </div>
 
     <div class="container" ng-if="!vm.user.isVip && !vm.user.isOper">
-        <div class="col-sm-10">
-            <div marked src="'/modules/vip/client/templates/vip-'+vm.lang+'.md'" compile="true">
-            </div>
+        <div class="col-sm-10" ng-init="vm.getTemplateFileContent('/modules/vip/client/templates/vip-'+vm.lang+'.md')">
+            <span ng-bind-html="vm.getTemplateMarkedContent()" style="line-height: 1.6;"></span>
         </div>
     </div>
 
