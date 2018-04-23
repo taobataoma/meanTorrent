@@ -896,7 +896,7 @@
       LATEST_REFRESH_TIME: 'Latest refresh at',
       SIGNED_IP: 'Signed IP list',
       LEECHED_IP: 'Leeched IP list',
-      CURR_SIGNED_IP: 'Latest signed IP',
+      CURR_SIGNED_IP: 'Current signed IP',
       CURR_LEECHED_IP: 'Latest leeched IP',
       BT_CLIENT: 'Leeched BT Client list'
     },

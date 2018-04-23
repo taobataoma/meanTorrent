@@ -217,6 +217,8 @@ module.exports = {
      *
      * @limit:            set whether to limit ip to access admin center
      * @limitedIp:        list all allow ip to access admin center, otherwise can not to access
+     *                    If you limited some vpn ip to access it, please add the vpn ip into the @limitedIp array
+     *                    If no limited ip, set the @limit to false
      */
     adminAccess: {
       limit: false,
