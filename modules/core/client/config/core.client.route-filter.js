@@ -50,7 +50,6 @@
 
               event.preventDefault();
               UsersService.getMyIp(function (res) {
-                mtDebug.info('Your current ip is: ' + res.ip + ' for admin center');
                 if (Authentication.user && !adminAccessConfig.limitedIp.includes(res.ip)) {
                   $state.transitionTo('access-deny');
                 } else {
