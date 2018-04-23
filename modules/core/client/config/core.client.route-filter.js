@@ -5,9 +5,9 @@
     .module('core')
     .run(routeFilter);
 
-  routeFilter.$inject = ['$rootScope', '$state', 'Authentication', 'MeanTorrentConfig'];
+  routeFilter.$inject = ['$rootScope', '$state', 'Authentication', 'MeanTorrentConfig', 'UsersService'];
 
-  function routeFilter($rootScope, $state, Authentication, MeanTorrentConfig) {
+  function routeFilter($rootScope, $state, Authentication, MeanTorrentConfig, UsersService) {
     $rootScope.$on('$stateChangeStart', stateChangeStart);
     $rootScope.$on('$stateChangeSuccess', stateChangeSuccess);
 
@@ -41,11 +41,14 @@
         } else {
           if (toState.name.startsWith('admin.')) {
             var adminAccessConfig = MeanTorrentConfig.meanTorrentConfig.adminAccess;
+
             if (adminAccessConfig.limit) {
-              if (Authentication.user && !adminAccessConfig.limitedIp.includes(Authentication.user.curr_signed_ip)) {
-                event.preventDefault();
-                $state.transitionTo('access-deny');
-              }
+              UsersService.getMyIp(function (res) {
+                if (Authentication.user && !adminAccessConfig.limitedIp.includes(res.ip)) {
+                  event.preventDefault();
+                  $state.transitionTo('access-deny');
+                }
+              });
             }
           }
         }

@@ -288,3 +288,14 @@ exports.unIdle = function (req, res, next) {
     });
   }
 };
+
+/**
+ * getMyIp
+ * @param req
+ * @param res
+ */
+exports.getMyIp = function (req, res) {
+  res.status(200).send({
+    ip: req.user.curr_signed_ip
+  });
+};

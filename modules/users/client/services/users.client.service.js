@@ -89,6 +89,10 @@
         method: 'GET',
         url: '/api/users/:userId/following',
         isArray: true
+      },
+      getMyIp: {
+        method: 'GET',
+        url: '/api/users/myIp'
       }
     });
 
