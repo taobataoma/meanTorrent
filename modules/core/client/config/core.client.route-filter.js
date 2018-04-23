@@ -5,9 +5,9 @@
     .module('core')
     .run(routeFilter);
 
-  routeFilter.$inject = ['$rootScope', '$state', 'Authentication', 'MeanTorrentConfig', 'UsersService'];
+  routeFilter.$inject = ['$rootScope', '$state', 'Authentication', 'MeanTorrentConfig', 'UsersService', 'DebugConsoleService'];
 
-  function routeFilter($rootScope, $state, Authentication, MeanTorrentConfig, UsersService) {
+  function routeFilter($rootScope, $state, Authentication, MeanTorrentConfig, UsersService, mtDebug) {
     $rootScope.$on('$stateChangeStart', stateChangeStart);
     $rootScope.$on('$stateChangeSuccess', stateChangeSuccess);
 
@@ -44,7 +44,7 @@
 
             if (adminAccessConfig.limit) {
               UsersService.getMyIp(function (res) {
-                console.log('Your current ip is: ' + res.ip + ' for admin center');
+                mtDebug.info('Your current ip is: ' + res.ip + ' for admin center');
                 if (Authentication.user && !adminAccessConfig.limitedIp.includes(res.ip)) {
                   event.preventDefault();
                   $state.transitionTo('access-deny');
