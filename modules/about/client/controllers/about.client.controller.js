@@ -39,6 +39,7 @@
     vm.passwordConfig = MeanTorrentConfig.meanTorrentConfig.password;
     vm.examinationConfig = MeanTorrentConfig.meanTorrentConfig.examination;
     vm.chatConfig = MeanTorrentConfig.meanTorrentConfig.chat;
+    vm.accessConfig = MeanTorrentConfig.meanTorrentConfig.access;
 
     vm.groupTorrentType = localStorageService.get('maker_last_selected_type') || 'movie';
     vm.searchTags = [];
@@ -84,6 +85,7 @@
         passwordConfig: vm.passwordConfig,
         examinationConfig: vm.examinationConfig,
         chatConfig: vm.chatConfig,
+        accessConfig: vm.accessConfig,
 
         user: vm.user
       });

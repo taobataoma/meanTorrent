@@ -211,18 +211,27 @@ module.exports = {
     },
 
     /**
-     * @adminAccess
+     * @access
      *
-     * setting ip access for menu of admin center
+     * setting ip access for site menu
      *
-     * @limit:            set whether to limit ip to access admin center
-     * @limitedIp:        list all allow ip to access admin center, otherwise can not to access
-     *                    If you limited some vpn ip to access it, please add the vpn ip into the @limitedIp array
-     *                    If no limited ip, set the @limit to false
+     * @admin:                      setting of access for admin center
+     *        @limit:               set whether to limit ip to access admin center
+     *        @limitedIp:           list all allow ip to access admin center, otherwise can not to access
+     *                              If you limited some vpn ip to access it, please add the vpn ip into the @limitedIp array
+     *                              If no limited ip, set the @limit to false
+     * @upload:                     setting of access for torrents uploader
+     *        @limitToMakerGroup:   setting whether limit the access to maker group for torrents uploader
+     *                              if false, everyone can upload torrent
      */
-    adminAccess: {
-      limit: false,
-      limitedIp: ['127.0.0.1']
+    access: {
+      admin: {
+        limit: false,
+        limitedIp: ['127.0.0.1']
+      },
+      upload: {
+        limitToMakerGroup: false
+      }
     },
 
     /**

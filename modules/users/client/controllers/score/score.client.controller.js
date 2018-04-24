@@ -30,6 +30,7 @@
     vm.passwordConfig = MeanTorrentConfig.meanTorrentConfig.password;
     vm.examinationConfig = MeanTorrentConfig.meanTorrentConfig.examination;
     vm.chatConfig = MeanTorrentConfig.meanTorrentConfig.chat;
+    vm.accessConfig = MeanTorrentConfig.meanTorrentConfig.access;
 
     vm.lang = getStorageLangService.getLang();
     vm.user = Authentication.user;
@@ -85,6 +86,7 @@
         passwordConfig: vm.passwordConfig,
         examinationConfig: vm.examinationConfig,
         chatConfig: vm.chatConfig,
+        accessConfig: vm.accessConfig,
 
         user: vm.user
       });

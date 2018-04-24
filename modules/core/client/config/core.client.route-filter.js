@@ -40,9 +40,9 @@
           }
         } else {
           if (toState.name.startsWith('admin.')) {
-            var adminAccessConfig = MeanTorrentConfig.meanTorrentConfig.adminAccess;
+            var accessConfig = MeanTorrentConfig.meanTorrentConfig.access;
 
-            if (adminAccessConfig.limit) {
+            if (accessConfig.admin.limit) {
               if ($rootScope.ipIdentify) {
                 $rootScope.ipIdentify = false;
                 return;
@@ -50,7 +50,7 @@
 
               event.preventDefault();
               UsersService.getMyIp(function (res) {
-                if (Authentication.user && !adminAccessConfig.limitedIp.includes(res.ip)) {
+                if (Authentication.user && !accessConfig.admin.limitedIp.includes(res.ip)) {
                   $state.transitionTo('access-deny');
                 } else {
                   $rootScope.ipIdentify = true;

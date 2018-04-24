@@ -91,7 +91,7 @@ function getSafeMeanTorrentConfig(req, cfg) {
 
   //ignore adminAccess config items for normal users
   if (req.user && !req.user.isOper) {
-    newCfg.adminAccess = undefined;
+    newCfg.access.admin = undefined;
   }
 
   return newCfg;
