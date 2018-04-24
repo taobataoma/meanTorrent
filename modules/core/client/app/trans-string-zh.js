@@ -480,6 +480,7 @@
     BUTTON_UNSHOW_NEXT_TIME: '我知道了，下次不用再提示了！',
     POPUP_UPLOADED_TOOLTIP: '种子<strong style="color:#f00">上传成功</strong>并等待管理员的审核，带有您 Passkey 的种子文件会在您点击 "确定" 按钮后被<strong style="color:#f00">自动下载</strong>，然后您就可以使用这个自动下载的种子文件开始做种了。',
     TORRENT_DOWNLOADING_FILENAME: '种子文件名: ',
+    UPLOAD_ACCESS_TOOLTIP: '{{site}} 只接受资源制作小组上传种子，您可以 <a href="/about/maker">查看并加入他们</a>！',
 
     SELECT_RESOURCE_TYPE: '2. 请选择上传资源类型',
     SELECT_TORRENT_FILE: '1. 请选择种子文件',
@@ -1578,7 +1579,10 @@
       EMAIL_ALREADY_REGISTERED: '这个邮件地址已被其它用户注册使用了',
       EMAIL_ALREADY_INVITED: '这个邮件地址已经被邀请过了',
       INVITE_MAIL_SEND_FAILED: '邀请邮件发送失败(SERVER)',
-      EMAIL_ADDRESS_IS_NOT_ALLOW: '该邮件地址不允许被邀请或注册'
+      EMAIL_ADDRESS_IS_NOT_ALLOW: '该邮件地址不允许被邀请或注册',
+      INFO_HASH_IS_EMPTY: 'Info hash 字段值不能为空',
+      INFO_HASH_ALREADY_EXISTS: '该 info hash 值已经存在，不能重复提交',
+      UPLOAD_ACCESS_DENY: '当前系统只接受资源制作小组上传种子'
     },
 
     //server message string, content string support markdown and emoji

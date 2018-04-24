@@ -44,6 +44,7 @@ var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 var announceConfig = config.meanTorrentConfig.announce;
 var appConfig = config.meanTorrentConfig.app;
 var tmdbConfig = config.meanTorrentConfig.tmdbConfig;
+var accessConfig = config.meanTorrentConfig.access;
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -153,6 +154,7 @@ exports.upload = function (req, res) {
     uploadFile()
       .then(checkAnnounce)
       .then(checkHash)
+      .then(checkCanUpload)
       .then(function () {
         res.status(200).send(torrentinfo);
       })
@@ -241,7 +243,7 @@ exports.upload = function (req, res) {
       var message = '';
 
       if (torrentinfo.info_hash === '' || !torrentinfo.info_hash) {
-        message = 'INFO_HASH_IS_EMPTY';
+        message = 'SERVER.INFO_HASH_IS_EMPTY';
         reject(message);
       } else {
         Torrent.findOne({
@@ -251,7 +253,7 @@ exports.upload = function (req, res) {
             reject(err);
           } else {
             if (torrent) {
-              message = 'INFO_HASH_ALREADY_EXISTS';
+              message = 'SERVER.INFO_HASH_ALREADY_EXISTS';
 
               reject(message);
             } else {
@@ -259,6 +261,20 @@ exports.upload = function (req, res) {
             }
           }
         });
+      }
+    });
+  }
+
+  function checkCanUpload() {
+    return new Promise(function (resolve, reject) {
+      if (!accessConfig.upload.limitToMakerGroup) {
+        resolve();
+      } else {
+        if (req.user.makers.length > 0) {
+          resolve();
+        } else {
+          reject('SERVER.UPLOAD_ACCESS_DENY');
+        }
       }
     });
   }

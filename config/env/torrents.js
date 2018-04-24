@@ -230,7 +230,7 @@ module.exports = {
         limitedIp: ['127.0.0.1']
       },
       upload: {
-        limitToMakerGroup: false
+        limitToMakerGroup: true
       }
     },
 

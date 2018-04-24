@@ -480,6 +480,7 @@
     BUTTON_UNSHOW_NEXT_TIME: 'I know, don`t show this next time',
     POPUP_UPLOADED_TOOLTIP: 'The torrent is uploaded <strong style="color:#f00">successfully</strong> and is waiting for the administrator to review. The new torrent file with your Passkey will be <strong style="color:#f00">automatically downloaded</strong> after you click the "OK" button, and you can use this new torrent file to start seeding.',
     TORRENT_DOWNLOADING_FILENAME: 'Downloading file name: ',
+    UPLOAD_ACCESS_TOOLTIP: '{{site}} only accepts resource maker group to upload torrents, you can <a href="/about/maker">list and join them</a>!',
 
     SELECT_RESOURCE_TYPE: '2. Please select the resource type',
     SELECT_TORRENT_FILE: '1. Please select the torrent file',
@@ -1578,7 +1579,10 @@
       EMAIL_ALREADY_REGISTERED: 'This email address has been used by other user',
       EMAIL_ALREADY_INVITED: 'This email address has been invited',
       INVITE_MAIL_SEND_FAILED: 'Invitation mail send failed (SERVER)',
-      EMAIL_ADDRESS_IS_NOT_ALLOW: 'The domain of this email address is not allowable from server'
+      EMAIL_ADDRESS_IS_NOT_ALLOW: 'The domain of this email address is not allowable from server',
+      INFO_HASH_IS_EMPTY: 'Info hash field of torrent file is empty',
+      INFO_HASH_ALREADY_EXISTS: 'This info hash value is already exists',
+      UPLOAD_ACCESS_DENY: 'System only accepts resource maker group to upload torrents'
     },
 
     //server message string, content string support markdown and emoji

@@ -83,6 +83,18 @@
     });
 
     /**
+     * getAccessUploader
+     * @returns {boolean}
+     */
+    vm.getAccessUploader = function () {
+      if (!vm.accessConfig.upload.limitToMakerGroup) {
+        return true;
+      } else {
+        return vm.user.makers.length > 0;
+      }
+    };
+
+    /**
      * getTemplateFileContent
      * @param file
      */

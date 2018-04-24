@@ -8,92 +8,100 @@
         </div>
     </div>
 
-    <div class="row margin-bottom-40">
-        <div class="col-xs-12">
-            <legend class="small-legend" translate="SELECT_TORRENT_FILE"></legend>
-            <div class="col-sm-7">
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model="vm.tFile.name" disabled>
+    <div ng-if="!vm.getAccessUploader()">
+        <div class="alert alert-warning text-center" role="alert" style="padding: 30px 50px 20px 50px;">
+            <h4 translate="UPLOAD_ACCESS_TOOLTIP" translate-values="{site: vm.appConfig.name}"></h4>
+        </div>
+    </div>
 
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary btn-file"
-                                ngf-select="vm.fileSelected = true; vm.successfully = undefined; vm.progress = 0;"
-                                ng-model="vm.tFile"
-                                accept="application/x-bittorrent"
-                                ng-disabled="vm.successfully">{{ 'SELECT_FILE' | translate}}
-                        </button>
+    <div ng-if="vm.getAccessUploader()">
+        <div class="row margin-bottom-40">
+            <div class="col-xs-12">
+                <legend class="small-legend" translate="SELECT_TORRENT_FILE"></legend>
+                <div class="col-sm-7">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="vm.tFile.name" disabled>
+
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-file"
+                                    ngf-select="vm.fileSelected = true; vm.successfully = undefined; vm.progress = 0;"
+                                    ng-model="vm.tFile"
+                                    accept="application/x-bittorrent"
+                                    ng-disabled="vm.successfully">{{ 'SELECT_FILE' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="vm.fileSelected" class="col-sm-5">
+                    <button class="btn btn-success" ng-click="vm.upload(vm.tFile)">{{ 'DO_UPLOAD' | translate}} ({{vm.progress}}%)</button>
+                </div>
+                <div ng-show="vm.successfully == true" class="col-sm-5" style="margin-top: 7px">
+                    <label class="text-success control-label" translate="TORRENTS_UPLOAD_SUCCESSFULLY"></label>
+                </div>
+                <div ng-show="vm.successfully == false" class="col-sm-5" style="margin-top: 7px">
+                    <label class="text-danger control-label" translate="TORRENTS_UPLOAD_FAILED"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.successfully == true">
+            <div class="col-xs-12">
+                <legend class="small-legend" translate="SELECT_RESOURCE_TYPE"></legend>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <select class="form-control" ng-model="vm.selectedType" ng-change="vm.onTorrentTypeChanged();">
+                        <option ng-repeat="t in vm.torrentType.value | filter:{enable: true}"
+                                ng-if="t.role=='user' || (t.role=='vip' && (vm.user.isVip || vm.user.isOper))"
+                                value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="vm.selectedType" ng-include="vm.getIncludeUploadTemplateID(vm.selectedType);"></div>
+
+        <div class="row margin-bottom-40 margin-top-50" ng-show="vm.showAgreeAndSubmit || vm.customTorrent.detail">
+            <div class="col-xs-12">
+                <legend class="small-legend" translate="SELECT_MAKER_GROUP"></legend>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="maker_NULL" ng-model="vm.maker"
+                               id="maker_NULL"
+                               value="NULL"> {{'MAKER_NULL' | translate}}
+                    </label>
+                    <label class="radio-inline" ng-repeat="m in vm.user.makers">
+                        <input type="radio" name="maker_{{m.name}}" ng-model="vm.maker"
+                               id="maker_{{m.name}}"
+                               value="{{m._id}}"> {{m.name}}
+                    </label>
+                </div>
+                <div class="col-xs-12">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="vm.anonymous"> {{'UPLOADER_ANONYMOUS' | translate}}
+                        </label>
                     </div>
                 </div>
             </div>
-            <div ng-show="vm.fileSelected" class="col-sm-5">
-                <button class="btn btn-success" ng-click="vm.upload(vm.tFile)">{{ 'DO_UPLOAD' | translate}} ({{vm.progress}}%)</button>
-            </div>
-            <div ng-show="vm.successfully == true" class="col-sm-5" style="margin-top: 7px">
-                <label class="text-success control-label" translate="TORRENTS_UPLOAD_SUCCESSFULLY"></label>
-            </div>
-            <div ng-show="vm.successfully == false" class="col-sm-5" style="margin-top: 7px">
-                <label class="text-danger control-label" translate="TORRENTS_UPLOAD_FAILED"></label>
-            </div>
-        </div>
-    </div>
 
-    <div class="row margin-bottom-40" ng-show="vm.successfully == true">
-        <div class="col-xs-12">
-            <legend class="small-legend" translate="SELECT_RESOURCE_TYPE"></legend>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <select class="form-control" ng-model="vm.selectedType" ng-change="vm.onTorrentTypeChanged();">
-                    <option ng-repeat="t in vm.torrentType.value | filter:{enable: true}"
-                            ng-if="t.role=='user' || (t.role=='vip' && (vm.user.isVip || vm.user.isOper))"
-                            value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}
-                    </option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div ng-show="vm.selectedType" ng-include="vm.getIncludeUploadTemplateID(vm.selectedType);"></div>
-
-    <div class="row margin-bottom-40 margin-top-50" ng-show="vm.showAgreeAndSubmit || vm.customTorrent.detail">
-        <div class="col-xs-12">
-            <legend class="small-legend" translate="SELECT_MAKER_GROUP"></legend>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <label class="radio-inline">
-                    <input type="radio" name="maker_NULL" ng-model="vm.maker"
-                           id="maker_NULL"
-                           value="NULL"> {{'MAKER_NULL' | translate}}
-                </label>
-                <label class="radio-inline" ng-repeat="m in vm.user.makers">
-                    <input type="radio" name="maker_{{m.name}}" ng-model="vm.maker"
-                           id="maker_{{m.name}}"
-                           value="{{m._id}}"> {{m.name}}
-                </label>
-            </div>
-            <div class="col-xs-12">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="vm.anonymous"> {{'UPLOADER_ANONYMOUS' | translate}}
+            <div class="col-md-12 col-sm-12 col-xs-12 margin-top-50">
+                <legend class="small-legend" translate="TORRENTS_SUBMIT_UPLOAD"></legend>
+                <div class="col-sm-6 col-sm-offset-3 text-center">
+                    <label class="checkbox text-uppercase">
+                        <input type="checkbox" id="agreeCheckbox" ng-model="vm.agreeRules">
+                        <span translate="AGREE_RULES"></span>
                     </label>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-md-12 col-sm-12 col-xs-12 margin-top-50">
-            <legend class="small-legend" translate="TORRENTS_SUBMIT_UPLOAD"></legend>
-            <div class="col-sm-6 col-sm-offset-3 text-center">
-                <label class="checkbox text-uppercase">
-                    <input type="checkbox" id="agreeCheckbox" ng-model="vm.agreeRules">
-                    <span translate="AGREE_RULES"></span>
-                </label>
-            </div>
-            <div class="col-sm-4 col-sm-offset-4">
-                <button class="btn btn-lg btn-block btn-success" ng-click="vm.create()"
-                        ng-disabled="!vm.agreeRules">{{ 'SUBMIT_BUTTON' | translate}}
-                </button>
-                <button class="btn btn-lg btn-block btn-warning" ng-click="vm.cancel()">{{ 'CANCEL_BUTTON' | translate}}
-                </button>
-            </div>
-            <div class="col-sm-10 text-center">
-                <span class="error-text" ng-show="vm.error_msg">{{vm.error_msg}}</span>
+                <div class="col-sm-4 col-sm-offset-4">
+                    <button class="btn btn-lg btn-block btn-success" ng-click="vm.create()"
+                            ng-disabled="!vm.agreeRules">{{ 'SUBMIT_BUTTON' | translate}}
+                    </button>
+                    <button class="btn btn-lg btn-block btn-warning" ng-click="vm.cancel()">{{ 'CANCEL_BUTTON' | translate}}
+                    </button>
+                </div>
+                <div class="col-sm-10 text-center">
+                    <span class="error-text" ng-show="vm.error_msg">{{vm.error_msg}}</span>
+                </div>
             </div>
         </div>
     </div>
