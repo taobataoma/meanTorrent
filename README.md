@@ -377,7 +377,7 @@ meanTorrent can backup mongo database into to a .tar files automatic at midnight
 if you want to disabled this feature, please set `enable` to `false`, `dir` is the saved path.
 
 #### mail sender configure
-meanTorrent need send mail to user when restore password, send invitations etc. before send these mail, you need change the mail options in file `config/env/comm-variable.js`,
+meanTorrent need send mail to user when restore password, send invitations etc. before send these mail, you need change the mail options in file `config/env/development.js` and `config/env/production.js`,
 meanTorrent used module `nodemailer`, if you have any config question you can find at [nodemailer](https://nodemailer.com/about/).
 
 ```javascript
