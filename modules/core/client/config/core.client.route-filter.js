@@ -66,6 +66,12 @@
     function stateChangeSuccess(event, toState, toParams, fromState, fromParams) {
       // Record previous state
       storePreviousState(fromState, fromParams);
+
+      if(toState.name === 'home'){
+        $('.page-content').css('background-color', 'transparent');
+      }else{
+        $('.page-content').css('background-color', '#fff');
+      }
     }
 
     // Store previous state

@@ -35,156 +35,158 @@
         </div>
     </div>
 
-    <div class="home_global_search" ng-init="vm.getForumList()">
-        <div class="search-panel pagetop">
+    <div class="filter">
+        <div class="home_global_search filter-search" ng-init="vm.getForumList()">
+            <div class="search-panel">
+                <div class="container">
+                    <div class="row">
+                        <div class="search-row">
+                            <div class="col-sm-12 text-center search-col">
+                                <p class="search-title" translate="HOME.TITLE_SEARCH"></p>
+                                <!--<p class="search-sub-title" translate="HOME.SEARCH_SUB_TITLE"></p>-->
+                                <div class="input-group search-group margin-top-20">
+                                    <input type="text" class="form-control"
+                                           ng-model="vm.searchKeys"
+                                           ng-keydown="vm.onSearchKeyDown($event);"
+                                           aria-label="search" placeholder="Search">
+
+                                    <button class="btn btn-width-100 btn-search" id="search-button" aria-label="Search"
+                                            mouse-enter-toggle-class="btn-success" base-class="btn-default"
+                                            ng-click="vm.doGlobalSearch()">
+                                        {{'BTN_GLOBAL_SEARCH' | translate}}
+                                    </button>
+                                </div>
+                                <div class="search-type text-center margin-top-20">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
+                                               ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio_forum" value="forum"
+                                               ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_FORUM' | translate}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-notice">
             <div class="container">
                 <div class="row">
-                    <div class="search-row">
-                        <div class="col-sm-7 search-col">
-                            <p class="search-title" translate="HOME.TITLE_SEARCH"></p>
-                            <p class="text-muted" translate="HOME.SEARCH_SUB_TITLE"></p>
+                    <div class="col-md-8">
+                        <div class="home-notice" ng-init="vm.getHomeNotice()">
+                            <!--<div class="list-title">-->
+                            <!--<span class="h3" translate="HOME.TITLE_NOTICE"></span>-->
+                            <!--</div>-->
+                            <div class="list-items">
+                                <p class="text-long" ng-repeat="t in vm.homeNoticeTopics">
+                                    <span class="item-date">{{t.pushHomeAt | date: 'MM-dd HH:mm:ss'}} - </span>
+                                    <a ui-sref="forums.topic({ forumId: t.forum, topicId: t._id })" title="{{t.title}}">{{t.title}}</a>
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-sm-5 search-col">
-                            <div class="input-group search-group margin-top-10">
-                                <input type="text" class="form-control"
-                                       ng-model="vm.searchKeys"
-                                       ng-keydown="vm.onSearchKeyDown($event);"
-                                       aria-label="search" placeholder="Search">
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                <button class="btn btn-width-100 btn-search" id="search-button" aria-label="Search"
-                                        mouse-enter-toggle-class="btn-success" base-class="btn-default"
-                                        ng-click="vm.doGlobalSearch()">
-                                    {{'BTN_SEARCH' | translate}}
-                                </button>
+        <div class="filter-vip home_vip_info" ng-if="vm.homeConfig.showVipBanner">
+            <div class="vip-half-background">
+                <div class="container">
+                    <div class="row vip-content">
+                        <div class="col-sm-6 col-md-5 col-md-offset-1 vip-left">
+                            <!--<img class="vip-img img-thumbnail img-responsive" src="http://image.tmdb.org/t/p/w500/rsZmANIzl7Ut27uBFWGz1tgPWVs.jpg">-->
+                        </div>
+                        <div class="col-sm-6 col-md-5 col-md-offset-1 vip-right">
+                            <div class="vip-title">
+                                <h3>{{'VIP.VIP_TITLE' | translate}}
+                                    <small>{{'VIP.VIP_SUB_TITLE' | translate}}</small>
+                                </h3>
                             </div>
-                            <div class="search-type text-center margin-top-10">
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
-                                           ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio_forum" value="forum"
-                                           ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_FORUM' | translate}}
-                                </label>
+                            <div class="vip-tooltip" ng-bind-html="vm.getVipTooltip();"></div>
+                            <div class="vip-more margin-bottom-10">
+                                <a ui-sref="vip.rules">{{'HOME.MORE_VIP_RULES_AND_RIGHT' | translate}}</a>
                             </div>
+                            <a ui-sref="vip.donate" class="btn btn-width-150 btn-mt-success-light margin-bottom-20"
+                               mt-scale-by-mouse="{scale: 1.2, duration: '.5s'}">
+                                {{'HOME.BTN_JOIN_VIP' | translate}}
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="home-help" ng-init="vm.getHomeHelp()">
-                    <div class="list-title">
-                        <span class="fa-stack">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-question-circle-o fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="h4" translate="HOME.TITLE_HELP"></span>
-                        <a ui-sref="forums.view({ forumId: vm.forumsConfig.rulesForumID})" title="{{'HOME.MORE_HELP_RULES' | translate}}">
-                            <i class="fa fa-ellipsis-h fa-more"></i>
-                        </a>
-                    </div>
-                    <div class="list-items">
-                        <p class="text-long" ng-repeat="t in vm.homeHelpTopics">
-                            <span class="item-date">{{t.pushHomeAt | date: 'MM-dd HH:mm'}} - </span>
-                            <a ui-sref="forums.topic({ forumId: t.forum, topicId: t._id })" title="{{t.title}}">{{t.title}}</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="home-notice" ng-init="vm.getHomeNotice()">
-                    <div class="list-title">
-                        <span class="fa-stack">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-podcast fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="h4" translate="HOME.TITLE_NOTICE"></span>
-                    </div>
-                    <div class="list-items">
-                        <p class="text-long" ng-repeat="t in vm.homeNoticeTopics">
-                            <span class="item-date">{{t.pushHomeAt | date: 'MM-dd HH:mm'}} - </span>
-                            <a ui-sref="forums.topic({ forumId: t.forum, topicId: t._id })" title="{{t.title}}">{{t.title}}</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="home_vip_info">
-        <div class="vip-half-background">
+        <div class="home-button-list filter-button-list">
             <div class="container">
-                <div class="row vip-content">
-                    <div class="col-sm-6 col-md-5 col-md-offset-1 vip-left">
-                        <!--<img class="vip-img img-thumbnail img-responsive" src="http://image.tmdb.org/t/p/w500/rsZmANIzl7Ut27uBFWGz1tgPWVs.jpg">-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-3 text-center fun-item" ng-repeat="fun in vm.homeConfig.buttonList">
+                                <span class="fa-stack" ui-sref="{{fun.state}}">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa {{fun.icon}} fa-stack-1x fun-icon"></i>
+                                </span>
+                                <h4 translate="{{fun.title}}"></h4>
+                                <span class="fun-desc" translate="{{fun.desc}}"></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-6 col-md-5 col-md-offset-1 vip-right">
-                        <div class="vip-title">
-                            <h3>{{'VIP.VIP_TITLE' | translate}}
-                                <small>{{'VIP.VIP_SUB_TITLE' | translate}}</small>
-                            </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-notice">
+            <div class="container" ng-if="vm.homeConfig.showForumNewTopicsAndNewestTorrents">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="home-new-topic" ng-init="vm.getForumNewTopic()">
+                            <div class="list-title">
+                                <span class="h4" translate="HOME.TITLE_NEW_TOPIC"></span>
+                            </div>
+                            <div class="list-items">
+                                <p class="text-long" ng-repeat="t in vm.homeNewTopics">
+                                    <span class="item-date">{{t.createdAt | date: 'MM-dd HH:mm'}} - </span>
+                                    <a ui-sref="forums.topic({ forumId: t.forum, topicId: t._id })" title="{{t.title}}">{{t.title}}</a>
+                                </p>
+                            </div>
                         </div>
-                        <div class="vip-tooltip" ng-bind-html="vm.getVipTooltip();"></div>
-                        <div class="vip-more margin-bottom-10">
-                            <a ui-sref="vip.rules">{{'HOME.MORE_VIP_RULES_AND_RIGHT' | translate}}</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="home-new-torrents" ng-init="vm.getNewestTorrents()">
+                            <div class="list-title">
+                                <span class="h4" translate="HOME.TITLE_NEWEST_TORRENTS"></span>
+                            </div>
+                            <div class="list-items">
+                                <p class="text-long" ng-repeat="t in vm.homeNewestTorrents">
+                                    <span class="item-date">{{t.createdat | date: 'MM-dd HH:mm'}} - </span>
+                                    <a ui-sref="torrents.view({ torrentId: t._id })"
+                                       title="{{vm.TGI.getTorrentTitle(t)}}">{{t.torrent_filename}}</a>
+                                </p>
+                            </div>
                         </div>
-                        <a ui-sref="vip.donate" class="btn btn-width-150 btn-mt-success-light margin-bottom-20"
-                           mt-scale-by-mouse="{scale: 1.2, duration: '.5s'}">
-                            {{'HOME.BTN_JOIN_VIP' | translate}}
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="home-new-topic" ng-init="vm.getForumNewTopic()">
-                    <div class="list-title">
-                        <span class="fa-stack">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-comments-o fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="h4" translate="HOME.TITLE_NEW_TOPIC"></span>
-                        <a ui-sref="forums.list" title="{{'HOME.MORE_GO_FORUM' | translate}}">
-                            <i class="fa fa-ellipsis-h fa-more"></i>
-                        </a>
-                    </div>
-                    <div class="list-items">
-                        <p class="text-long" ng-repeat="t in vm.homeNewTopics">
-                            <span class="item-date">{{t.createdAt | date: 'MM-dd HH:mm'}} - </span>
-                            <a ui-sref="forums.topic({ forumId: t.forum, topicId: t._id })" title="{{t.title}}">{{t.title}}</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="home-new-torrents" ng-init="vm.getNewestTorrents()">
-                    <div class="list-title">
-                        <span class="fa-stack">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-th fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="h4" translate="HOME.TITLE_NEWEST_TORRENTS"></span>
-                    </div>
-                    <div class="list-items">
-                        <p class="text-long" ng-repeat="t in vm.homeNewestTorrents">
-                            <span class="item-date">{{t.createdat | date: 'MM-dd HH:mm'}} - </span>
-                            <a ui-sref="torrents.view({ torrentId: t._id })"
-                               title="{{vm.TGI.getTorrentTitle(t)}}">{{t.torrent_filename}}</a>
-                        </p>
-                    </div>
+    <div class="home-torrents" ng-if="vm.homeConfig.showTopLevelTorrents"
+         ng-include="'/modules/core/client/views/home_torrents.client.view.html'"></div>
+
+    <div class="filter-disclaimer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 text-center">
+                    <span class="disclaimer" translate="SITE_STATEMENT"
+                          translate-values="{sMail: vm.supportConfig.supportMailAddress, sNameDesc: vm.supportConfig.supportGroupNameDesc, sName: vm.supportConfig.supportGroupName}"></span>
                 </div>
             </div>
         </div>
     </div>
-
-    <div ng-include="'/modules/core/client/views/home_torrents.client.view.html'"></div>
 </section>

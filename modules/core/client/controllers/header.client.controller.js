@@ -17,6 +17,7 @@
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+    vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.accountMenu = menuService.getMenu('account').items[0];

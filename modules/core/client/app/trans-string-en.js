@@ -108,7 +108,7 @@
       TITLE_NOTICE: 'System broadcast',
       TITLE_NEW_TOPIC: 'Forum new topics',
       TITLE_NEWEST_TORRENTS: 'The newest torrents',
-      TITLE_SEARCH: 'Torrents and forum global search',
+      TITLE_SEARCH: 'Global Search',
       SEARCH_SUB_TITLE: 'Type keywords and press enter.',
       MORE_HELP_RULES: 'More rules and help contents',
       MORE_GO_FORUM: 'Go to forum home',
@@ -116,7 +116,17 @@
       SEARCH_TYPE_TORRENTS: 'Torrents',
       SEARCH_TYPE_FORUM: 'Forum',
       BTN_JOIN_VIP: 'Join as vip »',
-      VIP_TOOLTIP: ' - Full free download, higher upload size addition. \n - Higher upload download and timed seeding score addition. \n - Exempt from regular system examine tasks. \n - Exclusive resource download area. \n - Exclusive forum discussion area. \n - H&R download warning immunity.'
+      VIP_TOOLTIP: ' - Full free download, higher upload size addition. \n - Higher upload download and timed seeding score addition. \n - Exempt from regular system examine tasks. \n - Exclusive resource download area. \n - Exclusive forum discussion area. \n - H&R download warning immunity.',
+      BUTTON_LIST: {
+        FUN_FORUM_TITLE: 'Forums',
+        FUN_FORUM_DESC: 'Station management, bulletin release, user exchange, business cooperation etc. become a compliance with the law of PTer, <span class="text-mt">the current moderator recruitment...</span>',
+        FUN_VIP_TITLE: 'VIP Center',
+        FUN_VIP_DESC: 'A symbol of rights and status, exclusive resource area, exclusive forum discussion area, higher upload download and timed seeding score addition, and more ...',
+        FUN_HELP_TITLE: 'User Manual',
+        FUN_HELP_DESC: 'The helper center, include user account rules, upload and download rules, users score and level rules, forbid And punish Rules, invite rules, and more ...',
+        FUN_SUPPORT_TITLE: 'Support Center',
+        FUN_SUPPORT_DESC: 'If you need any help, you can contact our {{sNameDesc | translate}} by Message at here, And you can track their progress and communicate more with service staff.'
+      }
     },
 
     //element title/alt
@@ -493,6 +503,7 @@
     SEARCH_FROM_TMDB_TITLE: 'Search {{type}} From TMDB',
     BTN_SELECT: 'Select',
     BTN_SEARCH: 'Search',
+    BTN_GLOBAL_SEARCH: 'Global Search',
     LOAD_SEARCH_RESULT: 'loading search result, please wait ...',
     LOAD_SEARCH_RESULT_ERROR: 'loading search result ERROR!',
     SEARCH_RESULT_EMPTY: 'result is empty, please change keywords and try again',
@@ -1086,6 +1097,7 @@
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',
     GIT_REPO: 'Power by &copy;meanTorrent，<a href="https://github.com/taobataoma/meanTorrent" target="_blank">view on GitHub</a>',
+    SITE_STATEMENT: '<h3>Disclaimer</h3> This site serves as a platform for users to share and discuss Internet resources. The site itself does not provide any resources for download, nor does it store any resource files on the server. The users behavior is not related to this site. If you feel that some users share has infringed your legal rights, please immediately contact to our <u>{{sNameDesc | translate}}</u> by <strong><a href="Mailto:{{sMail}}">mail</a></strong>, we will verify and process it as soon as possible.',
     TOTAL_USERS: 'Total Users',
     TOTAL_VIP_USERS: 'Total VIP Users',
     TOTAL_TORRENTS: 'Total Torrents',

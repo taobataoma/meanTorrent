@@ -235,6 +235,48 @@ module.exports = {
     },
 
     /**
+     * @home
+     *
+     * settings for home page
+     *
+     * @showVipBanner:                        setting whether show vip AD banner
+     * @showForumNewTopicsAndNewestTorrents:  setting whether show forum new topics and newest torrents in home page
+     * @showTopLevelTorrents:                 setting whether show top level torrents list
+     * @buttonList:                           a function list area of home page
+     */
+    home: {
+      showVipBanner: false,
+      showForumNewTopicsAndNewestTorrents: false,
+      showTopLevelTorrents: false,
+      buttonList: [
+        {
+          icon: 'fa-bars',
+          state: 'forums.list',
+          title: 'HOME.BUTTON_LIST.FUN_FORUM_TITLE',
+          desc: 'HOME.BUTTON_LIST.FUN_FORUM_DESC'
+        },
+        {
+          icon: 'fa-commenting-o',
+          state: 'vip.list',
+          title: 'HOME.BUTTON_LIST.FUN_VIP_TITLE',
+          desc: 'HOME.BUTTON_LIST.FUN_VIP_DESC'
+        },
+        {
+          icon: 'fa-question-circle-o',
+          state: 'about.manual.userRules',
+          title: 'HOME.BUTTON_LIST.FUN_HELP_TITLE',
+          desc: 'HOME.BUTTON_LIST.FUN_HELP_DESC'
+        },
+        {
+          icon: 'fa-headphones',
+          state: '',
+          title: 'HOME.BUTTON_LIST.FUN_SUPPORT_TITLE',
+          desc: 'HOME.BUTTON_LIST.FUN_SUPPORT_DESC'
+        }
+      ]
+    },
+
+    /**
      * @sign
      *
      * user register settings
@@ -1202,10 +1244,10 @@ module.exports = {
 
       homeOrderTorrentListPerType: 9,
       homeNewestTorrentListPerType: 14,
-      homeHelpListLimit: 10,
-      homeNoticeListLimit: 10,
-      homeNewTopicListLimit: 10,
-      homeNewestTorrentsListLimit: 10,
+      homeHelpListLimit: 8,
+      homeNoticeListLimit: 8,
+      homeNewTopicListLimit: 8,
+      homeNewestTorrentsListLimit: 8,
 
       examinationUserListPerPage: 20,
       messageTicketsListPerPage: 15,

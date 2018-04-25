@@ -18,6 +18,11 @@ body {
     display: none !important;
 }
 
+.page-content {
+    min-height: 600px;
+    background-color: #fff;
+}
+
 .header-profile-image {
     border-radius: 50%;
     height: 28px;
@@ -86,22 +91,3 @@ a:hover .header-profile-image {
 .dl-horizontal .h-line .checkbox-inline {
     min-width: 150px;
 }
-
-.view-footer {
-    color: #aaa;
-    font-size: 12px;
-}
-
-.view-footer .icon {
-    font-size: 20px;
-    margin-right: 15px;
-}
-
-.site-info {
-    border-bottom: solid 1px #222;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    padding-top: 10px;
-    padding-left: 60px;
-}
-

@@ -21,6 +21,8 @@
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.homeConfig = MeanTorrentConfig.meanTorrentConfig.home;
+    vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
 
     vm.searchType = 'torrents';
 

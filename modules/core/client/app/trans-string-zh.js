@@ -108,15 +108,25 @@
       TITLE_NOTICE: '系统动态与通知',
       TITLE_NEW_TOPIC: '论坛最新话题',
       TITLE_NEWEST_TORRENTS: '最近上传的种子',
-      TITLE_SEARCH: '种子以及论坛关键字搜索',
-      SEARCH_SUB_TITLE: '请输入关键字并回车.',
+      TITLE_SEARCH: '全局搜索',
+      SEARCH_SUB_TITLE: '通过关键字快速找到您想要的种子或',
       MORE_HELP_RULES: '更多规则以及帮助内容',
       MORE_GO_FORUM: '去论坛逛一下',
       MORE_VIP_RULES_AND_RIGHT: '更多 vip 规则及权益请看这里',
       SEARCH_TYPE_TORRENTS: '搜索种子',
       SEARCH_TYPE_FORUM: '搜索论坛',
       BTN_JOIN_VIP: '加入 vip 会员 »',
-      VIP_TOOLTIP: ' - 全免费下载以及更高的上传加成. \n - 更高的上传下载以及做种积分加成. \n - 免于定期的系统考评任务. \n - 专属的资源下载区域. \n - 专属的论坛讨论区. \n - 对 H&R 下载警告免疫.'
+      VIP_TOOLTIP: ' - 全免费下载以及更高的上传加成. \n - 更高的上传下载以及做种积分加成. \n - 免于定期的系统考评任务. \n - 专属的资源下载区域. \n - 专属的论坛讨论区. \n - 对 H&R 下载警告免疫.',
+      BUTTON_LIST: {
+        FUN_FORUM_TITLE: '官方论坛',
+        FUN_FORUM_DESC: '集站务管理、公告发布、用户交流、商业合作于一体，请遵守相关版块的版规，做个遵纪守法的 PTer，<span class="text-mt">当前版主招募中</span> ...',
+        FUN_VIP_TITLE: 'VIP 专区',
+        FUN_VIP_DESC: '一个身份、权利和地位的象征，专属的资源下载区及论坛讨论版块，同时享有更高的上传下载数据加成以及积分加成，我们的持续发展离不开您的支持 ...',
+        FUN_HELP_TITLE: '用户手册',
+        FUN_HELP_DESC: '用户帮助中心, 强烈建议新用户仔细阅读，包括用户帐户细则，上传与下载细则，积分与用户级别细则，封禁与处罚细则，邀请细则，及其它更多内容 ...',
+        FUN_SUPPORT_TITLE: '客户服务中心',
+        FUN_SUPPORT_DESC: '如果您需要任何帮助，您都可以在此通过客服中心向我们发送站内消息, 而且您还可以跟踪它们的处理进度并且跟相关的工作人员有更多的交流 ...'
+      }
     },
 
     //element title/alt
@@ -493,6 +503,7 @@
     SEARCH_FROM_TMDB_TITLE: '在 TMDB 上检索 {{type}} 资源',
     BTN_SELECT: '确认选择',
     BTN_SEARCH: '检索',
+    BTN_GLOBAL_SEARCH: '搜一下',
     LOAD_SEARCH_RESULT: '正在检索，请稍候 ...',
     LOAD_SEARCH_RESULT_ERROR: '检索出现错误, 请重试 ...',
     SEARCH_RESULT_EMPTY: '检索结果为空, 请更换关键字然后重试',
@@ -1086,6 +1097,7 @@
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',
     GIT_REPO: 'Power by &copy;meanTorrent，<a href="https://github.com/taobataoma/meanTorrent" target="_blank">GitHub 源码仓库</a>',
+    SITE_STATEMENT: '<h3>免责声明</h3>本站仅作为用户对互联网资源的分享讨论交流平台，站内本身不提供任何资源下载，也不在服务器存储任何资源文件，用户自行分享的行为与本站无关，如果您觉得某些用户的分享侵犯了您的合法权益，请立即向我们的 <u>{{sNameDesc | translate}}</u> 发送 <strong><a href="mailto:{{sMail}}">邮件</a></strong>，我们将会尽快核实并处理。',
     TOTAL_USERS: '注册会员',
     TOTAL_VIP_USERS: 'VIP会员',
     TOTAL_TORRENTS: '种子数',
