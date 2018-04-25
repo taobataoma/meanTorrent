@@ -67,9 +67,9 @@
       // Record previous state
       storePreviousState(fromState, fromParams);
 
-      if(toState.name === 'home'){
+      if (toState.name === 'home') {
         $('.page-content').css('background-color', 'transparent');
-      }else{
+      } else {
         $('.page-content').css('background-color', '#fff');
       }
     }
