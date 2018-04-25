@@ -406,6 +406,10 @@
     .icon-list {
         color: #fff;
     }
+    @media (max-width: @screen-sm-max) {
+        margin-top: 25px;
+        padding-top: 25px;
+    }
 }
 
 .disclaimer {
@@ -420,8 +424,10 @@
 }
 
 .site-info {
-    line-height: 2em;
+    line-height: 1.6em;
     .info-item {
+        color: #aaa;
+        font-size: 12px;
         position: relative;
         border-bottom: dotted 1px #000;
         .item-data {

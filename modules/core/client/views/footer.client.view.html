@@ -26,33 +26,24 @@
                                 class="item-data">{{vm.siteInfo.totalForumReplies}}</span></div>
                     </div>
                 </div>
-                <div class="col-md-6 col-md-offset-0 sm-hide xs-hide">
-                    <div class="row">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="filter-copy">
-        <div class="container">
-            <div class="view-footer">
-                <div class="text-center">
-                    <ul class="list-unstyled">
-                        <li>
+                <div class="col-md-6 col-md-offset-0">
+                    <div class="view-footer text-center">
+                        <ul class="list-unstyled">
+                            <li>
                             <span class="lang-list lang-footer">
                                 <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);"
                                       ng-repeat="l in vm.language | orderBy: '-index'"></span>
                             </span>
-                        </li>
-                        <li translate="GIT_REPO"></li>
-                        <li translate="MIT_PROTOCOL"></li>
-                    </ul>
-                    <div class="icon-list">
-                        <i class="icon ion-social-github"></i>
-                        <i class="icon ion-social-nodejs"></i>
-                        <i class="icon ion-social-html5-outline"></i>
-                        <i class="icon ion-social-css3-outline"></i>
+                            </li>
+                            <li translate="GIT_REPO"></li>
+                            <li translate="MIT_PROTOCOL"></li>
+                        </ul>
+                        <div class="icon-list">
+                            <i class="icon ion-social-github"></i>
+                            <i class="icon ion-social-nodejs"></i>
+                            <i class="icon ion-social-html5-outline"></i>
+                            <i class="icon ion-social-css3-outline"></i>
+                        </div>
                     </div>
                 </div>
             </div>
