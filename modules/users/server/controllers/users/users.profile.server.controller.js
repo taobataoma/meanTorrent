@@ -259,13 +259,13 @@ exports.unIdle = function (req, res, next) {
   var user = req.user;
 
   if (user) {
-    if (user.score < signConfig.activeIdleAccountScore) {
+    if (user.score < signConfig.idle.activeIdleAccountBasicScore) {
       return res.status(422).send({
         message: 'SERVER.SCORE_NOT_ENOUGH'
       });
     } else {
       //update score
-      scoreUpdate(req, user, scoreConfig.action.activeIdleAccount, -(signConfig.activeIdleAccountScore));
+      scoreUpdate(req, user, scoreConfig.action.activeIdleAccount, -(signConfig.idle.activeIdleAccountBasicScore));
 
       user.status = 'normal';
       req.login(user, function (err) {
@@ -279,7 +279,7 @@ exports.unIdle = function (req, res, next) {
       //create trace log
       traceLogCreate(req, traceConfig.action.userUnIdle, {
         user: req.user._id,
-        score: signConfig.activeIdleAccountScore
+        score: signConfig.idle.activeIdleAccountBasicScore
       });
     }
   } else {

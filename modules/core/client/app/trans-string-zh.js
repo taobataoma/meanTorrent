@@ -304,7 +304,7 @@
       SIGNIN_ERROR: '登录失败!',
       SIGNUP_ERROR: '注册失败!',
       SIGNIN_WELCOME_NORMAL: '欢迎您, {{name}}',
-      SIGNIN_WELCOME_IDLE: '欢迎您, {{name}}, 您已经很长时间没有你登录, 帐户处于空闲状态, 在您下载任何种子前, 您必须进入帐户状态页再次激活您的帐户!',
+      SIGNIN_WELCOME_IDLE: '欢迎您, {{name}}, 您已经超过 {{days}} 天没有登录, 帐户处于空闲状态, 在您下载任何种子前, 您必须进入帐户状态页再次激活您的帐户!',
 
       NEW_PASSWORD: '新密码',
       NP_REQUIRED: '新密码不能为空.',
@@ -1584,7 +1584,7 @@
       ACCOUNT_IS_NOT_ACTIVATED: '您的帐户未激活, 请激活后再试!',
       ONLY_VIP_CAN_DOWNLOAD: '该种子只有VIP用户才可以下载',
       CAN_NOT_DOWNLOAD_BANNED: '下载失败, 您被服务器禁止(banned)',
-      CAN_NOT_DOWNLOAD_IDLE: '下载失败，您闲置了太长时间，在您下载任何种子前, 您必须进入帐户状态页再次激活您的帐户!',
+      CAN_NOT_DOWNLOAD_IDLE: '下载失败，您已经超过 {{days}} 天没有登录, 帐户处于空闲状态，在您下载任何种子前, 您必须进入帐户状态页再次激活您的帐户!',
       ALREADY_FOLLOWING: '您已经关注过 {{name}} 了',
       INVALID_OBJECTID: '无效的数据记录ID (SERVER)',
       REQUEST_STATUS_FINISHED: '状态错误! 求种请求已完成.',

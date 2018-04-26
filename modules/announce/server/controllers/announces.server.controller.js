@@ -1200,12 +1200,12 @@ exports.userByPasskey = function (req, res, next, pk) {
       if (u) {
         req.passkeyuser = u;
 
-        if ((moment(Date.now()) - moment(req.passkeyuser.last_signed)) > signConfig.accountIdleForTime) {
-          req.passkeyuser.update({
-            $set: {status: 'idle'}
-          }).exec();
-          req.passkeyuser.status = 'idle';
-        }
+        // if ((moment(Date.now()) - moment(req.passkeyuser.last_signed)) > signConfig.idle.accountIdleForTime) {
+        //   req.passkeyuser.update({
+        //     $set: {status: 'idle'}
+        //   }).exec();
+        //   req.passkeyuser.status = 'idle';
+        // }
       } else {
         req.passkeyuser = undefined;
       }

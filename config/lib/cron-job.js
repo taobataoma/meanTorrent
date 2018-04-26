@@ -18,6 +18,7 @@ var appConfig = config.meanTorrentConfig.app;
 var supportConfig = config.meanTorrentConfig.support;
 var backupConfig = config.meanTorrentConfig.backup;
 var announceConfig = config.meanTorrentConfig.announce;
+var signConfig = config.meanTorrentConfig.sign;
 var inbox = require('inbox');
 var simpleParser = require('mailparser').simpleParser;
 
@@ -66,6 +67,7 @@ module.exports = function (app) {
   }
 
   cronJobs.push(removeGhostPeers());
+  cronJobs.push(checkUserAccountIdleStatus());
   cronJobs.push(countUsersHnrWarning());
 
   if (supportConfig.mailTicketSupportService) {
@@ -167,6 +169,45 @@ function removeGhostPeers() {
             });
 
             console.log(chalk.green('removed ghost peers: ' + count));
+          }
+        });
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  cronJob.start();
+
+  return cronJob;
+}
+
+/**
+ * checkUserAccountIdleStatus
+ */
+function checkUserAccountIdleStatus() {
+  var cronJob = new CronJob({
+    cronTime: '00 10 1 * * *',
+    // cronTime: '*/5 * * * * *',
+    onTick: function () {
+      console.log(chalk.green('checkUserAccountIdleStatus: process!'));
+
+      User.update(
+        {
+          status: {$ne: 'idle'},
+          last_signed: {$lt: Date.now() - signConfig.idle.accountIdleForTime}
+        },
+        {
+          $set: {
+            status: 'idle'
+          }
+        },
+        {
+          multi: true
+        }, function (err, numAffected) {
+          if (err) {
+            mtDebug.debugError(err);
+          } else {
+            mtDebug.debugGreen('checkUserAccountIdleStatus: ' + numAffected.nModified + ' users!');
           }
         });
     },

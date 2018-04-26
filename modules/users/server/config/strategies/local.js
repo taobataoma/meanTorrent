@@ -54,12 +54,12 @@ module.exports = function () {
             });
           }
 
-          if ((moment(Date.now()) - moment(user.last_signed)) > signConfig.accountIdleForTime) {
-            user.update({
-              $set: {status: 'idle'}
-            }).exec();
-            user.status = 'idle';
-          }
+          // if ((moment(Date.now()) - moment(user.last_signed)) > signConfig.idle.accountIdleForTime) {
+          //   user.update({
+          //     $set: {status: 'idle'}
+          //   }).exec();
+          //   user.status = 'idle';
+          // }
 
           user.updateSignedTime();
 

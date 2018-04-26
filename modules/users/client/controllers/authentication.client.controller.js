@@ -183,7 +183,10 @@
           NotifycationService.showNotify('info', null, $translate.instant('SIGN.SIGNIN_WELCOME_NORMAL', {name: response.displayName}));
         }
         if (vm.authentication.user.status === 'idle') {
-          NotifycationService.showNotify('error', null, $translate.instant('SIGN.SIGNIN_WELCOME_IDLE', {name: response.displayName}));
+          NotifycationService.showNotify('error', null, $translate.instant('SIGN.SIGNIN_WELCOME_IDLE', {
+            name: response.displayName,
+            days: (vm.signConfig.idle.accountIdleForTime / (60 * 60 * 1000 * 24))
+          }));
         }
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);

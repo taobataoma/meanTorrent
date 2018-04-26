@@ -24,7 +24,7 @@
         closeButtonText: $translate.instant('ACTIVE_IDLE_CONFIRM_CANCEL'),
         actionButtonText: $translate.instant('ACTIVE_IDLE_CONFIRM_OK'),
         headerText: $translate.instant('ACTIVE_IDLE_CONFIRM_HEADER_TEXT'),
-        bodyText: $translate.instant('ACTIVE_IDLE_CONFIRM_BODY_TEXT', {score: vm.signConfig.activeIdleAccountScore})
+        bodyText: $translate.instant('ACTIVE_IDLE_CONFIRM_BODY_TEXT', {score: vm.signConfig.idle.activeIdleAccountBasicScore})
       };
 
       ModalConfirmService.showModal({}, modalOptions)

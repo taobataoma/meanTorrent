@@ -66,9 +66,9 @@
       });
     }
 
-    function showErrorNofity(msg, titleMsgId) {
+    function showErrorNofity(msg, titleMsgId, params = undefined) {
       var title_msg = titleMsgId ? $translate.instant(titleMsgId) : undefined;
-      msg = $translate.instant(msg);
+      msg = $translate.instant(msg, params);
 
       if (msg && titleMsgId) {
         Notification.error({

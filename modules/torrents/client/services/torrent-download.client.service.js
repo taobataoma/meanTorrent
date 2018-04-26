@@ -5,9 +5,10 @@
     .module('torrents.services')
     .factory('DownloadService', DownloadService);
 
-  DownloadService.$inject = ['$http', 'FileSaver', 'NotifycationService', 'DebugConsoleService'];
+  DownloadService.$inject = ['$http', 'FileSaver', 'NotifycationService', 'DebugConsoleService', 'MeanTorrentConfig'];
 
-  function DownloadService($http, FileSaver, NotifycationService, mtDebug) {
+  function DownloadService($http, FileSaver, NotifycationService, mtDebug, MeanTorrentConfig) {
+    var signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
 
     return {
       downloadFile: downloadFile,
@@ -37,7 +38,7 @@
             NotifycationService.showErrorNotify('SERVER.CAN_NOT_DOWNLOAD_BANNED', 'TORRENT_DOWNLOAD_ERROR');
             break;
           case 703:
-            NotifycationService.showErrorNotify('SERVER.CAN_NOT_DOWNLOAD_IDLE', 'TORRENT_DOWNLOAD_ERROR');
+            NotifycationService.showErrorNotify('SERVER.CAN_NOT_DOWNLOAD_IDLE', 'TORRENT_DOWNLOAD_ERROR', {days: signConfig.idle.accountIdleForTime / (60 * 60 * 1000 * 24)});
             break;
           case 704:
             NotifycationService.showErrorNotify('SERVER.TORRENT_STATUS_ERROR', 'TORRENT_DOWNLOAD_ERROR');

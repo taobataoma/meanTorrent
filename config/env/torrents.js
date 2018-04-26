@@ -291,12 +291,15 @@ module.exports = {
      * @signUpActiveTokenExpires_str: string desc of @signUpActiveTokenExpires
      * @allowSocialSignin:            meanTorrent can accept social account to signin, like google, twitter, facebook etc.
      *                                if you do not want them to login, please set it to false
+     *
      * @showMenuHeaderForGuest:       set whether show menu header for guest user(not sign in)
      * @showFooterCountInfoForGuest:  set whether show count info at home footer for guest user(not sign in)
      * @showDemoSignMessage:          if true, will show demo sign in message in sign in page, if your site is not demo site, please set it to false
-     * @accountIdleForTime:           setting for how many time not login then change account status to idle
-     * @accountIdleForTime_str:       string desc of @accountIdleForTime
-     * @activeIdleAccountScore:       user active idle account need score numbers
+     *
+     * @idle:                                setting for account status of idle
+     *        @accountIdleForTime:           setting for how many time not login then change account status to idle
+     *        @accountIdleForTime_str:       string desc of @accountIdleForTime
+     *        @activeIdleAccountBasicScore:  user active idle account need basic score numbers
      */
     sign: {
       openSignup: true,
@@ -304,12 +307,16 @@ module.exports = {
       signUpActiveTokenExpires: 60 * 60 * 1000 * 24,
       signUpActiveTokenExpires_str: '24h',
       allowSocialSignin: false,
+
       showMenuHeaderForGuest: true,
       showFooterCountInfoForGuest: true,
       showDemoSignMessage: true,
-      accountIdleForTime: 60 * 60 * 1000 * 24 * 30, //30 days
-      accountIdleForTime_str: '30d',
-      activeIdleAccountScore: 50000
+
+      idle: {
+        accountIdleForTime: 60 * 60 * 1000 * 24 * 30, //30 days
+        accountIdleForTime_str: '30d',
+        activeIdleAccountBasicScore: 50000
+      }
     },
 
     /**
@@ -402,7 +409,7 @@ module.exports = {
         postRequest: {name: 'postRequest', value: 0, enable: true}, //value used requests.scoreForAddRequest
         scoreExchangeInvitation: {name: 'scoreExchangeInvitation', value: 0, enable: true}, //value used invite.scoreExchange
         scoreToRemoveWarning: {name: 'scoreToRemoveWarning', value: 0, enable: true}, //value used hitAndRun.scoreToRemoveWarning
-        activeIdleAccount: {name: 'activeIdleAccountScore', value: 0, enable: true}, //value used sign.activeIdleAccountScore
+        activeIdleAccount: {name: 'activeIdleAccount', value: 0, enable: true}, //value used sign.idle.activeIdleAccountBasicScore
 
         seedUpDownload: {
           name: 'seedUpDownload',

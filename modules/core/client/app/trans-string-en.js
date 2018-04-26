@@ -304,7 +304,7 @@
       SIGNIN_ERROR: 'Signin Error!',
       SIGNUP_ERROR: 'Signup Error!',
       SIGNIN_WELCOME_NORMAL: 'Welcome, {{name}}',
-      SIGNIN_WELCOME_IDLE: 'Welcome, {{name}}, you not login for long time, your account is IDLE status, before download any things, you should active you account again in profile menu "account status"!',
+      SIGNIN_WELCOME_IDLE: 'Welcome, {{name}}, you not login for more than {{days}} days, your account is IDLE status, before download any things, you should active you account again in profile menu "account status"!',
 
       NEW_PASSWORD: 'New Password',
       NP_REQUIRED: 'Enter a new password.',
@@ -1584,7 +1584,7 @@
       ACCOUNT_IS_NOT_ACTIVATED: 'Your account is not activated, you should active first!',
       ONLY_VIP_CAN_DOWNLOAD: 'This torrent is only for Vip users',
       CAN_NOT_DOWNLOAD_BANNED: 'Download failed, you are banned from server',
-      CAN_NOT_DOWNLOAD_IDLE: 'Download failed, you are idle for long time, before download any things, you should active you account again in profile menu "account status"!',
+      CAN_NOT_DOWNLOAD_IDLE: 'Download failed, you not login for more than {{days}} days, your account is IDLE status, before download any things, you should active you account again in profile menu "account status"!',
       ALREADY_FOLLOWING: 'You have already following {{name}}',
       INVALID_OBJECTID: 'Invalid object id (SERVER)',
       REQUEST_STATUS_FINISHED: 'Status error! Request already finished.',
