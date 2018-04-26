@@ -248,6 +248,7 @@ module.exports = {
       showVipBanner: false,
       showForumNewTopicsAndNewestTorrents: false,
       showTopLevelTorrents: false,
+      bodyBackgroundImage: 'https://image.tmdb.org/t/p/w1280/cnKAGbX1rDkAquF2V1wVkptHDJO.jpg',
       buttonList: [
         {
           icon: 'fa-bars',

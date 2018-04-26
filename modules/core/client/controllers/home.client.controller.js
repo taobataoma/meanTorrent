@@ -27,6 +27,29 @@
     vm.searchType = 'torrents';
 
     /**
+     * initBodyBackground
+     */
+    vm.initBodyBackground = function () {
+      var url = localStorageService.get('body_background_image') || vm.homeConfig.bodyBackgroundImage;
+      $('.body-backdrop').css('backgroundImage', 'url("' + url + '")');
+
+      TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'movie',
+        torrent_vip: false,
+        limit: 1
+      }, function (items) {
+        if (items.rows.length > 0) {
+          var newUrl = vm.TGI.getTorrentBackdropImage(items.rows[0]);
+          if (newUrl !== url) {
+            $('.body-backdrop').css('backgroundImage', 'url("' + newUrl + '")');
+            localStorageService.set('body_background_image', newUrl);
+          }
+        }
+      });
+    };
+
+    /**
      * getForumList
      */
     vm.getForumList = function () {
