@@ -76,20 +76,45 @@
         <div class="filter-notice">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <div class="home-notice" ng-init="vm.getHomeNotice()">
-                            <!--<div class="list-title">-->
-                            <!--<span class="h3" translate="HOME.TITLE_NOTICE"></span>-->
-                            <!--</div>-->
+                            <div class="list-title">
+                                <i class="fa fa-caret-right"></i>
+                                <span class="h4" translate="HOME.TITLE_NOTICE"></span>
+                            </div>
                             <div class="list-items">
                                 <p class="text-long" ng-repeat="t in vm.homeNoticeTopics">
                                     <span class="item-date">{{t.pushHomeAt | date: 'MM-dd HH:mm:ss'}} - </span>
                                     <a ui-sref="forums.topic({ forumId: t.forum, topicId: t._id })" title="{{t.title}}">{{t.title}}</a>
                                 </p>
                             </div>
+                            <div>
+                                <a class="btn btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o-primary"
+                                   ui-sref="forums.view({ forumId: vm.forumsConfig.noticeForumId})">
+                                    {{'HOME.BUTTON_MORE_NOTICE' | translate}}
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
+                        <div class="home-notice" ng-init="vm.getHomeHelp()">
+                            <div class="list-title">
+                                <i class="fa fa-caret-right"></i>
+                                <span class="h4" translate="HOME.TITLE_HELP"></span>
+                            </div>
+                            <div class="list-items">
+                                <p class="text-long" ng-repeat="t in vm.homeHelpTopics">
+                                    <span class="item-date">{{t.pushHomeAt | date: 'MM-dd HH:mm:ss'}} - </span>
+                                    <a ui-sref="forums.topic({ forumId: t.forum, topicId: t._id })" title="{{t.title}}">{{t.title}}</a>
+                                </p>
+                            </div>
+                            <div>
+                                <a class="btn btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o-primary"
+                                   ui-sref="forums.view({ forumId: vm.forumsConfig.helpForumId})">
+                                    {{'HOME.BUTTON_MORE_HELPER' | translate}}
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,7 +157,7 @@
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa {{fun.icon}} fa-stack-1x fun-icon"></i>
                                 </span>
-                                <h4 translate="{{fun.title}}"></h4>
+                                <h4 class="fun-title" translate="{{fun.title}}"></h4>
                                 <span class="fun-desc" translate="{{fun.desc}}"></span>
                             </div>
                         </div>
@@ -147,6 +172,7 @@
                     <div class="col-md-6">
                         <div class="home-new-topic" ng-init="vm.getForumNewTopic()">
                             <div class="list-title">
+                                <i class="fa fa-caret-right"></i>
                                 <span class="h4" translate="HOME.TITLE_NEW_TOPIC"></span>
                             </div>
                             <div class="list-items">
@@ -160,6 +186,7 @@
                     <div class="col-md-6">
                         <div class="home-new-torrents" ng-init="vm.getNewestTorrents()">
                             <div class="list-title">
+                                <i class="fa fa-caret-right"></i>
                                 <span class="h4" translate="HOME.TITLE_NEWEST_TORRENTS"></span>
                             </div>
                             <div class="list-items">

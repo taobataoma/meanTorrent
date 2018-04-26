@@ -104,14 +104,14 @@
     BTN_DOWNLOAD: '下载',
 
     HOME: {
-      TITLE_HELP: '用户规则与帮助',
-      TITLE_NOTICE: '系统动态与通知',
+      TITLE_HELP: '新手帮助',
+      TITLE_NOTICE: '系统公告',
       TITLE_NEW_TOPIC: '论坛最新话题',
       TITLE_NEWEST_TORRENTS: '最近上传的种子',
       TITLE_SEARCH: '全局搜索',
-      SEARCH_SUB_TITLE: '通过关键字快速找到您想要的种子或',
-      MORE_HELP_RULES: '更多规则以及帮助内容',
-      MORE_GO_FORUM: '去论坛逛一下',
+      SEARCH_SUB_TITLE: '通过关键字快速找到您想要的内容',
+      BUTTON_MORE_NOTICE: '更多公告内容 ...',
+      BUTTON_MORE_HELPER: '更多帮助内容 ...',
       MORE_VIP_RULES_AND_RIGHT: '更多 vip 规则及权益请看这里',
       SEARCH_TYPE_TORRENTS: '搜索种子',
       SEARCH_TYPE_FORUM: '搜索论坛',
@@ -1097,7 +1097,7 @@
     //footer view
     MIT_PROTOCOL: '本项目源码受 <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> 开源协议保护',
     GIT_REPO: 'Power by &copy;meanTorrent，<a href="https://github.com/taobataoma/meanTorrent" target="_blank">GitHub 源码仓库</a>',
-    SITE_STATEMENT: '<h3>免责声明</h3>本站仅作为用户对互联网资源的分享讨论交流平台，站内本身不提供任何资源下载，也不在服务器存储任何资源文件，用户自行分享的行为与本站无关，如果您觉得某些用户的分享侵犯了您的合法权益，请立即向我们的 <u>{{sNameDesc | translate}}</u> 发送 <strong><a href="mailto:{{sMail}}">邮件</a></strong>，我们将会尽快核实并处理。',
+    SITE_STATEMENT: '<h3>免责声明</h3>本站仅作为用户对互联网资源的分享讨论交流平台，站内本身不提供任何资源下载，也不在服务器存储任何资源文件，用户自行分享的行为与本站无关，如果您觉得某些用户的分享侵犯了您的合法权益，请立即向我们的 <strong>{{sNameDesc | translate}}</strong> 发送 <strong><a href="mailto:{{sMail}}">邮件</a></strong>，我们将会尽快核实并处理。',
     TOTAL_USERS: '注册会员',
     TOTAL_VIP_USERS: 'VIP会员',
     TOTAL_TORRENTS: '种子数',

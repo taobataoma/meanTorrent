@@ -1168,7 +1168,8 @@ module.exports = {
      * @showThumbsUpUserList:   if true, will show thumbs up users list at eof of topic content or reply content
      * @showUserSignature:      if true, will show user signature info in forum
      *
-     * @rulesForumID:           if you create a forum for user rules and helpers, here is the forumID, it will link to from home help items more
+     * @noticeForumId:          if you create a forum for site global notice, here is the forumID, it will link to forum from more notice list of home page
+     * @helpForumId:            if you create a forum for user rules and helpers, here is the forumID, it will link to forum from more help list of home page
      */
     forumsConfig: {
       category: [
@@ -1181,7 +1182,8 @@ module.exports = {
       showThumbsUpUserList: true,
       showUserSignature: true,
 
-      rulesForumID: '595b0c31235c3405a290d737'
+      noticeForumId: 'some id',
+      helpForumId: 'some id'
     },
 
     /**

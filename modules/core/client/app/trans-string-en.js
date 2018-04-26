@@ -104,14 +104,14 @@
     BTN_DOWNLOAD: 'Download',
 
     HOME: {
-      TITLE_HELP: 'Rules and helper',
-      TITLE_NOTICE: 'System broadcast',
+      TITLE_HELP: 'Beginner Help',
+      TITLE_NOTICE: 'System Notice',
       TITLE_NEW_TOPIC: 'Forum new topics',
       TITLE_NEWEST_TORRENTS: 'The newest torrents',
       TITLE_SEARCH: 'Global Search',
-      SEARCH_SUB_TITLE: 'Type keywords and press enter.',
-      MORE_HELP_RULES: 'More rules and help contents',
-      MORE_GO_FORUM: 'Go to forum home',
+      SEARCH_SUB_TITLE: 'Quickly find what you want by keyword.',
+      BUTTON_MORE_NOTICE: 'More Notice ...',
+      BUTTON_MORE_HELPER: 'More Help ...',
       MORE_VIP_RULES_AND_RIGHT: 'more vip rules and right here',
       SEARCH_TYPE_TORRENTS: 'Torrents',
       SEARCH_TYPE_FORUM: 'Forum',
@@ -1097,7 +1097,7 @@
     //footer view
     MIT_PROTOCOL: 'The source of this project is protected by <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a> open source protocol',
     GIT_REPO: 'Power by &copy;meanTorrent，<a href="https://github.com/taobataoma/meanTorrent" target="_blank">view on GitHub</a>',
-    SITE_STATEMENT: '<h3>Disclaimer</h3> This site serves as a platform for users to share and discuss Internet resources. The site itself does not provide any resources for download, nor does it store any resource files on the server. The users behavior is not related to this site. If you feel that some users share has infringed your legal rights, please immediately contact to our <u>{{sNameDesc | translate}}</u> by <strong><a href="Mailto:{{sMail}}">mail</a></strong>, we will verify and process it as soon as possible.',
+    SITE_STATEMENT: '<h3>Disclaimer</h3> This site serves as a platform for users to share and discuss Internet resources. The site itself does not provide any resources for download, nor does it store any resource files on the server. The users behavior is not related to this site. If you feel that some users share has infringed your legal rights, please immediately contact to our <strong>{{sNameDesc | translate}}</strong> by <strong><a href="Mailto:{{sMail}}">mail</a></strong>, we will verify and process it as soon as possible.',
     TOTAL_USERS: 'Total Users',
     TOTAL_VIP_USERS: 'Total VIP Users',
     TOTAL_TORRENTS: 'Total Torrents',
