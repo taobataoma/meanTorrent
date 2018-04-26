@@ -43,6 +43,8 @@
             title: 'MENU_TORRENTS_SUB.MOVIE_COLLECTIONS',
             state: 'collections.list',
             roles: ['*'],
+            faIcon: 'fa-sitemap',
+            faClass: 'text-mt',
             position: cfg.position
           });
         }

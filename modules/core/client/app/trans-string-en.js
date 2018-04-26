@@ -60,6 +60,7 @@
       MOVIE: 'Movie',
       MOVIE_COLLECTIONS: 'Movie Collections',
       TVSERIAL: 'TVSerial',
+      DOCUMENTARY: 'Documentary',
       MUSIC: 'Music',
       SPORTS: 'Sports',
       VARIETY: 'Variety',
@@ -200,6 +201,7 @@
       UPLOAD: 'Upload',
       MOVIE_LIST: 'Movie List',
       TV_LIST: 'TV List',
+      DOCUMENTARY_LIST: 'Documentary List',
       MUSIC_LIST: 'Music List',
       SPORTS_LIST: 'Sports List',
       VARIETY_LIST: 'Variety List',
@@ -520,7 +522,7 @@
     ENTER_VIDEO_NFO: '6. Please enter video and audio NFO',
     SELECT_MAKER_GROUP: '7. Please select torrent maker group upload from and anonymous option',
     MAKER_NULL: 'NULL',
-    UPLOADER_ANONYMOUS: 'Anonymous Upload',
+    UPLOADER_ANONYMOUS: 'Anonymous Upload (The user wont see me as an uploader)',
     ANONYMOUS: 'Anonymous',
     TORRENTS_SUBMIT_UPLOAD: '8. Agree the rules and submit your resources',
     SUBMIT_BUTTON: 'OK, SUBMIT NOW',
@@ -530,7 +532,7 @@
 
     ENTER_MUSIC_TITLE: '3. Please enter the artist name and music/album title',
     MUSIC_ARTIST: 'artist name',
-    MUSIC_TITLE: 'music/album title',
+    MUSIC_TITLE: 'music/album sub title',
     MUSIC_SUB_TITLE: 'music/album short desc',
     SELECT_MUSIC_IMAGE: '3.1 Please select music/album cover image',
     COVER_UPLOAD_SUCCESSFULLY: 'Successfully upload cover image',
@@ -541,7 +543,7 @@
 
     ENTER_RESOURCE_TITLE: '3. Please enter the resource title and desc',
     RESOURCE_TITLE: 'resource title',
-    RESOURCE_SUB_TITLE: 'resource short desc',
+    RESOURCE_SUB_TITLE: 'resource sub title',
     SELECT_RESOURCE_IMAGE: '3.1 Please select resource cover image',
     ENTER_RESOURCE_DETAIL_INFO: '4. Please enter the resource detail info',
 

@@ -60,6 +60,7 @@
       MOVIE: '电影',
       MOVIE_COLLECTIONS: '电影系列',
       TVSERIAL: '电视剧',
+      DOCUMENTARY: '纪录片',
       MUSIC: '音乐',
       SPORTS: '体育',
       VARIETY: '综艺',
@@ -200,6 +201,7 @@
       UPLOAD: '上传',
       MOVIE_LIST: '电影资源列表',
       TV_LIST: '电视剧资源列表',
+      DOCUMENTARY_LIST: '纪录片资源列表',
       MUSIC_LIST: '音乐资源列表',
       SPORTS_LIST: '体育资源列表',
       VARIETY_LIST: '综艺资源列表',
@@ -520,7 +522,7 @@
     ENTER_VIDEO_NFO: '6. 请输入视频和音频的NFO信息',
     SELECT_MAKER_GROUP: '7. 请选择你上传时使用的资源压制小组',
     MAKER_NULL: '无',
-    UPLOADER_ANONYMOUS: '匿名上传',
+    UPLOADER_ANONYMOUS: '匿名上传（用户不会看到我是上传者）',
     ANONYMOUS: '匿名',
     TORRENTS_SUBMIT_UPLOAD: '8. 同意上传协议，并提交',
     SUBMIT_BUTTON: '已备妥，现在提交',
@@ -531,7 +533,7 @@
     ENTER_MUSIC_TITLE: '3. 请输入艺人名称和音乐/专辑标题',
     MUSIC_ARTIST: '艺人名称',
     MUSIC_TITLE: '音乐/专辑标题',
-    MUSIC_SUB_TITLE: '音乐/专辑短描述',
+    MUSIC_SUB_TITLE: '音乐/专辑副标题',
     SELECT_MUSIC_IMAGE: '3.1 请选择音乐/专辑封面图片',
     COVER_UPLOAD_SUCCESSFULLY: '封面图片上传成功',
     COVER_UPLOAD_FAILED: '封面图片上传失败',
@@ -541,7 +543,7 @@
 
     ENTER_RESOURCE_TITLE: '3. 请输入资源标题与描述',
     RESOURCE_TITLE: '资源标题',
-    RESOURCE_SUB_TITLE: '资源短描述',
+    RESOURCE_SUB_TITLE: '资源副标题',
     SELECT_RESOURCE_IMAGE: '3.1 请选择资源封面图片',
     ENTER_RESOURCE_DETAIL_INFO: '4. 请输入资源详细信息',
 
@@ -1121,8 +1123,8 @@
       REVENUE: '票房收入',
       ORIGINAL_LANGUAGE: '原语言',
       ORIGINAL_TITLE: '原片名',
-      TITLE: '译名',
-      SUB_TITLE: '短描述',
+      TITLE: '标题',
+      SUB_TITLE: '副标题',
       ARTIST: '艺人名称',
       BELONGS_TO_COLLECTION: '集合',
       GENRES: '类型',
@@ -1496,7 +1498,7 @@
       MOVIE_SUB_CAT: {
         SELF: '视频分类',
         CARTOON: '卡通片',
-        DOCUMENTARY: '记录片'
+        DISASTER: '灾难片'
       },
 
       SPORTS_SUB_CAT: {
