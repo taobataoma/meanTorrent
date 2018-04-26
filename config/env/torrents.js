@@ -242,6 +242,7 @@ module.exports = {
      * @showVipBanner:                        setting whether show vip AD banner
      * @showForumNewTopicsAndNewestTorrents:  setting whether show forum new topics and newest torrents in home page
      * @showTopLevelTorrents:                 setting whether show top level torrents list
+     * @bodyBackgroundImage:                  background image url of home page body
      * @buttonList:                           a function list area of home page
      */
     home: {
