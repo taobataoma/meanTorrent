@@ -256,7 +256,7 @@ module.exports = {
           desc: 'HOME.BUTTON_LIST.FUN_FORUM_DESC'
         },
         {
-          icon: 'fa-commenting-o',
+          icon: 'fa-vimeo',
           state: 'vip.list',
           title: 'HOME.BUTTON_LIST.FUN_VIP_TITLE',
           desc: 'HOME.BUTTON_LIST.FUN_VIP_DESC'
