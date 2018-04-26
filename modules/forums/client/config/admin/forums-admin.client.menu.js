@@ -12,6 +12,8 @@
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_ADMIN_FORUMS_CONFIGURE',
       state: 'admin.forums.configure',
+      faIcon: 'fa-bars',
+      faClass: 'text-mt',
       position: 30
     });
   }
