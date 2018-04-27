@@ -189,32 +189,31 @@ function removeGhostPeers() {
 function checkUserAccountIdleStatus() {
   var cronJob = new CronJob({
     cronTime: '00 10 1 * * *',
-    // cronTime: '*/5 * * * * *',
+    // cronTime: '*/30 * * * * *',
     onTick: function () {
       console.log(chalk.green('checkUserAccountIdleStatus: process!'));
 
       var safeScore = scoreLib.getScoreByLevel(signConfig.idle.notIdleSafeLevel);
 
-      User.update(
-        {
-          status: {$ne: 'idle'},
-          last_signed: {$lt: Date.now() - signConfig.idle.accountIdleForTime},
-          score: {$lt: safeScore}
-        },
-        {
-          $set: {
-            status: 'idle'
-          }
-        },
-        {
-          multi: true
-        }, function (err, numAffected) {
-          if (err) {
-            mtDebug.debugError(err);
-          } else {
-            mtDebug.debugGreen('checkUserAccountIdleStatus: ' + numAffected.nModified + ' users!');
-          }
-        });
+      User.find({
+        status: {$ne: 'idle'},
+        last_signed: {$lt: Date.now() - signConfig.idle.accountIdleForTime},
+        score: {$lt: safeScore}
+      }).exec(function (err, users) {
+        if (users) {
+          users.forEach(function (u) {
+            if (!u.isOper && !u.isVip) {
+              u.update({
+                $set: {
+                  status: 'idle',
+                  last_idled: u.last_signed
+                }
+              }).exec();
+            }
+          });
+          mtDebug.debugGreen('checkUserAccountIdleStatus: ' + users.length + ' users!');
+        }
+      });
     },
     start: false,
     timeZone: appConfig.cronTimeZone

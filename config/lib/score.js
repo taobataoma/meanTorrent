@@ -58,7 +58,7 @@ module.exports.getLevelByScore = function (user) {
 
   var level = {};
   var l = Math.floor(Math.sqrt(user.score / step));
-  level.score = score;
+  level.score = user.score;
 
   level.prevLevel = (l - 1) <= 0 ? 0 : l - 1;
   level.currLevel = l;
@@ -67,7 +67,7 @@ module.exports.getLevelByScore = function (user) {
   level.prevLevelValue = level.prevLevel * level.prevLevel * step;
   level.currLevelValue = level.currLevel * level.currLevel * step;
   level.nextLevelValue = level.nextLevel * level.nextLevel * step;
-  level.currPercent = Math.ceil((score - level.currLevelValue) / (level.nextLevelValue - level.currLevelValue) * 10000) / 100;
+  level.currPercent = Math.ceil((user.score - level.currLevelValue) / (level.nextLevelValue - level.currLevelValue) * 10000) / 100;
   level.currPercentString = level.currPercent + '%';
 
   return level;

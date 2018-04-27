@@ -215,6 +215,9 @@ var UserSchema = new Schema({
   last_signed: {
     type: Date
   },
+  last_idled: {
+    type: Date
+  },
   signed_ip: [String],
   leeched_ip: [String],
   curr_signed_ip: String,

@@ -296,10 +296,13 @@ module.exports = {
      * @showFooterCountInfoForGuest:  set whether show count info at home footer for guest user(not sign in)
      * @showDemoSignMessage:          if true, will show demo sign in message in sign in page, if your site is not demo site, please set it to false
      *
-     * @idle:                                setting for account status of idle
-     *        @accountIdleForTime:           setting for how many time not login then change account status to idle
-     *        @accountIdleForTime_str:       string desc of @accountIdleForTime
-     *        @activeIdleAccountBasicScore:  user active idle account need basic score numbers
+     * @idle:                                 setting for account status of idle
+     *        @accountIdleForTime:            setting for how many time not login then change account status to idle
+     *        @accountIdleForTime_str:        string desc of @accountIdleForTime
+     *        @activeIdleAccountBasicScore:   user active idle account need basic score numbers
+     *        @activeMoreScorePerDay:         idle more than one day need extra score
+     *        @activeMoreScorePerLevel:       idle each level need extra score
+     *        @notIdleSafeLevel:              safe lavel, more than this level account not to be idle status
      */
     sign: {
       openSignup: true,
@@ -315,7 +318,10 @@ module.exports = {
       idle: {
         accountIdleForTime: 60 * 60 * 1000 * 24 * 30, //30 days
         accountIdleForTime_str: '30d',
-        activeIdleAccountBasicScore: 50000
+        activeIdleAccountBasicScore: 50000,
+        activeMoreScorePerDay: 1000,
+        activeMoreScorePerLevel: 10000,
+        notIdleSafeLevel: 30
       }
     },
 

@@ -7,6 +7,8 @@ var _ = require('lodash'),
   fs = require('fs'),
   path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  moment = require('moment'),
+  scoreLib = require(path.resolve('./config/lib/score')),
   mongoose = require('mongoose'),
   multer = require('multer'),
   multerS3 = require('multer-s3'),
@@ -259,13 +261,26 @@ exports.unIdle = function (req, res, next) {
   var user = req.user;
 
   if (user) {
-    if (user.score < signConfig.idle.activeIdleAccountBasicScore) {
+    var days = (moment(Date.now()) - moment(user.last_idled) - signConfig.idle.accountIdleForTime) / (60 * 60 * 1000 * 24);
+    var daysScore = Math.floor(days) * signConfig.idle.activeMoreScorePerDay;
+
+    var level = scoreLib.getLevelByScore(user);
+    var levelScore = level.currLevel * signConfig.idle.activeMoreScorePerLevel;
+
+    var totalScore = signConfig.idle.activeIdleAccountBasicScore + daysScore + levelScore;
+
+    if (user.score < totalScore) {
       return res.status(422).send({
         message: 'SERVER.SCORE_NOT_ENOUGH'
       });
     } else {
       //update score
-      scoreUpdate(req, user, scoreConfig.action.activeIdleAccount, -(signConfig.idle.activeIdleAccountBasicScore));
+      scoreUpdate(req, user, scoreConfig.action.activeIdleAccount, -(totalScore));
+
+      user.update({
+        status: 'normal',
+        last_idled: null
+      }).exec();
 
       user.status = 'normal';
       req.login(user, function (err) {
@@ -279,7 +294,10 @@ exports.unIdle = function (req, res, next) {
       //create trace log
       traceLogCreate(req, traceConfig.action.userUnIdle, {
         user: req.user._id,
-        score: signConfig.idle.activeIdleAccountBasicScore
+        basicScore: signConfig.idle.activeIdleAccountBasicScore,
+        daysScore: daysScore,
+        levelScore: levelScore,
+        totalScore: totalScore
       });
     }
   } else {

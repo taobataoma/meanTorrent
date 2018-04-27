@@ -6,10 +6,10 @@
     .controller('StatusController', StatusController);
 
   StatusController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'UsersService', 'ScoreLevelService', 'MeanTorrentConfig', 'ModalConfirmService',
-    'NotifycationService'];
+    'NotifycationService', 'moment'];
 
   function StatusController($scope, $state, $timeout, $translate, Authentication, UsersService, ScoreLevelService, MeanTorrentConfig, ModalConfirmService,
-                            NotifycationService) {
+                            NotifycationService, moment) {
     var vm = this;
     vm.user = Authentication.user;
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
@@ -20,11 +20,25 @@
      * unIdle
      */
     vm.unIdle = function () {
+      var days = (moment(moment()) - moment(vm.user.last_idled) - vm.signConfig.idle.accountIdleForTime) / (60 * 60 * 1000 * 24);
+      var daysScore = Math.floor(days) * vm.signConfig.idle.activeMoreScorePerDay;
+
+      var level = vm.scoreLevelData.currLevel;
+      var levelScore = level * vm.signConfig.idle.activeMoreScorePerLevel;
+
+      var totalScore = vm.signConfig.idle.activeIdleAccountBasicScore + daysScore + levelScore;
+
       var modalOptions = {
         closeButtonText: $translate.instant('ACTIVE_IDLE_CONFIRM_CANCEL'),
         actionButtonText: $translate.instant('ACTIVE_IDLE_CONFIRM_OK'),
         headerText: $translate.instant('ACTIVE_IDLE_CONFIRM_HEADER_TEXT'),
-        bodyText: $translate.instant('ACTIVE_IDLE_CONFIRM_BODY_TEXT', {score: vm.signConfig.idle.activeIdleAccountBasicScore})
+        bodyText: $translate.instant('ACTIVE_IDLE_CONFIRM_BODY_TEXT'),
+        bodyParams: $translate.instant('ACTIVE_IDLE_NEED_SCORE', {
+          basicScore: vm.signConfig.idle.activeIdleAccountBasicScore,
+          daysScore: daysScore,
+          levelScore: levelScore,
+          totalScore: totalScore
+        })
       };
 
       ModalConfirmService.showModal({}, modalOptions)
