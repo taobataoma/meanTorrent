@@ -27,7 +27,8 @@
 
 1. If you forget your account password, you can recover your password by registering email, but `%(passwordConfig.resetTimeInterval_str)s` can only be recovered once in s hours, and the recovery email is valid for `%(passwordConfig.resetTokenExpires_str)s` hours.
 1. If your account exceeds `%(signConfig.idle.accountIdleForTime_str)s` days without signing in to the site,** we will not delete or block your account, but the account status will change to `idle`**, the idle accounts can log in, but You cannot upload or download any resources. If you need to reactivate your account, you must use the `%(signConfig.idle.activeIdleAccountBasicScore).2f` basic scores, and each additional more than one day requires `%(signConfig.idle.activeMoreScorePerDay).2f` scores, and each level need extra `%(signConfig.idle.activeMoreScorePerLevel).2f` scores.
-1. **When your account level reaches the `%(signConfig.idle.notIdleSafeLevel)d`, the account will be protected and will never become ʻidle`.**
+1. When your account level reaches the `%(signConfig.idle.notIdleSafeLevel)d`, the account will be protected and will never become `idle`.
+1. VIP users account status will never become `idle`.
 1. The system has a requirement of sharing rate for all downloading behaviors, but does not check the sharing rate for users who have newly registered `%(announceConfig.downloadCheck.checkAfterSignupDays)d` days, so the new user should be as much as possible during this time. Improve your own share.
 1. If your account has too many H&R warnings, you will not be able to upload and download any resources. Please refer to [H&R rules detail](/about/manual/hnrRules)。
 1. Please comply with the relevant provisions of the resource area, forums, chat rooms and other places, or your account may be banned.

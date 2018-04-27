@@ -16,6 +16,7 @@
 1. VIP 用户特享 `%(scoreConfig.action.seedUpDownload.vipRatio).2f` 倍的做种时间积分加成。
 1. VIP 用户对 H&R 黑种警告免疫，不受警告上限 `%(hnrConfig.forbiddenDownloadMinWarningNumber)d` 条的限制，这里可查看 [H&R 黑种细则](/about/manual/hnrRules)。
 1. VIP 用户不参加站点内举行的定期增量任务考核。
+1. VIP 用户帐户永远不会变成 `空闲` 状态。
 1. 管理组正在制定更多 VIP 用户权益，敬请期待。
 
 &emsp;

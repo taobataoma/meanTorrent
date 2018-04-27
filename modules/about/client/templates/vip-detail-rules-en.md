@@ -16,6 +16,7 @@
 1. The VIP user enjoys a bonus seed times scores of `%(scoreConfig.action.seedUpDownload.vipRatio).2f` 。
 1. The VIP user is immune to the H&R warning, which is not restricted by the warning limit `%(hnrConfig.forbiddenDownloadMinWarningNumber)d`. You can check the [H&R Rules Detail](/about/manual/hnrRules) here.
 1. VIP users do not participate in regular incremental task examination held within the site.
+1. VIP users account status will never become `idle`.
 1. The management team is developing more VIP user rights, so stay tuned.
 
 &emsp;
