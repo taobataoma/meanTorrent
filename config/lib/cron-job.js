@@ -2,6 +2,8 @@
 
 var path = require('path'),
   config = require(path.resolve('./config/config')),
+  common = require(path.resolve('./config/lib/common')),
+  scoreLib = require(path.resolve('./config/lib/score')),
   mongoose = require('mongoose'),
   chalk = require('chalk'),
   CronJob = require('cron').CronJob,
@@ -191,10 +193,13 @@ function checkUserAccountIdleStatus() {
     onTick: function () {
       console.log(chalk.green('checkUserAccountIdleStatus: process!'));
 
+      var safeScore = scoreLib.getScoreByLevel(signConfig.idle.notIdleSafeLevel);
+
       User.update(
         {
           status: {$ne: 'idle'},
-          last_signed: {$lt: Date.now() - signConfig.idle.accountIdleForTime}
+          last_signed: {$lt: Date.now() - signConfig.idle.accountIdleForTime},
+          score: {$lt: safeScore}
         },
         {
           $set: {

@@ -9,6 +9,7 @@ var path = require('path'),
 
 var traceConfig = config.meanTorrentConfig.trace;
 var examinationConfig = config.meanTorrentConfig.examination;
+var scoreConfig = config.meanTorrentConfig.score;
 
 /**
  * update
@@ -47,3 +48,36 @@ module.exports.update = function (req, user, action, value) {
   }
 };
 
+/**
+ * getLevelByScore
+ * @param user
+ * @returns {{level object}}
+ */
+module.exports.getLevelByScore = function (user) {
+  var step = scoreConfig.levelStep;
+
+  var level = {};
+  var l = Math.floor(Math.sqrt(user.score / step));
+  level.score = score;
+
+  level.prevLevel = (l - 1) <= 0 ? 0 : l - 1;
+  level.currLevel = l;
+  level.nextLevel = l + 1;
+
+  level.prevLevelValue = level.prevLevel * level.prevLevel * step;
+  level.currLevelValue = level.currLevel * level.currLevel * step;
+  level.nextLevelValue = level.nextLevel * level.nextLevel * step;
+  level.currPercent = Math.ceil((score - level.currLevelValue) / (level.nextLevelValue - level.currLevelValue) * 10000) / 100;
+  level.currPercentString = level.currPercent + '%';
+
+  return level;
+};
+
+/**
+ * getScoreByLevel
+ * @param l
+ * @returns {number}
+ */
+module.exports.getScoreByLevel = function (l) {
+  return l * l * scoreConfig.levelStep;
+};
