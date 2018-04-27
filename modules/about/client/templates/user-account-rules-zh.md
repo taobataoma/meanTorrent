@@ -26,7 +26,8 @@
 #### :white_small_square: 使用帐户
 
 1. 如果您忘记帐户密码，您可以通过注册邮件恢复密码，但 `%(passwordConfig.resetTimeInterval_str)s` 小时内只能恢复一次，且恢复邮件有效期为 `%(passwordConfig.resetTokenExpires_str)s` 小时。
-1. 如果您的帐户超过 `%(signConfig.idle.accountIdleForTime_str)s` 天未登录网站，**我们不会删除或禁止您的帐户，但帐户状态会变为 `空闲`**，空闲帐户可以登录浏览，但不能上传下载任何资源，如您需要重新激活您的帐户，您必须使用 `%(signConfig.idle.activeIdleAccountBasicScore).2f` 积分。
+1. 如果您的帐户超过 `%(signConfig.idle.accountIdleForTime_str)s` 天未登录网站，**我们不会删除或禁止您的帐户，但帐户状态会变为 `空闲`**，空闲帐户可以登录浏览，但不能上传下载任何资源，如您需要重新激活您的帐户，您必须使用 `%(signConfig.idle.activeIdleAccountBasicScore).2f` 基础积分，另外每多空闲一天需多付出 `%(signConfig.idle.activeMoreScorePerDay).2f` 积分，同时每一级需多付出 `%(signConfig.idle.activeMoreScorePerLevel).2f` 积分。
+1. **当您的帐户级别达到 `%(signConfig.idle.notIdleSafeLevel)d` 级时，帐户会被保护，永远不会变成 `空闲` 状态。**
 1. 系统对所有下载行为都有分享率的要求，但对新注册 `%(announceConfig.downloadCheck.checkAfterSignupDays)d` 天内的用户不做下载行为的分享率检查，所以新用户应该在此时间内尽可能的提高自已的分享率。
 1. 如果帐户的 H&R 黑种警告数过多，您将不能上传下载任何资源，具体请参考 [H&R 黑种细则](/about/manual/hnrRules)。
 1. 请遵守资源区、论坛、聊天室等场所的相关规定，否则您的帐号可能会被封禁。
