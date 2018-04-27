@@ -49,7 +49,7 @@ For every seed, `%(scoreConfig.action.seedTimed.timedValue)d` scores per `%(scor
 &emsp;
 
 #### :white_small_square: Score deduction rules
-* Reactivate a long unused user account, account status changed from <mark>idle</mark> to <mark>normal</mark>, deducted `%(signConfig.idle.activeIdleAccountBasicScore)d` scores.
+* Reactivate a long unused user account, account status changed from <mark>idle</mark> to <mark>normal</mark>, deducted `%(signConfig.idle.activeIdleAccountBasicScore)d` basic scores, and each additional more than one day deducted `%(signConfig.idle.activeMoreScorePerDay).2f` scores, and each level deducted `%(signConfig.idle.activeMoreScorePerLevel).2f` scores.
 * Exchange an invitation, need to deduct `%(inviteConfig.scoreExchange)d` scores.
 * Each time a user post a request, the system will automatically reclaim `%(requestsConfig.scoreForAddRequest)d` scores. If the request is answered and accepted by the requester, the system will automatically deduct the scores the requester rewards.
 * Remove an H&R warning, need to deduct `%(hnrConfig.scoreToRemoveWarning)d` scores.
