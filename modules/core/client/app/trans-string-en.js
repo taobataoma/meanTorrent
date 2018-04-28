@@ -920,6 +920,7 @@
     TORRENT_TYPE_LABEL: {
       MOVIE: 'Movie',
       TVSERIAL: 'TVSerial',
+      DOCUMENTARY: 'Documentary',
       MUSIC: 'Music',
       SPORTS: 'Sports',
       VARIETY: 'Variety',

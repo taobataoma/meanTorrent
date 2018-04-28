@@ -920,6 +920,7 @@
     TORRENT_TYPE_LABEL: {
       MOVIE: '电影',
       TVSERIAL: '电视剧',
+      DOCUMENTARY: '记录片',
       MUSIC: '音乐',
       SPORTS: '体育',
       VARIETY: '综艺',
