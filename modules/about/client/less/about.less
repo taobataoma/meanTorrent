@@ -19,54 +19,15 @@
     line-height: 1.7;
 }
 
+
+.table-black-list {
+    table {
+        margin-bottom: 0 !important;
+    }
+}
+
 .black-list {
     .black-item {
-        cursor: pointer;
-        position: relative;
-        border: solid 1px #1a1a1a;
-        border-radius: 4px;
-        background-color: #2a2a2a;
-        padding: 10px 0 15px 0;
-        margin: 20px 0 0 0;
-        overflow: hidden;
-
-        .fa {
-            transition-property: transform, opacity;
-            transition-duration: .5s;
-            transition-timing-function: ease;
-            font-size: 7em;
-        }
-        h4 {
-            color: #ddd;
-            position: relative;
-            z-index: 100;
-        }
-        span {
-            color: #999;
-            position: relative;
-            z-index: 100;
-        }
-
-        &:hover {
-            .fa {
-                /* csslint ignore:start */
-                transform: scale(1.5);
-                /* csslint ignore:end */
-            }
-            h4, span {
-                color: #fff;
-            }
-            .black-icon {
-                opacity: 1;
-            }
-        }
-    }
-
-    .black-icon {
-        position: absolute;
-        top: -20px;
-        right: -20px;
-        opacity: 0.5;
     }
 }
 

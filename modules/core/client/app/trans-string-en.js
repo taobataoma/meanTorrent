@@ -654,6 +654,8 @@
       CLIENT_BLACK_LIST: 'Client Black List',
       MAKER_GROUP: 'Torrents Maker Group',
       BLACK_TOOLTIP: '<h4>Note:</h4>All the clients in the list was forbidden by server and can not announce or get any torrent data, For more help, please contact our {{sNameDesc | translate}} by <strong><a href="/messages/send?to={{sName}}">Message</a></strong> or <strong><a href="mailto:{{sMail}}">Email</a></strong>.',
+      BLANK_NAME: 'Client Name',
+      BLANK_REASON: 'Forbidden Reason',
       FORM_MAKER_NAME: 'Maker Group Name',
       FORM_MAKER_DESC: 'Maker Group Description',
       FORM_MAKER_FOR: 'Create maker group for - {{name}}',

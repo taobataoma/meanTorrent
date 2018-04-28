@@ -654,6 +654,8 @@
       CLIENT_BLACK_LIST: '禁止客户端列表',
       MAKER_GROUP: '资源压制小组',
       BLACK_TOOLTIP: '<h4>提示:</h4>下面列出的所有客户端都已被服务器禁止，使用它们将不能下载到任何数据, 如需其它帮助，请给{{sNameDesc | translate}}发送 <strong><a href="/messages/send?to={{sName}}">消息</a></strong> 或 <strong><a href="mailto:{{sMail}}">邮件</a></strong>.',
+      BLANK_NAME: '客户端名称',
+      BLANK_REASON: '禁止理由',
       FORM_MAKER_NAME: '资源压制小组名称',
       FORM_MAKER_DESC: '资源压制小组简介',
       FORM_MAKER_FOR: '创建资源压制小组 - {{name}}',
