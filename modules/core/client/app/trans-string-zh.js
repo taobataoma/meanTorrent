@@ -1502,12 +1502,6 @@
         MTV: 'MTV'
       },
 
-      MOVIE_SUB_CAT: {
-        SELF: '视频分类',
-        CARTOON: '卡通片',
-        DISASTER: '灾难片'
-      },
-
       SPORTS_SUB_CAT: {
         SELF: '运动项目',
         FOOTBALL: '篮球',

@@ -1502,12 +1502,6 @@
         MTV: 'MTV'
       },
 
-      MOVIE_SUB_CAT: {
-        SELF: 'Video Category',
-        CARTOON: 'Cartoon',
-        DOCUMENTARY: 'Documentary'
-      },
-
       SPORTS_SUB_CAT: {
         SELF: 'Sports Event',
         FOOTBALL: 'Football',

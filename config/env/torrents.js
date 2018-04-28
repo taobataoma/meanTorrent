@@ -1398,14 +1398,6 @@ module.exports = {
           ]
         },
         {
-          name: 'MOVIE_SUB_CAT',
-          cats: ['movie', 'tvserial'],
-          value: [
-            {name: 'CARTOON', icon: ''},
-            {name: 'DISASTER', icon: ''}
-          ]
-        },
-        {
           name: 'SPORTS_SUB_CAT',
           cats: ['sports'],
           value: [
