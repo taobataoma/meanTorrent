@@ -1981,7 +1981,7 @@ exports.siteInfo = function (req, res) {
         totalVipUsers: results[6],
         totalIdleUsers: results[7],
         totalBannedUsers: results[8],
-        totalInactiveUsers: results[9],
+        totalInactiveUsers: results[9]
       });
     }
   });
