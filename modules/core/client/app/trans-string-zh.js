@@ -1107,6 +1107,8 @@
     SITE_STATEMENT: '<h3>免责声明</h3>本站仅作为用户对互联网资源的分享讨论交流平台，站内本身不提供任何资源下载，也不在服务器存储任何资源文件，用户自行分享的行为与本站无关，如果您觉得某些用户的分享侵犯了您的合法权益，请立即向我们的 <strong>{{sNameDesc | translate}}</strong> 发送 <strong><a href="mailto:{{sMail}}">邮件</a></strong>，我们将会尽快核实并处理。',
     TOTAL_USERS: '注册会员',
     TOTAL_VIP_USERS: 'VIP会员',
+    TOTAL_IDLE_USERS: '空闲用户',
+    TOTAL_BANNED_USERS: '禁止用户',
     TOTAL_TORRENTS: '种子数',
     TOTAL_TORRENTSSIZE: '种子总体积',
     TOTAL_SEEDERS: '正在做种',

@@ -1107,6 +1107,8 @@
     SITE_STATEMENT: '<h3>Disclaimer</h3> This site serves as a platform for users to share and discuss Internet resources. The site itself does not provide any resources for download, nor does it store any resource files on the server. The users behavior is not related to this site. If you feel that some users share has infringed your legal rights, please immediately contact to our <strong>{{sNameDesc | translate}}</strong> by <strong><a href="Mailto:{{sMail}}">mail</a></strong>, we will verify and process it as soon as possible.',
     TOTAL_USERS: 'Total Users',
     TOTAL_VIP_USERS: 'Total VIP Users',
+    TOTAL_IDLE_USERS: 'Total Idle Users',
+    TOTAL_BANNED_USERS: 'Total Banned Users',
     TOTAL_TORRENTS: 'Total Torrents',
     TOTAL_TORRENTSSIZE: 'Total TorrentsSize',
     TOTAL_SEEDERS: 'Total Seeders',
