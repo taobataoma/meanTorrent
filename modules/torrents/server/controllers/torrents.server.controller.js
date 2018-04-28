@@ -1955,7 +1955,7 @@ exports.siteInfo = function (req, res) {
       } else {
         callback(null, count);
       }
-    });M
+    });
   };
 
   var countInactiveUsers = function (callback) {
