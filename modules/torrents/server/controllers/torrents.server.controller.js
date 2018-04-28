@@ -202,6 +202,7 @@ exports.upload = function (req, res) {
         var message = '';
 
         if (err) {
+          mtDebug.debugError(err);
           message = 'Read torrent file faild';
           reject(message);
         } else {
@@ -506,6 +507,7 @@ exports.announceEdit = function (req, res) {
         var message = '';
 
         if (err) {
+          mtDebug.debugError(err);
           message = 'Read torrent file faild';
           reject(message);
         } else {
@@ -598,6 +600,7 @@ exports.download = function (req, res) {
         var message = '';
 
         if (err) {
+          mtDebug.debugError(err);
           message = 'Read torrent file faild';
           reject(message);
         } else {
@@ -637,6 +640,7 @@ exports.create = function (req, res) {
   var newPath = config.uploads.torrent.file.dest + req.body.torrent_filename;
   move(oldPath, newPath, function (err) {
     if (err) {
+      mtDebug.debugError(err);
       return res.status(422).send({
         message: 'MOVE_TORRENT_FILE_ERROR'
       });
@@ -1951,7 +1955,7 @@ exports.siteInfo = function (req, res) {
       } else {
         callback(null, count);
       }
-    });
+    });M
   };
 
   var countInactiveUsers = function (callback) {
