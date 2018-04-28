@@ -1012,9 +1012,11 @@
     MESSAGES_BOX: 'Messages Box',
     MESSAGES_SEND: 'Send Messages',
     ADMIN_MESSAGES_SEND: 'Send System Messages',
+    ADMIN_MESSAGES_ALREADY_SEND: 'Sended System Messages',
     MESSAGES_SEND_BUTTON: 'Send',
     MESSAGES_IS_LOADING: 'Loading messages, please wait ...',
     MESSAGES_IS_EMPTY: 'Messages Box is empty!',
+    OFFICIAL_MESSAGES_TOOLTIP: '<h4>Tip:</h4>In order to maintain a clean list of official messages, please delete messages that have expired over time as they cannot be unilaterally cleared in the users message center.',
     MESSAGES_FIELD: {
       TO: 'Send to:',
       TYPE: 'Message type:',

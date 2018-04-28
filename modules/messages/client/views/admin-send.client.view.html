@@ -1,13 +1,14 @@
 <section class="container" ng-controller="AdminMessageController as vm" ng-init="vm.getAdminMessages();">
     <div class="row margin-top-50">
-        <div class="col-md-10 col-md-offset-1">
-
+        <div class="col-xs-12">
             <div class="margin-bottom-20">
-                <h4>{{'ADMIN_MESSAGES_SEND' | translate}}</h4>
+                <h3>{{'ADMIN_MESSAGES_SEND' | translate}}</h3>
                 <li class="status-divider"></li>
             </div>
+        </div>
 
-            <div class="margin-bottom-20">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="margin-bottom-20 margin-top-20">
                 <form name="vm.messageForm" ng-submit="vm.sendMessage(vm.messageForm.$valid)" novalidate autocomplete="off">
                     <dl class="dl-horizontal">
                         <div class="margin-bottom-10 form-group">
@@ -24,7 +25,8 @@
                         <div class="margin-bottom-10 form-group" show-errors>
                             <dt class="h-line">{{ 'MESSAGES_FIELD.TITLE' | translate}}</dt>
                             <dd class="h-line">
-                                <input type="text" class="form-control" id="title" name="title" maxlength="{{vm.inputLengthConfig.messageTitleLength}}"
+                                <input type="text" class="form-control" id="title" name="title"
+                                       maxlength="{{vm.inputLengthConfig.messageTitleLength}}"
                                        ng-model="vm.messageFields.title" autofocus required>
 
                                 <div ng-messages="vm.messageForm.title.$error" role="alert">
@@ -36,8 +38,10 @@
                         <div class="margin-bottom-10 form-group" show-errors>
                             <dt class="h-line">{{ 'MESSAGES_FIELD.CONTENT' | translate}}</dt>
                             <dd class="h-line">
-                                <textarea id="messageContent" name="messageContent" class="form-control message-textarea" ng-model="vm.messageFields.content"
-                                      mt-markdown-editor="messageContent" maxlength="{{vm.inputLengthConfig.messageBoxContentLength}}" required></textarea>
+                                <textarea id="messageContent" name="messageContent" class="form-control message-textarea"
+                                          ng-model="vm.messageFields.content"
+                                          mt-markdown-editor="messageContent" maxlength="{{vm.inputLengthConfig.messageBoxContentLength}}"
+                                          required></textarea>
 
                                 <div ng-messages="vm.messageForm.messageContent.$error" role="alert">
                                     <p class="help-block error-text" ng-message="required">{{ 'MESSAGES_FIELD.CT_REQUIRED' | translate}}</p>
@@ -70,40 +74,51 @@
     </div>
 
     <div class="row margin-top-50 margin-bottom-50">
-        <div class="col-md-12">
+        <div class="col-xs-12">
+            <div class="margin-bottom-20">
+                <h3>{{'ADMIN_MESSAGES_ALREADY_SEND' | translate}}</h3>
+                <li class="status-divider"></li>
+            </div>
+        </div>
+        <div class="col-xs-12 margin-top-10">
+            <div class="alert alert-warning" role="alert" style="padding: 20px 50px;">
+                <span translate="OFFICIAL_MESSAGES_TOOLTIP"></span>
+            </div>
+        </div>
+        <div class="col-md-12 margin-top-20">
             <div class="table-responsive" ng-if="vm.adminMessages.length">
-                <table class="table table-hover tb-v-middle">
+                <table class="table table-hover tb-v-middle top-border">
                     <thead>
                         <tr>
                             <th>{{ 'MESSAGES_FIELD.LIST_TITLE_CONTENT' | translate}}</th>
                             <th class="text-center">{{ 'MESSAGES_FIELD.LIST_READERS' | translate}}</th>
                             <th class="text-center">{{ 'MESSAGES_FIELD.LIST_TYPE' | translate}}</th>
-                            <th class="text-center">{{ 'MESSAGES_FIELD.LIST_SENDAT' | translate}}</th>
+                            <!--<th class="text-center">{{ 'MESSAGES_FIELD.LIST_SENDAT' | translate}}</th>-->
                             <th class="text-center">{{ 'MESSAGES_FIELD.LIST_SELECT' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="message-item" ng-repeat="m in vm.adminMessages">
-                            <td>
-                                <div class="message-title-admin text-long"><span ng-bind="m.title"></span></div>
+                            <td class="col-md-8 width-400">
+                                <div class="message-title-admin text-long"><h4 ng-bind="m.title"></h4></div>
 
-                                <p class="message-content" ng-bind-html="vm.getContentMarked(m);"></p>
+                                <p class="message-content-admin" ng-bind-html="vm.getContentMarked(m);"></p>
 
                                 <p class="message-info">
                                     <span user-info="m.from_user"
                                           info-name></span> {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                                 </p>
                             </td>
-                            <td class="td-v-middle text-center">
+                            <td class="col-md-1 td-v-middle text-center width-70">
                                 <span ng-class="vm.getMessageClass(m);">{{m._readers.length}}</span>
                             </td>
-                            <td class="td-v-middle text-center">
+                            <td class="col-md-2 td-v-middle text-center width-140">
                                 <span ng-class="vm.getMessageClass(m);">{{'MESSAGE_TYPE_' + m.type.toUpperCase() | translate}}</span>
                             </td>
-                            <td class="td-v-middle text-center">
-                                <span ng-class="vm.getMessageClass(m);">{{m.createdat | life}}</span>
-                            </td>
-                            <td class="td-v-middle text-center">
+                            <!--<td class="col-md-1 td-v-middle text-center width-80">-->
+                            <!--<span ng-class="vm.getMessageClass(m);">{{m.createdat | life}}</span>-->
+                            <!--</td>-->
+                            <td class="col-md-1 td-v-middle text-center width-70">
                                 <input type="checkbox" class="tcheckbox" ng-model="vm.selected[m._id]"
                                        id="checkbox_{{m._id}}">
                                 </label>

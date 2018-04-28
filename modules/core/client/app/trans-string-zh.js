@@ -1012,9 +1012,11 @@
     MESSAGES_BOX: '站内消息',
     MESSAGES_SEND: '发送消息',
     ADMIN_MESSAGES_SEND: '发送系统消息',
+    ADMIN_MESSAGES_ALREADY_SEND: '已经发送的系统消息',
     MESSAGES_SEND_BUTTON: '发送',
     MESSAGES_IS_LOADING: '正在装载, 请稍候 ...',
     MESSAGES_IS_EMPTY: '消息列表为空!',
+    OFFICIAL_MESSAGES_TOOLTIP: '<h4>提示：</h4>为了维护一个干净的官方消息列表，请及时将长时间过期的消息删除，因为这些消息在用户的消息中心里不能被单方面清理。',
     MESSAGES_FIELD: {
       TO: '发送至:',
       TYPE: '消息类型:',
