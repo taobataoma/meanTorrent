@@ -202,8 +202,8 @@ exports.upload = function (req, res) {
         var message = '';
 
         if (err) {
-          mtDebug.debugError(err);
-          message = 'Read torrent file faild';
+          mtDebug.debugError(err, 'READ_TORRENT_FILE_FAILD');
+          message = 'SERVER.READ_TORRENT_FILE_FAILD';
           reject(message);
         } else {
           //force change announce url to config value
@@ -507,8 +507,8 @@ exports.announceEdit = function (req, res) {
         var message = '';
 
         if (err) {
-          mtDebug.debugError(err);
-          message = 'Read torrent file faild';
+          mtDebug.debugError(err, 'READ_TORRENT_FILE_FAILD');
+          message = 'SERVER.READ_TORRENT_FILE_FAILD';
           reject(message);
         } else {
           var announce = config.meanTorrentConfig.announce.url;
@@ -600,8 +600,8 @@ exports.download = function (req, res) {
         var message = '';
 
         if (err) {
-          mtDebug.debugError(err);
-          message = 'Read torrent file faild';
+          mtDebug.debugError(err, 'READ_TORRENT_FILE_FAILD');
+          message = 'SERVER.READ_TORRENT_FILE_FAILD';
           reject(message);
         } else {
           var announce = config.meanTorrentConfig.announce.url + '/' + user.passkey;
@@ -640,9 +640,9 @@ exports.create = function (req, res) {
   var newPath = config.uploads.torrent.file.dest + req.body.torrent_filename;
   move(oldPath, newPath, function (err) {
     if (err) {
-      mtDebug.debugError(err);
+      mtDebug.debugError(err, 'MOVE_TORRENT_FILE_ERROR');
       return res.status(422).send({
-        message: 'MOVE_TORRENT_FILE_ERROR'
+        message: 'SERVER.MOVE_TORRENT_FILE_ERROR'
       });
     } else {
       //move temp cover image file to dest directory
@@ -1949,7 +1949,7 @@ exports.siteInfo = function (req, res) {
   };
 
   var countBannedUsers = function (callback) {
-    User.count({status: 'banned'}, function (err, count) {
+    User.count({status: 'banne'}, function (err, count) {
       if (err) {
         callback(err, null);
       } else {
