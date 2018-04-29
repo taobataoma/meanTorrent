@@ -831,7 +831,7 @@ exports.announce = function (req, res) {
         req.passkeyuser.updateSeedLeechNumbers();
 
         if (slCount) {
-          mtDebug.debugYellow(slCount, 'ANNOUNCE_REQUEST', true);
+          mtDebug.debugYellow(JSON.stringify(slCount), 'ANNOUNCE_REQUEST', true);
           req.torrent.torrent_seeds = slCount.seedCount;
           req.torrent.torrent_leechers = slCount.leechCount;
         }
