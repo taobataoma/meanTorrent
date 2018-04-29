@@ -6,6 +6,7 @@
 var config = require('../config'),
   mongooseService = require('./mongoose'),
   express = require('./express'),
+  logger = require('./logger'),
   chalk = require('chalk'),
   seed = require('./mongo-seed'),
   ircConfig = config.meanTorrentConfig.ircAnnounce;
@@ -39,20 +40,20 @@ module.exports.start = function start(callback) {
       // Create server URL
       var server = (process.env.NODE_ENV === 'secure' ? 'https://' : 'http://') + config.host + ':' + config.port;
       // Logging initialization
-      console.log('--');
-      console.log(chalk.green(config.app.title));
-      console.log();
-      console.log(chalk.green('Environment:     ' + process.env.NODE_ENV));
-      console.log(chalk.green('Server:          ' + server));
-      console.log(chalk.green('Database:        ' + config.db.uri));
-      console.log(chalk.green('App version:     ' + config.meanjs.version));
+      logger.info('--');
+      logger.info(chalk.green(config.app.title));
+      logger.info();
+      logger.info(chalk.green('Environment:     ' + process.env.NODE_ENV));
+      logger.info(chalk.green('Server:          ' + server));
+      logger.info(chalk.green('Database:        ' + config.db.uri));
+      logger.info(chalk.green('App version:     ' + config.meanjs.version));
       if (config.meanjs['meanjs-version'])
-        console.log(chalk.green('MEAN.JS version: ' + config.meanjs['meanjs-version']));
+        logger.info(chalk.green('MEAN.JS version: ' + config.meanjs['meanjs-version']));
       if (ircConfig.enable)
-        console.log(chalk.green('IRC announce:    ' + ircConfig.server + ':' + ircConfig.port + ' ' + ircConfig.channel));
+        logger.info(chalk.green('IRC announce:    ' + ircConfig.server + ':' + ircConfig.port + ' ' + ircConfig.channel));
       else
         console.log(chalk.green('IRC announce:    disabled'));
-      console.log('--');
+      logger.info('--');
 
       if (callback) callback(app, db, config);
     });
