@@ -1143,14 +1143,14 @@ exports.announce = function (req, res) {
           if (p.last_announce_at > (Date.now() - announceConfig.announceInterval - 60 * 1000)) { //do not send ghost peer
             if (p.user.equals(req.passkeyuser._id)) {
               if (announceConfig.peersCheck.peersSendListIncludeOwnSeed) {
-                mtDebug.info(p._id, 'ANNOUNCE_REQUEST', true);
+                mtDebug.debug(p._id, 'ANNOUNCE_REQUEST', true);
                 bc = compact(p);
                 if (bc) {
                   bc.copy(buf, c++ * PEER_COMPACT_SIZE);
                 }
               }
             } else {
-              mtDebug.info(p._id, 'ANNOUNCE_REQUEST', true);
+              mtDebug.debug(p._id, 'ANNOUNCE_REQUEST', true);
               bc = compact(p);
               if (bc) {
                 bc.copy(buf, c++ * PEER_COMPACT_SIZE);
