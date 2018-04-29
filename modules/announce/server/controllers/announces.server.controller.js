@@ -386,6 +386,8 @@ exports.announce = function (req, res) {
      ----------------------------------------------------------------*/
     function (done) {
       if (event(query.event) === EVENT_STARTED) {
+        mtDebug.debugGreen('---------------EVENT_STARTED----------------', 'ANNOUNCE', true, req.passkeyuser);
+
         Peer.remove({
           torrent: req.torrent._id,
           _id: {$nin: req.torrent._peers}
@@ -461,7 +463,9 @@ exports.announce = function (req, res) {
         for (var i = req.torrent._peers.length; i > 0; i--) {
           var p = req.torrent._peers[i - 1];
           if (p.user.equals(req.passkeyuser._id)) {
-            req.selfpeer.push(p);
+            if (p.last_announce_at > (Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime)) { //do not add inactive peer
+              req.selfpeer.push(p);
+            }
           }
         }
       }
@@ -478,23 +482,17 @@ exports.announce = function (req, res) {
      numbers is in setting announceConfig.announceCheck
      ---------------------------------------------------------------*/
     function (done) {
-      if (event(query.event) === EVENT_STARTED) {
-        mtDebug.debugGreen('---------------EVENT_STARTED----------------', 'ANNOUNCE', true, req.passkeyuser);
+      var lcount = getSelfLeecherCount();
+      var scount = getSelfSeederCount();
 
-        var lcount = getSelfLeecherCount();
-        var scount = getSelfSeederCount();
-
-        if (lcount > announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent && !req.seeder) {
-          mtDebug.debugYellow('getSelfLeecherCount = ' + lcount, 'ANNOUNCE', true, req.passkeyuser);
-          removeCurrPeer();
-          done(180);
-        } else if (scount > announceConfig.announceCheck.maxSeedNumberPerUserPerTorrent && req.seeder) {
-          mtDebug.debugYellow('getSelfSeederCount = ' + scount, 'ANNOUNCE', true, req.passkeyuser);
-          removeCurrPeer();
-          done(181);
-        } else {
-          done(null);
-        }
+      if (lcount > announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent && !req.seeder) {
+        mtDebug.debugYellow('getSelfLeecherCount = ' + lcount, 'ANNOUNCE', true, req.passkeyuser);
+        removeCurrPeer();
+        done(180);
+      } else if (scount > announceConfig.announceCheck.maxSeedNumberPerUserPerTorrent && req.seeder) {
+        mtDebug.debugYellow('getSelfSeederCount = ' + scount, 'ANNOUNCE', true, req.passkeyuser);
+        removeCurrPeer();
+        done(181);
       } else {
         done(null);
       }
