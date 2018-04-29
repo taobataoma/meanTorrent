@@ -1,11 +1,15 @@
 'use strict';
 
 var _ = require('lodash'),
-  config = require('../config'),
+  path = require('path'),
+  // config = require('../config'),
+  config = require(path.resolve('./config/config')),
   chalk = require('chalk'),
   loggerAnnounce = require('./loggerAnnounce'),
   fs = require('fs'),
   winston = require('winston');
+
+var announceConfig = config.meanTorrentConfig.announce;
 
 // list of valid formats for the logging
 var validFormats = ['combined', 'common', 'dev', 'short', 'tiny'];
@@ -31,7 +35,7 @@ var logger = new winston.Logger({
 // option to log all HTTP requests to a file
 logger.stream = {
   write: function (msg) {
-    if (msg.indexOf('GET /announce') >= 0) {
+    if (msg.indexOf('GET /announce') >= 0 && announceConfig.debugAnnounceUser.debugAll) {
       loggerAnnounce.info(msg);
     } else {
       logger.info(msg);
