@@ -421,7 +421,7 @@ UserSchema.methods.updateSeedLeechNumbers = function (callback) {
   Peer.aggregate({
     $match: {
       user: user._id,
-      last_announce_at: {$gt: new Date(Date.now() - announceConfig.announceInterval - 60 * 1000)}
+      last_announce_at: {$gt: new Date(Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime)}
     }
   }, {
     $group: {

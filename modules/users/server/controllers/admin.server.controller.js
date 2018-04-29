@@ -521,7 +521,7 @@ exports.getUserSeeding = function (req, res) {
   Peer.find({
     user: req.model._id,
     peer_status: PEERSTATE_SEEDER,
-    last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - 60 * 1000}
+    last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime}
   }).sort('-peer_uploaded')
     .populate({
       path: 'torrent',
@@ -550,7 +550,7 @@ exports.getUserLeeching = function (req, res) {
   Peer.find({
     user: req.model._id,
     peer_status: PEERSTATE_LEECHER,
-    last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - 60 * 1000}
+    last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime}
   }).sort('-peer_downloaded')
     .populate({
       path: 'torrent',

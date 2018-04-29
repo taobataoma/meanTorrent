@@ -1136,12 +1136,12 @@ exports.announce = function (req, res) {
         if (peers.length < count) {
           index = i;
         } else {
-          Math.floor(Math.random() * peers.length);
+          index = Math.floor(Math.random() * peers.length);
         }
         p = peers[index];
 
         if (p !== undefined && p !== req.currentPeer) {
-          if (p.last_announce_at > (Date.now() - announceConfig.announceInterval - 60 * 1000)) { //do not send ghost peer
+          if (p.last_announce_at > (Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime)) { //do not send inactive peer
             if (p.user.equals(req.passkeyuser._id)) {
               if (announceConfig.peersCheck.peersSendListIncludeOwnSeed) {
                 mtDebug.debug(p._id.toString(), 'ANNOUNCE', true, req.passkeyuser);

@@ -182,7 +182,7 @@ TorrentSchema.methods.updateSeedLeechNumbers = function (callback) {
   Peer.aggregate({
     $match: {
       torrent: torrent._id,
-      last_announce_at: {$gt: new Date(Date.now() - announceConfig.announceInterval - 60 * 1000)}
+      last_announce_at: {$gt: new Date(Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime)}
     }
   }, {
     $group: {

@@ -2011,7 +2011,7 @@ exports.getSeederUsers = function (req, res) {
     Peer.count({
       torrent: req.torrent._id,
       peer_status: PEERSTATE_SEEDER,
-      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - 60 * 1000}
+      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime}
     }, function (err, count) {
       if (err) {
         callback(err, null);
@@ -2026,7 +2026,7 @@ exports.getSeederUsers = function (req, res) {
     Peer.find({
       torrent: req.torrent._id,
       peer_status: PEERSTATE_SEEDER,
-      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - 60 * 1000}
+      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime}
     })
       .sort('-peer_uploaded')
       .populate('user', 'username displayName profileImageURL isVip')
@@ -2072,7 +2072,7 @@ exports.getLeecherUsers = function (req, res) {
     Peer.count({
       torrent: req.torrent._id,
       peer_status: PEERSTATE_LEECHER,
-      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - 60 * 1000}
+      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime}
     }, function (err, count) {
       if (err) {
         callback(err, null);
@@ -2087,7 +2087,7 @@ exports.getLeecherUsers = function (req, res) {
     Peer.find({
       torrent: req.torrent._id,
       peer_status: PEERSTATE_LEECHER,
-      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - 60 * 1000}
+      last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime}
     })
       .sort('-peer_downloaded')
       .populate('user', 'username displayName profileImageURL isVip')

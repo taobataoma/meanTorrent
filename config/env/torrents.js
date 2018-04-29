@@ -96,6 +96,7 @@ module.exports = {
      * @comment:                              used in admin tools, auto replace torrent make group info with this setting
      * @announceInterval:                     interval of twice announce request
      * @announceInterval_str:                 string desc of @announceInterval
+     * @announceIdleTime:                     announce time over @announceInterval this value is inactive peer
      * @announcePrefix:                       prefix of torrent file name, is will auto add when user download the torrent files
      * @clientBlackListUrl:                   forbidden download client list url, user can view this list to check forbidden client software
      * @seedingInFinishedCheck:               settings to check whether can seeding an un-download finished torrent
@@ -122,8 +123,9 @@ module.exports = {
     announce: {
       url: 'http://localhost:3000/announce',
       comment: 'MEAN.im GROUP',
-      announceInterval: 60 * 1000 * 5,
-      announceInterval_str: '5m',
+      announceInterval: 60 * 1000 * 10,
+      announceInterval_str: '10m',
+      announceIdleTime: 60 * 1000 * 2,
       announcePrefix: '{MEAN}.',
       sourceInfo: '{MEAN.im} Present by meanTorrent.',
       clientBlackListUrl: '/about/black',
