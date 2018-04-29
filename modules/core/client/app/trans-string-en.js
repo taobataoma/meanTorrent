@@ -49,7 +49,7 @@
     MENU_ABOUT: 'About',
     MENU_ABOUT_MANUAL: 'User Manual',
     MENU_ABOUT_BLACKLIST: 'Client Black List',
-    MENU_ABOUT_MAKERGROUP: 'Torrents Maker Group',
+    MENU_ABOUT_MAKERGROUP: 'Resources Group',
     MENU_ABOUT_OPERLIST: 'Admin/Oper List',
     MENU_ABOUT_RANKING: 'Users Ranking',
     MENU_VIP: 'VIP',
@@ -228,7 +228,7 @@
       REQUEST_RULES: 'Requests Rules',
       MANUAL_FAQ: 'FAQ',
       BLACK: 'Client Black List',
-      MAKER: 'Torrents Maker Group',
+      MAKER: 'Resources Group',
       OPERLIST: 'Admin/Oper List',
       COLLECTIONS: 'Movie Collections',
       VIP: 'Vip',
@@ -492,7 +492,7 @@
     BUTTON_UNSHOW_NEXT_TIME: 'I know, don`t show this next time',
     POPUP_UPLOADED_TOOLTIP: 'The torrent is uploaded <strong style="color:#f00">successfully</strong> and is waiting for the administrator to review. The new torrent file with your Passkey will be <strong style="color:#f00">automatically downloaded</strong> after you click the "OK" button, and you can use this new torrent file to start seeding.',
     TORRENT_DOWNLOADING_FILENAME: 'Downloading file name: ',
-    UPLOAD_ACCESS_TOOLTIP: '{{site}} only accepts resource maker group to upload torrents, you can <a href="/about/maker">list and join them</a>!',
+    UPLOAD_ACCESS_TOOLTIP: '{{site}} only accepts resource resources group to upload torrents, you can <a href="/about/maker">list and join them</a>!',
 
     SELECT_RESOURCE_TYPE: '2. Please select the resource type',
     SELECT_TORRENT_FILE: '1. Please select the torrent file',
@@ -520,7 +520,7 @@
     SELECT_SE: '4.1. Please select number of seasons and input number of episodes',
     SELECT_TAGS: '5. Please select any tags for the resources',
     ENTER_VIDEO_NFO: '6. Please enter video and audio NFO',
-    SELECT_MAKER_GROUP: '7. Please select torrent maker group upload from and anonymous option',
+    SELECT_MAKER_GROUP: '7. Please select resources group upload from and anonymous option',
     MAKER_NULL: 'NULL',
     UPLOADER_ANONYMOUS: 'Anonymous Upload (The user wont see me as an uploader)',
     ANONYMOUS: 'Anonymous',
@@ -602,7 +602,7 @@
 
     //uploader admin
     UPLOADER: {
-      CAPTION_MAKER: 'Uploader - Maker Group',
+      CAPTION_MAKER: 'Uploader - Resources Group',
       CAPTION_USER: 'Uploader - User',
       FIELDS_NAME: 'Name',
       FIELDS_DISPLAY_NAME: 'DisplayName',
@@ -616,7 +616,7 @@
       FIELDS_REVIEW: 'review',
       FIELDS_PASS: 'pass',
       ACCESS_CHANGED_SUCCESSFULLY: 'Upload access changed successfully',
-      ACCESS_DESC: '<h4>Upload access desc: </h4><div>* If maker or user has upload access of "pass", the uploaded new torrents do not need to review by administrators!</div><div>* maker group upload access is preceded by user upload access.</div>'
+      ACCESS_DESC: '<h4>Upload access desc: </h4><div>* If maker or user has upload access of "pass", the uploaded new torrents do not need to review by administrators!</div><div>* resources group upload access is preceded by user upload access.</div>'
     },
 
     //vip views
@@ -652,42 +652,42 @@
       MENU_ABOUT_MANUAL_REQUEST_RULES: 'Requests Rules Detail',
       MENU_ABOUT_MANUAL_FAQ: 'FAQ',
       CLIENT_BLACK_LIST: 'Client Black List',
-      MAKER_GROUP: 'Torrents Maker Group',
+      MAKER_GROUP: 'Resources Group',
       BLACK_TOOLTIP: '<h4>Note:</h4>All the clients in the list was forbidden by server and can not announce or get any torrent data, For more help, please contact our {{sNameDesc | translate}} by <strong><a href="/messages/send?to={{sName}}">Message</a></strong> or <strong><a href="mailto:{{sMail}}">Email</a></strong>.',
       BLANK_NAME: 'Client Name',
       BLANK_REASON: 'Forbidden Reason',
-      FORM_MAKER_NAME: 'Maker Group Name',
-      FORM_MAKER_DESC: 'Maker Group Description',
-      FORM_MAKER_FOR: 'Create maker group for - {{name}}',
-      MAKER_CREATE_SUCCESSFULLY: 'Create maker group successfully',
-      MAKER_CREATE_FAILED: 'Create maker group failed',
+      FORM_MAKER_NAME: 'Resources Group Name',
+      FORM_MAKER_DESC: 'Resources Group Description',
+      FORM_MAKER_FOR: 'Create resources group for - {{name}}',
+      MAKER_CREATE_SUCCESSFULLY: 'Create resources group successfully',
+      MAKER_CREATE_FAILED: 'Create resources group failed',
       OPER_LIST: 'Admin and Oper List',
       OPER_LIST_TOOLTIP: '<h4>Note:</h4>All the users in the list was the Administrator or Operator of <strong>{{site}}</strong>, If you need any help, please contact our {{sNameDesc | translate}} by <strong><a href="/messages/send?to={{sName}}">Message</a></strong> or <strong><a href="mailto:{{sMail}}">Email</a></strong> or send a message to them from below.',
-      MAKER_LIST_TOOLTIP: 'All the <strong>torrent maker group</strong> in the list was the official group of <strong>{{site}}</strong>, Thanks to the contributions of these groups. If you want to join one of these groups, send the station message to the group founder.',
+      MAKER_LIST_TOOLTIP: 'All the <strong>resources group</strong> in the list was the official group of <strong>{{site}}</strong>, Thanks to the contributions of these groups. If you want to join one of these groups, send the station message to the group founder.',
       GROUP_FOUNDER: 'Founder: ',
       BTN_EDIT_DESC: 'Edit Desc',
       BTN_ADD_USER: 'Add Member',
       BTN_REMOVE_GROUP: 'Delete Group',
-      MAKER_TORRENTS_LIST_ERROR: 'Maker group torrents list error',
-      MAKER_TORRENTS_IS_LOADING: 'Maker group torrents is loading...',
-      MAKER_TORRENTS_IS_EMPTY: 'No torrents of this maker group is founded!',
+      MAKER_TORRENTS_LIST_ERROR: 'Resources group torrents list error',
+      MAKER_TORRENTS_IS_LOADING: 'Resources group torrents is loading...',
+      MAKER_TORRENTS_IS_EMPTY: 'No torrents of this resources group is founded!',
       DELETE_CONFIRM_OK: 'Delete',
       DELETE_CONFIRM_CANCEL: 'Cancel',
       DELETE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
-      DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this maker group?',
+      DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this resources group?',
       DELETE_MEMBER_CONFIRM_BODY_TEXT: 'Are you sure want to delete the member from this group?',
-      DELETE_SUCCESSFULLY: 'Maker group deleted successfully',
-      DELETE_FAILED: 'Maker group deleted failed',
-      RATING_SUCCESSFULLY: 'Rating for maker group successfully',
-      RATING_FAILED: 'Rating for maker group failed',
+      DELETE_SUCCESSFULLY: 'Resources group deleted successfully',
+      DELETE_FAILED: 'Resources group deleted failed',
+      RATING_SUCCESSFULLY: 'Rating for resources group successfully',
+      RATING_FAILED: 'Rating for resources group failed',
       ADD_MEMBER_TITLE: 'Add Member',
       ADD_MEMBER_SUCCESSFULLY: 'Add group member successfully',
       ADD_MEMBER_FAILED: 'Add group member failed',
       REMOVE_MEMBER_SUCCESSFULLY: 'Remove group member successfully',
       REMOVE_MEMBER_FAILED: 'Remove group member failed',
       REMOVE_MEMBER_TITLE: 'Remove this member',
-      EDIT_DESC_SUCCESSFULLY: 'Edit maker group desc successfully',
-      EDIT_DESC_FAILED: 'Edit maker group desc failed'
+      EDIT_DESC_SUCCESSFULLY: 'Edit resources group desc successfully',
+      EDIT_DESC_FAILED: 'Edit resources group desc failed'
     },
 
     //collections views
@@ -889,7 +889,7 @@
       BTN_UNBAN: 'Unban',
       BTN_CREATE_MAKER: 'Create Maker',
       SEALED: 'sealed',
-      MAKER: 'Maker Group',
+      MAKER: 'Resources Group',
       VIP_START_AT: 'Vip start at',
       VIP_END_AT: 'Vip end at',
       MY_FOLLOWERS: 'My Followers',
@@ -1062,7 +1062,7 @@
 
     MESSAGE_TO_ICON_TITLE: 'Send a message to {{name}}',
     USER_INFO_TITLE: 'user info of {{name}}',
-    MAKER_INFO_TITLE: 'maker group info of {{name}}',
+    MAKER_INFO_TITLE: 'resources group info of {{name}}',
     USER_IS_VIP: '{{name}} is a VIP',
     USER_UPLOADED_FLAG: '{{name}} uploaded',
     USER_DOWNLOADED_FLAG: '{{name}} downloaded',
@@ -1598,7 +1598,7 @@
       EMAIL_ADDRESS_IS_NOT_ALLOW: 'The domain of this email address is not allowable from server',
       INFO_HASH_IS_EMPTY: 'Info hash field of torrent file is empty',
       INFO_HASH_ALREADY_EXISTS: 'This info hash value is already exists',
-      UPLOAD_ACCESS_DENY: 'System only accepts resource maker group to upload torrents'
+      UPLOAD_ACCESS_DENY: 'System only accepts resources group to upload torrents'
     },
 
     //server message string, content string support markdown and emoji
@@ -1612,20 +1612,20 @@
       TITLE_USER_VIP_CHANGED_ADD: 'Vip status changed',
       CONTENT_USER_VIP_CHANGED_ADD: '### Welcome! \n Your vip status changed, now end at: **{{vip_end_at | date: "yyyy-MM-dd HH:mm"}}**, all H&R warning already clean. :four_leaf_clover:',
 
-      TITLE_MAKER_CREATED: 'Maker group has created',
-      CONTENT_MAKER_CREATED: 'Administrator [{{by_name}}](/userinfo/{{by_id}}) already created a maker group [{{maker_name}}](/about/maker/{{maker_id}}) for you, you are the group founder now, Thank you for your contribution on **{{site_name}}** :100:',
+      TITLE_MAKER_CREATED: 'Resources group has created',
+      CONTENT_MAKER_CREATED: 'Administrator [{{by_name}}](/userinfo/{{by_id}}) already created a resources group [{{maker_name}}](/about/maker/{{maker_id}}) for you, you are the group founder now, Thank you for your contribution on **{{site_name}}** :100:',
 
-      TITLE_MAKER_DELETED: 'Maker group was deleted',
-      CONTENT_MAKER_DELETED: ':warning: Your maker group **-={{maker_name}}=-** was deleted by user [{{by_name}}](/userinfo/{{by_id}}), Thank you for your contribution on **{{site_name}}**.',
+      TITLE_MAKER_DELETED: 'Resources group was deleted',
+      CONTENT_MAKER_DELETED: ':warning: Your resources group **-={{maker_name}}=-** was deleted by user [{{by_name}}](/userinfo/{{by_id}}), Thank you for your contribution on **{{site_name}}**.',
 
-      TITLE_MAKER_UPLOAD_ACCESS_CHANGED: 'Maker group upload access changed',
-      CONTENT_MAKER_UPLOAD_ACCESS_CHANGED: '### upload access changed! \n Your upload access of maker group [{{maker_name}}](/about/maker/{{maker_id}}) was changed by user [{{by_name}}](/userinfo/{{by_id}}), current access is **{{maker_access | translate}}**, Thank you for your contribution on **{{site_name}}**.',
+      TITLE_MAKER_UPLOAD_ACCESS_CHANGED: 'Resources group upload access changed',
+      CONTENT_MAKER_UPLOAD_ACCESS_CHANGED: '### upload access changed! \n Your upload access of resources group [{{maker_name}}](/about/maker/{{maker_id}}) was changed by user [{{by_name}}](/userinfo/{{by_id}}), current access is **{{maker_access | translate}}**, Thank you for your contribution on **{{site_name}}**.',
 
-      TITLE_MAKER_ADD_MEMBER: 'Welcome become maker group member',
-      CONTENT_MAKER_ADD_MEMBER: '### Welcome! \n :clap: You have become a member of maker group [{{maker_name}}](/about/maker/{{maker_id}}) by user [{{by_name}}](/userinfo/{{by_id}}), Thank you for your contribution on **{{site_name}}**.',
+      TITLE_MAKER_ADD_MEMBER: 'Welcome become resources group member',
+      CONTENT_MAKER_ADD_MEMBER: '### Welcome! \n :clap: You have become a member of resources group [{{maker_name}}](/about/maker/{{maker_id}}) by user [{{by_name}}](/userinfo/{{by_id}}), Thank you for your contribution on **{{site_name}}**.',
 
-      TITLE_MAKER_REMOVE_MEMBER: 'Quit out of maker group',
-      CONTENT_MAKER_REMOVE_MEMBER: ':warning: You already quit out of maker group [{{maker_name}}](/about/maker/{{maker_id}}) by user [{{by_name}}](/userinfo/{{by_id}}), Thank you for your contribution on **{{site_name}}**.',
+      TITLE_MAKER_REMOVE_MEMBER: 'Quit out of resources group',
+      CONTENT_MAKER_REMOVE_MEMBER: ':warning: You already quit out of resources group [{{maker_name}}](/about/maker/{{maker_id}}) by user [{{by_name}}](/userinfo/{{by_id}}), Thank you for your contribution on **{{site_name}}**.',
 
       TITLE_HNR_WARNING_ADD: 'New H&R warning',
       CONTENT_HNR_WARNING_ADD: '### H&R warning! \n You just got a h&r warning on torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}), please continue to seeding, the warning will be auto cleanup when the seed ratio more than {{hnr_ratio}} or seed time more than {{hnr_days}} days or clean up manually at [warning list](/status/warning).',

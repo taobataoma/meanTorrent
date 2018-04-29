@@ -235,7 +235,7 @@ module.exports = {
      *                              If you limited some vpn ip to access it, please add the vpn ip into the @limitedIp array
      *                              If no limited ip, set the @limit to false
      * @upload:                     setting of access for torrents uploader
-     *        @limitToMakerGroup:   setting whether limit the access to maker group for torrents uploader
+     *        @limitToMakerGroup:   setting whether limit the access to resources group for torrents uploader
      *                              if false, everyone can upload torrent
      */
     access: {
@@ -517,7 +517,7 @@ module.exports = {
      *  @forumTopicTitleLength:       forum topic title length limit
      *  @forumTopicContentLength:     forum topic content length limit
      *  @forumReplyContentLength:     forum reply content length limit
-     *  @makerGroupDescLength:        maker group desc content length limit
+     *  @makerGroupDescLength:        resources group desc content length limit
      *  @collectionsOverviewLength:   movie collections overview content length limit
      */
     inputLength: {

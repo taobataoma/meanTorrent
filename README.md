@@ -92,7 +92,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 27. Software, game, picture, ebook type torrents support NOW!
 28. Admin can update or set users Vip attribute data manual in manage page.
 29. Admin or oper can set torrent 'VIP' attribute, all these torrents only __VIP__ user can list and download.
-30. Complete torrents maker group support, Admin can create a group and set a founder, and the founder can add or remove member users.
+30. Complete torrents resources group support, Admin can create a group and set a founder, and the founder can add or remove member users.
 31. Complete movie collections support, Admin can create a collection and insert any movie into it, user can view collection and download all torrents of the collection.
 32. Sort on torrent Vote, seeders, leechers, finished data on torrent list table head clicked events.
 33. Simple vip donate payment function, support Paypal me, Alipay Qrcode and Weixin QRcode.
@@ -109,7 +109,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 44. New user status 'idle' for long time not login, idle user can not download and can not announce, user can active account with fixed score numbers.
 45. Support anonymous uploader.
 46. In forum, Admin/Moderators and topic owner can edit topic title through click on the title text.
-47. New feature for list all uploader(maker group and user), admin can set uploader access to pass review directly when upload a torrent file.
+47. New feature for list all uploader(resources group and user), admin can set uploader access to pass review directly when upload a torrent file.
 48. Complete emoji support on chat room, message box.
 49. Complete server auto notice function to users.
 50. Complete RSS subscription support.
