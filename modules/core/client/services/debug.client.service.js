@@ -18,7 +18,7 @@
     return service;
 
     function debugInfo(obj) {
-      if (appConfig.showDebugLog) {
+      if (appConfig.showClientDebugLog) {
         console.log(obj);
       }
     }

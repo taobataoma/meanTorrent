@@ -20,7 +20,9 @@ module.exports = {
      * @admin:                          site admin mail address
      * @showDemoWarningPopup:           if is demo site, show warning popup whene home is opened for the first time.
      * @cronTimeZone:                   timezone of cron
-     * @showDebugLog:                   if true, will console.log all debug info at server side and client side. when your site is prod env, please change this
+     * @showClientDebugLog:             if true, will console.log all debug info at client side. when your site is prod env, please change this
+     *                                  value to false, then console.log info is not output
+     * @writeServerDebugLog:            if true, will console.log all debug info at server side. when your site is prod env, please change this
      *                                  value to false, then console.log info is not output
      */
     app: {
@@ -29,7 +31,8 @@ module.exports = {
       admin: 'admin@mean.im',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
-      showDebugLog: true
+      showClientDebugLog: true,
+      writeServerDebugLog: true
     },
 
     /**
@@ -112,6 +115,9 @@ module.exports = {
      * @warningCheck:
      *      @userHnrWarningCheckInterval:     setting check users H&R warning interval time, default to 2 hours
      *      @userHnrWarningCheckInterval_str: string desc of @userHnrWarningCheckInterval
+     * @debugAnnounceUser:                    setting of debug announce user, NOTE: enable this need @app.writeServerDebugLog must be true too
+     *      @debugAll:                        if true, debug all announce user, else debug user in ids list below
+     *      @ids:                             debug announce user id list
      */
     announce: {
       url: 'http://localhost:3000/announce',
@@ -140,6 +146,12 @@ module.exports = {
       warningCheck: {
         userHnrWarningCheckInterval: 60 * 60 * 1000 * 2,
         userHnrWarningCheckInterval_str: '2h'
+      },
+      debugAnnounceUser: {
+        debugAll: false,
+        ids: [
+          '59227f9095602327ea1d96ba'
+        ]
       }
     },
 

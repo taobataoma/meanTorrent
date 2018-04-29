@@ -8,6 +8,7 @@ var path = require('path'),
   config = require(path.resolve('./config/config'));
 
 var appConfig = config.meanTorrentConfig.app;
+var announceConfig = config.meanTorrentConfig.announce;
 
 module.exports.colorFunctionList = {
   red: chalk.red,
@@ -22,13 +23,24 @@ module.exports.colorFunctionList = {
  * @param obj
  * @param section
  */
-module.exports.info = function (obj, section = undefined, colorFunction = undefined, isAnnounce = false) {
-  if (appConfig.showDebugLog) {
+module.exports.info = function (obj, section = undefined, colorFunction = undefined, isAnnounce = false, user = undefined) {
+  if (appConfig.writeServerDebugLog) {
     var tools = isAnnounce ? loggerAnnounce : logger;
+
+    var userPrefix = '';
+    if (isAnnounce && !announceConfig.debugAnnounceUser.debugAll) {
+      if (user) {
+        if (!announceConfig.debugAnnounceUser.ids.includes(user._id.toString())) {
+          return;
+        } else {
+          userPrefix = ' - ' + user.displayName + ' - ' + user._id.toString();
+        }
+      }
+    }
 
     if (!colorFunction) {
       if (Array.isArray(obj)) {
-        tools.info('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : ''));
+        tools.info((section ? ' - ' + section : '') + userPrefix);
         obj.forEach(function (a) {
           if (typeof a !== 'object') {
             tools.info(a + '');
@@ -37,14 +49,14 @@ module.exports.info = function (obj, section = undefined, colorFunction = undefi
           }
         });
       } else if (typeof obj !== 'object') {
-        tools.info('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '') + ' - ' + obj);
+        tools.info((section ? ' - ' + section : '') + userPrefix + ' - ' + obj);
       } else {
-        tools.info('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : ''));
+        tools.info((section ? ' - ' + section : '') + userPrefix);
         tools.info(JSON.stringify(obj));
       }
     } else {
       if (Array.isArray(obj)) {
-        tools.info(colorFunction('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '')));
+        tools.info(colorFunction((section ? ' - ' + section : '') + userPrefix));
         obj.forEach(function (a) {
           if (typeof a !== 'object') {
             tools.info(a + '');
@@ -53,9 +65,9 @@ module.exports.info = function (obj, section = undefined, colorFunction = undefi
           }
         });
       } else if (typeof obj !== 'object') {
-        tools.info(colorFunction('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '') + ' - ' + obj));
+        tools.info(colorFunction((section ? ' - ' + section : '') + userPrefix + ' - ' + obj));
       } else {
-        tools.info(colorFunction('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '')));
+        tools.info(colorFunction((section ? ' - ' + section : '') + userPrefix));
         tools.info(JSON.stringify(obj));
       }
     }
@@ -67,8 +79,8 @@ module.exports.info = function (obj, section = undefined, colorFunction = undefi
  * @param obj
  * @param section
  */
-module.exports.debug = function (obj, section = undefined, isAnnounce = false) {
-  this.info(obj, section, undefined, isAnnounce);
+module.exports.debug = function (obj, section = undefined, isAnnounce = false, user = undefined) {
+  this.info(obj, section, undefined, isAnnounce, user);
 };
 
 /**
@@ -76,8 +88,8 @@ module.exports.debug = function (obj, section = undefined, isAnnounce = false) {
  * @param obj
  * @param section
  */
-module.exports.debugGreen = function (obj, section = undefined, isAnnounce = false) {
-  this.info(obj, section, this.colorFunctionList.green, isAnnounce);
+module.exports.debugGreen = function (obj, section = undefined, isAnnounce = false, user = undefined) {
+  this.info(obj, section, this.colorFunctionList.green, isAnnounce, user);
 
 };
 
@@ -86,8 +98,8 @@ module.exports.debugGreen = function (obj, section = undefined, isAnnounce = fal
  * @param obj
  * @param section
  */
-module.exports.debugRed = function (obj, section = undefined, isAnnounce = false) {
-  this.info(obj, section, this.colorFunctionList.red, isAnnounce);
+module.exports.debugRed = function (obj, section = undefined, isAnnounce = false, user = undefined) {
+  this.info(obj, section, this.colorFunctionList.red, isAnnounce, user);
 };
 
 /**
@@ -95,8 +107,8 @@ module.exports.debugRed = function (obj, section = undefined, isAnnounce = false
  * @param obj
  * @param section
  */
-module.exports.debugError = function (obj, section = undefined, isAnnounce = false) {
-  this.info(obj, section, this.colorFunctionList.error, isAnnounce);
+module.exports.debugError = function (obj, section = undefined, isAnnounce = false, user = undefined) {
+  this.info(obj, section, this.colorFunctionList.error, isAnnounce, user);
 };
 
 /**
@@ -104,8 +116,8 @@ module.exports.debugError = function (obj, section = undefined, isAnnounce = fal
  * @param obj
  * @param section
  */
-module.exports.debugBlue = function (obj, section = undefined, isAnnounce = false) {
-  this.info(obj, section, this.colorFunctionList.blue, isAnnounce);
+module.exports.debugBlue = function (obj, section = undefined, isAnnounce = false, user = undefined) {
+  this.info(obj, section, this.colorFunctionList.blue, isAnnounce, user);
 
 };
 
@@ -114,7 +126,7 @@ module.exports.debugBlue = function (obj, section = undefined, isAnnounce = fals
  * @param obj
  * @param section
  */
-module.exports.debugYellow = function (obj, section = undefined, isAnnounce = false) {
-  this.info(obj, section, this.colorFunctionList.yellow, isAnnounce);
+module.exports.debugYellow = function (obj, section = undefined, isAnnounce = false, user = undefined) {
+  this.info(obj, section, this.colorFunctionList.yellow, isAnnounce, user);
 };
 
