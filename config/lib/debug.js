@@ -27,28 +27,36 @@ module.exports.info = function (obj, section = undefined, colorFunction = undefi
     var tools = isAnnounce ? loggerAnnounce : logger;
 
     if (!colorFunction) {
-      if (typeof obj !== 'object') {
-        tools.info('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '') + ' - ' + obj);
-      } else if (Array.isArray(obj)) {
+      if (Array.isArray(obj)) {
         tools.info('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : ''));
         obj.forEach(function (a) {
-          tools.info(a + '');
+          if (typeof a !== 'object') {
+            tools.info(a + '');
+          } else {
+            tools.info(JSON.stringify(a));
+          }
         });
+      } else if (typeof obj !== 'object') {
+        tools.info('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '') + ' - ' + obj);
       } else {
         tools.info('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : ''));
-        tools.info(obj);
+        tools.info(JSON.stringify(obj));
       }
     } else {
-      if (typeof obj !== 'object') {
-        tools.info(colorFunction('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '') + ' - ' + obj));
-      } else if (Array.isArray(obj)) {
+      if (Array.isArray(obj)) {
         tools.info(colorFunction('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '')));
         obj.forEach(function (a) {
-          tools.info(a + '');
+          if (typeof a !== 'object') {
+            tools.info(a + '');
+          } else {
+            tools.info(JSON.stringify(a));
+          }
         });
+      } else if (typeof obj !== 'object') {
+        tools.info(colorFunction('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '') + ' - ' + obj));
       } else {
         tools.info(colorFunction('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '')));
-        tools.info(obj);
+        tools.info(JSON.stringify(obj));
       }
     }
   }
