@@ -40,7 +40,7 @@ module.exports.info = function (obj, section = undefined, colorFunction = undefi
 
     if (!colorFunction) {
       if (Array.isArray(obj)) {
-        tools.info((section ? ' - ' + section : '') + userPrefix);
+        tools.info((section ? section : '') + userPrefix);
         obj.forEach(function (a) {
           if (typeof a !== 'object') {
             tools.info(a + '');
@@ -49,14 +49,14 @@ module.exports.info = function (obj, section = undefined, colorFunction = undefi
           }
         });
       } else if (typeof obj !== 'object') {
-        tools.info((section ? ' - ' + section : '') + userPrefix + ' - ' + obj);
+        tools.info((section ? section : '') + userPrefix + ' - ' + obj);
       } else {
-        tools.info((section ? ' - ' + section : '') + userPrefix);
+        tools.info((section ? section : '') + userPrefix);
         tools.info(JSON.stringify(obj));
       }
     } else {
       if (Array.isArray(obj)) {
-        tools.info(colorFunction((section ? ' - ' + section : '') + userPrefix));
+        tools.info(colorFunction((section ? section : '') + userPrefix));
         obj.forEach(function (a) {
           if (typeof a !== 'object') {
             tools.info(a + '');
@@ -65,9 +65,9 @@ module.exports.info = function (obj, section = undefined, colorFunction = undefi
           }
         });
       } else if (typeof obj !== 'object') {
-        tools.info(colorFunction((section ? ' - ' + section : '') + userPrefix + ' - ' + obj));
+        tools.info(colorFunction((section ? section : '') + userPrefix + ' - ' + obj));
       } else {
-        tools.info(colorFunction((section ? ' - ' + section : '') + userPrefix));
+        tools.info(colorFunction((section ? section : '') + userPrefix));
         tools.info(JSON.stringify(obj));
       }
     }
