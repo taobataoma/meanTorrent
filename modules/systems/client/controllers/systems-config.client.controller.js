@@ -312,7 +312,6 @@
       }
 
       function showCommandStdout(res) {
-        console.log(res);
         vm.shellIsRunning = false;
 
         var stdoutElement = $('#stdout-message');

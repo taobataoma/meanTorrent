@@ -31,7 +31,6 @@
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
           SystemsService.initExaminationData(function (res) {
-            console.log(res);
             NotifycationService.showSuccessNotify('SYSTEMS.INIT_EXAMINATION_SUCCESSFULLY');
           }, function (err) {
             NotifycationService.showErrorNotify(err.data.message, 'SYSTEMS.INIT_EXAMINATION_ERRORU');

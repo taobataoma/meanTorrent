@@ -16,8 +16,20 @@ module.exports = {
     fileLogger: {
       directoryPath: process.cwd(),
       fileName: 'app.log',
-      maxsize: 10485760,
-      maxFiles: 2,
+      maxsize: 2097152,
+      maxFiles: 20,
+      json: false
+    }
+  },
+  logAnnounce: {
+    // logging with Morgan - https://github.com/expressjs/morgan
+    // Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'
+    format: 'dev',
+    fileLogger: {
+      directoryPath: process.cwd(),
+      fileName: 'announce.log',
+      maxsize: 2097152,
+      maxFiles: 20,
       json: false
     }
   },

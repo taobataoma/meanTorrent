@@ -369,8 +369,8 @@ exports.addVIPMonths = function (req, res) {
   var months = parseInt(req.params.months, 10);
 
   if (months > 0) {
-    mtDebug.debugBlue(user.vip_start_at);
-    mtDebug.debugBlue(user.vip_end_at);
+    mtDebug.debugBlue(user.vip_start_at, 'VIP_START_AT');
+    mtDebug.debugBlue(user.vip_end_at, 'VIP_END_AT');
 
     var now = moment(Date.now());
     var start = moment(user.vip_start_at);
@@ -386,8 +386,8 @@ exports.addVIPMonths = function (req, res) {
       end = moment(end).add(months, 'M');
     }
 
-    mtDebug.debugBlue(start);
-    mtDebug.debugBlue(end);
+    mtDebug.debugBlue(start, 'VIP_NEW_START_AT');
+    mtDebug.debugBlue(end, 'VIP_NEW_END_AT');
 
     user.vip_start_at = start;
     user.vip_end_at = end;

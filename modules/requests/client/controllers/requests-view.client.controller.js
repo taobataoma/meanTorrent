@@ -162,7 +162,6 @@
      */
     vm.scrollToElement = function (id) {
       var element = angular.element(id);
-      console.log(element);
 
       $timeout(function () {
         $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 300, function () {

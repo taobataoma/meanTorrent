@@ -38,8 +38,20 @@ module.exports = {
     fileLogger: {
       directoryPath: process.env.LOG_DIR_PATH || process.cwd(),
       fileName: process.env.LOG_FILE || 'app.log',
-      maxsize: 10485760,
-      maxFiles: 2,
+      maxsize: 2097152,
+      maxFiles: 20,
+      json: false
+    }
+  },
+  logAnnounce: {
+    // logging with Morgan - https://github.com/expressjs/morgan
+    // Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'
+    format: process.env.LOG_FORMAT || 'combined',
+    fileLogger: {
+      directoryPath: process.env.LOG_DIR_PATH || process.cwd(),
+      fileName: process.env.LOG_ANNOUNCE_FILE || 'announce.log',
+      maxsize: 2097152,
+      maxFiles: 20,
       json: false
     }
   },

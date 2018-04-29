@@ -2,22 +2,55 @@
 
 var path = require('path'),
   chalk = require('chalk'),
+  logger = require('./logger'),
+  loggerAnnounce = require('./loggerAnnounce'),
   moment = require('moment'),
   config = require(path.resolve('./config/config'));
 
 var appConfig = config.meanTorrentConfig.app;
+
+module.exports.colorFunctionList = {
+  red: chalk.red,
+  error: chalk.red,
+  blue: chalk.blue,
+  yellow: chalk.yellow,
+  green: chalk.green
+};
 
 /**
  * debug
  * @param obj
  * @param section
  */
-module.exports.info = function (obj, section) {
+module.exports.info = function (obj, section = undefined, colorFunction = undefined, isAnnounce = false) {
   if (appConfig.showDebugLog) {
-    if (section) {
-      console.log(section);
+    var tools = isAnnounce ? loggerAnnounce : logger;
+
+    if (!colorFunction) {
+      if (typeof obj !== 'object') {
+        tools.info('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '') + ' - ' + obj);
+      } else if (Array.isArray(obj)) {
+        tools.info('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : ''));
+        obj.forEach(function (a) {
+          tools.info(a + '');
+        });
+      } else {
+        tools.info('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : ''));
+        tools.info(obj);
+      }
+    } else {
+      if (typeof obj !== 'object') {
+        tools.info(colorFunction('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '') + ' - ' + obj));
+      } else if (Array.isArray(obj)) {
+        tools.info(colorFunction('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '')));
+        obj.forEach(function (a) {
+          tools.info(a + '');
+        });
+      } else {
+        tools.info(colorFunction('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '')));
+        tools.info(obj);
+      }
     }
-    console.log(obj);
   }
 };
 
@@ -26,11 +59,8 @@ module.exports.info = function (obj, section) {
  * @param obj
  * @param section
  */
-module.exports.debug = function (obj, section) {
-  if (appConfig.showDebugLog) {
-    console.log('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : ''));
-    console.log(obj);
-  }
+module.exports.debug = function (obj, section = undefined, isAnnounce = false) {
+  this.info(obj, section, undefined, isAnnounce);
 };
 
 /**
@@ -38,15 +68,9 @@ module.exports.debug = function (obj, section) {
  * @param obj
  * @param section
  */
-module.exports.debugGreen = function (obj, section) {
-  if (appConfig.showDebugLog) {
-    console.log(chalk.green('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '')));
-    if (typeof obj === 'string') {
-      console.log(chalk.green(obj));
-    } else {
-      console.log(obj);
-    }
-  }
+module.exports.debugGreen = function (obj, section = undefined, isAnnounce = false) {
+  this.info(obj, section, this.colorFunctionList.green, isAnnounce);
+
 };
 
 /**
@@ -54,18 +78,17 @@ module.exports.debugGreen = function (obj, section) {
  * @param obj
  * @param section
  */
-module.exports.debugRed = function (obj, section) {
-  if (appConfig.showDebugLog) {
-    console.log(chalk.red('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '')));
-    if (typeof obj === 'string') {
-      console.log(chalk.red(obj));
-    } else {
-      console.log(obj);
-    }
-  }
+module.exports.debugRed = function (obj, section = undefined, isAnnounce = false) {
+  this.info(obj, section, this.colorFunctionList.red, isAnnounce);
 };
-module.exports.debugError = function (obj, section) {
-  this.debugRed(obj, section);
+
+/**
+ * debugError
+ * @param obj
+ * @param section
+ */
+module.exports.debugError = function (obj, section = undefined, isAnnounce = false) {
+  this.info(obj, section, this.colorFunctionList.error, isAnnounce);
 };
 
 /**
@@ -73,15 +96,9 @@ module.exports.debugError = function (obj, section) {
  * @param obj
  * @param section
  */
-module.exports.debugBlue = function (obj, section) {
-  if (appConfig.showDebugLog) {
-    console.log(chalk.blue('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '')));
-    if (typeof obj === 'string') {
-      console.log(chalk.blue(obj));
-    } else {
-      console.log(obj);
-    }
-  }
+module.exports.debugBlue = function (obj, section = undefined, isAnnounce = false) {
+  this.info(obj, section, this.colorFunctionList.blue, isAnnounce);
+
 };
 
 /**
@@ -89,14 +106,7 @@ module.exports.debugBlue = function (obj, section) {
  * @param obj
  * @param section
  */
-module.exports.debugYellow = function (obj, section) {
-  if (appConfig.showDebugLog) {
-    console.log(chalk.yellow('[' + moment().format('YYYY-MM-DD HH:mm:ss') + ']' + (section ? ' - ' + section : '')));
-    if (typeof obj === 'string') {
-      console.log(chalk.yellow(obj));
-    } else {
-      console.log(obj);
-    }
-  }
+module.exports.debugYellow = function (obj, section = undefined, isAnnounce = false) {
+  this.info(obj, section, this.colorFunctionList.yellow, isAnnounce);
 };
 

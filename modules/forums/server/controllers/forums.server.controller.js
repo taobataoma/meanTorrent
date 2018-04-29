@@ -398,7 +398,7 @@ exports.globalTopics = function (req, res) {
         }
       });
 
-      mtDebug.debugBlue(ids);
+      mtDebug.debugBlue(ids, 'FORUMS_ID_LIST');
 
       Topic.find({
         isGlobal: true,

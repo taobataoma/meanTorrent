@@ -95,7 +95,6 @@
       }
 
       function onError(response) {
-        console.log(response);
         NotifycationService.showErrorNotify(response.data.message, 'UNFOLLOW_ERROR');
       }
     };

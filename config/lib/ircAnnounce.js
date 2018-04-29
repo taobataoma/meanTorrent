@@ -25,7 +25,7 @@ module.exports = function (app) {
   });
 
   client.addListener('error', function (message) {
-    console.log('IRC error: ', message);
+    console.log(chalk.red('IRC error: ' + message));
   });
 
   client.addListener('registered', function (message) {

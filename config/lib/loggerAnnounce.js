@@ -3,7 +3,6 @@
 var _ = require('lodash'),
   config = require('../config'),
   chalk = require('chalk'),
-  loggerAnnounce = require('./loggerAnnounce'),
   fs = require('fs'),
   winston = require('winston');
 
@@ -12,7 +11,7 @@ var validFormats = ['combined', 'common', 'dev', 'short', 'tiny'];
 
 // Instantiating the default winston application logger with the Console
 // transport
-var logger = new winston.Logger({
+var loggerAnnounce = new winston.Logger({
   transports: [
     new winston.transports.Console({
       level: 'info',
@@ -29,13 +28,9 @@ var logger = new winston.Logger({
 // logger.info() function.
 // Useful for integrating with stream-related mechanism like Morgan's stream
 // option to log all HTTP requests to a file
-logger.stream = {
+loggerAnnounce.stream = {
   write: function (msg) {
-    if (msg.indexOf('GET /announce') >= 0) {
-      loggerAnnounce.info(msg);
-    } else {
-      logger.info(msg);
-    }
+    loggerAnnounce.info(msg);
   }
 };
 
@@ -43,7 +38,7 @@ logger.stream = {
  * Instantiate a winston's File transport for disk file logging
  *
  */
-logger.setupFileLogger = function setupFileLogger() {
+loggerAnnounce.setupFileLogger = function setupFileLogger() {
 
   var fileLoggerTransport = this.getLogOptions();
   if (!fileLoggerTransport) {
@@ -54,7 +49,7 @@ logger.setupFileLogger = function setupFileLogger() {
     // Check first if the configured path is writable and only then
     // instantiate the file logging transport
     if (fs.openSync(fileLoggerTransport.filename, 'a+')) {
-      logger.add(winston.transports.File, fileLoggerTransport);
+      loggerAnnounce.add(winston.transports.File, fileLoggerTransport);
     }
 
     return true;
@@ -76,12 +71,12 @@ logger.setupFileLogger = function setupFileLogger() {
  *
  * Returns a Winston object for logging with the File transport
  */
-logger.getLogOptions = function getLogOptions() {
+loggerAnnounce.getLogOptions = function getLogOptions() {
 
   var _config = _.clone(config, true);
-  var configFileLogger = _config.log.fileLogger;
+  var configFileLogger = _config.logAnnounce.fileLogger;
 
-  if (!_.has(_config, 'log.fileLogger.directoryPath') || !_.has(_config, 'log.fileLogger.fileName')) {
+  if (!_.has(_config, 'logAnnounce.fileLogger.directoryPath') || !_.has(_config, 'logAnnounce.fileLogger.fileName')) {
     console.log('unable to find logging file configuration');
     return false;
   }
@@ -111,13 +106,13 @@ logger.getLogOptions = function getLogOptions() {
 /**
  * The options to use with morgan logger
  *
- * Returns a log.options object with a writable stream based on winston
+ * Returns a logAnnounce.options object with a writable stream based on winston
  * file logging transport (if available)
  */
-logger.getMorganOptions = function getMorganOptions() {
+loggerAnnounce.getMorganOptions = function getMorganOptions() {
 
   return {
-    stream: logger.stream
+    stream: loggerAnnounce.stream
   };
 
 };
@@ -125,10 +120,10 @@ logger.getMorganOptions = function getMorganOptions() {
 /**
  * The format to use with the logger
  *
- * Returns the log.format option set in the current environment configuration
+ * Returns the logAnnounce.format option set in the current environment configuration
  */
-logger.getLogFormat = function getLogFormat() {
-  var format = config.log && config.log.format ? config.log.format.toString() : 'combined';
+loggerAnnounce.getLogFormat = function getLogFormat() {
+  var format = config.logAnnounce && config.logAnnounce.format ? config.logAnnounce.format.toString() : 'combined';
 
   // make sure we have a valid format
   if (!_.includes(validFormats, format)) {
@@ -144,6 +139,6 @@ logger.getLogFormat = function getLogFormat() {
   return format;
 };
 
-logger.setupFileLogger();
+loggerAnnounce.setupFileLogger();
 
-module.exports = logger;
+module.exports = loggerAnnounce;

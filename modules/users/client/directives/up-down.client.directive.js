@@ -22,7 +22,6 @@
           var titled = $translate.instant('USER_DOWNLOADED_FLAG', {name: user.displayName});
           var cls = attrs.upDownClass;
 
-          console.log(user);
           var eu = angular.element('<span class="glyphicon glyphicon-arrow-up torrent-up" ng-click="$event.stopPropagation();"><span class="up-data">' + $filter('bytes')(user.uploaded) + '</span></span>');
           var ed = angular.element('<span class="glyphicon glyphicon-arrow-down torrent-down" ng-click="$event.stopPropagation();"><span class="down-data">' + $filter('bytes')(user.downloaded) + '</span></span>');
 

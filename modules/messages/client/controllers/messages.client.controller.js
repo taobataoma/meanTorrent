@@ -292,7 +292,6 @@
      * @param cnt
      */
     vm.contentToJSON = function (cnt) {
-      console.log(cnt);
       if (cnt.type === 'server' && (typeof cnt.content) === 'string') {
         cnt.content = JSON.parse(cnt.content);
 

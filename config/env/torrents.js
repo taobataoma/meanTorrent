@@ -1256,24 +1256,24 @@ module.exports = {
      * @mailTicketRepliesPerPage:       mail ticket replies list page settings
      */
     itemsPerPage: {
-      topicsPerPage: 10,
-      repliesPerPage: 10,
-      topicsSearchPerPage: 10,
-      torrentsPerPage: 15,
-      torrentsCommentsPerPage: 10,
-      makeGroupTorrentsPerPage: 10,
+      topicsPerPage: 25,
+      repliesPerPage: 20,
+      topicsSearchPerPage: 20,
+      torrentsPerPage: 20,
+      torrentsCommentsPerPage: 20,
+      makeGroupTorrentsPerPage: 20,
       tracesPerPage: 30,
-      adminUserListPerPage: 15,
-      collectionsListPerPage: 6,
-      backupFilesListPerPage: 15,
-      torrentPeersListPerPage: 15,
+      adminUserListPerPage: 20,
+      collectionsListPerPage: 9,
+      backupFilesListPerPage: 20,
+      torrentPeersListPerPage: 20,
 
-      uploaderUserListPerPage: 15,
+      uploaderUserListPerPage: 20,
       messageBoxListPerPage: 10,
       followListPerPage: 30,
 
       requestListPerPage: 15,
-      requestCommentsPerPage: 10,
+      requestCommentsPerPage: 20,
 
       homeOrderTorrentListPerType: 9,
       homeNewestTorrentListPerType: 14,
@@ -1284,9 +1284,9 @@ module.exports = {
 
       examinationUserListPerPage: 20,
       messageTicketsListPerPage: 15,
-      messageTicketRepliesPerPage: 10,
+      messageTicketRepliesPerPage: 20,
       mailTicketsListPerPage: 15,
-      mailTicketRepliesPerPage: 10
+      mailTicketRepliesPerPage: 20
     },
 
     /**

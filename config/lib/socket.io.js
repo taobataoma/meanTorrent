@@ -6,6 +6,7 @@ var config = require('../config'),
   fs = require('fs'),
   http = require('http'),
   https = require('https'),
+  chalk = require('chalk'),
   cookieParser = require('cookie-parser'),
   passport = require('passport'),
   socketio = require('socket.io'),
@@ -25,7 +26,7 @@ module.exports = function (app, db) {
     try {
       caBundle = fs.readFileSync(path.resolve(config.secure.caBundle), 'utf8');
     } catch (err) {
-      console.log('Warning: couldn\'t find or read caBundle file');
+      console.log(chalk.red('Warning: couldn\'t find or read caBundle file'));
     }
 
     var options = {

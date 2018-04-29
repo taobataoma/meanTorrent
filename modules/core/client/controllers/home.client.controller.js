@@ -55,7 +55,6 @@
     vm.getForumList = function () {
       ForumsService.get({}, function (items) {
         vm.forums = items.forumsList;
-        console.log(items);
       });
     };
 

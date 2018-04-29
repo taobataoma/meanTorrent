@@ -42,7 +42,6 @@
           //t_progressbar.progressbarEl.css('right', '8px');
 
           //element.css('margin-bottom', '8px');
-          //console.log(t_progressbar);
         }
       });
     }
@@ -90,7 +89,6 @@
           //t_progressbar.progressbarEl.css('right', '8px');
 
           //element.css('margin-bottom', '8px');
-          //console.log(t_progressbar);
         }
       });
     }
