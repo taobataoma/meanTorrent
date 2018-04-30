@@ -50,7 +50,11 @@
     vm.torrentFigureOutItemsToDisplay = function (callback) {
       vm.getResourcePageInfo(vm.torrentCurrentPage, function (items) {
         vm.torrentFilterLength = items.total;
-        vm.torrentPagedItems = vm.torrentPagedItems.concat(items.rows);
+        if (vm.moreTopInfo && vm.moreTopInfo.length > 0 && vm.torrentCurrentPage === 1) {
+          vm.torrentPagedItems = vm.moreTopInfo.concat(items.rows);
+        } else {
+          vm.torrentPagedItems = items.rows;
+        }
 
         if (callback) callback();
       });
@@ -88,8 +92,10 @@
           mtDebug.info(items);
           vm.listTopInfo = items.rows.slice(0, 6);
           if (items.total > vm.topItems) {
-            var more = items.rows.slice(vm.topItems, items.total);
-            vm.torrentPagedItems = more.concat(vm.torrentPagedItems);
+            vm.moreTopInfo = items.rows.slice(vm.topItems, items.total);
+          }
+          if (vm.moreTopInfo && vm.moreTopInfo.length > 0) {
+            vm.torrentPagedItems = vm.moreTopInfo.concat(vm.torrentPagedItems);
           }
         }, function (err) {
           Notification.error({
