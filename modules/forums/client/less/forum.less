@@ -27,6 +27,14 @@
         word-break: normal;
         color: #666;
     }
+    .reply-width {
+        @media(min-width: @screen-lg-min){
+            width: 300px;
+        }
+        @media(max-width: @screen-md-max){
+            width: 250px;
+        }
+    }
     table {
         border-spacing: 0;
         border-collapse: inherit;
