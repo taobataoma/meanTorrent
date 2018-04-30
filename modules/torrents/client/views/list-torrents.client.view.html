@@ -32,6 +32,10 @@
                         </table>
                     </div>
 
+                    <div class="top-status-icon">
+                        <span>{{'TORRENT_STATUS_TOP_TITLE' | translate}}</span>
+                    </div>
+
                     <div class="torrent-tmdb-info">
                         <div card-progress="item.my_peers"></div>
                         <ul class="list-unstyled">
@@ -247,6 +251,8 @@
                                               ng-click="$event.stopPropagation();">
                                             {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent_recommended.toUpperCase() | translate}}
                                         </span>
+                                        <span title="{{ 'TORRENT_STATUS_TOP_TITLE' | translate}}" ng-if="item.isTop"
+                                              class="torrent-votes"><kbd>{{'STATUS_TOP_KEY' | translate}}</kbd></span>
                                         <span class="label label-sale" ng-if="item.isSaling"
                                               title="{{vm.TGI.getTorrentSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
                                               ng-click="vm.onSaleClicked(); $event.stopPropagation();"

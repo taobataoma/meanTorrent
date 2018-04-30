@@ -380,6 +380,8 @@
     UPLOAD_TIME: 'Upload Time',
     VIDEO_SALE_INFO: 'Video Sale Info',
     SALE_EXPIRES_TIME: 'expires',
+    TORRENT_STATUS_TOP_TITLE: 'Top Level',
+    STATUS_TOP_KEY: 'TOP',
     UPLOAD_SUBTITLE: 'Upload Subtitle file',
     SUBTITLE_LIST: 'Subtitle list',
     SUBTITLE_RULES: {
@@ -414,6 +416,8 @@
     ADMIN_BASIC_SET_VIP: 'SetVIP',
     ADMIN_BASIC_EDIT_TAGS: 'Edit Tags',
     ADMIN_BASIC_UNSET_VIP: 'UnsetVIP',
+    ADMIN_BASIC_SET_TOP: 'SetTop',
+    ADMIN_BASIC_UNSET_TOP: 'UnsetTop',
     ADMIN_BASIC_TYPE_SET: 'Sale Type',
     ADMIN_SALE_TYPE_SET: 'Sale Type Set',
     ADMIN_BASIC_RLEVEL_SET: 'Recommend Level',
@@ -455,6 +459,8 @@
     TORRENT_TOGGLE_HNR_FAILED: 'Torrent toggle HnR tag failed',
     TORRENT_TOGGLE_VIP_SUCCESSFULLY: 'Torrent toggle VIP tag successfully',
     TORRENT_TOGGLE_VIP_FAILED: 'Torrent toggle VIP tag failed',
+    TORRENT_TOGGLE_TOP_SUCCESSFULLY: 'Torrent toggle TOP tag successfully',
+    TORRENT_TOGGLE_TOP_FAILED: 'Torrent toggle TOP tag failed',
     TORRENT_SETTAGS_SUCCESSFULLY: 'Torrent tags set successfully',
     TORRENT_SETTAGS_ERROR: 'Torrent tags set failed',
 
@@ -569,8 +575,7 @@
       LEVEL0: 'NONE',
       LEVEL1: 'LEVEL1',
       LEVEL2: 'LEVEL2',
-      LEVEL3: 'LEVEL3',
-      LEVEL4: 'LEVEL4'
+      LEVEL3: 'LEVEL3'
     },
 
     SET_ROLE_SUCCESSFULLY: 'set user role successfully',
@@ -1669,6 +1674,9 @@
 
       TITLE_TORRENT_HNR_CHANGED: 'Torrent H&R status changed',
       CONTENT_TORRENT_HNR_CHANGED: '### H&R status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) H&R status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{hnr_status}}**.',
+
+      TITLE_TORRENT_TOP_CHANGED: 'Torrent TOP status changed',
+      CONTENT_TORRENT_TOP_CHANGED: '### TOP status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) TOP status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{top_status}}**.',
 
       TITLE_TORRENT_SALE_CHANGED: 'Torrent sale status changed',
       CONTENT_TORRENT_SALE_CHANGED: '### Sale status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) sale status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{sale_status}}**.',

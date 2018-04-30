@@ -50,7 +50,7 @@
     vm.torrentFigureOutItemsToDisplay = function (callback) {
       vm.getResourcePageInfo(vm.torrentCurrentPage, function (items) {
         vm.torrentFilterLength = items.total;
-        vm.torrentPagedItems = items.rows;
+        vm.torrentPagedItems = vm.torrentPagedItems.concat(items.rows);
 
         if (callback) callback();
       });
@@ -80,13 +80,17 @@
     vm.getResourceTopInfo = function () {
       if (vm.torrentType !== 'aggregate') {
         TorrentsService.get({
-          limit: vm.topItems,
           torrent_status: 'reviewed',
           torrent_type: vm.torrentType === 'aggregate' ? 'all' : vm.torrentType,
-          torrent_vip: false
+          torrent_vip: false,
+          isTop: true
         }, function (items) {
           mtDebug.info(items);
-          vm.listTopInfo = items.rows;
+          vm.listTopInfo = items.rows.slice(0,6);
+          if (items.total > vm.topItems) {
+            var more = items.rows.slice(vm.topItems, items.total);
+            vm.torrentPagedItems = more.concat(vm.torrentPagedItems);
+          }
         }, function (err) {
           Notification.error({
             message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_LIST_INFO_ERROR')
@@ -281,10 +285,7 @@
      */
     vm.getResourcePageInfo = function (p, callback) {
       //if searchKey or searchTags has value, the skip=0
-      var skip = vm.topItems;
-      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear || vm.filterHnR || vm.filterSale || vm.sort || vm.torrentType === 'aggregate' || vm.torrentType === 'all') {
-        skip = 0;
-      }
+      var skip = 0;
 
       TorrentsService.get({
         skip: (p - 1) * vm.torrentItemsPerPage + skip,

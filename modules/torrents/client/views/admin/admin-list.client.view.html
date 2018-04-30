@@ -200,6 +200,7 @@
                                     <div class="torrent-filename text-long">{{item.torrent_filename | filename}}</div>
 
                                     <div class="list-all-tags">
+                                        <i class="fa fa-tumblr-square text-mt" title="{{'TORRENT_STATUS_TOP_TITLE' | translate}}" aria-hidden="true" ng-if="item.isTop"></i>
                                         <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
                                         <span class="label label-ttype label-primary" ng-click="$event.stopPropagation();"
                                               ng-if="vm.selectedType=='newest'">
@@ -321,6 +322,11 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
+                            <div class="margin-top-2">
+                                <button class="btn btn-xs btn-default btn-block" ng-click="vm.toggleTop(item); $event.stopPropagation();">
+                                    {{ (item.isTop ? 'ADMIN_BASIC_UNSET_TOP' : 'ADMIN_BASIC_SET_TOP') | translate}}
+                                </button>
                             </div>
                         </td>
                     </tr>

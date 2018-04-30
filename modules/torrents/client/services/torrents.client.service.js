@@ -82,6 +82,13 @@
           torrentId: '@_id'
         }
       },
+      toggleTopStatus: {
+        method: 'PUT',
+        url: '/api/torrents/:torrentId/toggleTOPStatus',
+        params: {
+          torrentId: '@_id'
+        }
+      },
       thumbsUp: {
         method: 'PUT',
         url: '/api/torrents/:torrentId/thumbsUp',

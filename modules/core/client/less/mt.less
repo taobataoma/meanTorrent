@@ -370,6 +370,24 @@ body {
         .torrent-logo {
             opacity: 1;
         }
+        .top-status-icon {
+            background-color: @mt-base-color;
+            background-color: rgba(255, 102, 0, 1);
+            &::before {
+                position: absolute;
+                top: 0;
+                right: -24px;
+                display: block;
+                width: 0;
+                height: 100%;
+                pointer-events: none;
+                content: " ";
+                border-color: rgba(255, 102, 0, 1);
+                border-style: solid solid solid;
+                border-width: 12px;
+                border-right-color: transparent;
+            }
+        }
     }
     img {
         opacity: 0.8;
@@ -515,6 +533,33 @@ body {
     .votes-info {
         position: absolute;
         right: 5px;
+    }
+}
+
+.top-status-icon {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    padding: 2px 0 2px 5px;
+    color: #fff;
+    background-color: @mt-base-color;
+    background-color: rgba(255, 102, 0, 0.8);
+    > span {
+        font-size: 12px;
+    }
+    &::before {
+        position: absolute;
+        top: 0;
+        right: -24px;
+        display: block;
+        width: 0;
+        height: 100%;
+        pointer-events: none;
+        content: " ";
+        border-color: rgba(255, 102, 0, 0.8);
+        border-style: solid solid solid;
+        border-width: 12px;
+        border-right-color: transparent;
     }
 }
 
@@ -1041,7 +1086,14 @@ body {
     }
     .td-admin-cmd {
         min-width: 143px;
+        padding: 0 !important;
     }
+}
+
+.fa-tumblr-square {
+    position: relative;
+    top: 3px;
+    font-size: 21px;
 }
 
 .other-torrent-info {

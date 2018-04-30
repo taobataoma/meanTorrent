@@ -914,6 +914,39 @@ exports.toggleVIPStatus = function (req, res) {
 };
 
 /**
+ * toggleTOPStatus
+ * @param req
+ * @param res
+ */
+exports.toggleTOPStatus = function (req, res) {
+  var torrent = req.torrent;
+
+  torrent.isTop = !torrent.isTop;
+  torrent.topedat = Date.now();
+
+  torrent.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(torrent);
+
+      //add server message
+      if (serverNoticeConfig.action.torrentTopChanged.enable) {
+        serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.torrentTopChanged.title, serverNoticeConfig.action.torrentTopChanged.content, {
+          torrent_file_name: torrent.torrent_filename,
+          torrent_id: torrent._id,
+          by_name: req.user.displayName,
+          by_id: req.user._id,
+          top_status: torrent.isTop ? 'ON' : 'OFF'
+        });
+      }
+    }
+  });
+};
+
+/**
  * removeTorrentHnRWarning
  * @param torrent
  */
@@ -1454,6 +1487,7 @@ exports.list = function (req, res) {
   var stype = 'movie';
   var newest = false;
   var hnr = false;
+  var top = false;
   var sale = false;
   var vip = undefined;
   var release = undefined;
@@ -1488,6 +1522,9 @@ exports.list = function (req, res) {
   }
   if (req.query.torrent_hnr !== undefined) {
     hnr = (req.query.torrent_hnr === 'true');
+  }
+  if (req.query.isTop !== undefined) {
+    top = (req.query.isTop === 'true');
   }
   if (req.query.torrent_sale !== undefined) {
     sale = (req.query.torrent_sale === 'true');
@@ -1541,6 +1578,10 @@ exports.list = function (req, res) {
   }
   if (hnr === true) {
     condition.torrent_hnr = true;
+  }
+  if (top === true) {
+    condition.isTop = true;
+    sort = {topedat: -1, createdat: -1};
   }
   if (sale === true) {
     condition.torrent_sale_status = {

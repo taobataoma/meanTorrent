@@ -108,6 +108,10 @@ var TorrentSchema = new Schema({
     type: Boolean,
     default: false
   },
+  isTop: {
+    type: Boolean,
+    default: false
+  },
   isAnonymous: {
     type: Boolean,
     default: false
@@ -137,6 +141,10 @@ var TorrentSchema = new Schema({
     default: Date.now
   },
   orderedat: {
+    type: Date,
+    default: Date.now
+  },
+  topedat: {
     type: Date,
     default: Date.now
   },

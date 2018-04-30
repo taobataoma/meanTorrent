@@ -579,6 +579,7 @@ module.exports = {
         torrentThumbsUp: {title: 'TITLE_TORRENT_THUMBS_UP', content: 'CONTENT_TORRENT_THUMBS_UP', enable: true},
         torrentReviewed: {title: 'TITLE_TORRENT_REVIEWED', content: 'CONTENT_TORRENT_REVIEWED', enable: true},
         torrentVipChanged: {title: 'TITLE_TORRENT_VIP_CHANGED', content: 'CONTENT_TORRENT_VIP_CHANGED', enable: true},
+        torrentTopChanged: {title: 'TITLE_TORRENT_TOP_CHANGED', content: 'CONTENT_TORRENT_TOP_CHANGED', enable: true},
         torrentHnRChanged: {title: 'TITLE_TORRENT_HNR_CHANGED', content: 'CONTENT_TORRENT_HNR_CHANGED', enable: true},
         torrentSaleChanged: {title: 'TITLE_TORRENT_SALE_CHANGED', content: 'CONTENT_TORRENT_SALE_CHANGED', enable: true},
         torrentDeleted: {title: 'TITLE_TORRENT_DELETED', content: 'CONTENT_TORRENT_DELETED', enable: true},
@@ -914,8 +915,7 @@ module.exports = {
         {name: 'LEVEL0', value: 'level0'},
         {name: 'LEVEL1', value: 'level1'},
         {name: 'LEVEL2', value: 'level2'},
-        {name: 'LEVEL3', value: 'level3'},
-        {name: 'LEVEL4', value: 'level4'}
+        {name: 'LEVEL3', value: 'level3'}
       ]
     },
 

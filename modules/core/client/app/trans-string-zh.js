@@ -380,6 +380,8 @@
     UPLOAD_TIME: '上传时间',
     VIDEO_SALE_INFO: '视频促销信息',
     SALE_EXPIRES_TIME: '过期',
+    TORRENT_STATUS_TOP_TITLE: '置顶推荐',
+    STATUS_TOP_KEY: '置顶',
     UPLOAD_SUBTITLE: '上传字幕文件',
     SUBTITLE_LIST: '字幕列表',
     SUBTITLE_RULES: {
@@ -414,6 +416,8 @@
     ADMIN_BASIC_SET_VIP: '设置VIP',
     ADMIN_BASIC_EDIT_TAGS: '编辑标签',
     ADMIN_BASIC_UNSET_VIP: '取消VIP',
+    ADMIN_BASIC_SET_TOP: '设为置顶',
+    ADMIN_BASIC_UNSET_TOP: '取消置顶',
     ADMIN_BASIC_TYPE_SET: '设置促销',
     ADMIN_SALE_TYPE_SET: '种子促销类型',
     ADMIN_BASIC_RLEVEL_SET: '推荐级别',
@@ -455,6 +459,8 @@
     TORRENT_TOGGLE_HNR_FAILED: '改变种子HnR标签失败',
     TORRENT_TOGGLE_VIP_SUCCESSFULLY: '改变种子VIP标签成功',
     TORRENT_TOGGLE_VIP_FAILED: '改变种子VIP标签失败',
+    TORRENT_TOGGLE_TOP_SUCCESSFULLY: '改变种子置顶状态成功',
+    TORRENT_TOGGLE_TOP_FAILED: '改变种子置顶状态失败',
     TORRENT_SETTAGS_SUCCESSFULLY: '种子属性标签设置成功',
     TORRENT_SETTAGS_ERROR: '种子属性标签设置失败',
 
@@ -569,8 +575,7 @@
       LEVEL0: '无',
       LEVEL1: '一级推荐',
       LEVEL2: '二级推荐',
-      LEVEL3: '三级推荐',
-      LEVEL4: '特别推荐'
+      LEVEL3: '三级推荐'
     },
 
     SET_ROLE_SUCCESSFULLY: '用户角色权限设置成功',
@@ -1669,6 +1674,9 @@
 
       TITLE_TORRENT_HNR_CHANGED: '上传的种子 H&R 状态改变',
       CONTENT_TORRENT_HNR_CHANGED: '### H&R 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) H&R 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{hnr_status}}**.',
+
+      TITLE_TORRENT_TOP_CHANGED: '上传的种子 置顶 状态改变',
+      CONTENT_TORRENT_TOP_CHANGED: '### 置顶 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 置顶 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{top_status}}**.',
 
       TITLE_TORRENT_SALE_CHANGED: '上传的种子促销状态改变',
       CONTENT_TORRENT_SALE_CHANGED: '### 促销状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 促销状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{sale_status}}**.',

@@ -190,7 +190,8 @@
                                             </div>
                                         </div>
 
-                                        <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
+                                        <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-mt-o-light"
+                                                base-class="btn-mt-o-primary"
                                                 ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
                                                 ng-click="vm.beginEditOverview(vm.torrentLocalInfo)">
                                             {{'EDIT_THIS_OVERVIEW' | translate}}
@@ -640,9 +641,11 @@
                     <!--</span>-->
                 </dd>
 
-                <div ng-if="vm.torrentLocalInfo.torrent_recommended != 'level0'">
+                <div ng-if="vm.torrentLocalInfo.torrent_recommended != 'level0' || vm.torrentLocalInfo.isTop">
                     <dt class="h-line">{{ 'ADMIN_BASIC_RLEVEL_SET' | translate}}：</dt>
                     <dd class="h-line">
+                        <i class="fa fa-tumblr-square text-mt" title="{{'TORRENT_STATUS_TOP_TITLE' | translate}}" aria-hidden="true"
+                           ng-if="vm.torrentLocalInfo.isTop"></i>
                         <span class="label label-rlevel label-info">
                             {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + vm.torrentLocalInfo.torrent_recommended.toUpperCase() | translate}}
                         </span>
@@ -1043,11 +1046,14 @@
                             ng-click="vm.toggleVIP();">{{ (vm.torrentLocalInfo.torrent_vip ? 'ADMIN_BASIC_UNSET_VIP' : 'ADMIN_BASIC_SET_VIP') | translate}}
                     </button>
                     <button class="btn btn-default btn-sm"
+                            ng-click="vm.toggleTop();">{{ (vm.torrentLocalInfo.isTop ? 'ADMIN_BASIC_UNSET_TOP' : 'ADMIN_BASIC_SET_TOP') | translate}}
+                    </button>
+                    <button class="btn btn-default btn-sm"
                             ng-click="vm.editTags($event);">{{ 'ADMIN_BASIC_EDIT_TAGS' | translate}}
                     </button>
                 </dd>
 
-                <div class="margin-top-10" ng-if="vm.torrentLocalInfo.torrent_type=='movie' && vm.showCollectionCommand()">
+                <div class="margin-top-20" ng-if="vm.torrentLocalInfo.torrent_type=='movie' && vm.showCollectionCommand()">
                     <dt class="h-line">{{ 'ADMIN_COLLECTION_COMMAND' | translate}}:</dt>
                     <dd class="h-line">
                         <button class="btn btn-default btn-sm"
@@ -1059,10 +1065,12 @@
                     </dd>
                 </div>
 
-                <dt class="h-line">{{ 'ADMIN_SALE_TYPE_SET' | translate}}:</dt>
-                <dd class="h-line">
-                    <mark>{{vm.TGI.getTorrentSaleTypeDesc(vm.torrentLocalInfo);}}</mark>
-                </dd>
+                <div class="padding-top-20">
+                    <dt class="h-line">{{ 'ADMIN_SALE_TYPE_SET' | translate}}:</dt>
+                    <dd class="h-line">
+                        <mark>{{vm.TGI.getTorrentSaleTypeDesc(vm.torrentLocalInfo);}}</mark>
+                    </dd>
+                </div>
 
                 <div class="padding-top-10 margin-left-50">
                     <div class="btn-group sales-btn-group text-center">

@@ -68,6 +68,9 @@ module.exports = function (app) {
   app.route('/api/torrents/:torrentId/toggleVIPStatus').all(torrentsPolicy.isAllowed)
     .put(torrents.toggleVIPStatus);
 
+  app.route('/api/torrents/:torrentId/toggleTOPStatus').all(torrentsPolicy.isAllowed)
+    .put(torrents.toggleTOPStatus);
+
   app.route('/api/torrents/:torrentId/set/saletype/:saleType').all(torrentsPolicy.isAllowed)
     .put(torrents.setSaleType);
 
