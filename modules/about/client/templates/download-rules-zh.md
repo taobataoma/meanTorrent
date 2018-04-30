@@ -48,7 +48,7 @@
 
 #### :white_small_square: 客户端限制
 
-* %(appConfig.name)s 禁止一些特定的客户端软件访问，点此查看 [禁止客户端列表](/about/blank)。
+* %(appConfig.name)s 禁止一些特定的客户端软件访问，点此查看 [禁止客户端列表](/about/black)。
 
 &emsp;
 

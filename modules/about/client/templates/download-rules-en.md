@@ -48,7 +48,7 @@
 
 #### :white_small_square: Client limit
 
-* %(appConfig.name)s prohibits specific client software access, click here to view [Client black list](/about/blank)。
+* %(appConfig.name)s prohibits specific client software access, click here to view [Client black list](/about/black)。
 
 &emsp;
 
