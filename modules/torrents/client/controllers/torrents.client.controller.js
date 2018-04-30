@@ -86,7 +86,7 @@
           isTop: true
         }, function (items) {
           mtDebug.info(items);
-          vm.listTopInfo = items.rows.slice(0,6);
+          vm.listTopInfo = items.rows.slice(0, 6);
           if (items.total > vm.topItems) {
             var more = items.rows.slice(vm.topItems, items.total);
             vm.torrentPagedItems = more.concat(vm.torrentPagedItems);
