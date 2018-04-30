@@ -21,12 +21,13 @@ angular
     };
   }])
 
-  .directive('mtCopyToClipboard', ['mtCopy', function (mtCopy) {
+  .directive('mtCopyToClipboard', ['mtCopy', 'NotifycationService', function (mtCopy, NotifycationService) {
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
         element.bind('click', function (e) {
           mtCopy(attrs.mtCopyToClipboard);
+          NotifycationService.showNotify('info', '', 'COPY_TO_CLIPBOARD_SUCCESSFULLY');
         });
       }
     };

@@ -345,6 +345,7 @@
     DESC_MAKE_RSS_URL: 'This RSS url is make with above filter conditions, you can used it in the BT client (such as uTorrent) that supports the RSS subscription function to download torrent and resources automatic.',
     COPY_TO_CLIPBOARD: 'Copy to clipboard',
     COPY_LINK_TO_CLIPBOARD: 'Copy torrent file download link to clipboard',
+    COPY_TO_CLIPBOARD_SUCCESSFULLY: 'Copy data to clipboard successfully!',
     PH_KEYWORD: 'Search keyword',
     CLEAR_ALL_CONDITION: 'Clear All Condition',
     MORE_TAGS: 'More Tags',
