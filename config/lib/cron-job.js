@@ -3,6 +3,7 @@
 var path = require('path'),
   config = require(path.resolve('./config/config')),
   common = require(path.resolve('./config/lib/common')),
+  logger = require('./logger'),
   scoreLib = require(path.resolve('./config/lib/score')),
   mongoose = require('mongoose'),
   chalk = require('chalk'),
@@ -88,7 +89,7 @@ function cronJobHnR() {
     //cronTime: '*/5 * * * * *',
     cronTime: '00 00 * * * *',
     onTick: function () {
-      console.log(chalk.green('cronJob: process!'));
+      logger.info(chalk.green('cronJob: process!'));
     },
     start: false,
     timeZone: appConfig.cronTimeZone
@@ -108,7 +109,7 @@ function cronJobBackupMongoDB() {
     //cronTime: '*/5 * * * * *',
     //cronTime: '00 00 * * * *',
     onTick: function () {
-      console.log(chalk.green('cronJobBackupMongoDB: process!'));
+      logger.info(chalk.green('cronJobBackupMongoDB: process!'));
 
       backup({
         uri: config.db.uri,
@@ -135,7 +136,7 @@ function removeGhostPeers() {
     cronTime: '00 05 1 * * *',
     //cronTime: '*/5 * * * * *',
     onTick: function () {
-      console.log(chalk.green('removeGhostPeers: process!'));
+      logger.info(chalk.green('removeGhostPeers: process!'));
 
       Peer.find({
         last_announce_at: {$lt: Date.now() - announceConfig.ghostCheck.ghostPeersIdleTime}
@@ -170,7 +171,7 @@ function removeGhostPeers() {
               p.remove();
             });
 
-            console.log(chalk.green('removed ghost peers: ' + count));
+            logger.info(chalk.green('removed ghost peers: ' + count));
           }
         });
     },
@@ -191,7 +192,7 @@ function checkUserAccountIdleStatus() {
     cronTime: '00 10 1 * * *',
     // cronTime: '*/30 * * * * *',
     onTick: function () {
-      console.log(chalk.green('checkUserAccountIdleStatus: process!'));
+      logger.info(chalk.green('checkUserAccountIdleStatus: process!'));
 
       var safeScore = scoreLib.getScoreByLevel(signConfig.idle.notIdleSafeLevel);
 
@@ -233,7 +234,7 @@ function countUsersHnrWarning() {
     cronTime: '00 00 */' + hours + ' * * *',
     //cronTime: '*/5 * * * * *',
     onTick: function () {
-      console.log(chalk.green('countHnrWarning: process!'));
+      logger.info(chalk.green('countHnrWarning: process!'));
 
       Complete.find({
         complete: true,
@@ -267,8 +268,8 @@ function listenServiceEmail() {
     // cronTime: '*/10 * * * * *',
     cronTime: '00 00 * * * *',
     onTick: function () {
-      // console.log(chalk.green('listenServiceEmail: process!'));
-      // console.log(chalk.green(listenServiceEmailJob.running));
+      // logger.info(chalk.green('listenServiceEmail: process!'));
+      // logger.info(chalk.green(listenServiceEmailJob.running));
 
       if (!listenServiceEmailJob.listeningServiceEmail) {
         var client = inbox.createConnection(false, config.mailer.options.imap, {
@@ -283,7 +284,7 @@ function listenServiceEmail() {
          * on connect
          */
         client.on('connect', function () {
-          console.log(chalk.green('CONNECT to ' + config.mailer.options.auth.user + ' successfully!'));
+          logger.info(chalk.green('CONNECT to ' + config.mailer.options.auth.user + ' successfully!'));
           listenServiceEmailJob.listeningServiceEmail = true;
           client.openMailbox('INBOX', false, function (error, info) {
             if (error) throw error;
@@ -303,7 +304,7 @@ function listenServiceEmail() {
          */
         client.on('close', function () {
           listenServiceEmailJob.listeningServiceEmail = false;
-          console.log('DISCONNECTED from ' + config.mailer.options.auth.user);
+          logger.info('DISCONNECTED from ' + config.mailer.options.auth.user);
         });
 
         /**
@@ -329,8 +330,8 @@ function listenServiceEmail() {
   function addNewMessageToTicket(client, message, isNew = true) {
     simpleParser(client.createMessageStream(message.UID), function (err, mail_object) {
       client.addFlags(message.UID, ['\\Seen'], function (err, flags) {
-        console.log(chalk.blue('Check-out ' + (isNew ? 'new' : 'unseen') + ' email from ' + config.mailer.options.auth.user));
-        // console.log(mail_object);
+        logger.info(chalk.blue('Check-out ' + (isNew ? 'new' : 'unseen') + ' email from ' + config.mailer.options.auth.user));
+        // logger.info(mail_object);
 
         // write unseen/new message into mail-tickets db table
         if (mail_object.references) { //reply message
@@ -350,12 +351,12 @@ function listenServiceEmail() {
                 if (err) {
                   mtDebug.debugError('write reply mail ticket info db failed!');
                 } else {
-                  console.log('From: ', mail_object.from.text);
-                  console.log('MessageId: ', mail_object.messageId);
-                  console.log('References: ', mail_object.references ? mail_object.references[0] : 'origin');
-                  console.log('Subject: ', mail_object.subject);
-                  // console.log('Text body:', mail_object.text);
-                  // console.log('Add flag: ', flags);
+                  logger.info('From: ', mail_object.from.text);
+                  logger.info('MessageId: ', mail_object.messageId);
+                  logger.info('References: ', mail_object.references ? mail_object.references[0] : 'origin');
+                  logger.info('Subject: ', mail_object.subject);
+                  // logger.info('Text body:', mail_object.text);
+                  // logger.info('Add flag: ', flags);
                 }
               });
             }
@@ -372,12 +373,12 @@ function listenServiceEmail() {
             if (err) {
               mtDebug.debugError('write new mail ticket info db failed!');
             } else {
-              console.log('From: ', mail_object.from.text);
-              console.log('MessageId: ', mail_object.messageId);
-              console.log('References: ', mail_object.references ? mail_object.references[0] : 'origin');
-              console.log('Subject: ', mail_object.subject);
-              // console.log('Text body:', mail_object.text);
-              // console.log('Add flag: ', flags);
+              logger.info('From: ', mail_object.from.text);
+              logger.info('MessageId: ', mail_object.messageId);
+              logger.info('References: ', mail_object.references ? mail_object.references[0] : 'origin');
+              logger.info('Subject: ', mail_object.subject);
+              // logger.info('Text body:', mail_object.text);
+              // logger.info('Add flag: ', flags);
             }
           });
         }

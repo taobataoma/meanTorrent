@@ -2,6 +2,7 @@
 
 // Load the module dependencies
 var config = require('../config'),
+  logger = require('./logger'),
   chalk = require('chalk'),
   path = require('path'),
   irc = require('irc'),
@@ -25,16 +26,16 @@ module.exports = function (app) {
   });
 
   client.addListener('error', function (message) {
-    console.log(chalk.red('IRC error: ' + message));
+    logger.info(chalk.red('IRC error: ' + message));
   });
 
   client.addListener('registered', function (message) {
-    console.log(chalk.green('IRC: connected successfully!'));
+    logger.info(chalk.green('IRC: connected successfully!'));
   });
 
   client.addListener('join' + ircConfig.channel, function (nick, message) {
     if (nick === client.nick)
-      console.log(chalk.green('IRC: join channel ' + ircConfig.channel + ' successfully!'));
+      logger.info(chalk.green('IRC: join channel ' + ircConfig.channel + ' successfully!'));
   });
 
   return client;
