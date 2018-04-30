@@ -225,8 +225,8 @@
                                                 <a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentDoubleTitle(item)}}</a>
                                             </h5>
 
-                                            <div class="torrent-filename text-long">{{item.resource_detail_info.subtitle}}</div>
                                             <div class="torrent-filename text-long">{{item.torrent_filename | filename}}</div>
+                                            <div class="torrent-filename text-long">{{item.resource_detail_info.subtitle}}</div>
 
                                             <div class="list-all-genres">
                                                 <span class="genres-item" ng-repeat="t in item.resource_detail_info.genres">{{t.name}}</span>
