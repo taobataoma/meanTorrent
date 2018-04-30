@@ -37,6 +37,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'movie',
         torrent_vip: false,
+        isTop: true,
         limit: 1
       }, function (items) {
         if (items.rows.length > 0) {
@@ -45,6 +46,22 @@
             $('.body-backdrop').css('backgroundImage', 'url("' + newUrl + '")');
             localStorageService.set('body_background_image', newUrl);
           }
+        } else {
+          TorrentsService.get({
+            torrent_status: 'reviewed',
+            torrent_type: 'movie',
+            torrent_vip: false,
+            limit: 1
+          }, function (items) {
+            if (items.rows.length > 0) {
+              var newUrl = vm.TGI.getTorrentBackdropImage(items.rows[0]);
+              if (newUrl !== url) {
+                $('.body-backdrop').css('backgroundImage', 'url("' + newUrl + '")');
+                localStorageService.set('body_background_image', newUrl);
+              }
+            }
+          });
+
         }
       });
     };
