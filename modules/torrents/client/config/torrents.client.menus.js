@@ -25,6 +25,15 @@
       position: 3
     });
 
+    menuService.addSubMenuItem('topbar', 'torrents', {
+      title: 'MENU_TORRENTS_SUB.AGGREGATE',
+      state: 'torrents.aggregate',
+      roles: ['*'],
+      faIcon: 'fa-ellipsis-h',
+      faClass: 'text-mt',
+      position: 0
+    });
+
     // Add the dropdown list item
     angular.forEach(torrentTypeConfig.value, function (cfg) {
       if (cfg.enable && cfg.role === 'user') {

@@ -1755,7 +1755,9 @@ exports.makeRss = function (req, res) {
 
       var condition = {};
       condition.torrent_status = status;
-      condition.torrent_type = stype;
+      if (stype !== 'all') {
+        condition.torrent_type = stype;
+      }
       if (hnr === true) {
         condition.torrent_hnr = true;
       }

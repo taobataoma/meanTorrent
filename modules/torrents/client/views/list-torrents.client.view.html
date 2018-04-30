@@ -80,7 +80,7 @@
                             <div class="col-sm-5">
                                 <span class="label label-tag text-uppercase incline-block-valign"
                                       title="{{ 'TITLE_ALT.MORE_TAGS' | translate}}"
-                                      ng-click="vm.onMoreTagsClicked();">
+                                      ng-click="vm.onMoreTagsClicked();" ng-if="vm.torrentType!='aggregate'">
                                     <i class="glyphicon glyphicon-chevron-down" id="more-tags-icon"></i> {{ 'MORE_TAGS' | translate}}
                                 </span>
                                 <span class="label label-tag text-uppercase incline-block-valign"
@@ -234,6 +234,10 @@
 
                                     <div class="list-all-tags">
                                         <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
+                                        <span class="label label-ttype label-primary" ng-click="$event.stopPropagation();"
+                                              ng-if="vm.torrentType=='aggregate'">
+                                            {{'TORRENT_TYPE_LABEL.' + item.torrent_type.toUpperCase() | translate}}
+                                        </span>
                                         <span class="label label-release label-warning" ng-show="item.resource_detail_info.release_date"
                                               ng-click="vm.onReleaseClicked(item.resource_detail_info.release_date); $event.stopPropagation();">
                                             {{ item.resource_detail_info.release_date}}

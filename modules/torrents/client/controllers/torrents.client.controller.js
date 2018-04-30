@@ -78,19 +78,21 @@
      * getResourceTopInfo
      */
     vm.getResourceTopInfo = function () {
-      TorrentsService.get({
-        limit: vm.topItems,
-        torrent_status: 'reviewed',
-        torrent_type: vm.torrentType,
-        torrent_vip: false
-      }, function (items) {
-        mtDebug.info(items);
-        vm.listTopInfo = items.rows;
-      }, function (err) {
-        Notification.error({
-          message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_LIST_INFO_ERROR')
+      if (vm.torrentType !== 'aggregate') {
+        TorrentsService.get({
+          limit: vm.topItems,
+          torrent_status: 'reviewed',
+          torrent_type: vm.torrentType === 'aggregate' ? 'all' : vm.torrentType,
+          torrent_vip: false
+        }, function (items) {
+          mtDebug.info(items);
+          vm.listTopInfo = items.rows;
+        }, function (err) {
+          Notification.error({
+            message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TOP_LIST_INFO_ERROR')
+          });
         });
-      });
+      }
     };
 
     /**
@@ -280,7 +282,7 @@
     vm.getResourcePageInfo = function (p, callback) {
       //if searchKey or searchTags has value, the skip=0
       var skip = vm.topItems;
-      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear || vm.filterHnR || vm.filterSale || vm.sort) {
+      if (vm.searchKey.trim().length > 0 || vm.searchTags.length > 0 || vm.releaseYear || vm.filterHnR || vm.filterSale || vm.sort || vm.torrentType === 'aggregate' || vm.torrentType === 'all') {
         skip = 0;
       }
 
@@ -290,7 +292,7 @@
         sort: vm.sort,
         keys: vm.searchKey.trim(),
         torrent_status: 'reviewed',
-        torrent_type: vm.torrentType,
+        torrent_type: vm.torrentType === 'aggregate' ? 'all' : vm.torrentType,
         torrent_vip: false,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
@@ -320,7 +322,7 @@
       vm.rssUrl += '?language=' + vm.lang;
       vm.rssUrl += '&limit=' + vm.torrentItemsPerPage;
       vm.rssUrl += vm.searchKey.trim() ? '&keys=' + vm.searchKey.trim() : '';
-      vm.rssUrl += '&torrent_type=' + vm.torrentType;
+      vm.rssUrl += '&torrent_type=' + (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType);
       vm.rssUrl += vm.releaseYear ? '&torrent_release=' + vm.releaseYear : '';
       vm.rssUrl += vm.searchTags.length ? '&torrent_tags=' + vm.searchTags : '';
       vm.rssUrl += '&torrent_hnr=' + vm.filterHnR;
@@ -346,9 +348,19 @@
      * @param tag: tag name
      */
     vm.onTagClicked = function (tag) {
-      $timeout(function () {
-        angular.element('#tag_' + tag).trigger('click');
-      }, 100);
+      if (vm.torrentType === 'aggregate' || vm.torrentType === 'all') {
+        if (vm.searchTags.includes(tag)) {
+          vm.searchTags.splice(vm.searchTags.indexOf(tag), 1);
+        } else {
+          vm.searchTags.push(tag);
+        }
+
+        vm.torrentBuildPager();
+      } else {
+        $timeout(function () {
+          angular.element('#tag_' + tag).trigger('click');
+        }, 100);
+      }
     };
 
     /**

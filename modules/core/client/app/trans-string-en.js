@@ -57,6 +57,7 @@
 
     //sub menu of torrents
     MENU_TORRENTS_SUB: {
+      AGGREGATE: 'Torrents Aggregate',
       MOVIE: 'Movie',
       MOVIE_COLLECTIONS: 'Movie Collections',
       TVSERIAL: 'TVSerial',
@@ -199,6 +200,7 @@
     PAGETITLE: {
       ACCOUNT_ACTIVE: 'Account Active',
       UPLOAD: 'Upload',
+      TORRENTS_AGGREGATE: 'Torrents Aggregate',
       MOVIE_LIST: 'Movie List',
       TV_LIST: 'TV List',
       DOCUMENTARY_LIST: 'Documentary List',

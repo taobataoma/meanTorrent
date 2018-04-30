@@ -57,6 +57,7 @@
 
     //sub menu of torrents
     MENU_TORRENTS_SUB: {
+      AGGREGATE: '所有种子',
       MOVIE: '电影',
       MOVIE_COLLECTIONS: '电影系列',
       TVSERIAL: '电视剧',
@@ -199,6 +200,7 @@
     PAGETITLE: {
       ACCOUNT_ACTIVE: '帐号激活',
       UPLOAD: '上传',
+      TORRENTS_AGGREGATE: '所有资源列表',
       MOVIE_LIST: '电影资源列表',
       TV_LIST: '电视剧资源列表',
       DOCUMENTARY_LIST: '纪录片资源列表',

@@ -688,7 +688,7 @@ module.exports = {
           role: 'user',
           faIcon: 'fa-film',
           faClass: 'text-mt',
-          divider: false,
+          divider: true,
           position: 1,
           state: 'torrents.movie',
           url: '/movie',

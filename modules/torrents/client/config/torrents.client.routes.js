@@ -29,6 +29,16 @@
         }
       });
 
+    $stateProvider
+      .state('torrents.aggregate', {
+        url: '/aggregate',
+        templateUrl: '/modules/torrents/client/views/list-torrents.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.TORRENTS_AGGREGATE',
+          torrentType: 'aggregate'
+        }
+      });
+
     angular.forEach(torrentTypeConfig.value, function (cfg) {
       if (cfg.enable) {
         $stateProvider
