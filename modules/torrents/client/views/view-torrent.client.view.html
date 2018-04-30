@@ -644,8 +644,9 @@
                 <div ng-if="vm.torrentLocalInfo.torrent_recommended != 'level0' || vm.torrentLocalInfo.isTop">
                     <dt class="h-line">{{ 'ADMIN_BASIC_RLEVEL_SET' | translate}}：</dt>
                     <dd class="h-line">
-                        <i class="fa fa-tumblr-square text-mt" title="{{'TORRENT_STATUS_TOP_TITLE' | translate}}" aria-hidden="true"
-                           ng-if="vm.torrentLocalInfo.isTop"></i>
+                        <span title="{{ 'TORRENT_STATUS_TOP_TITLE' | translate}}" ng-if="vm.torrentLocalInfo.isTop"
+                              class="torrent-votes"><kbd>{{'STATUS_TOP_KEY' | translate}}</kbd></span>
+
                         <span class="label label-rlevel label-info">
                             {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + vm.torrentLocalInfo.torrent_recommended.toUpperCase() | translate}}
                         </span>

@@ -189,13 +189,13 @@
                                                                 <a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentDoubleTitle(item)}}</a>
                                                             </h5>
 
+                                                            <div class="torrent-filename text-long">{{item.resource_detail_info.subtitle}}</div>
+                                                            <div class="torrent-filename text-long">{{item.torrent_filename | filename}}</div>
+
                                                             <div class="list-all-genres">
                                                                 <span class="genres-item"
                                                                       ng-repeat="t in item.resource_detail_info.genres">{{t.name}}</span>
                                                             </div>
-
-                                                            <div class="torrent-filename text-long">{{item.resource_detail_info.subtitle}}</div>
-                                                            <div class="torrent-filename text-long">{{item.torrent_filename | filename}}</div>
 
                                                             <div class="list-all-tags">
                                                                 <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
@@ -211,6 +211,8 @@
                                                                       ng-click="$event.stopPropagation();">
                                                                     {{ item.resource_detail_info.release_date}}
                                                                 </span>
+                                                                <span title="{{ 'TORRENT_STATUS_TOP_TITLE' | translate}}" ng-if="item.isTop"
+                                                                      class="torrent-votes"><kbd>{{'STATUS_TOP_KEY' | translate}}</kbd></span>
                                                                 <span class="label label-rlevel label-info"
                                                                       ng-show="item.torrent_recommended != 'level0'"
                                                                       ng-click="$event.stopPropagation();">
