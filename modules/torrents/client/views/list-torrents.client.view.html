@@ -227,6 +227,10 @@
                                 <div class="media-body">
                                     <h5 class="media-heading">
                                         <a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentDoubleTitle(item)}}</a>
+                                        <i class="fa fa-link color-mt-base torrent-file-link" aria-hidden="true" title="{{'COPY_LINK_TO_CLIPBOARD' | translate}}"
+                                           ng-click="$event.stopPropagation();"
+                                           mt-rotate-by-mouse="{scale: 2, duration: '.3s'}"
+                                           mt-copy-to-clipboard="{{vm.makeTorrentFileLink(item)}}"></i>
                                     </h5>
 
                                     <div class="torrent-filename text-long">{{item.torrent_filename | filename}}</div>
