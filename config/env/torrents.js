@@ -1160,7 +1160,7 @@ module.exports = {
      * @resourcesLanguage:        settings for language of dropdown resource info
      */
     tmdbConfig: {
-      key: '7888f0042a366f63289ff571b68b7ce0',
+      key: 'this is access key from tmdb',
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',

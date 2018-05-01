@@ -58,6 +58,9 @@ module.exports.createUploadFilename = function (req, file, cb) {
     fs.unlinkSync(config.uploads.torrent.file.temp + filename);
   }
 
+  //replace other pt site prefix
+  filename = filename.replace(/^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/, '');
+
   if (fs.existsSync(config.uploads.torrent.file.dest + filename)) {
     var err = new Error();
     err.code = 'FILE_ALREADY_EXISTS';
@@ -93,6 +96,9 @@ module.exports.createUploadAttachFilename = function (req, file, cb) {
   if (fs.existsSync(config.uploads.attach.file.temp + filename)) {
     fs.unlinkSync(config.uploads.attach.file.temp + filename);
   }
+
+  //replace other pt site prefix
+  filename = filename.replace(/^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/, '');
 
   if (fs.existsSync(config.uploads.attach.file.dest + filename)) {
     var ext = file.originalname.replace(/^.+\./, '');
