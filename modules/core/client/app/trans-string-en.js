@@ -537,7 +537,7 @@
     TORRENTS_SUBMIT_UPLOAD: '8. Agree the rules and submit your resources',
     SUBMIT_BUTTON: 'OK, SUBMIT NOW',
     CANCEL_BUTTON: 'NO, CANCEL IT',
-    AGREE_RULES: 'I agree and already read all the rules, <a href="/about/rules">read here</a>',
+    AGREE_RULES: 'I agree and already read all the rules, <a href="/about/manual/userRules">read here</a>',
     DOWNLOAD_TORRENT: 'Download Torrent',
 
     ENTER_MUSIC_TITLE: '3. Please enter the artist name and music/album title',

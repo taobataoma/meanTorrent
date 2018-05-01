@@ -94,9 +94,13 @@
                 </div>
                 <div class="col-sm-4 col-sm-offset-4">
                     <button class="btn btn-lg btn-block btn-success" ng-click="vm.create()"
-                            ng-disabled="!vm.agreeRules">{{ 'SUBMIT_BUTTON' | translate}}
+                            ng-disabled="!vm.agreeRules || vm.isCreating">
+                        <i class="fa fa-spinner fa-spin"
+                           ng-if="vm.isCreating"></i> {{ 'SUBMIT_BUTTON' | translate}}
                     </button>
-                    <button class="btn btn-lg btn-block btn-warning" ng-click="vm.cancel()">{{ 'CANCEL_BUTTON' | translate}}
+                    <button class="btn btn-lg btn-block btn-warning"
+                            ng-disabled="vm.isCreating"
+                            ng-click="vm.cancel()">{{ 'CANCEL_BUTTON' | translate}}
                     </button>
                 </div>
                 <div class="col-sm-10 text-center">

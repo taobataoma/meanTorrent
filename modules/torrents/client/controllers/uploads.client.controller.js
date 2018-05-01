@@ -491,6 +491,8 @@
      * createMovieTorrent
      */
     vm.createMovieTorrent = function () {
+      vm.isCreating = true;
+
       var l = vm.getTorrentSize();
       var t = vm.getResourceTag();
 
@@ -517,10 +519,12 @@
       });
 
       function successCallback(res) {
+        vm.isCreating = false;
         vm.showUploadedPopup(res);
       }
 
       function errorCallback(res) {
+        vm.isCreating = false;
         vm.error_msg = res.data.message;
         Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Torrent created error!'});
       }
@@ -530,6 +534,8 @@
      * createTvTorrent
      */
     vm.createTVTorrent = function () {
+      vm.isCreating = true;
+
       var l = vm.getTorrentSize();
       var t = vm.getResourceTag();
 
@@ -558,10 +564,12 @@
       });
 
       function successCallback(res) {
+        vm.isCreating = false;
         vm.showUploadedPopup(res);
       }
 
       function errorCallback(res) {
+        vm.isCreating = false;
         vm.error_msg = res.data.message;
         Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Torrent created error!'});
       }
@@ -571,6 +579,8 @@
      * createCustomTorrentTorrent
      */
     vm.createCustomTorrentTorrent = function () {
+      vm.isCreating = true;
+
       var l = vm.getTorrentSize();
       var t = vm.getResourceTag();
 
@@ -620,10 +630,12 @@
       });
 
       function successCallback(res) {
+        vm.isCreating = false;
         vm.showUploadedPopup(res);
       }
 
       function errorCallback(res) {
+        vm.isCreating = false;
         vm.error_msg = res.data.message;
         Notification.error({message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Torrent created error!'});
       }

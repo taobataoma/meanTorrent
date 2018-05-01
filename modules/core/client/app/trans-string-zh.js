@@ -537,7 +537,7 @@
     TORRENTS_SUBMIT_UPLOAD: '8. 同意上传协议，并提交',
     SUBMIT_BUTTON: '已备妥，现在提交',
     CANCEL_BUTTON: '算了，以后再说',
-    AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="/about/rules">协议条款</a>',
+    AGREE_RULES: '我已阅读并同意站内所有协议条款，<a href="/about/manual/userRules">协议条款</a>',
     DOWNLOAD_TORRENT: '下载种子',
 
     ENTER_MUSIC_TITLE: '3. 请输入艺人名称和音乐/专辑标题',
