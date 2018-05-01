@@ -149,19 +149,27 @@ function removeGhostPeers() {
 
             peers.forEach(function (p) {
               if (p.peer_status === PEERSTATE_LEECHER) {
-                p.torrent.update({
-                  $inc: {torrent_leechers: -1}
-                }).exec();
-                p.user.update({
-                  $inc: {leeched: -1}
-                }).exec();
+                if (p.torrent) {
+                  p.torrent.update({
+                    $inc: {torrent_leechers: -1}
+                  }).exec();
+                }
+                if (p.user) {
+                  p.user.update({
+                    $inc: {leeched: -1}
+                  }).exec();
+                }
               } else if (p.peer_status === PEERSTATE_SEEDER) {
-                p.torrent.update({
-                  $inc: {torrent_seeds: -1}
-                }).exec();
-                p.user.update({
-                  $inc: {seeded: -1}
-                }).exec();
+                if (p.torrent) {
+                  p.torrent.update({
+                    $inc: {torrent_seeds: -1}
+                  }).exec();
+                }
+                if (p.user) {
+                  p.user.update({
+                    $inc: {seeded: -1}
+                  }).exec();
+                }
               }
 
               p.torrent.update({
