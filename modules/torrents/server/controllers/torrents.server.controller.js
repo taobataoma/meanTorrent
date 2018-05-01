@@ -1671,7 +1671,7 @@ exports.list = function (req, res) {
             '$filter': {
               'input': '$t_peer',
               'as': 'p',
-              'cond': {'$eq': ['$$p.user', req.user._id]}
+              'cond': {'$eq': ['$$p.user', (req.user ? req.user._id : undefined)]}
             }
           }
         }

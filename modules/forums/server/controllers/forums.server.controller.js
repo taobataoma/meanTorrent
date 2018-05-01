@@ -35,10 +35,10 @@ var mtDebug = require(path.resolve('./config/lib/debug'));
 exports.list = function (req, res) {
   var condition = {};
 
-  if (!req.user.isOper) {
+  if (!req.user || !req.user.isOper) {
     condition.operOnly = false;
   }
-  if (!req.user.isOper && !req.user.isVip) {
+  if (!req.user || (!req.user.isOper && !req.user.isVip)) {
     condition.vipOnly = false;
   }
 
