@@ -15,6 +15,7 @@
     vm.authentication = Authentication;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.user = user;
+    vm.authUser = Authentication.user;
     vm.messageTo = messageTo;
     vm.isContextUserSelf = isContextUserSelf;
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
