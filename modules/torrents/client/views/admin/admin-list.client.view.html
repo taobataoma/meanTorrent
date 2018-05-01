@@ -190,6 +190,7 @@
                                         <a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentDoubleTitle(item)}}</a>
                                         <span class="upload-by" ng-show="item.user.displayName"> (By:
                                             <span user-info="item.user" info-name></span> <span maker-info="item.maker"></span>)</span>
+                                        <span torrent-file-link="item" torrent-user="vm.user" info-class="color-mt-base"></span>
                                     </h5>
 
                                     <div class="torrent-filename text-long">{{item.torrent_filename | filename}}</div>

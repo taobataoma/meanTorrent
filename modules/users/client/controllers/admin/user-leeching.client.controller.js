@@ -14,6 +14,7 @@
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
     vm.user = user;
+    vm.authUser = Authentication.user;
     vm.RTS = ResourcesTagsServices;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 

@@ -337,19 +337,6 @@
     };
 
     /**
-     * makeTorrentFileLink
-     * @param item
-     */
-    vm.makeTorrentFileLink = function (item) {
-      var link = vm.appConfig.domain;
-      link += '/api/torrents/download';
-      link += '/' + item._id;
-      link += '/' + vm.user.passkey;
-
-      return link;
-    };
-
-    /**
      * clearAllCondition
      */
     vm.clearAllCondition = function () {
