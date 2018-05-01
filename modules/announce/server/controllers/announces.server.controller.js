@@ -887,10 +887,10 @@ exports.announce = function (req, res) {
         if (req.seeder && req.currentPeer.peer_status !== PEERSTATE_SEEDER && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------PEER STATUS CHANGED: Seeder----------------', 'ANNOUNCE', true, req.passkeyuser);
           doCompleteEvent(function () {
-            if (callback) callback();
+            if (callback) return callback();
           });
         } else {
-          if (callback) callback();
+          if (callback) return callback();
         }
       }
     });
@@ -898,7 +898,7 @@ exports.announce = function (req, res) {
     //if not found then create req.currentPeer
     if (!req.currentPeer) {
       createCurrentPeer(function () {
-        if (callback) callback();
+        if (callback) return callback();
       });
     }
   }
