@@ -158,6 +158,20 @@ module.exports = {
     },
 
     /**
+     * @cache
+     *
+     * settings cache data of GET method from $resource
+     *
+     * @maxAge:         The number of milliseconds until a newly inserted item expires
+     * @recycleFreq:    Determines how often a cache will scan for expired items
+     *
+     */
+    cache: {
+      maxAge: 60 * 1000 * 30,
+      recycleFreq: 60 * 1000
+    },
+
+    /**
      * @rss
      *
      * rss field value settings
@@ -285,7 +299,7 @@ module.exports = {
         },
         {
           icon: 'fa-headphones',
-          state: '',
+          state: 'tickets.supports',
           title: 'HOME.BUTTON_LIST.FUN_SUPPORT_TITLE',
           desc: 'HOME.BUTTON_LIST.FUN_SUPPORT_DESC'
         }
