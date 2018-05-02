@@ -12,10 +12,15 @@
     .config(localStorageModuleConfig)
     .config(transConfig)
     .config(markedConfig)
+    .config(cacheConfig)
     .run(scrollToTopOfPage)
     .run(setDefaultLang)
     .run(writeLeaveTime);
 
+  /**
+   * bootstrapConfig
+   * @type {string[]}
+   */
   bootstrapConfig.$inject = ['$compileProvider', '$locationProvider', '$httpProvider', '$logProvider'];
 
   function bootstrapConfig($compileProvider, $locationProvider, $httpProvider, $logProvider) {
@@ -32,7 +37,12 @@
     $logProvider.debugEnabled(app.applicationEnvironment !== 'production');
   }
 
+  /**
+   * localStorageModuleConfig
+   * @type {string[]}
+   */
   localStorageModuleConfig.$inject = ['localStorageServiceProvider'];
+
   function localStorageModuleConfig(localStorageServiceProvider) {
     localStorageServiceProvider
       .setPrefix('meanTorrent')
@@ -41,33 +51,58 @@
       .setNotify(true, true);
   }
 
+  /**
+   * transConfig
+   * @type {string[]}
+   */
   transConfig.$inject = ['$translateProvider'];
+
   function transConfig($translateProvider) {
     $translateProvider.useSanitizeValueStrategy(null);
   }
 
+  /**
+   * scrollToTopOfPage
+   * @type {string[]}
+   */
   scrollToTopOfPage.$inject = ['$rootScope', '$anchorScroll'];
+
   function scrollToTopOfPage($rootScope, $anchorScroll) {
     $rootScope.$on('$locationChangeSuccess', function () {
       $anchorScroll();
     });
   }
 
+  /**
+   * setDefaultLang
+   * @type {string[]}
+   */
   setDefaultLang.$inject = ['$translate', 'getStorageLangService'];
+
   function setDefaultLang($translate, getStorageLangService) {
     var user_lang = getStorageLangService.getLang();
 
     $translate.use(user_lang);
   }
 
+  /**
+   * writeLeaveTime
+   * @type {string[]}
+   */
   writeLeaveTime.$inject = ['localStorageService', '$window'];
+
   function writeLeaveTime(localStorageService, $window) {
     $window.onbeforeunload = function () {
       localStorageService.set('last_leave_time', Date.now());
     };
   }
 
+  /**
+   * markedConfig
+   * @type {string[]}
+   */
   markedConfig.$inject = ['markedProvider'];
+
   function markedConfig(markedProvider) {
     markedProvider.setOptions({
       gfm: true,
@@ -148,6 +183,22 @@
     return text;
   }
 
+  /**
+   * cacheConfig
+   * @type {string[]}
+   */
+  cacheConfig.$inject = ['CacheFactoryProvider', 'MeanTorrentConfigProvider'];
+
+  function cacheConfig(CacheFactoryProvider, MeanTorrentConfigProvider) {
+    var cacheConfig = MeanTorrentConfigProvider.meanTorrentConfig().cache;
+    angular.extend(CacheFactoryProvider.defaults, {
+      maxAge: cacheConfig.maxAge
+    });
+  }
+
+  /**
+   * init
+   */
   // Then define the init function for starting up the application
   angular.element(document).ready(init);
 

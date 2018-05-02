@@ -91,7 +91,9 @@ module.exports = {
         'public/lib/angular-lazy-img/release/angular-lazy-img.js',
         //sprintf
         'public/lib/sprintf/dist/sprintf.min.js',
-        'public/lib/sprintf/dist/angular-sprintf.min.js'
+        'public/lib/sprintf/dist/angular-sprintf.min.js',
+        //angular-cache
+        'public/lib/angular-cache/dist/angular-cache.js'
 
         // endbower
       ],
