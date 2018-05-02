@@ -167,7 +167,7 @@ module.exports = {
      *
      */
     cache: {
-      maxAge: 60 * 1000 * 30,
+      maxAge: 60 * 1000 * 10,
       recycleFreq: 60 * 1000
     },
 
