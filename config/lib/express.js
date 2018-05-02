@@ -34,6 +34,7 @@ module.exports.initLocalVariables = function (app) {
     app.locals.secure = config.secure.ssl;
   }
   app.locals.keywords = config.app.keywords;
+  app.locals.showSeoField = config.app.showSeoField;
   app.locals.googleAnalyticsTrackingID = config.app.googleAnalyticsTrackingID;
   app.locals.facebookAppId = config.facebook.clientID;
   app.locals.twitterUsername = config.twitter.username;

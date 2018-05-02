@@ -5,8 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
   <title page-title></title>
+  {{#if showSeoField}}
   <meta name="description" content="{{description}}">
   <meta name="keywords" content="{{keywords}}"/>
+  {{/if}}
   <meta name="fragment" content="!">
 
   <!-- Apple META -->
@@ -14,6 +16,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
   <!-- Facebook META -->
+  {{#if showSeoField}}
   <meta property="fb:app_id" content="{{facebookAppId}}">
   <meta property="og:site_name" content="{{title}}">
   <meta property="og:title" content="{{title}}">
@@ -22,14 +25,17 @@
   <meta property="og:url" content="{{url}}">
   <meta property="og:image" content="{{logo}}">
   <meta property="og:type" content="website">
+  {{/if}}
 
   <!-- Twitter META -->
+  {{#if showSeoField}}
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="{{twitterUsername}}">
   <meta name="twitter:title" content="{{title}}">
   <meta name="twitter:description" content="{{description}}">
   <meta name="twitter:keywords" content="{{keywords}}">
   <meta name="twitter:image" content="{{logo}}">
+  {{/if}}
 
   <!-- Fav Icon -->
   <link href="/{{favicon}}" rel="shortcut icon" type="image/x-icon">

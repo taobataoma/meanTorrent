@@ -5,7 +5,8 @@ module.exports = {
     title: 'meanTorrent',
     description: 'MEAN.JS BitTorrent - Full-Stack JavaScript Using MongoDB, Express, AngularJS, and Node.js, a Private BitTorrent Tracker CMS with Multilingual and IRC announce support',
     keywords: 'mongodb, express, angularjs, node.js, mongoose, passport, torrent, bitTorrent, tracker, announce, meanTorrent',
-    googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
+    googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID',
+    showSeoField: true
   },
   db: {
     promise: global.Promise
