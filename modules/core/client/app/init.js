@@ -192,7 +192,9 @@
   function cacheConfig(CacheFactoryProvider, MeanTorrentConfigProvider) {
     var cacheConfig = MeanTorrentConfigProvider.meanTorrentConfig().cache;
     angular.extend(CacheFactoryProvider.defaults, {
-      maxAge: cacheConfig.maxAge
+      maxAge: cacheConfig.maxAge,
+      recycleFreq: cacheConfig.recycleFreq,
+      deleteOnExpire: 'aggressive',
     });
   }
 
