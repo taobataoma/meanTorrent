@@ -22,8 +22,6 @@
           var torrent = s;
           var user = scope.$eval(attrs.torrentUser);
 
-          console.log(user);
-
           if (user && torrent) {
             var link = makeTorrentFileLink(torrent, user);
             var title = $translate.instant('COPY_LINK_TO_CLIPBOARD');
