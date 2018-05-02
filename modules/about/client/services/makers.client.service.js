@@ -5,12 +5,23 @@
     .module('about.services')
     .factory('MakerGroupService', MakerGroupService);
 
-  MakerGroupService.$inject = ['$resource'];
+  MakerGroupService.$inject = ['$resource', 'CacheFactory'];
 
-  function MakerGroupService($resource) {
+  function MakerGroupService($resource, CacheFactory) {
+    var makerCache = CacheFactory.get('makerCache') || CacheFactory.createCache('makerCache');
+
     return $resource('/api/makers/:makerId', {
       makerId: '@_id'
     }, {
+      get: {
+        method: 'GET',
+        cache: makerCache
+      },
+      query: {
+        method: 'GET',
+        isArray: true,
+        cache: makerCache
+      },
       update: {
         method: 'PUT'
       },

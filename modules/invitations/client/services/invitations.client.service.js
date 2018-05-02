@@ -5,12 +5,23 @@
     .module('invitations.services')
     .factory('InvitationsService', InvitationsService);
 
-  InvitationsService.$inject = ['$resource'];
+  InvitationsService.$inject = ['$resource', 'CacheFactory'];
 
-  function InvitationsService($resource) {
+  function InvitationsService($resource, CacheFactory) {
+    var invitationsCache = CacheFactory.get('invitationsCache') || CacheFactory.createCache('invitationsCache');
+
     return $resource('/api/invitations/:invitationId', {
       invitationId: '@_id'
     }, {
+      get: {
+        method: 'GET',
+        cache: invitationsCache
+      },
+      query: {
+        method: 'GET',
+        isArray: true,
+        cache: invitationsCache
+      },
       update: {
         method: 'PUT'
       },
@@ -32,7 +43,8 @@
       listOfficial: {
         method: 'GET',
         url: '/api/invitations/official/list',
-        isArray: true
+        isArray: true,
+        cache: invitationsCache
       },
       deleteExpiredOfficialInvitation: {
         method: 'DELETE',

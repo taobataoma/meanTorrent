@@ -5,13 +5,23 @@
     .module('tickets.services')
     .factory('MessageTicketsService', MessageTicketsService);
 
-  MessageTicketsService.$inject = ['$resource'];
+  MessageTicketsService.$inject = ['$resource', 'CacheFactory'];
 
-  function MessageTicketsService($resource) {
+  function MessageTicketsService($resource, CacheFactory) {
+    var ticketsCache = CacheFactory.get('ticketsCache') || CacheFactory.createCache('ticketsCache');
+
     return $resource('/api/messageTickets/:messageTicketId/:replyId', {
       messageTicketId: '@_id',
       replyId: '@_rid'
     }, {
+      get: {
+        method: 'GET',
+        cache: ticketsCache
+      },
+      query: {
+        method: 'GET',
+        cache: ticketsCache
+      },
       update: {
         method: 'PUT'
       },
@@ -40,12 +50,22 @@
     .module('tickets.services')
     .factory('MailTicketsService', MailTicketsService);
 
-  MailTicketsService.$inject = ['$resource'];
+  MailTicketsService.$inject = ['$resource', 'CacheFactory'];
 
-  function MailTicketsService($resource) {
+  function MailTicketsService($resource, CacheFactory) {
+    var ticketsCache = CacheFactory.get('ticketsCache') || CacheFactory.createCache('ticketsCache');
+
     return $resource('/api/mailTickets/:mailTicketId', {
       mailTicketId: '@_id'
     }, {
+      get: {
+        method: 'GET',
+        cache: ticketsCache
+      },
+      query: {
+        method: 'GET',
+        cache: ticketsCache
+      },
       update: {
         method: 'PUT'
       },

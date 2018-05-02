@@ -6,24 +6,29 @@
     .module('torrents.services')
     .factory('PeersService', PeersService);
 
-  PeersService.$inject = ['$resource'];
+  PeersService.$inject = ['$resource', 'CacheFactory'];
 
-  function PeersService($resource) {
+  function PeersService($resource, CacheFactory) {
+    var peersCache = CacheFactory.get('peersCache') || CacheFactory.createCache('peersCache');
+
     var Torrents = $resource('', {}, {
       getMySeedingList: {
         method: 'GET',
         url: '/api/my/seeding',
-        isArray: true
+        isArray: true,
+        cache: peersCache
       },
       getMyDownloadingList: {
         method: 'GET',
         url: '/api/my/downloading',
-        isArray: true
+        isArray: true,
+        cache: peersCache
       },
       getMyWarningList: {
         method: 'GET',
         url: '/api/my/warning',
-        isArray: true
+        isArray: true,
+        cache: peersCache
       },
       getUserSeedingList: {
         method: 'GET',
@@ -31,7 +36,8 @@
         isArray: true,
         params: {
           userId: '@userId'
-        }
+        },
+        cache: peersCache
       },
       getUserLeechingList: {
         method: 'GET',
@@ -39,7 +45,8 @@
         isArray: true,
         params: {
           userId: '@userId'
-        }
+        },
+        cache: peersCache
       },
       getUserWarningList: {
         method: 'GET',
@@ -47,7 +54,8 @@
         isArray: true,
         params: {
           userId: '@userId'
-        }
+        },
+        cache: peersCache
       }
     });
 

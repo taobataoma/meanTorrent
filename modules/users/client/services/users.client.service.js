@@ -6,10 +6,20 @@
     .module('users.services')
     .factory('UsersService', UsersService);
 
-  UsersService.$inject = ['$resource'];
+  UsersService.$inject = ['$resource', 'CacheFactory'];
 
-  function UsersService($resource) {
+  function UsersService($resource, CacheFactory) {
+    var usersCache = CacheFactory.get('usersCache') || CacheFactory.createCache('usersCache');
+
     var Users = $resource('/api/users', {}, {
+      get: {
+        method: 'GET',
+        cache: usersCache
+      },
+      query: {
+        method: 'GET',
+        cache: usersCache
+      },
       update: {
         method: 'PUT'
       },
@@ -73,22 +83,26 @@
       myFollowers: {
         method: 'GET',
         url: '/api/users/followers',
-        isArray: true
+        isArray: true,
+        cache: usersCache
       },
       myFollowing: {
         method: 'GET',
         url: '/api/users/following',
-        isArray: true
+        isArray: true,
+        cache: usersCache
       },
       userFollowers: {
         method: 'GET',
         url: '/api/users/:userId/followers',
-        isArray: true
+        isArray: true,
+        cache: usersCache
       },
       userFollowing: {
         method: 'GET',
         url: '/api/users/:userId/following',
-        isArray: true
+        isArray: true,
+        cache: usersCache
       },
       getMyIp: {
         method: 'GET',
@@ -159,12 +173,22 @@
     .module('users.admin.services')
     .factory('AdminService', AdminService);
 
-  AdminService.$inject = ['$resource'];
+  AdminService.$inject = ['$resource', 'CacheFactory'];
 
-  function AdminService($resource) {
+  function AdminService($resource, CacheFactory) {
+    var usersCache = CacheFactory.get('usersCache') || CacheFactory.createCache('usersCache');
+
     var Users = $resource('/api/users/:userId', {
       userId: '@_id'
     }, {
+      get: {
+        method: 'GET',
+        cache: usersCache
+      },
+      query: {
+        method: 'GET',
+        cache: usersCache
+      },
       update: {
         method: 'PUT'
       },
@@ -239,7 +263,8 @@
       },
       uploaderList: {
         method: 'GET',
-        url: '/api/users/uploaderList'
+        url: '/api/users/uploaderList',
+        cache: usersCache
       }
     });
 

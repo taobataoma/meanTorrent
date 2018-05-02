@@ -6,12 +6,22 @@
     .module('torrents.services')
     .factory('TorrentsService', TorrentsService);
 
-  TorrentsService.$inject = ['$resource'];
+  TorrentsService.$inject = ['$resource', 'CacheFactory'];
 
-  function TorrentsService($resource) {
+  function TorrentsService($resource, CacheFactory) {
+    var torrentsCache = CacheFactory.get('torrentsCache') || CacheFactory.createCache('torrentsCache');
+
     var Torrents = $resource('/api/torrents/:torrentId', {
       torrentId: '@_id'
     }, {
+      get: {
+        method: 'GET',
+        cache: torrentsCache
+      },
+      query: {
+        method: 'GET',
+        cache: torrentsCache
+      },
       update: {
         method: 'PUT'
       },
@@ -105,25 +115,29 @@
       },
       siteInfo: {
         method: 'GET',
-        url: '/api/torrents/siteInfo'
+        url: '/api/torrents/siteInfo',
+        cache: torrentsCache
       },
       getSeederUsers: {
         method: 'GET',
         url: '/api/torrents/:torrentId/seederUsers',
         params: {
           torrentId: '@_id'
-        }
+        },
+        cache: torrentsCache
       },
       getLeecherUsers: {
         method: 'GET',
         url: '/api/torrents/:torrentId/leecherUsers',
         params: {
           torrentId: '@_id'
-        }
+        },
+        cache: torrentsCache
       },
       getHomeTorrent: {
         method: 'GET',
-        url: '/api/torrents/homeList'
+        url: '/api/torrents/homeList',
+        cache: torrentsCache
       }
     });
 

@@ -6,12 +6,23 @@
     .module('torrents.services')
     .factory('CompleteService', CompleteService);
 
-  CompleteService.$inject = ['$resource'];
+  CompleteService.$inject = ['$resource', 'CacheFactory'];
 
-  function CompleteService($resource) {
+  function CompleteService($resource, CacheFactory) {
+    var completesCache = CacheFactory.get('completesCache') || CacheFactory.createCache('completesCache');
+
     var completes = $resource('/api/completes/:completeId', {
       completeId: '@completeId'
     }, {
+      get: {
+        method: 'GET',
+        cache: completesCache
+      },
+      query: {
+        method: 'GET',
+        isArray: true,
+        cache: completesCache
+      },
       update: {
         method: 'PUT'
       }

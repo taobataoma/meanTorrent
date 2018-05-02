@@ -5,12 +5,23 @@
     .module('forums.services')
     .factory('ForumsAdminService', ForumsAdminService);
 
-  ForumsAdminService.$inject = ['$resource'];
+  ForumsAdminService.$inject = ['$resource', 'CacheFactory'];
 
-  function ForumsAdminService($resource) {
+  function ForumsAdminService($resource, CacheFactory) {
+    var forumsCache = CacheFactory.get('forumsCache') || CacheFactory.createCache('forumsCache');
+
     return $resource('/api/admin/forums/:forumId', {
       forumId: '@_id'
     }, {
+      get: {
+        method: 'GET',
+        cache: forumsCache
+      },
+      query: {
+        method: 'GET',
+        isArray: true,
+        cache: forumsCache
+      },
       update: {
         method: 'PUT'
       },
@@ -37,12 +48,23 @@
     .module('forums.services')
     .factory('ForumsService', ForumsService);
 
-  ForumsService.$inject = ['$resource'];
+  ForumsService.$inject = ['$resource', 'CacheFactory'];
 
-  function ForumsService($resource) {
+  function ForumsService($resource, CacheFactory) {
+    var forumsCache = CacheFactory.get('forumsCache') || CacheFactory.createCache('forumsCache');
+
     return $resource('/api/forums/:forumId', {
       forumId: '@_id'
     }, {
+      get: {
+        method: 'GET',
+        cache: forumsCache
+      },
+      query: {
+        method: 'GET',
+        isArray: true,
+        cache: forumsCache
+      },
       update: {
         method: 'PUT'
       },

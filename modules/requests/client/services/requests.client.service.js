@@ -5,12 +5,22 @@
     .module('requests.services')
     .factory('RequestsService', RequestsService);
 
-  RequestsService.$inject = ['$resource'];
+  RequestsService.$inject = ['$resource', 'CacheFactory'];
 
-  function RequestsService($resource) {
+  function RequestsService($resource, CacheFactory) {
+    var requestsCache = CacheFactory.get('requestsCache') || CacheFactory.createCache('requestsCache');
+
     return $resource('/api/requests/:requestId', {
       requestId: '@_id'
     }, {
+      get: {
+        method: 'GET',
+        cache: requestsCache
+      },
+      query: {
+        method: 'GET',
+        cache: requestsCache
+      },
       update: {
         method: 'PUT'
       },

@@ -5,12 +5,22 @@
     .module('messages.services')
     .factory('MessagesService', MessagesService);
 
-  MessagesService.$inject = ['$resource'];
+  MessagesService.$inject = ['$resource', 'CacheFactory'];
 
-  function MessagesService($resource) {
+  function MessagesService($resource, CacheFactory) {
+    var messagesCache = CacheFactory.get('messagesCache') || CacheFactory.createCache('messagesCache');
+
     return $resource('/api/messages/:messageId', {
       messageId: '@_messageId'
     }, {
+      get: {
+        method: 'GET',
+        cache: messagesCache
+      },
+      query: {
+        method: 'GET',
+        cache: messagesCache
+      },
       update: {
         method: 'PUT'
       },

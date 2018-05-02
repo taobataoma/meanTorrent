@@ -6,12 +6,23 @@
     .module('collections.services')
     .factory('CollectionsService', CollectionsService);
 
-  CollectionsService.$inject = ['$resource'];
+  CollectionsService.$inject = ['$resource', 'CacheFactory'];
 
-  function CollectionsService($resource) {
+  function CollectionsService($resource, CacheFactory) {
+    var collectionsCache = CacheFactory.get('collectionsCache') || CacheFactory.createCache('collectionsCache');
+
     var collection = $resource('/api/collections/:collectionId', {
       collectionId: '@_id'
     }, {
+      get: {
+        method: 'GET',
+        cache: collectionsCache
+      },
+      query: {
+        method: 'GET',
+        isArray: true,
+        cache: collectionsCache
+      },
       update: {
         method: 'PUT'
       },

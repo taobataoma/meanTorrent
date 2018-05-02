@@ -1349,6 +1349,7 @@
       BTN_CURR_EXAMINATION_STATUS: '当前考核的数据状态',
       BTN_BAN_ALL_UNFINISHED: '禁止掉所有未完成考核的帐户',
       EXAMINATION_STATUS: '考核状态',
+      EXAMINATION_USERS: '用户列表',
       ALL_USER: '参考用户: <strong>{{all_user}}</strong> 人',
       FINISHED_USER: '考核已完成用户: <strong>{{finished_user}}</strong> 人',
       UNFINISHED_USER: '考核未完成用户: <strong>{{unfinished_user}}</strong> 人',

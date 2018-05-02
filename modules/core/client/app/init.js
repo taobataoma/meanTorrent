@@ -194,7 +194,7 @@
     angular.extend(CacheFactoryProvider.defaults, {
       maxAge: cacheConfig.maxAge,
       recycleFreq: cacheConfig.recycleFreq,
-      deleteOnExpire: 'aggressive',
+      deleteOnExpire: 'aggressive'
     });
   }
 

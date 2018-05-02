@@ -1349,6 +1349,7 @@
       BTN_CURR_EXAMINATION_STATUS: 'Curr examination status',
       BTN_BAN_ALL_UNFINISHED: 'Ban all unfinished users',
       EXAMINATION_STATUS: 'Examination status',
+      EXAMINATION_USERS: 'Users list',
       ALL_USER: 'Total: <strong>{{all_user}}</strong> users',
       FINISHED_USER: 'Finished: <strong>{{finished_user}}</strong> users',
       UNFINISHED_USER: 'Unfinished: <strong>{{unfinished_user}}</strong> users',

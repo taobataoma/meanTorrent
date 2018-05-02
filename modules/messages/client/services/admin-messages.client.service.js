@@ -5,12 +5,23 @@
     .module('messages.services')
     .factory('AdminMessagesService', AdminMessagesService);
 
-  AdminMessagesService.$inject = ['$resource'];
+  AdminMessagesService.$inject = ['$resource', 'CacheFactory'];
 
-  function AdminMessagesService($resource) {
+  function AdminMessagesService($resource, CacheFactory) {
+    var messagesCache = CacheFactory.get('messagesCache') || CacheFactory.createCache('messagesCache');
+
     return $resource('/api/adminMessages/:adminMessageId', {
       adminMessageId: '@_adminMessageId'
     }, {
+      get: {
+        method: 'GET',
+        cache: messagesCache
+      },
+      query: {
+        method: 'GET',
+        isArray: true,
+        cache: messagesCache
+      },
       update: {
         method: 'PUT'
       }
