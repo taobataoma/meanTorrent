@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
   path = require('path'),
   config = require(path.resolve('./config/config')),
+  CommonSchema = require(path.resolve('./modules/core/server/models/common.server.model')),
   Schema = mongoose.Schema,
   crypto = require('crypto'),
   validator = require('validator'),
@@ -52,6 +53,15 @@ var validateUsername = function (username) {
     this.provider !== 'local' ||
     (username && usernameRegex.test(username) && config.illegalUsernames.indexOf(username) < 0)
   );
+};
+
+/**
+ * setNumberValueToZero
+ * @param v
+ * @returns {number}
+ */
+var setNumberValueToZero = function (v) {
+  return v < 0 ? 0 : v;
 };
 
 /**
@@ -159,57 +169,56 @@ var UserSchema = new Schema({
   },
   score: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   uploaded: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   downloaded: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   ratio: {
     type: Number,
-    min: 0,
     default: 0
   },
   uptotal: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   seeded: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   leeched: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   finished: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   hnr_warning: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   topics: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   replies: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   followers: [{

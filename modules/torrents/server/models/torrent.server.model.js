@@ -16,6 +16,15 @@ const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
 
 /**
+ * setNumberValueToZero
+ * @param v
+ * @returns {number}
+ */
+var setNumberValueToZero = function (v) {
+  return v < 0 ? 0 : v;
+};
+
+/**
  * Torrent Schema
  */
 var TorrentSchema = new Schema({
@@ -73,17 +82,17 @@ var TorrentSchema = new Schema({
   },
   torrent_seeds: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   torrent_leechers: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   torrent_finished: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   torrent_status: {

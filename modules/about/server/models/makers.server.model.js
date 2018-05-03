@@ -9,6 +9,15 @@ var mongoose = require('mongoose'),
   CommonSchema = require(path.resolve('./modules/core/server/models/common.server.model'));
 
 /**
+ * setNumberValueToZero
+ * @param v
+ * @returns {number}
+ */
+var setNumberValueToZero = function (v) {
+  return v < 0 ? 0 : v;
+};
+
+/**
  * Maker Schema
  */
 var MakerSchema = new Schema({
@@ -38,7 +47,7 @@ var MakerSchema = new Schema({
   },
   torrent_count: {
     type: Number,
-    min: 0,
+    set: setNumberValueToZero,
     default: 0
   },
   vote_average: {
