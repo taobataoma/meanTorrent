@@ -881,7 +881,7 @@ exports.announce = function (req, res) {
    * @returns {boolean}
    */
   function getCurrentPeer(callback) {
-    req.selfpeer.forEach(function (p) {
+    req.selfpeer.every(function (p) {
       if (p.peer_id === query.peer_id) {
         req.currentPeer = p;
         req.currentPeer.isNewCreated = false;
