@@ -465,6 +465,8 @@ exports.announce = function (req, res) {
           if (p.user.equals(req.passkeyuser._id)) {
             if (p.last_announce_at > (Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime)) { //do not add inactive peer
               req.selfpeer.push(p);
+            } else if (p.peer_id === query.peer_id) {
+              req.selfpeer.push(p);
             }
           }
         }
