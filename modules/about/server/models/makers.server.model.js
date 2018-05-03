@@ -38,6 +38,7 @@ var MakerSchema = new Schema({
   },
   torrent_count: {
     type: Number,
+    min: 0,
     default: 0
   },
   vote_average: {

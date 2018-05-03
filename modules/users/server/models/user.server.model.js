@@ -159,46 +159,57 @@ var UserSchema = new Schema({
   },
   score: {
     type: Number,
+    min: 0,
     default: 0
   },
   uploaded: {
     type: Number,
+    min: 0,
     default: 0
   },
   downloaded: {
     type: Number,
+    min: 0,
     default: 0
   },
   ratio: {
     type: Number,
+    min: 0,
     default: 0
   },
   uptotal: {
     type: Number,
+    min: 0,
     default: 0
   },
   seeded: {
     type: Number,
+    min: 0,
     default: 0
   },
   leeched: {
     type: Number,
+    min: 0,
     default: 0
   },
   finished: {
     type: Number,
+    min: 0,
     default: 0
   },
   hnr_warning: {
     type: Number,
+    min: 0,
     default: 0
   },
   topics: {
     type: Number,
+    min: 0,
     default: 0
   },
   replies: {
     type: Number,
+    min: 0,
     default: 0
   },
   followers: [{

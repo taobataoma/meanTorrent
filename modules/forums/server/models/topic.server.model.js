@@ -19,10 +19,12 @@ var AttachSchema = new Schema({
   },
   filesize: {
     type: Number,
+    min: 0,
     default: 0
   },
   downCount: {
     type: Number,
+    min: 0,
     default: 0
   },
   createdAt: {
@@ -91,10 +93,12 @@ var TopicSchema = new Schema({
 
   viewCount: {
     type: Number,
+    min: 0,
     default: 0
   },
   replyCount: {
     type: Number,
+    min: 0,
     default: 0
   },
   _replies: [ReplySchema],

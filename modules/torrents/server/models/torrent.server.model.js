@@ -73,14 +73,17 @@ var TorrentSchema = new Schema({
   },
   torrent_seeds: {
     type: Number,
+    min: 0,
     default: 0
   },
   torrent_leechers: {
     type: Number,
+    min: 0,
     default: 0
   },
   torrent_finished: {
     type: Number,
+    min: 0,
     default: 0
   },
   torrent_status: {
