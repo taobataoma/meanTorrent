@@ -54,7 +54,7 @@ exports.collectioninfo = function (req, res) {
 
   tmdb.collectionInfo({
     id: req.params.id,
-    language: tmdbConfig.resourcesLanguage,
+    language: tmdbConfig.resourcesLanguage
   }, function (err, info) {
     if (err) {
       res.status(900).send(err);
