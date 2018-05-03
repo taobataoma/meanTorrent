@@ -9,7 +9,11 @@
   SubtitlesService.$inject = ['$resource', 'CacheFactory'];
 
   function SubtitlesService($resource, CacheFactory) {
-    var subtitlesCache = CacheFactory.get('subtitlesCache') || CacheFactory.createCache('subtitlesCache');
+    var torrentsCache = CacheFactory.get('torrentsCache') || CacheFactory.createCache('torrentsCache');
+    var removeCache = function (res) {
+      torrentsCache.removeAll();
+      return res.data;
+    };
 
     var Subtitles = $resource('/api/subtitles/:torrentId/:subtitleId', {
       torrentId: '@_torrentId',
@@ -17,15 +21,28 @@
     }, {
       get: {
         method: 'GET',
-        cache: subtitlesCache
+        cache: torrentsCache
       },
       query: {
         method: 'GET',
         isArray: true,
-        cache: subtitlesCache
+        cache: torrentsCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
+      },
+      save: {
+        method: 'POST',
+        interceptor: {response: removeCache}
+      },
+      remove: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
+      },
+      delete: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
       }
     });
 

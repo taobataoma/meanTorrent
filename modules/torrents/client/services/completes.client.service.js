@@ -10,6 +10,10 @@
 
   function CompleteService($resource, CacheFactory) {
     var completesCache = CacheFactory.get('completesCache') || CacheFactory.createCache('completesCache');
+    var removeCache = function (res) {
+      completesCache.removeAll();
+      return res.data;
+    };
 
     var completes = $resource('/api/completes/:completeId', {
       completeId: '@completeId'
@@ -24,7 +28,20 @@
         cache: completesCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
+      },
+      save: {
+        method: 'POST',
+        interceptor: {response: removeCache}
+      },
+      remove: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
+      },
+      delete: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
       }
     });
 

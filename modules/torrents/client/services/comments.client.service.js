@@ -9,7 +9,11 @@
   CommentsService.$inject = ['$resource', 'CacheFactory'];
 
   function CommentsService($resource, CacheFactory) {
-    var commentsCache = CacheFactory.get('commentsCache') || CacheFactory.createCache('commentsCache');
+    var torrentsCache = CacheFactory.get('torrentsCache') || CacheFactory.createCache('torrentsCache');
+    var removeCache = function (res) {
+      torrentsCache.removeAll();
+      return res.data;
+    };
 
     var Comments = $resource('/api/comments/:torrentId/:commentId/:subCommentId', {
       torrentId: '@_torrentId',
@@ -18,14 +22,27 @@
     }, {
       get: {
         method: 'GET',
-        cache: commentsCache
+        cache: torrentsCache
       },
       query: {
         method: 'GET',
-        cache: commentsCache
+        cache: torrentsCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
+      },
+      save: {
+        method: 'POST',
+        interceptor: {response: removeCache}
+      },
+      remove: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
+      },
+      delete: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
       }
     });
 

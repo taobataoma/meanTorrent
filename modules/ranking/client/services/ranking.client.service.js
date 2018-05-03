@@ -10,6 +10,10 @@
 
   function RankingService($resource, CacheFactory) {
     var rankingCache = CacheFactory.get('rankingCache') || CacheFactory.createCache('rankingCache');
+    var removeCache = function (res) {
+      rankingCache.removeAll();
+      return res.data;
+    };
 
     return $resource('/api/ranking', {
       userId: '@_id'
@@ -24,7 +28,8 @@
         cache: rankingCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
       }
     });
   }

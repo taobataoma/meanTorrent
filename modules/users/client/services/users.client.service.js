@@ -10,6 +10,10 @@
 
   function UsersService($resource, CacheFactory) {
     var usersCache = CacheFactory.get('usersCache') || CacheFactory.createCache('usersCache');
+    var removeCache = function (res) {
+      usersCache.removeAll();
+      return res.data;
+    };
 
     var Users = $resource('/api/users', {}, {
       get: {
@@ -21,19 +25,35 @@
         cache: usersCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
+      },
+      save: {
+        method: 'POST',
+        interceptor: {response: removeCache}
+      },
+      remove: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
+      },
+      delete: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
       },
       updatePassword: {
         method: 'POST',
-        url: '/api/users/password'
+        url: '/api/users/password',
+        interceptor: {response: removeCache}
       },
       resetPasskey: {
         method: 'POST',
-        url: '/api/users/passkey'
+        url: '/api/users/passkey',
+        interceptor: {response: removeCache}
       },
       updateSignature: {
         method: 'POST',
-        url: '/api/users/signature'
+        url: '/api/users/signature',
+        interceptor: {response: removeCache}
       },
       warningNumber: {
         method: 'GET',
@@ -44,41 +64,49 @@
         url: '/api/users/accounts',
         params: {
           provider: '@provider'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       sendPasswordResetToken: {
         method: 'POST',
-        url: '/api/auth/forgot'
+        url: '/api/auth/forgot',
+        interceptor: {response: removeCache}
       },
       resetPasswordWithToken: {
         method: 'POST',
-        url: '/api/auth/reset/:token'
+        url: '/api/auth/reset/:token',
+        interceptor: {response: removeCache}
       },
       signup: {
         method: 'POST',
-        url: '/api/auth/signup'
+        url: '/api/auth/signup',
+        interceptor: {response: removeCache}
       },
       signin: {
         method: 'POST',
-        url: '/api/auth/signin'
+        url: '/api/auth/signin',
+        interceptor: {response: removeCache}
       },
       unIdle: {
         method: 'POST',
-        url: '/api/users/unIdle'
+        url: '/api/users/unIdle',
+        interceptor: {response: removeCache}
       },
       followTo: {
         method: 'POST',
         url: '/api/users/followTo/:userId',
         params: {
           userId: '@userId'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       unFollowTo: {
         method: 'POST',
         url: '/api/users/unFollowTo/:userId',
         params: {
           userId: '@userId'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       myFollowers: {
         method: 'GET',
@@ -177,6 +205,10 @@
 
   function AdminService($resource, CacheFactory) {
     var usersCache = CacheFactory.get('usersCache') || CacheFactory.createCache('usersCache');
+    var removeCache = function (res) {
+      usersCache.removeAll();
+      return res.data;
+    };
 
     var Users = $resource('/api/users/:userId', {
       userId: '@_id'
@@ -190,7 +222,20 @@
         cache: usersCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
+      },
+      save: {
+        method: 'POST',
+        interceptor: {response: removeCache}
+      },
+      remove: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
+      },
+      delete: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
       },
       updateUserRole: {
         method: 'POST',
@@ -198,7 +243,8 @@
         params: {
           userId: '@userId',
           userRole: '@userRole'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       updateUserStatus: {
         method: 'POST',
@@ -206,7 +252,8 @@
         params: {
           userId: '@userId',
           userStatus: '@userStatus'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       updateUserScore: {
         method: 'POST',
@@ -214,7 +261,8 @@
         params: {
           userId: '@userId',
           userScore: '@userScore'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       updateUserUploaded: {
         method: 'POST',
@@ -222,7 +270,8 @@
         params: {
           userId: '@userId',
           userUploaded: '@userUploaded'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       updateUserDownloaded: {
         method: 'POST',
@@ -230,7 +279,8 @@
         params: {
           userId: '@userId',
           userDownloaded: '@userDownloaded'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       getUserUploadedTotal: {
         method: 'GET',
@@ -244,7 +294,8 @@
         url: '/api/users/:userId/resetImage',
         params: {
           userId: '@userId'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       updateUserVIPMonths: {
         method: 'PUT',
@@ -252,14 +303,16 @@
         params: {
           userId: '@userId',
           months: '@months'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       resetUserVIPData: {
         method: 'PUT',
         url: '/api/users/:userId/VIPMonths/reset',
         params: {
           userId: '@userId'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       uploaderList: {
         method: 'GET',

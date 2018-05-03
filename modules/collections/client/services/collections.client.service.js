@@ -10,6 +10,10 @@
 
   function CollectionsService($resource, CacheFactory) {
     var collectionsCache = CacheFactory.get('collectionsCache') || CacheFactory.createCache('collectionsCache');
+    var removeCache = function (res) {
+      collectionsCache.removeAll();
+      return res.data;
+    };
 
     var collection = $resource('/api/collections/:collectionId', {
       collectionId: '@_id'
@@ -24,7 +28,20 @@
         cache: collectionsCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
+      },
+      save: {
+        method: 'POST',
+        interceptor: {response: removeCache}
+      },
+      remove: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
+      },
+      delete: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
       },
       searchCollectionInfo: {
         method: 'GET',
@@ -47,7 +64,8 @@
         params: {
           collectionId: '@collectionId',
           torrentId: '@torrentId'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       removeFromCollection: {
         method: 'PUT',
@@ -55,7 +73,8 @@
         params: {
           collectionId: '@collectionId',
           torrentId: '@torrentId'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       setRecommendLevel: {
         method: 'PUT',
@@ -63,7 +82,8 @@
         params: {
           collectionId: '@_id',
           rlevel: '@rlevel'
-        }
+        },
+        interceptor: {response: removeCache}
       }
 
     });

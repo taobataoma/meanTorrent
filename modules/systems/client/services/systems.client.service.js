@@ -9,6 +9,10 @@
 
   function SystemsService($resource, CacheFactory) {
     var systemsCache = CacheFactory.get('systemsCache') || CacheFactory.createCache('systemsCache');
+    var removeCache = function (res) {
+      systemsCache.removeAll();
+      return res.data;
+    };
 
     return $resource('/api/systems/:systemId', {
       requestId: '@_id'
@@ -23,7 +27,8 @@
         cache: systemsCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
       },
       getSystemEnvConfigFiles: {
         method: 'GET',
@@ -56,15 +61,18 @@
       },
       setSystemConfigContent: {
         method: 'PUT',
-        url: '/api/systems/systemConfigContent'
+        url: '/api/systems/systemConfigContent',
+        interceptor: {response: removeCache}
       },
       shellCommand: {
         method: 'PUT',
-        url: '/api/systems/shellCommand'
+        url: '/api/systems/shellCommand',
+        interceptor: {response: removeCache}
       },
       initExaminationData: {
         method: 'PUT',
-        url: '/api/systems/initExaminationData'
+        url: '/api/systems/initExaminationData',
+        interceptor: {response: removeCache}
       },
       getExaminationStatus: {
         method: 'GET',
@@ -83,7 +91,8 @@
       },
       banAllUnfinishedUser: {
         method: 'PUT',
-        url: '/api/systems/banAllUnfinishedUser'
+        url: '/api/systems/banAllUnfinishedUser',
+        interceptor: {response: removeCache}
       }
     });
   }

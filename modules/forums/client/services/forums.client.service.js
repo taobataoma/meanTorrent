@@ -9,6 +9,10 @@
 
   function ForumsAdminService($resource, CacheFactory) {
     var forumsCache = CacheFactory.get('forumsCache') || CacheFactory.createCache('forumsCache');
+    var removeCache = function (res) {
+      forumsCache.removeAll();
+      return res.data;
+    };
 
     return $resource('/api/admin/forums/:forumId', {
       forumId: '@_id'
@@ -23,7 +27,20 @@
         cache: forumsCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
+      },
+      save: {
+        method: 'POST',
+        interceptor: {response: removeCache}
+      },
+      remove: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
+      },
+      delete: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
       },
       addModerator: {
         method: 'PUT',
@@ -31,7 +48,8 @@
         params: {
           forumId: '@_id',
           username: '@_username'
-        }
+        },
+        interceptor: {response: removeCache}
       },
       removeModerator: {
         method: 'PUT',
@@ -39,7 +57,8 @@
         params: {
           forumId: '@_id',
           username: '@_username'
-        }
+        },
+        interceptor: {response: removeCache}
       }
     });
   }
@@ -52,6 +71,10 @@
 
   function ForumsService($resource, CacheFactory) {
     var forumsCache = CacheFactory.get('forumsCache') || CacheFactory.createCache('forumsCache');
+    var removeCache = function (res) {
+      forumsCache.removeAll();
+      return res.data;
+    };
 
     return $resource('/api/forums/:forumId', {
       forumId: '@_id'
@@ -66,7 +89,20 @@
         cache: forumsCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
+      },
+      save: {
+        method: 'POST',
+        interceptor: {response: removeCache}
+      },
+      remove: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
+      },
+      delete: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
       },
       search: {
         method: 'PUT',

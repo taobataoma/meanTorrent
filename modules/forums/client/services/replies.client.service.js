@@ -9,6 +9,11 @@
 
   function RepliesService($resource, CacheFactory) {
     var forumsCache = CacheFactory.get('forumsCache') || CacheFactory.createCache('forumsCache');
+    var removeCache = function (res) {
+      console.log(res);
+      forumsCache.removeAll();
+      return res.data;
+    };
 
     return $resource('/api/topics/:forumId/:topicId/:replyId', {
       forumId: '@forum',
@@ -24,7 +29,20 @@
         cache: forumsCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
+      },
+      save: {
+        method: 'POST',
+        interceptor: {response: removeCache}
+      },
+      remove: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
+      },
+      delete: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
       }
     });
   }

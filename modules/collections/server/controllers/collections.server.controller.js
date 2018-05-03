@@ -18,6 +18,7 @@ var path = require('path'),
   scoreUpdate = require(path.resolve('./config/lib/score')).update;
 
 var traceConfig = config.meanTorrentConfig.trace;
+var tmdbConfig = config.meanTorrentConfig.tmdbConfig;
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
 
@@ -31,7 +32,7 @@ exports.searchcollection = function (req, res) {
   mtDebug.debugGreen(req.params);
 
   tmdb.searchCollection({
-    language: req.params.language,
+    language: tmdbConfig.resourcesLanguage,
     query: req.query.query
   }, function (err, info) {
     if (err) {
@@ -53,7 +54,7 @@ exports.collectioninfo = function (req, res) {
 
   tmdb.collectionInfo({
     id: req.params.id,
-    language: req.params.language
+    language: tmdbConfig.resourcesLanguage,
   }, function (err, info) {
     if (err) {
       res.status(900).send(err);
@@ -277,7 +278,7 @@ exports.list = function (req, res) {
 
   var findQuery = function (callback) {
     Collection.find(condition)
-      .sort('recommend_level -ordered_at -created_at')
+      .sort('-recommend_level -ordered_at -created_at')
       .populate('user', 'username displayName profileImageURL isVip')
       .populate('torrents')
       .skip(skip)

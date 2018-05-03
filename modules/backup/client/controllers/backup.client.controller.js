@@ -105,6 +105,7 @@
               angular.forEach(s, function (f) {
                 vm.fileList.splice(vm.fileList.indexOf(f), 1);
               });
+              vm.selected = undefined;
               vm.figureOutItemsToDisplay();
 
               NotifycationService.showSuccessNotify('BACKUP.DELETED_SUCCESSFULLY');

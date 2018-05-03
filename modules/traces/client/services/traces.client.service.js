@@ -9,6 +9,10 @@
 
   function TracesService($resource, CacheFactory) {
     var tracesCache = CacheFactory.get('tracesCache') || CacheFactory.createCache('tracesCache');
+    var removeCache = function (res) {
+      tracesCache.removeAll();
+      return res.data;
+    };
 
     return $resource('/api/traces/:traceId', {
       traceId: '@_id'
@@ -22,7 +26,20 @@
         cache: tracesCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
+      },
+      save: {
+        method: 'POST',
+        interceptor: {response: removeCache}
+      },
+      remove: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
+      },
+      delete: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
       }
     });
   }

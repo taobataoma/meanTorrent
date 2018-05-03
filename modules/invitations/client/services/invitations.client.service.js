@@ -9,6 +9,10 @@
 
   function InvitationsService($resource, CacheFactory) {
     var invitationsCache = CacheFactory.get('invitationsCache') || CacheFactory.createCache('invitationsCache');
+    var removeCache = function (res) {
+      invitationsCache.removeAll();
+      return res.data;
+    };
 
     return $resource('/api/invitations/:invitationId', {
       invitationId: '@_id'
@@ -23,7 +27,20 @@
         cache: invitationsCache
       },
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        interceptor: {response: removeCache}
+      },
+      save: {
+        method: 'POST',
+        interceptor: {response: removeCache}
+      },
+      remove: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
+      },
+      delete: {
+        method: 'DELETE',
+        interceptor: {response: removeCache}
       },
       verifyToken: {
         method: 'GET',
@@ -38,7 +55,8 @@
       },
       sendOfficial: {
         method: 'POST',
-        url: '/api/invitations/official/send'
+        url: '/api/invitations/official/send',
+        interceptor: {response: removeCache}
       },
       listOfficial: {
         method: 'GET',
@@ -48,7 +66,8 @@
       },
       deleteExpiredOfficialInvitation: {
         method: 'DELETE',
-        url: '/api/invitations/official/deleteExpired'
+        url: '/api/invitations/official/deleteExpired',
+        interceptor: {response: removeCache}
       }
     });
   }

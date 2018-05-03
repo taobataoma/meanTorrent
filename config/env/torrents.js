@@ -162,13 +162,16 @@ module.exports = {
      *
      * settings cache data of GET method from $resource
      *
-     * @maxAge:         The number of milliseconds until a newly inserted item expires
-     * @recycleFreq:    Determines how often a cache will scan for expired items
-     *
+     * @maxAge:             The number of milliseconds until a newly inserted item expires
+     * @recycleFreq:        Determines how often a cache will scan for expired items
+     * @storageMode:        Determines the storage medium used by a cache, value of 'memory', 'localStorage' and 'sessionStorage'
+     * @refreshOnExpire:    refresh data on expire
      */
     cache: {
-      maxAge: 60 * 1000 * 10,
-      recycleFreq: 60 * 1000
+      maxAge: 60 * 1000 * 1,
+      recycleFreq: 60 * 1000,
+      storageMode: 'memory',
+      refreshOnExpire: true
     },
 
     /**
