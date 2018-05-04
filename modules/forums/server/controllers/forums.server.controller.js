@@ -1001,6 +1001,14 @@ exports.deleteReply = function (req, res) {
       replyUid = r.user._id;
       topic._replies.pull(r);
       topic.replyCount--;
+
+      var lastReply = topic._replies[topic._replies.length - 1];
+      if (lastReply === r) {
+        lastReply = topic._replies[topic._replies.length - 2];
+      }
+      topic.lastReplyAt = lastReply.createdAt;
+      topic.lastUser = lastReply.user;
+
       topic.save(function (err) {
         if (err) {
           return res.status(422).send({
@@ -1016,6 +1024,18 @@ exports.deleteReply = function (req, res) {
           forum.update({
             $inc: {replyCount: -1}
           }).exec();
+
+          Topic.findOne({
+            forum: forum._id
+          })
+            .sort('-lastReplyAt -createdAt')
+            .exec(function (err, topic) {
+              if (!err) {
+                forum.update({
+                  lastTopic: topic
+                }).exec();
+              }
+            });
 
           //add server message
           if (serverNoticeConfig.action.forumReplyDeleted.enable && !replyUid.equals(req.user._id)) {
