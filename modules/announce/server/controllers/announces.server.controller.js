@@ -651,7 +651,9 @@ exports.announce = function (req, res) {
               lifeUnit: lifeUnit
             }
           };
+          mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：begin announceLog ----------------', 'ANNOUNCE', true, req.passkeyuser);
           dataLog.announceLog(req.passkeyuser, req.torrent, logData);
+          mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：done announceLog ----------------', 'ANNOUNCE', true, req.passkeyuser);
 
           //create trace log
           var traceData = {
@@ -663,15 +665,20 @@ exports.announce = function (req, res) {
             traceData: logData
           };
 
+          mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：begin traceLogCreate ----------------', 'ANNOUNCE', true, req.passkeyuser);
           traceLogCreate(req, traceConfig.action.userAnnounceData, traceData);
+          mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：done traceLogCreate ----------------', 'ANNOUNCE', true, req.passkeyuser);
         }
       }
+
+      mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：done 1 ----------------', 'ANNOUNCE', true, req.passkeyuser);
 
       //write peer data
       req.currentPeer.peer_uploaded = query.uploaded;
       req.currentPeer.peer_downloaded = query.downloaded;
       req.currentPeer.peer_left = query.peer_left;
       req.currentPeer.save();
+      mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：done 2 ----------------', 'ANNOUNCE', true, req.passkeyuser);
 
       done(null, curru, currd);
     },
