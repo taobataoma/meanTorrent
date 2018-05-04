@@ -6,6 +6,7 @@
 var path = require('path'),
   config = require(path.resolve('./config/config')),
   mongoose = require('mongoose'),
+  objectId = require('mongodb').ObjectId,
   User = mongoose.model('User'),
   Peer = mongoose.model('Peer'),
   Torrent = mongoose.model('Torrent'),
@@ -134,10 +135,14 @@ exports.list = function (req, res) {
     var keysS = req.query.keys + '';
     var keysT = keysS.split(' ');
 
-    keysT.forEach(function (it) {
-      var ti = new RegExp(it, 'i');
-      keysA.push(ti);
-    });
+    if (keysT.length === 1 && mongoose.Types.ObjectId.isValid(keysT[0])) {
+      keysA = objectId(keysT[0]);
+    } else {
+      keysT.forEach(function (it) {
+        var ti = new RegExp(it, 'i');
+        keysA.push(ti);
+      });
+    }
   }
   if (isVip === 'true') {
     condition.isVip = true;
@@ -155,12 +160,17 @@ exports.list = function (req, res) {
     condition.status = status;
   }
 
-  if (keysA.length > 0) {
-    condition.$or = [
-      {displayName: {'$all': keysA}},
-      {email: {'$all': keysA}},
-      {username: {'$all': keysA}}
-    ];
+  if (mongoose.Types.ObjectId.isValid(keysA)) {
+    condition._id = keysA;
+  } else {
+    if (keysA.length > 0) {
+      condition.$or = [
+        {displayName: {'$all': keysA}},
+        {email: {'$all': keysA}},
+        {passkey: {'$all': keysA}},
+        {username: {'$all': keysA}}
+      ];
+    }
   }
 
   mtDebug.debugBlue(condition, 'ADMIN_USERS_LIST');
