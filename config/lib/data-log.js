@@ -91,7 +91,7 @@ module.exports.announceLog = function (user, torrent, data) {
     }
   });
 
-  //remove announce-log old data
+  //remove user-days-log old data
   UserDaysLog.remove({
     month: {$lt: mom.subtract(12, 'months')}
   }, function (err) {
@@ -147,6 +147,7 @@ module.exports.scoreLog = function (user, score) {
   var d = mom.get('date');
 
   UserDaysLog.findOne({
+    user: user,
     year: y,
     month: m,
     date: d
@@ -175,8 +176,18 @@ module.exports.scoreLog = function (user, score) {
     }
   });
 
+  //remove user-days-log old data
+  UserDaysLog.remove({
+    month: {$lt: mom.subtract(12, 'months')}
+  }, function (err) {
+    if (err) {
+      logger.error(err);
+    }
+  });
+
   //write userMonthsLog
   UserMonthsLog.findOne({
+    user: user,
     year: y,
     month: m
   }).exec(function (err, l) {
