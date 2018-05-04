@@ -651,9 +651,7 @@ exports.announce = function (req, res) {
               lifeUnit: lifeUnit
             }
           };
-          mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：begin announceLog ----------------', 'ANNOUNCE', true, req.passkeyuser);
           dataLog.announceLog(req.passkeyuser, req.torrent, logData);
-          mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：done announceLog ----------------', 'ANNOUNCE', true, req.passkeyuser);
 
           //create trace log
           var traceData = {
@@ -665,20 +663,15 @@ exports.announce = function (req, res) {
             traceData: logData
           };
 
-          mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：begin traceLogCreate ----------------', 'ANNOUNCE', true, req.passkeyuser);
           traceLogCreate(req, traceConfig.action.userAnnounceData, traceData);
-          mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：done traceLogCreate ----------------', 'ANNOUNCE', true, req.passkeyuser);
         }
       }
-
-      mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：done 1 ----------------', 'ANNOUNCE', true, req.passkeyuser);
 
       //write peer data
       req.currentPeer.peer_uploaded = query.uploaded;
       req.currentPeer.peer_downloaded = query.downloaded;
       req.currentPeer.peer_left = query.peer_left;
       req.currentPeer.save();
-      mtDebug.debugGreen('---------------WRITE_UP_DOWN_DATA：done 2 ----------------', 'ANNOUNCE', true, req.passkeyuser);
 
       done(null, curru, currd);
     },
@@ -687,6 +680,7 @@ exports.announce = function (req, res) {
       write complete data to completeTorrent and refresh completed ratio
      ---------------------------------------------------------------*/
     function (curru, currd, done) {
+      mtDebug.debugGreen('---------------WRITE COMPLETE DATA----------------', 'ANNOUNCE', true, req.passkeyuser);
       if (curru > 0 || currd > 0) {
         if (req.completeTorrent) {
           mtDebug.debugGreen('---------------WRITE COMPLETE DATA----------------', 'ANNOUNCE', true, req.passkeyuser);
@@ -706,6 +700,7 @@ exports.announce = function (req, res) {
      update H&R ratio in save
      ---------------------------------------------------------------*/
     function (done) {
+      mtDebug.debugGreen('---------------UPDATE H&R COMPLETE TOTAL_SEED_TIME----------------', 'ANNOUNCE', true, req.passkeyuser);
       if (!req.currentPeer.isNewCreated) {
         if (req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------UPDATE H&R COMPLETE TOTAL_SEED_TIME----------------', 'ANNOUNCE', true, req.passkeyuser);
@@ -726,6 +721,7 @@ exports.announce = function (req, res) {
      include torrent seeders count coefficient value and life coefficient value
      ---------------------------------------------------------------*/
     function (done) {
+      mtDebug.debugGreen('---------------UPLOAD SCORE THROUGH SEED TIMED----------------', 'ANNOUNCE', true, req.passkeyuser);
       if (!req.currentPeer.isNewCreated) {
         if (req.seeder && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------UPLOAD SCORE THROUGH SEED TIMED----------------', 'ANNOUNCE', true, req.passkeyuser);
