@@ -895,6 +895,7 @@ exports.announce = function (req, res) {
           if (callback) return callback();
         }
       }
+      return true;
     });
 
     //if not found then create req.currentPeer
