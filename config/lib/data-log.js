@@ -93,7 +93,7 @@ module.exports.announceLog = function (user, torrent, data) {
 
   //remove user-days-log old data
   UserDaysLog.remove({
-    month: {$lt: mom.subtract(12, 'months')}
+    month: {$lt: mom.subtract(12, 'months').get('month') + 1}
   }, function (err) {
     if (err) {
       logger.error(err);
@@ -178,7 +178,7 @@ module.exports.scoreLog = function (user, score) {
 
   //remove user-days-log old data
   UserDaysLog.remove({
-    month: {$lt: mom.subtract(12, 'months')}
+    month: {$lt: mom.subtract(12, 'months').get('month') + 1}
   }, function (err) {
     if (err) {
       logger.error(err);
