@@ -6,6 +6,7 @@
 var path = require('path'),
   config = require(path.resolve('./config/config')),
   common = require(path.resolve('./config/lib/common')),
+  dataLog = require(path.resolve('./config/lib/data-log')),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Torrent = mongoose.model('Torrent'),
@@ -562,43 +563,22 @@ exports.announce = function (req, res) {
             }
           }).exec();
 
-          //create trace log
-          traceLogCreate(req, traceConfig.action.userAnnounceData, {
-            user: req.passkeyuser._id,
-            torrent: req.torrent._id,
-
-            query_uploaded: query.uploaded,
-            query_downloaded: query.downloaded,
-            currentPeer_uploaded: req.currentPeer.peer_uploaded,
-            currentPeer_downloaded: req.currentPeer.peer_downloaded,
-
-            curr_uploaded: curru,
-            curr_downloaded: currd,
-            write_uploaded: u,
-            write_downloaded: d,
-
-            isVip: req.passkeyuser.isVip,
-            isUploader: req.passkeyuser._id.equals(req.torrent.user._id),
-            torrentSalesValue: req.torrent.torrent_sale_status,
-            globalSalesValue: isGlobalSaleValid ? globalSalesConfig.global.value : undefined,
-            vipSalesValue: globalSalesConfig.vip.value,
-            uploaderSalesValue: globalSalesConfig.uploader.value,
-
-            agent: req.get('User-Agent'),
-            ip: req.cf_ip,
-            port: query.port
-          });
-
           //update score
           //upload score and download score
+          var totalScore = 0;
+          var upUnitScore = 1;
+          var downUnitScore = 1;
+          var seederUnit = 1;
+          var lifeUnit = 1;
+
           var action = scoreConfig.action.seedUpDownload;
           var slAction = scoreConfig.action.seedSeederAndLife;
+
           if (action.enable) {
             var uploadScore = 0;
             var downloadScore = 0;
 
             if (curru > 0 && action.uploadEnable) {
-              var upUnitScore = 1;
               if (req.torrent.torrent_size > action.additionSize) {
                 upUnitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
               }
@@ -607,7 +587,6 @@ exports.announce = function (req, res) {
             }
 
             if (currd > 0 && action.downloadEnable) {
-              var downUnitScore = 1;
               if (req.torrent.torrent_size > action.additionSize) {
                 downUnitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
               }
@@ -615,7 +594,7 @@ exports.announce = function (req, res) {
               downloadScore = downUnitScore * action.downloadValue * downScore;
             }
 
-            var totalScore = uploadScore + downloadScore;
+            totalScore = uploadScore + downloadScore;
             if (totalScore > 0) {
               //vip addition
               if (action.vipRatio && req.passkeyuser.isVip) {
@@ -625,23 +604,66 @@ exports.announce = function (req, res) {
               if (slAction.enable) {
                 //torrent seeders count addition
                 if (req.torrent.torrent_seeds <= slAction.seederCount) {
-                  var seederUnit = slAction.seederBasicRatio + slAction.seederCoefficient * (slAction.seederCount - req.torrent.torrent_seeds + 1);
+                  seederUnit = slAction.seederBasicRatio + slAction.seederCoefficient * (slAction.seederCount - req.torrent.torrent_seeds + 1);
                   totalScore = totalScore * seederUnit;
                 }
 
                 //torrent life addition
                 var life = moment(Date.now()) - moment(req.torrent.createdat);
                 var days = Math.floor(life / (60 * 60 * 1000 * 24));
-                var lifeUnit = slAction.lifeBasicRatio + slAction.lifeCoefficientOfDay * days;
+                lifeUnit = slAction.lifeBasicRatio + slAction.lifeCoefficientOfDay * days;
 
                 lifeUnit = lifeUnit > slAction.lifeMaxRatio ? slAction.lifeMaxRatio : lifeUnit;
                 totalScore = totalScore * lifeUnit;
                 totalScore = Math.round(totalScore * 100) / 100;
               }
 
-              scoreUpdate(req, req.passkeyuser, action, totalScore);
+              scoreUpdate(req, req.passkeyuser, action, totalScore, false);
             }
           }
+
+          //write logs data into db
+          var logData = {
+            query_uploaded: query.uploaded,
+            query_downloaded: query.downloaded,
+            currentPeer_uploaded: req.currentPeer.peer_uploaded,
+            currentPeer_downloaded: req.currentPeer.peer_downloaded,
+
+            curr_uploaded: curru,
+            curr_downloaded: currd,
+            write_uploaded: u,
+            write_downloaded: d,
+            write_score: totalScore,
+
+            isVip: req.passkeyuser.isVip,
+            isUploader: req.passkeyuser._id.equals(req.torrent.user._id),
+
+            salesSettingValue: {
+              torrentSalesValue: req.torrent.torrent_sale_status,
+              globalSalesValue: isGlobalSaleValid ? globalSalesConfig.global.value : undefined,
+              vipSalesValue: globalSalesConfig.vip.value,
+              uploaderSalesValue: globalSalesConfig.uploader.value
+            },
+            scoreSettingValue: {
+              upUnitScore: upUnitScore,
+              downUnitScore: downUnitScore,
+              seederUnit: seederUnit,
+              lifeUnit: lifeUnit
+            }
+          };
+          dataLog.announceLog(req.passkeyuser, req.torrent, logData);
+
+          //create trace log
+          var traceData = {
+            user: req.passkeyuser._id,
+            torrent: req.torrent._id,
+            agent: req.get('User-Agent'),
+            ip: req.cf_ip,
+            port: query.port,
+            traceData: logData
+          };
+
+          traceLogCreate(req, traceConfig.action.userAnnounceData, traceData);
         }
       }
 

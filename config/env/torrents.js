@@ -99,6 +99,8 @@ module.exports = {
      * @announceIdleTime:                     announce time over @announceInterval this value is inactive peer
      * @announcePrefix:                       prefix of torrent file name, is will auto add when user download the torrent files
      * @clientBlackListUrl:                   forbidden download client list url, user can view this list to check forbidden client software
+     * @announceLogDays:                      setting of days to write announce log to db, because the data is too more too big
+     * @daysLogMonths:                        setting of months to write user days log
      * @seedingInFinishedCheck:               settings to check whether can seeding an un-download finished torrent
      * @downloadCheck:                        announce download(leech) settings
      *      @ratio:                           if less than this value, can not download(leech)
@@ -129,6 +131,8 @@ module.exports = {
       announcePrefix: '{MEAN}.',
       sourceInfo: '{MEAN.im} Present by meanTorrent.',
       clientBlackListUrl: '/about/black',
+      announceLogDays: 30,
+      daysLogMonths: 12,
       seedingInFinishedCheck: true,
       downloadCheck: {
         ratio: 1,
@@ -654,7 +658,7 @@ module.exports = {
         userSendInvitation: {name: 'userSendInvitation', enable: true},
         adminSendOfficialInvitation: {name: 'adminSendOfficialInvitation', enable: true},
 
-        userAnnounceData: {name: 'userAnnounceData', enable: true},
+        userAnnounceData: {name: 'userAnnounceData', enable: false},
         userAnnounceFinished: {name: 'userAnnounceFinished', enable: true},
         userScoreChange: {name: 'userScoreChange', enable: true},
 

@@ -2,6 +2,7 @@
 
 var path = require('path'),
   config = require(path.resolve('./config/config')),
+  dataLog = require(path.resolve('./config/lib/data-log')),
   common = require(path.resolve('./config/lib/common')),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
@@ -19,7 +20,7 @@ var scoreConfig = config.meanTorrentConfig.score;
  * @param action
  * @param value
  */
-module.exports.update = function (req, user, action, value) {
+module.exports.update = function (req, user, action, value, writeLog = true) {
   var v = value || action.value;
 
   if (action.enable) {
@@ -44,6 +45,11 @@ module.exports.update = function (req, user, action, value) {
           scoreActionName: action.name
         });
       });
+
+      //write score log
+      if (writeLog) {
+        dataLog.scoreLog(user, v);
+      }
     }
   }
 };
