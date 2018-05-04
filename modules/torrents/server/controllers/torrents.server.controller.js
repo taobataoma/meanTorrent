@@ -225,6 +225,7 @@ exports.upload = function (req, res) {
           //the original tracker.
           var sourceInfo = config.meanTorrentConfig.announce.sourceInfo;
           torrent.metadata.info.sourceInfo = sourceInfo;
+          torrent.metadata.info.source = appConfig.name;
 
           var cws = fs.createWriteStream(newfile);
           cws.write(benc.encode(torrent.metadata));
@@ -528,6 +529,7 @@ exports.announceEdit = function (req, res) {
           //the original tracker.
           var sourceInfo = config.meanTorrentConfig.announce.sourceInfo;
           torrent.metadata.info.sourceInfo = sourceInfo;
+          torrent.metadata.info.source = appConfig.name;
 
           torrent_data = torrent.metadata;
           resolve();

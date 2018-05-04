@@ -374,6 +374,7 @@
     IMG_PAGE_INFO: 'Current: {{index}} / {{total}}',
 
     ANNOUNCE_URL: 'Announce Url',
+    TORRENT_INFO_HASH: 'Info Hash',
     TORRENT_FILENAME: 'Torrent Filename',
     ATTRIBUTE_TAGS: 'Video Attribute (tags)',
     VIDEO_NFO: 'Video NFO',

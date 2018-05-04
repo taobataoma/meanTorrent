@@ -374,6 +374,7 @@
     IMG_PAGE_INFO: '当前页: {{index}} / {{total}}',
 
     ANNOUNCE_URL: 'Tracker 地址',
+    TORRENT_INFO_HASH: 'Hash 值',
     TORRENT_FILENAME: '种子文件名',
     ATTRIBUTE_TAGS: '视频属性(标签)',
     VIDEO_NFO: '视频 NFO',
