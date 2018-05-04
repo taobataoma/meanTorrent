@@ -270,6 +270,7 @@
      */
     vm.getHomeHelp = function () {
       TopicsService.getHomeHelp(function (topics) {
+        mtDebug.info(topics);
         vm.homeHelpTopics = topics;
       });
     };
@@ -279,6 +280,7 @@
      */
     vm.getHomeNotice = function () {
       TopicsService.getHomeNotice(function (topics) {
+        mtDebug.info(topics);
         vm.homeNoticeTopics = topics;
       });
     };
@@ -288,6 +290,7 @@
      */
     vm.getForumNewTopic = function () {
       TopicsService.getHomeNewTopic(function (topics) {
+        mtDebug.info(topics);
         vm.homeNewTopics = topics;
       });
     };
@@ -303,6 +306,7 @@
         newest: true,
         limit: vm.itemsPerPageConfig.homeNewestTorrentsListLimit
       }, function (items) {
+        mtDebug.info(items);
         if (items.rows.length > 0) {
           vm.homeNewestTorrents = items.rows;
         }
