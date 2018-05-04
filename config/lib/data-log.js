@@ -10,6 +10,7 @@ var path = require('path'),
   UserMonthsLog = mongoose.model('UserMonthsLog');
 
 var announceConfig = config.meanTorrentConfig.announce;
+var appConfig = config.meanTorrentConfig.app;
 
 /**
  * announceLog
@@ -52,7 +53,7 @@ module.exports.announceLog = function (user, torrent, data) {
   });
 
   //write userDaysLog
-  var mom = moment();
+  var mom = moment().utcOffset(appConfig.dbTimeZone);
   var y = mom.get('year');
   var m = mom.get('month') + 1;
   var d = mom.get('date');
@@ -141,7 +142,7 @@ module.exports.announceLog = function (user, torrent, data) {
  */
 module.exports.scoreLog = function (user, score) {
   //write userDaysLog
-  var mom = moment();
+  var mom = moment().utcOffset(appConfig.dbTimeZone);
   var y = mom.get('year');
   var m = mom.get('month') + 1;
   var d = mom.get('date');
