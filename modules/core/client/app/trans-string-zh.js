@@ -1608,7 +1608,9 @@
       EMAIL_ADDRESS_IS_NOT_ALLOW: '该邮件地址不允许被邀请或注册',
       INFO_HASH_IS_EMPTY: 'Info hash 字段值不能为空',
       INFO_HASH_ALREADY_EXISTS: '该 info hash 值已经存在，不能重复提交',
-      UPLOAD_ACCESS_DENY: '当前系统只接受资源制作小组上传种子'
+      UPLOAD_ACCESS_DENY: '当前系统只接受资源制作小组上传种子',
+      READ_TORRENT_FILE_FAILD: '种子文件解析错误，请检查您的种子文件，看是否缺少某些必要信息',
+      MOVE_TORRENT_FILE_ERROR: '种子文件移动错误，请不要快速重复进行提交操作或者上传的种子文件已丢失'
     },
 
     //server message string, content string support markdown and emoji
