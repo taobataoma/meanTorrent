@@ -34,7 +34,7 @@ module.exports.announceLog = function (user, torrent, data) {
   log.isVip = data.isVip || false;
   log.isUploader = data.isUploader || false;
   log.salesSettingValue = data.salesSettingValue || undefined;
-  log.scoreSettingValue = data.isUploader || undefined;
+  log.scoreSettingValue = data.scoreSettingValue || undefined;
 
   log.save(function (err) {
     if (err) {
