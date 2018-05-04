@@ -682,6 +682,7 @@ exports.announce = function (req, res) {
     function (curru, currd, done) {
       if (curru > 0 || currd > 0) {
         if (req.completeTorrent) {
+          mtDebug.debugGreen('---------------WRITE COMPLETE DATA----------------', 'ANNOUNCE', true, req.passkeyuser);
           req.completeTorrent.total_uploaded += curru;
           req.completeTorrent.total_downloaded += currd;
           req.completeTorrent.save(function () {
@@ -700,6 +701,7 @@ exports.announce = function (req, res) {
     function (done) {
       if (!req.currentPeer.isNewCreated) {
         if (req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
+          mtDebug.debugGreen('---------------UPDATE H&R COMPLETE TOTAL_SEED_TIME----------------', 'ANNOUNCE', true, req.passkeyuser);
           req.completeTorrent.total_seed_time += (Date.now() - req.currentPeer.last_announce_at);
           req.completeTorrent.save(function () {
             done(null);
@@ -719,6 +721,8 @@ exports.announce = function (req, res) {
     function (done) {
       if (!req.currentPeer.isNewCreated) {
         if (req.seeder && event(query.event) !== EVENT_COMPLETED) {
+          mtDebug.debugGreen('---------------UPLOAD SCORE THROUGH SEED TIMED----------------', 'ANNOUNCE', true, req.passkeyuser);
+
           var action = scoreConfig.action.seedTimed;
           var slAction = scoreConfig.action.seedSeederAndLife;
 
@@ -771,6 +775,8 @@ exports.announce = function (req, res) {
      update complateTorrent refreshat
      ---------------------------------------------------------------*/
     function (done) {
+      mtDebug.debugGreen('---------------UPDATE LAST_ANNOUNCE_AT----------------', 'ANNOUNCE', true, req.passkeyuser);
+
       if (!req.currentPeer.isNewCreated) {
         req.currentPeer.last_announce_at = Date.now();
         req.currentPeer.save();
@@ -820,6 +826,7 @@ exports.announce = function (req, res) {
     function (done) {
       if (!req.currentPeer.isNewCreated) {
         if (req.completeTorrent && event(query.event) !== EVENT_COMPLETED) {
+          mtDebug.debugGreen('---------------COUNT H&R WARNING FOR USER----------------', 'ANNOUNCE', true, req.passkeyuser);
           req.completeTorrent.countHnRWarning(false, true);
         }
       }
@@ -850,6 +857,7 @@ exports.announce = function (req, res) {
      update torrent and user seeding/leeching count numbers
      ---------------------------------------------------------------*/
     function (done) {
+      mtDebug.debugGreen('---------------COUNT TORRENT SEEDING/LEECHING----------------', 'ANNOUNCE', true, req.passkeyuser);
       req.torrent.updateSeedLeechNumbers(function (slCount) {
         req.passkeyuser.updateSeedLeechNumbers();
 
@@ -883,12 +891,13 @@ exports.announce = function (req, res) {
         'Content-Type': 'text/plain'
       });
 
-      if (len > 0) {
-        mtDebug.debug(peerBuffer, 'ANNOUNCE', true, req.passkeyuser);
-      }
       res.write(resp);
       res.write(peerBuffer);
       res.end('e');
+
+      if (len > 0) {
+        mtDebug.debug(peerBuffer, 'ANNOUNCE', true, req.passkeyuser);
+      }
 
       done(null, 'done');
     }
