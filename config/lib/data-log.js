@@ -58,6 +58,7 @@ module.exports.announceLog = function (user, torrent, data) {
   var d = mom.get('date');
 
   UserDaysLog.findOne({
+    user: user,
     year: y,
     month: m,
     date: d
@@ -101,6 +102,7 @@ module.exports.announceLog = function (user, torrent, data) {
 
   //write userMonthsLog
   UserMonthsLog.findOne({
+    user: user,
     year: y,
     month: m
   }).exec(function (err, l) {
