@@ -20,7 +20,7 @@ module.exports = {
      * @admin:                          site admin mail address
      * @showDemoWarningPopup:           if is demo site, show warning popup whene home is opened for the first time.
      * @cronTimeZone:                   timezone of cron
-     * @dbTimeZone:                     timezone of mongo db
+     * @dbTimeZone:                     timezone of mongo db, in minute
      * @showClientDebugLog:             if true, will console.log all debug info at client side. when your site is prod env, please change this
      *                                  value to false, then console.log info is not output
      * @writeServerDebugLog:            if true, will console.log all debug info at server side. when your site is prod env, please change this
@@ -32,7 +32,7 @@ module.exports = {
       admin: 'admin@mean.im',
       showDemoWarningPopup: true,
       cronTimeZone: 'Asia/Shanghai',
-      dbTimeZone: '+08:00',
+      dbTimeZone: 480,
       showClientDebugLog: true,
       writeServerDebugLog: true
     },

@@ -24,6 +24,7 @@ var scoreConfig = config.meanTorrentConfig.score;
 var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 var itemsPerPageConfig = config.meanTorrentConfig.itemsPerPage;
+var appConfig = config.meanTorrentConfig.app;
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
 
@@ -63,25 +64,26 @@ exports.list = function (req, res) {
   };
 
   var forumsTopicsCount = function (callback) {
+
     Topic.aggregate({
       // $match: condition,
       $project: {
         'forum': '$forum',
         'year': {
-          '$year': '$createdAt'
+          '$year': {'$add': ['$createdAt', appConfig.dbTimeZone * 60 * 1000]}
         },
         'month': {
-          '$month': '$createdAt'
+          '$month': {'$add': ['$createdAt', appConfig.dbTimeZone * 60 * 1000]}
         },
         'day': {
-          '$dayOfMonth': '$createdAt'
+          '$dayOfMonth': {'$add': ['$createdAt', appConfig.dbTimeZone * 60 * 1000]}
         }
       }
     }, {
       $match: {
-        year: moment.utc().year(),
-        month: moment.utc().month() + 1,
-        day: moment.utc().date()
+        year: moment().utcOffset(appConfig.dbTimeZone).year(),
+        month: moment().utcOffset(appConfig.dbTimeZone).month() + 1,
+        day: moment().utcOffset(appConfig.dbTimeZone).date()
       }
     }, {
       $group: {
@@ -104,20 +106,20 @@ exports.list = function (req, res) {
       $project: {
         'forum': '$forum',
         'year': {
-          '$year': '$_replies.createdAt'
+          '$year': {'$add': ['$_replies.createdAt', appConfig.dbTimeZone * 60 * 1000]}
         },
         'month': {
-          '$month': '$_replies.createdAt'
+          '$month': {'$add': ['$_replies.createdAt', appConfig.dbTimeZone * 60 * 1000]}
         },
         'day': {
-          '$dayOfMonth': '$_replies.createdAt'
+          '$dayOfMonth': {'$add': ['$_replies.createdAt', appConfig.dbTimeZone * 60 * 1000]}
         }
       }
     }, {
       $match: {
-        year: moment.utc().year(),
-        month: moment.utc().month() + 1,
-        day: moment.utc().date()
+        year: moment().utcOffset(appConfig.dbTimeZone).year(),
+        month: moment().utcOffset(appConfig.dbTimeZone).month() + 1,
+        day: moment().utcOffset(appConfig.dbTimeZone).date()
       }
     }, {
       $group: {
