@@ -6,10 +6,10 @@
     .controller('ForumsPostController', ForumsPostController);
 
   ForumsPostController.$inject = ['$scope', '$state', '$window', 'Authentication', 'MeanTorrentConfig', 'ForumsService', 'Upload', '$timeout', 'NotifycationService',
-    'marked', '$stateParams', 'TopicsService'];
+    'marked', '$stateParams', 'TopicsService', '$translate'];
 
   function ForumsPostController($scope, $state, $window, Authentication, MeanTorrentConfig, ForumsService, Upload, $timeout, NotifycationService,
-                                marked, $stateParams, TopicsService) {
+                                marked, $stateParams, TopicsService, $translate) {
     var vm = this;
     vm.forumsConfig = MeanTorrentConfig.meanTorrentConfig.forumsConfig;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
@@ -27,7 +27,7 @@
         vm.forum = item;
 
         vm.forumPath.splice(0, 0, {name: vm.forum.name, state: 'forums.view', params: {forumId: vm.forum._id}});
-        vm.forumPath.push({name: 'Post New Topic', state: undefined});
+        vm.forumPath.push({name: $translate.instant('FORUMS.BTN_POST_NEW_TOPIC'), state: undefined});
       });
 
     };
