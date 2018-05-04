@@ -556,11 +556,15 @@ exports.announce = function (req, res) {
           req.passkeyuser.save();
 
           //write peer speed
+          var sp = {};
+          if (curru > 0) {
+            sp.peer_uspeed = Math.round(curru / (Date.now() - req.currentPeer.last_announce_at) * 1000);
+          }
+          if (currd > 0) {
+            sp.peer_dspeed = Math.round(currd / (Date.now() - req.currentPeer.last_announce_at) * 1000);
+          }
           req.currentPeer.update({
-            $set: {
-              peer_uspeed: Math.round(curru / (Date.now() - req.currentPeer.last_announce_at) * 1000),
-              peer_dspeed: Math.round(currd / (Date.now() - req.currentPeer.last_announce_at) * 1000)
-            }
+            $set: sp
           }).exec();
 
           //update score
