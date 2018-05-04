@@ -1556,16 +1556,20 @@ exports.list = function (req, res) {
     var keysS = req.query.keys + '';
     var keysT = keysS.split(' ');
 
-    keysT.forEach(function (it) {
-      if (!isNaN(it)) {
-        if (it > 1900 && it < 2050) {
-          release = it;
+    if (keysT.length === 1 && mongoose.Types.ObjectId.isValid(keysT[0])) {
+      keysA = objectId(keysT[0]);
+    } else {
+      keysT.forEach(function (it) {
+        if (!isNaN(it)) {
+          if (it > 1900 && it < 2050) {
+            release = it;
+          }
+        } else {
+          var ti = new RegExp(it, 'i');
+          keysA.push(ti);
         }
-      } else {
-        var ti = new RegExp(it, 'i');
-        keysA.push(ti);
-      }
-    });
+      });
+    }
   }
 
   var condition = {};
@@ -1604,15 +1608,20 @@ exports.list = function (req, res) {
   if (release !== undefined) {
     condition['resource_detail_info.release_date'] = release;
   }
-  if (keysA.length > 0) {
-    condition.$or = [
-      {torrent_filename: {'$all': keysA}},
-      {'resource_detail_info.title': {'$all': keysA}},
-      {'resource_detail_info.subtitle': {'$all': keysA}},
-      {'resource_detail_info.name': {'$all': keysA}},
-      {'resource_detail_info.original_title': {'$all': keysA}},
-      {'resource_detail_info.original_name': {'$all': keysA}}
-    ];
+  if (mongoose.Types.ObjectId.isValid(keysA)) {
+    condition._id = keysA;
+  } else {
+    if (keysA.length > 0) {
+      condition.$or = [
+        {torrent_filename: {'$all': keysA}},
+        {info_hash: {'$all': keysA}},
+        {'resource_detail_info.title': {'$all': keysA}},
+        {'resource_detail_info.subtitle': {'$all': keysA}},
+        {'resource_detail_info.name': {'$all': keysA}},
+        {'resource_detail_info.original_title': {'$all': keysA}},
+        {'resource_detail_info.original_name': {'$all': keysA}}
+      ];
+    }
   }
   if (userid !== undefined) {
     condition.user = userid;
