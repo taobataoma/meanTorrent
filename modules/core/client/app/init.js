@@ -195,15 +195,7 @@
       maxAge: cacheConfig.maxAge,
       recycleFreq: cacheConfig.recycleFreq,
       deleteOnExpire: 'aggressive',
-      storageMode: cacheConfig.storageMode,
-      onExpire: function (key, value) {
-        if (cacheConfig.refreshOnExpire) {
-          var _this = this; // "this" is the cache in which the item expired
-          angular.injector(['ng']).get('$http').get(key).success(function (data) {
-            _this.put(key, data);
-          });
-        }
-      }
+      storageMode: cacheConfig.storageMode
     });
   }
 
