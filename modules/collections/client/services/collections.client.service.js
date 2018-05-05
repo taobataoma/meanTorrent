@@ -12,7 +12,7 @@
     var collectionsCache = CacheFactory.get('collectionsCache') || CacheFactory.createCache('collectionsCache');
     var removeCache = function (res) {
       collectionsCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     var collection = $resource('/api/collections/:collectionId', {

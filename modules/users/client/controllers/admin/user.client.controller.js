@@ -262,7 +262,7 @@
 
       function successCallback(res) {
         vm.maker = {};
-        vm.user = res;
+        vm.user = new AdminService(res);
         NotifycationService.showSuccessNotify('ABOUT.MAKER_CREATE_SUCCESSFULLY');
         SideOverlay.close(null, 'makerSlide');
       }

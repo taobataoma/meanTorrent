@@ -12,7 +12,7 @@
     var torrentsCache = CacheFactory.get('torrentsCache') || CacheFactory.createCache('torrentsCache');
     var removeCache = function (res) {
       torrentsCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     var Torrents = $resource('/api/torrents/:torrentId', {

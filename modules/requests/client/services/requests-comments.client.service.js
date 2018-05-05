@@ -6,13 +6,13 @@
     .module('requests.services')
     .factory('RequestsCommentsService', RequestsCommentsService);
 
-  RequestsCommentsService.$inject = ['$resource', 'CacheFactory'];
+  RequestsCommentsService.$inject = ['$resource', 'CacheFactory', 'RequestsService'];
 
-  function RequestsCommentsService($resource, CacheFactory) {
+  function RequestsCommentsService($resource, CacheFactory, RequestsService) {
     var requestsCache = CacheFactory.get('requestsCache') || CacheFactory.createCache('requestsCache');
     var removeCache = function (res) {
       requestsCache.removeAll();
-      return res.data;
+      return new RequestsService(res.resource);
     };
 
     var Comments = $resource('/api/reqComments/:requestId/:commentId/:subCommentId', {

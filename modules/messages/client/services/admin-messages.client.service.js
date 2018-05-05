@@ -11,7 +11,7 @@
     var adminMessagesCache = CacheFactory.get('adminMessagesCache') || CacheFactory.createCache('adminMessagesCache');
     var removeCache = function (res) {
       adminMessagesCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     return $resource('/api/adminMessages/:adminMessageId', {

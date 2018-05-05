@@ -6,13 +6,13 @@
     .module('torrents.services')
     .factory('SubtitlesService', SubtitlesService);
 
-  SubtitlesService.$inject = ['$resource', 'CacheFactory'];
+  SubtitlesService.$inject = ['$resource', 'CacheFactory', 'TorrentsService'];
 
-  function SubtitlesService($resource, CacheFactory) {
+  function SubtitlesService($resource, CacheFactory, TorrentsService) {
     var torrentsCache = CacheFactory.get('torrentsCache') || CacheFactory.createCache('torrentsCache');
     var removeCache = function (res) {
       torrentsCache.removeAll();
-      return res.data;
+      return new TorrentsService(res.resource);
     };
 
     var Subtitles = $resource('/api/subtitles/:torrentId/:subtitleId', {

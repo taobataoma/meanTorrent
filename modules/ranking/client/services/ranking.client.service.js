@@ -12,7 +12,7 @@
     var rankingCache = CacheFactory.get('rankingCache') || CacheFactory.createCache('rankingCache');
     var removeCache = function (res) {
       rankingCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     return $resource('/api/ranking', {

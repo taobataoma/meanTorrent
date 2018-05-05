@@ -11,7 +11,7 @@
     var messagesTicketsCache = CacheFactory.get('messagesTicketsCache') || CacheFactory.createCache('messagesTicketsCache');
     var removeCache = function (res) {
       messagesTicketsCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     return $resource('/api/messageTickets/:messageTicketId/:replyId', {
@@ -75,7 +75,7 @@
     var mailTicketsCache = CacheFactory.get('mailTicketsCache') || CacheFactory.createCache('mailTicketsCache');
     var removeCache = function (res) {
       mailTicketsCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     return $resource('/api/mailTickets/:mailTicketId', {

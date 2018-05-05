@@ -6,13 +6,13 @@
     .module('torrents.services')
     .factory('CommentsService', CommentsService);
 
-  CommentsService.$inject = ['$resource', 'CacheFactory'];
+  CommentsService.$inject = ['$resource', 'CacheFactory', 'TorrentsService'];
 
-  function CommentsService($resource, CacheFactory) {
+  function CommentsService($resource, CacheFactory, TorrentsService) {
     var torrentsCache = CacheFactory.get('torrentsCache') || CacheFactory.createCache('torrentsCache');
     var removeCache = function (res) {
       torrentsCache.removeAll();
-      return res.data;
+      return new TorrentsService(res.resource);
     };
 
     var Comments = $resource('/api/comments/:torrentId/:commentId/:subCommentId', {

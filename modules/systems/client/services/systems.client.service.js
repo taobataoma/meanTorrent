@@ -11,7 +11,7 @@
     var systemsCache = CacheFactory.get('systemsCache') || CacheFactory.createCache('systemsCache');
     var removeCache = function (res) {
       systemsCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     return $resource('/api/systems/:systemId', {

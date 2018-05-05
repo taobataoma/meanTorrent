@@ -11,7 +11,7 @@
     var forumsCache = CacheFactory.get('forumsCache') || CacheFactory.createCache('forumsCache');
     var removeCache = function (res) {
       forumsCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     return $resource('/api/topics/:forumId/:topicId', {

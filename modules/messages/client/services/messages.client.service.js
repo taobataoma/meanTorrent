@@ -11,7 +11,7 @@
     var messagesCache = CacheFactory.get('messagesCache') || CacheFactory.createCache('messagesCache');
     var removeCache = function (res) {
       messagesCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     return $resource('/api/messages/:messageId', {

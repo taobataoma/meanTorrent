@@ -12,7 +12,7 @@
     var completesCache = CacheFactory.get('completesCache') || CacheFactory.createCache('completesCache');
     var removeCache = function (res) {
       completesCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     var completes = $resource('/api/completes/:completeId', {

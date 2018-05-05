@@ -12,7 +12,7 @@
     var usersCache = CacheFactory.get('usersCache') || CacheFactory.createCache('usersCache');
     var removeCache = function (res) {
       usersCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     var Users = $resource('/api/users', {}, {
@@ -207,7 +207,7 @@
     var usersCache = CacheFactory.get('usersCache') || CacheFactory.createCache('usersCache');
     var removeCache = function (res) {
       usersCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     var Users = $resource('/api/users/:userId', {

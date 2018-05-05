@@ -11,7 +11,7 @@
     var tracesCache = CacheFactory.get('tracesCache') || CacheFactory.createCache('tracesCache');
     var removeCache = function (res) {
       tracesCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     return $resource('/api/traces/:traceId', {

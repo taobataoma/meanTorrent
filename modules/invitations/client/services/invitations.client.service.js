@@ -11,7 +11,7 @@
     var invitationsCache = CacheFactory.get('invitationsCache') || CacheFactory.createCache('invitationsCache');
     var removeCache = function (res) {
       invitationsCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     return $resource('/api/invitations/:invitationId', {

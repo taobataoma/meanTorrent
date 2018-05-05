@@ -163,6 +163,7 @@
      * toggleVIP
      */
     vm.toggleVIP = function () {
+      console.log(vm.torrentLocalInfo);
       vm.torrentLocalInfo.$toggleVIPStatus(function (res) {
         mtDebug.info(res);
         vm.torrentLocalInfo = res;
@@ -588,6 +589,7 @@
         vm.scrollToId = vm.comment_to_id;
         vm.submitInit();
         vm.torrentLocalInfo = res;
+        console.log(res);
       }
 
       function errorCallback(res) {

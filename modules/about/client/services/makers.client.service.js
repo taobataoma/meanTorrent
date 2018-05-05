@@ -11,7 +11,7 @@
     var makerCache = CacheFactory.get('makerCache') || CacheFactory.createCache('makerCache');
     var removeCache = function (res) {
       makerCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     return $resource('/api/makers/:makerId', {

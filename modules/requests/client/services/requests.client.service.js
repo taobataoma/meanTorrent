@@ -11,7 +11,7 @@
     var requestsCache = CacheFactory.get('requestsCache') || CacheFactory.createCache('requestsCache');
     var removeCache = function (res) {
       requestsCache.removeAll();
-      return res.data;
+      return res.resource;
     };
 
     return $resource('/api/requests/:requestId', {
