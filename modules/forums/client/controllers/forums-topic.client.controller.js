@@ -98,7 +98,7 @@
           topicId: $stateParams.topicId
         }, function (topic) {
           mtDebug.info(topic);
-          vm.topic = topic;
+          vm.topic = new TopicsService(topic);
           vm.buildPager();
 
           vm.forumPath.push({name: topic.title, state: undefined});
@@ -196,7 +196,7 @@
     $scope.onTopicTitleEdited = function (modifyed) {
       if (vm.topic && modifyed) {
         vm.topic.$update(function (res) {
-          vm.topic = res;
+          vm.topic = new TopicsService(res);
           NotifycationService.showSuccessNotify('FORUMS.TOPIC_EDIT_SUCCESSFULLY');
         }, function (res) {
           NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_EDIT_FAILED');
@@ -224,7 +224,7 @@
             //save content
             t.content = e.getContent();
             t.$update(function (res) {
-              vm.topic = res;
+              vm.topic = new TopicsService(res);
               vm.figureOutItemsToDisplay();
               NotifycationService.showSuccessNotify('FORUMS.TOPIC_EDIT_SUCCESSFULLY');
             }, function (res) {
@@ -322,7 +322,7 @@
             });
 
             rep.$update(function (res) {
-              vm.topic = res;
+              vm.topic = new TopicsService(res);
               vm.figureOutItemsToDisplay();
               NotifycationService.showSuccessNotify('FORUMS.REPLY_EDIT_SUCCESSFULLY');
             }, function (res) {
@@ -428,7 +428,7 @@
       });
 
       topic.$toggleTopicTopStatus(function (res) {
-        vm.topic = res;
+        vm.topic = new TopicsService(res);
         NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_TOP_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_TOGGLE_TOP_FAILED');
@@ -446,7 +446,7 @@
       });
 
       topic.$toggleTopicGlobalStatus(function (res) {
-        vm.topic = res;
+        vm.topic = new TopicsService(res);
         NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_GLOBAL_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_TOGGLE_GLOBAL_FAILED');
@@ -464,7 +464,7 @@
       });
 
       topic.$toggleTopicHomeHelpStatus(function (res) {
-        vm.topic = res;
+        vm.topic = new TopicsService(res);
         NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_HOME_HELP_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_TOGGLE_HOME_HELP_FAILED');
@@ -482,7 +482,7 @@
       });
 
       topic.$toggleTopicHomeNoticeStatus(function (res) {
-        vm.topic = res;
+        vm.topic = new TopicsService(res);
         NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_HOME_NOTICE_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_TOGGLE_HOME_NOTICE_FAILED');
@@ -508,7 +508,7 @@
             topicId: vm.topic._id,
             replyId: reply._id
           }, function (res) {
-            vm.topic = res;
+            vm.topic = new TopicsService(res);
             vm.figureOutItemsToDisplay();
             NotifycationService.showSuccessNotify('FORUMS.DELETE_REPLY_SUCCESSFULLY');
           }, function (res) {
@@ -538,7 +538,7 @@
       });
 
       topic.$toggleTopicReadonly(function (res) {
-        vm.topic = res;
+        vm.topic = new TopicsService(res);
         NotifycationService.showSuccessNotify('FORUMS.TOPIC_TOGGLE_READONLY_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'FORUMS.TOPIC_TOGGLE_READONLY_FAILED');
@@ -588,7 +588,7 @@
       function successCallback(res) {
         vm.postReplyFields = {};
         vm.currentPage = Math.ceil(res._replies.length / vm.itemsPerPage);
-        vm.topic = res;
+        vm.topic = new TopicsService(res);
         vm.pageChanged();
 
         $scope.$broadcast('show-errors-reset', 'vm.replyForm');
@@ -636,7 +636,7 @@
       });
 
       topic.$thumbsUp(function (res) {
-        vm.topic = res;
+        vm.topic = new TopicsService(res);
         vm.figureOutItemsToDisplay();
 
         $timeout(function () {

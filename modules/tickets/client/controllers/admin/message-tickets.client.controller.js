@@ -101,7 +101,7 @@
             messageTicketId: t._id
           }, function (res) {
             // vm.ticket = res;
-            vm.pagedItems[vm.pagedItems.indexOf(t)] = res;
+            vm.pagedItems[vm.pagedItems.indexOf(t)] = new MessageTicketsService(res);
             NotifycationService.showSuccessNotify('SUPPORT.HANDLE_TICKET_SUCCESSFULLY');
           }, function (res) {
             NotifycationService.showErrorNotify(res.data.message, 'SUPPORT.HANDLE_TICKET_FAILED');
