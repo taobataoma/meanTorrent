@@ -539,6 +539,8 @@ exports.announce = function (req, res) {
           //write user uploaded and downloaded
           req.passkeyuser.uploaded += u;
           req.passkeyuser.downloaded += d;
+          req.passkeyuser.true_uploaded += curru;
+          req.passkeyuser.true_downloaded += currd;
           //write examination uploaded and downloaded
           if (common.examinationIsValid(req.passkeyuser)) {
             req.passkeyuser.examinationData.uploaded = req.passkeyuser.examinationData.uploaded || 0;

@@ -182,6 +182,14 @@ var UserSchema = new Schema({
     set: setNumberValueToZero,
     default: 0
   },
+  true_uploaded: {
+    type: Number,
+    default: 0
+  },
+  true_downloaded: {
+    type: Number,
+    default: 0
+  },
   ratio: {
     type: Number,
     default: 0
