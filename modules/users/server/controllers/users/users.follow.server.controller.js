@@ -79,7 +79,7 @@ exports.myFollowers = function (req, res) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
+    } else if (u) {
       res.json(u.followers ? u.followers.slice(skip, skip + limit) : []);
     }
   });
@@ -110,7 +110,7 @@ exports.myFollowing = function (req, res) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
+    } else if (u) {
       res.json(u.following ? u.following.slice(skip, skip + limit) : []);
     }
   });
