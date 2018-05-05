@@ -194,7 +194,8 @@
                 <dd class="h-line">
                     <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
                     <span>{{ vm.user.uploaded | bytes:2 }}</span>
-                    <span class="true_updown text-muted">|&emsp;{{ 'STATUS_FIELD.TRUE_UPLOADED' | translate}}：{{ vm.user.true_uploaded | bytes:2 }}</span>
+                    <span class="true_updown text-muted"
+                          ng-if="vm.user.true_uploaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_UPLOADED' | translate}}：{{ vm.user.true_uploaded | bytes:2 }}</span>
 
                     <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
                         <button class="btn btn-default btn-xs btn-width-100"
@@ -214,7 +215,8 @@
                 <dd class="h-line">
                     <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
                     <span>{{ vm.user.downloaded | bytes:2 }}</span>
-                    <span class="true_updown text-muted">|&emsp;{{ 'STATUS_FIELD.TRUE_DOWNLOADED' | translate}}：{{ vm.user.true_downloaded | bytes:2 }}</span>
+                    <span class="true_updown text-muted"
+                          ng-if="vm.user.true_downloaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_DOWNLOADED' | translate}}：{{ vm.user.true_downloaded | bytes:2 }}</span>
 
                     <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
                         <button class="btn btn-default btn-xs btn-width-100"
