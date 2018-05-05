@@ -24,7 +24,7 @@
         messageTicketId: $stateParams.messageTicketId
       }, function (ticket) {
         mtDebug.info(ticket);
-        vm.ticket = new MessageTicketsService(ticket);
+        vm.ticket = ticket;
         vm.buildPager();
       });
     };
@@ -112,7 +112,7 @@
     $scope.onTopicTitleEdited = function (modifyed) {
       if (vm.ticket && modifyed) {
         vm.ticket.$update(function (res) {
-          vm.ticket = new MessageTicketsService(res);
+          vm.ticket = res;
           NotifycationService.showSuccessNotify('SUPPORT.TICKET_EDIT_SUCCESSFULLY');
         }, function (res) {
           NotifycationService.showErrorNotify(res.data.message, 'SUPPORT.TICKET_EDIT_FAILED');
@@ -153,7 +153,7 @@
       function successCallback(res) {
         vm.postReplyFields = {};
         vm.currentPage = Math.ceil(res._replies.length / vm.itemsPerPage);
-        vm.ticket = new MessageTicketsService(res);
+        vm.ticket = res;
         vm.pageChanged();
 
         $scope.$broadcast('show-errors-reset', 'vm.replyForm');
@@ -240,7 +240,7 @@
             messageTicketId: vm.ticket._id,
             replyId: reply._id
           }, function (res) {
-            vm.ticket = new MessageTicketsService(res);
+            vm.ticket = res;
             vm.figureOutItemsToDisplay();
             NotifycationService.showSuccessNotify('FORUMS.DELETE_REPLY_SUCCESSFULLY');
           }, function (res) {
@@ -269,7 +269,7 @@
             //save content
             t.content = e.getContent();
             t.$update(function (res) {
-              vm.ticket = new MessageTicketsService(res);
+              vm.ticket = res;
               vm.figureOutItemsToDisplay();
               NotifycationService.showSuccessNotify('SUPPORT.TICKET_EDIT_SUCCESSFULLY');
             }, function (res) {
@@ -366,7 +366,7 @@
             });
 
             rep.$update(function (res) {
-              vm.ticket = new MessageTicketsService(res);
+              vm.ticket = res;
               vm.figureOutItemsToDisplay();
               NotifycationService.showSuccessNotify('FORUMS.REPLY_EDIT_SUCCESSFULLY');
             }, function (res) {
@@ -454,7 +454,7 @@
           MessageTicketsService.handle({
             messageTicketId: t._id
           }, function (res) {
-            vm.ticket = new MessageTicketsService(res);
+            vm.ticket = res;
             NotifycationService.showSuccessNotify('SUPPORT.HANDLE_TICKET_SUCCESSFULLY');
           }, function (res) {
             NotifycationService.showErrorNotify(res.data.message, 'SUPPORT.HANDLE_TICKET_FAILED');
@@ -478,7 +478,7 @@
           MessageTicketsService.solved({
             messageTicketId: t._id
           }, function (res) {
-            vm.ticket = new MessageTicketsService(res);
+            vm.ticket = res;
             NotifycationService.showSuccessNotify('SUPPORT.SOLVED_TICKET_SUCCESSFULLY');
           }, function (res) {
             NotifycationService.showErrorNotify(res.data.message, 'SUPPORT.SOLVED_TICKET_FAILED');

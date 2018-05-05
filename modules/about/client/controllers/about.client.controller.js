@@ -311,11 +311,11 @@
     vm.getMaker = function () {
       MakerGroupService.get({
         makerId: $state.params.makerId
-      }, function (res) {
-        vm.maker = new MakerGroupService(res);
+      }, function (data) {
+        vm.maker = data;
         vm.rating_vote = vm.maker.vote_average;
 
-        mtDebug.info(res);
+        mtDebug.info(data);
 
         vm.buildPager();
       });
@@ -374,7 +374,7 @@
         _id: vm.maker._id,
         _username: vm.addMemberPopover.username
       }, function (res) {
-        vm.maker = new MakerGroupService(res);
+        vm.maker = res;
         NotifycationService.showSuccessNotify('ABOUT.ADD_MEMBER_SUCCESSFULLY');
         vm.addMemberPopover.isOpen = false;
       }, function (res) {
@@ -402,7 +402,7 @@
             _id: m._id,
             _username: u.username
           }, function (res) {
-            vm.maker = new MakerGroupService(res);
+            vm.maker = res;
             NotifycationService.showSuccessNotify('ABOUT.REMOVE_MEMBER_SUCCESSFULLY');
           }, function (res) {
             NotifycationService.showErrorNotify(res.data.message, 'ABOUT.REMOVE_MEMBER_FAILED');
@@ -429,7 +429,7 @@
           if (e.isDirty()) {
             vm.maker.desc = e.getContent();
             vm.maker.$update(function (res) {
-              vm.maker = new MakerGroupService(res);
+              vm.maker = res;
               NotifycationService.showSuccessNotify('ABOUT.EDIT_DESC_SUCCESSFULLY');
             }, function (res) {
               NotifycationService.showErrorNotify(res.data.message, 'ABOUT.EDIT_DESC_FAILED');
@@ -533,7 +533,7 @@
     vm.setMakerUploadAccess = function (acc) {
       vm.maker.upload_access = acc;
       vm.maker.$update(function (res) {
-        vm.maker = new MakerGroupService(res);
+        vm.maker = res;
         NotifycationService.showSuccessNotify('UPLOADER.ACCESS_CHANGED_SUCCESSFULLY');
       });
 
@@ -547,7 +547,7 @@
       item.$rating({
         vote: vm.rating_vote
       }, function (res) {
-        vm.maker = new MakerGroupService(res);
+        vm.maker = res;
         vm.rating_vote = vm.maker.vote_average;
 
         NotifycationService.showSuccessNotify('ABOUT.RATING_SUCCESSFULLY');

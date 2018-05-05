@@ -31,7 +31,7 @@
       CollectionsService.get({
         collectionId: $state.params.collectionId
       }, function (data) {
-        vm.collection = new CollectionsService(data);
+        vm.collection = data;
 
         $('.backdrop').css('backgroundImage', 'url("' + vm.tmdbConfig.backdropImgBaseUrl + vm.collection.backdrop_path + '")');
 
@@ -119,7 +119,7 @@
           if (e.isDirty()) {
             vm.collection.overview = e.getContent();
             vm.collection.$update(function (res) {
-              vm.collection = new CollectionsService(res);
+              vm.collection = res;
               NotifycationService.showSuccessNotify('COLLECTIONS.EDIT_OVERVIEW_SUCCESSFULLY');
             }, function (res) {
               NotifycationService.showErrorNotify(res.data.message, 'COLLECTIONS.EDIT_OVERVIEW_FAILED');
@@ -201,7 +201,7 @@
         _id: item._id,
         rlevel: rl.value
       }, function (res) {
-        vm.collection = new CollectionsService(res);
+        vm.collection = res;
         NotifycationService.showSuccessNotify('COLLECTIONS.SETRLEVEL_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showSuccessNotify('COLLECTIONS.SETRLEVEL_ERROR');
@@ -227,7 +227,7 @@
             torrentId: item._id
           }, function (res) {
             mtDebug.info(res);
-            vm.collection = new CollectionsService(res);
+            vm.collection = res;
             NotifycationService.showSuccessNotify('COLLECTIONS.REMOVE_SUCCESSFULLY');
           }, function (res) {
             NotifycationService.showErrorNotify(res.data.message, 'COLLECTIONS.REMOVE_FAILED');

@@ -92,7 +92,7 @@
       RequestsService.get({
         requestId: $stateParams.requestId
       }, function (res) {
-        vm.request = new RequestsService(res);
+        vm.request = res;
         mtDebug.info(vm.request);
         vm.commentBuildPager();
       });
@@ -191,7 +191,7 @@
           if (e.isDirty()) {
             vm.request.desc = e.getContent();
             vm.request.$update(function (res) {
-              vm.request = new RequestsService(res);
+              vm.request = res;
               NotifycationService.showSuccessNotify('REQUESTS.EDIT_DESC_SUCCESSFULLY');
             }, function (res) {
               NotifycationService.showErrorNotify(res.data.message, 'REQUESTS.EDIT_DESC_FAILED');
@@ -293,7 +293,7 @@
     $scope.onRequestTitleEdited = function (modifyed) {
       if (vm.request && modifyed) {
         vm.request.$update(function (res) {
-          vm.request = new RequestsService(res);
+          vm.request = res;
           NotifycationService.showSuccessNotify('REQUESTS.EDIT_SUCCESSFULLY');
         }, function (res) {
           NotifycationService.showErrorNotify(res.data.message, 'REQUESTS.EDIT_FAILED');
@@ -317,7 +317,7 @@
           vm.request.$accept({
             torrentId: t._id
           }, function (res) {
-            vm.request = new RequestsService(res);
+            vm.request = res;
             NotifycationService.showSuccessNotify('REQUESTS.ACCEPT_SUCCESSFULLY');
           }, function (res) {
             NotifycationService.showErrorNotify(res.data.message, 'REQUESTS.ACCEPT_FAILED');
@@ -404,7 +404,7 @@
       function successCallback(res) {
         vm.scrollToId = vm.comment.to_id;
         vm.submitInit();
-        vm.request = new RequestsService(res);
+        vm.request = res;
         NotifycationService.showSuccessNotify('REQUESTS.COMMENT_CREATE_SUCCESS');
       }
 
@@ -434,7 +434,7 @@
       function successCallback(res) {
         vm.scrollToId = vm.comment.to_id;
         vm.submitInit();
-        vm.request = new RequestsService(res);
+        vm.request = res;
         NotifycationService.showSuccessNotify('REQUESTS.COMMENT_EDIT_SUCCESS');
       }
 
@@ -559,7 +559,7 @@
           function successCallback(res) {
             vm.submitInit();
             vm.scrollToId = undefined;
-            vm.request = new RequestsService(res);
+            vm.request = res;
             NotifycationService.showSuccessNotify('REQUESTS.COMMENT_REMOVE_SUCCESS');
           }
 
@@ -599,7 +599,7 @@
           function successCallback(res) {
             vm.submitInit();
             vm.scrollToId = undefined;
-            vm.request = new RequestsService(res);
+            vm.request = res;
             NotifycationService.showSuccessNotify('REQUESTS.COMMENT_REMOVE_SUCCESS');
           }
 

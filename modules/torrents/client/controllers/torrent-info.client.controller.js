@@ -134,7 +134,7 @@
       TorrentsService.get({
         torrentId: $stateParams.torrentId
       }, function (res) {
-        vm.torrentLocalInfo = new TorrentsService(res);
+        vm.torrentLocalInfo = res;
         mtDebug.info(vm.torrentLocalInfo);
 
         $('.backdrop').css('backgroundImage', 'url("' + vm.TGI.getTorrentBackdropImage(vm.torrentLocalInfo) + '")');
@@ -152,7 +152,7 @@
     vm.toggleHnR = function () {
       vm.torrentLocalInfo.$toggleHnRStatus(function (res) {
         mtDebug.info(res);
-        vm.torrentLocalInfo = new TorrentsService(res);
+        vm.torrentLocalInfo = res;
         NotifycationService.showSuccessNotify('TORRENT_TOGGLE_HNR_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_HNR_FAILED');
@@ -163,11 +163,9 @@
      * toggleVIP
      */
     vm.toggleVIP = function () {
-      console.log(vm.torrentLocalInfo);
       vm.torrentLocalInfo.$toggleVIPStatus(function (res) {
         mtDebug.info(res);
-        vm.torrentLocalInfo = new TorrentsService(res);
-        console.log(vm.torrentLocalInfo);
+        vm.torrentLocalInfo = res;
         NotifycationService.showSuccessNotify('TORRENT_TOGGLE_VIP_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_VIP_FAILED');
@@ -180,7 +178,7 @@
     vm.toggleTop = function (item) {
       vm.torrentLocalInfo.$toggleTopStatus(function (res) {
         mtDebug.info(res);
-        vm.torrentLocalInfo = new TorrentsService(res);
+        vm.torrentLocalInfo = res;
         NotifycationService.showSuccessNotify('TORRENT_TOGGLE_TOP_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_TOP_FAILED');
@@ -244,7 +242,7 @@
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETTAGS_SUCCESSFULLY')
         });
 
-        vm.torrentLocalInfo = new TorrentsService(res);
+        vm.torrentLocalInfo = res;
         mtDebug.info(res);
       }, function (res) {
         Notification.error({
@@ -589,7 +587,7 @@
 
         vm.scrollToId = vm.comment_to_id;
         vm.submitInit();
-        vm.torrentLocalInfo = new TorrentsService(res);
+        vm.torrentLocalInfo = res;
       }
 
       function errorCallback(res) {
@@ -625,7 +623,7 @@
 
         vm.scrollToId = vm.comment_to_id;
         vm.submitInit();
-        vm.torrentLocalInfo = new TorrentsService(res);
+        vm.torrentLocalInfo = res;
       }
 
       function errorCallback(res) {
@@ -767,7 +765,7 @@
 
             vm.submitInit();
             vm.scrollToId = undefined;
-            vm.torrentLocalInfo = new TorrentsService(res);
+            vm.torrentLocalInfo = res;
           }
 
           function errorCallback(res) {
@@ -813,7 +811,7 @@
 
             vm.submitInit();
             vm.scrollToId = undefined;
-            vm.torrentLocalInfo = new TorrentsService(res);
+            vm.torrentLocalInfo = res;
           }
 
           function errorCallback(res) {
@@ -864,7 +862,7 @@
       vm.sFile = undefined;
 
       mtDebug.info(res);
-      vm.torrentLocalInfo = new TorrentsService(res.data);
+      vm.torrentLocalInfo = res.data;
     }
 
     /**
@@ -911,7 +909,7 @@
               message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('SUBTITLE_DELETE_SUCCESSFULLY')
             });
 
-            vm.torrentLocalInfo = new TorrentsService(res);
+            vm.torrentLocalInfo = res;
           }
 
           function errorCallback(res) {
@@ -1009,7 +1007,7 @@
       });
 
       function successCallback(res) {
-        vm.torrentLocalInfo = new TorrentsService(res);
+        vm.torrentLocalInfo = res;
         Notification.success({
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_UPDATE_SUCCESSFULLY')
         });
@@ -1038,7 +1036,7 @@
           });
 
           mtDebug.info(res);
-          vm.torrentLocalInfo = new TorrentsService(res);
+          vm.torrentLocalInfo = res;
         }, function (res) {
           Notification.error({
             message: res.data.message,
@@ -1061,7 +1059,7 @@
             message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_SETRLEVEL_SUCCESSFULLY')
           });
 
-          vm.torrentLocalInfo = new TorrentsService(res);
+          vm.torrentLocalInfo = res;
         }, function (res) {
           Notification.error({
             message: res.data.message,
@@ -1077,7 +1075,7 @@
      */
     vm.beginThumbsUp = function (t) {
       t.$thumbsUp(function (res) {
-        vm.torrentLocalInfo = new TorrentsService(res);
+        vm.torrentLocalInfo = res;
         vm.torrentTabs[3].badges[0].value += 1;
         Notification.success({
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_THUMBS_SUCCESSFULLY')
@@ -1165,7 +1163,7 @@
       item.$rating({
         vote: vm.rating_vote
       }, function (res) {
-        vm.torrentLocalInfo = new TorrentsService(res);
+        vm.torrentLocalInfo = res;
         vm.rating_vote = res.resource_detail_info.vote_average;
 
         Notification.success({
