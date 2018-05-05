@@ -68,6 +68,7 @@ module.exports.announceLog = function (user, torrent, data) {
       l.uploaded += data.write_uploaded || 0;
       l.downloaded += data.write_downloaded || 0;
       l.score += data.write_score || 0;
+      l.updatedAt = Date.now();
 
       l.save(function (err) {
         if (err) {
@@ -111,6 +112,7 @@ module.exports.announceLog = function (user, torrent, data) {
       l.uploaded += data.write_uploaded || 0;
       l.downloaded += data.write_downloaded || 0;
       l.score += data.write_score || 0;
+      l.updatedAt = Date.now();
 
       l.save(function (err) {
         if (err) {
@@ -155,6 +157,7 @@ module.exports.scoreLog = function (user, score) {
   }).exec(function (err, l) {
     if (l) {
       l.score += score || 0;
+      l.updatedAt = Date.now();
 
       l.save(function (err) {
         if (err) {
@@ -194,6 +197,7 @@ module.exports.scoreLog = function (user, score) {
   }).exec(function (err, l) {
     if (l) {
       l.score += score || 0;
+      l.updatedAt = Date.now();
 
       l.save(function (err) {
         if (err) {
