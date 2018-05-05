@@ -194,6 +194,7 @@
                 <dd class="h-line">
                     <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
                     <span>{{ vm.user.uploaded | bytes:2 }}</span>
+                    <span class="true_updown text-muted">|&emsp;{{ 'STATUS_FIELD.TRUE_UPLOADED' | translate}}：{{ vm.user.true_uploaded | bytes:2 }}</span>
 
                     <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
                         <button class="btn btn-default btn-xs btn-width-100"
@@ -213,6 +214,7 @@
                 <dd class="h-line">
                     <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
                     <span>{{ vm.user.downloaded | bytes:2 }}</span>
+                    <span class="true_updown text-muted">|&emsp;{{ 'STATUS_FIELD.TRUE_DOWNLOADED' | translate}}：{{ vm.user.true_downloaded | bytes:2 }}</span>
 
                     <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
                         <button class="btn btn-default btn-xs btn-width-100"
@@ -309,7 +311,7 @@
                 <input type="number" ng-model="vm.setUserScorePopover.number" class="form-control" placeholder="{{ 'SCORE_NUMBER' | translate }}"
                        autofocus>
             </div>
-            <button class="btn btn-default" ng-click="vm.setUserScore();">{{ 'BUTTON_SET' | translate }}</button>
+            <button class="btn btn-default" ng-click="vm.setUserScore();">{{ 'BUTTON_OK' | translate }}</button>
         </form>
     </script>
 
@@ -319,7 +321,7 @@
                 <input type="number" ng-model="vm.setUserUploadedPopover.number" class="form-control"
                        placeholder="{{ 'UPLOADED_NUMBER' | translate }}" autofocus>
             </div>
-            <button class="btn btn-default" ng-click="vm.setUserUploaded();">{{ 'BUTTON_SET' | translate }}</button>
+            <button class="btn btn-default" ng-click="vm.setUserUploaded();">{{ 'BUTTON_OK' | translate }}</button>
         </form>
     </script>
 
@@ -329,7 +331,7 @@
                 <input type="number" ng-model="vm.setUserDownloadedPopover.number" class="form-control"
                        placeholder="{{ 'DOWNLOADED_NUMBER' | translate }}" autofocus>
             </div>
-            <button class="btn btn-default" ng-click="vm.setUserDownloaded();">{{ 'BUTTON_SET' | translate }}</button>
+            <button class="btn btn-default" ng-click="vm.setUserDownloaded();">{{ 'BUTTON_OK' | translate }}</button>
         </form>
     </script>
 
