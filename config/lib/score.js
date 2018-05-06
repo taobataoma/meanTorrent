@@ -2,6 +2,7 @@
 
 var path = require('path'),
   config = require(path.resolve('./config/config')),
+  logger = require('./logger'),
   dataLog = require(path.resolve('./config/lib/data-log')),
   common = require(path.resolve('./config/lib/common')),
   mongoose = require('mongoose'),
@@ -21,6 +22,7 @@ var scoreConfig = config.meanTorrentConfig.score;
  * @param value
  */
 module.exports.update = function (req, user, action, value, writeLog = true) {
+  logger.info('value=' + value);
   var v = value || action.value;
 
   if (action.enable) {
