@@ -58,81 +58,56 @@ module.exports.announceLog = function (user, torrent, data) {
   var m = mom.get('month') + 1;
   var d = mom.get('date');
 
-  UserDaysLog.findOne({
+  UserDaysLog.findOneAndUpdate({
     user: user,
     year: y,
     month: m,
     date: d
-  }).exec(function (err, l) {
-    if (l) {
-      l.uploaded += data.write_uploaded || 0;
-      l.downloaded += data.write_downloaded || 0;
-      l.score += data.write_score || 0;
-      l.updatedAt = Date.now();
-
-      l.save(function (err) {
-        if (err) {
-          logger.error(err);
-        }
-      });
-    } else {
-      var udl = new UserDaysLog();
-      udl.user = user;
-      udl.year = y;
-      udl.month = m;
-      udl.date = d;
-      udl.uploaded = data.write_uploaded || 0;
-      udl.downloaded = data.write_downloaded || 0;
-      udl.score = data.write_score || 0;
-
-      udl.save(function (err) {
-        if (err) {
-          logger.error(err);
-        }
-      });
-    }
-  });
-
-  //remove user-days-log old data
-  UserDaysLog.remove({
-    month: {$lt: mom.subtract(12, 'months').get('month') + 1}
-  }, function (err) {
+  }, {
+    $inc: {
+      uploaded: data.write_uploaded,
+      downloaded: data.write_downloaded,
+      score: data.write_score
+    },
+    updatedAt: Date.now()
+  }, {
+    upsert: true,
+    setDefaultsOnInsert: true
+  }).then(function (err) {
     if (err) {
       logger.error(err);
-    }
-  });
-
-  //write userMonthsLog
-  UserMonthsLog.findOne({
-    user: user,
-    year: y,
-    month: m
-  }).exec(function (err, l) {
-    if (l) {
-      l.uploaded += data.write_uploaded || 0;
-      l.downloaded += data.write_downloaded || 0;
-      l.score += data.write_score || 0;
-      l.updatedAt = Date.now();
-
-      l.save(function (err) {
-        if (err) {
-          logger.error(err);
-        }
-      });
     } else {
-      var udl = new UserMonthsLog();
-      udl.user = user;
-      udl.year = y;
-      udl.month = m;
-      udl.uploaded = data.write_uploaded || 0;
-      udl.downloaded = data.write_downloaded || 0;
-      udl.score = data.write_score || 0;
-
-      udl.save(function (err) {
+      //remove user-days-log old data
+      UserDaysLog.remove({
+        month: {$lt: mom.subtract(12, 'months').get('month') + 1}
+      }, function (err) {
         if (err) {
           logger.error(err);
         }
       });
+
+      //write userMonthsLog
+      UserMonthsLog.findOneAndUpdate(
+        {
+          user: user,
+          year: y,
+          month: m
+        }, {
+          $inc: {
+            uploaded: data.write_uploaded,
+            downloaded: data.write_downloaded,
+            score: data.write_score
+          },
+          updatedAt: Date.now()
+        }, {
+          upsert: true,
+          setDefaultsOnInsert: true
+        }, function (err) {
+          if (err) {
+            logger.error(err);
+          }
+        }
+      );
     }
   });
 };
@@ -149,73 +124,52 @@ module.exports.scoreLog = function (user, score) {
   var m = mom.get('month') + 1;
   var d = mom.get('date');
 
-  UserDaysLog.findOne({
+  UserDaysLog.findOneAndUpdate({
     user: user,
     year: y,
     month: m,
     date: d
-  }).exec(function (err, l) {
-    if (l) {
-      l.score += score || 0;
-      l.updatedAt = Date.now();
-
-      l.save(function (err) {
-        if (err) {
-          logger.error(err);
-        }
-      });
-    } else {
-      var udl = new UserDaysLog();
-      udl.user = user;
-      udl.year = y;
-      udl.month = m;
-      udl.date = d;
-      udl.score = score || 0;
-
-      udl.save(function (err) {
-        if (err) {
-          logger.error(err);
-        }
-      });
-    }
-  });
-
-  //remove user-days-log old data
-  UserDaysLog.remove({
-    month: {$lt: mom.subtract(12, 'months').get('month') + 1}
-  }, function (err) {
+  }, {
+    $inc: {
+      score: score
+    },
+    updatedAt: Date.now()
+  }, {
+    upsert: true,
+    setDefaultsOnInsert: true
+  }).then(function (err) {
     if (err) {
       logger.error(err);
-    }
-  });
-
-  //write userMonthsLog
-  UserMonthsLog.findOne({
-    user: user,
-    year: y,
-    month: m
-  }).exec(function (err, l) {
-    if (l) {
-      l.score += score || 0;
-      l.updatedAt = Date.now();
-
-      l.save(function (err) {
-        if (err) {
-          logger.error(err);
-        }
-      });
     } else {
-      var udl = new UserMonthsLog();
-      udl.user = user;
-      udl.year = y;
-      udl.month = m;
-      udl.score = score || 0;
-
-      udl.save(function (err) {
+      //remove user-days-log old data
+      UserDaysLog.remove({
+        month: {$lt: mom.subtract(12, 'months').get('month') + 1}
+      }, function (err) {
         if (err) {
           logger.error(err);
         }
       });
+
+      //write userMonthsLog
+      UserMonthsLog.findOneAndUpdate(
+        {
+          user: user,
+          year: y,
+          month: m
+        }, {
+          $inc: {
+            score: score
+          },
+          updatedAt: Date.now()
+        }, {
+          upsert: true,
+          setDefaultsOnInsert: true
+        }, function (err) {
+          if (err) {
+            logger.error(err);
+          }
+        }
+      );
     }
   });
 };
