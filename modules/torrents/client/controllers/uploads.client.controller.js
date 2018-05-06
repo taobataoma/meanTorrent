@@ -712,6 +712,10 @@
         $timeout(function () {
           $('#uploaded_popup').popup('show');
         }, 10);
+      } else {
+        vm.downloadTorrent(vm.downloadingTorrent._id);
+        $state.reload('torrents.uploads');
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
       }
     };
 
