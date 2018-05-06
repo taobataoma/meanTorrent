@@ -586,17 +586,17 @@ exports.announce = function (req, res) {
 
             if (curru > 0 && action.uploadEnable) {
               if (req.torrent.torrent_size > action.additionSize) {
-                upUnitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
+                upUnitScore = Math.sqrt(req.torrent.torrent_size / action.additionSize);
               }
-              var upScore = Math.round((curru / action.perlSize) * 100) / 100;
+              var upScore = curru / action.perlSize;
               uploadScore = upUnitScore * action.uploadValue * upScore;
             }
 
             if (currd > 0 && action.downloadEnable) {
               if (req.torrent.torrent_size > action.additionSize) {
-                downUnitScore = Math.round(Math.sqrt(req.torrent.torrent_size / action.additionSize) * 100) / 100;
+                downUnitScore = Math.sqrt(req.torrent.torrent_size / action.additionSize);
               }
-              var downScore = Math.round((currd / action.perlSize) * 100) / 100;
+              var downScore = currd / action.perlSize;
               downloadScore = downUnitScore * action.downloadValue * downScore;
             }
 
@@ -616,14 +616,13 @@ exports.announce = function (req, res) {
 
                 //torrent life addition
                 var life = moment(Date.now()) - moment(req.torrent.createdat);
-                var days = Math.floor(life / (60 * 60 * 1000 * 24));
+                var days = life / (60 * 60 * 1000 * 24);
                 lifeUnit = slAction.lifeBasicRatio + slAction.lifeCoefficientOfDay * days;
 
                 lifeUnit = lifeUnit > slAction.lifeMaxRatio ? slAction.lifeMaxRatio : lifeUnit;
                 totalScore = totalScore * lifeUnit;
-                totalScore = Math.round(totalScore * 100) / 100;
               }
-
+              totalScore = Math.round(totalScore * 100) / 100;
               scoreUpdate(req, req.passkeyuser, action, totalScore, false);
             }
           }
@@ -736,7 +735,7 @@ exports.announce = function (req, res) {
 
           if (action.enable) {
             var timed = Date.now() - req.currentPeer.last_announce_at;
-            var seedUnit = Math.round((timed / action.additionTime) * 100) / 100;
+            var seedUnit = timed / action.additionTime;
             var seedScore = seedUnit * action.timedValue;
 
             if (seedScore > 0) {
@@ -754,13 +753,13 @@ exports.announce = function (req, res) {
 
                 //torrent life addition
                 var life = moment(Date.now()) - moment(req.torrent.createdat);
-                var days = Math.floor(life / (60 * 60 * 1000 * 24));
+                var days = life / (60 * 60 * 1000 * 24);
                 var lifeUnit = slAction.lifeBasicRatio + slAction.lifeCoefficientOfDay * days;
 
                 lifeUnit = lifeUnit > slAction.lifeMaxRatio ? slAction.lifeMaxRatio : lifeUnit;
                 seedScore = seedScore * lifeUnit;
-                seedScore = Math.round(seedScore * 100) / 100;
               }
+              seedScore = Math.round(seedScore * 100) / 100;
               scoreUpdate(req, req.passkeyuser, action, seedScore);
 
               done(null);
