@@ -19,13 +19,13 @@ function seedDB() {
 }
 
 module.exports.init = function init(callback) {
-  mongooseService.connect(function (db) {
+  mongooseService.connect(function (mongooseConn) {
     // Initialize Models
     mongooseService.loadModels(seedDB);
 
     // Initialize express
-    var app = express.init(db);
-    if (callback) callback(app, db, config);
+    var app = express.init(mongooseConn);
+    if (callback) callback(app, mongooseConn, config);
 
   });
 };
@@ -33,7 +33,7 @@ module.exports.init = function init(callback) {
 module.exports.start = function start(callback) {
   var _this = this;
 
-  _this.init(function (app, db, config) {
+  _this.init(function (app, mongooseConn, config) {
 
     // Start the app by listening on <port> at <host>
     app.listen(config.port, config.host, function () {
@@ -55,7 +55,7 @@ module.exports.start = function start(callback) {
         console.log(chalk.green('IRC announce:    disabled'));
       logger.info('--');
 
-      if (callback) callback(app, db, config);
+      if (callback) callback(app, mongooseConn, config);
     });
 
   });
