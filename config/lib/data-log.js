@@ -31,7 +31,7 @@ module.exports.announceLog = function (user, torrent, data) {
   log.curr_downloaded = data.curr_downloaded || 0;
   log.write_uploaded = data.write_uploaded || 0;
   log.write_downloaded = data.write_downloaded || 0;
-  log.write_score = data.write_score || 0;
+  log.write_score = data.write_score.toFixed(2) || 0;
   log.isVip = data.isVip || false;
   log.isUploader = data.isUploader || false;
   log.salesSettingValue = data.salesSettingValue || undefined;
@@ -67,7 +67,7 @@ module.exports.announceLog = function (user, torrent, data) {
     $inc: {
       uploaded: data.write_uploaded,
       downloaded: data.write_downloaded,
-      score: data.write_score
+      score: data.write_score.toFixed(2)
     },
     updatedAt: Date.now()
   }, {
@@ -96,7 +96,7 @@ module.exports.announceLog = function (user, torrent, data) {
           $inc: {
             uploaded: data.write_uploaded,
             downloaded: data.write_downloaded,
-            score: data.write_score
+            score: data.write_score.toFixed(2)
           },
           updatedAt: Date.now()
         }, {
@@ -131,7 +131,7 @@ module.exports.scoreLog = function (user, score) {
     date: d
   }, {
     $inc: {
-      score: score
+      score: score.toFixed(2)
     },
     updatedAt: Date.now()
   }, {
@@ -158,7 +158,7 @@ module.exports.scoreLog = function (user, score) {
           month: m
         }, {
           $inc: {
-            score: score
+            score: score.toFixed(2)
           },
           updatedAt: Date.now()
         }, {
