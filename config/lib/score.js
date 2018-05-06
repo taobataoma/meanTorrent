@@ -48,7 +48,7 @@ module.exports.update = function (req, user, action, value, writeLog = true) {
       });
 
       //write score log
-      if (writeLog) {
+      if (writeLog && v > 0) {
         dataLog.scoreLog(user, v);
       }
     }
