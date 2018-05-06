@@ -22,7 +22,6 @@ var scoreConfig = config.meanTorrentConfig.score;
  * @param value
  */
 module.exports.update = function (req, user, action, value, writeLog = true) {
-  logger.info('value=' + value);
   var v = value || action.value;
 
   if (action.enable) {

@@ -118,7 +118,6 @@ module.exports.announceLog = function (user, torrent, data) {
  * @param score
  */
 module.exports.scoreLog = function (user, score) {
-  logger.info('score=' + score);
   //write userDaysLog
   var mom = moment().utcOffset(appConfig.dbTimeZone);
   var y = mom.get('year');
