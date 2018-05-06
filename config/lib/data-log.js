@@ -71,10 +71,8 @@ module.exports.announceLog = function (user, torrent, data) {
     },
     updatedAt: Date.now()
   }, {
-    upsert: true,
-    setDefaultsOnInsert: true,
-    strict: false
-  }).then(function (err) {
+    upsert: true
+  }, function (err) {
     if (err) {
       logger.error(err);
     } else {
@@ -101,9 +99,7 @@ module.exports.announceLog = function (user, torrent, data) {
           },
           updatedAt: Date.now()
         }, {
-          upsert: true,
-          setDefaultsOnInsert: true,
-          strict: false
+          upsert: true
         }, function (err) {
           if (err) {
             logger.error(err);
@@ -137,10 +133,8 @@ module.exports.scoreLog = function (user, score) {
     },
     updatedAt: Date.now()
   }, {
-    upsert: true,
-    setDefaultsOnInsert: true,
-    strict: false
-  }).then(function (err) {
+    upsert: true
+  }, function (err) {
     if (err) {
       logger.error(err);
     } else {
@@ -165,9 +159,7 @@ module.exports.scoreLog = function (user, score) {
           },
           updatedAt: Date.now()
         }, {
-          upsert: true,
-          setDefaultsOnInsert: true,
-          strict: false
+          upsert: true
         }, function (err) {
           if (err) {
             logger.error(err);
