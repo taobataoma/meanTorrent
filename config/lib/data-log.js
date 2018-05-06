@@ -45,7 +45,7 @@ module.exports.announceLog = function (user, torrent, data) {
 
   //remove announce-log old data
   AnnounceLog.remove({
-    createdAt: {$lt: Date.now() - announceConfig.announceLogDays * 60 * 1000 * 60 * 24}
+    createdAt: {$lt: moment().subtract(announceConfig.announceLogMonths, 'months')}
   }, function (err) {
     if (err) {
       logger.error(err);
@@ -78,7 +78,7 @@ module.exports.announceLog = function (user, torrent, data) {
     } else {
       //remove user-days-log old data
       UserDaysLog.remove({
-        month: {$lt: mom.subtract(12, 'months').get('month') + 1}
+        createdAt: {$lt: moment().subtract(announceConfig.daysLogMonths, 'months')}
       }, function (err) {
         if (err) {
           logger.error(err);
@@ -140,7 +140,7 @@ module.exports.scoreLog = function (user, score) {
     } else {
       //remove user-days-log old data
       UserDaysLog.remove({
-        month: {$lt: mom.subtract(12, 'months').get('month') + 1}
+        createdAt: {$lt: moment().subtract(announceConfig.daysLogMonths, 'months')}
       }, function (err) {
         if (err) {
           logger.error(err);
