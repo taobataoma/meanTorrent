@@ -35,7 +35,7 @@ var UserDaysLogSchema = new Schema({
     default: 0
   },
   score: {
-    type: Schema.Types.Decimal128,
+    type: Number,
     default: 0
   },
   createdAt: {

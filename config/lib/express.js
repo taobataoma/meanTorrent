@@ -118,7 +118,7 @@ module.exports.initViewEngine = function (app) {
 /**
  * Configure Express session
  */
-module.exports.initSession = function (app, mongooseConn) {
+module.exports.initSession = function (app, db) {
   // Express MongoDB session storage
   app.use(session({
     saveUninitialized: true,
@@ -131,8 +131,7 @@ module.exports.initSession = function (app, mongooseConn) {
     },
     name: config.sessionKey,
     store: new MongoStore({
-      db: mongooseConn.db,
-      mongooseConnection: mongooseConn.connection,
+      db: db,
       collection: config.sessionCollection
     })
   }));
@@ -223,9 +222,9 @@ module.exports.initErrorRoutes = function (app) {
 /**
  * Configure Socket.io
  */
-module.exports.configureSocketIO = function (app, mongooseConn) {
+module.exports.configureSocketIO = function (app, db) {
   // Load the Socket.io configuration
-  var server = require('./socket.io')(app, mongooseConn);
+  var server = require('./socket.io')(app, db);
 
   // Return server object
   return server;
@@ -251,7 +250,7 @@ module.exports.initCronJob = function (app) {
 /**
  * Initialize the Express application
  */
-module.exports.init = function (mongooseConn) {
+module.exports.init = function (db) {
   // Initialize express app
   var app = express();
 
@@ -274,7 +273,7 @@ module.exports.init = function (mongooseConn) {
   this.initModulesClientRoutes(app);
 
   // Initialize Express session
-  this.initSession(app, mongooseConn);
+  this.initSession(app, db);
 
   // Initialize Modules configuration
   this.initModulesConfiguration(app);
@@ -296,7 +295,7 @@ module.exports.init = function (mongooseConn) {
   this.initCronJob(app);
 
   // Configure Socket.io
-  app = this.configureSocketIO(app, mongooseConn);
+  app = this.configureSocketIO(app, db);
 
   return app;
 };

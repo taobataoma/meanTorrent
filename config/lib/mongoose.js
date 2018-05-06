@@ -23,7 +23,7 @@ module.exports.loadModels = function (callback) {
 module.exports.connect = function (callback) {
   mongoose.Promise = config.db.promise;
 
-  var options = _.merge(config.db.options || {});
+  var options = _.merge(config.db.options || {}, { useMongoClient: true });
 
   mongoose
     .connect(config.db.uri, options)
@@ -32,7 +32,7 @@ module.exports.connect = function (callback) {
       mongoose.set('debug', config.db.debug);
 
       // Call callback FN
-      if (callback) callback(connection);
+      if (callback) callback(connection.db);
     })
     .catch(function (err) {
       console.error(chalk.red('Could not connect to MongoDB!'));
