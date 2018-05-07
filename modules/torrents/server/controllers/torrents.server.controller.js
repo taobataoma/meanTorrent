@@ -1935,13 +1935,13 @@ exports.siteInfo = function (req, res) {
   };
 
   var totalUpDown = function (callback) {
-    User.aggregate({
+    User.aggregate([{
       $group: {
         _id: null,
         uploaded: {$sum: '$uploaded'},
         downloaded: {$sum: '$downloaded'}
       }
-    }).exec(function (err, total) {
+    }]).exec(function (err, total) {
       if (err) {
         callback(err, null);
       } else {
@@ -1951,14 +1951,14 @@ exports.siteInfo = function (req, res) {
   };
 
   var totalTorrentsSize = function (callback) {
-    Torrent.aggregate({
+    Torrent.aggregate([{
       $group: {
         _id: null,
         size: {$sum: '$torrent_size'},
         seeders: {$sum: '$torrent_seeds'},
         leechers: {$sum: '$torrent_leechers'}
       }
-    }).exec(function (err, total) {
+    }]).exec(function (err, total) {
       if (err) {
         callback(err, null);
       } else {
@@ -1978,12 +1978,12 @@ exports.siteInfo = function (req, res) {
   };
 
   var totalForumReplies = function (callback) {
-    Topic.aggregate({
+    Topic.aggregate([{
       $group: {
         _id: null,
         replies: {$sum: '$replyCount'}
       }
-    }).exec(function (err, total) {
+    }]).exec(function (err, total) {
       if (err) {
         callback(err, null);
       } else {

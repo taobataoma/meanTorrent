@@ -199,7 +199,7 @@ function writeIsSaling(torrent) {
 TorrentSchema.methods.updateSeedLeechNumbers = function (callback) {
   var torrent = this;
 
-  Peer.aggregate({
+  Peer.aggregate([{
     $match: {
       torrent: torrent._id,
       last_announce_at: {$gt: new Date(Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime)}
@@ -209,7 +209,7 @@ TorrentSchema.methods.updateSeedLeechNumbers = function (callback) {
       _id: '$peer_status',
       count: {$sum: 1}
     }
-  }).exec(function (err, counts) {
+  }]).exec(function (err, counts) {
     if (!err) {
       var sc = 0;
       var lc = 0;

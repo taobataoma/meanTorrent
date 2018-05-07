@@ -65,7 +65,7 @@ exports.list = function (req, res) {
 
   var forumsTopicsCount = function (callback) {
 
-    Topic.aggregate({
+    Topic.aggregate([{
       // $match: condition,
       $project: {
         'forum': '$forum',
@@ -90,7 +90,7 @@ exports.list = function (req, res) {
         _id: '$forum',
         count: {$sum: 1}
       }
-    }).exec(function (err, counts) {
+    }]).exec(function (err, counts) {
       if (err) {
         callback(err, null);
       } else {
@@ -100,7 +100,7 @@ exports.list = function (req, res) {
   };
 
   var forumsRepliesCount = function (callback) {
-    Topic.aggregate({
+    Topic.aggregate([{
       $unwind: '$_replies'
     }, {
       $project: {
@@ -126,7 +126,7 @@ exports.list = function (req, res) {
         _id: '$forum',
         count: {$sum: 1}
       }
-    }).exec(function (err, counts) {
+    }]).exec(function (err, counts) {
       if (err) {
         callback(err, null);
       } else {

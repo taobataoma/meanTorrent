@@ -446,7 +446,7 @@ UserSchema.methods.globalUpdateMethod = function (cb) {
 UserSchema.methods.updateSeedLeechNumbers = function (callback) {
   var user = this;
 
-  Peer.aggregate({
+  Peer.aggregate([{
     $match: {
       user: user._id,
       last_announce_at: {$gt: new Date(Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime)}
@@ -456,7 +456,7 @@ UserSchema.methods.updateSeedLeechNumbers = function (callback) {
       _id: '$peer_status',
       count: {$sum: 1}
     }
-  }).exec(function (err, counts) {
+  }]).exec(function (err, counts) {
     if (!err) {
       var sc = 0;
       var lc = 0;
