@@ -177,7 +177,7 @@ function removeGhostPeers() {
                 $pull: {_peers: p._id}
               }).exec();
 
-              p.remove();
+              p.remove().exec();
             });
 
             logger.info(chalk.green('removed ghost peers: ' + count));

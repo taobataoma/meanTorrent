@@ -154,7 +154,7 @@ exports.delete = function (req, res) {
       //}).exec();
       torrent._subtitles.pull(r._id);
 
-      r.remove();
+      r.remove().exec();
 
       res.json(torrent);
 

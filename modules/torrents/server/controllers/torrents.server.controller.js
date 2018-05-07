@@ -964,7 +964,7 @@ function removeTorrentHnRWarning(tid, removeComplete) {
             c.removeHnRWarning(c.user);
           }
           if (removeComplete) {
-            c.remove();
+            c.remove().exec();
           }
         });
       }
