@@ -5,6 +5,7 @@
  */
 var path = require('path'),
   config = require(path.resolve('./config/config')),
+  dataLog = require(path.resolve('./config/lib/data-log')),
   mongoose = require('mongoose'),
   objectId = require('mongodb').ObjectId,
   User = mongoose.model('User'),
@@ -13,6 +14,7 @@ var path = require('path'),
   Complete = mongoose.model('Complete'),
   moment = require('moment'),
   async = require('async'),
+  scoreUpdate = require(path.resolve('./config/lib/score')).update,
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
@@ -25,6 +27,7 @@ var appConfig = config.meanTorrentConfig.app;
 var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 var announceConfig = config.meanTorrentConfig.announce;
+var scoreConfig = config.meanTorrentConfig.score;
 
 /**
  * Show the current user
@@ -289,11 +292,9 @@ exports.updateUserStatus = function (req, res) {
  */
 exports.updateUserScore = function (req, res) {
   var user = req.model;
+  var sv = parseFloat(req.body.userScore.toFixed(2));
 
-  user.score = user.score + parseInt(req.body.userScore, 10);
-  if (user.score < 0) {
-    user.score = 0;
-  }
+  user.score = user.score + sv;
   user.save(function (err) {
     if (err) {
       return res.status(422).send({
@@ -303,6 +304,7 @@ exports.updateUserScore = function (req, res) {
 
     res.json(user);
 
+    dataLog.scoreLog(user, sv);
     //create trace log
     traceLogCreate(req, traceConfig.action.AdminUpdateUserScore, {
       user: user._id,

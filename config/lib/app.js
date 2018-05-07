@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var config = require('../config'),
+  mongoose = require('mongoose'),
   mongooseService = require('./mongoose'),
   express = require('./express'),
   logger = require('./logger'),
@@ -30,11 +31,18 @@ module.exports.init = function init(callback) {
   });
 };
 
+module.exports.setDecimal128Prototype = function () {
+  mongoose.Types.Decimal128.prototype.toJSON = function () {
+    return parseFloat(this.valueOf());
+  };
+};
+
 module.exports.start = function start(callback) {
   var _this = this;
 
   _this.init(function (app, mongooseConn, config) {
 
+    _this.setDecimal128Prototype();
     // Start the app by listening on <port> at <host>
     app.listen(config.port, config.host, function () {
       // Create server URL

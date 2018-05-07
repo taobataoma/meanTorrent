@@ -52,6 +52,9 @@ var AnnounceLogSchema = new Schema({
   },
   write_score: {
     type: Schema.Types.Decimal128,
+    get: function (v) {
+      return parseFloat(v) || 0;
+    },
     default: 0
   },
   isVip: {

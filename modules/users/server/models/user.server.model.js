@@ -168,8 +168,11 @@ var UserSchema = new Schema({
     default: false
   },
   score: {
-    type: Number,
+    type: Schema.Types.Decimal128,
     set: setNumberValueToZero,
+    get: function (v) {
+      return parseFloat(v) || 0;
+    },
     default: 0
   },
   uploaded: {
