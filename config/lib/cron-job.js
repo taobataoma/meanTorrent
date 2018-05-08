@@ -133,7 +133,7 @@ function cronJobBackupMongoDB() {
  */
 function removeGhostPeers() {
   var cronJob = new CronJob({
-    // cronTime: '00 05 1 * * *',
+    //cronTime: '00 05 1 * * *',
     //cronTime: '*/5 * * * * *',
     cronTime: '00 30 */2 * * *',
     onTick: function () {
