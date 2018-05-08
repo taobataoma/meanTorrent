@@ -24,7 +24,7 @@ var mtDebug = require(path.resolve('./config/lib/debug'));
  */
 module.exports.update = function (req, user, action, value, writeLog = true) {
   var v = value || action.value || 0;
-  mtDebug.info('scoreUpdate: score = ' + score);
+  mtDebug.info('scoreUpdate: value = ' + v);
 
   if (action.enable && v !== 0) {
     if (user) {
