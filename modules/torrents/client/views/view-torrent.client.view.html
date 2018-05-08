@@ -679,8 +679,9 @@
                 <dt class="h-line"></dt>
                 <dd class="h-line">
                     <div class="down-torrent">
-                        <button class="btn btn-success" ng-click="vm.DLS.downloadTorrent(vm.torrentLocalInfo._id)"
+                        <button class="btn btn-success btn-width-100" ng-click="vm.DLS.downloadTorrent(vm.torrentLocalInfo._id)"
                                 translate="DOWNLOAD_TORRENT"></button>
+                        <span torrent-file-link-button="vm.torrentLocalInfo" torrent-user="vm.user" info-class="btn-default"></span>
                     </div>
                 </dd>
             </dl>

@@ -113,6 +113,23 @@ function event(e) {
 }
 
 /**
+ * eventString
+ * @param e
+ * @returns {number}
+ */
+function eventString(e) {
+  switch (e) {
+    case 'completed':
+      return 'EVENT_COMPLETED';
+    case 'started':
+      return 'EVENT_STARTED';
+    case 'stopped':
+      return 'EVENT_STOPPED';
+  }
+  return 'EVENT_NONE';
+}
+
+/**
  * Failure
  * @param code
  * @param reason
@@ -316,6 +333,7 @@ exports.announce = function (req, res) {
      if torrent is not exist in user`s finished list
      ---------------------------------------------------------------*/
     function (done) {
+      mtDebug.debugGreen('---------------' + eventString(query.event) + '----------------', 'ANNOUNCE', true, req.passkeyuser);
       if (req.seeder && event(query.event) !== EVENT_COMPLETED) {
         if (announceConfig.seedingInFinishedCheck) {
           if (!req.passkeyuser._id.equals(req.torrent.user._id)) {
