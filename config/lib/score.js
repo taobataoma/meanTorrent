@@ -12,6 +12,7 @@ var path = require('path'),
 var traceConfig = config.meanTorrentConfig.trace;
 var examinationConfig = config.meanTorrentConfig.examination;
 var scoreConfig = config.meanTorrentConfig.score;
+var mtDebug = require(path.resolve('./config/lib/debug'));
 
 /**
  * update
@@ -23,6 +24,7 @@ var scoreConfig = config.meanTorrentConfig.score;
  */
 module.exports.update = function (req, user, action, value, writeLog = true) {
   var v = value || action.value || 0;
+  mtDebug.info('scoreUpdate: score = ' + score);
 
   if (action.enable && v !== 0) {
     if (user) {
