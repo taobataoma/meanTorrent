@@ -11,6 +11,7 @@ var path = require('path'),
 
 var announceConfig = config.meanTorrentConfig.announce;
 var appConfig = config.meanTorrentConfig.app;
+var mtDebug = require(path.resolve('./config/lib/debug'));
 
 /**
  * announceLog
@@ -57,6 +58,8 @@ module.exports.announceLog = function (user, torrent, data) {
   var y = mom.get('year');
   var m = mom.get('month') + 1;
   var d = mom.get('date');
+
+  mtDebug.info('announceLog: score = ' + data.write_score);
 
   UserDaysLog.findOneAndUpdate({
     user: user,
@@ -123,6 +126,8 @@ module.exports.scoreLog = function (user, score) {
   var y = mom.get('year');
   var m = mom.get('month') + 1;
   var d = mom.get('date');
+
+  mtDebug.info('scoreLog: score = ' + score);
 
   UserDaysLog.findOneAndUpdate({
     user: user,

@@ -22,7 +22,7 @@ var scoreConfig = config.meanTorrentConfig.score;
  * @param value
  */
 module.exports.update = function (req, user, action, value, writeLog = true) {
-  var v = value || action.value;
+  var v = value || action.value || 0;
 
   if (action.enable) {
     if (user) {
@@ -48,7 +48,7 @@ module.exports.update = function (req, user, action, value, writeLog = true) {
       });
 
       //write score log
-      if (writeLog && v > 0) {
+      if (writeLog) {
         dataLog.scoreLog(user, v);
       }
     }
