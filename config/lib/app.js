@@ -42,6 +42,10 @@ module.exports.start = function start(callback) {
 
   _this.init(function (app, mongooseConn, config) {
 
+    process.on('unhandledRejection', function (reason, p) {
+      logger.info('----------UNHANDLED REJECTION AT:\n', p, '\nreason:', reason);
+    });
+
     _this.setDecimal128Prototype();
     // Start the app by listening on <port> at <host>
     app.listen(config.port, config.host, function () {
