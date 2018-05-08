@@ -24,7 +24,7 @@ var scoreConfig = config.meanTorrentConfig.score;
 module.exports.update = function (req, user, action, value, writeLog = true) {
   var v = value || action.value || 0;
 
-  if (action.enable) {
+  if (action.enable && v !== 0) {
     if (user) {
       if (common.examinationIsValid(user)) {
         user.examinationData.score = user.examinationData.score || 0;
