@@ -149,35 +149,14 @@ function removeGhostPeers() {
             var count = peers.length;
 
             peers.forEach(function (p) {
-              if (p.peer_status === PEERSTATE_LEECHER) {
-                if (p.torrent) {
-                  p.torrent.update({
-                    $inc: {torrent_leechers: -1}
-                  }).exec();
-                }
-                if (p.user) {
-                  p.user.update({
-                    $inc: {leeched: -1}
-                  }).exec();
-                }
-              } else if (p.peer_status === PEERSTATE_SEEDER) {
-                if (p.torrent) {
-                  p.torrent.update({
-                    $inc: {torrent_seeds: -1}
-                  }).exec();
-                }
-                if (p.user) {
-                  p.user.update({
-                    $inc: {seeded: -1}
-                  }).exec();
-                }
-              }
+              p.remove();
 
               p.torrent.update({
                 $pull: {_peers: p._id}
               }).exec();
 
-              p.remove();
+              p.torrent.updateSeedLeechNumbers();
+              p.user.updateSeedLeechNumbers();
             });
 
             logger.info(chalk.green('removed ghost peers: ' + count));
@@ -277,7 +256,7 @@ function listenServiceEmail() {
     // cronTime: '*/10 * * * * *',
     cronTime: '00 00 * * * *',
     onTick: function () {
-      // logger.info(chalk.green('listenServiceEmail: process!'));
+      logger.info(chalk.green('listenServiceEmail: process!'));
       // logger.info(chalk.green(listenServiceEmailJob.running));
 
       if (!listenServiceEmailJob.listeningServiceEmail) {

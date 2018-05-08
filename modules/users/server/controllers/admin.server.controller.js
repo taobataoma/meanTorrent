@@ -294,7 +294,8 @@ exports.updateUserScore = function (req, res) {
   var user = req.model;
   var sv = parseFloat(req.body.userScore.toFixed(2));
 
-  user.score = user.score + sv;
+  user.score = Math.max(user.score + sv, 0);
+
   user.save(function (err) {
     if (err) {
       return res.status(422).send({
