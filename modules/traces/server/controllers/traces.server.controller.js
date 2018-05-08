@@ -6,6 +6,7 @@
 var path = require('path'),
   config = require(path.resolve('./config/config')),
   mongoose = require('mongoose'),
+  objectId = require('mongodb').ObjectId,
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   User = mongoose.model('User'),
   Trace = mongoose.model('Trace'),
@@ -35,16 +36,24 @@ exports.list = function (req, res) {
     var keysS = req.query.keys + '';
     var keysT = keysS.split(' ');
 
-    keysT.forEach(function (it) {
-      var ti = new RegExp(it, 'i');
-      keysA.push(ti);
-    });
+    if (keysT.length === 1 && mongoose.Types.ObjectId.isValid(keysT[0])) {
+      keysA = objectId(keysT[0]);
+    } else {
+      keysT.forEach(function (it) {
+        var ti = new RegExp(it, 'i');
+        keysA.push(ti);
+      });
+    }
   }
 
-  if (keysA.length > 0) {
-    condition.$or = [
-      {'content.action': {'$all': keysA}}
-    ];
+  if (mongoose.Types.ObjectId.isValid(keysA)) {
+    condition.user = keysA;
+  } else {
+    if (keysA.length > 0) {
+      condition.$or = [
+        {'content.action': {'$all': keysA}}
+      ];
+    }
   }
 
   var countQuery = function (callback) {
