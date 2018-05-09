@@ -1436,11 +1436,12 @@
     /////////////////////////resources tag fields///////////////////////////////////
     RESOURCESTAGS: {
       TYPE: {
-        SELF: 'Video Type',
-        BLU_RAY: 'BLU_RAY',
-        WEB_DL: 'WEB_DL',
-        REMUX: 'REMUX',
-        ENCODE: 'ENCODE'
+        SELF: 'Medium',
+        BLU_RAY: 'Blu-ray',
+        WEB_DL: 'Web',
+        REMUX: 'Remux',
+        ENCODE: 'Encode',
+        HDTV: 'HDTV'
       },
 
       RESOLUTION: {
@@ -1453,19 +1454,21 @@
 
       VIDEO: {
         SELF: 'Video Codec',
-        AVC: 'AVC',
-        X265: 'X265',
-        X264: 'X264'
+        H264: 'H.264/AVC',
+        H265: 'H.265/HEVC',
+        X264: 'x264',
+        X265: 'x265'
       },
 
       AUDIO: {
         SELF: 'Audio Codec',
-        AAC: 'AAC',
-        AC3: 'AC3',
-        LPCM: 'LPCM',
+        DTS_X: 'DTS:X',
+        ATMOS: 'Atmos',
+        DTS_HD: 'DTS-HD',
+        TRUE_HD: 'TRUE-HD',
         DTS: 'DTS',
-        DTS_HD: 'DTS HD',
-        ATMOS_TRUEHD: 'Atmos TrueHD'
+        AC3: 'AC3',
+        AAC: 'AAC'
       },
 
       AUDIOFORMATS: {
@@ -1475,30 +1478,21 @@
         APE: 'APE'
       },
 
-      CHANNEL: {
-        SELF: 'Audio Channel',
-        C20: '2.0 chnnel',
-        C51: '5.1 channel',
-        C71: '7.1 channel'
-      },
-
       THREED: {
-        SELF: '2D/3D',
-        T2D: '2D',
-        T3D: '3D',
-        T2D_3D: '2D-3D'
+        SELF: 'Three-D',
+        T3D: '3D'
       },
 
       RANKING: {
         SELF: 'Ranking',
-        IMDB_TOP100: 'IMDB TOP100',
-        IMDB_TOP250: 'IMDB TOP250'
+        IMDB_TOP100: 'IMDB T100',
+        IMDB_TOP250: 'IMDB T250'
       },
 
       REGION: {
         SELF: 'Region',
         CHINA: 'China',
-        USA: 'USA',
+        EUR_USA: 'EUR & USA',
         JAPAN: 'Japan',
         KOREA: 'Korea',
         INDIA: 'India',

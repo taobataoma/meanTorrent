@@ -336,7 +336,7 @@
     TAGS_SEARCH_GLOBAL: '种子搜索 - 全局',
     CA_KEYWORD: '关键字',
     CA_TORRENT_STATUS: '种子状态',
-    CA_TORRENT_HNR: 'Hit and Run',
+    CA_TORRENT_HNR: 'H&R 黑种',
     CA_TORRENT_SALE_STATUS: '促销状态',
     CA_TORRENT_SALE_NOW: '正在促销',
     CA_TORRENT_VIP: 'VIP 资源',
@@ -1436,15 +1436,16 @@
     /////////////////////////resources tag fields///////////////////////////////////
     RESOURCESTAGS: {
       TYPE: {
-        SELF: '类型',
-        BLU_RAY: 'BLU_RAY',
-        WEB_DL: 'WEB_DL',
-        REMUX: 'REMUX',
-        ENCODE: 'ENCODE'
+        SELF: '媒介',
+        BLU_RAY: 'Blu-ray',
+        WEB_DL: 'Web',
+        REMUX: 'Remux',
+        ENCODE: 'Encode',
+        HDTV: 'HDTV'
       },
 
       RESOLUTION: {
-        SELF: '解析度',
+        SELF: '分辨率',
         S4K: '4K',
         S1080P: '1080p',
         S1080I: '1080i',
@@ -1453,19 +1454,21 @@
 
       VIDEO: {
         SELF: '视频编码',
-        AVC: 'AVC',
-        X265: 'X265',
-        X264: 'X264'
+        H264: 'H.264/AVC',
+        H265: 'H.265/HEVC',
+        X264: 'x264',
+        X265: 'x265'
       },
 
       AUDIO: {
         SELF: '音频编码',
-        AAC: 'AAC',
-        AC3: 'AC3',
-        LPCM: 'LPCM',
+        DTS_X: 'DTS:X',
+        ATMOS: 'Atmos',
+        DTS_HD: 'DTS-HD',
+        TRUE_HD: 'TRUE-HD',
         DTS: 'DTS',
-        DTS_HD: 'DTS HD',
-        ATMOS_TRUEHD: 'Atmos TrueHD'
+        AC3: 'AC3',
+        AAC: 'AAC'
       },
 
       AUDIOFORMATS: {
@@ -1475,30 +1478,21 @@
         APE: 'APE'
       },
 
-      CHANNEL: {
-        SELF: '声道',
-        C20: '2.0 声道',
-        C51: '5.1 声道',
-        C71: '7.1 声道'
-      },
-
       THREED: {
-        SELF: '2D/3D',
-        T2D: '2D',
-        T3D: '3D',
-        T2D_3D: '2D-3D'
+        SELF: '三维立体',
+        T3D: '3D'
       },
 
       RANKING: {
         SELF: '排行榜',
-        IMDB_TOP100: 'IMDB TOP100',
-        IMDB_TOP250: 'IMDB TOP250'
+        IMDB_TOP100: 'IMDB T100',
+        IMDB_TOP250: 'IMDB T250'
       },
 
       REGION: {
         SELF: '地区',
         CHINA: '中国',
-        USA: '美国',
+        EUR_USA: '欧美',
         JAPAN: '日本',
         KOREA: '韩国',
         INDIA: '印度',

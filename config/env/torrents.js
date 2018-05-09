@@ -1371,7 +1371,8 @@ module.exports = {
             {name: 'BLU_RAY', icon: ''},
             {name: 'REMUX', icon: ''},
             {name: 'WEB_DL', icon: ''},
-            {name: 'ENCODE', icon: ''}
+            {name: 'ENCODE', icon: ''},
+            {name: 'HDTV', icon: ''}
           ]
         },
         {
@@ -1388,21 +1389,23 @@ module.exports = {
           name: 'VIDEO',
           cats: ['movie', 'tvserial', 'documentary', 'music', 'sports', 'variety', 'adult'],
           value: [
-            {name: 'AVC', icon: ''},
-            {name: 'X265', icon: ''},
-            {name: 'X264', icon: ''}
+            {name: 'H264', icon: ''},
+            {name: 'H265', icon: ''},
+            {name: 'X264', icon: ''},
+            {name: 'X265', icon: ''}
           ]
         },
         {
           name: 'AUDIO',
           cats: ['movie', 'tvserial', 'documentary', 'music', 'sports', 'variety', 'adult'],
           value: [
-            {name: 'AAC', icon: ''},
-            {name: 'AC3', icon: ''},
-            {name: 'LPCM', icon: ''},
-            {name: 'DTS', icon: ''},
+            {name: 'DTS_X', icon: ''},
+            {name: 'ATMOS', icon: ''},
             {name: 'DTS_HD', icon: ''},
-            {name: 'ATMOS_TRUEHD', icon: ''}
+            {name: 'TRUE_HD', icon: ''},
+            {name: 'DTS', icon: ''},
+            {name: 'AC3', icon: ''},
+            {name: 'AAC', icon: ''}
           ]
         },
         {
@@ -1415,21 +1418,10 @@ module.exports = {
           ]
         },
         {
-          name: 'CHANNEL',
-          cats: ['movie', 'tvserial', 'documentary', 'music', 'sports', 'variety', 'adult'],
-          value: [
-            {name: 'C20', icon: ''},
-            {name: 'C51', icon: ''},
-            {name: 'C71', icon: ''}
-          ]
-        },
-        {
           name: 'THREED',
           cats: ['movie', 'documentary', 'adult'],
           value: [
-            {name: 'T3D', icon: ''},
-            {name: 'T2D', icon: ''},
-            {name: 'T2D_3D', icon: ''}
+            {name: 'T3D', icon: ''}
           ]
         },
         {
@@ -1449,7 +1441,7 @@ module.exports = {
           name: 'REGION',
           cats: ['movie', 'tvserial', 'documentary', 'music', 'sports', 'variety', 'adult'],
           value: [
-            {name: 'USA', icon: ''},
+            {name: 'EUR_USA', icon: ''},
             {name: 'CHINA', icon: ''},
             {name: 'JAPAN', icon: ''},
             {name: 'KOREA', icon: ''},
