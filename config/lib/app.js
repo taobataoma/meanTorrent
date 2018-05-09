@@ -33,7 +33,7 @@ module.exports.init = function init(callback) {
 
 module.exports.setDecimal128Prototype = function () {
   mongoose.Types.Decimal128.prototype.toJSON = function () {
-    return parseFloat(this.valueOf());
+    return parseFloat(parseFloat(this.valueOf()).toFixed(2));
   };
 };
 
@@ -43,7 +43,7 @@ module.exports.start = function start(callback) {
   _this.init(function (app, mongooseConn, config) {
 
     process.on('unhandledRejection', function (reason, p) {
-      logger.info('----------UNHANDLED REJECTION AT:\n', p, '\nreason:', reason);
+      logger.info('----------unhandled rejection at:\n', p, '\nreason:', reason);
     });
 
     _this.setDecimal128Prototype();
