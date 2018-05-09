@@ -251,7 +251,20 @@
     vm.onTagClicked = function (tag) {
       $timeout(function () {
         angular.element('#tag_' + tag).trigger('click');
-      }, 100);
+      }, 10);
+    };
+
+    /**
+     * onTorrentTypeClicked
+     * @param t
+     */
+    vm.onTorrentTypeClicked = function (t) {
+      if (vm.filterType === t) {
+        vm.filterType = undefined;
+      } else {
+        vm.filterType = t;
+      }
+      vm.torrentBuildPager();
     };
 
     /**

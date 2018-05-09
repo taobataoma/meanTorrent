@@ -338,7 +338,7 @@
     CA_TORRENT_STATUS: 'Torrent status',
     CA_TORRENT_HNR: 'Hit and Run',
     CA_TORRENT_SALE_STATUS: 'Sale Status',
-    CA_TORRENT_SALE_NOW: 'Sale now',
+    CA_TORRENT_SALE_NOW: 'Saling',
     CA_TORRENT_VIP: 'VIP resources',
     CA_RESOURCE_TYPE: 'Resource type',
     CA_MAKE_RSS_URL: 'Rss Url',

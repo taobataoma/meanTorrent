@@ -26,9 +26,11 @@
     vm.searchTags = [];
     vm.searchKey = $state.params.keys || '';
     vm.releaseYear = undefined;
+    vm.filterType = undefined;
     vm.filterHnR = false;
     vm.filterSale = false;
     vm.topItems = 6;
+    vm.torrentRLevel = 'level0';
 
     vm.torrentType = $state.current.data.torrentType || 'all';
 
@@ -299,7 +301,8 @@
         sort: vm.sort,
         keys: vm.searchKey.trim(),
         torrent_status: 'reviewed',
-        torrent_type: vm.torrentType === 'aggregate' ? 'all' : vm.torrentType,
+        torrent_rlevel: vm.torrentRLevel,
+        torrent_type: vm.filterType ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
         torrent_vip: false,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
@@ -346,6 +349,8 @@
       vm.releaseYear = undefined;
       vm.filterHnR = false;
       vm.filterSale = false;
+      vm.torrentRLevel = 'level0';
+      vm.filterType = undefined;
 
       vm.torrentBuildPager();
     };
@@ -355,19 +360,9 @@
      * @param tag: tag name
      */
     vm.onTagClicked = function (tag) {
-      if (vm.torrentType === 'aggregate' || vm.torrentType === 'all') {
-        if (vm.searchTags.includes(tag)) {
-          vm.searchTags.splice(vm.searchTags.indexOf(tag), 1);
-        } else {
-          vm.searchTags.push(tag);
-        }
-
-        vm.torrentBuildPager();
-      } else {
-        $timeout(function () {
-          angular.element('#tag_' + tag).trigger('click');
-        }, 100);
-      }
+      $timeout(function () {
+        angular.element('#tag_' + tag).trigger('click');
+      }, 10);
     };
 
     /**
@@ -379,6 +374,32 @@
         vm.releaseYear = undefined;
       } else {
         vm.releaseYear = y;
+      }
+      vm.torrentBuildPager();
+    };
+
+    /**
+     * onTorrentTypeClicked
+     * @param t
+     */
+    vm.onTorrentTypeClicked = function (t) {
+      if (vm.filterType === t) {
+        vm.filterType = undefined;
+      } else {
+        vm.filterType = t;
+      }
+      vm.torrentBuildPager();
+    };
+
+    /**
+     * onRLevelClicked
+     * @param y
+     */
+    vm.onRLevelClicked = function (l) {
+      if (vm.torrentRLevel === l) {
+        vm.torrentRLevel = 'level0';
+      } else {
+        vm.torrentRLevel = l;
       }
       vm.torrentBuildPager();
     };

@@ -1070,6 +1070,25 @@ body {
         .list-all-tags {
             position: absolute;
             bottom: 1px;
+            .label {
+                margin-top: 3px;
+            }
+            span {
+                position: relative;
+            }
+            .used {
+                &:after {
+                    content: '';
+                    background-color: @brand-primary;
+                    position: absolute;
+                    width: 8px;
+                    height: 8px;
+                    top: -3px;
+                    right: -2px;
+                    border-radius: 50%;
+                    border: solid 1px #fff;
+                }
+            }
         }
         .media-heading {
             margin-bottom: 5px;
@@ -1203,9 +1222,6 @@ body {
     &:active {
         color: #0366d6;
     }
-    &.used {
-        background-color: #c9e4ff !important;
-    }
 }
 
 .label-rlevel {
@@ -1235,9 +1251,6 @@ body {
     }
     &:active {
         color: #0366d6;
-    }
-    &.used {
-        background-color: #c9e4ff !important;
     }
 }
 

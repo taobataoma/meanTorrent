@@ -1,5 +1,42 @@
 @import (reference) "../../../core/client/less/mt-var.less";
 
+.filter-tags {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: solid 1px #e5e5e5;
+    .filter-tag-item {
+        font-size: 12px;
+        display: inline-block;
+        margin-bottom: 5px;
+        color: #0366d6;
+        background-color: #c9e4ff;
+        border-radius: 4px;
+        padding: 5px 10px;
+        position: relative;
+        :not(:first-child) {
+            margin-left: 5px;
+        }
+        &:hover {
+            .fa {
+                display: block;
+            }
+        }
+        .fa {
+            display: none;
+            position: absolute;
+            top: -6px;
+            right: -4px;
+            cursor: pointer;
+            font-size: 16px;
+            color: @brand-primary;
+            text-shadow: -0.05em 0.05em 0.05em #fff, -0.05em 0.05em 0.05em #FFF;
+            &:hover {
+                color: @brand-danger;
+            }
+        }
+    }
+}
+
 .search-from-tmdb-side-overlay {
     top: 50px !important;
     width: 450px;
@@ -62,7 +99,7 @@
         &:hover {
             opacity: 1;
         }
-        &:not(:first-child){
+        &:not(:first-child) {
             margin-left: 8px !important;
         }
     }
@@ -108,7 +145,7 @@
 }
 
 .popup_well {
-    display:none;
+    display: none;
     text-align: center !important;
 }
 
@@ -174,6 +211,7 @@ pre.prettyprint {
         }
     }
 }
+
 /* csslint ignore:end */
 
 //popup overlay----------------------------------------------
@@ -217,5 +255,6 @@ pre.prettyprint {
         word-break: break-all;
     }
 }
+
 /* csslint ignore:end */
 //popup overlay end -------------------------------------------

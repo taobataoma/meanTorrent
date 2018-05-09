@@ -47,6 +47,7 @@
     vm.releaseYear = undefined;
     vm.filterHnR = false;
     vm.filterSale = false;
+    vm.torrentRLevel = 'level0';
 
     uibButtonConfig.activeClass = 'btn-success';
 
@@ -392,7 +393,20 @@
     vm.onTagClicked = function (tag) {
       $timeout(function () {
         angular.element('#tag_' + tag).trigger('click');
-      }, 100);
+      }, 10);
+    };
+
+    /**
+     * onRLevelClicked
+     * @param y
+     */
+    vm.onRLevelClicked = function (l) {
+      if (vm.torrentRLevel === l) {
+        vm.torrentRLevel = 'level0';
+      } else {
+        vm.torrentRLevel = l;
+      }
+      vm.buildPager();
     };
 
     /**

@@ -71,6 +71,43 @@
             <h3 class="panel-title">{{'TAGS_SEARCH' | translate}} - {{'MENU_TORRENTS_SUB.' + vm.torrentType.toUpperCase() | translate}}</h3>
         </div>
         <div class="panel-body">
+            <div class="row filter-tags text-center"
+                 ng-if="vm.filterType || vm.releaseYear || vm.torrentRLevel != 'level0' || vm.filterSale || vm.filterHnR || vm.searchTags.length>0">
+                <div class="col-md-6 col-md-offset-3">
+                    <span class="filter-tag-item label-tag" ng-if="vm.filterType">{{'TORRENT_TYPE_LABEL.' + vm.filterType.toUpperCase() | translate}}
+                        <i class="fa fa-times-circle-o"
+                           ng-click="vm.onTorrentTypeClicked(vm.filterType);">
+                        </i>
+                    </span>
+                    <span class="filter-tag-item label-tag" ng-if="vm.releaseYear">{{vm.releaseYear}}
+                        <i class="fa fa-times-circle-o"
+                           ng-click="vm.onReleaseClicked(vm.releaseYear);">
+                        </i>
+                    </span>
+                    <span class="filter-tag-item label-tag" ng-if="vm.torrentRLevel != 'level0'">{{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + vm.torrentRLevel.toUpperCase() | translate}}
+                        <i class="fa fa-times-circle-o"
+                           ng-click="vm.onRLevelClicked(vm.torrentRLevel);">
+                        </i>
+                    </span>
+                    <span class="filter-tag-item label-tag" ng-if="vm.filterSale">{{ 'CA_TORRENT_SALE_NOW' | translate}}
+                        <i class="fa fa-times-circle-o"
+                           ng-click="vm.onSaleClicked();">
+                        </i>
+                    </span>
+                    <span class="filter-tag-item label-tag" ng-if="vm.filterHnR">H&R
+                        <i class="fa fa-times-circle-o"
+                           ng-click="vm.onHnRClicked();">
+                        </i>
+                    </span>
+                    <span ng-repeat="t in vm.searchTags" ng-if="vm.searchTags.length>0">
+                        <span class="filter-tag-item label-tag">{{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
+                            <i class="fa fa-times-circle-o"
+                               ng-click="vm.onTagClicked(t);">
+                            </i>
+                        </span>
+                    </span>
+                </div>
+            </div>
             <div class="col-md-10 col-md-offset-1">
                 <dl class="dl-horizontal">
                     <dt class="h-line">{{ 'CA_KEYWORD' | translate}}:</dt>
@@ -84,7 +121,7 @@
                             <div class="col-sm-5">
                                 <span class="label label-tag text-uppercase incline-block-valign"
                                       title="{{ 'TITLE_ALT.MORE_TAGS' | translate}}"
-                                      ng-click="vm.onMoreTagsClicked();" ng-if="vm.torrentType!='aggregate'">
+                                      ng-click="vm.onMoreTagsClicked();">
                                     <i class="glyphicon glyphicon-chevron-down" id="more-tags-icon"></i> {{ 'MORE_TAGS' | translate}}
                                 </span>
                                 <span class="label label-tag text-uppercase incline-block-valign"
@@ -117,7 +154,7 @@
                     </dd>
 
                     <div class="more-tags panel-collapsed" style="display: none; margin-bottom: 20px;">
-                        <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.torrentType">
+                        <div ng-repeat="item in vm.resourcesTags.radio | filter: vm.torrentType!='aggregate' ? vm.torrentType : ''">
                             <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
                             <dd class="h-line">
                                 <div class="btn-group btn-group-xs" role="group">
@@ -133,7 +170,7 @@
 
                         <div style="margin-top: 20px;"></div>
 
-                        <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.torrentType">
+                        <div ng-repeat="item in vm.resourcesTags.checkbox | filter: vm.torrentType!='aggregate' ? vm.torrentType : ''">
                             <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
                             <dd class="h-line">
                                 <div class="btn-group btn-group-xs" role="group">
@@ -239,11 +276,13 @@
 
                                     <div class="list-all-tags">
                                         <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
-                                        <span class="label label-ttype label-primary" ng-click="$event.stopPropagation();"
+                                        <span class="label label-ttype label-primary" ng-class="{'used': vm.filterType == item.torrent_type}"
+                                              ng-click="vm.onTorrentTypeClicked(item.torrent_type); $event.stopPropagation();"
                                               ng-if="vm.torrentType=='aggregate'">
                                             {{'TORRENT_TYPE_LABEL.' + item.torrent_type.toUpperCase() | translate}}
                                         </span>
                                         <span class="label label-release label-warning" ng-show="item.resource_detail_info.release_date"
+                                              ng-class="{'used': item.resource_detail_info.release_date == vm.releaseYear}"
                                               ng-click="vm.onReleaseClicked(item.resource_detail_info.release_date); $event.stopPropagation();">
                                             {{ item.resource_detail_info.release_date}}
                                         </span>
@@ -251,20 +290,21 @@
                                               class="torrent-votes"><kbd>{{'STATUS_TOP_KEY' | translate}}</kbd></span>
                                         <span class="label label-rlevel label-info"
                                               ng-show="item.torrent_recommended != 'level0'"
-                                              ng-click="$event.stopPropagation();">
+                                              ng-class="{'used': vm.torrentRLevel == item.torrent_recommended}"
+                                              ng-click="vm.onRLevelClicked(item.torrent_recommended); $event.stopPropagation();">
                                             {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent_recommended.toUpperCase() | translate}}
                                         </span>
                                         <span class="label label-sale" ng-if="item.isSaling"
                                               title="{{vm.TGI.getTorrentSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
                                               ng-click="vm.onSaleClicked(); $event.stopPropagation();"
-                                              ng-class="{'label-default': !item.isSaling, 'label-success': item.isSaling}">
+                                              ng-class="{'label-default': !item.isSaling, 'label-success': item.isSaling, 'used': vm.filterSale}">
                                                 {{item.torrent_sale_status}} {{item.torrent_sale_expires | unlife}}
                                         </span>
 
                                         <span class="label label-se-info" ng-if="vm.torrentType == 'tvserial'"
                                               ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
 
-                                        <span class="label label-hnr-info" ng-if="item.torrent_hnr"
+                                        <span class="label label-hnr-info" ng-if="item.torrent_hnr" ng-class="{'used': vm.filterHnR}"
                                               ng-click="vm.onHnRClicked(); $event.stopPropagation();">H&R</span>
 
                                         <span class="label label-vip-info" ng-if="item.torrent_vip" ng-class="{'used': vm.filterVIP}"
