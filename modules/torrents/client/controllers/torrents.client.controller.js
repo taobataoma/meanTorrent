@@ -427,6 +427,26 @@
     };
 
     /**
+     * tagsFilter
+     * @param item
+     * @returns {boolean}
+     */
+    vm.tagsFilter = function (item) {
+      var res = false;
+      if (vm.torrentType === 'aggregate') {
+        angular.forEach(vm.torrentTypeConfig.value, function (t) {
+          if (t.enable && item.cats.includes(t.value))
+            res = true;
+        });
+      } else {
+        if (item.cats.includes(vm.torrentType))
+          res = true;
+      }
+
+      return res;
+    };
+
+    /**
      * onMoreTagsClicked
      */
     vm.onMoreTagsClicked = function () {

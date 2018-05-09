@@ -154,7 +154,7 @@
                     </dd>
 
                     <div class="more-tags panel-collapsed" style="display: none; margin-bottom: 20px;">
-                        <div ng-repeat="item in vm.resourcesTags.radio | filter: vm.torrentType!='aggregate' ? vm.torrentType : ''">
+                        <div ng-repeat="item in vm.resourcesTags.radio | filter: vm.tagsFilter">
                             <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
                             <dd class="h-line">
                                 <div class="btn-group btn-group-xs" role="group">
@@ -170,7 +170,7 @@
 
                         <div style="margin-top: 20px;"></div>
 
-                        <div ng-repeat="item in vm.resourcesTags.checkbox | filter: vm.torrentType!='aggregate' ? vm.torrentType : ''">
+                        <div ng-repeat="item in vm.resourcesTags.checkbox | filter: vm.tagsFilter">
                             <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
                             <dd class="h-line">
                                 <div class="btn-group btn-group-xs" role="group">
