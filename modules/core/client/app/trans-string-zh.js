@@ -1438,7 +1438,7 @@
       TYPE: {
         SELF: '媒介',
         BLU_RAY: 'Blu-ray',
-        WEB_DL: 'Web',
+        WEB: 'Web',
         REMUX: 'Remux',
         ENCODE: 'Encode',
         HDTV: 'HDTV'

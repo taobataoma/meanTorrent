@@ -1370,7 +1370,7 @@ module.exports = {
           value: [
             {name: 'BLU_RAY', icon: ''},
             {name: 'REMUX', icon: ''},
-            {name: 'WEB_DL', icon: ''},
+            {name: 'WEB', icon: ''},
             {name: 'ENCODE', icon: ''},
             {name: 'HDTV', icon: ''}
           ]
