@@ -24,6 +24,7 @@ module.exports = {
     'no-empty-class': 0,
     'no-eval': 0,
     'no-multi-spaces': 2,
+    'no-nested-ternary': 0,
     'no-param-reassign': 0,
     'no-shadow': 0,
     'no-spaced-func': 2,
