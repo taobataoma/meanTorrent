@@ -135,7 +135,8 @@ function countPercent(p) {
   if (p.peer_status === 'seeder') {
     p.peer_percent = 100;
   } else {
-    p.peer_percent = (Math.round((p.peer_downloaded / (p.peer_downloaded + p.peer_left)) * 10000) / 100) || 0;
+    // p.peer_percent = (Math.round((p.peer_downloaded / (p.peer_downloaded + p.peer_left)) * 10000) / 100) || 0;
+    p.peer_percent = Math.round((p.torrent.torrent_size - p.peer_left) / p.torrent.torrent_size * 10000) / 100;
   }
 }
 
