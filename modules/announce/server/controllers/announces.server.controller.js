@@ -282,7 +282,8 @@ exports.announce = function (req, res) {
       })
         .populate('user')
         .populate({
-          path: '_peers'
+          path: '_peers',
+          match: { user: req.passkeyuser._id}
         })
         .exec(function (err, t) {
           if (err) {
@@ -940,6 +941,7 @@ exports.announce = function (req, res) {
     req.selfpeer.every(function (p) {
       if (p.peer_id === query.peer_id) {
         req.currentPeer = p;
+        req.currentPeer.torrent = req.torrent;
         req.currentPeer.isNewCreated = false;
 
         if (req.seeder && req.currentPeer.peer_status !== PEERSTATE_SEEDER && event(query.event) !== EVENT_COMPLETED) {
