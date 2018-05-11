@@ -40,7 +40,17 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container margin-top-30" ng-if="vm.user.score <= vm.requestsConfig.scoreForAddRequest">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="alert alert-warning text-center" role="alert">
+                    <div class="add-warning" ng-bind-html="vm.getCanNotAddDesc();"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" ng-if="vm.user.score > vm.requestsConfig.scoreForAddRequest">
         <div class="row">
             <div class="col-sm-9 col-sm-offset-1">
                 <form name="vm.requestForm" class="form-horizontal request-form" ng-submit="vm.create(vm.requestForm.$valid)" novalidate>
@@ -70,7 +80,7 @@
                             <textarea id="requestDesc" name="requestDesc" ng-model="vm.request.desc"
                                       mt-markdown-editor="requestDesc" maxlength="{{vm.inputLengthConfig.requestDescLength}}"
                                       required></textarea>
-                            <div ng-messages="vm.requestForm.desc.$error" role="alert">
+                            <div ng-messages="vm.requestForm.requestDesc.$error" role="alert">
                                 <p class="help-block error-text" ng-message="required">{{ 'REQUESTS.FORM_DESC_REQUIRED' | translate}}</p>
                             </div>
                         </div>
