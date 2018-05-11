@@ -438,6 +438,7 @@ body {
     color: #FF6600;
     > kbd {
         background-color: #FF6600;
+        font-size: 12px;
     }
 }
 
@@ -908,6 +909,12 @@ body {
                 .coll-item-remove {
                     display: block;
                 }
+                .warning-btn {
+                    display: block;
+                }
+                .warning-data {
+                    display: none;
+                }
             }
             .media-left {
                 position: relative;
@@ -918,8 +925,8 @@ body {
             > .td-text-overflow {
                 .text-long {
                     @media (min-width: @screen-lg-min) {
-                        max-width: 570px;
-                        min-width: 560px;
+                        max-width: 550px;
+                        min-width: 540px;
                     }
                     @media (max-width: @screen-md-max) {
                         max-width: 420px;
@@ -1064,14 +1071,15 @@ body {
         position: relative;
         .torrent-filename {
             margin-top: 2px;
-            font-size: 12px;
+            font-size: 13px;
             color: @gray-light;
         }
         .list-all-tags {
-            position: absolute;
-            bottom: 1px;
+            min-height: 52px;
+            margin-top: 10px;
+            width: 100%;
             .label {
-                margin-top: 3px;
+                margin-top: 5px;
             }
             span {
                 position: relative;
@@ -1089,13 +1097,23 @@ body {
                     border: solid 1px #fff;
                 }
             }
+            .label-torrent-link {
+                color: #8a8a8a;
+                border: solid 1px #dedede;
+                background-color: #fafafa;
+                &:hover {
+                    color: #f00;
+                }
+            }
         }
         .media-heading {
             margin-bottom: 5px;
         }
-        .genres-item {
+        .list-all-genres {
             font-size: 12px;
-            color: @gray-light;
+            .genres-item {
+                color: @gray-light;
+            }
         }
     }
     .td-imdb {
@@ -1115,7 +1133,10 @@ body {
     }
     .td-admin-cmd {
         min-width: 143px;
-        padding: 0 !important;
+        padding: 5px !important;
+    }
+    .warning-btn {
+        display: none;
     }
 }
 
@@ -1216,6 +1237,7 @@ body {
 .label-tag {
     color: #0366d6;
     background-color: #f1f8ff;
+    border: solid 1px #ddeeff;
     &:hover {
         cursor: pointer;
         color: #f00;
@@ -1226,6 +1248,7 @@ body {
 }
 
 .label-rlevel {
+    border: solid 1px darken(@brand-info, 2%);
     &:hover {
         cursor: pointer;
         color: #f00;
@@ -1235,6 +1258,7 @@ body {
 .label-hnr-info {
     color: #eee;
     background-color: #333;
+    border: solid 1px #000;
     &:hover {
         cursor: pointer;
         color: #f00;
@@ -1243,9 +1267,9 @@ body {
 }
 
 .label-vip-info {
-    color: @mt-base-color;
-    font-weight: bold;
-    background-color: #f1f8ff;
+    color: #fff;
+    background-color: @mt-base-color;
+    border: solid 1px darken(@mt-base-color, 2%);
     &:hover {
         cursor: pointer;
         color: #f00;
@@ -1255,9 +1279,16 @@ body {
     }
 }
 
+.upload-by {
+    color: #888;
+    background-color: #dedede;
+    border: solid 1px #8a8a8a;
+}
+
 .label-se-info {
     color: @mt-base-color;
     background-color: #f1f8ff;
+    border: solid 1px #ddeeff;
     &:hover {
         cursor: pointer;
         color: #f00;
@@ -1265,6 +1296,7 @@ body {
 }
 
 .label-ttype {
+    border: solid 1px darken(@brand-primary, 2%);
     &:hover {
         cursor: pointer;
         color: #f00;
@@ -1279,6 +1311,7 @@ body {
 }
 
 .label-sale {
+    border: solid 1px darken(@brand-success, 2%);
     &:hover {
         cursor: pointer;
         color: #f00;
@@ -1286,6 +1319,17 @@ body {
 }
 
 .label-release {
+    border: solid 1px darken(@brand-warning, 2%);
+    &:hover {
+        cursor: pointer;
+        color: #f00;
+    }
+}
+
+.torrent-top {
+    color: @mt-base-color;
+    border: solid 1px darken(@mt-base-color, 2%);
+    background-color: #fafafa;
     &:hover {
         cursor: pointer;
         color: #f00;
@@ -1659,6 +1703,9 @@ body {
                     padding: 15px 8px;
                 }
             }
+            + tbody {
+                border-top: none;
+            }
         }
     }
 }
@@ -1759,11 +1806,6 @@ body {
     border-top: solid 1px lighten(@gray-light, 35%);
     margin-top: 5px;
     padding-top: 5px;
-}
-
-.upload-by {
-    color: #888;
-    font-size: 12px;
 }
 
 .status-avatar {

@@ -1000,6 +1000,9 @@
      * @param minfo
      */
     vm.doUpdateTorrentInfo = function (resinfo) {
+      resinfo.custom_title = vm.torrentLocalInfo.resource_detail_info.custom_title;
+      resinfo.custom_subtitle = vm.torrentLocalInfo.resource_detail_info.custom_subtitle;
+
       vm.torrentLocalInfo.resource_detail_info = resinfo;
 
       vm.torrentLocalInfo.$update(function (response) {

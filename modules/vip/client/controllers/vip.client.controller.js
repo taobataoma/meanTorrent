@@ -268,6 +268,7 @@
         torrent_vip: true,
         keys: vm.searchKey.trim(),
 
+        torrent_rlevel: vm.torrentRLevel,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
         torrent_hnr: vm.filterHnR,
@@ -382,6 +383,7 @@
       vm.releaseYear = undefined;
       vm.filterHnR = false;
       vm.filterSale = false;
+      vm.torrentRLevel = 'level0';
 
       vm.buildPager();
     };

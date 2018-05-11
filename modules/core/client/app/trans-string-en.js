@@ -23,6 +23,7 @@
     VALUE_CUSTOM: 'CUSTOM',
     VALUE_SELECT_ALL: 'Select All',
     BTN_REMOVE: 'Remove',
+    BTN_CONTINUE: 'Continue',
 
     //Support
     SUPPORT_GROUP_NAME_DESC: 'Management group',
@@ -162,16 +163,12 @@
       TITLE_LIFE: 'orderBy life',
 
       //status
-      UPLOADED_SPEED: 'U/S',
-      DOWNLOADED_RATIO: 'D/R',
-      DOWNLOADED_SPEED: 'D/S',
-      UPLOADED_RATIO_PERCENT: 'U/R/P',
+      UPLOADED_SPEED: 'U/S/R',
+      DOWNLOADED_SPEED: 'D/S/P',
       UP_DOWN_RATIO_TIME: 'U/D/R/T',
 
-      ABBR_UPLOADED_SPEED: 'uploaded/speed',
-      ABBR_DOWNLOADED_RATIO: 'downloaded/ratio',
-      ABBR_DOWNLOADED_SPEED: 'downloaded/speed',
-      ABBR_UPLOADED_RATIO_PERCENT: 'uploaded/ratio/percent',
+      ABBR_UPLOADED_SPEED: 'uploaded/speed/ratio',
+      ABBR_DOWNLOADED_SPEED: 'downloaded/speed/percent',
       ABBR_UP_DOWN_RATIO_TIME: 'uploaded/downloaded/ratio/seeding time',
 
       //peer
@@ -347,6 +344,7 @@
     COPY_LINK_TO_CLIPBOARD: 'Copy torrent file download link to clipboard',
     COPY_LINK_TEXT: 'Copy torrent file link',
     COPY_TO_CLIPBOARD_SUCCESSFULLY: 'Copy data to clipboard successfully!',
+    TORRENT_LABEL_LINK: 'Torrent Link',
     PH_KEYWORD: 'Search keyword',
     CLEAR_ALL_CONDITION: 'Clear All Condition',
     MORE_TAGS: 'More Tags',
@@ -510,7 +508,7 @@
     SELECT_TORRENT_FILE: '1. Please select the torrent file',
     SELECT_FILE: 'Select file',
     DO_UPLOAD: 'Upload',
-    ENTER_TMDB_ID: '3. Please enter theMovieDB id',
+    ENTER_TMDB_ID: '3 Please enter theMovieDB id',
     LOAD_TMDB_INFO: 'Load info',
     SEARCH_FROM_TMDB: 'Search From TMDB',
     TMDB_ID: 'TMDB ID',
@@ -553,8 +551,8 @@
     ERROR_ONLY_IMAGE: 'Only image files support(gif, png, bmp, jpg, jpeg)',
     FILE_TYPE_ERROR: 'File type that is not accepted',
 
-    ENTER_RESOURCE_TITLE: '3. Please enter the resource title and desc',
-    RESOURCE_TITLE: 'resource title',
+    ENTER_RESOURCE_TITLE: '4.1 Please enter the resource main title and sub title',
+    RESOURCE_TITLE: 'resource main title',
     RESOURCE_SUB_TITLE: 'resource sub title',
     SELECT_RESOURCE_IMAGE: '3.1 Please select resource cover image',
     ENTER_RESOURCE_DETAIL_INFO: '4. Please enter the resource detail info',
@@ -848,9 +846,10 @@
       COMMENT_REMOVE_ERROR: 'Comment removed failed!',
       DESC_LIST: '### NOTE: \n - The list contains only the last `{{days}}` days of the requests. \n - If your response is accepted, the requestor\'s reward score will be automatically transferred to your account. \n - Only the torrents reviewed by the administrator can be accepted by the requestor. \n - The requester can only accept one of the responses. \n - If your response is complains, your account may be punished, Please respond to the user\'s request carefully.',
       DESC_MY: '### NOTE: \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - You can only accept one of the responses. \n - The request over `{{days}}` days has expired and cannot accept the response,  you can only post the request again. \n - If your score is maliciously damaged, Please contact our {{sNameDesc | translate}} by **[Message](/messages/send?to={{sName}})** or **[Email](mailto:{{sMail}})** to complaints.',
-      DESC_ADD: '### NOTE: \n - Each request will be automatically deducted from `{{add_score}}` points, but your reward score will only be transferred to the responder\'s account that you eventually accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - Each request is only valid for `{{days}}` days. After expiry, you can only post the request again. \n - Please give a clear resources description of your request when you post the request.',
+      DESC_ADD: '### NOTE: \n - Each request will be automatically deducted from `{{add_score}}` points, and your reward score will only be transferred to the responder\'s account that you eventually accept. \n - Only the torrents reviewed by the administrator can be accepted by you. \n - Each request is only valid for `{{days}}` days. After expiry, you can only post the request again. \n - Please give a clear resources description of your request when you post the request.',
       DESC_RES: '### NOTE: \n - If requestor accept your response, the reward score will be transferred to your account. \n - Only the torrents reviewed by the administrator can be accepted by requestor. \n - Requestor can only accept one of the responses.',
-      DESC_VIEW: '### NOTE: \n - If you want to response a request, please upload the torrent file and seed, Please respond to the user\'s request carefully. \n - If you are a requestor, you can choose a responder and accept it, and only the torrents reviewed by the administrator can be accepted. \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - The request over `{{days}}` days has expired and cannot accept or response(upload).'
+      DESC_VIEW: '### NOTE: \n - If you want to response a request, please upload the torrent file and seed, Please respond to the user\'s request carefully. \n - If you are a requestor, you can choose a responder and accept it, and only the torrents reviewed by the administrator can be accepted. \n - If you accept a response, your reward score will be transferred to the respondent\'s account that you accept. \n - The request over `{{days}}` days has expired and cannot accept or response(upload).',
+      CAN_NTO_TO_ADD: 'Each request will be automatically deducted from `{{add_score}}` points，your scores are too small, please try again later ...'
     },
 
     //user status

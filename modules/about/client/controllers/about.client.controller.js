@@ -43,6 +43,11 @@
 
     vm.groupTorrentType = localStorageService.get('maker_last_selected_type') || 'movie';
     vm.searchTags = [];
+    vm.searchKey = '';
+    vm.releaseYear = undefined;
+    vm.filterHnR = false;
+    vm.filterSale = false;
+    vm.torrentRLevel = 'level0';
 
     uibButtonConfig.activeClass = 'btn-success';
 
@@ -275,7 +280,13 @@
         torrent_status: 'reviewed',
         maker: vm.maker._id,
         torrent_vip: false,
-        keys: vm.search
+        keys: vm.search,
+
+        torrent_rlevel: vm.torrentRLevel,
+        torrent_release: vm.releaseYear,
+        torrent_tags: vm.searchTags,
+        torrent_hnr: vm.filterHnR,
+        torrent_sale: vm.filterSale
       }, function (data) {
         mtDebug.info(data);
         callback(data);

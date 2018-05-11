@@ -18,7 +18,7 @@
         <div class="row margin-bottom-40">
             <div class="col-xs-12">
                 <legend class="small-legend" translate="SELECT_TORRENT_FILE"></legend>
-                <div class="col-sm-7">
+                <div class="col-sm-10 col-md-8">
                     <div class="input-group">
                         <input type="text" class="form-control" ng-model="vm.tFile.name" disabled>
 
@@ -32,13 +32,14 @@
                         </div>
                     </div>
                 </div>
-                <div ng-show="vm.fileSelected" class="col-sm-5">
-                    <button class="btn btn-success" ng-click="vm.upload(vm.tFile)">{{ 'DO_UPLOAD' | translate}} ({{vm.progress}}%)</button>
+                <div ng-show="vm.fileSelected" class="col-sm-2 col-md-4">
+                    <button class="btn btn-success xs-margin-top-10" ng-click="vm.upload(vm.tFile)">{{ 'DO_UPLOAD' | translate}} ({{vm.progress}}%)
+                    </button>
                 </div>
-                <div ng-show="vm.successfully == true" class="col-sm-5" style="margin-top: 7px">
+                <div ng-show="vm.successfully == true" class="col-sm-12 margin-top-10">
                     <label class="text-success control-label" translate="TORRENTS_UPLOAD_SUCCESSFULLY"></label>
                 </div>
-                <div ng-show="vm.successfully == false" class="col-sm-5" style="margin-top: 7px">
+                <div ng-show="vm.successfully == false" class="col-sm-12 margin-top-10">
                     <label class="text-danger control-label" translate="TORRENTS_UPLOAD_FAILED"></label>
                 </div>
             </div>
@@ -294,6 +295,20 @@
             </div>
         </div>
 
+        <div class="row margin-bottom-40" ng-show="vm.showResourceTitleInput">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="ENTER_RESOURCE_TITLE"></legend>
+                <div class="col-md-10 col-sm-10">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.title" placeholder="{{ 'RESOURCE_TITLE' | translate}}"
+                           maxlength="{{vm.inputLengthConfig.uploadTorrentTitleLength}}" autofocus>
+                </div>
+                <div class="col-md-10 col-sm-10 margin-top-10">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.subtitle" placeholder="{{ 'RESOURCE_SUB_TITLE' | translate}}"
+                           maxlength="{{vm.inputLengthConfig.uploadTorrentSubTitleLength}}">
+                </div>
+            </div>
+        </div>
+
         <div class="row margin-bottom-40" ng-show="vm.showResourcesTag">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_TAGS"></legend>
@@ -480,8 +495,8 @@
                                                    ng-pattern="/(^[0-9]{1,4}$)|(^[0-9]{1,2}[\-]{1}[0-9]{1,4}$)/"
                                                    ng-model="vm.inputedEpisodes" ng-disabled="vm.inputedEpisodesOK" required>
                                         </div>
-                                        <div class="col-sm-4 col-md-3">
-                                            <button type="submit" class="btn btn-primary">continue</button>
+                                        <div class="col-sm-4 col-md-3 margin-left-20">
+                                            <button type="submit" class="btn btn-success btn-width-80">{{'BTN_CONTINUE' | translate}}</button>
                                         </div>
                                         <div class="col-xs-12" ng-messages="vm.episodesForm.inputedEpisodes.$error" role="alert">
                                             <p class="help-block error-text"
@@ -497,6 +512,20 @@
                             </form>
                         </div>
                     </dl>
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.showResourceTitleInput">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="ENTER_RESOURCE_TITLE"></legend>
+                <div class="col-md-10 col-sm-10">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.title" placeholder="{{ 'RESOURCE_TITLE' | translate}}"
+                           maxlength="{{vm.inputLengthConfig.uploadTorrentTitleLength}}" autofocus>
+                </div>
+                <div class="col-md-10 col-sm-10 margin-top-10">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.subtitle" placeholder="{{ 'RESOURCE_SUB_TITLE' | translate}}"
+                           maxlength="{{vm.inputLengthConfig.uploadTorrentSubTitleLength}}">
                 </div>
             </div>
         </div>
@@ -557,17 +586,17 @@
         <div class="row margin-bottom-40">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="ENTER_MUSIC_TITLE"></legend>
-                <div class="col-md-6 col-sm-8">
+                <div class="col-md-7 col-sm-8">
                     <input type="text" class="form-control" ng-model="vm.customTorrent.artist" placeholder="{{ 'MUSIC_ARTIST' | translate}}"
-                           autofocus>
+                           maxlength="{{vm.inputLengthConfig.uploadTorrentTitleLength}}" autofocus>
                 </div>
-                <div class="col-md-6 col-md-offset-2"></div>
-                <div class="col-md-6 col-sm-8 margin-top-10">
-                    <input type="text" class="form-control" ng-model="vm.customTorrent.title" placeholder="{{ 'MUSIC_TITLE' | translate}}">
+                <div class="col-md-10 col-sm-10 margin-top-10">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.title" placeholder="{{ 'MUSIC_TITLE' | translate}}"
+                           maxlength="{{vm.inputLengthConfig.uploadTorrentTitleLength}}">
                 </div>
-                <div class="col-md-6 col-md-offset-2"></div>
-                <div class="col-md-8 col-sm-10 margin-top-10">
-                    <input type="text" class="form-control" ng-model="vm.customTorrent.subtitle" placeholder="{{ 'MUSIC_SUB_TITLE' | translate}}">
+                <div class="col-md-10 col-sm-10 margin-top-10">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.subtitle" placeholder="{{ 'MUSIC_SUB_TITLE' | translate}}"
+                           maxlength="{{vm.inputLengthConfig.uploadTorrentSubTitleLength}}">
                 </div>
             </div>
         </div>
@@ -676,12 +705,13 @@
         <div class="row margin-bottom-40">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="ENTER_RESOURCE_TITLE"></legend>
-                <div class="col-md-6 col-sm-8 margin-top-10">
-                    <input type="text" class="form-control" ng-model="vm.customTorrent.title" placeholder="{{ 'RESOURCE_TITLE' | translate}}">
+                <div class="col-md-10 col-sm-10 ">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.title" placeholder="{{ 'RESOURCE_TITLE' | translate}}"
+                           maxlength="{{vm.inputLengthConfig.uploadTorrentTitleLength}}" autofocus>
                 </div>
-                <div class="col-md-6 col-md-offset-2"></div>
-                <div class="col-md-8 col-sm-10 margin-top-10">
-                    <input type="text" class="form-control" ng-model="vm.customTorrent.subtitle" placeholder="{{ 'RESOURCE_SUB_TITLE' | translate}}">
+                <div class="col-md-10 col-sm-10  margin-top-10">
+                    <input type="text" class="form-control" ng-model="vm.customTorrent.subtitle" placeholder="{{ 'RESOURCE_SUB_TITLE' | translate}}"
+                           maxlength="{{vm.inputLengthConfig.uploadTorrentSubTitleLength}}">
                 </div>
             </div>
         </div>

@@ -551,7 +551,7 @@ exports.download = function (req, res) {
   var user = req.user || req.passkeyuser || undefined;
 
   if (user) {
-    if (req.torrent.torrent_vip && !user.isVip) {
+    if (req.torrent.torrent_vip && !user.isVip && !user.isOper) {
       return res.status(701).send({
         message: 'SERVER.ONLY_VIP_CAN_DOWNLOAD'
       });
@@ -563,7 +563,7 @@ exports.download = function (req, res) {
       return res.status(703).send({
         message: 'SERVER.CAN_NOT_DOWNLOAD_IDLE'
       });
-    } else if (req.torrent.torrent_status !== 'reviewed') {
+    } else if (req.torrent.torrent_status !== 'reviewed' && !user._id.equals(req.torrent.user._id)) {
       return res.status(704).send({
         message: 'SERVER.TORRENT_STATUS_ERROR'
       });
@@ -1617,6 +1617,8 @@ exports.list = function (req, res) {
         {info_hash: {'$all': keysA}},
         {'resource_detail_info.title': {'$all': keysA}},
         {'resource_detail_info.subtitle': {'$all': keysA}},
+        {'resource_detail_info.custom_title': {'$all': keysA}},
+        {'resource_detail_info.custom_subtitle': {'$all': keysA}},
         {'resource_detail_info.name': {'$all': keysA}},
         {'resource_detail_info.original_title': {'$all': keysA}},
         {'resource_detail_info.original_name': {'$all': keysA}}

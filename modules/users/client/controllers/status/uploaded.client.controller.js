@@ -9,7 +9,7 @@
     'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices'];
 
   function UploadedController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
-                            $window, $filter, DownloadService, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
+                              $window, $filter, DownloadService, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -18,6 +18,12 @@
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.searchTags = [];
+    vm.releaseYear = undefined;
+    vm.filterType = undefined;
+    vm.filterHnR = false;
+    vm.filterSale = false;
+    vm.torrentRLevel = 'level0';
+    vm.torrentType = 'aggregate';
 
     /**
      * buildPager
@@ -33,15 +39,18 @@
      * figureOutItemsToDisplay
      */
     vm.figureOutItemsToDisplay = function (callback) {
-      vm.filteredItems = $filter('filter')(vm.uploadedList, {
-        $: vm.search
-      });
-      vm.filterLength = vm.filteredItems.length;
-      var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
-      var end = begin + vm.itemsPerPage;
-      vm.pagedItems = vm.filteredItems.slice(begin, end);
+      vm.tooltipMsg = 'VIP.VIP_TORRENTS_IS_LOADING';
+      vm.getUploadedTorrent(vm.currentPage, function (items) {
+        vm.filterLength = items.total;
+        vm.pagedItems = items.rows;
 
-      if (callback) callback();
+        if (vm.pagedItems.length === 0) {
+          vm.tooltipMsg = 'VIP.VIP_TORRENTS_IS_EMPTY';
+        } else {
+          vm.tooltipMsg = undefined;
+        }
+        if (callback) callback();
+      });
     };
 
     /**
@@ -64,16 +73,25 @@
 
     /**
      * getUploadedTorrent
+     * @param p
+     * @param callback
      */
-    vm.getUploadedTorrent = function () {
+    vm.getUploadedTorrent = function (p, callback) {
       TorrentsService.get({
+        skip: (p - 1) * vm.itemsPerPage,
+        limit: vm.itemsPerPage,
         userid: vm.user._id,
-        torrent_type: 'all',
-        torrent_status: 'all'
-      }, function (items) {
-        vm.uploadedList = items.rows;
-        mtDebug.info(items);
-        vm.buildPager();
+        torrent_type: vm.filterType ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
+        torrent_status: 'all',
+        torrent_vip: vm.filterVIP ? vm.filterVIP : undefined,
+        torrent_rlevel: vm.torrentRLevel,
+        torrent_release: vm.releaseYear,
+        torrent_tags: vm.searchTags,
+        torrent_hnr: vm.filterHnR,
+        torrent_sale: vm.filterSale
+      }, function (data) {
+        mtDebug.info(data);
+        callback(data);
       }, function (err) {
         Notification.error({
           message: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('UPLOADED_LIST_ERROR')

@@ -23,6 +23,7 @@
     VALUE_CUSTOM: '自定义',
     VALUE_SELECT_ALL: '全选',
     BTN_REMOVE: '删除',
+    BTN_CONTINUE: '继续',
 
     //Support
     SUPPORT_GROUP_NAME_DESC: '管理组',
@@ -162,16 +163,12 @@
       TITLE_LIFE: '按上传时间排序',
 
       //status
-      UPLOADED_SPEED: '上/速',
-      DOWNLOADED_RATIO: '下/比',
-      DOWNLOADED_SPEED: '下/速',
-      UPLOADED_RATIO_PERCENT: '上/比/进度',
+      UPLOADED_SPEED: '上/速/分享',
+      DOWNLOADED_SPEED: '下/速/进度',
       UP_DOWN_RATIO_TIME: '上/下/比/时',
 
-      ABBR_UPLOADED_SPEED: '上传量/速度',
-      ABBR_DOWNLOADED_RATIO: '下载量/分享率',
-      ABBR_DOWNLOADED_SPEED: '下载量/速度',
-      ABBR_UPLOADED_RATIO_PERCENT: '上传量/分享率/完成百分比',
+      ABBR_UPLOADED_SPEED: '上传量/速度/分享率',
+      ABBR_DOWNLOADED_SPEED: '下载量/速度/完成进度',
       ABBR_UP_DOWN_RATIO_TIME: '上传量/下载量/分享率/做种时间',
 
       //peer
@@ -347,6 +344,7 @@
     COPY_LINK_TO_CLIPBOARD: '复制种子文件下载连接到剪切板',
     COPY_LINK_TEXT: '复制种子文件地址',
     COPY_TO_CLIPBOARD_SUCCESSFULLY: '内容已复制到剪切板!',
+    TORRENT_LABEL_LINK: '种子连接',
     PH_KEYWORD: '搜索关键字',
     CLEAR_ALL_CONDITION: '清空所有条件',
     MORE_TAGS: '显示更多标签',
@@ -510,7 +508,7 @@
     SELECT_TORRENT_FILE: '1. 请选择种子文件',
     SELECT_FILE: '选择文件',
     DO_UPLOAD: '上传',
-    ENTER_TMDB_ID: '3. 请输入TMDB_ID',
+    ENTER_TMDB_ID: '3 请输入TMDB_ID',
     LOAD_TMDB_INFO: '检索信息',
     TMDB_ID: 'TMDB ID',
     SEARCH_FROM_TMDB: '从 TMDB 搜索',
@@ -553,8 +551,8 @@
     ERROR_ONLY_IMAGE: '此处只支持图片文件上传(gif, png, bmp, jpg, jpeg)',
     FILE_TYPE_ERROR: '文件类型不被接受',
 
-    ENTER_RESOURCE_TITLE: '3. 请输入资源标题与描述',
-    RESOURCE_TITLE: '资源标题',
+    ENTER_RESOURCE_TITLE: '4.1 请输入资源主副标题',
+    RESOURCE_TITLE: '资源主标题',
     RESOURCE_SUB_TITLE: '资源副标题',
     SELECT_RESOURCE_IMAGE: '3.1 请选择资源封面图片',
     ENTER_RESOURCE_DETAIL_INFO: '4. 请输入资源详细信息',
@@ -850,7 +848,8 @@
       DESC_MY: '### 提示: \n - 如果您接受一个响应, 您的悬赏积分就会转入您接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 您只能接受多个响应中的一个. \n - 超过 `{{days}}` 天的请求已经过期且不能接受响应, 如果需要您只能再次发起请求. \n - 如果您的积分受到恶意损害, 请给{{sNameDesc | translate}}发送 **[消息](/messages/send?to={{sName}})** 或 **[邮件](mailto:{{sMail}})** 进行投诉.',
       DESC_ADD: '### 提示: \n - 每发布一个请求会被自动扣除 `{{add_score}}` 积分, 而您的悬赏积分会转入您最终接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 每一个发布的请求只有 `{{days}}` 天的有效期, 过期后您只能再次发起请求. \n - 请在发布请求时明确描述您对资源的要求.',
       DESC_RES: '### NOTE: \n - 如果请求者接受了您的响应, 悬赏积分将自动转入您的帐户. \n - 只有被管理员审核通过的种子才能被请求者接受. \n - 请求者只会接受多个响应中的一个.',
-      DESC_VIEW: '### NOTE: \n - 如果您是一个响应者, 请上传您的种子文件并开始做种, 请认真响应用户的请求. \n - 如果您是一个请求者, 您可以选择一个响应并接受它, 只有被管理员审核通过的种子才能被您接受. \n - 如果您接受一个响应, 您的悬赏积分就会转入您接受的响应者的帐户. \n - 超过 `{{days}}` 天的请求已经过期且不能接受响应或上传种子.'
+      DESC_VIEW: '### NOTE: \n - 如果您是一个响应者, 请上传您的种子文件并开始做种, 请认真响应用户的请求. \n - 如果您是一个请求者, 您可以选择一个响应并接受它, 只有被管理员审核通过的种子才能被您接受. \n - 如果您接受一个响应, 您的悬赏积分就会转入您接受的响应者的帐户. \n - 超过 `{{days}}` 天的请求已经过期且不能接受响应或上传种子.',
+      CAN_NTO_TO_ADD: '每发布一个请求会被自动扣除 `{{add_score}}` 积分，您的积分太少，请稍候再试 ...'
     },
 
     //user status

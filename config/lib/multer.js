@@ -59,7 +59,10 @@ module.exports.createUploadFilename = function (req, file, cb) {
   }
 
   //replace other pt site prefix
-  filename = filename.replace(/^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/, '');
+  var reg = /^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/i;
+  while (reg.test(filename)) {
+    filename = filename.replace(reg, '');
+  }
 
   if (fs.existsSync(config.uploads.torrent.file.dest + filename)) {
     var err = new Error();
@@ -98,7 +101,11 @@ module.exports.createUploadAttachFilename = function (req, file, cb) {
   }
 
   //replace other pt site prefix
-  filename = filename.replace(/^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/, '');
+  var reg = /^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/i;
+  while (reg.test(filename)) {
+    filename = filename.replace(reg, '');
+  }
+
 
   if (fs.existsSync(config.uploads.attach.file.dest + filename)) {
     var ext = file.originalname.replace(/^.+\./, '');

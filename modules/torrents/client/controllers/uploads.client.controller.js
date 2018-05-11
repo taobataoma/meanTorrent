@@ -320,6 +320,7 @@
 
       vm.inputedEpisodesError = undefined;
       vm.inputedEpisodesOK = false;
+      vm.showResourceTitleInput = false;
       vm.showResourcesTag = false;
 
       vm.movieinfo = undefined;
@@ -333,6 +334,22 @@
       vm.showVideoNfo = false;
       vm.showAgreeAndSubmit = false;
     };
+
+    /**
+     * getTitleFromResourceFileName
+     * @param fname
+     * @returns {*}
+     */
+    function getTitleFromResourceFileName(fname) {
+      if (fname) {
+        //replace other pt site prefix
+        fname = fname.replace(/^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/, '');
+        fname = fname.replace(/.torrent/g, '');
+        return fname;
+      } else {
+        return '';
+      }
+    }
 
     /**
      * isSelectedVipType
@@ -386,8 +403,12 @@
         tmdbid: tmdbid,
         language: getStorageLangService.getLang()
       }, function (res) {
+        vm.customTorrent.title = getTitleFromResourceFileName(vm.torrentInfo.filename);
+        vm.customTorrent.subtitle = res.title;
+
         vm.tmdb_info_ok = true;
         vm.tmdb_isloading = false;
+        vm.showResourceTitleInput = true;
         vm.showResourcesTag = true;
         vm.showVideoNfo = true;
         vm.showAgreeAndSubmit = true;
@@ -428,6 +449,9 @@
         tmdbid: tmdbid,
         language: getStorageLangService.getLang()
       }, function (res) {
+        vm.customTorrent.title = getTitleFromResourceFileName(vm.torrentInfo.filename);
+        vm.customTorrent.subtitle = res.name;
+
         vm.tmdb_info_ok = true;
         vm.tmdb_isloading = false;
         Notification.success({
@@ -464,6 +488,7 @@
         vm.inputedEpisodesError = false;
         vm.inputedEpisodesOK = true;
         vm.showResourcesTag = true;
+        vm.showResourceTitleInput = true;
         vm.showVideoNfo = true;
         vm.showAgreeAndSubmit = true;
       }
@@ -495,6 +520,9 @@
 
       var l = vm.getTorrentSize();
       var t = vm.getResourceTag();
+
+      vm.movieinfo.custom_title = vm.customTorrent.title;
+      vm.movieinfo.custom_subtitle = vm.customTorrent.subtitle;
 
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
@@ -538,6 +566,9 @@
 
       var l = vm.getTorrentSize();
       var t = vm.getResourceTag();
+
+      vm.tvinfo.custom_title = vm.customTorrent.title;
+      vm.tvinfo.custom_subtitle = vm.customTorrent.subtitle;
 
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
@@ -588,6 +619,8 @@
         artist: vm.customTorrent.artist || undefined,
         title: vm.customTorrent.title,
         subtitle: vm.customTorrent.subtitle,
+        custom_title: vm.customTorrent.title,
+        custom_subtitle: vm.customTorrent.subtitle,
         cover: vm.customTorrent.coverFileName,
         overview: vm.customTorrent.detail,
 

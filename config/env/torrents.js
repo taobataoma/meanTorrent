@@ -524,24 +524,29 @@ module.exports = {
     },
 
     /**
-     *  @inputLength
+     * @inputLength
      *
-     *  input string length limit settings
+     * input string length limit settings
      *
-     *  @userSignatureLength:         user signature of forum string length limit
-     *  @chatMessageMaxLength:        chat room send message string length limit
-     *  @messageTitleLength:          user message send title length limit
-     *  @messageBoxContentLength:     user message send content length limit
-     *  @messageBoxReplyLength:       user message send reply content length limit
-     *  @ticketContentLength:         ticket content length limit
-     *  @torrentCommentLength:        torrent comment send content length limit
-     *  @forumTopicTitleLength:       forum topic title length limit
-     *  @forumTopicContentLength:     forum topic content length limit
-     *  @forumReplyContentLength:     forum reply content length limit
-     *  @makerGroupDescLength:        resources group desc content length limit
-     *  @collectionsOverviewLength:   movie collections overview content length limit
+     * @uploadTorrentTitleLength:     torrent title length on upload page
+     * @uploadTorrentSubTitleLength:  torrent sub title length on upload page
+     * @userSignatureLength:          user signature of forum string length limit
+     * @chatMessageMaxLength:         chat room send message string length limit
+     * @messageTitleLength:           user message send title length limit
+     * @messageBoxContentLength:      user message send content length limit
+     * @messageBoxReplyLength:        user message send reply content length limit
+     * @ticketContentLength:          ticket content length limit
+     * @torrentCommentLength:         torrent comment send content length limit
+     * @forumTopicTitleLength:        forum topic title length limit
+     * @forumTopicContentLength:      forum topic content length limit
+     * @forumReplyContentLength:      forum reply content length limit
+     * @makerGroupDescLength:         resources group desc content length limit
+     * @collectionsOverviewLength:    movie collections overview content length limit
      */
     inputLength: {
+      uploadTorrentTitleLength: 128,
+      uploadTorrentSubTitleLength: 128,
+
       userSignatureLength: 512,
       chatMessageMaxLength: 512,
 
@@ -1181,7 +1186,7 @@ module.exports = {
      * @resourcesLanguage:        settings for language of dropdown resource info
      */
     tmdbConfig: {
-      key: 'this is access key from tmdb',
+      key: '7888f0042a366f63289ff571b68b7ce0',
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',

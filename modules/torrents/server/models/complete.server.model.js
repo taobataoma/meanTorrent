@@ -108,7 +108,7 @@ CompleteSchema.methods.globalUpdateMethod = function (callback) {
  */
 CompleteSchema.methods.countHnRWarning = function (countAdd = true, countRemove = true) {
   if (this.complete) {
-    if (this.user.isVip || this.total_seed_time >= hnrConfig.condition.seedTime || this.total_downloaded === 0 || this.total_ratio >= hnrConfig.condition.ratio) {
+    if (this.user.isOper || this.user.isVip || this.total_seed_time >= hnrConfig.condition.seedTime || this.total_downloaded === 0 || this.total_ratio >= hnrConfig.condition.ratio) {
       if (countRemove) {
         if (this.hnr_warning) {
           this.update({

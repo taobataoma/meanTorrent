@@ -18,6 +18,9 @@
       getTorrentTitle: getTorrentTitle,
       getTorrentOriginalTitle: getTorrentOriginalTitle,
       getTorrentDoubleTitle: getTorrentDoubleTitle,
+      getTorrentCustomTitle: getTorrentCustomTitle,
+      getTorrentCustomSubTitle: getTorrentCustomSubTitle,
+      getTitleFromResourceFileName: getTitleFromResourceFileName,
       getTorrentListImage: getTorrentListImage,
       getTorrentListTopImage: getTorrentListTopImage,
       getTorrentTopOneImage: getTorrentTopOneImage,
@@ -92,6 +95,56 @@
         return t;
       } else {
         return ori === t ? t : t + ' / ' + ori;
+      }
+    }
+
+    /**
+     * getTorrentCustomTitle
+     * @param item
+     * @returns {*}
+     */
+    function getTorrentCustomTitle(item) {
+      if (item.resource_detail_info.custom_title) {
+        return item.resource_detail_info.custom_title;
+      } else {
+        return getTitleFromResourceFileName(item.torrent_filename);
+      }
+    }
+
+    /**
+     * getTorrentCustomSubTitle
+     * @param item
+     * @returns {*}
+     */
+    function getTorrentCustomSubTitle(item) {
+      console.log(item);
+      if (item.resource_detail_info.custom_subtitle) {
+        return item.resource_detail_info.custom_subtitle;
+      } else if (item.resource_detail_info.subtitle) {
+        return item.resource_detail_info.subtitle;
+      } else {
+        return getTorrentDoubleTitle(item);
+      }
+    }
+
+    /**
+     * getTitleFromResourceFileName
+     * @param fname
+     * @returns {*}
+     */
+    function getTitleFromResourceFileName(fname) {
+      if (fname) {
+        var reg = /^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/i;
+        //replace other pt site prefix
+        while (reg.test(fname)) {
+          fname = fname.replace(reg, '');
+        }
+
+        fname = fname.replace(/.torrent/g, '');
+
+        return fname;
+      } else {
+        return '';
       }
     }
 
