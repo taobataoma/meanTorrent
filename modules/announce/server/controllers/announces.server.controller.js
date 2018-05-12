@@ -1214,14 +1214,14 @@ exports.announce = function (req, res) {
           if (p.last_announce_at > (Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime)) { //do not send inactive peer
             if (p.user.equals(req.passkeyuser._id)) {
               if (announceConfig.peersCheck.peersSendListIncludeOwnSeed) {
-                mtDebug.debug(p._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
+                mtDebug.debug(p._id.toString() + 'IP:' + p.peer_ip + ' PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
                 bc = compact(p);
                 if (bc) {
                   bc.copy(buf, c++ * PEER_COMPACT_SIZE);
                 }
               }
             } else {
-              mtDebug.debug(p._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
+              mtDebug.debug(p._id.toString() + 'IP:' + p.peer_ip + ' PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
               bc = compact(p);
               if (bc) {
                 bc.copy(buf, c++ * PEER_COMPACT_SIZE);
