@@ -1,4 +1,5 @@
-<div class="container navbar-mt" ng-controller="HeaderController as vm" ng-init="vm.getInvitationsCount(); vm.checkMessageUnread(); vm.checkHnRWarning();">
+<div class="container navbar-mt" ng-controller="HeaderController as vm"
+     ng-init="vm.getInvitationsCount(); vm.checkMessageUnread(); vm.checkHnRWarning();">
     <div class="navbar-header">
         <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
             <span class="sr-only">Toggle navigation</span>
@@ -55,11 +56,9 @@
                           ng-class="{'bg-hnr': vm.user.hnr_warning>0, 'bg-msg': vm.unreadCount>0}"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li>
-            <span class="lang-list">
-              <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);"
-                    ng-repeat="l in vm.language"></span>
-            </span>
+                    <li class="lang-list">
+                        <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);"
+                              ng-repeat="l in vm.language" ng-class="{'curr-language': vm.langService.getLang() == l.name}"></span>
                     </li>
                     <li class="divider"></li>
                     <li ui-sref-active="active" ng-repeat="item in vm.followMenu.items" class="menu-parent">

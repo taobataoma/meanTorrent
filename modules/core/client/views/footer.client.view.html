@@ -36,7 +36,7 @@
                             <li>
                             <span class="lang-list lang-footer">
                                 <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);"
-                                      ng-repeat="l in vm.language"></span>
+                                      ng-repeat="l in vm.language" ng-class="{'curr-language': vm.langService.getLang() == l.name}"></span>
                             </span>
                             </li>
                             <li translate="GIT_REPO"></li>

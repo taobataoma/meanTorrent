@@ -6,13 +6,14 @@
     .controller('HeaderController', HeaderController);
 
   HeaderController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
-    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'TorrentsService', 'UsersService', 'DebugConsoleService'];
+    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'TorrentsService', 'UsersService', 'DebugConsoleService', 'getStorageLangService'];
 
   function HeaderController($scope, $state, $timeout, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
-                            InvitationsService, $interval, MessagesService, TorrentsService, UsersService, mtDebug) {
+                            InvitationsService, $interval, MessagesService, TorrentsService, UsersService, mtDebug, getStorageLangService) {
     $scope.$state = $state;
     var vm = this;
     vm.user = Authentication.user;
+    vm.langService = getStorageLangService;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
