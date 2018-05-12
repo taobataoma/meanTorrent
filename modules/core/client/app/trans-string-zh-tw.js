@@ -340,6 +340,7 @@
     CA_TORRENT_SALE_STATUS: '促銷狀態',
     CA_TORRENT_SALE_NOW: '正在促銷',
     CA_TORRENT_VIP: 'VIP 資源',
+    CA_TORRENT_TOP: '置頂狀態',
     CA_RESOURCE_TYPE: '資源型別',
     CA_MAKE_RSS_URL: 'RSS連線',
     DESC_MAKE_RSS_URL: '這個 RSS 地址是通過上面的過濾條件生成的，您可以使用支援 RSS 訂閱功能的BT客戶端（如uTorrent）來自動下載您想要的這些種子和資原始檔.',

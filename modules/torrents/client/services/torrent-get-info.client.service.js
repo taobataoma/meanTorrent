@@ -117,7 +117,6 @@
      * @returns {*}
      */
     function getTorrentCustomSubTitle(item) {
-      console.log(item);
       if (item.resource_detail_info.custom_subtitle) {
         return item.resource_detail_info.custom_subtitle;
       } else if (item.resource_detail_info.subtitle) {

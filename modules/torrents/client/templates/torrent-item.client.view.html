@@ -76,8 +76,8 @@
                     <span class="label label-vip-info" ng-if="item.torrent_vip" ng-class="{'used': parent.filterVIP}"
                           ng-click="vm.onVIPClicked(); $event.stopPropagation();">VIP</span>
 
-                    <span title="{{ 'TORRENT_STATUS_TOP_TITLE' | translate}}" ng-if="item.isTop"
-                          ng-click="$event.stopPropagation();"
+                    <span title="{{ 'TORRENT_STATUS_TOP_TITLE' | translate}}" ng-if="item.isTop" ng-class="{'used': parent.filterTop}"
+                          ng-click="vm.onTopClicked(); $event.stopPropagation();"
                           class="label torrent-top">{{'STATUS_TOP_KEY' | translate}}
                     </span>
 

@@ -28,6 +28,7 @@
     vm.releaseYear = undefined;
     vm.filterType = undefined;
     vm.filterHnR = false;
+    vm.filterTop = false;
     vm.filterSale = false;
     vm.topItems = 6;
     vm.torrentRLevel = 'level0';
@@ -307,7 +308,8 @@
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
         torrent_hnr: vm.filterHnR,
-        torrent_sale: vm.filterSale
+        torrent_sale: vm.filterSale,
+        isTop: vm.filterTop
       }, function (items) {
         if (items.length === 0) {
           Notification.error({
@@ -336,6 +338,7 @@
       vm.rssUrl += vm.releaseYear ? '&torrent_release=' + vm.releaseYear : '';
       vm.rssUrl += vm.searchTags.length ? '&torrent_tags=' + vm.searchTags : '';
       vm.rssUrl += '&torrent_hnr=' + vm.filterHnR;
+      vm.rssUrl += '&isTop=' + vm.filterTop;
       vm.rssUrl += vm.filterSale ? '&torrent_sale=' + vm.filterSale : '';
     };
 
@@ -348,6 +351,7 @@
       $('.btn-tag').removeClass('btn-success').addClass('btn-default');
       vm.releaseYear = undefined;
       vm.filterHnR = false;
+      vm.filterTop = false;
       vm.filterSale = false;
       vm.torrentRLevel = 'level0';
       vm.filterType = undefined;
@@ -412,6 +416,17 @@
       vm.torrentBuildPager();
     };
     vm.onHnRChanged = function () {
+      vm.torrentBuildPager();
+    };
+
+    /**
+     * onTopClicked, onTopChanged
+     */
+    vm.onTopClicked = function () {
+      vm.filterTop = !vm.filterTop;
+      vm.torrentBuildPager();
+    };
+    vm.onTopChanged = function () {
       vm.torrentBuildPager();
     };
 

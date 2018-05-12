@@ -128,6 +128,14 @@
         };
 
         /**
+         * onTopClicked, onTopChanged
+         */
+        vm.onTopClicked = function () {
+          $scope.parent.filterTop = !$scope.parent.filterTop;
+          buildPager();
+        };
+
+        /**
          * toggleTop
          */
         vm.toggleTop = function (item) {

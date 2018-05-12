@@ -5,7 +5,7 @@
         </div>
         <div class="panel-body">
             <div class="row filter-tags text-center"
-                 ng-if="vm.filterType || vm.releaseYear || vm.torrentRLevel != 'level0' || vm.filterSale || vm.filterHnR || vm.searchTags.length>0 || vm.filterVIP">
+                 ng-if="vm.filterType || vm.releaseYear || vm.torrentRLevel != 'level0' || vm.filterSale || vm.filterHnR || vm.searchTags.length>0 || vm.filterVIP || vm.filterTop">
                 <div class="col-md-6 col-md-offset-3">
                     <span class="filter-tag-item label-tag" ng-if="vm.filterType">{{'TORRENT_TYPE_LABEL.' + vm.filterType.toUpperCase() | translate}}
                         <i class="fa fa-times-circle-o"
@@ -35,6 +35,11 @@
                     <span class="filter-tag-item label-tag" ng-if="vm.filterVIP">VIP
                         <i class="fa fa-times-circle-o"
                            ng-click="vm.onVIPClicked();">
+                        </i>
+                    </span>
+                    <span class="filter-tag-item label-tag" ng-if="vm.filterTop">{{'STATUS_TOP_KEY' | translate}}
+                        <i class="fa fa-times-circle-o"
+                           ng-click="vm.onTopClicked();">
                         </i>
                     </span>
                     <span ng-repeat="t in vm.searchTags" ng-if="vm.searchTags.length>0">
@@ -111,6 +116,15 @@
                         <div class="checkbox checkbox-vip">
                             <label>
                                 <input type="checkbox" ng-model="vm.filterVIP" ng-change="vm.onVIPChanged();"> {{ 'CA_TORRENT_VIP' | translate}}
+                            </label>
+                        </div>
+                    </dd>
+
+                    <dt class="h-line">{{ 'CA_TORRENT_TOP' | translate}}:</dt>
+                    <dd class="h-line">
+                        <div class="checkbox checkbox-vip">
+                            <label>
+                                <input type="checkbox" ng-model="vm.filterTop" ng-change="vm.onTopChanged();"> {{ 'TORRENT_STATUS_TOP_TITLE' | translate}}
                             </label>
                         </div>
                     </dd>
