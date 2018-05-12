@@ -283,7 +283,7 @@ exports.announce = function (req, res) {
         .populate('user')
         .populate({
           path: '_peers',
-          match: { user: req.passkeyuser._id}
+          match: {user: req.passkeyuser._id}
         })
         .exec(function (err, t) {
           if (err) {
@@ -335,7 +335,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       mtDebug.debugGreen('---------------' + eventString(query.event) + '----------------', 'ANNOUNCE', true, req.passkeyuser);
-      if (req.seeder && event(query.event) !== EVENT_COMPLETED) {
+      if (req.seeder && event(query.event) !== EVENT_COMPLETED && event(query.event) !== EVENT_STOPPED) {
         if (announceConfig.seedingInFinishedCheck) {
           if (!req.passkeyuser._id.equals(req.torrent.user._id)) {
             Finished.findOne({
@@ -406,8 +406,6 @@ exports.announce = function (req, res) {
      ----------------------------------------------------------------*/
     function (done) {
       if (event(query.event) === EVENT_STARTED) {
-        mtDebug.debugGreen('---------------EVENT_STARTED----------------', 'ANNOUNCE', true, req.passkeyuser);
-
         Peer.remove({
           torrent: req.torrent._id,
           _id: {$nin: req.torrent._peers}
@@ -493,6 +491,8 @@ exports.announce = function (req, res) {
       }
 
       getCurrentPeer(function () {
+        mtDebug.debugRed('req.currentPeer.isNewCreated = ' + req.currentPeer.isNewCreated, 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed(req.currentPeer._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
         done(null);
       });
     },
@@ -508,11 +508,11 @@ exports.announce = function (req, res) {
       var scount = getSelfSeederCount();
 
       if (lcount > announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent && !req.seeder) {
-        mtDebug.debugYellow('getSelfLeecherCount = ' + lcount, 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('getSelfLeecherCount = ' + lcount, 'ANNOUNCE', true, req.passkeyuser);
         removeCurrPeer();
         done(180);
       } else if (scount > announceConfig.announceCheck.maxSeedNumberPerUserPerTorrent && req.seeder) {
-        mtDebug.debugYellow('getSelfSeederCount = ' + scount, 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('getSelfSeederCount = ' + scount, 'ANNOUNCE', true, req.passkeyuser);
         removeCurrPeer();
         done(181);
       } else {
@@ -746,7 +746,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.currentPeer.isNewCreated) {
-        if (req.seeder && event(query.event) !== EVENT_COMPLETED) {
+        if (req.seeder && event(query.event) !== EVENT_COMPLETED && event(query.event) !== EVENT_STARTED) {
           mtDebug.debugGreen('---------------UPLOAD SCORE THROUGH SEED TIMED----------------', 'ANNOUNCE', true, req.passkeyuser);
 
           var action = scoreConfig.action.seedTimed;
@@ -1034,13 +1034,22 @@ exports.announce = function (req, res) {
   function removeCurrPeer(callback) {
     req.selfpeer.splice(req.selfpeer.indexOf(req.currentPeer), 1);
 
-    req.torrent.update({
-      $pull: {_peers: req.currentPeer._id}
-    }).exec();
+    req.torrent._peers.forEach(function (_p) {
+      if (_p._id.equals(req.currentPeer._id)) {
+        req.torrent._peers.pull(_p);
+        req.torrent.save();
+      }
+    });
 
-    req.currentPeer.remove(function () {
-      if (callback) callback();
-      mtDebug.debugGreen('---------------removeCurrPeer()----------------', 'ANNOUNCE', true, req.passkeyuser);
+    Peer.findById(req.currentPeer._id, function (err, _p) {
+      _p.remove(function (err) {
+        if (err) {
+          mtDebug.debugGreen('---------------removeCurrPeer(): Error----------------', 'ANNOUNCE', true, req.passkeyuser);
+        } else {
+          mtDebug.debugGreen('---------------removeCurrPeer()----------------', 'ANNOUNCE', true, req.passkeyuser);
+        }
+        if (callback) callback();
+      });
     });
   }
 
