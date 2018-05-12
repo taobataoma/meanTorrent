@@ -1192,12 +1192,12 @@ exports.announce = function (req, res) {
    * @returns {number}
    */
   function writePeers(buf, count, peers) {
-    mtDebug.debugRed('want count=' + count, 'ANNOUNCE', true, req.passkeyuser);
-    mtDebug.debugRed(peers.length, 'ANNOUNCE', true, req.passkeyuser);
-
     var c = 0;
 
     if (!req.seeder && event(query.event) !== EVENT_STOPPED && event(query.event) !== EVENT_COMPLETED) {
+      mtDebug.debugRed('want count=' + count, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed(peers.length, 'ANNOUNCE', true, req.passkeyuser);
+
       var p;
       var bc;
       var m = Math.min(peers.length, count);
@@ -1214,14 +1214,14 @@ exports.announce = function (req, res) {
           if (p.last_announce_at > (Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime)) { //do not send inactive peer
             if (p.user.equals(req.passkeyuser._id)) {
               if (announceConfig.peersCheck.peersSendListIncludeOwnSeed) {
-                mtDebug.debug(p._id.toString() + 'IP:' + p.peer_ip + ' PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
+                mtDebug.debug(p._id.toString() + '    IP:' + p.peer_ip + '    PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
                 bc = compact(p);
                 if (bc) {
                   bc.copy(buf, c++ * PEER_COMPACT_SIZE);
                 }
               }
             } else {
-              mtDebug.debug(p._id.toString() + 'IP:' + p.peer_ip + ' PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
+              mtDebug.debug(p._id.toString() + '    IP:' + p.peer_ip + '    PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
               bc = compact(p);
               if (bc) {
                 bc.copy(buf, c++ * PEER_COMPACT_SIZE);
