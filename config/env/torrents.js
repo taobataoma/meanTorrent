@@ -84,8 +84,8 @@ module.exports = {
      *
      */
     language: [
-      {name: 'zh', index: 0, class: 'flag-icon-cn', title: '中文'},
-      {name: 'en', index: 1, class: 'flag-icon-gb', title: 'English'},
+      {name: 'en', index: 0, class: 'flag-icon-gb', title: 'English'},
+      {name: 'zh', index: 1, class: 'flag-icon-cn', title: '中文'},
       {name: 'zh-tw', index: 2, class: 'flag-icon-tw', title: '繁體中文'}
     ],
 
