@@ -693,7 +693,7 @@ exports.announce = function (req, res) {
       //write peer data
       req.currentPeer.peer_uploaded = query.uploaded;
       req.currentPeer.peer_downloaded = query.downloaded;
-      req.currentPeer.peer_left = query.peer_left;
+      req.currentPeer.peer_left = query.left;
       req.currentPeer.save();
 
       done(null, curru, currd);
