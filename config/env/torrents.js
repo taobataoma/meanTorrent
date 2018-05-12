@@ -1275,6 +1275,7 @@ module.exports = {
      * @collectionsListPerPage:   movie collections list page settings
      * @backupFilesListPerPage:   system backup files list page settings
      * @torrentPeersListPerPage:  torrent detail seeder & leecher users list page settings
+     * @invitationsListPerPage:   official invitations list page settings
      *
      * @uploaderUserListPerPage:  admin management uploader access list page settings
      * @messageBoxListPerPage:    message box list page settings
@@ -1308,6 +1309,7 @@ module.exports = {
       collectionsListPerPage: 9,
       backupFilesListPerPage: 20,
       torrentPeersListPerPage: 20,
+      invitationsListPerPage: 20,
 
       uploaderUserListPerPage: 20,
       messageBoxListPerPage: 10,

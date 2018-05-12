@@ -15,6 +15,8 @@
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+
     vm.invitationFields = {
       isOfficial: true
     };
@@ -28,7 +30,7 @@
      */
     vm.buildPager = function () {
       vm.pagedItems = [];
-      vm.itemsPerPage = 1;
+      vm.itemsPerPage = vm.itemsPerPageConfig.invitationsListPerPage;
       vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     };
