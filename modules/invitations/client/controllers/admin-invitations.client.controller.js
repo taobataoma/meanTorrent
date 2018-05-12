@@ -28,7 +28,7 @@
      */
     vm.buildPager = function () {
       vm.pagedItems = [];
-      vm.itemsPerPage = 15;
+      vm.itemsPerPage = 1;
       vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     };
@@ -37,6 +37,7 @@
      * figureOutItemsToDisplay
      */
     vm.figureOutItemsToDisplay = function (callback) {
+      console.log(vm.currentPage);
       vm.filteredItems = $filter('filter')(vm.offlist, {
         $: vm.search
       });
