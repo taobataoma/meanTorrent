@@ -282,8 +282,7 @@ exports.announce = function (req, res) {
       })
         .populate('user')
         .populate({
-          path: '_peers',
-          match: {user: req.passkeyuser._id}
+          path: '_peers'
         })
         .exec(function (err, t) {
           if (err) {
@@ -1193,6 +1192,9 @@ exports.announce = function (req, res) {
    * @returns {number}
    */
   function writePeers(buf, count, peers) {
+    mtDebug.debugRed('want count=' + count, 'ANNOUNCE', true, req.passkeyuser);
+    mtDebug.debugRed(peers.length, 'ANNOUNCE', true, req.passkeyuser);
+
     var c = 0;
 
     if (!req.seeder && event(query.event) !== EVENT_STOPPED && event(query.event) !== EVENT_COMPLETED) {
