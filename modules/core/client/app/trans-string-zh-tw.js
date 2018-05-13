@@ -1461,7 +1461,7 @@
 
       AUDIO: {
         SELF: '音訊編碼',
-				DTS_X: 'DTS:X',
+        DTS_X: 'DTS:X',
         ATMOS: 'Atmos',
         DTS_HD: 'DTS-HD',
         TRUE_HD: 'TRUE-HD',
