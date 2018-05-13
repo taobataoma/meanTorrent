@@ -23,6 +23,7 @@
     VALUE_CUSTOM: '自定義',
     VALUE_SELECT_ALL: '全選',
     BTN_REMOVE: '刪除',
+    BTN_CONTINUE: '繼續',
 
     //Support
     SUPPORT_GROUP_NAME_DESC: '管理組',
@@ -162,16 +163,12 @@
       TITLE_LIFE: '按上傳時間排序',
 
       //status
-      UPLOADED_SPEED: '上/速',
-      DOWNLOADED_RATIO: '下/比',
-      DOWNLOADED_SPEED: '下/速',
-      UPLOADED_RATIO_PERCENT: '上/比/進度',
+      UPLOADED_SPEED: '上/速/分享',
+      DOWNLOADED_SPEED: '下/速/進度',
       UP_DOWN_RATIO_TIME: '上/下/比/時',
 
-      ABBR_UPLOADED_SPEED: '上傳量/速度',
-      ABBR_DOWNLOADED_RATIO: '下載量/分享率',
-      ABBR_DOWNLOADED_SPEED: '下載量/速度',
-      ABBR_UPLOADED_RATIO_PERCENT: '上傳量/分享率/完成百分比',
+      ABBR_UPLOADED_SPEED: '上傳量/速度/分享率',
+      ABBR_DOWNLOADED_SPEED: '下載量/速度/完成進度',
       ABBR_UP_DOWN_RATIO_TIME: '上傳量/下載量/分享率/做種時間',
 
       //peer
@@ -347,6 +344,7 @@
     COPY_LINK_TO_CLIPBOARD: '複製種子檔案下載連線到剪下板',
     COPY_LINK_TEXT: '複製種子檔案地址',
     COPY_TO_CLIPBOARD_SUCCESSFULLY: '內容已複製到剪下板!',
+    TORRENT_LABEL_LINK: '種子地址',
     PH_KEYWORD: '搜尋關鍵字',
     CLEAR_ALL_CONDITION: '清空所有條件',
     MORE_TAGS: '顯示更多標籤',
@@ -850,7 +848,8 @@
       DESC_MY: '### 提示: \n - 如果您接受一個響應, 您的懸賞積分就會轉入您接受的響應者的帳戶. \n - 只有被管理員稽核通過的種子才能被您接受. \n - 您只能接受多個響應中的一個. \n - 超過 `{{days}}` 天的請求已經過期且不能接受響應, 如果需要您只能再次發起請求. \n - 如果您的積分受到惡意損害, 請給{{sNameDesc | translate}}傳送 **[訊息](/messages/send?to={{sName}})** 或 **[郵件](mailto:{{sMail}})** 進行投訴.',
       DESC_ADD: '### 提示: \n - 每釋出一個請求會被自動扣除 `{{add_score}}` 積分, 而您的懸賞積分會轉入您最終接受的響應者的帳戶. \n - 只有被管理員稽核通過的種子才能被您接受. \n - 每一個釋出的請求只有 `{{days}}` 天的有效期, 過期後您只能再次發起請求. \n - 請在釋出請求時明確描述您對資源的要求.',
       DESC_RES: '### NOTE: \n - 如果請求者接受了您的響應, 懸賞積分將自動轉入您的帳戶. \n - 只有被管理員稽核通過的種子才能被請求者接受. \n - 請求者只會接受多個響應中的一個.',
-      DESC_VIEW: '### NOTE: \n - 如果您是一個響應者, 請上傳您的種子檔案並開始做種, 請認真響應使用者的請求. \n - 如果您是一個請求者, 您可以選擇一個響應並接受它, 只有被管理員稽核通過的種子才能被您接受. \n - 如果您接受一個響應, 您的懸賞積分就會轉入您接受的響應者的帳戶. \n - 超過 `{{days}}` 天的請求已經過期且不能接受響應或上傳種子.'
+      DESC_VIEW: '### NOTE: \n - 如果您是一個響應者, 請上傳您的種子檔案並開始做種, 請認真響應使用者的請求. \n - 如果您是一個請求者, 您可以選擇一個響應並接受它, 只有被管理員稽核通過的種子才能被您接受. \n - 如果您接受一個響應, 您的懸賞積分就會轉入您接受的響應者的帳戶. \n - 超過 `{{days}}` 天的請求已經過期且不能接受響應或上傳種子.',
+      CAN_NTO_TO_ADD: '每發佈一個請求會被自動扣除 `{{add_score}}` 積分，您的積分太少，請稍候再試 ...'
     },
 
     //user status
@@ -1440,7 +1439,8 @@
         BLU_RAY: 'BLU_RAY',
         WEB_DL: 'WEB_DL',
         REMUX: 'REMUX',
-        ENCODE: 'ENCODE'
+        ENCODE: 'ENCODE',
+        HDTV: 'HDTV'
       },
 
       RESOLUTION: {
@@ -1453,19 +1453,21 @@
 
       VIDEO: {
         SELF: '視訊編碼',
-        AVC: 'AVC',
-        X265: 'X265',
-        X264: 'X264'
+        H264: 'H.264/AVC',
+        H265: 'H.265/HEVC',
+        X264: 'x264',
+        X265: 'x265'
       },
 
       AUDIO: {
         SELF: '音訊編碼',
-        AAC: 'AAC',
-        AC3: 'AC3',
-        LPCM: 'LPCM',
+				DTS_X: 'DTS:X',
+        ATMOS: 'Atmos',
+        DTS_HD: 'DTS-HD',
+        TRUE_HD: 'TRUE-HD',
         DTS: 'DTS',
-        DTS_HD: 'DTS HD',
-        ATMOS_TRUEHD: 'Atmos TrueHD'
+        AC3: 'AC3',
+        AAC: 'AAC'
       },
 
       AUDIOFORMATS: {
@@ -1475,24 +1477,15 @@
         APE: 'APE'
       },
 
-      CHANNEL: {
-        SELF: '聲道',
-        C20: '2.0 聲道',
-        C51: '5.1 聲道',
-        C71: '7.1 聲道'
-      },
-
       THREED: {
-        SELF: '2D/3D',
-        T2D: '2D',
-        T3D: '3D',
-        T2D_3D: '2D-3D'
+        SELF: '3D影片',
+        T3D: '3D'
       },
 
       RANKING: {
         SELF: '排行榜',
-        IMDB_TOP100: 'IMDB TOP100',
-        IMDB_TOP250: 'IMDB TOP250'
+        IMDB_TOP100: 'IMDB T100',
+        IMDB_TOP250: 'IMDB T250'
       },
 
       REGION: {
