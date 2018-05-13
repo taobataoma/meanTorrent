@@ -41,9 +41,9 @@ module.exports.update = function (req, user, action, value, writeLog = true) {
         user.markModified('examinationData');
       }
 
-      mtDebug.info('Old: user.score=' + user.score);
+      mtDebug.info('Old: user.score = ' + user.score);
       user.score = Math.max(user.score + v, 0);
-      mtDebug.info('New: user.score=' + user.score);
+      mtDebug.info('New: user.score = ' + user.score);
 
       user.save(function () {
         traceLogCreate(req, traceConfig.action.userScoreChange, {

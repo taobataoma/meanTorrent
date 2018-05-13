@@ -1195,8 +1195,8 @@ exports.announce = function (req, res) {
     var c = 0;
 
     if (!req.seeder && event(query.event) !== EVENT_STOPPED && event(query.event) !== EVENT_COMPLETED) {
-      mtDebug.debugRed('want count=' + count, 'ANNOUNCE', true, req.passkeyuser);
-      mtDebug.debugRed(peers.length, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('want count = ' + count, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('peers.length = ' + peers.length, 'ANNOUNCE', true, req.passkeyuser);
 
       var p;
       var bc;
