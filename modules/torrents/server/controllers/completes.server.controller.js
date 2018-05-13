@@ -109,8 +109,8 @@ exports.completeByID = function (req, res, next, id) {
   }
 
   Complete.findById(id)
-    .populate('user', 'username displayName profileImageURL')
-    .populate('remove_by', 'username displayName profileImageURL')
+    .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
+    .populate('remove_by', 'username displayName profileImageURL isVip score uploaded downloaded')
     .exec(function (err, complete) {
       if (err) {
         return next(err);

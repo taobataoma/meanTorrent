@@ -50,10 +50,10 @@ exports.list = function (req, res) {
         path: 'lastTopic',
         populate: {
           path: 'user lastUser',
-          select: 'username displayName profileImageURL isVip uploaded downloaded'
+          select: 'username displayName profileImageURL isVip score uploaded downloaded'
         }
       })
-      .populate('moderators', 'username displayName profileImageURL isVip uploaded downloaded')
+      .populate('moderators', 'username displayName profileImageURL isVip score uploaded downloaded')
       .exec(function (err, forums) {
         if (err) {
           callback(err, null);
@@ -225,8 +225,8 @@ exports.forumsSearch = function (req, res) {
   var findQuery = function (callback) {
     Topic.find(condition)
       .sort('-lastReplyAt -createdAt')
-      .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
-      .populate('lastUser', 'username displayName profileImageURL isVip uploaded downloaded')
+      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
+      .populate('lastUser', 'username displayName profileImageURL isVip score uploaded downloaded')
       .populate('forum', 'name category')
       .skip(skip)
       .limit(limit)
@@ -281,8 +281,8 @@ exports.listTopics = function (req, res) {
       forum: req.params.forumId
     })
       .sort('-isTop -lastReplyAt -createdAt')
-      .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
-      .populate('lastUser', 'username displayName profileImageURL isVip uploaded downloaded')
+      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
+      .populate('lastUser', 'username displayName profileImageURL isVip score uploaded downloaded')
       .skip(skip)
       .limit(limit)
       .exec(function (err, topics) {
@@ -316,7 +316,7 @@ exports.getHomeHelpTopic = function (req, res) {
     isHomeHelp: true
   })
     .sort('-pushHomeAt')
-    .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
+    .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
     .skip(skip)
     .limit(limit)
     .exec(function (err, topics) {
@@ -341,7 +341,7 @@ exports.getHomeNoticeTopic = function (req, res) {
     isHomeNotice: true
   })
     .sort('-pushHomeAt')
-    .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
+    .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
     .skip(skip)
     .limit(limit)
     .exec(function (err, topics) {
@@ -364,7 +364,7 @@ exports.getHomeNewTopic = function (req, res) {
 
   Topic.find()
     .sort('-createdAt')
-    .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
+    .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
     .skip(skip)
     .limit(limit)
     .exec(function (err, topics) {
@@ -408,8 +408,8 @@ exports.globalTopics = function (req, res) {
       })
         .sort('-createdAt')
         .populate('forum', 'name')
-        .populate('user', 'username displayName profileImageURL isVip uploaded downloaded')
-        .populate('lastUser', 'username displayName profileImageURL isVip uploaded downloaded')
+        .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
+        .populate('lastUser', 'username displayName profileImageURL isVip score uploaded downloaded')
         .exec(function (err, topics) {
           if (err) {
             return res.status(422).send({
@@ -1209,13 +1209,13 @@ exports.topicById = function (req, res, next, id) {
   }
 
   Topic.findById(id)
-    .populate('user', 'username displayName profileImageURL isVip uploaded downloaded score signature')
-    .populate('lastUser', 'username displayName profileImageURL isVip uploaded downloaded')
-    .populate('updatedBy', 'username displayName profileImageURL isVip uploaded downloaded')
-    .populate('_thumbs.user', 'username displayName profileImageURL isVip uploaded downloaded')
-    .populate('_replies.user', 'username displayName profileImageURL isVip uploaded downloaded signature')
-    .populate('_replies.updatedBy', 'username displayName profileImageURL isVip uploaded downloaded')
-    .populate('_replies._thumbs.user', 'username displayName profileImageURL isVip uploaded downloaded')
+    .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded signature')
+    .populate('lastUser', 'username displayName profileImageURL isVip score uploaded downloaded')
+    .populate('updatedBy', 'username displayName profileImageURL isVip score uploaded downloaded')
+    .populate('_thumbs.user', 'username displayName profileImageURL isVip score uploaded downloaded')
+    .populate('_replies.user', 'username displayName profileImageURL isVip score uploaded downloaded signature')
+    .populate('_replies.updatedBy', 'username displayName profileImageURL isVip score uploaded downloaded')
+    .populate('_replies._thumbs.user', 'username displayName profileImageURL isVip score uploaded downloaded')
     .exec(function (err, topic) {
       if (err) {
         return next(err);

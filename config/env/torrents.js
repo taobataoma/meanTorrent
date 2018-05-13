@@ -435,8 +435,6 @@ module.exports = {
       action: {
         defaultAction: {name: 'defaultAction', value: 0, enable: true},
 
-        checkInEveryDay: {name: 'checkInEveryDay', value: 10, enable: true},
-        checkInConsDay: {name: 'checkInConsDay', value: 2, enable: true},
         uploadTorrent: {name: 'uploadTorrent', value: 50, enable: true},
         uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', value: -50, enable: true},
         uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', value: 10, enable: true},
@@ -452,6 +450,14 @@ module.exports = {
         scoreExchangeInvitation: {name: 'scoreExchangeInvitation', value: 0, enable: true}, //value used invite.scoreExchange
         scoreToRemoveWarning: {name: 'scoreToRemoveWarning', value: 0, enable: true}, //value used hitAndRun.scoreToRemoveWarning
         activeIdleAccount: {name: 'activeIdleAccount', value: 0, enable: true}, //value used sign.idle.activeIdleAccountBasicScore
+
+        dailyCheckIn: {
+          enable: true,
+          name: 'dailyCheckIn',
+          dailyBasicScore: 10,
+          dailyStepScore: 1,
+          dailyMaxScore: 100
+        },
 
         seedUpDownload: {
           name: 'seedUpDownload',

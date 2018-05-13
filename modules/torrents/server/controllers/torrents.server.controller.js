@@ -1399,7 +1399,7 @@ exports.getTorrentsHomeList = function (req, res) {
       } else {
         Torrent.populate(orderList,
           [
-            {path: 'typeTorrents.user', select: 'username displayName isVip', model: 'User'},
+            {path: 'typeTorrents.user', select: 'username displayName profileImageURL isVip score uploaded downloaded', model: 'User'},
             {path: 'typeTorrents.maker', select: 'name', model: 'Maker'}
           ], function (err, items) {
             if (err) {
@@ -1452,7 +1452,7 @@ exports.getTorrentsHomeList = function (req, res) {
       } else {
         Torrent.populate(newestList,
           [
-            {path: 'typeTorrents.user', select: 'username displayName isVip', model: 'User'},
+            {path: 'typeTorrents.user', select: 'username displayName profileImageURL isVip score uploaded downloaded', model: 'User'},
             {path: 'typeTorrents.maker', select: 'name', model: 'Maker'}
           ], function (err, items) {
             if (err) {
@@ -1714,7 +1714,7 @@ exports.list = function (req, res) {
 
           Torrent.populate(ntorrents,
             [
-              {path: 'user', select: 'username displayName isVip'},
+              {path: 'user', select: 'username displayName profileImageURL isVip score uploaded downloaded'},
               {path: 'maker', select: 'name'}
             ], function (err, ts) {
               if (err) {
@@ -1849,7 +1849,7 @@ exports.makeRss = function (req, res) {
 
       Torrent.find(condition)
         .sort(sort)
-        .populate('user', 'username displayName isVip')
+        .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
         .populate('maker', 'name')
         .limit(limit)
         .exec(function (err, torrents) {
@@ -2085,7 +2085,7 @@ exports.getSeederUsers = function (req, res) {
       last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime}
     })
       .sort('-peer_uploaded')
-      .populate('user', 'username displayName profileImageURL isVip')
+      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
       .skip(skip)
       .limit(limit)
       .exec(function (err, peers) {
@@ -2146,7 +2146,7 @@ exports.getLeecherUsers = function (req, res) {
       last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime}
     })
       .sort('-peer_downloaded')
-      .populate('user', 'username displayName profileImageURL isVip')
+      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
       .skip(skip)
       .limit(limit)
       .exec(function (err, peers) {
@@ -2181,25 +2181,25 @@ exports.torrentByID = function (req, res, next, id) {
 
   var findTorrents = function (callback) {
     Torrent.find({_id: id}, {'_peers': 0})
-      .populate('user', 'username displayName profileImageURL isVip')
+      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
       .populate('maker', 'name')
-      .populate('_thumbs.user', 'username displayName profileImageURL isVip uploaded downloaded')
-      .populate('_ratings.user', 'username displayName profileImageURL isVip uploaded downloaded')
+      .populate('_thumbs.user', 'username displayName profileImageURL isVip score uploaded downloaded')
+      .populate('_ratings.user', 'username displayName profileImageURL isVip score  uploaded downloaded')
       .populate({
         path: '_replies.user',
-        select: 'username displayName profileImageURL isVip uploaded downloaded',
+        select: 'username displayName profileImageURL isVip score uploaded downloaded',
         model: 'User'
       })
       .populate({
         path: '_replies._replies.user',
-        select: 'username displayName profileImageURL isVip uploaded downloaded',
+        select: 'username displayName profileImageURL isVip score uploaded downloaded',
         model: 'User'
       })
       .populate({
         path: '_subtitles',
         populate: {
           path: 'user',
-          select: 'username displayName profileImageURL isVip'
+          select: 'username displayName profileImageURL isVip score uploaded downloaded'
         }
       })
       .exec(function (err, torrent) {
@@ -2225,7 +2225,7 @@ exports.torrentByID = function (req, res, next, id) {
 
       Torrent.find(condition, fields)
         .sort('-createdat')
-        .populate('user', 'username displayName isVip')
+        .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
         .populate('maker', 'name')
         .exec(function (err, torrents) {
           if (err) {

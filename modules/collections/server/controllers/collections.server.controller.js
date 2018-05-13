@@ -279,7 +279,7 @@ exports.list = function (req, res) {
   var findQuery = function (callback) {
     Collection.find(condition)
       .sort('-recommend_level -ordered_at -created_at')
-      .populate('user', 'username displayName profileImageURL isVip')
+      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
       .populate('torrents')
       .skip(skip)
       .limit(limit)
@@ -312,12 +312,12 @@ exports.collectionByID = function (req, res, next, id) {
   }
 
   Collection.findById(id)
-    .populate('user', 'username displayName profileImageURL isVip')
+    .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
     .populate({
       path: 'torrents',
       populate: [{
         path: 'user',
-        select: 'username displayName profileImageURL isVip'
+        select: 'username displayName profileImageURL isVip score uploaded downloaded'
       }, {
         path: 'maker',
         select: 'name'

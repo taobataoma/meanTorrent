@@ -153,8 +153,8 @@ exports.delete = function (req, res) {
 exports.list = function (req, res) {
   Maker.find()
     .sort('-torrent_count')
-    .populate('user', 'username displayName profileImageURL isVip')
-    .populate('members', 'username displayName profileImageURL isVip')
+    .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
+    .populate('members', 'username displayName profileImageURL isVip score uploaded downloaded')
     .exec(function (err, makers) {
       if (err) {
         return res.status(422).send({
@@ -323,9 +323,9 @@ exports.makerByID = function (req, res, next, id) {
   }
 
   Maker.findById(id)
-    .populate('user', 'username displayName profileImageURL isVip')
-    .populate('members', 'username displayName profileImageURL isVip')
-    .populate('_ratings.user', 'username displayName profileImageURL isVip uploaded downloaded')
+    .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
+    .populate('members', 'username displayName profileImageURL isVip score uploaded downloaded')
+    .populate('_ratings.user', 'username displayName profileImageURL isVip score uploaded downloaded')
     .exec(function (err, maker) {
       if (err) {
         return next(err);

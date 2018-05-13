@@ -20,7 +20,7 @@ exports.userByID = function (req, res, next, id) {
   User.findOne({
     _id: id
   })
-    .populate('invited_by', 'username displayName profileImageURL')
+    .populate('invited_by', 'username displayName profileImageURL isVip score uploaded downloaded')
     .populate('makers', 'name')
     .exec(function (err, user) {
       if (err) {
