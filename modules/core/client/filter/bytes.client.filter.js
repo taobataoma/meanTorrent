@@ -9,7 +9,7 @@
 
   function bytes() {
     return function (bytes, precision) {
-      if (bytes === 0 || isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '-';
+      if (bytes === 0 || isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '0';
       if (typeof precision === 'undefined') precision = 1;
       //var units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'],
       var units = ['b', 'K', 'M', 'G', 'T', 'P'],
