@@ -949,7 +949,7 @@ exports.announce = function (req, res) {
         req.currentPeer.isNewCreated = false;
 
         //if find peer_id, but some time some client (like qbittorrent 4.1.0) the ip or port is changed, update it
-        if (req.currentPeer.peer_ip !== req.cf_ip || req.currentPeer.peer_port !== query.port) {
+        if ((req.currentPeer.peer_ip !== req.cf_ip || req.currentPeer.peer_port !== query.port) && query.port !== 0) {
           req.currentPeer.peer_ip = req.cf_ip;
           req.currentPeer.peer_port = query.port;
 
