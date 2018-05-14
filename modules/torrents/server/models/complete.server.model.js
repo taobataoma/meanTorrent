@@ -95,11 +95,25 @@ function countRatio(t) {
 /**
  * globalUpdateMethod
  */
-CompleteSchema.methods.globalUpdateMethod = function (callback) {
-  this.refreshat = Date.now();
-  this.save(function () {
-    if (callback) callback();
-  });
+CompleteSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
+  if (typeof findThenUpdate === 'function') {
+    cb = findThenUpdate;
+    findThenUpdate = false;
+  }
+
+  if (findThenUpdate) {
+    this.model('Complete').findById(this._id, function (err, c) {
+      c.refreshat = Date.now();
+      c.save(function (err, nc) {
+        if (cb) cb(nc || this);
+      });
+    });
+  } else {
+    this.refreshat = Date.now();
+    this.save(function (err, c) {
+      if (cb) cb(c || this);
+    });
+  }
 };
 
 /**

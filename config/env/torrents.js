@@ -159,7 +159,8 @@ module.exports = {
       debugAnnounceUser: {
         debugAll: false,
         ids: [
-          '59227f9095602327ea1d96ba'
+          '59227f9095602327ea1d96ba',
+          '592280c464be9e281a1ec56e'
         ]
       }
     },

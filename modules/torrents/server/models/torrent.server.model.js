@@ -245,11 +245,25 @@ TorrentSchema.methods.updateSeedLeechNumbers = function (callback) {
 /**
  * globalUpdateMethod
  */
-TorrentSchema.methods.globalUpdateMethod = function (cb) {
-  this.refreshat = Date.now();
-  this.save(function (err, t) {
-    if (cb) cb(t || this);
-  });
+TorrentSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
+  if (typeof findThenUpdate === 'function') {
+    cb = findThenUpdate;
+    findThenUpdate = false;
+  }
+
+  if (findThenUpdate) {
+    this.model('Torrent').findById(this._id, function (err, t) {
+      t.refreshat = Date.now();
+      t.save(function (err, nt) {
+        if (cb) cb(nt || this);
+      });
+    });
+  } else {
+    this.refreshat = Date.now();
+    this.save(function (err, t) {
+      if (cb) cb(t || this);
+    });
+  }
 };
 
 TorrentSchema.index({info_hash: 'hashed'});

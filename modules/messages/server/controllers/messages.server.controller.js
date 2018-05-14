@@ -228,7 +228,7 @@ exports.countUnread = function (req, res) {
   }
 
   //active user update method to update some fields value
-  req.user.globalUpdateMethod();
+  req.user.globalUpdateMethod(true);
 
   var countFrom = function (callback) {
     Message.count({

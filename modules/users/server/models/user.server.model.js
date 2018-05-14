@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
   path = require('path'),
   config = require(path.resolve('./config/config')),
+  common = require(path.resolve('./config/lib/common')),
   CommonSchema = require(path.resolve('./modules/core/server/models/common.server.model')),
   Schema = mongoose.Schema,
   crypto = require('crypto'),
@@ -19,6 +20,8 @@ var mongoose = require('mongoose'),
 owasp.config(config.shared.owasp);
 
 var announceConfig = config.meanTorrentConfig.announce;
+var examinationConfig = config.meanTorrentConfig.examination;
+var mtDebug = require(path.resolve('./config/lib/debug'));
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -313,6 +316,7 @@ UserSchema.pre('save', function (next) {
   countRatio(this);
   updateVipFlag(this);
   updateOperAdminFlag(this);
+  updateExaminationData(this);
 
   this.constructor.count(function (err, count) {
     if (err) {
@@ -377,6 +381,24 @@ function updateOperAdminFlag(user) {
 }
 
 /**
+ * updateExaminationData
+ * @param user
+ */
+function updateExaminationData(user) {
+  if (common.examinationIsValid(user)) {
+    if (!user.examinationData.isFinished) {
+      var uploadFinished = user.examinationData.uploaded >= examinationConfig.incrementData.upload;
+      var downloadFinished = user.examinationData.downloaded >= examinationConfig.incrementData.download;
+      var scoreFinished = user.examinationData.score >= examinationConfig.incrementData.score;
+      user.examinationData.isFinished = uploadFinished && downloadFinished && scoreFinished;
+      user.examinationData.finishedTime = user.examinationData.isFinished ? Date.now() : null;
+
+      user.markModified('examinationData');
+    }
+  }
+}
+
+/**
  * Hook a pre validate method to test the local password
  */
 UserSchema.pre('validate', function (next) {
@@ -436,11 +458,25 @@ UserSchema.methods.addLeechedIp = function (ip) {
 /**
  * globalUpdateMethod
  */
-UserSchema.methods.globalUpdateMethod = function (cb) {
-  this.refreshat = Date.now();
-  this.save(function (err, u) {
-    if (cb) cb(u || this);
-  });
+UserSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
+  if (typeof findThenUpdate === 'function') {
+    cb = findThenUpdate;
+    findThenUpdate = false;
+  }
+
+  if (findThenUpdate) {
+    this.model('User').findById(this._id, function (err, u) {
+      u.refreshat = Date.now();
+      u.save(function (err, nu) {
+        if (cb) cb(nu || this);
+      });
+    });
+  } else {
+    this.refreshat = Date.now();
+    this.save(function (err, u) {
+      if (cb) cb(u || this);
+    });
+  }
 };
 
 /**

@@ -106,11 +106,25 @@ PeerSchema.pre('save', function (next) {
 /**
  * globalUpdateMethod
  */
-PeerSchema.methods.globalUpdateMethod = function (cb) {
-  this.refreshat = Date.now();
-  this.save(function (err, p) {
-    if (cb) cb(p || this);
-  });
+PeerSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
+  if (typeof findThenUpdate === 'function') {
+    cb = findThenUpdate;
+    findThenUpdate = false;
+  }
+
+  if (findThenUpdate) {
+    this.model('Peer').findById(this._id, function (err, p) {
+      p.refreshat = Date.now();
+      p.save(function (err, np) {
+        if (cb) cb(np || this);
+      });
+    });
+  } else {
+    this.refreshat = Date.now();
+    this.save(function (err, p) {
+      if (cb) cb(p || this);
+    });
+  }
 };
 
 /**

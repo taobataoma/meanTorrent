@@ -22,10 +22,8 @@ var path = require('path'),
 var traceConfig = config.meanTorrentConfig.trace;
 var scoreConfig = config.meanTorrentConfig.score;
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
-var signConfig = config.meanTorrentConfig.sign;
 var announceConfig = config.meanTorrentConfig.announce;
 var globalSalesConfig = config.meanTorrentConfig.torrentGlobalSales;
-var examinationConfig = config.meanTorrentConfig.examination;
 
 var appConfig = config.meanTorrentConfig.app;
 
@@ -555,25 +553,23 @@ exports.announce = function (req, res) {
           }
 
           //write user uploaded and downloaded
-          req.passkeyuser.uploaded += u;
-          req.passkeyuser.downloaded += d;
-          req.passkeyuser.true_uploaded += curru;
-          req.passkeyuser.true_downloaded += currd;
-          //write examination uploaded and downloaded
-          if (common.examinationIsValid(req.passkeyuser)) {
-            req.passkeyuser.examinationData.uploaded = req.passkeyuser.examinationData.uploaded || 0;
-            req.passkeyuser.examinationData.uploaded += u;
-            req.passkeyuser.examinationData.downloaded = req.passkeyuser.examinationData.downloaded || 0;
-            req.passkeyuser.examinationData.downloaded += d;
+          var up_d = {
+            uploaded: u,
+            downloaded: d,
+            true_uploaded: curru,
+            true_downloaded: currd
+          };
 
-            var uploadFinished = req.passkeyuser.examinationData.uploaded >= examinationConfig.incrementData.upload;
-            var downloadFinished = req.passkeyuser.examinationData.downloaded >= examinationConfig.incrementData.download;
-            var scoreFinished = req.passkeyuser.examinationData.score >= examinationConfig.incrementData.score;
-            req.passkeyuser.examinationData.isFinished = uploadFinished && downloadFinished && scoreFinished;
-            req.passkeyuser.examinationData.finishedTime = req.passkeyuser.examinationData.isFinished ? Date.now() : null;
-            req.passkeyuser.markModified('examinationData');
+          if (common.examinationIsValid(req.passkeyuser)) {
+            up_d['examinationData.uploaded'] = u;
+            up_d['examinationData.downloaded'] = d;
+            mtDebug.debugGreen('---------------WRITE EXAMINATION DATA----------------', 'ANNOUNCE', true, req.passkeyuser);
+            mtDebug.debugRed('examinationData.uploaded: ' + u + ', examinationData.downloaded: ' + d, 'ANNOUNCE', true, req.passkeyuser);
           }
-          req.passkeyuser.save();
+
+          req.passkeyuser.update({
+            $inc: up_d
+          }).exec();
 
           //write peer speed
           var sp = {};
@@ -691,10 +687,13 @@ exports.announce = function (req, res) {
       }
 
       //write peer data
-      req.currentPeer.peer_uploaded = query.uploaded;
-      req.currentPeer.peer_downloaded = query.downloaded;
-      req.currentPeer.peer_left = query.left;
-      req.currentPeer.save();
+      req.currentPeer.update({
+        $set: {
+          peer_uploaded: query.uploaded,
+          peer_downloaded: query.downloaded,
+          peer_left: query.left
+        }
+      }).exec();
 
       done(null, curru, currd);
     },
@@ -706,9 +705,12 @@ exports.announce = function (req, res) {
       if (curru > 0 || currd > 0) {
         if (req.completeTorrent) {
           mtDebug.debugGreen('---------------WRITE COMPLETE DATA----------------', 'ANNOUNCE', true, req.passkeyuser);
-          req.completeTorrent.total_uploaded += curru;
-          req.completeTorrent.total_downloaded += currd;
-          req.completeTorrent.save(function () {
+          req.completeTorrent.update({
+            $inc: {
+              total_uploaded: curru,
+              total_downloaded: currd
+            }
+          }, function () {
             done(null);
           });
         } else {
@@ -727,8 +729,11 @@ exports.announce = function (req, res) {
       if (!req.currentPeer.isNewCreated) {
         if (req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------UPDATE H&R COMPLETE TOTAL_SEED_TIME----------------', 'ANNOUNCE', true, req.passkeyuser);
-          req.completeTorrent.total_seed_time += (Date.now() - req.currentPeer.last_announce_at);
-          req.completeTorrent.save(function () {
+          req.completeTorrent.update({
+            $inc: {
+              total_seed_time: (Date.now() - req.currentPeer.last_announce_at)
+            }
+          }, function () {
             done(null);
           });
         } else {
@@ -803,12 +808,11 @@ exports.announce = function (req, res) {
       mtDebug.debugGreen('---------------UPDATE LAST_ANNOUNCE_AT----------------', 'ANNOUNCE', true, req.passkeyuser);
 
       if (!req.currentPeer.isNewCreated) {
-        req.currentPeer.last_announce_at = Date.now();
-        req.currentPeer.save();
-      }
-
-      if (req.completeTorrent) {
-        req.completeTorrent.globalUpdateMethod();
+        req.currentPeer.update({
+          $set: {
+            last_announce_at: Date.now()
+          }
+        }).exec();
       }
 
       done(null);
@@ -820,22 +824,6 @@ exports.announce = function (req, res) {
     function (done) {
       if (event(query.event) === EVENT_COMPLETED) {
         mtDebug.debugGreen('---------------EVENT_COMPLETED----------------', 'ANNOUNCE', true, req.passkeyuser);
-        //write completed torrent data into finished
-        var finished = new Finished();
-        finished.user = req.passkeyuser;
-        finished.torrent = req.torrent;
-        finished.user_ip = req.cf_ip;
-        finished.user_agent = req.get('User-Agent');
-        finished.user_port = query.port;
-        finished.save();
-
-        traceLogCreate(req, traceConfig.action.userAnnounceFinished, {
-          user: req.passkeyuser._id,
-          torrent: req.torrent._id,
-          agent: req.get('User-Agent'),
-          ip: req.cf_ip,
-          port: query.port
-        });
 
         doCompleteEvent(function () {
           done(null);
@@ -925,6 +913,20 @@ exports.announce = function (req, res) {
       }
 
       done(null, 'done');
+    },
+
+    /**
+     * update user, torrent, peer, complete
+     * @param done
+     */
+    function (done) {
+      req.passkeyuser.globalUpdateMethod(true);
+      req.torrent.globalUpdateMethod(true);
+      req.currentPeer.globalUpdateMethod(true);
+
+      if (req.completeTorrent) {
+        req.completeTorrent.globalUpdateMethod(true);
+      }
     }
   ], function (err, reason) {
     if (err) {
@@ -967,19 +969,48 @@ exports.announce = function (req, res) {
    * doCompleteEvent
    */
   function doCompleteEvent(callback) {
-    req.currentPeer.peer_status = PEERSTATE_SEEDER;
-    req.currentPeer.save();
+    //write completed torrent data into finished
+    var finished = new Finished();
+    finished.user = req.passkeyuser;
+    finished.torrent = req.torrent;
+    finished.user_ip = req.cf_ip;
+    finished.user_agent = req.get('User-Agent');
+    finished.user_port = query.port;
+    finished.save();
 
-    req.torrent.torrent_finished += 1;
-    req.torrent.save();
+    traceLogCreate(req, traceConfig.action.userAnnounceFinished, {
+      user: req.passkeyuser._id,
+      torrent: req.torrent._id,
+      agent: req.get('User-Agent'),
+      ip: req.cf_ip,
+      port: query.port
+    });
 
-    req.passkeyuser.finished += 1;
-    req.passkeyuser.save();
+    req.currentPeer.update({
+      $set: {
+        peer_status: PEERSTATE_SEEDER
+      }
+    }).exec();
+
+    req.torrent.update({
+      $inc: {
+        torrent_finished: 1
+      }
+    }).exec();
+
+    req.passkeyuser.update({
+      $inc: {
+        finished: 1
+      }
+    }).exec();
 
     //update completeTorrent complete status
     if (req.completeTorrent) {
-      req.completeTorrent.complete = true;
-      req.completeTorrent.save(function () {
+      req.completeTorrent.update({
+        $set: {
+          complete: true
+        }
+      }, function () {
         if (callback) callback();
       });
     } else {
@@ -1018,12 +1049,10 @@ exports.announce = function (req, res) {
     req.passkeyuser.addLeechedIp(peer.peer_ip);
     req.passkeyuser.addClientAgent(peer.user_agent);
 
-    peer.save(function (err) {
-      if (!err) {
-        req.currentPeer = peer;
-        mtDebug.debugGreen('---------------createCurrentPeer()----------------', 'ANNOUNCE', true, req.passkeyuser);
-        if (callback) callback();
-      }
+    peer.save(function () {
+      req.currentPeer = peer;
+      mtDebug.debugGreen('---------------createCurrentPeer()----------------', 'ANNOUNCE', true, req.passkeyuser);
+      if (callback) callback();
     });
   }
 
