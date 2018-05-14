@@ -276,6 +276,6 @@
 </tr>
 <tr>
     <td class="td-progress" colspan="6">
-        <div torrent-progress="item.my_peers || (peer.user == vm.user._id ? peer : undefined)"></div>
+        <div torrent-progress="item.my_peers || (vm.state.current.name.startsWith('status') ? peer : undefined)"></div>
     </td>
 </tr>
