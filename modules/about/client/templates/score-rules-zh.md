@@ -5,7 +5,7 @@
 &emsp;
 
 #### :white_small_square: 积分增加规则
-* 每日签到获得 `%(scoreConfig.action.checkInEveryDay.value)d` 积分，连续登记，每天额外增加 `%(scoreConfig.action.checkInConsDay.value)d` 累计积分。
+* 每日签到获得 `%(scoreConfig.action.dailyCheckIn.dailyBasicScore)d` 积分，连续签到，每天额外增加 `%(scoreConfig.action.dailyCheckIn.dailyStepScore)d` 累计积分，`%(scoreConfig.action.dailyCheckIn.dailyMaxScore)d` 积分封顶。
 * 每发布一条种子资源可获得 `%(scoreConfig.action.uploadTorrent.value)d` 积分。
 * 发布的种子资源被管理员设置为推荐可获得 `%(scoreConfig.action.uploadTorrentBeRecommend.value)d` 积分。
 * 每上传一条资源字幕可获得 `%(scoreConfig.action.uploadSubtitle.value)d` 积分。

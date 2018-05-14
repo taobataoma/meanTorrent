@@ -5,7 +5,7 @@
 &emsp;
 
 #### :white_small_square: Score increase rules
-* Check-in every day to get `%(scoreConfig.action.checkInEveryDay.value)d` scores, continuous check-in to get additional `%(scoreConfig.action.checkInConsDay.value)d` scores per day.
+* Check-in every day to get `%(scoreConfig.action.dailyCheckIn.dailyBasicScore)d` scores, continuous check-in to get additional `%(scoreConfig.action.dailyCheckIn.dailyStepScore)d` scores per day, and the max value is `%(scoreConfig.action.dailyCheckIn.dailyMaxScore)d`.
 * Upload a torrent resource to get `%(scoreConfig.action.uploadTorrent.value)d` scores.
 * The uploaded torrent resource is set as a recommendation by the administrator to get `%(scoreConfig.action.uploadTorrentBeRecommend.value)d` scores.
 * Upload a resource subtitle to get `%(scoreConfig.action.uploadSubtitle.value)d` scores.
