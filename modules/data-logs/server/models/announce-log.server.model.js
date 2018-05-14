@@ -53,7 +53,7 @@ var AnnounceLogSchema = new Schema({
   write_score: {
     type: Schema.Types.Decimal128,
     get: function (v) {
-      return parseFloat(v) || 0;
+      return parseFloat(parseFloat(v).toFixed(2)) || 0;
     },
     default: 0
   },
