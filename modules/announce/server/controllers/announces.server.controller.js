@@ -923,7 +923,7 @@ exports.announce = function (req, res) {
       req.passkeyuser.globalUpdateMethod(true);
       req.torrent.globalUpdateMethod(true);
 
-      if(req.currentPeer) {
+      if (req.currentPeer) {
         req.currentPeer.globalUpdateMethod(true);
       }
 
