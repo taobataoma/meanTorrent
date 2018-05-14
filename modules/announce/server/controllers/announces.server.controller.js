@@ -922,7 +922,10 @@ exports.announce = function (req, res) {
     function (done) {
       req.passkeyuser.globalUpdateMethod(true);
       req.torrent.globalUpdateMethod(true);
-      req.currentPeer.globalUpdateMethod(true);
+
+      if(req.currentPeer) {
+        req.currentPeer.globalUpdateMethod(true);
+      }
 
       if (req.completeTorrent) {
         req.completeTorrent.globalUpdateMethod(true);
@@ -1076,6 +1079,7 @@ exports.announce = function (req, res) {
         } else {
           mtDebug.debugGreen('---------------removeCurrPeer()----------------', 'ANNOUNCE', true, req.passkeyuser);
         }
+        req.currentPeer = undefined;
         if (callback) callback();
       });
     });
