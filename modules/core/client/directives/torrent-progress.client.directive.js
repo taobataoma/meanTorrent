@@ -20,9 +20,9 @@
 
     function link(scope, element, attrs) {
       scope.$watch(attrs.torrentProgress, function (p) {
-        if (p && p.length > 0) {
-          var pt = p[0];
-          //mtDebug.info(pt);
+        var pt = Array.isArray(p) ? (p.length > 0 ? p[0] : undefined) : p;
+        if (pt) {
+          mtDebug.info(pt);
 
           var t_progressbar = ngProgressFactory.createInstance();
           t_progressbar.setParent(element[0]);
