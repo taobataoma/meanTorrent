@@ -489,7 +489,7 @@ exports.announce = function (req, res) {
 
       getCurrentPeer(function () {
         mtDebug.debugRed('req.currentPeer.isNewCreated = ' + req.currentPeer.isNewCreated, 'ANNOUNCE', true, req.passkeyuser);
-        mtDebug.debugRed(req.currentPeer._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('req.currentPeer._id = ' + req.currentPeer._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
         done(null);
       });
     },
@@ -947,6 +947,19 @@ exports.announce = function (req, res) {
         req.currentPeer = p;
         req.currentPeer.torrent = req.torrent;
         req.currentPeer.isNewCreated = false;
+
+        //if find peer_id, but some time some client (like qbittorrent 4.1.0) the ip or port is changed, update it
+        if (req.currentPeer.peer_ip !== req.cf_ip || req.currentPeer.peer_port !== query.port) {
+          req.currentPeer.peer_ip = req.cf_ip;
+          req.currentPeer.peer_port = query.port;
+
+          req.currentPeer.update({
+            $set: {
+              peer_ip: req.cf_ip,
+              peer_port: query.port
+            }
+          }).exec();
+        }
 
         if (req.seeder && req.currentPeer.peer_status !== PEERSTATE_SEEDER && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------PEER STATUS CHANGED: Seeder----------------', 'ANNOUNCE', true, req.passkeyuser);
