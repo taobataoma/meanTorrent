@@ -275,8 +275,8 @@ exports.announce = function (req, res) {
      torrent data include peers
      ---------------------------------------------------------------*/
     function (done) {
-      mtDebug.debugRed('user _id : ' + req.passkeyuser._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
-      mtDebug.debugRed('torrent info_hash : ' + query.info_hash, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('req.passkeyuser._id     = ' + req.passkeyuser._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('req.torrent.info_hash   = ' + query.info_hash, 'ANNOUNCE', true, req.passkeyuser);
       Torrent.findOne({
         info_hash: query.info_hash
       })
@@ -490,8 +490,9 @@ exports.announce = function (req, res) {
       }
 
       getCurrentPeer(function () {
-        mtDebug.debugRed('req.currentPeer.isNewCreated = ' + req.currentPeer.isNewCreated, 'ANNOUNCE', true, req.passkeyuser);
-        mtDebug.debugRed('req.currentPeer._id = ' + req.currentPeer._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('req.currentPeer.isNewCreated  = ' + req.currentPeer.isNewCreated, 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('req.currentPeer._id           = ' + req.currentPeer._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('req.currentPeer.torrent._id   = ' + req.currentPeer.torrent._id, 'ANNOUNCE', true, req.passkeyuser);
         done(null);
       });
     },
@@ -508,11 +509,11 @@ exports.announce = function (req, res) {
       var scount = getSelfSeederCount();
 
       if (lcount > announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent && !req.seeder) {
-        mtDebug.debugRed('getSelfLeecherCount = ' + lcount, 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('getSelfLeecherCount   = ' + lcount, 'ANNOUNCE', true, req.passkeyuser);
         removeCurrPeer();
         done(180);
       } else if (scount > announceConfig.announceCheck.maxSeedNumberPerUserPerTorrent && req.seeder) {
-        mtDebug.debugRed('getSelfSeederCount = ' + scount, 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('getSelfSeederCount    = ' + scount, 'ANNOUNCE', true, req.passkeyuser);
         removeCurrPeer();
         done(181);
       } else {
@@ -919,7 +920,7 @@ exports.announce = function (req, res) {
         mtDebug.debug(peerBuffer, 'ANNOUNCE', true, req.passkeyuser);
       }
 
-      done(null, 'done');
+      done(null);
     },
 
     /**
@@ -937,6 +938,8 @@ exports.announce = function (req, res) {
       if (req.completeTorrent) {
         req.completeTorrent.globalUpdateMethod(true);
       }
+
+      done(null, 'done');
     }
   ], function (err, reason) {
     if (err) {
@@ -1249,8 +1252,8 @@ exports.announce = function (req, res) {
 
     if (!req.seeder && event(query.event) !== EVENT_STOPPED && event(query.event) !== EVENT_COMPLETED) {
       mtDebug.debugGreen('---------------GET PEERS LIST----------------', 'ANNOUNCE', true, req.passkeyuser);
-      mtDebug.debugRed('want count = ' + count, 'ANNOUNCE', true, req.passkeyuser);
-      mtDebug.debugRed('peers.length = ' + peers.length, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('want.count     = ' + count, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('peers.length   = ' + peers.length, 'ANNOUNCE', true, req.passkeyuser);
 
       var p;
       var bc;

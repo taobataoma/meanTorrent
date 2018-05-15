@@ -466,10 +466,14 @@ UserSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
 
   if (findThenUpdate) {
     this.model('User').findById(this._id, function (err, u) {
-      u.refreshat = Date.now();
-      u.save(function (err, nu) {
-        if (cb) cb(nu || this);
-      });
+      if (u) {
+        u.refreshat = Date.now();
+        u.save(function (err, nu) {
+          if (cb) cb(nu || this);
+        });
+      } else {
+        if (cb) cb(this);
+      }
     });
   } else {
     this.refreshat = Date.now();

@@ -3,8 +3,12 @@
 /**
  * Module dependencies
  */
-var mongoose = require('mongoose'),
+var path = require('path'),
+  config = require(path.resolve('./config/config')),
+  mongoose = require('mongoose'),
   Schema = mongoose.Schema;
+
+var mtDebug = require(path.resolve('./config/lib/debug'));
 
 /**
  * Peer Schema
@@ -107,17 +111,23 @@ PeerSchema.pre('save', function (next) {
  * globalUpdateMethod
  */
 PeerSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
+  mtDebug.debugGreen('---------------GLOBAL UPDATE PEER DATA----------------', 'ANNOUNCE', true, this.user);
+
   if (typeof findThenUpdate === 'function') {
     cb = findThenUpdate;
     findThenUpdate = false;
   }
 
   if (findThenUpdate) {
-    this.model('Peer').findById(this._id, function (err, p) {
-      p.refreshat = Date.now();
-      p.save(function (err, np) {
-        if (cb) cb(np || this);
-      });
+    this.model('Peer').findById(this._id).populate('torrent').exec(function (err, p) {
+      if (p) {
+        p.refreshat = Date.now();
+        p.save(function (err, np) {
+          if (cb) cb(np || this);
+        });
+      } else {
+        if (cb) cb(this);
+      }
     });
   } else {
     this.refreshat = Date.now();
@@ -139,6 +149,7 @@ function countRatio(p) {
   } else {
     p.peer_ratio = Math.round((p.peer_uploaded / p.peer_downloaded) * 100) / 100;
   }
+  mtDebug.debugRed('peer_ratio              = ' + p.peer_ratio, 'ANNOUNCE', true, p.user);
 }
 
 /**
@@ -148,9 +159,14 @@ function countRatio(p) {
 function countPercent(p) {
   if (p.peer_status === 'seeder') {
     p.peer_percent = 100;
+    mtDebug.debugRed('peer_percent            = ' + p.peer_percent, 'ANNOUNCE', true, p.user);
   } else {
     // p.peer_percent = (Math.round((p.peer_downloaded / (p.peer_downloaded + p.peer_left)) * 10000) / 100) || 0;
+    mtDebug.debugRed('p.torrent._id           = ' + p.torrent._id, 'ANNOUNCE', true, p.user);
+    mtDebug.debugRed('p.torrent.torrent_size  = ' + p.torrent.torrent_size, 'ANNOUNCE', true, p.user);
+    mtDebug.debugRed('p.peer_left             = ' + p.peer_left, 'ANNOUNCE', true, p.user);
     p.peer_percent = Math.round((p.torrent.torrent_size - p.peer_left) / p.torrent.torrent_size * 10000) / 100;
+    mtDebug.debugRed('peer_percent            = ' + p.peer_percent, 'ANNOUNCE', true, p.user);
   }
 }
 

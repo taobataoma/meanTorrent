@@ -103,10 +103,14 @@ CompleteSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
 
   if (findThenUpdate) {
     this.model('Complete').findById(this._id, function (err, c) {
-      c.refreshat = Date.now();
-      c.save(function (err, nc) {
-        if (cb) cb(nc || this);
-      });
+      if (c) {
+        c.refreshat = Date.now();
+        c.save(function (err, nc) {
+          if (cb) cb(nc || this);
+        });
+      } else {
+        if (cb) cb(this);
+      }
     });
   } else {
     this.refreshat = Date.now();

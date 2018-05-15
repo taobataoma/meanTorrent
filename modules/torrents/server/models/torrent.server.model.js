@@ -253,10 +253,14 @@ TorrentSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
 
   if (findThenUpdate) {
     this.model('Torrent').findById(this._id, function (err, t) {
-      t.refreshat = Date.now();
-      t.save(function (err, nt) {
-        if (cb) cb(nt || this);
-      });
+      if (t) {
+        t.refreshat = Date.now();
+        t.save(function (err, nt) {
+          if (cb) cb(nt || this);
+        });
+      } else {
+        if (cb) cb(this);
+      }
     });
   } else {
     this.refreshat = Date.now();
