@@ -147,6 +147,20 @@
     };
 
     /**
+     * reviewedTorrentStatus
+     * @param item
+     */
+    vm.reviewedTorrentStatus = function () {
+      vm.torrentLocalInfo.$setReviewedStatus(function (res) {
+        mtDebug.info(res);
+        vm.torrentLocalInfo = res;
+        NotifycationService.showSuccessNotify('TORRENT_SETREVIEWED_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'TORRENT_SETREVIEWED_ERROR');
+      });
+    };
+
+    /**
      * toggleHnR
      */
     vm.toggleHnR = function () {
