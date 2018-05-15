@@ -119,7 +119,7 @@ PeerSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
   }
 
   if (findThenUpdate) {
-    this.model('Peer').findById(this._id).populate('torrent').exec(function (err, p) {
+    this.model('Peer').findById(this._id).populate('torrent').populate('user').exec(function (err, p) {
       if (p) {
         p.refreshat = Date.now();
         p.save(function (err, np) {
