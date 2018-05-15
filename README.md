@@ -121,6 +121,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 56. An examination tasks system to check user`s incremental uploaded, download and score value within a specified period of time, if the value failed to reach the standard, admin can banned them.
 57. Add email white list, user can not to receive invite mail and active mail if the email domain not in the list.
 58. Add [angular-cache](https://github.com/jmdobry/angular-cache) support, to cache all data from $resource GET method, and update these data when $resource POST|PUT|DELETE method.
+59. Daily check in function, continuous check-in to get more points.
 
 #### Chat room feature:
 1. Users name list
