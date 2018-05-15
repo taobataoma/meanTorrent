@@ -386,15 +386,13 @@ function updateOperAdminFlag(user) {
  */
 function updateExaminationData(user) {
   if (common.examinationIsValid(user)) {
-    if (!user.examinationData.isFinished) {
-      var uploadFinished = user.examinationData.uploaded >= examinationConfig.incrementData.upload;
-      var downloadFinished = user.examinationData.downloaded >= examinationConfig.incrementData.download;
-      var scoreFinished = user.examinationData.score >= examinationConfig.incrementData.score;
-      user.examinationData.isFinished = uploadFinished && downloadFinished && scoreFinished;
-      user.examinationData.finishedTime = user.examinationData.isFinished ? Date.now() : null;
+    var uploadFinished = user.examinationData.uploaded >= examinationConfig.incrementData.upload;
+    var downloadFinished = user.examinationData.downloaded >= examinationConfig.incrementData.download;
+    var scoreFinished = user.examinationData.score >= examinationConfig.incrementData.score;
+    user.examinationData.isFinished = uploadFinished && downloadFinished && scoreFinished;
+    user.examinationData.finishedTime = user.examinationData.isFinished ? Date.now() : null;
 
-      user.markModified('examinationData');
-    }
+    user.markModified('examinationData');
   }
 }
 
