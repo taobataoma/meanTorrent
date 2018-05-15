@@ -164,8 +164,10 @@ exports.announce = function (req, res) {
   req.selfpeer = [];
   req.seeder = false;
 
-  mtDebug.debugGreen('', 'ANNOUNCE', true, req.passkeyuser);
-  mtDebug.debugGreen('============= Announce request =============', 'ANNOUNCE', true, req.passkeyuser);
+  mtDebug.debugGreen('\n\n', 'ANNOUNCE', true, req.passkeyuser);
+  mtDebug.debugGreen('================================================================================', 'ANNOUNCE', true, req.passkeyuser);
+  mtDebug.debugGreen('                                  ANNOUNCE REQUEST                              ', 'ANNOUNCE', true, req.passkeyuser);
+  mtDebug.debugGreen('================================================================================', 'ANNOUNCE', true, req.passkeyuser);
   mtDebug.debugBlue(req.url, 'ANNOUNCE', true, req.passkeyuser);
 
   var s = req.url.split('?');
