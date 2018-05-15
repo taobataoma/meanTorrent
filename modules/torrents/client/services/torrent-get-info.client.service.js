@@ -31,7 +31,8 @@
       getTorrentOverview: getTorrentOverview,
 
       openTorrentDetailInfo: openTorrentDetailInfo,
-      getTorrentSaleTypeDesc: getTorrentSaleTypeDesc
+      getTorrentSaleTypeDesc: getTorrentSaleTypeDesc,
+      getTorrentSaleTypeDescByValue: getTorrentSaleTypeDescByValue
     };
 
     return service;
@@ -321,6 +322,20 @@
 
       angular.forEach(torrentSalesType.value, function (st) {
         if (st.name === item.torrent_sale_status) {
+          desc = st.desc;
+        }
+      });
+      return desc;
+    }
+
+    /**
+     * getTorrentSaleTypeDescByValue
+     */
+    function getTorrentSaleTypeDescByValue(v) {
+      var desc = '';
+
+      angular.forEach(torrentSalesType.value, function (st) {
+        if (st.name === v) {
           desc = st.desc;
         }
       });

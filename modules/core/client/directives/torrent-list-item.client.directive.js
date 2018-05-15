@@ -6,9 +6,9 @@
 
   function torrentListItem() {
     var TorrentsItemController = ['$scope', '$state', 'TorrentGetInfoServices', 'ResourcesTagsServices', '$timeout', 'DownloadService', 'MeanTorrentConfig',
-      'TorrentsService', 'Authentication', 'NotifycationService', 'ModalConfirmService', '$translate',
+      'TorrentsService', 'Authentication', 'NotifycationService', 'ModalConfirmService', '$translate', 'moment',
       function ($scope, $state, TorrentGetInfoServices, ResourcesTagsServices, $timeout, DownloadService, MeanTorrentConfig, TorrentsService, Authentication,
-                NotifycationService, ModalConfirmService, $translate) {
+                NotifycationService, ModalConfirmService, $translate, moment) {
         var vm = this;
 
         vm.user = Authentication.user;
@@ -18,6 +18,7 @@
         vm.DLS = DownloadService;
         vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
         vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
+        vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
 
         /**
          * buildPager
@@ -308,6 +309,22 @@
             return false;
           } else {
             return true;
+          }
+        };
+
+        /**
+         * isGlobalSaleNow
+         * @returns {boolean}
+         */
+        vm.isGlobalSaleNow = function () {
+          var start = moment(vm.salesGlobalConfig.global.startAt, vm.salesGlobalConfig.global.timeFormats).valueOf();
+          var end = start + vm.salesGlobalConfig.global.expires;
+          var now = Date.now();
+
+          if (now > start && now < end && vm.salesGlobalConfig.global.value) {
+            return true;
+          } else {
+            return false;
           }
         };
 

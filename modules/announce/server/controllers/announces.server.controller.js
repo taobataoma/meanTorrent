@@ -1158,13 +1158,15 @@ exports.announce = function (req, res) {
     var udr = {};
     var sale = req.torrent.torrent_sale_status;
 
-    var start = moment(globalSalesConfig.global.startAt, globalSalesConfig.global.timeFormats).utc().valueOf();
+    var start = moment(globalSalesConfig.global.startAt, globalSalesConfig.global.timeFormats).valueOf();
     var end = start + globalSalesConfig.global.expires;
     var now = Date.now();
     isGlobalSaleValid = (now > start && now < end && globalSalesConfig.global.value) ? true : false;
 
     if (isGlobalSaleValid && globalSalesConfig.global.value) {
       sale = globalSalesConfig.global.value;
+      mtDebug.debugRed('isGlobalSaleValid   = ' + isGlobalSaleValid, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('global sale value   = ' + sale, 'ANNOUNCE', true, req.passkeyuser);
     }
 
     switch (sale) {

@@ -6,10 +6,10 @@
     .controller('TorrentsController', TorrentsController);
 
   TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService', 'getStorageLangService',
-    'MeanTorrentConfig', 'DownloadService', '$window', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices'];
+    'MeanTorrentConfig', 'DownloadService', '$window', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices', 'moment'];
 
   function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, getStorageLangService, MeanTorrentConfig,
-                              DownloadService, $window, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
+                              DownloadService, $window, mtDebug, TorrentGetInfoServices, ResourcesTagsServices, moment) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -22,6 +22,7 @@
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
 
     vm.searchTags = [];
     vm.searchKey = $state.params.keys || '';
@@ -476,6 +477,22 @@
         e.slideDown();
         e.removeClass('panel-collapsed');
         i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+      }
+    };
+
+    /**
+     * isGlobalSaleNow
+     * @returns {boolean}
+     */
+    vm.isGlobalSaleNow = function () {
+      var start = moment(vm.salesGlobalConfig.global.startAt, vm.salesGlobalConfig.global.timeFormats).valueOf();
+      var end = start + vm.salesGlobalConfig.global.expires;
+      var now = Date.now();
+
+      if (now > start && now < end && vm.salesGlobalConfig.global.value) {
+        return true;
+      } else {
+        return false;
       }
     };
 

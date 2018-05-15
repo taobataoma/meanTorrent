@@ -8,12 +8,12 @@
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
     'SubtitlesService', 'getStorageLangService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
-    'localStorageService', '$compile', 'SideOverlay', 'ResourcesTagsServices', 'CollectionsService'];
+    'localStorageService', '$compile', 'SideOverlay', 'ResourcesTagsServices', 'CollectionsService', 'moment'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
                                   getStorageLangService, NotifycationService, mtDebug, TorrentGetInfoServices,
-                                  localStorageService, $compile, SideOverlay, ResourcesTagsServices, CollectionsService) {
+                                  localStorageService, $compile, SideOverlay, ResourcesTagsServices, CollectionsService, moment) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -30,6 +30,7 @@
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
+    vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
 
     vm.torrentTabs = [];
     vm.searchTags = [];
@@ -1394,6 +1395,22 @@
           $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
         }, 10);
       });
+    };
+
+    /**
+     * isGlobalSaleNow
+     * @returns {boolean}
+     */
+    vm.isGlobalSaleNow = function () {
+      var start = moment(vm.salesGlobalConfig.global.startAt, vm.salesGlobalConfig.global.timeFormats).valueOf();
+      var end = start + vm.salesGlobalConfig.global.expires;
+      var now = Date.now();
+
+      if (now > start && now < end && vm.salesGlobalConfig.global.value) {
+        return true;
+      } else {
+        return false;
+      }
     };
 
   }

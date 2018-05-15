@@ -60,11 +60,16 @@
                         {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent_recommended.toUpperCase() | translate}}
                     </span>
 
-                    <span class="label label-sale" ng-if="item.isSaling"
+                    <span class="label label-sale" ng-if="!vm.isGlobalSaleNow() && item.isSaling"
                           title="{{vm.TGI.getTorrentSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
                           ng-click="vm.onSaleClicked(); $event.stopPropagation();"
                           ng-class="{'label-default': !item.isSaling, 'label-success': item.isSaling, 'used': parent.filterSale}">
                         {{item.torrent_sale_status}} {{item.torrent_sale_expires | unlife}}
+                    </span>
+                    <span class="label label-sale label-success" ng-if="vm.isGlobalSaleNow()"
+                          title="{{vm.TGI.getTorrentSaleTypeDescByValue(vm.salesGlobalConfig.global.value);}}"
+                          ng-click="$event.stopPropagation();">
+                        G: {{vm.salesGlobalConfig.global.value}}
                     </span>
 
                     <span class="label label-se-info" ng-if="vm.torrentType == 'tvserial'"

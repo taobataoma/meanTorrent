@@ -124,21 +124,24 @@
                                     </div>
                                 </dd>
 
-                                <dt class="h-line">{{ 'CA_TORRENT_SALE_STATUS' | translate}}:</dt>
-                                <dd class="h-line">
-                                    <div class="checkbox checkbox-hnr">
-                                        <label>
-                                            <input type="checkbox" ng-model="vm.filterSale"
-                                                   ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
-                                        </label>
-                                    </div>
-                                </dd>
+                                <div ng-if="!vm.isGlobalSaleNow()">
+                                    <dt class="h-line">{{ 'CA_TORRENT_SALE_STATUS' | translate}}:</dt>
+                                    <dd class="h-line">
+                                        <div class="checkbox checkbox-hnr">
+                                            <label>
+                                                <input type="checkbox" ng-model="vm.filterSale"
+                                                       ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
+                                            </label>
+                                        </div>
+                                    </dd>
+                                </div>
 
                                 <dt class="h-line">{{ 'CA_TORRENT_TOP' | translate}}:</dt>
                                 <dd class="h-line">
                                     <div class="checkbox checkbox-vip">
                                         <label>
-                                            <input type="checkbox" ng-model="vm.filterTop" ng-change="vm.onTopChanged();"> {{ 'TORRENT_STATUS_TOP_TITLE' | translate}}
+                                            <input type="checkbox" ng-model="vm.filterTop"
+                                                   ng-change="vm.onTopChanged();"> {{ 'TORRENT_STATUS_TOP_TITLE' | translate}}
                                         </label>
                                     </div>
                                 </dd>
@@ -251,7 +254,8 @@
                                 </td>
                             </tr>
                         </tbody>
-                        <tbody ng-if="!vm.tooltipMsg" torrent-list-item parent="vm" item="item" list="vm.pagedItems" ng-repeat="item in vm.pagedItems"></tbody>
+                        <tbody ng-if="!vm.tooltipMsg" torrent-list-item parent="vm" item="item" list="vm.pagedItems"
+                               ng-repeat="item in vm.pagedItems"></tbody>
                     </table>
                 </div>
 

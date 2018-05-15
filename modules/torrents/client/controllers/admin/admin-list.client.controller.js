@@ -7,12 +7,12 @@
 
   TorrentsAdminController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$window', 'ModalConfirmService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
-    'ResourcesTagsServices', 'localStorageService'
+    'ResourcesTagsServices', 'localStorageService', 'moment'
   ];
 
   function TorrentsAdminController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                    DownloadService, $window, ModalConfirmService, NotifycationService, mtDebug, TorrentGetInfoServices,
-                                   ResourcesTagsServices, localStorageService) {
+                                   ResourcesTagsServices, localStorageService, moment) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -23,6 +23,7 @@
     vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
     vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
     vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
 
     vm.selectedType = localStorageService.get('admin_last_selected_type') || 'movie';
     vm.filterVIP = isSelectedVipType(vm.selectedType);
@@ -360,6 +361,22 @@
         e.slideDown();
         e.removeClass('panel-collapsed');
         i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+      }
+    };
+
+    /**
+     * isGlobalSaleNow
+     * @returns {boolean}
+     */
+    vm.isGlobalSaleNow = function () {
+      var start = moment(vm.salesGlobalConfig.global.startAt, vm.salesGlobalConfig.global.timeFormats).valueOf();
+      var end = start + vm.salesGlobalConfig.global.expires;
+      var now = Date.now();
+
+      if (now > start && now < end && vm.salesGlobalConfig.global.value) {
+        return true;
+      } else {
+        return false;
       }
     };
   }

@@ -7,11 +7,11 @@
 
   VipController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'getStorageLangService', 'MeanTorrentConfig', 'TorrentsService',
     'DebugConsoleService', '$timeout', 'uibButtonConfig', 'TorrentGetInfoServices', 'DownloadService', 'ResourcesTagsServices', '$window',
-    'localStorageService', 'marked', '$templateRequest', '$filter'];
+    'localStorageService', 'marked', '$templateRequest', '$filter', 'moment'];
 
   function VipController($scope, $state, $translate, Authentication, getStorageLangService, MeanTorrentConfig, TorrentsService,
                          mtDebug, $timeout, uibButtonConfig, TorrentGetInfoServices, DownloadService, ResourcesTagsServices, $window,
-                         localStorageService, marked, $templateRequest, $filter) {
+                         localStorageService, marked, $templateRequest, $filter, moment) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -487,6 +487,22 @@
       var ts = $translate.instant('HOME.VIP_TOOLTIP');
 
       return marked(ts, {sanitize: true});
+    };
+
+    /**
+     * isGlobalSaleNow
+     * @returns {boolean}
+     */
+    vm.isGlobalSaleNow = function () {
+      var start = moment(vm.salesGlobalConfig.global.startAt, vm.salesGlobalConfig.global.timeFormats).valueOf();
+      var end = start + vm.salesGlobalConfig.global.expires;
+      var now = Date.now();
+
+      if (now > start && now < end && vm.salesGlobalConfig.global.value) {
+        return true;
+      } else {
+        return false;
+      }
     };
   }
 }());
