@@ -275,6 +275,8 @@ exports.announce = function (req, res) {
      torrent data include peers
      ---------------------------------------------------------------*/
     function (done) {
+      mtDebug.debugRed('user _id : ' + req.passkeyuser._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('torrent info_hash : ' + query.info_hash, 'ANNOUNCE', true, req.passkeyuser);
       Torrent.findOne({
         info_hash: query.info_hash
       })
@@ -501,6 +503,7 @@ exports.announce = function (req, res) {
      numbers is in setting announceConfig.announceCheck
      ---------------------------------------------------------------*/
     function (done) {
+      mtDebug.debugGreen('---------------CHECK USER SEED/LEECH COUNT----------------', 'ANNOUNCE', true, req.passkeyuser);
       var lcount = getSelfLeecherCount();
       var scount = getSelfSeederCount();
 
@@ -559,6 +562,7 @@ exports.announce = function (req, res) {
             true_uploaded: curru,
             true_downloaded: currd
           };
+          mtDebug.debugRed(JSON.stringify(up_d), 'ANNOUNCE', true, req.passkeyuser);
 
           if (common.examinationIsValid(req.passkeyuser)) {
             up_d['examinationData.uploaded'] = u;
@@ -638,6 +642,7 @@ exports.announce = function (req, res) {
               }
               totalScore = Math.round(totalScore * 100) / 100;
               scoreUpdate(req, req.passkeyuser, action, totalScore, false);
+              mtDebug.debugRed('announce score: ' + totalScore, 'ANNOUNCE', true, req.passkeyuser);
             }
           }
 
@@ -784,6 +789,7 @@ exports.announce = function (req, res) {
               }
               seedScore = Math.round(seedScore * 100) / 100;
               scoreUpdate(req, req.passkeyuser, action, seedScore);
+              mtDebug.debugRed('seed timed score: ' + seedScore, 'ANNOUNCE', true, req.passkeyuser);
 
               done(null);
             } else {
@@ -896,8 +902,9 @@ exports.announce = function (req, res) {
       var len = writePeers(peerBuffer, want, req.torrent._peers);
       peerBuffer = peerBuffer.slice(0, len);
 
+      mtDebug.debugGreen('---------------SEND RESPONSE TO USER----------------', 'ANNOUNCE', true, req.passkeyuser);
       var resp = 'd8:intervali' + ANNOUNCE_INTERVAL + 'e8:completei' + req.torrent.torrent_seeds + 'e10:incompletei' + req.torrent.torrent_leechers + 'e10:downloadedi' + req.torrent.torrent_finished + 'e5:peers' + len + ':';
-      mtDebug.debugGreen(resp, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed(resp, 'ANNOUNCE', true, req.passkeyuser);
 
       res.writeHead(200, {
         'Content-Length': resp.length + peerBuffer.length + 1,
@@ -1241,6 +1248,7 @@ exports.announce = function (req, res) {
     var c = 0;
 
     if (!req.seeder && event(query.event) !== EVENT_STOPPED && event(query.event) !== EVENT_COMPLETED) {
+      mtDebug.debugGreen('---------------GET PEERS LIST----------------', 'ANNOUNCE', true, req.passkeyuser);
       mtDebug.debugRed('want count = ' + count, 'ANNOUNCE', true, req.passkeyuser);
       mtDebug.debugRed('peers.length = ' + peers.length, 'ANNOUNCE', true, req.passkeyuser);
 
