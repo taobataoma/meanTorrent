@@ -113,6 +113,30 @@
     }
 }
 
+.col-valign-middle {
+    @media (min-width: @screen-sm-min) {
+        display: table-cell;
+        vertical-align: middle;
+        float: none;
+    }
+}
+
+.home-check-in {
+    padding: 10px 0;
+    h4, .h4 {
+        line-height: 1.8;
+    }
+    .check-in-btn {
+        margin-top: 10px;
+        @media(max-width: @screen-sm-max){
+            margin-top: 20px;
+        }
+        @media(max-width: @screen-xs-max){
+            margin-top: 15px;
+        }
+    }
+}
+
 .home-button-list {
     padding: 50px 0;
     @media (max-width: @screen-xs-max) {
@@ -316,6 +340,18 @@
     }
 }
 
+.filter-check-in {
+    position: relative;
+    margin-top: 2px;
+    background-color: @mt-body-background-color;
+    background-color: rgba(255, 255, 255, .85);
+    transition: background-color .2s ease-in;
+    &:hover {
+        background-color: @mt-body-background-color;
+        background-color: rgba(255, 255, 255, .95);
+    }
+}
+
 .filter-copy {
     position: relative;
     line-height: 2;
@@ -446,17 +482,6 @@
 
             }
         }
-    }
-}
-
-.home-check-in {
-    background-color: #2a2a2a;
-    background-color: rgba(0,0,0, 0.5);
-    .check-in-title {
-        color: #fff;
-        font-size: 2em;
-        font-weight: 400;
-        margin-bottom: 0 !important;
     }
 }
 

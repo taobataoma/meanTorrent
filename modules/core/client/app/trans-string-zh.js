@@ -132,6 +132,15 @@
       }
     },
 
+    CHECK: {
+      BTN_CHECK_IN: '我要签到',
+      CHECK_TOOLTIP: '#### `mine.pt` 邀请您参加每日签到，现在签到可获得 `{{todayScore}}` 积分，明日续签可获得 `{{tomorrowScore}}` 积分哦！',
+      CHECK_TODAY_NOT: '#### 您今日还未签到，上次签到：`{{checkTime | date: "yyyy-MM-dd HH:mm"}}`，现在签到可获得 `{{todayScore}}` 积分，明日续签到可获得 `{{tomorrowScore}}` 积分哦！',
+      CHECK_TODAY_DONE: '#### 您已连续签到 `{{keepDays}}` 天，今日签到时间：`{{checkTime | date: "yyyy-MM-dd HH:mm"}}`，已经获得 `{{todayScore}}` 积分，明日续签到可获得 `{{tomorrowScore}}` 积分，请注意不要中断哦!',
+      CHECK_SUCCESSFULLY: '签到成功',
+      CHECK_ERROR: '签到失败'
+    },
+
     //element title/alt
     TITLE_ALT: {
       SEEDS: '做种用户数',
@@ -1609,7 +1618,8 @@
       INFO_HASH_ALREADY_EXISTS: '该 info hash 值已经存在，不能重复提交',
       UPLOAD_ACCESS_DENY: '当前系统只接受资源制作小组上传种子',
       READ_TORRENT_FILE_FAILD: '种子文件解析错误，请检查您的种子文件，看是否缺少某些必要信息',
-      MOVE_TORRENT_FILE_ERROR: '种子文件移动错误，请不要快速重复进行提交操作或者上传的种子文件已丢失'
+      MOVE_TORRENT_FILE_ERROR: '种子文件移动错误，请不要快速重复进行提交操作或者上传的种子文件已丢失',
+      YOU_ALREADY_CHECK_IN: '您今天已经签过到了，不能重复签到'
     },
 
     //server message string, content string support markdown and emoji

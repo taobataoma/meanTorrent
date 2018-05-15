@@ -132,6 +132,15 @@
       }
     },
 
+    CHECK: {
+      BTN_CHECK_IN: 'Check In',
+      CHECK_TOOLTIP: '#### `mine.pt` invites you to participate in the daily check in. Now check in to get `{{todayScore}}` scores and renew tomorrow to get `{{tomorrowScore}}` scores!',
+      CHECK_TODAY_NOT: '#### You have not checked in yet. Last check in at: `{{checkTime | date: "yyyy-MM-dd HH:mm"}}`. Now check in to get `{{todayScore}}` scores and renew tomorrow to get `{{tomorrowScore}}` scores!',
+      CHECK_TODAY_DONE: '#### You have checked in to `{{keepDays}}` days in a row, today check in at: `{{checkTime | date: "yyyy-MM-dd HH:mm"}}`, you have got `{{todayScore}}` scores and renew tomorrow to get `{{tomorrowScore}}` scores, please be careful not to interrupt!',
+      CHECK_SUCCESSFULLY: 'Check in successfully',
+      CHECK_ERROR: 'Check in failed'
+    },
+
     //element title/alt
     TITLE_ALT: {
       SEEDS: 'Seeds users',
@@ -1609,7 +1618,8 @@
       INFO_HASH_ALREADY_EXISTS: 'This info hash value is already exists',
       UPLOAD_ACCESS_DENY: 'System only accepts resources group to upload torrents',
       READ_TORRENT_FILE_FAILD: 'The torrent file parsing error. Please check your torrent file to check if some of the necessary information is missing',
-      MOVE_TORRENT_FILE_ERROR: 'The torrent file was moved incorrectly. Please do not repeat the submit operation quickly or the uploaded torrent file is missing.'
+      MOVE_TORRENT_FILE_ERROR: 'The torrent file was moved incorrectly. Please do not repeat the submit operation quickly or the uploaded torrent file is missing.',
+      YOU_ALREADY_CHECK_IN: 'You already checked in today'
     },
 
     //server message string, content string support markdown and emoji

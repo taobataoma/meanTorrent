@@ -5,13 +5,13 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'Notification', 'MeanTorrentConfig',
+  HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'NotifycationService', 'MeanTorrentConfig',
     'getStorageLangService', 'ForumsService', '$timeout', 'localStorageService', 'TopicsService', 'TorrentGetInfoServices', 'DebugConsoleService',
-    'marked'];
+    'marked', 'CheckService'];
 
-  function HomeController($scope, $state, $translate, Authentication, TorrentsService, Notification, MeanTorrentConfig, getStorageLangService,
+  function HomeController($scope, $state, $translate, Authentication, TorrentsService, NotifycationService, MeanTorrentConfig, getStorageLangService,
                           ForumsService, $timeout, localStorageService, TopicsService, TorrentGetInfoServices, mtDebug,
-                          marked) {
+                          marked, CheckService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
@@ -23,8 +23,10 @@
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.homeConfig = MeanTorrentConfig.meanTorrentConfig.home;
     vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
+    vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
 
     vm.searchType = 'torrents';
+    vm.checkData = undefined;
 
     /**
      * initBodyBackground
@@ -321,6 +323,87 @@
       var ts = $translate.instant('HOME.VIP_TOOLTIP');
 
       return marked(ts, {sanitize: true});
+    };
+
+    /**
+     * getMyCheckData
+     */
+    vm.getMyCheckData = function () {
+      CheckService.get(function (res) {
+        mtDebug.info(res);
+        vm.checkData = res;
+        vm.openCheckTooltip();
+      }, function (err) {
+        vm.checkData = false;
+        vm.openCheckTooltip();
+      });
+    };
+
+    /**
+     * checkIn
+     */
+    vm.checkIn = function () {
+      CheckService.update(function (res) {
+        mtDebug.info(res);
+        vm.checkData = res;
+        NotifycationService.showSuccessNotify('CHECK.CHECK_SUCCESSFULLY');
+      }, function (err) {
+        NotifycationService.showErrorNotify(err.data.message, 'CHECK.CHECK_ERROR');
+      });
+    };
+
+    /**
+     * getCheckTodayDoneMessage
+     * @returns {*}
+     */
+    vm.getCheckTodayDoneMessage = function () {
+      var ts = $translate.instant('CHECK.CHECK_TODAY_DONE', {
+        keepDays: vm.checkData.keepDays,
+        checkTime: vm.checkData.lastCheckedAt,
+        todayScore: vm.scoreConfig.action.dailyCheckIn.dailyBasicScore + (vm.checkData.keepDays - 1) * vm.scoreConfig.action.dailyCheckIn.dailyStepScore,
+        tomorrowScore: vm.scoreConfig.action.dailyCheckIn.dailyBasicScore + vm.checkData.keepDays * vm.scoreConfig.action.dailyCheckIn.dailyStepScore
+      });
+
+      return marked(ts, {sanitize: false});
+    };
+
+    /**
+     * getCheckTodayNotMessage
+     * @returns {*}
+     */
+    vm.getCheckTodayNotMessage = function () {
+      var ts = $translate.instant('CHECK.CHECK_TODAY_NOT', {
+        checkTime: vm.checkData.lastCheckedAt,
+        todayScore: vm.scoreConfig.action.dailyCheckIn.dailyBasicScore + vm.checkData.keepDays * vm.scoreConfig.action.dailyCheckIn.dailyStepScore,
+        tomorrowScore: vm.scoreConfig.action.dailyCheckIn.dailyBasicScore + (vm.checkData.keepDays + 1) * vm.scoreConfig.action.dailyCheckIn.dailyStepScore
+      });
+
+      return marked(ts, {sanitize: false});
+    };
+
+    /**
+     * getCheckTooltipMessage
+     * @returns {*}
+     */
+    vm.getCheckTooltipMessage = function () {
+      var ts = $translate.instant('CHECK.CHECK_TOOLTIP', {
+        todayScore: vm.scoreConfig.action.dailyCheckIn.dailyBasicScore,
+        tomorrowScore: vm.scoreConfig.action.dailyCheckIn.dailyBasicScore + vm.scoreConfig.action.dailyCheckIn.dailyStepScore
+      });
+
+      return marked(ts, {sanitize: false});
+    };
+
+    /**
+     * openCheckTooltip
+     */
+    vm.openCheckTooltip = function () {
+      var e = $('.home-check-in');
+
+      $timeout(function () {
+        e.slideDown(800);
+        e.removeClass('panel-collapsed');
+      }, 1000);
     };
 
   }
