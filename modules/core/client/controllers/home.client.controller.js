@@ -148,9 +148,9 @@
       var e = $('.sales_notice');
 
       $timeout(function () {
-        e.slideDown(800);
+        e.slideDown(500);
         e.removeClass('panel-collapsed');
-      }, 1000);
+      }, 300);
     };
 
     /**
@@ -197,9 +197,9 @@
       var e = $('.examination_notice');
 
       $timeout(function () {
-        e.slideDown(800);
+        e.slideDown(500);
         e.removeClass('panel-collapsed');
-      }, 1000);
+      }, 300);
     };
 
     /**
@@ -249,9 +249,9 @@
       var e = $('.examination_status');
 
       $timeout(function () {
-        e.slideDown(800);
+        e.slideDown(500);
         e.removeClass('panel-collapsed');
-      }, 1000);
+      }, 300);
     };
 
     /**
@@ -401,9 +401,9 @@
       var e = $('.home-check-in');
 
       $timeout(function () {
-        e.slideDown(800);
+        e.slideDown(500);
         e.removeClass('panel-collapsed');
-      }, 1000);
+      }, 300);
     };
 
   }
