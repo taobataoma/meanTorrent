@@ -61,7 +61,8 @@
         target: options.target || undefined,
         divider: options.divider || false,
         faClass: options.faClass || null,
-        faIcon: options.faIcon || null
+        faIcon: options.faIcon || null,
+        linkState: options.linkState || undefined
       });
 
       // Add submenu items
@@ -96,7 +97,8 @@
           target: options.target || undefined,
           divider: options.divider || false,
           faClass: options.faClass || null,
-          faIcon: options.faIcon || null
+          faIcon: options.faIcon || null,
+          linkState: options.linkState || undefined
         });
       });
 

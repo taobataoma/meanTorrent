@@ -47,11 +47,17 @@
       });
 
       //set menu bar opened when hover
-      $('div.navbar-mt ul.nav li.dropdown').hover(function () {
+      $('div.navbar-mt ul.nav li.dropdown').hover(function (evt) {
         if (!$(this).hasClass('open')) {
           $(this).find('.dropdown-toggle', this).trigger('click');
+          $(this).bind('click', function (e) {
+            var sta = $(this).find('.dropdown-toggle', this).attr('alt');
+            if (sta)
+              $state.go(sta);
+          });
         }
-      }, function () {
+      }, function (evt) {
+        $(this).unbind('click');
         if ($(this).hasClass('open')) {
           $(this).find('.dropdown-toggle', this).trigger('click');
         }

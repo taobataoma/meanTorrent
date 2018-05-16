@@ -13,6 +13,7 @@
     menuService.addMenuItem('topbar', {
       title: 'MENU_TORRENTS',
       state: 'torrents',
+      linkState: 'torrents.aggregate',
       type: 'dropdown',
       roles: ['*'],
       position: 0

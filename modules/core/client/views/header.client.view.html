@@ -15,7 +15,7 @@
             <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type"
                 ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}"
                 uib-dropdown="item.type === 'dropdown'">
-                <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button"><span
+                <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button" alt="{{item.linkState}}"><span
                         menu-title="{{item.title}}">{{::item.title}}</span>&nbsp;<span class="caret"></span></a>
                 <ul ng-switch-when="dropdown" class="dropdown-menu">
                     <li ui-sref-active="active" ng-repeat="subitem in item.items | orderBy: 'position'"
@@ -48,7 +48,7 @@
                     {{'TABLE_FIELDS.LEECHED' | translate}}: {{vm.authentication.user.leeched}}</span>
             </li>
             <li class="dropdown" uib-dropdown>
-                <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+                <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button" alt="status.account">
                     <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}"
                          class="header-profile-image"/>
                     <span class="sm-hide" ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
