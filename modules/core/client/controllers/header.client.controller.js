@@ -45,6 +45,17 @@
           $('.popup_wrapper').remove();
         }
       });
+
+      //set menu bar opened when hover
+      $('div.navbar-mt ul.nav li.dropdown').hover(function () {
+        if (!$(this).hasClass('open')) {
+          $(this).find('.dropdown-toggle', this).trigger('click');
+        }
+      }, function () {
+        if ($(this).hasClass('open')) {
+          $(this).find('.dropdown-toggle', this).trigger('click');
+        }
+      });
     });
 
     /**
