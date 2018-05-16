@@ -152,8 +152,9 @@
      * @param item
      */
     vm.reviewedTorrentStatus = function () {
-      vm.torrentLocalInfo.$setReviewedStatus(function (res) {
-        mtDebug.info(res);
+      TorrentsService.setReviewedStatus({
+        _torrentId: vm.torrentLocalInfo._id
+      }, function (res) {
         vm.torrentLocalInfo = res;
         NotifycationService.showSuccessNotify('TORRENT_SETREVIEWED_SUCCESSFULLY');
       }, function (res) {
