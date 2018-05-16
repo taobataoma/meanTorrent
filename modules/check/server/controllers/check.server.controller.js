@@ -35,8 +35,8 @@ exports.get = function (req, res) {
             message: 'no check data founded'
           });
         } else {
-          var oldCheckDate = moment(moment(ck.lastCheckedAt).format('YYYY-MM-DD'));
-          var now = moment(moment().format('YYYY-MM-DD'));
+          var oldCheckDate = moment(moment(ck.lastCheckedAt).utcOffset(appConfig.dbTimeZone).format('YYYY-MM-DD'));
+          var now = moment(moment().utcOffset(appConfig.dbTimeZone).format('YYYY-MM-DD'));
           var diff = now.diff(oldCheckDate, 'days');
 
           var nck = ck.toJSON();
@@ -67,14 +67,15 @@ exports.check = function (req, res) {
         ck.save();
 
         score = scoreConfig.action.dailyCheckIn.dailyBasicScore + (ck.keepDays - 1) * scoreConfig.action.dailyCheckIn.dailyStepScore;
+        score = Math.min(score, scoreConfig.action.dailyCheckIn.dailyMaxScore);
         scoreUpdate(req, req.user, scoreConfig.action.dailyCheckIn, score);
 
         ck = ck.toJSON();
         ck.todayIsDone = true;
         res.json(ck);
       } else {
-        var oldCheckDate = moment(moment(ck.lastCheckedAt).format('YYYY-MM-DD'));
-        var now = moment(moment().format('YYYY-MM-DD'));
+        var oldCheckDate = moment(moment(ck.lastCheckedAt).utcOffset(appConfig.dbTimeZone).format('YYYY-MM-DD'));
+        var now = moment(moment().utcOffset(appConfig.dbTimeZone).format('YYYY-MM-DD'));
         var diff = now.diff(oldCheckDate, 'days');
 
         if (diff === 0) {
@@ -87,6 +88,7 @@ exports.check = function (req, res) {
           ck.save();
 
           score = scoreConfig.action.dailyCheckIn.dailyBasicScore + (ck.keepDays - 1) * scoreConfig.action.dailyCheckIn.dailyStepScore;
+          score = Math.min(score, scoreConfig.action.dailyCheckIn.dailyMaxScore);
           scoreUpdate(req, req.user, scoreConfig.action.dailyCheckIn, score);
 
           ck = ck.toJSON();
@@ -98,6 +100,7 @@ exports.check = function (req, res) {
           ck.save();
 
           score = scoreConfig.action.dailyCheckIn.dailyBasicScore + (ck.keepDays - 1) * scoreConfig.action.dailyCheckIn.dailyStepScore;
+          score = Math.min(score, scoreConfig.action.dailyCheckIn.dailyMaxScore);
           scoreUpdate(req, req.user, scoreConfig.action.dailyCheckIn, score);
 
           ck = ck.toJSON();
