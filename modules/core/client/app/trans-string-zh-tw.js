@@ -132,6 +132,15 @@
       }
     },
 
+    CHECK: {
+      BTN_CHECK_IN: '我要簽到',
+      CHECK_TOOLTIP: '#### `mine.pt` 邀請您参加每日簽到，現在簽到可獲得 `{{todayScore}}` 積分，明日續簽可獲得 `{{tomorrowScore}}` 積分哦！',
+      CHECK_TODAY_NOT: '#### 您今日還未簽到，上次簽到：`{{checkTime | date: "yyyy-MM-dd HH:mm"}}`，現在簽到可獲得 `{{todayScore}}` 積分，明日續簽到可獲得 `{{tomorrowScore}}` 積分哦！',
+      CHECK_TODAY_DONE: '#### 您已連續簽到 `{{keepDays}}` 天，今日簽到時間：`{{checkTime | date: "yyyy-MM-dd HH:mm"}}`，已經獲得 `{{todayScore}}` 積分，明日續簽到可獲得 `{{tomorrowScore}}` 積分，請注意不要中斷哦!',
+      CHECK_SUCCESSFULLY: '簽到成功',
+      CHECK_ERROR: '簽到失敗'
+    },
+
     //element title/alt
     TITLE_ALT: {
       SEEDS: '做種使用者數',
@@ -337,7 +346,7 @@
     CA_TORRENT_SALE_STATUS: '促銷狀態',
     CA_TORRENT_SALE_NOW: '正在促銷',
     CA_TORRENT_VIP: 'VIP 資源',
-    CA_RESOURCE_TYPE: '資源型別',
+    CA_RESOURCE_TYPE: '資源類別',
     CA_MAKE_RSS_URL: 'RSS連線',
     DESC_MAKE_RSS_URL: '這個 RSS 地址是通過上面的過濾條件生成的，您可以使用支援 RSS 訂閱功能的BT客戶端（如uTorrent）來自動下載您想要的這些種子和資原始檔.',
     COPY_TO_CLIPBOARD: '複製到剪下板',
@@ -410,7 +419,7 @@
     OTHER_TORRENT_LIST_TITLE: '該資源有 {{x}} 個其它版本的種子, 您可以從下面檢視或直接下載:',
 
     ADMIN_BASIC_COMMAND: '操作命令',
-    ADMIN_BASIC_REVIEWED: '通過稽核',
+    ADMIN_BASIC_REVIEWED: '通過審核',
     ADMIN_BASIC_UPDATE: '從 TMDB 更新電影資訊',
     ADMIN_BASIC_DELETE: '刪除種子',
     ADMIN_BASIC_SET_HNR: '設定HnR',
@@ -421,7 +430,7 @@
     ADMIN_BASIC_SET_TOP: '設為置頂',
     ADMIN_BASIC_UNSET_TOP: '取消置頂',
     ADMIN_BASIC_TYPE_SET: '設定促銷',
-    ADMIN_SALE_TYPE_SET: '種子促銷型別',
+    ADMIN_SALE_TYPE_SET: '種子促銷分類',
     ADMIN_BASIC_RLEVEL_SET: '推薦級別',
     ADMIN_UPLOAD_ACCESS: '上傳許可權',
     ADMIN_RLEVEL_SET: '推薦級別設定',
@@ -451,10 +460,10 @@
     TORRENT_UPDATE_CONFIRM_BODY_TEXT: '您確定要從 TMDB 上更新該資源詳細資訊',
     TORRENT_UPDATE_SUCCESSFULLY: '資源資訊更新成功',
     TORRENT_UPDATE_ERROR: '資源資訊更新失敗',
-    TORRENT_SETSALETYPE_SUCCESSFULLY: '種子促銷型別設定成功',
-    TORRENT_SETSALETYPE_ERROR: '種子促銷型別設定失敗',
-    TORRENT_SETREVIEWED_SUCCESSFULLY: '種子稽核狀態設定成功',
-    TORRENT_SETREVIEWED_ERROR: '種子稽核狀態設定失敗',
+    TORRENT_SETSALETYPE_SUCCESSFULLY: '種子促銷分類設定成功',
+    TORRENT_SETSALETYPE_ERROR: '種子促銷分類設定失敗',
+    TORRENT_SETREVIEWED_SUCCESSFULLY: '種子審核狀態設定成功',
+    TORRENT_SETREVIEWED_ERROR: '種子審核狀態設定失敗',
     TORRENT_SETRLEVEL_SUCCESSFULLY: '種子推薦級別設定成功',
     TORRENT_SETRLEVEL_ERROR: '種子推薦級別設定失敗',
     TORRENT_TOGGLE_HNR_SUCCESSFULLY: '改變種子HnR標籤成功',
@@ -500,11 +509,11 @@
     TORRENTS_NO_FILE_SELECTED: '請選擇種子檔案後再做嘗試',
     BUTTON_UPLOADED_POPUP_CLOSE: '確定',
     BUTTON_UNSHOW_NEXT_TIME: '我知道了，下次不用再提示了！',
-    POPUP_UPLOADED_TOOLTIP: '種子<strong style="color:#f00">上傳成功</strong>並等待管理員的稽核，帶有您 Passkey 的種子檔案會在您點選 "確定" 按鈕後被<strong style="color:#f00">自動下載</strong>，然後您就可以使用這個自動下載的種子檔案開始做種了。',
+    POPUP_UPLOADED_TOOLTIP: '種子<strong style="color:#f00">上傳成功</strong>並等待管理員的審核，帶有您 Passkey 的種子檔案會在您點選 "確定" 按鈕後被<strong style="color:#f00">自動下載</strong>，然後您就可以使用這個自動下載的種子檔案開始做種了。',
     TORRENT_DOWNLOADING_FILENAME: '種子檔名: ',
     UPLOAD_ACCESS_TOOLTIP: '{{site}} 只接受資源製作小組上傳種子，您可以 <a href="/about/maker">檢視並加入他們</a>！',
 
-    SELECT_RESOURCE_TYPE: '2. 請選擇上傳資源型別',
+    SELECT_RESOURCE_TYPE: '2. 請選擇上傳資源類別',
     SELECT_TORRENT_FILE: '1. 請選擇種子檔案',
     SELECT_FILE: '選擇檔案',
     DO_UPLOAD: '上傳',
@@ -549,7 +558,7 @@
     COVER_UPLOAD_FAILED: '封面圖片上傳失敗',
     ENTER_MUSIC_DETAIL_INFO: '4. 請輸入音樂/專輯詳細資訊',
     ERROR_ONLY_IMAGE: '此處只支援圖片檔案上傳(gif, png, bmp, jpg, jpeg)',
-    FILE_TYPE_ERROR: '檔案型別不被接受',
+    FILE_TYPE_ERROR: '檔案類別不被接受',
 
     ENTER_RESOURCE_TITLE: '3. 請輸入資源標題與描述',
     RESOURCE_TITLE: '資源標題',
@@ -566,10 +575,10 @@
     //admin views
     USERS_LIST: '使用者列表',
     USERS_UPDATE: '修改',
-    TORRENT_TYPE_OPTION_NEWEST: '所有未稽核的種子',
+    TORRENT_TYPE_OPTION_NEWEST: '所有未審核的種子',
     TORRENT_TYPE_ALL: '所有種子',
-    TORRENT_STATUS_NEW: '未稽核',
-    TORRENT_STATUS_REVIEWED: '已稽核',
+    TORRENT_STATUS_NEW: '未審核',
+    TORRENT_STATUS_REVIEWED: '已審核',
     TORRENT_STATUS_DELETED: '已刪除',
     TORRENT_STATUS_ALL: '全部',
     TORRENT_RECOMMEND_LEVEL: '推薦級別',
@@ -622,10 +631,10 @@
       FIELDS_TORRENT_COUNT: '種子數',
       FIELDS_VOTE: '評分',
       FIELDS_UPLOAD_ACCESS: '上傳許可權',
-      FIELDS_REVIEW: '需要稽核',
+      FIELDS_REVIEW: '需要審核',
       FIELDS_PASS: '直接通過',
       ACCESS_CHANGED_SUCCESSFULLY: '上傳許可權修改成功',
-      ACCESS_DESC: '<h4>上傳許可權說明: </h4><div>* 有 ‘直接通過’ 上傳許可權的資源製作小組或使用者, 新上傳的所有種子不需要管理再次稽核!</div><div>* 資源組上傳許可權優先於使用者上傳許可權.</div>'
+      ACCESS_DESC: '<h4>上傳許可權說明: </h4><div>* 有 ‘直接通過’ 上傳許可權的資源製作小組或使用者, 新上傳的所有種子不需要管理再次審核!</div><div>* 資源組上傳許可權優先於使用者上傳許可權.</div>'
     },
 
     //vip views
@@ -811,7 +820,7 @@
       POST_REQUEST_SUCCESSFULLY: '建立求種請求成功!',
       POST_REQUEST_FAILED: '建立求種請求失敗!',
       FIELD_TITLE: '求種標題與描述',
-      FIELD_TYPE: '型別',
+      FIELD_TYPE: '分類',
       FIELD_LIFE: '建立時間',
       FIELD_REWARDS: '懸賞積分',
       FIELD_COMMENTS: '評論',
@@ -820,7 +829,7 @@
       BTN_EDIT_DESC: '編輯描述',
       BTN_ACCEPT: '接受',
       BTN_COMMENT: '評論',
-      WAITING_REVIEW: '等特稽核 ...',
+      WAITING_REVIEW: '等特審核 ...',
       EDIT_SUCCESSFULLY: '請求編輯成功',
       EDIT_FAILED: '請求編輯失敗',
       DELETE_CONFIRM_OK: '刪除',
@@ -844,11 +853,11 @@
       COMMENT_EDIT_ERROR: '評論編輯失敗!',
       COMMENT_REMOVE_SUCCESS: '評論刪除成功!',
       COMMENT_REMOVE_ERROR: '評論刪除失敗!',
-      DESC_LIST: '### 提示: \n - 此列表只包含最近 `{{days}}` 天內釋出的求種請求. \n - 如果您的迴應被採納, 請求者懸賞的積分將自動轉入您的帳戶. \n - 只有被管理員稽核通過的種子才能被請求者接受. \n - 請求者只能接受多個響應中的一個. \n - 如果您的響應被請求者投訴，您的帳號就可能會受到懲罰, 請認真響應使用者的請求.',
-      DESC_MY: '### 提示: \n - 如果您接受一個響應, 您的懸賞積分就會轉入您接受的響應者的帳戶. \n - 只有被管理員稽核通過的種子才能被您接受. \n - 您只能接受多個響應中的一個. \n - 超過 `{{days}}` 天的請求已經過期且不能接受響應, 如果需要您只能再次發起請求. \n - 如果您的積分受到惡意損害, 請給{{sNameDesc | translate}}傳送 **[訊息](/messages/send?to={{sName}})** 或 **[郵件](mailto:{{sMail}})** 進行投訴.',
-      DESC_ADD: '### 提示: \n - 每釋出一個請求會被自動扣除 `{{add_score}}` 積分, 而您的懸賞積分會轉入您最終接受的響應者的帳戶. \n - 只有被管理員稽核通過的種子才能被您接受. \n - 每一個釋出的請求只有 `{{days}}` 天的有效期, 過期後您只能再次發起請求. \n - 請在釋出請求時明確描述您對資源的要求.',
-      DESC_RES: '### NOTE: \n - 如果請求者接受了您的響應, 懸賞積分將自動轉入您的帳戶. \n - 只有被管理員稽核通過的種子才能被請求者接受. \n - 請求者只會接受多個響應中的一個.',
-      DESC_VIEW: '### NOTE: \n - 如果您是一個響應者, 請上傳您的種子檔案並開始做種, 請認真響應使用者的請求. \n - 如果您是一個請求者, 您可以選擇一個響應並接受它, 只有被管理員稽核通過的種子才能被您接受. \n - 如果您接受一個響應, 您的懸賞積分就會轉入您接受的響應者的帳戶. \n - 超過 `{{days}}` 天的請求已經過期且不能接受響應或上傳種子.',
+      DESC_LIST: '### 提示: \n - 此列表只包含最近 `{{days}}` 天內釋出的求種請求. \n - 如果您的迴應被採納, 請求者懸賞的積分將自動轉入您的帳戶. \n - 只有被管理員審核通過的種子才能被請求者接受. \n - 請求者只能接受多個響應中的一個. \n - 如果您的響應被請求者投訴，您的帳號就可能會受到懲罰, 請認真響應使用者的請求.',
+      DESC_MY: '### 提示: \n - 如果您接受一個響應, 您的懸賞積分就會轉入您接受的響應者的帳戶. \n - 只有被管理員審核通過的種子才能被您接受. \n - 您只能接受多個響應中的一個. \n - 超過 `{{days}}` 天的請求已經過期且不能接受響應, 如果需要您只能再次發起請求. \n - 如果您的積分受到惡意損害, 請給{{sNameDesc | translate}}傳送 **[訊息](/messages/send?to={{sName}})** 或 **[郵件](mailto:{{sMail}})** 進行投訴.',
+      DESC_ADD: '### 提示: \n - 每發出一個請求會被自動扣除 `{{add_score}}` 積分, 而您的懸賞積分會轉入您最終接受的響應者的帳戶. \n - 只有被管理員審核通過的種子才能被您接受. \n - 每一個釋出的請求只有 `{{days}}` 天的有效期, 過期後您只能再次發起請求. \n - 請在釋出請求時明確描述您對資源的要求.',
+      DESC_RES: '### NOTE: \n - 如果請求者接受了您的響應, 懸賞積分將自動轉入您的帳戶. \n - 只有被管理員審核通過的種子才能被請求者接受. \n - 請求者只會接受多個響應中的一個.',
+      DESC_VIEW: '### NOTE: \n - 如果您是一個響應者, 請上傳您的種子檔案並開始做種, 請認真響應使用者的請求. \n - 如果您是一個請求者, 您可以選擇一個響應並接受它, 只有被管理員審核通過的種子才能被您接受. \n - 如果您接受一個響應, 您的懸賞積分就會轉入您接受的響應者的帳戶. \n - 超過 `{{days}}` 天的請求已經過期且不能接受響應或上傳種子.',
       CAN_NTO_TO_ADD: '每發佈一個請求會被自動扣除 `{{add_score}}` 積分，您的積分太少，請稍候再試 ...'
     },
 
@@ -945,8 +954,8 @@
       ADULT: '成人'
     },
     TORRENT_STATUS_LABEL: {
-      NEW: '未稽核',
-      REVIEWED: '已稽核'
+      NEW: '未審核',
+      REVIEWED: '已審核'
     },
 
     //user status warning list
@@ -1033,7 +1042,7 @@
     OFFICIAL_MESSAGES_TOOLTIP: '<h4>提示：</h4>為了維護一個乾淨的官方訊息列表，請及時將長時間過期的訊息刪除，因為這些訊息在使用者的訊息中心裡不能被單方面清理。',
     MESSAGES_FIELD: {
       TO: '傳送至:',
-      TYPE: '訊息型別:',
+      TYPE: '訊息類別:',
       TITLE: '標題:',
       CONTENT: '內容:',
       TO_REQUIRED: '請輸入訊息接收者',
@@ -1043,7 +1052,7 @@
       LIST_TITLE_CONTENT: '標題 & 內容',
       LIST_REPLIES: '回覆',
       LIST_READERS: '已讀',
-      LIST_TYPE: '型別',
+      LIST_TYPE: '類別',
       LIST_SENDAT: '傳送時間',
       LIST_SELECT: '選擇',
       INFO_SEND_TO: '傳送給',
@@ -1083,12 +1092,12 @@
 
     //traces
     ADMIN_TRACES_LIST: '系統日誌',
-    TRACES_IS_LOADING: '正在裝載系統日誌，請稍候 ...',
+    TRACES_IS_LOADING: '正在讀取系統日誌，請稍候 ...',
     TRACES_IS_EMPTY: '系統日誌為空!',
     TRACES_FIELDS: {
       USERNAME: '操作使用者',
       CONTENT: '日誌內容',
-      TYPE: '操作型別',
+      TYPE: '操作類別',
       CREATEDAT: '操作時間'
     },
 
@@ -1148,7 +1157,7 @@
       SUB_TITLE: '副標題',
       ARTIST: '藝人名稱',
       BELONGS_TO_COLLECTION: '集合',
-      GENRES: '型別',
+      GENRES: '類別',
       OVERVIEW: '詳情介紹',
       POPULARITY: 'popularity',
       PRODUCTION_COMPANIES: '製作',
@@ -1309,7 +1318,7 @@
         REPLY_BY_3: '發表於 {{createdAt}}'
       },
       TITLES: {
-        REPLY_QUOTE: '引用並回復',
+        REPLY_QUOTE: '引用並回覆',
         REPLY_EDIT: '編輯回覆',
         REPLY_DELETE: '刪除回覆',
         HOME_HELP: '顯示為首頁幫助條目, 當前狀態為: {{status}}',
@@ -1347,9 +1356,9 @@
       SELECT_FILE: '請選擇檔案',
       BTN_RUN_COMMAND: '執行',
       CUSTOM_COMMAND: '輸入命令列並執行:',
-      CONFIG_LOADING: '正在裝載檔案, 請稍候 ...',
+      CONFIG_LOADING: '正在讀取檔案, 請稍候 ...',
       CURR_EXAMINATION_CONFIG: '當前考核配置: <small>./config/env/torrents.js</small>',
-      BTN_INIT_EXAMINATION_DATA: '初始化使用者的考核資料',
+      BTN_INIT_EXAMINATION_DATA: '重置使用者的考核資料',
       BTN_CURR_EXAMINATION_STATUS: '當前考核的資料狀態',
       BTN_BAN_ALL_UNFINISHED: '禁止掉所有未完成考核的帳戶',
       EXAMINATION_STATUS: '考核狀態',
@@ -1357,15 +1366,15 @@
       ALL_USER: '參考使用者: <strong>{{all_user}}</strong> 人',
       FINISHED_USER: '考核已完成使用者: <strong>{{finished_user}}</strong> 人',
       UNFINISHED_USER: '考核未完成使用者: <strong>{{unfinished_user}}</strong> 人',
-      STATUS_USERS_IS_LOADING: '正在裝載考核使用者資料, 請稍候...',
+      STATUS_USERS_IS_LOADING: '正在讀取考核使用者資料, 請稍候...',
       STATUS_USERS_IS_EMPTY: '考核資料為空!',
 
       CONFIRM_CANCEL: '取消',
       INIT_EXAMINATION_CONFIRM_CONTINUE: '繼續',
       INIT_EXAMINATION_CONFIRM_HEADER_TEXT: '操作確認',
       INIT_EXAMINATION_CONFIRM_BODY_TEXT: '您正在進行一個危險的操作, 確定要繼續初始化嗎?',
-      INIT_EXAMINATION_SUCCESSFULLY: '初始化使用者考核資料成功',
-      INIT_EXAMINATION_ERROR: '初始化使用者考核資料失敗',
+      INIT_EXAMINATION_SUCCESSFULLY: '重置使用者考核資料成功',
+      INIT_EXAMINATION_ERROR: '重置使用者考核資料失敗',
 
       CONFIG_CHANGED_CONFIRM_SAVE: '儲存',
       CONFIG_CHANGED_CONFIRM_HEADER_TEXT: '系統配置已更改',
@@ -1435,11 +1444,11 @@
     /////////////////////////resources tag fields///////////////////////////////////
     RESOURCESTAGS: {
       TYPE: {
-        SELF: '型別',
-        BLU_RAY: 'BLU_RAY',
-        WEB_DL: 'WEB_DL',
-        REMUX: 'REMUX',
-        ENCODE: 'ENCODE',
+        SELF: '類別',
+        BLU_RAY: 'Blu-Ray',
+        WEB: 'Web',
+        REMUX: 'Remux',
+        ENCODE: 'Encode',
         HDTV: 'HDTV'
       },
 
@@ -1506,7 +1515,7 @@
       },
 
       MUSIC_SUB_CAT: {
-        SELF: '音樂型別',
+        SELF: '音樂類別',
         CD: 'CD',
         MTV: 'MTV'
       },
@@ -1599,7 +1608,7 @@
       INVALID_OBJECTID: '無效的資料記錄ID (SERVER)',
       REQUEST_STATUS_FINISHED: '狀態錯誤! 求種請求已完成.',
       REQUEST_STATUS_EXPIRED: '狀態錯誤! 求種請求已過期.',
-      TORRENT_STATUS_ERROR: '狀態錯誤! 種子狀態為未稽核',
+      TORRENT_STATUS_ERROR: '狀態錯誤! 種子狀態為未審核',
       EMAIL_ALREADY_REGISTERED: '這個郵件地址已被其它使用者註冊使用了',
       EMAIL_ALREADY_INVITED: '這個郵件地址已經被邀請過了',
       INVITE_MAIL_SEND_FAILED: '邀請郵件傳送失敗(SERVER)',
@@ -1608,7 +1617,8 @@
       INFO_HASH_ALREADY_EXISTS: '該 info hash 值已經存在，不能重複提交',
       UPLOAD_ACCESS_DENY: '當前系統只接受資源製作小組上傳種子',
       READ_TORRENT_FILE_FAILD: '種子檔案解析錯誤，請檢查您的種子檔案，看是否缺少某些必要資訊',
-      MOVE_TORRENT_FILE_ERROR: '種子檔案移動錯誤，請不要快速重複進行提交操作或者上傳的種子檔案已丟失'
+      MOVE_TORRENT_FILE_ERROR: '種子檔案移動錯誤，請不要快速重複進行提交操作或者上傳的種子檔案已丟失',
+      YOU_ALREADY_CHECK_IN: '您今天已經完成簽到了，不能重覆簽到喔！'
     },
 
     //server message string, content string support markdown and emoji
@@ -1669,8 +1679,8 @@
       TITLE_TORRENT_THUMBS_UP: '上傳的種子被點贊',
       CONTENT_TORRENT_THUMBS_UP: '### 點贊! \n :+1: 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被使用者 [{{by_name}}](/userinfo/{{by_id}}) 點贊.',
 
-      TITLE_TORRENT_REVIEWED: '上傳的種子被稽核通過',
-      CONTENT_TORRENT_REVIEWED: '### 恭喜! \n :clap: 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被管理員使用者 [{{by_name}}](/userinfo/{{by_id}}) 稽核通過.',
+      TITLE_TORRENT_REVIEWED: '上傳的種子被審核通過',
+      CONTENT_TORRENT_REVIEWED: '### 恭喜! \n :clap: 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 被管理員使用者 [{{by_name}}](/userinfo/{{by_id}}) 審核通過.',
 
       TITLE_TORRENT_VIP_CHANGED: '上傳的種子 VIP 狀態改變',
       CONTENT_TORRENT_VIP_CHANGED: '### VIP 狀態改變! \n 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) VIP 狀態已經由管理員使用者 [{{by_name}}](/userinfo/{{by_id}}) 修改, 當前狀態為: **{{vip_status}}**.',
@@ -1707,7 +1717,7 @@
     },
 
     SITE_NOTICE: {
-      GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快樂 2018**, **{{site_name}}** 新年促銷活動已準備就緒, 促銷活動型別為 <span class="sale_key">**{{sale_value}}**</span> , 活動將開始於 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 並持續 <span class="sale_key">**{{sale_days}}**</span> 天, 結束於 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 並感謝所有會員使用者一直以來給予我們的幫助與支援!',
+      GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快樂 2018**, **{{site_name}}** 新年促銷活動已準備就緒, 促銷活動類別為 <span class="sale_key">**{{sale_value}}**</span> , 活動將開始於 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 並持續 <span class="sale_key">**{{sale_days}}**</span> 天, 結束於 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 並感謝所有會員使用者一直以來給予我們的幫助與支援!',
       EXAMINATION_NOTICE: '### 重要通知! \n :radio: **{{site_name}}** 將從 **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** 到 **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}** 進行一次新的增量考核, 增量資料要求: 上傳 **{{data_upload | bytes:2}}**, 下載 **{{data_download | bytes:2}}**, 積分 **{{data_score}}**, 請各位會員安排好自已的時間，並祝您順利通過這次考核. 所有 **vip** 使用者以及最近 **{{join_days}}** 天內註冊的新使用者免考, 考核未達標的使用者帳號將會被禁止.<small>[更多詳情請看這裡]({{detail_url}}).</small>',
       EXAMINATION_STATUS: '### 考核狀態資訊: \n <dl class="dl-horizontal"><dt>考核時間區間:</dt><dd>{{examination_start_at | date: "yyyy-MM-dd HH:mm"}} - {{examination_end_at | date: "yyyy-MM-dd HH:mm"}}</dd><dt>增量上傳資料:</dt><dd>{{data_upload | bytes:2}}, 已完成 {{finished_upload | bytes:2}}</dd><dt>增量下載資料:</dt><dd>{{data_download | bytes:2}}, 已完成 {{finished_download | bytes:2}}</dd><dt>增量積分:</dt><dd>{{data_score | number: 2}}, 已完成 {{finished_score | number: 2}}</dd><dt>當前考核狀態:</dt><dd>{{data_status | translate}}</dd><dt></dt><dd><small>[更多詳情]({{detail_url}})</small></dd></dl>',
       EXAMINATION_FINISHED: '已通過',
