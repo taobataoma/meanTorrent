@@ -14,6 +14,7 @@ var path = require('path'),
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
 var scoreConfig = config.meanTorrentConfig.score;
+var appConfig = config.meanTorrentConfig.app;
 
 /**
  * Show the current collection
