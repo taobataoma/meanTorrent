@@ -193,10 +193,12 @@
       vm.successfully = false;
       vm.tFile = undefined;
       // Show error message
-      Notification.error({
-        message: response.data,
-        title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENTS_UPLOAD_FAILED')
-      });
+      if (response.data.params) {
+        response.data.message = $translate.instant(response.data.message, response.data.params);
+      }
+      console.log(response.data.message);
+
+      NotifycationService.showErrorNotify(response.data.message, 'TORRENTS_UPLOAD_FAILED');
     }
 
     /**

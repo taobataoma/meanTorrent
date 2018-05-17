@@ -1606,7 +1606,7 @@
       INVITE_MAIL_SEND_FAILED: '邀請郵件傳送失敗(SERVER)',
       EMAIL_ADDRESS_IS_NOT_ALLOW: '該郵件地址不允許被邀請或註冊',
       INFO_HASH_IS_EMPTY: 'Info hash 欄位值不能為空',
-      INFO_HASH_ALREADY_EXISTS: '該 info hash 值已經存在，不能重複提交',
+      INFO_HASH_ALREADY_EXISTS: '該 info hash 值已經存在，不能重複提交, {{hash}}',
       UPLOAD_ACCESS_DENY: '當前系統只接受資源製作小組上傳種子',
       READ_TORRENT_FILE_FAILD: '種子檔案解析錯誤，請檢查您的種子檔案，看是否缺少某些必要資訊',
       MOVE_TORRENT_FILE_ERROR: '種子檔案移動錯誤，請不要快速重複進行提交操作或者上傳的種子檔案已丟失'
