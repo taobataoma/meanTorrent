@@ -20,7 +20,7 @@
       getTorrentDoubleTitle: getTorrentDoubleTitle,
       getTorrentCustomTitle: getTorrentCustomTitle,
       getTorrentCustomSubTitle: getTorrentCustomSubTitle,
-      getTitleFromResourceFileName: getTitleFromResourceFileName,
+      getFormattedResourceTitle: getFormattedResourceTitle,
       getTorrentListImage: getTorrentListImage,
       getTorrentListTopImage: getTorrentListTopImage,
       getTorrentTopOneImage: getTorrentTopOneImage,
@@ -106,9 +106,9 @@
      */
     function getTorrentCustomTitle(item) {
       if (item.resource_detail_info.custom_title) {
-        return item.resource_detail_info.custom_title;
+        return getFormattedResourceTitle(item.resource_detail_info.custom_title);
       } else {
-        return getTitleFromResourceFileName(item.torrent_filename);
+        return getFormattedResourceTitle(item.torrent_filename);
       }
     }
 
@@ -128,19 +128,19 @@
     }
 
     /**
-     * getTitleFromResourceFileName
-     * @param fname
+     * getFormattedResourceTitle
+     * @param title
      * @returns {*}
      */
-    function getTitleFromResourceFileName(fname) {
-      if (fname) {
+    function getFormattedResourceTitle(title) {
+      if (title) {
         var reg = /\{([a-zA-Z0-9\_\-\.\s]){2,10}\}[\.|\s]*|\[([a-zA-Z0-9\_\-\.\s]){2,10}\][\.|\s]*/gi;
-        fname = fname.replace(reg, '');
-        fname = fname.replace(/.torrent/g, '');
+        title = title.replace(reg, '');
+        title = title.replace(/.torrent/g, '');
 
         // var re = /((?:^|\D)\d\.\d(?=\D|$))|\./g;
         var re = /[0-9]\.[0-9]\b|(\.)/g;
-        var repl = fname.replace(re, function ($0, $1) {
+        var repl = title.replace(re, function ($0, $1) {
           // return ($1 ? $1.replace(/^\./, ' ') : ' ');
           return $1 === '.' ? ' ' : $0;
         });

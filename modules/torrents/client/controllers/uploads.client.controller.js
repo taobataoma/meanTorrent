@@ -338,19 +338,19 @@
     };
 
     /**
-     * getTitleFromResourceFileName
-     * @param fname
+     * getFormattedResourceTitle
+     * @param title
      * @returns {*}
      */
-    function getTitleFromResourceFileName(fname) {
-      if (fname) {
+    function getFormattedResourceTitle(title) {
+      if (title) {
         //replace other pt site prefix
-        fname = fname.replace(/\{([a-zA-Z0-9\_\-\.\s]){2,10}\}[\.|\s]*/gi, '');
-        fname = fname.replace(/.torrent/g, '');
+        title = title.replace(/\{([a-zA-Z0-9\_\-\.\s]){2,10}\}[\.|\s]*/gi, '');
+        title = title.replace(/.torrent/g, '');
 
         // var re = /((?:^|\D)\d\.\d(?=\D|$))|\./g;
         var re = /[0-9]\.[0-9]\b|(\.)/g;
-        var repl = fname.replace(re, function ($0, $1) {
+        var repl = title.replace(re, function ($0, $1) {
           // return ($1 ? $1.replace(/^\./, ' ') : ' ');
           return $1 === '.' ? ' ' : $0;
         });
@@ -413,7 +413,7 @@
         tmdbid: tmdbid,
         language: getStorageLangService.getLang()
       }, function (res) {
-        vm.customTorrent.title = getTitleFromResourceFileName(vm.torrentInfo.filename);
+        vm.customTorrent.title = getFormattedResourceTitle(vm.torrentInfo.filename);
         vm.customTorrent.subtitle = res.title;
 
         vm.tmdb_info_ok = true;
@@ -459,7 +459,7 @@
         tmdbid: tmdbid,
         language: getStorageLangService.getLang()
       }, function (res) {
-        vm.customTorrent.title = getTitleFromResourceFileName(vm.torrentInfo.filename);
+        vm.customTorrent.title = getFormattedResourceTitle(vm.torrentInfo.filename);
         vm.customTorrent.subtitle = res.name;
 
         vm.tmdb_info_ok = true;
