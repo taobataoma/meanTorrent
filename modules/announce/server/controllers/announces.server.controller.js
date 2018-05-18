@@ -457,7 +457,7 @@ exports.announce = function (req, res) {
      vip user not checked
      ---------------------------------------------------------------*/
     function (done) {
-      if (!req.seeder && !req.passkeyuser.isVip && event(query.event) === EVENT_STARTED) {
+      if (!req.seeder && !req.passkeyuser.isVip && !req.passkeyuser.isOper && event(query.event) === EVENT_STARTED) {
         if (req.passkeyuser.ratio !== -1 && req.passkeyuser.ratio < announceConfig.downloadCheck.ratio) {
           var checkTimeBegin = moment(req.passkeyuser.created).add(announceConfig.downloadCheck.checkAfterSignupDays, 'd');
           if (checkTimeBegin < moment(Date.now())) {
