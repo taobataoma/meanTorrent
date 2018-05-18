@@ -1019,9 +1019,10 @@
       resinfo.custom_title = vm.torrentLocalInfo.resource_detail_info.custom_title;
       resinfo.custom_subtitle = vm.torrentLocalInfo.resource_detail_info.custom_subtitle;
 
-      vm.torrentLocalInfo.resource_detail_info = resinfo;
-
-      vm.torrentLocalInfo.$update(function (response) {
+      TorrentsService.update({
+        _id: vm.torrentLocalInfo._id,
+        resource_detail_info: resinfo
+      }, function (response) {
         successCallback(response);
       }, function (errorResponse) {
         errorCallback(errorResponse);
@@ -1414,5 +1415,17 @@
       }
     };
 
+    /**
+     * updateTorrentNfo
+     */
+    vm.updateTorrentNfo = function () {
+      TorrentsService.update({
+        _id: vm.torrentLocalInfo._id,
+        torrent_nfo: vm.torrentLocalInfo.torrent_nfo
+      }, function (res) {
+        console.log('updateTorrentNfo successfully');
+        console.log(res);
+      });
+    };
   }
 }());

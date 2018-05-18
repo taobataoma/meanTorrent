@@ -672,8 +672,7 @@
                 <dd class="h-line" ng-if="vm.torrentLocalInfo.torrent_nfo.length>0">
                     <div class="row">
                         <div class="col-md-10">
-                            <textarea class="form-control video-nfo margin-top-10" rows="15" ng-bind="vm.torrentLocalInfo.torrent_nfo"
-                                      readonly></textarea>
+                            <textarea class="form-control video-nfo margin-top-10" rows="15" ng-model="vm.torrentLocalInfo.torrent_nfo"></textarea>
                         </div>
                     </div>
                 </dd>
@@ -684,6 +683,7 @@
                         <button class="btn btn-success btn-width-100" ng-click="vm.DLS.downloadTorrent(vm.torrentLocalInfo._id)"
                                 translate="DOWNLOAD_TORRENT"></button>
                         <span torrent-file-link-button="vm.torrentLocalInfo" torrent-user="vm.user" info-class="btn-default"></span>
+                        <!--<button class="btn btn-default btn-width-100" ng-click="vm.updateTorrentNfo()">Update MediaInfo</button>-->
                     </div>
                 </dd>
             </dl>

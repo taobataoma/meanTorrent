@@ -7,6 +7,7 @@ var path = require('path'),
   config = require(path.resolve('./config/config')),
   mongoose = require('mongoose'),
   common = require(path.resolve('./config/lib/common')),
+  mediaInfo = require(path.resolve('./config/lib/mediaInfo')),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   multer = require('multer'),
   moment = require('moment'),
@@ -159,7 +160,13 @@ exports.upload = function (req, res) {
         res.status(200).send(torrentinfo);
       })
       .catch(function (err) {
-        res.status(422).send(err);
+        res.status(422).send({
+          message: err,
+          params: {
+            hash: torrentinfo.info_hash,
+            filename: req.file.filename
+          }
+        });
 
         if (req.file && req.file.filename) {
           var newfile = config.uploads.torrent.file.temp + req.file.filename;
@@ -628,6 +635,11 @@ exports.create = function (req, res) {
 
   torrent.user = req.user;
 
+  //get media info detail
+  if (torrent.torrent_nfo) {
+    torrent.torrent_media_info = mediaInfo.getMediaInfo(torrent.torrent_nfo);
+  }
+
   //replace content path
   var tmp = config.uploads.torrent.image.temp.substr(1);
   var dst = config.uploads.torrent.image.dest.substr(1);
@@ -833,7 +845,13 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var torrent = req.torrent;
 
-  torrent.resource_detail_info = req.body.resource_detail_info;
+  if (req.body.hasOwnProperty('resource_detail_info')) {
+    torrent.resource_detail_info = req.body.resource_detail_info;
+  }
+  if (req.body.hasOwnProperty('torrent_nfo')) {
+    torrent.torrent_nfo = req.body.torrent_nfo;
+    torrent.torrent_media_info = mediaInfo.getMediaInfo(req.body.torrent_nfo);
+  }
 
   torrent.save(function (err) {
     if (err) {
