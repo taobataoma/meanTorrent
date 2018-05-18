@@ -45,24 +45,37 @@
           $('.popup_wrapper').remove();
         }
       });
-
-      //set menu bar opened when hover
-      $('div.navbar-mt ul.nav li.dropdown').hover(function (evt) {
-        if (!$(this).hasClass('open')) {
-          $(this).find('.dropdown-toggle', this).trigger('click');
-          $(this).bind('click', function (e) {
-            var sta = $(this).find('.dropdown-toggle', this).attr('alt');
-            if (sta)
-              $state.go(sta);
-          });
-        }
-      }, function (evt) {
-        $(this).unbind('click');
-        if ($(this).hasClass('open')) {
-          $(this).find('.dropdown-toggle', this).trigger('click');
-        }
-      });
     });
+
+    /**
+     * bindHoverToMenuItem
+     */
+    vm.bindHoverToMenuItem = function () {
+      //set menu bar opened when hover
+      $timeout(function () {
+        $('div.navbar-mt ul.nav li.dropdown').off('mouseenter mouseleave').hover(function (evt) {
+          if (!$(this).hasClass('open')) {
+            $(this).find('.dropdown-toggle', this).trigger('click');
+            $(this).off('click').on('click', function (e) {
+              var sta = $(this).find('.dropdown-toggle', this).attr('alt');
+              if (sta) {
+                $state.go(sta);
+              }
+            });
+          }
+        }, function (evt) {
+          $(this).off('click');
+          if ($(this).hasClass('open')) {
+            $(this).find('.dropdown-toggle', this).trigger('click');
+          }
+        });
+
+        $('div.navbar-mt ul.nav li.dropdown ul.dropdown-menu').off('mouseenter mouseleave').hover(function (evt) {
+          $(this).parent().off('click');
+        }, function (evt) {
+        });
+      }, 0);
+    };
 
     /**
      * auth-user-changed
@@ -70,6 +83,7 @@
     $scope.$on('auth-user-changed', function (event, args) {
       vm.user = Authentication.user;
       vm.scoreLevelData = vm.user ? ScoreLevelService.getScoreLevelJson(vm.user.score) : undefined;
+      vm.bindHoverToMenuItem();
       vm.getInvitationsCount();
       vm.getWarning();
       vm.getCountUnread();

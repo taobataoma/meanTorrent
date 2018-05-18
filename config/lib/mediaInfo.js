@@ -537,7 +537,7 @@ module.exports.getMediaInfo = function (nfo) {
       res = gInfo.match(reg);
       if (res) {
         res.forEach(function (st) {
-          var st = st.replace(/^[^\:]+.\s*/, '');
+          st = st.replace(/^[^\:]+.\s*/, '');
           if (!minfo.hasOwnProperty('text')) {
             minfo.text = {};
           }

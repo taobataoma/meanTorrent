@@ -1,5 +1,5 @@
 <div class="container navbar-mt" ng-controller="HeaderController as vm"
-     ng-init="vm.getInvitationsCount(); vm.checkMessageUnread(); vm.checkHnRWarning();">
+     ng-init="vm.bindHoverToMenuItem(); vm.getInvitationsCount(); vm.checkMessageUnread(); vm.checkHnRWarning();">
     <div class="navbar-header">
         <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
             <span class="sr-only">Toggle navigation</span>
@@ -57,7 +57,7 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li class="lang-list">
-                        <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name); $event.stopPropagation();"
+                        <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);"
                               ng-repeat="l in vm.language" ng-class="{'curr-language': vm.langService.getLang() == l.name}"></span>
                     </li>
                     <li class="divider"></li>
