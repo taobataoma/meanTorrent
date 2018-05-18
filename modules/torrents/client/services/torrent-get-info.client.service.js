@@ -134,12 +134,8 @@
      */
     function getTitleFromResourceFileName(fname) {
       if (fname) {
-        var reg = /^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/i;
-        //replace other pt site prefix
-        while (reg.test(fname)) {
-          fname = fname.replace(reg, '');
-        }
-
+        var reg = /\{([a-zA-Z0-9\_\-\.\s]){2,10}\}[\.|\s]*|\[([a-zA-Z0-9\_\-\.\s]){2,10}\][\.|\s]*/gi;
+        fname = fname.replace(reg, '');
         fname = fname.replace(/.torrent/g, '');
 
         return fname;

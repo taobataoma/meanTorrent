@@ -345,7 +345,7 @@
     function getTitleFromResourceFileName(fname) {
       if (fname) {
         //replace other pt site prefix
-        fname = fname.replace(/^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/, '');
+        fname = fname.replace(/\{([a-zA-Z0-9\_\-\.\s]){2,10}\}[\.|\s]*/gi, '');
         fname = fname.replace(/.torrent/g, '');
         return fname;
       } else {

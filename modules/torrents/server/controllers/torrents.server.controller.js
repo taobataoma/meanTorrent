@@ -161,11 +161,8 @@ exports.upload = function (req, res) {
       })
       .catch(function (err) {
         res.status(422).send({
-          message: err,
-          params: {
-            hash: torrentinfo.info_hash,
-            filename: req.file.filename
-          }
+          message: err.message,
+          params: err.params
         });
 
         if (req.file && req.file.filename) {
@@ -193,7 +190,7 @@ exports.upload = function (req, res) {
             message = 'Torrent file too large. Maximum size allowed is ' + (config.uploads.torrent.file.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
           }
 
-          reject(message);
+          reject({message: message, params: {filename: uploadError.filename}});
         } else {
           resolve();
         }
@@ -211,7 +208,7 @@ exports.upload = function (req, res) {
         if (err) {
           mtDebug.debugError(err, 'READ_TORRENT_FILE_FAILD');
           message = 'SERVER.READ_TORRENT_FILE_FAILD';
-          reject(message);
+          reject({message: message});
         } else {
           //force change announce url to config value
           var announce = config.meanTorrentConfig.announce.url;
@@ -253,7 +250,7 @@ exports.upload = function (req, res) {
 
       if (torrentinfo.info_hash === '' || !torrentinfo.info_hash) {
         message = 'SERVER.INFO_HASH_IS_EMPTY';
-        reject(message);
+        reject({message: message});
       } else {
         Torrent.findOne({
           info_hash: torrentinfo.info_hash
@@ -264,7 +261,7 @@ exports.upload = function (req, res) {
             if (torrent) {
               message = 'SERVER.INFO_HASH_ALREADY_EXISTS';
 
-              reject(message);
+              reject({message: message, params: {hash: torrentinfo.info_hash}});
             } else {
               resolve();
             }
@@ -2265,25 +2262,35 @@ exports.torrentByID = function (req, res, next, id) {
 
   var writeAllFiles = function (torrent, callback) {
     if (torrent) {
-      var filePath = config.uploads.torrent.file.dest + torrent.torrent_filename;
-      nt.read(filePath, function (err, torrent_data) {
-        if (err) {
-          callback(err);
-        } else {
-          var mdata = torrent_data.metadata;
-          torrent._all_files = [];
+      try {
+        var filePath = config.uploads.torrent.file.dest + torrent.torrent_filename;
+        fs.exists(filePath, function (exists) {
+          if (exists) {
+            nt.read(filePath, function (err, torrent_data) {
+              if (err) {
+                callback(err);
+              } else {
+                var mdata = torrent_data.metadata;
+                torrent._all_files = [];
 
-          if (mdata.info.files) {
-            mdata.info.files.forEach(function (f) {
-              torrent._all_files.push(f.path.join('/') + ', ' + common.fileSizeFormat(f.length, 2));
+                if (mdata.info.files) {
+                  mdata.info.files.forEach(function (f) {
+                    torrent._all_files.push(f.path.join('/') + ', ' + common.fileSizeFormat(f.length, 2));
+                  });
+                } else {
+                  torrent._all_files.push(mdata.info.name + ', ' + common.fileSizeFormat(mdata.info.length, 2));
+                }
+
+                callback(null, torrent);
+              }
             });
           } else {
-            torrent._all_files.push(mdata.info.name + ', ' + common.fileSizeFormat(mdata.info.length, 2));
+            callback(null, torrent);
           }
-
-          callback(null, torrent);
-        }
-      });
+        });
+      } catch (e) {
+        callback(null, torrent);
+      }
     } else {
       callback(null, torrent);
     }
