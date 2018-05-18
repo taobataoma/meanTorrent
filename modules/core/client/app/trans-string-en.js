@@ -1616,6 +1616,7 @@
       EMAIL_ADDRESS_IS_NOT_ALLOW: 'The domain of this email address is not allowable from server',
       INFO_HASH_IS_EMPTY: 'Info hash field of torrent file is empty',
       INFO_HASH_ALREADY_EXISTS: 'This info hash value is already exists, {{hash}}',
+      FILE_ALREADY_EXISTS: 'This torrent file name already exists, {{filename}}',
       UPLOAD_ACCESS_DENY: 'System only accepts resources group to upload torrents',
       READ_TORRENT_FILE_FAILD: 'The torrent file parsing error. Please check your torrent file to check if some of the necessary information is missing',
       MOVE_TORRENT_FILE_ERROR: 'The torrent file was moved incorrectly. Please do not repeat the submit operation quickly or the uploaded torrent file is missing.',

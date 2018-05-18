@@ -55,7 +55,7 @@ exports.getErrorMessage = function (err) {
         message = 'Missing `newProfilePicture` field';
         break;
       case 'FILE_ALREADY_EXISTS':
-        message = 'File already exists';
+        message = 'SERVER.FILE_ALREADY_EXISTS';
         break;
       default:
         message = 'Something went wrong';
