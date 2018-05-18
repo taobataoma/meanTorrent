@@ -347,7 +347,15 @@
         //replace other pt site prefix
         fname = fname.replace(/\{([a-zA-Z0-9\_\-\.\s]){2,10}\}[\.|\s]*/gi, '');
         fname = fname.replace(/.torrent/g, '');
-        return fname;
+
+        // var re = /((?:^|\D)\d\.\d(?=\D|$))|\./g;
+        var re = /[0-9]\.[0-9]\b|(\.)/g;
+        var repl = fname.replace(re, function ($0, $1) {
+          // return ($1 ? $1.replace(/^\./, ' ') : ' ');
+          return $1 === '.' ? ' ' : $0;
+        });
+
+        return repl;
       } else {
         return '';
       }
