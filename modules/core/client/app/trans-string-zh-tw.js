@@ -381,7 +381,6 @@
     ALL_FILES_LIST: '檔案清單',
     VIDEO_SIZE: '視訊檔案大小',
     UPLOAD_TIME: '上傳時間',
-    VIDEO_SALE_INFO: '視訊促銷資訊',
     SALE_EXPIRES_TIME: '過期',
     TORRENT_STATUS_TOP_TITLE: '置頂推薦',
     STATUS_TOP_KEY: '置頂',

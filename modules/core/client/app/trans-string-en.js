@@ -390,7 +390,6 @@
     ALL_FILES_LIST: 'Files List',
     VIDEO_SIZE: 'Video Size',
     UPLOAD_TIME: 'Upload Time',
-    VIDEO_SALE_INFO: 'Video Sale Info',
     SALE_EXPIRES_TIME: 'expires',
     TORRENT_STATUS_TOP_TITLE: 'Top Level',
     STATUS_TOP_KEY: 'TOP',

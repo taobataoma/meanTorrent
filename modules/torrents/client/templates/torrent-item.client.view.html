@@ -72,7 +72,7 @@
                         G: {{vm.salesGlobalConfig.global.value}}
                     </span>
 
-                    <span class="label label-se-info" ng-if="vm.torrentType == 'tvserial'"
+                    <span class="label label-se-info" ng-if="item.torrent_type == 'tvserial'"
                           ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
 
                     <span class="label label-hnr-info" ng-if="item.torrent_hnr" ng-class="{'used': parent.filterHnR}"
