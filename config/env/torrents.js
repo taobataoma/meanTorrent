@@ -1368,11 +1368,11 @@ module.exports = {
     mediaInfo: {
       subtitles: {
         flag: {
-          chs:      {class: 'flag-icon-cn'},
-          chinese:  {class: 'flag-icon-cn'},
-          cht:      {class: 'flag-icon-tw'},
-          korean:   {class: 'flag-icon-kr'},
-          eng:      {class: 'flag-icon-gb'}
+          chs: {class: 'flag-icon-cn'},
+          chinese: {class: 'flag-icon-cn'},
+          cht: {class: 'flag-icon-tw'},
+          korean: {class: 'flag-icon-kr'},
+          eng: {class: 'flag-icon-gb'}
         }
       }
     },
