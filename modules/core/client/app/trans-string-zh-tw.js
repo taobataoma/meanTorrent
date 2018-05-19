@@ -134,7 +134,7 @@
 
     CHECK: {
       BTN_CHECK_IN: '我要簽到',
-      CHECK_TOOLTIP: '#### `mine.pt` 邀請您参加每日簽到，現在簽到可獲得 `{{todayScore}}` 積分，明日續簽可獲得 `{{tomorrowScore}}` 積分哦！',
+      CHECK_TOOLTIP: '#### `TSKSCNPT` 邀請您参加每日簽到，現在簽到可獲得 `{{todayScore}}` 積分，明日續簽可獲得 `{{tomorrowScore}}` 積分哦！',
       CHECK_TODAY_NOT: '#### 您今日還未簽到，上次簽到：`{{checkTime | date: "yyyy-MM-dd HH:mm"}}`，現在簽到可獲得 `{{todayScore}}` 積分，明日續簽到可獲得 `{{tomorrowScore}}` 積分哦！',
       CHECK_TODAY_DONE: '#### 您已連續簽到 `{{keepDays}}` 天，今日簽到時間：`{{checkTime | date: "yyyy-MM-dd HH:mm"}}`，已經獲得 `{{todayScore}}` 積分，明日續簽到可獲得 `{{tomorrowScore}}` 積分，請注意不要中斷哦!',
       CHECK_SUCCESSFULLY: '簽到成功',
@@ -342,10 +342,13 @@
     TAGS_SEARCH_GLOBAL: '種子搜尋 - 全域性',
     CA_KEYWORD: '關鍵字',
     CA_TORRENT_STATUS: '種子狀態',
+    CA_TORRENT_ATTR: '種子屬性',
     CA_TORRENT_HNR: 'Hit and Run',
     CA_TORRENT_SALE_STATUS: '促銷狀態',
     CA_TORRENT_SALE_NOW: '正在促銷',
     CA_TORRENT_VIP: 'VIP 資源',
+    CA_TORRENT_TOP: '置頂狀態',
+    CA_TORRENT_UNIQUE: '禁轉狀態',
     CA_RESOURCE_TYPE: '資源類別',
     CA_MAKE_RSS_URL: 'RSS連線',
     DESC_MAKE_RSS_URL: '這個 RSS 地址是通過上面的過濾條件生成的，您可以使用支援 RSS 訂閱功能的BT客戶端（如uTorrent）來自動下載您想要的這些種子和資原始檔.',
@@ -364,8 +367,8 @@
     //torrent info
     UNIT_MILLION: '百萬美元',
     UNIT_MITUTE: '分鐘',
-    TMDB_INFO_OK: '裝載 TMDB 電影資訊成功',
-    TMDB_INFO_FAILED: '裝載 TMDB 電影資訊失敗',
+    TMDB_INFO_OK: '載入 TMDB 電影資訊成功',
+    TMDB_INFO_FAILED: '載入 TMDB 電影資訊失敗',
     TAB_TORRENT_INFO: '種子資訊',
     TAB_USER_SUBTITLE: '字幕資訊',
     TAB_THUMBS_LIST: '點贊使用者',
@@ -391,7 +394,10 @@
     UPLOAD_TIME: '上傳時間',
     SALE_EXPIRES_TIME: '過期',
     TORRENT_STATUS_TOP_TITLE: '置頂推薦',
+    TORRENT_STATUS_UNIQUE: '禁轉資源',
+    TORRENT_STATUS_UNIQUE_TITLE: '禁轉資源，禁止轉發',
     STATUS_TOP_KEY: '置頂',
+    STATUS_UNIQUE_KEY: '禁轉',
     UPLOAD_SUBTITLE: '上傳字幕檔案',
     SUBTITLE_LIST: '字幕列表',
     SUBTITLE_RULES: {
@@ -428,6 +434,8 @@
     ADMIN_BASIC_UNSET_VIP: '取消VIP',
     ADMIN_BASIC_SET_TOP: '設為置頂',
     ADMIN_BASIC_UNSET_TOP: '取消置頂',
+    ADMIN_BASIC_SET_UNIQUE: '設為禁轉',
+    ADMIN_BASIC_UNSET_UNIQUE: '取消禁轉',
     ADMIN_BASIC_TYPE_SET: '設定促銷',
     ADMIN_SALE_TYPE_SET: '種子促銷分類',
     ADMIN_BASIC_RLEVEL_SET: '推薦級別',
@@ -438,8 +446,8 @@
     ADMIN_COLLECTION_ADDINTO: '將電影加入到系列',
     LOAD_TMDB_COLLECTION: '正在從 TMDB 讀取電影系列資訊, 請稍候 ...',
     LOAD_TMDB_COLLECTION_ERROR: '從 TMDB 讀取電影系列資訊失敗',
-    LOAD_COLLECTION_LIST: '正在裝載電影系列列表，請稍候 ...',
-    LOAD_COLLECTION_LIST_ERROR: '裝載電影系列列表失敗',
+    LOAD_COLLECTION_LIST: '正在載入電影系列列表，請稍候 ...',
+    LOAD_COLLECTION_LIST_ERROR: '載入電影系列列表失敗',
 
     TORRENT_DELETE_CONFIRM_OK: '刪除',
     TORRENT_DELETE_CONFIRM_CANCEL: '取消',
@@ -471,6 +479,8 @@
     TORRENT_TOGGLE_VIP_FAILED: '改變種子VIP標籤失敗',
     TORRENT_TOGGLE_TOP_SUCCESSFULLY: '改變種子置頂狀態成功',
     TORRENT_TOGGLE_TOP_FAILED: '改變種子置頂狀態失敗',
+    TORRENT_TOGGLE_UNIQUE_SUCCESSFULLY: '改變種子禁轉狀態成功',
+    TORRENT_TOGGLE_UNIQUE_FAILED: '改變種子禁轉狀態失敗',
     TORRENT_SETTAGS_SUCCESSFULLY: '種子屬性標籤設定成功',
     TORRENT_SETTAGS_ERROR: '種子屬性標籤設定失敗',
 
@@ -1036,7 +1046,7 @@
     ADMIN_MESSAGES_SEND: '傳送系統訊息',
     ADMIN_MESSAGES_ALREADY_SEND: '已經傳送的系統訊息',
     MESSAGES_SEND_BUTTON: '傳送',
-    MESSAGES_IS_LOADING: '正在裝載, 請稍候 ...',
+    MESSAGES_IS_LOADING: '正在讀取, 請稍候 ...',
     MESSAGES_IS_EMPTY: '訊息列表為空!',
     OFFICIAL_MESSAGES_TOOLTIP: '<h4>提示：</h4>為了維護一個乾淨的官方訊息列表，請及時將長時間過期的訊息刪除，因為這些訊息在使用者的訊息中心裡不能被單方面清理。',
     MESSAGES_FIELD: {
@@ -1282,7 +1292,7 @@
       FLOOR_POSTER: '樓主',
       ALL_FORUMS: '所有論壇',
       SEARCH_RESULT_LIST: '搜尋結果',
-      SEARCH_LOADING: '正在裝載搜尋結果，請稍候...',
+      SEARCH_LOADING: '正在載入搜尋結果，請稍候...',
       SEARCH_EMPTY: '沒有匹配的搜尋結果',
       SIGNATURE_TAG: '使用者簽名',
 
@@ -1690,6 +1700,9 @@
 
       TITLE_TORRENT_TOP_CHANGED: '上傳的種子 置頂 狀態改變',
       CONTENT_TORRENT_TOP_CHANGED: '### 置頂 狀態改變! \n 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 置頂 狀態已經由管理員使用者 [{{by_name}}](/userinfo/{{by_id}}) 修改, 當前狀態為: **{{top_status}}**.',
+
+      TITLE_TORRENT_UNIQUE_CHANGED: '上傳的種子 禁轉 狀態改變',
+      CONTENT_TORRENT_UNIQUE_CHANGED: '### 禁轉 狀態改變! \n 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 禁轉 狀態已經由管理員使用者 [{{by_name}}](/userinfo/{{by_id}}) 修改, 當前狀態為: **{{unique_status}}**.',
 
       TITLE_TORRENT_SALE_CHANGED: '上傳的種子促銷狀態改變',
       CONTENT_TORRENT_SALE_CHANGED: '### 促銷狀態改變! \n 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 促銷狀態已經由管理員使用者 [{{by_name}}](/userinfo/{{by_id}}) 修改, 當前狀態為: **{{sale_status}}**.',
