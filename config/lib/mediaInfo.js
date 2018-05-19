@@ -62,17 +62,17 @@ module.exports.getMediaInfo = function (nfo) {
    */
   if (!gInfo && !vInfo && !aInfo && !tInfo) {
     minfo = getSimpleGeneralFileSize(nfo, minfo);
+    minfo = getSimpleGeneralReleaseSize(nfo, minfo);
     minfo = getSimpleGeneralDuration(nfo, minfo);
     minfo = getSimpleGeneralRuntime(nfo, minfo);
     minfo = getSimpleVideoBitRate(nfo, minfo);
     minfo = getSimpleVideoFrameRate(nfo, minfo);
     minfo = getSimpleVideoResolution(nfo, minfo);
+    minfo = getSimpleVideoCodec(nfo, minfo);
     minfo = getSimpleAudioInfo(nfo, minfo);
+    minfo = getSimpleAudioCodec(nfo, minfo);
     minfo = getSimpleTextInfo(nfo, minfo);
 
-    minfo = getSimpleGeneralReleaseSize(nfo, minfo);
-    minfo = getSimpleVideoCodec(nfo, minfo);
-    minfo = getSimpleAudioCodec(nfo, minfo);
   }
 
   return minfo;
