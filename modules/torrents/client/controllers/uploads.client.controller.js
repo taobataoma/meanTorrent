@@ -347,6 +347,8 @@
         //replace other pt site prefix
         title = title.replace(/\{([a-zA-Z0-9\_\-\.\s]){2,10}\}[\.|\s]*/gi, '');
         title = title.replace(/.torrent/g, '');
+        title = title.replace(/[\.|\s]*mp4$/i, '');
+        title = title.replace(/[\.|\s]*mkv$/i, '');
 
         // var re = /((?:^|\D)\d\.\d(?=\D|$))|\./g;
         var re = /[0-9]\.[0-9]\b|(\.)/g;
