@@ -700,7 +700,7 @@
                                                 </span>
                                                 <span ng-if="key=='text'" ng-repeat="lang in subValue">
                                                     <span class="flag-group">
-                                                        <span class="flag-icon {{vm.mediaInfoConfig.subtitles.flag[lang].class}}"></span>{{lang}}
+                                                        <span class="flag-icon {{vm.mediaInfoConfig.subtitles.flag[lang.toLowerCase()].class}}"></span>{{lang}}
                                                     </span>
                                                 </span>
                                             </div>

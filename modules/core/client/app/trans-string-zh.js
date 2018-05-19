@@ -1604,7 +1604,7 @@
       VIDEO: {
         SELF: '视频信息',
         FORMAT: '格式',
-        Duration: '时长',
+        DURATION: '时长',
         BITRATE: '码率',
         WIDTH: '分辨率.宽',
         HEIGHT: '分辨率.高',
