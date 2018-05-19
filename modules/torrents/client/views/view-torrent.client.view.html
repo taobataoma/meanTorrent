@@ -674,7 +674,7 @@
                     </div>
                 </dd>
 
-                <dt class="h-line">{{ 'VIDEO_NFO' | translate}}：</dt>
+                <dt class="h-line margin-top-15">{{ 'VIDEO_NFO' | translate}}：</dt>
                 <dd ng-if="vm.torrentLocalInfo.torrent_nfo.length>0">
                     <div class="row" ng-if="!vm.mediaInfoEditMode">
                         <div class="col-md-10">
@@ -688,7 +688,7 @@
                                             {{'MEDIAINFO.'+key.toUpperCase()+'.'+subKey.toUpperCase() | translate}}:
                                         </dt>
                                         <dd ng-repeat-end>
-                                            <div ng-if="subKey!='info' && subKey!='language'">
+                                            <div ng-if="subKey!='info' && subKey!='language' && subKey!='codec'">
                                                 <div>{{subValue}}</div>
                                             </div>
                                             <div ng-if="subKey=='info'" ng-repeat="ifo in subValue track by $index">
@@ -702,6 +702,14 @@
                                                     <span class="flag-group">
                                                         <span class="flag-icon {{vm.mediaInfoConfig.subtitles.flag[lang.toLowerCase()].class}}"></span>{{lang}}
                                                     </span>
+                                                </span>
+                                            </div>
+                                            <div ng-if="subKey=='codec'">
+                                                <span ng-if="key=='video'">
+                                                    <div>{{subValue}}</div>
+                                                </span>
+                                                <span ng-if="key=='audio'" ng-repeat="co in subValue">
+                                                    <div>{{co}}</div>
                                                 </span>
                                             </div>
                                         </dd>
