@@ -47,6 +47,7 @@
     vm.releaseYear = undefined;
     vm.filterHnR = false;
     vm.filterTop = false;
+    vm.filterUnique = false;
     vm.filterSale = false;
     vm.torrentRLevel = 'level0';
 
@@ -288,7 +289,8 @@
         torrent_tags: vm.searchTags,
         torrent_hnr: vm.filterHnR,
         torrent_sale: vm.filterSale,
-        isTop: vm.filterTop
+        isTop: vm.filterTop,
+        isUnique: vm.filterUnique
       }, function (data) {
         mtDebug.info(data);
         callback(data);

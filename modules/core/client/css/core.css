@@ -91,3 +91,7 @@ a:hover .header-profile-image {
 .dl-horizontal .h-line .checkbox-inline {
     min-width: 150px;
 }
+
+.tags-dl .checkbox-inline {
+    min-width: 100px !important;
+}

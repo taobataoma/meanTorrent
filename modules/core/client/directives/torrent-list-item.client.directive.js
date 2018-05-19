@@ -120,7 +120,7 @@
         };
 
         /**
-         * onVIPClicked, onVIPChanged
+         * onVIPClicked
          */
         vm.onVIPClicked = function () {
           $scope.parent.filterVIP = !$scope.parent.filterVIP;
@@ -129,10 +129,18 @@
         };
 
         /**
-         * onTopClicked, onTopChanged
+         * onTopClicked
          */
         vm.onTopClicked = function () {
           $scope.parent.filterTop = !$scope.parent.filterTop;
+          buildPager();
+        };
+
+        /**
+         * onUniqueClicked
+         */
+        vm.onUniqueClicked = function () {
+          $scope.parent.filterUnique = !$scope.parent.filterUnique;
           buildPager();
         };
 
@@ -146,6 +154,19 @@
             NotifycationService.showSuccessNotify('TORRENT_TOGGLE_TOP_SUCCESSFULLY');
           }, function (res) {
             NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_TOP_FAILED');
+          });
+        };
+
+        /**
+         * toggleTop
+         */
+        vm.toggleUnique = function (item) {
+          var dt = new TorrentsService(item);
+          dt.$toggleUniqueStatus(function (res) {
+            $scope.list[$scope.list.indexOf(item)] = res;
+            NotifycationService.showSuccessNotify('TORRENT_TOGGLE_UNIQUE_SUCCESSFULLY');
+          }, function (res) {
+            NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_UNIQUE_FAILED');
           });
         };
 

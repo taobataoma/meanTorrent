@@ -342,11 +342,13 @@
     TAGS_SEARCH_GLOBAL: '种子搜索 - 全局',
     CA_KEYWORD: '关键字',
     CA_TORRENT_STATUS: '种子状态',
+    CA_TORRENT_ATTR: '种子属性',
     CA_TORRENT_HNR: 'H&R 黑种',
     CA_TORRENT_SALE_STATUS: '促销状态',
     CA_TORRENT_SALE_NOW: '正在促销',
     CA_TORRENT_VIP: 'VIP 资源',
     CA_TORRENT_TOP: '置顶状态',
+    CA_TORRENT_UNIQUE: '独占状态',
     CA_RESOURCE_TYPE: '资源类型',
     CA_MAKE_RSS_URL: 'RSS连接',
     DESC_MAKE_RSS_URL: '这个 RSS 地址是通过上面的过滤条件生成的，您可以使用支持 RSS 订阅功能的BT客户端（如uTorrent）来自动下载您想要的这些种子和资源文件.',
@@ -392,7 +394,10 @@
     UPLOAD_TIME: '上传时间',
     SALE_EXPIRES_TIME: '过期',
     TORRENT_STATUS_TOP_TITLE: '置顶推荐',
+    TORRENT_STATUS_UNIQUE: '独占资源',
+    TORRENT_STATUS_UNIQUE_TITLE: '独占资源，禁止转发',
     STATUS_TOP_KEY: '置顶',
+    STATUS_UNIQUE_KEY: '独占',
     UPLOAD_SUBTITLE: '上传字幕文件',
     SUBTITLE_LIST: '字幕列表',
     SUBTITLE_RULES: {
@@ -429,6 +434,8 @@
     ADMIN_BASIC_UNSET_VIP: '取消VIP',
     ADMIN_BASIC_SET_TOP: '设为置顶',
     ADMIN_BASIC_UNSET_TOP: '取消置顶',
+    ADMIN_BASIC_SET_UNIQUE: '设为独占',
+    ADMIN_BASIC_UNSET_UNIQUE: '取消独占',
     ADMIN_BASIC_TYPE_SET: '设置促销',
     ADMIN_SALE_TYPE_SET: '种子促销类型',
     ADMIN_BASIC_RLEVEL_SET: '推荐级别',
@@ -472,6 +479,8 @@
     TORRENT_TOGGLE_VIP_FAILED: '改变种子VIP标签失败',
     TORRENT_TOGGLE_TOP_SUCCESSFULLY: '改变种子置顶状态成功',
     TORRENT_TOGGLE_TOP_FAILED: '改变种子置顶状态失败',
+    TORRENT_TOGGLE_UNIQUE_SUCCESSFULLY: '改变种子独占状态成功',
+    TORRENT_TOGGLE_UNIQUE_FAILED: '改变种子独占状态失败',
     TORRENT_SETTAGS_SUCCESSFULLY: '种子属性标签设置成功',
     TORRENT_SETTAGS_ERROR: '种子属性标签设置失败',
 
@@ -1691,6 +1700,9 @@
 
       TITLE_TORRENT_TOP_CHANGED: '上传的种子 置顶 状态改变',
       CONTENT_TORRENT_TOP_CHANGED: '### 置顶 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 置顶 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{top_status}}**.',
+
+      TITLE_TORRENT_UNIQUE_CHANGED: '上传的种子 独占 状态改变',
+      CONTENT_TORRENT_UNIQUE_CHANGED: '### 独占 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 独占 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{unique_status}}**.',
 
       TITLE_TORRENT_SALE_CHANGED: '上传的种子促销状态改变',
       CONTENT_TORRENT_SALE_CHANGED: '### 促销状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 促销状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{sale_status}}**.',

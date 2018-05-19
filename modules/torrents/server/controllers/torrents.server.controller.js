@@ -972,6 +972,38 @@ exports.toggleTOPStatus = function (req, res) {
 };
 
 /**
+ * toggleUniqueStatus
+ * @param req
+ * @param res
+ */
+exports.toggleUniqueStatus = function (req, res) {
+  var torrent = req.torrent;
+
+  torrent.isUnique = !torrent.isUnique;
+
+  torrent.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(torrent);
+
+      //add server message
+      if (serverNoticeConfig.action.torrentUniqueChanged.enable) {
+        serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.torrentUniqueChanged.title, serverNoticeConfig.action.torrentUniqueChanged.content, {
+          torrent_file_name: torrent.torrent_filename,
+          torrent_id: torrent._id,
+          by_name: req.user.displayName,
+          by_id: req.user._id,
+          unique_status: torrent.isUnique ? 'ON' : 'OFF'
+        });
+      }
+    }
+  });
+};
+
+/**
  * removeTorrentHnRWarning
  * @param torrent
  */
@@ -1513,6 +1545,7 @@ exports.list = function (req, res) {
   var newest = false;
   var hnr = false;
   var top = false;
+  var unique = false;
   var sale = false;
   var vip = undefined;
   var release = undefined;
@@ -1550,6 +1583,9 @@ exports.list = function (req, res) {
   }
   if (req.query.isTop !== undefined) {
     top = (req.query.isTop === 'true');
+  }
+  if (req.query.isUnique !== undefined) {
+    unique = (req.query.isUnique === 'true');
   }
   if (req.query.torrent_sale !== undefined) {
     sale = (req.query.torrent_sale === 'true');
@@ -1611,6 +1647,9 @@ exports.list = function (req, res) {
   if (top === true) {
     condition.isTop = true;
     sort = {topedat: -1, createdat: -1};
+  }
+  if (unique === true) {
+    condition.isUnique = true;
   }
   if (sale === true) {
     condition.torrent_sale_status = {

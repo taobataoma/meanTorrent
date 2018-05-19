@@ -653,6 +653,9 @@
                               class="label torrent-top">{{'STATUS_TOP_KEY' | translate}}
                         </span>
 
+                        <span class="label label-unique-info" title="{{'TORRENT_STATUS_UNIQUE_TITLE' | translate}}"
+                              ng-if="vm.torrentLocalInfo.isUnique">{{'STATUS_UNIQUE_KEY' | translate}}</span>
+
                         <span ng-repeat="t in vm.torrentLocalInfo.torrent_tags">
                             <span class="label label-tag" ng-if="vm.RTS.tagInList(t);">
                                 {{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
@@ -926,6 +929,12 @@
                                         <span class="label label-hnr-info" ng-if="item.torrent_hnr"
                                               ng-click="$event.stopPropagation();">H&R</span>
 
+                                        <span title="{{ 'TORRENT_STATUS_TOP_TITLE' | translate}}" ng-if="item.isTop"
+                                              class="label torrent-top">{{'STATUS_TOP_KEY' | translate}}</span>
+
+                                        <span class="label label-unique-info" title="{{'TORRENT_STATUS_UNIQUE_TITLE' | translate}}"
+                                              ng-if="item.isUnique">{{'STATUS_UNIQUE_KEY' | translate}}</span>
+
                                         <span ng-repeat="t in item.torrent_tags">
                                             <span class="label label-tag" ng-if="vm.RTS.tagInList(t);" ng-click="$event.stopPropagation();">
                                                 {{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
@@ -1060,6 +1069,9 @@
                     </button>
                     <button class="btn btn-default btn-sm"
                             ng-click="vm.toggleTop();">{{ (vm.torrentLocalInfo.isTop ? 'ADMIN_BASIC_UNSET_TOP' : 'ADMIN_BASIC_SET_TOP') | translate}}
+                    </button>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="vm.toggleUnique();">{{ (vm.torrentLocalInfo.isUnique ? 'ADMIN_BASIC_UNSET_UNIQUE' : 'ADMIN_BASIC_SET_UNIQUE') | translate}}
                     </button>
                     <button class="btn btn-default btn-sm"
                             ng-click="vm.editTags($event);">{{ 'ADMIN_BASIC_EDIT_TAGS' | translate}}

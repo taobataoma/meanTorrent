@@ -342,11 +342,13 @@
     TAGS_SEARCH_GLOBAL: 'Tags Search - Global',
     CA_KEYWORD: 'Keyword',
     CA_TORRENT_STATUS: 'Torrent status',
+    CA_TORRENT_ATTR: 'Torrent attribute',
     CA_TORRENT_HNR: 'Hit and Run',
     CA_TORRENT_SALE_STATUS: 'Sale Status',
     CA_TORRENT_SALE_NOW: 'Saling',
     CA_TORRENT_VIP: 'VIP resources',
     CA_TORRENT_TOP: 'Top Status',
+    CA_TORRENT_UNIQUE: 'Unique Status',
     CA_RESOURCE_TYPE: 'Resource type',
     CA_MAKE_RSS_URL: 'Rss Url',
     DESC_MAKE_RSS_URL: 'This RSS url is make with above filter conditions, you can used it in the BT client (such as uTorrent) that supports the RSS subscription function to download torrent and resources automatic.',
@@ -392,7 +394,10 @@
     UPLOAD_TIME: 'Upload Time',
     SALE_EXPIRES_TIME: 'expires',
     TORRENT_STATUS_TOP_TITLE: 'Top Level',
+    TORRENT_STATUS_UNIQUE: 'Unique resource',
+    TORRENT_STATUS_UNIQUE_TITLE: 'Unique resource, no transfer',
     STATUS_TOP_KEY: 'TOP',
+    STATUS_UNIQUE_KEY: 'UNIQUE',
     UPLOAD_SUBTITLE: 'Upload Subtitle file',
     SUBTITLE_LIST: 'Subtitle list',
     SUBTITLE_RULES: {
@@ -429,6 +434,8 @@
     ADMIN_BASIC_UNSET_VIP: 'UnsetVIP',
     ADMIN_BASIC_SET_TOP: 'SetTop',
     ADMIN_BASIC_UNSET_TOP: 'UnsetTop',
+    ADMIN_BASIC_SET_UNIQUE: 'SetUnique',
+    ADMIN_BASIC_UNSET_UNIQUE: 'UnsetUnique',
     ADMIN_BASIC_TYPE_SET: 'Sale Type',
     ADMIN_SALE_TYPE_SET: 'Sale Type Set',
     ADMIN_BASIC_RLEVEL_SET: 'Recommend Level',
@@ -1691,6 +1698,9 @@
 
       TITLE_TORRENT_TOP_CHANGED: 'Torrent TOP status changed',
       CONTENT_TORRENT_TOP_CHANGED: '### TOP status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) TOP status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{top_status}}**.',
+
+      TITLE_TORRENT_UNIQUE_CHANGED: 'Torrent Unique status changed',
+      CONTENT_TORRENT_UNIQUE_CHANGED: '### Unique status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) Unique status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{unique_status}}**.',
 
       TITLE_TORRENT_SALE_CHANGED: 'Torrent sale status changed',
       CONTENT_TORRENT_SALE_CHANGED: '### Sale status changed! \n You uploaded torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) sale status was changed by user [{{by_name}}](/userinfo/{{by_id}}), current status is **{{sale_status}}**.',

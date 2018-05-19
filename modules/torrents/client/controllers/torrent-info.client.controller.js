@@ -208,6 +208,19 @@
     };
 
     /**
+     * toggleUnique
+     */
+    vm.toggleUnique = function (item) {
+      vm.torrentLocalInfo.$toggleUniqueStatus(function (res) {
+        mtDebug.info(res);
+        vm.torrentLocalInfo = res;
+        NotifycationService.showSuccessNotify('TORRENT_TOGGLE_UNIQUE_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_UNIQUE_FAILED');
+      });
+    };
+
+    /**
      * editTags
      * @param evt
      */

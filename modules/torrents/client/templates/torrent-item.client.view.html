@@ -86,6 +86,10 @@
                           class="label torrent-top">{{'STATUS_TOP_KEY' | translate}}
                     </span>
 
+                    <span class="label label-unique-info" title="{{'TORRENT_STATUS_UNIQUE_TITLE' | translate}}"
+                          ng-if="item.isUnique" ng-class="{'used': parent.filterUnique}"
+                          ng-click="vm.onUniqueClicked(); $event.stopPropagation();">{{'STATUS_UNIQUE_KEY' | translate}}</span>
+
                     <span torrent-file-link-label="item" torrent-user="vm.user" info-class="label label-torrent-link"></span>
 
                     <span class="label upload-by" ng-if="vm.showByLabel()">by:
@@ -266,8 +270,11 @@
                 </div>
             </div>
             <div class="margin-top-2">
-                <button class="btn btn-xs btn-default btn-block" ng-click="vm.toggleTop(item); $event.stopPropagation();">
+                <button class="btn col-xs-6 btn-xs btn-default" ng-click="vm.toggleTop(item); $event.stopPropagation();">
                     {{ (item.isTop ? 'ADMIN_BASIC_UNSET_TOP' : 'ADMIN_BASIC_SET_TOP') | translate}}
+                </button>
+                <button class="btn col-xs-6 btn-xs btn-default" ng-click="vm.toggleUnique(item); $event.stopPropagation();">
+                    {{ (item.isUnique ? 'ADMIN_BASIC_UNSET_UNIQUE' : 'ADMIN_BASIC_SET_UNIQUE') | translate}}
                 </button>
             </div>
         </div>

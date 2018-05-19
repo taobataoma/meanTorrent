@@ -128,6 +128,10 @@ var TorrentSchema = new Schema({
     type: Boolean,
     default: false
   },
+  isUnique: {
+    type: Boolean,
+    default: false
+  },
   isAnonymous: {
     type: Boolean,
     default: false
