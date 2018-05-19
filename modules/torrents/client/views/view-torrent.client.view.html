@@ -680,7 +680,7 @@
                         <div class="col-md-10">
                             <div class="media-info-formated">
                                 <legend ng-repeat-start="(key, value)  in vm.torrentLocalInfo.torrent_media_info track by $index">
-                                    {{'MEDIAINFO.'+key.toUpperCase()+'.SELF' | translate}}:
+                                    {{'MEDIAINFO.'+key.toUpperCase()+'.SELF' | translate}}
                                 </legend>
                                 <div class="info-value" ng-repeat-end>
                                     <dl class="dl-horizontal dl-media-info">
@@ -691,19 +691,19 @@
                                             <div ng-if="subKey!='info' && subKey!='language' && subKey!='codec'">
                                                 <div>{{subValue}}</div>
                                             </div>
+
                                             <div ng-if="subKey=='info'" ng-repeat="ifo in subValue track by $index">
                                                 <div>{{ifo}}</div>
                                             </div>
+
                                             <div ng-if="subKey=='language'">
-                                                <span ng-if="key=='audio'" ng-repeat="lang in subValue">
-                                                    <div>{{lang}}</div>
-                                                </span>
-                                                <span ng-if="key=='text'" ng-repeat="lang in subValue">
+                                                <span ng-repeat="lang in subValue">
                                                     <span class="flag-group">
                                                         <span class="flag-icon {{vm.mediaInfoConfig.subtitles.flag[lang.toLowerCase()].class}}"></span>{{lang}}
                                                     </span>
                                                 </span>
                                             </div>
+
                                             <div ng-if="subKey=='codec'">
                                                 <span ng-if="key=='video'">
                                                     <div>{{subValue}}</div>

@@ -1596,10 +1596,10 @@
     MEDIAINFO: {
       GENERAL: {
         SELF: '资源通用信息',
-        FILESIZE: '资源总体积',
-        RUNTIME: '资源总时长',
-        DURATION: '资源总时长',
-        OVERALLBITRATE: '资源总码率'
+        FILESIZE: '总体积',
+        RUNTIME: '总时长',
+        DURATION: '总时长',
+        OVERALLBITRATE: '总码率'
       },
       VIDEO: {
         SELF: '视频信息',
