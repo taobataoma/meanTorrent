@@ -382,6 +382,10 @@
     TORRENT_RATING_SUCCESSFULLY: '为种子投票成功',
     TORRENT_RATING_FAILED: '为种子投票失败',
     EDIT_THIS_OVERVIEW: '编辑详情介绍',
+    EDIT_THIS_MEDIA_INFO: '编辑媒体信息',
+    SAVE_THIS_MEDIA_INFO: '保存媒体信息',
+    EDIT_TORRENT_NFO_SUCCESSFULLY: '种子媒体信息编辑成功',
+    EDIT_TORRENT_NFO_FAILED: '种子媒体信息编辑失败',
     IMG_PAGE_INFO: '当前页: {{index}} / {{total}}',
 
     ANNOUNCE_URL: 'Tracker 地址',
@@ -1586,6 +1590,45 @@
         IOS: 'iOS',
         ANDROID: 'Android',
         CAR: 'Car'
+      }
+    },
+
+    MEDIAINFO: {
+      GENERAL: {
+        SELF: '资源通用信息',
+        FILESIZE: '资源总体积',
+        RUNTIME: '资源总时长',
+        DURATION: '资源总时长',
+        OVERALLBITRATE: '资源总码率'
+      },
+      VIDEO: {
+        SELF: '视频信息',
+        FORMAT: '格式',
+        Duration: '时长',
+        BITRATE: '码率',
+        WIDTH: '分辨率.宽',
+        HEIGHT: '分辨率.高',
+        FRAMERATEMODE: '帧率模式',
+        FRAMERATE: '帧率',
+        BITDEPTH: '位深',
+        STREAMSIZE: '体积',
+        WRITINGLIBRARY: '编码方式',
+        RESOLUTION: '分辨率',
+        CODEC: '编码'
+      },
+      AUDIO: {
+        SELF: '音频信息',
+        FORMAT: '格式',
+        BITRATEMODE: '码率模式',
+        BITRATE: '码率',
+        CHANNEL: '声道',
+        LANGUAGE: '音轨',
+        INFO: '音轨信息',
+        CODEC: '编码'
+      },
+      TEXT: {
+        SELF: '字幕信息',
+        LANGUAGE: '语言'
       }
     },
 

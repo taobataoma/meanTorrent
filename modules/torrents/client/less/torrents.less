@@ -217,6 +217,55 @@ pre.prettyprint {
     }
 }
 
+.media-info-formated {
+    background-color: #fcfcfc;
+    border: solid 1px #f1f1f1;
+    border-radius: 4px;
+    padding: 10px 20px;
+    legend {
+        font-size: 13px;
+        font-weight: 400;
+        color: #7a7a7a;
+        margin-bottom: 6px;
+    }
+    .info-key {
+        width: 120px;
+        text-align: right;
+        color: #2a2a2a;
+    }
+    .info-value {
+        color: #7a7a7a;
+        font-size: 12px;
+    }
+    .flag-group {
+        font-family: monospace, 'Courier New';
+        padding: 4px 5px 2px 5px;
+        border: solid 1px #ccc;
+        display: inline-block;
+        margin-bottom: 3px;
+        margin-right: 5px;
+        .flag-icon {
+            font-size: 18px;
+            margin-right: 5px;
+        }
+    }
+}
+
+.dl-media-info {
+    margin-bottom: 10px;
+    dt {
+        color: #2a2a2a;
+        @media (min-width: @screen-sm-min) {
+            width: 120px;
+        }
+    }
+    dd {
+        @media (min-width: @screen-sm-min) {
+            margin-left: 140px;
+        }
+    }
+}
+
 /* csslint ignore:end */
 
 //popup overlay----------------------------------------------

@@ -1358,6 +1358,24 @@ module.exports = {
     ],
 
     /**
+     * @mediaInfo
+     *
+     * mediaInfo settings
+     *
+     * @subtitle:         subtitles of media info
+     *    @flag:          flag icon class, can find flag icon at '/public/lib/flag-icon-css/flags'
+     */
+    mediaInfo: {
+      subtitles: {
+        flag: {
+          chs: {class: 'flag-icon-cn'},
+          cht: {class: 'flag-icon-tw'},
+          eng: {class: 'flag-icon-gb'}
+        }
+      }
+    },
+
+    /**
      * @resourcesTags
      *
      * resources search tags settings, can configure more tags of torrentType at here

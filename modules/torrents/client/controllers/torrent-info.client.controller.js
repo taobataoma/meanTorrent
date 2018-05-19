@@ -31,6 +31,9 @@
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
+    vm.mediaInfoConfig = MeanTorrentConfig.meanTorrentConfig.mediaInfo;
+
+    vm.mediaInfoEditMode = false;
 
     vm.torrentTabs = [];
     vm.searchTags = [];
@@ -1504,9 +1507,19 @@
         _id: vm.torrentLocalInfo._id,
         torrent_nfo: vm.torrentLocalInfo.torrent_nfo
       }, function (res) {
-        console.log('updateTorrentNfo successfully');
-        console.log(res);
+        vm.torrentLocalInfo = res;
+        NotifycationService.showSuccessNotify('EDIT_TORRENT_NFO_SUCCESSFULLY');
+        vm.mediaInfoEditMode = false;
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'EDIT_TORRENT_NFO_FAILED');
       });
+    };
+
+    /**
+     * doEditMediaInfo
+     */
+    vm.doEditMediaInfo = function () {
+      vm.mediaInfoEditMode = true;
     };
   }
 }());

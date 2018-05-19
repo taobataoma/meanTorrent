@@ -675,10 +675,60 @@
                 </dd>
 
                 <dt class="h-line" ng-if="vm.torrentLocalInfo.torrent_nfo.length>0">{{ 'VIDEO_NFO' | translate}}：</dt>
-                <dd class="h-line" ng-if="vm.torrentLocalInfo.torrent_nfo.length>0">
-                    <div class="row">
+                <dd ng-if="vm.torrentLocalInfo.torrent_nfo.length>0">
+                    <div class="row" ng-if="!vm.mediaInfoEditMode">
+                        <div class="col-md-10">
+                            <div class="media-info-formated">
+                                <legend ng-repeat-start="(key, value)  in vm.torrentLocalInfo.torrent_media_info track by $index">
+                                    {{'MEDIAINFO.'+key.toUpperCase()+'.SELF' | translate}}:
+                                </legend>
+                                <div class="info-value" ng-repeat-end>
+                                    <dl class="dl-horizontal dl-media-info">
+                                        <dt ng-repeat-start="(subKey, subValue) in value">
+                                            {{'MEDIAINFO.'+key.toUpperCase()+'.'+subKey.toUpperCase() | translate}}:
+                                        </dt>
+                                        <dd ng-repeat-end>
+                                            <div ng-if="subKey!='info' && subKey!='language'">
+                                                <div>{{subValue}}</div>
+                                            </div>
+                                            <div ng-if="subKey=='info'" ng-repeat="ifo in subValue track by $index">
+                                                <div>{{ifo}}</div>
+                                            </div>
+                                            <div ng-if="subKey=='language'">
+                                                <span ng-if="key=='audio'" ng-repeat="lang in subValue">
+                                                    <div>{{lang}}</div>
+                                                </span>
+                                                <span ng-if="key=='text'" ng-repeat="lang in subValue">
+                                                    <span class="flag-group">
+                                                        <span class="flag-icon {{vm.mediaInfoConfig.subtitles.flag[lang].class}}"></span>{{lang}}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-success"
+                                        base-class="btn-mt-o-success"
+                                        ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
+                                        ng-click="vm.doEditMediaInfo()">
+                                    {{'EDIT_THIS_MEDIA_INFO' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="vm.mediaInfoEditMode">
                         <div class="col-md-10">
                             <textarea class="form-control video-nfo margin-top-10" rows="15" ng-model="vm.torrentLocalInfo.torrent_nfo"></textarea>
+                            <div>
+                                <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-success"
+                                        base-class="btn-mt-o-success"
+                                        ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
+                                        ng-click="vm.updateTorrentNfo()">
+                                    {{'SAVE_THIS_MEDIA_INFO' | translate}}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </dd>
@@ -689,7 +739,6 @@
                         <button class="btn btn-success btn-width-100" ng-click="vm.DLS.downloadTorrent(vm.torrentLocalInfo._id)"
                                 translate="DOWNLOAD_TORRENT"></button>
                         <span torrent-file-link-button="vm.torrentLocalInfo" torrent-user="vm.user" info-class="btn-default"></span>
-                        <!--<button class="btn btn-default btn-width-100" ng-click="vm.updateTorrentNfo()">Update MediaInfo</button>-->
                     </div>
                 </dd>
             </dl>

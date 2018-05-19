@@ -381,7 +381,11 @@
     TORRENT_THUMBS_FAILED: 'Thumbs-up for torrent failed',
     TORRENT_RATING_SUCCESSFULLY: 'Rating torrent successfully',
     TORRENT_RATING_FAILED: 'Rating torrent failed',
-    EDIT_THIS_OVERVIEW: 'Edit this Overview',
+    EDIT_THIS_OVERVIEW: 'Edit this overview',
+    EDIT_THIS_MEDIA_INFO: 'Edit this media info',
+    SAVE_THIS_MEDIA_INFO: 'Save this media info',
+    EDIT_TORRENT_NFO_SUCCESSFULLY: 'Torrent media info edited successfully',
+    EDIT_TORRENT_NFO_FAILED: 'Torrent media info edited failed',
     IMG_PAGE_INFO: 'Current: {{index}} / {{total}}',
 
     ANNOUNCE_URL: 'Announce Url',
@@ -479,6 +483,8 @@
     TORRENT_TOGGLE_VIP_FAILED: 'Torrent toggle VIP tag failed',
     TORRENT_TOGGLE_TOP_SUCCESSFULLY: 'Torrent toggle TOP tag successfully',
     TORRENT_TOGGLE_TOP_FAILED: 'Torrent toggle TOP tag failed',
+    TORRENT_TOGGLE_UNIQUE_SUCCESSFULLY: 'Torrent toggle Unique tag successfully',
+    TORRENT_TOGGLE_UNIQUE_FAILED: 'Torrent toggle Unique tag failed',
     TORRENT_SETTAGS_SUCCESSFULLY: 'Torrent tags set successfully',
     TORRENT_SETTAGS_ERROR: 'Torrent tags set failed',
 
@@ -1584,6 +1590,45 @@
         IOS: 'iOS',
         ANDROID: 'Android',
         CAR: 'Car'
+      }
+    },
+
+    MEDIAINFO: {
+      GENERAL: {
+        SELF: 'General Info',
+        FILESIZE: 'File Size',
+        RUNTIME: 'Runtime',
+        DURATION: 'Duration',
+        OVERALLBITRATE: 'Overall Bit Rate'
+      },
+      VIDEO: {
+        SELF: 'Video Info',
+        FORMAT: 'Format',
+        Duration: 'Duration',
+        BITRATE: 'Bit Rate',
+        WIDTH: 'Width',
+        HEIGHT: 'Height',
+        FRAMERATEMODE: 'Frame Rate Mode',
+        FRAMERATE: 'Frame Rate',
+        BITDEPTH: 'Bit Depth',
+        STREAMSIZE: 'Stream Size',
+        WRITINGLIBRARY: 'Writing Library',
+        RESOLUTION: 'Resolution',
+        CODEC: 'Video Codec'
+      },
+      AUDIO: {
+        SELF: 'Audio Info',
+        FORMAT: 'Format',
+        BITRATEMODE: 'Bit Rate Mode',
+        BITRATE: 'Bit Rate',
+        CHANNEL: 'Channel',
+        LANGUAGE: 'Language',
+        INFO: 'Audio Info',
+        CODEC: 'Codec'
+      },
+      TEXT: {
+        SELF: 'Subtitle Info',
+        LANGUAGE: 'Language'
       }
     },
 
