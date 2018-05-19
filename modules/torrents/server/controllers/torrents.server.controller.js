@@ -849,6 +849,14 @@ exports.update = function (req, res) {
     torrent.torrent_nfo = req.body.torrent_nfo;
     torrent.torrent_media_info = mediaInfo.getMediaInfo(req.body.torrent_nfo);
   }
+  if (req.body.hasOwnProperty('custom_title')) {
+    torrent.resource_detail_info.custom_title = req.body.custom_title;
+    torrent.markModified('resource_detail_info');
+  }
+  if (req.body.hasOwnProperty('custom_subtitle')) {
+    torrent.resource_detail_info.custom_subtitle = req.body.custom_subtitle;
+    torrent.markModified('resource_detail_info');
+  }
 
   torrent.save(function (err) {
     if (err) {

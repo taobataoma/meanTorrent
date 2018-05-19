@@ -95,6 +95,11 @@
      * $watch 'vm.torrentLocalInfo'
      */
     $scope.$watch('vm.torrentLocalInfo', function (newValue, oldValue) {
+      if(vm.torrentLocalInfo) {
+        vm.torrentLocalInfo.resource_detail_info.custom_title = vm.TGI.getTorrentCustomTitle(vm.torrentLocalInfo);
+        vm.torrentLocalInfo.resource_detail_info.custom_subtitle = vm.TGI.getTorrentCustomSubTitle(vm.torrentLocalInfo);
+      }
+
       if (vm.torrentLocalInfo && vm.torrentLocalInfo._replies) {
         var hasme = false;
         var meitem = null;
@@ -517,13 +522,13 @@
             }
           ]
         },
-        {
-          icon: 'fa-user-md',
-          title: $translate.instant('TAB_MY_PANEL'),
-          templateUrl: 'myPanel.html',
-          ng_show: vm.torrentLocalInfo.isCurrentUserOwner,
-          badges: []
-        },
+        // {
+        //   icon: 'fa-user-md',
+        //   title: $translate.instant('TAB_MY_PANEL'),
+        //   templateUrl: 'myPanel.html',
+        //   ng_show: vm.torrentLocalInfo.isCurrentUserOwner,
+        //   badges: []
+        // },
         {
           icon: 'fa-cog',
           title: $translate.instant('TAB_ADMIN_PANEL'),
@@ -1009,6 +1014,69 @@
         .then(function (result) {
           vm.getResourceInfo(vm.torrentLocalInfo.resource_detail_info.id);
         });
+    };
+
+    /**
+     * isOwner
+     * @param o, topic or reply
+     * @returns {boolean}
+     */
+    vm.isOwner = function (o) {
+      if (o) {
+        if (o.isCurrentUserOwner) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    };
+
+    /**
+     * canEdit
+     * @returns {boolean}
+     */
+    vm.canEdit = function () {
+      if (vm.user.isOper) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    /**
+     * onTorrentTitleEdited
+     */
+    $scope.onTorrentTitleEdited = function (modifyed) {
+      if (vm.torrentLocalInfo && modifyed) {
+        TorrentsService.update({
+          _id: vm.torrentLocalInfo._id,
+          custom_title: vm.torrentLocalInfo.resource_detail_info.custom_title
+        }, function (res) {
+          vm.torrentLocalInfo = res;
+          NotifycationService.showSuccessNotify('TORRENT_UPDATE_SUCCESSFULLY');
+        }, function (res) {
+          NotifycationService.showErrorNotify(res.data.message, 'TORRENT_UPDATE_ERROR');
+        });
+      }
+    };
+
+    /**
+     * onTorrentSubTitleEdited
+     */
+    $scope.onTorrentSubTitleEdited = function (modifyed) {
+      if (vm.torrentLocalInfo && modifyed) {
+        TorrentsService.update({
+          _id: vm.torrentLocalInfo._id,
+          custom_subtitle: vm.torrentLocalInfo.resource_detail_info.custom_subtitle
+        }, function (res) {
+          vm.torrentLocalInfo = res;
+          NotifycationService.showSuccessNotify('TORRENT_UPDATE_SUCCESSFULLY');
+        }, function (res) {
+          NotifycationService.showErrorNotify(res.data.message, 'TORRENT_UPDATE_ERROR');
+        });
+      }
     };
 
     /**

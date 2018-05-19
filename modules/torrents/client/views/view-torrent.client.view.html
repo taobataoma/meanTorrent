@@ -579,13 +579,27 @@
             </span>
 
             <dl class="dl-horizontal" style="margin-bottom: 0;">
+                <dt class="h-line">{{ 'RESOURCE_TITLE' | translate}}：</dt>
+                <dd class="h-line">
+                    <span class="text-bold" editable-line readonly="!vm.canEdit() && !vm.isOwner(vm.torrentLocalInfo)"
+                          ng-model="vm.torrentLocalInfo.resource_detail_info.custom_title"
+                          callback="onTorrentTitleEdited"></span>
+                </dd>
+
+                <dt class="h-line">{{ 'RESOURCE_SUB_TITLE' | translate}}：</dt>
+                <dd class="h-line">
+                    <span class="text-bold" editable-line readonly="!vm.canEdit() && !vm.isOwner(vm.torrentLocalInfo)"
+                          ng-model="vm.torrentLocalInfo.resource_detail_info.custom_subtitle"
+                          callback="onTorrentSubTitleEdited"></span>
+                </dd>
+
                 <dt class="h-line">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}：</dt>
                 <dd class="h-line">
                     <span ng-if="!vm.torrentLocalInfo.isAnonymous" user-info="vm.torrentLocalInfo.user" info-name></span>
                     <span ng-if="vm.torrentLocalInfo.isAnonymous">{{ 'ANONYMOUS' | translate }}</span>
                     <span maker-info="vm.torrentLocalInfo.maker"></span>
                     <!--<span message-to="vm.torrentLocalInfo.user" to-class="message-to-icon"></span>-->
-                    <span>&emsp;&emsp;{{'MESSAGES_FIELD.INFO_SEND_AT' | translate}}: {{vm.torrentLocalInfo.createdat | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+                    <span>&nbsp;{{'MESSAGES_FIELD.INFO_SEND_AT' | translate}}: {{vm.torrentLocalInfo.createdat | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
                 </dd>
 
                 <dt class="h-line">{{ 'TORRENT_FILENAME' | translate}}：</dt>
@@ -596,8 +610,8 @@
 
                 <dt class="h-line">{{ 'TABLE_FIELDS.ABBR_SEEDS_LEECHERS_FINISHED' | translate}}：</dt>
                 <dd class="h-line">
-                    <span><span class="glyphicon glyphicon-arrow-up torrent-up"></span> {{vm.torrentLocalInfo.torrent_seeds}}</span>&emsp;&emsp;
-                    <span><span class="glyphicon glyphicon-arrow-down torrent-down"></span> {{vm.torrentLocalInfo.torrent_leechers}}</span>&emsp;&emsp;
+                    <span><span class="glyphicon glyphicon-arrow-up torrent-up"></span> {{vm.torrentLocalInfo.torrent_seeds}}</span>&emsp;
+                    <span><span class="glyphicon glyphicon-arrow-down torrent-down"></span> {{vm.torrentLocalInfo.torrent_leechers}}</span>&emsp;
                     <span><span class="glyphicon glyphicon-ok torrent-finished"></span> {{vm.torrentLocalInfo.torrent_finished}}</span>
                 </dd>
 
