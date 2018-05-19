@@ -95,7 +95,7 @@
      * $watch 'vm.torrentLocalInfo'
      */
     $scope.$watch('vm.torrentLocalInfo', function (newValue, oldValue) {
-      if(vm.torrentLocalInfo) {
+      if (vm.torrentLocalInfo) {
         vm.torrentLocalInfo.resource_detail_info.custom_title = vm.TGI.getTorrentCustomTitle(vm.torrentLocalInfo);
         vm.torrentLocalInfo.resource_detail_info.custom_subtitle = vm.TGI.getTorrentCustomSubTitle(vm.torrentLocalInfo);
       }
