@@ -181,7 +181,7 @@
      * checkHnRWarning
      */
     vm.checkHnRWarning = function () {
-      if(vm.hnrConfig.enable) {
+      if (vm.hnrConfig.enable) {
         vm.getWarning();
         $interval(vm.getWarning, vm.hnrConfig.checkWaringInterval);
       }
