@@ -1432,6 +1432,16 @@ module.exports = {
           ]
         },
         {
+          name: 'VISION',
+          cats: ['movie', 'tvserial', 'documentary', 'music', 'sports', 'variety', 'adult'],
+          value: [
+            {name: 'DOLBY', icon: ''},
+            {name: 'HDR10PLUS', icon: ''},
+            {name: 'HDR10', icon: ''},
+            {name: 'HDR', icon: ''}
+          ]
+        },
+        {
           name: 'AUDIO',
           cats: ['movie', 'tvserial', 'documentary', 'music', 'sports', 'variety', 'adult'],
           value: [

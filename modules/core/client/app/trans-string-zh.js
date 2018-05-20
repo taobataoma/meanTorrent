@@ -1483,6 +1483,14 @@
         X265: 'x265'
       },
 
+      VISION: {
+        SELF: '视频色彩',
+        DOLBY: 'DolbyVision',
+        HDR10PLUS: 'HDR10+',
+        HDR10: 'HDR10',
+        HDR: 'HDR'
+      },
+
       AUDIO: {
         SELF: '音频编码',
         DTS_X: 'DTS:X',

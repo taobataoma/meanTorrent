@@ -1483,6 +1483,14 @@
         X265: 'x265'
       },
 
+      VISION: {
+        SELF: 'Video Vision',
+        DOLBY: 'DolbyVision',
+        HDR10PLUS: 'HDR10+',
+        HDR10: 'HDR10',
+        HDR: 'HDR'
+      },
+
       AUDIO: {
         SELF: 'Audio Codec',
         DTS_X: 'DTS:X',
