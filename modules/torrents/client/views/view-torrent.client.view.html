@@ -1126,7 +1126,7 @@
                             ng-click="vm.reviewedTorrentStatus();">{{ 'ADMIN_BASIC_REVIEWED' | translate}}
                     </button>
                     <button class="btn btn-default btn-sm" ng-click="vm.deleteTorrent();">{{ 'ADMIN_BASIC_DELETE' | translate}}</button>
-                    <button class="btn btn-default btn-sm"
+                    <button class="btn btn-default btn-sm" ng-if="vm.hnrConfig.enable"
                             ng-click="vm.toggleHnR();">{{ (vm.torrentLocalInfo.torrent_hnr ? 'ADMIN_BASIC_UNSET_HNR' : 'ADMIN_BASIC_SET_HNR') | translate}}
                     </button>
                     <button class="btn btn-default btn-sm"

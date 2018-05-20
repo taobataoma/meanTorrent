@@ -32,6 +32,7 @@
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
     vm.mediaInfoConfig = MeanTorrentConfig.meanTorrentConfig.mediaInfo;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
 
     vm.mediaInfoEditMode = false;
 
