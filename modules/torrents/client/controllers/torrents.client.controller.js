@@ -23,6 +23,7 @@
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
+    vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
 
     vm.searchTags = [];
     vm.searchKey = $state.params.keys || '';
@@ -343,9 +344,9 @@
       vm.rssUrl += '/api/rss';
       vm.rssUrl += '/' + vm.user.passkey;
       vm.rssUrl += '?language=' + vm.lang;
-      vm.rssUrl += '&limit=' + vm.torrentItemsPerPage;
+      vm.rssUrl += '&limit=' + vm.rssConfig.pageItemsNumber;
       vm.rssUrl += vm.searchKey.trim() ? '&keys=' + vm.searchKey.trim() : '';
-      vm.rssUrl += '&torrent_type=' + (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType);
+      vm.rssUrl += '&torrent_type=' + ((vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType));
       vm.rssUrl += vm.releaseYear ? '&torrent_release=' + vm.releaseYear : '';
       vm.rssUrl += vm.searchTags.length ? '&torrent_tags=' + vm.searchTags : '';
       vm.rssUrl += '&torrent_hnr=' + vm.filterHnR;

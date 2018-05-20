@@ -287,6 +287,20 @@ pre.prettyprint {
         &:not(:first-child){
             margin-right: 4px;
         }
+        background-color: #f7f7f7;
+        border: solid 1px #ddd;
+        border-radius: 3px;
+        padding: 2px 3px 2px 25px;
+        margin-bottom: 3px;
+        &:hover {
+            border: solid 1px @brand-primary;
+            color: @brand-primary;
+        }
+        &.checked {
+            border: solid 1px @brand-primary;
+            background-color: lighten(@brand-primary, 45%);
+            color: @brand-primary;
+        }
     }
 }
 
@@ -310,7 +324,30 @@ pre.prettyprint {
     .radio-inline {
         min-width: 100px !important;
         margin-left: 0 !important;
+        background-color: #f7f7f7;
+        border: solid 1px #ddd;
+        border-radius: 3px;
+        padding: 2px 3px 2px 25px;
+        margin-bottom: 3px;
+        margin-right: 4px;
+        &:hover {
+            border: solid 1px @brand-primary;
+            color: @brand-primary;
+        }
+        &.checked {
+            border: solid 1px @brand-primary;
+            background-color: lighten(@brand-primary, 45%);
+            color: @brand-primary;
+        }
     }
+}
+
+.fa-rss-square {
+    font-size: 20px;
+    position: relative;
+    top: 4px;
+    left: 5px;
+    cursor: pointer;
 }
 
 /* csslint ignore:end */

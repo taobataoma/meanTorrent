@@ -130,16 +130,22 @@
                             </div>
                             <div class="col-sm-6">
                                 <span class="label label-tag text-uppercase incline-block-valign"
-                                      title="{{ 'TITLE_ALT.MORE_TAGS' | translate}}"
+                                      uib-tooltip="{{ 'TITLE_ALT.MORE_TAGS' | translate}}"
                                       ng-click="vm.onMoreTagsClicked();">
                                     <i class="glyphicon glyphicon-chevron-down" id="more-tags-icon"></i> {{ 'MORE_TAGS' | translate}}
                                 </span>
                                 <span class="label label-tag text-uppercase incline-block-valign"
-                                      title="{{ 'TITLE_ALT.RESET_TAGS' | translate}}"
+                                      uib-tooltip="{{ 'TITLE_ALT.RESET_TAGS' | translate}}"
                                       ng-click="vm.clearAllCondition();">
                                     <i class="glyphicon glyphicon-repeat"></i> {{ 'CA_RESET' | translate}}
                                 </span>
-
+                                <span>
+                                    <i class="fa fa-rss-square color-mt-base" aria-hidden="true"
+                                       uib-tooltip="{{ 'DESC_MAKE_RSS_URL' | translate}}"
+                                       mt-scale-by-click="{scale: 2, duration: '.3s'}"
+                                       mt-copy-to-clipboard="{{vm.rssUrl}}">
+                                    </i>
+                                </span>
                             </div>
                         </div>
                     </dd>
@@ -148,11 +154,12 @@
                         <dt class="h-line">{{'CA_RESOURCE_TYPE' | translate}}</dt>
                         <dd class="h-line margin-top-10">
                             <div class="radio radio-type">
-                                <label class="radio-inline">
+                                <label class="radio-inline" ng-class="{checked: vm.filterType == 'aggregate'}">
                                     <input type="radio" ng-model="vm.filterType" value="aggregate"
                                            ng-change="vm.onTorrentTypeChanged();"> {{'TORRENT_TYPE_ALL' | translate}}
                                 </label>
-                                <label class="radio-inline" ng-repeat="t in vm.torrentTypeConfig.value | filter:{enable: true, role: 'user'}">
+                                <label class="radio-inline" ng-class="{checked: vm.filterType == t.value}"
+                                       ng-repeat="t in vm.torrentTypeConfig.value | filter:{enable: true, role: 'user'}">
                                     <input type="radio" ng-model="vm.filterType" value="{{t.value}}"
                                            ng-change="vm.onTorrentTypeChanged();"> {{'MENU_TORRENTS_SUB.'+t.name | translate}}
                                 </label>
@@ -212,20 +219,6 @@
                             </dd>
                         </div>
                     </div>
-
-                    <!--<div>-->
-                    <!--<dt class="h-line"><i class="fa fa-rss-square color-mt-base" aria-hidden="true"></i> {{'CA_MAKE_RSS_URL' | translate}}:</dt>-->
-                    <!--<dd class="h-line rss-desc-line">{{'DESC_MAKE_RSS_URL' | translate}}-->
-                    <!--<div class="margin-top-5">-->
-                    <!--<a href="{{vm.rssUrl}}" target="_blank">{{vm.rssUrl}}</a>-->
-                    <!--<span style="position: relative">-->
-                    <!--<i class="fa fa-clipboard color-mt-base" aria-hidden="true" title="{{'COPY_TO_CLIPBOARD' | translate}}"-->
-                    <!--mt-scale-by-click="{scale: 2, duration: '.3s'}"-->
-                    <!--mt-copy-to-clipboard="{{vm.rssUrl}}"></i>-->
-                    <!--</span>-->
-                    <!--</div>-->
-                    <!--</dd>-->
-                    <!--</div>-->
                 </dl>
             </div>
         </div>

@@ -192,6 +192,7 @@ module.exports = {
      * @webMaster:          setting webMaster info of rss document
      * @generator:          setting generator info of rss document
      * @ttl:                setting ttl info of rss document, unit of seconds
+     * @pageItemsNumber:    setting the items number of rss per page
      * @image_url:          setting image_url info of rss document
      */
     rss: {
@@ -202,6 +203,7 @@ module.exports = {
       webMaster: 'webmaster@mean.im (%s Webmaster)',
       generator: '{MEAN.im} RSS Generator by meanTorrent',
       ttl: 60,
+      pageItemsNumber: 30,
       image_url: '/modules/core/client/img/rss.jpeg'
     },
 

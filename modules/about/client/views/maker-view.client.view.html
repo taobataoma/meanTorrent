@@ -188,7 +188,7 @@
                                 <dt class="h-line margin-top-10">{{'CA_RESOURCE_TYPE' | translate}}</dt>
                                 <dd class="h-line margin-top-10">
                                     <div class="radio radio-type margin-top-5">
-                                        <label class="radio-inline"
+                                        <label class="radio-inline" ng-class="{checked: vm.torrentType == t.value}"
                                                ng-repeat="t in vm.torrentTypeConfig.value | filter:{enable: true, role: 'user'}">
                                             <input type="radio" ng-model="vm.torrentType" value="{{t.value}}"
                                                    ng-change="vm.onTorrentTypeChanged();"> {{'MENU_TORRENTS_SUB.'+t.name | translate}}
