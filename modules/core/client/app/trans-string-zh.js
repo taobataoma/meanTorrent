@@ -382,6 +382,8 @@
     TORRENT_RATING_SUCCESSFULLY: '为种子投票成功',
     TORRENT_RATING_FAILED: '为种子投票失败',
     EDIT_THIS_OVERVIEW: '编辑详情介绍',
+    VIEW_ORIGINAL_MEDIA_INFO: '查看原始的媒体信息',
+    VIEW_FORMATTED_MEDIA_INFO: '查看格式化的媒体信息',
     EDIT_THIS_MEDIA_INFO: '编辑媒体信息',
     SAVE_THIS_MEDIA_INFO: '保存媒体信息',
     EDIT_TORRENT_NFO_SUCCESSFULLY: '种子媒体信息编辑成功',

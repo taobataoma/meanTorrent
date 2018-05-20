@@ -232,15 +232,16 @@ pre.prettyprint {
     }
     .info-value {
         color: #7a7a7a;
-        font-size: 14px;
+        font-size: 12px;
     }
     .flag-group {
-        font-family: monospace, 'Courier New';
         padding: 4px 5px 2px 5px;
         border: solid 1px #ccc;
+        border-radius: 3px;
         display: inline-block;
         margin-bottom: 3px;
         margin-right: 5px;
+        background-color: #fff;
         .flag-icon {
             font-size: 18px;
             margin-right: 5px;
@@ -252,11 +253,14 @@ pre.prettyprint {
     margin-bottom: 10px;
     dt {
         color: #6A6A6A;
+        line-height: 1.6;
         @media (min-width: @screen-sm-min) {
             width: 120px;
         }
     }
     dd {
+        font-family: monospace, 'Courier New';
+        line-height: 1.6;
         @media (min-width: @screen-sm-min) {
             margin-left: 140px;
         }

@@ -675,10 +675,22 @@
                 </dd>
 
                 <dt class="h-line margin-top-20">{{ 'VIDEO_NFO' | translate}}：</dt>
-                <dd ng-if="vm.torrentLocalInfo.torrent_nfo.length>0">
+                <dd class="margin-top-10">
                     <div class="row" ng-if="!vm.mediaInfoEditMode">
                         <div class="col-md-10">
-                            <div class="media-info-formated">
+                            <div>
+                                <button class="btn btn-xs margin-top-15" mouse-enter-toggle-class="btn-mt-o-success"
+                                        base-class="btn-mt-o-default-dark" ng-click="vm.mediaInfoViewMode=!vm.mediaInfoViewMode">
+                                    {{vm.mediaInfoViewMode ? ('VIEW_FORMATTED_MEDIA_INFO' | translate) : ('VIEW_ORIGINAL_MEDIA_INFO' | translate)}}
+                                </button>
+                                <button class="btn btn-xs margin-top-15" mouse-enter-toggle-class="btn-mt-o-success"
+                                        base-class="btn-mt-o-default-dark"
+                                        ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
+                                        ng-click="vm.doEditMediaInfo()">
+                                    {{'EDIT_THIS_MEDIA_INFO' | translate}}
+                                </button>
+                            </div>
+                            <div class="media-info-formated" ng-if="!vm.mediaInfoViewMode">
                                 <legend ng-repeat-start="(key, value)  in vm.torrentLocalInfo.torrent_media_info track by $index">
                                     {{'MEDIAINFO.'+key.toUpperCase()+'.SELF' | translate}}
                                 </legend>
@@ -716,13 +728,9 @@
                                     </dl>
                                 </div>
                             </div>
-                            <div>
-                                <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-success"
-                                        base-class="btn-mt-o-success"
-                                        ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
-                                        ng-click="vm.doEditMediaInfo()">
-                                    {{'EDIT_THIS_MEDIA_INFO' | translate}}
-                                </button>
+                            <div ng-if="vm.mediaInfoViewMode">
+                                <textarea class="form-control video-nfo margin-top-10" rows="15" ng-model="vm.torrentLocalInfo.torrent_nfo"
+                                      readonly></textarea>
                             </div>
                         </div>
                     </div>
@@ -730,8 +738,8 @@
                         <div class="col-md-10">
                             <textarea class="form-control video-nfo margin-top-10" rows="15" ng-model="vm.torrentLocalInfo.torrent_nfo"></textarea>
                             <div>
-                                <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-success"
-                                        base-class="btn-mt-o-success"
+                                <button class="btn btn-xs margin-top-15" mouse-enter-toggle-class="btn-mt-o-success"
+                                        base-class="btn-mt-o-default-dark"
                                         ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
                                         ng-click="vm.updateTorrentNfo()">
                                     {{'SAVE_THIS_MEDIA_INFO' | translate}}
