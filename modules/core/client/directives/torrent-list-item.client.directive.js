@@ -78,10 +78,18 @@
          * @param t
          */
         vm.onTorrentTypeClicked = function (t) {
-          if ($scope.parent.filterType === t) {
-            $scope.parent.filterType = undefined;
+          if ($state.current.name.startsWith('admin.torrents')) {
+            if ($scope.parent.torrentType === t) {
+              $scope.parent.torrentType = 'aggregate';
+            } else {
+              $scope.parent.torrentType = t;
+            }
           } else {
-            $scope.parent.filterType = t;
+            if ($scope.parent.filterType === t) {
+              $scope.parent.filterType = $scope.parent.torrentType;
+            } else {
+              $scope.parent.filterType = t;
+            }
           }
 
           buildPager();

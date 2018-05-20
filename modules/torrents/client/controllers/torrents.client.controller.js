@@ -35,7 +35,15 @@
     vm.topItems = 6;
     vm.torrentRLevel = 'level0';
 
-    vm.torrentType = $state.current.data.torrentType || 'all';
+    vm.torrentType = $state.current.data.torrentType || 'aggregate';
+
+    $scope.$watch('vm.torrentType', function (newValue, oldValue) {
+      if (vm.torrentType === 'aggregate') {
+        vm.filterType = 'aggregate';
+      } else {
+        vm.filterType = vm.torrentType;
+      }
+    });
 
     /**
      * commentBuildPager
@@ -305,7 +313,7 @@
         keys: vm.searchKey.trim(),
         torrent_status: 'reviewed',
         torrent_rlevel: vm.torrentRLevel,
-        torrent_type: vm.filterType ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
+        torrent_type: (vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
         torrent_vip: false,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
@@ -359,7 +367,7 @@
       vm.filterUnique = false;
       vm.filterSale = false;
       vm.torrentRLevel = 'level0';
-      vm.filterType = undefined;
+      vm.filterType = vm.torrentType;
 
       vm.torrentBuildPager();
     };
@@ -393,7 +401,7 @@
      */
     vm.onTorrentTypeClicked = function (t) {
       if (vm.filterType === t) {
-        vm.filterType = undefined;
+        vm.filterType = vm.torrentType;
       } else {
         vm.filterType = t;
       }
@@ -464,13 +472,14 @@
      */
     vm.tagsFilter = function (item) {
       var res = false;
-      if (vm.torrentType === 'aggregate') {
+
+      if (vm.filterType === 'aggregate') {
         angular.forEach(vm.torrentTypeConfig.value, function (t) {
           if (t.enable && item.cats.includes(t.value))
             res = true;
         });
       } else {
-        if (item.cats.includes(vm.torrentType))
+        if (item.cats.includes(vm.filterType))
           res = true;
       }
 

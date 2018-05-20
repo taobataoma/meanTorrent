@@ -25,8 +25,8 @@
     vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
 
-    vm.selectedType = localStorageService.get('admin_last_selected_type') || 'movie';
-    vm.filterVIP = isSelectedVipType(vm.selectedType);
+    vm.torrentType = localStorageService.get('admin_last_selected_type') || 'movie';
+    vm.filterVIP = isSelectedVipType(vm.torrentType);
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
@@ -38,7 +38,7 @@
     vm.torrentStatus = 'reviewed';
     vm.torrentRLevel = 'level0';
 
-    vm.torrentType = vm.selectedType === 'newest' ? 'all' : vm.selectedType;
+    // vm.torrentType = vm.selectedType === 'newest' ? 'aggregate' : vm.selectedType;
 
     /**
      * commentBuildPager
@@ -56,12 +56,10 @@
      */
     vm.onTorrentTypeChanged = function () {
       vm.searchTags = [];
-      vm.filterVIP = isSelectedVipType(vm.selectedType);
-
-      vm.torrentType = vm.selectedType === 'newest' ? 'all' : vm.selectedType;
+      vm.filterVIP = isSelectedVipType(vm.torrentType);
 
       vm.torrentBuildPager();
-      localStorageService.set('admin_last_selected_type', vm.selectedType);
+      localStorageService.set('admin_last_selected_type', vm.torrentType);
     };
 
     /**
@@ -121,13 +119,13 @@
     vm.onTorrentStatusClicked = function (event, s) {
       var e = angular.element(event.currentTarget);
 
-      //if (e.hasClass('btn-success')) {
-      //  return;
-      //} else {
-      //  e.addClass('btn-success').removeClass('btn-default').siblings().removeClass('btn-success').addClass('btn-default');
-      //  vm.torrentStatus = s;
-      //}
-      vm.torrentStatus = s;
+      if (e.hasClass('btn-success')) {
+        return;
+      } else {
+        e.addClass('btn-success').removeClass('btn-default').siblings().removeClass('btn-success').addClass('btn-default');
+        vm.torrentStatus = s;
+      }
+      // vm.torrentStatus = s;
       e.blur();
       vm.torrentBuildPager();
     };
@@ -210,9 +208,9 @@
         skip: (p - 1) * vm.torrentItemsPerPage,
         limit: vm.torrentItemsPerPage,
         keys: vm.searchKey.trim(),
-        torrent_status: vm.selectedType === 'newest' ? 'new' : vm.torrentStatus,
+        torrent_status: vm.torrentType === 'aggregate' ? 'new' : vm.torrentStatus,
         torrent_rlevel: vm.torrentRLevel,
-        torrent_type: vm.filterType ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
+        torrent_type: vm.torrentType === 'aggregate' ? 'all' : vm.torrentType,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
         torrent_hnr: vm.filterHnR,
@@ -242,8 +240,8 @@
     vm.clearAllCondition = function () {
       vm.searchKey = '';
       vm.searchTags = [];
-      $('.more-tags .btn-tag').removeClass('btn-success').addClass('btn-default');
-      vm.filterVIP = isSelectedVipType(vm.selectedType);
+      $('.btn-tag-resource .btn-tag').removeClass('btn-success').addClass('btn-default');
+      vm.filterVIP = false;
       vm.releaseYear = undefined;
       vm.filterHnR = false;
       vm.filterSale = false;
@@ -271,11 +269,13 @@
      * @param t
      */
     vm.onTorrentTypeClicked = function (t) {
-      if (vm.filterType === t) {
-        vm.filterType = undefined;
+      if (vm.torrentType === t) {
+        vm.torrentType = 'aggregate';
+        vm.filterVIP = false;
       } else {
-        vm.filterType = t;
+        vm.torrentType = t;
       }
+      localStorageService.set('admin_last_selected_type', vm.torrentType);
       vm.torrentBuildPager();
     };
 

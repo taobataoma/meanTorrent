@@ -278,6 +278,39 @@ pre.prettyprint {
             margin-left: 140px;
         }
     }
+    .checkbox-inline {
+        min-width: 100px !important;
+    }
+    .radio-inline {
+        min-width: 100px !important;
+        margin-left: 0 !important;
+        &:not(:first-child){
+            margin-right: 4px;
+        }
+    }
+}
+
+.tags-admin-dl {
+    dt {
+        @media (min-width: @screen-sm-min) {
+            width: 120px;
+        }
+    }
+    dd {
+        @media (min-width: @screen-sm-min) {
+            margin-left: 140px;
+        }
+    }
+    .checkbox-inline {
+        min-width: 100px !important;
+    }
+    .radio {
+        margin-top: 0 !important;
+    }
+    .radio-inline {
+        min-width: 100px !important;
+        margin-left: 0 !important;
+    }
 }
 
 /* csslint ignore:end */

@@ -91,7 +91,7 @@
 
           $state.go('forums.search', {forumId: fid, keys: vm.searchKeys});
         } else {                            //search from torrents
-          $state.go('torrents.search', {keys: vm.searchKeys});
+          $state.go('torrents.aggregate', {keys: vm.searchKeys});
         }
       }
     };

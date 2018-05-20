@@ -29,26 +29,11 @@
     </div>
 
     <div class="container" ng-if="vm.user.isVip || vm.user.isOper" ng-init="vm.buildPager();">
-        <div class="row margin-top-20">
+        <div class="row margin-top-10">
             <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.pagedItems">
-                <h3 class="margin-bottom-30">
-                    {{'VIP.TORRENTS_LIST' | translate}}
-                </h3>
-
-                <div class="margin-bottom-20 text-center">
-                    <div class="btn-group torrent-type-group">
-                        <label class="btn btn-default"
-                               ng-repeat="t in vm.torrentType.value | filter:{enable: true} | orderBy: 'position'"
-                               ng-model="vm.vipTorrentType" uib-btn-radio="'{{t.value}}'"
-                               ng-click="vm.onTypeBtnClick(); vm.buildPager();">
-                            {{'MENU_TORRENTS_SUB.'+t.name | translate}}
-                        </label>
-                    </div>
-                </div>
-
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
-                        <h3 class="panel-title">{{'TAGS_SEARCH' | translate}} - {{'MENU_TORRENTS_SUB.' + vm.vipTorrentType.toUpperCase() | translate}}</h3>
+                        <h3 class="panel-title">{{'VIP.TORRENTS_LIST' | translate}} - {{'TAGS_SEARCH' | translate}} - {{'MENU_TORRENTS_SUB.' + vm.torrentType.toUpperCase() | translate}}</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row filter-tags text-center"
@@ -81,7 +66,7 @@
                                 </span>
                                 <span class="filter-tag-item label-tag" ng-if="vm.filterUnique">{{'STATUS_UNIQUE_KEY' | translate}}
                                     <i class="fa fa-times-circle-o"
-                                        ng-click="vm.onUniqueClicked();">
+                                       ng-click="vm.onUniqueClicked();">
                                     </i>
                                 </span>
                                 <span ng-repeat="t in vm.searchTags" ng-if="vm.searchTags.length>0">
@@ -94,7 +79,7 @@
                             </div>
                         </div>
                         <div class="col-md-10 col-md-offset-1">
-                            <dl class="dl-horizontal tags-dl">
+                            <dl class="dl-horizontal tags-admin-dl">
                                 <dt class="h-line">{{ 'CA_KEYWORD' | translate}}:</dt>
                                 <dd class="h-line">
                                     <div class="row" style="">
@@ -104,18 +89,28 @@
                                                    placeholder="{{ 'PH_KEYWORD' | translate}}">
                                         </div>
                                         <div class="col-sm-6">
-                                <span class="label label-tag text-uppercase incline-block-valign"
-                                      title="{{ 'TITLE_ALT.MORE_TAGS' | translate}}"
-                                      ng-click="vm.onMoreTagsClicked();">
-                                    <i class="glyphicon glyphicon-chevron-down" id="more-tags-icon"></i> {{ 'MORE_TAGS' | translate}}
-                                </span>
+                                            <span class="label label-tag text-uppercase incline-block-valign"
+                                                  title="{{ 'TITLE_ALT.MORE_TAGS' | translate}}"
+                                                  ng-click="vm.onMoreTagsClicked();">
+                                                <i class="glyphicon glyphicon-chevron-down" id="more-tags-icon"></i> {{ 'MORE_TAGS' | translate}}
+                                            </span>
                                             <span class="label label-tag text-uppercase incline-block-valign"
                                                   title="{{ 'TITLE_ALT.RESET_TAGS' | translate}}"
                                                   ng-click="vm.clearAllCondition();">
-                                    <i class="glyphicon glyphicon-repeat"></i> {{ 'CA_RESET' | translate}}
-                                </span>
-
+                                                <i class="glyphicon glyphicon-repeat"></i> {{ 'CA_RESET' | translate}}
+                                            </span>
                                         </div>
+                                    </div>
+                                </dd>
+
+                                <dt class="h-line margin-top-10">{{'CA_RESOURCE_TYPE' | translate}}</dt>
+                                <dd class="h-line margin-top-10">
+                                    <div class="radio radio-type margin-top-5">
+                                        <label class="radio-inline"
+                                               ng-repeat="t in vm.torrentTypeConfig.value | filter:{enable: true} | orderBy: 'position'">
+                                            <input type="radio" ng-model="vm.torrentType" value="{{t.value}}"
+                                                   ng-change="vm.onTorrentTypeChanged();"> {{'MENU_TORRENTS_SUB.'+t.name | translate}}
+                                        </label>
                                     </div>
                                 </dd>
 
@@ -124,7 +119,8 @@
                                     <dd class="h-line">
                                         <div class="checkbox checkbox-hnr">
                                             <label class="checkbox-inline">
-                                                <input type="checkbox" ng-model="vm.filterHnR" ng-change="vm.onHnRChanged();"> {{ 'CA_TORRENT_HNR' | translate}}
+                                                <input type="checkbox" ng-model="vm.filterHnR"
+                                                       ng-change="vm.onHnRChanged();"> {{ 'CA_TORRENT_HNR' | translate}}
                                             </label>
                                             <label class="checkbox-inline" ng-if="!vm.isGlobalSaleNow()">
                                                 <input type="checkbox" ng-model="vm.filterSale"
@@ -141,7 +137,7 @@
                                         </div>
                                     </dd>
 
-                                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.vipTorrentType">
+                                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.torrentType">
                                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
                                         <dd class="h-line">
                                             <div class="btn-group btn-group-xs" role="group">
@@ -157,7 +153,7 @@
 
                                     <div style="margin-top: 20px;"></div>
 
-                                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.vipTorrentType">
+                                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.torrentType">
                                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
                                         <dd class="h-line">
                                             <div class="btn-group btn-group-xs" role="group">
@@ -173,8 +169,8 @@
                                 </div>
 
                                 <div>
-                                    <dt class="h-line"><i class="fa fa-rss-square color-mt-base"
-                                                          aria-hidden="true"></i> {{'CA_MAKE_RSS_URL' | translate}}:
+                                    <dt class="h-line">
+                                        <i class="fa fa-rss-square color-mt-base" aria-hidden="true"></i> {{'CA_MAKE_RSS_URL' | translate}}:
                                     </dt>
                                     <dd class="h-line rss-desc-line">{{'DESC_MAKE_RSS_URL' | translate}}
                                         <div class="margin-top-5">

@@ -43,7 +43,7 @@
                     <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
                     <span class="label label-ttype label-primary" ng-class="{'used': parent.filterType == item.torrent_type}"
                           ng-click="vm.onTorrentTypeClicked(item.torrent_type); $event.stopPropagation();"
-                          ng-if="parent.torrentType=='aggregate' || parent.torrentType=='all'">
+                          ng-if="parent.torrentType=='aggregate'">
                         {{'TORRENT_TYPE_LABEL.' + item.torrent_type.toUpperCase() | translate}}
                     </span>
 

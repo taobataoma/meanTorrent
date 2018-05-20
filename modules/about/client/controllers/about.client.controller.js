@@ -24,7 +24,7 @@
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
-    vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
     vm.ircConfig = MeanTorrentConfig.meanTorrentConfig.ircAnnounce;
@@ -40,8 +40,9 @@
     vm.examinationConfig = MeanTorrentConfig.meanTorrentConfig.examination;
     vm.chatConfig = MeanTorrentConfig.meanTorrentConfig.chat;
     vm.accessConfig = MeanTorrentConfig.meanTorrentConfig.access;
+    vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
 
-    vm.groupTorrentType = localStorageService.get('maker_last_selected_type') || 'movie';
+    vm.torrentType = localStorageService.get('maker_last_selected_type') || 'movie';
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
@@ -133,10 +134,11 @@
     };
 
     /**
-     * onTypeBtnClick
+     * onTorrentTypeChanged
      */
-    vm.onTypeBtnClick = function () {
-      localStorageService.set('maker_last_selected_type', vm.groupTorrentType);
+    vm.onTorrentTypeChanged = function () {
+      vm.buildPager();
+      localStorageService.set('maker_last_selected_type', vm.torrentType);
     };
 
     /**
@@ -278,12 +280,11 @@
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage,
         sort: vm.sort,
-        torrent_type: vm.groupTorrentType,
+        torrent_type: vm.torrentType,
         torrent_status: 'reviewed',
         maker: vm.maker._id,
+        keys: vm.searchKey,
         torrent_vip: false,
-        keys: vm.search,
-
         torrent_rlevel: vm.torrentRLevel,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
@@ -608,6 +609,111 @@
     vm.stopCog = function (evt, id) {
       var e = $('#cog_' + id);
       e.removeClass('fa-spin');
+    };
+
+    /**
+     * onMoreTagsClicked
+     */
+    vm.onMoreTagsClicked = function () {
+      var e = $('.more-tags');
+      var i = $('#more-tags-icon');
+
+      if (!e.hasClass('panel-collapsed')) {
+        e.slideUp();
+        e.addClass('panel-collapsed');
+        i.removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+      } else {
+        e.slideDown();
+        e.removeClass('panel-collapsed');
+        i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+      }
+    };
+
+    /**
+     * clearAllCondition
+     */
+    vm.clearAllCondition = function () {
+      vm.searchKey = '';
+      vm.searchTags = [];
+      $('.btn-tag').removeClass('btn-success').addClass('btn-default');
+      vm.releaseYear = undefined;
+      vm.filterHnR = false;
+      vm.filterTop = false;
+      vm.filterUnique = false;
+      vm.filterSale = false;
+      vm.torrentRLevel = 'level0';
+
+      vm.buildPager();
+    };
+
+    /**
+     * onRLevelClicked
+     * @param y
+     */
+    vm.onRLevelClicked = function (l) {
+      if (vm.torrentRLevel === l) {
+        vm.torrentRLevel = 'level0';
+      } else {
+        vm.torrentRLevel = l;
+      }
+      vm.buildPager();
+    };
+
+    /**
+     * onReleaseClicked
+     * @param y
+     */
+    vm.onReleaseClicked = function (y) {
+      if (vm.releaseYear === y) {
+        vm.releaseYear = undefined;
+      } else {
+        vm.releaseYear = y;
+      }
+      vm.buildPager();
+    };
+
+    /**
+     * onHnRClicked
+     */
+    vm.onHnRClicked = function () {
+      vm.filterHnR = !vm.filterHnR;
+      vm.buildPager();
+    };
+    vm.onHnRChanged = function () {
+      vm.buildPager();
+    };
+
+    /**
+     * onTopClicked, onTopChanged
+     */
+    vm.onTopClicked = function () {
+      vm.filterTop = !vm.filterTop;
+      vm.buildPager();
+    };
+    vm.onTopChanged = function () {
+      vm.buildPager();
+    };
+
+    /**
+     * onUniqueClicked, onUniqueChanged
+     */
+    vm.onUniqueClicked = function () {
+      vm.filterUnique = !vm.filterUnique;
+      vm.buildPager();
+    };
+    vm.onUniqueChanged = function () {
+      vm.buildPager();
+    };
+
+    /**
+     * onSaleChanged
+     */
+    vm.onSaleClicked = function () {
+      vm.filterSale = !vm.filterSale;
+      vm.buildPager();
+    };
+    vm.onSaleChanged = function () {
+      vm.buildPager();
     };
   }
 }());

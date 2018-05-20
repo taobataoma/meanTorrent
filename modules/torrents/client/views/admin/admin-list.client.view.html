@@ -5,11 +5,11 @@
         </div>
         <div class="panel-body">
             <div class="row filter-tags text-center"
-                 ng-if="vm.filterType || vm.releaseYear || vm.torrentRLevel != 'level0' || vm.filterSale || vm.filterHnR || vm.searchTags.length>0 || vm.filterVIP || vm.filterTop || vm.filterUnique">
+                 ng-if="vm.torrentType!='aggregate' || vm.releaseYear || vm.torrentRLevel != 'level0' || vm.filterSale || vm.filterHnR || vm.searchTags.length>0 || vm.filterVIP || vm.filterTop || vm.filterUnique">
                 <div class="col-md-6 col-md-offset-3">
-                    <span class="filter-tag-item label-tag" ng-if="vm.filterType">{{'TORRENT_TYPE_LABEL.' + vm.filterType.toUpperCase() | translate}}
+                    <span class="filter-tag-item label-tag" ng-if="vm.torrentType!='aggregate'">{{'TORRENT_TYPE_LABEL.' + vm.torrentType.toUpperCase() | translate}}
                         <i class="fa fa-times-circle-o"
-                           ng-click="vm.onTorrentTypeClicked(vm.filterType);">
+                           ng-click="vm.onTorrentTypeClicked(vm.torrentType);">
                         </i>
                     </span>
                     <span class="filter-tag-item label-tag" ng-if="vm.releaseYear">{{vm.releaseYear}}
@@ -57,22 +57,7 @@
                 </div>
             </div>
             <div class="col-md-10 col-md-offset-1">
-                <dl class="dl-horizontal tags-dl">
-                    <dt class="h-line">{{'CA_RESOURCE_TYPE' | translate}}</dt>
-                    <dd class="h-line">
-                        <div class="row margin-bottom-5">
-                            <div class="col-sm-6 col-md-4">
-                                <select class="form-control" ng-model="vm.selectedType" ng-change="vm.onTorrentTypeChanged();">
-                                    <option value="newest">{{'TORRENT_TYPE_OPTION_NEWEST' | translate}}
-                                    </option>
-                                    <option ng-repeat="t in vm.torrentTypeConfig.value | filter:{enable: true}"
-                                            value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </dd>
-
+                <dl class="dl-horizontal tags-admin-dl">
                     <dt class="h-line">{{ 'CA_KEYWORD' | translate}}:</dt>
                     <dd class="h-line">
                         <div class="row">
@@ -84,11 +69,13 @@
                             <div class="col-sm-6">
                                 <span class="label label-tag text-uppercase incline-block-valign"
                                       title="{{ 'TITLE_ALT.MORE_TAGS' | translate}}"
+                                      ng-if="vm.torrentType!='aggregate'"
                                       ng-click="vm.onMoreTagsClicked();">
                                     <i class="glyphicon glyphicon-chevron-down" id="more-tags-icon"></i> {{ 'MORE_TAGS' | translate}}
                                 </span>
                                 <span class="label label-tag text-uppercase incline-block-valign"
                                       title="{{ 'TITLE_ALT.RESET_TAGS' | translate}}"
+                                      ng-if="vm.torrentType!='aggregate'"
                                       ng-click="vm.clearAllCondition();">
                                     <i class="glyphicon glyphicon-repeat"></i> {{ 'CA_RESET' | translate}}
                                 </span>
@@ -97,7 +84,23 @@
                         </div>
                     </dd>
 
-                    <div class="more-tags panel-collapsed padding-top-10" style="display: none;">
+                    <dt class="h-line margin-top-10">{{'CA_RESOURCE_TYPE' | translate}}</dt>
+                    <dd class="h-line margin-top-10">
+                        <div class="radio radio-type">
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="vm.torrentType" value="aggregate"
+                                       ng-change="vm.onTorrentTypeChanged();"> {{'TORRENT_TYPE_OPTION_NEWEST' | translate}}
+                            </label>
+                        </div>
+                        <div class="radio radio-type margin-top-5">
+                            <label class="radio-inline" ng-repeat="t in vm.torrentTypeConfig.value | filter:{enable: true}">
+                                <input type="radio" ng-model="vm.torrentType" value="{{t.value}}"
+                                       ng-change="vm.onTorrentTypeChanged();"> {{'MENU_TORRENTS_SUB.'+t.name | translate}}
+                            </label>
+                        </div>
+                    </dd>
+
+                    <div class="more-tags panel-collapsed padding-top-10" ng-if="vm.torrentType!='aggregate'" style="display: none;">
                         <dt class="h-line">{{ 'CA_TORRENT_ATTR' | translate}}:</dt>
                         <dd class="h-line">
                             <span class="checkbox checkbox-hnr">
@@ -115,38 +118,36 @@
                                     <input type="checkbox" ng-model="vm.filterTop"
                                            ng-change="vm.onTopChanged();"> {{ 'TORRENT_STATUS_TOP_TITLE' | translate}}
                                 </label>
-                                 <label class="checkbox-inline">
+                                <label class="checkbox-inline">
                                     <input type="checkbox" ng-model="vm.filterUnique"
                                            ng-change="vm.onUniqueChanged();"> {{ 'TORRENT_STATUS_UNIQUE' | translate}}
                                 </label>
                             </span>
                         </dd>
 
-                        <div ng-hide="vm.selectedType=='newest'">
-                            <dt class="h-line">{{ 'CA_TORRENT_STATUS' | translate}}:</dt>
-                            <dd class="h-line">
-                                <div class="btn-group btn-group-xs" role="group">
-                                    <button id="torrent_status_reviewed"
-                                            class="btn btn-xs btn-tag" value="reviewed"
-                                            ng-class="{'btn-success': vm.torrentStatus == 'reviewed', 'btn-default': vm.torrentStatus != 'reviewed'}"
-                                            ng-click="vm.onTorrentStatusClicked($event, 'reviewed')">
-                                        {{'TORRENT_STATUS_REVIEWED' | translate}}
-                                    </button>
-                                    <button id="torrent_status_new"
-                                            class="btn btn-xs btn-tag" value="new"
-                                            ng-class="{'btn-success': vm.torrentStatus == 'new', 'btn-default': vm.torrentStatus != 'new'}"
-                                            ng-click="vm.onTorrentStatusClicked($event, 'new')">
-                                        {{'TORRENT_STATUS_NEW' | translate}}
-                                    </button>
-                                    <button id="torrent_status_all"
-                                            class="btn btn-xs btn-tag" value="all"
-                                            ng-class="{'btn-success': vm.torrentStatus == 'all', 'btn-default': vm.torrentStatus != 'all'}"
-                                            ng-click="vm.onTorrentStatusClicked($event, 'all')">
-                                        {{'TORRENT_STATUS_ALL' | translate}}
-                                    </button>
-                                </div>
-                            </dd>
-                        </div>
+                        <dt class="h-line">{{ 'CA_TORRENT_STATUS' | translate}}:</dt>
+                        <dd class="h-line">
+                            <div class="btn-group btn-group-xs" role="group">
+                                <button id="torrent_status_reviewed"
+                                        class="btn btn-xs btn-tag" value="reviewed"
+                                        ng-class="{'btn-success': vm.torrentStatus == 'reviewed', 'btn-default': vm.torrentStatus != 'reviewed'}"
+                                        ng-click="vm.onTorrentStatusClicked($event, 'reviewed')">
+                                    {{'TORRENT_STATUS_REVIEWED' | translate}}
+                                </button>
+                                <button id="torrent_status_new"
+                                        class="btn btn-xs btn-tag" value="new"
+                                        ng-class="{'btn-success': vm.torrentStatus == 'new', 'btn-default': vm.torrentStatus != 'new'}"
+                                        ng-click="vm.onTorrentStatusClicked($event, 'new')">
+                                    {{'TORRENT_STATUS_NEW' | translate}}
+                                </button>
+                                <button id="torrent_status_all"
+                                        class="btn btn-xs btn-tag" value="all"
+                                        ng-class="{'btn-success': vm.torrentStatus == 'all', 'btn-default': vm.torrentStatus != 'all'}"
+                                        ng-click="vm.onTorrentStatusClicked($event, 'all')">
+                                    {{'TORRENT_STATUS_ALL' | translate}}
+                                </button>
+                            </div>
+                        </dd>
 
                         <dt class="h-line">{{ 'TORRENT_RECOMMEND_LEVEL' | translate}}:</dt>
                         <dd class="h-line">
@@ -160,10 +161,10 @@
                             </div>
                         </dd>
 
-                        <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.selectedType">
+                        <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.torrentType">
                             <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                             <dd class="h-line">
-                                <div class="btn-group btn-group-xs" role="group">
+                                <div class="btn-group btn-group-xs btn-tag-resource" role="group">
                                     <button ng-repeat="sitem in item.value" id="tag_{{sitem.name}}"
                                             class="btn btn-xs btn-default btn-tag" value="{{sitem.name}}"
                                             ng-click="vm.onRadioTagClicked($event, sitem.name)">
@@ -173,7 +174,7 @@
                             </dd>
                         </div>
 
-                        <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.selectedType">
+                        <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.torrentType">
                             <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                             <dd class="h-line">
                                 <div class="btn-group btn-group-xs" role="group">
