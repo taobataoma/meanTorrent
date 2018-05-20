@@ -1403,8 +1403,8 @@ module.exports = {
           value: [
             {name: 'BLU_RAY', icon: ''},
             {name: 'REMUX', icon: ''},
-            {name: 'WEB', icon: ''},
             {name: 'ENCODE', icon: ''},
+            {name: 'WEB', icon: ''},
             {name: 'HDTV', icon: ''}
           ]
         },
@@ -1435,7 +1435,8 @@ module.exports = {
             {name: 'DOLBY', icon: ''},
             {name: 'HDR10PLUS', icon: ''},
             {name: 'HDR10', icon: ''},
-            {name: 'HDR', icon: ''}
+            {name: 'HDR', icon: ''},
+            {name: 'SDR', icon: ''}
           ]
         },
         {

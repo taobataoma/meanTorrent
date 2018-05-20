@@ -1461,7 +1461,7 @@
       TYPE: {
         SELF: 'Medium',
         BLU_RAY: 'Blu-ray',
-        WEB: 'Web',
+        WEB: 'WEB',
         REMUX: 'Remux',
         ENCODE: 'Encode',
         HDTV: 'HDTV'
@@ -1488,7 +1488,8 @@
         DOLBY: 'DolbyVision',
         HDR10PLUS: 'HDR10+',
         HDR10: 'HDR10',
-        HDR: 'HDR'
+        HDR: 'HDR',
+        SDR: 'SDR'
       },
 
       AUDIO: {
@@ -1496,9 +1497,9 @@
         DTS_X: 'DTS:X',
         ATMOS: 'Atmos',
         DTS_HD: 'DTS-HD',
-        TRUE_HD: 'TRUE-HD',
+        TRUE_HD: 'True-HD',
         DTS: 'DTS',
-        AC3: 'AC3',
+        AC3: 'AC-3',
         AAC: 'AAC'
       },
 

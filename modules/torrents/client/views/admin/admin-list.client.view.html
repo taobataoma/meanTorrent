@@ -76,12 +76,12 @@
                     <dt class="h-line">{{ 'CA_KEYWORD' | translate}}:</dt>
                     <dd class="h-line">
                         <div class="row">
-                            <div class="col-sm-7">
+                            <div class="col-sm-6">
                                 <input type="text" class="form-control" ng-model="vm.searchKey"
                                        ng-keydown="vm.onKeysKeyDown($event);"
                                        placeholder="{{ 'PH_KEYWORD' | translate}}">
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-6">
                                 <span class="label label-tag text-uppercase incline-block-valign"
                                       title="{{ 'TITLE_ALT.MORE_TAGS' | translate}}"
                                       ng-click="vm.onMoreTagsClicked();">
@@ -97,71 +97,69 @@
                         </div>
                     </dd>
 
-                    <dt class="h-line">{{ 'CA_TORRENT_ATTR' | translate}}:</dt>
-                    <dd class="h-line">
-                        <span class="checkbox checkbox-hnr">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" ng-model="vm.filterHnR" ng-change="vm.onHnRChanged();"> {{ 'CA_TORRENT_HNR' | translate}}
-                            </label>
-                            <label class="checkbox-inline" ng-if="!vm.isGlobalSaleNow()">
-                                <input type="checkbox" ng-model="vm.filterSale"
-                                       ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" ng-model="vm.filterVIP" ng-change="vm.onVIPChanged();"> {{ 'CA_TORRENT_VIP' | translate}}
-                            </label>
-                        </span>
-                        <span class="checkbox checkbox-hnr">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" ng-model="vm.filterTop"
-                                       ng-change="vm.onTopChanged();"> {{ 'TORRENT_STATUS_TOP_TITLE' | translate}}
-                            </label>
-                             <label class="checkbox-inline">
-                                <input type="checkbox" ng-model="vm.filterUnique"
-                                       ng-change="vm.onUniqueChanged();"> {{ 'TORRENT_STATUS_UNIQUE' | translate}}
-                            </label>
-                        </span>
-                    </dd>
+                    <div class="more-tags panel-collapsed padding-top-10" style="display: none;">
+                        <dt class="h-line">{{ 'CA_TORRENT_ATTR' | translate}}:</dt>
+                        <dd class="h-line">
+                            <span class="checkbox checkbox-hnr">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="vm.filterHnR" ng-change="vm.onHnRChanged();"> {{ 'CA_TORRENT_HNR' | translate}}
+                                </label>
+                                <label class="checkbox-inline" ng-if="!vm.isGlobalSaleNow()">
+                                    <input type="checkbox" ng-model="vm.filterSale"
+                                           ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="vm.filterVIP" ng-change="vm.onVIPChanged();"> {{ 'CA_TORRENT_VIP' | translate}}
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="vm.filterTop"
+                                           ng-change="vm.onTopChanged();"> {{ 'TORRENT_STATUS_TOP_TITLE' | translate}}
+                                </label>
+                                 <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="vm.filterUnique"
+                                           ng-change="vm.onUniqueChanged();"> {{ 'TORRENT_STATUS_UNIQUE' | translate}}
+                                </label>
+                            </span>
+                        </dd>
 
-                    <div ng-hide="vm.selectedType=='newest'">
-                        <dt class="h-line">{{ 'CA_TORRENT_STATUS' | translate}}:</dt>
+                        <div ng-hide="vm.selectedType=='newest'">
+                            <dt class="h-line">{{ 'CA_TORRENT_STATUS' | translate}}:</dt>
+                            <dd class="h-line">
+                                <div class="btn-group btn-group-xs" role="group">
+                                    <button id="torrent_status_reviewed"
+                                            class="btn btn-xs btn-tag" value="reviewed"
+                                            ng-class="{'btn-success': vm.torrentStatus == 'reviewed', 'btn-default': vm.torrentStatus != 'reviewed'}"
+                                            ng-click="vm.onTorrentStatusClicked($event, 'reviewed')">
+                                        {{'TORRENT_STATUS_REVIEWED' | translate}}
+                                    </button>
+                                    <button id="torrent_status_new"
+                                            class="btn btn-xs btn-tag" value="new"
+                                            ng-class="{'btn-success': vm.torrentStatus == 'new', 'btn-default': vm.torrentStatus != 'new'}"
+                                            ng-click="vm.onTorrentStatusClicked($event, 'new')">
+                                        {{'TORRENT_STATUS_NEW' | translate}}
+                                    </button>
+                                    <button id="torrent_status_all"
+                                            class="btn btn-xs btn-tag" value="all"
+                                            ng-class="{'btn-success': vm.torrentStatus == 'all', 'btn-default': vm.torrentStatus != 'all'}"
+                                            ng-click="vm.onTorrentStatusClicked($event, 'all')">
+                                        {{'TORRENT_STATUS_ALL' | translate}}
+                                    </button>
+                                </div>
+                            </dd>
+                        </div>
+
+                        <dt class="h-line">{{ 'TORRENT_RECOMMEND_LEVEL' | translate}}:</dt>
                         <dd class="h-line">
                             <div class="btn-group btn-group-xs" role="group">
-                                <button id="torrent_status_reviewed"
-                                        class="btn btn-xs btn-tag" value="reviewed"
-                                        ng-class="{'btn-success': vm.torrentStatus == 'reviewed', 'btn-default': vm.torrentStatus != 'reviewed'}"
-                                        ng-click="vm.onTorrentStatusClicked($event, 'reviewed')">
-                                    {{'TORRENT_STATUS_REVIEWED' | translate}}
-                                </button>
-                                <button id="torrent_status_new"
-                                        class="btn btn-xs btn-tag" value="new"
-                                        ng-class="{'btn-success': vm.torrentStatus == 'new', 'btn-default': vm.torrentStatus != 'new'}"
-                                        ng-click="vm.onTorrentStatusClicked($event, 'new')">
-                                    {{'TORRENT_STATUS_NEW' | translate}}
-                                </button>
-                                <button id="torrent_status_all"
-                                        class="btn btn-xs btn-tag" value="all"
-                                        ng-class="{'btn-success': vm.torrentStatus == 'all', 'btn-default': vm.torrentStatus != 'all'}"
-                                        ng-click="vm.onTorrentStatusClicked($event, 'all')">
-                                    {{'TORRENT_STATUS_ALL' | translate}}
+                                <button ng-repeat="litem in vm.torrentRLevels.value" id="r_{{litem.name}}"
+                                        class="btn btn-xs btn-tag" value="{{litem.value}}"
+                                        ng-class="{'btn-success': vm.torrentRLevel == litem.value, 'btn-default': vm.torrentRLevel != litem.value}"
+                                        ng-click="vm.onRecommendLevelClicked($event, litem.value)">
+                                    {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + litem.name | translate}}
                                 </button>
                             </div>
                         </dd>
-                    </div>
 
-                    <dt class="h-line">{{ 'TORRENT_RECOMMEND_LEVEL' | translate}}:</dt>
-                    <dd class="h-line">
-                        <div class="btn-group btn-group-xs" role="group">
-                            <button ng-repeat="litem in vm.torrentRLevels.value" id="r_{{litem.name}}"
-                                    class="btn btn-xs btn-tag" value="{{litem.value}}"
-                                    ng-class="{'btn-success': vm.torrentRLevel == litem.value, 'btn-default': vm.torrentRLevel != litem.value}"
-                                    ng-click="vm.onRecommendLevelClicked($event, litem.value)">
-                                {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + litem.name | translate}}
-                            </button>
-                        </div>
-                    </dd>
-
-                    <div class="more-tags panel-collapsed" style="display: none;">
                         <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.selectedType">
                             <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                             <dd class="h-line">

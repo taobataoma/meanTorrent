@@ -76,12 +76,12 @@
                     <dt class="h-line">{{ 'CA_KEYWORD' | translate}}:</dt>
                     <dd class="h-line">
                         <div class="row" style="">
-                            <div class="col-sm-7">
+                            <div class="col-sm-6">
                                 <input type="text" class="form-control" ng-model="vm.searchKey"
                                        ng-keydown="vm.onKeysKeyDown($event);"
                                        placeholder="{{ 'PH_KEYWORD' | translate}}">
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-6">
                                 <span class="label label-tag text-uppercase incline-block-valign"
                                       title="{{ 'TITLE_ALT.MORE_TAGS' | translate}}"
                                       ng-click="vm.onMoreTagsClicked();" ng-if="vm.torrentType!='all'">
@@ -97,31 +97,28 @@
                         </div>
                     </dd>
 
+                    <div class="more-tags panel-collapsed padding-top-10" style="display: none; margin-bottom: 20px;">
+                        <dt class="h-line">{{ 'CA_TORRENT_ATTR' | translate}}:</dt>
+                        <dd class="h-line">
+                            <div class="checkbox checkbox-hnr">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="vm.filterHnR" ng-change="vm.onHnRChanged();"> {{ 'CA_TORRENT_HNR' | translate}}
+                                </label>
+                                <label class="checkbox-inline" ng-if="!vm.isGlobalSaleNow()">
+                                    <input type="checkbox" ng-model="vm.filterSale"
+                                           ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="vm.filterTop"
+                                           ng-change="vm.onTopChanged();"> {{ 'TORRENT_STATUS_TOP_TITLE' | translate}}
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="vm.filterUnique"
+                                           ng-change="vm.onUniqueChanged();"> {{ 'TORRENT_STATUS_UNIQUE' | translate}}
+                                </label>
+                            </div>
+                        </dd>
 
-                    <dt class="h-line">{{ 'CA_TORRENT_ATTR' | translate}}:</dt>
-                    <dd class="h-line">
-                        <div class="checkbox checkbox-hnr">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" ng-model="vm.filterHnR" ng-change="vm.onHnRChanged();"> {{ 'CA_TORRENT_HNR' | translate}}
-                            </label>
-                            <label class="checkbox-inline" ng-if="!vm.isGlobalSaleNow()">
-                                <input type="checkbox" ng-model="vm.filterSale"
-                                       ng-change="vm.onSaleChanged();"> {{ 'CA_TORRENT_SALE_NOW' | translate}}
-                            </label>
-                        </div>
-                        <div class="checkbox checkbox-hnr">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" ng-model="vm.filterTop"
-                                       ng-change="vm.onTopChanged();"> {{ 'TORRENT_STATUS_TOP_TITLE' | translate}}
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" ng-model="vm.filterUnique"
-                                       ng-change="vm.onUniqueChanged();"> {{ 'TORRENT_STATUS_UNIQUE' | translate}}
-                            </label>
-                        </div>
-                    </dd>
-
-                    <div class="more-tags panel-collapsed" style="display: none; margin-bottom: 20px;">
                         <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.torrentType">
                             <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
                             <dd class="h-line">
