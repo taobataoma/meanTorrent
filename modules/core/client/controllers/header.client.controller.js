@@ -181,12 +181,14 @@
      * checkHnRWarning
      */
     vm.checkHnRWarning = function () {
-      vm.getWarning();
-      $interval(vm.getWarning, vm.hnrConfig.checkWaringInterval);
+      if(vm.hnrConfig.enable) {
+        vm.getWarning();
+        $interval(vm.getWarning, vm.hnrConfig.checkWaringInterval);
+      }
     };
 
     vm.getWarning = function () {
-      if (Authentication.user) {
+      if (Authentication.user && vm.hnrConfig.enable) {
         UsersService.getUserWarningNumber()
           .then(function (data) {
             vm.user.hnr_warning = Authentication.user.hnr_warning = data.hnr_warning;

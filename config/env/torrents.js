@@ -964,6 +964,7 @@ module.exports = {
      * when admin/oper to delete a h&r torrent, system will auto remove all warning and number of user
      * NOTE: you can change these value at anytime if you understand it
      *
+     * @enable:                             setting whether enable the H&R function
      * @condition:                          the condition of HnR warning, user must meet one of them before you receive the warning
      *        @seedTime:                    torrent seed time, unit of day, default to 7 days
      *        @seedTime_str:                string desc of @seedTime
@@ -975,6 +976,7 @@ module.exports = {
      * @checkWaringInterval_str:            string desc of @checkWaringInterval
      */
     hitAndRun: {
+      enable: true,
       condition: {
         seedTime: 60 * 60 * 1000 * 24 * 7,
         seedTime_str: '7d',

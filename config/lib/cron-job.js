@@ -22,6 +22,8 @@ var supportConfig = config.meanTorrentConfig.support;
 var backupConfig = config.meanTorrentConfig.backup;
 var announceConfig = config.meanTorrentConfig.announce;
 var signConfig = config.meanTorrentConfig.sign;
+var hnrConfig = config.meanTorrentConfig.hitAndRun;
+
 var inbox = require('inbox');
 var simpleParser = require('mailparser').simpleParser;
 
@@ -71,7 +73,10 @@ module.exports = function (app) {
 
   cronJobs.push(removeGhostPeers());
   cronJobs.push(checkUserAccountIdleStatus());
-  cronJobs.push(countUsersHnrWarning());
+
+  if (hnrConfig.enable) {
+    cronJobs.push(countUsersHnrWarning());
+  }
 
   if (supportConfig.mailTicketSupportService) {
     cronJobs.push(listenServiceEmail());

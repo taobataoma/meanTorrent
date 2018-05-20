@@ -7,7 +7,7 @@
                 </h4>
             </span>
 
-            <div class="alert alert-warning text-center" role="alert" ng-if="vm.user.hnr_warning>0">
+            <div class="alert alert-warning text-center" role="alert" ng-if="vm.user.hnr_warning>0 && vm.hnrConfig.enable">
                 <span translate="WARNING_TOOLTIP" translate-values="{wnumber: vm.user.hnr_warning}"></span>
                 <a ui-sref="status.warning">{{'WARNING_DETAIL_LINK' | translate}}</a>
             </div>
@@ -184,7 +184,7 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.finished }}</dd>
 
-                <div ng-if="vm.user.hnr_warning>0">
+                <div ng-if="vm.user.hnr_warning>0 && vm.hnrConfig.enable">
                     <dt class="h-line">{{ 'STATUS_FIELD.HNR_WARNING' | translate}}：</dt>
                     <dd class="h-line">
                         <span class="badge badge_danger">{{vm.user.hnr_warning}}</span>

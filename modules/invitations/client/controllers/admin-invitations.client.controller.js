@@ -16,6 +16,7 @@
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
 
     vm.invitationFields = {
       isOfficial: true

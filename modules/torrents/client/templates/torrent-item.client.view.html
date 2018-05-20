@@ -75,7 +75,7 @@
                     <span class="label label-se-info" ng-if="item.torrent_type == 'tvserial'"
                           ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
 
-                    <span class="label label-hnr-info" ng-if="item.torrent_hnr" ng-class="{'used': parent.filterHnR}"
+                    <span class="label label-hnr-info" ng-if="item.torrent_hnr && vm.hnrConfig.enable" ng-class="{'used': parent.filterHnR}"
                           ng-click="vm.onHnRClicked(); $event.stopPropagation();">H&R</span>
 
                     <span class="label label-vip-info" ng-if="item.torrent_vip" ng-class="{'used': parent.filterVIP}"
@@ -227,7 +227,8 @@
                 </button>
             </div>
             <div class="margin-top-2">
-                <button class="btn col-xs-6 btn-xs btn-default" ng-click="vm.toggleHnR(item); $event.stopPropagation();">
+                <button class="btn col-xs-6 btn-xs btn-default" ng-disabled="!vm.hnrConfig.enable"
+                        ng-click="vm.toggleHnR(item); $event.stopPropagation();">
                     {{ (item.torrent_hnr ? 'ADMIN_BASIC_UNSET_HNR' : 'ADMIN_BASIC_SET_HNR') | translate}}
                 </button>
                 <button class="btn col-xs-6 btn-xs btn-default" ng-click="vm.toggleVIP(item); $event.stopPropagation();">

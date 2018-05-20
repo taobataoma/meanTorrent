@@ -171,7 +171,7 @@
                         <dt class="h-line">{{ 'CA_TORRENT_ATTR' | translate}}:</dt>
                         <dd class="h-line">
                             <div class="checkbox checkbox-hnr">
-                                <label class="checkbox-inline">
+                                <label class="checkbox-inline" ng-if="vm.hnrConfig.enable">
                                     <input type="checkbox" ng-model="vm.filterHnR" ng-change="vm.onHnRChanged();"> {{ 'CA_TORRENT_HNR' | translate}}
                                 </label>
                                 <label class="checkbox-inline" ng-if="!vm.isGlobalSaleNow()">

@@ -365,7 +365,7 @@ exports.announce = function (req, res) {
      if not find and torrent is h&r and user isn`t vip, then create complete record
      ---------------------------------------------------------------*/
     function (done) {
-      if (req.torrent.torrent_hnr && !req.passkeyuser.isVip) {
+      if (hnrConfig.enable && req.torrent.torrent_hnr && !req.passkeyuser.isVip) {
         Complete.findOne({
           torrent: req.torrent._id,
           user: req.passkeyuser._id
@@ -429,19 +429,23 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.seeder && !req.passkeyuser.isVip && event(query.event) === EVENT_STARTED) {
-        if (req.passkeyuser.hnr_warning >= hnrConfig.forbiddenDownloadMinWarningNumber) {
-          if (!req.torrent.torrent_hnr) {
-            done(190);
-          } else {
-            if (!req.completeTorrent) {
-              done(191);
+        if (hnrConfig.enable) {
+          if (req.passkeyuser.hnr_warning >= hnrConfig.forbiddenDownloadMinWarningNumber) {
+            if (!req.torrent.torrent_hnr) {
+              done(190);
             } else {
-              if (!req.completeTorrent.hnr_warning) {
-                done(190);
+              if (!req.completeTorrent) {
+                done(191);
               } else {
-                done(null);
+                if (!req.completeTorrent.hnr_warning) {
+                  done(190);
+                } else {
+                  done(null);
+                }
               }
             }
+          } else {
+            done(null);
           }
         } else {
           done(null);
@@ -711,7 +715,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (curru, currd, done) {
       if (curru > 0 || currd > 0) {
-        if (req.completeTorrent) {
+        if (hnrConfig.enable && req.completeTorrent) {
           mtDebug.debugGreen('---------------WRITE COMPLETE DATA----------------', 'ANNOUNCE', true, req.passkeyuser);
           req.completeTorrent.update({
             $inc: {
@@ -735,7 +739,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.currentPeer.isNewCreated) {
-        if (req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
+        if (hnrConfig.enable && req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------UPDATE H&R COMPLETE TOTAL_SEED_TIME----------------', 'ANNOUNCE', true, req.passkeyuser);
           req.completeTorrent.update({
             $inc: {
@@ -847,7 +851,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.currentPeer.isNewCreated) {
-        if (req.completeTorrent && event(query.event) !== EVENT_COMPLETED) {
+        if (hnrConfig.enable && req.completeTorrent && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------COUNT H&R WARNING FOR USER----------------', 'ANNOUNCE', true, req.passkeyuser);
           req.completeTorrent.countHnRWarning(false, true);
         }
@@ -864,7 +868,7 @@ exports.announce = function (req, res) {
       if (event(query.event) === EVENT_STOPPED) {
         mtDebug.debugGreen('---------------EVENT_STOPPED----------------', 'ANNOUNCE', true, req.passkeyuser);
 
-        if (req.completeTorrent) {
+        if (hnrConfig.enable && req.completeTorrent) {
           req.completeTorrent.countHnRWarning(true, false);
         }
         removeCurrPeer(function () {
@@ -937,7 +941,7 @@ exports.announce = function (req, res) {
         req.currentPeer.globalUpdateMethod(true);
       }
 
-      if (req.completeTorrent) {
+      if (hnrConfig.enable && req.completeTorrent) {
         req.completeTorrent.globalUpdateMethod(true);
       }
 
@@ -1033,7 +1037,7 @@ exports.announce = function (req, res) {
     }).exec();
 
     //update completeTorrent complete status
-    if (req.completeTorrent) {
+    if (hnrConfig.enable && req.completeTorrent) {
       req.completeTorrent.update({
         $set: {
           complete: true

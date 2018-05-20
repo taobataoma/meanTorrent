@@ -24,6 +24,7 @@
     vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
     vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
 
     vm.searchTags = [];
     vm.searchKey = $state.params.keys || '';

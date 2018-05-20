@@ -1614,7 +1614,7 @@
       VIDEO: {
         SELF: 'Video Info',
         FORMAT: 'Format',
-        Duration: 'Duration',
+        DURATION: 'Duration',
         BITRATE: 'Bit Rate',
         WIDTH: 'Width',
         HEIGHT: 'Height',

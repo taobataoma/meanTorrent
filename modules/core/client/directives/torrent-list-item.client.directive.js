@@ -19,6 +19,7 @@
         vm.torrentSalesType = MeanTorrentConfig.meanTorrentConfig.torrentSalesType;
         vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
         vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
+        vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
 
         /**
          * buildPager

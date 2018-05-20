@@ -78,7 +78,7 @@
                         <a ui-sref="{{item.state}}">
                             <i class="fa fa-fw {{item.faIcon}} {{item.faClass}}"></i><span ng-bind="item.title" menu-title="{{item.title}}"></span>
                         </a>
-                        <span class="badge menu-badge badge_danger" ng-show="vm.user.hnr_warning>0">{{vm.user.hnr_warning}}</span>
+                        <span class="badge menu-badge badge_danger" ng-show="vm.user.hnr_warning>0 && vm.hnrConfig.enable">{{vm.user.hnr_warning}}</span>
                     </li>
                     <li ui-sref-active="active" ng-repeat="item in vm.scoreMenu.items" class="menu-parent">
                         <a ui-sref="{{item.state}}">

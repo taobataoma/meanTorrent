@@ -24,6 +24,7 @@
     vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
     vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
 
     vm.torrentType = localStorageService.get('admin_last_selected_type') || 'movie';
     vm.filterVIP = isSelectedVipType(vm.torrentType);

@@ -131,7 +131,7 @@
                 <li>{{ 'STATUS_FIELD.SEEDED' | translate}}：{{ vm.selectedUser.seeded }}</li>
                 <li>{{ 'STATUS_FIELD.LEECHED' | translate}}：{{ vm.selectedUser.leeched }}</li>
                 <li>{{ 'STATUS_FIELD.FINISHED' | translate}}：{{ vm.selectedUser.finished }}</li>
-                <li ng-if="vm.selectedUser.hnr_warning>0">
+                <li ng-if="vm.selectedUser.hnr_warning>0 && vm.hnrConfig.enable">
                     {{ 'STATUS_FIELD.HNR_WARNING' | translate}}：<span class="badge badge_danger">{{vm.selectedUser.hnr_warning}}</span>
                 </li>
 
