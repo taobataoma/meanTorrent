@@ -574,6 +574,7 @@ module.exports = {
 
       makerGroupDescLength: 2048,
       collectionsOverviewLength: 2048,
+      albumsOverviewLength: 2048,
 
       requestDescLength: 1024,
       requestCommentLength: 512

@@ -7,12 +7,12 @@
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
-    'SubtitlesService', 'getStorageLangService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
+    'SubtitlesService', 'getStorageLangService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices', 'AlbumsService',
     'localStorageService', '$compile', 'SideOverlay', 'ResourcesTagsServices', 'CollectionsService', 'moment'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
-                                  getStorageLangService, NotifycationService, mtDebug, TorrentGetInfoServices,
+                                  getStorageLangService, NotifycationService, mtDebug, TorrentGetInfoServices, AlbumsService,
                                   localStorageService, $compile, SideOverlay, ResourcesTagsServices, CollectionsService, moment) {
     var vm = this;
     vm.DLS = DownloadService;
@@ -260,10 +260,17 @@
     };
 
     /**
-     * onPopupMessageOpen
+     * onPopupCollectionsOpen
      */
-    vm.onPopupMessageOpen = function () {
+    vm.onPopupCollectionsOpen = function () {
       $('#coll-name').focus();
+    };
+
+    /**
+     * onPopupAlbumOpen
+     */
+    vm.onPopupAlbumOpen = function () {
+      $('#album-name').focus();
     };
 
     /**
@@ -436,6 +443,44 @@
       });
 
       return result;
+    };
+
+    /**
+     * createAlbum
+     * @param evt
+     */
+    vm.createAlbum = function (evt) {
+      vm.album = {
+        type: vm.torrentLocalInfo.torrent_type,
+        name: undefined,
+        overview: undefined,
+        backdrop_path: undefined
+      };
+
+      SideOverlay.open(evt, 'albumCreateSlide');
+    };
+
+    /**
+     * hideAlbumPopup
+     */
+    vm.hideAlbumPopup = function () {
+      SideOverlay.close(null, 'albumCreateSlide');
+      vm.album = undefined;
+    };
+
+    /**
+     * saveAlbum
+     */
+    vm.saveAlbum = function () {
+      SideOverlay.close(null, 'albumCreateSlide');
+
+      var album = new AlbumsService(vm.album);
+      album.$save(function (res) {
+        NotifycationService.showSuccessNotify('ALBUMS.CREATE_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'ALBUMS.CREATE_FAILED');
+      });
+
     };
 
     /**

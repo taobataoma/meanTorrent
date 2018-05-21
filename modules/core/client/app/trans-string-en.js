@@ -450,6 +450,9 @@
     ADMIN_COLLECTION_COMMAND: 'Collections Command',
     ADMIN_COLLECTION_CREATE: 'Create Collection',
     ADMIN_COLLECTION_ADDINTO: 'Put This Movie Into Collection',
+    ADMIN_ALBUM_COMMAND: 'Albums Command',
+    ADMIN_ALBUM_CREATE: 'Create Album',
+    ADMIN_ALBUM_ADDINTO: 'Put This Resources Into Album',
     LOAD_TMDB_COLLECTION: 'loading tmdb movie collection detail ...',
     LOAD_TMDB_COLLECTION_ERROR: 'Error: get tmdb movie collection detail',
     LOAD_COLLECTION_LIST: 'loading movie collection list ...',
@@ -758,6 +761,14 @@
       REMOVE_FAILED: 'Remove the torrent from this collection failed',
       EDIT_OVERVIEW_SUCCESSFULLY: 'Edit collections overview successfully',
       EDIT_OVERVIEW_FAILED: 'Edit collections overview failed'
+    },
+
+    ALBUMS: {
+      FORM_FOR: 'Create Album for - {{title}}',
+      FORM_NAME: 'Album Name',
+      FORM_DESC: 'Album Overview',
+      CREATE_SUCCESSFULLY: 'Create resource album successfully',
+      CREATE_FAILED: 'Create resource album failed'
     },
 
     //backup views settings

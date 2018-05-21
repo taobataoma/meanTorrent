@@ -473,7 +473,7 @@
     <!-- =================================================================
         side-overlay collections create
     ================================================================== -->
-    <div id="collectionsCreateSlide" side-overlay="right" side-class="collections-side-overlay" side-opened="vm.onPopupMessageOpen();"
+    <div id="collectionsCreateSlide" side-overlay="right" side-class="collections-side-overlay" side-opened="vm.onPopupCollectionsOpen();"
          side-close-on-esc side-modal>
         <div class="collection-popup">
             <legend class="h4"
@@ -564,6 +564,48 @@
                     ng-click="vm.saveInsertCollection();">{{ 'BUTTON_SAVE' | translate }}
             </button>
             <button class="btn btn-default btn-width-100" ng-click="vm.hideCollectionInsertPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
+        </div>
+    </div>
+
+    <!-- =================================================================
+        side-overlay album create
+    ================================================================== -->
+    <div id="albumCreateSlide" side-overlay="right" side-class="collections-side-overlay" side-opened="vm.onPopupAlbumOpen();"
+         side-close-on-esc side-modal>
+        <div class="collection-popup">
+            <legend class="h4"
+                    translate="ALBUMS.FORM_FOR" translate-values="{title: vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}">
+            </legend>
+
+            <div class="collection-form">
+                <input type="text" class="form-control margin-bottom-10" id="album-name" placeholder="{{'ALBUMS.FORM_NAME' | translate}}"
+                       ng-model="vm.album.name" autofocus>
+
+                <textarea class="form-control" id="album-overview-textarea" name="album-overview-textarea"
+                          ng-model="vm.album.overview" ng-keydown="vm.onOverviewKeyDown($event);"
+                          placeholder="{{'ALBUMS.FORM_DESC' | translate}}" maxlength="{{vm.inputLengthConfig.albumsOverviewLength}}"
+                          mt-markdown-editor="album-overview-textarea"></textarea>
+
+                <div class="margin-top-10" style="display: table;">
+                    <a class="message-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank"
+                       data-ga-click="Markdown Toolbar, click, help">
+                        <svg aria-hidden="true" height="16" version="1.1"
+                             viewBox="0 0 16 16" width="16">
+                            <path fill-rule="evenodd"
+                                  d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"/>
+                        </svg>
+                        {{ 'MARKDOWN_LINK' | translate }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-control">
+            <button class="btn btn-success btn-width-100"
+                    ng-disabled="!vm.album.name || !vm.album.overview"
+                    ng-click="vm.saveAlbum();">{{ 'BUTTON_SAVE' | translate }}
+            </button>
+            <button class="btn btn-default btn-width-100" ng-click="vm.hideAlbumPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
         </div>
     </div>
 
@@ -730,7 +772,7 @@
                             </div>
                             <div ng-if="vm.mediaInfoViewMode">
                                 <textarea class="form-control video-nfo margin-top-10" rows="15" ng-model="vm.torrentLocalInfo.torrent_nfo"
-                                      readonly></textarea>
+                                          readonly></textarea>
                             </div>
                         </div>
                     </div>
@@ -1151,6 +1193,18 @@
                         </button>
                         <button class="btn btn-default btn-sm"
                                 ng-click="vm.insertIntoCollection($event);">{{ 'ADMIN_COLLECTION_ADDINTO' | translate}}
+                        </button>
+                    </dd>
+                </div>
+
+                <div class="margin-top-20">
+                    <dt class="h-line">{{ 'ADMIN_ALBUM_COMMAND' | translate}}:</dt>
+                    <dd class="h-line">
+                        <button class="btn btn-default btn-sm"
+                                ng-click="vm.createAlbum($event);">{{ 'ADMIN_ALBUM_CREATE' | translate}}
+                        </button>
+                        <button class="btn btn-default btn-sm"
+                                ng-click="vm.insertIntoAlbum($event);">{{ 'ADMIN_ALBUM_ADDINTO' | translate}}
                         </button>
                     </dd>
                 </div>
