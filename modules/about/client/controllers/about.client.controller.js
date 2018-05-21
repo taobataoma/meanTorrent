@@ -313,7 +313,7 @@
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage,
         sort: vm.sort,
-        torrent_type: (vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
+        torrent_type: (vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
         torrent_status: 'reviewed',
         maker: vm.maker._id,
         keys: vm.searchKey,

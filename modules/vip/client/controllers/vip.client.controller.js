@@ -277,7 +277,7 @@
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage,
         sort: vm.sort,
-        torrent_type: (vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
+        torrent_type: (vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
         torrent_status: 'reviewed',
         torrent_vip: true,
         keys: vm.searchKey.trim(),
@@ -305,7 +305,7 @@
       vm.rssUrl += '?language=' + localStorageService.get('storage_user_lang');
       vm.rssUrl += '&limit=' + vm.rssConfig.pageItemsNumber;
       vm.rssUrl += vm.searchKey.trim() ? '&keys=' + vm.searchKey.trim() : '';
-      vm.rssUrl += '&torrent_type=' + ((vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType));
+      vm.rssUrl += '&torrent_type=' + ((vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType));
       vm.rssUrl += vm.releaseYear ? '&torrent_release=' + vm.releaseYear : '';
       vm.rssUrl += vm.searchTags.length ? '&torrent_tags=' + vm.searchTags : '';
       vm.rssUrl += '&torrent_hnr=' + vm.filterHnR;

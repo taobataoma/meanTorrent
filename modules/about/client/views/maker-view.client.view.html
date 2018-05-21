@@ -119,9 +119,9 @@
                     </div>
                     <div class="panel-body">
                         <div class="row filter-tags text-center"
-                             ng-if="vm.filterType!='aggregate' || vm.releaseYear || vm.torrentRLevel != 'level0' || vm.filterSale || vm.filterHnR || vm.filterTop || vm.filterUnique || vm.searchTags.length>0">
+                             ng-if="(vm.filterType && vm.filterType!='aggregate') || vm.releaseYear || vm.torrentRLevel != 'level0' || vm.filterSale || vm.filterHnR || vm.filterTop || vm.filterUnique || vm.searchTags.length>0">
                             <div class="col-md-6 col-md-offset-3">
-                                <span class="filter-tag-item label-tag" ng-if="vm.filterType!='aggregate'">{{'TORRENT_TYPE_LABEL.' + vm.filterType.toUpperCase() | translate}}
+                                <span class="filter-tag-item label-tag" ng-if="vm.filterType && vm.filterType!='aggregate'">{{'TORRENT_TYPE_LABEL.' + vm.filterType.toUpperCase() | translate}}
                                     <i class="fa fa-times-circle-o"
                                        ng-click="vm.onTorrentTypeClicked(vm.filterType);">
                                     </i>
