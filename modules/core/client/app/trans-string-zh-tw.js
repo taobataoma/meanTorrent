@@ -132,6 +132,15 @@
       }
     },
 
+    CHECK: {
+      BTN_CHECK_IN: '我要簽到',
+      CHECK_TOOLTIP: '#### `mine.pt` 邀請您參加每日簽到，現在簽到可獲得 `{{todayScore}}` 積分，明日續簽可獲得 `{{tomorrowScore}}` 積分哦！ ',
+      CHECK_TODAY_NOT: '#### 您今日還未簽到，上次簽到：`{{checkTime | date: "yyyy-MM-dd HH:mm"}}`，現在簽到可獲得`{{todayScore}}` 積分，明日續簽到可獲得`{{tomorrowScore}}` 積分哦！ ',
+      CHECK_TODAY_DONE: '#### 您已連續簽到`{{keepDays}}` 天，今日簽到時間：`{{checkTime | date: "yyyy-MM-dd HH:mm"}}`，已經獲得`{{todayScore}}` 積分，明日續簽到可獲得`{{tomorrowScore}}` 積分，請注意不要中斷哦!',
+      CHECK_SUCCESSFULLY: '簽到成功',
+      CHECK_ERROR: '簽到失敗'
+    },
+
     //element title/alt
     TITLE_ALT: {
       SEEDS: '做種使用者數',
@@ -333,13 +342,15 @@
     TAGS_SEARCH_GLOBAL: '種子搜尋 - 全域性',
     CA_KEYWORD: '關鍵字',
     CA_TORRENT_STATUS: '種子狀態',
-    CA_TORRENT_HNR: 'Hit and Run',
+    CA_TORRENT_ATTR: '種子屬性',
+    CA_TORRENT_HNR: 'H&R 黑種',
     CA_TORRENT_SALE_STATUS: '促銷狀態',
     CA_TORRENT_SALE_NOW: '正在促銷',
     CA_TORRENT_VIP: 'VIP 資源',
     CA_TORRENT_TOP: '置頂狀態',
+    CA_TORRENT_UNIQUE: '禁轉狀態',
     CA_RESOURCE_TYPE: '資源型別',
-    DESC_MAKE_RSS_URL: '這個 RSS 地址是通過上面的過濾條件生成的，您可以使用支援 RSS 訂閱功能的BT客戶端（如uTorrent）來自動下載您想要的這些種子和資原始檔.',
+    DESC_MAKE_RSS_URL: '根據當前檢索條件生成的 RSS 地址, 點擊複製到粘貼版.',
     COPY_TO_CLIPBOARD: '複製到剪下板',
     COPY_LINK_TO_CLIPBOARD: '複製種子檔案下載連線到剪下板',
     COPY_LINK_TEXT: '複製種子檔案地址',
@@ -370,6 +381,12 @@
     TORRENT_RATING_SUCCESSFULLY: '為種子投票成功',
     TORRENT_RATING_FAILED: '為種子投票失敗',
     EDIT_THIS_OVERVIEW: '編輯詳情介紹',
+    VIEW_ORIGINAL_MEDIA_INFO: '查看原始的媒體信息',
+    VIEW_FORMATTED_MEDIA_INFO: '查看格式化的媒體信息',
+    EDIT_THIS_MEDIA_INFO: '編輯媒體信息',
+    SAVE_THIS_MEDIA_INFO: '保存媒體信息',
+    EDIT_TORRENT_NFO_SUCCESSFULLY: '種子媒體信息編輯成功',
+    EDIT_TORRENT_NFO_FAILED: '種子媒體信息編輯失敗',
     IMG_PAGE_INFO: '當前頁: {{index}} / {{total}}',
 
     ANNOUNCE_URL: 'Tracker 地址',
@@ -382,7 +399,10 @@
     UPLOAD_TIME: '上傳時間',
     SALE_EXPIRES_TIME: '過期',
     TORRENT_STATUS_TOP_TITLE: '置頂推薦',
+    TORRENT_STATUS_UNIQUE: '禁轉資源',
+    TORRENT_STATUS_UNIQUE_TITLE: '禁轉資源，禁止轉發',
     STATUS_TOP_KEY: '置頂',
+    STATUS_UNIQUE_KEY: '禁轉',
     UPLOAD_SUBTITLE: '上傳字幕檔案',
     SUBTITLE_LIST: '字幕列表',
     SUBTITLE_RULES: {
@@ -419,6 +439,8 @@
     ADMIN_BASIC_UNSET_VIP: '取消VIP',
     ADMIN_BASIC_SET_TOP: '設為置頂',
     ADMIN_BASIC_UNSET_TOP: '取消置頂',
+    ADMIN_BASIC_SET_UNIQUE: '設為禁轉',
+    ADMIN_BASIC_UNSET_UNIQUE: '取消禁轉',
     ADMIN_BASIC_TYPE_SET: '設定促銷',
     ADMIN_SALE_TYPE_SET: '種子促銷型別',
     ADMIN_BASIC_RLEVEL_SET: '推薦級別',
@@ -462,6 +484,8 @@
     TORRENT_TOGGLE_VIP_FAILED: '改變種子VIP標籤失敗',
     TORRENT_TOGGLE_TOP_SUCCESSFULLY: '改變種子置頂狀態成功',
     TORRENT_TOGGLE_TOP_FAILED: '改變種子置頂狀態失敗',
+    TORRENT_TOGGLE_UNIQUE_SUCCESSFULLY: '改變種子禁轉狀態成功',
+    TORRENT_TOGGLE_UNIQUE_FAILED: '改變種子禁轉狀態失敗',
     TORRENT_SETTAGS_SUCCESSFULLY: '種子屬性標籤設定成功',
     TORRENT_SETTAGS_ERROR: '種子屬性標籤設定失敗',
 
@@ -1063,7 +1087,7 @@
     MESSAGE_SEND_FAILED: '訊息傳送失敗',
     MESSAGE_DELETED_SUCCESSFULLY: '訊息刪除成功',
     MESSAGE_DELETED_ERROR: '訊息刪除失敗',
-    MESSAGE_SERVER_TOOLTIP: '<h4>伺服器事件通知</h4> 當您做了一些重要的操作或者您的帳戶狀態發生變化以及某些重要事情與您有關時，伺服器會自動傳送訊息給您，這種訊息可能會很多，所以請及時檢視及刪除，系統只保留最近 {{30}} 天的訊息。',
+    MESSAGE_SERVER_TOOLTIP: '<h4>伺服器事件通知</h4> 當您做了一些重要的操作或者您的帳戶狀態發生變化以及某些重要事情與您有關時，伺服器會自動傳送訊息給您，這種訊息可能會很多，所以請及時檢視及刪除，系統只保留最近 {{days}} 天的訊息。',
 
     MESSAGE_DELETE_CONFIRM_OK: '刪除',
     MESSAGE_DELETE_CONFIRM_CANCEL: '取消',
@@ -1434,15 +1458,15 @@
     RESOURCESTAGS: {
       TYPE: {
         SELF: '型別',
-        BLU_RAY: 'BLU_RAY',
-        WEB_DL: 'WEB_DL',
-        REMUX: 'REMUX',
-        ENCODE: 'ENCODE',
+        BLU_RAY: 'Blu-ray',
+        WEB_DL: 'WEB',
+        REMUX: 'Remux',
+        ENCODE: 'Encode',
         HDTV: 'HDTV'
       },
 
       RESOLUTION: {
-        SELF: '解析度',
+        SELF: '分辨率',
         S4K: '4K',
         S1080P: '1080p',
         S1080I: '1080i',
@@ -1457,14 +1481,23 @@
         X265: 'x265'
       },
 
+      VISION: {
+        SELF: '視頻色彩',
+        DOLBY: 'DolbyVision',
+        HDR10PLUS: 'HDR10+',
+        HDR10: 'HDR10',
+        HDR: 'HDR',
+        SDR: 'SDR'
+      },
+
       AUDIO: {
         SELF: '音訊編碼',
         DTS_X: 'DTS:X',
         ATMOS: 'Atmos',
         DTS_HD: 'DTS-HD',
-        TRUE_HD: 'TRUE-HD',
+        TRUE_HD: 'True-HD',
         DTS: 'DTS',
-        AC3: 'AC3',
+        AC3: 'AC-3',
         AAC: 'AAC'
       },
 
@@ -1569,6 +1602,45 @@
       }
     },
 
+    MEDIAINFO: {
+      GENERAL: {
+        SELF: '資源通用信息',
+        FILESIZE: '總體積',
+        RUNTIME: '總時長',
+        DURATION: '總時長',
+        OVERALLBITRATE: '總碼率'
+      },
+      VIDEO: {
+        SELF: '視頻信息',
+        FORMAT: '格式',
+        DURATION: '時長',
+        BITRATE: '碼率',
+        WIDTH: '分辨率.寬',
+        HEIGHT: '分辨率.高',
+        FRAMERATEMODE: '幀率模式',
+        FRAMERATE: '幀率',
+        BITDEPTH: '位深',
+        STREAMSIZE: '體積',
+        WRITINGLIBRARY: '編碼方式',
+        RESOLUTION: '分辨率',
+        CODEC: '編碼'
+      },
+      AUDIO: {
+        SELF: '音頻信息',
+        FORMAT: '格式',
+        BITRATEMODE: '碼率模式',
+        BITRATE: '碼率',
+        CHANNEL: '聲道',
+        LANGUAGE: '音軌',
+        INFO: '音軌信息',
+        CODEC: '編碼'
+      },
+      TEXT: {
+        SELF: '字幕信息',
+        LANGUAGE: '語言'
+      }
+    },
+
     //server returned string
     SERVER: {
       USER_IS_NOT_AUTHORIZED: '使用者身份驗證未通過',
@@ -1607,7 +1679,8 @@
       FILE_ALREADY_EXISTS: '該種子檔名已經存在, {{filename}}',
       UPLOAD_ACCESS_DENY: '當前系統只接受資源製作小組上傳種子',
       READ_TORRENT_FILE_FAILD: '種子檔案解析錯誤，請檢查您的種子檔案，看是否缺少某些必要資訊',
-      MOVE_TORRENT_FILE_ERROR: '種子檔案移動錯誤，請不要快速重複進行提交操作或者上傳的種子檔案已丟失'
+      MOVE_TORRENT_FILE_ERROR: '種子檔案移動錯誤，請不要快速重複進行提交操作或者上傳的種子檔案已丟失',
+      YOU_ALREADY_CHECK_IN: '您今天已經簽過到了，不能重複簽到'
     },
 
     //server message string, content string support markdown and emoji
@@ -1679,6 +1752,9 @@
 
       TITLE_TORRENT_TOP_CHANGED: '上傳的種子 置頂 狀態改變',
       CONTENT_TORRENT_TOP_CHANGED: '### 置頂 狀態改變! \n 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 置頂 狀態已經由管理員使用者 [{{by_name}}](/userinfo/{{by_id}}) 修改, 當前狀態為: **{{top_status}}**.',
+
+      TITLE_TORRENT_UNIQUE_CHANGED: '上傳的種子 禁轉 狀態改變',
+      CONTENT_TORRENT_UNIQUE_CHANGED: '### 禁轉狀態改變! \n 您上傳的種子[{{torrent_file_name}}](/torrents/{{torrent_id}}) 禁轉狀態已經由管理員用戶[{{by_name}}]( /userinfo/{{by_id}}) 修改, 當前狀態為: **{{unique_status}}**.',
 
       TITLE_TORRENT_SALE_CHANGED: '上傳的種子促銷狀態改變',
       CONTENT_TORRENT_SALE_CHANGED: '### 促銷狀態改變! \n 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 促銷狀態已經由管理員使用者 [{{by_name}}](/userinfo/{{by_id}}) 修改, 當前狀態為: **{{sale_status}}**.',
