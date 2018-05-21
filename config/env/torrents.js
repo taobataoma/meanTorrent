@@ -707,6 +707,7 @@ module.exports = {
      *        @pageTitle:         the page title string, used by translate at PAGETITLE
      *        @uploadTemplateID:  view templateID in upload torrent page, when selected type is changed, then include the template by this id,
      *                            all the template html is in file: modules/torrents/client/views/uploads-torrents.client.view.html
+     *        @showSubtitleTabInDetailPage: setting whether show subtitle tab in torrent detail page
      *        @showTopListInHome: setting whether show the TOP list in site home page, if false, don`t show
      *                            the 'other' type torrent always not show in home page
      *
@@ -732,6 +733,7 @@ module.exports = {
           url: '/movie',
           pageTitle: 'MOVIE_LIST',
           uploadTemplateID: 'movie',
+          showSubtitleTabInDetailPage: true,
           showTopListInHome: true
         },
         {
@@ -748,6 +750,7 @@ module.exports = {
           url: '/tv',
           pageTitle: 'TV_LIST',
           uploadTemplateID: 'tvserial',
+          showSubtitleTabInDetailPage: true,
           showTopListInHome: true
         },
         {
@@ -764,6 +767,7 @@ module.exports = {
           url: '/documentary',
           pageTitle: 'DOCUMENTARY_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: true,
           showTopListInHome: true
         },
         {
@@ -780,6 +784,7 @@ module.exports = {
           url: '/music',
           pageTitle: 'MUSIC_LIST',
           uploadTemplateID: 'music',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: true
         },
         {
@@ -796,6 +801,7 @@ module.exports = {
           url: '/sports',
           pageTitle: 'SPORTS_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -812,6 +818,7 @@ module.exports = {
           url: '/variety',
           pageTitle: 'VARIETY_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -828,6 +835,7 @@ module.exports = {
           url: '/picture',
           pageTitle: 'PICTURE_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -844,6 +852,7 @@ module.exports = {
           url: '/game',
           pageTitle: 'GAME_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -860,6 +869,7 @@ module.exports = {
           url: '/software',
           pageTitle: 'SOFTWARE_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -876,6 +886,7 @@ module.exports = {
           url: '/ebook',
           pageTitle: 'EBOOK_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -892,6 +903,7 @@ module.exports = {
           url: '/other',
           pageTitle: 'OTHER_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -908,6 +920,7 @@ module.exports = {
           url: '/adult',
           pageTitle: 'ADULT_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         }
       ]

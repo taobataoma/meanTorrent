@@ -33,6 +33,7 @@
     vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
     vm.mediaInfoConfig = MeanTorrentConfig.meanTorrentConfig.mediaInfo;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+    vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
 
     vm.mediaInfoEditMode = false;
 
@@ -495,7 +496,7 @@
           icon: 'fa-file-text',
           title: $translate.instant('TAB_USER_SUBTITLE'),
           templateUrl: 'subtitleInfo.html',
-          ng_show: vm.torrentLocalInfo.torrent_type === 'movie' || vm.torrentLocalInfo.torrent_type === 'tvserial',
+          ng_show: showSubtitleTab(vm.torrentLocalInfo.torrent_type),
           badges: [
             {
               value: vm.torrentLocalInfo._subtitles.length,
@@ -554,6 +555,16 @@
           badges: []
         }
       );
+
+      function showSubtitleTab(type) {
+        var s = false;
+        angular.forEach(vm.torrentTypeConfig.value, function (t) {
+          if (t.value === type && t.showSubtitleTabInDetailPage) {
+            s = true;
+          }
+        });
+        return s;
+      }
     };
 
     /**
