@@ -81,7 +81,6 @@ exports.list = function (req, res) {
       ];
 
       db.find(condition)
-        .limit(role === 'server' ? 100 : 0)
         .sort('-updatedat -createdat')
         .populate('from_user', 'displayName profileImageURL uploaded downloaded')
         .populate('to_user', 'displayName profileImageURL uploaded downloaded')
@@ -297,33 +296,18 @@ exports.countUnread = function (req, res) {
       }
     });
   };
-  var countAdminNoticeMessage = function (callback) {
-    AdminMessage.count({
-      type: 'notice',
-      createdat: {$gt: req.user.created},
-      _readers: {$not: {$in: [req.user._id]}}
 
-    }, function (err, count) {
-      if (err) {
-        callback(err, null);
-      } else {
-        callback(null, count);
-      }
-    });
-  };
-
-  async.parallel([countFrom, countTo, countServer, countAdminSystemMessage, countAdminAdvertMessage, countAdminNoticeMessage], function (err, results) {
+  async.parallel([countFrom, countTo, countServer, countAdminSystemMessage, countAdminAdvertMessage], function (err, results) {
     if (err) {
       return res.status(422).send(err);
     } else {
       res.json({
-        countAll: results[0] + results[1] + results[2] + results[3] + results[4] + results[5],
+        countAll: results[0] + results[1] + results[2] + results[3] + results[4],
         countFrom: results[0],
         countTo: results[1],
         countServer: results[2],
         countSystem: results[3],
-        countAdvert: results[4],
-        countNotice: results[5]
+        countAdvert: results[4]
       });
     }
   });

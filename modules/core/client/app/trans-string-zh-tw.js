@@ -1063,7 +1063,7 @@
     MESSAGE_SEND_FAILED: '訊息傳送失敗',
     MESSAGE_DELETED_SUCCESSFULLY: '訊息刪除成功',
     MESSAGE_DELETED_ERROR: '訊息刪除失敗',
-    MESSAGE_SERVER_TOOLTIP: '<h4>伺服器事件通知</h4> 當您做了一些重要的操作或者您的帳戶狀態發生變化以及某些重要事情與您有關時，伺服器會自動傳送訊息給您，這種訊息可能會很多，所以請及時檢視及刪除，伺服器只保留最後的 {{count}} 條訊息.',
+    MESSAGE_SERVER_TOOLTIP: '<h4>伺服器事件通知</h4> 當您做了一些重要的操作或者您的帳戶狀態發生變化以及某些重要事情與您有關時，伺服器會自動傳送訊息給您，這種訊息可能會很多，所以請及時檢視及刪除，系統只保留最近 {{30}} 天的訊息。',
 
     MESSAGE_DELETE_CONFIRM_OK: '刪除',
     MESSAGE_DELETE_CONFIRM_CANCEL: '取消',

@@ -513,7 +513,8 @@ module.exports = {
      *                @value:     type value
      * @checkUnreadInterval:      set check unread message interval, default 2 minutes
      * @checkUnreadInterval_str:  string desc of @checkUnreadInterval
-     * @serverMessageLimitCount:  limit server notice message count in messagebox
+     * @serverMessageExpires:     setting server message expire time, old message will be delete automatic
+     * @serverMessageExpires_str: setting desc of @serverMessageExpires
      *
      * NOTE: the first value 'user' cannot be deleted
      */
@@ -529,7 +530,8 @@ module.exports = {
       },
       checkUnreadInterval: 60 * 1000 * 2,
       checkUnreadInterval_str: '2m',
-      serverMessageLimitCount: 100
+      serverMessageExpires: 60 * 60 * 1000 * 24 * 10,
+      serverMessageExpires_str: '10d'
     },
 
     /**
