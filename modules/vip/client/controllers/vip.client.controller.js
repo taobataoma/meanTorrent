@@ -40,11 +40,11 @@
 
     vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
-    vm.torrentType = localStorageService.get('vip_last_selected_type') || 'movie';
 
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
+    vm.filterType = undefined;
     vm.filterHnR = false;
     vm.filterTop = false;
     vm.filterUnique = false;
@@ -52,6 +52,9 @@
     vm.torrentRLevel = 'level0';
 
     uibButtonConfig.activeClass = 'btn-success';
+
+    vm.torrentType = 'aggregate';
+    vm.filterType = localStorageService.get('vip_last_selected_type') || 'aggregate';
 
     /**
      * getTemplateFileContent
@@ -265,7 +268,7 @@
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage,
         sort: vm.sort,
-        torrent_type: vm.torrentType,
+        torrent_type: (vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
         torrent_status: 'reviewed',
         torrent_vip: true,
         keys: vm.searchKey.trim(),
@@ -293,7 +296,7 @@
       vm.rssUrl += '?language=' + localStorageService.get('storage_user_lang');
       vm.rssUrl += '&limit=' + vm.rssConfig.pageItemsNumber;
       vm.rssUrl += vm.searchKey.trim() ? '&keys=' + vm.searchKey.trim() : '';
-      vm.rssUrl += '&torrent_type=' + vm.torrentType;
+      vm.rssUrl += '&torrent_type=' + ((vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType));
       vm.rssUrl += vm.releaseYear ? '&torrent_release=' + vm.releaseYear : '';
       vm.rssUrl += vm.searchTags.length ? '&torrent_tags=' + vm.searchTags : '';
       vm.rssUrl += '&torrent_hnr=' + vm.filterHnR;
@@ -326,7 +329,28 @@
      */
     vm.onTorrentTypeChanged = function () {
       vm.buildPager();
-      localStorageService.set('vip_last_selected_type', vm.torrentType);
+      localStorageService.set('vip_last_selected_type', vm.filterType);
+    };
+
+    /**
+     * tagsFilter
+     * @param item
+     * @returns {boolean}
+     */
+    vm.tagsFilter = function (item) {
+      var res = false;
+
+      if (vm.filterType === 'aggregate') {
+        angular.forEach(vm.torrentTypeConfig.value, function (t) {
+          if (t.enable && item.cats.includes(t.value))
+            res = true;
+        });
+      } else {
+        if (item.cats.includes(vm.filterType))
+          res = true;
+      }
+
+      return res;
     };
 
     /**
@@ -393,6 +417,7 @@
       vm.filterUnique = false;
       vm.filterSale = false;
       vm.torrentRLevel = 'level0';
+      vm.filterType = 'aggregate';
 
       vm.buildPager();
     };
@@ -416,6 +441,19 @@
         vm.torrentRLevel = 'level0';
       } else {
         vm.torrentRLevel = l;
+      }
+      vm.buildPager();
+    };
+
+    /**
+     * onTorrentTypeClicked
+     * @param t
+     */
+    vm.onTorrentTypeClicked = function (t) {
+      if (vm.filterType === t) {
+        vm.filterType = vm.torrentType;
+      } else {
+        vm.filterType = t;
       }
       vm.buildPager();
     };

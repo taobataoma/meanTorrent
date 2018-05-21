@@ -115,12 +115,17 @@
             <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.pagedItems">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
-                        <h3 class="panel-title">-={{vm.maker.name}}=- {{'TAGS_SEARCH' | translate}} - {{'MENU_TORRENTS_SUB.' + vm.torrentType.toUpperCase() | translate}}</h3>
+                        <h3 class="panel-title">-={{vm.maker.name}}=- &emsp;&emsp; {{'TAGS_SEARCH' | translate}}</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row filter-tags text-center"
-                             ng-if="vm.releaseYear || vm.torrentRLevel != 'level0' || vm.filterSale || vm.filterHnR || vm.filterTop || vm.filterUnique || vm.searchTags.length>0">
+                             ng-if="vm.filterType!='aggregate' || vm.releaseYear || vm.torrentRLevel != 'level0' || vm.filterSale || vm.filterHnR || vm.filterTop || vm.filterUnique || vm.searchTags.length>0">
                             <div class="col-md-6 col-md-offset-3">
+                                <span class="filter-tag-item label-tag" ng-if="vm.filterType!='aggregate'">{{'TORRENT_TYPE_LABEL.' + vm.filterType.toUpperCase() | translate}}
+                                    <i class="fa fa-times-circle-o"
+                                       ng-click="vm.onTorrentTypeClicked(vm.filterType);">
+                                    </i>
+                                </span>
                                 <span class="filter-tag-item label-tag" ng-if="vm.releaseYear">{{vm.releaseYear}}
                                     <i class="fa fa-times-circle-o"
                                        ng-click="vm.onReleaseClicked(vm.releaseYear);">
@@ -185,18 +190,18 @@
                                     </div>
                                 </dd>
 
-                                <dt class="h-line margin-top-10">{{'CA_RESOURCE_TYPE' | translate}}</dt>
-                                <dd class="h-line margin-top-10">
-                                    <div class="radio radio-type margin-top-5">
-                                        <label class="radio-inline" ng-class="{checked: vm.torrentType == t.value}"
-                                               ng-repeat="t in vm.torrentTypeConfig.value | filter:{enable: true, role: 'user'}">
-                                            <input type="radio" ng-model="vm.torrentType" value="{{t.value}}"
-                                                   ng-change="vm.onTorrentTypeChanged();"> {{'MENU_TORRENTS_SUB.'+t.name | translate}}
-                                        </label>
-                                    </div>
-                                </dd>
-
                                 <div class="more-tags panel-collapsed padding-top-10" style="display: none; margin-bottom: 20px;">
+                                    <dt class="h-line margin-top-10">{{'CA_RESOURCE_TYPE' | translate}}</dt>
+                                    <dd class="h-line margin-top-10">
+                                        <div class="radio radio-type margin-top-5">
+                                            <label class="radio-inline" ng-class="{checked: vm.filterType == t.value}"
+                                                   ng-repeat="t in vm.torrentTypeConfig.value | filter:{enable: true, role: 'user'}">
+                                                <input type="radio" ng-model="vm.filterType" value="{{t.value}}"
+                                                       ng-change="vm.onTorrentTypeChanged();"> {{'MENU_TORRENTS_SUB.'+t.name | translate}}
+                                            </label>
+                                        </div>
+                                    </dd>
+
                                     <dt class="h-line">{{ 'CA_TORRENT_ATTR' | translate}}:</dt>
                                     <dd class="h-line">
                                         <div class="checkbox checkbox-hnr">

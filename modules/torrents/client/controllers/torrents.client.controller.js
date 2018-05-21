@@ -39,6 +39,9 @@
 
     vm.torrentType = $state.current.data.torrentType || 'aggregate';
 
+    /**
+     * scope watch vm.torrentType
+     */
     $scope.$watch('vm.torrentType', function (newValue, oldValue) {
       if (vm.torrentType === 'aggregate') {
         vm.filterType = 'aggregate';
@@ -315,7 +318,7 @@
         keys: vm.searchKey.trim(),
         torrent_status: 'reviewed',
         torrent_rlevel: vm.torrentRLevel,
-        torrent_type: (vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
+        torrent_type: (vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
         torrent_vip: false,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
@@ -347,7 +350,7 @@
       vm.rssUrl += '?language=' + vm.lang;
       vm.rssUrl += '&limit=' + vm.rssConfig.pageItemsNumber;
       vm.rssUrl += vm.searchKey.trim() ? '&keys=' + vm.searchKey.trim() : '';
-      vm.rssUrl += '&torrent_type=' + ((vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType));
+      vm.rssUrl += '&torrent_type=' + ((vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType));
       vm.rssUrl += vm.releaseYear ? '&torrent_release=' + vm.releaseYear : '';
       vm.rssUrl += vm.searchTags.length ? '&torrent_tags=' + vm.searchTags : '';
       vm.rssUrl += '&torrent_hnr=' + vm.filterHnR;
