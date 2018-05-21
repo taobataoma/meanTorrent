@@ -1056,9 +1056,8 @@
     BUTTON_MESSAGE_REPLY: '回覆',
 
     MESSAGE_TYPE_USER: '使用者訊息',
-    MESSAGE_TYPE_SYSTEM: '全域性系統訊息',
-    MESSAGE_TYPE_ADVERT: '全域性廣告推送',
-    MESSAGE_TYPE_NOTICE: '全域性系統通知',
+    MESSAGE_TYPE_SYSTEM: '系統訊息',
+    MESSAGE_TYPE_ADVERT: '廣告推送',
     MESSAGE_TYPE_SERVER: '伺服器事件通知',
     MESSAGE_SEND_SUCCESSFULLY: '訊息傳送成功',
     MESSAGE_SEND_FAILED: '訊息傳送失敗',

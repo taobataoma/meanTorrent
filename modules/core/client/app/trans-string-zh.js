@@ -1080,9 +1080,8 @@
     BUTTON_MESSAGE_REPLY: '回复',
 
     MESSAGE_TYPE_USER: '用户消息',
-    MESSAGE_TYPE_SYSTEM: '全局系统消息',
-    MESSAGE_TYPE_ADVERT: '全局广告推送',
-    MESSAGE_TYPE_NOTICE: '全局系统通知',
+    MESSAGE_TYPE_SYSTEM: '系统消息',
+    MESSAGE_TYPE_ADVERT: '广告推送',
     MESSAGE_TYPE_SERVER: '服务器事件通知',
     MESSAGE_SEND_SUCCESSFULLY: '消息发送成功',
     MESSAGE_SEND_FAILED: '消息发送失败',

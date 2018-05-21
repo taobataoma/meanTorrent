@@ -524,8 +524,7 @@ module.exports = {
           {name: 'USER', value: 'user', role: 'user'},
           {name: 'SERVER', value: 'server', role: 'server'},
           {name: 'SYSTEM', value: 'system', role: 'admin'},
-          {name: 'ADVERT', value: 'advert', role: 'admin'},
-          {name: 'NOTICE', value: 'notice', role: 'admin'}
+          {name: 'ADVERT', value: 'advert', role: 'admin'}
         ]
       },
       checkUnreadInterval: 60 * 1000 * 2,
