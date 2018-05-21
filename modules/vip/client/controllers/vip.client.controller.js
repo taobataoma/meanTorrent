@@ -57,6 +57,15 @@
     vm.filterType = localStorageService.get('vip_last_selected_type') || 'aggregate';
 
     /**
+     * scope watch vm.filterType
+     */
+    $scope.$watch('vm.filterType', function (newValue, oldValue) {
+      if (newValue) {
+        localStorageService.set('vip_last_selected_type', newValue);
+      }
+    });
+
+    /**
      * getTemplateFileContent
      * @param file
      */

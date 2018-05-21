@@ -64,6 +64,15 @@
     };
 
     /**
+     * scope watch vm.filterType
+     */
+    $scope.$watch('vm.filterType', function (newValue, oldValue) {
+      if (newValue) {
+        localStorageService.set('maker_last_selected_type', newValue);
+      }
+    });
+
+    /**
      * getTemplateFileContent
      * @param file
      */
