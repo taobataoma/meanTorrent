@@ -83,7 +83,7 @@
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage,
         userid: $state.params.userId,
-        torrent_type: vm.filterType ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
+        torrent_type: (vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
         torrent_status: 'all',
         torrent_vip: vm.filterVIP ? vm.filterVIP : undefined,
         torrent_rlevel: vm.torrentRLevel,

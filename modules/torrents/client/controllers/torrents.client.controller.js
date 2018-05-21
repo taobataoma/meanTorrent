@@ -48,7 +48,6 @@
       } else {
         vm.filterType = vm.torrentType;
       }
-      console.log('vm.filterType = ' + vm.filterType);
     });
 
     /**
@@ -311,9 +310,6 @@
     vm.getResourcePageInfo = function (p, callback) {
       //if searchKey or searchTags has value, the skip=0
       var skip = 0;
-
-      console.log(vm.filterType);
-      console.log(vm.torrentType);
 
       TorrentsService.get({
         skip: (p - 1) * vm.torrentItemsPerPage + skip,
