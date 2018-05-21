@@ -239,6 +239,7 @@
       MAKER: '资源小组',
       OPERLIST: 'Admin/Oper 列表',
       COLLECTIONS: '电影系列',
+      ALBUMS: '资源专辑',
       VIP: 'Vip',
       VIP_DONATE: '捐赠VIP',
       VIP_RULES: 'Vip用户协议',

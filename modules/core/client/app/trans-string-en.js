@@ -239,6 +239,7 @@
       MAKER: 'Resources Group',
       OPERLIST: 'Admin/Oper List',
       COLLECTIONS: 'Movie Collections',
+      ALBUMS: 'Albums',
       VIP: 'Vip',
       VIP_DONATE: 'Vip Donate',
       VIP_RULES: 'Vip Rules',

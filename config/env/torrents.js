@@ -664,9 +664,11 @@ module.exports = {
         AdminTorrentSetSaleType: {name: 'AdminTorrentSetSaleType', enable: true},
         AdminTorrentSetRecommendLevel: {name: 'AdminTorrentSetRecommendLevel', enable: true},
         AdminCollectionSetRecommendLevel: {name: 'AdminCollectionSetRecommendLevel', enable: true},
+        AdminAlbumSetRecommendLevel: {name: 'AdminAlbumSetRecommendLevel', enable: true},
         AdminTorrentSetReviewedStatus: {name: 'AdminTorrentSetReviewedStatus', enable: true},
         OperCreateMakerGroup: {name: 'OperCreateMakerGroup', enable: true},
         OperCreateCollection: {name: 'OperCreateCollection', enable: true},
+        OperCreateAlbum: {name: 'OperCreateAlbum', enable: true},
         OperDeleteBackupFiles: {name: 'OperDeleteBackupFiles', enable: true},
 
         userInvitationExchange: {name: 'userInvitationExchange', enable: true},

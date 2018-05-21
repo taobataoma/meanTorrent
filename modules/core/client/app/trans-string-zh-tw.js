@@ -239,6 +239,7 @@
       MAKER: '資源小組',
       OPERLIST: 'Admin/Oper 列表',
       COLLECTIONS: '電影系列',
+      ALBUMS: '資源專輯',
       VIP: 'Vip',
       VIP_DONATE: '捐贈VIP',
       VIP_RULES: 'Vip使用者協議',
