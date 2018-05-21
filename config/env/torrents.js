@@ -81,12 +81,12 @@ module.exports = {
      * @index:  list index in menu
      * @class:  flag icon class, can find flag icon at '/public/lib/flag-icon-css/flags'
      * @title:  language title show in menu item
-     *
+     * @enable: setting whether to enable or disable this language support, if false, user can not select it
      */
     language: [
-      {name: 'en', index: 0, class: 'flag-icon-gb', title: 'English'},
-      {name: 'zh', index: 1, class: 'flag-icon-cn', title: '中文'},
-      {name: 'zh-tw', index: 2, class: 'flag-icon-tw', title: '繁體中文'}
+      {name: 'en', index: 0, class: 'flag-icon-gb', title: 'English', enable: true},
+      {name: 'zh', index: 1, class: 'flag-icon-cn', title: '中文', enable: true},
+      {name: 'zh-tw', index: 2, class: 'flag-icon-tw', title: '繁體中文', enable: true}
     ],
 
     /**

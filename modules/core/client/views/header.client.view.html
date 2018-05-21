@@ -58,7 +58,7 @@
                 <ul class="dropdown-menu" role="menu">
                     <li class="lang-list">
                         <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);"
-                              ng-repeat="l in vm.language" ng-class="{'curr-language': vm.langService.getLang() == l.name}"></span>
+                              ng-repeat="l in vm.language | filter: {enable: true}" ng-class="{'curr-language': vm.langService.getLang() == l.name}"></span>
                     </li>
                     <li class="divider"></li>
                     <li ui-sref-active="active" ng-repeat="item in vm.followMenu.items" class="menu-parent">
