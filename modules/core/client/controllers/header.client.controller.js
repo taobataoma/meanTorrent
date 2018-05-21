@@ -56,12 +56,9 @@
         $('div.navbar-mt ul.nav li.dropdown').off('mouseenter mouseleave').hover(function (evt) {
           if (!$(this).hasClass('open')) {
             $(this).find('.dropdown-toggle', this).trigger('click');
-            $(this).off('click').on('click', function (e) {
-              var sta = $(this).find('.dropdown-toggle', this).attr('alt');
-              if (sta) {
-                $state.go(sta);
-              }
-            });
+            bindClick($(this));
+          } else {
+            bindClick($(this));
           }
         }, function (evt) {
           $(this).off('click');
@@ -73,8 +70,18 @@
         $('div.navbar-mt ul.nav li.dropdown ul.dropdown-menu').off('mouseenter mouseleave').hover(function (evt) {
           $(this).parent().off('click');
         }, function (evt) {
+          bindClick($(this).parent());
         });
       }, 0);
+
+      function bindClick(ele) {
+        ele.off('click').on('click', function (e) {
+          var sta = ele.find('.dropdown-toggle', ele).attr('alt');
+          if (sta) {
+            $state.go(sta);
+          }
+        });
+      }
     };
 
     /**
