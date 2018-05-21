@@ -350,8 +350,7 @@
     CA_TORRENT_TOP: '置頂狀態',
     CA_TORRENT_UNIQUE: '禁轉狀態',
     CA_RESOURCE_TYPE: '資源類別',
-    CA_MAKE_RSS_URL: 'RSS連線',
-    DESC_MAKE_RSS_URL: '這個 RSS 地址是通過上面的過濾條件生成的，您可以使用支援 RSS 訂閱功能的BT客戶端（如uTorrent）來自動下載您想要的這些種子和資原始檔.',
+    DESC_MAKE_RSS_URL: '根據當前搜索條件生成的 RSS 地址, 點擊取得連結.',
     COPY_TO_CLIPBOARD: '複製到剪下板',
     COPY_LINK_TO_CLIPBOARD: '複製種子檔案下載連線到剪下板',
     COPY_LINK_TEXT: '複製種子檔案地址',
@@ -359,7 +358,7 @@
     TORRENT_LABEL_LINK: '種子地址',
     PH_KEYWORD: '搜尋關鍵字',
     CLEAR_ALL_CONDITION: '清空所有條件',
-    MORE_TAGS: '顯示更多標籤',
+    MORE_TAGS: '更多標籤',
     CA_RESET: '重置條件',
     TORRENT_DOWNLOAD_ERROR: '種子檔案下載失敗',
     TORRENTS_DOWNLOAD_SUCCESSFULLY: '種子檔案下載成功',
@@ -382,6 +381,12 @@
     TORRENT_RATING_SUCCESSFULLY: '為種子投票成功',
     TORRENT_RATING_FAILED: '為種子投票失敗',
     EDIT_THIS_OVERVIEW: '編輯詳情介紹',
+    VIEW_ORIGINAL_MEDIA_INFO: '查看原始的媒體信息',
+    VIEW_FORMATTED_MEDIA_INFO: '查看格式化的媒體信息',
+    EDIT_THIS_MEDIA_INFO: '編輯媒體信息',
+    SAVE_THIS_MEDIA_INFO: '保存媒體信息',
+    EDIT_TORRENT_NFO_SUCCESSFULLY: '種子媒體信息編輯成功',
+    EDIT_TORRENT_NFO_FAILED: '種子媒體信息編輯失敗',
     IMG_PAGE_INFO: '當前頁: {{index}} / {{total}}',
 
     ANNOUNCE_URL: 'Tracker 地址',
@@ -1455,7 +1460,7 @@
       TYPE: {
         SELF: '類別',
         BLU_RAY: 'Blu-Ray',
-        WEB: 'Web',
+        WEB: 'WEB',
         REMUX: 'Remux',
         ENCODE: 'Encode',
         HDTV: 'HDTV'
@@ -1477,14 +1482,23 @@
         X265: 'x265'
       },
 
+      VISION: {
+        SELF: '視頻色象度',
+        DOLBY: 'DolbyVision',
+        HDR10PLUS: 'HDR10+',
+        HDR10: 'HDR10',
+        HDR: 'HDR',
+        SDR: 'SDR'
+      },
+
       AUDIO: {
         SELF: '音訊編碼',
         DTS_X: 'DTS:X',
         ATMOS: 'Atmos',
         DTS_HD: 'DTS-HD',
-        TRUE_HD: 'TRUE-HD',
+        TRUE_HD: 'True-HD',
         DTS: 'DTS',
-        AC3: 'AC3',
+        AC3: 'AC-3',
         AAC: 'AAC'
       },
 
@@ -1509,7 +1523,7 @@
       REGION: {
         SELF: '地區',
         CHINA: '中國',
-        USA: '美國',
+        EUR_USA: '歐洲 & 美國',
         JAPAN: '日本',
         KOREA: '韓國',
         INDIA: '印度',
@@ -1586,6 +1600,45 @@
         IOS: 'iOS',
         ANDROID: 'Android',
         CAR: 'Car'
+      }
+    },
+
+    MEDIAINFO: {
+      GENERAL: {
+        SELF: '資源通用信息',
+        FILESIZE: '總體積',
+        RUNTIME: '總時長',
+        DURATION: '總時長',
+        OVERALLBITRATE: '總碼率'
+      },
+      VIDEO: {
+        SELF: '視頻信息',
+        FORMAT: '格式',
+        DURATION: '時長',
+        BITRATE: '碼率',
+        WIDTH: '解析度.宽',
+        HEIGHT: '解析度.高',
+        FRAMERATEMODE: '幀率模式',
+        FRAMERATE: '幀率',
+        BITDEPTH: '位元深度',
+        STREAMSIZE: '體積',
+        WRITINGLIBRARY: '編碼方式',
+        RESOLUTION: '解析度',
+        CODEC: '編碼'
+      },
+      AUDIO: {
+        SELF: '音頻信息',
+        FORMAT: '格式',
+        BITRATEMODE: '碼率模式',
+        BITRATE: '碼率',
+        CHANNEL: '聲道',
+        LANGUAGE: '音軌',
+        INFO: '音軌信息',
+        CODEC: '編碼'
+      },
+      TEXT: {
+        SELF: '字幕信息',
+        LANGUAGE: '語言'
       }
     },
 
