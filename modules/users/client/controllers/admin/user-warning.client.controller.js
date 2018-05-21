@@ -18,6 +18,7 @@
     vm.user = user;
     vm.authUser = Authentication.user;
     vm.RTS = ResourcesTagsServices;
+    vm.torrentType = 'aggregate';
 
     vm.searchTags = [];
 

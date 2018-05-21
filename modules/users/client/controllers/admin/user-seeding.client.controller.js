@@ -9,7 +9,7 @@
     'MeanTorrentConfig', '$window', '$filter', 'DownloadService', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices'];
 
   function UserSeedingController($scope, $state, $translate, user, $timeout, Authentication, Notification, PeersService, MeanTorrentConfig,
-                                  $window, $filter, DownloadService, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
+                                 $window, $filter, DownloadService, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -17,6 +17,7 @@
     vm.authUser = Authentication.user;
     vm.RTS = ResourcesTagsServices;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+    vm.torrentType = 'aggregate';
 
     vm.searchTags = [];
 
