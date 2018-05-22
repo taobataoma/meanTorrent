@@ -47,32 +47,44 @@
       });
     });
 
+    $(window).resize(function () {
+      console.log($(window).innerWidth()+15);
+      if ($(window).innerWidth() <= (767-15)) {
+        $('div.navbar-mt ul.nav li.dropdown').off('mouseenter mouseleave');
+        $('div.navbar-mt ul.nav li.dropdown').off('click');
+      } else {
+        vm.bindHoverToMenuItem();
+      }
+    });
+
     /**
      * bindHoverToMenuItem
      */
     vm.bindHoverToMenuItem = function () {
       //set menu bar opened when hover
-      $timeout(function () {
-        $('div.navbar-mt ul.nav li.dropdown').off('mouseenter mouseleave').hover(function (evt) {
-          if (!$(this).hasClass('open')) {
-            $(this).find('.dropdown-toggle', this).trigger('click');
-            bindClick($(this));
-          } else {
-            bindClick($(this));
-          }
-        }, function (evt) {
-          $(this).off('click');
-          if ($(this).hasClass('open')) {
-            $(this).find('.dropdown-toggle', this).trigger('click');
-          }
-        });
+      if ($(window).innerWidth() > (767-15)) {
+        $timeout(function () {
+          $('div.navbar-mt ul.nav li.dropdown').off('mouseenter mouseleave').hover(function (evt) {
+            if (!$(this).hasClass('open')) {
+              $(this).find('.dropdown-toggle', this).trigger('click');
+              bindClick($(this));
+            } else {
+              bindClick($(this));
+            }
+          }, function (evt) {
+            $(this).off('click');
+            if ($(this).hasClass('open')) {
+              $(this).find('.dropdown-toggle', this).trigger('click');
+            }
+          });
 
-        $('div.navbar-mt ul.nav li.dropdown ul.dropdown-menu').off('mouseenter mouseleave').hover(function (evt) {
-          $(this).parent().off('click');
-        }, function (evt) {
-          bindClick($(this).parent());
-        });
-      }, 0);
+          $('div.navbar-mt ul.nav li.dropdown ul.dropdown-menu').off('mouseenter mouseleave').hover(function (evt) {
+            $(this).parent().off('click');
+          }, function (evt) {
+            bindClick($(this).parent());
+          });
+        }, 0);
+      }
 
       function bindClick(ele) {
         ele.off('click').on('click', function (e) {
