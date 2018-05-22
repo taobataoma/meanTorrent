@@ -34,6 +34,11 @@ var AlbumSchema = new Schema({
     trim: true,
     default: ''
   },
+  cover: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   torrents: [{
     type: Schema.Types.ObjectId,
     ref: 'Torrent'

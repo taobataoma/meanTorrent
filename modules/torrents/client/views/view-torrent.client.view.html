@@ -530,13 +530,10 @@
             </legend>
 
             <div class="collection-form">
-                <div class="h5 margin-bottom-5">{{'COLLECTIONS.TORRENT_INTO' | translate}}:</div>
-                <input type="text" class="form-control margin-top-10" id="tid"
-                       ng-model="vm.collectionTorrent.id" autofocus>
-                <input type="text" class="form-control margin-top-10" id="ttitle"
-                       ng-model="vm.collectionTorrent.title" autofocus>
-                <input type="text" class="form-control margin-top-10" id="tfile"
-                       ng-model="vm.collectionTorrent.file" autofocus>
+                <div class="h5 margin-bottom-5">{{'COLLECTIONS.TORRENT_INFO' | translate}}:</div>
+                <input type="text" class="form-control margin-top-10" ng-model="vm.collectionTorrent.id" readonly>
+                <input type="text" class="form-control margin-top-10" ng-model="vm.collectionTorrent.title" readonly>
+                <input type="text" class="form-control margin-top-10" ng-model="vm.collectionTorrent.file" readonly>
 
                 <div ng-if="vm.collectionsItems.length<=0">
                     <div class="h5 text-danger margin-top-40 margin-bottom-5">{{'COLLECTIONS.NO_COLLECTION' | translate}}</div>
@@ -606,6 +603,51 @@
                     ng-click="vm.saveAlbum();">{{ 'BUTTON_SAVE' | translate }}
             </button>
             <button class="btn btn-default btn-width-100" ng-click="vm.hideAlbumPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
+        </div>
+    </div>
+
+    <!-- =================================================================
+        side-overlay albums insert
+    ================================================================== -->
+    <div id="albumsInsertSlide" side-overlay="right" side-class="collections-side-overlay" side-close-on-esc side-modal>
+        <div class="collection-popup">
+            <legend class="h4"
+                    translate="ALBUMS.INSERT_INTO">
+            </legend>
+
+            <div class="collection-form">
+                <div class="h5 margin-bottom-5">{{'ALBUMS.TORRENT_INFO' | translate}}:</div>
+                <input type="text" class="form-control margin-top-10" ng-model="vm.albumTorrent.id" readonly>
+                <input type="text" class="form-control margin-top-10" ng-model="vm.albumTorrent.title" readonly>
+                <input type="text" class="form-control margin-top-10" ng-model="vm.albumTorrent.subtitle" readonly>
+
+                <div ng-if="vm.albumsItems.length<=0">
+                    <div class="h5 text-danger margin-top-40 margin-bottom-5">{{'ALBUMS.NO_ALBUM' | translate}}</div>
+                </div>
+                <div ng-if="vm.albumsItems.length>0">
+                    <div class="h5 margin-top-40 margin-bottom-5">{{'ALBUMS.SELECT_INFO' | translate}}:</div>
+                    <div>
+                        <input type="text" class="form-control" ng-model="vm.filterKeyWord"
+                               ng-change="vm.figureOutAlbumsToDisplay()"
+                               placeholder="{{ 'FILTER_KEYWORD' | translate}}" autofocus>
+                    </div>
+                    <div class="radio margin-left-10" ng-repeat="c in vm.filteredItems">
+                        <label ng-class="{'text-muted': vm.isAlreadyIn(c)}">
+                            <input type="radio" name="n_{{c._id}}" id="i_{{c._id}}" value="{{c._id}}"
+                                   ng-model="vm.albumTorrent.aid" ng-disabled="vm.isAlreadyIn(c)">
+                            {{c.name}} <span ng-if="vm.isAlreadyIn(c)">{{'ALBUMS.ALREADY_IN' | translate}}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-control">
+            <button class="btn btn-success btn-width-100"
+                    ng-disabled="!vm.albumTorrent.aid"
+                    ng-click="vm.saveInsertAlbum();">{{ 'BUTTON_SAVE' | translate }}
+            </button>
+            <button class="btn btn-default btn-width-100" ng-click="vm.hideAlbumInsertPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
         </div>
     </div>
 

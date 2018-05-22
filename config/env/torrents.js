@@ -541,18 +541,27 @@ module.exports = {
      *
      * @uploadTorrentTitleLength:     torrent title length on upload page
      * @uploadTorrentSubTitleLength:  torrent sub title length on upload page
+     *
      * @userSignatureLength:          user signature of forum string length limit
      * @chatMessageMaxLength:         chat room send message string length limit
+     *
      * @messageTitleLength:           user message send title length limit
      * @messageBoxContentLength:      user message send content length limit
      * @messageBoxReplyLength:        user message send reply content length limit
      * @ticketContentLength:          ticket content length limit
+     *
      * @torrentCommentLength:         torrent comment send content length limit
+     *
      * @forumTopicTitleLength:        forum topic title length limit
      * @forumTopicContentLength:      forum topic content length limit
      * @forumReplyContentLength:      forum reply content length limit
      * @makerGroupDescLength:         resources group desc content length limit
+     *
      * @collectionsOverviewLength:    movie collections overview content length limit
+     * @albumsOverviewLength:         resource albums overview content length limit
+     *
+     * @requestDescLength:            request description content length limit
+     * @requestCommentLength:         request comment content length limit
      */
     inputLength: {
       uploadTorrentTitleLength: 128,

@@ -358,6 +358,7 @@
     COPY_TO_CLIPBOARD_SUCCESSFULLY: '内容已复制到剪切板!',
     TORRENT_LABEL_LINK: '种子连接',
     PH_KEYWORD: '搜索关键字',
+    FILTER_KEYWORD: '过滤关键字',
     CLEAR_ALL_CONDITION: '清空所有条件',
     MORE_TAGS: '更多标签',
     CA_RESET: '重置条件',
@@ -768,7 +769,16 @@
       FORM_NAME: '专辑名称',
       FORM_DESC: '专辑简介',
       CREATE_SUCCESSFULLY: '资源专辑创建成功',
-      CREATE_FAILED: '资源专辑创建失败'
+      CREATE_FAILED: '资源专辑创建失败',
+      INSERT_INTO: '添加资源到专辑',
+      TORRENT_INFO: '种子信息',
+      NO_ALBUM: '没有可加入的专辑, 如果还没有创建，您可以先创建一个专辑, 再执行加入操作.',
+      SELECT_INFO: '选择要加入的专辑',
+      ALREADY_IN: '(已加入)',
+      LOAD_ALBUM_LIST: '正在获取资源专辑列表 ...',
+      LOAD_ALBUM_LIST_ERROR: '错误：获取资源专辑列表失败',
+      INSERT_SUCCESSFULLY: '添加资源到专辑成功',
+      INSERT_FAILED: '添加资源到专辑失败'
     },
 
     //backup views settings

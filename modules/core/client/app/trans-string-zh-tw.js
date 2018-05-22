@@ -358,6 +358,7 @@
     COPY_TO_CLIPBOARD_SUCCESSFULLY: '內容已複製到剪下板!',
     TORRENT_LABEL_LINK: '種子地址',
     PH_KEYWORD: '搜尋關鍵字',
+    FILTER_KEYWORD: '過濾關鍵字',
     CLEAR_ALL_CONDITION: '清空所有條件',
     MORE_TAGS: '更多標籤',
     CA_RESET: '重置條件',
@@ -768,7 +769,16 @@
       FORM_NAME: '專輯名稱',
       FORM_DESC: '專輯簡介',
       CREATE_SUCCESSFULLY: '資源專輯創建成功',
-      CREATE_FAILED: '資源專輯創建失敗'
+      CREATE_FAILED: '資源專輯創建失敗',
+      INSERT_INTO: '添加資源到專輯',
+      TORRENT_INFO: '種子信息',
+      NO_ALBUM: '沒有可加入的專輯, 如果還沒有創建，您可以先創建一個專輯, 再執行加入操作.',
+      SELECT_INFO: '選擇要加入的專輯',
+      ALREADY_IN: '(已加入)',
+      LOAD_ALBUM_LIST: '正在獲取資源專輯列表 ...',
+      LOAD_ALBUM_LIST_ERROR: '錯誤：獲取資源專輯列表失敗',
+      INSERT_SUCCESSFULLY: '添加資源到專輯成功',
+      INSERT_FAILED: '添加資源到專輯失敗'
     },
 
     //backup views settings

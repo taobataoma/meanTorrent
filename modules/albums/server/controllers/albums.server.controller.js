@@ -91,6 +91,8 @@ exports.insertIntoAlbum = function (req, res) {
   var torrent = req.torrent;
 
   album.torrents.push(torrent);
+  album.cover = torrent.resource_detail_info.cover || '';
+  album.backdrop_path = torrent.resource_detail_info.backdrop_path || '';
   album.save(function (err) {
     if (err) {
       return res.status(422).send({
