@@ -22,10 +22,8 @@ var path = require('path'),
 var traceConfig = config.meanTorrentConfig.trace;
 var scoreConfig = config.meanTorrentConfig.score;
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
-var signConfig = config.meanTorrentConfig.sign;
 var announceConfig = config.meanTorrentConfig.announce;
 var globalSalesConfig = config.meanTorrentConfig.torrentGlobalSales;
-var examinationConfig = config.meanTorrentConfig.examination;
 
 var appConfig = config.meanTorrentConfig.app;
 
@@ -166,8 +164,10 @@ exports.announce = function (req, res) {
   req.selfpeer = [];
   req.seeder = false;
 
-  mtDebug.debugGreen('', 'ANNOUNCE', true, req.passkeyuser);
-  mtDebug.debugGreen('============= Announce request =============', 'ANNOUNCE', true, req.passkeyuser);
+  mtDebug.debugGreen('\n\n', 'ANNOUNCE', true, req.passkeyuser);
+  mtDebug.debugGreen('================================================================================', 'ANNOUNCE', true, req.passkeyuser);
+  mtDebug.debugGreen('                                  ANNOUNCE REQUEST                              ', 'ANNOUNCE', true, req.passkeyuser);
+  mtDebug.debugGreen('================================================================================', 'ANNOUNCE', true, req.passkeyuser);
   mtDebug.debugBlue(req.url, 'ANNOUNCE', true, req.passkeyuser);
 
   var s = req.url.split('?');
@@ -277,6 +277,8 @@ exports.announce = function (req, res) {
      torrent data include peers
      ---------------------------------------------------------------*/
     function (done) {
+      mtDebug.debugRed('req.passkeyuser._id     = ' + req.passkeyuser._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('req.torrent.info_hash   = ' + query.info_hash, 'ANNOUNCE', true, req.passkeyuser);
       Torrent.findOne({
         info_hash: query.info_hash
       })
@@ -334,7 +336,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       mtDebug.debugGreen('---------------' + eventString(query.event) + '----------------', 'ANNOUNCE', true, req.passkeyuser);
-      if (req.seeder && event(query.event) !== EVENT_COMPLETED) {
+      if (req.seeder && event(query.event) !== EVENT_COMPLETED && event(query.event) !== EVENT_STOPPED) {
         if (announceConfig.seedingInFinishedCheck) {
           if (!req.passkeyuser._id.equals(req.torrent.user._id)) {
             Finished.findOne({
@@ -363,7 +365,7 @@ exports.announce = function (req, res) {
      if not find and torrent is h&r and user isn`t vip, then create complete record
      ---------------------------------------------------------------*/
     function (done) {
-      if (req.torrent.torrent_hnr && !req.passkeyuser.isVip) {
+      if (hnrConfig.enable && req.torrent.torrent_hnr && !req.passkeyuser.isVip) {
         Complete.findOne({
           torrent: req.torrent._id,
           user: req.passkeyuser._id
@@ -405,8 +407,6 @@ exports.announce = function (req, res) {
      ----------------------------------------------------------------*/
     function (done) {
       if (event(query.event) === EVENT_STARTED) {
-        mtDebug.debugGreen('---------------EVENT_STARTED----------------', 'ANNOUNCE', true, req.passkeyuser);
-
         Peer.remove({
           torrent: req.torrent._id,
           _id: {$nin: req.torrent._peers}
@@ -429,19 +429,23 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.seeder && !req.passkeyuser.isVip && event(query.event) === EVENT_STARTED) {
-        if (req.passkeyuser.hnr_warning >= hnrConfig.forbiddenDownloadMinWarningNumber) {
-          if (!req.torrent.torrent_hnr) {
-            done(190);
-          } else {
-            if (!req.completeTorrent) {
-              done(191);
+        if (hnrConfig.enable) {
+          if (req.passkeyuser.hnr_warning >= hnrConfig.forbiddenDownloadMinWarningNumber) {
+            if (!req.torrent.torrent_hnr) {
+              done(190);
             } else {
-              if (!req.completeTorrent.hnr_warning) {
-                done(190);
+              if (!req.completeTorrent) {
+                done(191);
               } else {
-                done(null);
+                if (!req.completeTorrent.hnr_warning) {
+                  done(190);
+                } else {
+                  done(null);
+                }
               }
             }
+          } else {
+            done(null);
           }
         } else {
           done(null);
@@ -457,7 +461,7 @@ exports.announce = function (req, res) {
      vip user not checked
      ---------------------------------------------------------------*/
     function (done) {
-      if (!req.seeder && !req.passkeyuser.isVip && event(query.event) === EVENT_STARTED) {
+      if (!req.seeder && !req.passkeyuser.isVip && !req.passkeyuser.isOper && event(query.event) === EVENT_STARTED) {
         if (req.passkeyuser.ratio !== -1 && req.passkeyuser.ratio < announceConfig.downloadCheck.ratio) {
           var checkTimeBegin = moment(req.passkeyuser.created).add(announceConfig.downloadCheck.checkAfterSignupDays, 'd');
           if (checkTimeBegin < moment(Date.now())) {
@@ -492,6 +496,9 @@ exports.announce = function (req, res) {
       }
 
       getCurrentPeer(function () {
+        mtDebug.debugRed('req.currentPeer.isNewCreated  = ' + req.currentPeer.isNewCreated, 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('req.currentPeer._id           = ' + req.currentPeer._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('req.currentPeer.torrent._id   = ' + req.currentPeer.torrent._id, 'ANNOUNCE', true, req.passkeyuser);
         done(null);
       });
     },
@@ -503,15 +510,16 @@ exports.announce = function (req, res) {
      numbers is in setting announceConfig.announceCheck
      ---------------------------------------------------------------*/
     function (done) {
+      mtDebug.debugGreen('---------------CHECK USER SEED/LEECH COUNT----------------', 'ANNOUNCE', true, req.passkeyuser);
       var lcount = getSelfLeecherCount();
       var scount = getSelfSeederCount();
 
       if (lcount > announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent && !req.seeder) {
-        mtDebug.debugYellow('getSelfLeecherCount = ' + lcount, 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('getSelfLeecherCount   = ' + lcount, 'ANNOUNCE', true, req.passkeyuser);
         removeCurrPeer();
         done(180);
       } else if (scount > announceConfig.announceCheck.maxSeedNumberPerUserPerTorrent && req.seeder) {
-        mtDebug.debugYellow('getSelfSeederCount = ' + scount, 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('getSelfSeederCount    = ' + scount, 'ANNOUNCE', true, req.passkeyuser);
         removeCurrPeer();
         done(181);
       } else {
@@ -555,25 +563,24 @@ exports.announce = function (req, res) {
           }
 
           //write user uploaded and downloaded
-          req.passkeyuser.uploaded += u;
-          req.passkeyuser.downloaded += d;
-          req.passkeyuser.true_uploaded += curru;
-          req.passkeyuser.true_downloaded += currd;
-          //write examination uploaded and downloaded
-          if (common.examinationIsValid(req.passkeyuser)) {
-            req.passkeyuser.examinationData.uploaded = req.passkeyuser.examinationData.uploaded || 0;
-            req.passkeyuser.examinationData.uploaded += u;
-            req.passkeyuser.examinationData.downloaded = req.passkeyuser.examinationData.downloaded || 0;
-            req.passkeyuser.examinationData.downloaded += d;
+          var up_d = {
+            uploaded: u,
+            downloaded: d,
+            true_uploaded: curru,
+            true_downloaded: currd
+          };
+          mtDebug.debugRed(JSON.stringify(up_d), 'ANNOUNCE', true, req.passkeyuser);
 
-            var uploadFinished = req.passkeyuser.examinationData.uploaded >= examinationConfig.incrementData.upload;
-            var downloadFinished = req.passkeyuser.examinationData.downloaded >= examinationConfig.incrementData.download;
-            var scoreFinished = req.passkeyuser.examinationData.score >= examinationConfig.incrementData.score;
-            req.passkeyuser.examinationData.isFinished = uploadFinished && downloadFinished && scoreFinished;
-            req.passkeyuser.examinationData.finishedTime = req.passkeyuser.examinationData.isFinished ? Date.now() : null;
-            req.passkeyuser.markModified('examinationData');
+          if (common.examinationIsValid(req.passkeyuser)) {
+            up_d['examinationData.uploaded'] = u;
+            up_d['examinationData.downloaded'] = d;
+            mtDebug.debugGreen('---------------WRITE EXAMINATION DATA----------------', 'ANNOUNCE', true, req.passkeyuser);
+            mtDebug.debugRed('examinationData.uploaded: ' + u + ', examinationData.downloaded: ' + d, 'ANNOUNCE', true, req.passkeyuser);
           }
-          req.passkeyuser.save();
+
+          req.passkeyuser.update({
+            $inc: up_d
+          }).exec();
 
           //write peer speed
           var sp = {};
@@ -642,6 +649,7 @@ exports.announce = function (req, res) {
               }
               totalScore = Math.round(totalScore * 100) / 100;
               scoreUpdate(req, req.passkeyuser, action, totalScore, false);
+              mtDebug.debugRed('announce score: ' + totalScore, 'ANNOUNCE', true, req.passkeyuser);
             }
           }
 
@@ -691,10 +699,13 @@ exports.announce = function (req, res) {
       }
 
       //write peer data
-      req.currentPeer.peer_uploaded = query.uploaded;
-      req.currentPeer.peer_downloaded = query.downloaded;
-      req.currentPeer.peer_left = query.peer_left;
-      req.currentPeer.save();
+      req.currentPeer.update({
+        $set: {
+          peer_uploaded: query.uploaded,
+          peer_downloaded: query.downloaded,
+          peer_left: query.left
+        }
+      }).exec();
 
       done(null, curru, currd);
     },
@@ -704,11 +715,14 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (curru, currd, done) {
       if (curru > 0 || currd > 0) {
-        if (req.completeTorrent) {
+        if (hnrConfig.enable && req.completeTorrent) {
           mtDebug.debugGreen('---------------WRITE COMPLETE DATA----------------', 'ANNOUNCE', true, req.passkeyuser);
-          req.completeTorrent.total_uploaded += curru;
-          req.completeTorrent.total_downloaded += currd;
-          req.completeTorrent.save(function () {
+          req.completeTorrent.update({
+            $inc: {
+              total_uploaded: curru,
+              total_downloaded: currd
+            }
+          }, function () {
             done(null);
           });
         } else {
@@ -725,10 +739,13 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.currentPeer.isNewCreated) {
-        if (req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
+        if (hnrConfig.enable && req.completeTorrent && req.completeTorrent.complete && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------UPDATE H&R COMPLETE TOTAL_SEED_TIME----------------', 'ANNOUNCE', true, req.passkeyuser);
-          req.completeTorrent.total_seed_time += (Date.now() - req.currentPeer.last_announce_at);
-          req.completeTorrent.save(function () {
+          req.completeTorrent.update({
+            $inc: {
+              total_seed_time: (Date.now() - req.currentPeer.last_announce_at)
+            }
+          }, function () {
             done(null);
           });
         } else {
@@ -745,7 +762,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.currentPeer.isNewCreated) {
-        if (req.seeder && event(query.event) !== EVENT_COMPLETED) {
+        if (req.seeder && event(query.event) !== EVENT_COMPLETED && event(query.event) !== EVENT_STARTED) {
           mtDebug.debugGreen('---------------UPLOAD SCORE THROUGH SEED TIMED----------------', 'ANNOUNCE', true, req.passkeyuser);
 
           var action = scoreConfig.action.seedTimed;
@@ -779,6 +796,7 @@ exports.announce = function (req, res) {
               }
               seedScore = Math.round(seedScore * 100) / 100;
               scoreUpdate(req, req.passkeyuser, action, seedScore);
+              mtDebug.debugRed('seed timed score: ' + seedScore, 'ANNOUNCE', true, req.passkeyuser);
 
               done(null);
             } else {
@@ -803,12 +821,11 @@ exports.announce = function (req, res) {
       mtDebug.debugGreen('---------------UPDATE LAST_ANNOUNCE_AT----------------', 'ANNOUNCE', true, req.passkeyuser);
 
       if (!req.currentPeer.isNewCreated) {
-        req.currentPeer.last_announce_at = Date.now();
-        req.currentPeer.save();
-      }
-
-      if (req.completeTorrent) {
-        req.completeTorrent.globalUpdateMethod();
+        req.currentPeer.update({
+          $set: {
+            last_announce_at: Date.now()
+          }
+        }).exec();
       }
 
       done(null);
@@ -820,22 +837,6 @@ exports.announce = function (req, res) {
     function (done) {
       if (event(query.event) === EVENT_COMPLETED) {
         mtDebug.debugGreen('---------------EVENT_COMPLETED----------------', 'ANNOUNCE', true, req.passkeyuser);
-        //write completed torrent data into finished
-        var finished = new Finished();
-        finished.user = req.passkeyuser;
-        finished.torrent = req.torrent;
-        finished.user_ip = req.cf_ip;
-        finished.user_agent = req.get('User-Agent');
-        finished.user_port = query.port;
-        finished.save();
-
-        traceLogCreate(req, traceConfig.action.userAnnounceFinished, {
-          user: req.passkeyuser._id,
-          torrent: req.torrent._id,
-          agent: req.get('User-Agent'),
-          ip: req.cf_ip,
-          port: query.port
-        });
 
         doCompleteEvent(function () {
           done(null);
@@ -850,7 +851,7 @@ exports.announce = function (req, res) {
      ---------------------------------------------------------------*/
     function (done) {
       if (!req.currentPeer.isNewCreated) {
-        if (req.completeTorrent && event(query.event) !== EVENT_COMPLETED) {
+        if (hnrConfig.enable && req.completeTorrent && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------COUNT H&R WARNING FOR USER----------------', 'ANNOUNCE', true, req.passkeyuser);
           req.completeTorrent.countHnRWarning(false, true);
         }
@@ -867,7 +868,7 @@ exports.announce = function (req, res) {
       if (event(query.event) === EVENT_STOPPED) {
         mtDebug.debugGreen('---------------EVENT_STOPPED----------------', 'ANNOUNCE', true, req.passkeyuser);
 
-        if (req.completeTorrent) {
+        if (hnrConfig.enable && req.completeTorrent) {
           req.completeTorrent.countHnRWarning(true, false);
         }
         removeCurrPeer(function () {
@@ -908,8 +909,9 @@ exports.announce = function (req, res) {
       var len = writePeers(peerBuffer, want, req.torrent._peers);
       peerBuffer = peerBuffer.slice(0, len);
 
+      mtDebug.debugGreen('---------------SEND RESPONSE TO USER----------------', 'ANNOUNCE', true, req.passkeyuser);
       var resp = 'd8:intervali' + ANNOUNCE_INTERVAL + 'e8:completei' + req.torrent.torrent_seeds + 'e10:incompletei' + req.torrent.torrent_leechers + 'e10:downloadedi' + req.torrent.torrent_finished + 'e5:peers' + len + ':';
-      mtDebug.debugGreen(resp, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed(resp, 'ANNOUNCE', true, req.passkeyuser);
 
       res.writeHead(200, {
         'Content-Length': resp.length + peerBuffer.length + 1,
@@ -922,6 +924,25 @@ exports.announce = function (req, res) {
 
       if (len > 0) {
         mtDebug.debug(peerBuffer, 'ANNOUNCE', true, req.passkeyuser);
+      }
+
+      done(null);
+    },
+
+    /**
+     * update user, torrent, peer, complete
+     * @param done
+     */
+    function (done) {
+      req.passkeyuser.globalUpdateMethod(true);
+      req.torrent.globalUpdateMethod(true);
+
+      if (req.currentPeer) {
+        req.currentPeer.globalUpdateMethod(true);
+      }
+
+      if (hnrConfig.enable && req.completeTorrent) {
+        req.completeTorrent.globalUpdateMethod(true);
       }
 
       done(null, 'done');
@@ -940,7 +961,21 @@ exports.announce = function (req, res) {
     req.selfpeer.every(function (p) {
       if (p.peer_id === query.peer_id) {
         req.currentPeer = p;
+        req.currentPeer.torrent = req.torrent;
         req.currentPeer.isNewCreated = false;
+
+        //if find peer_id, but some time some client (like qbittorrent 4.1.0) the ip or port is changed, update it
+        if ((req.currentPeer.peer_ip !== req.cf_ip || req.currentPeer.peer_port !== query.port) && query.port !== 0) {
+          req.currentPeer.peer_ip = req.cf_ip;
+          req.currentPeer.peer_port = query.port;
+
+          req.currentPeer.update({
+            $set: {
+              peer_ip: req.cf_ip,
+              peer_port: query.port
+            }
+          }).exec();
+        }
 
         if (req.seeder && req.currentPeer.peer_status !== PEERSTATE_SEEDER && event(query.event) !== EVENT_COMPLETED) {
           mtDebug.debugGreen('---------------PEER STATUS CHANGED: Seeder----------------', 'ANNOUNCE', true, req.passkeyuser);
@@ -966,19 +1001,48 @@ exports.announce = function (req, res) {
    * doCompleteEvent
    */
   function doCompleteEvent(callback) {
-    req.currentPeer.peer_status = PEERSTATE_SEEDER;
-    req.currentPeer.save();
+    //write completed torrent data into finished
+    var finished = new Finished();
+    finished.user = req.passkeyuser;
+    finished.torrent = req.torrent;
+    finished.user_ip = req.cf_ip;
+    finished.user_agent = req.get('User-Agent');
+    finished.user_port = query.port;
+    finished.save();
 
-    req.torrent.torrent_finished += 1;
-    req.torrent.save();
+    traceLogCreate(req, traceConfig.action.userAnnounceFinished, {
+      user: req.passkeyuser._id,
+      torrent: req.torrent._id,
+      agent: req.get('User-Agent'),
+      ip: req.cf_ip,
+      port: query.port
+    });
 
-    req.passkeyuser.finished += 1;
-    req.passkeyuser.save();
+    req.currentPeer.update({
+      $set: {
+        peer_status: PEERSTATE_SEEDER
+      }
+    }).exec();
+
+    req.torrent.update({
+      $inc: {
+        torrent_finished: 1
+      }
+    }).exec();
+
+    req.passkeyuser.update({
+      $inc: {
+        finished: 1
+      }
+    }).exec();
 
     //update completeTorrent complete status
-    if (req.completeTorrent) {
-      req.completeTorrent.complete = true;
-      req.completeTorrent.save(function () {
+    if (hnrConfig.enable && req.completeTorrent) {
+      req.completeTorrent.update({
+        $set: {
+          complete: true
+        }
+      }, function () {
         if (callback) callback();
       });
     } else {
@@ -1017,12 +1081,10 @@ exports.announce = function (req, res) {
     req.passkeyuser.addLeechedIp(peer.peer_ip);
     req.passkeyuser.addClientAgent(peer.user_agent);
 
-    peer.save(function (err) {
-      if (!err) {
-        req.currentPeer = peer;
-        mtDebug.debugGreen('---------------createCurrentPeer()----------------', 'ANNOUNCE', true, req.passkeyuser);
-        if (callback) callback();
-      }
+    peer.save(function () {
+      req.currentPeer = peer;
+      mtDebug.debugGreen('---------------createCurrentPeer()----------------', 'ANNOUNCE', true, req.passkeyuser);
+      if (callback) callback();
     });
   }
 
@@ -1032,13 +1094,23 @@ exports.announce = function (req, res) {
   function removeCurrPeer(callback) {
     req.selfpeer.splice(req.selfpeer.indexOf(req.currentPeer), 1);
 
-    req.torrent.update({
-      $pull: {_peers: req.currentPeer._id}
-    }).exec();
+    req.torrent._peers.forEach(function (_p) {
+      if (_p._id.equals(req.currentPeer._id)) {
+        req.torrent._peers.pull(_p);
+        req.torrent.save();
+      }
+    });
 
-    req.currentPeer.remove(function () {
-      if (callback) callback();
-      mtDebug.debugGreen('---------------removeCurrPeer()----------------', 'ANNOUNCE', true, req.passkeyuser);
+    Peer.findById(req.currentPeer._id, function (err, _p) {
+      _p.remove(function (err) {
+        if (err) {
+          mtDebug.debugGreen('---------------removeCurrPeer(): Error----------------', 'ANNOUNCE', true, req.passkeyuser);
+        } else {
+          mtDebug.debugGreen('---------------removeCurrPeer()----------------', 'ANNOUNCE', true, req.passkeyuser);
+        }
+        req.currentPeer = undefined;
+        if (callback) callback();
+      });
     });
   }
 
@@ -1090,13 +1162,15 @@ exports.announce = function (req, res) {
     var udr = {};
     var sale = req.torrent.torrent_sale_status;
 
-    var start = moment(globalSalesConfig.global.startAt, globalSalesConfig.global.timeFormats).utc().valueOf();
+    var start = moment(globalSalesConfig.global.startAt, globalSalesConfig.global.timeFormats).valueOf();
     var end = start + globalSalesConfig.global.expires;
     var now = Date.now();
     isGlobalSaleValid = (now > start && now < end && globalSalesConfig.global.value) ? true : false;
 
     if (isGlobalSaleValid && globalSalesConfig.global.value) {
       sale = globalSalesConfig.global.value;
+      mtDebug.debugRed('isGlobalSaleValid   = ' + isGlobalSaleValid, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('global sale value   = ' + sale, 'ANNOUNCE', true, req.passkeyuser);
     }
 
     switch (sale) {
@@ -1185,6 +1259,10 @@ exports.announce = function (req, res) {
     var c = 0;
 
     if (!req.seeder && event(query.event) !== EVENT_STOPPED && event(query.event) !== EVENT_COMPLETED) {
+      mtDebug.debugGreen('---------------GET PEERS LIST----------------', 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('want.count     = ' + count, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('peers.length   = ' + peers.length, 'ANNOUNCE', true, req.passkeyuser);
+
       var p;
       var bc;
       var m = Math.min(peers.length, count);
@@ -1201,14 +1279,14 @@ exports.announce = function (req, res) {
           if (p.last_announce_at > (Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime)) { //do not send inactive peer
             if (p.user.equals(req.passkeyuser._id)) {
               if (announceConfig.peersCheck.peersSendListIncludeOwnSeed) {
-                mtDebug.debug(p._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
+                mtDebug.debug(p._id.toString() + '    IP:' + p.peer_ip + '    PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
                 bc = compact(p);
                 if (bc) {
                   bc.copy(buf, c++ * PEER_COMPACT_SIZE);
                 }
               }
             } else {
-              mtDebug.debug(p._id.toString(), 'ANNOUNCE', true, req.passkeyuser);
+              mtDebug.debug(p._id.toString() + '    IP:' + p.peer_ip + '    PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
               bc = compact(p);
               if (bc) {
                 bc.copy(buf, c++ * PEER_COMPACT_SIZE);

@@ -81,12 +81,12 @@ module.exports = {
      * @index:  list index in menu
      * @class:  flag icon class, can find flag icon at '/public/lib/flag-icon-css/flags'
      * @title:  language title show in menu item
-     *
+     * @enable: setting whether to enable or disable this language support, if false, user can not select it
      */
     language: [
-      {name: 'zh', index: 0, class: 'flag-icon-cn', title: '中文'},
-      {name: 'en', index: 1, class: 'flag-icon-gb', title: 'English'},
-      {name: 'zh-tw', index: 2, class: 'flag-icon-tw', title: '繁體中文'}
+      {name: 'en', index: 0, class: 'flag-icon-gb', title: 'English', enable: true},
+      {name: 'zh', index: 1, class: 'flag-icon-cn', title: '中文', enable: true},
+      {name: 'zh-tw', index: 2, class: 'flag-icon-tw', title: '繁體中文', enable: true}
     ],
 
     /**
@@ -159,7 +159,8 @@ module.exports = {
       debugAnnounceUser: {
         debugAll: false,
         ids: [
-          '59227f9095602327ea1d96ba'
+          '59227f9095602327ea1d96ba',
+          '592280c464be9e281a1ec56e'
         ]
       }
     },
@@ -191,6 +192,7 @@ module.exports = {
      * @webMaster:          setting webMaster info of rss document
      * @generator:          setting generator info of rss document
      * @ttl:                setting ttl info of rss document, unit of seconds
+     * @pageItemsNumber:    setting the items number of rss per page
      * @image_url:          setting image_url info of rss document
      */
     rss: {
@@ -201,6 +203,7 @@ module.exports = {
       webMaster: 'webmaster@mean.im (%s Webmaster)',
       generator: '{MEAN.im} RSS Generator by meanTorrent',
       ttl: 60,
+      pageItemsNumber: 30,
       image_url: '/modules/core/client/img/rss.jpeg'
     },
 
@@ -435,8 +438,6 @@ module.exports = {
       action: {
         defaultAction: {name: 'defaultAction', value: 0, enable: true},
 
-        checkInEveryDay: {name: 'checkInEveryDay', value: 10, enable: true},
-        checkInConsDay: {name: 'checkInConsDay', value: 2, enable: true},
         uploadTorrent: {name: 'uploadTorrent', value: 50, enable: true},
         uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', value: -50, enable: true},
         uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', value: 10, enable: true},
@@ -452,6 +453,14 @@ module.exports = {
         scoreExchangeInvitation: {name: 'scoreExchangeInvitation', value: 0, enable: true}, //value used invite.scoreExchange
         scoreToRemoveWarning: {name: 'scoreToRemoveWarning', value: 0, enable: true}, //value used hitAndRun.scoreToRemoveWarning
         activeIdleAccount: {name: 'activeIdleAccount', value: 0, enable: true}, //value used sign.idle.activeIdleAccountBasicScore
+
+        dailyCheckIn: {
+          enable: true,
+          name: 'dailyCheckIn',
+          dailyBasicScore: 10,
+          dailyStepScore: 1,
+          dailyMaxScore: 100
+        },
 
         seedUpDownload: {
           name: 'seedUpDownload',
@@ -504,7 +513,8 @@ module.exports = {
      *                @value:     type value
      * @checkUnreadInterval:      set check unread message interval, default 2 minutes
      * @checkUnreadInterval_str:  string desc of @checkUnreadInterval
-     * @serverMessageLimitCount:  limit server notice message count in messagebox
+     * @serverMessageExpires:     setting server message expire time, old message will be delete automatic
+     * @serverMessageExpires_str: setting desc of @serverMessageExpires
      *
      * NOTE: the first value 'user' cannot be deleted
      */
@@ -515,34 +525,39 @@ module.exports = {
           {name: 'USER', value: 'user', role: 'user'},
           {name: 'SERVER', value: 'server', role: 'server'},
           {name: 'SYSTEM', value: 'system', role: 'admin'},
-          {name: 'ADVERT', value: 'advert', role: 'admin'},
-          {name: 'NOTICE', value: 'notice', role: 'admin'}
+          {name: 'ADVERT', value: 'advert', role: 'admin'}
         ]
       },
       checkUnreadInterval: 60 * 1000 * 2,
       checkUnreadInterval_str: '2m',
-      serverMessageLimitCount: 100
+      serverMessageExpires: 60 * 60 * 1000 * 24 * 10,
+      serverMessageExpires_str: '10d'
     },
 
     /**
-     *  @inputLength
+     * @inputLength
      *
-     *  input string length limit settings
+     * input string length limit settings
      *
-     *  @userSignatureLength:         user signature of forum string length limit
-     *  @chatMessageMaxLength:        chat room send message string length limit
-     *  @messageTitleLength:          user message send title length limit
-     *  @messageBoxContentLength:     user message send content length limit
-     *  @messageBoxReplyLength:       user message send reply content length limit
-     *  @ticketContentLength:         ticket content length limit
-     *  @torrentCommentLength:        torrent comment send content length limit
-     *  @forumTopicTitleLength:       forum topic title length limit
-     *  @forumTopicContentLength:     forum topic content length limit
-     *  @forumReplyContentLength:     forum reply content length limit
-     *  @makerGroupDescLength:        resources group desc content length limit
-     *  @collectionsOverviewLength:   movie collections overview content length limit
+     * @uploadTorrentTitleLength:     torrent title length on upload page
+     * @uploadTorrentSubTitleLength:  torrent sub title length on upload page
+     * @userSignatureLength:          user signature of forum string length limit
+     * @chatMessageMaxLength:         chat room send message string length limit
+     * @messageTitleLength:           user message send title length limit
+     * @messageBoxContentLength:      user message send content length limit
+     * @messageBoxReplyLength:        user message send reply content length limit
+     * @ticketContentLength:          ticket content length limit
+     * @torrentCommentLength:         torrent comment send content length limit
+     * @forumTopicTitleLength:        forum topic title length limit
+     * @forumTopicContentLength:      forum topic content length limit
+     * @forumReplyContentLength:      forum reply content length limit
+     * @makerGroupDescLength:         resources group desc content length limit
+     * @collectionsOverviewLength:    movie collections overview content length limit
      */
     inputLength: {
+      uploadTorrentTitleLength: 128,
+      uploadTorrentSubTitleLength: 128,
+
       userSignatureLength: 512,
       chatMessageMaxLength: 512,
 
@@ -602,6 +617,7 @@ module.exports = {
         torrentReviewed: {title: 'TITLE_TORRENT_REVIEWED', content: 'CONTENT_TORRENT_REVIEWED', enable: true},
         torrentVipChanged: {title: 'TITLE_TORRENT_VIP_CHANGED', content: 'CONTENT_TORRENT_VIP_CHANGED', enable: true},
         torrentTopChanged: {title: 'TITLE_TORRENT_TOP_CHANGED', content: 'CONTENT_TORRENT_TOP_CHANGED', enable: true},
+        torrentUniqueChanged: {title: 'TITLE_TORRENT_UNIQUE_CHANGED', content: 'CONTENT_TORRENT_UNIQUE_CHANGED', enable: true},
         torrentHnRChanged: {title: 'TITLE_TORRENT_HNR_CHANGED', content: 'CONTENT_TORRENT_HNR_CHANGED', enable: true},
         torrentSaleChanged: {title: 'TITLE_TORRENT_SALE_CHANGED', content: 'CONTENT_TORRENT_SALE_CHANGED', enable: true},
         torrentDeleted: {title: 'TITLE_TORRENT_DELETED', content: 'CONTENT_TORRENT_DELETED', enable: true},
@@ -692,6 +708,7 @@ module.exports = {
      *        @pageTitle:         the page title string, used by translate at PAGETITLE
      *        @uploadTemplateID:  view templateID in upload torrent page, when selected type is changed, then include the template by this id,
      *                            all the template html is in file: modules/torrents/client/views/uploads-torrents.client.view.html
+     *        @showSubtitleTabInDetailPage: setting whether show subtitle tab in torrent detail page
      *        @showTopListInHome: setting whether show the TOP list in site home page, if false, don`t show
      *                            the 'other' type torrent always not show in home page
      *
@@ -711,12 +728,13 @@ module.exports = {
           role: 'user',
           faIcon: 'fa-film',
           faClass: 'text-mt',
-          divider: true,
+          divider: false,
           position: 1,
           state: 'torrents.movie',
           url: '/movie',
           pageTitle: 'MOVIE_LIST',
           uploadTemplateID: 'movie',
+          showSubtitleTabInDetailPage: true,
           showTopListInHome: true
         },
         {
@@ -733,6 +751,7 @@ module.exports = {
           url: '/tv',
           pageTitle: 'TV_LIST',
           uploadTemplateID: 'tvserial',
+          showSubtitleTabInDetailPage: true,
           showTopListInHome: true
         },
         {
@@ -749,6 +768,7 @@ module.exports = {
           url: '/documentary',
           pageTitle: 'DOCUMENTARY_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: true,
           showTopListInHome: true
         },
         {
@@ -765,6 +785,7 @@ module.exports = {
           url: '/music',
           pageTitle: 'MUSIC_LIST',
           uploadTemplateID: 'music',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: true
         },
         {
@@ -781,6 +802,7 @@ module.exports = {
           url: '/sports',
           pageTitle: 'SPORTS_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -797,6 +819,7 @@ module.exports = {
           url: '/variety',
           pageTitle: 'VARIETY_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -813,6 +836,7 @@ module.exports = {
           url: '/picture',
           pageTitle: 'PICTURE_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -829,6 +853,7 @@ module.exports = {
           url: '/game',
           pageTitle: 'GAME_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -845,6 +870,7 @@ module.exports = {
           url: '/software',
           pageTitle: 'SOFTWARE_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -861,6 +887,7 @@ module.exports = {
           url: '/ebook',
           pageTitle: 'EBOOK_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -877,6 +904,7 @@ module.exports = {
           url: '/other',
           pageTitle: 'OTHER_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -893,6 +921,7 @@ module.exports = {
           url: '/adult',
           pageTitle: 'ADULT_LIST',
           uploadTemplateID: 'default',
+          showSubtitleTabInDetailPage: false,
           showTopListInHome: false
         }
       ]
@@ -949,6 +978,7 @@ module.exports = {
      * when admin/oper to delete a h&r torrent, system will auto remove all warning and number of user
      * NOTE: you can change these value at anytime if you understand it
      *
+     * @enable:                             setting whether enable the H&R function
      * @condition:                          the condition of HnR warning, user must meet one of them before you receive the warning
      *        @seedTime:                    torrent seed time, unit of day, default to 7 days
      *        @seedTime_str:                string desc of @seedTime
@@ -960,6 +990,7 @@ module.exports = {
      * @checkWaringInterval_str:            string desc of @checkWaringInterval
      */
     hitAndRun: {
+      enable: true,
       condition: {
         seedTime: 60 * 60 * 1000 * 24 * 7,
         seedTime_str: '7d',
@@ -1270,6 +1301,7 @@ module.exports = {
      * @collectionsListPerPage:   movie collections list page settings
      * @backupFilesListPerPage:   system backup files list page settings
      * @torrentPeersListPerPage:  torrent detail seeder & leecher users list page settings
+     * @invitationsListPerPage:   official invitations list page settings
      *
      * @uploaderUserListPerPage:  admin management uploader access list page settings
      * @messageBoxListPerPage:    message box list page settings
@@ -1303,6 +1335,7 @@ module.exports = {
       collectionsListPerPage: 9,
       backupFilesListPerPage: 20,
       torrentPeersListPerPage: 20,
+      invitationsListPerPage: 20,
 
       uploaderUserListPerPage: 20,
       messageBoxListPerPage: 10,
@@ -1343,6 +1376,23 @@ module.exports = {
     ],
 
     /**
+     * @mediaInfo
+     *
+     * mediaInfo settings
+     *
+     * @flag:          flag icon class, can find flag icon at '/public/lib/flag-icon-css/flags'
+     */
+    mediaInfo: {
+      flag: {
+        chs: {class: 'flag-icon-cn'},
+        chinese: {class: 'flag-icon-cn'},
+        cht: {class: 'flag-icon-tw'},
+        korean: {class: 'flag-icon-kr'},
+        eng: {class: 'flag-icon-gb'}
+      }
+    },
+
+    /**
      * @resourcesTags
      *
      * resources search tags settings, can configure more tags of torrentType at here
@@ -1371,8 +1421,8 @@ module.exports = {
           value: [
             {name: 'BLU_RAY', icon: ''},
             {name: 'REMUX', icon: ''},
-            {name: 'WEB', icon: ''},
             {name: 'ENCODE', icon: ''},
+            {name: 'WEB', icon: ''},
             {name: 'HDTV', icon: ''}
           ]
         },
@@ -1394,6 +1444,17 @@ module.exports = {
             {name: 'H265', icon: ''},
             {name: 'X264', icon: ''},
             {name: 'X265', icon: ''}
+          ]
+        },
+        {
+          name: 'VISION',
+          cats: ['movie', 'tvserial', 'documentary', 'music', 'sports', 'variety', 'adult'],
+          value: [
+            {name: 'DOLBY', icon: ''},
+            {name: 'HDR10PLUS', icon: ''},
+            {name: 'HDR10', icon: ''},
+            {name: 'HDR', icon: ''},
+            {name: 'SDR', icon: ''}
           ]
         },
         {

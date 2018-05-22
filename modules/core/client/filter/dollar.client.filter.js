@@ -11,7 +11,7 @@
 
   function dollar($translate) {
     return function (number, precision) {
-      if (number === 0 || isNaN(parseFloat(number)) || !isFinite(number)) return '-';
+      if (number === 0 || isNaN(parseFloat(number)) || !isFinite(number)) return '0';
       if (typeof precision === 'undefined') precision = 1;
       return '$' + (number / 1000000).toFixed(precision) + ' ' + $translate.instant('UNIT_MILLION');
     };

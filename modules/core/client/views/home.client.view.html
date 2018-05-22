@@ -37,34 +37,76 @@
 
     <div class="filter">
         <div class="home_global_search filter-search" ng-init="vm.getForumList()">
-            <div class="search-panel">
+            <div class="top-panel">
                 <div class="container">
                     <div class="row">
                         <div class="search-row">
                             <div class="col-sm-12 text-center search-col">
-                                <p class="search-title" translate="HOME.TITLE_SEARCH"></p>
-                                <!--<p class="search-sub-title" translate="HOME.SEARCH_SUB_TITLE"></p>-->
-                                <div class="input-group search-group margin-top-20">
-                                    <input type="text" class="form-control"
-                                           ng-model="vm.searchKeys"
-                                           ng-keydown="vm.onSearchKeyDown($event);"
-                                           aria-label="search" placeholder="Search">
+                                <div class="home-search">
+                                    <p class="search-title" translate="HOME.TITLE_SEARCH"></p>
+                                    <!--<p class="search-sub-title" translate="HOME.SEARCH_SUB_TITLE"></p>-->
+                                    <div class="input-group search-group margin-top-20">
+                                        <input type="text" class="form-control"
+                                               ng-model="vm.searchKeys"
+                                               ng-keydown="vm.onSearchKeyDown($event);"
+                                               aria-label="search" placeholder="Search">
 
-                                    <button class="btn btn-width-100 btn-search" id="search-button" aria-label="Search"
-                                            mouse-enter-toggle-class="btn-success" base-class="btn-default"
-                                            ng-click="vm.doGlobalSearch()">
-                                        {{'BTN_GLOBAL_SEARCH' | translate}}
+                                        <button class="btn btn-width-100 btn-search" id="search-button" aria-label="Search"
+                                                mouse-enter-toggle-class="btn-success" base-class="btn-default"
+                                                ng-click="vm.doGlobalSearch()">
+                                            {{'BTN_GLOBAL_SEARCH' | translate}}
+                                        </button>
+                                    </div>
+                                    <div class="search-type text-center margin-top-20">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
+                                                   ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio_forum" value="forum"
+                                                   ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_FORUM' | translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-check-in filter-check-in panel-collapsed" ng-init="vm.getMyCheckData()" style="display: none;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" ng-if="vm.checkData != undefined">
+                        <div ng-if="vm.checkData == false ">
+                            <div class="row text-center">
+                                <div class="col-sm-10">
+                                    <span ng-bind-html="vm.getCheckTooltipMessage()"></span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="btn btn-success btn-block check-in-btn"
+                                            ng-click="vm.checkIn()">{{'CHECK.BTN_CHECK_IN' | translate}}
                                     </button>
                                 </div>
-                                <div class="search-type text-center margin-top-20">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
-                                               ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio_forum" value="forum"
-                                               ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_FORUM' | translate}}
-                                    </label>
+                            </div>
+                        </div>
+                        <div ng-if="vm.checkData && !vm.checkData.todayIsDone">
+                            <div class="row text-center">
+                                <div class="col-sm-10">
+                                    <span ng-bind-html="vm.getCheckTodayNotMessage()"></span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="btn btn-success btn-block check-in-btn"
+                                            ng-click="vm.checkIn()">{{'CHECK.BTN_CHECK_IN' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="vm.checkData && vm.checkData.todayIsDone">
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <span ng-bind-html="vm.getCheckTodayDoneMessage()"></span>
                                 </div>
                             </div>
                         </div>

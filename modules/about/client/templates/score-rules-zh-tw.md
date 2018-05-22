@@ -5,7 +5,7 @@
 &emsp;
 
 #### :white_small_square: 積分增加規則
-* 每日簽到獲得 `%(scoreConfig.action.checkInEveryDay.value)d` 積分，連續登記，每天額外增加 `%(scoreConfig.action.checkInConsDay.value)d` 累計積分。
+* 每日簽到獲得 `%(scoreConfig.action.dailyCheckIn.dailyBasicScore)d` 積分，連續簽到，每天額外增加 `%(scoreConfig.action.dailyCheckIn.dailyStepScore)d` 累計積分，`%(scoreConfig.action.dailyCheckIn.dailyMaxScore)d` 積分封頂。
 * 每釋出一條種子資源可獲得 `%(scoreConfig.action.uploadTorrent.value)d` 積分。
 * 釋出的種子資源被管理員設定為推薦可獲得 `%(scoreConfig.action.uploadTorrentBeRecommend.value)d` 積分。
 * 每上傳一條資源字幕可獲得 `%(scoreConfig.action.uploadSubtitle.value)d` 積分。

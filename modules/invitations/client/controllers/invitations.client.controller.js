@@ -15,6 +15,7 @@
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
 
     vm.invitePopover = {
       title: 'INVITATION.TITLE_SEND',

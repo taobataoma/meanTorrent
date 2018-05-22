@@ -37,6 +37,18 @@
     };
 
     /**
+     * getCanNotAddDesc
+     * @returns {*}
+     */
+    vm.getCanNotAddDesc = function () {
+      var ts = $translate.instant('REQUESTS.CAN_NTO_TO_ADD', {
+        add_score: vm.requestsConfig.scoreForAddRequest
+      });
+
+      return marked(ts, {sanitize: true});
+    };
+
+    /**
      * create
      * @param isValid
      * @returns {boolean}

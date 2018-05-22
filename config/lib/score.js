@@ -28,25 +28,28 @@ module.exports.update = function (req, user, action, value, writeLog = true) {
 
   if (action.enable && v !== 0) {
     if (user) {
+      var up = {
+        score: v
+      };
+
       if (common.examinationIsValid(user)) {
-        user.examinationData.score = user.examinationData.score || 0;
-        user.examinationData.score += v;
-
-        var uploadFinished = user.examinationData.uploaded >= examinationConfig.incrementData.upload;
-        var downloadFinished = user.examinationData.downloaded >= examinationConfig.incrementData.download;
-        var scoreFinished = user.examinationData.score >= examinationConfig.incrementData.score;
-        user.examinationData.isFinished = uploadFinished && downloadFinished && scoreFinished;
-        user.examinationData.finishedTime = user.examinationData.isFinished ? Date.now() : null;
-
-        user.markModified('examinationData');
+        up['examinationData.score'] = v;
+        mtDebug.debugGreen('---------------WRITE EXAMINATION SCORE----------------', 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debugRed('examinationData.score: ' + v, 'ANNOUNCE', true, req.passkeyuser);
       }
-      user.score += v;
-      user.save(function () {
-        traceLogCreate(req, traceConfig.action.userScoreChange, {
-          user: user._id,
-          score: v,
-          scoreActionName: action.name
-        });
+
+      User.update({_id: user._id}, {
+        $inc: up
+      }, function (err, num) {
+        if (err) {
+          logger.error(err);
+        } else {
+          traceLogCreate(req, traceConfig.action.userScoreChange, {
+            user: user._id,
+            score: v,
+            scoreActionName: action.name
+          });
+        }
       });
 
       //write score log

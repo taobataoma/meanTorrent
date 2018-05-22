@@ -23,7 +23,7 @@ module.exports = function (app) {
     User.findOne({
       _id: id
     }, '-salt -password')
-      .populate('invited_by', 'username displayName profileImageURL')
+      .populate('invited_by', 'username displayName profileImageURL isVip score uploaded downloaded')
       .populate('makers', 'name').exec(function (err, user) {
         done(err, user);
       });

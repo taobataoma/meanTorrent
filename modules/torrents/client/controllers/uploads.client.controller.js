@@ -193,10 +193,12 @@
       vm.successfully = false;
       vm.tFile = undefined;
       // Show error message
-      Notification.error({
-        message: response.data,
-        title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENTS_UPLOAD_FAILED')
-      });
+      if (response.data.params) {
+        response.data.message = $translate.instant(response.data.message, response.data.params);
+      }
+      console.log(response.data.message);
+
+      NotifycationService.showErrorNotify(response.data.message, 'TORRENTS_UPLOAD_FAILED');
     }
 
     /**
@@ -320,6 +322,7 @@
 
       vm.inputedEpisodesError = undefined;
       vm.inputedEpisodesOK = false;
+      vm.showResourceTitleInput = false;
       vm.showResourcesTag = false;
 
       vm.movieinfo = undefined;
@@ -333,6 +336,32 @@
       vm.showVideoNfo = false;
       vm.showAgreeAndSubmit = false;
     };
+
+    /**
+     * getFormattedResourceTitle
+     * @param title
+     * @returns {*}
+     */
+    function getFormattedResourceTitle(title) {
+      if (title) {
+        //replace other pt site prefix
+        title = title.replace(/\{([a-zA-Z0-9\_\-\.\s]){2,10}\}[\.|\s]*/gi, '');
+        title = title.replace(/.torrent/g, '');
+        title = title.replace(/[\.|\s]*mp4$/i, '');
+        title = title.replace(/[\.|\s]*mkv$/i, '');
+
+        // var re = /((?:^|\D)\d\.\d(?=\D|$))|\./g;
+        var re = /[0-9]\.[0-9]\b|(\.)/g;
+        var repl = title.replace(re, function ($0, $1) {
+          // return ($1 ? $1.replace(/^\./, ' ') : ' ');
+          return $1 === '.' ? ' ' : $0;
+        });
+
+        return repl;
+      } else {
+        return '';
+      }
+    }
 
     /**
      * isSelectedVipType
@@ -386,8 +415,12 @@
         tmdbid: tmdbid,
         language: getStorageLangService.getLang()
       }, function (res) {
+        vm.customTorrent.title = getFormattedResourceTitle(vm.torrentInfo.filename);
+        vm.customTorrent.subtitle = res.title;
+
         vm.tmdb_info_ok = true;
         vm.tmdb_isloading = false;
+        vm.showResourceTitleInput = true;
         vm.showResourcesTag = true;
         vm.showVideoNfo = true;
         vm.showAgreeAndSubmit = true;
@@ -428,6 +461,9 @@
         tmdbid: tmdbid,
         language: getStorageLangService.getLang()
       }, function (res) {
+        vm.customTorrent.title = getFormattedResourceTitle(vm.torrentInfo.filename);
+        vm.customTorrent.subtitle = res.name;
+
         vm.tmdb_info_ok = true;
         vm.tmdb_isloading = false;
         Notification.success({
@@ -464,6 +500,7 @@
         vm.inputedEpisodesError = false;
         vm.inputedEpisodesOK = true;
         vm.showResourcesTag = true;
+        vm.showResourceTitleInput = true;
         vm.showVideoNfo = true;
         vm.showAgreeAndSubmit = true;
       }
@@ -495,6 +532,9 @@
 
       var l = vm.getTorrentSize();
       var t = vm.getResourceTag();
+
+      vm.movieinfo.custom_title = vm.customTorrent.title;
+      vm.movieinfo.custom_subtitle = vm.customTorrent.subtitle;
 
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
@@ -538,6 +578,9 @@
 
       var l = vm.getTorrentSize();
       var t = vm.getResourceTag();
+
+      vm.tvinfo.custom_title = vm.customTorrent.title;
+      vm.tvinfo.custom_subtitle = vm.customTorrent.subtitle;
 
       var torrent = new TorrentsService({
         info_hash: vm.torrentInfo.info_hash,
@@ -588,6 +631,8 @@
         artist: vm.customTorrent.artist || undefined,
         title: vm.customTorrent.title,
         subtitle: vm.customTorrent.subtitle,
+        custom_title: vm.customTorrent.title,
+        custom_subtitle: vm.customTorrent.subtitle,
         cover: vm.customTorrent.coverFileName,
         overview: vm.customTorrent.detail,
 

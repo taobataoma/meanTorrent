@@ -3,8 +3,10 @@
 var path = require('path'),
   chalk = require('chalk'),
   logger = require('./logger'),
+  mongoose = require('mongoose'),
   loggerAnnounce = require('./loggerAnnounce'),
   moment = require('moment'),
+  objectId = require('mongodb').ObjectId,
   config = require(path.resolve('./config/config'));
 
 var appConfig = config.meanTorrentConfig.app;
@@ -30,10 +32,12 @@ module.exports.info = function (obj, section = undefined, colorFunction = undefi
     var userPrefix = '';
     if (isAnnounce && !announceConfig.debugAnnounceUser.debugAll) {
       if (user) {
-        if (!announceConfig.debugAnnounceUser.ids.includes(user._id.toString())) {
+        var id = (('_id' in user) ? user._id.toString() : user.toString());
+
+        if (!announceConfig.debugAnnounceUser.ids.includes(id)) {
           return;
         } else {
-          userPrefix = ' - ' + user.displayName + ' - ' + user._id.toString();
+          userPrefix = ' - ' + (user.displayName || '-') + ' - ' + id;
         }
       }
     }

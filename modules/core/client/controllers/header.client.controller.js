@@ -6,13 +6,14 @@
     .controller('HeaderController', HeaderController);
 
   HeaderController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
-    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'TorrentsService', 'UsersService', 'DebugConsoleService'];
+    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'TorrentsService', 'UsersService', 'DebugConsoleService', 'getStorageLangService'];
 
   function HeaderController($scope, $state, $timeout, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
-                            InvitationsService, $interval, MessagesService, TorrentsService, UsersService, mtDebug) {
+                            InvitationsService, $interval, MessagesService, TorrentsService, UsersService, mtDebug, getStorageLangService) {
     $scope.$state = $state;
     var vm = this;
     vm.user = Authentication.user;
+    vm.langService = getStorageLangService;
     vm.language = MeanTorrentConfig.meanTorrentConfig.language;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
@@ -47,11 +48,49 @@
     });
 
     /**
+     * bindHoverToMenuItem
+     */
+    vm.bindHoverToMenuItem = function () {
+      //set menu bar opened when hover
+      $timeout(function () {
+        $('div.navbar-mt ul.nav li.dropdown').off('mouseenter mouseleave').hover(function (evt) {
+          if (!$(this).hasClass('open')) {
+            $(this).find('.dropdown-toggle', this).trigger('click');
+            bindClick($(this));
+          } else {
+            bindClick($(this));
+          }
+        }, function (evt) {
+          $(this).off('click');
+          if ($(this).hasClass('open')) {
+            $(this).find('.dropdown-toggle', this).trigger('click');
+          }
+        });
+
+        $('div.navbar-mt ul.nav li.dropdown ul.dropdown-menu').off('mouseenter mouseleave').hover(function (evt) {
+          $(this).parent().off('click');
+        }, function (evt) {
+          bindClick($(this).parent());
+        });
+      }, 0);
+
+      function bindClick(ele) {
+        ele.off('click').on('click', function (e) {
+          var sta = ele.find('.dropdown-toggle', ele).attr('alt');
+          if (sta) {
+            $state.go(sta);
+          }
+        });
+      }
+    };
+
+    /**
      * auth-user-changed
      */
     $scope.$on('auth-user-changed', function (event, args) {
       vm.user = Authentication.user;
       vm.scoreLevelData = vm.user ? ScoreLevelService.getScoreLevelJson(vm.user.score) : undefined;
+      vm.bindHoverToMenuItem();
       vm.getInvitationsCount();
       vm.getWarning();
       vm.getCountUnread();
@@ -149,12 +188,14 @@
      * checkHnRWarning
      */
     vm.checkHnRWarning = function () {
-      vm.getWarning();
-      $interval(vm.getWarning, vm.hnrConfig.checkWaringInterval);
+      if (vm.hnrConfig.enable) {
+        vm.getWarning();
+        $interval(vm.getWarning, vm.hnrConfig.checkWaringInterval);
+      }
     };
 
     vm.getWarning = function () {
-      if (Authentication.user) {
+      if (Authentication.user && vm.hnrConfig.enable) {
         UsersService.getUserWarningNumber()
           .then(function (data) {
             vm.user.hnr_warning = Authentication.user.hnr_warning = data.hnr_warning;

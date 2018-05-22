@@ -6,10 +6,10 @@
     .controller('TorrentsController', TorrentsController);
 
   TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService', 'getStorageLangService',
-    'MeanTorrentConfig', 'DownloadService', '$window', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices'];
+    'MeanTorrentConfig', 'DownloadService', '$window', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices', 'moment'];
 
   function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, getStorageLangService, MeanTorrentConfig,
-                              DownloadService, $window, mtDebug, TorrentGetInfoServices, ResourcesTagsServices) {
+                              DownloadService, $window, mtDebug, TorrentGetInfoServices, ResourcesTagsServices, moment) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -22,17 +22,33 @@
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
+    vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
 
     vm.searchTags = [];
     vm.searchKey = $state.params.keys || '';
     vm.releaseYear = undefined;
     vm.filterType = undefined;
     vm.filterHnR = false;
+    vm.filterTop = false;
+    vm.filterUnique = false;
     vm.filterSale = false;
     vm.topItems = 6;
     vm.torrentRLevel = 'level0';
 
-    vm.torrentType = $state.current.data.torrentType || 'all';
+    vm.torrentType = $state.current.data.torrentType || 'aggregate';
+
+    /**
+     * scope watch vm.torrentType
+     */
+    $scope.$watch('vm.torrentType', function (newValue, oldValue) {
+      if (vm.torrentType === 'aggregate') {
+        vm.filterType = 'aggregate';
+      } else {
+        vm.filterType = vm.torrentType;
+      }
+    });
 
     /**
      * commentBuildPager
@@ -302,12 +318,14 @@
         keys: vm.searchKey.trim(),
         torrent_status: 'reviewed',
         torrent_rlevel: vm.torrentRLevel,
-        torrent_type: vm.filterType ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
+        torrent_type: (vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
         torrent_vip: false,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
         torrent_hnr: vm.filterHnR,
-        torrent_sale: vm.filterSale
+        torrent_sale: vm.filterSale,
+        isTop: vm.filterTop,
+        isUnique: vm.filterUnique
       }, function (items) {
         if (items.length === 0) {
           Notification.error({
@@ -330,12 +348,14 @@
       vm.rssUrl += '/api/rss';
       vm.rssUrl += '/' + vm.user.passkey;
       vm.rssUrl += '?language=' + vm.lang;
-      vm.rssUrl += '&limit=' + vm.torrentItemsPerPage;
+      vm.rssUrl += '&limit=' + vm.rssConfig.pageItemsNumber;
       vm.rssUrl += vm.searchKey.trim() ? '&keys=' + vm.searchKey.trim() : '';
-      vm.rssUrl += '&torrent_type=' + (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType);
+      vm.rssUrl += '&torrent_type=' + ((vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType));
       vm.rssUrl += vm.releaseYear ? '&torrent_release=' + vm.releaseYear : '';
       vm.rssUrl += vm.searchTags.length ? '&torrent_tags=' + vm.searchTags : '';
       vm.rssUrl += '&torrent_hnr=' + vm.filterHnR;
+      vm.rssUrl += '&isTop=' + vm.filterTop;
+      vm.rssUrl += '&isUnique=' + vm.filterUnique;
       vm.rssUrl += vm.filterSale ? '&torrent_sale=' + vm.filterSale : '';
     };
 
@@ -348,9 +368,11 @@
       $('.btn-tag').removeClass('btn-success').addClass('btn-default');
       vm.releaseYear = undefined;
       vm.filterHnR = false;
+      vm.filterTop = false;
+      vm.filterUnique = false;
       vm.filterSale = false;
       vm.torrentRLevel = 'level0';
-      vm.filterType = undefined;
+      vm.filterType = vm.torrentType;
 
       vm.torrentBuildPager();
     };
@@ -384,7 +406,7 @@
      */
     vm.onTorrentTypeClicked = function (t) {
       if (vm.filterType === t) {
-        vm.filterType = undefined;
+        vm.filterType = vm.torrentType;
       } else {
         vm.filterType = t;
       }
@@ -416,6 +438,28 @@
     };
 
     /**
+     * onTopClicked, onTopChanged
+     */
+    vm.onTopClicked = function () {
+      vm.filterTop = !vm.filterTop;
+      vm.torrentBuildPager();
+    };
+    vm.onTopChanged = function () {
+      vm.torrentBuildPager();
+    };
+
+    /**
+     * onUniqueClicked, onUniqueChanged
+     */
+    vm.onUniqueClicked = function () {
+      vm.filterUnique = !vm.filterUnique;
+      vm.torrentBuildPager();
+    };
+    vm.onUniqueChanged = function () {
+      vm.torrentBuildPager();
+    };
+
+    /**
      * onSaleChanged
      */
     vm.onSaleClicked = function () {
@@ -433,13 +477,14 @@
      */
     vm.tagsFilter = function (item) {
       var res = false;
-      if (vm.torrentType === 'aggregate') {
+
+      if (vm.filterType === 'aggregate') {
         angular.forEach(vm.torrentTypeConfig.value, function (t) {
           if (t.enable && item.cats.includes(t.value))
             res = true;
         });
       } else {
-        if (item.cats.includes(vm.torrentType))
+        if (item.cats.includes(vm.filterType))
           res = true;
       }
 
@@ -461,6 +506,22 @@
         e.slideDown();
         e.removeClass('panel-collapsed');
         i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+      }
+    };
+
+    /**
+     * isGlobalSaleNow
+     * @returns {boolean}
+     */
+    vm.isGlobalSaleNow = function () {
+      var start = moment(vm.salesGlobalConfig.global.startAt, vm.salesGlobalConfig.global.timeFormats).valueOf();
+      var end = start + vm.salesGlobalConfig.global.expires;
+      var now = Date.now();
+
+      if (now > start && now < end && vm.salesGlobalConfig.global.value) {
+        return true;
+      } else {
+        return false;
       }
     };
 

@@ -17,7 +17,7 @@
                         <a><i class="fa fa-arrow-down fa-2x" aria-hidden="true"></i><span
                                 class="tab-title">{{'STATUS_DOWNLOADING' | translate}}</span></a>
                     </li>
-                    <li ui-sref="status.warning" ui-sref-active="active" title="{{'STATUS_WARNING' | translate}}">
+                    <li ui-sref="status.warning" ui-sref-active="active" title="{{'STATUS_WARNING' | translate}}" ng-if="vm.hnrConfig.enable">
                         <a><i class="fa fa-warning fa-2x" aria-hidden="true"></i><span class="tab-title">{{'STATUS_WARNING' | translate}}</span></a>
                     </li>
                 </ul>

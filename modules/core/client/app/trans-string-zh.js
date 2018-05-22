@@ -23,6 +23,7 @@
     VALUE_CUSTOM: '自定义',
     VALUE_SELECT_ALL: '全选',
     BTN_REMOVE: '删除',
+    BTN_CONTINUE: '继续',
 
     //Support
     SUPPORT_GROUP_NAME_DESC: '管理组',
@@ -131,6 +132,15 @@
       }
     },
 
+    CHECK: {
+      BTN_CHECK_IN: '我要签到',
+      CHECK_TOOLTIP: '#### `mine.pt` 邀请您参加每日签到，现在签到可获得 `{{todayScore}}` 积分，明日续签可获得 `{{tomorrowScore}}` 积分哦！',
+      CHECK_TODAY_NOT: '#### 您今日还未签到，上次签到：`{{checkTime | date: "yyyy-MM-dd HH:mm"}}`，现在签到可获得 `{{todayScore}}` 积分，明日续签到可获得 `{{tomorrowScore}}` 积分哦！',
+      CHECK_TODAY_DONE: '#### 您已连续签到 `{{keepDays}}` 天，今日签到时间：`{{checkTime | date: "yyyy-MM-dd HH:mm"}}`，已经获得 `{{todayScore}}` 积分，明日续签到可获得 `{{tomorrowScore}}` 积分，请注意不要中断哦!',
+      CHECK_SUCCESSFULLY: '签到成功',
+      CHECK_ERROR: '签到失败'
+    },
+
     //element title/alt
     TITLE_ALT: {
       SEEDS: '做种用户数',
@@ -162,16 +172,12 @@
       TITLE_LIFE: '按上传时间排序',
 
       //status
-      UPLOADED_SPEED: '上/速',
-      DOWNLOADED_RATIO: '下/比',
-      DOWNLOADED_SPEED: '下/速',
-      UPLOADED_RATIO_PERCENT: '上/比/进度',
+      UPLOADED_SPEED: '上/速/分享',
+      DOWNLOADED_SPEED: '下/速/进度',
       UP_DOWN_RATIO_TIME: '上/下/比/时',
 
-      ABBR_UPLOADED_SPEED: '上传量/速度',
-      ABBR_DOWNLOADED_RATIO: '下载量/分享率',
-      ABBR_DOWNLOADED_SPEED: '下载量/速度',
-      ABBR_UPLOADED_RATIO_PERCENT: '上传量/分享率/完成百分比',
+      ABBR_UPLOADED_SPEED: '上传量/速度/分享率',
+      ABBR_DOWNLOADED_SPEED: '下载量/速度/完成进度',
       ABBR_UP_DOWN_RATIO_TIME: '上传量/下载量/分享率/做种时间',
 
       //peer
@@ -336,20 +342,23 @@
     TAGS_SEARCH_GLOBAL: '种子搜索 - 全局',
     CA_KEYWORD: '关键字',
     CA_TORRENT_STATUS: '种子状态',
+    CA_TORRENT_ATTR: '种子属性',
     CA_TORRENT_HNR: 'H&R 黑种',
     CA_TORRENT_SALE_STATUS: '促销状态',
     CA_TORRENT_SALE_NOW: '正在促销',
     CA_TORRENT_VIP: 'VIP 资源',
+    CA_TORRENT_TOP: '置顶状态',
+    CA_TORRENT_UNIQUE: '禁转状态',
     CA_RESOURCE_TYPE: '资源类型',
-    CA_MAKE_RSS_URL: 'RSS连接',
-    DESC_MAKE_RSS_URL: '这个 RSS 地址是通过上面的过滤条件生成的，您可以使用支持 RSS 订阅功能的BT客户端（如uTorrent）来自动下载您想要的这些种子和资源文件.',
+    DESC_MAKE_RSS_URL: '根据当前检索条件生成的 RSS 地址, 点击复制到粘贴版.',
     COPY_TO_CLIPBOARD: '复制到剪切板',
     COPY_LINK_TO_CLIPBOARD: '复制种子文件下载连接到剪切板',
     COPY_LINK_TEXT: '复制种子文件地址',
     COPY_TO_CLIPBOARD_SUCCESSFULLY: '内容已复制到剪切板!',
+    TORRENT_LABEL_LINK: '种子连接',
     PH_KEYWORD: '搜索关键字',
     CLEAR_ALL_CONDITION: '清空所有条件',
-    MORE_TAGS: '显示更多标签',
+    MORE_TAGS: '更多标签',
     CA_RESET: '重置条件',
     TORRENT_DOWNLOAD_ERROR: '种子文件下载失败',
     TORRENTS_DOWNLOAD_SUCCESSFULLY: '种子文件下载成功',
@@ -372,6 +381,12 @@
     TORRENT_RATING_SUCCESSFULLY: '为种子投票成功',
     TORRENT_RATING_FAILED: '为种子投票失败',
     EDIT_THIS_OVERVIEW: '编辑详情介绍',
+    VIEW_ORIGINAL_MEDIA_INFO: '查看原始的媒体信息',
+    VIEW_FORMATTED_MEDIA_INFO: '查看格式化的媒体信息',
+    EDIT_THIS_MEDIA_INFO: '编辑媒体信息',
+    SAVE_THIS_MEDIA_INFO: '保存媒体信息',
+    EDIT_TORRENT_NFO_SUCCESSFULLY: '种子媒体信息编辑成功',
+    EDIT_TORRENT_NFO_FAILED: '种子媒体信息编辑失败',
     IMG_PAGE_INFO: '当前页: {{index}} / {{total}}',
 
     ANNOUNCE_URL: 'Tracker 地址',
@@ -382,10 +397,12 @@
     ALL_FILES_LIST: '文件清单',
     VIDEO_SIZE: '视频文件大小',
     UPLOAD_TIME: '上传时间',
-    VIDEO_SALE_INFO: '视频促销信息',
     SALE_EXPIRES_TIME: '过期',
     TORRENT_STATUS_TOP_TITLE: '置顶推荐',
+    TORRENT_STATUS_UNIQUE: '禁转资源',
+    TORRENT_STATUS_UNIQUE_TITLE: '禁转资源，禁止转发',
     STATUS_TOP_KEY: '置顶',
+    STATUS_UNIQUE_KEY: '禁转',
     UPLOAD_SUBTITLE: '上传字幕文件',
     SUBTITLE_LIST: '字幕列表',
     SUBTITLE_RULES: {
@@ -422,6 +439,8 @@
     ADMIN_BASIC_UNSET_VIP: '取消VIP',
     ADMIN_BASIC_SET_TOP: '设为置顶',
     ADMIN_BASIC_UNSET_TOP: '取消置顶',
+    ADMIN_BASIC_SET_UNIQUE: '设为禁转',
+    ADMIN_BASIC_UNSET_UNIQUE: '取消禁转',
     ADMIN_BASIC_TYPE_SET: '设置促销',
     ADMIN_SALE_TYPE_SET: '种子促销类型',
     ADMIN_BASIC_RLEVEL_SET: '推荐级别',
@@ -465,6 +484,8 @@
     TORRENT_TOGGLE_VIP_FAILED: '改变种子VIP标签失败',
     TORRENT_TOGGLE_TOP_SUCCESSFULLY: '改变种子置顶状态成功',
     TORRENT_TOGGLE_TOP_FAILED: '改变种子置顶状态失败',
+    TORRENT_TOGGLE_UNIQUE_SUCCESSFULLY: '改变种子禁转状态成功',
+    TORRENT_TOGGLE_UNIQUE_FAILED: '改变种子禁转状态失败',
     TORRENT_SETTAGS_SUCCESSFULLY: '种子属性标签设置成功',
     TORRENT_SETTAGS_ERROR: '种子属性标签设置失败',
 
@@ -510,7 +531,7 @@
     SELECT_TORRENT_FILE: '1. 请选择种子文件',
     SELECT_FILE: '选择文件',
     DO_UPLOAD: '上传',
-    ENTER_TMDB_ID: '3. 请输入TMDB_ID',
+    ENTER_TMDB_ID: '3 请输入TMDB_ID',
     LOAD_TMDB_INFO: '检索信息',
     TMDB_ID: 'TMDB ID',
     SEARCH_FROM_TMDB: '从 TMDB 搜索',
@@ -553,8 +574,8 @@
     ERROR_ONLY_IMAGE: '此处只支持图片文件上传(gif, png, bmp, jpg, jpeg)',
     FILE_TYPE_ERROR: '文件类型不被接受',
 
-    ENTER_RESOURCE_TITLE: '3. 请输入资源标题与描述',
-    RESOURCE_TITLE: '资源标题',
+    ENTER_RESOURCE_TITLE: '4.1 请输入资源主副标题',
+    RESOURCE_TITLE: '资源主标题',
     RESOURCE_SUB_TITLE: '资源副标题',
     SELECT_RESOURCE_IMAGE: '3.1 请选择资源封面图片',
     ENTER_RESOURCE_DETAIL_INFO: '4. 请输入资源详细信息',
@@ -850,7 +871,8 @@
       DESC_MY: '### 提示: \n - 如果您接受一个响应, 您的悬赏积分就会转入您接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 您只能接受多个响应中的一个. \n - 超过 `{{days}}` 天的请求已经过期且不能接受响应, 如果需要您只能再次发起请求. \n - 如果您的积分受到恶意损害, 请给{{sNameDesc | translate}}发送 **[消息](/messages/send?to={{sName}})** 或 **[邮件](mailto:{{sMail}})** 进行投诉.',
       DESC_ADD: '### 提示: \n - 每发布一个请求会被自动扣除 `{{add_score}}` 积分, 而您的悬赏积分会转入您最终接受的响应者的帐户. \n - 只有被管理员审核通过的种子才能被您接受. \n - 每一个发布的请求只有 `{{days}}` 天的有效期, 过期后您只能再次发起请求. \n - 请在发布请求时明确描述您对资源的要求.',
       DESC_RES: '### NOTE: \n - 如果请求者接受了您的响应, 悬赏积分将自动转入您的帐户. \n - 只有被管理员审核通过的种子才能被请求者接受. \n - 请求者只会接受多个响应中的一个.',
-      DESC_VIEW: '### NOTE: \n - 如果您是一个响应者, 请上传您的种子文件并开始做种, 请认真响应用户的请求. \n - 如果您是一个请求者, 您可以选择一个响应并接受它, 只有被管理员审核通过的种子才能被您接受. \n - 如果您接受一个响应, 您的悬赏积分就会转入您接受的响应者的帐户. \n - 超过 `{{days}}` 天的请求已经过期且不能接受响应或上传种子.'
+      DESC_VIEW: '### NOTE: \n - 如果您是一个响应者, 请上传您的种子文件并开始做种, 请认真响应用户的请求. \n - 如果您是一个请求者, 您可以选择一个响应并接受它, 只有被管理员审核通过的种子才能被您接受. \n - 如果您接受一个响应, 您的悬赏积分就会转入您接受的响应者的帐户. \n - 超过 `{{days}}` 天的请求已经过期且不能接受响应或上传种子.',
+      CAN_NTO_TO_ADD: '每发布一个请求会被自动扣除 `{{add_score}}` 积分，您的积分太少，请稍候再试 ...'
     },
 
     //user status
@@ -1058,15 +1080,14 @@
     BUTTON_MESSAGE_REPLY: '回复',
 
     MESSAGE_TYPE_USER: '用户消息',
-    MESSAGE_TYPE_SYSTEM: '全局系统消息',
-    MESSAGE_TYPE_ADVERT: '全局广告推送',
-    MESSAGE_TYPE_NOTICE: '全局系统通知',
+    MESSAGE_TYPE_SYSTEM: '系统消息',
+    MESSAGE_TYPE_ADVERT: '广告推送',
     MESSAGE_TYPE_SERVER: '服务器事件通知',
     MESSAGE_SEND_SUCCESSFULLY: '消息发送成功',
     MESSAGE_SEND_FAILED: '消息发送失败',
     MESSAGE_DELETED_SUCCESSFULLY: '消息删除成功',
     MESSAGE_DELETED_ERROR: '消息删除失败',
-    MESSAGE_SERVER_TOOLTIP: '<h4>服务器事件通知</h4> 当您做了一些重要的操作或者您的帐户状态发生变化以及某些重要事情与您有关时，服务器会自动发送消息给您，这种消息可能会很多，所以请及时查看及删除，服务器只保留最后的 {{count}} 条消息.',
+    MESSAGE_SERVER_TOOLTIP: '<h4>服务器事件通知</h4> 当您做了一些重要的操作或者您的帐户状态发生变化以及某些重要事情与您有关时，服务器会自动发送消息给您，这种消息可能会很多，所以请及时查看及删除，系统只保留最近 {{days}} 天的消息。',
 
     MESSAGE_DELETE_CONFIRM_OK: '删除',
     MESSAGE_DELETE_CONFIRM_CANCEL: '取消',
@@ -1438,7 +1459,7 @@
       TYPE: {
         SELF: '媒介',
         BLU_RAY: 'Blu-ray',
-        WEB: 'Web',
+        WEB: 'WEB',
         REMUX: 'Remux',
         ENCODE: 'Encode',
         HDTV: 'HDTV'
@@ -1460,14 +1481,23 @@
         X265: 'x265'
       },
 
+      VISION: {
+        SELF: '视频色彩',
+        DOLBY: 'DolbyVision',
+        HDR10PLUS: 'HDR10+',
+        HDR10: 'HDR10',
+        HDR: 'HDR',
+        SDR: 'SDR'
+      },
+
       AUDIO: {
         SELF: '音频编码',
         DTS_X: 'DTS:X',
         ATMOS: 'Atmos',
         DTS_HD: 'DTS-HD',
-        TRUE_HD: 'TRUE-HD',
+        TRUE_HD: 'True-HD',
         DTS: 'DTS',
-        AC3: 'AC3',
+        AC3: 'AC-3',
         AAC: 'AAC'
       },
 
@@ -1572,6 +1602,45 @@
       }
     },
 
+    MEDIAINFO: {
+      GENERAL: {
+        SELF: '资源通用信息',
+        FILESIZE: '总体积',
+        RUNTIME: '总时长',
+        DURATION: '总时长',
+        OVERALLBITRATE: '总码率'
+      },
+      VIDEO: {
+        SELF: '视频信息',
+        FORMAT: '格式',
+        DURATION: '时长',
+        BITRATE: '码率',
+        WIDTH: '分辨率.宽',
+        HEIGHT: '分辨率.高',
+        FRAMERATEMODE: '帧率模式',
+        FRAMERATE: '帧率',
+        BITDEPTH: '位深',
+        STREAMSIZE: '体积',
+        WRITINGLIBRARY: '编码方式',
+        RESOLUTION: '分辨率',
+        CODEC: '编码'
+      },
+      AUDIO: {
+        SELF: '音频信息',
+        FORMAT: '格式',
+        BITRATEMODE: '码率模式',
+        BITRATE: '码率',
+        CHANNEL: '声道',
+        LANGUAGE: '音轨',
+        INFO: '音轨信息',
+        CODEC: '编码'
+      },
+      TEXT: {
+        SELF: '字幕信息',
+        LANGUAGE: '语言'
+      }
+    },
+
     //server returned string
     SERVER: {
       USER_IS_NOT_AUTHORIZED: '用户身份验证未通过',
@@ -1606,10 +1675,12 @@
       INVITE_MAIL_SEND_FAILED: '邀请邮件发送失败(SERVER)',
       EMAIL_ADDRESS_IS_NOT_ALLOW: '该邮件地址不允许被邀请或注册',
       INFO_HASH_IS_EMPTY: 'Info hash 字段值不能为空',
-      INFO_HASH_ALREADY_EXISTS: '该 info hash 值已经存在，不能重复提交',
+      INFO_HASH_ALREADY_EXISTS: '该 info hash 值已经存在，不能重复提交, {{hash}}',
+      FILE_ALREADY_EXISTS: '该种子文件名已经存在, {{filename}}',
       UPLOAD_ACCESS_DENY: '当前系统只接受资源制作小组上传种子',
       READ_TORRENT_FILE_FAILD: '种子文件解析错误，请检查您的种子文件，看是否缺少某些必要信息',
-      MOVE_TORRENT_FILE_ERROR: '种子文件移动错误，请不要快速重复进行提交操作或者上传的种子文件已丢失'
+      MOVE_TORRENT_FILE_ERROR: '种子文件移动错误，请不要快速重复进行提交操作或者上传的种子文件已丢失',
+      YOU_ALREADY_CHECK_IN: '您今天已经签过到了，不能重复签到'
     },
 
     //server message string, content string support markdown and emoji
@@ -1682,6 +1753,9 @@
       TITLE_TORRENT_TOP_CHANGED: '上传的种子 置顶 状态改变',
       CONTENT_TORRENT_TOP_CHANGED: '### 置顶 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 置顶 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{top_status}}**.',
 
+      TITLE_TORRENT_UNIQUE_CHANGED: '上传的种子 禁转 状态改变',
+      CONTENT_TORRENT_UNIQUE_CHANGED: '### 禁转 状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 禁转 状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{unique_status}}**.',
+
       TITLE_TORRENT_SALE_CHANGED: '上传的种子促销状态改变',
       CONTENT_TORRENT_SALE_CHANGED: '### 促销状态改变! \n 您上传的种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 促销状态已经由管理员用户 [{{by_name}}](/userinfo/{{by_id}}) 修改, 当前状态为: **{{sale_status}}**.',
 
@@ -1710,7 +1784,7 @@
     SITE_NOTICE: {
       GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快乐 2018**, **{{site_name}}** 新年促销活动已准备就绪, 促销活动类型为 <span class="sale_key">**{{sale_value}}**</span> , 活动将开始于 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 并持续 <span class="sale_key">**{{sale_days}}**</span> 天, 结束于 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 并感谢所有会员用户一直以来给予我们的帮助与支持!',
       EXAMINATION_NOTICE: '### 重要通知! \n :radio: **{{site_name}}** 将从 **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** 到 **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}** 进行一次新的增量考核, 增量数据要求: 上传 **{{data_upload | bytes:2}}**, 下载 **{{data_download | bytes:2}}**, 积分 **{{data_score}}**, 请各位会员安排好自已的时间，并祝您顺利通过这次考核. 所有 **vip** 用户以及最近 **{{join_days}}** 天内注册的新用户免考, 考核未达标的用户帐号将会被禁止.<small>[更多详情请看这里]({{detail_url}}).</small>',
-      EXAMINATION_STATUS: '### 考核状态信息: \n <dl class="dl-horizontal"><dt>考核时间区间:</dt><dd>{{examination_start_at | date: "yyyy-MM-dd HH:mm"}} - {{examination_end_at | date: "yyyy-MM-dd HH:mm"}}</dd><dt>增量上传数据:</dt><dd>{{data_upload | bytes:2}}, 已完成 {{finished_upload | bytes:2}}</dd><dt>增量下载数据:</dt><dd>{{data_download | bytes:2}}, 已完成 {{finished_download | bytes:2}}</dd><dt>增量积分:</dt><dd>{{data_score | number: 2}}, 已完成 {{finished_score | number: 2}}</dd><dt>当前考核状态:</dt><dd>{{data_status | translate}}</dd><dt></dt><dd><small>[更多详情]({{detail_url}})</small></dd></dl>',
+      EXAMINATION_STATUS: '### 考核状态信息: \n <dl class="dl-horizontal"><dt>考核时间区间:</dt><dd>{{examination_start_at | date: "yyyy-MM-dd HH:mm"}} - {{examination_end_at | date: "yyyy-MM-dd HH:mm"}}</dd><dt>增量上传数据:</dt><dd>{{data_upload | bytes:2}}, 已完成 {{finished_upload | bytes:2}}</dd><dt>增量下载数据:</dt><dd>{{data_download | bytes:2}}, 已完成 {{finished_download | bytes:2}}</dd><dt>增量积分:</dt><dd>{{data_score | score: 2}}, 已完成 {{finished_score | score: 2}}</dd><dt>当前考核状态:</dt><dd>{{data_status | translate}}</dd><dt></dt><dd><small>[更多详情]({{detail_url}})</small></dd></dl>',
       EXAMINATION_FINISHED: '已通过',
       EXAMINATION_UNFINISHED: '未通过'
     }

@@ -50,6 +50,59 @@
     }
   }
 
+  //==============================================================
+
+  angular.module('users')
+    .directive('torrentFileLinkLabel', torrentFileLinkLabel);
+
+  torrentFileLinkLabel.$inject = ['$compile', '$translate', 'MeanTorrentConfig'];
+
+  function torrentFileLinkLabel($compile, $translate, MeanTorrentConfig) {
+    var appConfig = MeanTorrentConfig.meanTorrentConfig.app;
+
+    var directive = {
+      restrict: 'A',
+      link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs) {
+      scope.$watch(attrs.torrentFileLinkLabel, function (s) {
+        if (s) {
+          var torrent = s;
+          var user = scope.$eval(attrs.torrentUser);
+
+          if (user && torrent) {
+            var link = makeTorrentFileLink(torrent, user);
+            var txt = $translate.instant('TORRENT_LABEL_LINK');
+            var title = $translate.instant('COPY_LINK_TO_CLIPBOARD');
+            var cls = attrs.infoClass;
+            var e = angular.element('<span class="label" ng-click="$event.stopPropagation();" mt-copy-to-clipboard="' + link + '">' + txt + '</span>');
+
+            if (e) {
+              e.addClass(cls ? cls : '');
+              e.attr('title', title);
+
+              element.html(e);
+              $compile(element.contents())(scope);
+            }
+          }
+        }
+      });
+    }
+
+    function makeTorrentFileLink(t, u) {
+      var link = appConfig.domain;
+      link += '/api/torrents/download';
+      link += '/' + t._id;
+      link += '/' + u.passkey;
+
+      return link;
+    }
+  }
+
+  //================================================================
 
   angular.module('users')
     .directive('torrentFileLinkButton', torrentFileLinkButton);

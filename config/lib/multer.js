@@ -59,11 +59,13 @@ module.exports.createUploadFilename = function (req, file, cb) {
   }
 
   //replace other pt site prefix
-  filename = filename.replace(/^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/, '');
+  var reg = /\{([a-zA-Z0-9\_\-\.\s]){2,10}\}[\.|\s]*/gi;
+  filename = filename.replace(reg, '');
 
   if (fs.existsSync(config.uploads.torrent.file.dest + filename)) {
     var err = new Error();
     err.code = 'FILE_ALREADY_EXISTS';
+    err.filename = config.uploads.torrent.file.dest + filename;
     cb(err, null);
   } else {
     cb(null, filename);
@@ -98,7 +100,9 @@ module.exports.createUploadAttachFilename = function (req, file, cb) {
   }
 
   //replace other pt site prefix
-  filename = filename.replace(/^\{([^}]+)\}[\.\s]|^\{([^}]+)\}/, '');
+  var reg = /\{([a-zA-Z0-9\_\-\.\s]){2,10}\}[\.|\s]*/gi;
+  filename = filename.replace(reg, '');
+
 
   if (fs.existsSync(config.uploads.attach.file.dest + filename)) {
     var ext = file.originalname.replace(/^.+\./, '');

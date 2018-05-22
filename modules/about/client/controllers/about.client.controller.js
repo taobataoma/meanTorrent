@@ -24,7 +24,7 @@
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
-    vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.rssConfig = MeanTorrentConfig.meanTorrentConfig.rss;
     vm.ircConfig = MeanTorrentConfig.meanTorrentConfig.ircAnnounce;
@@ -40,17 +40,37 @@
     vm.examinationConfig = MeanTorrentConfig.meanTorrentConfig.examination;
     vm.chatConfig = MeanTorrentConfig.meanTorrentConfig.chat;
     vm.accessConfig = MeanTorrentConfig.meanTorrentConfig.access;
+    vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
 
-    vm.groupTorrentType = localStorageService.get('maker_last_selected_type') || 'movie';
     vm.searchTags = [];
+    vm.searchKey = '';
+    vm.releaseYear = undefined;
+    vm.filterType = undefined;
+    vm.filterHnR = false;
+    vm.filterTop = false;
+    vm.filterUnique = false;
+    vm.filterSale = false;
+    vm.torrentRLevel = 'level0';
 
     uibButtonConfig.activeClass = 'btn-success';
+
+    vm.torrentType = 'aggregate';
+    vm.filterType = localStorageService.get('maker_last_selected_type') || 'aggregate';
 
     vm.addMemberPopover = {
       title: 'ABOUT.ADD_MEMBER_TITLE',
       templateUrl: 'add-member.html',
       isOpen: false
     };
+
+    /**
+     * scope watch vm.filterType
+     */
+    $scope.$watch('vm.filterType', function (newValue, oldValue) {
+      if (newValue) {
+        localStorageService.set('maker_last_selected_type', newValue);
+      }
+    });
 
     /**
      * getTemplateFileContent
@@ -126,10 +146,32 @@
     };
 
     /**
-     * onTypeBtnClick
+     * onTorrentTypeChanged
      */
-    vm.onTypeBtnClick = function () {
-      localStorageService.set('maker_last_selected_type', vm.groupTorrentType);
+    vm.onTorrentTypeChanged = function () {
+      vm.buildPager();
+      localStorageService.set('maker_last_selected_type', vm.filterType);
+    };
+
+    /**
+     * tagsFilter
+     * @param item
+     * @returns {boolean}
+     */
+    vm.tagsFilter = function (item) {
+      var res = false;
+
+      if (vm.filterType === 'aggregate') {
+        angular.forEach(vm.torrentTypeConfig.value, function (t) {
+          if (t.enable && item.cats.includes(t.value))
+            res = true;
+        });
+      } else {
+        if (item.cats.includes(vm.filterType))
+          res = true;
+      }
+
+      return res;
     };
 
     /**
@@ -271,11 +313,18 @@
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage,
         sort: vm.sort,
-        torrent_type: vm.groupTorrentType,
+        torrent_type: (vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
         torrent_status: 'reviewed',
         maker: vm.maker._id,
+        keys: vm.searchKey,
         torrent_vip: false,
-        keys: vm.search
+        torrent_rlevel: vm.torrentRLevel,
+        torrent_release: vm.releaseYear,
+        torrent_tags: vm.searchTags,
+        torrent_hnr: vm.filterHnR,
+        torrent_sale: vm.filterSale,
+        isTop: vm.filterTop,
+        isUnique: vm.filterUnique
       }, function (data) {
         mtDebug.info(data);
         callback(data);
@@ -593,6 +642,125 @@
     vm.stopCog = function (evt, id) {
       var e = $('#cog_' + id);
       e.removeClass('fa-spin');
+    };
+
+    /**
+     * onMoreTagsClicked
+     */
+    vm.onMoreTagsClicked = function () {
+      var e = $('.more-tags');
+      var i = $('#more-tags-icon');
+
+      if (!e.hasClass('panel-collapsed')) {
+        e.slideUp();
+        e.addClass('panel-collapsed');
+        i.removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+      } else {
+        e.slideDown();
+        e.removeClass('panel-collapsed');
+        i.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+      }
+    };
+
+    /**
+     * clearAllCondition
+     */
+    vm.clearAllCondition = function () {
+      vm.searchKey = '';
+      vm.searchTags = [];
+      $('.btn-tag').removeClass('btn-success').addClass('btn-default');
+      vm.releaseYear = undefined;
+      vm.filterHnR = false;
+      vm.filterTop = false;
+      vm.filterUnique = false;
+      vm.filterSale = false;
+      vm.torrentRLevel = 'level0';
+      vm.filterType = 'aggregate';
+
+      vm.buildPager();
+    };
+
+    /**
+     * onTorrentTypeClicked
+     * @param t
+     */
+    vm.onTorrentTypeClicked = function (t) {
+      if (vm.filterType === t) {
+        vm.filterType = vm.torrentType;
+      } else {
+        vm.filterType = t;
+      }
+      vm.buildPager();
+    };
+
+    /**
+     * onRLevelClicked
+     * @param y
+     */
+    vm.onRLevelClicked = function (l) {
+      if (vm.torrentRLevel === l) {
+        vm.torrentRLevel = 'level0';
+      } else {
+        vm.torrentRLevel = l;
+      }
+      vm.buildPager();
+    };
+
+    /**
+     * onReleaseClicked
+     * @param y
+     */
+    vm.onReleaseClicked = function (y) {
+      if (vm.releaseYear === y) {
+        vm.releaseYear = undefined;
+      } else {
+        vm.releaseYear = y;
+      }
+      vm.buildPager();
+    };
+
+    /**
+     * onHnRClicked
+     */
+    vm.onHnRClicked = function () {
+      vm.filterHnR = !vm.filterHnR;
+      vm.buildPager();
+    };
+    vm.onHnRChanged = function () {
+      vm.buildPager();
+    };
+
+    /**
+     * onTopClicked, onTopChanged
+     */
+    vm.onTopClicked = function () {
+      vm.filterTop = !vm.filterTop;
+      vm.buildPager();
+    };
+    vm.onTopChanged = function () {
+      vm.buildPager();
+    };
+
+    /**
+     * onUniqueClicked, onUniqueChanged
+     */
+    vm.onUniqueClicked = function () {
+      vm.filterUnique = !vm.filterUnique;
+      vm.buildPager();
+    };
+    vm.onUniqueChanged = function () {
+      vm.buildPager();
+    };
+
+    /**
+     * onSaleChanged
+     */
+    vm.onSaleClicked = function () {
+      vm.filterSale = !vm.filterSale;
+      vm.buildPager();
+    };
+    vm.onSaleChanged = function () {
+      vm.buildPager();
     };
   }
 }());

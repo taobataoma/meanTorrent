@@ -35,6 +35,7 @@
     vm.examinationConfig = MeanTorrentConfig.meanTorrentConfig.examination;
     vm.chatConfig = MeanTorrentConfig.meanTorrentConfig.chat;
     vm.accessConfig = MeanTorrentConfig.meanTorrentConfig.access;
+    vm.torrentType = 'aggregate';
 
     vm.lang = getStorageLangService.getLang();
 

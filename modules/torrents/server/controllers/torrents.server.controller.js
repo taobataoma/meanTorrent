@@ -7,6 +7,7 @@ var path = require('path'),
   config = require(path.resolve('./config/config')),
   mongoose = require('mongoose'),
   common = require(path.resolve('./config/lib/common')),
+  mediaInfo = require(path.resolve('./config/lib/mediaInfo')),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   multer = require('multer'),
   moment = require('moment'),
@@ -159,7 +160,10 @@ exports.upload = function (req, res) {
         res.status(200).send(torrentinfo);
       })
       .catch(function (err) {
-        res.status(422).send(err);
+        res.status(422).send({
+          message: err.message,
+          params: err.params
+        });
 
         if (req.file && req.file.filename) {
           var newfile = config.uploads.torrent.file.temp + req.file.filename;
@@ -186,7 +190,7 @@ exports.upload = function (req, res) {
             message = 'Torrent file too large. Maximum size allowed is ' + (config.uploads.torrent.file.limits.fileSize / (1024 * 1024)).toFixed(2) + ' Mb files.';
           }
 
-          reject(message);
+          reject({message: message, params: {filename: uploadError.filename}});
         } else {
           resolve();
         }
@@ -204,7 +208,7 @@ exports.upload = function (req, res) {
         if (err) {
           mtDebug.debugError(err, 'READ_TORRENT_FILE_FAILD');
           message = 'SERVER.READ_TORRENT_FILE_FAILD';
-          reject(message);
+          reject({message: message});
         } else {
           //force change announce url to config value
           var announce = config.meanTorrentConfig.announce.url;
@@ -246,7 +250,7 @@ exports.upload = function (req, res) {
 
       if (torrentinfo.info_hash === '' || !torrentinfo.info_hash) {
         message = 'SERVER.INFO_HASH_IS_EMPTY';
-        reject(message);
+        reject({message: message});
       } else {
         Torrent.findOne({
           info_hash: torrentinfo.info_hash
@@ -257,7 +261,7 @@ exports.upload = function (req, res) {
             if (torrent) {
               message = 'SERVER.INFO_HASH_ALREADY_EXISTS';
 
-              reject(message);
+              reject({message: message, params: {hash: torrentinfo.info_hash}});
             } else {
               resolve();
             }
@@ -551,7 +555,7 @@ exports.download = function (req, res) {
   var user = req.user || req.passkeyuser || undefined;
 
   if (user) {
-    if (req.torrent.torrent_vip && !user.isVip) {
+    if (req.torrent.torrent_vip && !user.isVip && !user.isOper) {
       return res.status(701).send({
         message: 'SERVER.ONLY_VIP_CAN_DOWNLOAD'
       });
@@ -563,7 +567,7 @@ exports.download = function (req, res) {
       return res.status(703).send({
         message: 'SERVER.CAN_NOT_DOWNLOAD_IDLE'
       });
-    } else if (req.torrent.torrent_status !== 'reviewed') {
+    } else if (req.torrent.torrent_status !== 'reviewed' && !user._id.equals(req.torrent.user._id)) {
       return res.status(704).send({
         message: 'SERVER.TORRENT_STATUS_ERROR'
       });
@@ -627,6 +631,11 @@ exports.create = function (req, res) {
   //mtDebug.debugGreen(req.body);
 
   torrent.user = req.user;
+
+  //get media info detail
+  if (torrent.torrent_nfo) {
+    torrent.torrent_media_info = mediaInfo.getMediaInfo(torrent.torrent_nfo);
+  }
 
   //replace content path
   var tmp = config.uploads.torrent.image.temp.substr(1);
@@ -833,7 +842,21 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var torrent = req.torrent;
 
-  torrent.resource_detail_info = req.body.resource_detail_info;
+  if (req.body.hasOwnProperty('resource_detail_info')) {
+    torrent.resource_detail_info = req.body.resource_detail_info;
+  }
+  if (req.body.hasOwnProperty('torrent_nfo')) {
+    torrent.torrent_nfo = req.body.torrent_nfo;
+    torrent.torrent_media_info = mediaInfo.getMediaInfo(req.body.torrent_nfo);
+  }
+  if (req.body.hasOwnProperty('custom_title')) {
+    torrent.resource_detail_info.custom_title = req.body.custom_title;
+    torrent.markModified('resource_detail_info');
+  }
+  if (req.body.hasOwnProperty('custom_subtitle')) {
+    torrent.resource_detail_info.custom_subtitle = req.body.custom_subtitle;
+    torrent.markModified('resource_detail_info');
+  }
 
   torrent.save(function (err) {
     if (err) {
@@ -942,6 +965,38 @@ exports.toggleTOPStatus = function (req, res) {
           by_name: req.user.displayName,
           by_id: req.user._id,
           top_status: torrent.isTop ? 'ON' : 'OFF'
+        });
+      }
+    }
+  });
+};
+
+/**
+ * toggleUniqueStatus
+ * @param req
+ * @param res
+ */
+exports.toggleUniqueStatus = function (req, res) {
+  var torrent = req.torrent;
+
+  torrent.isUnique = !torrent.isUnique;
+
+  torrent.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(torrent);
+
+      //add server message
+      if (serverNoticeConfig.action.torrentUniqueChanged.enable) {
+        serverMessage.addMessage(torrent.user._id, serverNoticeConfig.action.torrentUniqueChanged.title, serverNoticeConfig.action.torrentUniqueChanged.content, {
+          torrent_file_name: torrent.torrent_filename,
+          torrent_id: torrent._id,
+          by_name: req.user.displayName,
+          by_id: req.user._id,
+          unique_status: torrent.isUnique ? 'ON' : 'OFF'
         });
       }
     }
@@ -1399,7 +1454,7 @@ exports.getTorrentsHomeList = function (req, res) {
       } else {
         Torrent.populate(orderList,
           [
-            {path: 'typeTorrents.user', select: 'username displayName isVip', model: 'User'},
+            {path: 'typeTorrents.user', select: 'username displayName profileImageURL isVip score uploaded downloaded', model: 'User'},
             {path: 'typeTorrents.maker', select: 'name', model: 'Maker'}
           ], function (err, items) {
             if (err) {
@@ -1452,7 +1507,7 @@ exports.getTorrentsHomeList = function (req, res) {
       } else {
         Torrent.populate(newestList,
           [
-            {path: 'typeTorrents.user', select: 'username displayName isVip', model: 'User'},
+            {path: 'typeTorrents.user', select: 'username displayName profileImageURL isVip score uploaded downloaded', model: 'User'},
             {path: 'typeTorrents.maker', select: 'name', model: 'Maker'}
           ], function (err, items) {
             if (err) {
@@ -1490,6 +1545,7 @@ exports.list = function (req, res) {
   var newest = false;
   var hnr = false;
   var top = false;
+  var unique = false;
   var sale = false;
   var vip = undefined;
   var release = undefined;
@@ -1527,6 +1583,9 @@ exports.list = function (req, res) {
   }
   if (req.query.isTop !== undefined) {
     top = (req.query.isTop === 'true');
+  }
+  if (req.query.isUnique !== undefined) {
+    unique = (req.query.isUnique === 'true');
   }
   if (req.query.torrent_sale !== undefined) {
     sale = (req.query.torrent_sale === 'true');
@@ -1589,6 +1648,9 @@ exports.list = function (req, res) {
     condition.isTop = true;
     sort = {topedat: -1, createdat: -1};
   }
+  if (unique === true) {
+    condition.isUnique = true;
+  }
   if (sale === true) {
     condition.torrent_sale_status = {
       $ne: 'U1/D1'
@@ -1617,6 +1679,8 @@ exports.list = function (req, res) {
         {info_hash: {'$all': keysA}},
         {'resource_detail_info.title': {'$all': keysA}},
         {'resource_detail_info.subtitle': {'$all': keysA}},
+        {'resource_detail_info.custom_title': {'$all': keysA}},
+        {'resource_detail_info.custom_subtitle': {'$all': keysA}},
         {'resource_detail_info.name': {'$all': keysA}},
         {'resource_detail_info.original_title': {'$all': keysA}},
         {'resource_detail_info.original_name': {'$all': keysA}}
@@ -1712,7 +1776,7 @@ exports.list = function (req, res) {
 
           Torrent.populate(ntorrents,
             [
-              {path: 'user', select: 'username displayName isVip'},
+              {path: 'user', select: 'username displayName profileImageURL isVip score uploaded downloaded'},
               {path: 'maker', select: 'name'}
             ], function (err, ts) {
               if (err) {
@@ -1847,7 +1911,7 @@ exports.makeRss = function (req, res) {
 
       Torrent.find(condition)
         .sort(sort)
-        .populate('user', 'username displayName isVip')
+        .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
         .populate('maker', 'name')
         .limit(limit)
         .exec(function (err, torrents) {
@@ -2083,7 +2147,7 @@ exports.getSeederUsers = function (req, res) {
       last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime}
     })
       .sort('-peer_uploaded')
-      .populate('user', 'username displayName profileImageURL isVip')
+      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
       .skip(skip)
       .limit(limit)
       .exec(function (err, peers) {
@@ -2144,7 +2208,7 @@ exports.getLeecherUsers = function (req, res) {
       last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime}
     })
       .sort('-peer_downloaded')
-      .populate('user', 'username displayName profileImageURL isVip')
+      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
       .skip(skip)
       .limit(limit)
       .exec(function (err, peers) {
@@ -2179,25 +2243,25 @@ exports.torrentByID = function (req, res, next, id) {
 
   var findTorrents = function (callback) {
     Torrent.find({_id: id}, {'_peers': 0})
-      .populate('user', 'username displayName profileImageURL isVip')
+      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
       .populate('maker', 'name')
-      .populate('_thumbs.user', 'username displayName profileImageURL isVip uploaded downloaded')
-      .populate('_ratings.user', 'username displayName profileImageURL isVip uploaded downloaded')
+      .populate('_thumbs.user', 'username displayName profileImageURL isVip score uploaded downloaded')
+      .populate('_ratings.user', 'username displayName profileImageURL isVip score  uploaded downloaded')
       .populate({
         path: '_replies.user',
-        select: 'username displayName profileImageURL isVip uploaded downloaded',
+        select: 'username displayName profileImageURL isVip score uploaded downloaded',
         model: 'User'
       })
       .populate({
         path: '_replies._replies.user',
-        select: 'username displayName profileImageURL isVip uploaded downloaded',
+        select: 'username displayName profileImageURL isVip score uploaded downloaded',
         model: 'User'
       })
       .populate({
         path: '_subtitles',
         populate: {
           path: 'user',
-          select: 'username displayName profileImageURL isVip'
+          select: 'username displayName profileImageURL isVip score uploaded downloaded'
         }
       })
       .exec(function (err, torrent) {
@@ -2223,7 +2287,7 @@ exports.torrentByID = function (req, res, next, id) {
 
       Torrent.find(condition, fields)
         .sort('-createdat')
-        .populate('user', 'username displayName isVip')
+        .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
         .populate('maker', 'name')
         .exec(function (err, torrents) {
           if (err) {
@@ -2245,25 +2309,35 @@ exports.torrentByID = function (req, res, next, id) {
 
   var writeAllFiles = function (torrent, callback) {
     if (torrent) {
-      var filePath = config.uploads.torrent.file.dest + torrent.torrent_filename;
-      nt.read(filePath, function (err, torrent_data) {
-        if (err) {
-          callback(err);
-        } else {
-          var mdata = torrent_data.metadata;
-          torrent._all_files = [];
+      try {
+        var filePath = config.uploads.torrent.file.dest + torrent.torrent_filename;
+        fs.exists(filePath, function (exists) {
+          if (exists) {
+            nt.read(filePath, function (err, torrent_data) {
+              if (err) {
+                callback(err);
+              } else {
+                var mdata = torrent_data.metadata;
+                torrent._all_files = [];
 
-          if (mdata.info.files) {
-            mdata.info.files.forEach(function (f) {
-              torrent._all_files.push(f.path.join('/') + ', ' + common.fileSizeFormat(f.length, 2));
+                if (mdata.info.files) {
+                  mdata.info.files.forEach(function (f) {
+                    torrent._all_files.push(f.path.join('/') + ', ' + common.fileSizeFormat(f.length, 2));
+                  });
+                } else {
+                  torrent._all_files.push(mdata.info.name + ', ' + common.fileSizeFormat(mdata.info.length, 2));
+                }
+
+                callback(null, torrent);
+              }
             });
           } else {
-            torrent._all_files.push(mdata.info.name + ', ' + common.fileSizeFormat(mdata.info.length, 2));
+            callback(null, torrent);
           }
-
-          callback(null, torrent);
-        }
-      });
+        });
+      } catch (e) {
+        callback(null, torrent);
+      }
     } else {
       callback(null, torrent);
     }

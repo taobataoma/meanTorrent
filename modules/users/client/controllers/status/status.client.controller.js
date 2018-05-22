@@ -15,6 +15,7 @@
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
 
     /**
      * unIdle

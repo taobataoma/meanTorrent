@@ -267,7 +267,7 @@ exports.list = function (req, res) {
   var findQuery = function (callback) {
     Request.find(condition)
       .sort('-createdAt')
-      .populate('user', 'username displayName profileImageURL isVip')
+      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
       .skip(skip)
       .limit(limit)
       .exec(function (err, requests) {
@@ -302,12 +302,12 @@ exports.requestByID = function (req, res, next, id) {
   }
 
   Request.findById(id)
-    .populate('user', 'username displayName profileImageURL isVip score')
+    .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
     .populate({
       path: 'torrents',
       populate: [{
         path: 'user',
-        select: 'username displayName profileImageURL isVip'
+        select: 'username displayName profileImageURL isVip score uploaded downloaded'
       }, {
         path: 'maker',
         select: 'name'
@@ -315,12 +315,12 @@ exports.requestByID = function (req, res, next, id) {
     })
     .populate({
       path: 'comments.user',
-      select: 'username displayName profileImageURL isVip uploaded downloaded',
+      select: 'username displayName profileImageURL isVip score uploaded downloaded',
       model: 'User'
     })
     .populate({
       path: 'comments._replies.user',
-      select: 'username displayName profileImageURL isVip uploaded downloaded',
+      select: 'username displayName profileImageURL isVip score uploaded downloaded',
       model: 'User'
     })
     .exec(function (err, request) {

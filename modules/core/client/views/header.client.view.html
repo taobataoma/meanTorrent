@@ -1,4 +1,5 @@
-<div class="container navbar-mt" ng-controller="HeaderController as vm" ng-init="vm.getInvitationsCount(); vm.checkMessageUnread(); vm.checkHnRWarning();">
+<div class="container navbar-mt" ng-controller="HeaderController as vm"
+     ng-init="vm.bindHoverToMenuItem(); vm.getInvitationsCount(); vm.checkMessageUnread(); vm.checkHnRWarning();">
     <div class="navbar-header">
         <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
             <span class="sr-only">Toggle navigation</span>
@@ -14,7 +15,7 @@
             <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type"
                 ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}"
                 uib-dropdown="item.type === 'dropdown'">
-                <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button"><span
+                <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button" alt="{{item.linkState}}"><span
                         menu-title="{{item.title}}">{{::item.title}}</span>&nbsp;<span class="caret"></span></a>
                 <ul ng-switch-when="dropdown" class="dropdown-menu">
                     <li ui-sref-active="active" ng-repeat="subitem in item.items | orderBy: 'position'"
@@ -29,7 +30,7 @@
                 <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title" mt-target="{{item.target}}" menu-title="{{item.title}}"></a>
             </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
+        <ul class="nav navbar-nav navbar-right" ng-if="!vm.authentication.user">
             <li ui-sref-active="active">
                 <a ui-sref="authentication.signup">{{'SIGNUP' | translate}}</a>
             </li>
@@ -38,16 +39,16 @@
                 <a ui-sref="authentication.signin">{{'SIGNIN' | translate}}</a>
             </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+        <ul class="nav navbar-nav navbar-right" ng-if="vm.authentication.user">
             <li class="scroll-info xs-hide sm-hide" ui-sref="status.account" ng-if="vm.authentication.user">
-        <span>
-            {{'TABLE_FIELDS.RATIO' | translate}}: {{vm.authentication.user.ratio | ratio}},　
-            {{'TABLE_FIELDS.LEVEL' | translate}}: {{vm.scoreLevelData.currLevel}},　
-            {{'TABLE_FIELDS.SEEDED' | translate}}: {{vm.authentication.user.seeded}},　
-            {{'TABLE_FIELDS.LEECHED' | translate}}: {{vm.authentication.user.leeched}}</span>
+                <span>
+                    {{'TABLE_FIELDS.RATIO' | translate}}: {{vm.authentication.user.ratio | ratio}},　
+                    {{'TABLE_FIELDS.LEVEL' | translate}}: {{vm.scoreLevelData.currLevel}},　
+                    {{'TABLE_FIELDS.SEEDED' | translate}}: {{vm.authentication.user.seeded}},　
+                    {{'TABLE_FIELDS.LEECHED' | translate}}: {{vm.authentication.user.leeched}}</span>
             </li>
             <li class="dropdown" uib-dropdown>
-                <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+                <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button" alt="status.account">
                     <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}"
                          class="header-profile-image"/>
                     <span class="sm-hide" ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
@@ -55,11 +56,9 @@
                           ng-class="{'bg-hnr': vm.user.hnr_warning>0, 'bg-msg': vm.unreadCount>0}"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li>
-            <span class="lang-list">
-              <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);"
-                    ng-repeat="l in vm.language | orderBy: '-index'"></span>
-            </span>
+                    <li class="lang-list">
+                        <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);"
+                              ng-repeat="l in vm.language | filter: {enable: true}" ng-class="{'curr-language': vm.langService.getLang() == l.name}"></span>
                     </li>
                     <li class="divider"></li>
                     <li ui-sref-active="active" ng-repeat="item in vm.followMenu.items" class="menu-parent">
@@ -79,7 +78,7 @@
                         <a ui-sref="{{item.state}}">
                             <i class="fa fa-fw {{item.faIcon}} {{item.faClass}}"></i><span ng-bind="item.title" menu-title="{{item.title}}"></span>
                         </a>
-                        <span class="badge menu-badge badge_danger" ng-show="vm.user.hnr_warning>0">{{vm.user.hnr_warning}}</span>
+                        <span class="badge menu-badge badge_danger" ng-show="vm.user.hnr_warning>0 && vm.hnrConfig.enable">{{vm.user.hnr_warning}}</span>
                     </li>
                     <li ui-sref-active="active" ng-repeat="item in vm.scoreMenu.items" class="menu-parent">
                         <a ui-sref="{{item.state}}">

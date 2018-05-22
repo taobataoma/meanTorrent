@@ -8,12 +8,12 @@
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
     'SubtitlesService', 'getStorageLangService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
-    'localStorageService', '$compile', 'SideOverlay', 'ResourcesTagsServices', 'CollectionsService'];
+    'localStorageService', '$compile', 'SideOverlay', 'ResourcesTagsServices', 'CollectionsService', 'moment'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
                                   getStorageLangService, NotifycationService, mtDebug, TorrentGetInfoServices,
-                                  localStorageService, $compile, SideOverlay, ResourcesTagsServices, CollectionsService) {
+                                  localStorageService, $compile, SideOverlay, ResourcesTagsServices, CollectionsService, moment) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -30,6 +30,12 @@
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
+    vm.salesGlobalConfig = MeanTorrentConfig.meanTorrentConfig.torrentGlobalSales;
+    vm.mediaInfoConfig = MeanTorrentConfig.meanTorrentConfig.mediaInfo;
+    vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+    vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
+
+    vm.mediaInfoEditMode = false;
 
     vm.torrentTabs = [];
     vm.searchTags = [];
@@ -94,6 +100,11 @@
      * $watch 'vm.torrentLocalInfo'
      */
     $scope.$watch('vm.torrentLocalInfo', function (newValue, oldValue) {
+      if (vm.torrentLocalInfo) {
+        vm.torrentLocalInfo.resource_detail_info.custom_title = vm.TGI.getTorrentCustomTitle(vm.torrentLocalInfo);
+        vm.torrentLocalInfo.resource_detail_info.custom_subtitle = vm.TGI.getTorrentCustomSubTitle(vm.torrentLocalInfo);
+      }
+
       if (vm.torrentLocalInfo && vm.torrentLocalInfo._replies) {
         var hasme = false;
         var meitem = null;
@@ -147,6 +158,21 @@
     };
 
     /**
+     * reviewedTorrentStatus
+     * @param item
+     */
+    vm.reviewedTorrentStatus = function () {
+      TorrentsService.setReviewedStatus({
+        _torrentId: vm.torrentLocalInfo._id
+      }, function (res) {
+        vm.torrentLocalInfo = res;
+        NotifycationService.showSuccessNotify('TORRENT_SETREVIEWED_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'TORRENT_SETREVIEWED_ERROR');
+      });
+    };
+
+    /**
      * toggleHnR
      */
     vm.toggleHnR = function () {
@@ -163,7 +189,6 @@
      * toggleVIP
      */
     vm.toggleVIP = function () {
-      console.log(vm.torrentLocalInfo);
       vm.torrentLocalInfo.$toggleVIPStatus(function (res) {
         mtDebug.info(res);
         vm.torrentLocalInfo = res;
@@ -183,6 +208,19 @@
         NotifycationService.showSuccessNotify('TORRENT_TOGGLE_TOP_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_TOP_FAILED');
+      });
+    };
+
+    /**
+     * toggleUnique
+     */
+    vm.toggleUnique = function (item) {
+      vm.torrentLocalInfo.$toggleUniqueStatus(function (res) {
+        mtDebug.info(res);
+        vm.torrentLocalInfo = res;
+        NotifycationService.showSuccessNotify('TORRENT_TOGGLE_UNIQUE_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'TORRENT_TOGGLE_UNIQUE_FAILED');
       });
     };
 
@@ -457,7 +495,7 @@
           icon: 'fa-file-text',
           title: $translate.instant('TAB_USER_SUBTITLE'),
           templateUrl: 'subtitleInfo.html',
-          ng_show: vm.torrentLocalInfo.torrent_type === 'movie' || vm.torrentLocalInfo.torrent_type === 'tvserial',
+          ng_show: showSubtitleTab(vm.torrentLocalInfo.torrent_type),
           badges: [
             {
               value: vm.torrentLocalInfo._subtitles.length,
@@ -501,13 +539,13 @@
             }
           ]
         },
-        {
-          icon: 'fa-user-md',
-          title: $translate.instant('TAB_MY_PANEL'),
-          templateUrl: 'myPanel.html',
-          ng_show: vm.torrentLocalInfo.isCurrentUserOwner,
-          badges: []
-        },
+        // {
+        //   icon: 'fa-user-md',
+        //   title: $translate.instant('TAB_MY_PANEL'),
+        //   templateUrl: 'myPanel.html',
+        //   ng_show: vm.torrentLocalInfo.isCurrentUserOwner,
+        //   badges: []
+        // },
         {
           icon: 'fa-cog',
           title: $translate.instant('TAB_ADMIN_PANEL'),
@@ -516,6 +554,16 @@
           badges: []
         }
       );
+
+      function showSubtitleTab(type) {
+        var s = false;
+        angular.forEach(vm.torrentTypeConfig.value, function (t) {
+          if (t.value === type && t.showSubtitleTabInDetailPage) {
+            s = true;
+          }
+        });
+        return s;
+      }
     };
 
     /**
@@ -589,7 +637,6 @@
         vm.scrollToId = vm.comment_to_id;
         vm.submitInit();
         vm.torrentLocalInfo = res;
-        console.log(res);
       }
 
       function errorCallback(res) {
@@ -996,13 +1043,80 @@
     };
 
     /**
+     * isOwner
+     * @param o, topic or reply
+     * @returns {boolean}
+     */
+    vm.isOwner = function (o) {
+      if (o) {
+        if (o.isCurrentUserOwner) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    };
+
+    /**
+     * canEdit
+     * @returns {boolean}
+     */
+    vm.canEdit = function () {
+      if (vm.user.isOper) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    /**
+     * onTorrentTitleEdited
+     */
+    $scope.onTorrentTitleEdited = function (modifyed) {
+      if (vm.torrentLocalInfo && modifyed) {
+        TorrentsService.update({
+          _id: vm.torrentLocalInfo._id,
+          custom_title: vm.torrentLocalInfo.resource_detail_info.custom_title
+        }, function (res) {
+          vm.torrentLocalInfo = res;
+          NotifycationService.showSuccessNotify('TORRENT_UPDATE_SUCCESSFULLY');
+        }, function (res) {
+          NotifycationService.showErrorNotify(res.data.message, 'TORRENT_UPDATE_ERROR');
+        });
+      }
+    };
+
+    /**
+     * onTorrentSubTitleEdited
+     */
+    $scope.onTorrentSubTitleEdited = function (modifyed) {
+      if (vm.torrentLocalInfo && modifyed) {
+        TorrentsService.update({
+          _id: vm.torrentLocalInfo._id,
+          custom_subtitle: vm.torrentLocalInfo.resource_detail_info.custom_subtitle
+        }, function (res) {
+          vm.torrentLocalInfo = res;
+          NotifycationService.showSuccessNotify('TORRENT_UPDATE_SUCCESSFULLY');
+        }, function (res) {
+          NotifycationService.showErrorNotify(res.data.message, 'TORRENT_UPDATE_ERROR');
+        });
+      }
+    };
+
+    /**
      * doUpdateTorrentInfo
      * @param minfo
      */
     vm.doUpdateTorrentInfo = function (resinfo) {
-      vm.torrentLocalInfo.resource_detail_info = resinfo;
+      resinfo.custom_title = vm.torrentLocalInfo.resource_detail_info.custom_title;
+      resinfo.custom_subtitle = vm.torrentLocalInfo.resource_detail_info.custom_subtitle;
 
-      vm.torrentLocalInfo.$update(function (response) {
+      TorrentsService.update({
+        _id: vm.torrentLocalInfo._id,
+        resource_detail_info: resinfo
+      }, function (response) {
         successCallback(response);
       }, function (errorResponse) {
         errorCallback(errorResponse);
@@ -1379,5 +1493,43 @@
       });
     };
 
+    /**
+     * isGlobalSaleNow
+     * @returns {boolean}
+     */
+    vm.isGlobalSaleNow = function () {
+      var start = moment(vm.salesGlobalConfig.global.startAt, vm.salesGlobalConfig.global.timeFormats).valueOf();
+      var end = start + vm.salesGlobalConfig.global.expires;
+      var now = Date.now();
+
+      if (now > start && now < end && vm.salesGlobalConfig.global.value) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    /**
+     * updateTorrentNfo
+     */
+    vm.updateTorrentNfo = function () {
+      TorrentsService.update({
+        _id: vm.torrentLocalInfo._id,
+        torrent_nfo: vm.torrentLocalInfo.torrent_nfo
+      }, function (res) {
+        vm.torrentLocalInfo = res;
+        NotifycationService.showSuccessNotify('EDIT_TORRENT_NFO_SUCCESSFULLY');
+        vm.mediaInfoEditMode = false;
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'EDIT_TORRENT_NFO_FAILED');
+      });
+    };
+
+    /**
+     * doEditMediaInfo
+     */
+    vm.doEditMediaInfo = function () {
+      vm.mediaInfoEditMode = true;
+    };
   }
 }());

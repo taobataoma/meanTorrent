@@ -73,7 +73,7 @@ exports.myFollowers = function (req, res) {
 
   User.populate(user, {
     path: 'followers',
-    select: 'username displayName profileImageURL uploaded downloaded isVip score'
+    select: 'username displayName profileImageURL isVip score uploaded downloaded'
   }, function (err, u) {
     if (err) {
       return res.status(422).send({
@@ -104,7 +104,7 @@ exports.myFollowing = function (req, res) {
 
   User.populate(user, {
     path: 'following',
-    select: 'username displayName profileImageURL uploaded downloaded isVip score'
+    select: 'username displayName profileImageURL isVip score uploaded downloaded'
   }, function (err, u) {
     if (err) {
       return res.status(422).send({
@@ -137,7 +137,7 @@ exports.getUserFollowers = function (req, res) {
   if (me.followers.indexOf(user._id) >= 0 || me.following.indexOf(user._id) >= 0 || me.isOper) {
     User.populate(user, {
       path: 'followers',
-      select: 'username displayName profileImageURL uploaded downloaded isVip score'
+      select: 'username displayName profileImageURL isVip score uploaded downloaded'
     }, function (err, u) {
       if (err) {
         return res.status(422).send({
@@ -175,7 +175,7 @@ exports.getUserFollowing = function (req, res) {
   if (me.followers.indexOf(user._id) >= 0 || me.following.indexOf(user._id) >= 0 || me.isOper) {
     User.populate(user, {
       path: 'following',
-      select: 'username displayName profileImageURL uploaded downloaded isVip score'
+      select: 'username displayName profileImageURL isVip score uploaded downloaded'
     }, function (err, u) {
       if (err) {
         return res.status(422).send({

@@ -13,6 +13,7 @@ var path = require('path'),
   User = mongoose.model('User'),
   Peer = mongoose.model('Peer'),
   Complete = mongoose.model('Complete'),
+  Message = mongoose.model('Message'),
   MailTicket = mongoose.model('MailTicket'),
   backup = require('mongodb-backup');
 
@@ -22,6 +23,9 @@ var supportConfig = config.meanTorrentConfig.support;
 var backupConfig = config.meanTorrentConfig.backup;
 var announceConfig = config.meanTorrentConfig.announce;
 var signConfig = config.meanTorrentConfig.sign;
+var hnrConfig = config.meanTorrentConfig.hitAndRun;
+var messageConfig = config.meanTorrentConfig.messages;
+
 var inbox = require('inbox');
 var simpleParser = require('mailparser').simpleParser;
 
@@ -70,8 +74,12 @@ module.exports = function (app) {
   }
 
   cronJobs.push(removeGhostPeers());
+  cronJobs.push(removeOldServerMessages());
   cronJobs.push(checkUserAccountIdleStatus());
-  cronJobs.push(countUsersHnrWarning());
+
+  if (hnrConfig.enable) {
+    cronJobs.push(countUsersHnrWarning());
+  }
 
   if (supportConfig.mailTicketSupportService) {
     cronJobs.push(listenServiceEmail());
@@ -133,7 +141,6 @@ function cronJobBackupMongoDB() {
  */
 function removeGhostPeers() {
   var cronJob = new CronJob({
-    //cronTime: '00 05 1 * * *',
     //cronTime: '*/5 * * * * *',
     cronTime: '00 30 */2 * * *',
     onTick: function () {
@@ -162,6 +169,29 @@ function removeGhostPeers() {
             logger.info(chalk.green('removed ghost peers: ' + count));
           }
         });
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  cronJob.start();
+
+  return cronJob;
+}
+
+/**
+ * removeOldServerMessages
+ */
+function removeOldServerMessages() {
+  var cronJob = new CronJob({
+    cronTime: '00 05 1 * * *',
+    onTick: function () {
+      logger.info(chalk.green('removeOldServerMessages: process!'));
+
+      Message.remove({
+        type: 'server',
+        createdat: {$lt: Date.now() - messageConfig.serverMessageExpires}
+      }).exec();
     },
     start: false,
     timeZone: appConfig.cronTimeZone

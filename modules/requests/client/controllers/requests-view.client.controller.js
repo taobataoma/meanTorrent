@@ -22,6 +22,7 @@
     vm.TGI = TorrentGetInfoServices;
     vm.RTS = ResourcesTagsServices;
     vm.show_desc_help = localStorageService.get('requests_view_show_help') || 'yes';
+    vm.torrentType = 'aggregate';
 
     vm.searchTags = [];
     vm.comment = {};

@@ -17,6 +17,7 @@
     vm.authUser = Authentication.user;
     vm.RTS = ResourcesTagsServices;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+    vm.torrentType = 'aggregate';
 
     vm.searchTags = [];
 

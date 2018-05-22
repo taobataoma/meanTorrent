@@ -417,8 +417,6 @@
             return vm.unreadCountData.countSystem;
           case 'advert':
             return vm.unreadCountData.countAdvert;
-          case 'notice':
-            return vm.unreadCountData.countNotice;
         }
       }
     };

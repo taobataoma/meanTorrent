@@ -95,11 +95,29 @@ function countRatio(t) {
 /**
  * globalUpdateMethod
  */
-CompleteSchema.methods.globalUpdateMethod = function (callback) {
-  this.refreshat = Date.now();
-  this.save(function () {
-    if (callback) callback();
-  });
+CompleteSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
+  if (typeof findThenUpdate === 'function') {
+    cb = findThenUpdate;
+    findThenUpdate = false;
+  }
+
+  if (findThenUpdate) {
+    this.model('Complete').findById(this._id, function (err, c) {
+      if (c) {
+        c.refreshat = Date.now();
+        c.save(function (err, nc) {
+          if (cb) cb(nc || this);
+        });
+      } else {
+        if (cb) cb(this);
+      }
+    });
+  } else {
+    this.refreshat = Date.now();
+    this.save(function (err, c) {
+      if (cb) cb(c || this);
+    });
+  }
 };
 
 /**
@@ -108,7 +126,7 @@ CompleteSchema.methods.globalUpdateMethod = function (callback) {
  */
 CompleteSchema.methods.countHnRWarning = function (countAdd = true, countRemove = true) {
   if (this.complete) {
-    if (this.user.isVip || this.total_seed_time >= hnrConfig.condition.seedTime || this.total_downloaded === 0 || this.total_ratio >= hnrConfig.condition.ratio) {
+    if (this.user.isOper || this.user.isVip || this.total_seed_time >= hnrConfig.condition.seedTime || this.total_downloaded === 0 || this.total_ratio >= hnrConfig.condition.ratio) {
       if (countRemove) {
         if (this.hnr_warning) {
           this.update({

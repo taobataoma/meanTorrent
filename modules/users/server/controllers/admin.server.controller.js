@@ -191,7 +191,7 @@ exports.list = function (req, res) {
   var findQuery = function (callback) {
     User.find(condition, '-salt -password -providerData')
       .sort('-created')
-      .populate('invited_by', 'username displayName profileImageURL isVip uploaded downloaded')
+      .populate('invited_by', 'username displayName profileImageURL isVip score uploaded downloaded')
       .populate('makers', 'name')
       .skip(skip)
       .limit(limit)
@@ -662,7 +662,7 @@ exports.userByID = function (req, res, next, id) {
   }
 
   User.findById(id, '-salt -password -providerData')
-    .populate('invited_by', 'username displayName profileImageURL')
+    .populate('invited_by', 'username displayName profileImageURL isVip score uploaded downloaded')
     .populate('makers', 'user name')
     .exec(function (err, user) {
       if (err) {

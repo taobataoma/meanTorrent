@@ -69,10 +69,10 @@ exports.list = function (req, res) {
   var findQuery = function (callback) {
     Trace.find(condition)
       .sort('-createdat')
-      .populate('user', 'username displayName isVip')
+      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
       .populate({
         path: 'content.user',
-        select: 'username displayName',
+        select: 'username displayName profileImageURL isVip score uploaded downloaded',
         model: 'User'
       })
       .populate({

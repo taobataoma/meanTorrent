@@ -27,11 +27,13 @@
         $scope.input = jQuery($element).find('.editable-line-input');
         $scope.originalDivBackground = $scope.div.css('background-color');
 
-        $scope.div.awesomeCursor('wrench', {
-          color: '#ff6000',
-          flip: 'horizontal',
-          outline: '#ff3e00'
-        });
+        if (!$scope.readonly) {
+          $scope.div.awesomeCursor('pencil', {
+            color: '#ff6000',
+            flip: 'vertical',
+            outline: '#ff3e00'
+          });
+        }
 
         var originalValue;
         $scope.div.bind('click', function () {

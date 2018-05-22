@@ -84,6 +84,10 @@
         margin-bottom: 0;
         tbody {
             tr {
+                td {
+                    padding: 15px 8px;
+                }
+
                 .td-text-overflow {
                     .text-long {
                         @media (min-width: @screen-lg-min) {
@@ -101,6 +105,9 @@
                         display: block;
                     }
                 }
+            }
+            + tbody {
+                border-top: none;
             }
         }
     }
@@ -162,16 +169,22 @@
     }
 }
 
+.add-warning {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
 .response-wrapper {
     margin-bottom: 30px;
     .response-list {
         .fa-accept {
             position: absolute;
-            top: -60px;
-            left: -100px;
-            font-size: 150px;
+            top: -10px;
+            left: 300px;
+            font-size: 120px;
             color: #d9534f;
-            opacity: 0.25;
+            opacity: 0.5;
             overflow: hidden;
         }
         .div-overlay-accept {
@@ -180,7 +193,7 @@
             background-color: rgba(128, 128, 128, 0.5);
             left: 95px;
             right: 15px;
-            height: 116px;
+            height: 130px;
             z-index: 5;
             font-size: 24px;
             font-weight: 500;
@@ -191,8 +204,8 @@
                 background-color: #444 !important;
                 background-color: rgba(128, 128, 128, 0.5) !important;
             }
-            span {
-                margin-top: 50%;
+            p {
+                margin-top: 15px;
             }
         }
         .btn-response-accept {

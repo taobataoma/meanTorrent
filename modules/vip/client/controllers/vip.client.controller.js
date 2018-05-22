@@ -7,11 +7,11 @@
 
   VipController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'getStorageLangService', 'MeanTorrentConfig', 'TorrentsService',
     'DebugConsoleService', '$timeout', 'uibButtonConfig', 'TorrentGetInfoServices', 'DownloadService', 'ResourcesTagsServices', '$window',
-    'localStorageService', 'marked', '$templateRequest', '$filter'];
+    'localStorageService', 'marked', '$templateRequest', '$filter', 'moment'];
 
   function VipController($scope, $state, $translate, Authentication, getStorageLangService, MeanTorrentConfig, TorrentsService,
                          mtDebug, $timeout, uibButtonConfig, TorrentGetInfoServices, DownloadService, ResourcesTagsServices, $window,
-                         localStorageService, marked, $templateRequest, $filter) {
+                         localStorageService, marked, $templateRequest, $filter, moment) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -38,18 +38,32 @@
     vm.chatConfig = MeanTorrentConfig.meanTorrentConfig.chat;
     vm.accessConfig = MeanTorrentConfig.meanTorrentConfig.access;
 
-    vm.torrentType = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.resourcesTags = MeanTorrentConfig.meanTorrentConfig.resourcesTags;
-    vm.vipTorrentType = localStorageService.get('vip_last_selected_type') || 'movie';
 
     vm.searchTags = [];
     vm.searchKey = '';
     vm.releaseYear = undefined;
+    vm.filterType = undefined;
     vm.filterHnR = false;
+    vm.filterTop = false;
+    vm.filterUnique = false;
     vm.filterSale = false;
     vm.torrentRLevel = 'level0';
 
     uibButtonConfig.activeClass = 'btn-success';
+
+    vm.torrentType = 'aggregate';
+    vm.filterType = localStorageService.get('vip_last_selected_type') || 'aggregate';
+
+    /**
+     * scope watch vm.filterType
+     */
+    $scope.$watch('vm.filterType', function (newValue, oldValue) {
+      if (newValue) {
+        localStorageService.set('vip_last_selected_type', newValue);
+      }
+    });
 
     /**
      * getTemplateFileContent
@@ -263,15 +277,18 @@
         skip: (p - 1) * vm.itemsPerPage,
         limit: vm.itemsPerPage,
         sort: vm.sort,
-        torrent_type: vm.vipTorrentType,
+        torrent_type: (vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType),
         torrent_status: 'reviewed',
         torrent_vip: true,
         keys: vm.searchKey.trim(),
 
+        torrent_rlevel: vm.torrentRLevel,
         torrent_release: vm.releaseYear,
         torrent_tags: vm.searchTags,
         torrent_hnr: vm.filterHnR,
-        torrent_sale: vm.filterSale
+        torrent_sale: vm.filterSale,
+        isTop: vm.filterTop,
+        isUnique: vm.filterUnique
       }, function (data) {
         mtDebug.info(data);
         callback(data);
@@ -286,12 +303,14 @@
       vm.rssUrl += '/api/rss';
       vm.rssUrl += '/' + vm.user.passkey;
       vm.rssUrl += '?language=' + localStorageService.get('storage_user_lang');
-      vm.rssUrl += '&limit=' + vm.itemsPerPage;
+      vm.rssUrl += '&limit=' + vm.rssConfig.pageItemsNumber;
       vm.rssUrl += vm.searchKey.trim() ? '&keys=' + vm.searchKey.trim() : '';
-      vm.rssUrl += '&torrent_type=' + vm.vipTorrentType;
+      vm.rssUrl += '&torrent_type=' + ((vm.filterType && vm.filterType !== 'aggregate') ? vm.filterType : (vm.torrentType === 'aggregate' ? 'all' : vm.torrentType));
       vm.rssUrl += vm.releaseYear ? '&torrent_release=' + vm.releaseYear : '';
       vm.rssUrl += vm.searchTags.length ? '&torrent_tags=' + vm.searchTags : '';
       vm.rssUrl += '&torrent_hnr=' + vm.filterHnR;
+      vm.rssUrl += '&isTop=' + vm.filterTop;
+      vm.rssUrl += '&isUnique=' + vm.filterUnique;
       vm.rssUrl += vm.filterSale ? '&torrent_sale=' + vm.filterSale : '';
       vm.rssUrl += '&torrent_vip=true';
     };
@@ -315,10 +334,32 @@
     };
 
     /**
-     * onTypeBtnClick
+     * onTorrentTypeChanged
      */
-    vm.onTypeBtnClick = function () {
-      localStorageService.set('vip_last_selected_type', vm.vipTorrentType);
+    vm.onTorrentTypeChanged = function () {
+      vm.buildPager();
+      localStorageService.set('vip_last_selected_type', vm.filterType);
+    };
+
+    /**
+     * tagsFilter
+     * @param item
+     * @returns {boolean}
+     */
+    vm.tagsFilter = function (item) {
+      var res = false;
+
+      if (vm.filterType === 'aggregate') {
+        angular.forEach(vm.torrentTypeConfig.value, function (t) {
+          if (t.enable && item.cats.includes(t.value))
+            res = true;
+        });
+      } else {
+        if (item.cats.includes(vm.filterType))
+          res = true;
+      }
+
+      return res;
     };
 
     /**
@@ -381,7 +422,11 @@
       $('.btn-tag').removeClass('btn-success').addClass('btn-default');
       vm.releaseYear = undefined;
       vm.filterHnR = false;
+      vm.filterTop = false;
+      vm.filterUnique = false;
       vm.filterSale = false;
+      vm.torrentRLevel = 'level0';
+      vm.filterType = 'aggregate';
 
       vm.buildPager();
     };
@@ -410,6 +455,19 @@
     };
 
     /**
+     * onTorrentTypeClicked
+     * @param t
+     */
+    vm.onTorrentTypeClicked = function (t) {
+      if (vm.filterType === t) {
+        vm.filterType = vm.torrentType;
+      } else {
+        vm.filterType = t;
+      }
+      vm.buildPager();
+    };
+
+    /**
      * onReleaseClicked
      * @param y
      */
@@ -430,6 +488,28 @@
       vm.buildPager();
     };
     vm.onHnRChanged = function () {
+      vm.buildPager();
+    };
+
+    /**
+     * onTopClicked, onTopChanged
+     */
+    vm.onTopClicked = function () {
+      vm.filterTop = !vm.filterTop;
+      vm.buildPager();
+    };
+    vm.onTopChanged = function () {
+      vm.buildPager();
+    };
+
+    /**
+     * onUniqueClicked, onUniqueChanged
+     */
+    vm.onUniqueClicked = function () {
+      vm.filterUnique = !vm.filterUnique;
+      vm.buildPager();
+    };
+    vm.onUniqueChanged = function () {
       vm.buildPager();
     };
 
@@ -470,6 +550,22 @@
       var ts = $translate.instant('HOME.VIP_TOOLTIP');
 
       return marked(ts, {sanitize: true});
+    };
+
+    /**
+     * isGlobalSaleNow
+     * @returns {boolean}
+     */
+    vm.isGlobalSaleNow = function () {
+      var start = moment(vm.salesGlobalConfig.global.startAt, vm.salesGlobalConfig.global.timeFormats).valueOf();
+      var end = start + vm.salesGlobalConfig.global.expires;
+      var now = Date.now();
+
+      if (now > start && now < end && vm.salesGlobalConfig.global.value) {
+        return true;
+      } else {
+        return false;
+      }
     };
   }
 }());

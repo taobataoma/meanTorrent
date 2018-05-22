@@ -123,6 +123,14 @@
         },
         interceptor: {response: removeCache}
       },
+      toggleUniqueStatus: {
+        method: 'PUT',
+        url: '/api/torrents/:torrentId/toggleUniqueStatus',
+        params: {
+          torrentId: '@_id'
+        },
+        interceptor: {response: removeCache}
+      },
       thumbsUp: {
         method: 'PUT',
         url: '/api/torrents/:torrentId/thumbsUp',

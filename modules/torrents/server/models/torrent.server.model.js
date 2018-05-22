@@ -63,6 +63,10 @@ var TorrentSchema = new Schema({
     type: String,
     default: ''
   },
+  torrent_media_info: {
+    type: Object,
+    default: undefined
+  },
   torrent_announce: {
     type: String,
     default: '',
@@ -121,6 +125,10 @@ var TorrentSchema = new Schema({
     default: false
   },
   isTop: {
+    type: Boolean,
+    default: false
+  },
+  isUnique: {
     type: Boolean,
     default: false
   },
@@ -245,11 +253,29 @@ TorrentSchema.methods.updateSeedLeechNumbers = function (callback) {
 /**
  * globalUpdateMethod
  */
-TorrentSchema.methods.globalUpdateMethod = function (cb) {
-  this.refreshat = Date.now();
-  this.save(function (err, t) {
-    if (cb) cb(t || this);
-  });
+TorrentSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
+  if (typeof findThenUpdate === 'function') {
+    cb = findThenUpdate;
+    findThenUpdate = false;
+  }
+
+  if (findThenUpdate) {
+    this.model('Torrent').findById(this._id, function (err, t) {
+      if (t) {
+        t.refreshat = Date.now();
+        t.save(function (err, nt) {
+          if (cb) cb(nt || this);
+        });
+      } else {
+        if (cb) cb(this);
+      }
+    });
+  } else {
+    this.refreshat = Date.now();
+    this.save(function (err, t) {
+      if (cb) cb(t || this);
+    });
+  }
 };
 
 TorrentSchema.index({info_hash: 'hashed'});

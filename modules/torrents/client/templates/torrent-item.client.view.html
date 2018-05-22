@@ -1,0 +1,294 @@
+<tr class="torrent-list-info"
+    ng-class="{'accepted-item': parent.request.accept == item._id}"
+    ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
+    <td class="td-width-0" rowspan="3"></td>
+    <td class="col-md-7 td-text-overflow">
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" torrent-logo="item"
+                     ng-src="{{vm.TGI.getTorrentListImage(item)}}"
+                     alt="{{vm.TGI.getTorrentTitle(item)}}">
+
+                <div class="layer-download" ng-class="{'music': item.torrent_type=='music'}">
+                    <i class="fa fa-arrow-circle-o-down fa-3x" aria-hidden="true"
+                       title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                       ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                       ng-class="{'fa-arrow-circle-down': vm.hover}"
+                       ng-mouseover="vm.hover = true;" ng-mouseleave="vm.hover = false;"></i>
+                </div>
+            </div>
+            <div class="media-body">
+                <h5 class="media-heading">
+                    <div class="text-long">
+                        <a ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentCustomTitle(item)}}</a>
+                    </div>
+                </h5>
+
+                <div class="torrent-filename text-long">{{vm.TGI.getTorrentCustomSubTitle(item)}}</div>
+
+                <!--<div class="list-all-genres">-->
+                <!--<span class="genres-item" ng-repeat="t in item.resource_detail_info.genres">{{t.name}}</span>-->
+                <!--</div>-->
+
+                <div class="list-all-tags">
+                    <div>
+                        <span ng-repeat="t in item.torrent_tags">
+                            <span class="label label-tag" ng-class="{'used': vm.getTagUsedStatus(t)}"
+                                  ng-click="vm.onTagClicked(t); $event.stopPropagation();"
+                                  ng-if="vm.RTS.tagInList(t);">
+                                {{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
+                            </span>
+                        </span>
+                    </div>
+                    <!--<span class="label label-success text-uppercase">{{ item.torrent_type}}</span>-->
+                    <span class="label label-ttype label-primary" ng-class="{'used': parent.filterType == item.torrent_type}"
+                          ng-click="vm.onTorrentTypeClicked(item.torrent_type); $event.stopPropagation();"
+                          ng-if="parent.torrentType=='aggregate'">
+                        {{'TORRENT_TYPE_LABEL.' + item.torrent_type.toUpperCase() | translate}}
+                    </span>
+
+                    <span class="label label-release label-warning" ng-show="item.resource_detail_info.release_date"
+                          ng-class="{'used': item.resource_detail_info.release_date == parent.releaseYear}"
+                          ng-click="vm.onReleaseClicked(item.resource_detail_info.release_date); $event.stopPropagation();">
+                        {{ item.resource_detail_info.release_date}}
+                    </span>
+
+                    <span class="label label-rlevel label-info"
+                          ng-show="item.torrent_recommended != 'level0'"
+                          ng-class="{'used': parent.torrentRLevel == item.torrent_recommended}"
+                          ng-click="vm.onRLevelClicked(item.torrent_recommended); $event.stopPropagation();">
+                        {{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + item.torrent_recommended.toUpperCase() | translate}}
+                    </span>
+
+                    <span class="label label-sale" ng-if="!vm.isGlobalSaleNow() && item.isSaling"
+                          title="{{vm.TGI.getTorrentSaleTypeDesc(item);}} | {{ 'SALE_EXPIRES_TIME' | translate}}: {{item.torrent_sale_expires | date: 'MM-dd HH:mm'}}"
+                          ng-click="vm.onSaleClicked(); $event.stopPropagation();"
+                          ng-class="{'label-default': !item.isSaling, 'label-success': item.isSaling, 'used': parent.filterSale}">
+                        {{item.torrent_sale_status}} {{item.torrent_sale_expires | unlife}}
+                    </span>
+                    <span class="label label-sale label-success" ng-if="vm.isGlobalSaleNow()"
+                          title="{{vm.TGI.getTorrentSaleTypeDescByValue(vm.salesGlobalConfig.global.value);}}"
+                          ng-click="$event.stopPropagation();">
+                        G: {{vm.salesGlobalConfig.global.value}}
+                    </span>
+
+                    <span class="label label-se-info" ng-if="item.torrent_type == 'tvserial'"
+                          ng-click="$event.stopPropagation();">S{{item.torrent_seasons}}E{{item.torrent_episodes}}</span>
+
+                    <span class="label label-hnr-info" ng-if="item.torrent_hnr && vm.hnrConfig.enable" ng-class="{'used': parent.filterHnR}"
+                          ng-click="vm.onHnRClicked(); $event.stopPropagation();">H&R</span>
+
+                    <span class="label label-vip-info" ng-if="item.torrent_vip" ng-class="{'used': parent.filterVIP}"
+                          ng-click="vm.onVIPClicked(); $event.stopPropagation();">VIP</span>
+
+                    <span title="{{ 'TORRENT_STATUS_TOP_TITLE' | translate}}" ng-if="item.isTop" ng-class="{'used': parent.filterTop}"
+                          ng-click="vm.onTopClicked(); $event.stopPropagation();"
+                          class="label torrent-top">{{'STATUS_TOP_KEY' | translate}}
+                    </span>
+
+                    <span class="label label-unique-info" title="{{'TORRENT_STATUS_UNIQUE_TITLE' | translate}}"
+                          ng-if="item.isUnique" ng-class="{'used': parent.filterUnique}"
+                          ng-click="vm.onUniqueClicked(); $event.stopPropagation();">{{'STATUS_UNIQUE_KEY' | translate}}</span>
+
+                    <span torrent-file-link-label="item" torrent-user="vm.user" info-class="label label-torrent-link"></span>
+
+                    <span class="label upload-by" ng-if="vm.showByLabel()">by:
+                        <span ng-show="item.user.displayName">
+                            <span user-info="item.user" info-name></span> <span maker-info="item.maker"></span>
+                        </span>
+                    </span>
+                </div>
+                <i class="fa fa-check fa-accept" ng-if="parent.request.accept == item._id"></i>
+            </div>
+        </div>
+    </td>
+    <td class="col-md-1 td-v-middle td-imdb">
+        <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
+              class="torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}
+        </span>
+    </td>
+    <td class="col-md-1 td-v-middle text-center td-life">{{item.createdat | life}}</td>
+    <td class="col-md-1 td-v-middle text-center td-size">{{item.torrent_size | bytes:2}}</td>
+    <td class="col-md-1 td-v-middle list-user-info td-user-info">
+        <p class="no-margin-p" title="{{ 'TITLE_ALT.SEEDS' | translate}}">
+            <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+            {{item.torrent_seeds}}
+        </p>
+
+        <p class="no-margin-p" title="{{ 'TITLE_ALT.LEECHERS' | translate}}">
+            <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+            {{item.torrent_leechers}}
+        </p>
+
+        <p class="no-margin-p" title="{{ 'TITLE_ALT.FINISHED' | translate}}">
+            <span class="glyphicon glyphicon-ok torrent-finished"></span>
+            {{item.torrent_finished}}
+        </p>
+    </td>
+    <td class="col-md-1 td-v-middle text-center" ng-class="vm.state.current.name.startsWith('admin.torrents') ? 'td-admin-cmd' : 'td-uploader'">
+        <div ng-if="vm.showByUser()">
+            <span ng-if="!item.isAnonymous" user-info="item.user" info-name></span>
+            <span ng-if="item.isAnonymous">{{ 'ANONYMOUS' | translate }}</span>
+
+            <div maker-info="item.maker"></div>
+            <!--<span vip-flag="item.user"></span>-->
+            <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
+        </div>
+        <div ng-if="vm.state.current.name.indexOf('seeding')>0">
+            <p class="no-margin-p">
+                {{peer.peer_uploaded | bytes:2}}
+            </p>
+
+            <p class="no-margin-p">
+                {{peer.peer_uspeed | bytes:2}}/s
+            </p>
+
+            <p class="no-margin-p">
+                {{peer.peer_ratio | ratio}}
+            </p>
+        </div>
+        <div ng-if="vm.state.current.name.indexOf('.downloading')>0 || vm.state.current.name.indexOf('leeching')>0">
+            <p class="no-margin-p">
+                {{peer.peer_downloaded | bytes:2}}
+            </p>
+
+            <p class="no-margin-p">
+                {{peer.peer_dspeed | bytes:2}}/s
+            </p>
+
+            <p class="no-margin-p">
+                {{peer.peer_percent | ratio}}%
+            </p>
+        </div>
+        <div ng-if="vm.state.current.name.indexOf('warning')>0">
+            <div class="warning-data">
+                <p class="no-margin-p">
+                    {{warning.total_uploaded | bytes:2}}
+                </p>
+
+                <p class="no-margin-p">
+                    {{warning.total_downloaded | bytes:2}}
+                </p>
+
+                <p class="no-margin-p">
+                    {{warning.total_ratio | ratio}}
+                </p>
+
+                <p class="no-margin-p">
+                    {{warning.total_seed_time | seedlife}}
+                </p>
+            </div>
+            <button class="btn btn-default btn-sm warning-btn"
+                    ng-click="parent.removeWarning(warning); $event.stopPropagation();">{{'BTN_REMOVE_WARNING' | translate}}
+            </button>
+        </div>
+        <div ng-if="vm.state.current.name.startsWith('collections')">
+            <div class="coll-item-uploader">
+                <span ng-if="!item.isAnonymous" user-info="item.user" info-name></span>
+                <span ng-if="item.isAnonymous">{{ 'ANONYMOUS' | translate }}</span>
+                <div maker-info="item.maker"></div>
+            </div>
+            <div class="coll-item-remove">
+                <button class="btn btn-sm btn-default" uib-tooltip="{{ 'COLLECTIONS.BTN_REMOVE_TITLE' | translate}}"
+                        ng-click="parent.removeFromCollections(item); $event.stopPropagation();">
+                    {{'COLLECTIONS.BTN_REMOVE_FROM_COLLECTION' | translate}}
+                </button>
+            </div>
+        </div>
+        <div ng-if="vm.state.current.name.startsWith('requests')">
+            <div ng-if="!parent.isCurrentUserOwner()">
+                <span ng-if="!item.isAnonymous" user-info="item.user" info-name></span>
+                <span ng-if="item.isAnonymous">{{ 'ANONYMOUS' | translate }}</span>
+                <div maker-info="item.maker"></div>
+            </div>
+
+            <div ng-if="parent.isCurrentUserOwner()">
+                <span user-info="item.user" info-name></span>
+                <div maker-info="item.maker"></div>
+            </div>
+
+            <button class="btn btn-sm btn-success btn-block btn-response-accept margin-top-10"
+                    ng-click="parent.acceptResponse(item); $event.stopPropagation();"
+                    ng-if="!parent.request.accept && !parent.isExpired(parent.request) && item.torrent_status == 'reviewed' && parent.isCurrentUserOwner()">
+                {{ 'REQUESTS.BTN_ACCEPT' | translate}}
+            </button>
+        </div>
+        <div ng-if="vm.state.current.name.startsWith('admin.torrents')">
+            <div>
+                <button class="btn btn-xs btn-default btn-block"
+                        ng-show="item.torrent_status == 'new'"
+                        ng-click="vm.reviewedTorrentStatus(item); $event.stopPropagation();">
+                    {{ 'ADMIN_BASIC_REVIEWED' | translate}}
+                </button>
+            </div>
+            <div class="margin-top-2">
+                <button class="btn btn-xs btn-default btn-block" ng-click="vm.deleteTorrent(item); $event.stopPropagation();">
+                    {{ 'ADMIN_BASIC_DELETE' | translate}}
+                </button>
+            </div>
+            <div class="margin-top-2">
+                <button class="btn col-xs-6 btn-xs btn-default" ng-disabled="!vm.hnrConfig.enable"
+                        ng-click="vm.toggleHnR(item); $event.stopPropagation();">
+                    {{ (item.torrent_hnr ? 'ADMIN_BASIC_UNSET_HNR' : 'ADMIN_BASIC_SET_HNR') | translate}}
+                </button>
+                <button class="btn col-xs-6 btn-xs btn-default" ng-click="vm.toggleVIP(item); $event.stopPropagation();">
+                    {{ (item.torrent_vip ? 'ADMIN_BASIC_UNSET_VIP' : 'ADMIN_BASIC_SET_VIP') | translate}}
+                </button>
+            </div>
+            <div class="margin-top-2">
+                <div class="admin-tools-btn-list btn-group margin-top-2" uib-dropdown dropdown-append-to-body>
+                    <button id="btn-append-to-body" type="button"
+                            class="btn btn-xs btn-default btn-block"
+                            ng-click="$event.stopPropagation();"
+                            uib-dropdown-toggle>
+                        {{'ADMIN_BASIC_TYPE_SET' | translate }} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu-right" uib-dropdown-menu role="menu"
+                        aria-labelledby="btn-append-to-body">
+                        <li role="menuitem" ng-repeat="st in vm.torrentSalesType.value"
+                            ng-class="{'active': item.torrent_sale_status == st.name, 'divider-item': $index != 0 && $index % 5 == 0}">
+                            <a href="#" class="small" ng-click="vm.setSaleType(item, st);">{{st.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="margin-top-2">
+                <div class="admin-tools-btn-list btn-group" uib-dropdown dropdown-append-to-body>
+                    <button id="btn-append-to-body1" type="button"
+                            class="btn btn-xs btn-default btn-block"
+                            ng-click="$event.stopPropagation();"
+                            uib-dropdown-toggle>
+                        {{'ADMIN_BASIC_RLEVEL_SET' | translate }} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu-right" uib-dropdown-menu role="menu"
+                        aria-labelledby="btn-append-to-body1">
+                        <li role="menuitem" ng-repeat="l in vm.torrentRLevels.value"
+                            ng-class="{'active': item.torrent_recommended == l.value}">
+                            <a href="#" class="small"
+                               ng-click="vm.setRecommendLevel(item, l);">{{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + l.name | translate}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="margin-top-2">
+                <button class="btn col-xs-6 btn-xs btn-default" ng-click="vm.toggleTop(item); $event.stopPropagation();">
+                    {{ (item.isTop ? 'ADMIN_BASIC_UNSET_TOP' : 'ADMIN_BASIC_SET_TOP') | translate}}
+                </button>
+                <button class="btn col-xs-6 btn-xs btn-default" ng-click="vm.toggleUnique(item); $event.stopPropagation();">
+                    {{ (item.isUnique ? 'ADMIN_BASIC_UNSET_UNIQUE' : 'ADMIN_BASIC_SET_UNIQUE') | translate}}
+                </button>
+            </div>
+        </div>
+    </td>
+    <td class="td-v-middle text-center"
+        ng-class="{'div-overlay-accept': item.torrent_status != 'reviewed'}"
+        ng-click="$event.stopPropagation();"
+        ng-if="vm.state.current.name.startsWith('requests') && item.torrent_status != 'reviewed'">
+        <p>{{ 'REQUESTS.WAITING_REVIEW' | translate}}</p>
+    </td>
+</tr>
+<tr>
+    <td class="td-progress" colspan="6">
+        <div torrent-progress="item.my_peers || (vm.state.current.name.startsWith('status') ? peer : undefined)"></div>
+    </td>
+</tr>
