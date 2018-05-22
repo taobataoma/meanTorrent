@@ -27,7 +27,7 @@
 
                 <div class="row">
                     <div class="collection-items">
-                        <div ng-repeat="m in vm.pagedItems">
+                        <div ng-repeat="m in vm.pagedItems" ng-if="m.torrents.length>0">
                             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
                             <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-sm-6 col-md-4">

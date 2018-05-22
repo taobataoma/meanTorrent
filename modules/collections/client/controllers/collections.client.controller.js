@@ -6,16 +6,29 @@
     .controller('CollectionController', CollectionController);
 
   CollectionController.$inject = ['$scope', '$translate', 'getStorageLangService', 'MeanTorrentConfig', 'CollectionsService', 'NotifycationService',
-    'DebugConsoleService'];
+    'DebugConsoleService', '$timeout'];
 
   function CollectionController($scope, $translate, getStorageLangService, MeanTorrentConfig, CollectionsService, NotifycationService,
-                                mtDebug) {
+                                mtDebug, $timeout) {
     var vm = this;
     vm.lang = getStorageLangService.getLang();
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
 
+    /**
+     * window.resize()
+     */
+    $(window).resize(function () {
+      vm.setAlbumItemHeight();
+    });
+
+    /**
+     * setAlbumItemHeight
+     */
+    vm.setAlbumItemHeight = function () {
+      $('.collection-item').height($('.collection-item').width() / 1.772);
+    };
 
     /**
      * buildPager
@@ -36,6 +49,10 @@
       vm.getCollectionsList(vm.currentPage, function (items) {
         vm.filterLength = items.total;
         vm.pagedItems = items.rows;
+
+        $timeout(function () {
+          vm.setAlbumItemHeight();
+        }, 10)
 
         if (callback) callback();
       });
