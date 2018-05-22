@@ -1760,9 +1760,6 @@
       TITLE_TORRENT_UNIQUE_CHANGED: '上傳的種子 禁轉 狀態改變',
       CONTENT_TORRENT_UNIQUE_CHANGED: '### 禁轉 狀態改變! \n 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 禁轉 狀態已經由管理員用戶 [{{by_name}}](/userinfo/{{by_id}}) 修改, 當前狀態為: **{{unique_status}}**.',
 
-      TITLE_TORRENT_UNIQUE_CHANGED: '上傳的種子 禁轉 狀態改變',
-      CONTENT_TORRENT_UNIQUE_CHANGED: '### 禁轉狀態改變! \n 您上傳的種子[{{torrent_file_name}}](/torrents/{{torrent_id}}) 禁轉狀態已經由管理員用戶[{{by_name}}]( /userinfo/{{by_id}}) 修改, 當前狀態為: **{{unique_status}}**.',
-
       TITLE_TORRENT_SALE_CHANGED: '上傳的種子促銷狀態改變',
       CONTENT_TORRENT_SALE_CHANGED: '### 促銷狀態改變! \n 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 促銷狀態已經由管理員用戶 [{{by_name}}](/userinfo/{{by_id}}) 修改, 當前狀態為: **{{sale_status}}**.',
 
