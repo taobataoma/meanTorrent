@@ -763,6 +763,14 @@
       EDIT_OVERVIEW_FAILED: '编辑电影系列简介失败'
     },
 
+    ALBUMS: {
+      FORM_FOR: '创建专辑 - {{title}}',
+      FORM_NAME: '专辑名称',
+      FORM_DESC: '专辑简介',
+      CREATE_SUCCESSFULLY: '资源专辑创建成功',
+      CREATE_FAILED: '资源专辑创建失败'
+    },
+
     //backup views settings
     BACKUP: {
       VIEW_CAPTION: '数据库备份文件列表',

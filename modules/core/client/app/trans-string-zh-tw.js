@@ -763,6 +763,14 @@
       EDIT_OVERVIEW_FAILED: '編輯電影系列簡介失敗'
     },
 
+    ALBUMS: {
+      FORM_FOR: '創建專輯 - {{title}}',
+      FORM_NAME: '專輯名稱',
+      FORM_DESC: '專輯簡介',
+      CREATE_SUCCESSFULLY: '資源專輯創建成功',
+      CREATE_FAILED: '資源專輯創建失敗'
+    },
+
     //backup views settings
     BACKUP: {
       VIEW_CAPTION: '資料庫備份檔案列表',
