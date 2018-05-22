@@ -52,6 +52,7 @@
       if ($(window).innerWidth() <= (767-15)) {
         $('div.navbar-mt ul.nav li.dropdown').off('mouseenter mouseleave');
         $('div.navbar-mt ul.nav li.dropdown').off('click');
+        $('div.navbar-mt ul.nav li.dropdown ul.dropdown-menu').off('mouseenter mouseleave');
       } else {
         vm.bindHoverToMenuItem();
       }
