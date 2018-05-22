@@ -32,7 +32,8 @@
     },
 
     //client topbar menu
-    MENU_CHAT: '聊天室',
+    MENU_ALBUMS: '专辑',
+    MENU_CHAT: '聊天',
     MENU_TORRENTS: '种子',
     MENU_TORRENTS_ADMIN: '种子管理',
     MENU_UPLOADER_ADMIN: '上传权限管理',

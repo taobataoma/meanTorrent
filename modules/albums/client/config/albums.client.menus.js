@@ -2,17 +2,18 @@
   'use strict';
 
   angular
-    .module('requests')
+    .module('albums')
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService'];
 
   function menuConfig(menuService) {
+    // Set top bar menu items
     menuService.addMenuItem('topbar', {
-      title: 'MENU_REQUESTS',
-      state: 'requests.list',
+      title: 'MENU_ALBUMS',
+      state: 'albums.list',
       roles: ['*'],
-      position: 3
+      position: 1
     });
   }
 }());

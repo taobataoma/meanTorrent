@@ -23,7 +23,7 @@
       title: 'MENU_UPLOAD',
       state: 'torrents.uploads',
       roles: ['*'],
-      position: 3
+      position: 2
     });
 
     // menuService.addSubMenuItem('topbar', 'torrents', {

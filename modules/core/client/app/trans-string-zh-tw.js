@@ -32,7 +32,8 @@
     },
 
     //client topbar menu
-    MENU_CHAT: '聊天室',
+    MENU_ALBUMS: '專輯',
+    MENU_CHAT: '聊天',
     MENU_TORRENTS: '種子',
     MENU_TORRENTS_ADMIN: '種子管理',
     MENU_UPLOADER_ADMIN: '上傳許可權管理',

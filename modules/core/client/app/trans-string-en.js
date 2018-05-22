@@ -32,6 +32,7 @@
     },
 
     //client topbar menu
+    MENU_ALBUMS: 'Albums',
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',
     MENU_TORRENTS_ADMIN: 'Manage Torrents',

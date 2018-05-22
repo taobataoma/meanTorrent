@@ -12,7 +12,7 @@
       title: 'MENU_VIP',
       state: 'vip.list',
       roles: ['*'],
-      position: 5
+      position: 4
     });
   }
 }());

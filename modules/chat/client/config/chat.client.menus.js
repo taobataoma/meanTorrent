@@ -14,7 +14,7 @@
       state: 'chat',
       roles: ['*'],
       target: '_blank',
-      position: 2
+      position: 6
     });
   }
 }());
