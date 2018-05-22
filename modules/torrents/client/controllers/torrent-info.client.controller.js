@@ -496,10 +496,10 @@
 
       SideOverlay.open(evt, 'albumsInsertSlide');
 
-      AlbumsService.get({
+      AlbumsService.query({
         type: vm.torrentLocalInfo.torrent_type
       }, function (res) {
-        vm.albumsItems = res.rows;
+        vm.albumsItems = res;
         vm.albumTorrent.status = 'ok';
 
         mtDebug.info(res);

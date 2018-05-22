@@ -1,67 +1,15 @@
 @import (reference) "../../../core/client/less/mt-var.less";
 
-.collections-side-overlay {
-    top: 50px !important;
-    width: 450px;
-    .collection-popup {
-        background-color: #fdfdfd;
-        width: 100%;
-        height: ~"calc(100% - 50px)";
-        overflow: auto;
-        padding: 30px 10px;
-        .collection-form {
-            margin-top: 20px;
-            input {
-                width: 100%;
-            }
-            textarea {
-                resize: vertical;
-                width: 100%;
-                min-height: 200px;
-            }
-            img {
-                margin-top: 10px;
-                width: auto;
-            }
-            .text-muted {
-                color: #aaa;
-            }
-        }
-        legend {
-            line-height: 1.5;
-        }
+.albums-list {
+    legend {
+        padding-bottom: 5px;
     }
-    .bottom-control {
-        background-color: #fdfdfd;
-        border-top: solid 1px #e6e6e6;
-        width: 100%;
-        height: 50px;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        padding: 8px 10px;
-    }
-}
-
-.collections-list {
-    .pagination-div-bottom {
-        margin-top: 20px;
-        border-top: 2px solid lighten(@gray-base, 85%);
-    }
-    .pagination-div-top {
-        border-bottom: 2px solid lighten(@gray-base, 85%);
-        input {
-            @media (max-width: @screen-sm-max) {
-                margin-top: 0 !important;
-            }
-        }
-    }
-    .collection-items {
+    .albums-items {
         text-align: -webkit-center;
-        .collection-item {
+        .albums-item {
             cursor: pointer;
             position: relative;
-            margin: 20px 0 0 0;
+            margin: 10px 0 0 0;
             overflow: hidden;
             border-radius: 8px;
             max-width: 400px;
@@ -99,11 +47,7 @@
                     font-size: 1.5em;
                     text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
                 }
-                .collection-data {
-                    .item-release {
-                        font-size: 1.2em;
-                        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
-                    }
+                .album-data {
                     .text-info {
                         color: #54b5e4;
                     }
@@ -131,20 +75,13 @@
     }
 }
 
-.collection-view-top {
+.album-view-top {
     .h3, h3 {
         margin-top: 5px !important;
     }
     .item-name {
         color: #efefef;
         text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
-    }
-    .item-release {
-        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
-        color: @gray-light;
-        @media (max-width: @screen-xs-max) {
-            text-align: left !important;
-        }
     }
     .item-overview {
         font-size: 16px;
@@ -157,7 +94,7 @@
             color: @mt-base-color !important;
         }
     }
-    .collection-button {
+    .album-button {
         @media (max-width: @screen-xs-max) {
             text-align: left !important;
         }

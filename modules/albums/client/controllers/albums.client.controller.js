@@ -5,102 +5,93 @@
     .module('albums')
     .controller('AlbumController', AlbumController);
 
-  AlbumController.$inject = ['$scope', '$translate', 'getStorageLangService', 'MeanTorrentConfig', 'CollectionsService', 'NotifycationService',
-    'DebugConsoleService'];
+  AlbumController.$inject = ['$scope', '$translate', 'MeanTorrentConfig', 'AlbumsService', 'DebugConsoleService', '$filter', 'TorrentGetInfoServices', '$timeout'];
 
-  function AlbumController($scope, $translate, getStorageLangService, MeanTorrentConfig, CollectionsService, NotifycationService,
-                                mtDebug) {
+  function AlbumController($scope, $translate, MeanTorrentConfig, AlbumsService, mtDebug, $filter, TorrentGetInfoServices, $timeout) {
     var vm = this;
-    vm.lang = getStorageLangService.getLang();
+    vm.TGI = TorrentGetInfoServices;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
-    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
+    vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
 
+    /**
+     * window.resize()
+     */
+    $(window).resize(function () {
+      vm.setAlbumItemHeight();
+    });
 
     /**
-     * buildPager
+     * setAlbumItemHeight
      */
-    vm.buildPager = function () {
-      vm.pagedItems = [];
-      vm.itemsPerPage = vm.itemsPerPageConfig.collectionsListPerPage;
-      vm.currentPage = 1;
-
-      vm.figureOutItemsToDisplay();
-    };
-
-    /**
-     * figureOutItemsToDisplay
-     * @param callback
-     */
-    vm.figureOutItemsToDisplay = function (callback) {
-      vm.getCollectionsList(vm.currentPage, function (items) {
-        vm.filterLength = items.total;
-        vm.pagedItems = items.rows;
-
-        if (callback) callback();
-      });
+    vm.setAlbumItemHeight = function () {
+      $('.albums-item').height($('.albums-item').width() / 1.772);
     };
 
     /**
      * getCollectionsList
-     * @param p
-     * @param callback
      */
-    vm.getCollectionsList = function (p, callback) {
-      CollectionsService.get({
-        skip: (p - 1) * vm.itemsPerPage,
-        limit: vm.itemsPerPage,
-        keys: vm.search
-      }, function (data) {
+    vm.getAlbumsList = function () {
+      AlbumsService.query({}, function (data) {
+        vm.albumsList = data;
+        vm.getAlbumsTypeList(data);
         mtDebug.info(data);
-        callback(data);
-      }, function (err) {
-        NotifycationService.showErrorNotify(err.data.message, 'COLLECTIONS.LIST_ERROR');
+
+        $timeout(function () {
+          vm.setAlbumItemHeight();
+        }, 10);
       });
     };
 
     /**
-     * getVoteAverage
-     * @param c
-     * @returns {number}
+     * getAlbumsTypeList
+     * @param data
      */
-    vm.getVoteAverage = function (c) {
-      var total = 0;
-      var count = 0;
-      var avg = 0;
+    vm.getAlbumsTypeList = function (data) {
+      var t = $filter('groupBy')(data, 'type');
 
-      angular.forEach(c.torrents, function (t) {
-        total += t.resource_detail_info.vote_average;
-        count += 1;
+      var tList = [];
+      angular.forEach(t, function (i, k) {
+        tList.push(k);
       });
-      avg = Math.floor((total / count) * 10) / 10;
 
-      return avg || 0;
+      vm.albumsTypeList = [];
+      angular.forEach(vm.torrentTypeConfig.value, function (ct) {
+        if (tList.includes(ct.value)) {
+          vm.albumsTypeList.push({
+            type: ct.value,
+            idx: ct.position,
+            count: getTorrentsCount(t[ct.value])
+          });
+        }
+      });
+
+      console.log(vm.albumsTypeList);
+
+      function getTorrentsCount(ct) {
+        var i = 0;
+        angular.forEach(ct, function (titem) {
+          i = i + titem.torrents.length;
+        });
+        return i;
+      }
     };
 
     /**
-     * getMinMaxRelease
-     * @param c
-     * @returns {{min: *, max: *}}
+     * getAlbumBackdropImage
+     * @param item
+     * @returns {string}
      */
-    vm.getMinMaxRelease = function (c) {
-      var re = [];
+    vm.getAlbumBackdropImage = function (item) {
+      var result = null;
 
-      angular.forEach(c.torrents, function (t) {
-        re.push(parseInt(t.resource_detail_info.release_date, 10));
-      });
-
-      return {
-        min: re.length > 0 ? Math.min.apply(null, re) : '',
-        max: re.length > 0 ? Math.max.apply(null, re) : ''
-      };
+      if (item.backdrop_path) {
+        result = vm.tmdbConfig.backdropImgBaseUrl + item.backdrop_path;
+      } else if (item.cover) {
+        result = '/modules/torrents/client/uploads/cover/' + item.cover;
+      }
+      return result;
     };
 
-    /**
-     * pageChanged
-     */
-    vm.pageChanged = function () {
-      vm.figureOutItemsToDisplay();
-    };
   }
 }());

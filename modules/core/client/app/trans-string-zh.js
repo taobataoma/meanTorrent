@@ -779,7 +779,26 @@
       LOAD_ALBUM_LIST: '正在获取资源专辑列表 ...',
       LOAD_ALBUM_LIST_ERROR: '错误：获取资源专辑列表失败',
       INSERT_SUCCESSFULLY: '添加资源到专辑成功',
-      INSERT_FAILED: '添加资源到专辑失败'
+      INSERT_FAILED: '添加资源到专辑失败',
+      PREFIX_LIST: '{{type}}专辑清单',
+      FILES_NUMBERS: '种子数',
+      BTN_EDIT_OVERVIEW: '编辑专辑简介',
+      BTN_REMOVE_ALBUM: '删除专辑',
+      BTN_REMOVE_FROM_ALBUM: '移出专辑',
+      BTN_REMOVE_TITLE: '将其从专辑中移出',
+      DELETE_CONFIRM_BODY_TEXT: '您确定要删除这个资源专辑?',
+      DELETE_SUCCESSFULLY: '资源专辑删除成功',
+      DELETE_FAILED: '资源专辑删除失败',
+      SETRLEVEL_SUCCESSFULLY: '修改专辑的推荐级别成功',
+      SETRLEVEL_ERROR: '修改专辑的推荐级别失败',
+      REMOVE_CONFIRM_OK: '移除',
+      REMOVE_CONFIRM_CANCEL: '取消',
+      REMOVE_CONFIRM_HEADER_TEXT: '移除确认',
+      REMOVE_CONFIRM_BODY_TEXT: '您确认要将此种子移除这个专辑?',
+      REMOVE_SUCCESSFULLY: '从专辑中移除种子成功',
+      REMOVE_FAILED: '从专辑中移除种子失败',
+      EDIT_OVERVIEW_SUCCESSFULLY: '编辑专辑简介成功',
+      EDIT_OVERVIEW_FAILED: '编辑专辑简介失败'
     },
 
     //backup views settings

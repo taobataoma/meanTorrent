@@ -1,75 +1,40 @@
-<section class="container" ng-controller="AlbumController as vm" ng-init="vm.buildPager();">
-    <div class="row margin-top-20">
+<section class="container" ng-controller="AlbumController as vm" ng-init="vm.getAlbumsList();">
+    <div class="row">
         <div class="col-sm-12">
-            <span id="top_of_collections_list">
-                <h3 class="margin-bottom-30">
-                    {{'COLLECTIONS.COLL_LIST' | translate}}
-                </h3>
-            </span>
+            <div class="albums-list">
+                <div class="margin-top-30 margin-bottom-30" ng-repeat="tp in vm.albumsTypeList | orderBy: 'idx'">
+                    <legend class="h4" translate="ALBUMS.PREFIX_LIST"
+                            translate-values="{type: '{{'TORRENT_TYPE_LABEL.' + tp.type.toUpperCase() | translate}}' }">
+                    </legend>
 
-            <div class="collections-list">
-                <div class="pagination-div-top">
                     <div class="row">
-                        <div class="col-sm-12 col-md-9">
-                            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                                ng-model="vm.currentPage"
-                                ng-change="vm.pageChanged()"
-                                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                            </ul>
-                        </div>
-                        <div class="col-sm-12 col-md-3">
-                            <input class="form-control margin-top-20 margin-bottom-20" type="text" ng-model="vm.search" placeholder="Search"
-                                   ng-change="vm.figureOutItemsToDisplay()"/>
-                        </div>
-                    </div>
-                </div>
+                        <div class="albums-items">
+                            <div ng-repeat="m in vm.albumsList | filter: tp.type">
+                                <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
+                                <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                                <div class="col-sm-6 col-md-4">
+                                    <a ui-sref="albums.view({ albumId: m._id })">
+                                        <div class="albums-item">
+                                            <img ng-src="{{vm.getAlbumBackdropImage(m)}}">
 
-                <div class="row">
-                    <div class="collection-items">
-                        <div ng-repeat="m in vm.pagedItems">
-                            <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
-                            <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-md-block visible-lg-block"></div>
-                            <div class="col-sm-6 col-md-4">
-                                <a ui-sref="collections.view({ collectionId: m._id })">
-                                    <div class="collection-item">
-                                        <img ng-src="{{vm.tmdbConfig.backdropImgBaseUrl_780 + m.backdrop_path}}">
+                                            <div class="item-info text-center">
+                                                <div class="name">{{m.name}}</div>
 
-                                        <div class="item-info text-center">
-                                            <div class="name">{{m.name}}</div>
-
-                                            <div class="row margin-top-40 collection-data">
-                                                <div class="item-release margin-bottom-10">
-                                                    <span>{{vm.getMinMaxRelease(m).min}}</span><span
-                                                        ng-if="m.torrents.length>1">-{{vm.getMinMaxRelease(m).max}}</span>
-                                                </div>
-                                                <div class="col-xs-6 col-small-padding text-center">
-                                                    <i class="fa fa-list text-info">
-                                                        <strong> {{'COLLECTIONS.FILES_NUMBERS' | translate}}: {{m.torrents.length}}</strong></i>
-                                                </div>
-                                                <div class="col-xs-6 col-small-padding text-left">
-                                                    <i class="fa fa-star-half-o text-info">
-                                                        <strong> {{'COLLECTIONS.VOTE_AVERAGE' | translate}}: {{vm.getVoteAverage(m);}}</strong></i>
+                                                <div class="row margin-top-40 album-data">
+                                                    <div class="text-center">
+                                                        <i class="fa fa-list text-info">
+                                                            <strong> {{'ALBUMS.FILES_NUMBERS' | translate}}: {{m.torrents.length}}</strong></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="pagination-div-bottom">
-                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
-                        ng-model="vm.currentPage"
-                        ng-change="vm.pageChanged()"
-                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
-
 </section>

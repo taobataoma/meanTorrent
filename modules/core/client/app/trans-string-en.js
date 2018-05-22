@@ -779,7 +779,26 @@
       LOAD_ALBUM_LIST: 'loading resources albums list ...',
       LOAD_ALBUM_LIST_ERROR: 'Error: get resources albums items error',
       INSERT_SUCCESSFULLY: 'Insert resource into album successfully',
-      INSERT_FAILED: 'Insert resource into album failed'
+      INSERT_FAILED: 'Insert resource into album failed',
+      PREFIX_LIST: '{{type}} Albums List',
+      FILES_NUMBERS: 'Torrents',
+      BTN_EDIT_OVERVIEW: 'Edit Overview',
+      BTN_REMOVE_ALBUM: 'Delete Album',
+      BTN_REMOVE_FROM_ALBUM: 'Remove',
+      BTN_REMOVE_TITLE: 'Remove From Album',
+      DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this album?',
+      DELETE_SUCCESSFULLY: 'Resource album deleted successfully',
+      DELETE_FAILED: 'Resource album deleted failed',
+      SETRLEVEL_SUCCESSFULLY: 'Set album recommend level successfully',
+      SETRLEVEL_ERROR: 'Set album recommend level faild',
+      REMOVE_CONFIRM_OK: 'Remove',
+      REMOVE_CONFIRM_CANCEL: 'Cancel',
+      REMOVE_CONFIRM_HEADER_TEXT: 'Remove Confirm',
+      REMOVE_CONFIRM_BODY_TEXT: 'Are you sure want to remove the torrent from this album?',
+      REMOVE_SUCCESSFULLY: 'Remove the torrent from this album successfully',
+      REMOVE_FAILED: 'Remove the torrent from this album failed',
+      EDIT_OVERVIEW_SUCCESSFULLY: 'Edit album overview successfully',
+      EDIT_OVERVIEW_FAILED: 'Edit album overview failed'
     },
 
     //backup views settings

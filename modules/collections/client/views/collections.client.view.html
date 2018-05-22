@@ -1,11 +1,11 @@
 <section class="container" ng-controller="CollectionController as vm" ng-init="vm.buildPager();">
     <div class="row">
         <div class="col-sm-12">
-            <span id="top_of_collections_list">
-                <h3>
+            <div id="top_of_collections_list" class="margin-top-30">
+                <h4>
                     {{'COLLECTIONS.COLL_LIST' | translate}}
-                </h3>
-            </span>
+                </h4>
+            </div>
 
             <div class="collections-list">
                 <div class="pagination-div-top">
@@ -27,7 +27,7 @@
 
                 <div class="row">
                     <div class="collection-items">
-                        <div ng-repeat="m in vm.pagedItems" ng-if="m.torrents.length>0">
+                        <div ng-repeat="m in vm.pagedItems">
                             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
                             <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-sm-6 col-md-4">

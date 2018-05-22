@@ -52,7 +52,7 @@
 
         $timeout(function () {
           vm.setAlbumItemHeight();
-        }, 10)
+        }, 10);
 
         if (callback) callback();
       });

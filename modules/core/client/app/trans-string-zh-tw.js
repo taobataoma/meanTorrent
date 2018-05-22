@@ -779,7 +779,26 @@
       LOAD_ALBUM_LIST: '正在獲取資源專輯列表 ...',
       LOAD_ALBUM_LIST_ERROR: '錯誤：獲取資源專輯列表失敗',
       INSERT_SUCCESSFULLY: '添加資源到專輯成功',
-      INSERT_FAILED: '添加資源到專輯失敗'
+      INSERT_FAILED: '添加資源到專輯失敗',
+      PREFIX_LIST: '{{type}}專輯清單',
+      FILES_NUMBERS: '種子數',
+      BTN_EDIT_OVERVIEW: '編輯專輯簡介',
+      BTN_REMOVE_ALBUM: '刪除專輯',
+      BTN_REMOVE_FROM_ALBUM: '移出專輯',
+      BTN_REMOVE_TITLE: '將其從專輯中移出',
+      DELETE_CONFIRM_BODY_TEXT: '您確定要刪除這個資源專輯?',
+      DELETE_SUCCESSFULLY: '資源專輯刪除成功',
+      DELETE_FAILED: '資源專輯刪除失敗',
+      SETRLEVEL_SUCCESSFULLY: '修改專輯的推薦級別成功',
+      SETRLEVEL_ERROR: '修改專輯的推薦級別失敗',
+      REMOVE_CONFIRM_OK: '移除',
+      REMOVE_CONFIRM_CANCEL: '取消',
+      REMOVE_CONFIRM_HEADER_TEXT: '移除確認',
+      REMOVE_CONFIRM_BODY_TEXT: '您確認要將此種子移除這個專輯?',
+      REMOVE_SUCCESSFULLY: '從專輯中移除種子成功',
+      REMOVE_FAILED: '從專輯中移除種子失敗',
+      EDIT_OVERVIEW_SUCCESSFULLY: '編輯專輯簡介成功',
+      EDIT_OVERVIEW_FAILED: '編輯專輯簡介失敗'
     },
 
     //backup views settings

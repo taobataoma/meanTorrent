@@ -27,8 +27,8 @@
         }
       })
       .state('albums.view', {
-        url: '/:collectionId',
-        templateUrl: '/modules/albums/client/views/albums-view.client.view.html',
+        url: '/:albumId',
+        templateUrl: '/modules/albums/client/views/album-view.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.ALBUMS'
         }

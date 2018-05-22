@@ -5,13 +5,13 @@
     .module('albums')
     .controller('AlbumItemController', AlbumItemController);
 
-  AlbumItemController.$inject = ['$scope', '$state', '$translate', 'MeanTorrentConfig', 'CollectionsService', 'NotifycationService', 'DownloadService',
+  AlbumItemController.$inject = ['$scope', '$state', '$translate', 'MeanTorrentConfig', 'AlbumsService', 'NotifycationService', 'DownloadService',
     'DebugConsoleService', 'TorrentGetInfoServices', 'Authentication', 'ResourcesTagsServices', 'ModalConfirmService', 'localStorageService',
-    '$compile', 'marked', '$window'];
+    '$compile', 'marked'];
 
-  function AlbumItemController($scope, $state, $translate, MeanTorrentConfig, CollectionsService, NotifycationService, DownloadService,
+  function AlbumItemController($scope, $state, $translate, MeanTorrentConfig, AlbumsService, NotifycationService, DownloadService,
                                     mtDebug, TorrentGetInfoServices, Authentication, ResourcesTagsServices, ModalConfirmService, localStorageService,
-                                    $compile, marked, $window) {
+                                    $compile, marked) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -25,86 +25,71 @@
     vm.release = [];
 
     /**
-     * getCollection
+     * getAlbum
      */
-    vm.getCollection = function () {
-      CollectionsService.get({
-        collectionId: $state.params.collectionId
+    vm.getAlbum = function () {
+      AlbumsService.get({
+        albumId: $state.params.albumId
       }, function (data) {
-        vm.collection = data;
+        vm.album = data;
 
-        $('.backdrop').css('backgroundImage', 'url("' + vm.tmdbConfig.backdropImgBaseUrl + vm.collection.backdrop_path + '")');
-
-        //count ave vote
-        var total = 0;
-        var count = 0;
-        var total_users = 0;
-        angular.forEach(vm.collection.torrents, function (t) {
-          total += t.resource_detail_info.vote_average;
-          count += 1;
-          total_users += t.resource_detail_info.vote_count;
-
-          vm.release.push(parseInt(t.resource_detail_info.release_date, 10));
-        });
-
-        vm.collection.vote_count = total_users;
-        vm.collection.vote_average = Math.floor((total / count) * 10) / 10;
-
-        mtDebug.info(vm.collection);
-        mtDebug.info(vm.release);
+        $('.backdrop').css('backgroundImage', 'url("' + vm.getAlbumBackdropImage(vm.album) + '")');
       });
-
     };
 
     /**
-     * getMinMaxRelease
-     * @param c
-     * @returns {{min: *, max: *}}
+     * getAlbumBackdropImage
+     * @param item
+     * @returns {string}
      */
-    vm.getMinMaxRelease = function () {
-      return {
-        min: vm.release.length > 0 ? Math.min.apply(null, vm.release) : '',
-        max: vm.release.length > 0 ? Math.max.apply(null, vm.release) : ''
-      };
+    vm.getAlbumBackdropImage = function (item) {
+      var result = null;
+
+      if (item.backdrop_path) {
+        result = vm.tmdbConfig.backdropImgBaseUrl + item.backdrop_path;
+      } else if (item.cover) {
+        result = '/modules/torrents/client/uploads/cover/' + item.cover;
+      }
+      return result;
     };
 
     /**
-     * getCollectionOverviewContent
+     * getAlbumOverviewContent
      * @param m
      * @returns {*}
      */
-    vm.getCollectionOverviewContent = function (c) {
+    vm.getAlbumOverviewContent = function (c) {
       return c ? marked(c.overview, {sanitize: true}) : '';
     };
 
     /**
-     * beginRemoveCollection
+     * beginRemoveAlbum
      * @param m
      */
-    vm.beginRemoveCollection = function (c) {
+    vm.beginRemoveAlbum = function (c) {
       var modalOptions = {
         closeButtonText: $translate.instant('ABOUT.DELETE_CONFIRM_CANCEL'),
         actionButtonText: $translate.instant('ABOUT.DELETE_CONFIRM_OK'),
         headerText: $translate.instant('ABOUT.DELETE_CONFIRM_HEADER_TEXT'),
-        bodyText: $translate.instant('COLLECTIONS.DELETE_CONFIRM_BODY_TEXT')
+        bodyText: $translate.instant('ALBUMS.DELETE_CONFIRM_BODY_TEXT')
       };
 
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
           c.$remove(function (res) {
-            NotifycationService.showSuccessNotify('COLLECTIONS.DELETE_SUCCESSFULLY');
-            $state.go('collections.list');
+            NotifycationService.showSuccessNotify('ALBUMS.DELETE_SUCCESSFULLY');
+            $state.go('albums.list');
           }, function (res) {
-            NotifycationService.showErrorNotify(res.data.message, 'COLLECTIONS.DELETE_FAILED');
+            NotifycationService.showErrorNotify(res.data.message, 'ALBUMS.DELETE_FAILED');
           });
         });
     };
 
     /**
-     * beginEditCollectionOverview
+     * beginEditAlbumOverview
      * @param m
      */
-    vm.beginEditCollectionOverview = function (c) {
+    vm.beginEditAlbumOverview = function (c) {
       var el = $('#' + c._id);
 
       el.markdown({
@@ -117,12 +102,12 @@
         fullscreen: {enable: false},
         onSave: function (e) {
           if (e.isDirty()) {
-            vm.collection.overview = e.getContent();
-            vm.collection.$update(function (res) {
-              vm.collection = res;
-              NotifycationService.showSuccessNotify('COLLECTIONS.EDIT_OVERVIEW_SUCCESSFULLY');
+            vm.album.overview = e.getContent();
+            vm.album.$update(function (res) {
+              vm.album = res;
+              NotifycationService.showSuccessNotify('ALBUMS.EDIT_OVERVIEW_SUCCESSFULLY');
             }, function (res) {
-              NotifycationService.showErrorNotify(res.data.message, 'COLLECTIONS.EDIT_OVERVIEW_FAILED');
+              NotifycationService.showErrorNotify(res.data.message, 'ALBUMS.EDIT_OVERVIEW_FAILED');
             });
 
             e.$options.hideable = true;
@@ -155,7 +140,7 @@
           ]);
 
           e.setContent(c.overview);
-          $('#' + e.$editor.attr('id') + ' .md-input').attr('maxlength', vm.inputLengthConfig.collectionsOverviewLength);
+          $('#' + e.$editor.attr('id') + ' .md-input').attr('maxlength', vm.inputLengthConfig.albumsOverviewLength);
 
           var elei = $('#' + e.$editor.attr('id') + ' .md-input');
           angular.element(elei).css('height', '200px');
@@ -164,10 +149,10 @@
           var inputInfo = angular.element('<span></span>');
           inputInfo.addClass('pull-right');
           inputInfo.addClass('input-length');
-          inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.collectionsOverviewLength);
+          inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.albumsOverviewLength);
           $('#' + e.$editor.attr('id') + ' .md-header').append(inputInfo);
           $('#' + e.$editor.attr('id') + ' .md-input').on('input propertychange', function (evt) {
-            inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.collectionsOverviewLength);
+            inputInfo.text(e.getContent().length + '/' + vm.inputLengthConfig.albumsOverviewLength);
           });
 
           var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
@@ -197,40 +182,40 @@
      * vm.setRecommendLevel
      */
     vm.setRecommendLevel = function (item, rl) {
-      CollectionsService.setRecommendLevel({
+      AlbumsService.setRecommendLevel({
         _id: item._id,
         rlevel: rl.value
       }, function (res) {
-        vm.collection = res;
-        NotifycationService.showSuccessNotify('COLLECTIONS.SETRLEVEL_SUCCESSFULLY');
+        vm.album = res;
+        NotifycationService.showSuccessNotify('ALBUMS.SETRLEVEL_SUCCESSFULLY');
       }, function (res) {
-        NotifycationService.showSuccessNotify('COLLECTIONS.SETRLEVEL_ERROR');
+        NotifycationService.showSuccessNotify('ALBUMS.SETRLEVEL_ERROR');
       });
     };
 
     /**
-     * removeFromCollections
+     * removeFromAlbum
      * @param item
      */
-    vm.removeFromCollections = function (item) {
+    vm.removeFromAlbum = function (item) {
       var modalOptions = {
-        closeButtonText: $translate.instant('COLLECTIONS.REMOVE_CONFIRM_CANCEL'),
-        actionButtonText: $translate.instant('COLLECTIONS.REMOVE_CONFIRM_OK'),
-        headerText: $translate.instant('COLLECTIONS.REMOVE_CONFIRM_HEADER_TEXT'),
-        bodyText: $translate.instant('COLLECTIONS.REMOVE_CONFIRM_BODY_TEXT')
+        closeButtonText: $translate.instant('ALBUMS.REMOVE_CONFIRM_CANCEL'),
+        actionButtonText: $translate.instant('ALBUMS.REMOVE_CONFIRM_OK'),
+        headerText: $translate.instant('ALBUMS.REMOVE_CONFIRM_HEADER_TEXT'),
+        bodyText: $translate.instant('ALBUMS.REMOVE_CONFIRM_BODY_TEXT')
       };
 
       ModalConfirmService.showModal({}, modalOptions)
         .then(function (result) {
-          CollectionsService.removeFromCollection({
-            collectionId: vm.collection._id,
+          AlbumsService.removeFromAlbum({
+            albumId: vm.album._id,
             torrentId: item._id
           }, function (res) {
             mtDebug.info(res);
-            vm.collection = res;
-            NotifycationService.showSuccessNotify('COLLECTIONS.REMOVE_SUCCESSFULLY');
+            vm.album = res;
+            NotifycationService.showSuccessNotify('AlbumsService.REMOVE_SUCCESSFULLY');
           }, function (res) {
-            NotifycationService.showErrorNotify(res.data.message, 'COLLECTIONS.REMOVE_FAILED');
+            NotifycationService.showErrorNotify(res.data.message, 'AlbumsService.REMOVE_FAILED');
           });
         });
     };

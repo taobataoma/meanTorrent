@@ -181,60 +181,21 @@ exports.delete = function (req, res) {
  * List of albums
  */
 exports.list = function (req, res) {
-  var skip = 0;
-  var limit = 0;
   var type = undefined;
-  var keysA = [];
   var condition = {};
 
-  if (req.query.skip !== undefined) {
-    skip = parseInt(req.query.skip, 10);
-  }
-  if (req.query.limit !== undefined) {
-    limit = parseInt(req.query.limit, 10);
-  }
   if (req.query.type !== undefined) {
     type = req.query.type;
-  }
-
-  if (req.query.keys && req.query.keys.length > 0) {
-    var keysS = req.query.keys + '';
-    var keysT = keysS.split(' ');
-
-    keysT.forEach(function (it) {
-      var ti = new RegExp(it, 'i');
-      keysA.push(ti);
-    });
   }
 
   if (type !== undefined) {
     condition.type = type;
   }
 
-  if (keysA.length > 0) {
-    condition.$or = [
-      {name: {'$all': keysA}},
-      {overview: {'$all': keysA}}
-    ];
-  }
-
-  var countQuery = function (callback) {
-    Album.count(condition, function (err, count) {
-      if (err) {
-        callback(err, null);
-      } else {
-        callback(null, count);
-      }
-    });
-  };
-
   var findQuery = function (callback) {
     Album.find(condition)
       .sort('-recommend_level -ordered_at -created_at')
-      .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
       .populate('torrents')
-      .skip(skip)
-      .limit(limit)
       .exec(function (err, albums) {
         if (err) {
           callback(err, null);
@@ -244,11 +205,11 @@ exports.list = function (req, res) {
       });
   };
 
-  async.parallel([countQuery, findQuery], function (err, results) {
+  async.parallel([findQuery], function (err, results) {
     if (err) {
       return res.status(422).send(err);
     } else {
-      res.json({rows: results[1], total: results[0]});
+      res.json(results[0]);
     }
   });
 };
@@ -270,6 +231,9 @@ exports.albumByID = function (req, res, next, id) {
       populate: [{
         path: 'user',
         select: 'username displayName profileImageURL isVip score uploaded downloaded'
+      }, {
+        path: 'maker',
+        select: 'name'
       }]
     })
     .exec(function (err, album) {
