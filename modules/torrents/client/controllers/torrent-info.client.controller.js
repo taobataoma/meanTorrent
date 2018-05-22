@@ -490,7 +490,7 @@
         title: vm.TGI.getTorrentCustomTitle(vm.torrentLocalInfo),
         subtitle: vm.TGI.getTorrentCustomSubTitle(vm.torrentLocalInfo),
 
-        status_msg: 'ALBUMS.LOAD_ALBUMS_LIST',
+        status_msg: 'ALBUMS.LOAD_ALBUM_LIST',
         status: 'loading'
       };
 

@@ -639,6 +639,10 @@
                         </label>
                     </div>
                 </div>
+
+                <div class="margin-top-20 h5" ng-class="vm.albumTorrent.status == 'loading' ? 'text-success' : 'text-danger'"
+                     ng-if="vm.albumTorrent.status != 'ok'">{{vm.albumTorrent.status_msg | translate}}
+                </div>
             </div>
         </div>
 
