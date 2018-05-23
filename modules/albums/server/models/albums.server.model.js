@@ -51,6 +51,9 @@ var AlbumSchema = new Schema({
     type: Boolean,
     default: false
   },
+  home_at: {
+    type: Date,
+  },
   created_at: {
     type: Date,
     default: Date.now
@@ -62,5 +65,6 @@ var AlbumSchema = new Schema({
 }, {usePushEach: true});
 
 AlbumSchema.index({type: 1, recommend_level: 1, ordered_at: -1, created_at: -1});
+AlbumSchema.index({isHomeStatus: 1, home_at: -1});
 
 mongoose.model('Album', AlbumSchema);

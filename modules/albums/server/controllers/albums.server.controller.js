@@ -169,6 +169,7 @@ exports.toggleHomeItemStatus = function (req, res) {
   var album = req.album;
 
   album.isHomeStatus = !album.isHomeStatus;
+  album.home_at = Date.now();
 
   album.save(function (err) {
     if (err) {
@@ -206,6 +207,8 @@ exports.list = function (req, res) {
   var isHomeStatus = undefined;
   var condition = {};
 
+  var sort_str = '-recommend_level -ordered_at -created_at';
+
   if (req.query.type !== undefined) {
     type = req.query.type;
   }
@@ -218,13 +221,14 @@ exports.list = function (req, res) {
   }
   if (isHomeStatus !== undefined) {
     condition.isHomeStatus = isHomeStatus;
+    sort_str = '-home_at';
   }
 
   mtDebug.info(condition);
 
   var findQuery = function (callback) {
     Album.find(condition)
-      .sort('-recommend_level -ordered_at -created_at')
+      .sort(sort_str)
       .populate('torrents')
       .exec(function (err, albums) {
         if (err) {
