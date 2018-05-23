@@ -818,7 +818,7 @@ exports.create = function (req, res) {
  * @param res
  */
 exports.read = function (req, res) {
-  if (req.torrent.torrent_vip && !req.user.isVip && !req.user.isOper) {
+  if (req.torrent.torrent_vip && !req.user.isVip && !req.user.isOper && !isOwner(req)) {
     return res.status(403).send({
       message: 'SERVER.ONLY_VIP_CAN_DOWNLOAD'
     });
@@ -833,6 +833,14 @@ exports.read = function (req, res) {
     res.json(torrent);
   }
 };
+
+/**
+ * isOwner
+ * @returns {boolean}
+ */
+function isOwner(req) {
+  return !!(req.user && req.torrent.user && req.torrent.user._id.equals(req.user._id.toString()));
+}
 
 /**
  * update a torrent

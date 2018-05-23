@@ -52,7 +52,7 @@ var AlbumSchema = new Schema({
     default: false
   },
   home_at: {
-    type: Date,
+    type: Date
   },
   created_at: {
     type: Date,

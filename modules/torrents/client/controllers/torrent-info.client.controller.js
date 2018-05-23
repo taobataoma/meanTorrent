@@ -1156,7 +1156,7 @@
      */
     vm.isOwner = function (o) {
       if (o) {
-        if (o.isCurrentUserOwner) {
+        if (o.user._id === vm.user._id) {
           return true;
         } else {
           return false;
@@ -1399,23 +1399,6 @@
           title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_RATING_FAILED')
         });
       });
-    };
-
-    /**
-     * isOwner
-     * @param o, topic or reply
-     * @returns {boolean}
-     */
-    vm.isOwner = function (t) {
-      if (t) {
-        if (t.user._id.str === vm.user._id) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
     };
 
     /**
