@@ -782,8 +782,11 @@
       INSERT_FAILED: 'Insert resource into album failed',
       PREFIX_LIST: '{{type}} Albums List',
       FILES_NUMBERS: 'Torrents',
+      CAT_TYPE: 'Cat',
       BTN_EDIT_OVERVIEW: 'Edit Overview',
       BTN_REMOVE_ALBUM: 'Delete Album',
+      BTN_PUSH_INFO_HOME: 'Push Into Home',
+      BTN_PULL_FROM_HOME: 'Pull From Home',
       BTN_REMOVE_FROM_ALBUM: 'Remove',
       BTN_REMOVE_TITLE: 'Remove From Album',
       DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this album?',
@@ -798,7 +801,9 @@
       REMOVE_SUCCESSFULLY: 'Remove the torrent from this album successfully',
       REMOVE_FAILED: 'Remove the torrent from this album failed',
       EDIT_OVERVIEW_SUCCESSFULLY: 'Edit album overview successfully',
-      EDIT_OVERVIEW_FAILED: 'Edit album overview failed'
+      EDIT_OVERVIEW_FAILED: 'Edit album overview failed',
+      HOME_STATUS_SUCCESSFULLY: 'Toggle home status successfully',
+      HOME_STATUS_ERROR: 'Toggle home status faild'
     },
 
     //backup views settings

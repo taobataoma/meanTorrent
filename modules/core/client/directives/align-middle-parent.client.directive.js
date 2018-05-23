@@ -4,7 +4,7 @@
   angular.module('core')
     .directive('alignMiddleParent', alignMiddleParent);
 
-  alignMiddleParent.$inject=['$timeout'];
+  alignMiddleParent.$inject = ['$timeout'];
 
   function alignMiddleParent($timeout) {
     var directive = {
@@ -16,7 +16,7 @@
 
     function link(scope, element, attrs) {
       element.on('load', function (event) {
-        $timeout(function(){
+        $timeout(function () {
           if (element.height() > element.parent().height()) {
             element.css('margin-top', -(element.height() - element.parent().height()) / 2);
           } else {

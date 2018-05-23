@@ -43,9 +43,19 @@
                         <div class="search-row">
                             <div class="col-sm-12 text-center search-col">
                                 <div class="home-search">
-                                    <p class="search-title" translate="HOME.TITLE_SEARCH"></p>
+                                    <!--<p class="search-title" translate="HOME.TITLE_SEARCH"></p>-->
                                     <!--<p class="search-sub-title" translate="HOME.SEARCH_SUB_TITLE"></p>-->
-                                    <div class="input-group search-group margin-top-20">
+                                    <div class="search-type text-center">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
+                                                   ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio_forum" value="forum"
+                                                   ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_FORUM' | translate}}
+                                        </label>
+                                    </div>
+                                    <div class="input-group search-group margin-top-10">
                                         <input type="text" class="form-control"
                                                ng-model="vm.searchKeys"
                                                ng-keydown="vm.onSearchKeyDown($event);"
@@ -56,16 +66,6 @@
                                                 ng-click="vm.doGlobalSearch()">
                                             {{'BTN_GLOBAL_SEARCH' | translate}}
                                         </button>
-                                    </div>
-                                    <div class="search-type text-center margin-top-20">
-                                        <label class="radio-inline">
-                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio_torrents" value="torrents"
-                                                   ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_TORRENTS' | translate}}
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio_forum" value="forum"
-                                                   ng-model="vm.searchType"> {{'HOME.SEARCH_TYPE_FORUM' | translate}}
-                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                         </div>
                         <div ng-if="vm.checkData && vm.checkData.todayIsDone">
                             <div class="row">
-                                <div class="col-sm-12 text-center">
+                                <div class="col-sm-12 text-center check-in-info">
                                     <span ng-bind-html="vm.getCheckTodayDoneMessage()"></span>
                                 </div>
                             </div>
@@ -155,6 +155,43 @@
                                    ui-sref="forums.view({ forumId: vm.forumsConfig.helpForumId})">
                                     {{'HOME.BUTTON_MORE_HELPER' | translate}}
                                 </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-init="vm.getAlbumsList()">
+            <div class="filter-albums albums-list" ng-if="vm.homeConfig.showAlbumsList && vm.albumsList.length>0">
+                <div class="container padding-top-20 padding-bottom-30">
+                    <div class="row">
+                        <div class="albums-items">
+                            <div ng-repeat="m in vm.albumsList | filter: tp.type">
+                                <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
+                                <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                                <div class="col-sm-6 col-md-4">
+                                    <a ui-sref="albums.view({ albumId: m._id })">
+                                        <div class="albums-item">
+                                            <img ng-src="{{vm.getAlbumBackdropImage(m)}}" align-middle-parent>
+
+                                            <div class="item-info text-center">
+                                                <div class="name">{{m.name}}</div>
+
+                                                <div class="row margin-top-40 album-data">
+                                                    <div class="col-xs-6 text-center col-small-padding">
+                                                        <i class="fa fa-th-large text-info">
+                                                            <strong> {{'ALBUMS.CAT_TYPE' | translate}}: {{m.type}}</strong></i>
+                                                    </div>
+                                                    <div class="col-xs-6 text-center col-small-padding">
+                                                        <i class="fa fa-list text-info">
+                                                            <strong> {{'ALBUMS.FILES_NUMBERS' | translate}}: {{m.torrents.length}}</strong></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

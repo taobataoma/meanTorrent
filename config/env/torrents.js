@@ -281,6 +281,7 @@ module.exports = {
      * @showVipBanner:                        setting whether show vip AD banner
      * @showForumNewTopicsAndNewestTorrents:  setting whether show forum new topics and newest torrents in home page
      * @showTopLevelTorrents:                 setting whether show top level torrents list
+     * @showAlbumsList:                       setting whether show albums list of home
      * @bodyBackgroundImage:                  background image url of home page body
      * @buttonList:                           a function list area of home page
      */
@@ -288,6 +289,7 @@ module.exports = {
       showVipBanner: false,
       showForumNewTopicsAndNewestTorrents: false,
       showTopLevelTorrents: false,
+      showAlbumsList: true,
       bodyBackgroundImage: 'https://image.tmdb.org/t/p/w1280/cnKAGbX1rDkAquF2V1wVkptHDJO.jpg',
       buttonList: [
         {

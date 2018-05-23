@@ -782,8 +782,11 @@
       INSERT_FAILED: '添加资源到专辑失败',
       PREFIX_LIST: '{{type}}专辑清单',
       FILES_NUMBERS: '种子数',
+      CAT_TYPE: '分类',
       BTN_EDIT_OVERVIEW: '编辑专辑简介',
       BTN_REMOVE_ALBUM: '删除专辑',
+      BTN_PUSH_INFO_HOME: '推送到首页',
+      BTN_PULL_FROM_HOME: '从首页移出',
       BTN_REMOVE_FROM_ALBUM: '移出专辑',
       BTN_REMOVE_TITLE: '将其从专辑中移出',
       DELETE_CONFIRM_BODY_TEXT: '您确定要删除这个资源专辑?',
@@ -798,7 +801,9 @@
       REMOVE_SUCCESSFULLY: '从专辑中移除种子成功',
       REMOVE_FAILED: '从专辑中移除种子失败',
       EDIT_OVERVIEW_SUCCESSFULLY: '编辑专辑简介成功',
-      EDIT_OVERVIEW_FAILED: '编辑专辑简介失败'
+      EDIT_OVERVIEW_FAILED: '编辑专辑简介失败',
+      HOME_STATUS_SUCCESSFULLY: '首页推送状态修改成功',
+      HOME_STATUS_ERROR: '首页推送状态修改失败'
     },
 
     //backup views settings

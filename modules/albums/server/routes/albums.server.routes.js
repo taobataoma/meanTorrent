@@ -23,6 +23,8 @@ module.exports = function (app) {
     .put(albums.removeFromAlbum);
   app.route('/api/albums/:albumId/set/recommendlevel/:rlevel').all(albumsPolicy.isAllowed)
     .put(albums.setRecommendLevel);
+  app.route('/api/albums/:albumId/toggleHomeItemStatus').all(albumsPolicy.isAllowed)
+    .put(albums.toggleHomeItemStatus);
 
   app.param('albumId', albums.albumByID);
 };

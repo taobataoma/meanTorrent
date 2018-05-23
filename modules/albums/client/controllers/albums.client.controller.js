@@ -29,7 +29,7 @@
     };
 
     /**
-     * getCollectionsList
+     * getAlbumsList
      */
     vm.getAlbumsList = function () {
       AlbumsService.query({}, function (data) {
@@ -66,7 +66,7 @@
         }
       });
 
-      console.log(vm.albumsTypeList);
+      mtDebug.info(vm.albumsTypeList);
 
       function getTorrentsCount(ct) {
         var i = 0;
@@ -92,6 +92,5 @@
       }
       return result;
     };
-
   }
 }());

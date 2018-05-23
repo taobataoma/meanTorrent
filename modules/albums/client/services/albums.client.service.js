@@ -69,6 +69,14 @@
           rlevel: '@rlevel'
         },
         interceptor: {response: removeCache}
+      },
+      toggleHomeItemStatus: {
+        method: 'PUT',
+        url: '/api/albums/:albumId/toggleHomeItemStatus',
+        params: {
+          albumId: '@_id'
+        },
+        interceptor: {response: removeCache}
       }
 
     });

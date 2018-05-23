@@ -782,8 +782,11 @@
       INSERT_FAILED: '添加資源到專輯失敗',
       PREFIX_LIST: '{{type}}專輯清單',
       FILES_NUMBERS: '種子數',
+      CAT_TYPE: '分類',
       BTN_EDIT_OVERVIEW: '編輯專輯簡介',
       BTN_REMOVE_ALBUM: '刪除專輯',
+      BTN_PUSH_INFO_HOME: '推送到首頁',
+      BTN_PULL_FROM_HOME: '從首頁移出',
       BTN_REMOVE_FROM_ALBUM: '移出專輯',
       BTN_REMOVE_TITLE: '將其從專輯中移出',
       DELETE_CONFIRM_BODY_TEXT: '您確定要刪除這個資源專輯?',
@@ -798,7 +801,9 @@
       REMOVE_SUCCESSFULLY: '從專輯中移除種子成功',
       REMOVE_FAILED: '從專輯中移除種子失敗',
       EDIT_OVERVIEW_SUCCESSFULLY: '編輯專輯簡介成功',
-      EDIT_OVERVIEW_FAILED: '編輯專輯簡介失敗'
+      EDIT_OVERVIEW_FAILED: '編輯專輯簡介失敗',
+      HOME_STATUS_SUCCESSFULLY: '首頁推送狀態修改成功',
+      HOME_STATUS_ERROR: '首頁推送狀態修改失敗'
     },
 
     //backup views settings

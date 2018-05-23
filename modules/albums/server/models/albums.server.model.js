@@ -47,6 +47,10 @@ var AlbumSchema = new Schema({
     type: String,
     default: 'level0'
   },
+  isHomeStatus: {
+    type: Boolean,
+    default: false
+  },
   created_at: {
     type: Date,
     default: Date.now

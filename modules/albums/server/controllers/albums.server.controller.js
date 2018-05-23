@@ -161,6 +161,27 @@ exports.setRecommendLevel = function (req, res) {
 };
 
 /**
+ * toggleHomeItemStatus
+ * @param req
+ * @param res
+ */
+exports.toggleHomeItemStatus = function (req, res) {
+  var album = req.album;
+
+  album.isHomeStatus = !album.isHomeStatus;
+
+  album.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(album);
+    }
+  });
+};
+
+/**
  * Delete an album
  */
 exports.delete = function (req, res) {
@@ -182,15 +203,24 @@ exports.delete = function (req, res) {
  */
 exports.list = function (req, res) {
   var type = undefined;
+  var isHomeStatus = undefined;
   var condition = {};
 
   if (req.query.type !== undefined) {
     type = req.query.type;
   }
+  if (req.query.isHomeStatus !== undefined) {
+    isHomeStatus = (req.query.isHomeStatus === 'true');
+  }
 
   if (type !== undefined) {
     condition.type = type;
   }
+  if (isHomeStatus !== undefined) {
+    condition.isHomeStatus = isHomeStatus;
+  }
+
+  mtDebug.info(condition);
 
   var findQuery = function (callback) {
     Album.find(condition)

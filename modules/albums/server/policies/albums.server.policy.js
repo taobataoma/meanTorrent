@@ -21,7 +21,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/albums/:albumId', permissions: '*'},
           {resources: '/api/albums/:albumId/insert/:torrentId', permissions: '*'},
           {resources: '/api/albums/:albumId/remove/:torrentId', permissions: '*'},
-          {resources: '/api/albums/:albumId/set/recommendlevel/:rlevel', permissions: '*'}
+          {resources: '/api/albums/:albumId/set/recommendlevel/:rlevel', permissions: '*'},
+          {resources: '/api/albums/:albumId/toggleHomeItemStatus', permissions: '*'}
         ]
       },
       {

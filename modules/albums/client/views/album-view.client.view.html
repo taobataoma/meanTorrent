@@ -56,6 +56,10 @@
                                 </ul>
                             </div>
 
+                            <button class="btn btn-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                                    ng-if="vm.user.isOper" ng-click="vm.beginToggleHomeStatus(vm.album)">
+                                {{(vm.album.isHomeStatus ? 'ALBUMS.BTN_PULL_FROM_HOME' : 'ALBUMS.BTN_PUSH_INFO_HOME') | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>

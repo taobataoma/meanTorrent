@@ -10,8 +10,8 @@
     '$compile', 'marked'];
 
   function AlbumItemController($scope, $state, $translate, MeanTorrentConfig, AlbumsService, NotifycationService, DownloadService,
-                                    mtDebug, TorrentGetInfoServices, Authentication, ResourcesTagsServices, ModalConfirmService, localStorageService,
-                                    $compile, marked) {
+                               mtDebug, TorrentGetInfoServices, Authentication, ResourcesTagsServices, ModalConfirmService, localStorageService,
+                               $compile, marked) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -218,6 +218,21 @@
             NotifycationService.showErrorNotify(res.data.message, 'AlbumsService.REMOVE_FAILED');
           });
         });
+    };
+
+    /**
+     * beginToggleHomeStatus
+     * @param item
+     */
+    vm.beginToggleHomeStatus = function (item) {
+      AlbumsService.toggleHomeItemStatus({
+        _id: item._id
+      }, function (res) {
+        vm.album = res;
+        NotifycationService.showSuccessNotify('ALBUMS.HOME_STATUS_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showSuccessNotify('ALBUMS.HOME_STATUS_ERROR');
+      });
     };
   }
 }());
