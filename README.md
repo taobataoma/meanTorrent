@@ -122,6 +122,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 57. Add email white list, user can not to receive invite mail and active mail if the email domain not in the list.
 58. Add [angular-cache](https://github.com/jmdobry/angular-cache) support, to cache all data from $resource GET method, and update these data when $resource POST|PUT|DELETE method.
 59. Daily check in function, continuous check-in to get more points.
+60. Complete resources albums support, oper & admin can create a album and add torrent into it and push it to home page.
 
 #### Chat room feature:
 1. Users name list
@@ -134,8 +135,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 
 ## TODO
 - Fetch service email box message into administrator group message box of site, oper and admin can select any item to handling.
-- Write user`s detail data of upload download and score into log db.
-- Change curve with upload download and score of user`s account.  
 - Add configure item for whether ban user with his inviter.
 - Add ban reason.
 - Poll type topics support in forum.
