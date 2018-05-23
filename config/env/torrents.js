@@ -1310,6 +1310,7 @@ module.exports = {
      * @torrentsPerPage:          torrents list page settings
      * @torrentsCommentsPerPage:  torrent comments list settings
      * @makeGroupTorrentsPerPage: torrent of make group list page settings
+     * @albumTorrentsPerPage:     torrent of album list page settings
      * @tracesPerPage:            system traces log list page settings
      * @adminUserListPerPage:     admin manage users list page settings
      * @collectionsListPerPage:   movie collections list page settings
@@ -1344,6 +1345,7 @@ module.exports = {
       torrentsPerPage: 20,
       torrentsCommentsPerPage: 20,
       makeGroupTorrentsPerPage: 20,
+      albumTorrentsPerPage: 20,
       tracesPerPage: 30,
       adminUserListPerPage: 20,
       collectionsListPerPage: 9,

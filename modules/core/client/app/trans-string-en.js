@@ -782,7 +782,7 @@
       INSERT_FAILED: 'Insert resource into album failed',
       PREFIX_LIST: '{{type}} Albums List',
       FILES_NUMBERS: 'Torrents',
-      CAT_TYPE: 'Cat',
+      CAT_TYPE: 'Category',
       BTN_EDIT_OVERVIEW: 'Edit Overview',
       BTN_REMOVE_ALBUM: 'Delete Album',
       BTN_PUSH_INFO_HOME: 'Push Into Home',

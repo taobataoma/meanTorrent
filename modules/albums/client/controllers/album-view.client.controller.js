@@ -7,11 +7,11 @@
 
   AlbumItemController.$inject = ['$scope', '$state', '$translate', 'MeanTorrentConfig', 'AlbumsService', 'NotifycationService', 'DownloadService',
     'DebugConsoleService', 'TorrentGetInfoServices', 'Authentication', 'ResourcesTagsServices', 'ModalConfirmService', 'localStorageService',
-    '$compile', 'marked'];
+    '$compile', 'marked', '$timeout'];
 
   function AlbumItemController($scope, $state, $translate, MeanTorrentConfig, AlbumsService, NotifycationService, DownloadService,
                                mtDebug, TorrentGetInfoServices, Authentication, ResourcesTagsServices, ModalConfirmService, localStorageService,
-                               $compile, marked) {
+                               $compile, marked, $timeout) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -20,6 +20,7 @@
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.torrentRLevels = MeanTorrentConfig.meanTorrentConfig.torrentRecommendLevel;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.searchTags = [];
     vm.release = [];
@@ -32,8 +33,59 @@
         albumId: $state.params.albumId
       }, function (data) {
         vm.album = data;
-
+        vm.buildPager();
         $('.backdrop').css('backgroundImage', 'url("' + vm.getAlbumBackdropImage(vm.album) + '")');
+      });
+    };
+
+    /**
+     * onKeysKeyDown
+     * @param evt
+     */
+    vm.onKeysKeyDown = function (evt) {
+      if (evt.keyCode === 13) {
+        vm.buildPager();
+      }
+    };
+
+    /**
+     * buildPager
+     */
+    vm.buildPager = function () {
+      vm.pagedItems = [];
+      vm.itemsPerPage = vm.itemsPerPageConfig.albumTorrentsPerPage;
+      vm.currentPage = 1;
+      vm.figureOutItemsToDisplay();
+    };
+
+    /**
+     * figureOutItemsToDisplay
+     */
+    vm.figureOutItemsToDisplay = function (callback) {
+      vm.filteredItems = vm.album.torrents;
+      vm.filterLength = vm.filteredItems.length;
+      var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
+      var end = begin + vm.itemsPerPage;
+      vm.pagedItems = vm.filteredItems.slice(begin, end);
+
+      if (callback) callback();
+    };
+
+    /**
+     * pageChanged
+     */
+    vm.pageChanged = function () {
+      var element = angular.element('#top_of_torrent_list');
+
+      $('.tb-v-middle').fadeTo(100, 0.01, function () {
+        vm.figureOutItemsToDisplay(function () {
+          $timeout(function () {
+            $('.tb-v-middle').fadeTo(400, 1, function () {
+              //window.scrollTo(0, element[0].offsetTop - 60);
+              $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
+            });
+          }, 100);
+        });
       });
     };
 

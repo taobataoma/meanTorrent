@@ -69,7 +69,15 @@
 
     <div class="container">
         <div class="row margin-top-20 margin-bottom-20">
-            <div class="col-md-12 torrent-list" id="top_of_torrent_list" ng-show="vm.album.torrents">
+            <div class="col-md-12 torrent-list" id="top_of_torrent_list">
+                <div class="pagination-div-top">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-hover tb-v-middle">
                         <thead>
@@ -88,8 +96,16 @@
                             </tr>
                         </thead>
                         <tbody torrent-list-item parent="vm" item="item" list="vm.album.torrents"
-                               ng-repeat="item in vm.album.torrents"></tbody>
+                               ng-repeat="item in vm.pagedItems"></tbody>
                     </table>
+                </div>
+                <div class="pagination-div-bottom">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
                 </div>
             </div>
         </div>
