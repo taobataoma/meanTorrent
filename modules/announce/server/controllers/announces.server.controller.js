@@ -648,6 +648,10 @@ exports.announce = function (req, res) {
                 totalScore = totalScore * lifeUnit;
               }
               totalScore = Math.round(totalScore * 100) / 100;
+
+              action.params = {
+                torrent: req.torrent._id
+              };
               scoreUpdate(req, req.passkeyuser, action, totalScore, false);
               mtDebug.debugRed('announce score: ' + totalScore, 'ANNOUNCE', true, req.passkeyuser);
             }
@@ -788,6 +792,10 @@ exports.announce = function (req, res) {
                 seedScore = seedScore * lifeUnit;
               }
               seedScore = Math.round(seedScore * 100) / 100;
+
+              action.params = {
+                torrent: req.torrent._id
+              };
               scoreUpdate(req, req.passkeyuser, action, seedScore);
               mtDebug.debugRed('seed timed score: ' + seedScore, 'ANNOUNCE', true, req.passkeyuser);
 
