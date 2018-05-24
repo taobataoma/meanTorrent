@@ -59,15 +59,6 @@ var validateUsername = function (username) {
 };
 
 /**
- * setNumberValueToZero
- * @param v
- * @returns {number}
- */
-var setNumberValueToZero = function (v) {
-  return v < 0 ? 0 : v;
-};
-
-/**
  * User Schema
  */
 var UserSchema = new Schema({
@@ -172,7 +163,6 @@ var UserSchema = new Schema({
   },
   score: {
     type: Schema.Types.Decimal128,
-    set: setNumberValueToZero,
     get: function (v) {
       return parseFloat(parseFloat(v).toFixed(2)) || 0;
     },
@@ -180,12 +170,10 @@ var UserSchema = new Schema({
   },
   uploaded: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   downloaded: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   true_uploaded: {
@@ -202,37 +190,30 @@ var UserSchema = new Schema({
   },
   uptotal: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   seeded: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   leeched: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   finished: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   hnr_warning: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   topics: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   replies: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   followers: [{
