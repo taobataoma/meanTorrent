@@ -2,6 +2,7 @@
 
 var path = require('path'),
   config = require(path.resolve('./config/config')),
+  logger = require('./logger'),
   mongoose = require('mongoose'),
   Trace = mongoose.model('Trace');
 
@@ -29,7 +30,7 @@ module.exports.create = function (req, action, obj) {
 
     trace.save(function (err) {
       if (err) {
-        console.log(err);
+        logger.error(err);
       }
     });
   }
