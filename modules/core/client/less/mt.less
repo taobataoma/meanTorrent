@@ -365,13 +365,12 @@ body {
                 display: inline-block;
             }
         }
-        img {
-            opacity: 1;
+        .torrent-logo {
+            /* csslint ignore:start */
+            transform: scale(1.2);
+            /* csslint ignore:end */
         }
         .music {
-            opacity: 1;
-        }
-        .torrent-logo {
             opacity: 1;
         }
         .top-status-icon {
@@ -395,7 +394,6 @@ body {
         }
     }
     img {
-        opacity: 0.8;
         min-height: 200px;
     }
     .caption {
@@ -434,7 +432,12 @@ body {
         border-radius: 4px;
     }
     .torrent-logo {
-        opacity: 0.8;
+        transition-property: transform;
+        transition-duration: .5s;
+        transition-timing-function: ease;
+    }
+    .log-parent {
+        overflow: hidden;
     }
 }
 

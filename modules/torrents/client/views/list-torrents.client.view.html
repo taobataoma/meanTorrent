@@ -6,11 +6,13 @@
             <div data-ng-if="$index != 0 && $index % 6 == 0" class="clearfix visible-md-block visible-lg-block"></div>
             <div class="col-xs-6 col-sm-4 col-md-2 col-small-padding">
                 <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
-                    <div class="torrent-logo">
-                        <img class="img-responsive" torrent-logo="item"
-                             ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
-                             alt="{{vm.TGI.getTorrentTitle(item)}}"
-                             title="{{vm.TGI.getTorrentTitle(item)}}">
+                    <div class="log-parent">
+                        <div class="torrent-logo">
+                            <img class="img-responsive" torrent-logo="item"
+                                 ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
+                                 alt="{{vm.TGI.getTorrentTitle(item)}}"
+                                 title="{{vm.TGI.getTorrentTitle(item)}}">
+                        </div>
                     </div>
 
                     <div class="torrent-user-info">
