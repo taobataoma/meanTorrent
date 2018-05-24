@@ -25,7 +25,7 @@
       if (newVal) {
         var elements = $('.collection-item img');
 
-        angular.forEach(elements, function(e){
+        angular.forEach(elements, function (e) {
           var element = angular.element(e);
 
           element.parent().height(element.parent().width() / 1.772);

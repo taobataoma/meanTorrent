@@ -78,7 +78,7 @@
       if (newVal) {
         var elements = $('.albums-item img');
 
-        angular.forEach(elements, function(e){
+        angular.forEach(elements, function (e) {
           var element = angular.element(e);
 
           element.parent().height(element.parent().width() / 1.772);
