@@ -52,6 +52,7 @@ exports.create = function (req, res) {
       var user = req.user;
 
       if (user.score >= inviteConfig.scoreExchange) {
+        user.score -= inviteConfig.scoreExchange;
         scoreUpdate(req, user, scoreConfig.action.scoreExchangeInvitation, -(inviteConfig.scoreExchange));
 
         res.json(user);
