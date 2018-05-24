@@ -17,13 +17,25 @@
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
 
     /**
-     * $scope.$watch($('#nav-top-menu').width())
+     * $scope.$watch($('collection-item').width())
      */
     $scope.$watch(function () {
-      return $('.albums-item').width();
+      return $('.collection-item').width();
     }, function (newVal, oldVal) {
       if (newVal) {
-        $('.albums-item').height($('.albums-item').width() / 1.772);
+        var elements = $('.collection-item img');
+
+        angular.forEach(elements, function(e){
+          var element = angular.element(e);
+
+          element.parent().height(element.parent().width() / 1.772);
+
+          if (element.height() > element.parent().height()) {
+            element.css('margin-top', -(element.height() - element.parent().height()) / 2);
+          } else {
+            element.css('margin-top', (element.parent().height() - element.height()) / 2);
+          }
+        });
       }
     });
 
