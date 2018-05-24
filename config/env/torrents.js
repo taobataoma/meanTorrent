@@ -102,7 +102,7 @@ module.exports = {
      * @announceIdleTime:                     announce time over @announceInterval this value is inactive peer
      * @announcePrefix:                       prefix of torrent file name, is will auto add when user download the torrent files
      * @clientBlackListUrl:                   forbidden download client list url, user can view this list to check forbidden client software
-     * @announceLogMonths:                    setting of months to write announce log to db, because the data is too more too big, default value is 1
+     * @announceLogDays:                      setting of days to write announce log to db, because the data is too more too big, do not to set a big value
      * @daysLogMonths:                        setting of months to write user days log
      * @seedingInFinishedCheck:               settings to check whether can seeding an un-download finished torrent
      * @downloadCheck:                        announce download(leech) settings
@@ -134,7 +134,7 @@ module.exports = {
       announcePrefix: '{MEAN}.',
       sourceInfo: '{MEAN.im} Present by meanTorrent.',
       clientBlackListUrl: '/about/black',
-      announceLogMonths: 1,
+      announceLogDays: 30,
       daysLogMonths: 12,
       seedingInFinishedCheck: true,
       downloadCheck: {
@@ -429,6 +429,7 @@ module.exports = {
      * score system settings
      *
      * @levelStep:        value of each level step, default 500
+     * @scoreLogDays:     setting of days to write score detail log to db, because the data is too more too big, do not to set a big value
      * @action:           score change action list
      *        @name:      action name
      *        @value:     action score value
@@ -437,8 +438,10 @@ module.exports = {
      */
     score: {
       levelStep: 1000,
+      scoreLogDays: 10,
       action: {
         defaultAction: {name: 'defaultAction', value: 0, enable: true},
+        adminModify: {name: 'adminModify', value: 0, enable: true},
 
         uploadTorrent: {name: 'uploadTorrent', value: 50, enable: true},
         uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', value: -50, enable: true},
@@ -648,14 +651,16 @@ module.exports = {
      *
      * system trace logs settings
      *
+     * @traceLogDays:   setting trace log days, because data to more, do not to set a big value
      * @action:         trace action list
      *        @name:    action name
      *        @enable:  action enable status, if false, system will not to trace log this action
      *
      * !IMPORTANT NOTE:
-     * @userAnnounceData AND @userScoreChange MAKE LARGEST NUMBER DATA RECORD, IF YOU RUNNING MEANTORRENT AT PROD MODE, MUST SET IT TO FALSE
+     * @userAnnounceData  MAKE LARGEST NUMBER DATA RECORD, IF YOU RUNNING MEANTORRENT AT PROD MODE, MUST SET IT TO FALSE
      */
     trace: {
+      traceLogDays: 10,
       action: {
         AdminUpdateUserRole: {name: 'AdminUpdateUserRole', enable: true},
         AdminUpdateUserStatus: {name: 'AdminUpdateUserStatus', enable: true},
@@ -689,9 +694,7 @@ module.exports = {
         userSendInvitation: {name: 'userSendInvitation', enable: true},
         adminSendOfficialInvitation: {name: 'adminSendOfficialInvitation', enable: true},
 
-        userAnnounceData: {name: 'userAnnounceData', enable: false},
         userAnnounceFinished: {name: 'userAnnounceFinished', enable: true},
-        userScoreChange: {name: 'userScoreChange', enable: true},
 
         forumDeleteTopic: {name: 'forumDeleteTopic', enable: true},
         forumDeleteReply: {name: 'forumDeleteReply', enable: true}

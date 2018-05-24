@@ -7,10 +7,8 @@ var path = require('path'),
   common = require(path.resolve('./config/lib/common')),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
-  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
+  ScoreLog = mongoose.model('ScoreLog');
 
-var traceConfig = config.meanTorrentConfig.trace;
-var examinationConfig = config.meanTorrentConfig.examination;
 var scoreConfig = config.meanTorrentConfig.score;
 var mtDebug = require(path.resolve('./config/lib/debug'));
 
@@ -44,10 +42,18 @@ module.exports.update = function (req, user, action, value, writeLog = true) {
         if (err) {
           logger.error(err);
         } else {
-          traceLogCreate(req, traceConfig.action.userScoreChange, {
-            user: user._id,
+          var sl = new ScoreLog({
+            user: user,
             score: v,
-            scoreActionName: action.name
+            reason: {
+              event: action.name,
+              params: action.params
+            }
+          });
+          sl.save(function (err) {
+            if (err) {
+              logger.error(err);
+            }
           });
         }
       });

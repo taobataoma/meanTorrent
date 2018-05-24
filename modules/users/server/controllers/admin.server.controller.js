@@ -14,6 +14,7 @@ var path = require('path'),
   Complete = mongoose.model('Complete'),
   moment = require('moment'),
   async = require('async'),
+  ScoreLog = mongoose.model('ScoreLog'),
   scoreUpdate = require(path.resolve('./config/lib/score')).update,
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
@@ -305,11 +306,26 @@ exports.updateUserScore = function (req, res) {
 
     res.json(user);
 
+    //write score detail log
+    var sl = new ScoreLog({
+      user: user,
+      score: sv,
+      reason: {
+        event: scoreConfig.action.adminModify.name,
+        params: undefined
+      }
+    });
+    sl.save(function (err) {
+      if (err) {
+        mtDebug.debugError(err);
+      }
+    });
+    //write score days/months log
     dataLog.scoreLog(user, sv);
     //create trace log
     traceLogCreate(req, traceConfig.action.AdminUpdateUserScore, {
       user: user._id,
-      score: req.body.userScore
+      score: sv
     });
   });
 };

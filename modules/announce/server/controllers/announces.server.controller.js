@@ -680,21 +680,14 @@ exports.announce = function (req, res) {
               downUnitScore: downUnitScore,
               seederUnit: seederUnit,
               lifeUnit: lifeUnit
+            },
+            info: {
+              agent: req.get('User-Agent'),
+              ip: req.cf_ip,
+              port: query.port
             }
           };
           dataLog.announceLog(req.passkeyuser, req.torrent, logData);
-
-          //create trace log
-          var traceData = {
-            user: req.passkeyuser._id,
-            torrent: req.torrent._id,
-            agent: req.get('User-Agent'),
-            ip: req.cf_ip,
-            port: query.port,
-            traceData: logData
-          };
-
-          traceLogCreate(req, traceConfig.action.userAnnounceData, traceData);
         }
       }
 

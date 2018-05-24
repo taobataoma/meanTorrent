@@ -44,15 +44,6 @@ module.exports.announceLog = function (user, torrent, data) {
     }
   });
 
-  //remove announce-log old data
-  AnnounceLog.remove({
-    createdAt: {$lt: moment().subtract(announceConfig.announceLogMonths, 'months')}
-  }, function (err) {
-    if (err) {
-      logger.error(err);
-    }
-  });
-
   //write userDaysLog
   var mom = moment().utcOffset(appConfig.dbTimeZone);
   var y = mom.get('year');
@@ -80,15 +71,6 @@ module.exports.announceLog = function (user, torrent, data) {
     if (err) {
       logger.error(err);
     } else {
-      //remove user-days-log old data
-      UserDaysLog.remove({
-        createdAt: {$lt: moment().subtract(announceConfig.daysLogMonths, 'months')}
-      }, function (err) {
-        if (err) {
-          logger.error(err);
-        }
-      });
-
       //write userMonthsLog
       UserMonthsLog.findOneAndUpdate(
         {
@@ -146,15 +128,6 @@ module.exports.scoreLog = function (user, score) {
     if (err) {
       logger.error(err);
     } else {
-      //remove user-days-log old data
-      UserDaysLog.remove({
-        createdAt: {$lt: moment().subtract(announceConfig.daysLogMonths, 'months')}
-      }, function (err) {
-        if (err) {
-          logger.error(err);
-        }
-      });
-
       //write userMonthsLog
       UserMonthsLog.findOneAndUpdate(
         {

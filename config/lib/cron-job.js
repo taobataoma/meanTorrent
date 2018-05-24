@@ -15,6 +15,11 @@ var path = require('path'),
   Complete = mongoose.model('Complete'),
   Message = mongoose.model('Message'),
   MailTicket = mongoose.model('MailTicket'),
+  AnnounceLog = mongoose.model('AnnounceLog'),
+  UserDaysLog = mongoose.model('UserDaysLog'),
+  UserMonthsLog = mongoose.model('UserMonthsLog'),
+  ScoreLog = mongoose.model('ScoreLog'),
+  Trace = mongoose.model('Trace'),
   backup = require('mongodb-backup');
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
@@ -22,9 +27,11 @@ var appConfig = config.meanTorrentConfig.app;
 var supportConfig = config.meanTorrentConfig.support;
 var backupConfig = config.meanTorrentConfig.backup;
 var announceConfig = config.meanTorrentConfig.announce;
+var scoreConfig = config.meanTorrentConfig.score;
 var signConfig = config.meanTorrentConfig.sign;
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
 var messageConfig = config.meanTorrentConfig.messages;
+var traceConfig = config.meanTorrentConfig.trace;
 
 var inbox = require('inbox');
 var simpleParser = require('mailparser').simpleParser;
@@ -75,6 +82,7 @@ module.exports = function (app) {
 
   cronJobs.push(removeGhostPeers());
   cronJobs.push(removeOldServerMessages());
+  cronJobs.push(removeOldLogData());
   cronJobs.push(checkUserAccountIdleStatus());
 
   if (hnrConfig.enable) {
@@ -203,11 +211,65 @@ function removeOldServerMessages() {
 }
 
 /**
+ * removeOldLogData
+ */
+function removeOldLogData() {
+  var cronJob = new CronJob({
+    cronTime: '00 10 1 * * *',
+    onTick: function () {
+      logger.info(chalk.green('removeOldLogData: process!'));
+
+      //remove announce-log old data
+      AnnounceLog.remove({
+        createdAt: {$lt: moment().subtract(announceConfig.announceLogDays, 'days')}
+      }, function (err) {
+        if (err) {
+          logger.error(err);
+        }
+      });
+
+      //remove user-days-log old data
+      UserDaysLog.remove({
+        createdAt: {$lt: moment().subtract(announceConfig.daysLogMonths, 'months')}
+      }, function (err) {
+        if (err) {
+          logger.error(err);
+        }
+      });
+
+      //remove score-log old data
+      ScoreLog.remove({
+        createdAt: {$lt: moment().subtract(scoreConfig.scoreLogDays, 'days')}
+      }, function (err) {
+        if (err) {
+          logger.error(err);
+        }
+      });
+
+      //remove trace-log old data
+      Trace.remove({
+        createdat: {$lt: moment().subtract(traceConfig.traceLogDays, 'days')}
+      }, function (err) {
+        if (err) {
+          logger.error(err);
+        }
+      });
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  cronJob.start();
+
+  return cronJob;
+}
+
+/**
  * checkUserAccountIdleStatus
  */
 function checkUserAccountIdleStatus() {
   var cronJob = new CronJob({
-    cronTime: '00 10 1 * * *',
+    cronTime: '00 15 1 * * *',
     // cronTime: '*/30 * * * * *',
     onTick: function () {
       logger.info(chalk.green('checkUserAccountIdleStatus: process!'));
