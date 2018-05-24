@@ -365,12 +365,13 @@ body {
                 display: inline-block;
             }
         }
-        .torrent-logo {
-            /* csslint ignore:start */
-            transform: scale(1.2);
-            /* csslint ignore:end */
+        img {
+            opacity: 1;
         }
         .music {
+            opacity: 1;
+        }
+        .torrent-logo {
             opacity: 1;
         }
         .top-status-icon {
@@ -394,6 +395,7 @@ body {
         }
     }
     img {
+        opacity: 0.9;
         min-height: 200px;
     }
     .caption {
@@ -405,7 +407,7 @@ body {
     .music {
         margin: 38px 0 42px 0;
         overflow: hidden;
-        opacity: 0.8;
+        opacity: 0.9;
         &::before {
             content: ' ';
             padding-top: 100%; /* vertical value as  100% equals width */
@@ -432,12 +434,7 @@ body {
         border-radius: 4px;
     }
     .torrent-logo {
-        transition-property: transform;
-        transition-duration: .5s;
-        transition-timing-function: ease;
-    }
-    .log-parent {
-        overflow: hidden;
+        opacity: 0.9;
     }
 }
 
