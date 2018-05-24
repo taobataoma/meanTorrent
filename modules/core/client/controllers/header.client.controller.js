@@ -102,6 +102,9 @@
       }
     };
 
+    /**
+     * $scope.$watch($('#nav-top-menu').width())
+     */
     $scope.$watch(function () {
       return $('#nav-top-menu').width();
     }, function (newVal, oldVal) {
@@ -119,6 +122,7 @@
         }
       }
     });
+
     /**
      * auth-user-changed
      */

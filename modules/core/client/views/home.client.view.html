@@ -162,14 +162,14 @@
             </div>
         </div>
 
-        <div ng-init="vm.getAlbumsList()">
-            <div class="filter-albums albums-list" ng-if="vm.homeConfig.showAlbumsList && vm.albumsList.length>0">
-                <div class="container padding-top-20 padding-bottom-30">
+        <div class="filter-albums albums-list" ng-init="vm.getAlbumsList()" style="display: none">
+            <div ng-if="vm.homeConfig.showAlbumsList && vm.albumsList.length>0">
+                <div class="container padding-top-10 padding-bottom-30">
                     <div class="row">
                         <div class="albums-items">
                             <div ng-repeat="m in vm.albumsList | filter: tp.type">
                                 <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
-                                <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                                <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                                 <div class="col-sm-6 col-md-4">
                                     <a ui-sref="albums.view({ albumId: m._id })">
                                         <div class="albums-item">

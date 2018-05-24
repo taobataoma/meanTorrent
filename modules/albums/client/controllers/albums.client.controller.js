@@ -14,19 +14,17 @@
     vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
 
-    /**
-     * window.resize()
-     */
-    $(window).resize(function () {
-      vm.setAlbumItemHeight();
-    });
 
     /**
-     * setAlbumItemHeight
+     * $scope.$watch($('#nav-top-menu').width())
      */
-    vm.setAlbumItemHeight = function () {
-      $('.albums-item').height($('.albums-item').width() / 1.772);
-    };
+    $scope.$watch(function () {
+      return $('.albums-item').width();
+    }, function (newVal, oldVal) {
+      if (newVal) {
+        $('.albums-item').height($('.albums-item').width() / 1.772);
+      }
+    });
 
     /**
      * getAlbumsList
@@ -36,10 +34,6 @@
         vm.albumsList = data;
         vm.getAlbumsTypeList(data);
         mtDebug.info(data);
-
-        $timeout(function () {
-          vm.setAlbumItemHeight();
-        }, 10);
       });
     };
 

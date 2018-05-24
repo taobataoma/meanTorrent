@@ -62,7 +62,7 @@
      * figureOutItemsToDisplay
      */
     vm.figureOutItemsToDisplay = function (callback) {
-      vm.filteredItems = vm.album.torrents;
+      vm.filteredItems = vm.album.torrents.reverse();
       vm.filterLength = vm.filteredItems.length;
       var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
       var end = begin + vm.itemsPerPage;
