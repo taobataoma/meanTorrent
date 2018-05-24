@@ -20,6 +20,7 @@ var path = require('path'),
   UserMonthsLog = mongoose.model('UserMonthsLog'),
   ScoreLog = mongoose.model('ScoreLog'),
   Trace = mongoose.model('Trace'),
+  scoreUpdate = require(path.resolve('./config/lib/score')).update,
   backup = require('mongodb-backup');
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
@@ -87,6 +88,10 @@ module.exports = function (app) {
 
   if (hnrConfig.enable) {
     cronJobs.push(countUsersHnrWarning());
+  }
+
+  if (scoreConfig.transfer.enable) {
+    cronJobs.push(transferUserScoreToInviter());
   }
 
   if (supportConfig.mailTicketSupportService) {
@@ -329,6 +334,51 @@ function countUsersHnrWarning() {
             });
           }
         });
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  cronJob.start();
+
+  return cronJob;
+}
+
+/**
+ * transferUserScoreToInviter
+ */
+function transferUserScoreToInviter() {
+  var cronJob = new CronJob({
+    cronTime: '00 00 2 1 * *',
+    onTick: function () {
+      logger.info(chalk.green('transferUserScoreToInviter: process!'));
+
+      var mom = moment().utcOffset(appConfig.dbTimeZone);
+      var y = mom.get('year');
+      var m = mom.get('month') + 1;
+
+      UserMonthsLog.find({
+        year: y,
+        month: m - 1
+      }).populate({
+        path: 'user',
+        select: 'username displayName profileImageURL isVip score uploaded downloaded invited_by',
+        populate: {
+          path: 'invited_by',
+          select: 'username displayName profileImageURL isVip score uploaded downloaded'
+        }
+      }).exec(function (err, logs) {
+        if (logs) {
+          logs.forEach(function (l) {
+            if (l.score > 0 && l.user.invited_by) {
+              var transValue = Math.round(l.score * scoreConfig.transfer.transRatio * 100) / 100;
+
+              scoreUpdate(undefined, l.user, scoreConfig.action.transferScoreIntoInviterFrom, -(transValue));
+              scoreUpdate(undefined, l.user.invited_by, scoreConfig.action.transferScoreIntoInviterTo, transValue);
+            }
+          });
+        }
+      });
     },
     start: false,
     timeZone: appConfig.cronTimeZone
