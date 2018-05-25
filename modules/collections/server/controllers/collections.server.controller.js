@@ -15,6 +15,7 @@ var path = require('path'),
   async = require('async'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
+  populateStrings = require(path.resolve('./config/lib/populateStrings')),
   scoreUpdate = require(path.resolve('./config/lib/score')).update;
 
 var traceConfig = config.meanTorrentConfig.trace;
@@ -280,7 +281,7 @@ exports.list = function (req, res) {
     Collection.find(condition)
       .sort('-recommend_level -ordered_at -created_at')
       .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
-      .populate('torrents')
+      .populate('torrents', populateStrings.populate_torrent_string)
       .skip(skip)
       .limit(limit)
       .exec(function (err, colls) {
@@ -315,6 +316,7 @@ exports.collectionByID = function (req, res, next, id) {
     .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
     .populate({
       path: 'torrents',
+      select: populateStrings.populate_torrent_string,
       populate: [{
         path: 'user',
         select: 'username displayName profileImageURL isVip score uploaded downloaded'

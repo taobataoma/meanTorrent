@@ -33,6 +33,7 @@
         albumId: $state.params.albumId
       }, function (data) {
         vm.album = data;
+        mtDebug.info(data);
         vm.buildPager();
         $('.backdrop').css('backgroundImage', 'url("' + vm.getAlbumBackdropImage(vm.album) + '")');
       });

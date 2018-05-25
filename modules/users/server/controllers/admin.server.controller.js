@@ -17,7 +17,8 @@ var path = require('path'),
   ScoreLog = mongoose.model('ScoreLog'),
   scoreUpdate = require(path.resolve('./config/lib/score')).update,
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
+  populateStrings = require(path.resolve('./config/lib/populateStrings'));
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -554,6 +555,7 @@ exports.getUserSeeding = function (req, res) {
   }).sort('-peer_uploaded')
     .populate({
       path: 'torrent',
+      select: populateStrings.populate_torrent_string,
       populate: [
         {path: 'user', select: 'displayName profileImageURL'},
         {path: 'maker', select: 'name'}
@@ -583,6 +585,7 @@ exports.getUserLeeching = function (req, res) {
   }).sort('-peer_downloaded')
     .populate({
       path: 'torrent',
+      select: populateStrings.populate_torrent_string,
       populate: [
         {path: 'user', select: 'displayName profileImageURL'},
         {path: 'maker', select: 'name'}
@@ -610,6 +613,7 @@ exports.getUserWarning = function (req, res) {
     hnr_warning: true
   }).populate({
     path: 'torrent',
+    select: populateStrings.populate_torrent_string,
     populate: [
       {path: 'user', select: 'displayName profileImageURL'},
       {path: 'maker', select: 'name'}

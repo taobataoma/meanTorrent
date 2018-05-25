@@ -10,6 +10,7 @@ var path = require('path'),
   Maker = mongoose.model('Maker'),
   Album = mongoose.model('Album'),
   async = require('async'),
+  populateStrings = require(path.resolve('./config/lib/populateStrings')),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var traceConfig = config.meanTorrentConfig.trace;
@@ -229,7 +230,7 @@ exports.list = function (req, res) {
   var findQuery = function (callback) {
     Album.find(condition)
       .sort(sort_str)
-      .populate('torrents')
+      .populate('torrents', populateStrings.populate_torrent_string)
       .exec(function (err, albums) {
         if (err) {
           callback(err, null);
@@ -262,6 +263,7 @@ exports.albumByID = function (req, res, next, id) {
     .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
     .populate({
       path: 'torrents',
+      select: populateStrings.populate_torrent_string,
       populate: [{
         path: 'user',
         select: 'username displayName profileImageURL isVip score uploaded downloaded'

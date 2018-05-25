@@ -11,6 +11,7 @@ var path = require('path'),
   async = require('async'),
   moment = require('moment'),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
+  populateStrings = require(path.resolve('./config/lib/populateStrings')),
   scoreUpdate = require(path.resolve('./config/lib/score')).update;
 
 var traceConfig = config.meanTorrentConfig.trace;
@@ -305,6 +306,7 @@ exports.requestByID = function (req, res, next, id) {
     .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
     .populate({
       path: 'torrents',
+      select: populateStrings.populate_torrent_string,
       populate: [{
         path: 'user',
         select: 'username displayName profileImageURL isVip score uploaded downloaded'
