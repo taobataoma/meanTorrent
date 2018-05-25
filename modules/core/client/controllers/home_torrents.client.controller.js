@@ -149,7 +149,8 @@
         torrent_status: 'reviewed',
         torrent_type: 'movie',
         torrent_vip: false,
-        limit: 9
+        limit: 9,
+        isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
           vm.movieTopOne = items.rows[0];
@@ -189,7 +190,8 @@
         torrent_status: 'reviewed',
         torrent_type: 'tvserial',
         torrent_vip: false,
-        limit: 9
+        limit: 9,
+        isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
           vm.TVTopOne = items.rows[0];
@@ -221,7 +223,8 @@
         torrent_status: 'reviewed',
         torrent_type: 'music',
         torrent_vip: false,
-        limit: 9
+        limit: 9,
+        isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
           vm.musicTopOne = items.rows[0];
@@ -253,7 +256,8 @@
         torrent_status: 'reviewed',
         torrent_type: 'sports',
         torrent_vip: false,
-        limit: 9
+        limit: 9,
+        isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
           vm.sportsTopOne = items.rows[0];
@@ -285,7 +289,8 @@
         torrent_status: 'reviewed',
         torrent_type: 'variety',
         torrent_vip: false,
-        limit: 9
+        limit: 9,
+        isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
           vm.varietyTopOne = items.rows[0];
@@ -317,7 +322,8 @@
         torrent_status: 'reviewed',
         torrent_type: 'picture',
         torrent_vip: false,
-        limit: 9
+        limit: 9,
+        isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
           vm.pictureTopOne = items.rows[0];
@@ -349,7 +355,8 @@
         torrent_status: 'reviewed',
         torrent_type: 'game',
         torrent_vip: false,
-        limit: 9
+        limit: 9,
+        isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
           vm.gameTopOne = items.rows[0];
@@ -381,7 +388,8 @@
         torrent_status: 'reviewed',
         torrent_type: 'software',
         torrent_vip: false,
-        limit: 9
+        limit: 9,
+        isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
           vm.softwareTopOne = items.rows[0];
@@ -413,7 +421,8 @@
         torrent_status: 'reviewed',
         torrent_type: 'ebook',
         torrent_vip: false,
-        limit: 9
+        limit: 9,
+        isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
           vm.ebookTopOne = items.rows[0];
