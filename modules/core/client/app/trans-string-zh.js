@@ -1781,6 +1781,7 @@
 
       TITLE_HNR_WARNING_ADD: '新的 H&R 警告',
       CONTENT_HNR_WARNING_ADD: '### H&R 警告! \n 您刚刚得到一个 h&r 警告在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}), 您需要继续做种, 这个警告会在该种分享率大于 {{hnr_ratio}} 或做种时间大于 {{hnr_days}} 天时自动清除，您也可以从这里 [warning list](/status/warning) 使用系统积分手动清除.',
+
       TITLE_HNR_WARNING_REMOVE: 'H&R 警告移除',
       CONTENT_HNR_WARNING_REMOVE: '### H&R 警告已移除! \n 恭喜您, 您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上的 h&r 警告已经移除.',
 
