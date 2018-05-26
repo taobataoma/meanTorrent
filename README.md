@@ -123,6 +123,8 @@ and [AngularJS](http://angularjs.org/) based applications.
 58. Add [angular-cache](https://github.com/jmdobry/angular-cache) support, to cache all data from $resource GET method, and update these data when $resource POST|PUT|DELETE method.
 59. Daily check in function, continuous check-in to get more points.
 60. Complete resources albums support, oper & admin can create a album and add torrent into it and push it to home page.
+61. Detailed logs, include uploaded and downloaded announce logs, seeding time logs, score changed logs, score changed days log and months log.
+62. Admin can present official invitations to user.
 
 #### Chat room feature:
 1. Users name list
