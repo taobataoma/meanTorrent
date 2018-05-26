@@ -17,7 +17,7 @@
 1. VIP 用戶對 H&R 黑種警告免疫，不受警告上限 `%(hnrConfig.forbiddenDownloadMinWarningNumber)d` 條的限制，這裡可檢視 [H&R 黑種細則](/about/manual/hnrRules)。
 1. VIP 用戶不參加站點內舉行的定期增量任務考核。
 1. VIP 用戶帳戶永遠不會變成 `空閒` 狀態。
-1. 管理組正在制定更多 VIP 使用者權益，敬請期待。
+1. 管理組正在制定更多 VIP 用戶權益，敬請期待。
 
 &emsp;
 
