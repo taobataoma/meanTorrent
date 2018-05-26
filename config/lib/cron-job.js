@@ -92,7 +92,7 @@ module.exports = function (app) {
     cronJobs.push(countUsersHnrWarning());
   }
 
-  if (scoreConfig.transfer.enable) {
+  if (scoreConfig.transferToInviter.enable) {
     cronJobs.push(transferUserScoreToInviter());
   }
 
@@ -401,10 +401,14 @@ function transferUserScoreToInviter() {
         if (logs) {
           logs.forEach(function (l) {
             if (l.score > 0 && l.user.invited_by) {
-              var transValue = Math.round(l.score * scoreConfig.transfer.transRatio * 100) / 100;
+              var transValue = Math.round(l.score * scoreConfig.transferToInviter.transRatio * 100) / 100;
 
-              scoreUpdate(undefined, l.user, scoreConfig.action.transferScoreIntoInviterFrom, -(transValue));
-              scoreUpdate(undefined, l.user.invited_by, scoreConfig.action.transferScoreIntoInviterTo, transValue);
+              if (transValue > 0) {
+                if (scoreConfig.transferToInviter.deductFromUser) {
+                  scoreUpdate(undefined, l.user, scoreConfig.action.transferScoreIntoInviterFrom, -(transValue));
+                }
+                scoreUpdate(undefined, l.user.invited_by, scoreConfig.action.transferScoreIntoInviterTo, transValue);
+              }
             }
           });
         }

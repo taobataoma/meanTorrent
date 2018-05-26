@@ -434,23 +434,25 @@ module.exports = {
      *
      * score system settings
      *
-     * @levelStep:            value of each level step, default 500
-     * @scoreLogDays:         setting of days to write score detail log to db, because the data is too more too big, do not to set a big value
-     * @transfer:             setting of transfer score to inviter per month
-     *        @enable:        setting whether to enable transfer
-     *        @transRatio:    setting transfer ratio, the user`s score of this ratio will be subtract and add into the inviter`s account
-     * @action:               score change action list
-     *        @name:          action name
-     *        @value:         action score value
-     *        @enable:        action enable status, if false, system will not change user`s score at this action
-     *                        NOTE: ENABLE VALUE OF DEFAULTACTION MUST BE TRUE
+     * @levelStep:              value of each level step, default 500
+     * @scoreLogDays:           setting of days to write score detail log to db, because the data is too more too big, do not to set a big value
+     * @transfer:               setting of transfer score to inviter per month
+     *        @enable:          setting whether to enable transfer
+     *        @deductFromUser:  setting whether deduct the score from user
+     *        @transRatio:      setting transfer ratio, the user`s score of this ratio will be subtract and add into the inviter`s account if the @deductFromUser is true
+     * @action:                 score change action list
+     *        @name:            action name
+     *        @value:           action score value
+     *        @enable:          action enable status, if false, system will not change user`s score at this action
+     *                          NOTE: ENABLE VALUE OF DEFAULTACTION MUST BE TRUE
      */
     score: {
       levelStep: 1000,
       scoreLogDays: 10,
-      transfer: {
+      transferToInviter: {
         enable: true,
-        transRatio: 0.05
+        deductFromUser: false,
+        transRatio: 0.001
       },
       action: {
         defaultAction: {name: 'defaultAction', value: 0, enable: true},
