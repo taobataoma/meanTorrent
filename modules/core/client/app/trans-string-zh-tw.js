@@ -955,6 +955,10 @@
     STATUS_FIELD: {
       BTN_FOLLOW: '關注',
       BTN_UNFOLLOW: '取消關注',
+      BTN_MANAGE: '管理',
+      BTN_SEND_MESSAGE: '發消息',
+      BTN_EDIT: '編輯',
+      BTN_REMOVE: '刪除',
       PICTURE: '頭像',
       RESET_DEFAULT_PICTURE: '重置為預設圖片',
       ADD_VIP_MONTHS: '+ VIP一個月',

@@ -955,6 +955,10 @@
     STATUS_FIELD: {
       BTN_FOLLOW: 'Follow',
       BTN_UNFOLLOW: 'Unfollow',
+      BTN_MANAGE: 'Manage',
+      BTN_SEND_MESSAGE: 'Send message',
+      BTN_EDIT: 'Edit',
+      BTN_REMOVE: 'Remove',
       PICTURE: 'Profile picture',
       RESET_DEFAULT_PICTURE: 'Reset to default picture',
       ADD_VIP_MONTHS: '+ VIP a month',
