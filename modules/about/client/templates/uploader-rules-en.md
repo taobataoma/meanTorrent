@@ -13,7 +13,10 @@
 1. Any torrents you uploaded, administrators can set more additional attributes, such as recommended levels, sales levels, resource tags, and so on.
 1. When uploading torrents, you should select the attribute tags accurately and as comprehensively as possible, because users will index small areas according to different tags at any time. If tags and resources do not actually match, they will be deleted and punished by the administrator.
 1. After the torrent is released successfully, the system will give a certain scores reward. Similarly, when the torrent is deleted, the reward scores will be deducted. [User score rules detail is here](/about/manual/scoreRules).
-1. Sometimes system only accepts resources group to upload torrents, current setting value is: `%(accessConfig.upload.limitToMakerGroup)s`.
+1. Sometimes system only accepts resources group to upload torrents, current setting value is:
+```javascript
+accessConfig.upload.limitToMakerGroup = %(accessConfig.upload.limitToMakerGroup)s
+```
 1. It is forbidden to upload images and texts that are not related to the content of the resources in the seed description area.
 1. Unauthorized commercial promotion in any area is strictly prohibited.
 1. If you have 0-day resources or superb repression skills, please do not hesitate to please contact our {{'%(supportConfig.supportGroupNameDesc)s' | translate}} by **[Message](/messages/send?to=%(supportConfig.supportGroupName)s)** or **[Email](mailto: %(supportConfig.supportMailAddress)s)**.

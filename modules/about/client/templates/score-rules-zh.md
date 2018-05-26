@@ -16,16 +16,16 @@
   <span class="text-danger">**注意: 系统根据实际的上传下载量计算积分。**</span>
 ```javascript
   种子体积加成系数: sqrt(torrent_size / %(scoreConfig.action.seedUpDownload.additionSize_str)s)。
-  每 %(scoreConfig.action.seedUpDownload.perlSize_str)s 上传量: %(scoreConfig.action.seedUpDownload.uploadValue)d 积分。
-  每 %(scoreConfig.action.seedUpDownload.perlSize_str)s 下载量: %(scoreConfig.action.seedUpDownload.downloadValue)d 积分。
+  每 %(scoreConfig.action.seedUpDownload.perlSize_str)s 上传量: %(scoreConfig.action.seedUpDownload.uploadValue).2f 积分。
+  每 %(scoreConfig.action.seedUpDownload.perlSize_str)s 下载量: %(scoreConfig.action.seedUpDownload.downloadValue).2f 积分。
   Vip 用户额外加成系数: %(scoreConfig.action.seedUpDownload.vipRatio).2f 倍。
 
   举例: 
     种子体积 40G, 则体积加成系数为 2, 假设本次上报上传量为 10G 下载量为 15G, 则：
-    非 Vip 用户获得上传积分: 2 * 2 * 10 = 40, 下载积分: 2 * 1 * 15 = 30。
-    Vip 用户获得上传积分: 40 * 1.5 = 60, 下载积分: 30 * 1.5 = 45。
+    非 Vip 用户获得上传积分: 2 * 1 * 10 = 20, 下载积分: 2 * 0.5 * 15 = 15。
+    Vip 用户获得上传积分: 20 * 1.5 = 30, 下载积分: 15 * 1.5 = 22.5。
 ```
-* 在做种状态下，将会获得由保种时间带来的保种积分, 每个种子每 `%(scoreConfig.action.seedTimed.additionTime_str)s` 获得 `%(scoreConfig.action.seedTimed.timedValue)d` 积分，Vip 用户额外加成系数为 `%(scoreConfig.action.seedTimed.vipRatio).2f`。
+* 在做种状态下，将会获得由保种时间带来的保种积分, 每个种子每 `%(scoreConfig.action.seedTimed.additionTime_str)s` 获得 `%(scoreConfig.action.seedTimed.timedValue).2f` 积分，Vip 用户额外加成系数为 `%(scoreConfig.action.seedTimed.vipRatio).2f`。
 * 对于上述两项获得的积分, 还会根据种子的生命期和保种人数获得额外的再次加成，<mark>而且两种加成叠加生效</mark>。
 ```javascript
   保种人数加成:
@@ -33,7 +33,7 @@
   加成系数: %(scoreConfig.action.seedSeederAndLife.seederCoefficient).2f
   最多保种人数: %(scoreConfig.action.seedSeederAndLife.seederCount)d
   
-  如果只有 1 个保种用户: 加成系数为 6, [2 用户为 5.5], [3 用户为 5], [4 用户为 4.5], [5 用户为 4], [6 用户为 3.5], [7 用户为 3], [8 用户为 2.5], [9 用户为 2], [10 用户为 1.5], [超过 10 用户为 1, 相当于没有加成]。
+  如果只有 1 个保种用户: 加成系数为 3, [2 用户为 2.8], [3 用户为 2.6], [4 用户为 2.4], [5 用户为 2.2], [6 用户为 2.0], [7 用户为 1.8], [8 用户为 1.6], [9 用户为 1.4], [10 用户为 1.2], [超过 10 用户为 1, 相当于没有加成]。
 ```
 ```javascript
   种子生命加成:
@@ -41,9 +41,14 @@
   加成系数: %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f
   最大加成系数: %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f
   
-  加成基础系数为 1, 根据种子生命每天增加 %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f。
-  如果种子生命(发布时间)为 10 天，则加成系数为 1.05, [100 天是 1.5], [200 天是 2.0], 以此类推，最大加成系数为 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f。
+  加成基础系数为 %(scoreConfig.action.seedSeederAndLife.lifeBasicRatio).2f, 根据种子生命每天增加 %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f。
+  如果种子生命(发布时间)为 10 天，则加成系数为 1.02, [100 天是 1.2], [200 天是 1.4], 以此类推，最大加成系数为 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f。
 ```
+* 系统在每个月底会对成功发送过邀请函的用户进行积分奖励，奖励额度为受邀请用户当月的进帐积分的 `%(scoreConfig.transferToInviter.transRatio)f` 倍，目前该奖励功能开关状态为：
+```javascript
+scoreConfig.transferToInviter.enable = %(scoreConfig.transferToInviter.enable)s
+```
+
 &emsp;
 
 #### :white_small_square: 积分扣除规则

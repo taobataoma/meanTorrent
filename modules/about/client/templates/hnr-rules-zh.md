@@ -4,6 +4,10 @@
 
 &emsp;
 
+1. 当前 <mark>H&R</mark> 黑种功能开启状态为：
+```javascript
+hnrConfig.enable = %(hnrConfig.enable)s
+```
 1. 管理员可以随时对任意种子添加或取消 <mark>H&R</mark> 属性。
 1. 黑种下载完成后，您不能马上停止上传，必须达到以下任一条件即可：
   * 做种时间达到 `%(hnrConfig.condition.seedTime_str)s`。

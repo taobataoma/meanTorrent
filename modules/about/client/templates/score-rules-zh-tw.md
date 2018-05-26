@@ -16,16 +16,16 @@
   <span class="text-danger">**注意: 系統根據實際的上傳下載量計算積分。**</span>
 ```javascript
   種子體積加成係數: sqrt(torrent_size / %(scoreConfig.action.seedUpDownload.additionSize_str)s)。
-  每 %(scoreConfig.action.seedUpDownload.perlSize_str)s 上傳量: %(scoreConfig.action.seedUpDownload.uploadValue)d 積分。
-  每 %(scoreConfig.action.seedUpDownload.perlSize_str)s 下載量: %(scoreConfig.action.seedUpDownload.downloadValue)d 積分。
+  每 %(scoreConfig.action.seedUpDownload.perlSize_str)s 上傳量: %(scoreConfig.action.seedUpDownload.uploadValue).2f 積分。
+  每 %(scoreConfig.action.seedUpDownload.perlSize_str)s 下載量: %(scoreConfig.action.seedUpDownload.downloadValue).2f 積分。
   Vip 使用者額外加成係數: %(scoreConfig.action.seedUpDownload.vipRatio).2f 倍。
 
   舉例: 
     種子體積 40G, 則體積加成係數為 2, 假設本次上報上傳量為 10G 下載量為 15G, 則：
-    非 Vip 使用者獲得上傳積分: 2 * 2 * 10 = 40, 下載積分: 2 * 1 * 15 = 30。
-    Vip 使用者獲得上傳積分: 40 * 1.5 = 60, 下載積分: 30 * 1.5 = 45。
+    非 Vip 使用者獲得上傳積分: 2 * 1 * 10 = 20, 下載積分: 2 * 0.5 * 15 = 15。
+    Vip 使用者獲得上傳積分: 20 * 1.5 = 30, 下載積分: 15 * 1.5 = 22.5。
 ```
-* 在做種狀態下，將會獲得由保種時間帶來的保種積分, 每個種子每 `%(scoreConfig.action.seedTimed.additionTime_str)s` 獲得 `%(scoreConfig.action.seedTimed.timedValue)d` 積分，Vip 使用者額外加成係數為 `%(scoreConfig.action.seedTimed.vipRatio).2f`。
+* 在做種狀態下，將會獲得由保種時間帶來的保種積分, 每個種子每 `%(scoreConfig.action.seedTimed.additionTime_str)s` 獲得 `%(scoreConfig.action.seedTimed.timedValue).2f` 積分，Vip 使用者額外加成係數為 `%(scoreConfig.action.seedTimed.vipRatio).2f`。
 * 對於上述兩項獲得的積分, 還會根據種子的生命期和保種人數獲得額外的再次加成，<mark>而且兩種加成疊加生效</mark>。
 ```javascript
   保種人數加成:
@@ -33,7 +33,7 @@
   加成係數: %(scoreConfig.action.seedSeederAndLife.seederCoefficient).2f
   最多保種人數: %(scoreConfig.action.seedSeederAndLife.seederCount)d
   
-  如果只有 1 個保種使用者: 加成係數為 6, [2 使用者為 5.5], [3 使用者為 5], [4 使用者為 4.5], [5 使用者為 4], [6 使用者為 3.5], [7 使用者為 3], [8 使用者為 2.5], [9 使用者為 2], [10 使用者為 1.5], [超過 10 使用者為 1, 相當於沒有加成]。
+  如果只有 1 個保種使用者: 加成係數為 2, [2 使用者為 2.8], [3 使用者為 2.6], [4 使用者為 2.4], [5 使用者為 2.2], [6 使用者為 2.0], [7 使用者為 1.8], [8 使用者為 1.6], [9 使用者為 1.4], [10 使用者為 1.2], [超過 10 使用者為 1, 相當於沒有加成]。
 ```
 ```javascript
   種子生命加成:
@@ -41,9 +41,14 @@
   加成係數: %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f
   最大加成係數: %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f
   
-  加成基礎係數為 1, 根據種子生命每天增加 %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f。
-  如果種子生命(釋出時間)為 10 天，則加成係數為 1.05, [100 天是 1.5], [200 天是 2.0], 以此類推，最大加成係數為 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f。
+  加成基礎係數為 %(scoreConfig.action.seedSeederAndLife.lifeBasicRatio).2f, 根據種子生命每天增加 %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f。
+  如果種子生命(釋出時間)為 10 天，則加成係數為 1.02, [100 天是 1.2], [200 天是 1.4], 以此類推，最大加成係數為 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f。
 ```
+* 系統在每個月底會對成功發送過邀請函的用戶進行積分獎勵，獎勵額度為受邀請用戶當月的進帳積分的 `%(scoreConfig.transferToInviter.transRatio)f` 倍，目前該獎勵功能開關狀態為：
+```javascript
+scoreConfig.transferToInviter.enable = %(scoreConfig.transferToInviter.enable)s
+```
+
 &emsp;
 
 #### :white_small_square: 積分扣除規則

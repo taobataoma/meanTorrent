@@ -4,6 +4,10 @@
 
 &emsp;
 
+1. 當前 <mark>H&R</mark> 黑種功能開啟狀態為：
+```javascript
+hnrConfig.enable = %(hnrConfig.enable)s
+```
 1. 管理員可以隨時對任意種子新增或取消 <mark>H&R</mark> 屬性。
 1. 黑種下載完成後，您不能馬上停止上傳，必須達到以下任一條件即可：
   * 做種時間達到 `%(hnrConfig.condition.seedTime_str)s`。

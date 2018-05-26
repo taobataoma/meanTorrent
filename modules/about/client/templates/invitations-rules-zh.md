@@ -22,6 +22,11 @@
 ```javascript
 invite.banUserInviter = %(inviteConfig.banUserInviter)s
 ```
+1. 如果您对站点做出了突出贡献，站内会不定期根据您的贡献向您赠送一定数量的邀请以做为奖励。
+1. 系统在每个月底会对成功发送过邀请函的用户进行积分奖励，奖励额度为受邀请用户当月的进帐积分的 `%(scoreConfig.transferToInviter.transRatio)f` 倍，目前该奖励功能开关状态为：
+```javascript
+scoreConfig.transferToInviter.enable = %(scoreConfig.transferToInviter.enable)s
+```
 
 &emsp;
 

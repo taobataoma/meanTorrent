@@ -16,17 +16,16 @@
   <span class="text-danger">**NOTE: The system calculates the points based on the actual upload and download amount.**</span>
 ```javascript
   Torrent size addition ratio: sqrt(torrent_size / %(scoreConfig.action.seedUpDownload.additionSize_str)s).
-  Uploaded per %(scoreConfig.action.seedUpDownload.perlSize_str)s: %(scoreConfig.action.seedUpDownload.uploadValue)d scores.
-  Downloaded per %(scoreConfig.action.seedUpDownload.perlSize_str)s: %(scoreConfig.action.seedUpDownload.downloadValue)d scores.
+  Uploaded per %(scoreConfig.action.seedUpDownload.perlSize_str)s: %(scoreConfig.action.seedUpDownload.uploadValue).2f scores.
+  Downloaded per %(scoreConfig.action.seedUpDownload.perlSize_str)s: %(scoreConfig.action.seedUpDownload.downloadValue).2f scores.
   Vip user extra adition: ratio of %(scoreConfig.action.seedUpDownload.vipRatio).2f
 
   Examples: 
     for 40G torrent, the size addition ratio is 2, announce uploaded 10G and downloaded 15G,
-    none vip user get uploaded scores: 2 * 2 * 10 = 40, downloaded scores: 2 * 1 * 15 = 30. 
-    vip user get uploaded scores: 40 * 1.5 = 60, downloaded scores: 30 * 1.5 = 45.
+    none vip user get uploaded scores: 2 * 1 * 10 = 20, downloaded scores: 2 * 0.5 * 15 = 15. 
+    vip user get uploaded scores: 20 * 1.5 = 30, downloaded scores: 15 * 1.5 = 22.5.
 ```
-* In the seeding state, the seeding scores will be get from the seeding time. 
-For every seed, `%(scoreConfig.action.seedTimed.timedValue)d` scores per `%(scoreConfig.action.seedTimed.additionTime_str)s`, vip user extra addition ratio is `%(scoreConfig.action.seedTimed.vipRatio).2f`.
+* In the seeding state, the seeding scores will be get from the seeding time. For every seed, `%(scoreConfig.action.seedTimed.timedValue).2f` scores per `%(scoreConfig.action.seedTimed.additionTime_str)s`, vip user extra addition ratio is `%(scoreConfig.action.seedTimed.vipRatio).2f`.
 * Scores got for the above two items, will get extra addition based on the seed life and seeding users, <mark>And two kinds of addition are available at the same time</mark>.
 ```javascript
   With seeding user:
@@ -34,7 +33,7 @@ For every seed, `%(scoreConfig.action.seedTimed.timedValue)d` scores per `%(scor
   Coefficient is: %(scoreConfig.action.seedSeederAndLife.seederCoefficient).2f
   Seecer count less than: %(scoreConfig.action.seedSeederAndLife.seederCount)d
   
-  For 1 seeding user, the extra addition ratio is: 6, [for 2 is 5.5], [for 3 is 5], [for 4 is 4.5], [for 5 is 4], [for 6 is 3.5], [for 7 is 3], [for 8 is 2.5], [for 9 is 2], [for 10 is 1.5], [more than 10 is 1, same as no extra addition].
+  For 1 seeding user, the extra addition ratio is: 3, [for 2 is 2.8], [for 3 is 2.6], [for 4 is 2.4], [for 5 is 2.2], [for 6 is 2.0], [for 7 is 1.8], [for 8 is 1.6], [for 9 is 1.4], [for 10 is 1.2], [more than 10 is 1, same as no extra addition].
 ```
 ```javascript
   With seed life:
@@ -42,8 +41,12 @@ For every seed, `%(scoreConfig.action.seedTimed.timedValue)d` scores per `%(scor
   Coefficient is: %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f
   Max ratio is: %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f
   
-  The basic ratio is 1, increase %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f every day.
-  For 10 days life ratio is 1.05, [100 days is 1.5], [200 days is 2.0] etc, the max ratio is %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f.
+  The basic ratio is %(scoreConfig.action.seedSeederAndLife.lifeBasicRatio).2f, increase %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f every day.
+  For 10 days life ratio is 1.02, [100 days is 1.2], [200 days is 1.4] etc, the max ratio is %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f.
+```
+* At the end of each month, the system will award scores to users who have successfully sent invitations. the score number limit is the percentage `%(scoreConfig.transferToInviter.transRatio)f` of the monthly got of the invited users, the current award function enable status is：
+```javascript
+scoreConfig.transferToInviter.enable = %(scoreConfig.transferToInviter.enable)s
 ```
 
 &emsp;
