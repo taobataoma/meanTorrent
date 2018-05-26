@@ -34,4 +34,4 @@ invite.banUserInviter = %(inviteConfig.banUserInviter)s
 %(signConfig.emailAllowable[1])s
 ```
 1. 註冊完成後，您可能需要通過註冊郵件內的激活地址完成最後的帳戶啟用操作。
-1. 對於剛加入的普通新用戶，您可能需要了解站內的 [使用者帳號細則](/about/manual/userAccountRules) 以及站內的各項規章制度。
+1. 對於剛加入的普通新用戶，您可能需要了解站內的 [用戶帳號細則](/about/manual/userAccountRules) 以及站內的各項規章制度。
