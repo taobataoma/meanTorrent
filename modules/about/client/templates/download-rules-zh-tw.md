@@ -10,7 +10,7 @@
 1. 系統對新註冊 `%(announceConfig.downloadCheck.checkAfterSignupDays)d` 天內的用戶進行不下載行為的分享率檢查，所以新用戶應該在此時間內儘可能的提高自已的分享率。
 1. 不要在未出種的情況下停止做種，如有特殊情況，請在相關種子下留言說明。
 1. 如果您下載的是 H&R 黑種，請仔細閱讀 [黑種相關細則](/about/manual/hnrRules)，並及時處理黑種警告。
-1. 每使用者每種最多同時允許 `%(announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent)d` 個下載，`%(announceConfig.announceCheck.maxSeedNumberPerUserPerTorrent)d` 個上傳。
+1. 每位用戶每次最多同時允許 `%(announceConfig.announceCheck.maxLeechNumberPerUserPerTorrent)d` 個下載，`%(announceConfig.announceCheck.maxSeedNumberPerUserPerTorrent)d` 個上傳。
 1. 系統可能會在某些時候開啟完成下載檢查，即不允許對非本站下載的種子進行保種，當前設定值為：
 ```javascript
   announce.seedingInFinishedCheck = %(announceConfig.seedingInFinishedCheck)s
@@ -24,11 +24,11 @@
 1. 種子釋出者按 `%(salesGlobalConfig.uploader.value.Ur).2f` 倍的上傳量計算。
 1. 分流者按正常上傳下載量計算。
 1. 所有用戶所有種子上傳下載量享有促銷加成，如遇全局促銷則享有全局促銷加成。
-1. VIP 用戶的上傳下載量以及做種積分享有額外的加成，詳情請參考 [VIP 使用者權益細則](/about/manual/vipRules)。
+1. VIP 用戶的上傳下載量以及做種積分享有額外的加成，詳情請參考 [VIP 用戶者權益細則](/about/manual/vipRules)。
 1. 對做種人數較少（ < `%(scoreConfig.action.seedSeederAndLife.seederCount)d` 人）的種子保種可獲得額外的積分加成。
 1. 對發佈時間越久的種子保種可獲得更多的積分加成。
 1. 對體積越大的種子種子保種可獲得更高的上傳量加成。
-1. 更多積分統計細則請參考 [使用者積分細則](/about/manual/scoreRules)。
+1. 更多積分統計細則請參考 [用戶積分細則](/about/manual/scoreRules)。
 
 &emsp;
 
