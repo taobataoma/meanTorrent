@@ -20,6 +20,7 @@ var path = require('path'),
   UserMonthsLog = mongoose.model('UserMonthsLog'),
   ScoreLog = mongoose.model('ScoreLog'),
   Trace = mongoose.model('Trace'),
+  Invitation = mongoose.model('Invitation'),
   scoreUpdate = require(path.resolve('./config/lib/score')).update,
   backup = require('mongodb-backup');
 
@@ -84,6 +85,7 @@ module.exports = function (app) {
   cronJobs.push(removeGhostPeers());
   cronJobs.push(removeOldServerMessages());
   cronJobs.push(removeOldLogData());
+  cronJobs.push(removeExpiredUserInvitations());
   cronJobs.push(checkUserAccountIdleStatus());
 
   if (hnrConfig.enable) {
@@ -270,11 +272,39 @@ function removeOldLogData() {
 }
 
 /**
+ * removeExpiredUserInvitations
+ */
+function removeExpiredUserInvitations() {
+  var cronJob = new CronJob({
+    cronTime: '00 15 1 * * *',
+    onTick: function () {
+      logger.info(chalk.green('removeExpiredUserInvitations: process!'));
+
+      //remove announce-log old data
+      Invitation.remove({
+        status: 0,    //include exchange and present invitations, official invitations status start of 1
+        expiresat: {$lt: Date.now()}
+      }, function (err) {
+        if (err) {
+          logger.error(err);
+        }
+      });
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  cronJob.start();
+
+  return cronJob;
+}
+
+/**
  * checkUserAccountIdleStatus
  */
 function checkUserAccountIdleStatus() {
   var cronJob = new CronJob({
-    cronTime: '00 15 1 * * *',
+    cronTime: '00 20 1 * * *',
     // cronTime: '*/30 * * * * *',
     onTick: function () {
       logger.info(chalk.green('checkUserAccountIdleStatus: process!'));
