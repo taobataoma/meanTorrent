@@ -282,6 +282,19 @@
 
                 <dt class="h-line">{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.replies }}</dd>
+
+                <li class="status-divider"></li>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.ADMIN_REMARKS' | translate}}：</dt>
+                <dd class="h-line">
+                    <div class="padding-top-10 padding-bottom-10">
+                        <textarea class="form-control" rows="8" ng-model="vm.user.remarks"></textarea>
+                        <button class="btn btn-default btn-width-100 margin-top-10"
+                                ng-click="vm.saveRemarks()">
+                            {{'STATUS_FIELD.BTN_SAVE_REMARKS' | translate}}
+                        </button>
+                    </div>
+                </dd>
             </dl>
         </div>
     </div>

@@ -643,6 +643,11 @@
     PRESENT_INVITATIONS_SUCCESSFULLY: '赠送邀请成功',
     PRESENT_INVITATIONS_FAILED: '赠送邀请失败',
 
+    EDIT_USER_SUCCESSFULLY: '修改用户信息成功',
+    EDIT_USER_FAILED: '修改用户信息失败',
+    UPDATE_REMARKS_SUCCESSFULLY: '更新用户备注信息成功',
+    UPDATE_REMARKS_FAILED: '更新用户备注信息失败',
+
     ANNOUNCE_EDIT_TIP: '上传一个种子文件, </br>自动替换 <mark>Announce URL</mark> 与 <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
 
@@ -1010,7 +1015,9 @@
       LEECHED_IP: '下载过的IP列表',
       CURR_SIGNED_IP: '当前登录的IP',
       CURR_LEECHED_IP: '最近一次下载IP',
-      BT_CLIENT: '下载过的BT客户端'
+      BT_CLIENT: '下载过的BT客户端',
+      ADMIN_REMARKS: '管理员备注',
+      BTN_SAVE_REMARKS: '保存备注'
     },
     TORRENT_TYPE_LABEL: {
       MOVIE: '电影',

@@ -643,6 +643,11 @@
     PRESENT_INVITATIONS_SUCCESSFULLY: 'Present invitations successfully',
     PRESENT_INVITATIONS_FAILED: 'Present invitations failed',
 
+    EDIT_USER_SUCCESSFULLY: 'Edit user info successfully',
+    EDIT_USER_FAILED: 'Edit user info failed',
+    UPDATE_REMARKS_SUCCESSFULLY: 'Update user remarks successfully',
+    UPDATE_REMARKS_FAILED: 'Update user remarks failed',
+
     ANNOUNCE_EDIT_TIP: 'Upload a torrent file, </br>automatic replacement <mark>Announce URL</mark> & <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
 
@@ -1010,7 +1015,9 @@
       LEECHED_IP: 'Leeched IP list',
       CURR_SIGNED_IP: 'Current signed IP',
       CURR_LEECHED_IP: 'Latest leeched IP',
-      BT_CLIENT: 'Leeched BT Client list'
+      BT_CLIENT: 'Leeched BT Client list',
+      ADMIN_REMARKS: 'Admin Remarks',
+      BTN_SAVE_REMARKS: 'Save remarks'
     },
     TORRENT_TYPE_LABEL: {
       MOVIE: 'Movie',

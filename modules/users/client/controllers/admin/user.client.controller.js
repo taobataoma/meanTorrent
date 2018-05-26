@@ -109,9 +109,9 @@
         $state.go('admin.user', {
           userId: user._id
         });
-        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> User saved successfully!'});
-      }, function (errorResponse) {
-        Notification.error({message: errorResponse.data.message, title: '<i class="glyphicon glyphicon-remove"></i> User update error!'});
+        NotifycationService.showSuccessNotify('EDIT_USER_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'EDIT_USER_FAILED');
       });
     }
 
@@ -452,6 +452,19 @@
       function onError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'PRESENT_INVITATIONS_FAILED');
       }
+    };
+
+    /**
+     * saveRemarks
+     */
+    vm.saveRemarks = function () {
+      vm.user.$update(function (res) {
+        vm.user = res;
+        NotifycationService.showSuccessNotify('UPDATE_REMARKS_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'UPDATE_REMARKS_FAILED');
+      });
+
     };
   }
 }());

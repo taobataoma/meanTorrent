@@ -264,6 +264,12 @@ var UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  /* for operate history */
+  history: [CommonSchema.HistorySchema],
+  remarks: {
+    type: String,
+    default: ''
+  },
   /* for sing up active */
   signUpActiveToken: {
     type: String

@@ -53,6 +53,7 @@ exports.update = function (req, res) {
   user.displayName = user.firstName + ' ' + user.lastName;
   user.roles = req.body.roles;
   user.upload_access = req.body.upload_access;
+  user.remarks = req.body.remarks;
 
   user.save(function (err) {
     if (err) {

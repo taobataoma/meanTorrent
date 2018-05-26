@@ -643,6 +643,11 @@
     PRESENT_INVITATIONS_SUCCESSFULLY: '贈送邀請成功',
     PRESENT_INVITATIONS_FAILED: '贈送邀請失敗',
 
+    EDIT_USER_SUCCESSFULLY: '修改用戶信息成功',
+    EDIT_USER_FAILED: '修改用戶信息失敗',
+    UPDATE_REMARKS_SUCCESSFULLY: '更新用戶備註信息成功',
+    UPDATE_REMARKS_FAILED: '更新用戶備註信息失敗',
+
     ANNOUNCE_EDIT_TIP: '上傳一個種子檔案, </br>自動替換 <mark>Announce URL</mark> 與 <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
 
@@ -1010,7 +1015,9 @@
       LEECHED_IP: '下載過的IP列表',
       CURR_SIGNED_IP: '當前登入的IP',
       CURR_LEECHED_IP: '最近一次下載IP',
-      BT_CLIENT: '下載過的BT客戶端'
+      BT_CLIENT: '下載過的BT客戶端',
+      ADMIN_REMARKS: '管理員備註',
+      BTN_SAVE_REMARKS: '保存備註'
     },
     TORRENT_TYPE_LABEL: {
       MOVIE: '電影',
