@@ -1,6 +1,6 @@
 ### :orange_book: 禁令與處罰細則 - %(appConfig.name)s
 ---
-**%(appConfig.name)s** 是一個私有的資源分享平臺，在 %(appConfig.name)s 做任何事情之前，管理組都建議您仔細閱讀站點的各項規則，使用者手冊的各項細則對違禁行為做出了明確的定義與解釋，如果您違返了這些禁令，您將會受到最嚴厲的處罰其至帳號被禁止。
+**%(appConfig.name)s** 是一個私有的資源分享平臺，在 %(appConfig.name)s 做任何事情之前，管理組都建議您仔細閱讀站點的各項規則，用戶手冊的各項細則對違禁行為做出了明確的定義與解釋，如果您違返了這些禁令，您將會受到最嚴厲的處罰其至帳號被禁止。
 &emsp;
 
 #### :white_small_square: 特別禁止
@@ -19,7 +19,7 @@
 
 1. <span class="text-danger">只要您違返了某些禁令，您將可能受到最頂格的處罰。</span>
 1. <span class="text-danger">在連帶懲罰選項開啟的情況下，如果您的帳號被禁止，這將連累到您的邀請者導致邀請者的帳號也被禁止。</span>
-1. <span class="text-danger">被連帶處罰的使用者不受身份限制，即使是 VIP 使用者也不例外。</span>
+1. <span class="text-danger">被連帶處罰的用戶不受身份限制，即使是 VIP 用戶也不例外。</span>
 1. <span class="text-danger">當前連帶懲罰選項開啟狀態為：</span>
 ```javascript
 invite.banUserInviter = %(inviteConfig.banUserInviter)s
