@@ -397,13 +397,19 @@ module.exports = {
      *                  if exceed the expiration time, the invite send qualifications will invalid and user also can not signin(register).
      * @expires_str:    string desc of @expires
      * @banUserInviter: settings whether ban the user`s inviter when a user banned
+     *
+     * @official:       settings of official invitations
+     *    @presentDays: settings of present official available days list
      */
     invite: {
       openInvite: true,
       scoreExchange: 10000,
       expires: 60 * 60 * 1000 * 24,
       expires_str: '24h',
-      banUserInviter: true
+      banUserInviter: true,
+      official: {
+        presentDays: [1, 10, 30, 90, 180]
+      }
     },
 
     /**
@@ -699,6 +705,7 @@ module.exports = {
         OperDeleteBackupFiles: {name: 'OperDeleteBackupFiles', enable: true},
 
         userInvitationExchange: {name: 'userInvitationExchange', enable: true},
+        adminPresentInvitations: {name: 'adminPresentInvitations', enable: true},
         adminRemoveHnrWarning: {name: 'adminRemoveHnrWarning', enable: true},
         userRemoveHnrWarning: {name: 'userRemoveHnrWarning', enable: true},
         userSendInvitation: {name: 'userSendInvitation', enable: true},
@@ -1329,7 +1336,8 @@ module.exports = {
      * @collectionsListPerPage:   movie collections list page settings
      * @backupFilesListPerPage:   system backup files list page settings
      * @torrentPeersListPerPage:  torrent detail seeder & leecher users list page settings
-     * @invitationsListPerPage:   official invitations list page settings
+     * @officialInvitationsListPerPage:   official invitations list page settings
+     * @userInvitationsListPerPage:       users invitations list page settings
      *
      * @uploaderUserListPerPage:  admin management uploader access list page settings
      * @messageBoxListPerPage:    message box list page settings
@@ -1364,7 +1372,8 @@ module.exports = {
       collectionsListPerPage: 9,
       backupFilesListPerPage: 20,
       torrentPeersListPerPage: 20,
-      invitationsListPerPage: 20,
+      officialInvitationsListPerPage: 20,
+      userInvitationsListPerPage: 10,
 
       uploaderUserListPerPage: 20,
       messageBoxListPerPage: 10,

@@ -26,6 +26,11 @@ var InvitationSchema = new Schema({
     trim: true,
     default: ''
   },
+  type: {
+    type: String,
+    enum: ['exchange', 'present', 'official'],    //'exchange' is from user`s score, 'present' is from official, 'official' is official invitations
+    default: 'exchange'
+  },
   status: {
     type: Number,
     default: 0    //0 is unregistered invitation, 1 already invite friend, 2 is already registered

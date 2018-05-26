@@ -635,6 +635,14 @@
     SET_DOWNLOADED_SUCCESSFULLY: '新增用戶下載量成功',
     SET_DOWNLOADED_FAILED: '新增用戶下載量成功',
 
+    PRESENT_INVITATIONS_TITLE: '贈送邀請',
+    PRESENT_INVITATIONS_NUMBERS: '邀請數量:',
+    PRESENT_INVITATIONS_DAYS: '有效天數:',
+    BTN_PRESENT: '贈送',
+    BTN_PRESENT_INVITATIONS: '贈送邀請',
+    PRESENT_INVITATIONS_SUCCESSFULLY: '贈送邀請成功',
+    PRESENT_INVITATIONS_FAILED: '贈送邀請失敗',
+
     ANNOUNCE_EDIT_TIP: '上傳一個種子檔案, </br>自動替換 <mark>Announce URL</mark> 與 <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
 
@@ -1065,12 +1073,16 @@
       TITLE_OPERATION: '操作',
       TITLE_SENDER: '傳送人',
       TITLE_TOKEN: '邀請碼',
+      TITLE_TYPE: '類型',
       TITLE_EMAIL: '郵箱',
       TITLE_SEND: '傳送邀請',
       TITLE_STATUS: '狀態',
       TITLE_STATUS_REGED: '已註冊',
       TITLE_STATUS_UNREGED: '未註冊',
-      TITLE_STATUS_EXPIRED: '已失效'
+      TITLE_STATUS_EXPIRED: '已失效',
+      TYPE_EXCHANGE: '積分兌換',
+      TYPE_PRESENT: '官方贈送',
+      TYPE_OFFICIAL: '官方邀請'
     },
     GET_INVITATIONS_ERROR: '獲取邀請列表失敗',
     BUTTON_INVITE: '傳送',

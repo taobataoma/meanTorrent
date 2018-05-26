@@ -635,6 +635,14 @@
     SET_DOWNLOADED_SUCCESSFULLY: 'Add user downloaded successfully',
     SET_DOWNLOADED_FAILED: 'Add user downloaded failed',
 
+    PRESENT_INVITATIONS_TITLE: 'Present invitations',
+    PRESENT_INVITATIONS_NUMBERS: 'Invitation numbers:',
+    PRESENT_INVITATIONS_DAYS: 'Available days:',
+    BTN_PRESENT: 'Present',
+    BTN_PRESENT_INVITATIONS: 'Present invitations',
+    PRESENT_INVITATIONS_SUCCESSFULLY: 'Present invitations successfully',
+    PRESENT_INVITATIONS_FAILED: 'Present invitations failed',
+
     ANNOUNCE_EDIT_TIP: 'Upload a torrent file, </br>automatic replacement <mark>Announce URL</mark> & <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
 
@@ -1065,12 +1073,16 @@
       TITLE_OPERATION: 'Operation',
       TITLE_SENDER: 'Sender',
       TITLE_TOKEN: 'Token',
+      TITLE_TYPE: 'Type',
       TITLE_EMAIL: 'Email',
       TITLE_SEND: 'Send an invitation',
       TITLE_STATUS: 'Status',
       TITLE_STATUS_REGED: 'signed',
       TITLE_STATUS_UNREGED: 'unsigned',
-      TITLE_STATUS_EXPIRED: 'expired'
+      TITLE_STATUS_EXPIRED: 'expired',
+      TYPE_EXCHANGE: 'exchange',
+      TYPE_PRESENT: 'present',
+      TYPE_OFFICIAL: 'official'
     },
     GET_INVITATIONS_ERROR: 'Get invitations failed',
     BUTTON_INVITE: 'Send',

@@ -50,6 +50,8 @@ module.exports = function (app) {
     .get(follow.getUserFollowing);
   app.route('/api/users/:userId/resetImage').all(adminPolicy.isAllowed)
     .put(admin.resetUserProfileImage);
+  app.route('/api/users/:userId/presentInvitations').all(adminPolicy.isAllowed)
+    .put(admin.presentInvitations);
 
   app.route('/api/users/:userId/VIPMonths/reset').all(adminPolicy.isAllowed)
     .put(admin.resetVIPData);

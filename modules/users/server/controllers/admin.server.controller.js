@@ -12,6 +12,7 @@ var path = require('path'),
   Peer = mongoose.model('Peer'),
   Torrent = mongoose.model('Torrent'),
   Complete = mongoose.model('Complete'),
+  Invitation = mongoose.model('Invitation'),
   moment = require('moment'),
   async = require('async'),
   ScoreLog = mongoose.model('ScoreLog'),
@@ -539,6 +540,44 @@ exports.resetVIPData = function (req, res) {
       user: user._id,
       reset: true
     });
+  });
+};
+
+/**
+ * presentInvitations
+ * @param req
+ * @param res
+ */
+exports.presentInvitations = function (req, res) {
+  var user = req.model;
+  var numbers = req.body.numbers;
+  var days = req.body.days;
+  var invitations = [];
+
+  for (var i = 0; i < numbers; i++) {
+    var invitation = new Invitation();
+    invitation.expiresat = Date.now() + (60 * 60 * 1000 * 24 * days);
+    invitation.user = user;
+    invitation.type = 'present';
+    invitation.isOfficial = false;
+    invitation.token = user.randomAsciiString(32);
+
+    invitations.push(invitation);
+  }
+
+  Invitation.insertMany(invitations, function (err, docs) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(user);
+      //create trace log
+      traceLogCreate(req, traceConfig.action.adminPresentInvitations, {
+        user: user._id,
+        invitations: docs
+      });
+    }
   });
 };
 

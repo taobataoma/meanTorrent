@@ -31,7 +31,7 @@
      */
     vm.buildPager = function () {
       vm.pagedItems = [];
-      vm.itemsPerPage = vm.itemsPerPageConfig.invitationsListPerPage;
+      vm.itemsPerPage = vm.itemsPerPageConfig.officialInvitationsListPerPage;
       vm.currentPage = 1;
       vm.figureOutItemsToDisplay();
     };

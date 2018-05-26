@@ -635,6 +635,14 @@
     SET_DOWNLOADED_SUCCESSFULLY: '添加用户下载量成功',
     SET_DOWNLOADED_FAILED: '添加用户下载量成功',
 
+    PRESENT_INVITATIONS_TITLE: '赠送邀请',
+    PRESENT_INVITATIONS_NUMBERS: '邀请数量:',
+    PRESENT_INVITATIONS_DAYS: '有效天数:',
+    BTN_PRESENT: '赠送',
+    BTN_PRESENT_INVITATIONS: '赠送邀请',
+    PRESENT_INVITATIONS_SUCCESSFULLY: '赠送邀请成功',
+    PRESENT_INVITATIONS_FAILED: '赠送邀请失败',
+
     ANNOUNCE_EDIT_TIP: '上传一个种子文件, </br>自动替换 <mark>Announce URL</mark> 与 <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
 
@@ -1065,12 +1073,16 @@
       TITLE_OPERATION: '操作',
       TITLE_SENDER: '发送人',
       TITLE_TOKEN: '邀请码',
+      TITLE_TYPE: '类型',
       TITLE_EMAIL: '邮箱',
       TITLE_SEND: '发送邀请',
       TITLE_STATUS: '状态',
       TITLE_STATUS_REGED: '已注册',
       TITLE_STATUS_UNREGED: '未注册',
-      TITLE_STATUS_EXPIRED: '已失效'
+      TITLE_STATUS_EXPIRED: '已失效',
+      TYPE_EXCHANGE: '积分兑换',
+      TYPE_PRESENT: '官方赠送',
+      TYPE_OFFICIAL: '官方邀请'
     },
     GET_INVITATIONS_ERROR: '获取邀请列表失败',
     BUTTON_INVITE: '发送',

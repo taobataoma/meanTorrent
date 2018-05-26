@@ -8,7 +8,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="top_of_my_invitations_list">
             <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center mt-title">
@@ -25,44 +25,77 @@
                         <h4>{{ 'INVITATION_IS_EMPTY' | translate }}</h4>
                     </div>
 
-                    <div class="table-responsive" ng-if="vm.my_invitations.length>0">
-                        <table class="table table-hover table-valign-middle">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th class="text-center">{{'INVITATION.TITLE_TOKEN' | translate}}</th>
-                                    <th class="text-center">{{'INVITATION.TITLE_CREATEDAT' | translate}}</th>
-                                    <th class="text-center">{{'INVITATION.TITLE_EXPIRESAT' | translate}}</th>
-                                    <th class="text-center">{{'INVITATION.TITLE_OPERATION' | translate}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="r in vm.my_invitations">
-                                    <td class="text-center">{{$index+1}}</th>
-                                    <td class="text-center">{{r.token}}</td>
-                                    <td class="text-center width-120">{{r.createdat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                                    <td class="text-center width-120">{{r.expiresat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-default btn-xs" js-popover
-                                                uib-popover-template="vm.invitePopover.templateUrl"
-                                                popover-title="{{vm.invitePopover.title | translate}}"
-                                                popover-trigger="'outsideClick'"
-                                                popover-placement="top-right"
-                                                popover-is-open="vm.invitePopover.items[$index].isOpen"
-                                                popover-class="invite-popover"
-                                                ng-click="vm.sendClicked($index);">
-                                            {{'INVITATION.TITLE_SEND' | translate}}
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="margin-left-10 margin-right-10 invitations-list" ng-if="vm.my_invitations.length>0">
+                        <div class="pagination-div-top">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.myItemsPerPage"
+                                        total-items="vm.myFilterLength"
+                                        ng-model="vm.myCurrentPage"
+                                        ng-change="vm.myPageChanged()"
+                                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-valign-middle tb-my">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="text-center">{{'INVITATION.TITLE_TOKEN' | translate}}</th>
+                                        <th class="text-center">{{'INVITATION.TITLE_TYPE' | translate}}</th>
+                                        <th class="text-center">{{'INVITATION.TITLE_CREATEDAT' | translate}}</th>
+                                        <th class="text-center">{{'INVITATION.TITLE_EXPIRESAT' | translate}}</th>
+                                        <th class="text-center">{{'INVITATION.TITLE_OPERATION' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="r in vm.myPagedItems">
+                                        <td class="text-center">{{$index+1}}
+                                        </th>
+                                        <td class="text-center">{{r.token}}</td>
+                                        <td class="text-center">
+                                        <span class="badge" ng-class="r.type == 'exchange' ? 'badge_success' : 'badge_mt'">
+                                            {{'INVITATION.TYPE_'+r.type.toUpperCase() | translate}}
+                                        </span>
+                                        </td>
+                                        <td class="text-center width-120">{{r.createdat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                        <td class="text-center width-120">{{r.expiresat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-default btn-xs" js-popover
+                                                    uib-popover-template="vm.invitePopover.templateUrl"
+                                                    popover-title="{{vm.invitePopover.title | translate}}"
+                                                    popover-trigger="'outsideClick'"
+                                                    popover-placement="top-right"
+                                                    popover-is-open="vm.invitePopover.items[$index].isOpen"
+                                                    popover-class="invite-popover"
+                                                    ng-click="vm.sendClicked($index);">
+                                                {{'INVITATION.TITLE_SEND' | translate}}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="pagination-div-bottom">
+                            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.myItemsPerPage"
+                                total-items="vm.myFilterLength"
+                                ng-model="vm.myCurrentPage"
+                                ng-change="vm.myPageChanged()"
+                                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="top_of_invitations_list">
             <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center mt-title">
@@ -79,45 +112,75 @@
                         <h4>{{ 'INVITATION_USED_IS_EMPTY' | translate }}</h4>
                     </div>
 
-                    <div class="table-responsive" ng-if="vm.used_invitations.length>0">
-                        <table class="table table-hover table-valign-middle">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th class="text-center">{{'INVITATION.TITLE_TOKEN' | translate}}</th>
-                                    <th class="text-center">{{'INVITATION.TITLE_EMAIL' | translate}}</th>
-                                    <th class="text-center">{{'INVITATION.TITLE_INVITEDAT' | translate}}</th>
-                                    <th class="text-center">{{'INVITATION.TITLE_SIGNUPAT' | translate}}</th>
-                                    <th class="text-center">{{'INVITATION.TITLE_SIGNUPID' | translate}}</th>
-                                    <th class="text-center">{{'INVITATION.TITLE_STATUS' | translate}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="r in vm.used_invitations">
-                                    <td class="text-center">{{$index+1}}</td>
-                                    <td class="text-center">{{r.token}}</td>
-                                    <td class="text-center">{{r.to_email}}</td>
-                                    <td class="text-center width-120">{{r.invitedat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                                    <td class="text-center width-120">{{r.registeredat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                                    <td class="text-center" ng-if="r.to_user"
-                                        uib-popover-template="vm.subuserPopover.templateUrl"
-                                        popover-append-to-body="true"
-                                        popover-trigger="'mouseenter'"
-                                        popover-placement="top-right"
-                                        ng-mouseenter="vm.selectedUser=r.to_user">
-                                        <abbr title="user detail">
-                                            <span user-info="r.to_user" info-uname></span>
-                                            <!--<span message-to="r.to_user" to-class="message-to-icon"></span>-->
-                                        </abbr>
-                                    </td>
-                                    <td class="text-center" ng-if="!r.to_user">
-                                    </td>
-                                    <td class="col-sm-1 text-center">
-                                        <span class="badge" ng-class="r.status == 2 ? 'badge_success' : 'badge_danger'">{{vm.getInvitationStatus(r);}}</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="margin-left-10 margin-right-10 invitations-list" ng-if="vm.used_invitations.length>0">
+                        <div class="pagination-div-top">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-9">
+                                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage"
+                                        total-items="vm.filterLength"
+                                        ng-model="vm.currentPage"
+                                        ng-change="vm.pageChanged()"
+                                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                                    </ul>
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <input class="form-control margin-top-20 margin-bottom-20" type="text" ng-model="vm.search" placeholder="Search"
+                                           ng-change="vm.buildPager()"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-valign-middle tb-official">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="text-center">{{'INVITATION.TITLE_TOKEN' | translate}}</th>
+                                        <th class="text-center">{{'INVITATION.TITLE_EMAIL' | translate}}</th>
+                                        <th class="text-center">{{'INVITATION.TITLE_INVITEDAT' | translate}}</th>
+                                        <th class="text-center">{{'INVITATION.TITLE_SIGNUPAT' | translate}}</th>
+                                        <th class="text-center">{{'INVITATION.TITLE_SIGNUPID' | translate}}</th>
+                                        <th class="text-center">{{'INVITATION.TITLE_STATUS' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="r in vm.pagedItems">
+                                        <td class="text-center">{{$index+1}}</td>
+                                        <td class="text-center">{{r.token}}</td>
+                                        <td class="text-center">{{r.to_email}}</td>
+                                        <td class="text-center width-120">{{r.invitedat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                        <td class="text-center width-120">{{r.registeredat | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                        <td class="text-center" ng-if="r.to_user"
+                                            uib-popover-template="vm.subuserPopover.templateUrl"
+                                            popover-append-to-body="true"
+                                            popover-trigger="'mouseenter'"
+                                            popover-placement="top-right"
+                                            ng-mouseenter="vm.selectedUser=r.to_user">
+                                            <abbr title="user detail">
+                                                <span user-info="r.to_user" info-uname></span>
+                                                <!--<span message-to="r.to_user" to-class="message-to-icon"></span>-->
+                                            </abbr>
+                                        </td>
+                                        <td class="text-center" ng-if="!r.to_user">
+                                        </td>
+                                        <td class="col-sm-1 text-center">
+                                        <span class="badge"
+                                              ng-class="r.status == 2 ? 'badge_success' : 'badge_danger'">{{vm.getInvitationStatus(r);}}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="pagination-div-bottom">
+                            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                                ng-model="vm.currentPage"
+                                ng-change="vm.pageChanged()"
+                                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -19,6 +19,23 @@
         </div>
     </div>
 
+    <div class="row" ng-init="vm.authentication.user.isAdmin">
+        <div class="col-sm-12 text-center">
+            <div class="user-cmd">
+                <button class="btn btn-default"
+                        uib-popover-template="vm.presentInvitationsPopover.templateUrl"
+                        popover-title="{{vm.presentInvitationsPopover.title | translate}}"
+                        popover-trigger="'outsideClick'"
+                        popover-placement="bottom-center"
+                        popover-is-open="vm.presentInvitationsPopover.isOpen"
+                        popover-class="set-invitations-popover"
+                        ng-click="vm.presentInvitationsPopover.numbers = 1; vm.presentInvitationsPopover.days = 1;">
+                    {{'BTN_PRESENT_INVITATIONS' | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="row margin-bottom-30">
         <div class="col-md-10 col-md-offset-1 admin-user-info">
             <dl class="dl-horizontal dl-hover">
@@ -32,7 +49,9 @@
                 </dd>
 
                 <dt class="h-line">ID：</dt>
-                <dd class="h-line"><mark>{{ vm.user._id }}</mark></dd>
+                <dd class="h-line">
+                    <mark>{{ vm.user._id }}</mark>
+                </dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.USERNAME' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.username }}</dd>
@@ -338,6 +357,27 @@
             </div>
             <button class="btn btn-default" ng-click="vm.setUserDownloaded();">{{ 'BUTTON_OK' | translate }}</button>
         </form>
+    </script>
+
+    <script type="text/ng-template" id="present-invitations.html">
+        <form class="set-invitations-popover">
+            <div class="form-group">
+                <label for="numbers">{{ vm.presentInvitationsPopover.label_numbers | translate}}</label>
+                <input type="number" id="numbers" ng-model="vm.presentInvitationsPopover.numbers" class="form-control"
+                       max="100" min="1" autofocus>
+            </div>
+            <div class="form-group">
+                <label>{{ vm.presentInvitationsPopover.label_days | translate}}</label>
+                <div>
+                    <label class="radio-inline" ng-repeat="iv in vm.inviteConfig.official.presentDays">
+                        <input type="radio" ng-model="vm.presentInvitationsPopover.days" name="days" id="days{{iv}}" value="{{iv}}"> {{iv}}
+                    </label>
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-block btn-default margin-top-10 margin-bottom-10"
+                ng-click="vm.presentInvitations();">{{ 'BTN_PRESENT' | translate }}
+        </button>
     </script>
 
 </section>

@@ -14,8 +14,11 @@ body {
     background-color: @mt-body-background-color;
 }
 
-.ui-notification{
-    width: 400px;
+.ui-notification {
+    width: 300px;
+    .message {
+        word-break: break-all;
+    }
 }
 
 .social-list {
@@ -2002,6 +2005,15 @@ body {
 .set-downloaded-popover-form {
     input {
         max-width: 160px;
+    }
+}
+
+.set-invitations-popover {
+    max-width: 250px;
+    width: 250px;
+    height: auto;
+    input {
+        max-width: 100px;
     }
 }
 
