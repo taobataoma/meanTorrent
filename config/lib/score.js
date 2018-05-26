@@ -47,6 +47,7 @@ module.exports.update = function (req, user, action, value, writeLog = true) {
             score: v,
             reason: {
               event: action.name,
+              event_str: action.content,
               params: action.params
             }
           });

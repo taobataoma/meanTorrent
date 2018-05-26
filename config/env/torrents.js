@@ -455,31 +455,32 @@ module.exports = {
         transRatio: 0.001
       },
       action: {
-        defaultAction: {name: 'defaultAction', value: 0, enable: true},
-        adminModify: {name: 'adminModify', value: 0, enable: true},
+        defaultAction: {name: 'defaultAction', content: 'DEFAULT_ACTION', value: 0, enable: true},
+        adminModify: {name: 'adminModify', content: 'ADMIN_MODIFY', value: 0, enable: true},
 
-        transferScoreIntoInviterFrom: {name: 'transferScoreIntoInviterFrom', value: 0, enable: true},
-        transferScoreIntoInviterTo: {name: 'transferScoreIntoInviterTo', value: 0, enable: true},
+        transferScoreIntoInviterFrom: {name: 'transferScoreIntoInviterFrom', content: 'TRANSFER_SCORE_INTO_INVITER_FROM', value: 0, enable: true},
+        transferScoreIntoInviterTo: {name: 'transferScoreIntoInviterTo', content: 'TRANSFER_SCORE_INTO_INVITER_TO', value: 0, enable: true},
 
-        uploadTorrent: {name: 'uploadTorrent', value: 50, enable: true},
-        uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', value: -50, enable: true},
-        uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', value: 10, enable: true},
-        uploadSubtitle: {name: 'uploadSubtitle', value: 20, enable: true},
-        uploadSubtitleBeDeleted: {name: 'uploadSubtitleBeDeleted', value: -20, enable: true},
+        uploadTorrent: {name: 'uploadTorrent', content: 'UPLOAD_TORRENT', value: 50, enable: true},
+        uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', content: 'UPLOAD_TORRENT_BE_DELETED', value: -50, enable: true},
+        uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', content: 'UPLOAD_TORRENT_BE_RECOMMEND', value: 10, enable: true},
+        uploadSubtitle: {name: 'uploadSubtitle', content: 'UPLOAD_SUBTITLE', value: 20, enable: true},
+        uploadSubtitleBeDeleted: {name: 'uploadSubtitleBeDeleted', content: 'UPLOAD_SUBTITLE_BE_DELETED', value: -20, enable: true},
 
-        thumbsUpScoreOfTorrentFrom: {name: 'thumbsUpScoreOfTorrentFrom', value: -10, enable: true},
-        thumbsUpScoreOfTorrentTo: {name: 'thumbsUpScoreOfTorrentTo', value: 10, enable: true},
-        thumbsUpScoreOfTopicFrom: {name: 'thumbsUpScoreOfTopicFrom', value: -10, enable: true},
-        thumbsUpScoreOfTopicTo: {name: 'thumbsUpScoreOfTopicTo', value: 10, enable: true},
+        thumbsUpScoreOfTorrentFrom: {name: 'thumbsUpScoreOfTorrentFrom', content: 'THUMBS_UP_SCORE_OF_TORRENT_FROM', value: -10, enable: true},
+        thumbsUpScoreOfTorrentTo: {name: 'thumbsUpScoreOfTorrentTo', content: 'THUMBS_UP_SCORE_OF_TORRENT_TO', value: 10, enable: true},
+        thumbsUpScoreOfTopicFrom: {name: 'thumbsUpScoreOfTopicFrom', content: 'THUMBS_UP_SCORE_OF_TOPIC_FROM', value: -10, enable: true},
+        thumbsUpScoreOfTopicTo: {name: 'thumbsUpScoreOfTopicTo', content: 'THUMBS_UP_SCORE_OF_TOPIC_TO', value: 10, enable: true},
 
-        postRequest: {name: 'postRequest', value: 0, enable: true}, //value used requests.scoreForAddRequest
-        scoreExchangeInvitation: {name: 'scoreExchangeInvitation', value: 0, enable: true}, //value used invite.scoreExchange
-        scoreToRemoveWarning: {name: 'scoreToRemoveWarning', value: 0, enable: true}, //value used hitAndRun.scoreToRemoveWarning
-        activeIdleAccount: {name: 'activeIdleAccount', value: 0, enable: true}, //value used sign.idle.activeIdleAccountBasicScore
+        postRequest: {name: 'postRequest', content: 'POST_REQUEST', value: 0, enable: true}, //value used requests.scoreForAddRequest
+        scoreExchangeInvitation: {name: 'scoreExchangeInvitation', content: 'SCORE_EXCHANGE_INVITATION', value: 0, enable: true}, //value used invite.scoreExchange
+        scoreToRemoveWarning: {name: 'scoreToRemoveWarning', content: 'SCORETO_REMOVE_WARNING', value: 0, enable: true}, //value used hitAndRun.scoreToRemoveWarning
+        activeIdleAccount: {name: 'activeIdleAccount', content: 'ACTIVE_IDLE_ACCOUNT', value: 0, enable: true}, //value used sign.idle.activeIdleAccountBasicScore
 
         dailyCheckIn: {
           enable: true,
           name: 'dailyCheckIn',
+          content: 'DAILY_CHECK_IN',
           dailyBasicScore: 10,
           dailyStepScore: 1,
           dailyMaxScore: 100
@@ -487,14 +488,15 @@ module.exports = {
 
         seedUpDownload: {
           name: 'seedUpDownload',
+          content: 'SEED_UP_DOWNLOAD',
           additionSize: 1024 * 1024 * 1024 * 10,  //10G
           additionSize_str: '10G',
           perlSize: 1024 * 1024 * 1024,   //1G
           perlSize_str: '1G',
 
-          uploadValue: 2,
+          uploadValue: 1,
           uploadEnable: true,
-          downloadValue: 1,
+          downloadValue: 0.5,
           downloadEnable: true,
           vipRatio: 1.5,
 
@@ -503,21 +505,24 @@ module.exports = {
 
         seedTimed: {
           name: 'seedTimed',
+          content: 'SEED_TIMED',
           additionTime: 60 * 60 * 1000,
           additionTime_str: '1h',
-          timedValue: 1,
+          timedValue: 0.5,
           vipRatio: 1.5,
 
           enable: true
         },
 
         seedSeederAndLife: {
+          name: 'seedSeederAndLife',
+          content: 'SEED_SEEDER_AND_LIFE',
           seederBasicRatio: 1,
-          seederCoefficient: 0.5,
+          seederCoefficient: 0.2,
           seederCount: 10,
           lifeBasicRatio: 1,
-          lifeCoefficientOfDay: 0.005,
-          lifeMaxRatio: 5,
+          lifeCoefficientOfDay: 0.002,
+          lifeMaxRatio: 3,
 
           enable: true
         }
@@ -1169,7 +1174,7 @@ module.exports = {
         value: {Ur: 1.5, Dr: 0}
       },
       uploader: {
-        value: {Ur: 1.5, Dr: 1}
+        value: {Ur: 2, Dr: 1}
       }
     },
 
