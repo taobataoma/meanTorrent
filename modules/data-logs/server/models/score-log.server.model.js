@@ -23,6 +23,7 @@ var ScoreLogSchema = new Schema({
   },
   reason: {
     event: {type: String, trim: true, default: ''},
+    event_str: {type: String, trim: true, default: ''},
     params: {type: Object}
   },
   createdAt: {
