@@ -1124,6 +1124,7 @@
     MESSAGES_IS_LOADING: 'Loading messages, please wait ...',
     MESSAGES_IS_EMPTY: 'Messages Box is empty!',
     OFFICIAL_MESSAGES_TOOLTIP: '<h4>Tip:</h4>In order to maintain a clean list of official messages, please delete messages that have expired over time as they cannot be unilaterally cleared in the users message center.',
+    MARK_AS_ALREADY_READ: 'Mark as already read, do not show next time.',
     MESSAGES_FIELD: {
       TO: 'Send to:',
       TYPE: 'Message type:',
@@ -1143,7 +1144,9 @@
       INFO_SEND_AT: 'at',
       LAST_REPLY_AT: 'Latest reply at',
       NEW_MSG: 'New messages',
-      SERVER_SEND: 'Server send'
+      SERVER_SEND: 'Server send',
+      MUST_READ: 'Must read message',
+      MUST_READ_KEY: 'MustRead'
     },
     BUTTON_MESSAGE_DELETE: 'Delete',
     BUTTON_MESSAGE_CLOSE: 'Close(esc)',

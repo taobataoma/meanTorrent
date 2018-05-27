@@ -8,9 +8,9 @@
   AdminMessagesService.$inject = ['$resource', 'CacheFactory'];
 
   function AdminMessagesService($resource, CacheFactory) {
-    var adminMessagesCache = CacheFactory.get('adminMessagesCache') || CacheFactory.createCache('adminMessagesCache');
+    var messagesCache = CacheFactory.get('messagesCache') || CacheFactory.createCache('messagesCache');
     var removeCache = function (res) {
-      adminMessagesCache.removeAll();
+      messagesCache.removeAll();
       return res.resource;
     };
 
@@ -19,12 +19,12 @@
     }, {
       get: {
         method: 'GET',
-        cache: adminMessagesCache
+        cache: messagesCache
       },
       query: {
         method: 'GET',
         isArray: true,
-        cache: adminMessagesCache
+        cache: messagesCache
       },
       update: {
         method: 'PUT',

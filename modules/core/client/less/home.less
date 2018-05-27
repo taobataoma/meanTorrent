@@ -539,3 +539,56 @@
     padding-top: 30px;
     border-top: solid 1px #1a1a1a;
 }
+
+//popup overlay----------------------------------------------
+/* csslint ignore:start */
+.must_read_popup {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+#must_read_popup_background {
+    transition: all 0.3s 0.05s;
+}
+
+#must_read_popup,
+#must_read_popup_wrapper {
+    transition: all 0.3s ease-out;
+}
+
+#must_read_popup {
+    transform: translateX(0) translateY(-40%);
+}
+
+.popup_visible #must_read_popup {
+    transform: translateX(0) translateY(0);
+}
+
+#must_read_popup,
+#must_read_popup_wrapper {
+    .popup_content {
+        background-color: #fff;
+        opacity: 0.8 !important;
+        width: 80%;
+        top: 20%;
+        border-radius: 4px;
+        h4,
+        .h4 {
+            line-height: 1.6 !important;
+        }
+        .msg-content {
+            font-size: 16px;
+        }
+        .checkbox {
+            font-size: 16px;
+            font-weight: bold;
+            color: @brand-danger;
+        }
+    }
+    .downloading-filename {
+        word-break: break-all;
+    }
+}
+
+/* csslint ignore:end */
+//popup overlay end -------------------------------------------

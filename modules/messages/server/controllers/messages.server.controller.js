@@ -242,6 +242,7 @@ exports.countUnread = function (req, res) {
       }
     });
   };
+
   var countTo = function (callback) {
     Message.count({
       type: 'user',
@@ -255,6 +256,7 @@ exports.countUnread = function (req, res) {
       }
     });
   };
+
   var countServer = function (callback) {
     Message.count({
       type: 'server',
@@ -268,12 +270,12 @@ exports.countUnread = function (req, res) {
       }
     });
   };
+
   var countAdminSystemMessage = function (callback) {
     AdminMessage.count({
       type: 'system',
       createdat: {$gt: req.user.created},
       _readers: {$not: {$in: [req.user._id]}}
-
     }, function (err, count) {
       if (err) {
         callback(err, null);
@@ -282,12 +284,12 @@ exports.countUnread = function (req, res) {
       }
     });
   };
+
   var countAdminAdvertMessage = function (callback) {
     AdminMessage.count({
       type: 'advert',
       createdat: {$gt: req.user.created},
       _readers: {$not: {$in: [req.user._id]}}
-
     }, function (err, count) {
       if (err) {
         callback(err, null);
@@ -297,7 +299,21 @@ exports.countUnread = function (req, res) {
     });
   };
 
-  async.parallel([countFrom, countTo, countServer, countAdminSystemMessage, countAdminAdvertMessage], function (err, results) {
+  var getMustReadMessage = function (callback) {
+    AdminMessage.find({
+      mustRead: true,
+      _readers: {$not: {$in: [req.user._id]}}
+    }, function (err, msgs) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, msgs);
+      }
+    });
+  };
+
+
+  async.parallel([countFrom, countTo, countServer, countAdminSystemMessage, countAdminAdvertMessage, getMustReadMessage], function (err, results) {
     if (err) {
       return res.status(422).send(err);
     } else {
@@ -307,7 +323,8 @@ exports.countUnread = function (req, res) {
         countTo: results[1],
         countServer: results[2],
         countSystem: results[3],
-        countAdvert: results[4]
+        countAdvert: results[4],
+        mustRead: results[5]
       });
     }
   });

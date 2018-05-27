@@ -124,6 +124,8 @@ module.exports = {
      * @debugAnnounceUser:                    setting of debug announce user, NOTE: enable this need @app.writeServerDebugLog must be true too
      *      @debugAll:                        if true, debug all announce user, else debug user in ids list below
      *      @ids:                             debug announce user id list
+     * @debugClientSideUser:                  setting of debug client side user
+     *      @ids:                             debug user id list
      */
     announce: {
       url: 'http://localhost:3000/announce',
@@ -161,6 +163,11 @@ module.exports = {
         ids: [
           '59227f9095602327ea1d96ba',
           '592280c464be9e281a1ec56e'
+        ]
+      },
+      debugClientSideUser: {
+        ids: [
+          '59227f9095602327ea1d96ba'
         ]
       }
     },

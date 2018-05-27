@@ -76,6 +76,7 @@
                                 <i class="fa fa-envelope message-avatar server-message-avatar" ng-if="m.type!='user' && m.type!='server'"></i>
 
                                 <span class="message-title" ng-class="vm.isUnread(m)? 'unread' : 'read'" ng-bind="m.title"></span>
+                                <span class="badge badge_danger" ng-if="m.mustRead">{{'MESSAGES_FIELD.MUST_READ_KEY' | translate}}</span>
 
                                 <p class="message-info" ng-if="m.type=='user'">
                                     <span user-info="m.from_user"

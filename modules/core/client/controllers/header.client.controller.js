@@ -5,11 +5,13 @@
     .module('core')
     .controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
-    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'TorrentsService', 'UsersService', 'DebugConsoleService', 'getStorageLangService'];
+  HeaderController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
+    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'marked', 'UsersService', 'DebugConsoleService', 'getStorageLangService',
+    'AdminMessagesService'];
 
-  function HeaderController($scope, $state, $timeout, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
-                            InvitationsService, $interval, MessagesService, TorrentsService, UsersService, mtDebug, getStorageLangService) {
+  function HeaderController($scope, $rootScope, $state, $timeout, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
+                            InvitationsService, $interval, MessagesService, marked, UsersService, mtDebug, getStorageLangService,
+                            AdminMessagesService) {
     $scope.$state = $state;
     var vm = this;
     vm.user = Authentication.user;
@@ -37,15 +39,26 @@
     /**
      * document.ready()
      */
-    $(document).ready(function () {
-      $('#warning_popup').popup({
+    angular.element(document).ready(function () {
+      $('#must_read_popup').popup({
         outline: false,
         focusdelay: 400,
         vertical: 'top',
         autoopen: false,
         opacity: 0.6,
+        blur: false,
+        escape: false,
         closetransitionend: function () {
-          $('.popup_wrapper').remove();
+          if ($scope.mustReadMessage.markReadMessage) {
+            var mrMsg = new AdminMessagesService({
+              _adminMessageId: $scope.mustReadMessage._id
+            });
+            mrMsg.$update(function (res) {
+              $timeout(function () {
+                vm.getCountUnread();
+              }, 10);
+            });
+          }
         }
       });
     });
@@ -191,23 +204,6 @@
     };
 
     /**
-     * getWarningInfo
-     */
-    vm.getWarningInfo = function () {
-      var sw = localStorageService.get('showed_warning');
-      if (vm.appConfig.showDemoWarningPopup && !sw) {
-        $timeout(function () {
-          $('#warning_popup').popup('show');
-        }, 10);
-
-        localStorageService.set('showed_warning', true);
-      }
-      if (sw) {
-        $('.popup_wrapper').remove();
-      }
-    };
-
-    /**
      * checkMessageUnread
      */
     vm.checkMessageUnread = function () {
@@ -219,7 +215,27 @@
       if (Authentication.user) {
         MessagesService.countUnread(function (data) {
           vm.unreadCount = data.countAll;
+
+          if (data.mustRead.length > 0) {
+            $rootScope.mustReadMessage = data.mustRead[0];
+            $rootScope.mustReadMessage.markReadMessage = false;
+
+            $timeout(function () {
+              $('#must_read_popup').popup('show');
+            }, 10);
+          }
         });
+      }
+    };
+
+    /**
+     * getMustReadMessageContentMarked
+     * @param m
+     * @returns {*}
+     */
+    $rootScope.getMustReadMessageContentMarked = function (m) {
+      if (m) {
+        return marked(m.content, {sanitize: true});
       }
     };
 
@@ -261,20 +277,7 @@
         $translate.use(langKey);
 
         $state.reload();
-        //$state.transitionTo($state.current, $stateParams, {
-        //  reload: true, inherit: false, notify: false
-        //});
       }
-    };
-
-    /**
-     * getSiteInfo
-     */
-    vm.getSiteInfo = function () {
-      TorrentsService.siteInfo(function (data) {
-        vm.siteInfo = data;
-        mtDebug.info(data);
-      });
     };
   }
 }());

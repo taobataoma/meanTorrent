@@ -1,8 +1,8 @@
-<div ng-controller="HeaderController as vm" ng-init="vm.getWarningInfo(); vm.getSiteInfo();">
+<div ng-controller="FooterController as vm" ng-init="vm.getWarningInfo(); vm.getSiteInfo();">
     <div class="filter-footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-0 site-info" ng-hide="!vm.authentication.user && !vm.signConfig.showFooterCountInfoForGuest">
+                <div class="col-md-6 col-md-offset-0 site-info" ng-hide="!vm.user && !vm.signConfig.showFooterCountInfoForGuest">
                     <div class="row">
                         <div class="info-item col-xs-6 col-xs-offset-0 col-sm-5 col-sm-offset-1 col-md-6 col-md-offset-0 col-md-offset-0">{{'TOTAL_USERS' | translate}}:　<span
                                 class="item-data">{{vm.siteInfo.totalUsers}}</span></div>
@@ -65,4 +65,3 @@
         </div>
     </div>
 </div>
-

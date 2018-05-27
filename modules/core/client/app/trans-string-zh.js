@@ -1124,6 +1124,7 @@
     MESSAGES_IS_LOADING: '正在装载, 请稍候 ...',
     MESSAGES_IS_EMPTY: '消息列表为空!',
     OFFICIAL_MESSAGES_TOOLTIP: '<h4>提示：</h4>为了维护一个干净的官方消息列表，请及时将长时间过期的消息删除，因为这些消息在用户的消息中心里不能被单方面清理。',
+    MARK_AS_ALREADY_READ: '标记为已读，下次不再提示。',
     MESSAGES_FIELD: {
       TO: '发送至:',
       TYPE: '消息类型:',
@@ -1143,7 +1144,9 @@
       INFO_SEND_AT: '于',
       LAST_REPLY_AT: '最新回复于',
       NEW_MSG: '条未读消息',
-      SERVER_SEND: '服务器发送'
+      SERVER_SEND: '服务器发送',
+      MUST_READ: '必读消息',
+      MUST_READ_KEY: '必读'
     },
     BUTTON_MESSAGE_DELETE: '删除',
     BUTTON_MESSAGE_CLOSE: '关闭(esc)',
