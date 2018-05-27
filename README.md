@@ -125,6 +125,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 60. Complete resources albums support, oper & admin can create a album and add torrent into it and push it to home page.
 61. Detailed logs, include uploaded and downloaded announce logs, seeding time logs, score changed logs, score changed days log and months log.
 62. Admin can present official invitations to user.
+63. System message support property of 'must read', user must read it and mark it as already read, otherwise it will popup again to minute later.
 
 #### Chat room feature:
 1. Users name list
