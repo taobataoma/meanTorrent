@@ -11,7 +11,6 @@
   function DebugConsoleService(MeanTorrentConfig, Authentication) {
     var appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     var announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
-    var user = Authentication.user;
 
     var service = {
       info: debugInfo
@@ -20,7 +19,7 @@
     return service;
 
     function debugInfo(obj) {
-      if (appConfig.showClientDebugLog && announceConfig.debugClientSideUser.ids.includes(user._id)) {
+      if (appConfig.showClientDebugLog && announceConfig.debugClientSideUser.ids.includes(Authentication.user._id)) {
         console.log(obj);
       }
     }
