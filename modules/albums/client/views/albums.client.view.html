@@ -11,7 +11,7 @@
                         <div class="albums-items">
                             <div ng-repeat="m in vm.albumsList | filter: {type: tp.type}">
                                 <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
-                                <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                                <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                                 <div class="col-sm-6 col-md-4">
                                     <a ui-sref="albums.view({ albumId: m._id })">
                                         <div class="albums-item">
