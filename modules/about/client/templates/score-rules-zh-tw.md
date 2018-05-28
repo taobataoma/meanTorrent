@@ -1,6 +1,6 @@
-### :orange_book: 使用者積分細則 - %(appConfig.name)s
+### :orange_book: 用戶積分細則 - %(appConfig.name)s
 ---
-**%(appConfig.name)s** 提供一個 <mark>使用者積分</mark> 系統，使用者有很多種獲取積分的辦法，而且積分也有非常大的用處。使用者積分也是計算使用者等級的基礎，不同的使用者等級對應不同的訪問許可權，[這裡可以檢視有關使用者等級的細則詳情](/about/manual/userLevelRules)。
+**%(appConfig.name)s** 提供一個 <mark>用戶積分</mark> 系統，用戶有很多種獲取積分的方法，而且積分也有非常大的用處。用戶積分也是計算用戶等級的基礎，不同的用戶等級對應不同的訪問許可權，[這裡可以檢視有關用戶等級的細則詳情](/about/manual/userLevelRules)。
 
 &emsp;
 
@@ -11,7 +11,7 @@
 * 每上傳一條資源字幕可獲得 `%(scoreConfig.action.uploadSubtitle.value)d` 積分。
 * 上傳的資源每收到一個點贊可獲得 `%(scoreConfig.action.thumbsUpScoreOfTorrentTo.value)d` 積分。
 * 論壇釋出的主題或回覆每收到一個點贊可獲得 `%(scoreConfig.action.thumbsUpScoreOfTopicTo.value)d` 積分。
-* 響應使用者的求種請求且被請求者接受時，可獲得請求者釋出的懸賞積分。
+* 響應用戶的求種請求且被請求者接受時，可獲得請求者釋出的懸賞積分。
 * 當客戶端軟體報告上傳或下載量時，會獲得相應的積分，<mark>種子體積越大積分加成越多，種子體積小於 %(scoreConfig.action.seedUpDownload.additionSize_str)s 不享受體積加成</mark>。
   <span class="text-danger">**注意: 系統根據實際的上傳下載量計算積分。**</span>
 ```javascript
@@ -52,9 +52,9 @@ scoreConfig.transferToInviter.enable = %(scoreConfig.transferToInviter.enable)s
 &emsp;
 
 #### :white_small_square: 積分扣除規則
-* 重新啟用長時間未使用的使用者帳戶，帳戶狀態由 <mark>空閒</mark> 變為 <mark>正常</mark>, 扣除 `%(signConfig.idle.activeIdleAccountBasicScore)d` 基礎積分，另外每多空閒一天需多扣除 `%(signConfig.idle.activeMoreScorePerDay).2f` 積分，同時每一級需多扣除 `%(signConfig.idle.activeMoreScorePerLevel).2f` 積分。
+* 重新啟用長時間並未使用的用戶帳戶，帳戶狀態由 <mark>空閒</mark> 變為 <mark>正常</mark>, 扣除 `%(signConfig.idle.activeIdleAccountBasicScore)d` 基礎積分，另外每多空閒一天需多扣除 `%(signConfig.idle.activeMoreScorePerDay).2f` 積分，同時每一級需多扣除 `%(signConfig.idle.activeMoreScorePerLevel).2f` 積分。
 * 兌換一張邀請函，需要扣除 `%(inviteConfig.scoreExchange)d` 積分。
-* 使用者每釋出一條請求，系統會自動回收 `%(requestsConfig.scoreForAddRequest)d` 積分，如果請求被迴應而且被請求者採納，系統會自動扣除請求者懸賞的積分。
+* 用戶每釋出一條請求，系統會自動回收 `%(requestsConfig.scoreForAddRequest)d` 積分，如果請求被迴應而且被請求者採納，系統會自動扣除請求者懸賞的積分。
 * 移除一條 H&R 警告，需要扣除 `%(hnrConfig.scoreToRemoveWarning)d` 積分。
 * 釋出的種子資源被刪除，需要 `%(scoreConfig.action.uploadTorrentBeDeleted.value)d` 積分。
 * 釋出的資源字幕被刪除，需要 `%(scoreConfig.action.uploadSubtitleBeDeleted.value)d` 積分。
