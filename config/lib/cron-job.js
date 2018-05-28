@@ -15,6 +15,13 @@ var path = require('path'),
   Complete = mongoose.model('Complete'),
   Message = mongoose.model('Message'),
   MailTicket = mongoose.model('MailTicket'),
+  AnnounceLog = mongoose.model('AnnounceLog'),
+  UserDaysLog = mongoose.model('UserDaysLog'),
+  UserMonthsLog = mongoose.model('UserMonthsLog'),
+  ScoreLog = mongoose.model('ScoreLog'),
+  Trace = mongoose.model('Trace'),
+  Invitation = mongoose.model('Invitation'),
+  scoreUpdate = require(path.resolve('./config/lib/score')).update,
   backup = require('mongodb-backup');
 
 var mtDebug = require(path.resolve('./config/lib/debug'));
@@ -22,9 +29,11 @@ var appConfig = config.meanTorrentConfig.app;
 var supportConfig = config.meanTorrentConfig.support;
 var backupConfig = config.meanTorrentConfig.backup;
 var announceConfig = config.meanTorrentConfig.announce;
+var scoreConfig = config.meanTorrentConfig.score;
 var signConfig = config.meanTorrentConfig.sign;
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
 var messageConfig = config.meanTorrentConfig.messages;
+var traceConfig = config.meanTorrentConfig.trace;
 
 var inbox = require('inbox');
 var simpleParser = require('mailparser').simpleParser;
@@ -75,10 +84,16 @@ module.exports = function (app) {
 
   cronJobs.push(removeGhostPeers());
   cronJobs.push(removeOldServerMessages());
+  cronJobs.push(removeOldLogData());
+  cronJobs.push(removeExpiredUserInvitations());
   cronJobs.push(checkUserAccountIdleStatus());
 
   if (hnrConfig.enable) {
     cronJobs.push(countUsersHnrWarning());
+  }
+
+  if (scoreConfig.transferToInviter.enable) {
+    cronJobs.push(transferUserScoreToInviter());
   }
 
   if (supportConfig.mailTicketSupportService) {
@@ -203,11 +218,93 @@ function removeOldServerMessages() {
 }
 
 /**
+ * removeOldLogData
+ */
+function removeOldLogData() {
+  var cronJob = new CronJob({
+    cronTime: '00 10 1 * * *',
+    onTick: function () {
+      logger.info(chalk.green('removeOldLogData: process!'));
+
+      //remove announce-log old data
+      AnnounceLog.remove({
+        createdAt: {$lt: moment().subtract(announceConfig.announceLogDays, 'days')}
+      }, function (err) {
+        if (err) {
+          logger.error(err);
+        }
+      });
+
+      //remove user-days-log old data
+      UserDaysLog.remove({
+        createdAt: {$lt: moment().subtract(announceConfig.daysLogMonths, 'months')}
+      }, function (err) {
+        if (err) {
+          logger.error(err);
+        }
+      });
+
+      //remove score-log old data
+      ScoreLog.remove({
+        createdAt: {$lt: moment().subtract(scoreConfig.scoreLogDays, 'days')}
+      }, function (err) {
+        if (err) {
+          logger.error(err);
+        }
+      });
+
+      //remove trace-log old data
+      Trace.remove({
+        createdat: {$lt: moment().subtract(traceConfig.traceLogDays, 'days')}
+      }, function (err) {
+        if (err) {
+          logger.error(err);
+        }
+      });
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  cronJob.start();
+
+  return cronJob;
+}
+
+/**
+ * removeExpiredUserInvitations
+ */
+function removeExpiredUserInvitations() {
+  var cronJob = new CronJob({
+    cronTime: '00 15 1 * * *',
+    onTick: function () {
+      logger.info(chalk.green('removeExpiredUserInvitations: process!'));
+
+      //remove announce-log old data
+      Invitation.remove({
+        status: 0,    //include exchange and present invitations, official invitations status start of 1
+        expiresat: {$lt: Date.now()}
+      }, function (err) {
+        if (err) {
+          logger.error(err);
+        }
+      });
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  cronJob.start();
+
+  return cronJob;
+}
+
+/**
  * checkUserAccountIdleStatus
  */
 function checkUserAccountIdleStatus() {
   var cronJob = new CronJob({
-    cronTime: '00 10 1 * * *',
+    cronTime: '00 20 1 * * *',
     // cronTime: '*/30 * * * * *',
     onTick: function () {
       logger.info(chalk.green('checkUserAccountIdleStatus: process!'));
@@ -267,6 +364,55 @@ function countUsersHnrWarning() {
             });
           }
         });
+    },
+    start: false,
+    timeZone: appConfig.cronTimeZone
+  });
+
+  cronJob.start();
+
+  return cronJob;
+}
+
+/**
+ * transferUserScoreToInviter
+ */
+function transferUserScoreToInviter() {
+  var cronJob = new CronJob({
+    cronTime: '00 00 2 1 * *',
+    onTick: function () {
+      logger.info(chalk.green('transferUserScoreToInviter: process!'));
+
+      var mom = moment().utcOffset(appConfig.dbTimeZone);
+      var y = mom.get('year');
+      var m = mom.get('month') + 1;
+
+      UserMonthsLog.find({
+        year: y,
+        month: m - 1
+      }).populate({
+        path: 'user',
+        select: 'username displayName profileImageURL isVip score uploaded downloaded invited_by',
+        populate: {
+          path: 'invited_by',
+          select: 'username displayName profileImageURL isVip score uploaded downloaded'
+        }
+      }).exec(function (err, logs) {
+        if (logs) {
+          logs.forEach(function (l) {
+            if (l.score > 0 && l.user.invited_by) {
+              var transValue = Math.round(l.score * scoreConfig.transferToInviter.transRatio * 100) / 100;
+
+              if (transValue > 0) {
+                if (scoreConfig.transferToInviter.deductFromUser) {
+                  scoreUpdate(undefined, l.user, scoreConfig.action.transferScoreIntoInviterFrom, -(transValue));
+                }
+                scoreUpdate(undefined, l.user.invited_by, scoreConfig.action.transferScoreIntoInviterTo, transValue);
+              }
+            }
+          });
+        }
+      });
     },
     start: false,
     timeZone: appConfig.cronTimeZone

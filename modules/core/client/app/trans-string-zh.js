@@ -32,7 +32,8 @@
     },
 
     //client topbar menu
-    MENU_CHAT: '聊天室',
+    MENU_ALBUMS: '专辑',
+    MENU_CHAT: '聊天',
     MENU_TORRENTS: '种子',
     MENU_TORRENTS_ADMIN: '种子管理',
     MENU_UPLOADER_ADMIN: '上传权限管理',
@@ -239,6 +240,7 @@
       MAKER: '资源小组',
       OPERLIST: 'Admin/Oper 列表',
       COLLECTIONS: '电影系列',
+      ALBUMS: '资源专辑',
       VIP: 'Vip',
       VIP_DONATE: '捐赠VIP',
       VIP_RULES: 'Vip用户协议',
@@ -357,6 +359,7 @@
     COPY_TO_CLIPBOARD_SUCCESSFULLY: '内容已复制到剪切板!',
     TORRENT_LABEL_LINK: '种子连接',
     PH_KEYWORD: '搜索关键字',
+    FILTER_KEYWORD: '过滤关键字',
     CLEAR_ALL_CONDITION: '清空所有条件',
     MORE_TAGS: '更多标签',
     CA_RESET: '重置条件',
@@ -449,6 +452,9 @@
     ADMIN_COLLECTION_COMMAND: '电影系列操作命令',
     ADMIN_COLLECTION_CREATE: '创建新系列',
     ADMIN_COLLECTION_ADDINTO: '将电影加入到系列',
+    ADMIN_ALBUM_COMMAND: '资源专辑操作命令',
+    ADMIN_ALBUM_CREATE: '创建资源专辑',
+    ADMIN_ALBUM_ADDINTO: '将资源加入到专辑',
     LOAD_TMDB_COLLECTION: '正在从 TMDB 读取电影系列信息, 请稍候 ...',
     LOAD_TMDB_COLLECTION_ERROR: '从 TMDB 读取电影系列信息失败',
     LOAD_COLLECTION_LIST: '正在装载电影系列列表，请稍候 ...',
@@ -629,6 +635,19 @@
     SET_DOWNLOADED_SUCCESSFULLY: '添加用户下载量成功',
     SET_DOWNLOADED_FAILED: '添加用户下载量成功',
 
+    PRESENT_INVITATIONS_TITLE: '赠送邀请',
+    PRESENT_INVITATIONS_NUMBERS: '邀请数量:',
+    PRESENT_INVITATIONS_DAYS: '有效天数:',
+    BTN_PRESENT: '赠送',
+    BTN_PRESENT_INVITATIONS: '赠送邀请',
+    PRESENT_INVITATIONS_SUCCESSFULLY: '赠送邀请成功',
+    PRESENT_INVITATIONS_FAILED: '赠送邀请失败',
+
+    EDIT_USER_SUCCESSFULLY: '修改用户信息成功',
+    EDIT_USER_FAILED: '修改用户信息失败',
+    UPDATE_REMARKS_SUCCESSFULLY: '更新用户备注信息成功',
+    UPDATE_REMARKS_FAILED: '更新用户备注信息失败',
+
     ANNOUNCE_EDIT_TIP: '上传一个种子文件, </br>自动替换 <mark>Announce URL</mark> 与 <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
 
@@ -757,6 +776,47 @@
       REMOVE_FAILED: '从系列中移除种子失败',
       EDIT_OVERVIEW_SUCCESSFULLY: '编辑电影系列简介成功',
       EDIT_OVERVIEW_FAILED: '编辑电影系列简介失败'
+    },
+
+    ALBUMS: {
+      FORM_FOR: '创建专辑 - {{title}}',
+      FORM_NAME: '专辑名称',
+      FORM_DESC: '专辑简介',
+      CREATE_SUCCESSFULLY: '资源专辑创建成功',
+      CREATE_FAILED: '资源专辑创建失败',
+      INSERT_INTO: '添加资源到专辑',
+      TORRENT_INFO: '种子信息',
+      NO_ALBUM: '没有可加入的专辑, 如果还没有创建，您可以先创建一个专辑, 再执行加入操作.',
+      SELECT_INFO: '选择要加入的专辑',
+      ALREADY_IN: '(已加入)',
+      LOAD_ALBUM_LIST: '正在获取资源专辑列表 ...',
+      LOAD_ALBUM_LIST_ERROR: '错误：获取资源专辑列表失败',
+      INSERT_SUCCESSFULLY: '添加资源到专辑成功',
+      INSERT_FAILED: '添加资源到专辑失败',
+      PREFIX_LIST: '{{type}}专辑清单',
+      FILES_NUMBERS: '种子数',
+      CAT_TYPE: '分类',
+      BTN_EDIT_OVERVIEW: '编辑专辑简介',
+      BTN_REMOVE_ALBUM: '删除专辑',
+      BTN_PUSH_INFO_HOME: '推送到首页',
+      BTN_PULL_FROM_HOME: '从首页移出',
+      BTN_REMOVE_FROM_ALBUM: '移出专辑',
+      BTN_REMOVE_TITLE: '将其从专辑中移出',
+      DELETE_CONFIRM_BODY_TEXT: '您确定要删除这个资源专辑?',
+      DELETE_SUCCESSFULLY: '资源专辑删除成功',
+      DELETE_FAILED: '资源专辑删除失败',
+      SETRLEVEL_SUCCESSFULLY: '修改专辑的推荐级别成功',
+      SETRLEVEL_ERROR: '修改专辑的推荐级别失败',
+      REMOVE_CONFIRM_OK: '移除',
+      REMOVE_CONFIRM_CANCEL: '取消',
+      REMOVE_CONFIRM_HEADER_TEXT: '移除确认',
+      REMOVE_CONFIRM_BODY_TEXT: '您确认要将此种子移除这个专辑?',
+      REMOVE_SUCCESSFULLY: '从专辑中移除种子成功',
+      REMOVE_FAILED: '从专辑中移除种子失败',
+      EDIT_OVERVIEW_SUCCESSFULLY: '编辑专辑简介成功',
+      EDIT_OVERVIEW_FAILED: '编辑专辑简介失败',
+      HOME_STATUS_SUCCESSFULLY: '首页推送状态修改成功',
+      HOME_STATUS_ERROR: '首页推送状态修改失败'
     },
 
     //backup views settings
@@ -900,6 +960,10 @@
     STATUS_FIELD: {
       BTN_FOLLOW: '关注',
       BTN_UNFOLLOW: '取消关注',
+      BTN_MANAGE: '管理',
+      BTN_SEND_MESSAGE: '发消息',
+      BTN_EDIT: '编辑',
+      BTN_REMOVE: '删除',
       PICTURE: '头像',
       RESET_DEFAULT_PICTURE: '重置为默认图片',
       ADD_VIP_MONTHS: '+ VIP一个月',
@@ -951,7 +1015,9 @@
       LEECHED_IP: '下载过的IP列表',
       CURR_SIGNED_IP: '当前登录的IP',
       CURR_LEECHED_IP: '最近一次下载IP',
-      BT_CLIENT: '下载过的BT客户端'
+      BT_CLIENT: '下载过的BT客户端',
+      ADMIN_REMARKS: '管理员备注',
+      BTN_SAVE_REMARKS: '保存备注'
     },
     TORRENT_TYPE_LABEL: {
       MOVIE: '电影',
@@ -1018,12 +1084,16 @@
       TITLE_OPERATION: '操作',
       TITLE_SENDER: '发送人',
       TITLE_TOKEN: '邀请码',
+      TITLE_TYPE: '类型',
       TITLE_EMAIL: '邮箱',
       TITLE_SEND: '发送邀请',
       TITLE_STATUS: '状态',
       TITLE_STATUS_REGED: '已注册',
       TITLE_STATUS_UNREGED: '未注册',
-      TITLE_STATUS_EXPIRED: '已失效'
+      TITLE_STATUS_EXPIRED: '已失效',
+      TYPE_EXCHANGE: '积分兑换',
+      TYPE_PRESENT: '官方赠送',
+      TYPE_OFFICIAL: '官方邀请'
     },
     GET_INVITATIONS_ERROR: '获取邀请列表失败',
     BUTTON_INVITE: '发送',
@@ -1054,6 +1124,7 @@
     MESSAGES_IS_LOADING: '正在装载, 请稍候 ...',
     MESSAGES_IS_EMPTY: '消息列表为空!',
     OFFICIAL_MESSAGES_TOOLTIP: '<h4>提示：</h4>为了维护一个干净的官方消息列表，请及时将长时间过期的消息删除，因为这些消息在用户的消息中心里不能被单方面清理。',
+    MARK_AS_ALREADY_READ: '标记为已读，下次不再提示。',
     MESSAGES_FIELD: {
       TO: '发送至:',
       TYPE: '消息类型:',
@@ -1073,7 +1144,9 @@
       INFO_SEND_AT: '于',
       LAST_REPLY_AT: '最新回复于',
       NEW_MSG: '条未读消息',
-      SERVER_SEND: '服务器发送'
+      SERVER_SEND: '服务器发送',
+      MUST_READ: '必读消息',
+      MUST_READ_KEY: '必读'
     },
     BUTTON_MESSAGE_DELETE: '删除',
     BUTTON_MESSAGE_CLOSE: '关闭(esc)',
@@ -1711,6 +1784,7 @@
 
       TITLE_HNR_WARNING_ADD: '新的 H&R 警告',
       CONTENT_HNR_WARNING_ADD: '### H&R 警告! \n 您刚刚得到一个 h&r 警告在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}), 您需要继续做种, 这个警告会在该种分享率大于 {{hnr_ratio}} 或做种时间大于 {{hnr_days}} 天时自动清除，您也可以从这里 [warning list](/status/warning) 使用系统积分手动清除.',
+
       TITLE_HNR_WARNING_REMOVE: 'H&R 警告移除',
       CONTENT_HNR_WARNING_REMOVE: '### H&R 警告已移除! \n 恭喜您, 您在种子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上的 h&r 警告已经移除.',
 

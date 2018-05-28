@@ -1,0 +1,113 @@
+<section ng-controller="AlbumItemController as vm" ng-init="vm.getAlbum();">
+    <div class="backdrop attachment-scroll">
+        <div class="filter">
+            <div class="container album-view-top">
+                <div class="row margin-bottom-10">
+                    <div class="col-sm-12">
+                        <span class="item-name">
+                            <h3 class="margin-bottom-10">
+                                {{vm.album.name}}
+                            </h3>
+                        </span>
+                    </div>
+                    <div class="col-sm-12">
+                        <ul class="list-unstyled item-data list-inline">
+                            <li><i class="fa fa-list text-info"> {{'ALBUMS.FILES_NUMBERS' | translate}}: {{vm.album.torrents.length}}</i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row margin-bottom-20">
+                    <div class="col-sm-12">
+                        <div class="item-overview" id="{{vm.album._id}}" data-provide="markdown"
+                             ng-bind-html="vm.getAlbumOverviewContent(vm.album)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="album-button text-right">
+                            <button class="btn btn-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                                    ng-if="vm.user.isOper" ng-click="vm.beginEditAlbumOverview(vm.album)">
+                                {{'ALBUMS.BTN_EDIT_OVERVIEW' | translate}}
+                            </button>
+                            <button class="btn btn-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                                    ng-if="vm.user.isOper" ng-click="vm.beginRemoveAlbum(vm.album)">
+                                {{'ALBUMS.BTN_REMOVE_ALBUM' | translate}}
+                            </button>
+
+                            <div class="btn-group width-160 margin-top-5" ng-if="vm.user.isOper" uib-dropdown dropdown-append-to-body>
+                                <button id="btn-append-to-body" type="button"
+                                        class="btn btn-block"
+                                        mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                                        ng-click="$event.stopPropagation();"
+                                        uib-dropdown-toggle>
+                                    {{'ADMIN_BASIC_RLEVEL_SET' | translate }} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu-left" uib-dropdown-menu role="menu"
+                                    aria-labelledby="btn-append-to-body">
+                                    <li role="menuitem" ng-repeat="l in vm.torrentRLevels.value"
+                                        ng-class="{'active': vm.album.recommend_level == l.value}">
+                                        <a href="#"
+                                           ng-click="vm.setRecommendLevel(vm.album, l);">{{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + l.name | translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <button class="btn btn-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                                    ng-if="vm.user.isOper" ng-click="vm.beginToggleHomeStatus(vm.album)">
+                                {{(vm.album.isHomeStatus ? 'ALBUMS.BTN_PULL_FROM_HOME' : 'ALBUMS.BTN_PUSH_INFO_HOME') | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row margin-top-20 margin-bottom-20">
+            <div class="col-md-12 torrent-list" id="top_of_torrent_list">
+                <div class="pagination-div-top">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover tb-v-middle">
+                        <thead>
+                            <tr>
+                                <th class="td-width-0"></th>
+                                <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
+                                <th>{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
+                                <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
+                                <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
+                                <th>
+                                    <abbr title="{{ 'TABLE_FIELDS.ABBR_SEEDS_LEECHERS_FINISHED' | translate}}" class="initialism">
+                                        {{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}
+                                    </abbr>
+                                </th>
+                                <th class="text-center">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody torrent-list-item parent="vm" item="item" list="vm.album.torrents"
+                               ng-repeat="item in vm.pagedItems"></tbody>
+                    </table>
+                </div>
+                <div class="pagination-div-bottom">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -6,10 +6,10 @@
     .controller('AdminMessageController', AdminMessageController);
 
   AdminMessageController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$filter', 'NotifycationService', 'AdminMessagesService',
-    'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope'];
+    'MeanTorrentConfig', 'ModalConfirmService', 'marked', '$rootScope', 'DebugConsoleService'];
 
   function AdminMessageController($scope, $state, $translate, $timeout, Authentication, $filter, NotifycationService, AdminMessagesService,
-                                  MeanTorrentConfig, ModalConfirmService, marked, $rootScope) {
+                                  MeanTorrentConfig, ModalConfirmService, marked, $rootScope, mtDebug) {
     var vm = this;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
@@ -28,6 +28,8 @@
 
       var msg = new AdminMessagesService(vm.messageFields);
       msg.type = vm.messageType;
+
+      console.log(msg);
 
       msg.$save(function (response) {
         successCallback(response);
@@ -54,6 +56,7 @@
     vm.getAdminMessages = function () {
       AdminMessagesService.query(function (data) {
         vm.adminMessages = data;
+        mtDebug.info(data);
       });
     };
 

@@ -10,7 +10,7 @@
         <a ui-sref="home" class="navbar-brand"><span class="brand-title">{{vm.appConfig.name}}</span></a>
     </div>
     <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
-        <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);"
+        <ul class="nav navbar-nav" id="nav-top-menu" ng-if="vm.menu.shouldRender(vm.authentication.user);"
             ng-hide="!vm.authentication.user && !vm.signConfig.showMenuHeaderForGuest">
             <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type"
                 ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}"
@@ -113,4 +113,26 @@
             </li>
         </ul>
     </nav>
+</div>
+
+<div id="must_read_popup" style="display: none;">
+    <div class="row padding-top-30 padding-bottom-30">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-center">
+            <h3>{{'MESSAGE_TYPE_' + mustReadMessage.type.toUpperCase() | translate}}</h3>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+            <p class="h4 msg-title">{{mustReadMessage.title}}</p>
+            <p class="msg-content" ng-bind-html="getMustReadMessageContentMarked(mustReadMessage);"></p>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-center">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="mustReadMessage.markReadMessage">{{'MARK_AS_ALREADY_READ' | translate}}
+                </label>
+            </div>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-center margin-top-10">
+            <button class="must_read_popup_close btn btn-success btn-width-100">{{'BUTTON_UPLOADED_POPUP_CLOSE' | translate}}</button>
+        </div>
+    </div>
 </div>

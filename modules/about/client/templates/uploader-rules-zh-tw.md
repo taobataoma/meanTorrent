@@ -13,7 +13,10 @@
 1. 您上傳的任何種子，管理員都可以對其設定更多的附加屬性，比如推薦級別、促銷級別、資源標籤等。
 1. 請在上傳種子時，準確且儘可能全面的選擇各項屬性標籤，因為其他用戶會隨時根據不同的標籤進行小範圍的索引，如果標籤與資源實際不符，同樣會被管理員直接刪除並給予處罰。
 1. 種子釋出成功後，系統會給予一定的積分獎勵，同樣，種子被刪除時，獎勵的積分會被扣除，具體的 [積分細則請看這裡](/about/manual/scoreRules)。
-1. 有時候系統可能限制為只有資源製作小組的成員才能上傳種子，當前設定值為：`%(accessConfig.upload.limitToMakerGroup)s`。
+1. 有時候系統可能限制為只有資源製作小組的成員才能上傳種子，當前設定值為：
+```javascript
+accessConfig.upload.limitToMakerGroup = %(accessConfig.upload.limitToMakerGroup)s
+```
 1. 嚴禁在種子描述區域內上傳與資源內容無關的圖片和文字。
 1. 嚴禁在任何區域進行未經許可的商業推廣行為。
 1. 如果您有0-day資源途徑或者高超的壓制本領，請不要遲疑立即向{{'%(supportConfig.supportGroupNameDesc)s' | translate}}傳送 **[訊息](/messages/send?to=%(supportConfig.supportGroupName)s)** 或 **[郵件](mailto: %(supportConfig.supportMailAddress)s)** 與我們聯絡。

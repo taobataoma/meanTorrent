@@ -64,6 +64,15 @@
                         <div>
                             <dt class="h-line"></dt>
                             <dd class="h-line">
+                                <label style="font-weight: normal">
+                                    <input type="checkbox" ng-model="vm.messageFields.mustRead"> {{'MESSAGES_FIELD.MUST_READ' | translate}}
+                                </label>
+                            </dd>
+                        </div>
+
+                        <div>
+                            <dt class="h-line"></dt>
+                            <dd class="h-line">
                                 <button type="submit" class="btn btn-success btn-width-100">{{ 'MESSAGES_SEND_BUTTON' | translate }}</button>
                             </dd>
                         </div>
@@ -100,7 +109,12 @@
                     <tbody>
                         <tr class="message-item" ng-repeat="m in vm.adminMessages">
                             <td class="col-md-8 width-400">
-                                <div class="message-title-admin text-long"><h4 ng-bind="m.title"></h4></div>
+                                <div class="message-title-admin text-long">
+                                    <span class="h4" ng-bind="m.title"></span>
+                                    <span class="badge badge_danger" ng-if="m.mustRead">
+                                        {{'MESSAGES_FIELD.MUST_READ_KEY' | translate}}
+                                    </span>
+                                </div>
 
                                 <p class="message-content-admin" ng-bind-html="vm.getContentMarked(m);"></p>
 

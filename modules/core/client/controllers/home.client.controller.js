@@ -7,11 +7,11 @@
 
   HomeController.$inject = ['$scope', '$state', '$translate', 'Authentication', 'TorrentsService', 'NotifycationService', 'MeanTorrentConfig',
     'getStorageLangService', 'ForumsService', '$timeout', 'localStorageService', 'TopicsService', 'TorrentGetInfoServices', 'DebugConsoleService',
-    'marked', 'CheckService'];
+    'marked', 'CheckService', 'AlbumsService'];
 
   function HomeController($scope, $state, $translate, Authentication, TorrentsService, NotifycationService, MeanTorrentConfig, getStorageLangService,
                           ForumsService, $timeout, localStorageService, TopicsService, TorrentGetInfoServices, mtDebug,
-                          marked, CheckService) {
+                          marked, CheckService, AlbumsService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
@@ -24,6 +24,7 @@
     vm.homeConfig = MeanTorrentConfig.meanTorrentConfig.home;
     vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
+    vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
 
     vm.searchType = 'torrents';
     vm.checkData = undefined;
@@ -66,6 +67,59 @@
 
         }
       });
+    };
+
+    /**
+     * $scope.$watch($('.albums-item').width())
+     */
+    $scope.$watch(function () {
+      return $('.albums-item').width();
+    }, function (newVal, oldVal) {
+      if (newVal) {
+        var elements = $('.albums-item img');
+
+        angular.forEach(elements, function (e) {
+          var element = angular.element(e);
+
+          element.parent().height(element.parent().width() / 1.772);
+
+          if (element.height() > element.parent().height()) {
+            element.css('margin-top', -(element.height() - element.parent().height()) / 2);
+          } else {
+            element.css('margin-top', (element.parent().height() - element.height()) / 2);
+          }
+        });
+      }
+    });
+
+    /**
+     * getCollectionsList
+     */
+    vm.getAlbumsList = function () {
+      AlbumsService.query({
+        isHomeStatus: true
+      }, function (data) {
+        vm.albumsList = data;
+        mtDebug.info(data);
+      });
+
+      vm.openAlbum();
+    };
+
+    /**
+     * getAlbumBackdropImage
+     * @param item
+     * @returns {string}
+     */
+    vm.getAlbumBackdropImage = function (item) {
+      var result = null;
+
+      if (item.backdrop_path) {
+        result = vm.tmdbConfig.backdropImgBaseUrl + item.backdrop_path;
+      } else if (item.cover) {
+        result = '/modules/torrents/client/uploads/cover/' + item.cover;
+      }
+      return result;
     };
 
     /**
@@ -404,6 +458,17 @@
         e.slideDown(500);
         e.removeClass('panel-collapsed');
       }, 300);
+    };
+
+    /**
+     * openCheckTooltip
+     */
+    vm.openAlbum = function () {
+      var e = $('.albums-list');
+
+      $timeout(function () {
+        e.slideDown(300);
+      }, 50);
     };
 
   }

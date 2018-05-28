@@ -1,0 +1,44 @@
+<section class="container" ng-controller="AlbumController as vm" ng-init="vm.getAlbumsList();">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="albums-list">
+                <div class="margin-top-30 margin-bottom-30" ng-repeat="tp in vm.albumsTypeList | orderBy: 'idx'">
+                    <legend class="h4 text-center" translate="ALBUMS.PREFIX_LIST"
+                            translate-values="{type: '{{'TORRENT_TYPE_LABEL.' + tp.type.toUpperCase() | translate}}' }">
+                    </legend>
+
+                    <div class="row">
+                        <div class="albums-items">
+                            <div ng-repeat="m in vm.albumsList | filter: {type: tp.type}">
+                                <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block"></div>
+                                <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                                <div class="col-sm-6 col-md-4">
+                                    <a ui-sref="albums.view({ albumId: m._id })">
+                                        <div class="albums-item">
+                                            <img ng-src="{{vm.getAlbumBackdropImage(m)}}" align-middle-parent>
+
+                                            <div class="item-info text-center">
+                                                <div class="name">{{m.name}}</div>
+
+                                                <div class="row margin-top-40 album-data">
+                                                    <div class="col-xs-6 text-center col-small-padding">
+                                                        <i class="fa fa-th-large text-info">
+                                                            <strong> {{'ALBUMS.CAT_TYPE' | translate}}: {{'TORRENT_TYPE_LABEL.' + m.type.toUpperCase() | translate}}</strong></i>
+                                                    </div>
+                                                    <div class="col-xs-6 text-center col-small-padding">
+                                                        <i class="fa fa-list text-info">
+                                                            <strong> {{'ALBUMS.FILES_NUMBERS' | translate}}: {{m.torrents.length}}</strong></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

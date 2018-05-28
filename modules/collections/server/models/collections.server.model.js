@@ -44,7 +44,7 @@ var CollectionSchema = new Schema({
   }],
   recommend_level: {
     type: String,
-    default: 'none'
+    default: 'level0'
   },
   created_at: {
     type: Date,

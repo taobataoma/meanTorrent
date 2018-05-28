@@ -195,6 +195,19 @@
                 </button>
             </div>
         </div>
+        <div ng-if="vm.state.current.name.startsWith('albums')">
+            <div class="coll-item-uploader">
+                <span ng-if="!item.isAnonymous" user-info="item.user" info-name></span>
+                <span ng-if="item.isAnonymous">{{ 'ANONYMOUS' | translate }}</span>
+                <div maker-info="item.maker"></div>
+            </div>
+            <div class="coll-item-remove">
+                <button class="btn btn-sm btn-default" uib-tooltip="{{ 'ALBUMS.BTN_REMOVE_TITLE' | translate}}"
+                        ng-click="parent.removeFromAlbum(item); $event.stopPropagation();">
+                    {{'ALBUMS.BTN_REMOVE_FROM_ALBUM' | translate}}
+                </button>
+            </div>
+        </div>
         <div ng-if="vm.state.current.name.startsWith('requests')">
             <div ng-if="!parent.isCurrentUserOwner()">
                 <span ng-if="!item.isAnonymous" user-info="item.user" info-name></span>

@@ -13,7 +13,8 @@ var path = require('path'),
   Torrent = mongoose.model('Torrent'),
   async = require('async'),
   validator = require('validator'),
-  tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key);
+  tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key),
+  populateStrings = require(path.resolve('./config/lib/populateStrings'));
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -33,6 +34,7 @@ exports.getMySeeding = function (req, res) {
   }).sort('-peer_uploaded')
     .populate({
       path: 'torrent',
+      select: populateStrings.populate_torrent_string,
       populate: [
         {path: 'user', select: 'displayName profileImageURL'},
         {path: 'maker', select: 'name'}
@@ -62,6 +64,7 @@ exports.getMyDownloading = function (req, res) {
   }).sort('-peer_downloaded')
     .populate({
       path: 'torrent',
+      select: populateStrings.populate_torrent_string,
       populate: [
         {path: 'user', select: 'displayName profileImageURL'},
         {path: 'maker', select: 'name'}
@@ -89,6 +92,7 @@ exports.getMyWarning = function (req, res) {
     hnr_warning: true
   }).populate({
     path: 'torrent',
+    select: populateStrings.populate_torrent_string,
     populate: [
       {path: 'user', select: 'displayName profileImageURL'},
       {path: 'maker', select: 'name'}

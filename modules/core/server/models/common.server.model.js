@@ -78,8 +78,28 @@ var CommentSchema = new Schema({
 mongoose.model('Comment', CommentSchema);
 
 /**
+ * Sub History Schema
+ */
+var HistorySchema = new Schema({
+  event: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  params: {
+    type: Object
+  },
+  createdAt: {
+    type: Date
+  }
+}, {usePushEach: true});
+
+mongoose.model('History', HistorySchema);
+
+/**
  * exports
  */
 exports.RatingSchema = RatingSchema;
 exports.ThumbSchema = ThumbSchema;
 exports.CommentSchema = CommentSchema;
+exports.HistorySchema = HistorySchema;

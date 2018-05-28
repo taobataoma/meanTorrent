@@ -9,15 +9,6 @@ var mongoose = require('mongoose'),
   CommonSchema = require(path.resolve('./modules/core/server/models/common.server.model'));
 
 /**
- * setNumberValueToZero
- * @param v
- * @returns {number}
- */
-var setNumberValueToZero = function (v) {
-  return v < 0 ? 0 : v;
-};
-
-/**
  * Sub Attach Schema
  */
 var AttachSchema = new Schema({
@@ -32,7 +23,6 @@ var AttachSchema = new Schema({
   },
   downCount: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   createdAt: {
@@ -101,12 +91,10 @@ var TopicSchema = new Schema({
 
   viewCount: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   replyCount: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   _replies: [ReplySchema],

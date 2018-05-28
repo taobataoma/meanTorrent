@@ -32,7 +32,8 @@
     },
 
     //client topbar menu
-    MENU_CHAT: '聊天室',
+    MENU_ALBUMS: '專輯',
+    MENU_CHAT: '聊天',
     MENU_TORRENTS: '種子',
     MENU_TORRENTS_ADMIN: '種子管理',
     MENU_UPLOADER_ADMIN: '上傳許可權管理',
@@ -239,6 +240,7 @@
       MAKER: '資源小組',
       OPERLIST: 'Admin/Oper 列表',
       COLLECTIONS: '電影系列',
+      ALBUMS: '資源專輯',
       VIP: 'Vip',
       VIP_DONATE: '捐贈VIP',
       VIP_RULES: 'Vip用戶協議',
@@ -357,6 +359,7 @@
     COPY_TO_CLIPBOARD_SUCCESSFULLY: '內容已複製到剪下板!',
     TORRENT_LABEL_LINK: '種子地址',
     PH_KEYWORD: '搜尋關鍵字',
+    FILTER_KEYWORD: '過濾關鍵字',
     CLEAR_ALL_CONDITION: '清空所有條件',
     MORE_TAGS: '更多標籤',
     CA_RESET: '重置條件',
@@ -449,6 +452,9 @@
     ADMIN_COLLECTION_COMMAND: '電影系列操作命令',
     ADMIN_COLLECTION_CREATE: '建立新系列',
     ADMIN_COLLECTION_ADDINTO: '將電影加入到系列',
+    ADMIN_ALBUM_COMMAND: '資源專輯操作命令',
+    ADMIN_ALBUM_CREATE: '創建資源專輯',
+    ADMIN_ALBUM_ADDINTO: '將資源加入到專輯',
     LOAD_TMDB_COLLECTION: '正在從 TMDB 讀取電影系列資訊, 請稍候 ...',
     LOAD_TMDB_COLLECTION_ERROR: '從 TMDB 讀取電影系列資訊失敗',
     LOAD_COLLECTION_LIST: '正在載入電影系列列表，請稍候 ...',
@@ -629,6 +635,19 @@
     SET_DOWNLOADED_SUCCESSFULLY: '新增用戶下載量成功',
     SET_DOWNLOADED_FAILED: '新增用戶下載量成功',
 
+    PRESENT_INVITATIONS_TITLE: '贈送邀請',
+    PRESENT_INVITATIONS_NUMBERS: '邀請數量:',
+    PRESENT_INVITATIONS_DAYS: '有效天數:',
+    BTN_PRESENT: '贈送',
+    BTN_PRESENT_INVITATIONS: '贈送邀請',
+    PRESENT_INVITATIONS_SUCCESSFULLY: '贈送邀請成功',
+    PRESENT_INVITATIONS_FAILED: '贈送邀請失敗',
+
+    EDIT_USER_SUCCESSFULLY: '修改用戶信息成功',
+    EDIT_USER_FAILED: '修改用戶信息失敗',
+    UPDATE_REMARKS_SUCCESSFULLY: '更新用戶備註信息成功',
+    UPDATE_REMARKS_FAILED: '更新用戶備註信息失敗',
+
     ANNOUNCE_EDIT_TIP: '上傳一個種子檔案, </br>自動替換 <mark>Announce URL</mark> 與 <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
 
@@ -757,6 +776,47 @@
       REMOVE_FAILED: '從系列中移除種子失敗',
       EDIT_OVERVIEW_SUCCESSFULLY: '編輯電影系列簡介成功',
       EDIT_OVERVIEW_FAILED: '編輯電影系列簡介失敗'
+    },
+
+    ALBUMS: {
+      FORM_FOR: '創建專輯 - {{title}}',
+      FORM_NAME: '專輯名稱',
+      FORM_DESC: '專輯簡介',
+      CREATE_SUCCESSFULLY: '資源專輯創建成功',
+      CREATE_FAILED: '資源專輯創建失敗',
+      INSERT_INTO: '添加資源到專輯',
+      TORRENT_INFO: '種子信息',
+      NO_ALBUM: '沒有可加入的專輯, 如果還沒有創建，您可以先創建一個專輯, 再執行加入操作.',
+      SELECT_INFO: '選擇要加入的專輯',
+      ALREADY_IN: '(已加入)',
+      LOAD_ALBUM_LIST: '正在獲取資源專輯列表 ...',
+      LOAD_ALBUM_LIST_ERROR: '錯誤：獲取資源專輯列表失敗',
+      INSERT_SUCCESSFULLY: '添加資源到專輯成功',
+      INSERT_FAILED: '添加資源到專輯失敗',
+      PREFIX_LIST: '{{type}}專輯清單',
+      FILES_NUMBERS: '種子數',
+      CAT_TYPE: '分類',
+      BTN_EDIT_OVERVIEW: '編輯專輯簡介',
+      BTN_REMOVE_ALBUM: '刪除專輯',
+      BTN_PUSH_INFO_HOME: '推送到首頁',
+      BTN_PULL_FROM_HOME: '從首頁移出',
+      BTN_REMOVE_FROM_ALBUM: '移出專輯',
+      BTN_REMOVE_TITLE: '將其從專輯中移出',
+      DELETE_CONFIRM_BODY_TEXT: '您確定要刪除這個資源專輯?',
+      DELETE_SUCCESSFULLY: '資源專輯刪除成功',
+      DELETE_FAILED: '資源專輯刪除失敗',
+      SETRLEVEL_SUCCESSFULLY: '修改專輯的推薦級別成功',
+      SETRLEVEL_ERROR: '修改專輯的推薦級別失敗',
+      REMOVE_CONFIRM_OK: '移除',
+      REMOVE_CONFIRM_CANCEL: '取消',
+      REMOVE_CONFIRM_HEADER_TEXT: '移除確認',
+      REMOVE_CONFIRM_BODY_TEXT: '您確認要將此種子移除這個專輯?',
+      REMOVE_SUCCESSFULLY: '從專輯中移除種子成功',
+      REMOVE_FAILED: '從專輯中移除種子失敗',
+      EDIT_OVERVIEW_SUCCESSFULLY: '編輯專輯簡介成功',
+      EDIT_OVERVIEW_FAILED: '編輯專輯簡介失敗',
+      HOME_STATUS_SUCCESSFULLY: '首頁推送狀態修改成功',
+      HOME_STATUS_ERROR: '首頁推送狀態修改失敗'
     },
 
     //backup views settings
@@ -900,6 +960,10 @@
     STATUS_FIELD: {
       BTN_FOLLOW: '關注',
       BTN_UNFOLLOW: '取消關注',
+      BTN_MANAGE: '管理',
+      BTN_SEND_MESSAGE: '發消息',
+      BTN_EDIT: '編輯',
+      BTN_REMOVE: '刪除',
       PICTURE: '頭像',
       RESET_DEFAULT_PICTURE: '重置為預設圖片',
       ADD_VIP_MONTHS: '+ VIP一個月',
@@ -951,7 +1015,9 @@
       LEECHED_IP: '下載過的IP列表',
       CURR_SIGNED_IP: '當前登入的IP',
       CURR_LEECHED_IP: '最近一次下載IP',
-      BT_CLIENT: '下載過的BT客戶端'
+      BT_CLIENT: '下載過的BT客戶端',
+      ADMIN_REMARKS: '管理員備註',
+      BTN_SAVE_REMARKS: '保存備註'
     },
     TORRENT_TYPE_LABEL: {
       MOVIE: '電影',
@@ -1018,12 +1084,16 @@
       TITLE_OPERATION: '操作',
       TITLE_SENDER: '傳送人',
       TITLE_TOKEN: '邀請碼',
+      TITLE_TYPE: '類型',
       TITLE_EMAIL: '郵箱',
       TITLE_SEND: '傳送邀請',
       TITLE_STATUS: '狀態',
       TITLE_STATUS_REGED: '已註冊',
       TITLE_STATUS_UNREGED: '未註冊',
-      TITLE_STATUS_EXPIRED: '已失效'
+      TITLE_STATUS_EXPIRED: '已失效',
+      TYPE_EXCHANGE: '積分兌換',
+      TYPE_PRESENT: '官方贈送',
+      TYPE_OFFICIAL: '官方邀請'
     },
     GET_INVITATIONS_ERROR: '獲取邀請列表失敗',
     BUTTON_INVITE: '傳送',
@@ -1054,6 +1124,7 @@
     MESSAGES_IS_LOADING: '正在讀取, 請稍候 ...',
     MESSAGES_IS_EMPTY: '訊息列表為空!',
     OFFICIAL_MESSAGES_TOOLTIP: '<h4>提示：</h4>為了維護一個乾淨的官方訊息列表，請及時將長時間過期的訊息刪除，因為這些訊息在用戶的訊息中心裡不能被單方面清理。',
+    MARK_AS_ALREADY_READ: '標記為已讀，下次不再提示。',
     MESSAGES_FIELD: {
       TO: '傳送至:',
       TYPE: '訊息類別:',
@@ -1073,7 +1144,9 @@
       INFO_SEND_AT: '於',
       LAST_REPLY_AT: '最新回覆於',
       NEW_MSG: '條未讀訊息',
-      SERVER_SEND: '伺服器傳送'
+      SERVER_SEND: '伺服器傳送',
+      MUST_READ: '必讀消息',
+      MUST_READ_KEY: '必讀'
     },
     BUTTON_MESSAGE_DELETE: '刪除',
     BUTTON_MESSAGE_CLOSE: '關閉(esc)',
@@ -1711,6 +1784,7 @@
 
       TITLE_HNR_WARNING_ADD: '新的 H&R 警告',
       CONTENT_HNR_WARNING_ADD: '### H&R 警告! \n 您剛剛得到一個 h&r 警告在種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}), 您需要繼續做種, 這個警告會在該種分享率大於 {{hnr_ratio}} 或做種時間大於 {{hnr_days}} 天時自動清除，您也可以從這裡 [warning list](/status/warning) 使用系統積分手動清除.',
+
       TITLE_HNR_WARNING_REMOVE: 'H&R 警告移除',
       CONTENT_HNR_WARNING_REMOVE: '### H&R 警告已移除! \n 恭喜您, 您在種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 上的 h&r 警告已經移除.',
 
@@ -1755,9 +1829,6 @@
 
       TITLE_TORRENT_UNIQUE_CHANGED: '上傳的種子 禁轉 狀態改變',
       CONTENT_TORRENT_UNIQUE_CHANGED: '### 禁轉 狀態改變! \n 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 禁轉 狀態已經由管理員用戶 [{{by_name}}](/userinfo/{{by_id}}) 修改, 當前狀態為: **{{unique_status}}**.',
-
-      TITLE_TORRENT_UNIQUE_CHANGED: '上傳的種子 禁轉 狀態改變',
-      CONTENT_TORRENT_UNIQUE_CHANGED: '### 禁轉狀態改變! \n 您上傳的種子[{{torrent_file_name}}](/torrents/{{torrent_id}}) 禁轉狀態已經由管理員用戶[{{by_name}}]( /userinfo/{{by_id}}) 修改, 當前狀態為: **{{unique_status}}**.',
 
       TITLE_TORRENT_SALE_CHANGED: '上傳的種子促銷狀態改變',
       CONTENT_TORRENT_SALE_CHANGED: '### 促銷狀態改變! \n 您上傳的種子 [{{torrent_file_name}}](/torrents/{{torrent_id}}) 促銷狀態已經由管理員用戶 [{{by_name}}](/userinfo/{{by_id}}) 修改, 當前狀態為: **{{sale_status}}**.',

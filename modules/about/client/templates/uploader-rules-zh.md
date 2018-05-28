@@ -13,7 +13,10 @@
 1. 您上传的任何种子，管理员都可以对其设置更多的附加属性，比如推荐级别、促销级别、资源标签等。
 1. 请在上传种子时，准确且尽可能全面的选择各项属性标签，因为用户会随时根据不同的标签进行小范围的索引，如果标签与资源实际不符，同样会被管理员直接删除并给予处罚。
 1. 种子发布成功后，系统会给予一定的积分奖励，同样，种子被删除时，奖励的积分会被扣除，具体的 [积分细则请看这里](/about/manual/scoreRules)。
-1. 有时候系统可能限制为只有资源制作小组的成员才能上传种子，当前设置值为：`%(accessConfig.upload.limitToMakerGroup)s`。
+1. 有时候系统可能限制为只有资源制作小组的成员才能上传种子，当前设置值为：
+```javascript
+accessConfig.upload.limitToMakerGroup = %(accessConfig.upload.limitToMakerGroup)s
+```
 1. 严禁在种子描述区域内上传与资源内容无关的图片和文字。
 1. 严禁在任何区域进行未经许可的商业推广行为。
 1. 如果您有0-day资源途径或者高超的压制本领，请不要迟疑立即向{{'%(supportConfig.supportGroupNameDesc)s' | translate}}发送 **[消息](/messages/send?to=%(supportConfig.supportGroupName)s)** 或 **[邮件](mailto: %(supportConfig.supportMailAddress)s)** 与我们联系。

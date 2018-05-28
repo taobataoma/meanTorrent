@@ -648,6 +648,10 @@ exports.announce = function (req, res) {
                 totalScore = totalScore * lifeUnit;
               }
               totalScore = Math.round(totalScore * 100) / 100;
+
+              action.params = {
+                torrent: req.torrent._id
+              };
               scoreUpdate(req, req.passkeyuser, action, totalScore, false);
               mtDebug.debugRed('announce score: ' + totalScore, 'ANNOUNCE', true, req.passkeyuser);
             }
@@ -680,21 +684,14 @@ exports.announce = function (req, res) {
               downUnitScore: downUnitScore,
               seederUnit: seederUnit,
               lifeUnit: lifeUnit
+            },
+            info: {
+              agent: req.get('User-Agent'),
+              ip: req.cf_ip,
+              port: query.port
             }
           };
           dataLog.announceLog(req.passkeyuser, req.torrent, logData);
-
-          //create trace log
-          var traceData = {
-            user: req.passkeyuser._id,
-            torrent: req.torrent._id,
-            agent: req.get('User-Agent'),
-            ip: req.cf_ip,
-            port: query.port,
-            traceData: logData
-          };
-
-          traceLogCreate(req, traceConfig.action.userAnnounceData, traceData);
         }
       }
 
@@ -795,6 +792,10 @@ exports.announce = function (req, res) {
                 seedScore = seedScore * lifeUnit;
               }
               seedScore = Math.round(seedScore * 100) / 100;
+
+              action.params = {
+                torrent: req.torrent._id
+              };
               scoreUpdate(req, req.passkeyuser, action, seedScore);
               mtDebug.debugRed('seed timed score: ' + seedScore, 'ANNOUNCE', true, req.passkeyuser);
 

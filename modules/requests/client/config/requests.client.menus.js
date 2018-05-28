@@ -12,7 +12,7 @@
       title: 'MENU_REQUESTS',
       state: 'requests.list',
       roles: ['*'],
-      position: 6
+      position: 3
     });
   }
 }());

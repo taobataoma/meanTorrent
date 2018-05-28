@@ -9,6 +9,7 @@
 
   function onErrorSrc() {
     var directive = {
+      restrict: 'A',
       link: link
     };
 

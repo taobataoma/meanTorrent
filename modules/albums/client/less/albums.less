@@ -1,0 +1,103 @@
+@import (reference) "../../../core/client/less/mt-var.less";
+
+.albums-list {
+    legend {
+        padding-bottom: 5px;
+        margin-bottom: 0;
+    }
+    .albums-items {
+        text-align: -webkit-center;
+        .albums-item {
+            cursor: pointer;
+            position: relative;
+            margin: 20px 0 0 0;
+            overflow: hidden;
+            border-radius: 8px;
+            max-width: 400px;
+            min-height: 160px;
+            max-height: 226px;
+            z-index: 1;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            &:hover {
+                img {
+                    /* csslint ignore:start */
+                    transform: scale(2);
+                    /* csslint ignore:end */
+                }
+            }
+
+            img {
+                width: ~"calc(100% + 1px)";
+                transition-property: transform, opacity;
+                transition-duration: 1s;
+                transition-timing-function: ease;
+            }
+            .item-info {
+                color: #ddd;
+                position: absolute;
+                overflow: hidden;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 20px 10px;
+                background-color: #2a2a2a;
+                background-color: rgba(0, 0, 0, 0.4);
+                .name {
+                    margin-bottom: 2px;
+                    font-size: 1.5em;
+                    text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+                }
+                .album-data {
+                    .text-info {
+                        color: #54b5e4;
+                    }
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 20px;
+
+                    i {
+                        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+                    }
+                }
+            }
+            &:hover {
+                .fa {
+                    color: @mt-base-color !important;
+                }
+                .item-info {
+                    background-color: #2a2a2a;
+                    background-color: rgba(0, 0, 0, 0.2);
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.album-view-top {
+    .h3, h3 {
+        margin-top: 5px !important;
+    }
+    .item-name {
+        color: #efefef;
+        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+    }
+    .item-overview {
+        font-size: 16px;
+        color: lighten(@gray-light, 20%);
+        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+    }
+    .item-data {
+        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+        .fa {
+            color: @mt-base-color !important;
+        }
+    }
+    .album-button {
+        @media (max-width: @screen-xs-max) {
+            text-align: left !important;
+        }
+    }
+}

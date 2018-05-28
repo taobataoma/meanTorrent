@@ -6,16 +6,38 @@
     .controller('CollectionController', CollectionController);
 
   CollectionController.$inject = ['$scope', '$translate', 'getStorageLangService', 'MeanTorrentConfig', 'CollectionsService', 'NotifycationService',
-    'DebugConsoleService'];
+    'DebugConsoleService', '$timeout'];
 
   function CollectionController($scope, $translate, getStorageLangService, MeanTorrentConfig, CollectionsService, NotifycationService,
-                                mtDebug) {
+                                mtDebug, $timeout) {
     var vm = this;
     vm.lang = getStorageLangService.getLang();
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
 
+    /**
+     * $scope.$watch($('collection-item').width())
+     */
+    $scope.$watch(function () {
+      return $('.collection-item').width();
+    }, function (newVal, oldVal) {
+      if (newVal) {
+        var elements = $('.collection-item img');
+
+        angular.forEach(elements, function (e) {
+          var element = angular.element(e);
+
+          element.parent().height(element.parent().width() / 1.772);
+
+          if (element.height() > element.parent().height()) {
+            element.css('margin-top', -(element.height() - element.parent().height()) / 2);
+          } else {
+            element.css('margin-top', (element.parent().height() - element.height()) / 2);
+          }
+        });
+      }
+    });
 
     /**
      * buildPager

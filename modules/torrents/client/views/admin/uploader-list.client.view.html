@@ -6,10 +6,10 @@
             </div>
         </div>
 
-        <div class="col-md-12 margin-bottom-20" ng-show="vm.uploadMakerList">
-            <h3>
+        <div class="col-md-12 margin-bottom-40" ng-show="vm.uploadMakerList">
+            <h4 class="margin-bottom-20">
                 {{'UPLOADER.CAPTION_MAKER' | translate}}
-            </h3>
+            </h4>
 
             <div class="table-responsive table-uploader">
                 <table class="table table-hover tb-v-middle top-border bottom-border">
@@ -55,9 +55,9 @@
         </div>
 
         <div class="col-md-12" id="top_of_user_list" ng-show="vm.pagedItems">
-            <h3>
+            <h4>
                 {{'UPLOADER.CAPTION_USER' | translate}}
-            </h3>
+            </h4>
 
             <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
                 ng-model="vm.currentPage"

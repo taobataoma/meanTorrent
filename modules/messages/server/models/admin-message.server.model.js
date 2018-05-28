@@ -28,6 +28,10 @@ var AdminMessageSchema = new Schema({
     type: String,
     default: 'system'
   },
+  mustRead: {
+    type: Boolean,
+    default: false
+  },
   _readers: [{
     type: Schema.Types.ObjectId,
     ref: 'User'

@@ -12,11 +12,14 @@ var path = require('path'),
   Peer = mongoose.model('Peer'),
   Torrent = mongoose.model('Torrent'),
   Complete = mongoose.model('Complete'),
+  Invitation = mongoose.model('Invitation'),
   moment = require('moment'),
   async = require('async'),
+  ScoreLog = mongoose.model('ScoreLog'),
   scoreUpdate = require(path.resolve('./config/lib/score')).update,
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
+  traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
+  populateStrings = require(path.resolve('./config/lib/populateStrings'));
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
@@ -50,6 +53,7 @@ exports.update = function (req, res) {
   user.displayName = user.firstName + ' ' + user.lastName;
   user.roles = req.body.roles;
   user.upload_access = req.body.upload_access;
+  user.remarks = req.body.remarks;
 
   user.save(function (err) {
     if (err) {
@@ -305,11 +309,26 @@ exports.updateUserScore = function (req, res) {
 
     res.json(user);
 
+    //write score detail log
+    var sl = new ScoreLog({
+      user: user,
+      score: sv,
+      reason: {
+        event: scoreConfig.action.adminModify.name,
+        params: undefined
+      }
+    });
+    sl.save(function (err) {
+      if (err) {
+        mtDebug.debugError(err);
+      }
+    });
+    //write score days/months log
     dataLog.scoreLog(user, sv);
     //create trace log
     traceLogCreate(req, traceConfig.action.AdminUpdateUserScore, {
       user: user._id,
-      score: req.body.userScore
+      score: sv
     });
   });
 };
@@ -526,6 +545,44 @@ exports.resetVIPData = function (req, res) {
 };
 
 /**
+ * presentInvitations
+ * @param req
+ * @param res
+ */
+exports.presentInvitations = function (req, res) {
+  var user = req.model;
+  var numbers = req.body.numbers;
+  var days = req.body.days;
+  var invitations = [];
+
+  for (var i = 0; i < numbers; i++) {
+    var invitation = new Invitation();
+    invitation.expiresat = Date.now() + (60 * 60 * 1000 * 24 * days);
+    invitation.user = user;
+    invitation.type = 'present';
+    invitation.isOfficial = false;
+    invitation.token = user.randomAsciiString(32);
+
+    invitations.push(invitation);
+  }
+
+  Invitation.insertMany(invitations, function (err, docs) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(user);
+      //create trace log
+      traceLogCreate(req, traceConfig.action.adminPresentInvitations, {
+        user: user._id,
+        invitations: docs
+      });
+    }
+  });
+};
+
+/**
  * list user seeding torrents
  * @param req
  * @param res
@@ -538,6 +595,7 @@ exports.getUserSeeding = function (req, res) {
   }).sort('-peer_uploaded')
     .populate({
       path: 'torrent',
+      select: populateStrings.populate_torrent_string,
       populate: [
         {path: 'user', select: 'displayName profileImageURL'},
         {path: 'maker', select: 'name'}
@@ -567,6 +625,7 @@ exports.getUserLeeching = function (req, res) {
   }).sort('-peer_downloaded')
     .populate({
       path: 'torrent',
+      select: populateStrings.populate_torrent_string,
       populate: [
         {path: 'user', select: 'displayName profileImageURL'},
         {path: 'maker', select: 'name'}
@@ -594,6 +653,7 @@ exports.getUserWarning = function (req, res) {
     hnr_warning: true
   }).populate({
     path: 'torrent',
+    select: populateStrings.populate_torrent_string,
     populate: [
       {path: 'user', select: 'displayName profileImageURL'},
       {path: 'maker', select: 'name'}

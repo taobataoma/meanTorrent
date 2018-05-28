@@ -32,6 +32,7 @@
     },
 
     //client topbar menu
+    MENU_ALBUMS: 'Albums',
     MENU_CHAT: 'Chat',
     MENU_TORRENTS: 'Torrents',
     MENU_TORRENTS_ADMIN: 'Manage Torrents',
@@ -239,6 +240,7 @@
       MAKER: 'Resources Group',
       OPERLIST: 'Admin/Oper List',
       COLLECTIONS: 'Movie Collections',
+      ALBUMS: 'Albums',
       VIP: 'Vip',
       VIP_DONATE: 'Vip Donate',
       VIP_RULES: 'Vip Rules',
@@ -357,6 +359,7 @@
     COPY_TO_CLIPBOARD_SUCCESSFULLY: 'Copy data to clipboard successfully!',
     TORRENT_LABEL_LINK: 'Torrent Link',
     PH_KEYWORD: 'Search keyword',
+    FILTER_KEYWORD: 'filter keyword',
     CLEAR_ALL_CONDITION: 'Clear All Condition',
     MORE_TAGS: 'More Tags',
     CA_RESET: 'Reset',
@@ -449,6 +452,9 @@
     ADMIN_COLLECTION_COMMAND: 'Collections Command',
     ADMIN_COLLECTION_CREATE: 'Create Collection',
     ADMIN_COLLECTION_ADDINTO: 'Put This Movie Into Collection',
+    ADMIN_ALBUM_COMMAND: 'Albums Command',
+    ADMIN_ALBUM_CREATE: 'Create Album',
+    ADMIN_ALBUM_ADDINTO: 'Put This Resources Into Album',
     LOAD_TMDB_COLLECTION: 'loading tmdb movie collection detail ...',
     LOAD_TMDB_COLLECTION_ERROR: 'Error: get tmdb movie collection detail',
     LOAD_COLLECTION_LIST: 'loading movie collection list ...',
@@ -629,6 +635,19 @@
     SET_DOWNLOADED_SUCCESSFULLY: 'Add user downloaded successfully',
     SET_DOWNLOADED_FAILED: 'Add user downloaded failed',
 
+    PRESENT_INVITATIONS_TITLE: 'Present invitations',
+    PRESENT_INVITATIONS_NUMBERS: 'Invitation numbers:',
+    PRESENT_INVITATIONS_DAYS: 'Available days:',
+    BTN_PRESENT: 'Present',
+    BTN_PRESENT_INVITATIONS: 'Present invitations',
+    PRESENT_INVITATIONS_SUCCESSFULLY: 'Present invitations successfully',
+    PRESENT_INVITATIONS_FAILED: 'Present invitations failed',
+
+    EDIT_USER_SUCCESSFULLY: 'Edit user info successfully',
+    EDIT_USER_FAILED: 'Edit user info failed',
+    UPDATE_REMARKS_SUCCESSFULLY: 'Update user remarks successfully',
+    UPDATE_REMARKS_FAILED: 'Update user remarks failed',
+
     ANNOUNCE_EDIT_TIP: 'Upload a torrent file, </br>automatic replacement <mark>Announce URL</mark> & <mark>Comment</mark>',
     ANNOUNCE_COMMENT: 'Announce Comment',
 
@@ -733,11 +752,11 @@
       FILES_NUMBERS: 'Torrents',
       VOTE_AVERAGE: 'Vote average',
       LIST_ERROR: 'Movie collections list error',
-      INSERT_INTO: 'Insert  Movie Into Collection for - {{cid}}',
-      TORRENT_INTO: 'Torrent info',
+      INSERT_INTO: 'Insert Movie Into Collection for - {{cid}}',
+      TORRENT_INFO: 'Torrent info',
       SELECT_INFO: 'Select a collection to insert',
       INSERT_SUCCESSFULLY: 'Insert move into collection successfully',
-      INSERT_FAILED: 'Insert move into collection FAILED',
+      INSERT_FAILED: 'Insert move into collection failed',
       ALREADY_IN: '(Already In)',
       NO_COLLECTION: 'No collection founded can insert movie, you can create first, then insert this movie into it.',
       BTN_EDIT_OVERVIEW: 'Edit Overview',
@@ -757,6 +776,47 @@
       REMOVE_FAILED: 'Remove the torrent from this collection failed',
       EDIT_OVERVIEW_SUCCESSFULLY: 'Edit collections overview successfully',
       EDIT_OVERVIEW_FAILED: 'Edit collections overview failed'
+    },
+
+    ALBUMS: {
+      FORM_FOR: 'Create Album for - {{title}}',
+      FORM_NAME: 'Album Name',
+      FORM_DESC: 'Album Overview',
+      CREATE_SUCCESSFULLY: 'Create resource album successfully',
+      CREATE_FAILED: 'Create resource album failed',
+      INSERT_INTO: 'Insert Resource Into Album',
+      TORRENT_INFO: 'Torrent info',
+      NO_ALBUM: 'No album founded can insert resource, you can create first, then insert into it.',
+      SELECT_INFO: 'Select a album to insert',
+      ALREADY_IN: '(Already In)',
+      LOAD_ALBUM_LIST: 'loading resources albums list ...',
+      LOAD_ALBUM_LIST_ERROR: 'Error: get resources albums items error',
+      INSERT_SUCCESSFULLY: 'Insert resource into album successfully',
+      INSERT_FAILED: 'Insert resource into album failed',
+      PREFIX_LIST: '{{type}} Albums List',
+      FILES_NUMBERS: 'Torrents',
+      CAT_TYPE: 'Category',
+      BTN_EDIT_OVERVIEW: 'Edit Overview',
+      BTN_REMOVE_ALBUM: 'Delete Album',
+      BTN_PUSH_INFO_HOME: 'Push Into Home',
+      BTN_PULL_FROM_HOME: 'Pull From Home',
+      BTN_REMOVE_FROM_ALBUM: 'Remove',
+      BTN_REMOVE_TITLE: 'Remove From Album',
+      DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this album?',
+      DELETE_SUCCESSFULLY: 'Resource album deleted successfully',
+      DELETE_FAILED: 'Resource album deleted failed',
+      SETRLEVEL_SUCCESSFULLY: 'Set album recommend level successfully',
+      SETRLEVEL_ERROR: 'Set album recommend level faild',
+      REMOVE_CONFIRM_OK: 'Remove',
+      REMOVE_CONFIRM_CANCEL: 'Cancel',
+      REMOVE_CONFIRM_HEADER_TEXT: 'Remove Confirm',
+      REMOVE_CONFIRM_BODY_TEXT: 'Are you sure want to remove the torrent from this album?',
+      REMOVE_SUCCESSFULLY: 'Remove the torrent from this album successfully',
+      REMOVE_FAILED: 'Remove the torrent from this album failed',
+      EDIT_OVERVIEW_SUCCESSFULLY: 'Edit album overview successfully',
+      EDIT_OVERVIEW_FAILED: 'Edit album overview failed',
+      HOME_STATUS_SUCCESSFULLY: 'Toggle home status successfully',
+      HOME_STATUS_ERROR: 'Toggle home status faild'
     },
 
     //backup views settings
@@ -900,6 +960,10 @@
     STATUS_FIELD: {
       BTN_FOLLOW: 'Follow',
       BTN_UNFOLLOW: 'Unfollow',
+      BTN_MANAGE: 'Manage',
+      BTN_SEND_MESSAGE: 'Send message',
+      BTN_EDIT: 'Edit',
+      BTN_REMOVE: 'Remove',
       PICTURE: 'Profile picture',
       RESET_DEFAULT_PICTURE: 'Reset to default picture',
       ADD_VIP_MONTHS: '+ VIP a month',
@@ -951,7 +1015,9 @@
       LEECHED_IP: 'Leeched IP list',
       CURR_SIGNED_IP: 'Current signed IP',
       CURR_LEECHED_IP: 'Latest leeched IP',
-      BT_CLIENT: 'Leeched BT Client list'
+      BT_CLIENT: 'Leeched BT Client list',
+      ADMIN_REMARKS: 'Admin Remarks',
+      BTN_SAVE_REMARKS: 'Save remarks'
     },
     TORRENT_TYPE_LABEL: {
       MOVIE: 'Movie',
@@ -1018,12 +1084,16 @@
       TITLE_OPERATION: 'Operation',
       TITLE_SENDER: 'Sender',
       TITLE_TOKEN: 'Token',
+      TITLE_TYPE: 'Type',
       TITLE_EMAIL: 'Email',
       TITLE_SEND: 'Send an invitation',
       TITLE_STATUS: 'Status',
       TITLE_STATUS_REGED: 'signed',
       TITLE_STATUS_UNREGED: 'unsigned',
-      TITLE_STATUS_EXPIRED: 'expired'
+      TITLE_STATUS_EXPIRED: 'expired',
+      TYPE_EXCHANGE: 'exchange',
+      TYPE_PRESENT: 'present',
+      TYPE_OFFICIAL: 'official'
     },
     GET_INVITATIONS_ERROR: 'Get invitations failed',
     BUTTON_INVITE: 'Send',
@@ -1054,6 +1124,7 @@
     MESSAGES_IS_LOADING: 'Loading messages, please wait ...',
     MESSAGES_IS_EMPTY: 'Messages Box is empty!',
     OFFICIAL_MESSAGES_TOOLTIP: '<h4>Tip:</h4>In order to maintain a clean list of official messages, please delete messages that have expired over time as they cannot be unilaterally cleared in the users message center.',
+    MARK_AS_ALREADY_READ: 'Mark as already read, do not show next time.',
     MESSAGES_FIELD: {
       TO: 'Send to:',
       TYPE: 'Message type:',
@@ -1073,7 +1144,9 @@
       INFO_SEND_AT: 'at',
       LAST_REPLY_AT: 'Latest reply at',
       NEW_MSG: 'New messages',
-      SERVER_SEND: 'Server send'
+      SERVER_SEND: 'Server send',
+      MUST_READ: 'Must read message',
+      MUST_READ_KEY: 'MustRead'
     },
     BUTTON_MESSAGE_DELETE: 'Delete',
     BUTTON_MESSAGE_CLOSE: 'Close(esc)',
@@ -1711,6 +1784,7 @@
 
       TITLE_HNR_WARNING_ADD: 'New H&R warning',
       CONTENT_HNR_WARNING_ADD: '### H&R warning! \n You just got a h&r warning on torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}), please continue to seeding, the warning will be auto cleanup when the seed ratio more than {{hnr_ratio}} or seed time more than {{hnr_days}} days or clean up manually at [warning list](/status/warning).',
+
       TITLE_HNR_WARNING_REMOVE: 'H&R warning removed',
       CONTENT_HNR_WARNING_REMOVE: '### H&R warning removed! \n Congratulate, your h&r warning on torrent [{{torrent_file_name}}](/torrents/{{torrent_id}}) already clean up.',
 

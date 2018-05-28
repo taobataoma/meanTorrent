@@ -102,7 +102,7 @@ module.exports = {
      * @announceIdleTime:                     announce time over @announceInterval this value is inactive peer
      * @announcePrefix:                       prefix of torrent file name, is will auto add when user download the torrent files
      * @clientBlackListUrl:                   forbidden download client list url, user can view this list to check forbidden client software
-     * @announceLogMonths:                    setting of months to write announce log to db, because the data is too more too big, default value is 1
+     * @announceLogDays:                      setting of days to write announce log to db, because the data is too more too big, do not to set a big value
      * @daysLogMonths:                        setting of months to write user days log
      * @seedingInFinishedCheck:               settings to check whether can seeding an un-download finished torrent
      * @downloadCheck:                        announce download(leech) settings
@@ -124,6 +124,8 @@ module.exports = {
      * @debugAnnounceUser:                    setting of debug announce user, NOTE: enable this need @app.writeServerDebugLog must be true too
      *      @debugAll:                        if true, debug all announce user, else debug user in ids list below
      *      @ids:                             debug announce user id list
+     * @debugClientSideUser:                  setting of debug client side user
+     *      @ids:                             debug user id list
      */
     announce: {
       url: 'http://localhost:3000/announce',
@@ -134,7 +136,7 @@ module.exports = {
       announcePrefix: '{MEAN}.',
       sourceInfo: '{MEAN.im} Present by meanTorrent.',
       clientBlackListUrl: '/about/black',
-      announceLogMonths: 1,
+      announceLogDays: 30,
       daysLogMonths: 12,
       seedingInFinishedCheck: true,
       downloadCheck: {
@@ -161,6 +163,11 @@ module.exports = {
         ids: [
           '59227f9095602327ea1d96ba',
           '592280c464be9e281a1ec56e'
+        ]
+      },
+      debugClientSideUser: {
+        ids: [
+          '59227f9095602327ea1d96ba'
         ]
       }
     },
@@ -281,6 +288,7 @@ module.exports = {
      * @showVipBanner:                        setting whether show vip AD banner
      * @showForumNewTopicsAndNewestTorrents:  setting whether show forum new topics and newest torrents in home page
      * @showTopLevelTorrents:                 setting whether show top level torrents list
+     * @showAlbumsList:                       setting whether show albums list of home
      * @bodyBackgroundImage:                  background image url of home page body
      * @buttonList:                           a function list area of home page
      */
@@ -288,6 +296,7 @@ module.exports = {
       showVipBanner: false,
       showForumNewTopicsAndNewestTorrents: false,
       showTopLevelTorrents: false,
+      showAlbumsList: true,
       bodyBackgroundImage: 'https://image.tmdb.org/t/p/w1280/cnKAGbX1rDkAquF2V1wVkptHDJO.jpg',
       buttonList: [
         {
@@ -395,13 +404,19 @@ module.exports = {
      *                  if exceed the expiration time, the invite send qualifications will invalid and user also can not signin(register).
      * @expires_str:    string desc of @expires
      * @banUserInviter: settings whether ban the user`s inviter when a user banned
+     *
+     * @official:       settings of official invitations
+     *    @presentDays: settings of present official available days list
      */
     invite: {
       openInvite: true,
       scoreExchange: 10000,
       expires: 60 * 60 * 1000 * 24,
       expires_str: '24h',
-      banUserInviter: true
+      banUserInviter: true,
+      official: {
+        presentDays: [1, 10, 30, 90, 180]
+      }
     },
 
     /**
@@ -426,37 +441,53 @@ module.exports = {
      *
      * score system settings
      *
-     * @levelStep:        value of each level step, default 500
-     * @action:           score change action list
-     *        @name:      action name
-     *        @value:     action score value
-     *        @enable:    action enable status, if false, system will not change user`s score at this action
-     *                    NOTE: ENABLE VALUE OF DEFAULTACTION MUST BE TRUE
+     * @levelStep:              value of each level step, default 500
+     * @scoreLogDays:           setting of days to write score detail log to db, because the data is too more too big, do not to set a big value
+     * @transfer:               setting of transfer score to inviter per month
+     *        @enable:          setting whether to enable transfer
+     *        @deductFromUser:  setting whether deduct the score from user
+     *        @transRatio:      setting transfer ratio, the user`s score of this ratio will be subtract and add into the inviter`s account if the @deductFromUser is true
+     * @action:                 score change action list
+     *        @name:            action name
+     *        @value:           action score value
+     *        @enable:          action enable status, if false, system will not change user`s score at this action
+     *                          NOTE: ENABLE VALUE OF DEFAULTACTION MUST BE TRUE
      */
     score: {
       levelStep: 1000,
+      scoreLogDays: 10,
+      transferToInviter: {
+        enable: true,
+        deductFromUser: false,
+        transRatio: 0.001
+      },
       action: {
-        defaultAction: {name: 'defaultAction', value: 0, enable: true},
+        defaultAction: {name: 'defaultAction', content: 'DEFAULT_ACTION', value: 0, enable: true},
+        adminModify: {name: 'adminModify', content: 'ADMIN_MODIFY', value: 0, enable: true},
 
-        uploadTorrent: {name: 'uploadTorrent', value: 50, enable: true},
-        uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', value: -50, enable: true},
-        uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', value: 10, enable: true},
-        uploadSubtitle: {name: 'uploadSubtitle', value: 20, enable: true},
-        uploadSubtitleBeDeleted: {name: 'uploadSubtitleBeDeleted', value: -20, enable: true},
+        transferScoreIntoInviterFrom: {name: 'transferScoreIntoInviterFrom', content: 'TRANSFER_SCORE_INTO_INVITER_FROM', value: 0, enable: true},
+        transferScoreIntoInviterTo: {name: 'transferScoreIntoInviterTo', content: 'TRANSFER_SCORE_INTO_INVITER_TO', value: 0, enable: true},
 
-        thumbsUpScoreOfTorrentFrom: {name: 'thumbsUpScoreOfTorrentFrom', value: -10, enable: true},
-        thumbsUpScoreOfTorrentTo: {name: 'thumbsUpScoreOfTorrentTo', value: 10, enable: true},
-        thumbsUpScoreOfTopicFrom: {name: 'thumbsUpScoreOfTopicFrom', value: -10, enable: true},
-        thumbsUpScoreOfTopicTo: {name: 'thumbsUpScoreOfTopicTo', value: 10, enable: true},
+        uploadTorrent: {name: 'uploadTorrent', content: 'UPLOAD_TORRENT', value: 50, enable: true},
+        uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', content: 'UPLOAD_TORRENT_BE_DELETED', value: -50, enable: true},
+        uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', content: 'UPLOAD_TORRENT_BE_RECOMMEND', value: 10, enable: true},
+        uploadSubtitle: {name: 'uploadSubtitle', content: 'UPLOAD_SUBTITLE', value: 20, enable: true},
+        uploadSubtitleBeDeleted: {name: 'uploadSubtitleBeDeleted', content: 'UPLOAD_SUBTITLE_BE_DELETED', value: -20, enable: true},
 
-        postRequest: {name: 'postRequest', value: 0, enable: true}, //value used requests.scoreForAddRequest
-        scoreExchangeInvitation: {name: 'scoreExchangeInvitation', value: 0, enable: true}, //value used invite.scoreExchange
-        scoreToRemoveWarning: {name: 'scoreToRemoveWarning', value: 0, enable: true}, //value used hitAndRun.scoreToRemoveWarning
-        activeIdleAccount: {name: 'activeIdleAccount', value: 0, enable: true}, //value used sign.idle.activeIdleAccountBasicScore
+        thumbsUpScoreOfTorrentFrom: {name: 'thumbsUpScoreOfTorrentFrom', content: 'THUMBS_UP_SCORE_OF_TORRENT_FROM', value: -10, enable: true},
+        thumbsUpScoreOfTorrentTo: {name: 'thumbsUpScoreOfTorrentTo', content: 'THUMBS_UP_SCORE_OF_TORRENT_TO', value: 10, enable: true},
+        thumbsUpScoreOfTopicFrom: {name: 'thumbsUpScoreOfTopicFrom', content: 'THUMBS_UP_SCORE_OF_TOPIC_FROM', value: -10, enable: true},
+        thumbsUpScoreOfTopicTo: {name: 'thumbsUpScoreOfTopicTo', content: 'THUMBS_UP_SCORE_OF_TOPIC_TO', value: 10, enable: true},
+
+        postRequest: {name: 'postRequest', content: 'POST_REQUEST', value: 0, enable: true}, //value used requests.scoreForAddRequest
+        scoreExchangeInvitation: {name: 'scoreExchangeInvitation', content: 'SCORE_EXCHANGE_INVITATION', value: 0, enable: true}, //value used invite.scoreExchange
+        scoreToRemoveWarning: {name: 'scoreToRemoveWarning', content: 'SCORETO_REMOVE_WARNING', value: 0, enable: true}, //value used hitAndRun.scoreToRemoveWarning
+        activeIdleAccount: {name: 'activeIdleAccount', content: 'ACTIVE_IDLE_ACCOUNT', value: 0, enable: true}, //value used sign.idle.activeIdleAccountBasicScore
 
         dailyCheckIn: {
           enable: true,
           name: 'dailyCheckIn',
+          content: 'DAILY_CHECK_IN',
           dailyBasicScore: 10,
           dailyStepScore: 1,
           dailyMaxScore: 100
@@ -464,14 +495,15 @@ module.exports = {
 
         seedUpDownload: {
           name: 'seedUpDownload',
+          content: 'SEED_UP_DOWNLOAD',
           additionSize: 1024 * 1024 * 1024 * 10,  //10G
           additionSize_str: '10G',
           perlSize: 1024 * 1024 * 1024,   //1G
           perlSize_str: '1G',
 
-          uploadValue: 2,
+          uploadValue: 1,
           uploadEnable: true,
-          downloadValue: 1,
+          downloadValue: 0.5,
           downloadEnable: true,
           vipRatio: 1.5,
 
@@ -480,21 +512,24 @@ module.exports = {
 
         seedTimed: {
           name: 'seedTimed',
+          content: 'SEED_TIMED',
           additionTime: 60 * 60 * 1000,
           additionTime_str: '1h',
-          timedValue: 1,
+          timedValue: 0.5,
           vipRatio: 1.5,
 
           enable: true
         },
 
         seedSeederAndLife: {
+          name: 'seedSeederAndLife',
+          content: 'SEED_SEEDER_AND_LIFE',
           seederBasicRatio: 1,
-          seederCoefficient: 0.5,
+          seederCoefficient: 0.2,
           seederCount: 10,
           lifeBasicRatio: 1,
-          lifeCoefficientOfDay: 0.005,
-          lifeMaxRatio: 5,
+          lifeCoefficientOfDay: 0.002,
+          lifeMaxRatio: 3,
 
           enable: true
         }
@@ -541,18 +576,27 @@ module.exports = {
      *
      * @uploadTorrentTitleLength:     torrent title length on upload page
      * @uploadTorrentSubTitleLength:  torrent sub title length on upload page
+     *
      * @userSignatureLength:          user signature of forum string length limit
      * @chatMessageMaxLength:         chat room send message string length limit
+     *
      * @messageTitleLength:           user message send title length limit
      * @messageBoxContentLength:      user message send content length limit
      * @messageBoxReplyLength:        user message send reply content length limit
      * @ticketContentLength:          ticket content length limit
+     *
      * @torrentCommentLength:         torrent comment send content length limit
+     *
      * @forumTopicTitleLength:        forum topic title length limit
      * @forumTopicContentLength:      forum topic content length limit
      * @forumReplyContentLength:      forum reply content length limit
      * @makerGroupDescLength:         resources group desc content length limit
+     *
      * @collectionsOverviewLength:    movie collections overview content length limit
+     * @albumsOverviewLength:         resource albums overview content length limit
+     *
+     * @requestDescLength:            request description content length limit
+     * @requestCommentLength:         request comment content length limit
      */
     inputLength: {
       uploadTorrentTitleLength: 128,
@@ -574,6 +618,7 @@ module.exports = {
 
       makerGroupDescLength: 2048,
       collectionsOverviewLength: 2048,
+      albumsOverviewLength: 2048,
 
       requestDescLength: 1024,
       requestCommentLength: 512
@@ -636,14 +681,16 @@ module.exports = {
      *
      * system trace logs settings
      *
+     * @traceLogDays:   setting trace log days, because data to more, do not to set a big value
      * @action:         trace action list
      *        @name:    action name
      *        @enable:  action enable status, if false, system will not to trace log this action
      *
      * !IMPORTANT NOTE:
-     * @userAnnounceData AND @userScoreChange MAKE LARGEST NUMBER DATA RECORD, IF YOU RUNNING MEANTORRENT AT PROD MODE, MUST SET IT TO FALSE
+     * @userAnnounceData  MAKE LARGEST NUMBER DATA RECORD, IF YOU RUNNING MEANTORRENT AT PROD MODE, MUST SET IT TO FALSE
      */
     trace: {
+      traceLogDays: 10,
       action: {
         AdminUpdateUserRole: {name: 'AdminUpdateUserRole', enable: true},
         AdminUpdateUserStatus: {name: 'AdminUpdateUserStatus', enable: true},
@@ -664,20 +711,21 @@ module.exports = {
         AdminTorrentSetSaleType: {name: 'AdminTorrentSetSaleType', enable: true},
         AdminTorrentSetRecommendLevel: {name: 'AdminTorrentSetRecommendLevel', enable: true},
         AdminCollectionSetRecommendLevel: {name: 'AdminCollectionSetRecommendLevel', enable: true},
+        AdminAlbumSetRecommendLevel: {name: 'AdminAlbumSetRecommendLevel', enable: true},
         AdminTorrentSetReviewedStatus: {name: 'AdminTorrentSetReviewedStatus', enable: true},
         OperCreateMakerGroup: {name: 'OperCreateMakerGroup', enable: true},
         OperCreateCollection: {name: 'OperCreateCollection', enable: true},
+        OperCreateAlbum: {name: 'OperCreateAlbum', enable: true},
         OperDeleteBackupFiles: {name: 'OperDeleteBackupFiles', enable: true},
 
         userInvitationExchange: {name: 'userInvitationExchange', enable: true},
+        adminPresentInvitations: {name: 'adminPresentInvitations', enable: true},
         adminRemoveHnrWarning: {name: 'adminRemoveHnrWarning', enable: true},
         userRemoveHnrWarning: {name: 'userRemoveHnrWarning', enable: true},
         userSendInvitation: {name: 'userSendInvitation', enable: true},
         adminSendOfficialInvitation: {name: 'adminSendOfficialInvitation', enable: true},
 
-        userAnnounceData: {name: 'userAnnounceData', enable: false},
         userAnnounceFinished: {name: 'userAnnounceFinished', enable: true},
-        userScoreChange: {name: 'userScoreChange', enable: true},
 
         forumDeleteTopic: {name: 'forumDeleteTopic', enable: true},
         forumDeleteReply: {name: 'forumDeleteReply', enable: true}
@@ -1133,7 +1181,7 @@ module.exports = {
         value: {Ur: 1.5, Dr: 0}
       },
       uploader: {
-        value: {Ur: 1.5, Dr: 1}
+        value: {Ur: 2, Dr: 1}
       }
     },
 
@@ -1296,12 +1344,14 @@ module.exports = {
      * @torrentsPerPage:          torrents list page settings
      * @torrentsCommentsPerPage:  torrent comments list settings
      * @makeGroupTorrentsPerPage: torrent of make group list page settings
+     * @albumTorrentsPerPage:     torrent of album list page settings
      * @tracesPerPage:            system traces log list page settings
      * @adminUserListPerPage:     admin manage users list page settings
      * @collectionsListPerPage:   movie collections list page settings
      * @backupFilesListPerPage:   system backup files list page settings
      * @torrentPeersListPerPage:  torrent detail seeder & leecher users list page settings
-     * @invitationsListPerPage:   official invitations list page settings
+     * @officialInvitationsListPerPage:   official invitations list page settings
+     * @userInvitationsListPerPage:       users invitations list page settings
      *
      * @uploaderUserListPerPage:  admin management uploader access list page settings
      * @messageBoxListPerPage:    message box list page settings
@@ -1330,12 +1380,14 @@ module.exports = {
       torrentsPerPage: 20,
       torrentsCommentsPerPage: 20,
       makeGroupTorrentsPerPage: 20,
+      albumTorrentsPerPage: 20,
       tracesPerPage: 30,
       adminUserListPerPage: 20,
       collectionsListPerPage: 9,
       backupFilesListPerPage: 20,
       torrentPeersListPerPage: 20,
-      invitationsListPerPage: 20,
+      officialInvitationsListPerPage: 20,
+      userInvitationsListPerPage: 10,
 
       uploaderUserListPerPage: 20,
       messageBoxListPerPage: 10,

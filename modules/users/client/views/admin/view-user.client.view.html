@@ -1,27 +1,37 @@
 <section class="container">
-    <div class="page-header">
+    <div class="page-header userinfo-header">
         <div class="row">
-            <div class="col-md-5 col-md-offset-1">
-                <h3 class="userinfo-name" ng-bind="vm.user.displayName"></h3>
-            </div>
-            <div class="col-md-5">
-                <a class="btn btn-primary pull-right margin-left-10" ng-if="vm.authentication.user.isAdmin"
-                   ui-sref="admin.user-edit({userId: vm.user._id})">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </a>
-                <a class="btn btn-primary pull-right margin-left-10" ng-click="vm.messageTo()" ng-if="!vm.isContextUserSelf()">
-                    <i class="glyphicon glyphicon-envelope"></i>
-                </a>
-                <a class="btn btn-primary pull-right" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf() && !vm.user.isOper">
-                    <i class="glyphicon glyphicon-trash"></i>
-                </a>
+            <div class="col-xs-12 col-xs-offset-0 col-md-10 col-md-offset-1 userinfo-col">
+                <span class="h3" ng-bind="vm.user.displayName"></span>
+                <span class="pull-right margin-bottom-5 userinfo-btn">
+                    <a class="btn btn-default btn-width-80" ng-click="vm.messageTo()" ng-if="!vm.isContextUserSelf()">
+                        {{ 'STATUS_FIELD.BTN_SEND_MESSAGE' | translate}}
+                    </a>
+                    <button class="btn btn-primary" ng-if="vm.authentication.user.isAdmin"
+                            uib-popover-template="vm.presentInvitationsPopover.templateUrl"
+                            popover-title="{{vm.presentInvitationsPopover.title | translate}}"
+                            popover-trigger="'outsideClick'"
+                            popover-placement="bottom-right"
+                            popover-is-open="vm.presentInvitationsPopover.isOpen"
+                            popover-class="set-invitations-popover"
+                            ng-click="vm.presentInvitationsPopover.numbers = 1; vm.presentInvitationsPopover.days = 1;">
+                        {{'BTN_PRESENT_INVITATIONS' | translate}}
+                    </button>
+                    <a class="btn btn-primary btn-width-80" ui-sref="admin.user-edit({userId: vm.user._id})"
+                       ng-if="vm.authentication.user.isAdmin">
+                        {{ 'STATUS_FIELD.BTN_EDIT' | translate}}
+                    </a>
+                    <a class="btn btn-primary btn-width-80" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf() && !vm.user.isOper">
+                        {{ 'STATUS_FIELD.BTN_REMOVE' | translate}}
+                    </a>
+                </span>
             </div>
         </div>
     </div>
 
-    <div class="row margin-bottom-30">
+    <div class="row">
         <div class="col-md-10 col-md-offset-1 admin-user-info">
-            <dl class="dl-horizontal dl-hover">
+            <dl class="dl-horizontal dl-hover margin-top-20 margin-bottom-20">
                 <dt class="h-line">{{ 'STATUS_FIELD.PICTURE' | translate}}：</dt>
                 <dd class="h-line">
                     <img class="status-avatar" ng-src="{{vm.user.profileImageURL}}">
@@ -32,7 +42,9 @@
                 </dd>
 
                 <dt class="h-line">ID：</dt>
-                <dd class="h-line"><mark>{{ vm.user._id }}</mark></dd>
+                <dd class="h-line">
+                    <mark>{{ vm.user._id }}</mark>
+                </dd>
 
                 <dt class="h-line">{{ 'STATUS_FIELD.USERNAME' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.username }}</dd>
@@ -270,6 +282,19 @@
 
                 <dt class="h-line">{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.replies }}</dd>
+
+                <li class="status-divider"></li>
+
+                <dt class="h-line">{{ 'STATUS_FIELD.ADMIN_REMARKS' | translate}}：</dt>
+                <dd class="h-line">
+                    <div class="padding-top-10 padding-bottom-10">
+                        <textarea class="form-control" rows="8" ng-model="vm.user.remarks"></textarea>
+                        <button class="btn btn-default btn-width-100 margin-top-10"
+                                ng-click="vm.saveRemarks()">
+                            {{'STATUS_FIELD.BTN_SAVE_REMARKS' | translate}}
+                        </button>
+                    </div>
+                </dd>
             </dl>
         </div>
     </div>
@@ -338,6 +363,27 @@
             </div>
             <button class="btn btn-default" ng-click="vm.setUserDownloaded();">{{ 'BUTTON_OK' | translate }}</button>
         </form>
+    </script>
+
+    <script type="text/ng-template" id="present-invitations.html">
+        <form class="set-invitations-popover">
+            <div class="form-group">
+                <label for="numbers">{{ vm.presentInvitationsPopover.label_numbers | translate}}</label>
+                <input type="number" id="numbers" ng-model="vm.presentInvitationsPopover.numbers" class="form-control"
+                       max="100" min="1" autofocus>
+            </div>
+            <div class="form-group">
+                <label>{{ vm.presentInvitationsPopover.label_days | translate}}</label>
+                <div>
+                    <label class="radio-inline" ng-repeat="iv in vm.inviteConfig.official.presentDays">
+                        <input type="radio" ng-model="vm.presentInvitationsPopover.days" name="days" id="days{{iv}}" value="{{iv}}"> {{iv}}
+                    </label>
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-block btn-default margin-top-10 margin-bottom-10"
+                ng-click="vm.presentInvitations();">{{ 'BTN_PRESENT' | translate }}
+        </button>
     </script>
 
 </section>

@@ -94,7 +94,9 @@ module.exports = {
         'public/lib/sprintf/dist/sprintf.min.js',
         'public/lib/sprintf/dist/angular-sprintf.min.js',
         //angular-cache
-        'public/lib/angular-cache/dist/angular-cache.min.js'
+        'public/lib/angular-cache/dist/angular-cache.min.js',
+        //angular-filter
+        'public/lib/angular-filter/dist/angular-filter.min.js'
 
         // endbower
       ]

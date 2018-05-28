@@ -4,6 +4,10 @@
 
 &emsp;
 
+1. The current <mark>H&R</mark> function enable status is：
+```javascript
+hnrConfig.enable = %(hnrConfig.enable)s
+```
 1. Administrators can add or cancel `H&R` attributes to any seed at any time.
 1. Black torrent after the download is complete, you can't stop uploading immediately, must meet the following conditions can be either:
   * Upload time to `%(hnrConfig.condition.seedTime_str)s`.

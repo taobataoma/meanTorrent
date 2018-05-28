@@ -335,6 +335,8 @@
             return false;
           } else if (vm.state.current.name.startsWith('collections')) {
             return false;
+          } else if (vm.state.current.name.startsWith('albums')) {
+            return false;
           } else if (vm.state.current.name.startsWith('requests')) {
             return false;
           } else {

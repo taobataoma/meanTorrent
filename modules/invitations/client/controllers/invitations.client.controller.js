@@ -6,16 +6,17 @@
     .controller('InviteController', InviteController);
 
   InviteController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$window', 'MeanTorrentConfig', 'NotifycationService',
-    'InvitationsService', '$rootScope', 'moment'];
+    'InvitationsService', '$rootScope', 'moment', 'DebugConsoleService', '$filter'];
 
   function InviteController($scope, $state, $translate, $timeout, Authentication, $window, MeanTorrentConfig, NotifycationService,
-                            InvitationsService, $rootScope, moment) {
+                            InvitationsService, $rootScope, moment, mtDebug, $filter) {
     var vm = this;
     vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.user = Authentication.user;
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+    vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
 
     vm.invitePopover = {
       title: 'INVITATION.TITLE_SEND',
@@ -36,16 +37,107 @@
     });
 
     /**
+     * myBuildPager
+     */
+    vm.myBuildPager = function () {
+      vm.myPagedItems = [];
+      vm.myItemsPerPage = vm.itemsPerPageConfig.userInvitationsListPerPage;
+      vm.myCurrentPage = 1;
+      vm.myFigureOutItemsToDisplay();
+    };
+
+    /**
+     * myFigureOutItemsToDisplay
+     */
+    vm.myFigureOutItemsToDisplay = function (callback) {
+      vm.myFilteredItems = vm.my_invitations;
+      vm.myFilterLength = vm.myFilteredItems.length;
+      var begin = ((vm.myCurrentPage - 1) * vm.myItemsPerPage);
+      var end = begin + vm.myItemsPerPage;
+      vm.myPagedItems = vm.myFilteredItems.slice(begin, end);
+
+      if (callback) callback();
+    };
+
+    /**
+     * myPageChanged
+     */
+    vm.myPageChanged = function () {
+      var element = angular.element('#top_of_my_invitations_list');
+      console.log(element);
+
+      $('.tb-my').fadeTo(100, 0.01, function () {
+        vm.myFigureOutItemsToDisplay(function () {
+          $timeout(function () {
+            $('.tb-my').fadeTo(400, 1, function () {
+              console.log(element[0].offsetTop);
+              //window.scrollTo(0, element[0].offsetTop - 60);
+              $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
+            });
+          }, 100);
+        });
+      });
+    };
+
+    /**
+     * buildPager
+     */
+    vm.buildPager = function () {
+      vm.pagedItems = [];
+      vm.itemsPerPage = vm.itemsPerPageConfig.userInvitationsListPerPage;
+      vm.currentPage = 1;
+      vm.figureOutItemsToDisplay();
+    };
+
+    /**
+     * figureOutItemsToDisplay
+     */
+    vm.figureOutItemsToDisplay = function (callback) {
+      vm.filteredItems = $filter('filter')(vm.used_invitations, {
+        $: vm.search
+      });
+      vm.filterLength = vm.filteredItems.length;
+      var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
+      var end = begin + vm.itemsPerPage;
+      vm.pagedItems = vm.filteredItems.slice(begin, end);
+
+      if (callback) callback();
+    };
+
+    /**
+     * pageChanged
+     */
+    vm.pageChanged = function () {
+      var element = angular.element('#top_of_invitations_list');
+      console.log(element);
+      $('.tb-official').fadeTo(100, 0.01, function () {
+        vm.figureOutItemsToDisplay(function () {
+          $timeout(function () {
+            $('.tb-official').fadeTo(400, 1, function () {
+              //window.scrollTo(0, element[0].offsetTop - 60);
+              console.log(element[0].offsetTop);
+              $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
+            });
+          }, 100);
+        });
+      });
+    };
+
+    /**
      * getMyInvitations
      */
     vm.getMyInvitations = function () {
       InvitationsService.get({}, function (items) {
+        mtDebug.info(items);
         vm.my_invitations = items.my_invitations;
         vm.used_invitations = items.used_invitations;
 
         angular.forEach(vm.my_invitations, function (i) {
           vm.invitePopover.items.push({isOpen: false});
         });
+
+        vm.myBuildPager();
+        vm.buildPager();
       }, function (res) {
         NotifycationService.showErrorNotify('GET_INVITATIONS_ERROR');
       });

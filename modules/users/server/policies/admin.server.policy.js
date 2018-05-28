@@ -20,7 +20,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/users/uploaderList', permissions: '*'},
           {resources: '/api/users/:userId/role', permissions: '*'},
           {resources: '/api/users/:userId/VIPMonths/:months', permissions: '*'},
-          {resources: '/api/users/:userId/VIPMonths/reset', permissions: '*'}
+          {resources: '/api/users/:userId/VIPMonths/reset', permissions: '*'},
+          {resources: '/api/users/:userId/presentInvitations', permissions: '*'}
         ]
       },
       {

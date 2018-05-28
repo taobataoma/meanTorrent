@@ -14,8 +14,11 @@ body {
     background-color: @mt-body-background-color;
 }
 
-.ui-notification{
-    width: 400px;
+.ui-notification {
+    width: 300px;
+    .message {
+        word-break: break-all;
+    }
 }
 
 .social-list {
@@ -395,7 +398,7 @@ body {
         }
     }
     img {
-        opacity: 0.8;
+        opacity: 0.9;
         min-height: 200px;
     }
     .caption {
@@ -407,7 +410,7 @@ body {
     .music {
         margin: 38px 0 42px 0;
         overflow: hidden;
-        opacity: 0.8;
+        opacity: 0.9;
         &::before {
             content: ' ';
             padding-top: 100%; /* vertical value as  100% equals width */
@@ -434,7 +437,7 @@ body {
         border-radius: 4px;
     }
     .torrent-logo {
-        opacity: 0.8;
+        opacity: 0.9;
     }
 }
 
@@ -1794,10 +1797,6 @@ body {
     }
 }
 
-.userinfo-name {
-    margin-top: 8px;
-}
-
 .lang-list {
     margin-top: 5px;
     padding-left: 5px;
@@ -2002,6 +2001,15 @@ body {
 .set-downloaded-popover-form {
     input {
         max-width: 160px;
+    }
+}
+
+.set-invitations-popover {
+    max-width: 250px;
+    width: 250px;
+    height: auto;
+    input {
+        max-width: 100px;
     }
 }
 

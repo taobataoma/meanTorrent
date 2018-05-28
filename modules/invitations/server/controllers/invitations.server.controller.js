@@ -52,6 +52,7 @@ exports.create = function (req, res) {
       var user = req.user;
 
       if (user.score >= inviteConfig.scoreExchange) {
+        user.score -= inviteConfig.scoreExchange;
         scoreUpdate(req, user, scoreConfig.action.scoreExchangeInvitation, -(inviteConfig.scoreExchange));
 
         res.json(user);
@@ -130,7 +131,7 @@ exports.list = function (req, res) {
       expiresat: {$gt: Date.now()}
     })
       .sort('createdat')
-      .populate('user', '-salt -password')
+      .populate('user', '-salt -password -followers -following -leeched_ip -signed_ip -signature')
       .exec(function (err, invitations) {
         if (err) {
           callback(err, null);
@@ -146,8 +147,8 @@ exports.list = function (req, res) {
       status: {$gt: 0}
     })
       .sort('invitedat')
-      .populate('user', '-salt -password')
-      .populate('to_user', '-salt -password')
+      .populate('user', '-salt -password -followers -following -leeched_ip -signed_ip -signature')
+      .populate('to_user', '-salt -password -followers -following -leeched_ip -signed_ip -signature')
       .exec(function (err, invitations) {
         if (err) {
           callback(err, null);
@@ -307,6 +308,7 @@ exports.sendOfficial = function (req, res) {
           invitation.invitedat = Date.now();
           invitation.expiresat = Date.now() + config.meanTorrentConfig.invite.expires;
           invitation.isOfficial = true;
+          invitation.type = 'official';
 
           //send invitation mail
           var lang = common.getRequestLanguage(req);

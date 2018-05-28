@@ -7,12 +7,12 @@
 
   TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
-    'SubtitlesService', 'getStorageLangService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices',
+    'SubtitlesService', 'getStorageLangService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices', 'AlbumsService',
     'localStorageService', '$compile', 'SideOverlay', 'ResourcesTagsServices', 'CollectionsService', 'moment'];
 
   function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
-                                  getStorageLangService, NotifycationService, mtDebug, TorrentGetInfoServices,
+                                  getStorageLangService, NotifycationService, mtDebug, TorrentGetInfoServices, AlbumsService,
                                   localStorageService, $compile, SideOverlay, ResourcesTagsServices, CollectionsService, moment) {
     var vm = this;
     vm.DLS = DownloadService;
@@ -260,10 +260,17 @@
     };
 
     /**
-     * onPopupMessageOpen
+     * onPopupCollectionsOpen
      */
-    vm.onPopupMessageOpen = function () {
+    vm.onPopupCollectionsOpen = function () {
       $('#coll-name').focus();
+    };
+
+    /**
+     * onPopupAlbumOpen
+     */
+    vm.onPopupAlbumOpen = function () {
+      $('#album-name').focus();
     };
 
     /**
@@ -404,13 +411,6 @@
     vm.saveInsertCollection = function () {
       SideOverlay.close(null, 'collectionsInsertSlide');
 
-      //var sc = undefined;
-      //angular.forEach(vm.collectionsItems, function (c) {
-      //  if (c._id === vm.collectionTorrent.cid) {
-      //    sc = c;
-      //  }
-      //});
-
       CollectionsService.insertIntoCollection({
         collectionId: vm.collectionTorrent.cid,
         torrentId: vm.collectionTorrent.id
@@ -436,6 +436,113 @@
       });
 
       return result;
+    };
+
+    /**
+     * createAlbum
+     * @param evt
+     */
+    vm.createAlbum = function (evt) {
+      vm.album = {
+        type: vm.torrentLocalInfo.torrent_type,
+        name: undefined,
+        overview: undefined,
+        backdrop_path: undefined
+      };
+
+      SideOverlay.open(evt, 'albumCreateSlide');
+    };
+
+    /**
+     * hideAlbumPopup
+     */
+    vm.hideAlbumPopup = function () {
+      SideOverlay.close(null, 'albumCreateSlide');
+      vm.album = undefined;
+    };
+
+    /**
+     * saveAlbum
+     */
+    vm.saveAlbum = function () {
+      SideOverlay.close(null, 'albumCreateSlide');
+
+      var album = new AlbumsService(vm.album);
+      album.$save(function (res) {
+        NotifycationService.showSuccessNotify('ALBUMS.CREATE_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'ALBUMS.CREATE_FAILED');
+      });
+
+    };
+
+    /**
+     * insertIntoCollection
+     * @param evt
+     */
+    vm.insertIntoAlbum = function (evt) {
+      vm.albumsItems = undefined;
+
+      vm.albumTorrent = {
+        type: vm.torrentLocalInfo.torrent_type,
+        id: vm.torrentLocalInfo._id,
+        aid: undefined,
+        title: vm.TGI.getTorrentCustomTitle(vm.torrentLocalInfo),
+        subtitle: vm.TGI.getTorrentCustomSubTitle(vm.torrentLocalInfo),
+
+        status_msg: 'ALBUMS.LOAD_ALBUM_LIST',
+        status: 'loading'
+      };
+
+      SideOverlay.open(evt, 'albumsInsertSlide');
+
+      AlbumsService.query({
+        type: vm.torrentLocalInfo.torrent_type
+      }, function (res) {
+        vm.albumsItems = res;
+        vm.albumTorrent.status = 'ok';
+
+        mtDebug.info(res);
+        vm.figureOutAlbumsToDisplay();
+      }, function (err) {
+        vm.albumTorrent.status = 'error';
+        vm.albumTorrent.status_msg = 'ALBUMS.LOAD_ALBUM_LIST_ERROR';
+      });
+    };
+
+    /**
+     * figureOutAlbumsToDisplay
+     */
+    vm.figureOutAlbumsToDisplay = function () {
+      vm.filteredItems = $filter('filter')(vm.albumsItems, {
+        'name': vm.filterKeyWord
+      });
+      vm.filteredItems = $filter('orderBy')(vm.filteredItems, ['-created_at']);
+    };
+
+    /**
+     * hideAlbumInsertPopup
+     */
+    vm.hideAlbumInsertPopup = function () {
+      SideOverlay.close(null, 'albumsInsertSlide');
+      vm.albumsItems = undefined;
+    };
+
+    /**
+     * saveInsertAlbum
+     */
+    vm.saveInsertAlbum = function () {
+      SideOverlay.close(null, 'albumsInsertSlide');
+
+      AlbumsService.insertIntoAlbum({
+        albumId: vm.albumTorrent.aid,
+        torrentId: vm.albumTorrent.id
+      }, function (res) {
+        mtDebug.info(res);
+        NotifycationService.showSuccessNotify('ALBUMS.INSERT_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'ALBUMS.INSERT_FAILED');
+      });
     };
 
     /**
@@ -1049,7 +1156,7 @@
      */
     vm.isOwner = function (o) {
       if (o) {
-        if (o.isCurrentUserOwner) {
+        if (o.user._id === vm.user._id) {
           return true;
         } else {
           return false;
@@ -1292,23 +1399,6 @@
           title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_RATING_FAILED')
         });
       });
-    };
-
-    /**
-     * isOwner
-     * @param o, topic or reply
-     * @returns {boolean}
-     */
-    vm.isOwner = function (t) {
-      if (t) {
-        if (t.user._id.str === vm.user._id) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
     };
 
     /**

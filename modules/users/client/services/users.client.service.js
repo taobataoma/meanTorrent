@@ -318,6 +318,13 @@
         method: 'GET',
         url: '/api/users/uploaderList',
         cache: usersCache
+      },
+      presentInvitations: {
+        method: 'PUT',
+        url: '/api/users/:userId/presentInvitations',
+        params: {
+          userId: '@userId'
+        }
       }
     });
 
@@ -351,7 +358,11 @@
       },
       getUploaderList: function (params) {
         return this.uploaderList(params).$promise;
+      },
+      presentUserInvitations: function (params) {
+        return this.presentInvitations(params).$promise;
       }
+
     });
 
     return Users;

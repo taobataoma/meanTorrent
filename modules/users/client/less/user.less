@@ -1,0 +1,34 @@
+@import (reference) "../../../core/client/less/mt-var.less";
+
+.user-cmd {
+    padding: 10px 0;
+    border-bottom: solid 1px #eee;
+}
+
+.userinfo-header {
+    margin-bottom: 0;
+    .userinfo-col {
+        display: table;
+        span {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .userinfo-btn {
+            @media (max-width: @screen-xxs-max) {
+                display: table-row;
+                float: none !important;
+                line-height: 4;
+                .btn:not(:first-child) {
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
+
+.mt-xxs-break-before {
+    @media (max-width: @screen-xxs-max) {
+        display: table-row !important;
+        float: none !important;
+    }
+}

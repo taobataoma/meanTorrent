@@ -31,6 +31,7 @@ var path = require('path'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
   mtRSS = require(path.resolve('./config/lib/mtRSS')),
+  populateStrings = require(path.resolve('./config/lib/populateStrings')),
   scoreUpdate = require(path.resolve('./config/lib/score')).update;
 
 var traceConfig = config.meanTorrentConfig.trace;
@@ -818,7 +819,7 @@ exports.create = function (req, res) {
  * @param res
  */
 exports.read = function (req, res) {
-  if (req.torrent.torrent_vip && !req.user.isVip && !req.user.isOper) {
+  if (req.torrent.torrent_vip && !req.user.isVip && !req.user.isOper && !isOwner(req)) {
     return res.status(403).send({
       message: 'SERVER.ONLY_VIP_CAN_DOWNLOAD'
     });
@@ -833,6 +834,14 @@ exports.read = function (req, res) {
     res.json(torrent);
   }
 };
+
+/**
+ * isOwner
+ * @returns {boolean}
+ */
+function isOwner(req) {
+  return !!(req.user && req.torrent.user && req.torrent.user._id.equals(req.user._id.toString()));
+}
 
 /**
  * update a torrent
@@ -1554,6 +1563,8 @@ exports.list = function (req, res) {
   var tagsA = [];
   var keysA = [];
 
+  var isHome = false;
+
   //var sort = 'torrent_recommended -orderedat -createdat';
   var sort = {torrent_recommended: -1, orderedat: -1, createdat: -1};
 
@@ -1601,6 +1612,10 @@ exports.list = function (req, res) {
   }
   if (req.query.maker !== undefined) {
     maker = objectId(req.query.maker);
+  }
+
+  if (req.query.isHome !== undefined) {
+    isHome = (req.query.isHome === 'true');
   }
 
   if (req.query.torrent_tags !== undefined) {
@@ -1752,9 +1767,7 @@ exports.list = function (req, res) {
         }
       },
       {
-        '$project': {
-          't_peer': 0
-        }
+        '$project': isHome ? populateStrings.populate_torrent_object_is_home : populateStrings.populate_torrent_object
       }
     ]);
 

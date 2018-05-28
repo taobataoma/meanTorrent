@@ -27,6 +27,7 @@
     vm.isContextUserSelf = isContextUserSelf;
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
+    vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
 
     vm.searchTags = [];
     vm.maker = {};
@@ -49,7 +50,18 @@
       isOpen: false
     };
 
+    vm.presentInvitationsPopover = {
+      title: 'PRESENT_INVITATIONS_TITLE',
+      templateUrl: 'present-invitations.html',
+      label_numbers: 'PRESENT_INVITATIONS_NUMBERS',
+      label_days: 'PRESENT_INVITATIONS_DAYS',
+      isOpen: false,
+      numbers: 1,
+      days: 1
+    };
+
     mtDebug.info(vm.user);
+
     /**
      * remove
      * @param user
@@ -97,9 +109,9 @@
         $state.go('admin.user', {
           userId: user._id
         });
-        Notification.success({message: '<i class="glyphicon glyphicon-ok"></i> User saved successfully!'});
-      }, function (errorResponse) {
-        Notification.error({message: errorResponse.data.message, title: '<i class="glyphicon glyphicon-remove"></i> User update error!'});
+        NotifycationService.showSuccessNotify('EDIT_USER_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'EDIT_USER_FAILED');
       });
     }
 
@@ -409,6 +421,50 @@
       function onError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'SET_DOWNLOADED_FAILED');
       }
+    };
+
+    /**
+     * presentInvitations
+     */
+    vm.presentInvitations = function () {
+      if (isNaN(vm.presentInvitationsPopover.numbers)) {
+        return false;
+      } else if (vm.presentInvitationsPopover.numbers < 0) {
+        return false;
+      } else {
+        var user = vm.user;
+        AdminService.presentUserInvitations({
+          userId: user._id,
+          numbers: vm.presentInvitationsPopover.numbers,
+          days: vm.presentInvitationsPopover.days
+        })
+          .then(onSuccess)
+          .catch(onError);
+
+        vm.presentInvitationsPopover.isOpen = false;
+      }
+
+      function onSuccess(response) {
+        vm.user = response;
+        NotifycationService.showSuccessNotify('PRESENT_INVITATIONS_SUCCESSFULLY');
+      }
+
+      function onError(response) {
+        NotifycationService.showErrorNotify(response.data.message, 'PRESENT_INVITATIONS_FAILED');
+      }
+    };
+
+    /**
+     * saveRemarks
+     */
+    vm.saveRemarks = function () {
+      vm.user.$update(function (res) {
+        vm.user = res;
+        NotifycationService.showSuccessNotify('UPDATE_REMARKS_SUCCESSFULLY');
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'UPDATE_REMARKS_FAILED');
+      });
+
     };
   }
 }());

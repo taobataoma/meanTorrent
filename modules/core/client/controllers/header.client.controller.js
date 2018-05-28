@@ -5,11 +5,13 @@
     .module('core')
     .controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
-    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'TorrentsService', 'UsersService', 'DebugConsoleService', 'getStorageLangService'];
+  HeaderController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
+    'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'marked', 'UsersService', 'DebugConsoleService', 'getStorageLangService',
+    'AdminMessagesService'];
 
-  function HeaderController($scope, $state, $timeout, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
-                            InvitationsService, $interval, MessagesService, TorrentsService, UsersService, mtDebug, getStorageLangService) {
+  function HeaderController($scope, $rootScope, $state, $timeout, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
+                            InvitationsService, $interval, MessagesService, marked, UsersService, mtDebug, getStorageLangService,
+                            AdminMessagesService) {
     $scope.$state = $state;
     var vm = this;
     vm.user = Authentication.user;
@@ -34,17 +36,44 @@
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
-    $(document).ready(function () {
-      $('#warning_popup').popup({
+    /**
+     * document.ready()
+     */
+    angular.element(document).ready(function () {
+      $('#must_read_popup').popup({
         outline: false,
         focusdelay: 400,
         vertical: 'top',
         autoopen: false,
         opacity: 0.6,
+        blur: false,
+        escape: false,
         closetransitionend: function () {
-          $('.popup_wrapper').remove();
+          if ($scope.mustReadMessage.markReadMessage) {
+            var mrMsg = new AdminMessagesService({
+              _adminMessageId: $scope.mustReadMessage._id
+            });
+            mrMsg.$update(function (res) {
+              $timeout(function () {
+                vm.getCountUnread();
+              }, 10);
+            });
+          }
         }
       });
+    });
+
+    /**
+     * window.resize()
+     */
+    $(window).resize(function () {
+      if (window.outerWidth <= 767) {
+        $('div.navbar-mt ul.nav li.dropdown').off('mouseenter mouseleave');
+        $('div.navbar-mt ul.nav li.dropdown').off('click');
+        $('div.navbar-mt ul.nav li.dropdown ul.dropdown-menu').off('mouseenter mouseleave');
+      } else {
+        vm.bindHoverToMenuItem();
+      }
     });
 
     /**
@@ -52,27 +81,29 @@
      */
     vm.bindHoverToMenuItem = function () {
       //set menu bar opened when hover
-      $timeout(function () {
-        $('div.navbar-mt ul.nav li.dropdown').off('mouseenter mouseleave').hover(function (evt) {
-          if (!$(this).hasClass('open')) {
-            $(this).find('.dropdown-toggle', this).trigger('click');
-            bindClick($(this));
-          } else {
-            bindClick($(this));
-          }
-        }, function (evt) {
-          $(this).off('click');
-          if ($(this).hasClass('open')) {
-            $(this).find('.dropdown-toggle', this).trigger('click');
-          }
-        });
+      if (window.outerWidth > 767) {
+        $timeout(function () {
+          $('div.navbar-mt ul.nav li.dropdown').off('mouseenter mouseleave').hover(function (evt) {
+            if (!$(this).hasClass('open')) {
+              $(this).find('.dropdown-toggle', this).trigger('click');
+              bindClick($(this));
+            } else {
+              bindClick($(this));
+            }
+          }, function (evt) {
+            $(this).off('click');
+            if ($(this).hasClass('open')) {
+              $(this).find('.dropdown-toggle', this).trigger('click');
+            }
+          });
 
-        $('div.navbar-mt ul.nav li.dropdown ul.dropdown-menu').off('mouseenter mouseleave').hover(function (evt) {
-          $(this).parent().off('click');
-        }, function (evt) {
-          bindClick($(this).parent());
-        });
-      }, 0);
+          $('div.navbar-mt ul.nav li.dropdown ul.dropdown-menu').off('mouseenter mouseleave').hover(function (evt) {
+            $(this).parent().off('click');
+          }, function (evt) {
+            bindClick($(this).parent());
+          });
+        }, 0);
+      }
 
       function bindClick(ele) {
         ele.off('click').on('click', function (e) {
@@ -83,6 +114,27 @@
         });
       }
     };
+
+    /**
+     * $scope.$watch($('#nav-top-menu').width())
+     */
+    $scope.$watch(function () {
+      return $('#nav-top-menu').width();
+    }, function (newVal, oldVal) {
+      if (newVal) {
+        if (window.outerWidth > 767 && window.outerWidth < 992) { //sm screen
+          if (newVal > 540) {
+            $('a[ui-sref="chat"]').css('display', 'none');
+          }
+        } else if (window.outerWidth > 991 && window.outerWidth < 1200) { //md screen
+          if (newVal > 580) {
+            $('a[ui-sref="chat"]').css('display', 'none');
+          }
+        } else {
+          $('a[ui-sref="chat"]').css('display', 'block');
+        }
+      }
+    });
 
     /**
      * auth-user-changed
@@ -152,23 +204,6 @@
     };
 
     /**
-     * getWarningInfo
-     */
-    vm.getWarningInfo = function () {
-      var sw = localStorageService.get('showed_warning');
-      if (vm.appConfig.showDemoWarningPopup && !sw) {
-        $timeout(function () {
-          $('#warning_popup').popup('show');
-        }, 10);
-
-        localStorageService.set('showed_warning', true);
-      }
-      if (sw) {
-        $('.popup_wrapper').remove();
-      }
-    };
-
-    /**
      * checkMessageUnread
      */
     vm.checkMessageUnread = function () {
@@ -180,7 +215,27 @@
       if (Authentication.user) {
         MessagesService.countUnread(function (data) {
           vm.unreadCount = data.countAll;
+
+          if (data.mustRead.length > 0) {
+            $rootScope.mustReadMessage = data.mustRead[0];
+            $rootScope.mustReadMessage.markReadMessage = false;
+
+            $timeout(function () {
+              $('#must_read_popup').popup('show');
+            }, 10);
+          }
         });
+      }
+    };
+
+    /**
+     * getMustReadMessageContentMarked
+     * @param m
+     * @returns {*}
+     */
+    $rootScope.getMustReadMessageContentMarked = function (m) {
+      if (m) {
+        return marked(m.content, {sanitize: true});
       }
     };
 
@@ -222,20 +277,7 @@
         $translate.use(langKey);
 
         $state.reload();
-        //$state.transitionTo($state.current, $stateParams, {
-        //  reload: true, inherit: false, notify: false
-        //});
       }
-    };
-
-    /**
-     * getSiteInfo
-     */
-    vm.getSiteInfo = function () {
-      TorrentsService.siteInfo(function (data) {
-        vm.siteInfo = data;
-        mtDebug.info(data);
-      });
     };
   }
 }());

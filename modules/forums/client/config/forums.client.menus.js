@@ -13,7 +13,7 @@
       title: 'MENU_FORUMS',
       state: 'forums.list',
       roles: ['*'],
-      position: 1
+      position: 5
     });
   }
 }());

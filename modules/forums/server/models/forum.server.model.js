@@ -7,15 +7,6 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
- * setNumberValueToZero
- * @param v
- * @returns {number}
- */
-var setNumberValueToZero = function (v) {
-  return v < 0 ? 0 : v;
-};
-
-/**
  * Forum Schema
  */
 var ForumSchema = new Schema({
@@ -58,12 +49,10 @@ var ForumSchema = new Schema({
 
   topicCount: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
   replyCount: {
     type: Number,
-    set: setNumberValueToZero,
     default: 0
   },
 
