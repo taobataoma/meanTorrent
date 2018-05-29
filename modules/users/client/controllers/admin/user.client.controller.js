@@ -6,10 +6,12 @@
     .controller('UserController', UserController);
 
   UserController.$inject = ['$scope', '$state', '$window', 'Authentication', 'userResolve', 'Notification', 'NotifycationService', 'MeanTorrentConfig',
-    'AdminService', 'ScoreLevelService', 'DebugConsoleService', 'TorrentGetInfoServices', 'SideOverlay', 'MakerGroupService'];
+    'AdminService', 'ScoreLevelService', 'DebugConsoleService', 'TorrentGetInfoServices', 'SideOverlay', 'MakerGroupService', '$filter', '$translate',
+    'marked'];
 
   function UserController($scope, $state, $window, Authentication, user, Notification, NotifycationService, MeanTorrentConfig,
-                          AdminService, ScoreLevelService, mtDebug, TorrentGetInfoServices, SideOverlay, MakerGroupService) {
+                          AdminService, ScoreLevelService, mtDebug, TorrentGetInfoServices, SideOverlay, MakerGroupService, $filter, $translate,
+                          marked) {
     var vm = this;
     vm.TGI = TorrentGetInfoServices;
     vm.authentication = Authentication;
@@ -61,6 +63,15 @@
     };
 
     mtDebug.info(vm.user);
+
+    /**
+     * $watch 'vm.user'
+     */
+    $scope.$watch('vm.user', function (newValue, oldValue) {
+      if (vm.user) {
+        vm.getUserHistory();
+      }
+    });
 
     /**
      * remove
@@ -465,6 +476,30 @@
         NotifycationService.showErrorNotify(res.data.message, 'UPDATE_REMARKS_FAILED');
       });
 
+    };
+
+    /**
+     * getUserHistory
+     */
+    vm.getUserHistory = function () {
+      AdminService.userHistory({
+        userId: user._id
+      }).then(function (res) {
+        vm.historyList = res;
+      });
+    };
+
+    /**
+     * getHistoryContent
+     * @param h
+     * @returns {string}
+     */
+    vm.getHistoryContent = function (h) {
+      var time = $filter('date')(h.createdAt, 'yyyy-MM-dd HH:mm');
+      var con = $translate.instant('HISTORY.' + h.event_str, h.params);
+
+      var res = time + ' - ' + con;
+      return marked(res, {sanitize: false});
     };
   }
 }());

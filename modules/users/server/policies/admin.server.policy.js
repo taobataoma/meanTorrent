@@ -39,7 +39,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/users/:userId/uptotal', permissions: '*'},
           {resources: '/api/users/:userId/followers', permissions: '*'},
           {resources: '/api/users/:userId/following', permissions: '*'},
-          {resources: '/api/users/:userId/resetImage', permissions: '*'}
+          {resources: '/api/users/:userId/resetImage', permissions: '*'},
+          {resources: '/api/users/:userId/history', permissions: '*'}
         ]
       },
       {

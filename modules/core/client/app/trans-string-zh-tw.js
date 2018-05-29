@@ -1017,7 +1017,9 @@
       CURR_LEECHED_IP: '最近一次下載IP',
       BT_CLIENT: '下載過的BT客戶端',
       ADMIN_REMARKS: '管理員備註',
-      BTN_SAVE_REMARKS: '保存備註'
+      BTN_SAVE_REMARKS: '保存備註',
+      ADMIN_HISTORY: '管理員操作歷史',
+      ADMIN_VIEW_HISTORY: '查看歷史'
     },
     TORRENT_TYPE_LABEL: {
       MOVIE: '電影',
@@ -1716,14 +1718,14 @@
 
     //admin operate user account history message
     HISTORY: {
-      ADMIN_UPDATE_USER_ROLE: '{{by}} 改變帳戶角色為： {{role}}',
-      ADMIN_UPDATE_USER_STATUS: '{{by}} 改變帳戶狀態為: {{status}}',
-      ADMIN_UPDATE_USER_SCORE: '{{by}} 修改帳戶積分: {{score}}',
-      ADMIN_UPDATE_USER_UPLOADED: '{{by}} 修改帳戶上傳量: {{uploaded}}',
-      ADMIN_UPDATE_USER_DOWNLOADED: '{{by}} 修改帳戶下載量: {{downloaded}}',
-      ADMIN_UPDATE_USER_VIP_DATA: '{{by}} 修改帳戶 VIP 數據: {{months}} 個月',
-      ADMIN_PRESENT_USER_INVITATIONS: '{{by}} 贈送 {{numbers}} 個官方邀請函, 有效期 {{days}} 天',
-      ADMIN_REMOVE_USER_HNR_WARNING: '{{by}} 移除 H&R 警告, complete id: {{complete}}'
+      ADMIN_UPDATE_USER_ROLE: '`{{by.displayName}}` 改變帳戶角色為： `{{role}}`',
+      ADMIN_UPDATE_USER_STATUS: '`{{by.displayName}}` 改變帳戶狀態為: `{{status}}`',
+      ADMIN_UPDATE_USER_SCORE: '`{{by.displayName}}` 修改帳戶積分: `{{score}}`',
+      ADMIN_UPDATE_USER_UPLOADED: '`{{by.displayName}}` 修改帳戶上傳量: `{{uploaded | bytes:2}}`',
+      ADMIN_UPDATE_USER_DOWNLOADED: '`{{by.displayName}}` 修改帳戶下載量: `{{downloaded | bytes:2}}`',
+      ADMIN_UPDATE_USER_VIP_DATA: '`{{by.displayName}}` 修改帳戶 VIP 數據: `{{months}}` 個月',
+      ADMIN_PRESENT_USER_INVITATIONS: '`{{by.displayName}}` 贈送 `{{numbers}}` 個官方邀請函, 有效期 `{{days}}` 天',
+      ADMIN_REMOVE_USER_HNR_WARNING: '`{{by.displayName}}` 移除 H&R 警告, complete id: `{{complete}}`'
     },
 
     //server returned string

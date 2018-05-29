@@ -27,7 +27,7 @@ module.exports = function () {
         }, {
           email: usernameOrEmail.toLowerCase()
         }]
-      }, '-remarks').populate('invited_by', 'username displayName profileImageURL isVip score uploaded downloaded')
+      }, '-history -remarks').populate('invited_by', 'username displayName profileImageURL isVip score uploaded downloaded')
         .populate('makers', 'name')
         .exec(function (err, user) {
           if (err) {

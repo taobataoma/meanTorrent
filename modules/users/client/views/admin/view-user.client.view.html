@@ -18,8 +18,8 @@
                         {{'BTN_PRESENT_INVITATIONS' | translate}}
                     </button>
                     <!--<a class="btn btn-primary btn-width-80" ui-sref="admin.user-edit({userId: vm.user._id})"-->
-                       <!--ng-if="vm.authentication.user.isAdmin">-->
-                        <!--{{ 'STATUS_FIELD.BTN_EDIT' | translate}}-->
+                    <!--ng-if="vm.authentication.user.isAdmin">-->
+                    <!--{{ 'STATUS_FIELD.BTN_EDIT' | translate}}-->
                     <!--</a>-->
                     <a class="btn btn-primary btn-width-80" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf() && !vm.user.isOper">
                         {{ 'STATUS_FIELD.BTN_REMOVE' | translate}}
@@ -285,10 +285,17 @@
 
                 <li class="status-divider"></li>
 
+                <dt class="h-line">{{ 'STATUS_FIELD.ADMIN_HISTORY' | translate}}：</dt>
+                <dd class="h-line" ng-init="vm.getUserHistory()">
+                    <div class="form-control user-history padding-top-15 padding-bottom-15 margin-top-10 margin-bottom-10">
+                        <p ng-repeat="h in vm.historyList | orderBy: '-createdAt'" ng-bind-html="vm.getHistoryContent(h)"></p>
+                    </div>
+                </dd>
+
                 <dt class="h-line">{{ 'STATUS_FIELD.ADMIN_REMARKS' | translate}}：</dt>
                 <dd class="h-line">
-                    <div class="padding-top-10 padding-bottom-10">
-                        <textarea class="form-control" rows="8" ng-model="vm.user.remarks"></textarea>
+                    <div class="user-remarks padding-top-10 padding-bottom-10">
+                        <textarea class="form-control" ng-model="vm.user.remarks"></textarea>
                         <button class="btn btn-default btn-width-100 margin-top-10"
                                 ng-click="vm.saveRemarks()">
                             {{'STATUS_FIELD.BTN_SAVE_REMARKS' | translate}}

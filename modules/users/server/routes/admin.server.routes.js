@@ -52,6 +52,8 @@ module.exports = function (app) {
     .put(admin.resetUserProfileImage);
   app.route('/api/users/:userId/presentInvitations').all(adminPolicy.isAllowed)
     .put(admin.presentInvitations);
+  app.route('/api/users/:userId/history')
+    .get(admin.getUserHistory);
 
   app.route('/api/users/:userId/VIPMonths/reset').all(adminPolicy.isAllowed)
     .put(admin.resetVIPData);

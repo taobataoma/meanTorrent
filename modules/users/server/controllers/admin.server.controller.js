@@ -292,11 +292,11 @@ exports.updateUserStatus = function (req, res) {
         user: user._id,
         status: req.body.userStatus
       });
-      //write history
-      // history.insert(user._id, historyConfig.action.adminUpdateUserStatus, {
-      //   status: req.body.userStatus,
-      //   by: req.user._id
-      // });
+      // write history
+      history.insert(user._id, historyConfig.action.adminUpdateUserStatus, {
+        status: req.body.userStatus,
+        by: req.user._id
+      });
     }
   });
 };
@@ -626,6 +626,31 @@ exports.presentInvitations = function (req, res) {
 };
 
 /**
+ * getUserHistory
+ * @param req
+ * @param res
+ */
+exports.getUserHistory = function (req, res) {
+  var user = req.model;
+
+  User.findById(user._id, 'history')
+    .populate({
+      path: 'history.params.by',
+      model: 'User',
+      select: 'displayName'
+    })
+    .exec(function (err, his) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(his.history);
+      }
+    });
+};
+
+/**
  * list user seeding torrents
  * @param req
  * @param res
@@ -750,7 +775,6 @@ exports.resetUserProfileImage = function (req, res) {
     }
 
     res.json(user);
-
   });
 };
 
@@ -764,7 +788,7 @@ exports.userByID = function (req, res, next, id) {
     });
   }
 
-  User.findById(id, '-salt -password -providerData')
+  User.findById(id, '-salt -password -providerData -history')
     .populate('invited_by', 'username displayName profileImageURL isVip score uploaded downloaded')
     .populate('makers', 'user name')
     .exec(function (err, user) {

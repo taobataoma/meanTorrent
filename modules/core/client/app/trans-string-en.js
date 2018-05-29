@@ -1017,7 +1017,9 @@
       CURR_LEECHED_IP: 'Latest leeched IP',
       BT_CLIENT: 'Leeched BT Client list',
       ADMIN_REMARKS: 'Admin Remarks',
-      BTN_SAVE_REMARKS: 'Save remarks'
+      BTN_SAVE_REMARKS: 'Save remarks',
+      ADMIN_HISTORY: 'Operate history',
+      ADMIN_VIEW_HISTORY: 'View history'
     },
     TORRENT_TYPE_LABEL: {
       MOVIE: 'Movie',
@@ -1716,14 +1718,14 @@
 
     //admin operate user account history message
     HISTORY: {
-      ADMIN_UPDATE_USER_ROLE: '{{by}} update account role to: {{role}}',
-      ADMIN_UPDATE_USER_STATUS: '{{by}} update account status to: {{status}}',
-      ADMIN_UPDATE_USER_SCORE: '{{by}} update account score: {{score}}',
-      ADMIN_UPDATE_USER_UPLOADED: '{{by}} update account uploaded: {{uploaded}}',
-      ADMIN_UPDATE_USER_DOWNLOADED: '{{by}} update account downloaded: {{downloaded}}',
-      ADMIN_UPDATE_USER_VIP_DATA: '{{by}} update account vip data: {{months}} months',
-      ADMIN_PRESENT_USER_INVITATIONS: '{{by}} present {{numbers}} official invitations, expires {{days}} days',
-      ADMIN_REMOVE_USER_HNR_WARNING: '{{by}} remove H&R warning, complete id: {{complete}}'
+      ADMIN_UPDATE_USER_ROLE: '`{{by.displayName}}` update account role to: `{{role}}`',
+      ADMIN_UPDATE_USER_STATUS: '`{{by.displayName}}` update account status to: `{{status}}`',
+      ADMIN_UPDATE_USER_SCORE: '`{{by.displayName}}` update account score: `{{score}}`',
+      ADMIN_UPDATE_USER_UPLOADED: '`{{by.displayName}}` update account uploaded: `{{uploaded | bytes:2}}`',
+      ADMIN_UPDATE_USER_DOWNLOADED: '`{{by.displayName}}` update account downloaded: `{{downloaded | bytes:2}}`',
+      ADMIN_UPDATE_USER_VIP_DATA: '`{{by.displayName}}` update account vip data: `{{months}}` months',
+      ADMIN_PRESENT_USER_INVITATIONS: '`{{by.displayName}}` present `{{numbers}}` official invitations, expires `{{days}}` days',
+      ADMIN_REMOVE_USER_HNR_WARNING: '`{{by.displayName}}` remove H&R warning, complete id: `{{complete}}`'
     },
 
     //server returned string

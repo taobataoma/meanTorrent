@@ -325,6 +325,14 @@
         params: {
           userId: '@userId'
         }
+      },
+      getUserHistory: {
+        method: 'GET',
+        isArray: true,
+        url: '/api/users/:userId/history',
+        params: {
+          userId: '@userId'
+        }
       }
     });
 
@@ -361,6 +369,9 @@
       },
       presentUserInvitations: function (params) {
         return this.presentInvitations(params).$promise;
+      },
+      userHistory: function (params) {
+        return this.getUserHistory(params).$promise;
       }
 
     });
