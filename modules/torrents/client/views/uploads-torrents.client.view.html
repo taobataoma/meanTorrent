@@ -309,11 +309,14 @@
             </div>
         </div>
 
-        <div class="row margin-bottom-40" ng-show="vm.showResourcesTag">
+        <div class="row margin-bottom-30" ng-show="vm.showResourcesTag">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_TAGS"></legend>
-                <dl class="dl-horizontal">
-                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.selectedType">
+                <div ng-if="vm.getTagsFilterCount()<=0">
+                    <span>&emsp;{{'NO_TAGS_LIST' | translate}}</span>
+                </div>
+                <dl class="dl-horizontal" ng-if="vm.getTagsFilterCount()>0">
+                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.tagsFilter">
                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                         <dd class="h-line">
                             <label class="radio-inline" ng-repeat="sitem in item.value">
@@ -326,7 +329,7 @@
 
                     <div style="margin-top: 30px;"></div>
 
-                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.selectedType">
+                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.tagsFilter">
                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                         <dd class="h-line">
                             <label class="checkbox-inline" ng-repeat="sitem in item.value">
@@ -336,7 +339,7 @@
                             </label>
                         </dd>
                     </div>
-                    <div class="margin-top-10">
+                    <div class="margin-top-5">
                         <dt class="h-line"></dt>
                         <dd class="h-line">
                         <span class="label label-tag text-uppercase" ng-click="vm.clearAllCondition();">
@@ -530,11 +533,14 @@
             </div>
         </div>
 
-        <div class="row margin-bottom-40" ng-show="vm.showResourcesTag">
+        <div class="row margin-bottom-30" ng-show="vm.showResourcesTag">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_TAGS"></legend>
-                <dl class="dl-horizontal">
-                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.selectedType">
+                <div ng-if="vm.getTagsFilterCount()<=0">
+                    <span>&emsp;{{'NO_TAGS_LIST' | translate}}</span>
+                </div>
+                <dl class="dl-horizontal" ng-if="vm.getTagsFilterCount()>0">
+                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.tagsFilter">
                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                         <dd class="h-line">
                             <label class="radio-inline" ng-repeat="sitem in item.value">
@@ -547,7 +553,7 @@
 
                     <div style="margin-top: 30px;"></div>
 
-                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.selectedType">
+                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.tagsFilter">
                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                         <dd class="h-line">
                             <label class="checkbox-inline" ng-repeat="sitem in item.value">
@@ -557,7 +563,7 @@
                             </label>
                         </dd>
                     </div>
-                    <div class="margin-top-10">
+                    <div class="margin-top-5">
                         <dt class="h-line"></dt>
                         <dd class="h-line">
                         <span class="label label-tag text-uppercase" ng-click="vm.clearAllCondition();">
@@ -649,11 +655,14 @@
             </div>
         </div>
 
-        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
+        <div class="row margin-bottom-30" ng-show="vm.customTorrent.detail">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_TAGS"></legend>
-                <dl class="dl-horizontal">
-                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.selectedType">
+                <div ng-if="vm.getTagsFilterCount()<=0">
+                    <span>&emsp;{{'NO_TAGS_LIST' | translate}}</span>
+                </div>
+                <dl class="dl-horizontal" ng-if="vm.getTagsFilterCount()>0">
+                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.tagsFilter">
                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                         <dd class="h-line">
                             <label class="radio-inline" ng-repeat="sitem in item.value">
@@ -666,7 +675,7 @@
 
                     <div style="margin-top: 30px;"></div>
 
-                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.selectedType">
+                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.tagsFilter">
                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                         <dd class="h-line">
                             <label class="checkbox-inline" ng-repeat="sitem in item.value">
@@ -676,7 +685,7 @@
                             </label>
                         </dd>
                     </div>
-                    <div class="margin-top-10">
+                    <div class="margin-top-5">
                         <dt class="h-line"></dt>
                         <dd class="h-line">
                         <span class="label label-tag text-uppercase" ng-click="vm.clearAllCondition();">
@@ -764,11 +773,14 @@
             </div>
         </div>
 
-        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
+        <div class="row margin-bottom-30" ng-show="vm.customTorrent.detail">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_TAGS"></legend>
-                <dl class="dl-horizontal">
-                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.selectedType">
+                <div ng-if="vm.getTagsFilterCount()<=0">
+                    <span>&emsp;{{'NO_TAGS_LIST' | translate}}</span>
+                </div>
+                <dl class="dl-horizontal" ng-if="vm.getTagsFilterCount()>0">
+                    <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.tagsFilter">
                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                         <dd class="h-line">
                             <label class="radio-inline" ng-repeat="sitem in item.value">
@@ -781,7 +793,7 @@
 
                     <div style="margin-top: 30px;"></div>
 
-                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.selectedType">
+                    <div ng-repeat="item in vm.resourcesTags.checkbox | filter:vm.tagsFilter">
                         <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}：</dt>
                         <dd class="h-line">
                             <label class="checkbox-inline" ng-repeat="sitem in item.value">
@@ -791,7 +803,7 @@
                             </label>
                         </dd>
                     </div>
-                    <div class="margin-top-10">
+                    <div class="margin-top-5">
                         <dt class="h-line"></dt>
                         <dd class="h-line">
                         <span class="label label-tag text-uppercase" ng-click="vm.clearAllCondition();">

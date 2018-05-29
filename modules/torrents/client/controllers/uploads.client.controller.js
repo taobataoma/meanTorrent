@@ -397,6 +397,40 @@
     };
 
     /**
+     * tagsFilter
+     * @param item
+     * @returns {boolean}
+     */
+    vm.tagsFilter = function (item) {
+      var res = false;
+
+      if (item.cats.includes(vm.selectedType)) {
+        res = true;
+      }
+
+      return res;
+    };
+
+    /**
+     * getTagsFilterCount
+     * @returns {int}
+     */
+    vm.getTagsFilterCount = function () {
+      var res = 0;
+
+      angular.forEach(vm.resourcesTags.radio, function (t) {
+        if (t.cats.includes(vm.selectedType))
+          res++;
+      });
+      angular.forEach(vm.resourcesTags.checkbox, function (t) {
+        if (t.cats.includes(vm.selectedType))
+          res++;
+      });
+
+      return res;
+    };
+
+    /**
      * getMovieInfo
      * @param tmdbid
      */

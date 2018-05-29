@@ -568,6 +568,7 @@
     CANCEL_BUTTON: '算了，以後再說',
     AGREE_RULES: '我已閱讀並同意站內所有協議條款，<a href="/about/manual/userRules">協議條款</a>',
     DOWNLOAD_TORRENT: '下載種子',
+    NO_TAGS_LIST: '沒有配置的資源標籤可供選擇',
 
     ENTER_MUSIC_TITLE: '3. 請輸入藝人名稱和音樂/專輯標題',
     MUSIC_ARTIST: '藝人名稱',
