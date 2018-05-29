@@ -96,6 +96,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 - Support service center client side logic & UI.
 - User detail data(score, uploaded, downloaded) line graph.
 - Site data line graph for admin
+- Medal center
 - Poll type topics support in forum.
 - More score get methods.
 - torrent more images from [TMDB](https://www.themoviedb.org)
