@@ -1725,7 +1725,8 @@
       ADMIN_UPDATE_USER_DOWNLOADED: '`{{by.displayName}}` 修改帐户下载量: `{{downloaded | bytes:2}}`',
       ADMIN_UPDATE_USER_VIP_DATA: '`{{by.displayName}}` 修改帐户 VIP 数据: `{{months}}` 个月',
       ADMIN_PRESENT_USER_INVITATIONS: '`{{by.displayName}}` 赠送 `{{numbers}}` 个官方邀请函, 有效期 `{{days}}` 天',
-      ADMIN_REMOVE_USER_HNR_WARNING: '`{{by.displayName}}` 移除 H&R 警告, complete id: `{{complete}}`'
+      ADMIN_REMOVE_USER_HNR_WARNING: '`{{by.displayName}}` 移除 H&R 警告, complete id: `{{complete}}`',
+      ADMIN_CREATE_USER_MAKER_GROUP: '`{{by.displayName}}` 创建用户资源小组: `-={{name}}=-`'
     },
 
     //server returned string

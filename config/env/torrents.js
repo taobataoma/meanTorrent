@@ -698,6 +698,7 @@ module.exports = {
         adminUpdateUserVIPData: {name: 'adminUpdateUserVIPData', enable: true},
         adminPresentUserInvitations: {name: 'adminPresentUserInvitations', enable: true},
         adminRemoveUserHnrWarning: {name: 'adminRemoveUserHnrWarning', enable: true},
+        adminCreateUserMakerGroup: {name: 'adminCreateUserMakerGroup', enable: true},
 
         adminUserDelete: {name: 'adminUserDelete', enable: true},
         adminUserEdit: {name: 'adminUserEdit', enable: true},
@@ -714,7 +715,6 @@ module.exports = {
         adminCollectionSetRecommendLevel: {name: 'adminCollectionSetRecommendLevel', enable: true},
         adminAlbumSetRecommendLevel: {name: 'adminAlbumSetRecommendLevel', enable: true},
         adminTorrentSetReviewedStatus: {name: 'adminTorrentSetReviewedStatus', enable: true},
-        adminCreateMakerGroup: {name: 'adminCreateMakerGroup', enable: true},
         adminCreateCollection: {name: 'adminCreateCollection', enable: true},
         adminCreateAlbum: {name: 'adminCreateAlbum', enable: true},
         adminDeleteBackupFiles: {name: 'adminDeleteBackupFiles', enable: true},
@@ -750,7 +750,8 @@ module.exports = {
         adminUpdateUserDownloaded: {name: 'adminUpdateUserDownloaded', content: 'ADMIN_UPDATE_USER_DOWNLOADED', enable: true},
         adminUpdateUserVIPData: {name: 'adminUpdateUserVIPData', content: 'ADMIN_UPDATE_USER_VIP_DATA', enable: true},
         adminPresentUserInvitations: {name: 'adminPresentUserInvitations', content: 'ADMIN_PRESENT_USER_INVITATIONS', enable: true},
-        adminRemoveUserHnrWarning: {name: 'adminRemoveUserHnrWarning', content: 'ADMIN_REMOVE_USER_HNR_WARNING', enable: true}
+        adminRemoveUserHnrWarning: {name: 'adminRemoveUserHnrWarning', content: 'ADMIN_REMOVE_USER_HNR_WARNING', enable: true},
+        adminCreateUserMakerGroup: {name: 'adminCreateUserMakerGroup', content: 'ADMIN_CREATE_USER_MAKER_GROUP', enable: true}
       }
     },
 

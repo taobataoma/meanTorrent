@@ -1725,7 +1725,8 @@
       ADMIN_UPDATE_USER_DOWNLOADED: '`{{by.displayName}}` update account downloaded: `{{downloaded | bytes:2}}`',
       ADMIN_UPDATE_USER_VIP_DATA: '`{{by.displayName}}` update account vip data: `{{months}}` months',
       ADMIN_PRESENT_USER_INVITATIONS: '`{{by.displayName}}` present `{{numbers}}` official invitations, expires `{{days}}` days',
-      ADMIN_REMOVE_USER_HNR_WARNING: '`{{by.displayName}}` remove H&R warning, complete id: `{{complete}}`'
+      ADMIN_REMOVE_USER_HNR_WARNING: '`{{by.displayName}}` remove H&R warning, complete id: `{{complete}}`',
+      ADMIN_CREATE_USER_MAKER_GROUP: '`{{by.displayName}}` create user maker group: `-={{name}}=-`'
     },
 
     //server returned string

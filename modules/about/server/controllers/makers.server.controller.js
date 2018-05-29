@@ -9,6 +9,7 @@ var path = require('path'),
   Maker = mongoose.model('Maker'),
   Rating = mongoose.model('Rating'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  history = require(path.resolve('./config/lib/history')),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var traceConfig = config.meanTorrentConfig.trace;
@@ -16,6 +17,7 @@ var appConfig = config.meanTorrentConfig.app;
 var mtDebug = require(path.resolve('./config/lib/debug'));
 var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
+var historyConfig = config.meanTorrentConfig.history;
 
 /**
  * Create an maker
@@ -60,9 +62,14 @@ exports.create = function (req, res) {
         }
 
         //create trace log
-        traceLogCreate(req, traceConfig.action.adminCreateMakerGroup, {
+        traceLogCreate(req, traceConfig.action.adminCreateUserMakerGroup, {
           user: user._id,
           name: maker.name
+        });
+        // write history
+        history.insert(user._id, historyConfig.action.adminCreateUserMakerGroup, {
+          name: maker.name,
+          by: req.user._id
         });
       }
     });
