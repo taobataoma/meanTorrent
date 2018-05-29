@@ -1714,6 +1714,18 @@
       }
     },
 
+    //admin operate user account history message
+    HISTORY: {
+      ADMIN_UPDATE_USER_ROLE: '{{by}} 改变帐户角色为： {{role}}',
+      ADMIN_UPDATE_USER_STATUS: '{{by}} 改变帐户状态为: {{status}}',
+      ADMIN_UPDATE_USER_SCORE: '{{by}} 修改帐户积分: {{score}}',
+      ADMIN_UPDATE_USER_UPLOADED: '{{by}} 修改帐户上传量: {{uploaded}}',
+      ADMIN_UPDATE_USER_DOWNLOADED: '{{by}} 修改帐户下载量: {{downloaded}}',
+      ADMIN_UPDATE_USER_VIP_DATA: '{{by}} 修改帐户 VIP 数据: {{months}} 个月',
+      ADMIN_PRESENT_USER_INVITATIONS: '{{by}} 赠送 {{numbers}} 个官方邀请函, 有效期 {{days}} 天',
+      ADMIN_REMOVE_USER_HNR_WARNING: '{{by}} 移除 H&R 警告, complete id: {{complete}}'
+    },
+
     //server returned string
     SERVER: {
       USER_IS_NOT_AUTHORIZED: '用户身份验证未通过',

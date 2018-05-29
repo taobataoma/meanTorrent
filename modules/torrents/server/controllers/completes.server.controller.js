@@ -12,12 +12,14 @@ var path = require('path'),
   Torrent = mongoose.model('Torrent'),
   async = require('async'),
   validator = require('validator'),
+  history = require(path.resolve('./config/lib/history')),
   scoreUpdate = require(path.resolve('./config/lib/score')).update,
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var hnrConfig = config.meanTorrentConfig.hitAndRun;
 var traceConfig = config.meanTorrentConfig.trace;
 var scoreConfig = config.meanTorrentConfig.score;
+var historyConfig = config.meanTorrentConfig.history;
 
 /**
  * removeWarning
@@ -47,9 +49,14 @@ exports.removeWarning = function (req, res) {
         }).exec();
 
         //create trace log
-        traceLogCreate(req, traceConfig.action.adminRemoveHnrWarning, {
+        traceLogCreate(req, traceConfig.action.adminRemoveUserHnrWarning, {
           user: comp.user._id,
           complete: comp._id
+        });
+        //write history
+        history.insert(user._id, historyConfig.action.adminRemoveUserHnrWarning, {
+          complete: comp._id,
+          by: req.user._id
         });
       }
     });

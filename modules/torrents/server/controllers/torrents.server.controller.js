@@ -1177,7 +1177,7 @@ exports.setSaleType = function (req, res) {
         }
 
         //create trace log
-        traceLogCreate(req, traceConfig.action.AdminTorrentSetSaleType, {
+        traceLogCreate(req, traceConfig.action.adminTorrentSetSaleType, {
           torrent: torrent._id,
           sale_status: req.params.saleType
         });
@@ -1213,7 +1213,7 @@ exports.setRecommendLevel = function (req, res) {
         scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrentBeRecommend);
 
         //create trace log
-        traceLogCreate(req, traceConfig.action.AdminTorrentSetRecommendLevel, {
+        traceLogCreate(req, traceConfig.action.adminTorrentSetRecommendLevel, {
           torrent: torrent._id,
           recommended: req.params.rlevel
         });
@@ -1286,7 +1286,7 @@ exports.setReviewedStatus = function (req, res) {
       }
 
       //create trace log
-      traceLogCreate(req, traceConfig.action.AdminTorrentSetReviewedStatus, {
+      traceLogCreate(req, traceConfig.action.adminTorrentSetReviewedStatus, {
         torrent: torrent._id,
         status: 'reviewed'
       });
@@ -1411,7 +1411,7 @@ exports.delete = function (req, res) {
       }
 
       //create trace log
-      traceLogCreate(req, traceConfig.action.AdminTorrentDelete, {
+      traceLogCreate(req, traceConfig.action.adminTorrentDelete, {
         torrent: torrent._id,
         reason: req.query.reason
       });

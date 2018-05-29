@@ -37,7 +37,7 @@ exports.create = function (req, res) {
         res.json(user);
 
         //create trace log
-        traceLogCreate(req, traceConfig.action.OperCreateAlbum, {
+        traceLogCreate(req, traceConfig.action.adminCreateAlbum, {
           name: album.name
         });
       }
@@ -147,7 +147,7 @@ exports.setRecommendLevel = function (req, res) {
         res.json(album);
 
         //create trace log
-        traceLogCreate(req, traceConfig.action.AdminAlbumSetRecommendLevel, {
+        traceLogCreate(req, traceConfig.action.adminAlbumSetRecommendLevel, {
           album: album._id,
           recommended: req.params.rlevel
         });

@@ -86,11 +86,17 @@ var HistorySchema = new Schema({
     default: '',
     trim: true
   },
+  event_str: {
+    type: String,
+    default: '',
+    trim: true
+  },
   params: {
     type: Object
   },
   createdAt: {
-    type: Date
+    type: Date,
+    default: Date.now
   }
 }, {usePushEach: true});
 

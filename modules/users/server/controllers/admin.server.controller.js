@@ -19,12 +19,14 @@ var path = require('path'),
   scoreUpdate = require(path.resolve('./config/lib/score')).update,
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
+  history = require(path.resolve('./config/lib/history')),
   populateStrings = require(path.resolve('./config/lib/populateStrings'));
 
 const PEERSTATE_SEEDER = 'seeder';
 const PEERSTATE_LEECHER = 'leecher';
 
 var traceConfig = config.meanTorrentConfig.trace;
+var historyConfig = config.meanTorrentConfig.history;
 var mtDebug = require(path.resolve('./config/lib/debug'));
 var appConfig = config.meanTorrentConfig.app;
 var serverMessage = require(path.resolve('./config/lib/server-message'));
@@ -75,7 +77,7 @@ exports.update = function (req, res) {
     }
 
     //create trace log
-    traceLogCreate(req, traceConfig.action.AdminUserEdit, {
+    traceLogCreate(req, traceConfig.action.adminUserEdit, {
       user: user._id,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -100,7 +102,7 @@ exports.delete = function (req, res) {
     res.json(user);
 
     //create trace log
-    traceLogCreate(req, traceConfig.action.AdminUserDelete, {
+    traceLogCreate(req, traceConfig.action.adminUserDelete, {
       user: user._id
     });
   });
@@ -248,9 +250,14 @@ exports.updateUserRole = function (req, res) {
       }
 
       //create trace log
-      traceLogCreate(req, traceConfig.action.AdminUpdateUserRole, {
+      traceLogCreate(req, traceConfig.action.adminUpdateUserRole, {
         user: user._id,
-        role: req.body.userRole
+        role: req.body.userRole[0]
+      });
+      //write history
+      history.insert(user._id, historyConfig.action.adminUpdateUserRole, {
+        role: req.body.userRole[0],
+        by: req.user._id
       });
     }
   });
@@ -281,10 +288,15 @@ exports.updateUserStatus = function (req, res) {
       res.json(user);
 
       //create trace log
-      traceLogCreate(req, traceConfig.action.AdminUpdateUserStatus, {
+      traceLogCreate(req, traceConfig.action.adminUpdateUserStatus, {
         user: user._id,
         status: req.body.userStatus
       });
+      //write history
+      // history.insert(user._id, historyConfig.action.adminUpdateUserStatus, {
+      //   status: req.body.userStatus,
+      //   by: req.user._id
+      // });
     }
   });
 };
@@ -326,9 +338,14 @@ exports.updateUserScore = function (req, res) {
     //write score days/months log
     dataLog.scoreLog(user, sv);
     //create trace log
-    traceLogCreate(req, traceConfig.action.AdminUpdateUserScore, {
+    traceLogCreate(req, traceConfig.action.adminUpdateUserScore, {
       user: user._id,
       score: sv
+    });
+    //write history
+    history.insert(user._id, historyConfig.action.adminUpdateUserScore, {
+      score: sv,
+      by: req.user._id
     });
   });
 };
@@ -355,9 +372,14 @@ exports.updateUserUploaded = function (req, res) {
     res.json(user);
 
     //create trace log
-    traceLogCreate(req, traceConfig.action.AdminUpdateUserUploaded, {
+    traceLogCreate(req, traceConfig.action.adminUpdateUserUploaded, {
       user: user._id,
       uploaded: req.body.userUploaded
+    });
+    //write history
+    history.insert(user._id, historyConfig.action.adminUpdateUserUploaded, {
+      uploaded: req.body.userUploaded,
+      by: req.user._id
     });
   });
 };
@@ -384,9 +406,14 @@ exports.updateUserDownloaded = function (req, res) {
     res.json(user);
 
     //create trace log
-    traceLogCreate(req, traceConfig.action.AdminUpdateUserDownloaded, {
+    traceLogCreate(req, traceConfig.action.adminUpdateUserDownloaded, {
       user: user._id,
       downloaded: req.body.userDownloaded
+    });
+    //write history
+    history.insert(user._id, historyConfig.action.adminUpdateUserDownloaded, {
+      downloaded: req.body.userDownloaded,
+      by: req.user._id
     });
   });
 };
@@ -448,10 +475,15 @@ exports.addVIPMonths = function (req, res) {
       }
 
       //create trace log
-      traceLogCreate(req, traceConfig.action.AdminUpdateUserVIPData, {
+      traceLogCreate(req, traceConfig.action.adminUpdateUserVIPData, {
         user: user._id,
         reset: false,
         months: months
+      });
+      //write history
+      history.insert(user._id, historyConfig.action.adminUpdateUserVIPData, {
+        months: months,
+        by: req.user._id
       });
     });
   } else {
@@ -537,9 +569,14 @@ exports.resetVIPData = function (req, res) {
     res.json(user);
 
     //create trace log
-    traceLogCreate(req, traceConfig.action.AdminUpdateUserVIPData, {
+    traceLogCreate(req, traceConfig.action.adminUpdateUserVIPData, {
       user: user._id,
       reset: true
+    });
+    //write history
+    history.insert(user._id, historyConfig.action.adminUpdateUserVIPData, {
+      months: 'reset',
+      by: req.user._id
     });
   });
 };
@@ -574,9 +611,15 @@ exports.presentInvitations = function (req, res) {
     } else {
       res.json(user);
       //create trace log
-      traceLogCreate(req, traceConfig.action.adminPresentInvitations, {
+      traceLogCreate(req, traceConfig.action.adminPresentUserInvitations, {
         user: user._id,
         invitations: docs
+      });
+      //write history
+      history.insert(user._id, historyConfig.action.adminPresentUserInvitations, {
+        numbers: numbers,
+        days: days,
+        by: req.user._id
       });
     }
   });

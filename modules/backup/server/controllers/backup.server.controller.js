@@ -49,7 +49,7 @@ exports.delete = function (req, res) {
     }
 
     //create trace log
-    traceLogCreate(req, traceConfig.action.OperDeleteBackupFiles, {
+    traceLogCreate(req, traceConfig.action.adminDeleteBackupFiles, {
       filename: req.query.names
     });
 

@@ -686,41 +686,40 @@ module.exports = {
      *        @name:    action name
      *        @enable:  action enable status, if false, system will not to trace log this action
      *
-     * !IMPORTANT NOTE:
-     * @userAnnounceData  MAKE LARGEST NUMBER DATA RECORD, IF YOU RUNNING MEANTORRENT AT PROD MODE, MUST SET IT TO FALSE
      */
     trace: {
       traceLogDays: 10,
       action: {
-        AdminUpdateUserRole: {name: 'AdminUpdateUserRole', enable: true},
-        AdminUpdateUserStatus: {name: 'AdminUpdateUserStatus', enable: true},
-        AdminUpdateUserScore: {name: 'AdminUpdateUserScore', enable: true},
-        AdminUpdateUserUploaded: {name: 'AdminUpdateUserUploaded', enable: true},
-        AdminUpdateUserDownloaded: {name: 'AdminUpdateUserDownloaded', enable: true},
-        AdminUpdateUserVIPData: {name: 'AdminUpdateUserVIPData', enable: true},
-        AdminUserDelete: {name: 'AdminUserDelete', enable: true},
-        AdminUserEdit: {name: 'AdminUserEdit', enable: true},
-        AdminBanAllExaminationUnfinishedUsers: {name: 'AdminBanAllExaminationUnfinishedUsers', enable: true},
+        adminUpdateUserRole: {name: 'adminUpdateUserRole', enable: true},
+        adminUpdateUserStatus: {name: 'adminUpdateUserStatus', enable: true},
+        adminUpdateUserScore: {name: 'adminUpdateUserScore', enable: true},
+        adminUpdateUserUploaded: {name: 'adminUpdateUserUploaded', enable: true},
+        adminUpdateUserDownloaded: {name: 'adminUpdateUserDownloaded', enable: true},
+        adminUpdateUserVIPData: {name: 'adminUpdateUserVIPData', enable: true},
+        adminPresentUserInvitations: {name: 'adminPresentUserInvitations', enable: true},
+        adminRemoveUserHnrWarning: {name: 'adminRemoveUserHnrWarning', enable: true},
+
+        adminUserDelete: {name: 'adminUserDelete', enable: true},
+        adminUserEdit: {name: 'adminUserEdit', enable: true},
+        adminBanAllExaminationUnfinishedUsers: {name: 'adminBanAllExaminationUnfinishedUsers', enable: true},
 
         userPasswordReset: {name: 'userPasswordReset', enable: true},
         userSignUp: {name: 'userSignUp', enable: true},
         userActiveAccount: {name: 'userActiveAccount', enable: true},
         userUnIdle: {name: 'userUnIdle', enable: true},
 
-        AdminTorrentDelete: {name: 'AdminTorrentDelete', enable: true},
-        AdminTorrentSetSaleType: {name: 'AdminTorrentSetSaleType', enable: true},
-        AdminTorrentSetRecommendLevel: {name: 'AdminTorrentSetRecommendLevel', enable: true},
-        AdminCollectionSetRecommendLevel: {name: 'AdminCollectionSetRecommendLevel', enable: true},
-        AdminAlbumSetRecommendLevel: {name: 'AdminAlbumSetRecommendLevel', enable: true},
-        AdminTorrentSetReviewedStatus: {name: 'AdminTorrentSetReviewedStatus', enable: true},
-        OperCreateMakerGroup: {name: 'OperCreateMakerGroup', enable: true},
-        OperCreateCollection: {name: 'OperCreateCollection', enable: true},
-        OperCreateAlbum: {name: 'OperCreateAlbum', enable: true},
-        OperDeleteBackupFiles: {name: 'OperDeleteBackupFiles', enable: true},
+        adminTorrentDelete: {name: 'adminTorrentDelete', enable: true},
+        adminTorrentSetSaleType: {name: 'adminTorrentSetSaleType', enable: true},
+        adminTorrentSetRecommendLevel: {name: 'adminTorrentSetRecommendLevel', enable: true},
+        adminCollectionSetRecommendLevel: {name: 'adminCollectionSetRecommendLevel', enable: true},
+        adminAlbumSetRecommendLevel: {name: 'adminAlbumSetRecommendLevel', enable: true},
+        adminTorrentSetReviewedStatus: {name: 'adminTorrentSetReviewedStatus', enable: true},
+        adminCreateMakerGroup: {name: 'adminCreateMakerGroup', enable: true},
+        adminCreateCollection: {name: 'adminCreateCollection', enable: true},
+        adminCreateAlbum: {name: 'adminCreateAlbum', enable: true},
+        adminDeleteBackupFiles: {name: 'adminDeleteBackupFiles', enable: true},
 
         userInvitationExchange: {name: 'userInvitationExchange', enable: true},
-        adminPresentInvitations: {name: 'adminPresentInvitations', enable: true},
-        adminRemoveHnrWarning: {name: 'adminRemoveHnrWarning', enable: true},
         userRemoveHnrWarning: {name: 'userRemoveHnrWarning', enable: true},
         userSendInvitation: {name: 'userSendInvitation', enable: true},
         adminSendOfficialInvitation: {name: 'adminSendOfficialInvitation', enable: true},
@@ -729,6 +728,29 @@ module.exports = {
 
         forumDeleteTopic: {name: 'forumDeleteTopic', enable: true},
         forumDeleteReply: {name: 'forumDeleteReply', enable: true}
+      }
+    },
+
+    /**
+     * @history
+     *
+     * settings of admin/oper operate history on user account
+     *
+     * @action:             history action item
+     *      @name:          action name
+     *      @content:       action info of translate string, write into db, show in account detail manage page
+     *      @enable:        enabled status
+     */
+    history: {
+      action: {
+        adminUpdateUserRole: {name: 'adminUpdateUserRole', content: 'ADMIN_UPDATE_USER_ROLE', enable: true},
+        adminUpdateUserStatus: {name: 'adminUpdateUserStatus', content: 'ADMIN_UPDATE_USER_STATUS', enable: true},
+        adminUpdateUserScore: {name: 'adminUpdateUserScore', content: 'ADMIN_UPDATE_USER_SCORE', enable: true},
+        adminUpdateUserUploaded: {name: 'adminUpdateUserUploaded', content: 'ADMIN_UPDATE_USER_UPLOADED', enable: true},
+        adminUpdateUserDownloaded: {name: 'adminUpdateUserDownloaded', content: 'ADMIN_UPDATE_USER_DOWNLOADED', enable: true},
+        adminUpdateUserVIPData: {name: 'adminUpdateUserVIPData', content: 'ADMIN_UPDATE_USER_VIP_DATA', enable: true},
+        adminPresentUserInvitations: {name: 'adminPresentUserInvitations', content: 'ADMIN_PRESENT_USER_INVITATIONS', enable: true},
+        adminRemoveUserHnrWarning: {name: 'adminRemoveUserHnrWarning', content: 'ADMIN_REMOVE_USER_HNR_WARNING', enable: true}
       }
     },
 

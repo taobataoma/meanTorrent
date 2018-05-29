@@ -86,7 +86,7 @@ exports.create = function (req, res) {
         res.json(user);
 
         //create trace log
-        traceLogCreate(req, traceConfig.action.OperCreateCollection, {
+        traceLogCreate(req, traceConfig.action.adminCreateCollection, {
           name: coll.name
         });
       }
@@ -194,7 +194,7 @@ exports.setRecommendLevel = function (req, res) {
         res.json(coll);
 
         //create trace log
-        traceLogCreate(req, traceConfig.action.AdminCollectionSetRecommendLevel, {
+        traceLogCreate(req, traceConfig.action.adminCollectionSetRecommendLevel, {
           coll: coll._id,
           recommended: req.params.rlevel
         });

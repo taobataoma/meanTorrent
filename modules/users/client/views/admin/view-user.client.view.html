@@ -17,10 +17,10 @@
                             ng-click="vm.presentInvitationsPopover.numbers = 1; vm.presentInvitationsPopover.days = 1;">
                         {{'BTN_PRESENT_INVITATIONS' | translate}}
                     </button>
-                    <a class="btn btn-primary btn-width-80" ui-sref="admin.user-edit({userId: vm.user._id})"
-                       ng-if="vm.authentication.user.isAdmin">
-                        {{ 'STATUS_FIELD.BTN_EDIT' | translate}}
-                    </a>
+                    <!--<a class="btn btn-primary btn-width-80" ui-sref="admin.user-edit({userId: vm.user._id})"-->
+                       <!--ng-if="vm.authentication.user.isAdmin">-->
+                        <!--{{ 'STATUS_FIELD.BTN_EDIT' | translate}}-->
+                    <!--</a>-->
                     <a class="btn btn-primary btn-width-80" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf() && !vm.user.isOper">
                         {{ 'STATUS_FIELD.BTN_REMOVE' | translate}}
                     </a>

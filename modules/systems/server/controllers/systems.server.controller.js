@@ -398,7 +398,7 @@ exports.banAllUnfinishedUser = function (req, res) {
         });
 
         //create trace log
-        traceLogCreate(req, traceConfig.action.AdminBanAllExaminationUnfinishedUsers, {
+        traceLogCreate(req, traceConfig.action.adminBanAllExaminationUnfinishedUsers, {
           user: user._id,
           num: num
         });

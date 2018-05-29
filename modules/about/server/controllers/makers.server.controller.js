@@ -60,7 +60,7 @@ exports.create = function (req, res) {
         }
 
         //create trace log
-        traceLogCreate(req, traceConfig.action.OperCreateMakerGroup, {
+        traceLogCreate(req, traceConfig.action.adminCreateMakerGroup, {
           user: user._id,
           name: maker.name
         });
