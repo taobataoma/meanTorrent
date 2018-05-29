@@ -12,54 +12,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 ![list](https://cloud.githubusercontent.com/assets/7778550/26185492/e56cca24-3bbd-11e7-9f05-0b2f81612947.jpg)
 - __Torrent detail page view__
 ![item](https://cloud.githubusercontent.com/assets/7778550/26185530/31757ce0-3bbe-11e7-84aa-fbe2a7c34276.jpg)
-  - __subtitle panel__
-  ![subtitle](https://cloud.githubusercontent.com/assets/7778550/26185761/7bf09f24-3bbf-11e7-9113-6356c79e3fe3.jpg)
-  - __users list panel__
-  ![ulist](https://cloud.githubusercontent.com/assets/7778550/26185776/8fb4e09c-3bbf-11e7-9c9e-6d2dda59da20.jpg)
-  - __other torrents panel__
-  ![other](https://cloud.githubusercontent.com/assets/7778550/26185787/a6fbfc72-3bbf-11e7-82c1-1ea348536cd0.jpg)
-  - __admin panel__
-  ![adminpanel](https://cloud.githubusercontent.com/assets/7778550/26185805/bba0d724-3bbf-11e7-9836-a4ac62b621a4.jpg)
-- __Upload page view__
-![upload](https://cloud.githubusercontent.com/assets/7778550/26185584/7bcd87ba-3bbe-11e7-98ca-4166865b4f8d.jpg)
-- __Chat page view__
-![chat](https://cloud.githubusercontent.com/assets/7778550/26185610/9d921b40-3bbe-11e7-9bcb-9d9520373bdd.jpg)
-- __User status page view__
-![status](https://cloud.githubusercontent.com/assets/7778550/26479404/85117104-4205-11e7-92c4-405aecd42738.jpg)
-- __User score page view__
-![score](https://user-images.githubusercontent.com/7778550/27261287-e199d806-5472-11e7-996d-e3733ad41ae2.jpg)
-- __Invitation detail page view__
-![invitation](https://user-images.githubusercontent.com/7778550/27261302-16d0ce94-5473-11e7-905c-2b030309f90e.jpg)
-- __MessageBox page view__
-![message](https://user-images.githubusercontent.com/7778550/27261310-2eea0fa4-5473-11e7-86d1-8d5a046a1573.jpg)
-- __Message replies list page view__
-![reply](https://user-images.githubusercontent.com/7778550/27261322-6ac3a6fc-5473-11e7-98e2-e17f3ed0e075.jpg)
-- __Forums list page view__
-![forum-list](https://user-images.githubusercontent.com/7778550/28199231-bf04c296-6896-11e7-8609-b2464a639758.jpg)
-- __Forum topics list page view__
-![topic-list](https://user-images.githubusercontent.com/7778550/28199237-c48fb77a-6896-11e7-8fe8-de287544e0fc.jpg)
-- __Forum topic replies list page view__
-![reply-list](https://user-images.githubusercontent.com/7778550/28199240-c6a1f9f6-6896-11e7-96ce-817772b8340e.jpg)
-- __Torrents maker group page__
-![maker](https://user-images.githubusercontent.com/7778550/31860398-efbe681a-b6de-11e7-98d9-db6f13deab72.jpg)
-- __Movie collection list page__
-![collections](https://user-images.githubusercontent.com/7778550/31987778-86904966-b932-11e7-956e-4a35ff08d8fb.jpg)
-- __Movie collection detail page__
-![collectionitem](https://user-images.githubusercontent.com/7778550/31987808-a3e4ad54-b932-11e7-8544-7a4acc5753ff.jpg)
-- __VIP Donate payment page__
-![donate](https://user-images.githubusercontent.com/7778550/32096312-b303a750-bacb-11e7-91e3-d3dfec86e5b7.jpg)
-- __Uploader access manager__
-![uploader-access](https://user-images.githubusercontent.com/7778550/34406667-4d2a1800-ebf5-11e7-9884-cb6cfb03705b.jpg)
-- __Follow list page__
-![follow](https://user-images.githubusercontent.com/7778550/34604741-ecdda598-f243-11e7-9363-70545b113eb9.jpg)
-- __Requests list page__
-![request-list](https://user-images.githubusercontent.com/7778550/34977882-4e8368be-fad7-11e7-8177-1023cfd754ec.jpg)
-- __Request view page__
-![request-view](https://user-images.githubusercontent.com/7778550/34977885-511679ae-fad7-11e7-9026-75b568012d49.jpg)
-- __System control panel page__
-![system-panel](https://user-images.githubusercontent.com/7778550/35473769-d36f57c2-03bf-11e8-9fab-0b275e4a7179.jpg)
-- __Shell command page__
-![shell-command](https://user-images.githubusercontent.com/7778550/35473771-d8b614be-03bf-11e8-8586-6465c1720a6e.jpg)
 
 #### meanTorrent some feature:
 1. Multilingual support, now English & Chinese, please read the guide of [how to add a complete translated language](#howToAddTranslate).
@@ -126,6 +78,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 61. Detailed logs, include uploaded and downloaded announce logs, seeding time logs, score changed logs, score changed days log and months log.
 62. Admin can present official invitations to user.
 63. System message support property of 'must read', user must read it and mark it as already read, otherwise it will popup again to minute later.
+64. History of admin operate user account.
 
 #### Chat room feature:
 1. Users name list
@@ -140,12 +93,20 @@ and [AngularJS](http://angularjs.org/) based applications.
 - Fetch service email box message into administrator group message box of site, oper and admin can select any item to handling.
 - Add configure item for whether ban user with his inviter.
 - Add ban reason.
+- Support service center client side logic & UI.
+- User detail data(score, uploaded, downloaded) line graph.
+- Site data line graph for admin
 - Poll type topics support in forum.
 - More score get methods.
 - torrent more images from [TMDB](https://www.themoviedb.org)
 - IRC chat
 - Business cooperation support(like play box? NAS? etc.)
 - ......more
+
+## Instance Site
+* [mine.pt](https://mine.pt)
+* [torrenteros.org](http://torrenteros.org)
+* [tskscn.org](https://www.tskscn.org:3000)
 
 ## Online support
 - Post an [issue](https://github.com/taobataoma/meanTorrent/issues)
