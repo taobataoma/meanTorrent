@@ -121,6 +121,93 @@
     }
 }
 
+.resourceScreenshots {
+    .upload-image-info {
+        color: #666;
+        height: 40px;
+        background-color: #f5f5f5;
+        border-top: 1px dashed #ddd;
+        .upload-tooltip {
+            margin: 8px;
+            .manual-file-chooser {
+                position: absolute;
+                width: 200px;
+                padding: 5px;
+                margin-left: 150px;
+                margin-top: -23px;
+                cursor: pointer;
+                opacity: 0.00001;
+            }
+            .manual-file-chooser-text {
+                cursor: pointer;
+                &:hover {
+                    color: @mt-base-color;
+                }
+            }
+
+        }
+    }
+    .upload-image-list {
+        color: #666;
+        background-color: #f5f5f5;
+        border-top: 1px dashed #ddd;
+        overflow-x: scroll;
+        .image-item {
+            position: relative;
+            display: table-cell;
+            &:last-child {
+                padding-right: 5px !important;
+                .fa {
+                    right: 10px;
+                }
+            }
+            img {
+                height: 150px;
+                width: auto;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                margin-left: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            }
+            .fa {
+                cursor: pointer;
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                text-shadow: 0 0 0.1em #fff,-0 -0 0.1em #fff;
+                &:hover {
+                    color: @mt-base-color;
+                }
+            }
+        }
+    }
+}
+
+.upload-info {
+    position: relative;
+    color: #666;
+    height: 40px;
+    background-color: #f5f5f5;
+    border-top: 1px dashed #ddd;
+    i {
+        color: @mt-base-color;
+        float: left;
+        margin: 11px 5px;
+    }
+    .upload-progress {
+        height: 30px;
+        margin: 4px 30px;
+        max-width: ~"calc(100% - 40px)";
+        background-color: @brand-info;
+    }
+    .upload-filename {
+        position: absolute;
+        top: 8px;
+        margin-left: 35px;
+        background-color: transparent;
+    }
+}
+
 /* csslint ignore:start */
 .film-strip {
     border-top: solid 26px;
@@ -353,6 +440,7 @@ pre.prettyprint {
         word-break: break-all;
     }
 }
+
 /* csslint ignore:end */
 
 //popup overlay----------------------------------------------

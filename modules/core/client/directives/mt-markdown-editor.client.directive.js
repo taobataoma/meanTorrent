@@ -104,10 +104,10 @@
 
             //define method called from parent scope
             //init all variable
-            scope.$parent.clearnAttach = function () {
+            scope.$parent.clearAttach = function () {
               initVariable();
             };
-            scope.$parent.$parent.clearnAttach = scope.$parent.clearnAttach;
+            scope.$parent.$parent.clearAttach = scope.$parent.clearAttach;
 
             //hide preview
             scope.$parent.hidePreview = function () {

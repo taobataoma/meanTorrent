@@ -4,6 +4,13 @@ var path = require('path'),
   fs = require('fs'),
   config = require(path.resolve('./config/config'));
 
+/**
+ * file filter
+ * @param req
+ * @param file
+ * @param callback
+ * @returns {*}
+ */
 module.exports.imageFileFilter = function (req, file, callback) {
   if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/gif' && file.mimetype !== 'image/bmp') {
     var err = new Error();
@@ -33,6 +40,12 @@ module.exports.subtitleFileFilter = function (req, file, callback) {
   callback(null, true);
 };
 
+/**
+ * createUploadFilename
+ * @param req
+ * @param file
+ * @param cb
+ */
 module.exports.createUploadFilename = function (req, file, cb) {
   //var regex = new RegExp(',', 'g');
   //var filename = file.originalname.replace(regex, ' ');
@@ -76,6 +89,12 @@ module.exports.getUploadDestination = function (req, file, cb) {
   cb(null, config.uploads.torrent.file.temp);
 };
 
+/**
+ * createUploadAttachFilename
+ * @param req
+ * @param file
+ * @param cb
+ */
 module.exports.createUploadAttachFilename = function (req, file, cb) {
   var RexStr = /\(|\)|\[|\]|\,/g;
   var filename = file.originalname.replace(RexStr, function (MatchStr) {
@@ -119,6 +138,12 @@ module.exports.getUploadAttachDestination = function (req, file, cb) {
   cb(null, config.uploads.attach.file.temp);
 };
 
+/**
+ * createUploadSubtitleFilename
+ * @param req
+ * @param file
+ * @param cb
+ */
 module.exports.createUploadSubtitleFilename = function (req, file, cb) {
   var regex = new RegExp(',', 'g');
   var filename = file.originalname.replace(regex, ' ');
@@ -136,7 +161,12 @@ module.exports.getUploadSubtitleDestination = function (req, file, cb) {
   cb(null, config.uploads.subtitle.file.dest);
 };
 
-
+/**
+ * createUploadCoverImageFilename
+ * @param req
+ * @param file
+ * @param cb
+ */
 module.exports.createUploadCoverImageFilename = function (req, file, cb) {
   var RexStr = /\(|\)|\[|\]|\,/g;
   var filename = file.originalname.replace(RexStr, function (MatchStr) {
@@ -175,6 +205,12 @@ module.exports.getUploadCoverImageDestination = function (req, file, cb) {
   cb(null, config.uploads.torrent.cover.temp);
 };
 
+/**
+ * createUploadTorrentImageFilename
+ * @param req
+ * @param file
+ * @param cb
+ */
 module.exports.createUploadTorrentImageFilename = function (req, file, cb) {
   var RexStr = /\(|\)|\[|\]|\,/g;
   var filename = file.originalname.replace(RexStr, function (MatchStr) {
@@ -213,7 +249,12 @@ module.exports.getUploadTorrentImageDestination = function (req, file, cb) {
   cb(null, config.uploads.torrent.image.temp);
 };
 
-
+/**
+ * createUploadTicketImageFilename
+ * @param req
+ * @param file
+ * @param cb
+ */
 module.exports.createUploadTicketImageFilename = function (req, file, cb) {
   var RexStr = /\(|\)|\[|\]|\,/g;
   var filename = file.originalname.replace(RexStr, function (MatchStr) {

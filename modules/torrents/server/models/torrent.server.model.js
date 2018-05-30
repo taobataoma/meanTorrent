@@ -141,6 +141,8 @@ var TorrentSchema = new Schema({
   _ratings: [CommonSchema.RatingSchema],
   _other_torrents: [],
   _all_files: [],
+
+  screenshots_image: [String],
   //resource info
   resource_detail_info: Object,
 

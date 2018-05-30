@@ -47,6 +47,7 @@
     vm.anonymous = false;
     vm.videoNfo = '';
     vm.customTorrent = {};
+    vm.resourceImagesList = [];
 
     $rootScope.uploadPopupNotShowNextTime = localStorageService.get('upload_popup_not_show_next_time');
     $rootScope.announceConfig = vm.announceConfig;
@@ -196,7 +197,7 @@
       if (response.data.params) {
         response.data.message = $translate.instant(response.data.message, response.data.params);
       }
-      console.log(response.data.message);
+      mtDebug.info(response.data.message);
 
       NotifycationService.showErrorNotify(response.data.message, 'TORRENTS_UPLOAD_FAILED');
     }
@@ -275,6 +276,34 @@
     };
 
     /**
+     * uploadTorrentScreenshotsImage
+     * @param ufile
+     * @param progressback
+     * @param callback
+     * @param errback
+     */
+    vm.uploadTorrentScreenshotsImage = function (ufile, progressback, callback, errback) {
+      Upload.upload({
+        url: '/api/torrents/uploadTorrentImage',
+        data: {
+          newTorrentImageFile: ufile
+        }
+      }).then(function (res) {
+        if (callback) {
+          callback(res.data.filename);
+        }
+      }, function (res) {
+        if (errback && res.status > 0) {
+          errback(res);
+        }
+      }, function (evt) {
+        if (progressback) {
+          progressback(parseInt(100.0 * evt.loaded / evt.total, 10));
+        }
+      });
+    };
+
+    /**
      * onTMDBIDKeyDown
      * @param evt
      */
@@ -323,6 +352,7 @@
       vm.inputedEpisodesError = undefined;
       vm.inputedEpisodesOK = false;
       vm.showResourceTitleInput = false;
+      vm.showResourceScreenShots = false;
       vm.showResourcesTag = false;
 
       vm.movieinfo = undefined;
@@ -455,6 +485,7 @@
         vm.tmdb_info_ok = true;
         vm.tmdb_isloading = false;
         vm.showResourceTitleInput = true;
+        vm.showResourceScreenShots = true;
         vm.showResourcesTag = true;
         vm.showVideoNfo = true;
         vm.showAgreeAndSubmit = true;
@@ -533,6 +564,7 @@
       } else {
         vm.inputedEpisodesError = false;
         vm.inputedEpisodesOK = true;
+        vm.showResourceScreenShots = true;
         vm.showResourcesTag = true;
         vm.showResourceTitleInput = true;
         vm.showVideoNfo = true;
@@ -583,7 +615,8 @@
         isAnonymous: vm.anonymous,
         reqId: $state.params.reqId || undefined,
 
-        resource_detail_info: vm.movieinfo
+        resource_detail_info: vm.movieinfo,
+        screenshots_image: vm.resourceImagesList
       });
 
       torrent.$save(function (response) {
@@ -593,6 +626,7 @@
       });
 
       function successCallback(res) {
+        mtDebug.info(res);
         vm.isCreating = false;
         vm.showUploadedPopup(res);
       }
@@ -631,7 +665,8 @@
         isAnonymous: vm.anonymous,
         reqId: $state.params.reqId || undefined,
 
-        resource_detail_info: vm.tvinfo
+        resource_detail_info: vm.tvinfo,
+        screenshots_image: vm.resourceImagesList
       });
 
       torrent.$save(function (response) {
@@ -641,6 +676,7 @@
       });
 
       function successCallback(res) {
+        mtDebug.info(res);
         vm.isCreating = false;
         vm.showUploadedPopup(res);
       }

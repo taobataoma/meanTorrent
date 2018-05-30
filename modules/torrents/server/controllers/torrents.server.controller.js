@@ -374,7 +374,7 @@ exports.uploadTorrentImage = function (req, res) {
   var upload = multer({
     storage: storage,
     fileFilter: fileFilter,
-    limits: config.uploads.torrent.cover.limits
+    limits: config.uploads.torrent.image.limits
   }).single('newTorrentImageFile');
 
   if (user) {
@@ -684,8 +684,10 @@ exports.create = function (req, res) {
             fs.unlinkSync(oc);
           }
         });
+      }
 
-        //move temp torrent image file to dest directory
+      //move temp torrent image file to dest directory
+      if (req.body._uImage && req.body._uImage.length > 0) {
         req.body._uImage.forEach(function (f) {
           var oi = config.uploads.torrent.image.temp + f;
           var ni = config.uploads.torrent.image.dest + f;
@@ -698,6 +700,31 @@ exports.create = function (req, res) {
               sharp(ni)
                 .resize(200)
                 .toFile(ci, function (err) {
+                  if (err) {
+                    mtDebug.debugError(err);
+                  }
+                });
+            }
+          });
+        });
+      }
+
+      //move temp torrent resource screenshots image file to dest directory
+      if (req.body.screenshots_image && req.body.screenshots_image.length > 0) {
+        req.body.screenshots_image.forEach(function (f, key) {
+          var os = config.uploads.torrent.image.temp + f;
+          var ns = config.uploads.torrent.image.dest + f;
+          var cs = config.uploads.torrent.image.crop + f;
+
+          torrent.screenshots_image[key] = dst + f;
+
+          move(os, ns, function (err) {
+            if (err) {
+              mtDebug.debugRed(err);
+            } else {
+              sharp(ns)
+                .resize(200)
+                .toFile(cs, function (err) {
                   if (err) {
                     mtDebug.debugError(err);
                   }

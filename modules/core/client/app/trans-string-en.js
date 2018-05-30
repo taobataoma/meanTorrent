@@ -558,6 +558,7 @@
     TMDB_IS_LOADING: 'Loading the resource info, please wait...',
     SELECT_SE: '&bull; Please select number of seasons and input number of episodes',
     SELECT_TAGS: '&bull; Please select any tags for the resources',
+    SELECT_SCREEN_SHOTS: '&bull; Please select any screenshots for the resources',
     ENTER_VIDEO_NFO: '&bull; Please enter video and audio NFO',
     SELECT_MAKER_GROUP: '&bull; Please select resources group upload from and anonymous option',
     MAKER_NULL: 'NULL',
@@ -586,6 +587,12 @@
     RESOURCE_SUB_TITLE: 'resource sub title',
     SELECT_RESOURCE_IMAGE: '&bull; Please select resource cover image',
     ENTER_RESOURCE_DETAIL_INFO: '&bull; Please enter the resource detail info',
+
+    IMAGES_UPLOAD_TOOLTIP1: 'Image files by dragging & dropping or ',
+    IMAGES_UPLOAD_TOOLTIP2: 'select them',
+    IMAGES_UPLOADING: 'Uploading',
+    UPLOAD_IMAGES_SUCCESSFULLY: 'Upload image file successfully',
+    UPLOAD_IMAGES_FAILED: 'Upload image file failed',
 
     //ranking view
     PAGE_HEADER_RANKING_UPLOAD: 'Uploaded Ranking',

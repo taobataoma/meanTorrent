@@ -309,7 +309,17 @@
             </div>
         </div>
 
-        <div class="row margin-bottom-30" ng-show="vm.showResourcesTag">
+        <div class="row margin-bottom-40" ng-show="vm.showResourceScreenShots">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="SELECT_SCREEN_SHOTS"></legend>
+                <div class="resourceScreenshots" id="resourceScreenshots" name="resourceScreenshots"
+                     mt-images-uploader="resourceScreenshots" ng-model="vm.resourceImagesList"
+                     upload-dir="/modules/torrents/client/uploads/temp/"
+                     upload-method="vm.uploadTorrentScreenshotsImage(ufile, progressback, callback, errback);"></div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.showResourcesTag">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_TAGS"></legend>
                 <div ng-if="vm.getTagsFilterCount()<=0">
@@ -533,7 +543,17 @@
             </div>
         </div>
 
-        <div class="row margin-bottom-30" ng-show="vm.showResourcesTag">
+        <div class="row margin-bottom-40" ng-show="vm.showResourceScreenShots">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="SELECT_SCREEN_SHOTS"></legend>
+                <div class="resourceScreenshots" id="resourceScreenshots" name="resourceScreenshots"
+                     mt-images-uploader="resourceScreenshots" ng-model="vm.resourceImagesList"
+                     upload-dir="/modules/torrents/client/uploads/temp/"
+                     upload-method="vm.uploadTorrentScreenshotsImage(ufile, progressback, callback, errback);"></div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.showResourcesTag">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_TAGS"></legend>
                 <div ng-if="vm.getTagsFilterCount()<=0">
@@ -655,7 +675,7 @@
             </div>
         </div>
 
-        <div class="row margin-bottom-30" ng-show="vm.customTorrent.detail">
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_TAGS"></legend>
                 <div ng-if="vm.getTagsFilterCount()<=0">
@@ -763,8 +783,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="ENTER_RESOURCE_DETAIL_INFO"></legend>
                 <div class="col-xs-12">
-                    <textarea id="sportsDetail" name="sportsDetail" ng-model="vm.customTorrent.detail"
-                              mt-markdown-editor="sportsDetail"
+                    <textarea id="defaultDetail" name="defaultDetail" ng-model="vm.customTorrent.detail"
+                              mt-markdown-editor="defaultDetail"
                               upload-dir="/modules/torrents/client/uploads/temp/"
                               upload-only-image="true"
                               upload-method="vm.uploadTorrentImage(editor, ufile, progressback, callback, errback);"></textarea>
@@ -773,7 +793,7 @@
             </div>
         </div>
 
-        <div class="row margin-bottom-30" ng-show="vm.customTorrent.detail">
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_TAGS"></legend>
                 <div ng-if="vm.getTagsFilterCount()<=0">

@@ -157,7 +157,7 @@
         vm.pageChanged();
 
         $scope.$broadcast('show-errors-reset', 'vm.replyForm');
-        $scope.clearnAttach();
+        $scope.clearAttach();
         $scope.hidePreview();
         NotifycationService.showSuccessNotify('FORUMS.POST_REPLY_SUCCESSFULLY');
       }
