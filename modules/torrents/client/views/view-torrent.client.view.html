@@ -178,10 +178,10 @@
                             <div id="top_of_overview" ng-if="vm.TGI.getTorrentOverview(vm.torrentLocalInfo)">
                                 <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
                                 <dd class="h-line">
-                                    <div ng-if="vm.torrentLocalInfo.torrent_type=='movie' || vm.torrentLocalInfo.torrent_type=='tvserial'">
-                                        {{vm.TGI.getTorrentOverview(vm.torrentLocalInfo)}}
-                                    </div>
-                                    <div ng-if="vm.torrentLocalInfo.torrent_type!='movie' && vm.torrentLocalInfo.torrent_type!='tvserial'">
+                                    <!--<div ng-if="vm.torrentLocalInfo.torrent_type=='movie' || vm.torrentLocalInfo.torrent_type=='tvserial'">-->
+                                        <!--{{vm.TGI.getTorrentOverview(vm.torrentLocalInfo)}}-->
+                                    <!--</div>-->
+                                    <div>
                                         <div torrent-image-list="true"
                                              img-container="img_container_{{vm.torrentLocalInfo._id}}"
                                              img-click-event="vm.onImageClick(event)">
@@ -201,10 +201,6 @@
                             </div>
                         </dl>
 
-                        <div id="img_container_{{vm.torrentLocalInfo._id}}" class="img-container">
-                            <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
-                        </div>
-
                         <div class="cast-list" ng-if="vm.torrentLocalInfo.resource_detail_info.credits.cast.length > 0">
                             <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
                             <div class="row">
@@ -221,6 +217,10 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div id="img_container_{{vm.torrentLocalInfo._id}}" class="img-container">
+                            <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
                         </div>
                     </div>
                 </div>

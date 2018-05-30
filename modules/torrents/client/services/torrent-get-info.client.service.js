@@ -307,6 +307,13 @@
 
       if (item && item.resource_detail_info) {
         result = item.resource_detail_info.overview || item.resource_detail_info.detail || null;
+
+        if (item.screenshots_image && item.screenshots_image.length > 0) {
+          angular.forEach(item.screenshots_image, function (si) {
+            var str = '<br/>![' + si + '](' + si + ')';
+            result += str;
+          });
+        }
       }
       return result;
     }

@@ -1317,7 +1317,7 @@
      * @returns {*}
      */
     vm.getOverviewMarkedContent = function (c) {
-      return marked(c, {sanitize: true});
+      return marked(c, {sanitize: false});
     };
 
     /**
