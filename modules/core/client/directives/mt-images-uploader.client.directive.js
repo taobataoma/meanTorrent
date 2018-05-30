@@ -4,9 +4,9 @@
   angular.module('core')
     .directive('mtImagesUploader', mtImagesUploader);
 
-  mtImagesUploader.$inject = ['localStorageService', '$compile', 'NotifycationService', '$translate', 'DebugConsoleService', '$timeout'];
+  mtImagesUploader.$inject = ['$rootScope', 'localStorageService', '$compile', 'NotifycationService', '$translate', 'DebugConsoleService', '$timeout'];
 
-  function mtImagesUploader(localStorageService, $compile, NotifycationService, $translate, mtDebug, $timeout) {
+  function mtImagesUploader($rootScope, localStorageService, $compile, NotifycationService, $translate, mtDebug, $timeout) {
     var directive = {
       restrict: 'A',
       require: 'ngModel',
@@ -21,7 +21,7 @@
       if (attrs.uploadMethod) {
         initVariable();
 
-        var eleUploadList = angular.element('<div class="upload-image-list" ng-show="uResourceImages.length"><span class="image-item" ng-repeat="f in uResourceImages track by $index"><img ng-src="{{f}}"><i class="fa fa-times" ng-click="removeImage($index)" mt-scale-by-mouse="{scale: 1.5, duration: \'.3s\'}"></i></img></span></div>');
+        var eleUploadList = angular.element('<div class="upload-image-list" ng-show="uResourceImages.length"><span class="image-item" ng-repeat="f in uResourceImages track by $index"><img ng-src="{{f}}" on-image-load="showFaTimes($index)"><i id="fa-{{$index}}" style="display: none;" class="fa fa-times" ng-click="removeImage($index)" mt-scale-by-mouse="{scale: 1.5, duration: \'.3s\'}"></i></img></span></div>');
         var eleUploadTip = angular.element('<div class="upload-image-info" ng-show="!uFile"><div class="upload-tooltip text-long"><span>{{\'IMAGES_UPLOAD_TOOLTIP1\' | translate}}</span><input type="file" class="manual-file-chooser" ng-model="selectedFile" ngf-select="onFileSelected($event);"><span class="btn-link manual-file-chooser-text">{{\'IMAGES_UPLOAD_TOOLTIP2\' | translate}}</span></div></div>');
         var eleUploadBegin = angular.element('<div class="upload-info" ng-show="uFile"><i class="fa fa-cog fa-spin fa-lg fa-fw"></i> <div class="upload-progress" style="width: {{uProgress}}%"></div><div class="upload-filename">{{\'IMAGES_UPLOADING\' | translate}}: {{uFile.name}}</div></div>');
 
@@ -36,6 +36,10 @@
 
         scope.onFileSelected = function (evt) {
           doUpload(scope.selectedFile);
+        };
+
+        scope.showFaTimes = function (idx) {
+          $('.image-item').find('#fa-' + idx).css('display', 'block');
         };
 
         element.bind('dragenter', function (evt) {
@@ -57,12 +61,10 @@
 
         //define method called from parent scope
         //init all variable
-        scope.$parent.clearResourceImages = function () {
+        $rootScope.clearResourceImages = function () {
           scope.ngModel = [];
           initVariable();
         };
-        scope.$parent.$parent.clearResourceImages = scope.$parent.clearResourceImages;
-
         $compile(element.contents())(scope);
       }
 

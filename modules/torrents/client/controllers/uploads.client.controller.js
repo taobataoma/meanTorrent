@@ -365,6 +365,8 @@
 
       vm.showVideoNfo = false;
       vm.showAgreeAndSubmit = false;
+
+      $rootScope.clearResourceImages();
     };
 
     /**
