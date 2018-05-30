@@ -226,25 +226,6 @@
             </div>
         </div>
 
-        <div class="home-button-list filter-button-list">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-3 text-center fun-item" ng-repeat="fun in vm.homeConfig.buttonList">
-                                <span class="fa-stack" ui-sref="{{fun.state}}">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa {{fun.icon}} fa-stack-1x fun-icon"></i>
-                                </span>
-                                <h4 class="fun-title" translate="{{fun.title}}"></h4>
-                                <span class="fun-desc" translate="{{fun.desc}}"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="filter-notice">
             <div class="container" ng-if="vm.homeConfig.showForumNewTopicsAndNewestTorrents">
                 <div class="row">
@@ -274,6 +255,25 @@
                                     <a ui-sref="torrents.view({ torrentId: t._id })"
                                        title="{{vm.TGI.getTorrentTitle(t)}}">{{t.torrent_filename}}</a>
                                 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-button-list filter-button-list">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-3 text-center fun-item" ng-repeat="fun in vm.homeConfig.buttonList">
+                                <span class="fa-stack" ui-sref="{{fun.state}}">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa {{fun.icon}} fa-stack-1x fun-icon"></i>
+                                </span>
+                                <h4 class="fun-title" translate="{{fun.title}}"></h4>
+                                <span class="fun-desc" translate="{{fun.desc}}"></span>
                             </div>
                         </div>
                     </div>
