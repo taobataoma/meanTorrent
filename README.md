@@ -36,7 +36,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 19. Forum replies support real edit, What you see is what you get ([bootstrap-markdown](http://www.codingdrama.com/bootstrap-markdown/)), and drag & drop attach file upload.
 20. Complete thumbs-up system(thanks system), topic poster or torrent uploader will received score donate from clicker.
 21. __IRC Announce support [Node-irc](https://github.com/martynsmith/node-irc), when user upload new torrent file, and oper/admin reviewed it, then announce the torrent info to IRC channel.__
-22. Scrape torrents status from owner tracker server, design for `public` CMS mode, support HTTP/HTTPS/UDP tracker protocol.
 23. Complete HnR(hit and run) system support.
 24. Oper/admin can send official invitation, but all the invitation has the expired time setting.
 25. Complete music torrents support, include __CD__ and __MTV__ sub type.
