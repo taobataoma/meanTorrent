@@ -312,8 +312,8 @@
         <div class="row margin-bottom-40" ng-show="vm.showResourceScreenShots">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_SCREEN_SHOTS"></legend>
-                <div class="resourceScreenshots" id="resourceScreenshots" name="resourceScreenshots"
-                     mt-images-uploader="resourceScreenshots" ng-model="vm.resourceImagesList"
+                <div class="resourceScreenshots" id="movieScreenshots" name="movieScreenshots"
+                     mt-images-uploader="movieScreenshots" ng-model="vm.resourceImagesList"
                      upload-dir="/modules/torrents/client/uploads/temp/"
                      upload-method="vm.uploadTorrentScreenshotsImage(ufile, progressback, callback, errback);"></div>
             </div>
@@ -546,8 +546,8 @@
         <div class="row margin-bottom-40" ng-show="vm.showResourceScreenShots">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <legend class="small-legend" translate="SELECT_SCREEN_SHOTS"></legend>
-                <div class="resourceScreenshots" id="resourceScreenshots" name="resourceScreenshots"
-                     mt-images-uploader="resourceScreenshots" ng-model="vm.resourceImagesList"
+                <div class="resourceScreenshots" id="tvScreenshots" name="tvScreenshots"
+                     mt-images-uploader="tvScreenshots" ng-model="vm.resourceImagesList"
                      upload-dir="/modules/torrents/client/uploads/temp/"
                      upload-method="vm.uploadTorrentScreenshotsImage(ufile, progressback, callback, errback);"></div>
             </div>
@@ -666,12 +666,19 @@
                 <legend class="small-legend" translate="ENTER_MUSIC_DETAIL_INFO"></legend>
                 <div class="col-xs-12">
                     <textarea id="musicDetail" name="musicDetail" ng-model="vm.customTorrent.detail"
-                              mt-markdown-editor="musicDetail"
-                              upload-dir="/modules/torrents/client/uploads/temp/"
-                              upload-only-image="true"
-                              upload-method="vm.uploadTorrentImage(editor, ufile, progressback, callback, errback);"></textarea>
+                              mt-markdown-editor="musicDetail"></textarea>
 
                 </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="SELECT_SCREEN_SHOTS"></legend>
+                <div class="resourceScreenshots" id="musicScreenshots" name="musicScreenshots"
+                     mt-images-uploader="musicScreenshots" ng-model="vm.resourceImagesList"
+                     upload-dir="/modules/torrents/client/uploads/temp/"
+                     upload-method="vm.uploadTorrentScreenshotsImage(ufile, progressback, callback, errback);"></div>
             </div>
         </div>
 
@@ -784,12 +791,19 @@
                 <legend class="small-legend" translate="ENTER_RESOURCE_DETAIL_INFO"></legend>
                 <div class="col-xs-12">
                     <textarea id="defaultDetail" name="defaultDetail" ng-model="vm.customTorrent.detail"
-                              mt-markdown-editor="defaultDetail"
-                              upload-dir="/modules/torrents/client/uploads/temp/"
-                              upload-only-image="true"
-                              upload-method="vm.uploadTorrentImage(editor, ufile, progressback, callback, errback);"></textarea>
+                              mt-markdown-editor="defaultDetail"></textarea>
 
                 </div>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-40" ng-show="vm.customTorrent.detail">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <legend class="small-legend" translate="SELECT_SCREEN_SHOTS"></legend>
+                <div class="resourceScreenshots" id="defaultScreenshots" name="defaultScreenshots"
+                     mt-images-uploader="defaultScreenshots" ng-model="vm.resourceImagesList"
+                     upload-dir="/modules/torrents/client/uploads/temp/"
+                     upload-method="vm.uploadTorrentScreenshotsImage(ufile, progressback, callback, errback);"></div>
             </div>
         </div>
 

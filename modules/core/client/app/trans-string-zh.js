@@ -558,7 +558,7 @@
     TMDB_IS_LOADING: '正在检索视频信息，请稍候...',
     SELECT_SE: '&bull; 请选择电视剧季数并输入本资源为本剧第几集',
     SELECT_TAGS: '&bull; 请为资源选择合适的标签',
-    SELECT_SCREEN_SHOTS: '&bull; 请为资源选择播放效果截图',
+    SELECT_SCREEN_SHOTS: '&bull; 请上传资源预览截图',
     ENTER_VIDEO_NFO: '&bull; 请输入视频和音频的NFO信息',
     SELECT_MAKER_GROUP: '&bull; 请选择您上传时使用的资源小组',
     MAKER_NULL: '无',
@@ -1270,7 +1270,7 @@
       BACKDROP_PATH: '背景海报',
       POSTER_PATH: '海报',
       CAST: '主演：',
-      IMAGE_OVERVIEW: '图片预览：',
+      IMAGE_OVERVIEW: '截图预览：',
       DIRECTOR: '导演',
 
       ORIGINAL_NAME: '原剧名',

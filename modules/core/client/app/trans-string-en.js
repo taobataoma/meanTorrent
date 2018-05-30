@@ -1270,7 +1270,7 @@
       BACKDROP_PATH: 'backdrop path',
       POSTER_PATH: 'poster path',
       CAST: 'cast：',
-      IMAGE_OVERVIEW: 'image overview：',
+      IMAGE_OVERVIEW: 'screenshots overview：',
       DIRECTOR: 'Director',
 
       ORIGINAL_NAME: 'original name',

@@ -558,7 +558,7 @@
     TMDB_IS_LOADING: '正在檢索視訊資訊，請稍候...',
     SELECT_SE: '&bull; 請選擇電視劇季數並輸入本資源為本劇第幾集',
     SELECT_TAGS: '&bull; 請為資源選擇合適的標籤',
-    SELECT_SCREEN_SHOTS: '&bull; 請為資源選擇播放效果截圖',
+    SELECT_SCREEN_SHOTS: '&bull; 請上傳資源預覽截圖',
     ENTER_VIDEO_NFO: '&bull; 請輸入視訊和音訊的NFO資訊',
     SELECT_MAKER_GROUP: '&bull; 請選擇您上傳時使用的資源小組',
     MAKER_NULL: '無',
@@ -1270,7 +1270,7 @@
       BACKDROP_PATH: '背景海報',
       POSTER_PATH: '海報',
       CAST: '主演：',
-      IMAGE_OVERVIEW: '圖片預覽：',
+      IMAGE_OVERVIEW: '截圖預覽：',
       DIRECTOR: '導演',
 
       ORIGINAL_NAME: '原劇名',

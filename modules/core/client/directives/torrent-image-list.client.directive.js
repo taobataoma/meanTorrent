@@ -10,6 +10,9 @@
     var directive = {
       restrict: 'A',
       priority: 10,
+      scope: {
+        imgs: '='
+      },
       link: link
     };
 
@@ -17,81 +20,55 @@
 
     function link(scope, element, attrs) {
       attrs.$observe('torrentImageList', function (til) {
-        var targetNode = element[0];
-        var config = {childList: true};
-        var callback = function (mutationsList) {
-          angular.forEach(mutationsList, function (mutation) {
-            if (mutation.type === 'childList') {
-              organizeImage();
+        if (til) {
+          if (!attrs.hasOwnProperty('imgs')) {
+            return console.error('no imgs attr is set in directive torrentImageList');
+          }
+
+          scope.$watch('imgs', function (newVal) {
+            if (newVal) {
+              organizeImage(newVal);
             }
           });
-        };
-
-        if (til) {
-          organizeImage();
-          var observer = new MutationObserver(callback);
-          observer.observe(targetNode, config);
-
-          //observer.disconnect();
         }
 
         /**
          * organizeImage
          */
-        function organizeImage() {
-          var imgs = targetNode.querySelectorAll('img:not(.emoji)');
-
-          //remove
-          angular.forEach(imgs, function (i) {
-            if (i.parentElement.childElementCount === 1) {
-              angular.element(i.parentElement).remove();
-            } else {
-              if (i.previousSibling && i.previousSibling.tagName.toUpperCase() === 'BR') {
-                angular.element(i.previousSibling).remove();
-              }
-              angular.element(i).remove();
-            }
-          });
+        function organizeImage(imgs) {
           //reorganize
-          if (imgs.length > 0) {
-            var container = targetNode.parentNode;
-            if (attrs.hasOwnProperty('imgContainer')) {
-              container = document.getElementById(attrs.imgContainer);
-            }
-
-            var imgDiv = container.querySelectorAll('.torrent-img-list');
+          if (imgs && imgs.length > 0) {
+            var imgDiv = angular.element('.torrent-img-list');
             if (imgDiv) {
-              angular.element(imgDiv).remove();
+              imgDiv.remove();
             }
 
+            var imgEleList = [];
             var imgList = angular.element('<div class="torrent-img-list film-strip"></div>');
 
-            angular.forEach(imgs, function (i, idx) {
-              var item = angular.element(i);
-              var src = item.attr('src');
-              var nsrc = src.substr(0, src.lastIndexOf('/') + 1) + 'crop/' + src.substr(src.lastIndexOf('/') + 1);
+            angular.forEach(imgs, function (img, idx) {
+              var item = angular.element('<img>');
+              var nsrc = img.substr(0, img.lastIndexOf('/') + 1) + 'crop/' + img.substr(img.lastIndexOf('/') + 1);
 
-              item.attr('on-error-src', item.attr('src'));
+              item.attr('on-error-src', img);
+              item.attr('id', img);
               item.attr('src', nsrc);
               item.addClass('img-item');
-              item.on('click', function (evt) {
+
+              imgEleList.push(item);
+            });
+
+            angular.forEach(imgEleList, function (item, idx) {
+              item.bind('click', function (evt) {
                 if (attrs.imgClickEvent) {
-                  scope.$eval(attrs.imgClickEvent, {event: {event: evt, imgs: imgs, index: idx}});
+                  scope.$parent.$eval(attrs.imgClickEvent, {event: {event: evt, imgs: imgEleList, index: idx}});
                 }
               });
               imgList.append(item);
             });
 
-            angular.element(container).append(imgList);
-            angular.element(container).css('display', 'block');
+            element.append(imgList);
             $compile(imgList.contents())(scope);
-
-            //change overview height
-            var overviewDiv = targetNode.parentNode.querySelectorAll('.torrent-overview');
-            if (overviewDiv) {
-              angular.element(overviewDiv).css('max-height', '200px');
-            }
-
           }
         }
       });

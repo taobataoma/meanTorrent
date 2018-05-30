@@ -733,6 +733,7 @@
         reqId: $state.params.reqId || undefined,
 
         resource_detail_info: detail_info,
+        screenshots_image: vm.resourceImagesList,
         _uImage: uimg
       });
 
