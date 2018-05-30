@@ -558,6 +558,7 @@
     TMDB_IS_LOADING: '正在檢索視訊資訊，請稍候...',
     SELECT_SE: '&bull; 請選擇電視劇季數並輸入本資源為本劇第幾集',
     SELECT_TAGS: '&bull; 請為資源選擇合適的標籤',
+    SELECT_SCREEN_SHOTS: '&bull; 請為資源選擇播放效果截圖',
     ENTER_VIDEO_NFO: '&bull; 請輸入視訊和音訊的NFO資訊',
     SELECT_MAKER_GROUP: '&bull; 請選擇您上傳時使用的資源小組',
     MAKER_NULL: '無',
@@ -586,6 +587,12 @@
     RESOURCE_SUB_TITLE: '資源副標題',
     SELECT_RESOURCE_IMAGE: '&bull; 請選擇資源封面圖片',
     ENTER_RESOURCE_DETAIL_INFO: '&bull; 請輸入資源詳細資訊',
+
+    IMAGES_UPLOAD_TOOLTIP1: '如需上傳截圖請將文件直接拖到這里或 ',
+    IMAGES_UPLOAD_TOOLTIP2: '選擇文件',
+    IMAGES_UPLOADING: '正在上傳',
+    UPLOAD_IMAGES_SUCCESSFULLY: '文件上傳成功',
+    UPLOAD_IMAGES_FAILED: '文件上傳失敗',
 
     //ranking view
     PAGE_HEADER_RANKING_UPLOAD: '上傳量排行榜',

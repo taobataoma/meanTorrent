@@ -558,6 +558,7 @@
     TMDB_IS_LOADING: '正在检索视频信息，请稍候...',
     SELECT_SE: '&bull; 请选择电视剧季数并输入本资源为本剧第几集',
     SELECT_TAGS: '&bull; 请为资源选择合适的标签',
+    SELECT_SCREEN_SHOTS: '&bull; 请为资源选择播放效果截图',
     ENTER_VIDEO_NFO: '&bull; 请输入视频和音频的NFO信息',
     SELECT_MAKER_GROUP: '&bull; 请选择您上传时使用的资源小组',
     MAKER_NULL: '无',
@@ -586,6 +587,12 @@
     RESOURCE_SUB_TITLE: '资源副标题',
     SELECT_RESOURCE_IMAGE: '&bull; 请选择资源封面图片',
     ENTER_RESOURCE_DETAIL_INFO: '&bull; 请输入资源详细信息',
+
+    IMAGES_UPLOAD_TOOLTIP1: '如需上传截图请将文件直接拖到这里或 ',
+    IMAGES_UPLOAD_TOOLTIP2: '选择文件',
+    IMAGES_UPLOADING: '正在上传',
+    UPLOAD_IMAGES_SUCCESSFULLY: '文件上传成功',
+    UPLOAD_IMAGES_FAILED: '文件上传失败',
 
     //ranking view
     PAGE_HEADER_RANKING_UPLOAD: '上传量排行榜',
@@ -1359,7 +1366,7 @@
       TODAY_NEW_COUNT_REPLY: '(今日: <mark class="text-danger">{{reply}}</mark> 回复)',
       UPLOAD_ATTACH_SUCCESSFULLY: '文件上传成功',
       UPLOAD_ATTACH_FAILED: '文件上传失败',
-      ATTACH_UPLOAD_TOOLTIP1: '如需上传附件请将文件直接拖到这里或',
+      ATTACH_UPLOAD_TOOLTIP1: '如需上传附件请将文件直接拖到这里或 ',
       ATTACH_UPLOAD_TOOLTIP2: '选择文件',
       ATTACH_UPLOAD_TOOLTIP3: ', 图片文件将会被自动显示, 其它类文件只能被下载.',
       ATTACH_UPLOADING: '正在上传',

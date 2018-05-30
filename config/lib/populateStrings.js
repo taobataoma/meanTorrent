@@ -4,6 +4,7 @@ module.exports.populate_torrent_string =
   ' -torrent_announce' +
   ' -torrent_nfo' +
   ' -torrent_media_info' +
+  ' -screenshots_image' +
   ' -_other_torrents' +
   ' -_ratings' +
   ' -_replies' +
@@ -51,6 +52,7 @@ module.exports.populate_torrent_object = {
   'torrent_announce': 0,
   'torrent_nfo': 0,
   'torrent_media_info': 0,
+  'screenshots_image': 0,
   '_other_torrents': 0,
   '_ratings': 0,
   '_replies': 0,
@@ -100,6 +102,7 @@ module.exports.populate_torrent_object_is_home = {
   'torrent_announce': 0,
   'torrent_nfo': 0,
   'torrent_media_info': 0,
+  'screenshots_image': 0,
   '_other_torrents': 0,
   '_ratings': 0,
   '_replies': 0,
