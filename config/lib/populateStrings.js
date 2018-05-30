@@ -1,4 +1,5 @@
 module.exports.populate_torrent_string =
+  ' -_peers' +
   ' -info_hash' +
   ' -last_scrape' +
   ' -torrent_announce' +
@@ -47,6 +48,7 @@ module.exports.populate_torrent_string =
 module.exports.populate_torrent_object = {
   't_peer': 0,
 
+  '_peers': 0,
   'info_hash': 0,
   'last_scrape': 0,
   'torrent_announce': 0,
@@ -97,6 +99,7 @@ module.exports.populate_torrent_object = {
 module.exports.populate_torrent_object_is_home = {
   't_peer': 0,
 
+  '_peers': 0,
   'info_hash': 0,
   'last_scrape': 0,
   'torrent_announce': 0,
