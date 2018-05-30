@@ -384,6 +384,8 @@
     TORRENT_RATING_SUCCESSFULLY: 'Rating torrent successfully',
     TORRENT_RATING_FAILED: 'Rating torrent failed',
     EDIT_THIS_OVERVIEW: 'Edit this overview',
+    EDIT_THIS_SCREENSHOTS: 'Edit screenshots',
+    SAVE_THIS_SCREENSHOTS: 'Save screenshots',
     VIEW_ORIGINAL_MEDIA_INFO: 'View original media info',
     VIEW_FORMATTED_MEDIA_INFO: 'View formatted media info',
     EDIT_THIS_MEDIA_INFO: 'Edit media info',

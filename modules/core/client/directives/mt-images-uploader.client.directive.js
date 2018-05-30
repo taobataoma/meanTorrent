@@ -58,6 +58,7 @@
         //define method called from parent scope
         //init all variable
         scope.$parent.clearResourceImages = function () {
+          scope.ngModel = [];
           initVariable();
         };
         scope.$parent.$parent.clearResourceImages = scope.$parent.clearResourceImages;
@@ -69,10 +70,9 @@
        * initVariable
        */
       function initVariable() {
-        scope.ngModel = [];
         scope.uFile = undefined;
         scope.uProgress = 0;
-        scope.uResourceImages = [];
+        scope.uResourceImages = angular.copy(scope.ngModel);
       }
 
       /**

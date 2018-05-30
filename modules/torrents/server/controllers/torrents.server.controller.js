@@ -680,7 +680,7 @@ exports.create = function (req, res) {
               });
           }
 
-          if (req.body._uImage.indexOf(cv) < 0) {
+          if (req.body._uImage.indexOf(cv) < 0 && req.body.screenshots_image.indexOf(cv) < 0) {
             fs.unlinkSync(oc);
           }
         });
@@ -893,6 +893,37 @@ exports.update = function (req, res) {
     torrent.resource_detail_info.custom_subtitle = req.body.custom_subtitle;
     torrent.markModified('resource_detail_info');
   }
+  if (req.body.hasOwnProperty('screenshots_image')) {
+    torrent.screenshots_image = req.body.screenshots_image;
+
+    if (req.body.screenshots_image && req.body.screenshots_image.length > 0) {
+      var dst = config.uploads.torrent.image.dest.substr(1);
+
+      req.body.screenshots_image.forEach(function (f, key) {
+        var os = config.uploads.torrent.image.temp + f;
+        var ns = config.uploads.torrent.image.dest + f;
+        var cs = config.uploads.torrent.image.crop + f;
+
+        if (!f.startsWith(dst)) {
+          torrent.screenshots_image[key] = dst + f;
+
+          move(os, ns, function (err) {
+            if (err) {
+              mtDebug.debugRed(err);
+            } else {
+              sharp(ns)
+                .resize(200)
+                .toFile(cs, function (err) {
+                  if (err) {
+                    mtDebug.debugError(err);
+                  }
+                });
+            }
+          });
+        }
+      });
+    }
+  }
 
   torrent.save(function (err) {
     if (err) {
@@ -903,6 +934,33 @@ exports.update = function (req, res) {
       res.json(torrent);
     }
   });
+
+  function move(oldPath, newPath, callback) {
+    fs.rename(oldPath, newPath, function (err) {
+      if (err) {
+        if (err.code === 'EXDEV') {
+          copy();
+        } else {
+          callback(err);
+        }
+        return;
+      }
+      callback();
+    });
+
+    function copy() {
+      var readStream = fs.createReadStream(oldPath);
+      var writeStream = fs.createWriteStream(newPath);
+
+      readStream.on('error', callback);
+      writeStream.on('error', callback);
+
+      readStream.on('close', function () {
+        fs.unlink(oldPath, callback);
+      });
+      readStream.pipe(writeStream);
+    }
+  }
 };
 
 /**

@@ -1484,6 +1484,78 @@
     };
 
     /**
+     * beginEditScreenshots
+     */
+    vm.beginEditScreenshots = function () {
+      vm.isEditScreenshots = true;
+
+      var imgDiv = angular.element('.torrent-img-list');
+      if (imgDiv) {
+        imgDiv.css('display', 'none');
+      }
+    };
+
+    /**
+     * beginSaveScreenshots
+     */
+    vm.beginSaveScreenshots = function () {
+      TorrentsService.update({
+        _id: vm.torrentLocalInfo._id,
+        screenshots_image: vm.torrentLocalInfo.screenshots_image
+      }, function (response) {
+        successCallback(response);
+      }, function (errorResponse) {
+        errorCallback(errorResponse);
+      });
+
+      function successCallback(res) {
+        vm.torrentLocalInfo = res;
+        vm.isEditScreenshots = false;
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TORRENT_UPDATE_SUCCESSFULLY')
+        });
+      }
+
+      function errorCallback(res) {
+        vm.error_msg = res.data.message;
+        vm.isEditScreenshots = false;
+        Notification.error({
+          message: res.data.message,
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $translate.instant('TORRENT_UPDATE_ERROR')
+        });
+      }
+
+    };
+
+    /**
+     * uploadTorrentScreenshotsImage
+     * @param ufile
+     * @param progressback
+     * @param callback
+     * @param errback
+     */
+    vm.uploadTorrentScreenshotsImage = function (ufile, progressback, callback, errback) {
+      Upload.upload({
+        url: '/api/torrents/uploadTorrentImage',
+        data: {
+          newTorrentImageFile: ufile
+        }
+      }).then(function (res) {
+        if (callback) {
+          callback(res.data.filename);
+        }
+      }, function (res) {
+        if (errback && res.status > 0) {
+          errback(res);
+        }
+      }, function (evt) {
+        if (progressback) {
+          progressback(parseInt(100.0 * evt.loaded / evt.total, 10));
+        }
+      });
+    };
+
+    /**
      * buildPeersPager
      */
     vm.buildPeersPager = function () {

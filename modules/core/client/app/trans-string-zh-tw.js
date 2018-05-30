@@ -384,6 +384,8 @@
     TORRENT_RATING_SUCCESSFULLY: '為種子投票成功',
     TORRENT_RATING_FAILED: '為種子投票失敗',
     EDIT_THIS_OVERVIEW: '編輯詳情介紹',
+    EDIT_THIS_SCREENSHOTS: '編輯資源截圖',
+    SAVE_THIS_SCREENSHOTS: '保存資源截圖',
     VIEW_ORIGINAL_MEDIA_INFO: '查看原始的媒體信息',
     VIEW_FORMATTED_MEDIA_INFO: '查看格式化的媒體信息',
     EDIT_THIS_MEDIA_INFO: '編輯媒體信息',

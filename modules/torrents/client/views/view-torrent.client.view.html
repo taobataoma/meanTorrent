@@ -215,9 +215,30 @@
                             </div>
                         </div>
 
-                        <div torrent-image-list="true" id="img_container_{{vm.torrentLocalInfo._id}}" class="img-container"
-                             img-click-event="vm.onImageClick(event)" imgs="vm.torrentLocalInfo.screenshots_image">
-                            <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                        <div class="img-container"
+                             ng-if="vm.torrentLocalInfo.screenshots_image.length>0 || (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)">
+                            <div torrent-image-list="true" id="img_container_{{vm.torrentLocalInfo._id}}"
+                                 img-click-event="vm.onImageClick(event)" imgs="vm.torrentLocalInfo.screenshots_image">
+                                <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                            </div>
+                            <div ng-if="vm.isEditScreenshots">
+                                <div class="resourceScreenshots" id="defaultScreenshots" name="defaultScreenshots"
+                                     mt-images-uploader="defaultScreenshots" ng-model="vm.torrentLocalInfo.screenshots_image"
+                                     upload-dir="/modules/torrents/client/uploads/temp/"
+                                     upload-method="vm.uploadTorrentScreenshotsImage(ufile, progressback, callback, errback);"></div>
+                            </div>
+                            <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-mt-o-light"
+                                    base-class="btn-mt-o-primary"
+                                    ng-if="!vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
+                                    ng-click="vm.beginEditScreenshots()">
+                                {{'EDIT_THIS_SCREENSHOTS' | translate}}
+                            </button>
+                            <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-mt-o-light"
+                                    base-class="btn-mt-o-primary"
+                                    ng-if="vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
+                                    ng-click="vm.beginSaveScreenshots()">
+                                {{'SAVE_THIS_SCREENSHOTS' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>
