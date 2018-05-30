@@ -36,9 +36,10 @@
          * organizeImage
          */
         function organizeImage(imgs) {
+          console.log(imgs);
           //reorganize
           if (imgs && imgs.length > 0) {
-            var imgDiv = angular.element('.torrent-img-list');
+            var imgDiv = element.find('.torrent-img-list');
             if (imgDiv) {
               imgDiv.remove();
             }
@@ -59,11 +60,11 @@
             });
 
             angular.forEach(imgEleList, function (item, idx) {
-              item.bind('click', function (evt) {
-                if (attrs.imgClickEvent) {
+              if (attrs.imgClickEvent) {
+                item.bind('click', function (evt) {
                   scope.$parent.$eval(attrs.imgClickEvent, {event: {event: evt, imgs: imgEleList, index: idx}});
-                }
-              });
+                });
+              }
               imgList.append(item);
             });
 

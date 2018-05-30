@@ -327,6 +327,7 @@
       }, function (items) {
         if (items.rows.length > 0) {
           vm.pictureTopOne = items.rows[0];
+          console.log(vm.pictureTopOne);
           items.rows.splice(0, 1);
           vm.pictureTopList = items.rows;
 
