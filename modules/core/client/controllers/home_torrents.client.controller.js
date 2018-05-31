@@ -74,6 +74,17 @@
     };
 
     /**
+     * initTopOneDocumentaryInfo
+     */
+    vm.initTopOneDocumentaryInfo = function () {
+      $timeout(function () {
+        if (vm.documentaryTopOne.resource_detail_info.cover) {
+          $('.documentary-backdrop').css('backgroundImage', 'url("/modules/torrents/client/uploads/cover/' + vm.documentaryTopOne.resource_detail_info.cover + '")');
+        }
+      }, 10);
+    };
+
+    /**
      * initTopOneVarietyInfo
      */
     vm.initTopOneVarietyInfo = function () {
@@ -149,7 +160,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'movie',
         torrent_vip: false,
-        limit: 9,
+        limit: vm.itemsPerPageConfig.homeOrderTorrentListPerType,
         isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
@@ -190,7 +201,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'tvserial',
         torrent_vip: false,
-        limit: 9,
+        limit: vm.itemsPerPageConfig.homeOrderTorrentListPerType,
         isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
@@ -223,7 +234,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'music',
         torrent_vip: false,
-        limit: 9,
+        limit: vm.itemsPerPageConfig.homeOrderTorrentListPerType,
         isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
@@ -256,7 +267,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'sports',
         torrent_vip: false,
-        limit: 9,
+        limit: vm.itemsPerPageConfig.homeOrderTorrentListPerType,
         isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
@@ -282,6 +293,39 @@
     };
 
     /**
+     * getDocumentaryTopInfo
+     */
+    vm.getDocumentaryTopInfo = function () {
+      vm.documentaryInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'documentary',
+        torrent_vip: false,
+        limit: vm.itemsPerPageConfig.homeOrderTorrentListPerType,
+        isHome: true
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.documentaryTopOne = items.rows[0];
+          items.rows.splice(0, 1);
+          vm.documentaryTopList = items.rows;
+
+          vm.initTopOneDocumentaryInfo();
+        }
+      });
+
+      vm.documentaryInfo = TorrentsService.get({
+        torrent_status: 'reviewed',
+        torrent_type: 'documentary',
+        torrent_vip: false,
+        newest: true,
+        limit: vm.itemsPerPageConfig.homeNewestTorrentListPerType
+      }, function (items) {
+        if (items.rows.length > 0) {
+          vm.documentaryNewList = items.rows;
+        }
+      });
+    };
+
+    /**
      * getVarietyTopInfo
      */
     vm.getVarietyTopInfo = function () {
@@ -289,7 +333,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'variety',
         torrent_vip: false,
-        limit: 9,
+        limit: vm.itemsPerPageConfig.homeOrderTorrentListPerType,
         isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
@@ -322,7 +366,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'picture',
         torrent_vip: false,
-        limit: 9,
+        limit: vm.itemsPerPageConfig.homeOrderTorrentListPerType,
         isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
@@ -356,7 +400,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'game',
         torrent_vip: false,
-        limit: 9,
+        limit: vm.itemsPerPageConfig.homeOrderTorrentListPerType,
         isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
@@ -389,7 +433,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'software',
         torrent_vip: false,
-        limit: 9,
+        limit: vm.itemsPerPageConfig.homeOrderTorrentListPerType,
         isHome: true
       }, function (items) {
         if (items.rows.length > 0) {
@@ -422,7 +466,7 @@
         torrent_status: 'reviewed',
         torrent_type: 'ebook',
         torrent_vip: false,
-        limit: 9,
+        limit: vm.itemsPerPageConfig.homeOrderTorrentListPerType,
         isHome: true
       }, function (items) {
         if (items.rows.length > 0) {

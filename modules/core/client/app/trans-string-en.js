@@ -99,6 +99,7 @@
     NEWEST_TV_LIST: 'Newest TV Serial Torrents',
     NEWEST_MUSIC_LIST: 'Newest Music Torrents',
     NEWEST_SPORTS_LIST: 'Newest Sports Torrents',
+    NEWEST_DOCUMENTARY_LIST: 'Newest Documentary Torrents',
     NEWEST_VARIETY_LIST: 'Newest Variety Torrents',
     NEWEST_PICTURE_LIST: 'Newest Picture Torrents',
     NEWEST_GAME_LIST: 'Newest Game Torrents',

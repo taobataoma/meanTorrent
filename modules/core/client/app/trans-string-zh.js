@@ -99,6 +99,7 @@
     NEWEST_TV_LIST: '最新电视剧资源',
     NEWEST_MUSIC_LIST: '最新音乐资源',
     NEWEST_SPORTS_LIST: '最新体育资源',
+    NEWEST_DOCUMENTARY_LIST: '最新记录片资源',
     NEWEST_VARIETY_LIST: '最新综艺资源',
     NEWEST_PICTURE_LIST: '最新图片资源',
     NEWEST_GAME_LIST: '最新游戏资源',

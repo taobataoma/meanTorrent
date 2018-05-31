@@ -295,7 +295,7 @@ module.exports = {
     home: {
       showVipBanner: false,
       showForumNewTopicsAndNewestTorrents: false,
-      showTopLevelTorrents: true,
+      showTopLevelTorrents: false,
       showAlbumsList: true,
       bodyBackgroundImage: 'https://image.tmdb.org/t/p/w1280/cnKAGbX1rDkAquF2V1wVkptHDJO.jpg',
       buttonList: [
@@ -908,7 +908,7 @@ module.exports = {
           pageTitle: 'PICTURE_LIST',
           uploadTemplateID: 'default',
           showSubtitleTabInDetailPage: false,
-          showTopListInHome: true
+          showTopListInHome: false
         },
         {
           enable: true,
@@ -1419,8 +1419,8 @@ module.exports = {
       requestListPerPage: 15,
       requestCommentsPerPage: 20,
 
-      homeOrderTorrentListPerType: 9,
-      homeNewestTorrentListPerType: 14,
+      homeOrderTorrentListPerType: 9,     //do net change this
+      homeNewestTorrentListPerType: 14,   //do net change this
       homeHelpListLimit: 8,
       homeNoticeListLimit: 8,
       homeNewTopicListLimit: 8,

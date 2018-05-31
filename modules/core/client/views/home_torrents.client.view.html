@@ -468,6 +468,193 @@
     </div>
 
     <!-- **********************************************************************
+             documentary top list
+    *********************************************************************** -->
+    <div ng-if="vm.getTorrentTypeEnabled('documentary')" ng-init="vm.getDocumentaryTopInfo();">
+        <div class="backdrop documentary-backdrop" ng-if="vm.documentaryTopOne">
+            <div class="filter">
+                <div class="type-flag">{{'MENU_TORRENTS_SUB.DOCUMENTARY' | translate}}</div>
+                <div class="container">
+                    <div class="topone row">
+                        <div class="col-md-3">
+                            <a ui-sref="torrents.view({torrentId: vm.documentaryTopOne._id})">
+                                <div class="img-thumbnail center-block torrent-logo">
+                                    <img class="img-thumbnail center-block" torrent-logo="vm.documentaryTopOne"
+                                         ng-src="{{vm.TGI.getTorrentTopOneImage(vm.documentaryTopOne)}}"
+                                         alt="{{vm.TGI.getTorrentTitle(vm.documentaryTopOne)}}"
+                                         title="{{vm.TGI.getTorrentTitle(vm.documentaryTopOne)}}">
+                                </div>
+                            </a>
+
+                            <div class="down-torrent">
+                                <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.documentaryTopOne._id)"
+                                        translate="DOWNLOAD_TORRENT"></button>
+                            </div>
+                        </div>
+                        <div class="col-md-9 torrent-detail">
+                            <dl class="dl-horizontal">
+                                <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
+                                <dd class="h-line">{{vm.TGI.getTorrentTitle(vm.documentaryTopOne)}}</dd>
+
+                                <dt class="h-line">{{ 'TMDB_FIELDS.SUB_TITLE' | translate}}：</dt>
+                                <dd class="h-line">{{vm.documentaryTopOne.resource_detail_info.subtitle}}</dd>
+
+                                <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
+                                <dd class="h-line">
+                                <span ng-show="vm.documentaryTopOne">
+                                    <span class="torrent-votes">
+                                        <kbd>{{vm.TGI.getVoteTitle(vm.documentaryTopOne)}}</kbd>
+                                    </span> {{vm.documentaryTopOne.resource_detail_info.vote_average | number : 1}} / {{vm.documentaryTopOne.resource_detail_info.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}
+                                </span>
+                                </dd>
+
+                                <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
+                                <dd class="h-line">
+                                    <div class="torrent-overview" id="documentary_overview_markdown" data-provide="markdown"
+                                         ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.documentaryTopOne))">
+                                    </div>
+                                </dd>
+
+                                <div class="img-container" ng-if="vm.documentaryTopOne.screenshots_image.length>0">
+                                    <div torrent-image-list="true" id="img_container_{{vm.documentaryTopOne._id}}"
+                                         imgs="vm.documentaryTopOne.screenshots_image">
+                                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                    </div>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row row-top-list">
+                <div class="row-md-height">
+                    <div class="col-md-9 col-md-height col-no-padding">
+                        <div ng-repeat="item in vm.documentaryTopList">
+                            <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>
+                            <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                            <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
+                                <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
+                                    <div class="torrent-logo">
+                                        <img class="img-responsive" torrent-logo="item"
+                                             ng-src="{{vm.TGI.getTorrentListTopImage(item)}}"
+                                             alt="{{vm.TGI.getTorrentTitle(item)}}">
+                                    </div>
+
+                                    <div class="torrent-user-info">
+                                        <table>
+                                            <tr>
+                                                <td class="text-left">
+                                                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                                                    <span>{{item.torrent_seeds}}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                                                    <span>{{item.torrent_leechers}}</span>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span class="glyphicon glyphicon-ok torrent-finished"></span>
+                                                    <span>{{item.torrent_finished}}</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="torrent-tmdb-info">
+                                        <div card-progress="item.my_peers"></div>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <span class="release-date"
+                                                      ng-if="item.resource_detail_info.artist">{{item.resource_detail_info.artist}}</span>
+                                                <span title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                      ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();"
+                                                      class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></span>
+                                                <span title="{{ 'TITLE_ALT.IMDB_VOTES' | translate}}"
+                                                      class="votes-info torrent-votes"><kbd>{{vm.TGI.getVoteTitle(item)}}</kbd> {{item.resource_detail_info.vote_average | number : 1}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="caption">
+                                        <ul class="list-unstyled">
+                                            <li class="text-long">
+                                                <span class="h5"><a
+                                                        ui-sref="torrents.view({torrentId: item._id})"
+                                                        title="{{vm.TGI.getTorrentTitle(item)}}">{{vm.TGI.getTorrentTitle(item)}}</a></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-md-height col-small-padding panel-newest-list" style="padding-left: 15px;">
+                        <div class="fill-height-table">
+                            <div class="fill-height-row" style="overflow-y: auto;">
+                                <div class="panel panel-default" ng-show="vm.documentaryNewList">
+                                    <div class="panel-heading">
+                                        <h5>{{'NEWEST_DOCUMENTARY_LIST' | translate}}</h5>
+                                        <span class="newest-more"><a ui-sref="torrents.documentary">{{'NEWEST_MORE' | translate}}</a></span>
+                                    </div>
+                                    <table class="table">
+                                        <tr ng-repeat="nm in vm.documentaryNewList" mouse-enter-toggle-class-group="show-big" base-class="hide-big"
+                                            ng-class="{'show-big': $index == 0, 'hide-more': $index >= 12}">
+                                            <td>
+                                                <a class="newest-item-big" ui-sref="torrents.view({torrentId: nm._id})">
+                                                    <img class="img-responsive" torrent-logo="nm"
+                                                         ng-src="{{vm.TGI.getTorrentListTopImage(nm)}}"
+                                                         alt="{{vm.TGI.getTorrentTitle(nm)}}">
+
+                                                    <div class="newest-user-info">
+                                                        <table>
+                                                            <tr>
+                                                                <td class="text-left">
+                                                                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                                                                    <span>{{nm.torrent_seeds}}</span>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                                                                    <span>{{nm.torrent_leechers}}</span>
+                                                                </td>
+                                                                <td class="text-right">
+                                                                    <span class="glyphicon glyphicon-ok torrent-finished"></span>
+                                                                    <span>{{nm.torrent_finished}}</span>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+
+                                                    <div title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
+                                                         ng-click="vm.DLS.downloadTorrent(nm._id); $event.stopPropagation(); $event.preventDefault();"
+                                                         class="info-download torrent-votes"><kbd>{{'BTN_DOWNLOAD' | translate}}</kbd></div>
+
+                                                    <div class="newest-info">
+                                                        <div card-progress="nm.my_peers"></div>
+                                                        <div class="text-long">
+                                                            {{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                                <div class="newest-item-small text-long">
+                                                    <a ui-sref="torrents.view({torrentId: nm._id})">{{$index + 1}}. {{vm.TGI.getTorrentTitle(nm)}}</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- **********************************************************************
              music top list
     *********************************************************************** -->
     <div ng-if="vm.getTorrentTypeEnabled('music')" ng-init="vm.getMusicTopInfo();">
@@ -517,6 +704,13 @@
                                          ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.musicTopOne))">
                                     </div>
                                 </dd>
+
+                                <div class="img-container" ng-if="vm.musicTopOne.screenshots_image.length>0">
+                                    <div torrent-image-list="true" id="img_container_{{vm.musicTopOne._id}}"
+                                         imgs="vm.musicTopOne.screenshots_image">
+                                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                    </div>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -702,6 +896,13 @@
                                          ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.sportsTopOne))">
                                     </div>
                                 </dd>
+
+                                <div class="img-container" ng-if="vm.sportsTopOne.screenshots_image.length>0">
+                                    <div torrent-image-list="true" id="img_container_{{vm.sportsTopOne._id}}"
+                                         imgs="vm.sportsTopOne.screenshots_image">
+                                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                    </div>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -882,6 +1083,13 @@
                                          ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.varietyTopOne))">
                                     </div>
                                 </dd>
+
+                                <div class="img-container" ng-if="vm.varietyTopOne.screenshots_image.length>0">
+                                    <div torrent-image-list="true" id="img_container_{{vm.varietyTopOne._id}}"
+                                         imgs="vm.varietyTopOne.screenshots_image">
+                                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                    </div>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -1062,6 +1270,12 @@
                                          ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.pictureTopOne))">
                                     </div>
                                 </dd>
+                                <div class="img-container" ng-if="vm.pictureTopOne.screenshots_image.length>0">
+                                    <div torrent-image-list="true" id="img_container_{{vm.pictureTopOne._id}}"
+                                         imgs="vm.pictureTopOne.screenshots_image">
+                                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                    </div>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -1242,6 +1456,13 @@
                                          ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.gameTopOne))">
                                     </div>
                                 </dd>
+
+                                <div class="img-container" ng-if="vm.gameTopOne.screenshots_image.length>0">
+                                    <div torrent-image-list="true" id="img_container_{{vm.gameTopOne._id}}"
+                                         imgs="vm.gameTopOne.screenshots_image">
+                                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                    </div>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -1422,6 +1643,13 @@
                                          ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.softwareTopOne))">
                                     </div>
                                 </dd>
+
+                                <div class="img-container" ng-if="vm.softwareTopOne.screenshots_image.length>0">
+                                    <div torrent-image-list="true" id="img_container_{{vm.softwareTopOne._id}}"
+                                         imgs="vm.softwareTopOne.screenshots_image">
+                                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                    </div>
+                                </div>
                             </dl>
                         </div>
                     </div>
@@ -1602,6 +1830,13 @@
                                          ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.ebookTopOne))">
                                     </div>
                                 </dd>
+
+                                <div class="img-container" ng-if="vm.ebookTopOne.screenshots_image.length>0">
+                                    <div torrent-image-list="true" id="img_container_{{vm.ebookTopOne._id}}"
+                                         imgs="vm.ebookTopOne.screenshots_image">
+                                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                    </div>
+                                </div>
                             </dl>
                         </div>
                     </div>
