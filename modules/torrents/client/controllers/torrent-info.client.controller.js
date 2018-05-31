@@ -1566,7 +1566,7 @@
     vm.beginEditScreenshots = function () {
       vm.isEditScreenshots = true;
 
-      var imgDiv = angular.element('.torrent-img-list');
+      var imgDiv = angular.element('.torrent-images .torrent-img-list');
       if (imgDiv) {
         imgDiv.css('display', 'none');
       }

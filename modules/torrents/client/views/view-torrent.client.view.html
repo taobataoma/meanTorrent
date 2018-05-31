@@ -220,7 +220,7 @@
 
                             <div class="img-container" ng-if="!vm.showScreenshotsTab()">
                                 <div ng-if="vm.torrentLocalInfo.screenshots_image.length>0 || (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)">
-                                    <div torrent-image-list="true" id="img_container_{{vm.torrentLocalInfo._id}}"
+                                    <div class="torrent-images" torrent-image-list="true" id="img_container_{{vm.torrentLocalInfo._id}}"
                                          img-click-event="vm.onImageClick(event)" imgs="vm.torrentLocalInfo.screenshots_image">
                                         <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
                                     </div>
@@ -973,7 +973,7 @@
             </span>
 
             <div ng-if="vm.torrentLocalInfo.screenshots_image.length>0 || (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)">
-                <div torrent-image-list="true"
+                <div class="torrent-images" torrent-image-list="true"
                      img-click-event="vm.onImageClick(event)" imgs="vm.torrentLocalInfo.screenshots_image">
                     <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.SCREENSHOTS_OVERVIEW"></legend>
                 </div>
