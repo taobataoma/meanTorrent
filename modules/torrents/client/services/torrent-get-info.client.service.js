@@ -165,7 +165,7 @@
         switch (item.torrent_type) {
           case 'movie':
           case 'tvserial':
-            result = tmdbConfig.posterListBaseUrl + item.resource_detail_info.poster_path;
+            result = tmdbConfig.posterImgBaseUrl_92 + item.resource_detail_info.poster_path;
             break;
           default:
             result = '/modules/torrents/client/uploads/cover/' + (item.resource_detail_info.cover_crop ? 'crop/' : '') + item.resource_detail_info.cover;
@@ -187,7 +187,7 @@
         switch (item.torrent_type) {
           case 'movie':
           case 'tvserial':
-            result = tmdbConfig.posterImgBaseUrl + item.resource_detail_info.poster_path;
+            result = tmdbConfig.posterImgBaseUrl_342 + item.resource_detail_info.poster_path;
             break;
           default:
             result = '/modules/torrents/client/uploads/cover/' + (item.resource_detail_info.cover_crop ? 'crop/' : '') + item.resource_detail_info.cover;
@@ -209,7 +209,7 @@
         switch (item.torrent_type) {
           case 'movie':
           case 'tvserial':
-            result = tmdbConfig.posterImgBaseUrl + item.resource_detail_info.poster_path;
+            result = tmdbConfig.posterImgBaseUrl_500 + item.resource_detail_info.poster_path;
             break;
           default:
             result = '/modules/torrents/client/uploads/cover/' + (item.resource_detail_info.cover_crop ? 'crop/' : '') + item.resource_detail_info.cover;

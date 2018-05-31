@@ -668,7 +668,7 @@ exports.create = function (req, res) {
             mtDebug.debugRed(err);
           } else {
             sharp(nc)
-              .resize(400)
+              .resize(500)
               .toFile(cc, function (err) {
                 if (err) {
                   mtDebug.debugError(err);
@@ -698,7 +698,7 @@ exports.create = function (req, res) {
               mtDebug.debugRed(err);
             } else {
               sharp(ni)
-                .resize(200)
+                .resize(400)
                 .toFile(ci, function (err) {
                   if (err) {
                     mtDebug.debugError(err);
@@ -723,7 +723,7 @@ exports.create = function (req, res) {
               mtDebug.debugRed(err);
             } else {
               sharp(ns)
-                .resize(200)
+                .resize(400)
                 .toFile(cs, function (err) {
                   if (err) {
                     mtDebug.debugError(err);
@@ -912,7 +912,7 @@ exports.update = function (req, res) {
               mtDebug.debugRed(err);
             } else {
               sharp(ns)
-                .resize(200)
+                .resize(400)
                 .toFile(cs, function (err) {
                   if (err) {
                     mtDebug.debugError(err);

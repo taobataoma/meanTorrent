@@ -50,7 +50,6 @@
       $('#popup_img_preview_wrapper').remove();
     });
 
-
     /**
      * commentBuildPager
      * pagination init
@@ -602,10 +601,22 @@
           icon: 'fa-file-text',
           title: $translate.instant('TAB_USER_SUBTITLE'),
           templateUrl: 'subtitleInfo.html',
-          ng_show: showSubtitleTab(vm.torrentLocalInfo.torrent_type),
+          ng_show: vm.showSubtitleTab(),
           badges: [
             {
               value: vm.torrentLocalInfo._subtitles.length,
+              class: 'badge_info'
+            }
+          ]
+        },
+        {
+          icon: 'fa-file-text',
+          title: $translate.instant('TAB_USER_SCREENSHOTS'),
+          templateUrl: 'screenshots.html',
+          ng_show: vm.showScreenshotsTab(),
+          badges: [
+            {
+              value: vm.torrentLocalInfo.screenshots_image.length,
               class: 'badge_info'
             }
           ]
@@ -661,16 +672,38 @@
           badges: []
         }
       );
+    };
 
-      function showSubtitleTab(type) {
-        var s = false;
+    /**
+     * showSubtitleTab
+     * @returns {boolean}
+     */
+    vm.showSubtitleTab = function () {
+      var s = false;
+      if (vm.torrentLocalInfo) {
         angular.forEach(vm.torrentTypeConfig.value, function (t) {
-          if (t.value === type && t.showSubtitleTabInDetailPage) {
+          if (t.value === vm.torrentLocalInfo.torrent_type && t.showSubtitleTabInDetailPage) {
             s = true;
           }
         });
-        return s;
       }
+      return s;
+    };
+
+    /**
+     * showScreenshotsTab
+     * @returns {boolean}
+     */
+    vm.showScreenshotsTab = function () {
+      var s = false;
+      if (vm.torrentLocalInfo) {
+        angular.forEach(vm.torrentTypeConfig.value, function (t) {
+          if (t.value === vm.torrentLocalInfo.torrent_type && t.showScreenshotsTabInDetailPage) {
+            s = true;
+          }
+        });
+      }
+      return s;
     };
 
     /**
@@ -1336,6 +1369,16 @@
       });
 
       var src = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('on-error-src');
+      var esrc = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('data-back-src');
+
+      $('#popup_img_preview .img_view .mask-background').css('display', 'block');
+      $('#popup_img_preview .img_view .mask-background').css('background-color', 'rgba(32, 32, 32, 0.6)');
+      $('#popup_img_preview .img_view .tmdb-image-loading').css('display', 'block');
+
+      $('#popup_img_preview .img_item .popup_img_preview_close').css('display', 'none');
+      $('#popup_img_preview .img_item img').removeClass('img-thumbnail img-responsive');
+      $('#popup_img_preview .img_item img').attr('src', null);
+      $('#popup_img_preview .img_item img').attr('on-error-src', esrc);
       $('#popup_img_preview .img_item img').attr('src', src);
       $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
         index: vm.previewImageIndex + 1,
@@ -1353,7 +1396,18 @@
       } else {
         vm.previewImageIndex -= 1;
       }
+
       var src = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('on-error-src');
+      var esrc = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('data-back-src');
+
+      $('#popup_img_preview .img_view .mask-background').css('display', 'block');
+      $('#popup_img_preview .img_view .mask-background').css('background-color', 'rgba(32, 32, 32, 0.6)');
+      $('#popup_img_preview .img_view .tmdb-image-loading').css('display', 'block');
+
+      $('#popup_img_preview .img_item .popup_img_preview_close').css('display', 'none');
+      $('#popup_img_preview .img_item img').removeClass('img-thumbnail img-responsive');
+      $('#popup_img_preview .img_item img').attr('src', null);
+      $('#popup_img_preview .img_item img').attr('on-error-src', esrc);
       $('#popup_img_preview .img_item img').attr('src', src);
       $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
         index: vm.previewImageIndex + 1,
@@ -1370,12 +1424,35 @@
       } else {
         vm.previewImageIndex += 1;
       }
+
       var src = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('on-error-src');
+      var esrc = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('data-back-src');
+
+      $('#popup_img_preview .img_view .mask-background').css('display', 'block');
+      $('#popup_img_preview .img_view .mask-background').css('background-color', 'rgba(32, 32, 32, 0.6)');
+      $('#popup_img_preview .img_view .tmdb-image-loading').css('display', 'block');
+
+      $('#popup_img_preview .img_item .popup_img_preview_close').css('display', 'none');
+      $('#popup_img_preview .img_item img').removeClass('img-thumbnail img-responsive');
+      $('#popup_img_preview .img_item img').attr('src', null);
+      $('#popup_img_preview .img_item img').attr('on-error-src', esrc);
       $('#popup_img_preview .img_item img').attr('src', src);
       $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
         index: vm.previewImageIndex + 1,
         total: vm.previewImageEvent.imgs.length
       }));
+    };
+
+    /**
+     * onTmdbImageLoad
+     */
+    vm.onTmdbImageLoad = function () {
+      $('#popup_img_preview .img_view .mask-background').css('background-color', 'rgba(32, 32, 32, 0)');
+      $('#popup_img_preview .img_view .mask-background').css('display', 'none');
+      $('#popup_img_preview .img_view .tmdb-image-loading').css('display', 'none');
+
+      $('#popup_img_preview .img_item img').addClass('img-thumbnail img-responsive');
+      $('#popup_img_preview .img_item .popup_img_preview_close').css('display', 'block');
     };
 
     /**

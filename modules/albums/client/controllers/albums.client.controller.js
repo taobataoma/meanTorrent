@@ -91,7 +91,7 @@
       var result = null;
 
       if (item.backdrop_path) {
-        result = vm.tmdbConfig.backdropImgBaseUrl + item.backdrop_path;
+        result = vm.tmdbConfig.backdropImgBaseUrl_780 + item.backdrop_path;
       } else if (item.cover) {
         result = '/modules/torrents/client/uploads/cover/' + item.cover;
       }

@@ -3,242 +3,260 @@
         <div class="filter">
             <div class="container">
                 <div class="topone row">
-                    <div class="col-md-3 text-center">
-                        <div class="topone-logo" ng-class="{'img-thumbnail center-block torrent-logo': vm.torrentLocalInfo.torrent_type!='music'}">
-                            <img torrent-logo="vm.torrentLocalInfo"
-                                 ng-src="{{vm.TGI.getTorrentTopOneImage(vm.torrentLocalInfo)}}"
-                                 alt="{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <div class="topone-logo"
+                                 ng-class="{'img-thumbnail center-block torrent-logo': vm.torrentLocalInfo.torrent_type!='music'}">
+                                <img torrent-logo="vm.torrentLocalInfo"
+                                     ng-src="{{vm.TGI.getTorrentTopOneImage(vm.torrentLocalInfo)}}"
+                                     alt="{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}">
+                            </div>
+
+                            <div class="down-torrent">
+                                <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.torrentLocalInfo._id)"
+                                        translate="DOWNLOAD_TORRENT"></button>
+                            </div>
+
+                            <div class="margin-top-20 margin-bottom-20 rating"
+                                 ng-if="vm.torrentLocalInfo.torrent_type!='movie' && vm.torrentLocalInfo.torrent_type!='tvserial'">
+                                <span uib-rating ng-model="vm.rating_vote" max="10"
+                                      state-on="'fa fa-star'"
+                                      state-off="'fa fa-star-o'"
+                                      titles="['1','2','3','4','5','6','7','8','9','10']"
+                                      enable-reset="false"
+                                      ng-click="vm.ratingTorrent(vm.torrentLocalInfo);"
+                                      aria-labelledby="rating-torrent">
+                                </span>
+
+                                <div class="torrent-votes margin-top-10">
+                                    <kbd>{{vm.torrentLocalInfo.resource_detail_info.vote_average}}</kbd>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-md-9 torrent-detail">
+                            <dl class="dl-horizontal">
+                                <div ng-if="vm.TGI.getTorrentTitle(vm.torrentLocalInfo)">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}</dd>
+                                </div>
 
-                        <div class="down-torrent">
-                            <button class="btn btn-success btn-block" ng-click="vm.DLS.downloadTorrent(vm.torrentLocalInfo._id)"
-                                    translate="DOWNLOAD_TORRENT"></button>
-                        </div>
+                                <div ng-if="vm.TGI.getTorrentOriginalTitle(vm.torrentLocalInfo)">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_TITLE' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.TGI.getTorrentOriginalTitle(vm.torrentLocalInfo)}}</dd>
+                                </div>
 
-                        <div class="margin-top-20 margin-bottom-20 rating"
-                             ng-if="vm.torrentLocalInfo.torrent_type!='movie' && vm.torrentLocalInfo.torrent_type!='tvserial'">
-                            <span uib-rating ng-model="vm.rating_vote" max="10"
-                                  state-on="'fa fa-star'"
-                                  state-off="'fa fa-star-o'"
-                                  titles="['1','2','3','4','5','6','7','8','9','10']"
-                                  enable-reset="false"
-                                  ng-click="vm.ratingTorrent(vm.torrentLocalInfo);"
-                                  aria-labelledby="rating-torrent">
-                            </span>
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.subtitle">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.SUB_TITLE' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.subtitle}}</dd>
+                                </div>
 
-                            <div class="torrent-votes margin-top-10">
-                                <kbd>{{vm.torrentLocalInfo.resource_detail_info.vote_average}}</kbd>
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.artist">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.ARTIST' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.artist}}</dd>
+                                </div>
+
+                                <div ng-if="vm.TGI.getMovieDirector(vm.torrentLocalInfo)">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.DIRECTOR' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.TGI.getMovieDirector(vm.torrentLocalInfo)}}</dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.networks.length > 0">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.NETWORK' | translate}}：</dt>
+                                    <dd class="h-line list-all-network">
+                                        <span class="network-item"
+                                              ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.networks">{{item.name}}</span>
+                                    </dd>
+                                </div>
+
+                                <div ng-if="vm.TGI.getTorrentLanguage(vm.torrentLocalInfo)">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_LANGUAGE' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.TGI.getTorrentLanguage(vm.torrentLocalInfo)}}</dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.genres.length > 0">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.GENRES' | translate}}：</dt>
+                                    <dd class="h-line list-all-genres">
+                                        <span class="genres-item"
+                                              ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.genres">{{item.name}}</span>
+                                    </dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.production_companies.length > 0">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COMPANIES' | translate}}：</dt>
+                                    <dd class="h-line list-all-companies">
+                                        <span class="company-item"
+                                              ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.production_companies">{{item.name}}</span>
+                                    </dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.production_countries.length > 0">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
+                                    <dd class="h-line list-all-countries">
+                                        <span class="country-item"
+                                              ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.production_countries">{{item.iso_3166_1}}</span>
+                                    </dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.origin_country.length > 0">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
+                                    <dd class="h-line list-all-countries">
+                                        <span class="country-item"
+                                              ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.origin_country">{{item}}</span>
+                                        <span ng-if="vm.torrentLocalInfo.resource_detail_info.origin_country.length ==0">-</span>
+                                    </dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.release_date">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.release_date}}</dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.first_air_date">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.FIRST_AIR_DATE' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.first_air_date}}</dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.last_air_date">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.LAST_AIR_DATE' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.last_air_date}}</dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.number_of_seasons">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.TOTAL_SE' | translate}}：</dt>
+                                    <dd class="h-line">
+                                        {{vm.torrentLocalInfo.resource_detail_info.number_of_episodes}} {{ 'TMDB_FIELDS.UNIT_EPISODES' | translate}} /
+                                        {{vm.torrentLocalInfo.resource_detail_info.number_of_seasons}} {{ 'TMDB_FIELDS.UNIT_SEASONS' | translate}}
+                                    </dd>
+
+                                    <div ng-if="vm.torrentLocalInfo.resource_detail_info.number_of_seasons">
+                                        <dt class="h-line">{{ 'TMDB_FIELDS.THIS_SE' | translate}}：</dt>
+                                        <dd class="h-line">
+                                            <span class="se-info">S{{vm.torrentLocalInfo.torrent_seasons}}E{{vm.torrentLocalInfo.torrent_episodes}}</span>
+                                        </dd>
+                                    </div>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.runtime && vm.torrentLocalInfo.resource_detail_info.runtime != 0">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.runtime | runtime}}</dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.budget && vm.torrentLocalInfo.resource_detail_info.budget != 0">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.budget | dollar:2}}</dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.revenue && vm.torrentLocalInfo.resource_detail_info.revenue != 0">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.REVENUE' | translate}}：</dt>
+                                    <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.revenue | dollar:2}}</dd>
+                                </div>
+
+                                <div>
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
+                                    <dd class="h-line">
+                                        <span ng-if="vm.torrentLocalInfo">
+                                            <span class="torrent-votes">
+                                                <kbd>{{vm.TGI.getVoteTitle(vm.torrentLocalInfo)}}</kbd>
+                                            </span> {{vm.torrentLocalInfo.resource_detail_info.vote_average}} / {{vm.torrentLocalInfo.resource_detail_info.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}
+                                        </span>
+                                    </dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.imdb_id">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>
+                                    <dd class="h-line">
+                                        <a href="{{vm.imdbConfig.imdbLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}"
+                                           target="_blank">{{vm.imdbConfig.imdbLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}</a>
+                                    </dd>
+                                </div>
+
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.id">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>
+                                    <dd class="h-line">
+                                        <a href="{{vm.torrentLocalInfo.torrent_type=='movie' ? vm.tmdbConfig.tmdbMovieLinkUrl : vm.tmdbConfig.tmdbTvserialLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.id}}"
+                                           target="_blank">{{vm.torrentLocalInfo.torrent_type=='movie' ? vm.tmdbConfig.tmdbMovieLinkUrl : vm.tmdbConfig.tmdbTvserialLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.id}}</a>
+                                    </dd>
+                                </div>
+
+                                <div id="top_of_overview" ng-if="vm.TGI.getTorrentOverview(vm.torrentLocalInfo)">
+                                    <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
+                                    <dd class="h-line">
+                                        <div ng-if="vm.torrentLocalInfo.torrent_type=='movie' || vm.torrentLocalInfo.torrent_type=='tvserial'">
+                                            {{vm.TGI.getTorrentOverview(vm.torrentLocalInfo)}}
+                                        </div>
+                                        <div ng-if="vm.torrentLocalInfo.torrent_type!='movie' && vm.torrentLocalInfo.torrent_type!='tvserial'">
+                                            <div id="{{vm.torrentLocalInfo._id}}" class="torrent-long-overview" data-provide="markdown"
+                                                 ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.torrentLocalInfo))">
+                                            </div>
+
+                                            <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-mt-o-light"
+                                                    base-class="btn-mt-o-primary"
+                                                    ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
+                                                    ng-click="vm.beginEditOverview(vm.torrentLocalInfo)">
+                                                {{'EDIT_THIS_OVERVIEW' | translate}}
+                                            </button>
+                                        </div>
+                                    </dd>
+                                </div>
+                            </dl>
+
+                            <div class="cast-list" ng-if="vm.torrentLocalInfo.resource_detail_info.credits.cast.length > 0">
+                                <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
+                                <div class="row">
+                                    <div ng-repeat="cast in vm.torrentLocalInfo.resource_detail_info.credits.cast | limitTo: 6">
+                                        <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-xs-block visible-sm-block"></div>
+                                        <div data-ng-if="$index != 0 && $index % 6 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                                        <div class="col-xs-4 col-md-2 text-center">
+                                            <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
+                                                 on-error-src="/modules/core/client/img/default_face.jpg"
+                                                 class="img-circle img-thumbnail img-responsive center-block">
+                                            <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
+
+                                            <p class="cast-xs-info character">{{cast.character}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="img-container" ng-if="!vm.showScreenshotsTab()">
+                                <div ng-if="vm.torrentLocalInfo.screenshots_image.length>0 || (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)">
+                                    <div torrent-image-list="true" id="img_container_{{vm.torrentLocalInfo._id}}"
+                                         img-click-event="vm.onImageClick(event)" imgs="vm.torrentLocalInfo.screenshots_image">
+                                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
+                                    </div>
+                                    <div ng-if="vm.isEditScreenshots">
+                                        <div class="resourceScreenshots" mt-images-uploader="defaultScreenshots"
+                                             ng-model="vm.torrentLocalInfo.screenshots_image"
+                                             upload-dir="/modules/torrents/client/uploads/temp/"
+                                             upload-method="vm.uploadTorrentScreenshotsImage(ufile, progressback, callback, errback);"></div>
+                                    </div>
+                                    <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-mt-o-light"
+                                            base-class="btn-mt-o-primary"
+                                            ng-if="!vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
+                                            ng-click="vm.beginEditScreenshots()">
+                                        {{'EDIT_THIS_SCREENSHOTS' | translate}}
+                                    </button>
+                                    <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-mt-o-light"
+                                            base-class="btn-mt-o-primary"
+                                            ng-if="vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
+                                            ng-click="vm.beginSaveScreenshots()">
+                                        {{'SAVE_THIS_SCREENSHOTS' | translate}}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9 torrent-detail">
-                        <dl class="dl-horizontal">
-                            <div ng-if="vm.TGI.getTorrentTitle(vm.torrentLocalInfo)">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
-                                <dd class="h-line">{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}</dd>
-                            </div>
 
-                            <div ng-if="vm.TGI.getTorrentOriginalTitle(vm.torrentLocalInfo)">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_TITLE' | translate}}：</dt>
-                                <dd class="h-line">{{vm.TGI.getTorrentOriginalTitle(vm.torrentLocalInfo)}}</dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.subtitle">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.SUB_TITLE' | translate}}：</dt>
-                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.subtitle}}</dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.artist">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.ARTIST' | translate}}：</dt>
-                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.artist}}</dd>
-                            </div>
-
-                            <div ng-if="vm.TGI.getMovieDirector(vm.torrentLocalInfo)">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.DIRECTOR' | translate}}：</dt>
-                                <dd class="h-line">{{vm.TGI.getMovieDirector(vm.torrentLocalInfo)}}</dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.networks.length > 0">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.NETWORK' | translate}}：</dt>
-                                <dd class="h-line list-all-network">
-                                    <span class="network-item"
-                                          ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.networks">{{item.name}}</span>
-                                </dd>
-                            </div>
-
-                            <div ng-if="vm.TGI.getTorrentLanguage(vm.torrentLocalInfo)">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_LANGUAGE' | translate}}：</dt>
-                                <dd class="h-line">{{vm.TGI.getTorrentLanguage(vm.torrentLocalInfo)}}</dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.genres.length > 0">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.GENRES' | translate}}：</dt>
-                                <dd class="h-line list-all-genres">
-                                    <span class="genres-item" ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.genres">{{item.name}}</span>
-                                </dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.production_companies.length > 0">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COMPANIES' | translate}}：</dt>
-                                <dd class="h-line list-all-companies">
-                                <span class="company-item"
-                                      ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.production_companies">{{item.name}}</span>
-                                </dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.production_countries.length > 0">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
-                                <dd class="h-line list-all-countries">
-                                    <span class="country-item"
-                                          ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.production_countries">{{item.iso_3166_1}}</span>
-                                </dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.origin_country.length > 0">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.PRODUCTION_COUNTRIES' | translate}}：</dt>
-                                <dd class="h-line list-all-countries">
-                                    <span class="country-item"
-                                          ng-repeat="item in vm.torrentLocalInfo.resource_detail_info.origin_country">{{item}}</span>
-                                    <span ng-if="vm.torrentLocalInfo.resource_detail_info.origin_country.length ==0">-</span>
-                                </dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.release_date">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.RELEASE_DATE' | translate}}：</dt>
-                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.release_date}}</dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.first_air_date">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.FIRST_AIR_DATE' | translate}}：</dt>
-                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.first_air_date}}</dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.last_air_date">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.LAST_AIR_DATE' | translate}}：</dt>
-                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.last_air_date}}</dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.number_of_seasons">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.TOTAL_SE' | translate}}：</dt>
-                                <dd class="h-line">
-                                    {{vm.torrentLocalInfo.resource_detail_info.number_of_episodes}} {{ 'TMDB_FIELDS.UNIT_EPISODES' | translate}} /
-                                    {{vm.torrentLocalInfo.resource_detail_info.number_of_seasons}} {{ 'TMDB_FIELDS.UNIT_SEASONS' | translate}}
-                                </dd>
-
-                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.number_of_seasons">
-                                    <dt class="h-line">{{ 'TMDB_FIELDS.THIS_SE' | translate}}：</dt>
-                                    <dd class="h-line">
-                                        <span class="se-info">S{{vm.torrentLocalInfo.torrent_seasons}}E{{vm.torrentLocalInfo.torrent_episodes}}</span>
-                                    </dd>
-                                </div>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.runtime && vm.torrentLocalInfo.resource_detail_info.runtime != 0">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.RUNTIME' | translate}}：</dt>
-                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.runtime | runtime}}</dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.budget && vm.torrentLocalInfo.resource_detail_info.budget != 0">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.BUDGET' | translate}}：</dt>
-                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.budget | dollar:2}}</dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.revenue && vm.torrentLocalInfo.resource_detail_info.revenue != 0">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.REVENUE' | translate}}：</dt>
-                                <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.revenue | dollar:2}}</dd>
-                            </div>
-
-                            <div>
-                                <dt class="h-line">{{ 'TMDB_FIELDS.VOTE_AVERAGE' | translate}}：</dt>
-                                <dd class="h-line">
-                                    <span ng-if="vm.torrentLocalInfo">
-                                        <span class="torrent-votes">
-                                            <kbd>{{vm.TGI.getVoteTitle(vm.torrentLocalInfo)}}</kbd>
-                                        </span> {{vm.torrentLocalInfo.resource_detail_info.vote_average}} / {{vm.torrentLocalInfo.resource_detail_info.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}
-                                    </span>
-                                </dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.imdb_id">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.IMDB_LINK' | translate}}：</dt>
-                                <dd class="h-line">
-                                    <a href="{{vm.imdbConfig.imdbLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}"
-                                       target="_blank">{{vm.imdbConfig.imdbLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.imdb_id}}</a>
-                                </dd>
-                            </div>
-
-                            <div ng-if="vm.torrentLocalInfo.resource_detail_info.id">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.TMDB_LINK' | translate}}：</dt>
-                                <dd class="h-line">
-                                    <a href="{{vm.torrentLocalInfo.torrent_type=='movie' ? vm.tmdbConfig.tmdbMovieLinkUrl : vm.tmdbConfig.tmdbTvserialLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.id}}"
-                                       target="_blank">{{vm.torrentLocalInfo.torrent_type=='movie' ? vm.tmdbConfig.tmdbMovieLinkUrl : vm.tmdbConfig.tmdbTvserialLinkUrl}}{{vm.torrentLocalInfo.resource_detail_info.id}}</a>
-                                </dd>
-                            </div>
-
-                            <div id="top_of_overview" ng-if="vm.TGI.getTorrentOverview(vm.torrentLocalInfo)">
-                                <dt class="h-line">{{ 'TMDB_FIELDS.OVERVIEW' | translate}}：</dt>
-                                <dd class="h-line">
-                                    <div ng-if="vm.torrentLocalInfo.torrent_type=='movie' || vm.torrentLocalInfo.torrent_type=='tvserial'">
-                                        {{vm.TGI.getTorrentOverview(vm.torrentLocalInfo)}}
-                                    </div>
-                                    <div ng-if="vm.torrentLocalInfo.torrent_type!='movie' && vm.torrentLocalInfo.torrent_type!='tvserial'">
-                                        <div id="{{vm.torrentLocalInfo._id}}" class="torrent-long-overview" data-provide="markdown"
-                                             ng-bind-html="vm.getOverviewMarkedContent(vm.TGI.getTorrentOverview(vm.torrentLocalInfo))">
-                                        </div>
-
-                                        <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-mt-o-light"
-                                                base-class="btn-mt-o-primary"
-                                                ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
-                                                ng-click="vm.beginEditOverview(vm.torrentLocalInfo)">
-                                            {{'EDIT_THIS_OVERVIEW' | translate}}
-                                        </button>
-                                    </div>
-                                </dd>
-                            </div>
-                        </dl>
-
-                        <div class="cast-list" ng-if="vm.torrentLocalInfo.resource_detail_info.credits.cast.length > 0">
-                            <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.CAST"></legend>
-                            <div class="row">
-                                <div ng-repeat="cast in vm.torrentLocalInfo.resource_detail_info.credits.cast | limitTo: 6">
-                                    <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-xs-block visible-sm-block"></div>
-                                    <div data-ng-if="$index != 0 && $index % 6 == 0" class="clearfix visible-md-block visible-lg-block"></div>
-                                    <div class="col-xs-4 col-md-2 text-center">
-                                        <img ng-src="{{vm.tmdbConfig.castImgBaseUrl}}{{cast.profile_path}}"
-                                             on-error-src="/modules/core/client/img/default_face.jpg"
-                                             class="img-circle img-thumbnail img-responsive center-block">
-                                        <span class="cast-xs-info"><strong>{{cast.name}}</strong></span>
-
-                                        <p class="cast-xs-info character">{{cast.character}}</p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div ng-if="vm.tmdbConfig.showMoreImagesOnTorrentDetailPage && vm.showScreenshotsTab()">
+                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.images.backdrops.length>0">
+                                    <div class="tmdb-image-list" tmdb-image-list="true" img-click-event="vm.onImageClick(event)"
+                                         imgs="vm.torrentLocalInfo.resource_detail_info.images.backdrops">
+                                        <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="img-container"
-                             ng-if="vm.torrentLocalInfo.screenshots_image.length>0 || (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)">
-                            <div torrent-image-list="true" id="img_container_{{vm.torrentLocalInfo._id}}"
-                                 img-click-event="vm.onImageClick(event)" imgs="vm.torrentLocalInfo.screenshots_image">
-                                <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.IMAGE_OVERVIEW"></legend>
-                            </div>
-                            <div ng-if="vm.isEditScreenshots">
-                                <div class="resourceScreenshots" id="defaultScreenshots" name="defaultScreenshots"
-                                     mt-images-uploader="defaultScreenshots" ng-model="vm.torrentLocalInfo.screenshots_image"
-                                     upload-dir="/modules/torrents/client/uploads/temp/"
-                                     upload-method="vm.uploadTorrentScreenshotsImage(ufile, progressback, callback, errback);"></div>
-                            </div>
-                            <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-mt-o-light"
-                                    base-class="btn-mt-o-primary"
-                                    ng-if="!vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
-                                    ng-click="vm.beginEditScreenshots()">
-                                {{'EDIT_THIS_SCREENSHOTS' | translate}}
-                            </button>
-                            <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-mt-o-light"
-                                    base-class="btn-mt-o-primary"
-                                    ng-if="vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
-                                    ng-click="vm.beginSaveScreenshots()">
-                                {{'SAVE_THIS_SCREENSHOTS' | translate}}
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -395,7 +413,8 @@
                                             <button class="btn btn-success"
                                                     translate="{{vm.reply_action == 'reply' ? 'SUBMIT_REPLY' : 'SUBMIT_COMMENT'}}"
                                                     ng-click="vm.submitComment();"
-                                                    ng-disabled="!vm.new_comment_content"></button>
+                                                    ng-disabled="!vm.new_comment_content">
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -410,9 +429,17 @@
     <div class="up_to_top_div" up-to-top="top_of_comments" offset="-30"></div>
 
     <div id="popup_img_preview" class="popup_well">
-        <div class="img_item center-block">
-            <img class="img-thumbnail img-responsive" src="">
-            <i class="fa fa-2x fa-times-circle-o popup_img_preview_close" mt-scale-by-mouse="{scale: 1.5, duration: '.5s'}" aria-hidden="true"></i>
+        <div class="img_view">
+            <div class="img_item center-block">
+                <img class="img-thumbnail img-responsive" src="" on-image-load="vm.onTmdbImageLoad()">
+                <i class="fa fa-2x fa-times-circle-o popup_img_preview_close" mt-scale-by-mouse="{scale: 1.5, duration: '.5s'}"
+                   aria-hidden="true"></i>
+            </div>
+            <div class="mask-background"></div>
+            <div class="tmdb-image-loading">
+                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                <h4 class="loading">{{'TMDB_FIELDS.IMAGE_LOADING' | translate}}</h4>
+            </div>
         </div>
         <div class="img_nav text-center">
             <span class="img_page_info"></span>
@@ -786,11 +813,12 @@
                         <div class="col-md-10">
                             <div>
                                 <button class="btn btn-xs margin-top-15" mouse-enter-toggle-class="btn-mt-o-success"
-                                        base-class="btn-mt-o-default-dark" ng-click="vm.mediaInfoViewMode=!vm.mediaInfoViewMode">
+                                        base-class="btn-mt-o-primary"
+                                        ng-click="vm.mediaInfoViewMode=!vm.mediaInfoViewMode">
                                     {{vm.mediaInfoViewMode ? ('VIEW_FORMATTED_MEDIA_INFO' | translate) : ('VIEW_ORIGINAL_MEDIA_INFO' | translate)}}
                                 </button>
                                 <button class="btn btn-xs margin-top-15" mouse-enter-toggle-class="btn-mt-o-success"
-                                        base-class="btn-mt-o-default-dark"
+                                        base-class="btn-mt-o-primary"
                                         ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
                                         ng-click="vm.doEditMediaInfo()">
                                     {{'EDIT_THIS_MEDIA_INFO' | translate}}
@@ -845,7 +873,7 @@
                             <textarea class="form-control video-nfo margin-top-10" rows="15" ng-model="vm.torrentLocalInfo.torrent_nfo"></textarea>
                             <div>
                                 <button class="btn btn-xs margin-top-15" mouse-enter-toggle-class="btn-mt-o-success"
-                                        base-class="btn-mt-o-default-dark"
+                                        base-class="btn-mt-o-primary"
                                         ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
                                         ng-click="vm.updateTorrentNfo()">
                                     {{'SAVE_THIS_MEDIA_INFO' | translate}}
@@ -929,6 +957,44 @@
                         </li>
                     </ol>
                 </div>
+            </div>
+        </div>
+    </script>
+
+    <!-- =================================================================
+        screenshots.html
+    ================================================================== -->
+    <script type="text/ng-template" id="screenshots.html">
+        <div>
+            <span class="xs-show sm-show">
+                <h4 class="margin-bottom-30">
+                    {{'TAB_USER_SCREENSHOTS' | translate}}:
+                </h4>
+            </span>
+
+            <div ng-if="vm.torrentLocalInfo.screenshots_image.length>0 || (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)">
+                <div torrent-image-list="true"
+                     img-click-event="vm.onImageClick(event)" imgs="vm.torrentLocalInfo.screenshots_image">
+                    <legend class="xsmall-legend strong-legend" translate="TMDB_FIELDS.SCREENSHOTS_OVERVIEW"></legend>
+                </div>
+                <div ng-if="vm.isEditScreenshots">
+                    <div class="resourceScreenshots" mt-images-uploader="defaultScreenshots"
+                         ng-model="vm.torrentLocalInfo.screenshots_image"
+                         upload-dir="/modules/torrents/client/uploads/temp/"
+                         upload-method="vm.uploadTorrentScreenshotsImage(ufile, progressback, callback, errback);"></div>
+                </div>
+                <button class="btn btn-xs margin-top-15" mouse-enter-toggle-class="btn-mt-o-success"
+                        base-class="btn-mt-o-primary"
+                        ng-if="!vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
+                        ng-click="vm.beginEditScreenshots()">
+                    {{'EDIT_THIS_SCREENSHOTS' | translate}}
+                </button>
+                <button class="btn btn-xs btn-mt-o margin-top-15" mouse-enter-toggle-class="btn-mt-o-success"
+                        base-class="btn-mt-o-primary"
+                        ng-if="vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
+                        ng-click="vm.beginSaveScreenshots()">
+                    {{'SAVE_THIS_SCREENSHOTS' | translate}}
+                </button>
             </div>
         </div>
     </script>
@@ -1312,5 +1378,4 @@
             </dl>
         </div>
     </script>
-
 </section>

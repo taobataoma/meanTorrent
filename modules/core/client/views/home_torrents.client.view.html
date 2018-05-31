@@ -10,7 +10,7 @@
                     <div class="topone row">
                         <div class="col-md-3">
                             <a ui-sref="torrents.view({torrentId: vm.movieTopOne._id})">
-                                <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.movieTopOne.resource_detail_info.poster_path}}"
+                                <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl_500}}{{vm.movieTopOne.resource_detail_info.poster_path}}"
                                      class="img-thumbnail center-block torrent-logo"
                                      alt="{{vm.TGI.getTorrentTitle(vm.movieTopOne)}}"
                                      title="{{vm.TGI.getTorrentTitle(vm.movieTopOne)}}">
@@ -113,7 +113,7 @@
                                  class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
                                 <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
-                                    <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{item.resource_detail_info.poster_path}}"
+                                    <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl_500}}{{item.resource_detail_info.poster_path}}"
                                          alt="{{item.resource_detail_info.title}}"
                                          title="{{item.resource_detail_info.title}}"
                                          class="img-responsive">
@@ -238,7 +238,7 @@
                     <div class="topone row">
                         <div class="col-md-3">
                             <a ui-sref="torrents.view({torrentId: vm.TVTopOne._id})">
-                                <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{vm.TVTopOne.resource_detail_info.poster_path}}"
+                                <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl_500}}{{vm.TVTopOne.resource_detail_info.poster_path}}"
                                      class="img-thumbnail center-block torrent-logo"
                                      alt="{{vm.TGI.getTorrentTitle(vm.TVTopOne)}}"
                                      title="{{vm.TGI.getTorrentTitle(vm.TVTopOne)}}">
@@ -349,7 +349,7 @@
                             <div data-ng-if="$index != 0 && $index % 4 == 0" class="clearfix visible-md-block visible-lg-block"></div>
                             <div class="col-xs-6 col-sm-3 col-md-3 col-small-padding">
                                 <div class="thumbnail torrent-post-info" ng-click="vm.TGI.openTorrentDetailInfo(item._id);">
-                                    <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl}}{{item.resource_detail_info.poster_path}}"
+                                    <img ng-src="{{vm.tmdbConfig.posterImgBaseUrl_500}}{{item.resource_detail_info.poster_path}}"
                                          alt="{{item.resource_detail_info.name}}"
                                          title="{{item.resource_detail_info.name}}"
                                          class="img-responsive">

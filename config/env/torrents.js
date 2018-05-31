@@ -806,6 +806,7 @@ module.exports = {
           pageTitle: 'MOVIE_LIST',
           uploadTemplateID: 'movie',
           showSubtitleTabInDetailPage: true,
+          showScreenshotsTabInDetailPage: true,
           showTopListInHome: true
         },
         {
@@ -823,6 +824,7 @@ module.exports = {
           pageTitle: 'TV_LIST',
           uploadTemplateID: 'tvserial',
           showSubtitleTabInDetailPage: true,
+          showScreenshotsTabInDetailPage: true,
           showTopListInHome: true
         },
         {
@@ -840,6 +842,7 @@ module.exports = {
           pageTitle: 'DOCUMENTARY_LIST',
           uploadTemplateID: 'default',
           showSubtitleTabInDetailPage: true,
+          showScreenshotsTabInDetailPage: false,
           showTopListInHome: true
         },
         {
@@ -857,6 +860,7 @@ module.exports = {
           pageTitle: 'MUSIC_LIST',
           uploadTemplateID: 'music',
           showSubtitleTabInDetailPage: false,
+          showScreenshotsTabInDetailPage: false,
           showTopListInHome: true
         },
         {
@@ -874,6 +878,7 @@ module.exports = {
           pageTitle: 'SPORTS_LIST',
           uploadTemplateID: 'default',
           showSubtitleTabInDetailPage: false,
+          showScreenshotsTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -891,6 +896,7 @@ module.exports = {
           pageTitle: 'VARIETY_LIST',
           uploadTemplateID: 'default',
           showSubtitleTabInDetailPage: false,
+          showScreenshotsTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -908,6 +914,7 @@ module.exports = {
           pageTitle: 'PICTURE_LIST',
           uploadTemplateID: 'default',
           showSubtitleTabInDetailPage: false,
+          showScreenshotsTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -925,6 +932,7 @@ module.exports = {
           pageTitle: 'GAME_LIST',
           uploadTemplateID: 'default',
           showSubtitleTabInDetailPage: false,
+          showScreenshotsTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -942,6 +950,7 @@ module.exports = {
           pageTitle: 'SOFTWARE_LIST',
           uploadTemplateID: 'default',
           showSubtitleTabInDetailPage: false,
+          showScreenshotsTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -959,6 +968,7 @@ module.exports = {
           pageTitle: 'EBOOK_LIST',
           uploadTemplateID: 'default',
           showSubtitleTabInDetailPage: false,
+          showScreenshotsTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -976,6 +986,7 @@ module.exports = {
           pageTitle: 'OTHER_LIST',
           uploadTemplateID: 'default',
           showSubtitleTabInDetailPage: false,
+          showScreenshotsTabInDetailPage: false,
           showTopListInHome: false
         },
         {
@@ -993,6 +1004,7 @@ module.exports = {
           pageTitle: 'ADULT_LIST',
           uploadTemplateID: 'default',
           showSubtitleTabInDetailPage: false,
+          showScreenshotsTabInDetailPage: false,
           showTopListInHome: false
         }
       ]
@@ -1275,26 +1287,48 @@ module.exports = {
      * @tmdbHome:                 TMDB website home link url
      * @tmdbMovieLinkUrl:         linked url, link to movie detail info page, system get movie detail info from here
      * @tmdbTvserialLinkUrl:      linked url, link to tv serial detail info page, system get tv serial detail info from here
+     *
      * @backdropImgBaseUrl:       image link url
      * @backdropImgBaseUrl_300:   image link url
      * @backdropImgBaseUrl_780:   image link url
+     * @backdropImgBaseUrl_1280:  image link url
+     *
      * @posterImgBaseUrl:         image link url
-     * @posterListBaseUrl:        image link url
+     * @posterImgBaseUrl_92:      image link url
+     * @posterImgBaseUrl_154:     image link url
+     * @posterImgBaseUrl_185:     image link url
+     * @posterImgBaseUrl_342:     image link url
+     * @posterImgBaseUrl_500:     image link url
+     * @posterImgBaseUrl_780:     image link url
+     *
      * @castImgBaseUrl:           image link url
+     *
      * @resourcesLanguage:        settings for language of dropdown resource info
+     * @showMoreImagesOnTorrentDetailPage:    setting whether to show more images from tmdb on torrent detail page
      */
     tmdbConfig: {
       key: 'this is access key from tmdb',
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',
-      backdropImgBaseUrl: 'https://image.tmdb.org/t/p/w1280',
+
+      backdropImgBaseUrl: 'https://image.tmdb.org/t/p/original',
       backdropImgBaseUrl_300: 'https://image.tmdb.org/t/p/w300',
       backdropImgBaseUrl_780: 'https://image.tmdb.org/t/p/w780',
-      posterImgBaseUrl: 'https://image.tmdb.org/t/p/w500',
-      posterListBaseUrl: 'https://image.tmdb.org/t/p/w92',
+      backdropImgBaseUrl_1280: 'https://image.tmdb.org/t/p/w1280',
+
+      posterImgBaseUrl: 'https://image.tmdb.org/t/p/original',
+      posterImgBaseUrl_92: 'https://image.tmdb.org/t/p/w92',
+      posterImgBaseUrl_154: 'https://image.tmdb.org/t/p/w154',
+      posterImgBaseUrl_185: 'https://image.tmdb.org/t/p/w185',
+      posterImgBaseUrl_342: 'https://image.tmdb.org/t/p/w342',
+      posterImgBaseUrl_500: 'https://image.tmdb.org/t/p/w500',
+      posterImgBaseUrl_780: 'https://image.tmdb.org/t/p/w780',
+
       castImgBaseUrl: 'https://image.tmdb.org/t/p/w132_and_h132_bestv2',
-      resourcesLanguage: 'zh'
+
+      resourcesLanguage: 'zh',
+      showMoreImagesOnTorrentDetailPage: true
     },
 
     /**

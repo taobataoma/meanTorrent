@@ -2,11 +2,13 @@
   'use strict';
 
   angular.module('core')
-    .directive('torrentImageList', torrentImageList);
+    .directive('tmdbImageList', tmdbImageList);
 
-  torrentImageList.$inject = ['$sce', '$parse', '$compile', '$timeout'];
+  tmdbImageList.$inject = ['$sce', '$parse', '$compile', '$timeout', 'MeanTorrentConfig'];
 
-  function torrentImageList($sce, $parse, $compile, $timeout) {
+  function tmdbImageList($sce, $parse, $compile, $timeout, MeanTorrentConfig) {
+    var tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
+
     var directive = {
       restrict: 'A',
       priority: 10,
@@ -19,10 +21,10 @@
     return directive;
 
     function link(scope, element, attrs) {
-      attrs.$observe('torrentImageList', function (til) {
+      attrs.$observe('tmdbImageList', function (til) {
         if (til) {
           if (!attrs.hasOwnProperty('imgs')) {
-            return console.error('no imgs attr is set in directive torrentImageList');
+            return console.error('no imgs attr is set in directive tmdbImageList');
           }
 
           scope.$watch('imgs', function (newVal) {
@@ -48,11 +50,22 @@
 
             angular.forEach(imgs, function (img, idx) {
               var item = angular.element('<img>');
-              var nsrc = img.substr(0, img.lastIndexOf('/') + 1) + 'crop/' + img.substr(img.lastIndexOf('/') + 1);
+              var nsrc = tmdbConfig.backdropImgBaseUrl_780 + img.file_path;
+              var esrc = tmdbConfig.backdropImgBaseUrl + img.file_path;
+              var bsrc = tmdbConfig.backdropImgBaseUrl_1280 + img.file_path;
 
-              item.attr('on-error-src', img);
-              item.attr('id', img);
+              if (window.outerWidth <= 767) {
+                esrc = tmdbConfig.backdropImgBaseUrl_780 + img.file_path;
+                bsrc = tmdbConfig.backdropImgBaseUrl_300 + img.file_path;
+              } else if (window.outerWidth <= 1440) {
+                esrc = tmdbConfig.backdropImgBaseUrl_1280 + img.file_path;
+                bsrc = tmdbConfig.backdropImgBaseUrl_780 + img.file_path;
+              }
+
+              item.attr('on-error-src', esrc);
+              item.attr('id', img.file_path.substr(1));
               item.attr('src', nsrc);
+              item.attr('data-back-src', bsrc);
               item.addClass('img-item');
 
               imgEleList.push(item);
