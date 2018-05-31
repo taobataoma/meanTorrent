@@ -99,8 +99,9 @@
         max-height: 160px;
         min-height: 160px;
         cursor: pointer;
-        opacity: 0.6;
+        opacity: 0.8;
         width: auto !important;
+        transition: opacity 0.2s ease;
         &:hover {
             opacity: 1;
         }
@@ -226,7 +227,7 @@
     padding: 1px 0;
     &:hover {
         &::-webkit-scrollbar-thumb {
-            background-color: #aaa;
+            background-color: @brand-primary;
         }
     }
     &::-webkit-scrollbar {
