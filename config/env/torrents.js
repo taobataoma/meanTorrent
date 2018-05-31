@@ -295,7 +295,7 @@ module.exports = {
     home: {
       showVipBanner: false,
       showForumNewTopicsAndNewestTorrents: false,
-      showTopLevelTorrents: false,
+      showTopLevelTorrents: true,
       showAlbumsList: true,
       bodyBackgroundImage: 'https://image.tmdb.org/t/p/w1280/cnKAGbX1rDkAquF2V1wVkptHDJO.jpg',
       buttonList: [
@@ -908,7 +908,7 @@ module.exports = {
           pageTitle: 'PICTURE_LIST',
           uploadTemplateID: 'default',
           showSubtitleTabInDetailPage: false,
-          showTopListInHome: false
+          showTopListInHome: true
         },
         {
           enable: true,
