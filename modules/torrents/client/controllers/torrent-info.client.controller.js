@@ -45,7 +45,7 @@
      * window.resize()
      */
     $(window).resize(function () {
-      if ($('#popup_img_preview_wrapper') && $('#popup_img_preview_wrapper').css('display') != 'none') {
+      if ($('#popup_img_preview_wrapper') && $('#popup_img_preview_wrapper').css('display') !== 'none') {
         vm.resizePopupImage();
       }
     });
