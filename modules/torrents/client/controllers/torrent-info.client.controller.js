@@ -42,6 +42,22 @@
     vm.progress = 0;
 
     /**
+     * window.resize()
+     */
+    $(window).resize(function () {
+      var ele = $('#popup_img_preview .img_view .img_item .img-group');
+      var img = ele.find('img');
+
+      // ele.height(img.height());
+      if ($('#popup_img_preview_wrapper') && $('#popup_img_preview_wrapper').css('display') != 'none') {
+        console.log('resize');
+        ele.css('height', '100%');
+        ele.css('padding-top', (ele.outerHeight() - img.height()) / 2 + 'px');
+        ele.find('.popup_img_preview_close').css('top', ((ele.outerHeight() - img.height()) / 2 - 10) + 'px');
+      }
+    });
+
+    /**
      * remove side_overlay background
      */
     $scope.$on('$stateChangeStart', function () {

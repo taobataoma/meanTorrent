@@ -2,7 +2,7 @@
     <div class="backdrop" ng-show="vm.torrentLocalInfo">
         <div class="filter">
             <div class="container">
-                <div class="topone row">
+                <div class="topone">
                     <div class="row">
                         <div class="col-md-3 text-center">
                             <div class="topone-logo"
@@ -431,9 +431,11 @@
     <div id="popup_img_preview" class="popup_well">
         <div class="img_view">
             <div class="img_item center-block">
-                <img class="img-thumbnail img-responsive" src="" on-image-load="vm.onTmdbImageLoad()">
-                <i class="fa fa-2x fa-times-circle-o popup_img_preview_close" mt-scale-by-mouse="{scale: 1.5, duration: '.5s'}"
-                   aria-hidden="true"></i>
+                <div class="img-group">
+                    <img class="" src="" on-image-load="vm.onTmdbImageLoad()">
+                    <i class="fa fa-2x fa-times-circle-o popup_img_preview_close" mt-scale-by-mouse="{scale: 1.5, duration: '.5s'}"
+                       aria-hidden="true"></i>
+                </div>
             </div>
             <div class="mask-background"></div>
             <div class="tmdb-image-loading">
@@ -713,14 +715,14 @@
 
             <dl class="dl-horizontal" style="margin-bottom: 0;">
                 <dt class="h-line">{{ 'RESOURCE_TITLE' | translate}}：</dt>
-                <dd class="h-line">
+                <dd class="h-line text-long">
                     <span class="text-bold" editable-line readonly="!vm.canEdit() && !vm.isOwner(vm.torrentLocalInfo)"
                           ng-model="vm.torrentLocalInfo.resource_detail_info.custom_title"
                           callback="onTorrentTitleEdited"></span>
                 </dd>
 
                 <dt class="h-line">{{ 'RESOURCE_SUB_TITLE' | translate}}：</dt>
-                <dd class="h-line">
+                <dd class="h-line text-long">
                     <span class="text-bold" editable-line readonly="!vm.canEdit() && !vm.isOwner(vm.torrentLocalInfo)"
                           ng-model="vm.torrentLocalInfo.resource_detail_info.custom_subtitle"
                           callback="onTorrentSubTitleEdited"></span>
@@ -736,7 +738,7 @@
                 </dd>
 
                 <dt class="h-line">{{ 'TORRENT_FILENAME' | translate}}：</dt>
-                <dd class="h-line">{{vm.torrentLocalInfo.torrent_filename}}</dd>
+                <dd class="h-line text-break-all">{{vm.torrentLocalInfo.torrent_filename}}</dd>
 
                 <dt class="h-line">{{ 'ANNOUNCE_URL' | translate}}：</dt>
                 <dd class="h-line">{{vm.torrentLocalInfo.torrent_announce}}</dd>
@@ -752,7 +754,7 @@
                 <dd class="h-line">{{vm.torrentLocalInfo.torrent_size | bytes:2}}</dd>
 
                 <dt class="h-line">{{ 'TORRENT_INFO_HASH' | translate}}：</dt>
-                <dd class="h-line">{{vm.torrentLocalInfo.info_hash}}</dd>
+                <dd class="h-line text-break-all">{{vm.torrentLocalInfo.info_hash}}</dd>
 
                 <dt class="h-line">{{ 'ATTRIBUTE_TAGS' | translate}}：</dt>
                 <dd class="h-line">

@@ -127,6 +127,10 @@
     }
 }
 
+.text-break-all {
+    word-break: break-all;
+}
+
 .resourceScreenshots {
     .upload-image-info {
         color: #666;
@@ -274,29 +278,38 @@ pre.prettyprint {
     .popup_content {
         width: 100%;
         height: 100%;
-        padding: 30px 30px 0;
         .img_view {
-            height:  ~"calc(100% - 60px)";
+            height: ~"calc(100% - 60px)";
             position: relative;
+            padding: 30px 30px 0;
             .img_item {
-                height: 100%;
-                width: max-content;
+                height: ~"calc(100% - 10px)";
+                width: fit-content;
                 position: relative;
-                img {
-                    max-width: 100%;
-                    max-height: 100%;
-                    min-width: 300px;
-                }
-                .popup_img_preview_close {
-                    position: absolute;
-                    top: -10px;
-                    right: -7px;
-                    padding-top: 1px;
-                    cursor: pointer;
-                    color: @brand-primary;
-                    text-shadow: 0 0 1em #fff,-0 -0 0.5em #fff;
-                    &:hover {
-                        color: @brand-danger;
+                .img-group {
+                    height: max-content;
+                    position: relative;
+                    margin: 0;
+                    float: left;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    img {
+                        max-width: 100%;
+                        max-height: 100%;
+                        //min-width: 300px;
+                    }
+                    .popup_img_preview_close {
+                        position: absolute;
+                        top: -10px;
+                        right: -7px;
+                        padding-top: 1px;
+                        cursor: pointer;
+                        color: @brand-primary;
+                        text-shadow: 0 0 1em #fff,-0 -0 0.5em #fff;
+                        &:hover {
+                            color: @brand-danger;
+                        }
                     }
                 }
             }
@@ -325,12 +338,13 @@ pre.prettyprint {
             padding-top: 10px;
             height: 60px;
             width: 100%;
-            background-color: transparent;
-        }
-        .img_page_info {
-            margin-right: 30px;
-            color: #ddd;
-            text-shadow: 0 0 1em @brand-primary,-0 -0 0.1em @brand-primary;
+            background-color: #2a2a2a;
+            background-color: rgba(0,0,0,0.5);
+            .img_page_info {
+                margin-right: 30px;
+                color: #ddd;
+                text-shadow: 0 0 1em @brand-primary,-0 -0 0.1em @brand-primary;
+            }
         }
     }
 }
