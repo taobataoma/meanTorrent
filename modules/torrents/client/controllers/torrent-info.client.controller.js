@@ -45,17 +45,27 @@
      * window.resize()
      */
     $(window).resize(function () {
-      var ele = $('#popup_img_preview .img_view .img_item .img-group');
-      var img = ele.find('img');
-
-      // ele.height(img.height());
       if ($('#popup_img_preview_wrapper') && $('#popup_img_preview_wrapper').css('display') != 'none') {
-        console.log('resize');
-        ele.css('height', '100%');
-        ele.css('padding-top', (ele.outerHeight() - img.height()) / 2 + 'px');
-        ele.find('.popup_img_preview_close').css('top', ((ele.outerHeight() - img.height()) / 2 - 10) + 'px');
+        vm.resizePopupImage();
       }
     });
+
+    vm.resizePopupImage = function () {
+      var img = $('#popup_img_preview .img_view .img_item img');
+      var close = $('#popup_img_preview .img_view .img_item .popup_img_preview_close');
+
+      $timeout(function () {
+        // console.log('img.parent().height(): ' + img.parent().height() + ', img.outerHeight(): ' + img.outerHeight());
+        var t = (img.parent().height() - img.outerHeight()) / 2;
+        if (img.parent().height() !== img.outerHeight()) {
+          img.css('margin-top', t + 'px');
+          close.css('margin-top', t + 'px');
+        } else {
+          img.css('margin-top', 0);
+          close.css('margin-top', 0);
+        }
+      }, 10);
+    };
 
     /**
      * remove side_overlay background
@@ -1384,22 +1394,8 @@
         opacity: 0.7
       });
 
-      var src = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('on-error-src');
-      var esrc = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('data-back-src');
+      initPupupImage();
 
-      $('#popup_img_preview .img_view .mask-background').css('display', 'block');
-      $('#popup_img_preview .img_view .mask-background').css('background-color', 'rgba(32, 32, 32, 0.6)');
-      $('#popup_img_preview .img_view .tmdb-image-loading').css('display', 'block');
-
-      $('#popup_img_preview .img_item .popup_img_preview_close').css('display', 'none');
-      $('#popup_img_preview .img_item img').removeClass('img-thumbnail img-responsive');
-      $('#popup_img_preview .img_item img').attr('src', null);
-      $('#popup_img_preview .img_item img').attr('on-error-src', esrc);
-      $('#popup_img_preview .img_item img').attr('src', src);
-      $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
-        index: vm.previewImageIndex + 1,
-        total: vm.previewImageEvent.imgs.length
-      }));
       $('#popup_img_preview').popup('show');
     };
 
@@ -1413,22 +1409,7 @@
         vm.previewImageIndex -= 1;
       }
 
-      var src = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('on-error-src');
-      var esrc = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('data-back-src');
-
-      $('#popup_img_preview .img_view .mask-background').css('display', 'block');
-      $('#popup_img_preview .img_view .mask-background').css('background-color', 'rgba(32, 32, 32, 0.6)');
-      $('#popup_img_preview .img_view .tmdb-image-loading').css('display', 'block');
-
-      $('#popup_img_preview .img_item .popup_img_preview_close').css('display', 'none');
-      $('#popup_img_preview .img_item img').removeClass('img-thumbnail img-responsive');
-      $('#popup_img_preview .img_item img').attr('src', null);
-      $('#popup_img_preview .img_item img').attr('on-error-src', esrc);
-      $('#popup_img_preview .img_item img').attr('src', src);
-      $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
-        index: vm.previewImageIndex + 1,
-        total: vm.previewImageEvent.imgs.length
-      }));
+      initPupupImage();
     };
 
     /**
@@ -1441,6 +1422,10 @@
         vm.previewImageIndex += 1;
       }
 
+      initPupupImage();
+    };
+
+    function initPupupImage() {
       var src = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('on-error-src');
       var esrc = angular.element(vm.previewImageEvent.imgs[vm.previewImageIndex]).attr('data-back-src');
 
@@ -1448,16 +1433,17 @@
       $('#popup_img_preview .img_view .mask-background').css('background-color', 'rgba(32, 32, 32, 0.6)');
       $('#popup_img_preview .img_view .tmdb-image-loading').css('display', 'block');
 
-      $('#popup_img_preview .img_item .popup_img_preview_close').css('display', 'none');
-      $('#popup_img_preview .img_item img').removeClass('img-thumbnail img-responsive');
-      $('#popup_img_preview .img_item img').attr('src', null);
-      $('#popup_img_preview .img_item img').attr('on-error-src', esrc);
-      $('#popup_img_preview .img_item img').attr('src', src);
+      $('#popup_img_preview .img_view .img_item img').attr('src', null);
+      $('#popup_img_preview .img_view .img_item img').attr('on-error-src', esrc);
+      $('#popup_img_preview .img_view .img_item img').attr('src', src);
+      $('#popup_img_preview .img_view .img_item img').removeClass('img-thumbnail img-responsive');
+      $('#popup_img_preview .img_view .img_item .popup_img_preview_close').css('display', 'none');
+
       $('#popup_img_preview .img_nav .img_page_info').html($translate.instant('IMG_PAGE_INFO', {
         index: vm.previewImageIndex + 1,
         total: vm.previewImageEvent.imgs.length
       }));
-    };
+    }
 
     /**
      * onTmdbImageLoad
@@ -1467,8 +1453,10 @@
       $('#popup_img_preview .img_view .mask-background').css('display', 'none');
       $('#popup_img_preview .img_view .tmdb-image-loading').css('display', 'none');
 
-      $('#popup_img_preview .img_item img').addClass('img-thumbnail img-responsive');
-      $('#popup_img_preview .img_item .popup_img_preview_close').css('display', 'block');
+      $('#popup_img_preview .img_view .img_item img').addClass('img-thumbnail img-responsive');
+      $('#popup_img_preview .img_view .img_item .popup_img_preview_close').css('display', 'block');
+
+      vm.resizePopupImage();
     };
 
     /**

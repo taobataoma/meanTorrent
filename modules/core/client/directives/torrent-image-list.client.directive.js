@@ -44,7 +44,11 @@
             }
 
             var imgEleList = [];
-            var imgList = angular.element('<div class="torrent-img-list film-strip"></div>');
+            var imgList = angular.element('<div class="torrent-img-list"></div>');
+
+            if (attrs.hasOwnProperty('stripClass')) {
+              imgList.addClass(attrs.stripClass);
+            }
 
             angular.forEach(imgs, function (img, idx) {
               var item = angular.element('<img>');

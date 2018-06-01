@@ -218,6 +218,10 @@
     }
 }
 
+.screenshots-strip {
+    padding: 1px 0;
+}
+
 /* csslint ignore:start */
 .film-strip {
     border-top: solid 26px;
@@ -235,7 +239,7 @@
         }
     }
     &::-webkit-scrollbar {
-        height: 5px;
+        height: 6px;
     }
     &::-webkit-scrollbar-track {
         background-color: #000;
@@ -286,30 +290,24 @@ pre.prettyprint {
                 height: ~"calc(100% - 10px)";
                 width: fit-content;
                 position: relative;
-                .img-group {
-                    height: max-content;
-                    position: relative;
-                    margin: 0;
-                    float: left;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    img {
-                        max-width: 100%;
-                        max-height: 100%;
-                        //min-width: 300px;
-                    }
-                    .popup_img_preview_close {
-                        position: absolute;
-                        top: -10px;
-                        right: -7px;
-                        padding-top: 1px;
-                        cursor: pointer;
-                        color: @brand-primary;
-                        text-shadow: 0 0 1em #fff,-0 -0 0.5em #fff;
-                        &:hover {
-                            color: @brand-danger;
-                        }
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+
+                    transition-property: background-color, border;
+                    transition-duration: 0.5s;
+                    transition-timing-function: ease;
+                }
+                .popup_img_preview_close {
+                    position: absolute;
+                    top: -10px;
+                    right: -7px;
+                    padding-top: 1px;
+                    cursor: pointer;
+                    color: @brand-primary;
+                    text-shadow: 0 0 1em #fff,-0 -0 0.5em #fff;
+                    &:hover {
+                        color: @brand-danger;
                     }
                 }
             }
@@ -339,11 +337,32 @@ pre.prettyprint {
             height: 60px;
             width: 100%;
             background-color: #2a2a2a;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
+            position: relative;
             .img_page_info {
                 margin-right: 30px;
-                color: #ddd;
-                text-shadow: 0 0 1em @brand-primary,-0 -0 0.1em @brand-primary;
+                color: #d0d0d0;
+                font-size: 16px;
+                text-shadow: 0 0 1em #000,-0 -0 0.5em #000;
+            }
+            @media (max-width: @screen-xxs-max) {
+                .img_page_info {
+                    margin-right: 10px;
+                    font-size: 14px;
+                }
+
+                .btn {
+                    min-width: 50px !important;
+                }
+            }
+            @media (max-width: @screen-xs-max) and (min-width: @screen-xs-min){
+                .img_page_info {
+                    margin-right: 20px;
+                    font-size: 14px;
+                }
+                .btn {
+                    min-width: 100px !important;
+                }
             }
         }
     }
