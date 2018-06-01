@@ -35,6 +35,13 @@
     });
 
     /**
+     * auth-user-changed
+     */
+    $scope.$on('auth-user-changed', function (event, args) {
+      vm.user = Authentication.user;
+    });
+
+    /**
      * getWarningInfo
      */
     vm.getWarningInfo = function () {
