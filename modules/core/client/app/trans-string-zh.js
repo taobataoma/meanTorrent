@@ -388,6 +388,7 @@
     EDIT_THIS_OVERVIEW: '编辑详情介绍',
     EDIT_THIS_SCREENSHOTS: '编辑资源截图',
     SAVE_THIS_SCREENSHOTS: '保存资源截图',
+    CANCEL_THIS_SCREENSHOTS: '取消',
     VIEW_ORIGINAL_MEDIA_INFO: '查看原始的媒体信息',
     VIEW_FORMATTED_MEDIA_INFO: '查看格式化的媒体信息',
     EDIT_THIS_MEDIA_INFO: '编辑媒体信息',
@@ -584,6 +585,7 @@
     COVER_UPLOAD_FAILED: '封面图片上传失败',
     ENTER_MUSIC_DETAIL_INFO: '&bull;. 请输入音乐/专辑详细信息',
     ERROR_ONLY_IMAGE: '此处只支持图片文件上传(gif, png, bmp, jpg, jpeg)',
+    ERROR_IMAGE_LINK_URL: '不可用的图片连接地址',
     FILE_TYPE_ERROR: '文件类型不被接受',
 
     ENTER_RESOURCE_TITLE: '&bull; 请输入资源主副标题',
@@ -597,6 +599,8 @@
     IMAGES_UPLOADING: '正在上传',
     UPLOAD_IMAGES_SUCCESSFULLY: '文件上传成功',
     UPLOAD_IMAGES_FAILED: '文件上传失败',
+    IMAGES_UPLOAD_TOOLTIP3: '或者输入一个文件连接地址并添加',
+    BTN_ADD_LINK: '添加图片地址',
 
     //ranking view
     PAGE_HEADER_RANKING_UPLOAD: '上传量排行榜',

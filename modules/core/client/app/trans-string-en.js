@@ -388,6 +388,7 @@
     EDIT_THIS_OVERVIEW: 'Edit this overview',
     EDIT_THIS_SCREENSHOTS: 'Edit screenshots',
     SAVE_THIS_SCREENSHOTS: 'Save screenshots',
+    CANCEL_THIS_SCREENSHOTS: 'Cancel',
     VIEW_ORIGINAL_MEDIA_INFO: 'View original media info',
     VIEW_FORMATTED_MEDIA_INFO: 'View formatted media info',
     EDIT_THIS_MEDIA_INFO: 'Edit media info',
@@ -584,6 +585,7 @@
     COVER_UPLOAD_FAILED: 'Failed to upload cover image',
     ENTER_MUSIC_DETAIL_INFO: '&bull; Please enter the music/album detail info',
     ERROR_ONLY_IMAGE: 'Only image files support(gif, png, bmp, jpg, jpeg)',
+    ERROR_IMAGE_LINK_URL: 'Unavailable image link url address',
     FILE_TYPE_ERROR: 'File type that is not accepted',
 
     ENTER_RESOURCE_TITLE: '&bull; Please enter the resource main title and sub title',
@@ -597,6 +599,8 @@
     IMAGES_UPLOADING: 'Uploading',
     UPLOAD_IMAGES_SUCCESSFULLY: 'Upload image file successfully',
     UPLOAD_IMAGES_FAILED: 'Upload image file failed',
+    IMAGES_UPLOAD_TOOLTIP3: 'Or enter a image link url address and then add it',
+    BTN_ADD_LINK: 'Add image link',
 
     //ranking view
     PAGE_HEADER_RANKING_UPLOAD: 'Uploaded Ranking',

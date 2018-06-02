@@ -712,25 +712,27 @@ exports.create = function (req, res) {
       //move temp torrent resource screenshots image file to dest directory
       if (req.body.screenshots_image && req.body.screenshots_image.length > 0) {
         req.body.screenshots_image.forEach(function (f, key) {
-          var os = config.uploads.torrent.image.temp + f;
-          var ns = config.uploads.torrent.image.dest + f;
-          var cs = config.uploads.torrent.image.crop + f;
+          if (!f.startsWith('http://') && !f.startsWith('https://')) {
+            var os = config.uploads.torrent.image.temp + f;
+            var ns = config.uploads.torrent.image.dest + f;
+            var cs = config.uploads.torrent.image.crop + f;
 
-          torrent.screenshots_image[key] = dst + f;
+            torrent.screenshots_image[key] = dst + f;
 
-          move(os, ns, function (err) {
-            if (err) {
-              mtDebug.debugRed(err);
-            } else {
-              sharp(ns)
-                .resize(400)
-                .toFile(cs, function (err) {
-                  if (err) {
-                    mtDebug.debugError(err);
-                  }
-                });
-            }
-          });
+            move(os, ns, function (err) {
+              if (err) {
+                mtDebug.debugRed(err);
+              } else {
+                sharp(ns)
+                  .resize(400)
+                  .toFile(cs, function (err) {
+                    if (err) {
+                      mtDebug.debugError(err);
+                    }
+                  });
+              }
+            });
+          }
         });
       }
 
@@ -900,26 +902,28 @@ exports.update = function (req, res) {
       var dst = config.uploads.torrent.image.dest.substr(1);
 
       req.body.screenshots_image.forEach(function (f, key) {
-        var os = config.uploads.torrent.image.temp + f;
-        var ns = config.uploads.torrent.image.dest + f;
-        var cs = config.uploads.torrent.image.crop + f;
+        if (!f.startsWith('http://') && !f.startsWith('https://')) {
+          var os = config.uploads.torrent.image.temp + f;
+          var ns = config.uploads.torrent.image.dest + f;
+          var cs = config.uploads.torrent.image.crop + f;
 
-        if (!f.startsWith(dst)) {
-          torrent.screenshots_image[key] = dst + f;
+          if (!f.startsWith(dst)) {
+            torrent.screenshots_image[key] = dst + f;
 
-          move(os, ns, function (err) {
-            if (err) {
-              mtDebug.debugRed(err);
-            } else {
-              sharp(ns)
-                .resize(400)
-                .toFile(cs, function (err) {
-                  if (err) {
-                    mtDebug.debugError(err);
-                  }
-                });
-            }
-          });
+            move(os, ns, function (err) {
+              if (err) {
+                mtDebug.debugRed(err);
+              } else {
+                sharp(ns)
+                  .resize(400)
+                  .toFile(cs, function (err) {
+                    if (err) {
+                      mtDebug.debugError(err);
+                    }
+                  });
+              }
+            });
+          }
         }
       });
     }

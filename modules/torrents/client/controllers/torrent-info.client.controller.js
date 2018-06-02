@@ -1577,6 +1577,18 @@
     };
 
     /**
+     * CancelScreenshots
+     */
+    vm.CancelScreenshots = function () {
+      vm.isEditScreenshots = false;
+
+      var imgDiv = angular.element('.torrent-images .torrent-img-list');
+      if (imgDiv) {
+        imgDiv.css('display', 'inline-flex');
+      }
+    };
+
+    /**
      * beginSaveScreenshots
      */
     vm.beginSaveScreenshots = function () {

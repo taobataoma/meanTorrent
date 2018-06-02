@@ -388,6 +388,7 @@
     EDIT_THIS_OVERVIEW: '編輯詳情介紹',
     EDIT_THIS_SCREENSHOTS: '編輯資源截圖',
     SAVE_THIS_SCREENSHOTS: '保存資源截圖',
+    CANCEL_THIS_SCREENSHOTS: '取消',
     VIEW_ORIGINAL_MEDIA_INFO: '查看原始的媒體信息',
     VIEW_FORMATTED_MEDIA_INFO: '查看格式化的媒體信息',
     EDIT_THIS_MEDIA_INFO: '編輯媒體信息',
@@ -584,6 +585,7 @@
     COVER_UPLOAD_FAILED: '封面圖片上傳失敗',
     ENTER_MUSIC_DETAIL_INFO: '&bull; 請輸入音樂/專輯詳細資訊',
     ERROR_ONLY_IMAGE: '此處只支援圖片檔案上傳(gif, png, bmp, jpg, jpeg)',
+    ERROR_IMAGE_LINK_URL: '不可用的圖片連接地址',
     FILE_TYPE_ERROR: '檔案類別不被接受',
 
     ENTER_RESOURCE_TITLE: '&bull; 請輸入資源標題與描述',
@@ -597,6 +599,8 @@
     IMAGES_UPLOADING: '正在上傳',
     UPLOAD_IMAGES_SUCCESSFULLY: '文件上傳成功',
     UPLOAD_IMAGES_FAILED: '文件上傳失敗',
+    IMAGES_UPLOAD_TOOLTIP3: '或者輸入一個文件連接地址並添加',
+    BTN_ADD_LINK: '添加圖片地址',
 
     //ranking view
     PAGE_HEADER_RANKING_UPLOAD: '上傳量排行榜',

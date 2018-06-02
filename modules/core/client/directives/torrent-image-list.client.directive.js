@@ -52,13 +52,19 @@
 
             angular.forEach(imgs, function (img, idx) {
               var item = angular.element('<img>');
-              var nsrc = img.substr(0, img.lastIndexOf('/') + 1) + 'crop/' + img.substr(img.lastIndexOf('/') + 1);
 
-              item.attr('on-error-src', img);
+              if (img.startsWith('http://') || img.startsWith('https://')) {
+                item.attr('on-error-src', img);
+                item.attr('src', img);
+              } else {
+                var nsrc = img.substr(0, img.lastIndexOf('/') + 1) + 'crop/' + img.substr(img.lastIndexOf('/') + 1);
+
+                item.attr('on-error-src', img);
+                item.attr('src', nsrc);
+              }
+
               item.attr('id', img);
-              item.attr('src', nsrc);
               item.addClass('img-item');
-
               imgEleList.push(item);
             });
 

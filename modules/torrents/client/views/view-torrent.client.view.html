@@ -242,6 +242,12 @@
                                             ng-click="vm.beginSaveScreenshots()">
                                         {{'SAVE_THIS_SCREENSHOTS' | translate}}
                                     </button>
+                                    <button class="btn btn-xs btn-mt-o margin-top-15 btn-width-80" mouse-enter-toggle-class="btn-mt-o-success"
+                                            base-class="btn-mt-o-primary"
+                                            ng-if="vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
+                                            ng-click="vm.CancelScreenshots()">
+                                        {{'CANCEL_THIS_SCREENSHOTS' | translate}}
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -994,6 +1000,12 @@
                         ng-if="vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
                         ng-click="vm.beginSaveScreenshots()">
                     {{'SAVE_THIS_SCREENSHOTS' | translate}}
+                </button>
+                <button class="btn btn-xs btn-mt-o margin-top-15 btn-width-80" mouse-enter-toggle-class="btn-mt-o-success"
+                        base-class="btn-mt-o-primary"
+                        ng-if="vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
+                        ng-click="vm.CancelScreenshots()">
+                    {{'CANCEL_THIS_SCREENSHOTS' | translate}}
                 </button>
             </div>
         </div>
