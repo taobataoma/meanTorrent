@@ -5,9 +5,11 @@
     .module('about.routes')
     .config(routeConfig);
 
-  routeConfig.$inject = ['$stateProvider'];
+  routeConfig.$inject = ['$stateProvider', 'MeanTorrentConfigProvider'];
 
-  function routeConfig($stateProvider) {
+  function routeConfig($stateProvider, MeanTorrentConfigProvider) {
+    var stateConfig = MeanTorrentConfigProvider.meanTorrentConfig().state;
+
     $stateProvider
       .state('about', {
         abstract: true,
@@ -151,7 +153,7 @@
         url: '/operlist',
         templateUrl: '/modules/about/client/views/operlist.client.view.html',
         data: {
-          roles: ['user', 'oper', 'admin'],
+          roles: stateConfig.operList,
           pageTitle: 'PAGETITLE.OPERLIST'
         }
       });

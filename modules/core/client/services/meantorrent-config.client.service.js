@@ -4,7 +4,7 @@
   // Authentication service for user variables
 
   angular
-    .module('torrents.services')
+    .module('core')
     .provider('MeanTorrentConfig', MeanTorrentConfig);
 
   //MeanTorrentConfig.$inject = ['$window'];

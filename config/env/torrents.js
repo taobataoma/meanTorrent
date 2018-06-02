@@ -1124,6 +1124,17 @@ module.exports = {
     userRoles: ['user', 'oper', 'admin'],
 
     /**
+     * @state
+     *
+     * setting roles for state access
+     *
+     * @operList:           roles for state: about.operlist
+     */
+    state: {
+      operList: ['user', 'oper', 'admin']
+    },
+
+    /**
      * @clientBlackList
      *
      * download client black list

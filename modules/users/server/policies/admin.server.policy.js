@@ -46,6 +46,7 @@ exports.invokeRolesPolicies = function () {
       {
         roles: ['user'],
         allows: [
+          {resources: '/api/users', permissions: ['get']},
           {resources: '/api/users/:userId', permissions: ['get']},
           {resources: '/api/users/:userId/uptotal', permissions: ['get']},
           {resources: '/api/users/:userId/followers', permissions: ['get']},
