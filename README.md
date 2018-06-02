@@ -78,7 +78,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 62. Admin can present official invitations to user.
 63. System message support property of 'must read', user must read it and mark it as already read, otherwise it will popup again to minute later.
 64. History of admin operate user account.
-65. New feature for torrent screenshots image upload and edit by uploader or admin or oper.
+65. New feature for torrent screenshots image upload and edit by uploader or admin or oper, the image link url address support also.
 
 #### Chat room feature:
 1. Users name list
@@ -99,7 +99,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 - Medal center
 - Poll type topics support in forum.
 - More score get methods.
-- torrent more images from [TMDB](https://www.themoviedb.org)
 - IRC chat
 - Business cooperation support(like play box? NAS? etc.)
 - ......more
