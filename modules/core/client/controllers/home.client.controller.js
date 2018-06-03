@@ -38,7 +38,7 @@
 
       TorrentsService.get({
         torrent_status: 'reviewed',
-        torrent_type: 'movie',
+        torrent_type: vm.homeConfig.backgroundImageFrom,
         torrent_vip: false,
         isTop: true,
         limit: 1
@@ -52,7 +52,7 @@
         } else {
           TorrentsService.get({
             torrent_status: 'reviewed',
-            torrent_type: 'movie',
+            torrent_type: vm.homeConfig.backgroundImageFrom,
             torrent_vip: false,
             limit: 1
           }, function (items) {
