@@ -506,7 +506,7 @@ module.exports = {
           downloadValue: 0.5,
           downloadEnable: true,
           vipRatio: 1.5,
-          uploaderRatio: 1,
+          uploaderRatio: 2,
 
           enable: true
         },
