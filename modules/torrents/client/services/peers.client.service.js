@@ -33,8 +33,7 @@
       getMyPeers: {
         method: 'GET',
         url: '/api/my/peers',
-        isArray: true,
-        cache: peersCache
+        isArray: true
       },
       getUserSeedingList: {
         method: 'GET',

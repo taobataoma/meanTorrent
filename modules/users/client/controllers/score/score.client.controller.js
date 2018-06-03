@@ -155,16 +155,16 @@
         vm.countByStatus = $filter('countBy')(vm.myPeers, 'peer_status');
         vm.groupByStatus = $filter('groupBy')(vm.myPeers, 'peer_status');
 
-        vm.sumCUSpeed = vm.myPeers.map(function (x) {
+        vm.sumCUSpeed = vm.myPeers.length > 0 ? vm.myPeers.map(function (x) {
           return x.peer_cuspeed;
         }).reduce(function (a, b) {
           return a + b;
-        });
-        vm.sumCDSpeed = vm.myPeers.map(function (x) {
+        }) : 0;
+        vm.sumCDSpeed = vm.myPeers.length > 0 ? vm.myPeers.map(function (x) {
           return x.peer_cdspeed;
         }).reduce(function (a, b) {
           return a + b;
-        });
+        }) : 0;
       });
     };
 
