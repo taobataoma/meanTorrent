@@ -33,6 +33,7 @@
         albumId: $state.params.albumId
       }, function (data) {
         vm.album = data;
+        vm.album.torrents.reverse();
         mtDebug.info(data);
         vm.buildPager();
         $('.backdrop').css('backgroundImage', 'url("' + vm.getAlbumBackdropImage(vm.album) + '")');
@@ -63,10 +64,11 @@
      * figureOutItemsToDisplay
      */
     vm.figureOutItemsToDisplay = function (callback) {
-      vm.filteredItems = vm.album.torrents.reverse();
+      vm.filteredItems = vm.album.torrents;
       vm.filterLength = vm.filteredItems.length;
       var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
       var end = begin + vm.itemsPerPage;
+
       vm.pagedItems = vm.filteredItems.slice(begin, end);
 
       if (callback) callback();
