@@ -291,7 +291,7 @@ exports.announce = function (req, res) {
             done(160);
           } else if (!t) {
             done(161);
-          } else if (t.torrent_status === 'new') {
+          } else if (t.torrent_status === 'new' && !req.seeder) {
             done(173);
           } else {
             req.torrent = t;
@@ -762,44 +762,48 @@ exports.announce = function (req, res) {
         if (req.seeder && event(query.event) !== EVENT_COMPLETED && event(query.event) !== EVENT_STARTED) {
           mtDebug.debugGreen('---------------UPLOAD SCORE THROUGH SEED TIMED----------------', 'ANNOUNCE', true, req.passkeyuser);
 
-          var action = scoreConfig.action.seedTimed;
-          var slAction = scoreConfig.action.seedSeederAndLife;
+          if (req.torrent.torrent_status === 'reviewed') {
+            var action = scoreConfig.action.seedTimed;
+            var slAction = scoreConfig.action.seedSeederAndLife;
 
-          if (action.enable) {
-            var timed = Date.now() - req.currentPeer.last_announce_at;
-            var seedUnit = timed / action.additionTime;
-            var seedScore = seedUnit * action.timedValue;
+            if (action.enable) {
+              var timed = Date.now() - req.currentPeer.last_announce_at;
+              var seedUnit = timed / action.additionTime;
+              var seedScore = seedUnit * action.timedValue;
 
-            if (seedScore > 0) {
-              //vip addition
-              if (action.vipRatio && req.passkeyuser.isVip) {
-                seedScore = seedScore * action.vipRatio;
-              }
-
-              if (slAction.enable) {
-                //torrent seeders count addition
-                if (req.torrent.torrent_seeds <= slAction.seederCount) {
-                  var seederUnit = slAction.seederBasicRatio + slAction.seederCoefficient * (slAction.seederCount - req.torrent.torrent_seeds + 1);
-                  seedScore = seedScore * seederUnit;
+              if (seedScore > 0) {
+                //vip addition
+                if (action.vipRatio && req.passkeyuser.isVip) {
+                  seedScore = seedScore * action.vipRatio;
                 }
 
-                //torrent life addition
-                var life = moment(Date.now()) - moment(req.torrent.createdat);
-                var days = life / (60 * 60 * 1000 * 24);
-                var lifeUnit = slAction.lifeBasicRatio + slAction.lifeCoefficientOfDay * days;
+                if (slAction.enable) {
+                  //torrent seeders count addition
+                  if (req.torrent.torrent_seeds <= slAction.seederCount) {
+                    var seederUnit = slAction.seederBasicRatio + slAction.seederCoefficient * (slAction.seederCount - req.torrent.torrent_seeds + 1);
+                    seedScore = seedScore * seederUnit;
+                  }
 
-                lifeUnit = lifeUnit > slAction.lifeMaxRatio ? slAction.lifeMaxRatio : lifeUnit;
-                seedScore = seedScore * lifeUnit;
+                  //torrent life addition
+                  var life = moment(Date.now()) - moment(req.torrent.createdat);
+                  var days = life / (60 * 60 * 1000 * 24);
+                  var lifeUnit = slAction.lifeBasicRatio + slAction.lifeCoefficientOfDay * days;
+
+                  lifeUnit = lifeUnit > slAction.lifeMaxRatio ? slAction.lifeMaxRatio : lifeUnit;
+                  seedScore = seedScore * lifeUnit;
+                }
+                seedScore = Math.round(seedScore * 100) / 100;
+
+                action.params = {
+                  torrent: req.torrent._id
+                };
+                scoreUpdate(req, req.passkeyuser, action, seedScore);
+                mtDebug.debugRed('seed timed score: ' + seedScore, 'ANNOUNCE', true, req.passkeyuser);
+
+                done(null);
+              } else {
+                done(null);
               }
-              seedScore = Math.round(seedScore * 100) / 100;
-
-              action.params = {
-                torrent: req.torrent._id
-              };
-              scoreUpdate(req, req.passkeyuser, action, seedScore);
-              mtDebug.debugRed('seed timed score: ' + seedScore, 'ANNOUNCE', true, req.passkeyuser);
-
-              done(null);
             } else {
               done(null);
             }
