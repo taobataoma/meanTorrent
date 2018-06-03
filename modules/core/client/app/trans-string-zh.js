@@ -24,6 +24,10 @@
     VALUE_SELECT_ALL: '全选',
     BTN_REMOVE: '删除',
     BTN_CONTINUE: '继续',
+    VALUE_TRUE: '是',
+    VALUE_FALSE: '否',
+    VALUE_ON: '开',
+    VALUE_OFF: '关',
 
     //Support
     SUPPORT_GROUP_NAME_DESC: '管理组',
@@ -1072,9 +1076,16 @@
     //user score
     SCORE: {
       CURRENT_SCORE: '当前积分:',
+      INCOME_ESTIMATE: '我的积分收入预估',
       HOW_TO_GET_LEVEL: '怎么计算用户级别？',
       HOW_TO_GET_SCORE: '怎么取得用户积分？'
     },
+    CURR_LEECHING_TORRENTS: '当前正在下载的种子：`{{count_leech}}`个。',
+    CURR_SEEDING_TORRENTS: '当前正在做种的种子：`{{count_seed}}`个。',
+    CURR_VIP_STATE: '当前 VIP 身份状态：`{{vip_status | translate}}`。',
+    CURR_UP_TOTAL_SPEED: '当前上传总速度为：`{{up_speed | byteFmt: 2}}`。',
+    CURR_DOWN_TOTAL_SPEED: '当前下载总速度为：`{{down_speed | byteFmt: 2}}`。',
+    CURR_SCORE_INCOME_HOURS: '当前预计每小时获得 `{{score_hour}}` 积分，如果你不明白积分怎么计算，请参阅 [{{"ABOUT.MENU_ABOUT_MANUAL_SCORE_RULES" | translate}}](/about/manual/scoreRules)。',
     EXCHANGE_INVITATION: '兑换一个邀请 ({{score}} 积分)',
     EXCHANGE_INVITATION_CONFIRM_OK: '兑换',
     EXCHANGE_INVITATION_CONFIRM_CANCEL: '取消',

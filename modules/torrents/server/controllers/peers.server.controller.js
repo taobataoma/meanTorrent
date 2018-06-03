@@ -107,3 +107,27 @@ exports.getMyWarning = function (req, res) {
     }
   });
 };
+
+/**
+ * getMyPeers
+ * @param req
+ * @param res
+ */
+exports.getMyPeers = function (req, res) {
+  Peer.find({
+    user: req.user._id,
+    last_announce_at: {$gt: Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime}
+  }).populate({
+    path: 'torrent',
+    select: populateStrings.populate_torrent_string
+  })
+    .exec(function (err, peers) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(peers);
+      }
+    });
+};

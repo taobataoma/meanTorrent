@@ -21,7 +21,7 @@
 
 #### :white_small_square: 流量計算與積分統計
 
-1. 種子釋出者按 `%(salesGlobalConfig.uploader.value.Ur).2f` 倍的上傳量計算。
+1. 種子釋出者按 `%(salesGlobalConfig.uploader.value.Ur).2f` 倍的上傳量計算，並獲得 `%(scoreConfig.action.seedUpDownload.uploaderRatio).2f` 倍的上傳量積分。
 1. 分流者按正常上傳下載量計算。
 1. 所有用戶所有種子上傳下載量享有促銷加成，如遇全局促銷則享有全局促銷加成。
 1. VIP 用戶的上傳下載量以及做種積分享有額外的加成，詳情請參考 [VIP 用戶者權益細則](/about/manual/vipRules)。

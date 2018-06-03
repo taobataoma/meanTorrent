@@ -6,7 +6,7 @@
         </div>
 
         <div class="row margin-top-30">
-            <div class="col-sm-8 col-sm-offset-2">
+            <div class="col-md-8 col-md-offset-2">
                 <div>
                     <span>{{ vm.scoreLevelData.currLevelValue | number: 2 }}</span>
                     <span class="pull-right">{{ vm.scoreLevelData.nextLevelValue | number: 2 }}</span>
@@ -24,8 +24,8 @@
         </div>
 
         <div class="row margin-top-30" ng-show="vm.inviteConfig.openInvite">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
-                <button class="btn btn-default" ng-disabled="vm.user.score < vm.inviteConfig.scoreExchange"
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <button class="btn btn-success" ng-disabled="vm.user.score < vm.inviteConfig.scoreExchange"
                         translate="EXCHANGE_INVITATION" translate-values='{ score: vm.inviteConfig.scoreExchange}'
                         ng-click="vm.exchangeInvitation();">
                 </button>
@@ -33,25 +33,41 @@
         </div>
 
         <div class="row margin-top-30" ng-hide="vm.inviteConfig.openInvite">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
+            <div class="col-md-8 col-md-offset-2 text-center">
                 <div class="alert alert-warning" role="alert">
                     <strong>{{ 'NOTE_CAPTION' | translate }}</strong> {{ 'INVITE_CLOSED' | translate }}
                 </div>
             </div>
         </div>
 
-        <div class="row margin-top-30 padding-top-30"
+        <div class="row margin-top-30" ng-init="vm.getMyPeers()">
+            <div class="col-md-8 col-md-offset-2 curr-score-info">
+                <legend class="small-legend"><i class="fa fa-caret-right"></i> {{'SCORE.INCOME_ESTIMATE' | translate}}</legend>
+                <ul>
+                    <li ng-bind-html="vm.getMarkedCurrDownloadingString()"></li>
+                    <li ng-bind-html="vm.getMarkedCurrSeedingString()"></li>
+                    <li ng-bind-html="vm.getMarkedVipStatusString()"></li>
+                    <li ng-bind-html="vm.getMarkedCurrUpSpeedString()"></li>
+                    <li ng-bind-html="vm.getMarkedCurrDownSpeedString()"></li>
+                </ul>
+                <div class="alert alert-warning">
+                    <h5 ng-bind-html="vm.getMarkedCurrScoreString()"></h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-top-30"
              ng-init="vm.getTemplateScoreFileContent('/modules/users/client/templates/how-level-'+vm.lang+'.md')">
-            <div class="col-sm-8 col-sm-offset-2">
-                <legend class="small-legend" translate="SCORE.HOW_TO_GET_LEVEL"></legend>
+            <div class="col-md-8 col-md-offset-2 curr-score-info">
+                <legend class="small-legend"><i class="fa fa-caret-right"></i> {{'SCORE.HOW_TO_GET_LEVEL' | translate}}</legend>
                 <span ng-bind-html="vm.getTemplateMarkedContent(vm.templateScoreFileContent)"></span>
             </div>
         </div>
 
         <div class="row margin-top-30 margin-bottom-30"
              ng-init="vm.getTemplateLevelFileContent('/modules/users/client/templates/how-score-'+vm.lang+'.md')">
-            <div class="col-sm-8 col-sm-offset-2">
-                <legend class="small-legend" translate="SCORE.HOW_TO_GET_SCORE"></legend>
+            <div class="col-md-8 col-md-offset-2 curr-score-info">
+                <legend class="small-legend"><i class="fa fa-caret-right"></i> {{'SCORE.HOW_TO_GET_SCORE' | translate}}</legend>
                 <span ng-bind-html="vm.getTemplateMarkedContent(vm.templateLevelFileContent)"></span>
             </div>
         </div>

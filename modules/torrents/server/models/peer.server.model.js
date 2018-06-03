@@ -51,6 +51,14 @@ var PeerSchema = new Schema({
     type: Number,
     default: 0
   },
+  peer_cuspeed: {
+    type: Number,
+    default: 0
+  },
+  peer_cdspeed: {
+    type: Number,
+    default: 0
+  },
   peer_ratio: {
     type: Number,
     default: 0

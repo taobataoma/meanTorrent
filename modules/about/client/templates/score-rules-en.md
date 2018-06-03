@@ -25,6 +25,7 @@
     none vip user get uploaded scores: 2 * 1 * 10 = 20, downloaded scores: 2 * 0.5 * 15 = 15. 
     vip user get uploaded scores: 20 * 1.5 = 30, downloaded scores: 15 * 1.5 = 22.5.
 ```
+* Seed uploaders calculate the upload scores of `* %(scoreConfig.action.seedUpDownload.uploaderRatio).2f`.
 * In the seeding state, the seeding scores will be get from the seeding time. For every seed, `%(scoreConfig.action.seedTimed.timedValue).2f` scores per `%(scoreConfig.action.seedTimed.additionTime_str)s`, vip user extra addition ratio is `%(scoreConfig.action.seedTimed.vipRatio).2f`.
 * Scores got for the above two items, will get extra addition based on the seed life and seeding users, <mark>And two kinds of addition are available at the same time</mark>.
 ```javascript
@@ -33,7 +34,7 @@
   Coefficient is: %(scoreConfig.action.seedSeederAndLife.seederCoefficient).2f
   Seecer count less than: %(scoreConfig.action.seedSeederAndLife.seederCount)d
   
-  For 1 seeding user, the extra addition ratio is: 3, [for 2 is 2.8], [for 3 is 2.6], [for 4 is 2.4], [for 5 is 2.2], [for 6 is 2.0], [for 7 is 1.8], [for 8 is 1.6], [for 9 is 1.4], [for 10 is 1.2], [more than 10 is 1, same as no extra addition].
+  For 1 seeding user, the extra addition ratio is: 2, [for 2 is 1.9], [for 3 is 1.8], [for 4 is 1.7], [for 5 is 1.6], [for 6 is 1.5], [for 7 is 1.4], [for 8 is 1.3], [for 9 is 1.2], [for 10 is 1.1], [more than 10 is 1, same as no extra addition].
 ```
 ```javascript
   With seed life:
@@ -42,7 +43,7 @@
   Max ratio is: %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f
   
   The basic ratio is %(scoreConfig.action.seedSeederAndLife.lifeBasicRatio).2f, increase %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f every day.
-  For 10 days life ratio is 1.02, [100 days is 1.2], [200 days is 1.4] etc, the max ratio is %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f.
+  For 10 days life ratio is 1.01, [100 days is 1.1], [200 days is 1.2] etc, the max ratio is %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f.
 ```
 * At the end of each month, the system will award scores to users who have successfully sent invitations. the score number limit is the percentage `%(scoreConfig.transferToInviter.transRatio)f` of the monthly got of the invited users, the current award function enable status is：
 ```javascript

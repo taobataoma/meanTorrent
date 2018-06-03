@@ -21,7 +21,7 @@
 
 #### :white_small_square: Data calculation and scores count
 
-1. Seed uploaders calculate the upload volume of `* %(salesGlobalConfig.uploader.value.Ur).2f`。
+1. Seed uploaders calculate the upload volume of `* %(salesGlobalConfig.uploader.value.Ur).2f`, and calculate the upload scores of `* %(scoreConfig.action.seedUpDownload.uploaderRatio).2f`.
 1. Other users calculate the normal upload and download amount.
 1. All users of all the seed upload and download volume enjoy promotion bonus, in case of global promotion, they enjoy the overall promotion bonus.
 1. VIP users can enjoy additional bonuses for uploading and downloading as well as seeding scores. For details, please refer to [VIP Rights Rules Detail](/about/manual/vipRules)。

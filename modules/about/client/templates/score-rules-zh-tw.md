@@ -25,6 +25,7 @@
     非 Vip 使用者獲得上傳積分: 2 * 1 * 10 = 20, 下載積分: 2 * 0.5 * 15 = 15。
     Vip 使用者獲得上傳積分: 20 * 1.5 = 30, 下載積分: 15 * 1.5 = 22.5。
 ```
+* 種子發布者按 `%(scoreConfig.action.seedUpDownload.uploaderRatio).2f` 倍計算上傳量積分。
 * 在做種狀態下，將會獲得由保種時間帶來的保種積分, 每個種子每 `%(scoreConfig.action.seedTimed.additionTime_str)s` 獲得 `%(scoreConfig.action.seedTimed.timedValue).2f` 積分，Vip 使用者額外加成係數為 `%(scoreConfig.action.seedTimed.vipRatio).2f`。
 * 對於上述兩項獲得的積分, 還會根據種子的生命期和保種人數獲得額外的再次加成，<mark>而且兩種加成疊加生效</mark>。
 ```javascript
@@ -33,7 +34,7 @@
   加成係數: %(scoreConfig.action.seedSeederAndLife.seederCoefficient).2f
   最多保種人數: %(scoreConfig.action.seedSeederAndLife.seederCount)d
   
-  如果只有 1 個保種使用者: 加成係數為 2, [2 使用者為 2.8], [3 使用者為 2.6], [4 使用者為 2.4], [5 使用者為 2.2], [6 使用者為 2.0], [7 使用者為 1.8], [8 使用者為 1.6], [9 使用者為 1.4], [10 使用者為 1.2], [超過 10 使用者為 1, 相當於沒有加成]。
+  如果只有 1 個保種使用者: 加成係數為 2, [2 使用者為 1.9], [3 使用者為 1.8], [4 使用者為 1.7], [5 使用者為 1.6], [6 使用者為 1.5], [7 使用者為 1.4], [8 使用者為 1.3], [9 使用者為 1.2], [10 使用者為 1.1], [超過 10 使用者為 1, 相當於沒有加成]。
 ```
 ```javascript
   種子生命加成:
@@ -42,7 +43,7 @@
   最大加成係數: %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f
   
   加成基礎係數為 %(scoreConfig.action.seedSeederAndLife.lifeBasicRatio).2f, 根據種子生命每天增加 %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f。
-  如果種子生命(釋出時間)為 10 天，則加成係數為 1.02, [100 天是 1.2], [200 天是 1.4], 以此類推，最大加成係數為 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f。
+  如果種子生命(釋出時間)為 10 天，則加成係數為 1.01, [100 天是 1.1], [200 天是 1.2], 以此類推，最大加成係數為 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f。
 ```
 * 系統在每個月底會對成功發送過邀請函的用戶進行積分獎勵，獎勵額度為受邀請用戶當月的進帳積分的 `%(scoreConfig.transferToInviter.transRatio)f` 倍，目前該獎勵功能開關狀態為：
 ```javascript

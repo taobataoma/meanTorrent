@@ -11,7 +11,7 @@
   function PeersService($resource, CacheFactory) {
     var peersCache = CacheFactory.get('peersCache') || CacheFactory.createCache('peersCache');
 
-    var Torrents = $resource('', {}, {
+    var Peers = $resource('', {}, {
       getMySeedingList: {
         method: 'GET',
         url: '/api/my/seeding',
@@ -27,6 +27,12 @@
       getMyWarningList: {
         method: 'GET',
         url: '/api/my/warning',
+        isArray: true,
+        cache: peersCache
+      },
+      getMyPeers: {
+        method: 'GET',
+        url: '/api/my/peers',
         isArray: true,
         cache: peersCache
       },
@@ -59,6 +65,6 @@
       }
     });
 
-    return Torrents;
+    return Peers;
   }
 }());

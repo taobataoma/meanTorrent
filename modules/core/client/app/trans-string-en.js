@@ -24,6 +24,10 @@
     VALUE_SELECT_ALL: 'Select All',
     BTN_REMOVE: 'Remove',
     BTN_CONTINUE: 'Continue',
+    VALUE_TRUE: 'true',
+    VALUE_FALSE: 'false',
+    VALUE_ON: 'on',
+    VALUE_OFF: 'off',
 
     //Support
     SUPPORT_GROUP_NAME_DESC: 'Management group',
@@ -1072,9 +1076,16 @@
     //user score
     SCORE: {
       CURRENT_SCORE: 'Current score:',
+      INCOME_ESTIMATE: 'My scores income estimate',
       HOW_TO_GET_LEVEL: 'How to count user level?',
       HOW_TO_GET_SCORE: 'How to get score number?'
     },
+    CURR_LEECHING_TORRENTS: 'Current downloading torrents: `{{count_leech}}`.',
+    CURR_SEEDING_TORRENTS: 'Current seeding torrents: `{{count_seed}}`.',
+    CURR_VIP_STATE: 'Current VIP status: `{{vip_status | translate}}`.',
+    CURR_UP_TOTAL_SPEED: 'Current total upload speed is: `{{up_speed | byteFmt: 2}}`.',
+    CURR_DOWN_TOTAL_SPEED: 'Current total download speed is: `{{down_speed | byteFmt: 2}}`.',
+    CURR_SCORE_INCOME_HOURS: 'Current estimated hourly earnings of `{{score_hour}}` scores, If you don’t understand how to calculate the points, please refer to [{{"ABOUT.MENU_ABOUT_MANUAL_SCORE_RULES" | translate}}](/about/manual/scoreRules).',
     EXCHANGE_INVITATION: 'Exchange an invitation ({{score}} scores)',
     EXCHANGE_INVITATION_CONFIRM_OK: 'Exchange',
     EXCHANGE_INVITATION_CONFIRM_CANCEL: 'Cancel',

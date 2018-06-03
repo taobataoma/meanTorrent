@@ -586,9 +586,15 @@ exports.announce = function (req, res) {
           var sp = {};
           if (curru > 0) {
             sp.peer_uspeed = Math.round(curru / (Date.now() - req.currentPeer.last_announce_at) * 1000);
+            sp.peer_cuspeed = Math.round(curru / (Date.now() - req.currentPeer.last_announce_at) * 1000);
+          } else {
+            sp.peer_cuspeed = 0;
           }
           if (currd > 0) {
             sp.peer_dspeed = Math.round(currd / (Date.now() - req.currentPeer.last_announce_at) * 1000);
+            sp.peer_cdspeed = Math.round(currd / (Date.now() - req.currentPeer.last_announce_at) * 1000);
+          } else {
+            sp.peer_cdspeed = 0;
           }
           req.currentPeer.update({
             $set: sp
@@ -615,6 +621,10 @@ exports.announce = function (req, res) {
               }
               var upScore = curru / action.perlSize;
               uploadScore = upUnitScore * action.uploadValue * upScore;
+              //uploader addition
+              if (req.passkeyuser._id.equals(req.torrent.user._id)) {
+                uploadScore = uploadScore * action.uploaderRatio;
+              }
             }
 
             if (currd > 0 && action.downloadEnable) {
@@ -692,6 +702,13 @@ exports.announce = function (req, res) {
             }
           };
           dataLog.announceLog(req.passkeyuser, req.torrent, logData);
+        } else {
+          req.currentPeer.update({
+            $set: {
+              peer_cuspeed: 0,
+              peer_cdspeed: 0
+            }
+          }).exec();
         }
       }
 

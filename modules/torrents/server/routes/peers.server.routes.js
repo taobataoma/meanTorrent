@@ -18,4 +18,7 @@ module.exports = function (app) {
   app.route('/api/my/warning').all(torrentsPolicy.isAllowed)
     .get(peers.getMyWarning);
 
+  app.route('/api/my/peers').all(torrentsPolicy.isAllowed)
+    .get(peers.getMyPeers);
+
 };

@@ -24,6 +24,10 @@
     VALUE_SELECT_ALL: '全選',
     BTN_REMOVE: '刪除',
     BTN_CONTINUE: '繼續',
+    VALUE_TRUE: '是',
+    VALUE_FALSE: '否',
+    VALUE_ON: '開',
+    VALUE_OFF: '關',
 
     //Support
     SUPPORT_GROUP_NAME_DESC: '管理組',
@@ -1072,9 +1076,16 @@
     //user score
     SCORE: {
       CURRENT_SCORE: '當前積分:',
+      INCOME_ESTIMATE: '我的積分收入預估',
       HOW_TO_GET_LEVEL: '怎麼計算用戶級別？',
       HOW_TO_GET_SCORE: '怎麼取得用戶積分？'
     },
+    CURR_LEECHING_TORRENTS: '當前正在下載的種子：`{{count_leech}}`個。',
+    CURR_SEEDING_TORRENTS: '當前正在做種的種子：`{{count_seed}}`個。',
+    CURR_VIP_STATE: '當前 VIP 身份狀態：`{{vip_status | translate}}`。',
+    CURR_UP_TOTAL_SPEED: '當前上傳總速度為：`{{up_speed | byteFmt: 2}}`。',
+    CURR_DOWN_TOTAL_SPEED: '當前下載總速度為：`{{down_speed | byteFmt: 2}}`。',
+    CURR_SCORE_INCOME_HOURS: '當前預計每小時獲得 `{{score_hour}}` 積分，如果你不明白積分怎麼計算，請參閱 [{{"ABOUT.MENU_ABOUT_MANUAL_SCORE_RULES" | translate}}](/about/manual/scoreRules)。',
     EXCHANGE_INVITATION: '兌換一個邀請 ({{score}} 積分)',
     EXCHANGE_INVITATION_CONFIRM_OK: '兌換',
     EXCHANGE_INVITATION_CONFIRM_CANCEL: '取消',

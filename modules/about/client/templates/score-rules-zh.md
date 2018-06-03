@@ -25,6 +25,7 @@
     非 Vip 用户获得上传积分: 2 * 1 * 10 = 20, 下载积分: 2 * 0.5 * 15 = 15。
     Vip 用户获得上传积分: 20 * 1.5 = 30, 下载积分: 15 * 1.5 = 22.5。
 ```
+* 种子发布者按 `%(scoreConfig.action.seedUpDownload.uploaderRatio).2f` 倍计算上传量积分。
 * 在做种状态下，将会获得由保种时间带来的保种积分, 每个种子每 `%(scoreConfig.action.seedTimed.additionTime_str)s` 获得 `%(scoreConfig.action.seedTimed.timedValue).2f` 积分，Vip 用户额外加成系数为 `%(scoreConfig.action.seedTimed.vipRatio).2f`。
 * 对于上述两项获得的积分, 还会根据种子的生命期和保种人数获得额外的再次加成，<mark>而且两种加成叠加生效</mark>。
 ```javascript
@@ -33,7 +34,7 @@
   加成系数: %(scoreConfig.action.seedSeederAndLife.seederCoefficient).2f
   最多保种人数: %(scoreConfig.action.seedSeederAndLife.seederCount)d
   
-  如果只有 1 个保种用户: 加成系数为 3, [2 用户为 2.8], [3 用户为 2.6], [4 用户为 2.4], [5 用户为 2.2], [6 用户为 2.0], [7 用户为 1.8], [8 用户为 1.6], [9 用户为 1.4], [10 用户为 1.2], [超过 10 用户为 1, 相当于没有加成]。
+  如果只有 1 个保种用户: 加成系数为 3, [2 用户为 1.9], [3 用户为 1.8], [4 用户为 1.7], [5 用户为 1.6], [6 用户为 1.5], [7 用户为 1.4], [8 用户为 1.3], [9 用户为 1.2], [10 用户为 1.1], [超过 10 用户为 1, 相当于没有加成]。
 ```
 ```javascript
   种子生命加成:
@@ -42,7 +43,7 @@
   最大加成系数: %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f
   
   加成基础系数为 %(scoreConfig.action.seedSeederAndLife.lifeBasicRatio).2f, 根据种子生命每天增加 %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f。
-  如果种子生命(发布时间)为 10 天，则加成系数为 1.02, [100 天是 1.2], [200 天是 1.4], 以此类推，最大加成系数为 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f。
+  如果种子生命(发布时间)为 10 天，则加成系数为 1.01, [100 天是 1.1], [200 天是 1.2], 以此类推，最大加成系数为 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f。
 ```
 * 系统在每个月底会对成功发送过邀请函的用户进行积分奖励，奖励额度为受邀请用户当月的进帐积分的 `%(scoreConfig.transferToInviter.transRatio)f` 倍，目前该奖励功能开关状态为：
 ```javascript

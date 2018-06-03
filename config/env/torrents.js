@@ -506,6 +506,7 @@ module.exports = {
           downloadValue: 0.5,
           downloadEnable: true,
           vipRatio: 1.5,
+          uploaderRatio: 2,
 
           enable: true
         },
@@ -525,11 +526,11 @@ module.exports = {
           name: 'seedSeederAndLife',
           content: 'SEED_SEEDER_AND_LIFE',
           seederBasicRatio: 1,
-          seederCoefficient: 0.2,
+          seederCoefficient: 0.1,
           seederCount: 10,
           lifeBasicRatio: 1,
-          lifeCoefficientOfDay: 0.002,
-          lifeMaxRatio: 3,
+          lifeCoefficientOfDay: 0.001,
+          lifeMaxRatio: 2,
 
           enable: true
         }

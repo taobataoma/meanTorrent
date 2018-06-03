@@ -21,7 +21,7 @@
 
 #### :white_small_square: 流量计算与积分统计
 
-1. 种子发布者按 `%(salesGlobalConfig.uploader.value.Ur).2f` 倍的上传量计算。
+1. 种子发布者按 `%(salesGlobalConfig.uploader.value.Ur).2f` 倍的上传量计算，并获得 `%(scoreConfig.action.seedUpDownload.uploaderRatio).2f` 倍的上传量积分。
 1. 分流者按正常上传下载量计算。
 1. 所有用户所有种子上传下载量享有促销加成，如遇全局促销则享有全局促销加成。
 1. VIP 用户的上传下载量以及做种积分享有额外的加成，详情请参考 [VIP 用户权益细则](/about/manual/vipRules)。
