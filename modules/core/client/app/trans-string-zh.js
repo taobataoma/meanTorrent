@@ -1082,6 +1082,7 @@
     EXCHANGE_INVITATION_CONFIRM_BODY_TEXT: '您确定要使用 {{score}} 积分来兑换一个有效期为 {{hours}} 小时的邀请么?',
     EXCHANGE_INVITATION_SUCCESSFULLY: '限时邀请兑换成功',
     EXCHANGE_INVITATION_ERROR: '限时邀请兑换失败',
+    BTN_EXCHANGE: '使用积分兑换',
     INVITE_CLOSED: '邀请功能已关闭, 现在不能使用积分兑换邀请 ...',
     INVITE_INFO: '邀请功能已关闭, 现在只有系统管理员可发送邀请 ...',
     NOTE_CAPTION: '请注意!',

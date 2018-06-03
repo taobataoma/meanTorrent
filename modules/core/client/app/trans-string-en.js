@@ -1082,6 +1082,7 @@
     EXCHANGE_INVITATION_CONFIRM_BODY_TEXT: 'Are you sure you want to pay {{score}} scores to redeem an invitation that is valid for {{hours}} hours?',
     EXCHANGE_INVITATION_SUCCESSFULLY: 'Exchange invitation successfully',
     EXCHANGE_INVITATION_ERROR: 'Exchange invitation failed',
+    BTN_EXCHANGE: 'Exchange with scores',
     INVITE_CLOSED: 'The invitation function is closed and you cannot exchange an invitations ...',
     INVITE_INFO: 'The invitation function is closed and only admin/oper can use it ...',
     NOTE_CAPTION: 'Note!',

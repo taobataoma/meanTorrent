@@ -28,14 +28,19 @@
                     <div class="margin-left-10 margin-right-10 invitations-list" ng-if="vm.my_invitations.length>0">
                         <div class="pagination-div-top">
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.myItemsPerPage"
-                                        total-items="vm.myFilterLength"
-                                        ng-model="vm.myCurrentPage"
-                                        ng-change="vm.myPageChanged()"
-                                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
-                                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
-                                    </ul>
+                                <div class="row-md-height">
+                                    <div class="col-md-9 col-md-height">
+                                        <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.myItemsPerPage"
+                                            total-items="vm.myFilterLength"
+                                            ng-model="vm.myCurrentPage"
+                                            ng-change="vm.myPageChanged()"
+                                            first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                                            next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3 col-md-height col-md-middle text-xxs-left text-md-right margin-xxs-bottom-10 margin-md-bottom-0">
+                                        <a class="btn btn-default" ui-sref="score.detail">{{'BTN_EXCHANGE' | translate}}</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

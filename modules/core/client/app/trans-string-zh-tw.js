@@ -1082,6 +1082,7 @@
     EXCHANGE_INVITATION_CONFIRM_BODY_TEXT: '您確定要使用 {{score}} 積分來兌換一個有效期為 {{hours}} 小時的邀請麼?',
     EXCHANGE_INVITATION_SUCCESSFULLY: '限時邀請兌換成功',
     EXCHANGE_INVITATION_ERROR: '限時邀請兌換失敗',
+    BTN_EXCHANGE: '使用積分兌換',
     INVITE_CLOSED: '邀請功能已關閉, 現在不能使用積分兌換邀請 ...',
     INVITE_INFO: '邀請功能已關閉, 現在只有系統管理員可傳送邀請 ...',
     NOTE_CAPTION: '請注意!',
