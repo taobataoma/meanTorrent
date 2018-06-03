@@ -307,7 +307,7 @@
             var upScore = usize / action.perlSize;
             uploadScore = upUnitScore * action.uploadValue * upScore;
             //uploader addition
-            if (vm.user._id == peer.torrent.user) {
+            if (vm.user._id === peer.torrent.user) {
               uploadScore = uploadScore * action.uploaderRatio;
             }
           }
