@@ -1,0 +1,77 @@
+@import (reference) "mt-var.less";
+
+.btn-mt-o {
+    background-image: none;
+    background-repeat: no-repeat;
+    text-shadow: none;
+    background-color: transparent;
+    color: #efefef;
+    border: solid 1px #ccc;
+    &:focus {
+        background-color: transparent;
+        color: #efefef;
+        border-color: #ccc;
+    }
+}
+
+.btn-mt-o-default-dark {
+    color: #666;
+    border: solid 1px #666;
+    &:focus {
+        color: #666;
+        border-color: #666;
+    }
+}
+
+.btn-mt-o-success {
+    color: @state-success-text;
+    border: solid 1px @state-success-text;
+    &:hover,
+    &:focus {
+        color: @state-success-text;
+        border-color: @state-success-text;
+    }
+}
+
+.btn-mt-o-success-light {
+    color: @brand-success;
+    border: solid 1px @brand-success;
+    &:focus {
+        color: @brand-success;
+        border-color: @brand-success;
+    }
+}
+
+.btn-mt-success-light {
+    color: #fff;
+    background-color: @brand-success;
+    border: solid 1px @brand-success;
+    &:hover,
+    &:focus {
+        color: #333;
+        background-color: @brand-success;
+        border-color: @brand-success;
+    }
+}
+
+.btn-mt-o-primary {
+    color: @brand-primary;
+    border: solid 1px @brand-primary;
+    &:focus {
+        color: @brand-primary;
+        border-color: @brand-primary;
+    }
+}
+
+.btn-mt-o-light {
+    color: #fff !important;
+    border: solid 1px #fff !important;
+    &:focus {
+        color: #fff !important;
+        border-color: #fff !important;
+    }
+}
+
+.btn-bold {
+    font-weight: 500;
+}
