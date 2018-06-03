@@ -1079,7 +1079,7 @@
     EXCHANGE_INVITATION_CONFIRM_OK: '兌換',
     EXCHANGE_INVITATION_CONFIRM_CANCEL: '取消',
     EXCHANGE_INVITATION_CONFIRM_HEADER_TEXT: '兌換確認',
-    EXCHANGE_INVITATION_CONFIRM_BODY_TEXT: '您確定要花 {{score}} 積分來兌換一個限時邀請麼?',
+    EXCHANGE_INVITATION_CONFIRM_BODY_TEXT: '您確定要使用 {{score}} 積分來兌換一個有效期為 {{hours}} 小時的邀請麼?',
     EXCHANGE_INVITATION_SUCCESSFULLY: '限時邀請兌換成功',
     EXCHANGE_INVITATION_ERROR: '限時邀請兌換失敗',
     INVITE_CLOSED: '邀請功能已關閉, 現在不能使用積分兌換邀請 ...',

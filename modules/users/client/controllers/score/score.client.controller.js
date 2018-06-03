@@ -111,7 +111,7 @@
         closeButtonText: $translate.instant('EXCHANGE_INVITATION_CONFIRM_CANCEL'),
         actionButtonText: $translate.instant('EXCHANGE_INVITATION_CONFIRM_OK'),
         headerText: $translate.instant('EXCHANGE_INVITATION_CONFIRM_HEADER_TEXT'),
-        bodyText: $translate.instant('EXCHANGE_INVITATION_CONFIRM_BODY_TEXT', {score: vm.inviteConfig.scoreExchange})
+        bodyText: $translate.instant('EXCHANGE_INVITATION_CONFIRM_BODY_TEXT', {score: vm.inviteConfig.scoreExchange, hours: vm.inviteConfig.expires_str})
       };
 
       ModalConfirmService.showModal({}, modalOptions)

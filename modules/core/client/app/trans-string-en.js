@@ -1079,7 +1079,7 @@
     EXCHANGE_INVITATION_CONFIRM_OK: 'Exchange',
     EXCHANGE_INVITATION_CONFIRM_CANCEL: 'Cancel',
     EXCHANGE_INVITATION_CONFIRM_HEADER_TEXT: 'Exchange Confirm',
-    EXCHANGE_INVITATION_CONFIRM_BODY_TEXT: 'Are you sure want to exchange an invitation with {{score}} scores?',
+    EXCHANGE_INVITATION_CONFIRM_BODY_TEXT: 'Are you sure you want to pay {{score}} scores to redeem an invitation that is valid for {{hours}} hours?',
     EXCHANGE_INVITATION_SUCCESSFULLY: 'Exchange invitation successfully',
     EXCHANGE_INVITATION_ERROR: 'Exchange invitation failed',
     INVITE_CLOSED: 'The invitation function is closed and you cannot exchange an invitations ...',
