@@ -8,7 +8,7 @@
     applicationModuleName: applicationModuleName,
     applicationModuleVendorDependencies: ['ngResource', 'ngAnimate', 'ngMessages', 'ui.router', 'ui.bootstrap', 'ngFileUpload', 'ui-notification',
       'LocalStorageModule', 'pascalprecht.translate', 'angularMoment', 'ngFileSaver', 'ngSanitize', 'uiCropper', 'hc.marked', 'angular-json-tree',
-      'ngSideOverlay', 'ngProgress', 'ui.codemirror', 'angularLazyImg', 'sprintf', 'angular-cache', 'angular.filter'],
+      'ngSideOverlay', 'ngProgress', 'ui.codemirror', 'angularLazyImg', 'sprintf', 'angular-cache', 'angular.filter', 'chart.js'],
     registerModule: registerModule
   };
 

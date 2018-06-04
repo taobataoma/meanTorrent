@@ -42,7 +42,8 @@
     "angular-lazy-img": "^1.5.1",
     "sprintf": "^1.1.1",
     "angular-cache": "^4.6.0",
-    "angular-filter": "^0.5.17"
+    "angular-filter": "^0.5.17",
+    "angular-chart.js": "^1.1.1"
   },
   "overrides": {
     "bootstrap": {

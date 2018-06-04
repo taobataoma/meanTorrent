@@ -96,7 +96,10 @@ module.exports = {
         //angular-cache
         'public/lib/angular-cache/dist/angular-cache.js',
         //angular-filter
-        'public/lib/angular-filter/dist/angular-filter.js'
+        'public/lib/angular-filter/dist/angular-filter.js',
+        //charts
+        'public/lib/chart.js/dist/Chart.js',
+        'public/lib/angular-chart.js/dist/angular-chart.js'
 
         // endbower
       ],
