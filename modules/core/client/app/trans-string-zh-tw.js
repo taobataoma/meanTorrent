@@ -88,6 +88,7 @@
     MENU_MESSAGE_BOX: '站內訊息',
     MENU_SCORE_LEVEL: '積分等級',
     MENU_MY_INVITE: '我的邀請',
+    MENU_MY_DATA_CENTER: '數據中心',
     MENU_ACCOUNT_STATUS: '帳戶狀態',
     EDIT_PROFILE: '修改個人資訊',
     EDIT_PROFILE_PIC: '修改個人頭像',
@@ -289,7 +290,8 @@
       MY_FOLLOWING: '我關注的',
       USER_FOLLOWERS: '關注他的',
       USER_FOLLOWING: '他的關注',
-      ADMIN_TICKETS: '客戶服務中心'
+      ADMIN_TICKETS: '客戶服務中心',
+      DATA_CENTER: '用戶數據中心'
     },
 
     //sign in, sign up, password
@@ -1448,6 +1450,23 @@
         TOPIC_THUMBS_UP: '點贊並贈送積分: {{number}}',
         HAS_ATTACH: '包含附件'
       }
+    },
+
+    // data center
+    DATA_CENTER: {
+      ITEM_SCORE: '積分數據分析',
+      ITEM_UPLOADED: '上傳量數據分析',
+      ITEM_DOWNLOADED: '下載量數據分析',
+      LAST_30_DAYS_DATA_SCORE: '最近30天的積分數據',
+      LAST_30_DAYS_DATA_UPLOADED: '最近30天的上傳量數據',
+      LAST_30_DAYS_DATA_DOWNLOADED: '最近30天的下載量數據',
+      LAST_12_MONTHS_DATA_SCORE: '最近12個月的積分數據',
+      LAST_12_MONTHS_DATA_UPLOADED: '最近12個月的上傳量數據',
+      LAST_12_MONTHS_DATA_DOWNLOADED: '最近12個月的下載量量數據',
+      GET_USER_LOGS_ERROR: '獲取用戶日誌數據失敗',
+      SERIES_SCORE: '積分',
+      SERIES_UPLOADED: '上傳量',
+      SERIES_DOWNLOADED: '下載量'
     },
 
     //status pages

@@ -29,6 +29,7 @@
     vm.scoreMenu = menuService.getMenu('mt-user').items[1];
     vm.followMenu = menuService.getMenu('mt-user').items[2];
     vm.inviteMenu = menuService.getMenu('mt-invite').items[0];
+    vm.dataCenterMenu = menuService.getMenu('mt-data-log');
     vm.authentication = Authentication;
     vm.isCollapsed = false;
     vm.menu = menuService.getMenu('topbar');

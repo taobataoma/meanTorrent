@@ -139,7 +139,7 @@
         vm.myBuildPager();
         vm.buildPager();
       }, function (res) {
-        NotifycationService.showErrorNotify('GET_INVITATIONS_ERROR');
+        NotifycationService.showErrorNotify(res.data.message, 'GET_INVITATIONS_ERROR');
       });
     };
 

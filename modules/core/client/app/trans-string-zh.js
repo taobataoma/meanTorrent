@@ -88,6 +88,7 @@
     MENU_MESSAGE_BOX: '站内消息',
     MENU_SCORE_LEVEL: '积分等级',
     MENU_MY_INVITE: '我的邀请',
+    MENU_MY_DATA_CENTER: '数据中心',
     MENU_ACCOUNT_STATUS: '帐户状态',
     EDIT_PROFILE: '修改个人信息',
     EDIT_PROFILE_PIC: '修改个人头像',
@@ -289,7 +290,8 @@
       MY_FOLLOWING: '我关注的',
       USER_FOLLOWERS: '关注他的',
       USER_FOLLOWING: '他的关注',
-      ADMIN_TICKETS: '客户服务中心'
+      ADMIN_TICKETS: '客户服务中心',
+      DATA_CENTER: '用户数据中心'
     },
 
     //sign in, sign up, password
@@ -1448,6 +1450,23 @@
         TOPIC_THUMBS_UP: '点赞并赠送积分: {{number}}',
         HAS_ATTACH: '包含附件'
       }
+    },
+
+    // data center
+    DATA_CENTER: {
+      ITEM_SCORE: '积分数据分析',
+      ITEM_UPLOADED: '上传量数据分析',
+      ITEM_DOWNLOADED: '下载量数据分析',
+      LAST_30_DAYS_DATA_SCORE: '最近30天的积分数据',
+      LAST_30_DAYS_DATA_UPLOADED: '最近30天的上传量数据',
+      LAST_30_DAYS_DATA_DOWNLOADED: '最近30天的下载量数据',
+      LAST_12_MONTHS_DATA_SCORE: '最近12个月的积分数据',
+      LAST_12_MONTHS_DATA_UPLOADED: '最近12个月的上传量数据',
+      LAST_12_MONTHS_DATA_DOWNLOADED: '最近12个月的下载量数据',
+      GET_USER_LOGS_ERROR: '获取用户日志数据失败',
+      SERIES_SCORE: '积分',
+      SERIES_UPLOADED: '上传量',
+      SERIES_DOWNLOADED: '下载量'
     },
 
     //status pages

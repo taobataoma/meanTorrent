@@ -1,0 +1,17 @@
+<section class="container padding-top-30">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group panel-menu-list">
+                <a ui-sref="dataCenter.score" class="list-group-item"
+                   ui-sref-active="active">{{'DATA_CENTER.ITEM_SCORE' | translate}}</a>
+                <a ui-sref="dataCenter.uploaded" class="list-group-item"
+                   ui-sref-active="active">{{'DATA_CENTER.ITEM_UPLOADED' | translate}}</a>
+                <a ui-sref="dataCenter.downloaded" class="list-group-item"
+                   ui-sref-active="active">{{'DATA_CENTER.ITEM_DOWNLOADED' | translate}}</a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div ui-view></div>
+        </div>
+    </div>
+</section>

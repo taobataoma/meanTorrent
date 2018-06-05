@@ -88,6 +88,7 @@
     MENU_MESSAGE_BOX: 'Message Box',
     MENU_SCORE_LEVEL: 'Score Level',
     MENU_MY_INVITE: 'My Invitations',
+    MENU_MY_DATA_CENTER: 'Data center',
     MENU_ACCOUNT_STATUS: 'Account Status',
     EDIT_PROFILE: 'Edit Profile',
     EDIT_PROFILE_PIC: 'Edit Profile Picture',
@@ -289,7 +290,8 @@
       MY_FOLLOWING: 'My Following',
       USER_FOLLOWERS: 'User`s Followers',
       USER_FOLLOWING: 'User`s Following',
-      ADMIN_TICKETS: 'Support Services Center'
+      ADMIN_TICKETS: 'Support Services Center',
+      DATA_CENTER: 'User Data Center'
     },
 
     //sign in, sign up, password
@@ -1448,6 +1450,23 @@
         TOPIC_THUMBS_UP: 'thumbs up and donate score: {{number}}',
         HAS_ATTACH: 'has attach files'
       }
+    },
+
+    // data center
+    DATA_CENTER: {
+      ITEM_SCORE: 'Score data analysis',
+      ITEM_UPLOADED: 'Uploaded data analysis',
+      ITEM_DOWNLOADED: 'Downloaded data analysis',
+      LAST_30_DAYS_DATA_SCORE: 'The last 30 days score data',
+      LAST_30_DAYS_DATA_UPLOADED: 'The last 30 days uploaded data',
+      LAST_30_DAYS_DATA_DOWNLOADED: 'The last 30 days downloaded data',
+      LAST_12_MONTHS_DATA_SCORE: 'The last 12 months score data',
+      LAST_12_MONTHS_DATA_UPLOADED: 'The last 12 months uploaded data',
+      LAST_12_MONTHS_DATA_DOWNLOADED: 'The last 12 months downloaded data',
+      GET_USER_LOGS_ERROR: 'Get user logs data failed',
+      SERIES_SCORE: 'score',
+      SERIES_UPLOADED: 'uploaded',
+      SERIES_DOWNLOADED: 'downloaded'
     },
 
     //status pages

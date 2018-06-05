@@ -103,7 +103,8 @@ module.exports = {
      * @announcePrefix:                       prefix of torrent file name, is will auto add when user download the torrent files
      * @clientBlackListUrl:                   forbidden download client list url, user can view this list to check forbidden client software
      * @announceLogDays:                      setting of days to write announce log to db, because the data is too more too big, do not to set a big value
-     * @daysLogMonths:                        setting of months to write user days log
+     * @userDaysLogDays:                      setting of days to write user days log
+     * @userMonthsLogMonths:                  setting of months to write user months log
      * @seedingInFinishedCheck:               settings to check whether can seeding an un-download finished torrent
      * @downloadCheck:                        announce download(leech) settings
      *      @ratio:                           if less than this value, can not download(leech)
@@ -137,7 +138,8 @@ module.exports = {
       sourceInfo: '{MEAN.im} Present by meanTorrent.',
       clientBlackListUrl: '/about/black',
       announceLogDays: 30,
-      daysLogMonths: 12,
+      userDaysLogDays: 30,
+      userMonthsLogMonths: 12,
       seedingInFinishedCheck: true,
       downloadCheck: {
         ratio: 1,

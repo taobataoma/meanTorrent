@@ -1,0 +1,25 @@
+<section class="data-center" ng-controller="DataCenterController as vm">
+    <div class="panel panel-default" ng-init="vm.getUserDaysLogs()">
+        <div class="panel-heading"><i class="fa fa-line-chart text-mt"></i>&emsp;{{'DATA_CENTER.LAST_30_DAYS_DATA_SCORE' | translate}}</div>
+        <div class="panel-body">
+            <!--<p>...</p>-->
+        </div>
+
+        <div class="chart-logs">
+            <canvas class="chart chart-line" chart-data="vm.userDaysLogsData.data.score" chart-labels="vm.userDaysLogsData.labels"
+                    chart-series="vm.userDaysLogsData.series.score" chart-click=""></canvas>
+        </div>
+    </div>
+
+    <div class="panel panel-default" ng-init="vm.getUserMonthsLogs()">
+        <div class="panel-heading"><i class="fa fa-line-chart text-mt"></i>&emsp;{{'DATA_CENTER.LAST_12_MONTHS_DATA_SCORE' | translate}}</div>
+        <div class="panel-body">
+            <!--<p>...</p>-->
+        </div>
+
+        <div class="chart-logs">
+            <canvas class="chart chart-line" chart-data="vm.userMonthsLogsData.data.score" chart-labels="vm.userMonthsLogsData.labels"
+                    chart-series="vm.userMonthsLogsData.series.score" chart-click=""></canvas>
+        </div>
+    </div>
+</section>
