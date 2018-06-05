@@ -49,8 +49,19 @@ var UserDaysLogSchema = new Schema({
     type: Date,
     default: Date.now
   }
-}, {usePushEach: true});
+}, {
+  usePushEach: true,
+  toObject: {
+    virtuals: true
+  },
+  toJSON: {
+    virtuals: true
+  }
+});
 
+UserDaysLogSchema.virtual('ymd').get(function () {
+  return this.year + '-' + (this.month < 10 ? '0' + this.month : this.month) + '-' + (this.date < 10 ? '0' + this.date : this.date);
+});
 
 UserDaysLogSchema.index({user: 1, year: 1, month: 1, day: 1});
 

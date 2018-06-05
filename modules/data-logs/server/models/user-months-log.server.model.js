@@ -45,8 +45,20 @@ var UserMonthsLogSchema = new Schema({
     type: Date,
     default: Date.now
   }
-}, {usePushEach: true});
+}, {
+  usePushEach: true,
+  toObject: {
+    virtuals: true
+  },
+  toJSON: {
+    virtuals: true
+  }
+});
 
+
+UserMonthsLogSchema.virtual('ym').get(function () {
+  return this.year + '-' + (this.month < 10 ? '0' + this.month : this.month);
+});
 
 UserMonthsLogSchema.index({user: 1, year: 1, month: 1});
 
