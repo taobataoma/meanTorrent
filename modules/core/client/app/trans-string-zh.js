@@ -1473,7 +1473,9 @@
       SERIES_SCORE: '积分',
       SERIES_UPLOADED: '上传量',
       SERIES_DOWNLOADED: '下载量',
-      LEGEND_UNIT: ' (单位: GB)'
+      LEGEND_UNIT: ' (单位: GB)',
+      UPLOADED_LOGS_HELP: '只列出通过客户端软件上报的上传量数据',
+      DOWNLOADED_LOGS_HELP: '只列出通过客户端软件上报的下载量数据'
     },
 
     //score log

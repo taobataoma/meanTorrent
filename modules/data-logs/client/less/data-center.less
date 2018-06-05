@@ -3,6 +3,13 @@
 .data-center {
     .panel-heading {
         font-size: 16px;
+        position: relative;
+        .logs-help {
+            position: absolute;
+            right: 10px;
+            top: 12px;
+            color: @brand-primary;
+        }
     }
     .chart-logs {
         padding: 20px;
@@ -49,6 +56,11 @@
                     border-bottom: dotted 1px #dedede;
                 }
             }
+        }
+    }
+    .tooltip {
+        .tooltip-inner {
+            min-width: 300px;
         }
     }
 }

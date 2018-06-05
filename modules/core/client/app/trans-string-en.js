@@ -1473,7 +1473,9 @@
       SERIES_SCORE: 'score',
       SERIES_UPLOADED: 'uploaded',
       SERIES_DOWNLOADED: 'downloaded',
-      LEGEND_UNIT: ' (unit: GB)'
+      LEGEND_UNIT: ' (unit: GB)',
+      UPLOADED_LOGS_HELP: 'Only list uploaded data by client announced',
+      DOWNLOADED_LOGS_HELP: 'Only list downloaded data by client announced'
     },
 
     //score log
@@ -1499,7 +1501,7 @@
       ACTIVE_IDLE_ACCOUNT: 'Active account idle status',
       DAILY_CHECK_IN: 'Daily check in',
       SEED_TIMED: 'Torrent seeding timed increased score <a href=/torrents/{{tid}}>{{tid}}',
-      SEED_UP_DOWNLOAD: 'Torrent seeding and leeching data transfer score <a href=/torrents/{{tid}}>{{tid}}'
+      SEED_UP_DOWNLOAD: 'Torrent seeding and leeching data transfer score <a href=/torrents/{{tid}}>{{tid}}',
       ANNOUNCE_UPLOAD_LOGS: 'Client announce uploaded data',
       ANNOUNCE_DOWNLOAD_LOGS: 'Client announce downloaded data'
     },

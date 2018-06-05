@@ -1,7 +1,7 @@
 <section class="data-center" ng-controller="DataCenterController as vm">
     <div class="panel panel-default" ng-init="vm.getUserDaysLogs()">
         <div class="panel-heading">
-            <i class="fa fa-line-chart text-mt"></i>&emsp;
+            <i class="fa fa-line-chart text-mt" aria-hidden="true"></i>&emsp;
             <span translate="DATA_CENTER.LAST_DAYS_DATA_DOWNLOADED" translate-values="{days: vm.announceConfig.userDaysLogDays}"></span>
         </div>
         <div class="panel-body">

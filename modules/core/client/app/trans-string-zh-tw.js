@@ -1473,7 +1473,9 @@
       SERIES_SCORE: '積分',
       SERIES_UPLOADED: '上傳量',
       SERIES_DOWNLOADED: '下載量',
-      LEGEND_UNIT: ' (單位: GB)'
+      LEGEND_UNIT: ' (單位: GB)',
+      UPLOADED_LOGS_HELP: '只列出通過客戶端軟件上報的上傳量數據',
+      DOWNLOADED_LOGS_HELP: '只列出通過客戶端軟件上報的下載量數據'
     },
 
     //score log
