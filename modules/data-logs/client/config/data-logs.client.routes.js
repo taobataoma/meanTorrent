@@ -39,6 +39,27 @@
         data: {
           pageTitle: 'PAGETITLE.DATA_CENTER'
         }
+      })
+      .state('dataCenter.scoreHistory', {
+        url: '/scoreHistory',
+        templateUrl: '/modules/data-logs/client/views/data-score-history.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.DATA_CENTER'
+        }
+      })
+      .state('dataCenter.uploadedHistory', {
+        url: '/uploadedHistory',
+        templateUrl: '/modules/data-logs/client/views/data-uploaded-history.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.DATA_CENTER'
+        }
+      })
+      .state('dataCenter.downloadedHistory', {
+        url: '/downloadedHistory',
+        templateUrl: '/modules/data-logs/client/views/data-downloaded-history.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.DATA_CENTER'
+        }
       });
   }
 }());

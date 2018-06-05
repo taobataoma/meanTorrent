@@ -1455,18 +1455,25 @@
     // data center
     DATA_CENTER: {
       ITEM_SCORE: 'Score data analysis',
+      ITEM_SCORE_HISTORY: 'Score data history',
       ITEM_UPLOADED: 'Uploaded data analysis',
+      ITEM_UPLOADED_HISTORY: 'Uploaded data history',
       ITEM_DOWNLOADED: 'Downloaded data analysis',
-      LAST_30_DAYS_DATA_SCORE: 'The last 30 days score data',
-      LAST_30_DAYS_DATA_UPLOADED: 'The last 30 days uploaded data',
-      LAST_30_DAYS_DATA_DOWNLOADED: 'The last 30 days downloaded data',
-      LAST_12_MONTHS_DATA_SCORE: 'The last 12 months score data',
-      LAST_12_MONTHS_DATA_UPLOADED: 'The last 12 months uploaded data',
-      LAST_12_MONTHS_DATA_DOWNLOADED: 'The last 12 months downloaded data',
+      ITEM_DOWNLOADED_HISTORY: 'Downloaded data history',
+      LAST_DAYS_DATA_SCORE: 'The last {{days}} days score data',
+      LAST_DAYS_DATA_UPLOADED: 'The last {{days}} days uploaded data',
+      LAST_DAYS_DATA_DOWNLOADED: 'The last {{days}} days downloaded data',
+      LAST_DAYS_DATA_SCORE_HISTORY: 'The last {{days}} days score data history',
+      LAST_DAYS_DATA_UPLOADED_HISTORY: 'The last {{days}} days upload data history',
+      LAST_DAYS_DATA_DOWNLOADED_HISTORY: 'The last {{days}} days downloaded data history',
+      LAST_MONTHS_DATA_SCORE: 'The last {{months}} months score data',
+      LAST_MONTHS_DATA_UPLOADED: 'The last {{months}} months uploaded data',
+      LAST_MONTHS_DATA_DOWNLOADED: 'The last {{months}} months downloaded data',
       GET_USER_LOGS_ERROR: 'Get user logs data failed',
       SERIES_SCORE: 'score',
       SERIES_UPLOADED: 'uploaded',
-      SERIES_DOWNLOADED: 'downloaded'
+      SERIES_DOWNLOADED: 'downloaded',
+      LEGEND_UNIT: ' (unit: GB)'
     },
 
     //status pages

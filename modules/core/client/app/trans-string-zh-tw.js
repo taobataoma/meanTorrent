@@ -1455,18 +1455,25 @@
     // data center
     DATA_CENTER: {
       ITEM_SCORE: '積分數據分析',
+      ITEM_SCORE_HISTORY: '積分數據歷史',
       ITEM_UPLOADED: '上傳量數據分析',
+      ITEM_UPLOADED_HISTORY: '上傳量數據歷史',
       ITEM_DOWNLOADED: '下載量數據分析',
-      LAST_30_DAYS_DATA_SCORE: '最近30天的積分數據',
-      LAST_30_DAYS_DATA_UPLOADED: '最近30天的上傳量數據',
-      LAST_30_DAYS_DATA_DOWNLOADED: '最近30天的下載量數據',
-      LAST_12_MONTHS_DATA_SCORE: '最近12個月的積分數據',
-      LAST_12_MONTHS_DATA_UPLOADED: '最近12個月的上傳量數據',
-      LAST_12_MONTHS_DATA_DOWNLOADED: '最近12個月的下載量量數據',
+      ITEM_DOWNLOADED_HISTORY: '下載量數據歷史',
+      LAST_DAYS_DATA_SCORE: '最近{{days}}天的積分數據',
+      LAST_DAYS_DATA_UPLOADED: '最近{{days}}天的上傳量數據',
+      LAST_DAYS_DATA_DOWNLOADED: '最近{{days}}天的下載量數據',
+      LAST_DAYS_DATA_SCORE_HISTORY: '最近{{days}}天的積分數據歷史',
+      LAST_DAYS_DATA_UPLOADED_HISTORY: '最近{{days}}天的上傳量數據歷史',
+      LAST_DAYS_DATA_DOWNLOADED_HISTORY: '最近{{days}}天的下載量數據歷史',
+      LAST_MONTHS_DATA_SCORE: '最近{{months}}個月的積分數據',
+      LAST_MONTHS_DATA_UPLOADED: '最近{{months}}個月的上傳量數據',
+      LAST_MONTHS_DATA_DOWNLOADED: '最近{{months}}個月的下載量量數據',
       GET_USER_LOGS_ERROR: '獲取用戶日誌數據失敗',
       SERIES_SCORE: '積分',
       SERIES_UPLOADED: '上傳量',
-      SERIES_DOWNLOADED: '下載量'
+      SERIES_DOWNLOADED: '下載量',
+      LEGEND_UNIT: ' (單位: GB)'
     },
 
     //status pages

@@ -14,6 +14,14 @@
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
+    vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
+
+    /**
+     * $scope.$on('chart-create')
+     */
+    $scope.$on('chart-create', function (evt, chart) {
+      chart.generateLegend();
+    });
 
     /**
      * getUserDaysLogs
@@ -43,13 +51,32 @@
           downloaded: []
         },
         data: {
-          score: [],
-          uploaded: [],
-          downloaded: []
+          score: [[]],
+          uploaded: [[]],
+          downloaded: [[]]
+        },
+        colors: {
+          score: ['rgb(255,102,0)']
+        },
+        options: {
+          legendCallback: function (chart) {
+            angular.forEach(chart.legend.legendItems, function (l) {
+              switch (l.text) {
+                case $translate.instant('DATA_CENTER.SERIES_UPLOADED'):
+                case $translate.instant('DATA_CENTER.SERIES_DOWNLOADED'):
+                  l.text += $translate.instant('DATA_CENTER.LEGEND_UNIT');
+              }
+            });
+          },
+          legend: {
+            display: true,
+          },
+          tooltips: {
+            intersect: false
+          }
         }
       };
 
-      //labels
       //labels
       for (var i = vm.announceConfig.userDaysLogDays - 1; i >= 0; i--) {
         logsData.labels.push(moment().subtract(i, 'days').format('YYYY-MM-DD'));
@@ -69,21 +96,21 @@
         }).reduce(function (a, b) {
           return a + b;
         }) : 0;
-        logsData.data.score.push(labScore);
+        logsData.data.score[0].push(labScore);
 
         var labUploaded = labItems.length > 0 ? labItems.map(function (x) {
           return x.uploaded;
         }).reduce(function (a, b) {
           return a + b;
         }) : 0;
-        logsData.data.uploaded.push(Math.round(labUploaded / (1024 * 1024 * 1024) * 100) / 100);
+        logsData.data.uploaded[0].push(Math.round(labUploaded / (1024 * 1024 * 1024) * 100) / 100);
 
         var labDownloaded = labItems.length > 0 ? labItems.map(function (x) {
           return x.downloaded;
         }).reduce(function (a, b) {
           return a + b;
         }) : 0;
-        logsData.data.downloaded.push(Math.round(labDownloaded / (1024 * 1024 * 1024) * 100) / 100);
+        logsData.data.downloaded[0].push(Math.round(labDownloaded / (1024 * 1024 * 1024) * 100) / 100);
       });
 
       return logsData;
@@ -117,9 +144,29 @@
           downloaded: []
         },
         data: {
-          score: [],
-          uploaded: [],
-          downloaded: []
+          score: [[]],
+          uploaded: [[]],
+          downloaded: [[]]
+        },
+        colors: {
+          score: ['rgb(255,102,0)']
+        },
+        options: {
+          legendCallback: function (chart) {
+            angular.forEach(chart.legend.legendItems, function (l) {
+              switch (l.text) {
+                case $translate.instant('DATA_CENTER.SERIES_UPLOADED'):
+                case $translate.instant('DATA_CENTER.SERIES_DOWNLOADED'):
+                  l.text += $translate.instant('DATA_CENTER.LEGEND_UNIT');
+              }
+            });
+          },
+          legend: {
+            display: true,
+          },
+          tooltips: {
+            intersect: false
+          }
         }
       };
 
@@ -142,25 +189,31 @@
         }).reduce(function (a, b) {
           return a + b;
         }) : 0;
-        logsData.data.score.push(labScore);
+        logsData.data.score[0].push(labScore);
 
         var labUploaded = labItems.length > 0 ? labItems.map(function (x) {
           return x.uploaded;
         }).reduce(function (a, b) {
           return a + b;
         }) : 0;
-        logsData.data.uploaded.push(Math.round(labUploaded / (1024 * 1024 * 1024) * 100) / 100);
+        logsData.data.uploaded[0].push(Math.round(labUploaded / (1024 * 1024 * 1024) * 100) / 100);
 
         var labDownloaded = labItems.length > 0 ? labItems.map(function (x) {
           return x.downloaded;
         }).reduce(function (a, b) {
           return a + b;
         }) : 0;
-        logsData.data.downloaded.push(Math.round(labDownloaded / (1024 * 1024 * 1024) * 100) / 100);
+        logsData.data.downloaded[0].push(Math.round(labDownloaded / (1024 * 1024 * 1024) * 100) / 100);
       });
 
       return logsData;
     }
 
+    /**
+     * getUserScoreHistory
+     */
+    vm.getUserScoreHistory = function () {
+
+    };
   }
 }());

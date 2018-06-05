@@ -1,25 +1,33 @@
 <section class="data-center" ng-controller="DataCenterController as vm">
     <div class="panel panel-default" ng-init="vm.getUserDaysLogs()">
-        <div class="panel-heading"><i class="fa fa-line-chart text-mt"></i>&emsp;{{'DATA_CENTER.LAST_30_DAYS_DATA_DOWNLOADED' | translate}}</div>
+        <div class="panel-heading">
+            <i class="fa fa-line-chart text-mt"></i>&emsp;
+            <span translate="DATA_CENTER.LAST_DAYS_DATA_DOWNLOADED" translate-values="{days: vm.announceConfig.userDaysLogDays}"></span>
+        </div>
         <div class="panel-body">
             <!--<p>...</p>-->
         </div>
 
         <div class="chart-logs">
             <canvas class="chart chart-line" chart-data="vm.userDaysLogsData.data.downloaded" chart-labels="vm.userDaysLogsData.labels"
-                    chart-series="vm.userDaysLogsData.series.downloaded" chart-click=""></canvas>
+                    chart-series="vm.userDaysLogsData.series.downloaded" chart-options="vm.userDaysLogsData.options"
+                    chart-colors="vm.userDaysLogsData.colors.score" chart-click=""></canvas>
         </div>
     </div>
 
     <div class="panel panel-default" ng-init="vm.getUserMonthsLogs()">
-        <div class="panel-heading"><i class="fa fa-line-chart text-mt"></i>&emsp;{{'DATA_CENTER.LAST_12_MONTHS_DATA_DOWNLOADED' | translate}}</div>
+        <div class="panel-heading">
+            <i class="fa fa-line-chart text-mt"></i>&emsp;
+            <span translate="DATA_CENTER.LAST_MONTHS_DATA_DOWNLOADED" translate-values="{months: vm.announceConfig.userMonthsLogMonths}"></span>
+        </div>
         <div class="panel-body">
             <!--<p>...</p>-->
         </div>
 
         <div class="chart-logs">
             <canvas class="chart chart-line" chart-data="vm.userMonthsLogsData.data.downloaded" chart-labels="vm.userMonthsLogsData.labels"
-                    chart-series="vm.userMonthsLogsData.series.downloaded" chart-click=""></canvas>
+                    chart-series="vm.userMonthsLogsData.series.downloaded" chart-options="vm.userDaysLogsData.options"
+                    chart-colors="vm.userDaysLogsData.colors.score" chart-click=""></canvas>
         </div>
     </div>
 </section>

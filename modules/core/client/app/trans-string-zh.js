@@ -1455,18 +1455,25 @@
     // data center
     DATA_CENTER: {
       ITEM_SCORE: '积分数据分析',
+      ITEM_SCORE_HISTORY: '积分数据历史',
       ITEM_UPLOADED: '上传量数据分析',
+      ITEM_UPLOADED_HISTORY: '上传量数据历史',
       ITEM_DOWNLOADED: '下载量数据分析',
-      LAST_30_DAYS_DATA_SCORE: '最近30天的积分数据',
-      LAST_30_DAYS_DATA_UPLOADED: '最近30天的上传量数据',
-      LAST_30_DAYS_DATA_DOWNLOADED: '最近30天的下载量数据',
-      LAST_12_MONTHS_DATA_SCORE: '最近12个月的积分数据',
-      LAST_12_MONTHS_DATA_UPLOADED: '最近12个月的上传量数据',
-      LAST_12_MONTHS_DATA_DOWNLOADED: '最近12个月的下载量数据',
+      ITEM_DOWNLOADED_HISTORY: '下载量数据历史',
+      LAST_DAYS_DATA_SCORE: '最近{{days}}天的积分数据',
+      LAST_DAYS_DATA_UPLOADED: '最近{{days}}天的上传量数据',
+      LAST_DAYS_DATA_DOWNLOADED: '最近{{days}}天的下载量数据',
+      LAST_DAYS_DATA_SCORE_HISTORY: '最近{{days}}天的积分数据历史',
+      LAST_DAYS_DATA_UPLOADED_HISTORY: '最近{{days}}天的上传量数据历史',
+      LAST_DAYS_DATA_DOWNLOADED_HISTORY: '最近{{days}}天的下载量数据历史',
+      LAST_MONTHS_DATA_SCORE: '最近{{months}}个月的积分数据',
+      LAST_MONTHS_DATA_UPLOADED: '最近{{months}}个月的上传量数据',
+      LAST_MONTHS_DATA_DOWNLOADED: '最近{{months}}个月的下载量数据',
       GET_USER_LOGS_ERROR: '获取用户日志数据失败',
       SERIES_SCORE: '积分',
       SERIES_UPLOADED: '上传量',
-      SERIES_DOWNLOADED: '下载量'
+      SERIES_DOWNLOADED: '下载量',
+      LEGEND_UNIT: ' (单位: GB)'
     },
 
     //status pages
