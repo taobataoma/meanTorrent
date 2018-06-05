@@ -18,7 +18,8 @@ exports.invokeRolesPolicies = function () {
         roles: ['user', 'admin', 'oper'],
         allows: [
           {resources: '/api/userDaysLogs/:userId', permissions: ['get']},
-          {resources: '/api/userMonthsLogs/:userId', permissions: ['get']}
+          {resources: '/api/userMonthsLogs/:userId', permissions: ['get']},
+          {resources: '/api/userScoreLogs/:userId', permissions: ['get']}
         ]
       }
     ]

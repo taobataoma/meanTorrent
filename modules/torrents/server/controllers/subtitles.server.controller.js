@@ -71,7 +71,7 @@ exports.create = function (req, res) {
           } else {
             Torrent.populate(torrent._subtitles, {
               path: 'user',
-              select: 'displayName profileImageURL uploaded downloaded'
+              select: 'username displayName profileImageURL isVip score uploaded downloaded'
             }, function (err, t) {
               if (err) {
                 return res.status(422).send({
@@ -80,7 +80,12 @@ exports.create = function (req, res) {
               } else {
                 res.status(200).send(torrent);
 
-                scoreUpdate(req, req.user, scoreConfig.action.uploadSubtitle);
+                //score update
+                var act = scoreConfig.action.uploadSubtitle;
+                act.params = {
+                  tid: torrent._id
+                };
+                scoreUpdate(req, req.user, act);
 
                 //add server message
                 if (serverNoticeConfig.action.torrentSubtitleNew.enable && !torrent.user._id.equals(req.user._id)) {
@@ -158,7 +163,12 @@ exports.delete = function (req, res) {
 
       res.json(torrent);
 
-      scoreUpdate(req, torrent.user, scoreConfig.action.uploadSubtitleBeDeleted);
+      //score update
+      var act = scoreConfig.action.uploadSubtitleBeDeleted;
+      act.params = {
+        tid: torrent._id
+      };
+      scoreUpdate(req, r.user, act);
 
       //add server message
       if (serverNoticeConfig.action.torrentSubtitleDeleted.enable) {

@@ -749,6 +749,11 @@ exports.create = function (req, res) {
             $inc: {uptotal: 1}
           }).exec();
           //update maker torrent count
+          var act = scoreConfig.action.uploadTorrent;
+          act.params = {
+            tid: torrent._id
+          };
+
           if (torrent.maker) {
             Maker.update({_id: torrent.maker}, {
               $inc: {torrent_count: 1}
@@ -762,7 +767,7 @@ exports.create = function (req, res) {
               if (!err && m) {
                 torrent.update({torrent_status: 'reviewed'}).exec();
                 announceTorrentToIRC(torrent, req);
-                scoreUpdate(req, req.user, scoreConfig.action.uploadTorrent);
+                scoreUpdate(req, req.user, act);
               }
             });
           } else {
@@ -770,7 +775,7 @@ exports.create = function (req, res) {
             if (req.user.upload_access === 'pass') {
               torrent.update({torrent_status: 'reviewed'}).exec();
               announceTorrentToIRC(torrent, req);
-              scoreUpdate(req, req.user, scoreConfig.action.uploadTorrent);
+              scoreUpdate(req, req.user, act);
             }
           }
 
@@ -1151,8 +1156,14 @@ exports.thumbsUp = function (req, res) {
   } else {
     if (req.user.score >= thumb.score) {
       torrent._thumbs.push(thumb);
-      scoreUpdate(req, torrent.user, scoreConfig.action.thumbsUpScoreOfTorrentTo);
       save();
+
+      //score update
+      var act = scoreConfig.action.thumbsUpScoreOfTorrentTo;
+      act.params = {
+        tid: torrent._id
+      };
+      scoreUpdate(req, torrent.user, act);
 
       //add server message
       if (serverNoticeConfig.action.torrentThumbsUp.enable) {
@@ -1181,7 +1192,12 @@ exports.thumbsUp = function (req, res) {
       }
     });
 
-    scoreUpdate(req, user, scoreConfig.action.thumbsUpScoreOfTorrentFrom);
+    //score update
+    var act = scoreConfig.action.thumbsUpScoreOfTorrentFrom;
+    act.params = {
+      tid: torrent._id
+    };
+    scoreUpdate(req, user, act);
   }
 };
 
@@ -1299,7 +1315,13 @@ exports.setRecommendLevel = function (req, res) {
       } else {
         res.json(torrent);
 
-        scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrentBeRecommend);
+        if (torrent.torrent_recommended !== 'level0') {
+          var act = scoreConfig.action.uploadTorrentBeRecommend;
+          act.params = {
+            tid: torrent._id
+          };
+          scoreUpdate(req, torrent.user, act);
+        }
 
         //create trace log
         traceLogCreate(req, traceConfig.action.adminTorrentSetRecommendLevel, {
@@ -1362,7 +1384,11 @@ exports.setReviewedStatus = function (req, res) {
       res.json(torrent);
 
       announceTorrentToIRC(torrent, req);
-      scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrent);
+      var act = scoreConfig.action.uploadTorrent;
+      act.params = {
+        tid: torrent._id
+      };
+      scoreUpdate(req, torrent.user, act);
 
       //add server message
       if (serverNoticeConfig.action.torrentReviewed.enable) {
@@ -1496,7 +1522,11 @@ exports.delete = function (req, res) {
 
       //only update score when torrent status is reviewed
       if (torrent.torrent_status === 'reviewed') {
-        scoreUpdate(req, torrent.user, scoreConfig.action.uploadTorrentBeDeleted);
+        var act = scoreConfig.action.uploadTorrentBeDeleted;
+        act.params = {
+          tid: torrent._id
+        };
+        scoreUpdate(req, torrent.user, act);
       }
 
       //create trace log

@@ -943,7 +943,7 @@
                     </div>
                 </dd>
             </dl>
-            <div class="row margin-top-50">
+            <div class="row margin-top-30">
                 <div class="col-md-10 col-md-offset-1">
                     <ol class="subtitle-list">
                         <li class="h-line" ng-repeat="s in vm.torrentLocalInfo._subtitles">
@@ -956,7 +956,7 @@
                                 </span>
                                 <span class="glyphicon glyphicon-remove-circle delete-button"
                                       title="{{ 'SUBTITLE_DELETE_ICON_TITLE' | translate}}"
-                                      ng-if="s.user._id.toString()==vm.user._id || vm.user.roles[0] == 'admin'"
+                                      ng-if="s.user._id.toString()==vm.user._id || vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
                                       ng-click="vm.deleteSubtitle(s);">
                                 </span>
                             </div>

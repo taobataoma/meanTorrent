@@ -71,8 +71,12 @@ exports.removeWarning = function (req, res) {
           message: 'SERVER.SCORE_NOT_ENOUGH'
         });
       } else {
-        //update score
-        scoreUpdate(req, req.user, scoreConfig.action.scoreToRemoveWarning, -(hnrConfig.scoreToRemoveWarning));
+        //score update
+        var act = scoreConfig.action.scoreToRemoveWarning;
+        act.params = {
+          tid: comp.torrent
+        };
+        scoreUpdate(req, req.user, act, -(hnrConfig.scoreToRemoveWarning));
 
         comp.hnr_warning = false;
         comp.remove_warning_at = Date.now();

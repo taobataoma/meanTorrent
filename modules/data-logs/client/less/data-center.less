@@ -5,6 +5,44 @@
         font-size: 16px;
     }
     .chart-logs {
-        padding: 16px;
+        padding: 20px;
+    }
+    .use-logs-list {
+        padding: 0 20px;
+        .score-value {
+            min-width: 80px;
+            text-align: center;
+            display: inline-block;
+            position: relative;
+            color: @brand-success;
+            &:before {
+                content: '[';
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                color: #333;
+            }
+            &:after {
+                content: ']';
+                display: inline-block;
+                position: absolute;
+                right: 0;
+                color: #333;
+            }
+            &.subtract {
+                color: @brand-danger;
+            }
+        }
+        .use-logs-list-ol {
+            line-height: 2.2;
+            li {
+                &:hover {
+                    background-color: #f7f7f7;
+                }
+                &:not(:last-child) {
+                    border-bottom: dotted 1px #dedede;
+                }
+            }
+        }
     }
 }

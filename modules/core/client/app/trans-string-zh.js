@@ -1476,6 +1476,32 @@
       LEGEND_UNIT: ' (单位: GB)'
     },
 
+    //score log
+    SCORE_LOG: {
+      DEFAULT_ACTION: '未知事件获得的积分',
+      ADMIN_MODIFY: '管理员 <a href=/userinfo/{{uid}}>{{uname}}</a> 修改积分',
+      TRANSFER_SCORE_INTO_INVITER_FROM: '结算上个月的积分给您的邀请人 <a href=/userinfo/{{uid}}>{{uname}}</a>',
+      TRANSFER_SCORE_INTO_INVITER_TO: '系统发放被邀请用户 <a href=/userinfo/{{uid}}>{{uname}}</a> 上个月的积分奖励',
+      UPLOAD_TORRENT: '上传的种子被审核通过 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_TORRENT_BE_DELETED: '上传的种子被删除 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_TORRENT_BE_RECOMMEND: '上传的种子被推荐 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_SUBTITLE: '为种子上传字幕文件 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_SUBTITLE_BE_DELETED: '上传的字幕文件被删除 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TORRENT_FROM: '为种子点赞 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TORRENT_TO: '上传的种子收到一个赞 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TOPIC_FROM: '为论坛主题或回复点赞 <a href=/forums/{{fid}}/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TOPIC_TO: '发表的论坛主题或回复收到一个赞 <a href=/forums/{{fid}}/{{tid}}>{{tid}}</a>',
+      REQUEST_POST: '发布了一条求种请求 <a href=/requests/{{rid}}>{{rid}}',
+      REQUEST_ACCEPT_FROM: '接受了求种响应 <a href=/requests/{{rid}}>{{rid}}',
+      REQUEST_ACCEPT_TO: '您的响应被求种请求者接受 <a href=/requests/{{rid}}>{{rid}}',
+      SCORE_EXCHANGE_INVITATION: '兑换了一张邀请函',
+      SCORETO_REMOVE_WARNING: '移除了一个 H&R 警告 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      ACTIVE_IDLE_ACCOUNT: '重新激活帐户状态',
+      DAILY_CHECK_IN: '每日签到',
+      SEED_TIMED: '做种时间获得的积分 <a href=/torrents/{{tid}}>{{tid}}',
+      SEED_UP_DOWNLOAD: '上传或下载数据交换积分 <a href=/torrents/{{tid}}>{{tid}}'
+    },
+
     //status pages
     STATUS_PAGE: {
       BAD_REQUEST: '请求错误',

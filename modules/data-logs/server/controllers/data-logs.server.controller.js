@@ -9,6 +9,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   UserDaysLog = mongoose.model('UserDaysLog'),
   UserMonthsLog = mongoose.model('UserMonthsLog'),
+  ScoreLog = mongoose.model('ScoreLog'),
   objectId = require('mongodb').ObjectId,
   async = require('async');
 
@@ -35,4 +36,16 @@ exports.getUserMonthsLogs = function (req, res) {
   }).exec(function (err, logs) {
     res.json(logs);
   });
+};
+
+/**
+ * List of getUserScoreLogs
+ */
+exports.getUserScoreLogs = function (req, res) {
+  ScoreLog.find({
+    user: objectId(req.params.userId)
+  }).sort('-createdAt')
+    .exec(function (err, logs) {
+      res.json(logs);
+    });
 };

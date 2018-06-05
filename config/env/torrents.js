@@ -371,8 +371,8 @@ module.exports = {
         accountIdleForTime: 60 * 60 * 1000 * 24 * 30, //30 days
         accountIdleForTime_str: '30d',
         activeIdleAccountBasicScore: 50000,
-        activeMoreScorePerDay: 1000,
-        activeMoreScorePerLevel: 10000,
+        activeMoreScorePerDay: 100,
+        activeMoreScorePerLevel: 1000,
         notIdleSafeLevel: 30
       }
     },
@@ -472,18 +472,21 @@ module.exports = {
         transferScoreIntoInviterFrom: {name: 'transferScoreIntoInviterFrom', content: 'TRANSFER_SCORE_INTO_INVITER_FROM', value: 0, enable: true},
         transferScoreIntoInviterTo: {name: 'transferScoreIntoInviterTo', content: 'TRANSFER_SCORE_INTO_INVITER_TO', value: 0, enable: true},
 
-        uploadTorrent: {name: 'uploadTorrent', content: 'UPLOAD_TORRENT', value: 50, enable: true},
-        uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', content: 'UPLOAD_TORRENT_BE_DELETED', value: -50, enable: true},
-        uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', content: 'UPLOAD_TORRENT_BE_RECOMMEND', value: 10, enable: true},
-        uploadSubtitle: {name: 'uploadSubtitle', content: 'UPLOAD_SUBTITLE', value: 20, enable: true},
-        uploadSubtitleBeDeleted: {name: 'uploadSubtitleBeDeleted', content: 'UPLOAD_SUBTITLE_BE_DELETED', value: -20, enable: true},
+        uploadTorrent: {name: 'uploadTorrent', content: 'UPLOAD_TORRENT', value: 20, enable: true},
+        uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', content: 'UPLOAD_TORRENT_BE_DELETED', value: -20, enable: true},
+        uploadTorrentBeRecommend: {name: 'uploadTorrentBeRecommend', content: 'UPLOAD_TORRENT_BE_RECOMMEND', value: 5, enable: true},
+        uploadSubtitle: {name: 'uploadSubtitle', content: 'UPLOAD_SUBTITLE', value: 10, enable: true},
+        uploadSubtitleBeDeleted: {name: 'uploadSubtitleBeDeleted', content: 'UPLOAD_SUBTITLE_BE_DELETED', value: -10, enable: true},
 
-        thumbsUpScoreOfTorrentFrom: {name: 'thumbsUpScoreOfTorrentFrom', content: 'THUMBS_UP_SCORE_OF_TORRENT_FROM', value: -10, enable: true},
-        thumbsUpScoreOfTorrentTo: {name: 'thumbsUpScoreOfTorrentTo', content: 'THUMBS_UP_SCORE_OF_TORRENT_TO', value: 10, enable: true},
-        thumbsUpScoreOfTopicFrom: {name: 'thumbsUpScoreOfTopicFrom', content: 'THUMBS_UP_SCORE_OF_TOPIC_FROM', value: -10, enable: true},
-        thumbsUpScoreOfTopicTo: {name: 'thumbsUpScoreOfTopicTo', content: 'THUMBS_UP_SCORE_OF_TOPIC_TO', value: 10, enable: true},
+        thumbsUpScoreOfTorrentFrom: {name: 'thumbsUpScoreOfTorrentFrom', content: 'THUMBS_UP_SCORE_OF_TORRENT_FROM', value: -5, enable: true},
+        thumbsUpScoreOfTorrentTo: {name: 'thumbsUpScoreOfTorrentTo', content: 'THUMBS_UP_SCORE_OF_TORRENT_TO', value: 5, enable: true},
+        thumbsUpScoreOfTopicFrom: {name: 'thumbsUpScoreOfTopicFrom', content: 'THUMBS_UP_SCORE_OF_TOPIC_FROM', value: -5, enable: true},
+        thumbsUpScoreOfTopicTo: {name: 'thumbsUpScoreOfTopicTo', content: 'THUMBS_UP_SCORE_OF_TOPIC_TO', value: 5, enable: true},
 
-        postRequest: {name: 'postRequest', content: 'POST_REQUEST', value: 0, enable: true}, //value used requests.scoreForAddRequest
+        requestPost: {name: 'requestPost', content: 'REQUEST_POST', value: 0, enable: true}, //value used requests.scoreForAddRequest
+        requestAcceptFrom: {name: 'requestAcceptFrom', content: 'REQUEST_ACCEPT_FROM', value: 0, enable: true}, //value form user setting
+        requestAcceptTo: {name: 'requestAcceptTo', content: 'REQUEST_ACCEPT_TO', value: 0, enable: true}, //value form user setting
+
         scoreExchangeInvitation: {name: 'scoreExchangeInvitation', content: 'SCORE_EXCHANGE_INVITATION', value: 0, enable: true}, //value used invite.scoreExchange
         scoreToRemoveWarning: {name: 'scoreToRemoveWarning', content: 'SCORETO_REMOVE_WARNING', value: 0, enable: true}, //value used hitAndRun.scoreToRemoveWarning
         activeIdleAccount: {name: 'activeIdleAccount', content: 'ACTIVE_IDLE_ACCOUNT', value: 0, enable: true}, //value used sign.idle.activeIdleAccountBasicScore
@@ -1425,6 +1428,7 @@ module.exports = {
      * @torrentPeersListPerPage:  torrent detail seeder & leecher users list page settings
      * @officialInvitationsListPerPage:   official invitations list page settings
      * @userInvitationsListPerPage:       users invitations list page settings
+     * @userDataLogsListPerPage:          users data history logs list page settings
      *
      * @uploaderUserListPerPage:  admin management uploader access list page settings
      * @messageBoxListPerPage:    message box list page settings
@@ -1461,6 +1465,7 @@ module.exports = {
       torrentPeersListPerPage: 20,
       officialInvitationsListPerPage: 20,
       userInvitationsListPerPage: 10,
+      userDataLogsListPerPage: 20,
 
       uploaderUserListPerPage: 20,
       messageBoxListPerPage: 10,

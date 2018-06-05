@@ -6,10 +6,10 @@
     .controller('DataCenterController', DataCenterController);
 
   DataCenterController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$window', 'MeanTorrentConfig', 'NotifycationService',
-    'UserDaysLogsService', 'UserMonthsLogsService', '$rootScope', 'moment', 'DebugConsoleService', '$filter'];
+    'UserDaysLogsService', 'UserMonthsLogsService', '$rootScope', 'moment', 'DebugConsoleService', '$filter', 'UserScoreLogsService'];
 
   function DataCenterController($scope, $state, $translate, $timeout, Authentication, $window, MeanTorrentConfig, NotifycationService,
-                                UserDaysLogsService, UserMonthsLogsService, $rootScope, moment, mtDebug, $filter) {
+                                UserDaysLogsService, UserMonthsLogsService, $rootScope, moment, mtDebug, $filter, UserScoreLogsService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
@@ -69,7 +69,7 @@
             });
           },
           legend: {
-            display: true,
+            display: true
           },
           tooltips: {
             intersect: false
@@ -162,7 +162,7 @@
             });
           },
           legend: {
-            display: true,
+            display: true
           },
           tooltips: {
             intersect: false
@@ -213,7 +213,61 @@
      * getUserScoreHistory
      */
     vm.getUserScoreHistory = function () {
+      UserScoreLogsService.query({
+        userId: vm.user._id
+      }, function (items) {
+        vm.userScoreLogsData = items;
 
+        vm.buildPager();
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'DATA_CENTER.GET_USER_LOGS_ERROR');
+      });
     };
+
+
+    /**
+     * buildLogsPager
+     */
+    vm.buildPager = function () {
+      vm.pagedItems = [];
+      vm.itemsPerPage = vm.itemsPerPageConfig.userDataLogsListPerPage;
+      vm.currentPage = 1;
+      vm.figureOutItemsToDisplay();
+    };
+
+    /**
+     * figureOutItemsToDisplay
+     */
+    vm.figureOutItemsToDisplay = function (callback) {
+      vm.filteredItems = vm.userScoreLogsData;
+      vm.filterLength = vm.filteredItems.length;
+      var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
+      var end = begin + vm.itemsPerPage;
+      vm.pagedItems = vm.filteredItems.slice(begin, end);
+
+      $('.use-logs-list-ol').prop('start', begin + 1);
+      mtDebug.info(vm.pagedItems);
+
+      if (callback) callback();
+    };
+
+    /**
+     * pageChanged
+     */
+    vm.pageChanged = function () {
+      var element = angular.element('#top_of_logs_list');
+
+      $('.use-logs-list').fadeTo(100, 0.01, function () {
+        vm.figureOutItemsToDisplay(function () {
+          $timeout(function () {
+            $('.use-logs-list').fadeTo(400, 1, function () {
+              //window.scrollTo(0, element[0].offsetTop - 60);
+              $('html,body').animate({scrollTop: element[0].offsetTop - 60}, 200);
+            });
+          }, 100);
+        });
+      });
+    };
+
   }
 }());

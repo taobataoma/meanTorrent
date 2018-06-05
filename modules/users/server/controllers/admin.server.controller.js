@@ -327,7 +327,11 @@ exports.updateUserScore = function (req, res) {
       score: sv,
       reason: {
         event: scoreConfig.action.adminModify.name,
-        params: undefined
+        event_str: scoreConfig.action.adminModify.content,
+        params: {
+          uid: req.user._id,
+          uname: req.user.displayName
+        }
       }
     });
     sl.save(function (err) {

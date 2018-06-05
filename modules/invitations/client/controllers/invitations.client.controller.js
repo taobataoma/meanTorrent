@@ -109,7 +109,7 @@
      */
     vm.pageChanged = function () {
       var element = angular.element('#top_of_invitations_list');
-      console.log(element);
+
       $('.tb-official').fadeTo(100, 0.01, function () {
         vm.figureOutItemsToDisplay(function () {
           $timeout(function () {

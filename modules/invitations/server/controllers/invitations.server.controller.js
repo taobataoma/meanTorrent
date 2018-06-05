@@ -53,9 +53,10 @@ exports.create = function (req, res) {
 
       if (user.score >= inviteConfig.scoreExchange) {
         user.score -= inviteConfig.scoreExchange;
-        scoreUpdate(req, user, scoreConfig.action.scoreExchangeInvitation, -(inviteConfig.scoreExchange));
-
         res.json(user);
+
+        //score update
+        scoreUpdate(req, user, scoreConfig.action.scoreExchangeInvitation, -(inviteConfig.scoreExchange));
 
         //create trace log
         traceLogCreate(req, traceConfig.action.userInvitationExchange, {

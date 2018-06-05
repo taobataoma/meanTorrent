@@ -414,9 +414,20 @@ function transferUserScoreToInviter() {
 
               if (transValue > 0) {
                 if (scoreConfig.transferToInviter.deductFromUser) {
-                  scoreUpdate(undefined, l.user, scoreConfig.action.transferScoreIntoInviterFrom, -(transValue));
+                  var actFrom = scoreConfig.action.transferScoreIntoInviterFrom;
+                  actFrom.params = {
+                    uid: l.user.invited_by._id,
+                    uname: l.user.invited_by.displayName
+                  };
+                  scoreUpdate(undefined, l.user, actFrom, -(transValue));
                 }
-                scoreUpdate(undefined, l.user.invited_by, scoreConfig.action.transferScoreIntoInviterTo, transValue);
+
+                var actTo = scoreConfig.action.transferScoreIntoInviterTo;
+                actTo.params = {
+                  uid: l.user._id,
+                  uname: l.user.displayName
+                };
+                scoreUpdate(undefined, l.user.invited_by, actTo, transValue);
               }
             }
           });

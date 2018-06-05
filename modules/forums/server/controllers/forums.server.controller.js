@@ -732,8 +732,16 @@ exports.thumbsUp = function (req, res) {
         } else {
           if (req.user.score >= thumb.score) {
             r._thumbs.push(thumb);
-            scoreUpdate(req, r.user, scoreConfig.action.thumbsUpScoreOfTopicTo);
             save();
+
+            //score update
+            //score update
+            var act = scoreConfig.action.thumbsUpScoreOfTopicTo;
+            act.params = {
+              fid: topic.forum,
+              tid: topic._id
+            };
+            scoreUpdate(req, r.user, act);
 
             //add server message
             if (serverNoticeConfig.action.forumReplyThumbsUp.enable) {
@@ -769,8 +777,15 @@ exports.thumbsUp = function (req, res) {
     } else {
       if (req.user.score >= thumb.score) {
         topic._thumbs.push(thumb);
-        scoreUpdate(req, topic.user, scoreConfig.action.thumbsUpScoreOfTopicTo);
         save();
+
+        //score update
+        var act = scoreConfig.action.thumbsUpScoreOfTopicTo;
+        act.params = {
+          fid: topic.forum,
+          tid: topic._id
+        };
+        scoreUpdate(req, topic.user, act);
 
         //add server message
         if (serverNoticeConfig.action.forumTopicThumbsUp.enable) {
@@ -801,7 +816,13 @@ exports.thumbsUp = function (req, res) {
       }
     });
 
-    scoreUpdate(req, user, scoreConfig.action.thumbsUpScoreOfTopicFrom);
+    //score update
+    var act = scoreConfig.action.thumbsUpScoreOfTopicFrom;
+    act.params = {
+      fid: topic.forum,
+      tid: topic._id
+    };
+    scoreUpdate(req, user, act);
   }
 };
 

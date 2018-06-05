@@ -42,7 +42,12 @@ exports.create = function (req, res) {
       } else {
         res.json(request);
 
-        scoreUpdate(req, user, scoreConfig.action.postRequest, -requestsConfig.scoreForAddRequest);
+        //score update
+        var act = scoreConfig.action.requestPost;
+        act.params = {
+          rid: request._id
+        };
+        scoreUpdate(req, user, act, -requestsConfig.scoreForAddRequest);
       }
     });
   } else {
@@ -166,12 +171,17 @@ exports.accept = function (req, res) {
                   res.json(request);
 
                   //transfer reward score
-                  request.user.update({
-                    $inc: {score: -request.rewards}
-                  }).exec();
-                  torrent.user.update({
-                    $inc: {score: request.rewards}
-                  }).exec();
+                  var act = scoreConfig.action.requestAcceptFrom;
+                  act.params = {
+                    rid: request._id
+                  };
+                  scoreUpdate(req, request.user, act, -request.rewards);
+
+                  act = scoreConfig.action.requestAcceptTo;
+                  act.params = {
+                    rid: request._id
+                  };
+                  scoreUpdate(req, torrent.user, act, request.rewards);
 
                   //add server message
                   if (serverNoticeConfig.action.requestTorrentRespond.enable) {

@@ -1476,6 +1476,32 @@
       LEGEND_UNIT: ' (單位: GB)'
     },
 
+    //score log
+    SCORE_LOG: {
+      DEFAULT_ACTION: '未知事件獲得的積分',
+      ADMIN_MODIFY: '管理員 <a href=/userinfo/{{uid}}>{{uname}}</a> 修改積分',
+      TRANSFER_SCORE_INTO_INVITER_FROM: '結算上個月的積分給您的邀請人 <a href=/userinfo/{{uid}}>{{uname}}</a>',
+      TRANSFER_SCORE_INTO_INVITER_TO: '系統發放被邀請用戶 <a href=/userinfo/{{uid}}>{{uname}}</a> 上個月的積分獎勵',
+      UPLOAD_TORRENT: '上傳的種子被審核通過 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_TORRENT_BE_DELETED: '上傳的種子被刪除 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_TORRENT_BE_RECOMMEND: '上傳的種子被推薦 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_SUBTITLE: '為種子上傳字幕文件 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_SUBTITLE_BE_DELETED: '上傳的字幕文件被刪除 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TORRENT_FROM: '為種子點贊 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TORRENT_TO: '上傳的種子收到一個贊 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TOPIC_FROM: '為論壇主題或回复點贊 <a href=/forums/{{fid}}/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TOPIC_TO: '發表的論壇主題或回複收到一個贊 <a href=/forums/{{fid}}/{{tid}}>{{tid}}</a>',
+      REQUEST_POST: '發布了一條求種請求 <a href=/requests/{{rid}}>{{rid}}',
+      REQUEST_ACCEPT_FROM: '接受了求種響應 <a href=/requests/{{rid}}>{{rid}}',
+      REQUEST_ACCEPT_TO: '您的響應被求種請求者接受 <a href=/requests/{{rid}}>{{rid}}',
+      SCORE_EXCHANGE_INVITATION: '兌換了一張邀請函',
+      SCORETO_REMOVE_WARNING: '移除了一個 H&R 警告 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      ACTIVE_IDLE_ACCOUNT: '重新激活帳戶狀態',
+      DAILY_CHECK_IN: '每日簽到',
+      SEED_TIMED: '做種時間獲得的積分 <a href=/torrents/{{tid}}>{{tid}}',
+      SEED_UP_DOWNLOAD: '上傳或下載數據交換積分 <a href=/torrents/{{tid}}>{{tid}}'
+    },
+
     //status pages
     STATUS_PAGE: {
       BAD_REQUEST: '請求錯誤',

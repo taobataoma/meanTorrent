@@ -1476,6 +1476,32 @@
       LEGEND_UNIT: ' (unit: GB)'
     },
 
+    //score log
+    SCORE_LOG: {
+      DEFAULT_ACTION: 'Undefined events increased score',
+      ADMIN_MODIFY: 'Administrator <a href=/userinfo/{{uid}}>{{uname}}</a> modify score',
+      TRANSFER_SCORE_INTO_INVITER_FROM: 'Transfer score of last month to your inviter <a href=/userinfo/{{uid}}>{{uname}}</a>',
+      TRANSFER_SCORE_INTO_INVITER_TO: 'The system increased the score reward of last month by invited user <a href=/userinfo/{{uid}}>{{uname}}</a>',
+      UPLOAD_TORRENT: 'Uploaded torrent was reviewed <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_TORRENT_BE_DELETED: 'Uploaded torrent was deleted <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_TORRENT_BE_RECOMMEND: 'Uploaded torrent was recommended <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_SUBTITLE: 'Upload subtitle file for torrent <a href=/torrents/{{tid}}>{{tid}}</a>',
+      UPLOAD_SUBTITLE_BE_DELETED: 'Uploaded subtitle file was deleted <a href=/torrents/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TORRENT_FROM: 'Thumbs up for torrent <a href=/torrents/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TORRENT_TO: 'Uploaded torrent received a thumbs up <a href=/torrents/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TOPIC_FROM: 'Thumbs up for forum topic or reply <a href=/forums/{{fid}}/{{tid}}>{{tid}}</a>',
+      THUMBS_UP_SCORE_OF_TOPIC_TO: 'Posted forum topic or reply received a thumbs up <a href=/forums/{{fid}}/{{tid}}>{{tid}}</a>',
+      REQUEST_POST: 'Posted a torrent request <a href=/requests/{{rid}}>{{rid}}',
+      REQUEST_ACCEPT_FROM: 'Accept a response for request <a href=/requests/{{rid}}>{{rid}}',
+      REQUEST_ACCEPT_TO: 'Your response of request was accepted <a href=/requests/{{rid}}>{{rid}}',
+      SCORE_EXCHANGE_INVITATION: 'Exchange an invitation',
+      SCORETO_REMOVE_WARNING: 'Remove a H&R warning <a href=/torrents/{{tid}}>{{tid}}</a>',
+      ACTIVE_IDLE_ACCOUNT: 'Active account idle status',
+      DAILY_CHECK_IN: 'Daily check in',
+      SEED_TIMED: 'Torrent seeding timed increased score <a href=/torrents/{{tid}}>{{tid}}',
+      SEED_UP_DOWNLOAD: 'Torrent seeding and leeching data transfer score <a href=/torrents/{{tid}}>{{tid}}'
+    },
+
     //status pages
     STATUS_PAGE: {
       BAD_REQUEST: 'Bad Request',
