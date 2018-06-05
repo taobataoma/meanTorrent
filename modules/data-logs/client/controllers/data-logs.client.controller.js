@@ -6,10 +6,10 @@
     .controller('DataCenterController', DataCenterController);
 
   DataCenterController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$window', 'MeanTorrentConfig', 'NotifycationService',
-    'UserDaysLogsService', 'UserMonthsLogsService', '$rootScope', 'moment', 'DebugConsoleService', '$filter', 'UserScoreLogsService'];
+    'UserDaysLogsService', 'UserMonthsLogsService', '$rootScope', 'moment', 'DebugConsoleService', '$filter', 'UserScoreLogsService', 'UserAnnounceLogsService'];
 
   function DataCenterController($scope, $state, $translate, $timeout, Authentication, $window, MeanTorrentConfig, NotifycationService,
-                                UserDaysLogsService, UserMonthsLogsService, $rootScope, moment, mtDebug, $filter, UserScoreLogsService) {
+                                UserDaysLogsService, UserMonthsLogsService, $rootScope, moment, mtDebug, $filter, UserScoreLogsService, UserAnnounceLogsService) {
     var vm = this;
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
@@ -216,14 +216,35 @@
       UserScoreLogsService.query({
         userId: vm.user._id
       }, function (items) {
-        vm.userScoreLogsData = items;
-
+        vm.userLogsData = items;
         vm.buildPager();
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'DATA_CENTER.GET_USER_LOGS_ERROR');
       });
     };
 
+    /**
+     * getUserAnnounceHistory
+     */
+    vm.getUserAnnounceHistory = function (status) {
+      UserAnnounceLogsService.query({
+        userId: vm.user._id
+      }, function (items) {
+        if (status === 'seeding') {
+          vm.userLogsData = items.filter(function (it) {
+            return it.write_uploaded > 0;
+          });
+        } else {
+          vm.userLogsData = items.filter(function (it) {
+            return it.write_downloaded > 0;
+          });
+        }
+        vm.buildPager();
+      }, function (res) {
+        NotifycationService.showErrorNotify(res.data.message, 'DATA_CENTER.GET_USER_LOGS_ERROR');
+      });
+
+    };
 
     /**
      * buildLogsPager
@@ -239,14 +260,13 @@
      * figureOutItemsToDisplay
      */
     vm.figureOutItemsToDisplay = function (callback) {
-      vm.filteredItems = vm.userScoreLogsData;
+      vm.filteredItems = vm.userLogsData;
       vm.filterLength = vm.filteredItems.length;
       var begin = ((vm.currentPage - 1) * vm.itemsPerPage);
       var end = begin + vm.itemsPerPage;
       vm.pagedItems = vm.filteredItems.slice(begin, end);
 
       $('.use-logs-list-ol').prop('start', begin + 1);
-      mtDebug.info(vm.pagedItems);
 
       if (callback) callback();
     };
@@ -268,6 +288,5 @@
         });
       });
     };
-
   }
 }());

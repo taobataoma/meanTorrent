@@ -1,5 +1,5 @@
 <section class="data-center" ng-controller="DataCenterController as vm">
-    <div class="panel panel-default" ng-init="vm.getUserScoreHistory()">
+    <div class="panel panel-default" ng-init="vm.getUserAnnounceHistory('leeching')">
         <div class="panel-heading">
             <i class="fa fa-line-chart text-mt"></i>&emsp;
             <span translate="DATA_CENTER.LAST_DAYS_DATA_DOWNLOADED_HISTORY" translate-values="{days: vm.announceConfig.announceLogDays}"></span>
@@ -8,8 +8,26 @@
             <!--<p>...</p>-->
         </div>
 
-        <div class="chart-logs">
+        <div class="use-logs-list" id="top_of_logs_list">
+            <ol class="use-logs-list-ol">
+                <li ng-repeat="l in vm.pagedItems">
+                    <span>&emsp;{{l.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+                    <span> - </span>
+                    <span class="download-value" ng-class="{'subtract': l.write_downloaded<0}">{{l.write_downloaded | byteFmt: 2}}</span>
+                    <span> - </span>
+                    <span translate="SCORE_LOG.ANNOUNCE_DOWNLOAD_LOGS"></span>
+                </li>
+            </ol>
 
+            <div class="pagination-div-bottom">
+                <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage"
+                    total-items="vm.filterLength"
+                    ng-model="vm.currentPage"
+                    ng-change="vm.pageChanged()"
+                    first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                    next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                </ul>
+            </div>
         </div>
     </div>
 </section>

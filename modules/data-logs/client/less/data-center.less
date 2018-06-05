@@ -9,7 +9,9 @@
     }
     .use-logs-list {
         padding: 0 20px;
-        .score-value {
+        .score-value,
+        .upload-value,
+        .download-value {
             min-width: 80px;
             text-align: center;
             display: inline-block;
@@ -32,6 +34,10 @@
             &.subtract {
                 color: @brand-danger;
             }
+        }
+        .upload-value,
+        .download-value {
+            min-width: 100px;
         }
         .use-logs-list-ol {
             line-height: 2.2;

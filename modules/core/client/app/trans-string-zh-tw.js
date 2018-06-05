@@ -1499,7 +1499,9 @@
       ACTIVE_IDLE_ACCOUNT: '重新激活帳戶狀態',
       DAILY_CHECK_IN: '每日簽到',
       SEED_TIMED: '做種時間獲得的積分 <a href=/torrents/{{tid}}>{{tid}}',
-      SEED_UP_DOWNLOAD: '上傳或下載數據交換積分 <a href=/torrents/{{tid}}>{{tid}}'
+      SEED_UP_DOWNLOAD: '上傳或下載數據交換積分 <a href=/torrents/{{tid}}>{{tid}}',
+      ANNOUNCE_UPLOAD_LOGS: '客戶端上報的上傳數據',
+      ANNOUNCE_DOWNLOAD_LOGS: '客戶端上報的下載數據'
     },
 
     //status pages

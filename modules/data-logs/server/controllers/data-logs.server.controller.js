@@ -10,6 +10,7 @@ var path = require('path'),
   UserDaysLog = mongoose.model('UserDaysLog'),
   UserMonthsLog = mongoose.model('UserMonthsLog'),
   ScoreLog = mongoose.model('ScoreLog'),
+  AnnounceLog = mongoose.model('AnnounceLog'),
   objectId = require('mongodb').ObjectId,
   async = require('async');
 
@@ -43,6 +44,20 @@ exports.getUserMonthsLogs = function (req, res) {
  */
 exports.getUserScoreLogs = function (req, res) {
   ScoreLog.find({
+    user: objectId(req.params.userId)
+  }).sort('-createdAt')
+    .exec(function (err, logs) {
+      res.json(logs);
+    });
+};
+
+/**
+ * getUserAnnounceLogs
+ * @param req
+ * @param res
+ */
+exports.getUserAnnounceLogs = function (req, res) {
+  AnnounceLog.find({
     user: objectId(req.params.userId)
   }).sort('-createdAt')
     .exec(function (err, logs) {

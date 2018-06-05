@@ -16,4 +16,7 @@ module.exports = function (app) {
 
   app.route('/api/userScoreLogs/:userId').all(dataLogsPolicy.isAllowed)
     .get(dataLogs.getUserScoreLogs);
+
+  app.route('/api/userAnnounceLogs/:userId').all(dataLogsPolicy.isAllowed)
+    .get(dataLogs.getUserAnnounceLogs);
 };

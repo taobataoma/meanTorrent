@@ -1500,6 +1500,8 @@
       DAILY_CHECK_IN: 'Daily check in',
       SEED_TIMED: 'Torrent seeding timed increased score <a href=/torrents/{{tid}}>{{tid}}',
       SEED_UP_DOWNLOAD: 'Torrent seeding and leeching data transfer score <a href=/torrents/{{tid}}>{{tid}}'
+      ANNOUNCE_UPLOAD_LOGS: 'Client announce uploaded data',
+      ANNOUNCE_DOWNLOAD_LOGS: 'Client announce downloaded data'
     },
 
     //status pages

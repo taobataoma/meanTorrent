@@ -1499,7 +1499,9 @@
       ACTIVE_IDLE_ACCOUNT: '重新激活帐户状态',
       DAILY_CHECK_IN: '每日签到',
       SEED_TIMED: '做种时间获得的积分 <a href=/torrents/{{tid}}>{{tid}}',
-      SEED_UP_DOWNLOAD: '上传或下载数据交换积分 <a href=/torrents/{{tid}}>{{tid}}'
+      SEED_UP_DOWNLOAD: '上传或下载数据交换积分 <a href=/torrents/{{tid}}>{{tid}}',
+      ANNOUNCE_UPLOAD_LOGS: '客户端上报的上传数据',
+      ANNOUNCE_DOWNLOAD_LOGS: '客户端上报的下载数据'
     },
 
     //status pages
