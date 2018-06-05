@@ -237,7 +237,16 @@ function removeOldLogData() {
 
       //remove user-days-log old data
       UserDaysLog.remove({
-        createdAt: {$lt: moment().subtract(announceConfig.daysLogMonths, 'months')}
+        createdAt: {$lt: moment().subtract(announceConfig.userDaysLogDays, 'days')}
+      }, function (err) {
+        if (err) {
+          logger.error(err);
+        }
+      });
+
+      //remove user-months-log old data
+      UserMonthsLog.remove({
+        createdAt: {$lt: moment().subtract(announceConfig.userMonthsLogMonths, 'months')}
       }, function (err) {
         if (err) {
           logger.error(err);
