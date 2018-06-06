@@ -399,6 +399,7 @@
     VIEW_FORMATTED_MEDIA_INFO: '查看格式化的媒體信息',
     EDIT_THIS_MEDIA_INFO: '編輯媒體信息',
     SAVE_THIS_MEDIA_INFO: '保存媒體信息',
+    CANCEL_THIS_MEDIA_INFO: '取消',
     EDIT_TORRENT_NFO_SUCCESSFULLY: '種子媒體信息編輯成功',
     EDIT_TORRENT_NFO_FAILED: '種子媒體信息編輯失敗',
     IMG_PAGE_INFO: '當前頁: {{index}} / {{total}}',

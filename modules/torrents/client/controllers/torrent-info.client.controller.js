@@ -1781,6 +1781,14 @@
     };
 
     /**
+     * CancelTorrentNfo
+     * @constructor
+     */
+    vm.CancelTorrentNfo = function(){
+      vm.mediaInfoEditMode = false;
+    };
+
+    /**
      * doEditMediaInfo
      */
     vm.doEditMediaInfo = function () {

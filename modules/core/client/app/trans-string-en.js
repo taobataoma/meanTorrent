@@ -399,6 +399,7 @@
     VIEW_FORMATTED_MEDIA_INFO: 'View formatted media info',
     EDIT_THIS_MEDIA_INFO: 'Edit media info',
     SAVE_THIS_MEDIA_INFO: 'Save media info',
+    CANCEL_THIS_MEDIA_INFO: 'Cancel',
     EDIT_TORRENT_NFO_SUCCESSFULLY: 'Torrent media info edited successfully',
     EDIT_TORRENT_NFO_FAILED: 'Torrent media info edited failed',
     IMG_PAGE_INFO: 'Current: {{index}} / {{total}}',

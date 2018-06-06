@@ -884,6 +884,12 @@
                                         ng-click="vm.updateTorrentNfo()">
                                     {{'SAVE_THIS_MEDIA_INFO' | translate}}
                                 </button>
+                                <button class="btn btn-xs margin-top-15 btn-width-80" mouse-enter-toggle-class="btn-mt-o-success"
+                                        base-class="btn-mt-o-primary"
+                                        ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
+                                        ng-click="vm.CancelTorrentNfo()">
+                                    {{'CANCEL_THIS_MEDIA_INFO' | translate}}
+                                </button>
                             </div>
                         </div>
                     </div>
