@@ -228,7 +228,11 @@
 
       seedScoreTotal = Math.round(seedScoreTotal * 100) / 100;
 
-      var tmp = $translate.instant('CURR_SCORE_INCOME_HOURS', {score_hour: seedScoreTotal});
+      var tmp = $translate.instant('CURR_SCORE_INCOME_HOURS', {
+        score_hour: seedScoreTotal,
+        next_level: 'L' + vm.scoreLevelData.nextLevel,
+        days: Math.ceil((vm.scoreLevelData.nextLevelValue - vm.scoreLevelData.score) / (seedScoreTotal * 24))
+      });
       return marked(tmp, {sanitize: false});
     };
 

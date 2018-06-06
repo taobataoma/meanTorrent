@@ -1088,7 +1088,7 @@
     CURR_VIP_STATE: '當前 VIP 身份狀態：`{{vip_status | translate}}`。',
     CURR_UP_TOTAL_SPEED: '當前上傳總速度為：`{{up_speed | byteFmt: 2}}`。',
     CURR_DOWN_TOTAL_SPEED: '當前下載總速度為：`{{down_speed | byteFmt: 2}}`。',
-    CURR_SCORE_INCOME_HOURS: '當前預計每小時獲得 `{{score_hour}}` 積分，如果你不明白積分怎麼計算，請參閱 [{{"ABOUT.MENU_ABOUT_MANUAL_SCORE_RULES" | translate}}](/about/manual/scoreRules)。',
+    CURR_SCORE_INCOME_HOURS: '當前預計每小時獲得 `{{score_hour}}` 積分，如果你不明白積分怎麼計算，請參閱 [{{"ABOUT.MENU_ABOUT_MANUAL_SCORE_RULES" | translate}}](/about/manual/scoreRules)，照此速度的的推算，到達 {{next_level}} 還需要 {{days}} 天，這裡可查看您最近的 [積分歷史記錄](/dataCenter/score)。',
     EXCHANGE_INVITATION: '兌換一個邀請 ({{score}} 積分)',
     EXCHANGE_INVITATION_CONFIRM_OK: '兌換',
     EXCHANGE_INVITATION_CONFIRM_CANCEL: '取消',

@@ -2,20 +2,24 @@
 
 .data-center-top {
     height: 60px;
+    text-align: left;
     background-color: #2a2a2a;
     background-color: rgba(42, 42, 42, 0.9);
-    text-align: left;
-    @media(min-width: @screen-sm-min) {
+    @media (min-width: @screen-sm-min) {
         padding-top: 30px;
         height: 100px;
+    }
+    .container {
+        padding: 0;
     }
     .user-info {
         width: 100%;
         position: relative;
         height: 100%;
         background-color: #fff;
-        padding: 10px 30px 0;
-        @media(min-width: @screen-sm-min) {
+        padding: 15px 15px 0;
+        @media (min-width: @screen-sm-min) {
+            padding: 10px 30px 0;
             width: 400px;
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
@@ -30,8 +34,12 @@
         .info-wrapper {
             position: absolute;
             position: absolute;
-            left: 100px;
-            top: 10px;
+            left: 85px;
+            top: 15px;
+            @media (min-width: @screen-sm-min) {
+                left: 100px;
+                top: 10px;
+            }
             h4, .h4 {
                 margin-top: 5px;
             }
