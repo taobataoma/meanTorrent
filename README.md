@@ -6,12 +6,12 @@ and [AngularJS](http://angularjs.org/) based applications.
 
 ## Feature, Function, Screenshots First
 
-- __Home page view__
-![home](https://cloud.githubusercontent.com/assets/7778550/26396725/961230a2-40a6-11e7-802a-1ec2f15d4705.jpg)
-- __Torrents list page view__
-![list](https://cloud.githubusercontent.com/assets/7778550/26185492/e56cca24-3bbd-11e7-9f05-0b2f81612947.jpg)
-- __Torrent detail page view__
-![item](https://cloud.githubusercontent.com/assets/7778550/26185530/31757ce0-3bbe-11e7-84aa-fbe2a7c34276.jpg)
+- __Home__
+![home](https://user-images.githubusercontent.com/7778550/41044073-f27308fc-69d7-11e8-826c-fad5d390e2c5.jpg)
+- __Torrents list__
+![torrent-list](https://user-images.githubusercontent.com/7778550/41044085-fb579e6a-69d7-11e8-8612-c1080d5dffeb.jpg)
+- __Torrent detail__
+![torrent](https://user-images.githubusercontent.com/7778550/41044086-fcedb66a-69d7-11e8-845d-2e4015b7e663.jpg)
 
 #### meanTorrent some feature:
 1. Multilingual support, now English & Chinese, please read the guide of [how to add a complete translated language](#howToAddTranslate).
@@ -79,6 +79,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 63. System message support property of 'must read', user must read it and mark it as already read, otherwise it will popup again to minute later.
 64. History of admin operate user account.
 65. New feature for torrent screenshots image upload and edit by uploader or admin or oper, the image link url address support also.
+67. Users score/uploaded/downloaded number changed line graph and detail history of last few days.
 
 #### Chat room feature:
 1. Users name list
@@ -94,7 +95,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 - Add configure item for whether ban user with his inviter.
 - Add ban reason.
 - Support service center client side logic & UI.
-- User detail data(score, uploaded, downloaded) line graph.
 - Site data line graph for admin
 - Medal center
 - Poll type topics support in forum.
