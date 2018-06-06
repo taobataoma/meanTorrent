@@ -5,15 +5,16 @@
     .module('dataLogs')
     .controller('DataCenterController', DataCenterController);
 
-  DataCenterController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', '$window', 'MeanTorrentConfig', 'NotifycationService',
+  DataCenterController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'userResolve', '$window', 'MeanTorrentConfig', 'NotifycationService',
     'UserDaysLogsService', 'UserMonthsLogsService', '$rootScope', 'moment', 'DebugConsoleService', '$filter', 'UserScoreLogsService', 'UserAnnounceLogsService'];
 
-  function DataCenterController($scope, $state, $translate, $timeout, Authentication, $window, MeanTorrentConfig, NotifycationService,
+  function DataCenterController($scope, $state, $translate, $timeout, Authentication, DataUser, $window, MeanTorrentConfig, NotifycationService,
                                 UserDaysLogsService, UserMonthsLogsService, $rootScope, moment, mtDebug, $filter, UserScoreLogsService, UserAnnounceLogsService) {
     $scope.$state = $state;
 
     var vm = this;
     vm.user = Authentication.user;
+    vm.dataUser = $scope.$parent.dataUser = DataUser;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;

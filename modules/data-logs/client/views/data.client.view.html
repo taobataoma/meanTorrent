@@ -1,25 +1,38 @@
-<section class="container padding-top-30" ng-controller="DataCenterController as vm">
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="list-group panel-menu-list">
-                <a ui-sref="dataCenter.score({uid: $state.params.uid})" class="list-group-item"
-                   ui-sref-active="active">{{'DATA_CENTER.ITEM_SCORE' | translate}}</a>
-                <a ui-sref="dataCenter.uploaded({uid: $state.params.uid})" class="list-group-item"
-                   ui-sref-active="active">{{'DATA_CENTER.ITEM_UPLOADED' | translate}}</a>
-                <a ui-sref="dataCenter.downloaded({uid: $state.params.uid})" class="list-group-item"
-                   ui-sref-active="active">{{'DATA_CENTER.ITEM_DOWNLOADED' | translate}}</a>
-            </div>
-            <div class="list-group panel-menu-list">
-                <a ui-sref="dataCenter.scoreHistory({uid: $state.params.uid})" class="list-group-item"
-                   ui-sref-active="active">{{'DATA_CENTER.ITEM_SCORE_HISTORY' | translate}}</a>
-                <a ui-sref="dataCenter.uploadedHistory({uid: $state.params.uid})" class="list-group-item"
-                   ui-sref-active="active">{{'DATA_CENTER.ITEM_UPLOADED_HISTORY' | translate}}</a>
-                <a ui-sref="dataCenter.downloadedHistory({uid: $state.params.uid})" class="list-group-item"
-                   ui-sref-active="active">{{'DATA_CENTER.ITEM_DOWNLOADED_HISTORY' | translate}}</a>
+<section>
+    <div class="data-center-top">
+        <div class="container">
+            <div class="user-info">
+                <span user-info="dataUser" info-class="dc-avatar" info-avatar></span>
+                <div class="info-wrapper">
+                    <p class="h4">用户数据中心</p>
+                    <p><span user-info="dataUser" info-class="" info-name></span></p>
+                </div>
             </div>
         </div>
-        <div class="col-sm-9">
-            <div ui-view></div>
+    </div>
+    <div class="container padding-top-30">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="list-group panel-menu-list">
+                    <a ui-sref="dataCenter.score({uid: $state.params.uid})" class="list-group-item"
+                       ui-sref-active="active">{{'DATA_CENTER.ITEM_SCORE' | translate}}</a>
+                    <a ui-sref="dataCenter.uploaded({uid: $state.params.uid})" class="list-group-item"
+                       ui-sref-active="active">{{'DATA_CENTER.ITEM_UPLOADED' | translate}}</a>
+                    <a ui-sref="dataCenter.downloaded({uid: $state.params.uid})" class="list-group-item"
+                       ui-sref-active="active">{{'DATA_CENTER.ITEM_DOWNLOADED' | translate}}</a>
+                </div>
+                <div class="list-group panel-menu-list">
+                    <a ui-sref="dataCenter.scoreHistory({uid: $state.params.uid})" class="list-group-item"
+                       ui-sref-active="active">{{'DATA_CENTER.ITEM_SCORE_HISTORY' | translate}}</a>
+                    <a ui-sref="dataCenter.uploadedHistory({uid: $state.params.uid})" class="list-group-item"
+                       ui-sref-active="active">{{'DATA_CENTER.ITEM_UPLOADED_HISTORY' | translate}}</a>
+                    <a ui-sref="dataCenter.downloadedHistory({uid: $state.params.uid})" class="list-group-item"
+                       ui-sref-active="active">{{'DATA_CENTER.ITEM_DOWNLOADED_HISTORY' | translate}}</a>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div ui-view></div>
+            </div>
         </div>
     </div>
 </section>
