@@ -984,6 +984,7 @@
       BTN_UNFOLLOW: '取消關注',
       BTN_MANAGE: '管理',
       BTN_SEND_MESSAGE: '發消息',
+      BTN_VIEW_USER_DATA_CENTER: '數據中心',
       BTN_EDIT: '編輯',
       BTN_REMOVE: '刪除',
       PICTURE: '頭像',

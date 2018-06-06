@@ -10,6 +10,8 @@
 
   function DataCenterController($scope, $state, $translate, $timeout, Authentication, $window, MeanTorrentConfig, NotifycationService,
                                 UserDaysLogsService, UserMonthsLogsService, $rootScope, moment, mtDebug, $filter, UserScoreLogsService, UserAnnounceLogsService) {
+    $scope.$state = $state;
+
     var vm = this;
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
@@ -28,7 +30,7 @@
      */
     vm.getUserDaysLogs = function () {
       UserDaysLogsService.query({
-        userId: vm.user._id
+        userId: $state.params.uid ? $state.params.uid : vm.user._id
       }, function (items) {
         vm.userDaysLogsData = getUserDaysLogsData(items);
         mtDebug.info(vm.userDaysLogsData);
@@ -121,7 +123,7 @@
      */
     vm.getUserMonthsLogs = function () {
       UserMonthsLogsService.query({
-        userId: vm.user._id
+        userId: $state.params.uid ? $state.params.uid : vm.user._id
       }, function (items) {
         vm.userMonthsLogsData = getUserMonthsLogsData(items);
         mtDebug.info(vm.userMonthsLogsData);
@@ -214,7 +216,7 @@
      */
     vm.getUserScoreHistory = function () {
       UserScoreLogsService.query({
-        userId: vm.user._id
+        userId: $state.params.uid ? $state.params.uid : vm.user._id
       }, function (items) {
         vm.userLogsData = items;
         vm.buildPager();
@@ -228,7 +230,7 @@
      */
     vm.getUserAnnounceHistory = function (status) {
       UserAnnounceLogsService.query({
-        userId: vm.user._id
+        userId: $state.params.uid ? $state.params.uid : vm.user._id
       }, function (items) {
         if (status === 'seeding') {
           vm.userLogsData = items.filter(function (it) {

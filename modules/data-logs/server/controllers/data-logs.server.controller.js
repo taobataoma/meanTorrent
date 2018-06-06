@@ -21,34 +21,52 @@ var announceConfig = config.meanTorrentConfig.announce;
  * List of UserDaysLog
  */
 exports.getUserDaysLogs = function (req, res) {
-  UserDaysLog.find({
-    user: objectId(req.params.userId)
-  }).exec(function (err, logs) {
-    res.json(logs);
-  });
+  if (objectId(req.params.userId).equals(req.user._id) || req.user.isOper) {
+    UserDaysLog.find({
+      user: objectId(req.params.userId)
+    }).exec(function (err, logs) {
+      res.json(logs);
+    });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
 };
 
 /**
  * List of UserMonthsLog
  */
 exports.getUserMonthsLogs = function (req, res) {
-  UserMonthsLog.find({
-    user: objectId(req.params.userId)
-  }).exec(function (err, logs) {
-    res.json(logs);
-  });
+  if (objectId(req.params.userId).equals(req.user._id) || req.user.isOper) {
+    UserMonthsLog.find({
+      user: objectId(req.params.userId)
+    }).exec(function (err, logs) {
+      res.json(logs);
+    });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
+    });
+  }
 };
 
 /**
  * List of getUserScoreLogs
  */
 exports.getUserScoreLogs = function (req, res) {
-  ScoreLog.find({
-    user: objectId(req.params.userId)
-  }).sort('-createdAt')
-    .exec(function (err, logs) {
-      res.json(logs);
+  if (objectId(req.params.userId).equals(req.user._id) || req.user.isOper) {
+    ScoreLog.find({
+      user: objectId(req.params.userId)
+    }).sort('-createdAt')
+      .exec(function (err, logs) {
+        res.json(logs);
+      });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
     });
+  }
 };
 
 /**
@@ -57,10 +75,16 @@ exports.getUserScoreLogs = function (req, res) {
  * @param res
  */
 exports.getUserAnnounceLogs = function (req, res) {
-  AnnounceLog.find({
-    user: objectId(req.params.userId)
-  }).sort('-createdAt')
-    .exec(function (err, logs) {
-      res.json(logs);
+  if (objectId(req.params.userId).equals(req.user._id) || req.user.isOper) {
+    AnnounceLog.find({
+      user: objectId(req.params.userId)
+    }).sort('-createdAt')
+      .exec(function (err, logs) {
+        res.json(logs);
+      });
+  } else {
+    return res.status(403).json({
+      message: 'SERVER.USER_IS_NOT_AUTHORIZED'
     });
+  }
 };

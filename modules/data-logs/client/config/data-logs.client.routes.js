@@ -20,42 +20,42 @@
         }
       })
       .state('dataCenter.score', {
-        url: '/score',
+        url: '/score?:uid',
         templateUrl: '/modules/data-logs/client/views/data-score.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.DATA_CENTER'
         }
       })
       .state('dataCenter.uploaded', {
-        url: '/uploaded',
+        url: '/uploaded?:uid',
         templateUrl: '/modules/data-logs/client/views/data-uploaded.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.DATA_CENTER'
         }
       })
       .state('dataCenter.downloaded', {
-        url: '/downloaded',
+        url: '/downloaded?:uid',
         templateUrl: '/modules/data-logs/client/views/data-downloaded.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.DATA_CENTER'
         }
       })
       .state('dataCenter.scoreHistory', {
-        url: '/scoreHistory',
+        url: '/scoreHistory?:uid',
         templateUrl: '/modules/data-logs/client/views/data-score-history.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.DATA_CENTER'
         }
       })
       .state('dataCenter.uploadedHistory', {
-        url: '/uploadedHistory',
+        url: '/uploadedHistory?:uid',
         templateUrl: '/modules/data-logs/client/views/data-uploaded-history.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.DATA_CENTER'
         }
       })
       .state('dataCenter.downloadedHistory', {
-        url: '/downloadedHistory',
+        url: '/downloadedHistory?:uid',
         templateUrl: '/modules/data-logs/client/views/data-downloaded-history.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.DATA_CENTER'

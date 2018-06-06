@@ -984,6 +984,7 @@
       BTN_UNFOLLOW: 'Unfollow',
       BTN_MANAGE: 'Manage',
       BTN_SEND_MESSAGE: 'Send message',
+      BTN_VIEW_USER_DATA_CENTER: 'Data Center',
       BTN_EDIT: 'Edit',
       BTN_REMOVE: 'Remove',
       PICTURE: 'Profile picture',

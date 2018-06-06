@@ -7,6 +7,10 @@
                     <a class="btn btn-default btn-width-80" ng-click="vm.messageTo()" ng-if="!vm.isContextUserSelf()">
                         {{ 'STATUS_FIELD.BTN_SEND_MESSAGE' | translate}}
                     </a>
+                    <a class="btn btn-default btn-width-80" ui-sref="dataCenter.score({uid: vm.user._id})"
+                       ng-if="vm.authentication.user.isOper">
+                        {{ 'STATUS_FIELD.BTN_VIEW_USER_DATA_CENTER' | translate}}
+                    </a>
                     <button class="btn btn-primary" ng-if="vm.authentication.user.isAdmin"
                             uib-popover-template="vm.presentInvitationsPopover.templateUrl"
                             popover-title="{{vm.presentInvitationsPopover.title | translate}}"
