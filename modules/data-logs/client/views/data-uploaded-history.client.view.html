@@ -19,7 +19,7 @@
                     <span> - </span>
                     <span class="upload-value" ng-class="{'subtract': l.write_uploaded<0}">{{l.write_uploaded | byteFmt: 2}}</span>
                     <span> - </span>
-                    <span translate="SCORE_LOG.ANNOUNCE_UPLOAD_LOGS"></span>
+                    <span translate="SCORE_LOG.ANNOUNCE_UPLOAD_LOGS" translate-values="{tid: l.torrent}"></span>
                 </li>
             </ol>
 

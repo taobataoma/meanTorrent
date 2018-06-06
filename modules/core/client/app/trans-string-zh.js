@@ -1493,17 +1493,17 @@
       THUMBS_UP_SCORE_OF_TORRENT_TO: '上传的种子收到一个赞 <a href=/torrents/{{tid}}>{{tid}}</a>',
       THUMBS_UP_SCORE_OF_TOPIC_FROM: '为论坛主题或回复点赞 <a href=/forums/{{fid}}/{{tid}}>{{tid}}</a>',
       THUMBS_UP_SCORE_OF_TOPIC_TO: '发表的论坛主题或回复收到一个赞 <a href=/forums/{{fid}}/{{tid}}>{{tid}}</a>',
-      REQUEST_POST: '发布了一条求种请求 <a href=/requests/{{rid}}>{{rid}}',
-      REQUEST_ACCEPT_FROM: '接受了求种响应 <a href=/requests/{{rid}}>{{rid}}',
-      REQUEST_ACCEPT_TO: '您的响应被求种请求者接受 <a href=/requests/{{rid}}>{{rid}}',
+      REQUEST_POST: '发布了一条求种请求 <a href=/requests/{{rid}}>{{rid}}</a>',
+      REQUEST_ACCEPT_FROM: '接受了求种响应 <a href=/requests/{{rid}}>{{rid}}</a>',
+      REQUEST_ACCEPT_TO: '您的响应被求种请求者接受 <a href=/requests/{{rid}}>{{rid}}</a>',
       SCORE_EXCHANGE_INVITATION: '兑换了一张邀请函',
       SCORETO_REMOVE_WARNING: '移除了一个 H&R 警告 <a href=/torrents/{{tid}}>{{tid}}</a>',
       ACTIVE_IDLE_ACCOUNT: '重新激活帐户状态',
       DAILY_CHECK_IN: '每日签到',
-      SEED_TIMED: '做种时间获得的积分 <a href=/torrents/{{tid}}>{{tid}}',
-      SEED_UP_DOWNLOAD: '上传或下载数据交换积分 <a href=/torrents/{{tid}}>{{tid}}',
-      ANNOUNCE_UPLOAD_LOGS: '客户端上报的上传数据',
-      ANNOUNCE_DOWNLOAD_LOGS: '客户端上报的下载数据'
+      SEED_TIMED: '做种时间获得的积分 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      SEED_UP_DOWNLOAD: '上传或下载数据交换积分 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      ANNOUNCE_UPLOAD_LOGS: '客户端上报的上传数据 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      ANNOUNCE_DOWNLOAD_LOGS: '客户端上报的下载数据 <a href=/torrents/{{tid}}>{{tid}}</a>'
     },
 
     //status pages

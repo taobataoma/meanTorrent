@@ -133,7 +133,7 @@ module.exports = {
       comment: 'MEAN.im GROUP',
       announceInterval: 60 * 1000 * 10,
       announceInterval_str: '10m',
-      announceIdleTime: 60 * 1000 * 2,
+      announceIdleTime: 60 * 1000 * 3,
       announcePrefix: '{MEAN}.',
       sourceInfo: '{MEAN.im} Present by meanTorrent.',
       clientBlackListUrl: '/about/black',

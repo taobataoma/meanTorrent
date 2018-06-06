@@ -1493,17 +1493,17 @@
       THUMBS_UP_SCORE_OF_TORRENT_TO: 'Uploaded torrent received a thumbs up <a href=/torrents/{{tid}}>{{tid}}</a>',
       THUMBS_UP_SCORE_OF_TOPIC_FROM: 'Thumbs up for forum topic or reply <a href=/forums/{{fid}}/{{tid}}>{{tid}}</a>',
       THUMBS_UP_SCORE_OF_TOPIC_TO: 'Posted forum topic or reply received a thumbs up <a href=/forums/{{fid}}/{{tid}}>{{tid}}</a>',
-      REQUEST_POST: 'Posted a torrent request <a href=/requests/{{rid}}>{{rid}}',
-      REQUEST_ACCEPT_FROM: 'Accept a response for request <a href=/requests/{{rid}}>{{rid}}',
-      REQUEST_ACCEPT_TO: 'Your response of request was accepted <a href=/requests/{{rid}}>{{rid}}',
+      REQUEST_POST: 'Posted a torrent request <a href=/requests/{{rid}}>{{rid}}</a>',
+      REQUEST_ACCEPT_FROM: 'Accept a response for request <a href=/requests/{{rid}}>{{rid}}</a>',
+      REQUEST_ACCEPT_TO: 'Your response of request was accepted <a href=/requests/{{rid}}>{{rid}}</a>',
       SCORE_EXCHANGE_INVITATION: 'Exchange an invitation',
       SCORETO_REMOVE_WARNING: 'Remove a H&R warning <a href=/torrents/{{tid}}>{{tid}}</a>',
       ACTIVE_IDLE_ACCOUNT: 'Active account idle status',
       DAILY_CHECK_IN: 'Daily check in',
-      SEED_TIMED: 'Torrent seeding timed increased score <a href=/torrents/{{tid}}>{{tid}}',
-      SEED_UP_DOWNLOAD: 'Torrent seeding and leeching data transfer score <a href=/torrents/{{tid}}>{{tid}}',
-      ANNOUNCE_UPLOAD_LOGS: 'Client announce uploaded data',
-      ANNOUNCE_DOWNLOAD_LOGS: 'Client announce downloaded data'
+      SEED_TIMED: 'Torrent seeding timed increased score <a href=/torrents/{{tid}}>{{tid}}</a>',
+      SEED_UP_DOWNLOAD: 'Torrent seeding and leeching data transfer score <a href=/torrents/{{tid}}>{{tid}}</a>',
+      ANNOUNCE_UPLOAD_LOGS: 'Client announce uploaded data <a href=/torrents/{{tid}}>{{tid}}</a>',
+      ANNOUNCE_DOWNLOAD_LOGS: 'Client announce downloaded data <a href=/torrents/{{tid}}>{{tid}}</a>'
     },
 
     //status pages

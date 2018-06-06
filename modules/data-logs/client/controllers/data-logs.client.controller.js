@@ -266,6 +266,7 @@
       var end = begin + vm.itemsPerPage;
       vm.pagedItems = vm.filteredItems.slice(begin, end);
 
+      mtDebug.info(vm.pagedItems);
       $('.use-logs-list-ol').prop('start', begin + 1);
 
       if (callback) callback();
