@@ -231,7 +231,7 @@
       var tmp = $translate.instant('CURR_SCORE_INCOME_HOURS', {
         score_hour: seedScoreTotal,
         next_level: 'L' + vm.scoreLevelData.nextLevel,
-        days: Math.ceil((vm.scoreLevelData.nextLevelValue - vm.scoreLevelData.score) / (seedScoreTotal * 24))
+        days: seedScoreTotal > 0 ? Math.ceil((vm.scoreLevelData.nextLevelValue - vm.scoreLevelData.score) / (seedScoreTotal * 24)) : 'N'
       });
       return marked(tmp, {sanitize: false});
     };
