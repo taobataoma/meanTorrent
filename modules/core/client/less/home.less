@@ -40,14 +40,29 @@
 
 .sales_notice {
     background-color: @brand-success;
+    background-color: rgba(92, 184, 92, 0.85);
+    &:hover {
+        background-color: @brand-success;
+        background-color: rgba(92, 184, 92, 0.95);
+    }
 }
 
 .examination_notice {
     background-color: @brand-danger;
+    background-color: rgba(217, 83, 79, 0.85);
+    &:hover {
+        background-color: @brand-danger;
+        background-color: rgba(217, 83, 79, 0.95);
+    }
 }
 
 .examination_status {
     background-color: @brand-danger;
+    background-color: rgba(217, 83, 79, 0.85);
+    &:hover {
+        background-color: @brand-danger;
+        background-color: rgba(217, 83, 79, 0.95);
+    }
     @media (min-width: @screen-sm-min) {
         dl {
             font-size: 16px;
@@ -121,10 +136,10 @@
     }
     .check-in-btn {
         margin-top: 7px;
-        @media(max-width: @screen-sm-max){
+        @media (max-width: @screen-sm-max) {
             margin-top: 20px;
         }
-        @media(max-width: @screen-xs-max){
+        @media (max-width: @screen-xs-max) {
             margin: 15px 0;
         }
     }
