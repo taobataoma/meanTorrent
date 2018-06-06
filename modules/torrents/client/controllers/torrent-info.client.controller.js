@@ -1784,7 +1784,7 @@
      * CancelTorrentNfo
      * @constructor
      */
-    vm.CancelTorrentNfo = function(){
+    vm.CancelTorrentNfo = function () {
       vm.mediaInfoEditMode = false;
     };
 
