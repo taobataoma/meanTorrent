@@ -60,6 +60,7 @@ const FAILURE_REASONS = {
   184: 'save passkeyuser failed',
   185: 'get H&R completeTorrent failed',
   186: 'create H&R completeTorrent failed',
+  187: 'Illegal completed event',
 
   190: 'You have more H&R warning, can not download any torrent now!',
   191: 'not find this torrent H&R complete data',
@@ -860,9 +861,14 @@ exports.announce = function (req, res) {
       if (event(query.event) === EVENT_COMPLETED) {
         mtDebug.debugGreen('---------------EVENT_COMPLETED----------------', 'ANNOUNCE', true, req.passkeyuser);
 
-        doCompleteEvent(function () {
-          done(null);
-        });
+        if (req.currentPeer.peer_downloaded > 0 || query.downloaded > 0) {
+          doCompleteEvent(function () {
+            done(null);
+          });
+        } else {
+          done(187);
+          mtDebug.debugRed('Illegal completed event', 'ANNOUNCE', true, req.passkeyuser);
+        }
       } else {
         done(null);
       }
