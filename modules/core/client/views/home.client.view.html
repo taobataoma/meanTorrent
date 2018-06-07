@@ -226,7 +226,7 @@
                                 <p class="text-long" ng-repeat="t in vm.homeNewestTorrents">
                                     <span class="item-date">{{t.createdat | date: 'MM-dd HH:mm'}} - </span>
                                     <a ui-sref="torrents.view({ torrentId: t._id })"
-                                       title="{{vm.TGI.getTorrentTitle(t)}}">{{t.torrent_filename}}</a>
+                                       title="{{vm.TGI.getTorrentCustomTitle(t)}}">{{vm.TGI.getTorrentCustomTitle(t)}}</a>
                                 </p>
                             </div>
                         </div>
