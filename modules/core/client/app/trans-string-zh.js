@@ -1089,7 +1089,7 @@
     CURR_VIP_STATE: '当前 VIP 身份状态：`{{vip_status | translate}}`。',
     CURR_UP_TOTAL_SPEED: '当前上传总速度为：`{{up_speed | byteFmt: 2}}`。',
     CURR_DOWN_TOTAL_SPEED: '当前下载总速度为：`{{down_speed | byteFmt: 2}}`。',
-    CURR_SCORE_INCOME_HOURS: '当前预计每小时获得 `{{score_hour}}` 积分，如果你不明白积分怎么计算，请参阅 [{{"ABOUT.MENU_ABOUT_MANUAL_SCORE_RULES" | translate}}](/about/manual/scoreRules)，照此速度的的推算，到达 {{next_level}} 还需要 {{days}} 天，这里可查看您最近的 [积分历史记录](/dataCenter/score)。',
+    CURR_SCORE_INCOME_HOURS: '当前预计每小时获得 `{{score_hour}}` 积分，如果你不明白积分怎么计算，请参阅 [{{"ABOUT.MENU_ABOUT_MANUAL_SCORE_RULES" | translate}}](/about/manual/scoreRules)，照此速度推算，到达 {{next_level}} 还需要 {{days}} 天，这里可查看您最近的 [积分历史记录](/dataCenter/score)。',
     EXCHANGE_INVITATION: '兑换一个邀请 ({{score}} 积分)',
     EXCHANGE_INVITATION_CONFIRM_OK: '兑换',
     EXCHANGE_INVITATION_CONFIRM_CANCEL: '取消',
