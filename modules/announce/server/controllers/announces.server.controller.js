@@ -13,6 +13,9 @@ var path = require('path'),
   Peer = mongoose.model('Peer'),
   Complete = mongoose.model('Complete'),
   Finished = mongoose.model('Finished'),
+  bcode = require(path.resolve('./config/lib/bencode')),
+  benc = require('bncode'),
+  ipRegex = require('ip-regex'),
   moment = require('moment'),
   async = require('async'),
   sprintf = require('sprintf-js').sprintf,
@@ -85,7 +88,7 @@ const PEER_COMPACT_SIZE = 6;
 const ANNOUNCE_INTERVAL = Math.floor(announceConfig.announceInterval / 1000);
 
 const PARAMS_INTEGER = [
-  'port', 'uploaded', 'downloaded', 'left', 'compact', 'numwant'
+  'port', 'uploaded', 'downloaded', 'left', 'compact', 'numwant', 'no_peer_id'
 ];
 
 const PARAMS_STRING = [
@@ -195,8 +198,8 @@ exports.announce = function (req, res) {
         done(150);
       } else if (query.peer_id.length !== 20) {
         done(151);
-      } else if (typeof query.compact === 'undefined' || query.compact !== '1') {
-        done(600);
+        // } else if (typeof query.compact === 'undefined' || query.compact !== '1') {
+        //   done(600);
       } else {
         for (i = 0; i < PARAMS_INTEGER.length; i++) {
           p = PARAMS_INTEGER[i];
@@ -933,26 +936,24 @@ exports.announce = function (req, res) {
       if (typeof query.numwant !== 'undefined' && query.numwant > 0)
         want = query.numwant;
 
-      var peerBuffer = new Buffer(want * PEER_COMPACT_SIZE);
-      var len = writePeers(peerBuffer, want, req.torrent._peers);
-      peerBuffer = peerBuffer.slice(0, len);
+      var peers = getPeers(want, req.torrent._peers);
+      var v6ip = hasV6IP(peers);
+      var peersFunction = v6ip ? peersDictionary : peersBinary;
+      var resPeers = peersFunction(peers);
 
-      mtDebug.debugGreen('---------------SEND RESPONSE TO USER----------------', 'ANNOUNCE', true, req.passkeyuser);
-      var resp = 'd8:intervali' + ANNOUNCE_INTERVAL + 'e8:completei' + req.torrent.torrent_seeds + 'e10:incompletei' + req.torrent.torrent_leechers + 'e10:downloadedi' + req.torrent.torrent_finished + 'e5:peers' + len + ':';
-      mtDebug.debugRed(resp, 'ANNOUNCE', true, req.passkeyuser);
-
-      res.writeHead(200, {
-        'Content-Length': resp.length + peerBuffer.length + 1,
-        'Content-Type': 'text/plain'
+      var resp = bcode.encode({
+        interval: ANNOUNCE_INTERVAL,
+        complete: req.torrent.torrent_seeds,
+        incomplete: req.torrent.torrent_leechers,
+        downloaded: req.torrent.torrent_finished,
+        peers: resPeers
       });
 
-      res.write(resp);
-      res.write(peerBuffer);
-      res.end('e');
-
-      if (len > 0) {
-        mtDebug.debug(peerBuffer, 'ANNOUNCE', true, req.passkeyuser);
-      }
+      mtDebug.debugGreen('---------------SEND RESPONSE TO USER----------------', 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debug('ip mode: ' + (v6ip ? 'IPv6' : 'IPv4'), 'ANNOUNCE', true, req.passkeyuser);
+      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.end(resp, 'ascii');
+      mtDebug.debug(benc.decode(resp, 'utf8'), 'ANNOUNCE', true, req.passkeyuser);
 
       done(null);
     },
@@ -1277,14 +1278,13 @@ exports.announce = function (req, res) {
   }
 
   /**
-   * writePeers
-   * @param buf
+   * getPeers
    * @param count
    * @param peers
-   * @returns {number}
+   * @returns []
    */
-  function writePeers(buf, count, peers) {
-    var c = 0;
+  function getPeers(count, peers) {
+    var ps = [];
 
     if (!req.seeder && event(query.event) !== EVENT_STOPPED && event(query.event) !== EVENT_COMPLETED) {
       mtDebug.debugGreen('---------------GET PEERS LIST----------------', 'ANNOUNCE', true, req.passkeyuser);
@@ -1292,7 +1292,6 @@ exports.announce = function (req, res) {
       mtDebug.debugRed('peers.length   = ' + peers.length, 'ANNOUNCE', true, req.passkeyuser);
 
       var p;
-      var bc;
       var m = Math.min(peers.length, count);
       for (var i = 0; i < m; i++) {
         var index = 0;
@@ -1308,23 +1307,25 @@ exports.announce = function (req, res) {
             if (p.user.equals(req.passkeyuser._id)) {
               if (announceConfig.peersCheck.peersSendListIncludeOwnSeed) {
                 mtDebug.debug(p._id.toString() + '    IP:' + p.peer_ip + '    PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
-                bc = compact(p);
-                if (bc) {
-                  bc.copy(buf, c++ * PEER_COMPACT_SIZE);
-                }
+                ps.push({
+                  id: p.peer_id,
+                  ip: p.peer_ip,
+                  port: p.peer_port
+                });
               }
             } else {
               mtDebug.debug(p._id.toString() + '    IP:' + p.peer_ip + '    PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
-              bc = compact(p);
-              if (bc) {
-                bc.copy(buf, c++ * PEER_COMPACT_SIZE);
-              }
+              ps.push({
+                id: p.peer_id,
+                ip: p.peer_ip,
+                port: p.peer_port
+              });
             }
           }
         }
       }
     }
-    return c * PEER_COMPACT_SIZE;
+    return ps;
   }
 
   /**
@@ -1347,6 +1348,78 @@ exports.announce = function (req, res) {
 
       return b;
     }
+  }
+
+  /**
+   * hasV6IP
+   * @param peers
+   * @returns {boolean}
+   */
+  function hasV6IP(peers) {
+    for (let p of peers) {
+      if (ipRegex.v6({exact: true}).test(p.ip)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * peersDictionary
+   * @param peers
+   */
+  function peersDictionary(peers) {
+    return peers.map(function (peer) {
+      if (query.no_peer_id === 1) {
+        return {
+          'ip': peer.ip,
+          'port': peer.port
+        };
+      } else {
+        return {
+          'peer id': peer.id,
+          'ip': peer.ip,
+          'port': peer.port
+        };
+      }
+    });
+  }
+
+  /**
+   * peersBinary
+   * @param peers
+   * @returns {string}
+   */
+  function peersBinary(peers) {
+    var tokens = [];
+    peers.forEach(function (peer) {
+      tokens.push(peerBinary(peer.ip, peer.port));
+    });
+    return tokens.join('');
+  }
+
+  /**
+   * peerBinary
+   * @param ip
+   * @param port
+   * @returns {string}
+   */
+  function peerBinary(ip, port) {
+    var tokens = [];
+
+    var octets = ip.split('.');
+    if (octets.length !== 4) return '';
+
+    octets.forEach(function (octet) {
+      var val = parseInt(octet, 10);
+      if (!isNaN(val)) tokens.push(val);
+    });
+    if (tokens.length !== 4) return '';
+
+    tokens.push((port >> 8) & 0xff);
+    tokens.push(port & 0xff);
+
+    return String.fromCharCode.apply(tokens, tokens);
   }
 };
 

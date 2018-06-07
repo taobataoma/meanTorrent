@@ -81,6 +81,7 @@
     "helmet": "~3.8.1",
     "imagemin-pngquant": "~5.0.0",
     "inbox": "^1.1.59",
+    "ip-regex": "^3.0.0",
     "irc": "^0.5.2",
     "jasmine-core": "~2.7.0",
     "lodash": "^4.17.10",
