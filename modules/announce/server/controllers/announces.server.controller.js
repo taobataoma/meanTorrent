@@ -951,9 +951,10 @@ exports.announce = function (req, res) {
 
       mtDebug.debugGreen('---------------SEND RESPONSE TO USER----------------', 'ANNOUNCE', true, req.passkeyuser);
       mtDebug.debug('ip mode: ' + (v6ip ? 'IPv6' : 'IPv4'), 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debug(benc.decode(resp, 'ascii'), 'ANNOUNCE', true, req.passkeyuser);
+
       res.writeHead(200, {'Content-Type': 'text/plain'});
       res.end(resp, 'ascii');
-      mtDebug.debug(benc.decode(resp, 'utf8'), 'ANNOUNCE', true, req.passkeyuser);
 
       done(null);
     },
