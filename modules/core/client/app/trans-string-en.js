@@ -1089,7 +1089,7 @@
     CURR_VIP_STATE: 'Current VIP status: `{{vip_status | translate}}`.',
     CURR_UP_TOTAL_SPEED: 'Current total upload speed is: `{{up_speed | byteFmt: 2}}`.',
     CURR_DOWN_TOTAL_SPEED: 'Current total download speed is: `{{down_speed | byteFmt: 2}}`.',
-    CURR_SCORE_INCOME_HOURS: 'Current estimated hourly earnings of `{{score_hour}}` scores, If you don’t understand how to calculate the points, please refer to [{{"ABOUT.MENU_ABOUT_MANUAL_SCORE_RULES" | translate}}](/about/manual/scoreRules), Based on this speed projection, {{days}} days are required to reach {{next_level}}, where you can view your [last score data history] (/dataCenter/score).',
+    CURR_SCORE_INCOME_HOURS: 'Current estimated hourly earnings of `{{score_hour}}` scores, If you don’t understand how to calculate the points, please refer to [{{"ABOUT.MENU_ABOUT_MANUAL_SCORE_RULES" | translate}}](/about/manual/scoreRules), Based on this speed projection, {{days}} days are required to reach {{next_level}}, where you can view your [last score data history](/dataCenter/score).',
     EXCHANGE_INVITATION: 'Exchange an invitation ({{score}} scores)',
     EXCHANGE_INVITATION_CONFIRM_OK: 'Exchange',
     EXCHANGE_INVITATION_CONFIRM_CANCEL: 'Cancel',
