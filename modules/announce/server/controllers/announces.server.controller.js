@@ -200,8 +200,8 @@ exports.announce = function (req, res) {
         done(150);
       } else if (query.peer_id.length !== 20) {
         done(151);
-        // } else if (typeof query.compact === 'undefined' || query.compact !== '1') {
-        //   done(600);
+      } else if (typeof query.compact === 'undefined' || query.compact !== '1') {
+        query.compact = 0;
       } else {
         for (i = 0; i < PARAMS_INTEGER.length; i++) {
           p = PARAMS_INTEGER[i];
@@ -962,7 +962,7 @@ exports.announce = function (req, res) {
 
       var peers = getPeers(want, req.torrent._peers);
       var hasV6ip = hasV6IP(peers);
-      var peersFunction = hasV6ip ? peersDictionary : peersBinary;
+      var peersFunction = hasV6ip ? peersDictionary : (query.compact === 0 ? peersDictionary : peersBinary);
       var resPeers = peersFunction(peers);
 
       var resp = bcode.encode({
