@@ -31,6 +31,16 @@ var PeerSchema = new Schema({
     default: '',
     trim: true
   },
+  peer_ipv4: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  peer_ipv6: {
+    type: String,
+    default: '',
+    trim: true
+  },
   peer_port: {
     type: Number,
     default: 0
@@ -143,6 +153,46 @@ PeerSchema.methods.globalUpdateMethod = function (findThenUpdate, cb) {
       if (cb) cb(p || this);
     });
   }
+};
+
+/**
+ * isIpV4
+ * @returns {boolean}
+ */
+PeerSchema.methods.isIpV4 = function () {
+  return this.peer_ipv4 !== '';
+};
+
+/**
+ * isIpV4Only
+ * @returns {boolean}
+ */
+PeerSchema.methods.isIpV4Only = function () {
+  return this.peer_ipv4 !== '' && this.peer_ipv6 === '';
+};
+
+/**
+ * isIpV6
+ * @returns {boolean}
+ */
+PeerSchema.methods.isIpV6 = function () {
+  return this.peer_ipv6 !== '';
+};
+
+/**
+ * isIpV6Only
+ * @returns {boolean}
+ */
+PeerSchema.methods.isIpV6Only = function () {
+  return this.peer_ipv6 !== '' && this.peer_ipv4 === '';
+};
+
+/**
+ * isIpV4V6
+ * @returns {boolean}
+ */
+PeerSchema.methods.isIpV4V6 = function () {
+  return this.peer_ipv4 !== '' && this.peer_ipv6 !== '';
 };
 
 /**

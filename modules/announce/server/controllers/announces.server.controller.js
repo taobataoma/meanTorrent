@@ -92,7 +92,9 @@ const PARAMS_INTEGER = [
 ];
 
 const PARAMS_STRING = [
-  'event'
+  'event',
+  'ipv4',
+  'ipv6'
 ];
 
 var isGlobalSaleValid = false;
@@ -203,18 +205,40 @@ exports.announce = function (req, res) {
       } else {
         for (i = 0; i < PARAMS_INTEGER.length; i++) {
           p = PARAMS_INTEGER[i];
-          if (typeof query[p] !== 'undefined')
+          if (typeof query[p] !== 'undefined') {
             query[p] = parseInt(query[p].toString(), 10);
+          }
         }
 
         for (i = 0; i < PARAMS_STRING.length; i++) {
           p = PARAMS_STRING[i];
-          if (typeof query[p] !== 'undefined')
+          if (typeof query[p] !== 'undefined') {
             query[p] = query[p].toString();
+          }
+        }
+
+        if (query.ipv4 === undefined) {
+          query.ipv4 = '';
+        }
+        if (query.ipv6 === undefined) {
+          query.ipv6 = '';
+        }
+        if (query.ipv6.toLowerCase().startsWith('fe80')) {
+          query.ipv6 = '';
+        }
+
+        //write ip v4 v6
+        query.ip = req.cf_ip;
+        if (ipRegex.v6({exact: true}).test(query.ip)) {
+          query.ipv6 = query.ip;
+        } else {
+          query.ipv4 = query.ip;
         }
 
         query.info_hash = common.binaryToHex(query.info_hash);
         req.seeder = (query.left === 0) ? true : false;
+
+        console.log(query);
 
         done(null);
       }
@@ -937,8 +961,8 @@ exports.announce = function (req, res) {
         want = query.numwant;
 
       var peers = getPeers(want, req.torrent._peers);
-      var v6ip = hasV6IP(peers);
-      var peersFunction = v6ip ? peersDictionary : peersBinary;
+      var hasV6ip = hasV6IP(peers);
+      var peersFunction = hasV6ip ? peersDictionary : peersBinary;
       var resPeers = peersFunction(peers);
 
       var resp = bcode.encode({
@@ -951,7 +975,7 @@ exports.announce = function (req, res) {
 
       mtDebug.debugGreen('---------------SEND RESPONSE TO USER----------------', 'ANNOUNCE', true, req.passkeyuser);
       if (peers.length > 0) {
-        mtDebug.debug('ip mode: ' + (v6ip ? 'IPv6' : 'IPv4'), 'ANNOUNCE', true, req.passkeyuser);
+        mtDebug.debug('ip send mode: ' + (hasV6ip ? 'IPv6' : 'IPv4'), 'ANNOUNCE', true, req.passkeyuser);
       }
       mtDebug.debug(benc.decode(resp, 'ascii'), 'ANNOUNCE', true, req.passkeyuser);
 
@@ -997,13 +1021,17 @@ exports.announce = function (req, res) {
         req.currentPeer.isNewCreated = false;
 
         //if find peer_id, but some time some client (like qbittorrent 4.1.0) the ip or port is changed, update it
-        if ((req.currentPeer.peer_ip !== req.cf_ip || req.currentPeer.peer_port !== query.port) && query.port !== 0) {
+        if ((req.currentPeer.peer_ip !== req.cf_ip || req.currentPeer.peer_ipv4 !== query.ipv4 || req.currentPeer.peer_ipv6 !== query.ipv6 || req.currentPeer.peer_port !== query.port) && query.port !== 0) {
           req.currentPeer.peer_ip = req.cf_ip;
+          req.currentPeer.peer_ipv4 = query.ipv4;
+          req.currentPeer.peer_ipv6 = query.ipv6;
           req.currentPeer.peer_port = query.port;
 
           req.currentPeer.update({
             $set: {
               peer_ip: req.cf_ip,
+              peer_ipv4: query.ipv4,
+              peer_ipv6: query.ipv6,
               peer_port: query.port
             }
           }).exec();
@@ -1026,6 +1054,24 @@ exports.announce = function (req, res) {
       createCurrentPeer(function () {
         if (callback) return callback();
       });
+    }
+  }
+
+  /**
+   * getCurrentPeerIpMode
+   * @returns {string}
+   */
+  function getCurrentPeerIpMode() {
+    if (req.currentPeer) {
+      if (req.currentPeer.isIpV4V6()) {
+        return 'IPV4V6';
+      } else if (req.currentPeer.isIpV6()) {
+        return 'IPV6';
+      } else {
+        return 'IPV4';
+      }
+    } else {
+      return 'unknown';
     }
   }
 
@@ -1092,6 +1138,8 @@ exports.announce = function (req, res) {
     peer.torrent = req.torrent;
     peer.peer_id = query.peer_id;
     peer.peer_ip = req.cf_ip;
+    peer.peer_ipv4 = query.ipv4;
+    peer.peer_ipv6 = query.ipv6;
     peer.peer_port = query.port;
     peer.peer_left = query.left;
     peer.peer_status = req.seeder ? PEERSTATE_SEEDER : PEERSTATE_LEECHER;
@@ -1293,64 +1341,49 @@ exports.announce = function (req, res) {
       mtDebug.debugGreen('---------------GET PEERS LIST----------------', 'ANNOUNCE', true, req.passkeyuser);
       mtDebug.debugRed('want.count     = ' + count, 'ANNOUNCE', true, req.passkeyuser);
       mtDebug.debugRed('peers.length   = ' + peers.length, 'ANNOUNCE', true, req.passkeyuser);
+      mtDebug.debugRed('user ip mode: ' + getCurrentPeerIpMode(), 'ANNOUNCE', true, req.passkeyuser);
 
-      var p;
-      var m = Math.min(peers.length, count);
-      for (var i = 0; i < m; i++) {
-        var index = 0;
-        if (peers.length < count) {
-          index = i;
-        } else {
-          index = Math.floor(Math.random() * peers.length);
-        }
-        p = peers[index];
+      var wantedPeers;
+      if (req.currentPeer.isIpV4Only()) {    //ipv4
+        wantedPeers = peers.filter(function (p) {
+          return p.isIpV4();
+        }).sort(function () {
+          return 0.5 - Math.random();
+        }).slice(0, count);
+      } else {                               //ipv6 or v4v6
+        wantedPeers = peers.slice(0).sort(function () {
+          return 0.5 - Math.random();
+        }).slice(0, count);
+      }
 
+      wantedPeers.forEach(function (p) {
         if (p !== undefined && p !== req.currentPeer) {
           if (p.last_announce_at > (Date.now() - announceConfig.announceInterval - announceConfig.announceIdleTime)) { //do not send inactive peer
+            var tp;
             if (p.user.equals(req.passkeyuser._id)) {
               if (announceConfig.peersCheck.peersSendListIncludeOwnSeed) {
-                mtDebug.debug(p._id.toString() + '    IP:' + p.peer_ip + '    PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
-                ps.push({
+                tp = {
                   id: p.peer_id,
-                  ip: p.peer_ip,
+                  ip: req.currentPeer.isIpV4Only() ? p.peer_ipv4 : (p.isIpV6() ? p.peer_ipv6 : p.peer_ipv4),
                   port: p.peer_port
-                });
+                };
+                ps.push(tp);
+                mtDebug.debug(p._id.toString() + ' - SELF PEER - IP:' + tp.ip + '    PORT:' + tp.port, 'ANNOUNCE', true, req.passkeyuser);
               }
             } else {
-              mtDebug.debug(p._id.toString() + '    IP:' + p.peer_ip + '    PORT:' + p.peer_port, 'ANNOUNCE', true, req.passkeyuser);
-              ps.push({
+              tp = {
                 id: p.peer_id,
-                ip: p.peer_ip,
+                ip: req.currentPeer.isIpV4Only() ? p.peer_ipv4 : (p.isIpV6() ? p.peer_ipv6 : p.peer_ipv4),
                 port: p.peer_port
-              });
+              };
+              ps.push(tp);
+              mtDebug.debug(p._id.toString() + '    IP:' + tp.ip + '    PORT:' + tp.port, 'ANNOUNCE', true, req.passkeyuser);
             }
           }
         }
-      }
+      });
     }
     return ps;
-  }
-
-  /**
-   * compact
-   * @param p
-   * @returns {*}
-   */
-  function compact(p) {
-    var b = new Buffer(PEER_COMPACT_SIZE);
-
-    var parts = p.peer_ip.split('.');
-    if (parts.length !== 4) {
-      return null;
-    } else {
-      for (var i = 0; i < 4; i++)
-        b[i] = parseInt(parts[i], 10);
-
-      b[4] = (p.peer_port >> 8) & 0xff;
-      b[5] = p.peer_port & 0xff;
-
-      return b;
-    }
   }
 
   /**
@@ -1439,13 +1472,6 @@ exports.userByPasskey = function (req, res, next, pk) {
     .exec(function (err, u) {
       if (u) {
         req.passkeyuser = u;
-
-        // if ((moment(Date.now()) - moment(req.passkeyuser.last_signed)) > signConfig.idle.accountIdleForTime) {
-        //   req.passkeyuser.update({
-        //     $set: {status: 'idle'}
-        //   }).exec();
-        //   req.passkeyuser.status = 'idle';
-        // }
       } else {
         req.passkeyuser = undefined;
       }
