@@ -504,6 +504,34 @@ body {
     }
 }
 
+.ip-flags {
+    &.ip-flag4 {
+        cursor: pointer;
+        padding: 1px 5px;
+        color: #fff;
+        background-color: @brand-danger;
+        border-color: darken(@brand-danger, 10%);
+        border-radius: 3px;
+    }
+    &.ip-flag6 {
+        cursor: pointer;
+        margin-left: 2px;
+        padding: 1px 5px;
+        color: #fff;
+        background-color: @brand-success;
+        border-color: darken(@brand-success, 10%);
+        border-radius: 3px;
+    }
+}
+
+#ip-flags {
+    .tooltip {
+        .tooltip-inner {
+            min-width: 50px !important;
+        }
+    }
+}
+
 .col-small-padding {
     padding: 0 5px;
 }

@@ -1206,6 +1206,8 @@
     USER_INFO_TITLE: '{{name}} 的用戶資訊',
     MAKER_INFO_TITLE: '資源小組 [{{name}}]',
     USER_IS_VIP: '{{name}} 是一個VIP用戶',
+    USER_IP_V4: 'IP V4',
+    USER_IP_V6: 'IP V6',
     USER_UPLOADED_FLAG: '{{name}} 的上傳量',
     USER_DOWNLOADED_FLAG: '{{name}} 的下載量',
     USER_SCORE_LEVEL: '{{name}} 的積分等級',

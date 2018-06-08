@@ -1206,6 +1206,8 @@
     USER_INFO_TITLE: 'user info of {{name}}',
     MAKER_INFO_TITLE: 'resources group info of {{name}}',
     USER_IS_VIP: '{{name}} is a VIP',
+    USER_IP_V4: 'IP V4',
+    USER_IP_V6: 'IP V6',
     USER_UPLOADED_FLAG: '{{name}} uploaded',
     USER_DOWNLOADED_FLAG: '{{name}} downloaded',
     USER_SCORE_LEVEL: '{{name}} score level',
