@@ -106,7 +106,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 ## Instance Site
 * [mine.pt](https://mine.pt)
 * [torrenteros.org](http://torrenteros.org)
-* [tskscn.org](https://www.tskscn.org:3000)
+* [tskscn.org](https://www.tskscn.org)
 
 ## Online support
 - Post an [issue](https://github.com/taobataoma/meanTorrent/issues)
