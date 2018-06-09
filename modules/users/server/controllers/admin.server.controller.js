@@ -33,6 +33,7 @@ var serverMessage = require(path.resolve('./config/lib/server-message'));
 var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 var announceConfig = config.meanTorrentConfig.announce;
 var scoreConfig = config.meanTorrentConfig.score;
+var inviteConfig = config.meanTorrentConfig.invite;
 
 /**
  * Show the current user
@@ -272,7 +273,10 @@ exports.updateUserStatus = function (req, res) {
   var user = req.model;
   var tp = {
     status: req.body.userStatus,
-    banReason: req.body.banReason
+    banReason: {
+      reason: req.body.banReason,
+      params: undefined
+    }
   };
 
   if (user.status === 'idle' && req.body.userStatus === 'normal') {
@@ -296,12 +300,51 @@ exports.updateUserStatus = function (req, res) {
         status: req.body.userStatus,
         reason: req.body.banReason === '' ? 'VALUE_NULL' : req.body.banReason
       });
+
       // write history
       history.insert(user._id, historyConfig.action.adminUpdateUserStatus, {
         status: req.body.userStatus,
         reason: req.body.banReason === '' ? 'VALUE_NULL' : req.body.banReason,
         by: req.user._id
       });
+
+      //ban inviter
+      if (req.body.userStatus === 'banned' && inviteConfig.banUserInviter && user.invited_by) {
+        if (!user.invited_by.isOper) {
+          if (!user.invited_by.isVip || (user.invited_by.isVip && inviteConfig.banUserInviterVip)) {
+            user.invited_by.update({
+              $set: {
+                status: req.body.userStatus,
+                banReason: {
+                  reason: 'BANNED.YOU_ARE_BANNED_FROM_INVITED_USER',
+                  params: {
+                    uname: user.displayName,
+                    uReason: req.body.banReason
+                  }
+                }
+              }
+            }).exec(function (err, result) {
+              if (!err) {
+                //create trace log
+                traceLogCreate(req, traceConfig.action.adminBanUserInviter, {
+                  user: user.invited_by._id,
+                  status: req.body.userStatus,
+                  invited_user: user._id,
+                  reason: req.body.banReason
+                });
+
+                // write history
+                history.insert(user.invited_by._id, historyConfig.action.adminBanUserInviter, {
+                  status: req.body.userStatus,
+                  uname: user.displayName,
+                  reason: req.body.banReason === '' ? 'VALUE_NULL' : req.body.banReason,
+                  by: req.user._id
+                });
+              }
+            });
+          }
+        }
+      }
     }
   });
 };
@@ -798,7 +841,7 @@ exports.userByID = function (req, res, next, id) {
   }
 
   User.findById(id, '-salt -password -providerData -history')
-    .populate('invited_by', 'username displayName profileImageURL isVip score uploaded downloaded')
+    .populate('invited_by', 'username displayName profileImageURL isVip isOper score uploaded downloaded')
     .populate('makers', 'user name')
     .exec(function (err, user) {
       if (err) {

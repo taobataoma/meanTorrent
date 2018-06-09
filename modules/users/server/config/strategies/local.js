@@ -46,7 +46,7 @@ module.exports = function () {
           if (user.status === 'banned') {
             return done(null, false, {
               message: 'SERVER.YOU_ARE_BANNED',
-              reason: user.banReason
+              banReason: user.banReason
             });
           }
           if (user.status === 'inactive') {

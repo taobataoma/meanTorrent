@@ -407,7 +407,8 @@ module.exports = {
      *                  if user received an invite mail, must signin(register) within the expiration time
      *                  if exceed the expiration time, the invite send qualifications will invalid and user also can not signin(register).
      * @expires_str:    string desc of @expires
-     * @banUserInviter: settings whether ban the user`s inviter when a user banned
+     * @banUserInviter:     settings whether ban the user`s inviter when a user banned
+     * @banUserInviterVip:  settings whether ban the user`s inviter if the inviter is a vip user
      *
      * @official:       settings of official invitations
      *    @presentDays: settings of present official available days list
@@ -418,6 +419,7 @@ module.exports = {
       expires: 60 * 60 * 1000 * 24,
       expires_str: '24h',
       banUserInviter: true,
+      banUserInviterVip: true,
       official: {
         presentDays: [1, 10, 30, 90, 180]
       }
@@ -704,6 +706,7 @@ module.exports = {
         adminUpdateUserUploaded: {name: 'adminUpdateUserUploaded', enable: true},
         adminUpdateUserDownloaded: {name: 'adminUpdateUserDownloaded', enable: true},
         adminUpdateUserVIPData: {name: 'adminUpdateUserVIPData', enable: true},
+        adminBanUserInviter: {name: 'adminBanUserInviter', enable: true},
         adminPresentUserInvitations: {name: 'adminPresentUserInvitations', enable: true},
         adminRemoveUserHnrWarning: {name: 'adminRemoveUserHnrWarning', enable: true},
         adminCreateUserMakerGroup: {name: 'adminCreateUserMakerGroup', enable: true},
@@ -759,7 +762,8 @@ module.exports = {
         adminUpdateUserVIPData: {name: 'adminUpdateUserVIPData', content: 'ADMIN_UPDATE_USER_VIP_DATA', enable: true},
         adminPresentUserInvitations: {name: 'adminPresentUserInvitations', content: 'ADMIN_PRESENT_USER_INVITATIONS', enable: true},
         adminRemoveUserHnrWarning: {name: 'adminRemoveUserHnrWarning', content: 'ADMIN_REMOVE_USER_HNR_WARNING', enable: true},
-        adminCreateUserMakerGroup: {name: 'adminCreateUserMakerGroup', content: 'ADMIN_CREATE_USER_MAKER_GROUP', enable: true}
+        adminCreateUserMakerGroup: {name: 'adminCreateUserMakerGroup', content: 'ADMIN_CREATE_USER_MAKER_GROUP', enable: true},
+        adminBanUserInviter: {name: 'adminBanUserInviter', content: 'ADMIN_BAN_USER_INVITER', enable: true}
       }
     },
 

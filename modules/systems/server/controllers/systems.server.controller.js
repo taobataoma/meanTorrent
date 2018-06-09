@@ -12,13 +12,14 @@ var path = require('path'),
   User = mongoose.model('User'),
   shell = require('shelljs'),
   async = require('async'),
+  history = require(path.resolve('./config/lib/history')),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create;
 
 var traceConfig = config.meanTorrentConfig.trace;
 var mtDebug = require(path.resolve('./config/lib/debug'));
-var serverMessage = require(path.resolve('./config/lib/server-message'));
-var serverNoticeConfig = config.meanTorrentConfig.serverNotice;
 var announceConfig = config.meanTorrentConfig.announce;
+var historyConfig = config.meanTorrentConfig.history;
+var inviteConfig = config.meanTorrentConfig.invite;
 
 /**
  * getSystemEnvConfigFiles
@@ -385,30 +386,90 @@ exports.listUnfinishedUsers = function (req, res) {
  */
 exports.banAllUnfinishedUser = function (req, res) {
   if (req.user.isAdmin) {
-    var user = req.model;
-
-    User.update({'examinationData.isFinished': false}, {
-      $set: {
-        status: 'banned',
-        banReason: 'BANNED.REASON_EXAMINATION_NOT_FINISHED'
-      }
-    }, {multi: true}, function (err, num) {
+    User.find({
+      'examinationData.isFinished': false
+    }).exec(function (err, users) {
       if (err) {
         return res.status(422).send({
           message: errorHandler.getErrorMessage(err)
         });
       } else {
+        users.forEach(function (user) {
+          var tp = {
+            status: 'banned',
+            banReason: {
+              reason: 'BANNED.REASON_EXAMINATION_NOT_FINISHED',
+              params: undefined
+            }
+          };
+
+          user.update({
+            $set: tp
+          }).exec(function (err, result) {
+            if (!err) {
+              // write history
+              history.insert(user._id, historyConfig.action.adminUpdateUserStatus, {
+                status: 'banned',
+                reason: 'BANNED.REASON_EXAMINATION_NOT_FINISHED',
+                by: req.user._id
+              });
+            }
+          });
+        });
+
         res.json({
-          num: num
+          num: users.length
         });
 
         //create trace log
         traceLogCreate(req, traceConfig.action.adminBanAllExaminationUnfinishedUsers, {
-          user: user._id,
-          num: num
+          num: users.length
         });
       }
     });
+
+    //ban inviter
+    if (inviteConfig.banUserInviter) {
+      User.find({
+        'examinationData.isFinished': false
+      }).populate('invited_by', 'username displayName profileImageURL status isVip isOper score uploaded downloaded')
+        .exec(function (err, users) {
+          if (!err) {
+            users.forEach(function (user) {
+              if (user.invited_by) {
+                if (!user.invited_by.isOper) {
+                  if (user.invited_by.status !== 'banned') {
+                    if (!user.invited_by.isVip || (user.invited_by.isVip && inviteConfig.banUserInviterVip)) {
+                      user.invited_by.update({
+                        $set: {
+                          status: 'banned',
+                          banReason: {
+                            reason: 'BANNED.YOU_ARE_BANNED_FROM_INVITED_USER',
+                            params: {
+                              uname: user.displayName,
+                              uReason: 'BANNED.REASON_EXAMINATION_NOT_FINISHED'
+                            }
+                          }
+                        }
+                      }).exec(function (err, result) {
+                        if (!err) {
+                          // write history
+                          history.insert(user.invited_by._id, historyConfig.action.adminBanUserInviter, {
+                            status: 'banned',
+                            uname: user.displayName,
+                            reason: 'BANNED.REASON_EXAMINATION_NOT_FINISHED',
+                            by: req.user._id
+                          });
+                        }
+                      });
+                    }
+                  }
+                }
+              }
+            });
+          }
+        });
+    }
   } else {
     return res.status(403).json({
       message: 'SERVER.USER_IS_NOT_AUTHORIZED'

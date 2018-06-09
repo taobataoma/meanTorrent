@@ -652,7 +652,8 @@
       REASON_ILLEGAL_SIGN_IN: 'Illegal sign in',
       REASON_ACCOUNT_TRADE: 'Account trade',
       REASON_EXAMINATION_NOT_FINISHED: 'Examination not finished',
-      REASON_VIOLATED_RULES: 'Violated the sites user behavior rules'
+      REASON_VIOLATED_RULES: 'Violated the sites user behavior rules',
+      YOU_ARE_BANNED_FROM_INVITED_USER: 'You invited user {{uname}} is banned because：{{uReason | translate}}'
     },
 
     SCORE_NUMBER: 'Score number',
@@ -1828,7 +1829,8 @@
       ADMIN_UPDATE_USER_VIP_DATA: '`{{by.displayName}}` update account vip data: `{{months}}` months',
       ADMIN_PRESENT_USER_INVITATIONS: '`{{by.displayName}}` present `{{numbers}}` official invitations, expires `{{days}}` days',
       ADMIN_REMOVE_USER_HNR_WARNING: '`{{by.displayName}}` remove H&R warning, complete id: `{{complete}}`',
-      ADMIN_CREATE_USER_MAKER_GROUP: '`{{by.displayName}}` create user maker group: `-={{name}}=-`'
+      ADMIN_CREATE_USER_MAKER_GROUP: '`{{by.displayName}}` create user maker group: `-={{name}}=-`',
+      ADMIN_BAN_USER_INVITER: '`{{by.displayName}}` update account status to: `{{status}}`, reason: invited user [{{uname}}] was banned because [{{reason | translate}}]'
     },
 
     //server returned string

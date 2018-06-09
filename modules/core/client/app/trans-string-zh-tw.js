@@ -652,7 +652,8 @@
       REASON_ILLEGAL_SIGN_IN: '非法的註冊',
       REASON_ACCOUNT_TRADE: '涉嫌帳戶交易',
       REASON_EXAMINATION_NOT_FINISHED: '考核未完成',
-      REASON_VIOLATED_RULES: '違返站內用戶行為準則'
+      REASON_VIOLATED_RULES: '違返站內用戶行為準則',
+      YOU_ARE_BANNED_FROM_INVITED_USER: '您邀請的用戶 {{uname}} 被禁止，他被禁止是因為：{{uReason | translate}}'
     },
 
     SCORE_NUMBER: '積分數',
@@ -1828,7 +1829,8 @@
       ADMIN_UPDATE_USER_VIP_DATA: '`{{by.displayName}}` 修改帳戶 VIP 數據: `{{months}}` 個月',
       ADMIN_PRESENT_USER_INVITATIONS: '`{{by.displayName}}` 贈送 `{{numbers}}` 個官方邀請函, 有效期 `{{days}}` 天',
       ADMIN_REMOVE_USER_HNR_WARNING: '`{{by.displayName}}` 移除 H&R 警告, complete id: `{{complete}}`',
-      ADMIN_CREATE_USER_MAKER_GROUP: '`{{by.displayName}}` 創建用戶資源小組: `-={{name}}=-`'
+      ADMIN_CREATE_USER_MAKER_GROUP: '`{{by.displayName}}` 創建用戶資源小組: `-={{name}}=-`',
+      ADMIN_BAN_USER_INVITER: '`{{by.displayName}}` 改變帳戶狀態為: `{{status}}`, 理由: 邀請的用戶[{{uname}}]因為[{{reason | translate}}]被禁止'
     },
 
     //server returned string
