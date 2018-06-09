@@ -80,6 +80,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 64. History of admin operate user account.
 65. New feature for torrent screenshots image upload and edit by uploader or admin or oper, the image link url address support also.
 67. Users score/uploaded/downloaded number changed line graph and detail history of last few days.
+68. Tracker PIV6 support, and show uses IP type(v4.v6) in users list of torrent detail page.
 
 #### Chat room feature:
 1. Users name list
