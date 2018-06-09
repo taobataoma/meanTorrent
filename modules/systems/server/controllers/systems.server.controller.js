@@ -387,7 +387,12 @@ exports.banAllUnfinishedUser = function (req, res) {
   if (req.user.isAdmin) {
     var user = req.model;
 
-    User.update({'examinationData.isFinished': false}, {$set: {status: 'banned'}}, {multi: true}, function (err, num) {
+    User.update({'examinationData.isFinished': false}, {
+      $set: {
+        status: 'banned',
+        banReason: 'BANNED.REASON_EXAMINATION_NOT_FINISHED'
+      }
+    }, {multi: true}, function (err, num) {
       if (err) {
         return res.status(422).send({
           message: errorHandler.getErrorMessage(err)

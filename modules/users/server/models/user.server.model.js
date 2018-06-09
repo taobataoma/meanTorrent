@@ -149,6 +149,10 @@ var UserSchema = new Schema({
     type: String,
     default: 'inactive'
   },
+  banReason: {
+    type: String,
+    default: ''
+  },
   vip_start_at: {
     type: Date,
     default: ''

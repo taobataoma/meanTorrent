@@ -479,7 +479,7 @@
     TORRENT_DELETE_SUCCESSFULLY: '種子刪除成功',
     TORRENT_DELETE_ERROR: '種子刪除失敗',
     TORRENT_DELETE_REASON: '請選擇或輸入一個刪除種子的理由給上傳者:',
-    TORRENT_ENTER_DELETE_REASON: '請輸入自定義刪除理由',
+    TORRENT_ENTER_DELETE_REASON: '請輸入自定義操作理由',
     TORRENT_DELETE_REASON_OVERVIEW: '種子簡介資訊缺少或者不完整',
     TORRENT_DELETE_REASON_NFO: '種子NFO資訊缺少或者不完整',
     TORRENT_DELETE_REASON_QUALITY: '種子資源質量太低下',
@@ -642,6 +642,18 @@
     SET_VIP_MONTHS_FAILED: '更新用戶vip狀態資料失敗',
     RESET_VIP_DATA_SUCCESSFULLY: '重置用戶vip狀態資料成功',
     RESET_VIP_DATA_FAILED: '重置用戶vip狀態資料失敗',
+
+    BANNED: {
+      CONFIRM_CANCEL: '取消',
+      CONFIRM_OK: '確定',
+      CONFIRM_HEADER_TEXT: 'Banned 確認',
+      CONFIRM_BODY_TEXT: '您確定要 ban 掉用戶 {{uname}} 嗎?',
+      REASON_TITLE: '請選擇或自定義一個理由通知用戶:',
+      REASON_ILLEGAL_SIGN_IN: '非法的註冊',
+      REASON_ACCOUNT_TRADE: '涉嫌帳戶交易',
+      REASON_EXAMINATION_NOT_FINISHED: '考核未完成',
+      REASON_VIOLATED_RULES: '違返站內用戶行為準則'
+    },
 
     SCORE_NUMBER: '積分數',
     SCORE_TITLE: '新增積分',
@@ -1809,7 +1821,7 @@
     //admin operate user account history message
     HISTORY: {
       ADMIN_UPDATE_USER_ROLE: '`{{by.displayName}}` 改變帳戶角色為： `{{role}}`',
-      ADMIN_UPDATE_USER_STATUS: '`{{by.displayName}}` 改變帳戶狀態為: `{{status}}`',
+      ADMIN_UPDATE_USER_STATUS: '`{{by.displayName}}` 改變帳戶狀態為: `{{status}}`，理由: {{reason | translate}}',
       ADMIN_UPDATE_USER_SCORE: '`{{by.displayName}}` 修改帳戶積分: `{{score}}`',
       ADMIN_UPDATE_USER_UPLOADED: '`{{by.displayName}}` 修改帳戶上傳量: `{{uploaded | bytes:2}}`',
       ADMIN_UPDATE_USER_DOWNLOADED: '`{{by.displayName}}` 修改帳戶下載量: `{{downloaded | bytes:2}}`',
@@ -1838,7 +1850,7 @@
       RESET_PASSWORD_TO_FREQUENT: '密碼重置操作過於頻繁, 您在 {{hours}} 小時內只能操作一次, 下次可操作時間為: {{nextTime | date: "yyyy-MM-dd HH:mm:ss"}}',
       INVALID_USERNAME: '無效的用戶名稱!',
       INVALID_PASSWORD: '無效的密碼!',
-      YOU_ARE_BANNED: '您已被伺服器禁止(banned)!',
+      YOU_ARE_BANNED: '您已被伺服器禁止(banned)，被禁止的理由為：{{reason}}',
       ACCOUNT_IS_NOT_ACTIVATED: '您的帳戶未啟用, 請啟用後再試!',
       ONLY_VIP_CAN_DOWNLOAD: '該種子只有VIP用戶才可以下載',
       CAN_NOT_DOWNLOAD_BANNED: '下載失敗, 您被伺服器禁止(banned)',

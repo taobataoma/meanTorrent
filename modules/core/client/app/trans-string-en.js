@@ -19,8 +19,8 @@
     DEMO_INFO: 'Welcome to demo site, you can sign up manual to create a normal account or sign in as demo admin with account <mark>demo</mark> and password <mark>demoAdmin12#</mark>, but don`t delete any demo data please, thanks!',
     WARNING_POPUP_STRING: 'This is a <strong style="color:#f00">DEMO SITE</strong>, all resources are for download testing only, please delete it within 24 hours after the test is completed, we recommend that you buy genuine resources!',
 
-    VALUE_NULL: 'NULL',
-    VALUE_CUSTOM: 'CUSTOM',
+    VALUE_NULL: 'Null',
+    VALUE_CUSTOM: 'Custom',
     VALUE_SELECT_ALL: 'Select All',
     BTN_REMOVE: 'Remove',
     BTN_CONTINUE: 'Continue',
@@ -479,7 +479,7 @@
     TORRENT_DELETE_SUCCESSFULLY: 'Torrent delete successfully',
     TORRENT_DELETE_ERROR: 'Torrent delete failed',
     TORRENT_DELETE_REASON: 'Please select or enter the delete reason for uploader:',
-    TORRENT_ENTER_DELETE_REASON: 'Please enter custom delete reason',
+    TORRENT_ENTER_DELETE_REASON: 'Please enter custom operate reason',
     TORRENT_DELETE_REASON_OVERVIEW: 'The torrent overview info is not complete or missing',
     TORRENT_DELETE_REASON_NFO: 'The torrent NFO info is not complete or missing',
     TORRENT_DELETE_REASON_QUALITY: 'The torrent quality is too low',
@@ -642,6 +642,18 @@
     SET_VIP_MONTHS_FAILED: 'update user vip data failed',
     RESET_VIP_DATA_SUCCESSFULLY: 'reset user vip data successfully',
     RESET_VIP_DATA_FAILED: 'reset user vip data failed',
+
+    BANNED: {
+      CONFIRM_CANCEL: 'Cancel',
+      CONFIRM_OK: 'Ok',
+      CONFIRM_HEADER_TEXT: 'Banned confirm',
+      CONFIRM_BODY_TEXT: 'Are you sure want to banned user: {{uname}} ?',
+      REASON_TITLE: 'Please select the banned reason to notice user:',
+      REASON_ILLEGAL_SIGN_IN: 'Illegal sign in',
+      REASON_ACCOUNT_TRADE: 'Account trade',
+      REASON_EXAMINATION_NOT_FINISHED: 'Examination not finished',
+      REASON_VIOLATED_RULES: 'Violated the sites user behavior rules'
+    },
 
     SCORE_NUMBER: 'Score number',
     SCORE_TITLE: 'Add user score',
@@ -1809,7 +1821,7 @@
     //admin operate user account history message
     HISTORY: {
       ADMIN_UPDATE_USER_ROLE: '`{{by.displayName}}` update account role to: `{{role}}`',
-      ADMIN_UPDATE_USER_STATUS: '`{{by.displayName}}` update account status to: `{{status}}`',
+      ADMIN_UPDATE_USER_STATUS: '`{{by.displayName}}` update account status to: `{{status}}`, reason: {{reason | translate}}',
       ADMIN_UPDATE_USER_SCORE: '`{{by.displayName}}` update account score: `{{score}}`',
       ADMIN_UPDATE_USER_UPLOADED: '`{{by.displayName}}` update account uploaded: `{{uploaded | bytes:2}}`',
       ADMIN_UPDATE_USER_DOWNLOADED: '`{{by.displayName}}` update account downloaded: `{{downloaded | bytes:2}}`',
@@ -1838,7 +1850,7 @@
       RESET_PASSWORD_TO_FREQUENT: 'Reset password operation is too frequent, you can do once only in {{hours}} hours, next time is: {{nextTime | date: "yyyy-MM-dd HH:mm:ss"}}',
       INVALID_USERNAME: 'Invalid username!',
       INVALID_PASSWORD: 'Invalid password!',
-      YOU_ARE_BANNED: 'You are banned from the server!',
+      YOU_ARE_BANNED: 'You are banned from the server, The banned reason is: {{reason}}',
       ACCOUNT_IS_NOT_ACTIVATED: 'Your account is not activated, you should active first!',
       ONLY_VIP_CAN_DOWNLOAD: 'This torrent is only for Vip users',
       CAN_NOT_DOWNLOAD_BANNED: 'Download failed, you are banned from server',

@@ -7,11 +7,11 @@
 
   UserController.$inject = ['$scope', '$state', '$window', 'Authentication', 'userResolve', 'Notification', 'NotifycationService', 'MeanTorrentConfig',
     'AdminService', 'ScoreLevelService', 'DebugConsoleService', 'TorrentGetInfoServices', 'SideOverlay', 'MakerGroupService', '$filter', '$translate',
-    'marked'];
+    'marked', 'ModalConfirmService'];
 
   function UserController($scope, $state, $window, Authentication, user, Notification, NotifycationService, MeanTorrentConfig,
                           AdminService, ScoreLevelService, mtDebug, TorrentGetInfoServices, SideOverlay, MakerGroupService, $filter, $translate,
-                          marked) {
+                          marked, ModalConfirmService) {
     var vm = this;
     vm.TGI = TorrentGetInfoServices;
     vm.authentication = Authentication;
@@ -326,12 +326,47 @@
      */
     vm.onUserStatusChanged = function () {
       var user = vm.user;
-      AdminService.setUserStatus({
-        userId: user._id,
-        userStatus: vm.selectedStatus
-      })
-        .then(onSuccess)
-        .catch(onError);
+
+      if (vm.selectedStatus === 'banned') {
+        var modalOptions = {
+          closeButtonText: $translate.instant('BANNED.CONFIRM_CANCEL'),
+          actionButtonText: $translate.instant('BANNED.CONFIRM_OK'),
+          headerText: $translate.instant('BANNED.CONFIRM_HEADER_TEXT'),
+          bodyText: $translate.instant('BANNED.CONFIRM_BODY_TEXT', {uname: user.displayName}),
+
+          selectOptions: {
+            enable: true,
+            title: 'BANNED.REASON_TITLE',
+            options: [
+              'BANNED.REASON_ILLEGAL_SIGN_IN',
+              'BANNED.REASON_ACCOUNT_TRADE',
+              'BANNED.REASON_EXAMINATION_NOT_FINISHED',
+              'BANNED.REASON_VIOLATED_RULES'
+            ]
+          }
+        };
+        ModalConfirmService.showModal({}, modalOptions)
+          .then(function (result) {
+            var reason = result.reason;
+            if (reason === 'CUSTOM') reason = result.custom;
+
+            AdminService.setUserStatus({
+              userId: user._id,
+              userStatus: vm.selectedStatus,
+              banReason: reason
+            })
+              .then(onSuccess)
+              .catch(onError);
+          });
+      } else {
+        AdminService.setUserStatus({
+          userId: user._id,
+          userStatus: vm.selectedStatus,
+          banReason: ''
+        })
+          .then(onSuccess)
+          .catch(onError);
+      }
 
       function onSuccess(response) {
         vm.user = response;

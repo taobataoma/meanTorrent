@@ -251,7 +251,8 @@
         url: '/api/users/:userId/status',
         params: {
           userId: '@userId',
-          userStatus: '@userStatus'
+          userStatus: '@userStatus',
+          banReason: '@banReason'
         },
         interceptor: {response: removeCache}
       },

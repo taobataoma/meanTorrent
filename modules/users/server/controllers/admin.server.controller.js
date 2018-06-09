@@ -270,7 +270,10 @@ exports.updateUserRole = function (req, res) {
  */
 exports.updateUserStatus = function (req, res) {
   var user = req.model;
-  var tp = {status: req.body.userStatus};
+  var tp = {
+    status: req.body.userStatus,
+    banReason: req.body.banReason
+  };
 
   if (user.status === 'idle' && req.body.userStatus === 'normal') {
     tp.last_signed = Date.now();
@@ -290,11 +293,13 @@ exports.updateUserStatus = function (req, res) {
       //create trace log
       traceLogCreate(req, traceConfig.action.adminUpdateUserStatus, {
         user: user._id,
-        status: req.body.userStatus
+        status: req.body.userStatus,
+        reason: req.body.banReason === '' ? 'VALUE_NULL' : req.body.banReason
       });
       // write history
       history.insert(user._id, historyConfig.action.adminUpdateUserStatus, {
         status: req.body.userStatus,
+        reason: req.body.banReason === '' ? 'VALUE_NULL' : req.body.banReason,
         by: req.user._id
       });
     }

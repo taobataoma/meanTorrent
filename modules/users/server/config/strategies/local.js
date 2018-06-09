@@ -45,7 +45,8 @@ module.exports = function () {
           }
           if (user.status === 'banned') {
             return done(null, false, {
-              message: 'SERVER.YOU_ARE_BANNED'
+              message: 'SERVER.YOU_ARE_BANNED',
+              reason: user.banReason
             });
           }
           if (user.status === 'inactive') {
@@ -53,13 +54,6 @@ module.exports = function () {
               message: 'SERVER.ACCOUNT_IS_NOT_ACTIVATED'
             });
           }
-
-          // if ((moment(Date.now()) - moment(user.last_signed)) > signConfig.idle.accountIdleForTime) {
-          //   user.update({
-          //     $set: {status: 'idle'}
-          //   }).exec();
-          //   user.status = 'idle';
-          // }
 
           user.updateSignedTime();
 
