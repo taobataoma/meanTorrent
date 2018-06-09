@@ -238,7 +238,7 @@ exports.announce = function (req, res) {
         query.info_hash = common.binaryToHex(query.info_hash);
         req.seeder = (query.left === 0) ? true : false;
 
-        console.log(query);
+        // console.log(query);
 
         done(null);
       }
