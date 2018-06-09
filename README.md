@@ -81,6 +81,8 @@ and [AngularJS](http://angularjs.org/) based applications.
 65. New feature for torrent screenshots image upload and edit by uploader or admin or oper, the image link url address support also.
 67. Users score/uploaded/downloaded number changed line graph and detail history of last few days.
 68. Tracker PIV6 support, and show uses IP type(v4.v6) in users list of torrent detail page.
+69. Add a reason when administrator to banned a user.
+70. Add a configure item to setting whether ban the users inviter when the user was banned. and you can setting whether ban the inviter when the inviter is a vip user.
 
 #### Chat room feature:
 1. Users name list
@@ -93,8 +95,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 
 ## TODO
 - Fetch service email box message into administrator group message box of site, oper and admin can select any item to handling.
-- Add configure item for whether ban user with his inviter.
-- Add ban reason.
 - Support service center client side logic & UI.
 - Site data line graph for admin
 - Medal center
