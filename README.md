@@ -8,7 +8,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 * [mine.pt](https://mine.pt)
 * [torrenteros.org](http://torrenteros.org)
 * [tskscn.org](https://www.tskscn.org)
-* [91fans.club](http://pt.91fans.club:3000)
+* [pt.91fans.club](http://pt.91fans.club:3000)
 
 ## Feature, Function, Screenshots
 
