@@ -425,7 +425,7 @@ module.exports = {
       banUserInviter: true,
       banUserInviterVip: true,
       official: {
-        presentDays: [1, 10, 30, 90, 180]
+        presentDays: [1, 7, 30, 90, 180]
       }
     },
 
