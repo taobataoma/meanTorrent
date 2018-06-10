@@ -1673,7 +1673,7 @@
         DTS_X: 'DTS:X',
         ATMOS: 'Atmos',
         DTS_HD: 'DTS-HD',
-        TRUE_HD: 'True-HD',
+        TRUE_HD: 'TrueHD',
         DTS: 'DTS',
         AC3: 'AC-3',
         AAC: 'AAC'

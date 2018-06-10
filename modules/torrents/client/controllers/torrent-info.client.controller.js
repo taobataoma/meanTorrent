@@ -626,24 +626,24 @@
         },
         {
           icon: 'fa-file-text',
-          title: $translate.instant('TAB_USER_SUBTITLE'),
-          templateUrl: 'subtitleInfo.html',
-          ng_show: vm.showSubtitleTab(),
-          badges: [
-            {
-              value: vm.torrentLocalInfo._subtitles.length,
-              class: 'badge_info'
-            }
-          ]
-        },
-        {
-          icon: 'fa-file-text',
           title: $translate.instant('TAB_USER_SCREENSHOTS'),
           templateUrl: 'screenshots.html',
           ng_show: vm.showScreenshotsTab(),
           badges: [
             {
               value: vm.torrentLocalInfo.screenshots_image.length,
+              class: 'badge_info'
+            }
+          ]
+        },
+        {
+          icon: 'fa-file-text',
+          title: $translate.instant('TAB_USER_SUBTITLE'),
+          templateUrl: 'subtitleInfo.html',
+          ng_show: vm.showSubtitleTab(),
+          badges: [
+            {
+              value: vm.torrentLocalInfo._subtitles.length,
               class: 'badge_info'
             }
           ]
