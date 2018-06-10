@@ -4,7 +4,12 @@ meanTorrent is A Private __BitTorrent Tracker CMS__ with __Multilingual support_
 which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/),
 and [AngularJS](http://angularjs.org/) based applications.
 
-## Feature, Function, Screenshots First
+## Instance Site used meanTorrent
+* [mine.pt](https://mine.pt)
+* [torrenteros.org](http://torrenteros.org)
+* [tskscn.org](https://www.tskscn.org)
+
+## Feature, Function, Screenshots
 
 - __Home__
 ![home](https://user-images.githubusercontent.com/7778550/41044073-f27308fc-69d7-11e8-826c-fad5d390e2c5.jpg)
@@ -96,7 +101,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 
 ## TODO
 - Fetch service email box message into administrator group message box of site, oper and admin can select any item to handling.
-- Support service center client side logic & UI.
+- Support service center client side logic and UI.
 - Site data line graph for admin
 - Medal center
 - Poll type topics support in forum.
@@ -104,11 +109,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 - IRC chat
 - Business cooperation support(like play box? NAS? etc.)
 - ......more
-
-## Instance Site
-* [mine.pt](https://mine.pt)
-* [torrenteros.org](http://torrenteros.org)
-* [tskscn.org](https://www.tskscn.org)
 
 ## Online support
 - Post an [issue](https://github.com/taobataoma/meanTorrent/issues)
