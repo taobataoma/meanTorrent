@@ -9,6 +9,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 * [torrenteros.org](http://torrenteros.org)
 * [tskscn.org](https://www.tskscn.org)
 * [pt.91fans.club](http://pt.91fans.club:3000)
+* [synology.fun](http://www.synology.fun)
 
 ## Feature, Function, Screenshots
 
