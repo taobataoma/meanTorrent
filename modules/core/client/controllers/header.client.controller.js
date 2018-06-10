@@ -155,6 +155,20 @@
     });
 
     /**
+     * new-torrents-changed
+     */
+    $scope.$on('new-torrents-changed', function (event, args) {
+      vm.getNewTorrentsCount();
+    });
+
+    /**
+     * opened-tickets-changed
+     */
+    $scope.$on('opened-tickets-changed', function (event, args) {
+      vm.getTicketsOpenedCount();
+    });
+
+    /**
      * user-invitations-changed
      */
     $scope.$on('user-invitations-changed', function (event, args) {

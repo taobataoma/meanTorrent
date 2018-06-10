@@ -5,12 +5,12 @@
     .module('torrents')
     .controller('TorrentsInfoController', TorrentsInfoController);
 
-  TorrentsInfoController.$inject = ['$scope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
+  TorrentsInfoController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', '$translate', 'Authentication', 'Notification', 'TorrentsService',
     'MeanTorrentConfig', 'DownloadService', '$sce', '$filter', 'CommentsService', 'ModalConfirmService', 'marked', 'Upload', '$timeout',
     'SubtitlesService', 'getStorageLangService', 'NotifycationService', 'DebugConsoleService', 'TorrentGetInfoServices', 'AlbumsService',
     'localStorageService', '$compile', 'SideOverlay', 'ResourcesTagsServices', 'CollectionsService', 'moment'];
 
-  function TorrentsInfoController($scope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
+  function TorrentsInfoController($scope, $rootScope, $state, $stateParams, $translate, Authentication, Notification, TorrentsService, MeanTorrentConfig,
                                   DownloadService, $sce, $filter, CommentsService, ModalConfirmService, marked, Upload, $timeout, SubtitlesService,
                                   getStorageLangService, NotifycationService, mtDebug, TorrentGetInfoServices, AlbumsService,
                                   localStorageService, $compile, SideOverlay, ResourcesTagsServices, CollectionsService, moment) {
@@ -191,6 +191,7 @@
         _torrentId: vm.torrentLocalInfo._id
       }, function (res) {
         vm.torrentLocalInfo = res;
+        $rootScope.$broadcast('new-torrents-changed');
         NotifycationService.showSuccessNotify('TORRENT_SETREVIEWED_SUCCESSFULLY');
       }, function (res) {
         NotifycationService.showErrorNotify(res.data.message, 'TORRENT_SETREVIEWED_ERROR');

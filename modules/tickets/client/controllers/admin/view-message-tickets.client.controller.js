@@ -5,11 +5,11 @@
     .module('tickets')
     .controller('ViewMessageTicketController', ViewMessageTicketController);
 
-  ViewMessageTicketController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'MessageTicketsService', 'ModalConfirmService', 'NotifycationService', 'marked',
-    'DebugConsoleService', 'MeanTorrentConfig', '$filter', '$stateParams', 'Upload', 'localStorageService', '$compile'];
+  ViewMessageTicketController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$translate', 'Authentication', 'MessageTicketsService', 'ModalConfirmService',
+    'NotifycationService', 'marked', 'DebugConsoleService', 'MeanTorrentConfig', '$filter', '$stateParams', 'Upload', 'localStorageService', '$compile'];
 
-  function ViewMessageTicketController($scope, $state, $timeout, $translate, Authentication, MessageTicketsService, ModalConfirmService, NotifycationService, marked,
-                                       mtDebug, MeanTorrentConfig, $filter, $stateParams, Upload, localStorageService, $compile) {
+  function ViewMessageTicketController($scope, $rootScope, $state, $timeout, $translate, Authentication, MessageTicketsService, ModalConfirmService,
+                                       NotifycationService, marked, mtDebug, MeanTorrentConfig, $filter, $stateParams, Upload, localStorageService, $compile) {
     var vm = this;
     vm.user = Authentication.user;
     vm.itemsPerPageConfig = MeanTorrentConfig.meanTorrentConfig.itemsPerPage;
@@ -154,6 +154,7 @@
         vm.postReplyFields = {};
         vm.currentPage = Math.ceil(res._replies.length / vm.itemsPerPage);
         vm.ticket = res;
+        $rootScope.$broadcast('opened-tickets-changed');
         vm.pageChanged();
 
         $scope.$broadcast('show-errors-reset', 'vm.replyForm');

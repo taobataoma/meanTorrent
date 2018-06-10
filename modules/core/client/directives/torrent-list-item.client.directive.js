@@ -5,9 +5,9 @@
     .directive('torrentListItem', torrentListItem);
 
   function torrentListItem() {
-    var TorrentsItemController = ['$scope', '$state', 'TorrentGetInfoServices', 'ResourcesTagsServices', '$timeout', 'DownloadService', 'MeanTorrentConfig',
+    var TorrentsItemController = ['$scope', '$rootScope', '$state', 'TorrentGetInfoServices', 'ResourcesTagsServices', '$timeout', 'DownloadService', 'MeanTorrentConfig',
       'TorrentsService', 'Authentication', 'NotifycationService', 'ModalConfirmService', '$translate', 'moment',
-      function ($scope, $state, TorrentGetInfoServices, ResourcesTagsServices, $timeout, DownloadService, MeanTorrentConfig, TorrentsService, Authentication,
+      function ($scope, $rootScope, $state, TorrentGetInfoServices, ResourcesTagsServices, $timeout, DownloadService, MeanTorrentConfig, TorrentsService, Authentication,
                 NotifycationService, ModalConfirmService, $translate, moment) {
         var vm = this;
 
@@ -292,6 +292,7 @@
             _torrentId: item._id
           }, function (res) {
             $scope.list[$scope.list.indexOf(item)] = res;
+            $rootScope.$broadcast('new-torrents-changed');
             NotifycationService.showSuccessNotify('TORRENT_SETREVIEWED_SUCCESSFULLY');
           }, function (res) {
             NotifycationService.showErrorNotify(res.data.message, 'TORRENT_SETREVIEWED_ERROR');
