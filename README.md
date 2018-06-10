@@ -19,76 +19,77 @@ and [AngularJS](http://angularjs.org/) based applications.
 ![torrent](https://user-images.githubusercontent.com/7778550/41044086-fcedb66a-69d7-11e8-845d-2e4015b7e663.jpg)
 
 #### meanTorrent some feature:
+1. **Tracker pass through [cloudflare](https://www.cloudflare.com/) support.**
 1. Multilingual support, now English & Chinese, please read the guide of [how to add a complete translated language](#howToAddTranslate).
-2. When you want to upload a torrent, Only need to select a source torrent file,
+1. When you want to upload a torrent, Only need to select a source torrent file,
    and input the movie ID origin [TMDB](https://www.themoviedb.org), the movie detaill info will be autoload.
-3. One torrent can boundle many attrs tag, It's the keyword to search filtering.
-4. Torrent comment with full [markdown](https://guides.github.com/features/mastering-markdown/) style support.
-5. Oper/Admin can manager users(edit/delete etc), forbidden user(banned).
-6. OPer/Admin can manager torrents, can reviewed new torrents, set torrent sale type, set torrent recommend level, and delete torrent.
-7. Global sale set support, It provides convenience for site preferential sales setting.
-8. Client Black List support, user can not use the client list inside clientBlackList connect to the tracker server.
-9. When user to change profile picture, meanTorrent use [ui-cropper](https://github.com/CrackerakiUA/ui-cropper) to crop the image.
-10. The first sign up user auto be `admin` role.
-11. User signed ip / leeched ip all in db, admin can forbid user if user`s ip too many.
-12. Detailed user stats info, include account status, uploaded torrents list, seeding list, downloading list.
-13. Complete user score system, user can use score exchange an invitation to invite friend register join.
-14. Invitations manager, user can keep track of invited friends registration progress.
-15. Admin/Oper can manual management the user`s uploaded/downloaded/score data.
-16. Complete messageBox, include message list, read status, keys search, reply detail and [markdown](https://guides.github.com/features/mastering-markdown/) style support.
-17. Complete forum function, admin can configure each forum section and section moderators, the content support [markdown](https://guides.github.com/features/mastering-markdown/) style.
-18. Forum topics and replies can attach picture files and other type files, The picture file will be displayed automatically, Others file can only be downloaded.
-19. Forum replies support real edit, What you see is what you get ([bootstrap-markdown](http://www.codingdrama.com/bootstrap-markdown/)), and drag & drop attach file upload.
-20. Complete thumbs-up system(thanks system), topic poster or torrent uploader will received score donate from clicker.
-21. __IRC Announce support [Node-irc](https://github.com/martynsmith/node-irc), when user upload new torrent file, and oper/admin reviewed it, then announce the torrent info to IRC channel.__
-23. Complete HnR(hit and run) system support.
-24. Oper/admin can send official invitation, but all the invitation has the expired time setting.
-25. Complete music torrents support, include __CD__ and __MTV__ sub type.
-26. Sports and variety type torrents support NOW!
-27. Software, game, picture, ebook type torrents support NOW!
-28. Admin can update or set users Vip attribute data manual in manage page.
-29. Admin or oper can set torrent 'VIP' attribute, all these torrents only __VIP__ user can list and download.
-30. Complete torrents resources group support, Admin can create a group and set a founder, and the founder can add or remove member users.
-31. Complete movie collections support, Admin can create a collection and insert any movie into it, user can view collection and download all torrents of the collection.
-32. Sort on torrent Vote, seeders, leechers, finished data on torrent list table head clicked events.
-33. Simple vip donate payment function, support Paypal me, Alipay Qrcode and Weixin QRcode.
-34. meanTorrent can backup mongo database into to a .tar files automatic at midnight everyday, and Admin can manage or download these files.
-35. OrderBy torrent imdb vote or site vote in torrent list table header click.
-36. User downloading progress bar or seeding status bar ([ngProgress](http://victorbjelkholm.github.io/ngProgress/)) in torrent list and home page.
-37. User email verify and account active support, inactive account can not login and announce torrent data.
-38. User can set a signature info for forum.
-39. Auto get search movie/tvserial result from TMDB by keywords, user can select a result item to load resources info and upload.
-40. Admin can configure to hide all menu header and footer count info for guest users, usefully for private tracker mode.
-41. Complete emoji support in markdown content, The images for the emoji can be found in the [emoji-cheat-sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/).
-42. Complete forum for vip and oper/admin users only, Special access forums not show to normal users.
-43. Add 'All Newest Torrents' in resources type list option of torrent manage admin page, admin can directly management all newest torrents of all category.
-44. New user status 'idle' for long time not login, idle user can not download and can not announce, user can active account with fixed score numbers.
-45. Support anonymous uploader.
-46. In forum, Admin/Moderators and topic owner can edit topic title through click on the title text.
-47. New feature for list all uploader(resources group and user), admin can set uploader access to pass review directly when upload a torrent file.
-48. Complete emoji support on chat room, message box.
-49. Complete server auto notice function to users.
-50. Complete RSS subscription support.
-51. Complete user follow system.
-52. Request system support. User can post a request to find any torrent and respond a request to upload torrent, rewards score support. 
-53. Global sales setting support, admin can redefined the upload and download ratio in sales, the value is priority to the torrent sales settings. And show global sales notice message at home page.
-54. New feature for system control panel, only admin can edit markdown templates or system configure files online or execute some shell command online, but this is danger, if you do not understand it, don`t do it please.
-55. Feature for user score getting. upload/download the older torrent get the higher score, the few seeding people got the higher score.
-56. An examination tasks system to check user`s incremental uploaded, download and score value within a specified period of time, if the value failed to reach the standard, admin can banned them.
-57. Add email white list, user can not to receive invite mail and active mail if the email domain not in the list.
-58. Add [angular-cache](https://github.com/jmdobry/angular-cache) support, to cache all data from $resource GET method, and update these data when $resource POST|PUT|DELETE method.
-59. Daily check in function, continuous check-in to get more points.
-60. Complete resources albums support, oper & admin can create a album and add torrent into it and push it to home page.
-61. Detailed logs, include uploaded and downloaded announce logs, seeding time logs, score changed logs, score changed days log and months log.
-62. Admin can present official invitations to user.
-63. System message support property of 'must read', user must read it and mark it as already read, otherwise it will popup again to minute later.
-64. History of admin operate user account.
-65. New feature for torrent screenshots image upload and edit by uploader or admin or oper, the image link url address support also.
-67. Users score/uploaded/downloaded number changed line graph and detail history of last few days.
-68. Tracker PIV6 support, and show uses IP type(v4.v6) in users list of torrent detail page.
-69. Add a reason when administrator to banned a user.
-70. Add a configure item to setting whether ban the users inviter when the user was banned. and you can setting whether ban the inviter when the inviter is a vip user.
-71. Check the un-reviewed new torrents and opened tickets status and show in top menu item.  
+1. One torrent can boundle many attrs tag, It's the keyword to search filtering.
+1. Torrent comment with full [markdown](https://guides.github.com/features/mastering-markdown/) style support.
+1. Oper/Admin can manager users(edit/delete etc), forbidden user(banned).
+1. OPer/Admin can manager torrents, can reviewed new torrents, set torrent sale type, set torrent recommend level, and delete torrent.
+1. Global sale set support, It provides convenience for site preferential sales setting.
+1. Client Black List support, user can not use the client list inside clientBlackList connect to the tracker server.
+1. When user to change profile picture, meanTorrent use [ui-cropper](https://github.com/CrackerakiUA/ui-cropper) to crop the image.
+1. The first sign up user auto be `admin` role.
+1. User signed ip / leeched ip all in db, admin can forbid user if user`s ip too many.
+1. Detailed user stats info, include account status, uploaded torrents list, seeding list, downloading list.
+1. Complete user score system, user can use score exchange an invitation to invite friend register join.
+1. Invitations manager, user can keep track of invited friends registration progress.
+1. Admin/Oper can manual management the user`s uploaded/downloaded/score data.
+1. Complete messageBox, include message list, read status, keys search, reply detail and [markdown](https://guides.github.com/features/mastering-markdown/) style support.
+1. Complete forum function, admin can configure each forum section and section moderators, the content support [markdown](https://guides.github.com/features/mastering-markdown/) style.
+1. Forum topics and replies can attach picture files and other type files, The picture file will be displayed automatically, Others file can only be downloaded.
+1. Forum replies support real edit, What you see is what you get ([bootstrap-markdown](http://www.codingdrama.com/bootstrap-markdown/)), and drag & drop attach file upload.
+1. Complete thumbs-up system(thanks system), topic poster or torrent uploader will received score donate from clicker.
+1. __IRC Announce support [Node-irc](https://github.com/martynsmith/node-irc), when user upload new torrent file, and oper/admin reviewed it, then announce the torrent info to IRC channel.__
+1. Complete HnR(hit and run) system support.
+1. Oper/admin can send official invitation, but all the invitation has the expired time setting.
+1. Complete music torrents support, include __CD__ and __MTV__ sub type.
+1. Sports and variety type torrents support NOW!
+1. Software, game, picture, ebook type torrents support NOW!
+1. Admin can update or set users Vip attribute data manual in manage page.
+1. Admin or oper can set torrent 'VIP' attribute, all these torrents only __VIP__ user can list and download.
+1. Complete torrents resources group support, Admin can create a group and set a founder, and the founder can add or remove member users.
+1. Complete movie collections support, Admin can create a collection and insert any movie into it, user can view collection and download all torrents of the collection.
+1. Sort on torrent Vote, seeders, leechers, finished data on torrent list table head clicked events.
+1. Simple vip donate payment function, support Paypal me, Alipay Qrcode and Weixin QRcode.
+1. meanTorrent can backup mongo database into to a .tar files automatic at midnight everyday, and Admin can manage or download these files.
+1. OrderBy torrent imdb vote or site vote in torrent list table header click.
+1. User downloading progress bar or seeding status bar ([ngProgress](http://victorbjelkholm.github.io/ngProgress/)) in torrent list and home page.
+1. User email verify and account active support, inactive account can not login and announce torrent data.
+1. User can set a signature info for forum.
+1. Auto get search movie/tvserial result from TMDB by keywords, user can select a result item to load resources info and upload.
+1. Admin can configure to hide all menu header and footer count info for guest users, usefully for private tracker mode.
+1. Complete emoji support in markdown content, The images for the emoji can be found in the [emoji-cheat-sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/).
+1. Complete forum for vip and oper/admin users only, Special access forums not show to normal users.
+1. Add 'All Newest Torrents' in resources type list option of torrent manage admin page, admin can directly management all newest torrents of all category.
+1. New user status 'idle' for long time not login, idle user can not download and can not announce, user can active account with fixed score numbers.
+1. Support anonymous uploader.
+1. In forum, Admin/Moderators and topic owner can edit topic title through click on the title text.
+1. New feature for list all uploader(resources group and user), admin can set uploader access to pass review directly when upload a torrent file.
+1. Complete emoji support on chat room, message box.
+1. Complete server auto notice function to users.
+1. Complete RSS subscription support.
+1. Complete user follow system.
+1. Request system support. User can post a request to find any torrent and respond a request to upload torrent, rewards score support. 
+1. Global sales setting support, admin can redefined the upload and download ratio in sales, the value is priority to the torrent sales settings. And show global sales notice message at home page.
+1. New feature for system control panel, only admin can edit markdown templates or system configure files online or execute some shell command online, but this is danger, if you do not understand it, don`t do it please.
+1. Feature for user score getting. upload/download the older torrent get the higher score, the few seeding people got the higher score.
+1. An examination tasks system to check user`s incremental uploaded, download and score value within a specified period of time, if the value failed to reach the standard, admin can banned them.
+1. Add email white list, user can not to receive invite mail and active mail if the email domain not in the list.
+1. Add [angular-cache](https://github.com/jmdobry/angular-cache) support, to cache all data from $resource GET method, and update these data when $resource POST|PUT|DELETE method.
+1. Daily check in function, continuous check-in to get more points.
+1. Complete resources albums support, oper & admin can create a album and add torrent into it and push it to home page.
+1. Detailed logs, include uploaded and downloaded announce logs, seeding time logs, score changed logs, score changed days log and months log.
+1. Admin can present official invitations to user.
+1. System message support property of 'must read', user must read it and mark it as already read, otherwise it will popup again to minute later.
+1. History of admin operate user account.
+1. New feature for torrent screenshots image upload and edit by uploader or admin or oper, the image link url address support also.
+1. Users score/uploaded/downloaded number changed line graph and detail history of last few days.
+1. Tracker PIV6 support, and show uses IP type(v4.v6) in users list of torrent detail page.
+1. Add a reason when administrator to banned a user.
+1. Add a configure item to setting whether ban the users inviter when the user was banned. and you can setting whether ban the inviter when the inviter is a vip user.
+1. Check the un-reviewed new torrents and opened tickets status and show in top menu item.  
 
 #### Chat room feature:
 1. Users name list
