@@ -257,7 +257,7 @@
     };
 
     vm.getNewTorrentsCount = function () {
-      if (Authentication.user) {
+      if (Authentication.user && Authentication.user.isOper) {
         TorrentsService.countNewTorrents(function (data) {
           vm.newTorrentCount = data.newCount;
 
@@ -294,7 +294,7 @@
     };
 
     vm.getTicketsOpenedCount = function () {
-      if (Authentication.user) {
+      if (Authentication.user && Authentication.user.isOper) {
         MailTicketsService.getOpenedAllCount(function (data) {
           vm.ticketsCount = data.ticketsOpenedCount;
 
