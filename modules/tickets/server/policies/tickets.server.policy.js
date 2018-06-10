@@ -28,7 +28,8 @@ exports.invokeRolesPolicies = function () {
           {resources: '/api/mailTickets', permissions: '*'},
           {resources: '/api/mailTickets/:mailTicketId', permissions: '*'},
           {resources: '/api/mailTickets/:mailTicketId/:replyId', permissions: '*'},
-          {resources: '/api/mailTickets/openedCount', permissions: '*'}
+          {resources: '/api/mailTickets/openedCount', permissions: '*'},
+          {resources: '/api/mailTickets/openedAllCount', permissions: '*'}
         ]
       }
     ]

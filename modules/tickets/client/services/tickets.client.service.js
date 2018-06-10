@@ -108,6 +108,10 @@
       getOpenedCount: {
         method: 'GET',
         url: '/api/mailTickets/openedCount'
+      },
+      getOpenedAllCount: {
+        method: 'GET',
+        url: '/api/mailTickets/openedAllCount'
       }
     });
   }

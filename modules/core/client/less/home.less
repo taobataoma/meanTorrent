@@ -1,6 +1,9 @@
 @import (reference) "../../../core/client/less/mt-var.less";
 
 .navbar-nav {
+    .dropdown-toggle {
+        position: relative;
+    }
     .fa-class-revers {
         .fa-fw {
             color: #fafbfc;
@@ -10,6 +13,32 @@
         margin: 0 5px 0 0;
         //font-size: 16px;
     }
+}
+
+.header-dot-class-admin {
+    display: none;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 12px;
+    right: 25px;
+    border-radius: 50%;
+    border: solid 1px #fff;
+    &.new-torrent {
+        background-color: @brand-info;
+    }
+    &.opened-tickets {
+        background-color: @brand-danger !important;
+    }
+}
+
+.badge-class-admin-torrents {
+    display: none;
+}
+
+.badge-class-admin-tickets {
+    display: none;
+    top: 12px !important;
 }
 
 .home_notice {

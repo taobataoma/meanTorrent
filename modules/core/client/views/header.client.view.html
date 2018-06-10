@@ -1,5 +1,5 @@
 <div class="container navbar-mt" ng-controller="HeaderController as vm"
-     ng-init="vm.bindHoverToMenuItem(); vm.getInvitationsCount(); vm.checkMessageUnread(); vm.checkHnRWarning();">
+     ng-init="vm.bindHoverToMenuItem(); vm.getInvitationsCount(); vm.checkMessageUnread(); vm.checkHnRWarning(); vm.checkNewTorrents(); vm.checkTicketsOpened();">
     <div class="navbar-header">
         <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
             <span class="sr-only">Toggle navigation</span>
@@ -15,16 +15,20 @@
             <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type"
                 ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}"
                 uib-dropdown="item.type === 'dropdown'">
-                <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button" alt="{{item.linkState}}"><span
-                        menu-title="{{item.title}}">{{::item.title}}</span>&nbsp;<span class="caret"></span></a>
+                <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button" alt="{{item.linkState}}">
+                    <span menu-title="{{item.title}}">{{::item.title}}</span>
+                    <span ng-if="item.shouldDotClass" class="{{item.shouldDotClass}}"></span>
+                    &nbsp;<span class="caret"></span>
+                </a>
                 <ul ng-switch-when="dropdown" class="dropdown-menu">
-                    <li ui-sref-active="active" ng-repeat="subitem in item.items | orderBy: 'position'"
+                    <li ui-sref-active="active" ng-repeat="subitem in item.items | orderBy: 'position'" class="menu-parent"
                         ng-if="subitem.shouldRender(vm.authentication.user);" ng-class="{'menu-divider': subitem.divider}">
                         <a ui-sref="{{subitem.state}}({{subitem.params}})" mt-target="{{subitem.target}}"
                            ng-class="{'fa-class-revers': $state.is(subitem.state)}">
-                            <i class="fa fa-fw {{subitem.faIcon}} {{subitem.faClass}}"></i><span ng-bind="subitem.title"
-                                                                                                 menu-title="{{subitem.title}}"></span>
+                            <i class="fa fa-fw {{subitem.faIcon}} {{subitem.faClass}}"></i>
+                            <span ng-bind="subitem.title" menu-title="{{subitem.title}}"></span>
                         </a>
+                        <span class="badge menu-badge {{subitem.shouldBadgeClass}}" ng-if="subitem.shouldBadgeClass"></span>
                     </li>
                 </ul>
                 <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title" mt-target="{{item.target}}" menu-title="{{item.title}}"></a>
@@ -58,7 +62,8 @@
                 <ul class="dropdown-menu" role="menu">
                     <li class="lang-list">
                         <span class="flag-icon {{l.class}}" title="{{l.title}}" ng-click="vm.changeLanguage(l.name);"
-                              ng-repeat="l in vm.language | filter: {enable: true}" ng-class="{'curr-language': vm.langService.getLang() == l.name}"></span>
+                              ng-repeat="l in vm.language | filter: {enable: true}"
+                              ng-class="{'curr-language': vm.langService.getLang() == l.name}"></span>
                     </li>
                     <li class="divider"></li>
                     <li ui-sref-active="active" ng-repeat="item in vm.followMenu.items" class="menu-parent">
@@ -78,7 +83,8 @@
                         <a ui-sref="{{item.state}}">
                             <i class="fa fa-fw {{item.faIcon}} {{item.faClass}}"></i><span ng-bind="item.title" menu-title="{{item.title}}"></span>
                         </a>
-                        <span class="badge menu-badge badge_danger" ng-show="vm.user.hnr_warning>0 && vm.hnrConfig.enable">{{vm.user.hnr_warning}}</span>
+                        <span class="badge menu-badge badge_danger"
+                              ng-show="vm.user.hnr_warning>0 && vm.hnrConfig.enable">{{vm.user.hnr_warning}}</span>
                     </li>
                     <li ui-sref-active="active" ng-repeat="item in vm.scoreMenu.items" class="menu-parent">
                         <a ui-sref="{{item.state}}">

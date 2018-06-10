@@ -45,6 +45,9 @@ module.exports = function (app) {
   app.route('/api/torrents/homeList')
     .get(torrents.getTorrentsHomeList);
 
+  app.route('/api/torrents/countNewTorrents')
+    .get(torrents.countNewTorrents);
+
   app.route('/api/torrents/:torrentId').all(torrentsPolicy.isAllowed)
     .get(torrents.read)
     .put(torrents.update)

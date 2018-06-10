@@ -83,6 +83,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 68. Tracker PIV6 support, and show uses IP type(v4.v6) in users list of torrent detail page.
 69. Add a reason when administrator to banned a user.
 70. Add a configure item to setting whether ban the users inviter when the user was banned. and you can setting whether ban the inviter when the inviter is a vip user.
+71. Check the un-reviewed new torrents and opened tickets status and show in top menu item.  
 
 #### Chat room feature:
 1. Users name list

@@ -16,7 +16,8 @@
       faIcon: 'fa-volume-control-phone',
       faClass: 'text-mt',
       position: 70,
-      divider: true
+      divider: true,
+      shouldBadgeClass: 'badge-class-admin-tickets'
     });
   }
 }());

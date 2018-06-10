@@ -13,7 +13,8 @@
       state: 'admin',
       type: 'dropdown',
       roles: ['oper', 'admin'],
-      position: 10
+      position: 10,
+      shouldDotClass: 'header-dot-class-admin'
     });
   }
 }());

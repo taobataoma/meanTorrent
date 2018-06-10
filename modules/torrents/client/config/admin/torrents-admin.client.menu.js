@@ -14,7 +14,8 @@
       state: 'admin.torrents',
       faIcon: 'fa-indent',
       faClass: 'text-mt',
-      position: 1
+      position: 1,
+      shouldBadgeClass: 'badge-class-admin-torrents'
     });
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_UPLOADER_ADMIN',

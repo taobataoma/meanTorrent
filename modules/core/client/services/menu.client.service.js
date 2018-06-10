@@ -62,7 +62,8 @@
         divider: options.divider || false,
         faClass: options.faClass || null,
         faIcon: options.faIcon || null,
-        linkState: options.linkState || undefined
+        linkState: options.linkState || undefined,
+        shouldDotClass: options.shouldDotClass || undefined
       });
 
       // Add submenu items
@@ -98,7 +99,8 @@
           divider: options.divider || false,
           faClass: options.faClass || null,
           faIcon: options.faIcon || null,
-          linkState: options.linkState || undefined
+          linkState: options.linkState || undefined,
+          shouldBadgeClass: options.shouldBadgeClass || undefined
         });
       });
 

@@ -9,6 +9,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   User = mongoose.model('User'),
   MailTicket = mongoose.model('MailTicket'),
+  MessageTicket = mongoose.model('MessageTicket'),
   async = require('async');
 
 /**
@@ -184,6 +185,41 @@ exports.openedCount = function (req, res) {
       });
     } else {
       res.json({opened: count});
+    }
+  });
+};
+
+/**
+ * openedAllCount
+ * @param req
+ * @param res
+ */
+exports.openedAllCount = function (req, res) {
+  var mailCount = function (callback) {
+    MailTicket.count({status: 'open'}, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  var messageCount = function (callback) {
+    MessageTicket.count({status: 'open'}, function (err, count) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, count);
+      }
+    });
+  };
+
+  async.parallel([mailCount, messageCount], function (err, results) {
+    if (err) {
+      return res.status(422).send(err);
+    } else {
+      res.json({ticketsOpenedCount: results[1] + results[0]});
     }
   });
 };

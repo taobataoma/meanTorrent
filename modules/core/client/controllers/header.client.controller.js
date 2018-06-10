@@ -7,11 +7,11 @@
 
   HeaderController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$translate', 'Authentication', 'menuService', 'MeanTorrentConfig', 'localStorageService',
     'ScoreLevelService', 'InvitationsService', '$interval', 'MessagesService', 'marked', 'UsersService', 'DebugConsoleService', 'getStorageLangService',
-    'AdminMessagesService'];
+    'AdminMessagesService', 'TorrentsService', 'MailTicketsService'];
 
-  function HeaderController($scope, $rootScope, $state, $timeout, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService, ScoreLevelService,
-                            InvitationsService, $interval, MessagesService, marked, UsersService, mtDebug, getStorageLangService,
-                            AdminMessagesService) {
+  function HeaderController($scope, $rootScope, $state, $timeout, $translate, Authentication, menuService, MeanTorrentConfig, localStorageService,
+                            ScoreLevelService, InvitationsService, $interval, MessagesService, marked, UsersService, mtDebug, getStorageLangService,
+                            AdminMessagesService, TorrentsService, MailTicketsService) {
     $scope.$state = $state;
     var vm = this;
     vm.user = Authentication.user;
@@ -20,6 +20,8 @@
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.messageConfig = MeanTorrentConfig.meanTorrentConfig.messages;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+    vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
+    vm.torrentStatusConfig = MeanTorrentConfig.meanTorrentConfig.torrentStatus;
     vm.supportConfig = MeanTorrentConfig.meanTorrentConfig.support;
     vm.appConfig = MeanTorrentConfig.meanTorrentConfig.app;
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
@@ -34,6 +36,9 @@
     vm.isCollapsed = false;
     vm.menu = menuService.getMenu('topbar');
     vm.scoreLevelData = vm.user ? ScoreLevelService.getScoreLevelJson(vm.user.score) : undefined;
+
+    vm.newTorrentCount = 0;
+    vm.ticketsCount = 0;
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
@@ -224,6 +229,81 @@
             $timeout(function () {
               $('#must_read_popup').popup('show');
             }, 10);
+          }
+        });
+      }
+    };
+
+    /**
+     * checkNewTorrents
+     */
+    vm.checkNewTorrents = function () {
+      vm.getNewTorrentsCount();
+      $interval(vm.getNewTorrentsCount, vm.torrentStatusConfig.checkNewTorrentsInterval);
+    };
+
+    vm.getNewTorrentsCount = function () {
+      if (Authentication.user) {
+        TorrentsService.countNewTorrents(function (data) {
+          vm.newTorrentCount = data.newCount;
+
+          var ele = $('.header-dot-class-admin');
+          if (ele) {
+            if (vm.newTorrentCount <= 0 && vm.ticketsCount <= 0) {
+              ele.css('display', 'none');
+            } else {
+              ele.css('display', 'block');
+              if (vm.newTorrentCount > 0) {
+                ele.addClass('new-torrent');
+              }
+            }
+          }
+
+          var badgeEle = $('.badge-class-admin-torrents');
+          if (badgeEle) {
+            if (vm.newTorrentCount > 0) {
+              badgeEle.css('display', 'block');
+              badgeEle.addClass('badge_info');
+              badgeEle.html(vm.newTorrentCount);
+            }
+          }
+        });
+      }
+    };
+
+    /**
+     * checkTicketsOpened
+     */
+    vm.checkTicketsOpened = function () {
+      vm.getTicketsOpenedCount();
+      $interval(vm.getTicketsOpenedCount, vm.supportConfig.checkOpenedTicketsInterval);
+    };
+
+    vm.getTicketsOpenedCount = function () {
+      if (Authentication.user) {
+        MailTicketsService.getOpenedAllCount(function (data) {
+          vm.ticketsCount = data.ticketsOpenedCount;
+
+          console.log(data);
+          var ele = $('.header-dot-class-admin');
+          if (ele) {
+            if (vm.newTorrentCount <= 0 && vm.ticketsCount <= 0) {
+              ele.css('display', 'none');
+            } else {
+              ele.css('display', 'block');
+              if (vm.ticketsCount > 0) {
+                ele.addClass('opened-tickets');
+              }
+            }
+          }
+
+          var badgeEle = $('.badge-class-admin-tickets');
+          if (badgeEle) {
+            if (vm.ticketsCount > 0) {
+              badgeEle.css('display', 'block');
+              badgeEle.addClass('badge_danger');
+              badgeEle.html(vm.ticketsCount);
+            }
           }
         });
       }

@@ -1934,6 +1934,31 @@ exports.list = function (req, res) {
 };
 
 /**
+ * countNewTorrents
+ * @param req
+ * @param res
+ */
+exports.countNewTorrents = function (req, res) {
+  if (!req.user) {
+    return res.status(422).send({
+      message: 'User is not signed in'
+    });
+  }
+
+  Torrent.count({
+    torrent_status: 'new'
+  }, function (err, count) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json({newCount: count});
+    }
+  });
+};
+
+/**
  * makeRss
  * @param req
  * @param res

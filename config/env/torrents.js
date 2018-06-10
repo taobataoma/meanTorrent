@@ -47,6 +47,8 @@ module.exports = {
      * @supportMailAddress:             support group mail address
      * @mailTicketSupportService:       settings mailTicketSupportService status, true is enable, false is disable
      * @messageTicketSupportService:    settings messageTicketSupportService status, true is enable, false is disable
+     * @checkOpenedTicketsInterval:     set check opened tickets interval, default 2 minutes
+     * @checkOpenedTicketsInterval_str: string desc of @checkOpenedTicketsInterval
      *
      * NOTE:
      * =====
@@ -57,7 +59,9 @@ module.exports = {
       supportGroupNameDesc: 'SUPPORT_GROUP_NAME_DESC',
       supportMailAddress: 'support@mean.im',
       mailTicketSupportService: false,
-      messageTicketSupportService: true
+      messageTicketSupportService: true,
+      checkOpenedTicketsInterval: 60 * 1000 * 2,
+      checkOpenedTicketsInterval_str: '2m'
     },
 
     /**
@@ -1028,11 +1032,12 @@ module.exports = {
      * the torrent status settings
      * NOTE: don`t change these value if you can not understand it
      *
-     * @name:   do not change it
-     * @value:  value of status
-     *
-     *        @name:  name of status level, used by $translate at TORRENT_RECOMMEND_LEVEL_ITEM, will show translate result in torrent admin list
-     *        @value: value of status level, will write this value into mongodb and query(search) torrents by this value
+     * @name:                         do not change it
+     * @value:                        value of status
+     *        @name:                  name of status level, used by $translate at TORRENT_RECOMMEND_LEVEL_ITEM, will show translate result in torrent admin list
+     *        @value:                 value of status level, will write this value into mongodb and query(search) torrents by this value
+     * @checkNewTorrentsInterval:     set check new torrents interval, default 2 minutes
+     * @checkNewTorrentsInterval_str: string desc of @checkNewTorrentsInterval
      */
     torrentStatus: {
       name: 'STATUS',
@@ -1040,7 +1045,9 @@ module.exports = {
         {name: 'NEW', value: 'new'},
         {name: 'REVIEWED', value: 'reviewed'},
         {name: 'DELETED', value: 'deleted'}
-      ]
+      ],
+      checkNewTorrentsInterval: 60 * 1000 * 2,
+      checkNewTorrentsInterval_str: '2m'
     },
 
     /**

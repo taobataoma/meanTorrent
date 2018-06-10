@@ -172,6 +172,10 @@
         method: 'GET',
         url: '/api/torrents/homeList',
         cache: torrentsCache
+      },
+      countNewTorrents: {
+        url: '/api/torrents/countNewTorrents',
+        method: 'GET'
       }
     });
 

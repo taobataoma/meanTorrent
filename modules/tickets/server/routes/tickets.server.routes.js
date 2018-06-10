@@ -42,6 +42,9 @@ module.exports = function (app) {
   app.route('/api/mailTickets/openedCount').all(ticketsPolicy.isAllowed)
     .get(mailTickets.openedCount);
 
+  app.route('/api/mailTickets/openedAllCount').all(ticketsPolicy.isAllowed)
+    .get(mailTickets.openedAllCount);
+
   app.route('/api/mailTickets/:mailTicketId').all(ticketsPolicy.isAllowed)
     .get(mailTickets.read)
     .delete(mailTickets.delete)
