@@ -82,7 +82,9 @@ exports.update = function (req, res) {
       user: user._id,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      roles: req.body.roles
+      roles: req.body.roles,
+      upload_access: req.body.upload_access,
+      remarks: req.body.remarks
     });
   });
 };

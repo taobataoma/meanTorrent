@@ -20,7 +20,6 @@
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_UPLOADER_ADMIN',
       state: 'admin.uploader',
-      roles: ['admin'],
       faIcon: 'fa-cloud-upload',
       faClass: 'text-mt',
       position: 2

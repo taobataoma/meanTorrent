@@ -17,7 +17,6 @@ exports.invokeRolesPolicies = function () {
       {
         roles: ['admin'],
         allows: [
-          {resources: '/api/users/uploaderList', permissions: '*'},
           {resources: '/api/users/:userId/role', permissions: '*'},
           {resources: '/api/users/:userId/VIPMonths/:months', permissions: '*'},
           {resources: '/api/users/:userId/VIPMonths/reset', permissions: '*'},
@@ -27,6 +26,7 @@ exports.invokeRolesPolicies = function () {
       {
         roles: ['oper', 'admin'],
         allows: [
+          {resources: '/api/users/uploaderList', permissions: '*'},
           {resources: '/api/users', permissions: '*'},
           {resources: '/api/users/:userId', permissions: '*'},
           {resources: '/api/users/:userId/status', permissions: '*'},

@@ -717,6 +717,7 @@ module.exports = {
 
         adminUserDelete: {name: 'adminUserDelete', enable: true},
         adminUserEdit: {name: 'adminUserEdit', enable: true},
+        adminMakerEdit: {name: 'adminMakerEdit', enable: true},
         adminBanAllExaminationUnfinishedUsers: {name: 'adminBanAllExaminationUnfinishedUsers', enable: true},
 
         userPasswordReset: {name: 'userPasswordReset', enable: true},

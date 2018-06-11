@@ -79,7 +79,7 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.EMAIL' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.email }}</dd>
 
-                <div ng-if="vm.authentication.user.isAdmin">
+                <div ng-if="vm.authentication.user.isOper">
                     <dt class="h-line">{{ 'STATUS_FIELD.PASSKEY' | translate}}：</dt>
                     <dd class="h-line">
                         <mark>{{ vm.user.passkey }}</mark>
@@ -129,7 +129,7 @@
                 <dd class="h-line">
                     <span>{{ vm.user.score | number: 2 }}</span> <span score-level-curr="vm.user"></span>
 
-                    <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
+                    <div class="pull-right" ng-if="vm.authentication.user.isOper">
                         <button class="btn btn-default btn-xs btn-width-100"
                                 uib-popover-template="vm.setUserScorePopover.templateUrl"
                                 popover-title="{{vm.setUserScorePopover.title | translate}}"
@@ -164,7 +164,7 @@
                 <dt class="h-line">{{ 'STATUS_FIELD.LATEST_REFRESH_TIME' | translate}}：</dt>
                 <dd class="h-line">{{ vm.user.refreshat | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                <div ng-hide="!vm.authentication.user.isAdmin && vm.user.isAdmin">
+                <div ng-if="vm.authentication.user.isOper && !vm.user.isAdmin">
                     <dt class="h-line">{{ 'STATUS_FIELD.CURR_SIGNED_IP' | translate}}：</dt>
                     <dd class="h-line">{{ vm.user.curr_signed_ip }}</dd>
 
@@ -216,7 +216,7 @@
                     <span class="true_updown text-muted"
                           ng-if="vm.user.true_uploaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_UPLOADED' | translate}}：{{ vm.user.true_uploaded | bytes:2 }}</span>
 
-                    <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
+                    <div class="pull-right" ng-if="vm.authentication.user.isOper">
                         <button class="btn btn-default btn-xs btn-width-100"
                                 uib-popover-template="vm.setUserUploadedPopover.templateUrl"
                                 popover-title="{{vm.setUserUploadedPopover.title | translate}}"
@@ -237,7 +237,7 @@
                     <span class="true_updown text-muted"
                           ng-if="vm.user.true_downloaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_DOWNLOADED' | translate}}：{{ vm.user.true_downloaded | bytes:2 }}</span>
 
-                    <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
+                    <div class="pull-right" ng-if="vm.authentication.user.isOper">
                         <button class="btn btn-default btn-xs btn-width-100"
                                 uib-popover-template="vm.setUserDownloadedPopover.templateUrl"
                                 popover-title="{{vm.setUserDownloadedPopover.title | translate}}"
