@@ -51,8 +51,8 @@
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <select class="form-control" ng-model="vm.selectedType" ng-change="vm.onTorrentTypeChanged();">
                         <option ng-repeat="t in vm.torrentType.value | filter:{enable: true}"
-                                ng-if="t.role=='user' || (t.role=='vip' && (vm.user.isVip || vm.user.isOper))"
-                                value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}}
+                                ng-if="t.role=='user' || (t.role=='vip' && (vm.user.isVip || vm.user.makers.length > 0 || vm.user.isOper))"
+                                value="{{t.value}}">{{'MENU_TORRENTS_SUB.'+t.name | translate}} {{t.role=='vip' ? '(VIP)' : ''}}
                         </option>
                     </select>
                 </div>
@@ -80,6 +80,19 @@
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" ng-model="vm.anonymous"> {{'UPLOADER_ANONYMOUS' | translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 margin-top-50"
+                 ng-if="vm.selectedTypeRole(vm.selectedType)=='user' && (vm.user.isVip || vm.user.makers.length > 0 || vm.user.isOper)">
+                <legend class="small-legend" translate="SELECT_VIP_PROPERTY"></legend>
+                <div class="col-xs-12">
+                    <span class="text-danger">{{'IS_VIP_RESOURCES_TIP' | translate}}</span>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="vm.isVipProperty"> {{'IS_VIP_RESOURCES' | translate}}
                         </label>
                     </div>
                 </div>
