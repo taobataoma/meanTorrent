@@ -21,7 +21,7 @@
                         {{'REQUESTS.NAV_RES' | translate}}
                     </a>
                 </div>
-                <i class="fa fa-question-circle-o request-help" aria-hidden="true"
+                <i class="fa fa-question-circle request-help" aria-hidden="true"
                    title="{{ 'REQUESTS.DESC_HELP_TITLE' | translate}}"
                    ng-click="vm.onShowHelpClicked();">
                 </i>
@@ -30,7 +30,7 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="requests-desc" ng-class="{'panel-collapsed': vm.show_desc_help=='no', 'requests-desc-hide': vm.show_desc_help=='no'}">
                         <span ng-bind-html="vm.getRequestsDesc();"></span>
-                        <i class="fa fa-close" aria-hidden="true"
+                        <i class="fa fa-times" aria-hidden="true"
                            title="{{ 'REQUESTS.CLOSE_HELP_TITLE' | translate}}"
                            ng-click="vm.onCloseHelpClicked();">
                         </i>

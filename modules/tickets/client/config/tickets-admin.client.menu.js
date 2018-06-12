@@ -12,7 +12,7 @@
     menuService.addSubMenuItem('topbar', 'admin', {
       title: 'MENU_ADMIN_TICKETS',
       state: 'admin.tickets.support.message',
-      faIcon: 'fa-volume-control-phone',
+      faIcon: 'fa-phone-volume',
       faClass: 'text-mt',
       position: 70,
       divider: true,

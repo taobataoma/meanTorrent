@@ -12,10 +12,10 @@
                 <div class="col-sm-8">
                     <ul class="list-unstyled item-data list-inline">
                         <li><span class="data-founder">{{'ABOUT.GROUP_FOUNDER' | translate}}{{vm.maker.user.displayName}}</span></li>
-                        <li><i class="fa fa-user-circle-o"> {{vm.maker.members.length}}</i></li>
+                        <li><i class="fa fa-user-circle"> {{vm.maker.members.length}}</i></li>
                         <li><i class="fa fa-upload"> {{vm.maker.torrent_count}}</i></li>
                         <li>
-                            <i class="fa fa-star-half-o"> {{vm.maker.vote_average}}/{{vm.maker.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</i>
+                            <i class="fa fa-star"> {{vm.maker.vote_average}}/{{vm.maker.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</i>
                         </li>
                     </ul>
                 </div>
@@ -23,7 +23,7 @@
                     <div class="maker-rating text-right">
                         <span uib-rating ng-model="vm.rating_vote" max="10"
                               state-on="'fa fa-star'"
-                              state-off="'fa fa-star-o'"
+                              state-off="'far fa-star'"
                               titles="['1','2','3','4','5','6','7','8','9','10']"
                               enable-reset="false"
                               ng-click="vm.ratingMaker(vm.maker);"
@@ -52,7 +52,7 @@
                     <div class="margin-top-10">
                         <span user-info="u" info-class="maker-avatar" info-avatar></span>
                         <span user-info="u" info-name></span>
-                        <i class="fa fa-remove"
+                        <i class="fa fa-minus-square"
                            ng-click="vm.removeMember(vm.maker, u);"
                            title="{{'ABOUT.REMOVE_MEMBER_TITLE' | translate}}"
                            ng-if="(vm.user.isOper || vm.isOwner(vm.maker)) && (!vm.isFounder(u, vm.maker))">
@@ -122,43 +122,43 @@
                              ng-if="(vm.filterType && vm.filterType!='aggregate') || vm.releaseYear || vm.torrentRLevel != 'level0' || vm.filterSale || vm.filterHnR || vm.filterTop || vm.filterUnique || vm.searchTags.length>0">
                             <div class="col-md-6 col-md-offset-3">
                                 <span class="filter-tag-item label-tag" ng-if="vm.filterType && vm.filterType!='aggregate'">{{'TORRENT_TYPE_LABEL.' + vm.filterType.toUpperCase() | translate}}
-                                    <i class="fa fa-times-circle-o"
+                                    <i class="fa fa-times-circle"
                                        ng-click="vm.onTorrentTypeClicked(vm.filterType);">
                                     </i>
                                 </span>
                                 <span class="filter-tag-item label-tag" ng-if="vm.releaseYear">{{vm.releaseYear}}
-                                    <i class="fa fa-times-circle-o"
+                                    <i class="fa fa-times-circle"
                                        ng-click="vm.onReleaseClicked(vm.releaseYear);">
                                     </i>
                                 </span>
                                 <span class="filter-tag-item label-tag" ng-if="vm.torrentRLevel != 'level0'">{{ 'TORRENT_RECOMMEND_LEVEL_ITEM.' + vm.torrentRLevel.toUpperCase() | translate}}
-                                    <i class="fa fa-times-circle-o"
+                                    <i class="fa fa-times-circle"
                                        ng-click="vm.onRLevelClicked(vm.torrentRLevel);">
                                     </i>
                                 </span>
                                 <span class="filter-tag-item label-tag" ng-if="vm.filterSale">{{ 'CA_TORRENT_SALE_NOW' | translate}}
-                                    <i class="fa fa-times-circle-o"
+                                    <i class="fa fa-times-circle"
                                        ng-click="vm.onSaleClicked();">
                                     </i>
                                 </span>
                                 <span class="filter-tag-item label-tag" ng-if="vm.filterHnR">H&R
-                                    <i class="fa fa-times-circle-o"
+                                    <i class="fa fa-times-circle"
                                        ng-click="vm.onHnRClicked();">
                                     </i>
                                 </span>
                                 <span class="filter-tag-item label-tag" ng-if="vm.filterTop">{{'STATUS_TOP_KEY' | translate}}
-                                    <i class="fa fa-times-circle-o"
+                                    <i class="fa fa-times-circle"
                                        ng-click="vm.onTopClicked();">
                                     </i>
                                 </span>
                                 <span class="filter-tag-item label-tag" ng-if="vm.filterUnique">{{'STATUS_UNIQUE_KEY' | translate}}
-                                    <i class="fa fa-times-circle-o"
+                                    <i class="fa fa-times-circle"
                                        ng-click="vm.onUniqueClicked();">
                                     </i>
                                 </span>
                                 <span ng-repeat="t in vm.searchTags" ng-if="vm.searchTags.length>0">
                                     <span class="filter-tag-item label-tag">{{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
-                                        <i class="fa fa-times-circle-o"
+                                        <i class="fa fa-times-circle"
                                            ng-click="vm.onTagClicked(t);">
                                         </i>
                                     </span>

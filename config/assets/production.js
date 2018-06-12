@@ -9,8 +9,6 @@ module.exports = {
         // bower:css
         'public/lib/bootstrap/dist/css/bootstrap.min.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-        //font-awesome
-        'public/lib/font-awesome/css/font-awesome.min.css',
 
         'public/lib/angular-ui-notification/dist/angular-ui-notification.min.css',
         'public/lib/Ionicons/css/ionicons.min.css',

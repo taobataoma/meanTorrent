@@ -27,6 +27,8 @@
     menuService.addSubMenuItem('topbar', 'about', {
       title: 'MENU_ABOUT_MAKERGROUP',
       state: 'about.maker',
+      faIcon: 'fa-clone',
+      faClass: 'text-mt',
       position: 3
     });
     menuService.addSubMenuItem('topbar', 'about', {

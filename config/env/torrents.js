@@ -308,25 +308,25 @@ module.exports = {
       bodyBackgroundImage: 'https://image.tmdb.org/t/p/w1280/cnKAGbX1rDkAquF2V1wVkptHDJO.jpg',
       buttonList: [
         {
-          icon: 'fa-bars',
+          icon: 'fa fa-bars',
           state: 'forums.list',
           title: 'HOME.BUTTON_LIST.FUN_FORUM_TITLE',
           desc: 'HOME.BUTTON_LIST.FUN_FORUM_DESC'
         },
         {
-          icon: 'fa-vimeo',
+          icon: 'fab fa-vimeo-v',
           state: 'vip.list',
           title: 'HOME.BUTTON_LIST.FUN_VIP_TITLE',
           desc: 'HOME.BUTTON_LIST.FUN_VIP_DESC'
         },
         {
-          icon: 'fa-question-circle-o',
+          icon: 'fa fa-question-circle',
           state: 'about.manual.userRules',
           title: 'HOME.BUTTON_LIST.FUN_HELP_TITLE',
           desc: 'HOME.BUTTON_LIST.FUN_HELP_DESC'
         },
         {
-          icon: 'fa-headphones',
+          icon: 'fa fa-headphones',
           state: 'tickets.supports',
           title: 'HOME.BUTTON_LIST.FUN_SUPPORT_TITLE',
           desc: 'HOME.BUTTON_LIST.FUN_SUPPORT_DESC'
@@ -886,7 +886,7 @@ module.exports = {
           value: 'sports',
           title: 'MENU_TORRENTS_SUB.SPORTS',
           role: 'user',
-          faIcon: 'fa-futbol-o',
+          faIcon: 'fa-futbol',
           faClass: 'text-mt',
           divider: false,
           position: 5,
@@ -904,7 +904,7 @@ module.exports = {
           value: 'variety',
           title: 'MENU_TORRENTS_SUB.VARIETY',
           role: 'user',
-          faIcon: 'fa-video-camera',
+          faIcon: 'fa-camera',
           faClass: 'text-mt',
           divider: false,
           position: 6,
@@ -922,7 +922,7 @@ module.exports = {
           value: 'picture',
           title: 'MENU_TORRENTS_SUB.PICTURE',
           role: 'user',
-          faIcon: 'fa-photo',
+          faIcon: 'fa-images',
           faClass: 'text-mt',
           divider: false,
           position: 7,
@@ -958,7 +958,7 @@ module.exports = {
           value: 'software',
           title: 'MENU_TORRENTS_SUB.SOFTWARE',
           role: 'user',
-          faIcon: 'fa-hdd-o',
+          faIcon: 'fa-hdd',
           faClass: 'text-mt',
           divider: false,
           position: 9,

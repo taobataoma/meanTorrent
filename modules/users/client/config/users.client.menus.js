@@ -43,7 +43,7 @@
     menuService.addSubMenuItem('mt-user', 'score', {
       title: 'MENU_SCORE_LEVEL',
       state: 'score.detail',
-      faIcon: 'fa-ticket',
+      faIcon: 'fa-money-check-alt',
       faClass: 'text-mt'
     });
 

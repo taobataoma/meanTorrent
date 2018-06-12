@@ -11,7 +11,7 @@
     menuService.addSubMenuItem('topbar', 'about', {
       title: 'MENU_ABOUT_RANKING',
       state: 'ranking',
-      faIcon: 'fa-user-circle-o',
+      faIcon: 'fa-user-circle',
       faClass: 'text-mt',
       position: 2,
       divider: true

@@ -26,7 +26,7 @@
                                 <span class="reply-comment-header-time-text">{{vm.ticket.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</span>
 
                                 <div class="reply-comment-header-command pull-right">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"
+                                    <i class="fa fa-edit" aria-hidden="true"
                                        title="{{'FORUMS.TITLES.TOPIC_EDIT' | translate}}"
                                        ng-show="vm.canEdit() || vm.isOwner(vm.ticket)"
                                        ng-click="vm.beginEditTicket(vm.ticket)"></i>
@@ -70,7 +70,7 @@
                                 <span class="reply-comment-header-time-text">{{rep.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</span>
 
                                 <div class="reply-comment-header-command pull-right">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"
+                                    <i class="fa fa-edit" aria-hidden="true"
                                        title="{{'FORUMS.TITLES.REPLY_EDIT' | translate}}"
                                        ng-show="vm.canEdit() || vm.isOwner(rep)"
                                        ng-click="vm.beginEditReply(rep)"></i>

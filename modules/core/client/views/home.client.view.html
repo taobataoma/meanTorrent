@@ -3,7 +3,7 @@
         <div class="container">
             <div class="alert alert-success" role="alert" style="padding: 20px 50px;">
                 <span ng-bind-html="vm.getSaleNoticeMessage();"></span>
-                <i class="fa fa-close" aria-hidden="true" ng-click="vm.onCloseNoticeClicked('sales_notice');">
+                <i class="fa fa-times" aria-hidden="true" ng-click="vm.onCloseNoticeClicked('sales_notice');">
                 </i>
             </div>
         </div>
@@ -14,7 +14,7 @@
         <div class="container">
             <div class="alert alert-danger" role="alert" style="padding: 20px 50px;">
                 <span ng-bind-html="vm.getExaminationNoticeMessage();"></span>
-                <i class="fa fa-close" aria-hidden="true" ng-click="vm.onCloseNoticeClicked('examination_notice');">
+                <i class="fa fa-times" aria-hidden="true" ng-click="vm.onCloseNoticeClicked('examination_notice');">
                 </i>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div class="alert" role="alert" ng-class="vm.user.examinationData.isFinished ? 'alert-success' : 'alert-danger'"
                  style="padding: 20px 50px;">
                 <span ng-bind-html="vm.getExaminationStatusMessage();"></span>
-                <i class="fa fa-close" aria-hidden="true" ng-click="vm.onCloseNoticeClicked('examination_status');">
+                <i class="fa fa-times" aria-hidden="true" ng-click="vm.onCloseNoticeClicked('examination_status');">
                 </i>
             </div>
         </div>
@@ -270,7 +270,7 @@
                             <div class="col-xs-6 col-sm-3 text-center fun-item" ng-repeat="fun in vm.homeConfig.buttonList">
                                 <span class="fa-stack" ui-sref="{{fun.state}}">
                                     <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa {{fun.icon}} fa-stack-1x fun-icon"></i>
+                                    <i class="{{fun.icon}} fa-stack-1x fun-icon"></i>
                                 </span>
                                 <h4 class="fun-title" translate="{{fun.title}}"></h4>
                                 <span class="fun-desc" translate="{{fun.desc}}"></span>

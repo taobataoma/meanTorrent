@@ -22,20 +22,22 @@
     menuService.addSubMenuItem('account', 'settings', {
       title: 'EDIT_PROFILE',
       state: 'settings.profile',
-      faIcon: 'fa-vcard',
+      faIcon: 'fa-id-card',
       faClass: 'text-mt'
     });
 
     menuService.addSubMenuItem('account', 'settings', {
       title: 'EDIT_PROFILE_PIC',
       state: 'settings.picture',
-      faIcon: 'fa-photo',
+      faIcon: 'fa-image',
       faClass: 'text-mt'
     });
 
     menuService.addSubMenuItem('account', 'settings', {
       title: 'EDIT_SIGNATURE',
-      state: 'settings.signature'
+      state: 'settings.signature',
+      faIcon: 'fa-sign',
+      faClass: 'text-mt'
     });
 
     menuService.addSubMenuItem('account', 'settings', {

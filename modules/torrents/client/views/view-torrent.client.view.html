@@ -21,7 +21,7 @@
                                  ng-if="vm.torrentLocalInfo.torrent_type!='movie' && vm.torrentLocalInfo.torrent_type!='tvserial'">
                                 <span uib-rating ng-model="vm.rating_vote" max="10"
                                       state-on="'fa fa-star'"
-                                      state-off="'fa fa-star-o'"
+                                      state-off="'far fa-star'"
                                       titles="['1','2','3','4','5','6','7','8','9','10']"
                                       enable-reset="false"
                                       ng-click="vm.ratingTorrent(vm.torrentLocalInfo);"
@@ -438,12 +438,12 @@
         <div class="img_view">
             <div class="img_item center-block">
                 <img class="img-thumbnail img-responsive" src="" on-image-load="vm.onTmdbImageLoad()">
-                <i class="fa fa-2x fa-times-circle-o popup_img_preview_close" mt-scale-by-mouse="{scale: 1.5, duration: '.5s'}"
+                <i class="fa fa-2x fa-times-circle popup_img_preview_close" mt-scale-by-mouse="{scale: 1.5, duration: '.5s'}"
                    aria-hidden="true"></i>
             </div>
             <div class="mask-background"></div>
             <div class="tmdb-image-loading">
-                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                <i class="fa fa-circle-notch fa-spin fa-3x fa-fw"></i>
                 <h4 class="loading">{{'TMDB_FIELDS.IMAGE_LOADING' | translate}}</h4>
             </div>
         </div>
