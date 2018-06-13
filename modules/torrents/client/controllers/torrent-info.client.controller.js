@@ -618,14 +618,14 @@
 
       vm.torrentTabs.push(
         {
-          icon: 'fa-file-video-o',
+          icon: 'fa-file-video',
           title: $translate.instant('TAB_TORRENT_INFO'),
           templateUrl: 'torrentInfo.html',
           ng_show: true,
           badges: []
         },
         {
-          icon: 'fa-file-text',
+          icon: 'fa-file-alt',
           title: $translate.instant('TAB_USER_SCREENSHOTS'),
           templateUrl: 'screenshots.html',
           ng_show: vm.showScreenshotsTab(),
@@ -637,7 +637,7 @@
           ]
         },
         {
-          icon: 'fa-file-text',
+          icon: 'fa-image',
           title: $translate.instant('TAB_USER_SUBTITLE'),
           templateUrl: 'subtitleInfo.html',
           ng_show: vm.showSubtitleTab(),
