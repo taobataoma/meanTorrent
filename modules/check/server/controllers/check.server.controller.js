@@ -44,7 +44,7 @@ exports.get = function (req, res) {
           nck.todayIsDone = (diff === 0 ? true : false);
 
           if (diff > 1) {
-            ck.keepDays = 1;
+            ck.keepDays = 0;
           }
           res.json(nck);
         }
