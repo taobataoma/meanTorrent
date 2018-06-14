@@ -193,7 +193,9 @@
       }
 
       function onUserSigninError(response) {
-        NotifycationService.showErrorNotify(response.data.message, 'SIGN.SIGNIN_ERROR', {reason: $translate.instant(response.data.banReason.reason, response.data.banReason.params)});
+        NotifycationService.showErrorNotify(response.data.message, 'SIGN.SIGNIN_ERROR', {
+          reason: $translate.instant(response.data.banReason ? response.data.banReason.reason : undefined, response.data.banReason ? response.data.banReason.params : undefined)
+        });
       }
     }
 
