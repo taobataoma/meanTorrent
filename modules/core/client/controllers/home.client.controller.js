@@ -383,7 +383,7 @@
      * getMyCheckData
      */
     vm.getMyCheckData = function () {
-      if(vm.user) {
+      if (vm.user) {
         CheckService.get(function (res) {
           mtDebug.info(res);
           vm.checkData = res;
