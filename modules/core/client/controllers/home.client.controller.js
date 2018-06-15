@@ -383,14 +383,16 @@
      * getMyCheckData
      */
     vm.getMyCheckData = function () {
-      CheckService.get(function (res) {
-        mtDebug.info(res);
-        vm.checkData = res;
-        vm.openCheckTooltip();
-      }, function (err) {
-        vm.checkData = false;
-        vm.openCheckTooltip();
-      });
+      if(vm.user) {
+        CheckService.get(function (res) {
+          mtDebug.info(res);
+          vm.checkData = res;
+          vm.openCheckTooltip();
+        }, function (err) {
+          vm.checkData = false;
+          vm.openCheckTooltip();
+        });
+      }
     };
 
     /**
