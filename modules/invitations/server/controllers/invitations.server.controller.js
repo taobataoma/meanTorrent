@@ -36,22 +36,21 @@ var validateEmail = function (email) {
  * @param res
  */
 exports.create = function (req, res) {
-  var invitation = new Invitation();
-  invitation.expiresat = Date.now() + config.meanTorrentConfig.invite.expires;
-  invitation.user = req.user;
-  invitation.isOfficial = false;
-  invitation.token = req.user.randomAsciiString(32);
+  var user = req.user;
 
-  invitation.save(function (err) {
-    if (err) {
-      return res.status(422).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      //res.json(invitation);
-      var user = req.user;
+  if (user.score >= inviteConfig.scoreExchange) {
+    var invitation = new Invitation();
+    invitation.expiresat = Date.now() + config.meanTorrentConfig.invite.expires;
+    invitation.user = req.user;
+    invitation.isOfficial = false;
+    invitation.token = req.user.randomAsciiString(32);
 
-      if (user.score >= inviteConfig.scoreExchange) {
+    invitation.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
         user.score -= inviteConfig.scoreExchange;
         res.json(user);
 
@@ -64,13 +63,13 @@ exports.create = function (req, res) {
           token: invitation.token,
           score: inviteConfig.scoreExchange
         });
-      } else {
-        return res.status(422).send({
-          message: 'SERVER.SCORE_NOT_ENOUGH'
-        });
       }
-    }
-  });
+    });
+  } else {
+    return res.status(422).send({
+      message: 'SERVER.SCORE_NOT_ENOUGH'
+    });
+  }
 };
 
 /**
