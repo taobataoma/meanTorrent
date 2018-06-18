@@ -41,16 +41,16 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="collection-button text-right">
-                            <button class="btn btn-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                            <button class="btn btn-min-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                     ng-if="vm.user.isOper" ng-click="vm.beginEditCollectionOverview(vm.collection)">
                                 {{'COLLECTIONS.BTN_EDIT_OVERVIEW' | translate}}
                             </button>
-                            <button class="btn btn-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                            <button class="btn btn-min-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                     ng-if="vm.user.isOper" ng-click="vm.beginRemoveCollection(vm.collection)">
                                 {{'COLLECTIONS.BTN_REMOVE_COLLECTION' | translate}}
                             </button>
 
-                            <div class="btn-group width-160 margin-top-5" ng-if="vm.user.isOper" uib-dropdown dropdown-append-to-body>
+                            <div class="btn-group min-width-160 margin-top-5" ng-if="vm.user.isOper" uib-dropdown dropdown-append-to-body>
                                 <button id="btn-append-to-body" type="button"
                                         class="btn btn-block"
                                         mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
@@ -67,7 +67,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <span class="width-160 sm-hide md-hide lg-hide" style="display: inline-block">&nbsp;</span>
+                            <span class="min-width-160 sm-hide md-hide lg-hide" style="display: inline-block">&nbsp;</span>
                         </div>
                     </div>
                 </div>

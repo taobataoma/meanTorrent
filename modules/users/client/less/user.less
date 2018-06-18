@@ -5,27 +5,6 @@
     border-bottom: solid 1px #eee;
 }
 
-.userinfo-header {
-    margin-bottom: 0;
-    .userinfo-col {
-        display: table;
-        span {
-            display: table-cell;
-            vertical-align: middle;
-        }
-        .userinfo-btn {
-            @media (max-width: @screen-xxs-max) {
-                display: table-row;
-                float: none !important;
-                line-height: 4;
-                .btn:not(:first-child) {
-                    margin-left: 5px;
-                }
-            }
-        }
-    }
-}
-
 .mt-xxs-break-before {
     @media (max-width: @screen-xxs-max) {
         display: table-row !important;
@@ -39,10 +18,13 @@
         resize: vertical;
     }
 }
+
 .user-history {
     height: 150px;
-    line-height: 1;
     overflow-y: scroll;
+    p {
+        margin-bottom: 0;
+    }
 }
 
 .curr-score-info {
@@ -55,5 +37,71 @@
     }
     li {
         line-height: 1.8;
+    }
+}
+
+.medals-user-top {
+    .user-avatar {
+        float: left;
+        img {
+            width: 60px;
+            height: 60px;
+        }
+    }
+    .user-data {
+        margin-left: 70px;
+        color: #999;
+        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+        .user-name {
+            margin-left: 10px;
+            color: #efefef;
+            text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+            &:hover {
+                color: @brand-primary;
+                text-decoration: none;
+            }
+        }
+        .user-vip, .user-level {
+            margin-left: 10px;
+        }
+        .user-up-down {
+            font-size: 12px;
+            margin-left: 10px;
+            .torrent-up {
+                color: #33CC00;
+            }
+            .torrent-down {
+                color: #FF3300;
+            }
+            .up-data, .down-data {
+                color: lighten(@gray-base, 60%);
+            }
+        }
+        .user-medals-count {
+            margin-left: 10px;
+            font-size: 12px;
+            .user-medal-flag {
+                .medal-data {
+                    color: #999;
+                }
+            }
+        }
+        .user-ratio {
+            margin-left: 10px;
+            font-size: 12px;
+            .user-ratio-flag {
+                .ratio-data {
+                    color: #999;
+                }
+            }
+        }
+    }
+    .user-medals-list {
+        text-align: center;
+        padding: 10px;
+        border-top: solid 2px #2a2a2a;
+        .medal {
+            display: inline;
+        }
     }
 }

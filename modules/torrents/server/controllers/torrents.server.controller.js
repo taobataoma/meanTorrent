@@ -1891,7 +1891,7 @@ exports.list = function (req, res) {
     ]);
 
     if (limit === 0) {
-      let i = query._pipeline.length;
+      var i = query._pipeline.length;
       while (i--) {
         if (Object.keys(query._pipeline[i])[0] === '$limit') {
           query._pipeline.splice(i, 1);

@@ -29,16 +29,16 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="album-button text-right">
-                            <button class="btn btn-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                            <button class="btn btn-min-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                     ng-if="vm.user.isOper" ng-click="vm.beginEditAlbumOverview(vm.album)">
                                 {{'ALBUMS.BTN_EDIT_OVERVIEW' | translate}}
                             </button>
-                            <button class="btn btn-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                            <button class="btn btn-min-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                     ng-if="vm.user.isOper" ng-click="vm.beginRemoveAlbum(vm.album)">
                                 {{'ALBUMS.BTN_REMOVE_ALBUM' | translate}}
                             </button>
 
-                            <div class="btn-group width-160 margin-top-5" ng-if="vm.user.isOper" uib-dropdown dropdown-append-to-body>
+                            <div class="btn-group min-width-160 margin-top-5" ng-if="vm.user.isOper" uib-dropdown dropdown-append-to-body>
                                 <button id="btn-append-to-body" type="button"
                                         class="btn btn-block"
                                         mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
@@ -56,7 +56,7 @@
                                 </ul>
                             </div>
 
-                            <button class="btn btn-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                            <button class="btn btn-min-width-160 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                     ng-if="vm.user.isOper" ng-click="vm.beginToggleHomeStatus(vm.album)">
                                 {{(vm.album.isHomeStatus ? 'ALBUMS.BTN_PULL_FROM_HOME' : 'ALBUMS.BTN_PUSH_INFO_HOME') | translate}}
                             </button>

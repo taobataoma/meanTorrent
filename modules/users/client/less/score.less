@@ -1,0 +1,42 @@
+@import (reference) "../../../core/client/less/mt-var.less";
+
+.score-top {
+    color: #999;
+    text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+    .score-title {
+        color: #f5f5f5;
+    }
+}
+
+.score-progress {
+    height: 30px;
+    margin-bottom: 2px;
+    .progress-bar {
+        line-height: 30px;
+    }
+}
+
+.score-level-default {
+    cursor: pointer;
+    color: #333 !important;
+    > kbd {
+        font-size: 12px;
+        color: #333 !important;
+        background-color: #eee !important;
+    }
+}
+
+.score-level {
+    cursor: pointer;
+    color: #FF6600;
+    text-shadow: none;
+    > kbd {
+        font-size: 12px;
+        background-color: #FF6600;
+    }
+}
+
+.curr-score {
+    color: @mt-base-color;
+    font-size: 48px;
+}

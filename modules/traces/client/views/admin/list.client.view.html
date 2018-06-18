@@ -1,7 +1,6 @@
 <section class="container" ng-controller="TracesController as vm" ng-init="vm.buildPager();">
     <div class="row margin-top-20">
         <div class="col-sm-12 traces-list">
-
             <div class="row margin-bottom-20">
                 <div class="col-sm-8 col-md-9">
                     <h4>{{'ADMIN_TRACES_LIST' | translate}}</h4>
@@ -50,7 +49,7 @@
                                 <!--<span message-to="m.user" to-class="message-to-icon"></span>-->
                             </td>
 
-                            <td class="td-v-middle width-400"><json-tree object="m.content"></json-tree></td>
+                            <td class="td-v-middle min-width-400"><json-tree object="m.content"></json-tree></td>
 
                             <td class="td-v-middle text-center">{{m.content.action}}</td>
 

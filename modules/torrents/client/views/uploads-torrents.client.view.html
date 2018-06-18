@@ -177,11 +177,11 @@
         </div>
 
         <div class="bottom-control">
-            <button class="btn btn-success btn-width-100"
+            <button class="btn btn-success btn-min-width-100"
                     ng-disabled="!vm.search.sid"
                     ng-click="vm.onSelectResult()">{{ 'BTN_SELECT' | translate }}
             </button>
-            <button class="btn btn-default btn-width-100" ng-click="vm.hideSearchPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
+            <button class="btn btn-default btn-min-width-100" ng-click="vm.hideSearchPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
         </div>
     </div>
 
@@ -522,7 +522,7 @@
                                                    ng-model="vm.inputedEpisodes" ng-disabled="vm.inputedEpisodesOK" required>
                                         </div>
                                         <div class="col-sm-4 col-md-3 margin-left-20">
-                                            <button type="submit" class="btn btn-success btn-width-80">{{'BTN_CONTINUE' | translate}}</button>
+                                            <button type="submit" class="btn btn-success btn-min-width-80">{{'BTN_CONTINUE' | translate}}</button>
                                         </div>
                                         <div class="col-xs-12" ng-messages="vm.episodesForm.inputedEpisodes.$error" role="alert">
                                             <p class="help-block error-text"
@@ -886,7 +886,7 @@
             </div>
         </div>
         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-center">
-            <button class="uploaded_popup_close btn btn-success btn-width-100">{{'BUTTON_UPLOADED_POPUP_CLOSE' | translate}}</button>
+            <button class="uploaded_popup_close btn btn-success btn-min-width-100">{{'BUTTON_UPLOADED_POPUP_CLOSE' | translate}}</button>
         </div>
     </div>
 </div>

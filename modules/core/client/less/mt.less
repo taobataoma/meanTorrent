@@ -50,22 +50,11 @@ body {
     cursor: pointer;
     font-size: 12px;
     color: @mt-base-color;
-    text-shadow: 0 0 1px #000,-0 -0 1px #000;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
-    border-radius: 4px;
-    background-color: transparent;
-    margin-top: 16px;
-    padding: 2px 5px;
+    margin: 0 5px;
     white-space: nowrap;
     overflow: hidden;
     box-sizing: border-box;
-    @media (min-width: @screen-md) and (max-width: @screen-md-max) {
-        width: 120px;
-    }
-    @media (min-width: @screen-lg) {
-        width: 180px;
-    }
-
+    max-width: 180px;
     span {
         display: inline-block;
         padding-left: 100%; /* show the marquee just outside the paragraph */
@@ -84,23 +73,6 @@ body {
         100% {
             transform: translate(-100%, 0);
         }
-    }
-}
-
-.header-red-dot {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    top: 12px;
-    left: 35px;
-    border-radius: 50%;
-    border: solid 1px #fff;
-
-    &.bg-msg {
-        background-color: @btn-info-bg !important;
-    }
-    &.bg-hnr {
-        background-color: @btn-danger-bg;
     }
 }
 
@@ -449,25 +421,6 @@ body {
     }
 }
 
-.score-level {
-    cursor: pointer;
-    color: #FF6600;
-    > kbd {
-        font-size: 12px;
-        background-color: #FF6600;
-    }
-}
-
-.score-level-default {
-    cursor: pointer;
-    color: #333 !important;
-    > kbd {
-        font-size: 12px;
-        color: #333 !important;
-        background-color: #eee !important;
-    }
-}
-
 .menu-score {
     position: absolute;
     right: 10px;
@@ -521,7 +474,7 @@ body {
         color: @brand-success;
         background-color: @alert-success-bg;
         font-size: 12px;
-        border:  solid 1px @brand-success;
+        border: solid 1px @brand-success;
         border-radius: 3px;
     }
 }
@@ -1457,12 +1410,24 @@ body {
                 > a {
                     padding-left: 10px;
                     padding-right: 10px;
+                    .header-red-dot {
+                        left: 30px;
+                    }
+                    .header-dot-class-admin {
+                        right: 16px;
+                    }
                 }
             }
             @media (min-width: @screen-md) and (max-width: @screen-md-max) {
                 > a {
                     padding-left: 12px;
                     padding-right: 12px;
+                    .header-red-dot {
+                        left: 32px;
+                    }
+                    .header-dot-class-admin {
+                        right: 18px;
+                    }
                 }
             }
         }
@@ -1474,6 +1439,48 @@ body {
                 padding-right: 50px;
             }
         }
+    }
+    .menu-left {
+        .dropdown-menu {
+            @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+                right: 0;
+                left: auto;
+            }
+        }
+    }
+}
+
+.header-dot-class-admin {
+    display: none;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 12px;
+    right: 21px;
+    border-radius: 50%;
+    border: solid 1px #fff;
+    &.new-torrent {
+        background-color: @brand-info;
+    }
+    &.opened-tickets {
+        background-color: @brand-danger !important;
+    }
+}
+
+.header-red-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 12px;
+    left: 35px;
+    border-radius: 50%;
+    border: solid 1px #fff;
+
+    &.bg-msg {
+        background-color: @btn-info-bg !important;
+    }
+    &.bg-hnr {
+        background-color: @btn-danger-bg;
     }
 }
 
@@ -1821,13 +1828,6 @@ body {
     color: @mt-base-color;
 }
 
-.admin-user-info {
-    hr {
-        margin-bottom: 15px;
-        margin-top: 5px;
-    }
-}
-
 .lang-list {
     margin-top: 5px;
     padding-left: 5px;
@@ -1932,15 +1932,6 @@ body {
 
 .color-mt-base {
     color: @mt-base-color;
-}
-
-.curr-score {
-    color: @mt-base-color;
-    font-size: 48px;
-}
-
-.score-progress {
-    margin-bottom: 2px;
 }
 
 .mt-title {

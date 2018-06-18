@@ -1,0 +1,72 @@
+<section ng-controller="MedalsController as vm" ng-init="vm.getMedals(); vm.initTopBackground()">
+    <div class="backdrop attachment-scroll">
+        <div class="filter">
+            <div class="container medals-view-top">
+                <div class="row margin-bottom-10">
+                    <div class="col-sm-12 medals-title">
+                        <h3 class="margin-bottom-10" translate="MEDALS.MEDALS_TITLE"></h3>
+                    </div>
+                    <div class="col-sm-12">
+                        <ul class="list-unstyled medals-data list-inline">
+                            <li><i class="far fa-shield-alt"> {{'MEDALS.TYPES_COUNT' | translate}}: {{vm.medals.typesLength}}</i></li>
+                            <li><i class="far fa-shield-check"> {{'MEDALS.MEDALS_OPENED_COUNT' | translate}}: {{vm.medals.items.length}}</i></li>
+                            <li><i class="far fa-user-shield"> {{'MEDALS.MEDALS_AWARD_COUNT' | translate}}: {{vm.medals.itemCount}}</i></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="medal-overview" ng-bind-html="vm.getMedalOverviewContent()"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container padding-top-20 padding-bottom-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="medals-list">
+                    <div class="" ng-repeat="(key,value) in vm.medals.types">
+                        <legend class="h4" translate="{{'MEDALS.CATS.'+key.toUpperCase()}}"></legend>
+                        <div class="row">
+                            <div ng-repeat="mt in vm.medals.items | where: {cats: key}">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <div class="medal medal-box">
+                                        <div class="medal-item medal-6x" ng-class="{'owner': vm.hasMedal(mt)}">
+                                            <i class="{{mt.faClass}} medal-bg dark-shadow" style="color:{{mt.bgColor}};"></i>
+                                            <i class="fa-inverse {{mt.iconClass}} medal-icon" style="font-size: {{mt.iconSize}}; top: {{mt.iconTop}}"></i>
+                                            <span class="fa-inverse medal-header" style="font-size: {{mt.textHeaderSize}}; top: {{mt.textHeaderTop}}" ng-if="mt.hasHeader">
+                                                {{'MEDALS.HEADERSTRING.'+mt.prefix.toUpperCase() | translate}}
+                                            </span>
+                                            <span class="fa-inverse medal-footer" style="font-size: {{mt.textFooterSize}}; bottom: {{mt.textFooterBottom}}" ng-if="mt.hasFooter">
+                                                {{'MEDALS.FOOTERSTRING.'+mt.prefix.toUpperCase() | translate}}
+                                            </span>
+                                            <span class="badge badge_danger" ng-if="mt.count>0">{{mt.count}}</span>
+                                            <i class="fa-inverse far fa-check-circle" style="display: none;"></i>
+                                        </div>
+                                        <div class="medal-info">
+                                            <p class="desc" translate="{{'MEDALS.DESC.'+mt.prefix.toUpperCase()}}"></p>
+                                            <span translate="{{'MEDALS.PASSHELP.'+mt.passHelp.toUpperCase()}}" ng-class="{'text-mt': mt.passHelp=='self'}"></span>
+                                            <div ng-if="mt.score" ng-class="{'text-mt': mt.score}">
+                                                <span>{{'MEDALS.HELP_CONDITION' | translate}}: </span>
+                                                <span>{{'TABLE_FIELDS.SCORE' | translate}} </span>
+                                                <span>{{mt.score}}</span>
+                                            </div>
+                                            <div class="cmd">
+                                                <a ui-sref="medals.view({medalName: mt.name})" translate="MEDALS.CMD_LIST_USER"
+                                                   ng-if="mt.cats!='workers' || vm.medalsConfig.showWorkerUsersListToAll || vm.user.isOper"></a>
+                                                <a ui-sref="{}" translate="MEDALS.CMD_REQUEST" ng-click="vm.requestMedal(mt)" ng-if="mt.passHelp=='self' && !vm.hasMedal(mt)"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -13,7 +13,18 @@
       title: 'MENU_FORUMS',
       state: 'forums.list',
       roles: ['*'],
-      position: 5
+      class: 'sm-hide',
+      position: 6
+    });
+
+    //add to more
+    menuService.addSubMenuItem('topbar', 'more', {
+      title: 'MENU_FORUMS',
+      state: 'forums.list',
+      roles: ['*'],
+      faIcon: 'fa-bars',
+      faClass: 'text-mt',
+      position: 2
     });
   }
 }());

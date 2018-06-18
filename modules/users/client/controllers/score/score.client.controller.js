@@ -7,11 +7,11 @@
 
   ScoreController.$inject = ['$rootScope', '$scope', '$state', '$translate', '$timeout', 'Authentication', '$window', 'ScoreLevelService', 'getStorageLangService',
     'MeanTorrentConfig', 'ModalConfirmService', 'NotifycationService', 'InvitationsService', '$templateRequest', 'marked', '$filter', 'PeersService', 'moment',
-    'DebugConsoleService'];
+    'DebugConsoleService', 'localStorageService'];
 
   function ScoreController($rootScope, $scope, $state, $translate, $timeout, Authentication, $window, ScoreLevelService, getStorageLangService, MeanTorrentConfig,
                            ModalConfirmService, NotifycationService, InvitationsService, $templateRequest, marked, $filter, PeersService, moment,
-                           mtDebug) {
+                           mtDebug, localStorageService) {
     var vm = this;
     vm.scoreConfig = MeanTorrentConfig.meanTorrentConfig.score;
     vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
@@ -33,9 +33,18 @@
     vm.examinationConfig = MeanTorrentConfig.meanTorrentConfig.examination;
     vm.chatConfig = MeanTorrentConfig.meanTorrentConfig.chat;
     vm.accessConfig = MeanTorrentConfig.meanTorrentConfig.access;
+    vm.homeConfig = MeanTorrentConfig.meanTorrentConfig.home;
 
     vm.lang = getStorageLangService.getLang();
     vm.user = Authentication.user;
+
+    /**
+     * initTopBackground
+     */
+    vm.initTopBackground = function () {
+      var url = localStorageService.get('body_background_image') || vm.homeConfig.bodyBackgroundImage;
+      $('.backdrop').css('backgroundImage', 'url("' + url + '")');
+    };
 
     /**
      * auth-user-changed

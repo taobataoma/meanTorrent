@@ -24,6 +24,7 @@
           element.css('bottom', '20px');
           element.css('width', '36px');
           element.css('height', '36px');
+          element.css('z-index', 1);
           element.css('border-radius', '50%');
           element.css('backgroundColor', 'rgba(255, 255, 255, 0.8)');
 

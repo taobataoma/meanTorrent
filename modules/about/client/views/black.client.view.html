@@ -25,13 +25,13 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="b in vm.blackListConfig">
-                            <td class="col-md-1 td-v-middle width-50">
+                            <td class="col-md-1 td-v-middle min-width-50">
                                 {{$index}}
                             </td>
-                            <td class="col-md-3 td-v-middle width-150">
+                            <td class="col-md-3 td-v-middle min-width-150">
                                 <strong>{{b.name}}</strong>
                             </td>
-                            <td class="col-md-8 td-v-middle width-300">
+                            <td class="col-md-8 td-v-middle min-width-300">
                                 {{b.reason | translate}}
                             </td>
                         </tr>

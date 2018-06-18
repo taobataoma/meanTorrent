@@ -64,7 +64,7 @@
             <div class="row margin-bottom-20">
                 <div class="col-sm-12">
                     <div class="maker-button text-right">
-                        <button class="btn btn-width-120 margin-top-5" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
+                        <button class="btn btn-min-width-120 margin-top-5" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
                                 ng-if="vm.user.isOper || vm.isOwner(vm.maker)"
                                 uib-popover-template="vm.addMemberPopover.templateUrl"
                                 popover-append-to-body="true"
@@ -76,11 +76,11 @@
                                 ng-click="vm.addMemberPopover.isOpen=true; vm.addMemberPopover.username='';">
                             {{'ABOUT.BTN_ADD_USER' | translate}}
                         </button>
-                        <button class="btn btn-width-120 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                        <button class="btn btn-min-width-120 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                 ng-if="vm.user.isOper || vm.isOwner(vm.maker)" ng-click="vm.beginEditMakerDesc(vm.maker)">
                             {{'ABOUT.BTN_EDIT_DESC' | translate}}
                         </button>
-                        <div class="btn-group width-120 margin-top-5" ng-if="vm.user.isAdmin"  uib-dropdown dropdown-append-to-body>
+                        <div class="btn-group min-width-120 margin-top-5" ng-if="vm.user.isAdmin"  uib-dropdown dropdown-append-to-body>
                             <button id="btn-append-to-body" type="button"
                                     class="btn btn-block"
                                     mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
@@ -100,7 +100,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <button class="btn btn-width-120 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                        <button class="btn btn-min-width-120 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
                                 ng-if="vm.user.isAdmin" ng-click="vm.beginRemoveMakerGroup(vm.maker)">
                             {{'ABOUT.BTN_REMOVE_GROUP' | translate}}
                         </button>
@@ -338,7 +338,7 @@
                        placeholder="{{ 'STATUS_FIELD.USERNAME' | translate }}" autofocus>
             </div>
             <div class="margin-top-10">
-                <button class="btn btn-default btn-width-80" ng-disabled="!vm.addMemberPopover.username"
+                <button class="btn btn-default btn-min-width-80" ng-disabled="!vm.addMemberPopover.username"
                         ng-click="vm.addMember();">{{ 'FORUMS.BTN_ADD' | translate }}
                 </button>
             </div>

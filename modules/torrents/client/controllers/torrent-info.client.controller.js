@@ -1544,10 +1544,10 @@
 
           var ele = $('#' + e.$editor.attr('id') + ' .md-footer');
           angular.element(ele).addClass('text-right');
-          angular.element(ele[0].childNodes[0]).addClass('btn-width-80');
+          angular.element(ele[0].childNodes[0]).addClass('btn-min-width-80');
           ele[0].childNodes[0].innerText = $translate.instant('FORUMS.BTN_SAVE');
 
-          var cbtn = angular.element('<button class="btn btn-default btn-width-80 margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
+          var cbtn = angular.element('<button class="btn btn-default btn-min-width-80 margin-left-10">' + $translate.instant('FORUMS.BTN_CANCEL') + '</button>');
           cbtn.bind('click', function (evt) {
             e.setContent(r.resource_detail_info.overview);
             e.$options.hideable = true;

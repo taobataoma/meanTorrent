@@ -25,22 +25,22 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="m in vm.uploadMakerList">
-                            <td class="col-md-2 td-v-middle width-120">
+                            <td class="col-md-2 td-v-middle min-width-120">
                                 <span maker-info="m"></span>
                             </td>
-                            <td class="col-md-2 td-v-middle width-120">
+                            <td class="col-md-2 td-v-middle min-width-120">
                                 <span user-info="m.user" info-name></span>
                             </td>
-                            <td class="col-md-1 td-v-middle width-80 text-center">
+                            <td class="col-md-1 td-v-middle min-width-80 text-center">
                                 {{m.members.length}}
                             </td>
-                            <td class="col-md-1 td-v-middle width-80 text-center">
+                            <td class="col-md-1 td-v-middle min-width-80 text-center">
                                 {{m.torrent_count}}
                             </td>
-                            <td class="col-md-4 td-v-middle width-150">
+                            <td class="col-md-4 td-v-middle min-width-150">
                                 <span class="torrent-votes"><kbd>{{vm.TGI.getVoteTitle()}}</kbd> {{m.vote_average | number : 1}} / {{m.vote_count}} {{ 'TMDB_FIELDS.VOTE_UNIT' | translate}}</span>
                             </td>
-                            <td class="col-md-2 td-v-middle width-120">
+                            <td class="col-md-2 td-v-middle min-width-120">
                                 <select class="form-control" ng-model="m.upload_access" ng-change="vm.onUploaderMakerAccessChanged(m);">
                                     <option value="review">{{'UPLOADER.FIELDS_REVIEW' | translate}}
                                     </option>
@@ -80,25 +80,25 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="u in vm.pagedItems">
-                            <td class="col-md-1 td-v-middle width-50">
+                            <td class="col-md-1 td-v-middle min-width-50">
                                 <img class="ranking-user-img" title="{{u.displayName}}" ng-src="{{u.profileImageURL}}">
                             </td>
-                            <td class="col-md-2 td-v-middle width-120">
+                            <td class="col-md-2 td-v-middle min-width-120">
                                 <span user-info="u" info-name></span>
                                 <span vip-flag="u"></span>
                             </td>
-                            <td class="col-md-1 td-v-middle width-100">
+                            <td class="col-md-1 td-v-middle min-width-100">
                                 <span score-level-curr="u"></span>
                             </td>
-                            <td class="col-md-4 td-v-middle width-200">
+                            <td class="col-md-4 td-v-middle min-width-200">
                                 <span class="maker-list" ng-repeat="m in u.makers">
                                     <span maker-info="m"></span>
                                 </span>
                             </td>
-                            <td class="col-md-2 td-v-middle width-80 text-center">
+                            <td class="col-md-2 td-v-middle min-width-80 text-center">
                                 {{u.uptotal}}
                             </td>
-                            <td class="col-md-2 td-v-middle width-120">
+                            <td class="col-md-2 td-v-middle min-width-120">
                                 <select class="form-control" ng-model="u.upload_access" ng-change="vm.onUploaderUserAccessChanged(u);">
                                     <option value="review">{{'UPLOADER.FIELDS_REVIEW' | translate}}
                                     </option>

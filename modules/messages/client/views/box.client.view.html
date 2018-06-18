@@ -70,7 +70,7 @@
                             </td>
                         </tr>
                         <tr class="message-item" ng-if="!vm.resultMsg" ng-repeat="m in vm.pagedItems" ng-click="vm.showMessage($event, m);">
-                            <td class="width-400">
+                            <td class="min-width-400">
                                 <img class="message-avatar" ng-src="{{m.from_user.profileImageURL}}" ng-if="m.type=='user'">
                                 <span class="message-avatar glyphicon glyphicon-cog server-message-avatar" ng-if="m.type=='server'"></span>
                                 <i class="fa fa-envelope message-avatar server-message-avatar" ng-if="m.type!='user' && m.type!='server'"></i>
@@ -122,7 +122,7 @@
                     next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
                 </ul>
                 <div class="pull-right margin-top-20">
-                    <button class="btn btn-success btn-width-100"
+                    <button class="btn btn-success btn-min-width-100"
                             ng-if="vm.messageType=='user' || vm.messageType=='server'"
                             ng-click="vm.deleteSelected()">{{ 'BUTTON_MESSAGE_DELETE' | translate }}
                     </button>
@@ -190,11 +190,11 @@
                       emoji-dropup></textarea>
             </div>
             <div>
-                <button class="btn btn-default btn-width-100" ng-click="vm.hideMessage();">{{ 'BUTTON_MESSAGE_CLOSE' | translate }}</button>
-                <button class="btn btn-default btn-width-100" ng-click="vm.delete(vm.selectedMessage);"
+                <button class="btn btn-default btn-min-width-100" ng-click="vm.hideMessage();">{{ 'BUTTON_MESSAGE_CLOSE' | translate }}</button>
+                <button class="btn btn-default btn-min-width-100" ng-click="vm.delete(vm.selectedMessage);"
                         ng-if="vm.selectedMessage.type=='user'">{{ 'BUTTON_MESSAGE_DELETE' | translate }}
                 </button>
-                <button class="btn btn-success btn-width-100 pull-right" ng-disabled="!vm.replyContent"
+                <button class="btn btn-success btn-min-width-100 pull-right" ng-disabled="!vm.replyContent"
                         ng-click="vm.replyMessage(vm.selectedMessage);"
                         ng-if="vm.selectedMessage.type=='user'">{{ 'BUTTON_MESSAGE_REPLY' | translate }}
                 </button>

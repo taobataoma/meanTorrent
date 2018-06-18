@@ -6,16 +6,35 @@
     .controller('StatusController', StatusController);
 
   StatusController.$inject = ['$scope', '$state', '$timeout', '$translate', 'Authentication', 'UsersService', 'ScoreLevelService', 'MeanTorrentConfig', 'ModalConfirmService',
-    'NotifycationService', 'moment'];
+    'NotifycationService', 'moment', 'localStorageService', 'MedalsService', 'MedalsInfoServices'];
 
   function StatusController($scope, $state, $timeout, $translate, Authentication, UsersService, ScoreLevelService, MeanTorrentConfig, ModalConfirmService,
-                            NotifycationService, moment) {
+                            NotifycationService, moment, localStorageService, MedalsService, MedalsInfoServices) {
     var vm = this;
     vm.user = Authentication.user;
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
     vm.announce = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+
+    /**
+     * initTopBackground
+     */
+    vm.initTopBackground = function () {
+      var url = localStorageService.get('body_background_image') || vm.homeConfig.bodyBackgroundImage;
+      $('.backdrop').css('backgroundImage', 'url("' + url + '")');
+    };
+
+    /**
+     * getMyMedals
+     */
+    vm.getMyMedals = function () {
+      MedalsService.query({
+        userId: vm.user._id
+      }, function (medals) {
+        vm.userMedals = MedalsInfoServices.mergeMedalsProperty(medals);
+      });
+    };
 
     /**
      * unIdle

@@ -1,0 +1,115 @@
+<section ng-controller="MedalsController as vm" ng-init="vm.getMedal(); vm.initTopBackground()">
+    <div class="backdrop attachment-scroll">
+        <div class="filter">
+            <div class="container medals-view-top">
+                <div class="row">
+                    <div class="row-sm-height">
+                        <div class="col-sm-3 col-md-4 col-sm-height text-xxs-center text-sm-right">
+                            <div class="medal">
+                                <div class="medal-item medal-13x">
+                                    <i class="{{vm.medal.faClass}} medal-bg dark-shadow" style="color:{{vm.medal.bgColor}};"></i>
+                                    <i class="fa-inverse {{vm.medal.iconClass}} medal-icon" style="font-size: {{vm.medal.iconSize}}; top: {{vm.medal.iconTop}}"></i>
+                                    <span class="fa-inverse medal-header" style="font-size: {{vm.medal.textHeaderSize}}; top: {{vm.medal.textHeaderTop}}"
+                                          ng-if="vm.medal.hasHeader">
+                                        {{'MEDALS.HEADERSTRING.'+vm.medal.prefix.toUpperCase() | translate}}
+                                    </span>
+                                    <span class="fa-inverse medal-footer"
+                                          style="font-size: {{vm.medal.textFooterSize}}; bottom: {{vm.medal.textFooterBottom}}" ng-if="vm.medal.hasFooter">
+                                        {{'MEDALS.FOOTERSTRING.'+vm.medal.prefix.toUpperCase() | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-md-7 col-sm-height col-sm-middle text-xxs-center text-sm-left">
+                            <div class="medal-top-info">
+                                <ul class="list-unstyled">
+                                    <li class="desc"><p translate="{{'MEDALS.DESC.'+vm.medal.prefix.toUpperCase()}}"></p></li>
+                                    <li class="info-item"><i class="far fa-hand-holding-box"></i>&emsp;<span
+                                            translate="{{'MEDALS.PASSHELP.'+vm.medal.passHelp.toUpperCase()}}"></span></li>
+                                    <li class="info-item" ng-if="vm.medal.score">
+                                        <i class="far fa-coins"></i>&emsp;<span>{{'MEDALS.HELP_CONDITION' | translate}}: </span>
+                                        <span>{{'TABLE_FIELDS.SCORE' | translate}} </span>
+                                        <span>{{vm.medal.score}}</span>
+                                    </li>
+                                    <li class="info-item"><i class="far fa-user-shield"></i>&emsp;<span>{{'MEDALS.OWNED_USERS' | translate}}: {{vm.medal.count}}</span></li>
+
+                                    <li class="cmd" ng-if="!vm.hasMedal(vm.medal)">
+                                        <a ui-sref="{}" translate="MEDALS.CMD_REQUEST" ng-click="vm.requestMedal(vm.medal)" ng-if="vm.medal.passHelp=='self'"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="up_to_top_div" up-to-top="top_of_medal_users_list" offset="-30"></div>
+
+    <div class="container padding-top-20 padding-bottom-20" id="top_of_medal_users_list">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="pagination-div-top" ng-if="vm.filterLength>vm.itemsPerPage">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                                ng-model="vm.currentPage"
+                                ng-change="vm.pageChanged()"
+                                first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                                next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 text-center margin-right-50" ng-if="vm.resultMsg">
+                        <div class="jumbotron">
+                            <i class="fa fa-users fa-2x text-muted" aria-hidden="true"></i>
+                            <h3>{{vm.resultMsg | translate}}</h3>
+                        </div>
+                    </div>
+
+                    <div class="medal-users-list" ng-if="!vm.resultMsg">
+                        <div ng-repeat="item in vm.pagedItems">
+                            <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-sm-block "></div>
+                            <div data-ng-if="$index != 0 && $index % 3 == 0" class="clearfix visible-md-block visible-lg-block"></div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="user-item" mt-scale-by-mouse="{scale: 1.1, duration: '.5s'}">
+                                    <span user-info="item.user" info-class="user-avatar" info-avatar></span>
+                                    <p><span user-info="item.user" info-class="user-name" info-name></span><span message-to="item.user" to-class="message-to-icon"></span></p>
+                                    <p class="margin-bottom-5"><span class="add-time">{{'MEDALS.AWARD_AT' | translate}}: {{item.createdAt | date: "yyyy-MM-dd HH:mm:ss"}}</span></p>
+                                    <span vip-flag="item.user" vip-class="user-vip"></span>
+                                    <span score-level-curr="item.user" class="user-level"></span>
+                                    <span class="user-ud-text">
+                                        <span up-down-flag="item.user" up-down-class="user-up-down"></span>
+                                    </span>
+
+                                    <a class="btn btn-success btn-sm btn-bold btn-min-width-80 btn-unfollow"
+                                       ng-click="vm.followTo(item.user)"
+                                       ng-if="!vm.inMyFollowing(item.user) && item.user._id!=vm.user._id">
+                                        {{ 'STATUS_FIELD.BTN_FOLLOW' | translate}}
+                                    </a>
+                                    <a class="btn btn-success btn-sm btn-bold btn-min-width-80 btn-unfollow"
+                                       ng-click="vm.unFollowTo(item.user)"
+                                       ng-if="vm.inMyFollowing(item.user) && item.user._id!=vm.user._id">
+                                        {{ 'STATUS_FIELD.BTN_UNFOLLOW' | translate}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagination-div-bottom" ng-if="vm.filterLength>vm.itemsPerPage">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
+                </div>
+            </div>
+        </div>
+</section>

@@ -167,8 +167,7 @@ module.exports = {
       debugAnnounceUser: {
         debugAll: false,
         ids: [
-          '59227f9095602327ea1d96ba',
-          '592280c464be9e281a1ec56e'
+          '59227f9095602327ea1d96ba'
         ]
       },
       debugClientSideUser: {
@@ -335,6 +334,128 @@ module.exports = {
     },
 
     /**
+     * @medals
+     *
+     * settings of medals wall
+     *
+     * @showWorkerUsersListToAll:   setting normal user whether can list workers type medal owned users
+     * @type:                       medals type
+     *      @cats:                  medal cats, please add translate string MEDALS_CATS_@cats
+     *      @name:                  medal name
+     *      @prefix:                medal description translate string prefix, such as MEDALS_DESC_@prifix
+     *      @faClass:               medal logo background layer icon class with font-awesome
+     *      @iconClass:             medal logo top icon class with font-awesome
+     *
+     *      @hasHeader:             setting whether has a header string on medal, if true please add translate string MEDALS_HEADERSTRING_@prefix
+     *      @hasFooter:             setting whether has a footer string on medal, if true please add translate string MEDALS_FOOTERSTRING_@prefix
+     *      @passHelp:              setting for get this medal need who help
+     *      @score:                 setting for self help medal by scores number
+     *      @enable:                enable status
+     */
+    medals: {
+      showWorkerUsersListToAll: false,
+      type: [
+        {
+          cats: 'workers', name: 'root', prefix: 'ROOT', faClass: 'fa fa-shield', iconClass: 'far fa-user-secret',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'workers', name: 'networkAdmin', prefix: 'NETWORK_ADMIN', faClass: 'fa fa-shield', iconClass: 'far fa-user-graduate',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'workers', name: 'supportAdmin', prefix: 'SUPPORT_ADMIN', faClass: 'fa fa-shield', iconClass: 'far fa-user-graduate',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'workers', name: 'forumAdmin', prefix: 'FORUM_ADMIN', faClass: 'fa fa-shield', iconClass: 'far fa-user-graduate',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'workers', name: 'resourceAdmin', prefix: 'RESOURCE_ADMIN', faClass: 'fa fa-shield', iconClass: 'far fa-user-graduate',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'workers', name: 'ambassador', prefix: 'AMBASSADOR', faClass: 'fa fa-shield', iconClass: 'far fa-user-tie',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+
+        {
+          cats: 'workers', name: 'forumModerators', prefix: 'FORUM_MODERATORS', faClass: 'fa fa-shield', iconClass: 'far fa-address-card',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'workers', name: 'makerFounder', prefix: 'MAKER_FOUNDER', faClass: 'fa fa-shield', iconClass: 'far fa-user-tag',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'workers', name: 'uploader', prefix: 'UPLOADER', faClass: 'fa fa-shield', iconClass: 'far fa-user-ninja',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'workers', name: 'retiree', prefix: 'RETIREE', faClass: 'fa fa-shield', iconClass: 'far fa-wheelchair',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+
+        {
+          cats: 'users', name: 'beauty3000', prefix: 'BEAUTY_3000', faClass: 'fa fa-ticket', iconClass: 'far fa-users',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'users', name: 'roam', prefix: 'ROAM', faClass: 'fa fa-ticket', iconClass: 'far fa-user-astronaut',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'users', name: 'noExamination', prefix: 'NO_EXAMINATION', faClass: 'fa fa-ticket', iconClass: 'far fa-user-check',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'users', name: 'slugger', prefix: 'SLUGGER', faClass: 'fa fa-ticket', iconClass: 'far fa-child',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'users', name: 'elder', prefix: 'ELDER', faClass: 'fa fa-ticket', iconClass: 'far fa-blind',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+
+        {
+          cats: 'vip', name: 'foreverVip', prefix: 'FOREVER_VIP', faClass: 'fa fa-bookmark',
+          hasHeader: true, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'vip', name: 'yearlyVip', prefix: 'YEARLY_VIP', faClass: 'fa fa-bookmark',
+          hasHeader: true, hasFooter: true, passHelp: 'sys', enable: true
+        },
+        {
+          cats: 'vip', name: 'monthlyVip', prefix: 'MONTHLY_VIP', faClass: 'fa fa-bookmark',
+          hasHeader: true, hasFooter: true, passHelp: 'sys', enable: true
+        },
+        {
+          cats: 'vip', name: 'guestVip', prefix: 'GUEST_VIP', faClass: 'fa fa-bookmark',
+          hasHeader: true, hasFooter: true, passHelp: 'admin', enable: true
+        },
+
+        {
+          cats: 'commemorative', name: 'siteBegin', prefix: 'SITE_BEGIN', faClass: 'fa fa-badge',
+          hasHeader: true, hasFooter: true, passHelp: 'self', score: 1000, enable: true
+        },
+        {
+          cats: 'commemorative', name: 'forOneYears', prefix: 'FOR_ONE_YEARS', faClass: 'fa fa-badge',
+          hasHeader: true, hasFooter: true, passHelp: 'self', score: 10000, enable: true
+        },
+        {
+          cats: 'commemorative', name: 'forTwoYears', prefix: 'FOR_TWO_YEARS', faClass: 'fa fa-badge',
+          hasHeader: true, hasFooter: true, passHelp: 'self', score: 20000, enable: true
+        },
+
+        {
+          cats: 'events', name: 'eventName', prefix: 'EVENT_NAME', faClass: 'fa fa-hexagon',
+          hasHeader: true, hasFooter: true, passHelp: 'admin', enable: true
+        }
+      ]
+    },
+
+    /**
      * @sign
      *
      * user register settings
@@ -495,6 +616,7 @@ module.exports = {
 
         scoreExchangeInvitation: {name: 'scoreExchangeInvitation', content: 'SCORE_EXCHANGE_INVITATION', value: 0, enable: true}, //value used invite.scoreExchange
         scoreToRemoveWarning: {name: 'scoreToRemoveWarning', content: 'SCORETO_REMOVE_WARNING', value: 0, enable: true}, //value used hitAndRun.scoreToRemoveWarning
+        scoreToRequestMedal: {name: 'scoreToRequestMedal', content: 'SCORETO_REQUEST_MEDAL', value: 0, enable: true}, //value used hitAndRun.scoreToRemoveWarning
         activeIdleAccount: {name: 'activeIdleAccount', content: 'ACTIVE_IDLE_ACCOUNT', value: 0, enable: true}, //value used sign.idle.activeIdleAccountBasicScore
 
         dailyCheckIn: {
@@ -714,6 +836,8 @@ module.exports = {
         adminPresentUserInvitations: {name: 'adminPresentUserInvitations', enable: true},
         adminRemoveUserHnrWarning: {name: 'adminRemoveUserHnrWarning', enable: true},
         adminCreateUserMakerGroup: {name: 'adminCreateUserMakerGroup', enable: true},
+        adminAddUserMedal: {name: 'adminAddUserMedal', enable: true},
+        adminRemoveUserMedal: {name: 'adminRemoveUserMedal', enable: true},
 
         adminUserDelete: {name: 'adminUserDelete', enable: true},
         adminUserEdit: {name: 'adminUserEdit', enable: true},
@@ -768,6 +892,8 @@ module.exports = {
         adminPresentUserInvitations: {name: 'adminPresentUserInvitations', content: 'ADMIN_PRESENT_USER_INVITATIONS', enable: true},
         adminRemoveUserHnrWarning: {name: 'adminRemoveUserHnrWarning', content: 'ADMIN_REMOVE_USER_HNR_WARNING', enable: true},
         adminCreateUserMakerGroup: {name: 'adminCreateUserMakerGroup', content: 'ADMIN_CREATE_USER_MAKER_GROUP', enable: true},
+        adminAddUserMedal: {name: 'adminAddUserMedal', content: 'ADMIN_ADD_USER_MEDAL', enable: true},
+        adminRemoveUserMedal: {name: 'adminRemoveUserMedal', content: 'ADMIN_REMOVE_USER_MEDAL', enable: true},
         adminBanUserInviter: {name: 'adminBanUserInviter', content: 'ADMIN_BAN_USER_INVITER', enable: true}
       }
     },
@@ -1426,34 +1552,35 @@ module.exports = {
      * items number in per list page settings
      * NOTE: you can change these value at anytime if you understand it
      *
-     * @topicsPerPage:            forum topic list page settings
-     * @repliesPerPage:           forum topic replies list page settings
-     * @topicsSearchPerPage:      forum topic search list page settings
-     * @torrentsPerPage:          torrents list page settings
-     * @torrentsCommentsPerPage:  torrent comments list settings
-     * @makeGroupTorrentsPerPage: torrent of make group list page settings
-     * @albumTorrentsPerPage:     torrent of album list page settings
-     * @tracesPerPage:            system traces log list page settings
-     * @adminUserListPerPage:     admin manage users list page settings
-     * @collectionsListPerPage:   movie collections list page settings
-     * @backupFilesListPerPage:   system backup files list page settings
-     * @torrentPeersListPerPage:  torrent detail seeder & leecher users list page settings
+     * @topicsPerPage:                    forum topic list page settings
+     * @repliesPerPage:                   forum topic replies list page settings
+     * @topicsSearchPerPage:              forum topic search list page settings
+     * @torrentsPerPage:                  torrents list page settings
+     * @torrentsCommentsPerPage:          torrent comments list settings
+     * @makeGroupTorrentsPerPage:         torrent of make group list page settings
+     * @albumTorrentsPerPage:             torrent of album list page settings
+     * @tracesPerPage:                    system traces log list page settings
+     * @adminUserListPerPage:             admin manage users list page settings
+     * @collectionsListPerPage:           movie collections list page settings
+     * @backupFilesListPerPage:           system backup files list page settings
+     * @torrentPeersListPerPage:          torrent detail seeder & leecher users list page settings
      * @officialInvitationsListPerPage:   official invitations list page settings
      * @userInvitationsListPerPage:       users invitations list page settings
      * @userDataLogsListPerPage:          users data history logs list page settings
+     * @medalUsersListPerPage:            medal owned users list page settings
      *
-     * @uploaderUserListPerPage:  admin management uploader access list page settings
-     * @messageBoxListPerPage:    message box list page settings
-     * @followListPerPage:        users follow list page settings
+     * @uploaderUserListPerPage:          admin management uploader access list page settings
+     * @messageBoxListPerPage:            message box list page settings
+     * @followListPerPage:                users follow list page settings
      *
-     * @requestListPerPage:       request list page settings
-     * @requestCommentsPerPage:   request comments list settings
+     * @requestListPerPage:               request list page settings
+     * @requestCommentsPerPage:           request comments list settings
      *
      * @homeOrderTorrentListPerType:    every type of torrent showed in home settings
      * @homeNewestTorrentListPerType:   every type of torrent of newest showed in home settings
-     * @homeHelpListLimit:        help items number of home settings
-     * @homeNoticeListLimit:      notice items number of home settings
-     * @homeNewTopicListLimit:    new topic items number of home settings
+     * @homeHelpListLimit:              help items number of home settings
+     * @homeNoticeListLimit:            notice items number of home settings
+     * @homeNewTopicListLimit:          new topic items number of home settings
      * @homeNewestTorrentsListLimit:    newest torrents items number of home settings
      *
      * @examinationUserListPerPage:     users item number of examination result page
@@ -1478,6 +1605,7 @@ module.exports = {
       officialInvitationsListPerPage: 20,
       userInvitationsListPerPage: 10,
       userDataLogsListPerPage: 20,
+      medalUsersListPerPage: 60,
 
       uploaderUserListPerPage: 20,
       messageBoxListPerPage: 10,

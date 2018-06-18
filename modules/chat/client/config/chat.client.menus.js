@@ -13,8 +13,20 @@
       title: 'MENU_CHAT',
       state: 'chat',
       roles: ['*'],
+      class: 'sm-hide',
       target: '_blank',
-      position: 6
+      position: 7
+    });
+
+    //add to more
+    menuService.addSubMenuItem('topbar', 'more', {
+      title: 'MENU_CHAT',
+      state: 'chat',
+      roles: ['*'],
+      faIcon: 'fa-comment-alt-dots',
+      faClass: 'text-mt',
+      target: '_blank',
+      position: 2
     });
   }
 }());

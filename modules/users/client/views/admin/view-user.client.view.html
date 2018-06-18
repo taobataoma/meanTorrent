@@ -1,17 +1,62 @@
-<section class="container">
-    <div class="page-header userinfo-header">
-        <div class="row">
-            <div class="col-xs-12 col-xs-offset-0 col-md-10 col-md-offset-1 userinfo-col">
-                <span class="h3" ng-bind="vm.user.displayName"></span>
-                <span class="pull-right margin-bottom-5 userinfo-btn">
-                    <a class="btn btn-default btn-width-80" ng-click="vm.messageTo()" ng-if="!vm.isContextUserSelf()">
+<section>
+    <div class="backdrop attachment-scroll" ng-init="vm.getUserMedals(); vm.initTopBackground()">
+        <div class="filter">
+            <div class="container medals-user-top">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span user-info="vm.user" info-class="user-avatar" info-avatar></span>
+                        <ul class="list-unstyled user-data">
+                            <li class="margin-bottom-10">
+                                <span user-info="vm.user" info-class="h3 user-name" info-name></span>
+                                <span message-to="vm.user" to-class="message-to-icon"></span>
+                            </li>
+                            <li>
+                                <span vip-flag="vm.user" vip-class="user-vip"></span>
+                                <span score-level-curr="vm.user" class="user-level"></span>
+                                <span class="user-ud-text"><span up-down-flag="vm.user" up-down-class="user-up-down"></span></span>
+                                <span class="user-ratio"><span ratio-flag="vm.user" ratio-flag-class="user-ratio-flag"></span></span>
+                                <span class="user-medals-count"><span medal-flag="vm.user" medal-count="{{vm.userMedals.length}}" medal-flag-class="user-medal-flag"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="vm.userMedals && vm.userMedals.length>0">
+                    <div class="col-sm-12">
+                        <div class="user-medals-list margin-top-10">
+                            <div class="medal">
+                                <div class="medal-item medal-2x" ng-repeat="mt in vm.userMedals"
+                                     uib-tooltip="{{ 'MEDALS.DESC.'+mt.prefix.toUpperCase() | translate}}" tooltip-placement="top-center">
+                                    <i class="{{mt.faClass}} medal-bg dark-shadow" style="color:{{mt.bgColor}};"></i>
+                                    <i class="fa-inverse {{mt.iconClass}} medal-icon" style="font-size: {{mt.iconSize}}; top: {{mt.iconTop}}"></i>
+                                    <span class="fa-inverse medal-header" style="font-size: {{mt.textHeaderSize}}; top: {{mt.textHeaderTop}}" ng-if="mt.hasHeader">
+                                        {{'MEDALS.HEADERSTRING.'+mt.prefix.toUpperCase() | translate}}
+                                    </span>
+                                    <span class="fa-inverse medal-footer" style="font-size: {{mt.textFooterSize}}; bottom: {{mt.textFooterBottom}}" ng-if="mt.hasFooter">
+                                        {{'MEDALS.FOOTERSTRING.'+mt.prefix.toUpperCase() | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="margin-top-20 text-right">
+                    <a class="btn btn-min-width-100 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                       ng-click="vm.messageTo()" ng-if="!vm.isContextUserSelf()">
                         {{ 'STATUS_FIELD.BTN_SEND_MESSAGE' | translate}}
                     </a>
-                    <a class="btn btn-default btn-width-80" ui-sref="dataCenter.score({uid: vm.user._id})"
-                       ng-if="vm.authentication.user.isOper">
+                    <a class="btn btn-min-width-100 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                       ui-sref="dataCenter.score({uid: vm.user._id})" ng-if="vm.authentication.user.isOper">
                         {{ 'STATUS_FIELD.BTN_VIEW_USER_DATA_CENTER' | translate}}
                     </a>
-                    <button class="btn btn-primary" ng-if="vm.authentication.user.isAdmin"
+                    <a class="btn btn-min-width-100 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                       ng-click="vm.addMedal($event)" ng-if="vm.authentication.user.isOper">
+                        {{ 'STATUS_FIELD.BTN_ADD_MEDAL' | translate}}
+                    </a>
+
+                    <button class="btn btn-min-width-100 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                            ng-if="vm.authentication.user.isAdmin"
                             uib-popover-template="vm.presentInvitationsPopover.templateUrl"
                             popover-title="{{vm.presentInvitationsPopover.title | translate}}"
                             popover-trigger="'outsideClick'"
@@ -21,295 +66,298 @@
                             ng-click="vm.presentInvitationsPopover.numbers = 1; vm.presentInvitationsPopover.days = 1;">
                         {{'BTN_PRESENT_INVITATIONS' | translate}}
                     </button>
-                    <!--<a class="btn btn-primary btn-width-80" ui-sref="admin.user-edit({userId: vm.user._id})"-->
-                    <!--ng-if="vm.authentication.user.isAdmin">-->
-                    <!--{{ 'STATUS_FIELD.BTN_EDIT' | translate}}-->
-                    <!--</a>-->
-                    <a class="btn btn-primary btn-width-80" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf() && !vm.user.isOper">
+                    <a class="btn btn-min-width-100 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                       ng-click="vm.remove()" ng-if="!vm.isContextUserSelf() && !vm.user.isOper">
                         {{ 'STATUS_FIELD.BTN_REMOVE' | translate}}
                     </a>
-                </span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1 admin-user-info">
-            <dl class="dl-horizontal dl-hover margin-top-20 margin-bottom-20">
-                <dt class="h-line">{{ 'STATUS_FIELD.PICTURE' | translate}}：</dt>
-                <dd class="h-line">
-                    <img class="status-avatar" ng-src="{{vm.user.profileImageURL}}">
-
-                    <div class="pull-right" ng-if="vm.authentication.user.isOper && !vm.user.isAdmin">
-                        <a href="#" ng-click="vm.resetDefaultProfileImage();">{{'STATUS_FIELD.RESET_DEFAULT_PICTURE' | translate}}</a>
-                    </div>
-                </dd>
-
-                <dt class="h-line">ID：</dt>
-                <dd class="h-line">
-                    <mark>{{ vm.user._id }}</mark>
-                </dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.USERNAME' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.username }}</dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}：</dt>
-                <dd class="h-line">
-                    {{ vm.user.displayName }}
-                    <span vip-flag="vm.user"></span>
-
-                    <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
-                        <button class="btn btn-default btn-xs btn-width-100"
-                                ng-click="vm.addVIPMonths();">{{'STATUS_FIELD.ADD_VIP_MONTHS' | translate}}
-                        </button>
-                        <button class="btn btn-default btn-xs btn-width-100" ng-if="vm.user.isVip"
-                                ng-click="vm.resetVIPData();">{{'STATUS_FIELD.RESET_VIP_DATA' | translate}}
-                        </button>
-                    </div>
-                </dd>
-
-                <div ng-if="vm.user.invited_by">
-                    <dt class="h-line">{{ 'STATUS_FIELD.INVITED_BY' | translate}}：</dt>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <dl class="dl-horizontal dl-hover margin-top-20 margin-bottom-20">
+                    <dt class="h-line">{{ 'STATUS_FIELD.PICTURE' | translate}}：</dt>
                     <dd class="h-line">
-                        <span user-info="vm.user.invited_by" info-name></span>
-                        <!--<span message-to="vm.user.invited_by" to-class="message-to-icon"></span>-->
+                        <img class="status-avatar" ng-src="{{vm.user.profileImageURL}}">
+
+                        <div class="pull-right" ng-if="vm.authentication.user.isOper && !vm.user.isAdmin">
+                            <a href="#" ng-click="vm.resetDefaultProfileImage();">{{'STATUS_FIELD.RESET_DEFAULT_PICTURE' | translate}}</a>
+                        </div>
                     </dd>
-                </div>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.EMAIL' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.email }}</dd>
-
-                <div ng-if="vm.authentication.user.isOper">
-                    <dt class="h-line">{{ 'STATUS_FIELD.PASSKEY' | translate}}：</dt>
+                    <dt class="h-line">ID：</dt>
                     <dd class="h-line">
-                        <mark>{{ vm.user.passkey }}</mark>
+                        <mark>{{ vm.user._id }}</mark>
                     </dd>
-                </div>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.ROLE' | translate}}：</dt>
-                <dd class="h-line">
-                    <mark>{{ vm.user.roles[0] }}</mark>
-                    <div class="pull-right" ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isAdmin">
-                        <select class="width-100" ng-model="vm.selectedRole" ng-change="vm.onUserRoleChanged();">
-                            <option ng-repeat="r in vm.userRolesConfig" value="{{r}}">{{ r }}
-                            </option>
-                        </select>
+                    <dt class="h-line">{{ 'STATUS_FIELD.USERNAME' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.username }}</dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}：</dt>
+                    <dd class="h-line">
+                        {{ vm.user.displayName }}
+                        <span vip-flag="vm.user"></span>
+
+                        <div class="pull-right" ng-if="vm.authentication.user.isAdmin">
+                            <button class="btn btn-default btn-xs btn-min-width-100"
+                                    ng-click="vm.addVIPMonths();">{{'STATUS_FIELD.ADD_VIP_MONTHS' | translate}}
+                            </button>
+                            <button class="btn btn-default btn-xs btn-min-width-100" ng-if="vm.user.isVip"
+                                    ng-click="vm.resetVIPData();">{{'STATUS_FIELD.RESET_VIP_DATA' | translate}}
+                            </button>
+                        </div>
+                    </dd>
+
+                    <div ng-if="vm.user.invited_by">
+                        <dt class="h-line">{{ 'STATUS_FIELD.INVITED_BY' | translate}}：</dt>
+                        <dd class="h-line">
+                            <span user-info="vm.user.invited_by" info-name></span>
+                            <!--<span message-to="vm.user.invited_by" to-class="message-to-icon"></span>-->
+                        </dd>
                     </div>
-                </dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.MAKER' | translate}}：</dt>
-                <dd class="h-line">
+                    <dt class="h-line">{{ 'STATUS_FIELD.EMAIL' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.email }}</dd>
+
+                    <div ng-if="vm.authentication.user.isOper">
+                        <dt class="h-line">{{ 'STATUS_FIELD.PASSKEY' | translate}}：</dt>
+                        <dd class="h-line">
+                            <mark>{{ vm.user.passkey }}</mark>
+                        </dd>
+                    </div>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.ROLE' | translate}}：</dt>
+                    <dd class="h-line">
+                        <mark>{{ vm.user.roles[0] }}</mark>
+                        <div class="pull-right" ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isAdmin">
+                            <select class="min-width-100" ng-model="vm.selectedRole" ng-change="vm.onUserRoleChanged();">
+                                <option ng-repeat="r in vm.userRolesConfig" value="{{r}}">{{ r }}
+                                </option>
+                            </select>
+                        </div>
+                    </dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.MAKER' | translate}}：</dt>
+                    <dd class="h-line">
                     <span class="maker-list" ng-repeat="m in vm.user.makers">
                           <span maker-info="m"></span>
                     </span>
-                    <span ng-if="vm.user.makers.length==0">-</span>
+                        <span ng-if="vm.user.makers.length==0">-</span>
 
-                    <div class="pull-right"
-                         ng-if="vm.authentication.user.isOper && !vm.alreadyIsFounder(vm.user);">
-                        <button class="btn btn-default btn-xs btn-width-100" ng-click="vm.showMakerGroup($event);">
-                            {{'STATUS_FIELD.BTN_CREATE_MAKER' | translate}}
-                        </button>
-                    </div>
-                </dd>
+                        <div class="pull-right"
+                             ng-if="vm.authentication.user.isOper && !vm.alreadyIsFounder(vm.user);">
+                            <button class="btn btn-default btn-xs btn-min-width-100" ng-click="vm.showMakerGroup($event);">
+                                {{'STATUS_FIELD.BTN_CREATE_MAKER' | translate}}
+                            </button>
+                        </div>
+                    </dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.STATUS' | translate}}：</dt>
-                <dd class="h-line">
-                    <span ng-class="{'span-banned': vm.user.status != 'normal'}">{{ 'STATUS_FIELD.' + vm.user.status.toUpperCase() | translate }}</span>
+                    <dt class="h-line">{{ 'STATUS_FIELD.STATUS' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span ng-class="{'span-banned': vm.user.status != 'normal'}">{{ 'STATUS_FIELD.' + vm.user.status.toUpperCase() | translate }}</span>
 
-                    <div class="pull-right"
-                         ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isOper && !vm.user.isAdmin">
-                        <select class="width-100" ng-model="vm.selectedStatus" ng-change="vm.onUserStatusChanged();">
-                            <option ng-repeat="r in vm.userStatusConfig.value" value="{{r.value}}">{{ 'STATUS_FIELD.' + r.name | translate }}
-                            </option>
-                        </select>
-                    </div>
-                </dd>
+                        <div class="pull-right"
+                             ng-if="vm.authentication.user.username != vm.user.username && vm.authentication.user.isOper && !vm.user.isAdmin">
+                            <select class="min-width-100" ng-model="vm.selectedStatus" ng-change="vm.onUserStatusChanged();">
+                                <option ng-repeat="r in vm.userStatusConfig.value" value="{{r.value}}">{{ 'STATUS_FIELD.' + r.name | translate }}
+                                </option>
+                            </select>
+                        </div>
+                    </dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
-                <dd class="h-line">
-                    <span>{{ vm.user.score | number: 2 }}</span> <span score-level-curr="vm.user"></span>
+                    <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span>{{ vm.user.score | number: 2 }}</span> <span score-level-curr="vm.user"></span>
 
-                    <div class="pull-right" ng-if="vm.authentication.user.isOper">
-                        <button class="btn btn-default btn-xs btn-width-100"
-                                uib-popover-template="vm.setUserScorePopover.templateUrl"
-                                popover-title="{{vm.setUserScorePopover.title | translate}}"
-                                popover-trigger="'outsideClick'"
-                                popover-placement="top-right"
-                                popover-is-open="vm.setUserScorePopover.isOpen"
-                                popover-class="set-score-popover"
-                                ng-click="vm.setUserScorePopover.number = undefined;">
-                            +/-
-                        </button>
-                    </div>
-                </dd>
-
-                <li class="status-divider"></li>
-
-                <div ng-show="vm.user.isVip">
-                    <dt class="h-line">{{ 'STATUS_FIELD.VIP_START_AT' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.vip_start_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
-
-                    <dt class="h-line">{{ 'STATUS_FIELD.VIP_END_AT' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.vip_end_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+                        <div class="pull-right" ng-if="vm.authentication.user.isOper">
+                            <button class="btn btn-default btn-xs btn-min-width-100"
+                                    uib-popover-template="vm.setUserScorePopover.templateUrl"
+                                    popover-title="{{vm.setUserScorePopover.title | translate}}"
+                                    popover-trigger="'outsideClick'"
+                                    popover-placement="top-right"
+                                    popover-is-open="vm.setUserScorePopover.isOpen"
+                                    popover-class="set-score-popover"
+                                    ng-click="vm.setUserScorePopover.number = undefined;">
+                                +/-
+                            </button>
+                        </div>
+                    </dd>
 
                     <li class="status-divider"></li>
-                </div>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.SIGNUP_DATE' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.created | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+                    <div ng-show="vm.user.isVip">
+                        <dt class="h-line">{{ 'STATUS_FIELD.VIP_START_AT' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.vip_start_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.LATEST_SIGNED_TIME' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.last_signed | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+                        <dt class="h-line">{{ 'STATUS_FIELD.VIP_END_AT' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.vip_end_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.LATEST_REFRESH_TIME' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.refreshat | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+                        <li class="status-divider"></li>
+                    </div>
 
-                <div ng-if="vm.authentication.user.isOper && !vm.user.isAdmin">
-                    <dt class="h-line">{{ 'STATUS_FIELD.CURR_SIGNED_IP' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.curr_signed_ip }}</dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.SIGNUP_DATE' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.created | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                    <dt class="h-line">{{ 'STATUS_FIELD.CURR_LEECHED_IP' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.curr_leeched_ip }}</dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.LATEST_SIGNED_TIME' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.last_signed | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                    <dt class="h-line">{{ 'STATUS_FIELD.SIGNED_IP' | translate}}：</dt>
+                    <dt class="h-line">{{ 'STATUS_FIELD.LATEST_REFRESH_TIME' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.refreshat | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+
+                    <div ng-if="vm.authentication.user.isOper && !vm.user.isAdmin">
+                        <dt class="h-line">{{ 'STATUS_FIELD.CURR_SIGNED_IP' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.curr_signed_ip }}</dd>
+
+                        <dt class="h-line">{{ 'STATUS_FIELD.CURR_LEECHED_IP' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.curr_leeched_ip }}</dd>
+
+                        <dt class="h-line">{{ 'STATUS_FIELD.SIGNED_IP' | translate}}：</dt>
+                        <dd class="h-line">
+                            <div class="list-all-ips">
+                                <span class="ip-item" ng-repeat="t in vm.user.signed_ip">{{t}}</span>
+                            </div>
+                        </dd>
+
+                        <dt class="h-line">{{ 'STATUS_FIELD.LEECHED_IP' | translate}}：</dt>
+                        <dd class="h-line">
+                            <div class="list-all-ips">
+                                <span class="ip-item" ng-repeat="t in vm.user.leeched_ip">{{t}}</span>
+                            </div>
+                        </dd>
+
+                        <dt class="h-line">{{ 'STATUS_FIELD.BT_CLIENT' | translate}}：</dt>
+                        <dd class="h-line">
+                            <div class="list-all-clients">
+                                <span class="client-item" ng-repeat="t in vm.user.client_agent">{{t}}</span>
+                            </div>
+                        </dd>
+                    </div>
+
+                    <li class="status-divider"></li>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.FOLLOWERS' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.followers.length }}
+                        <a class="pull-right" ui-sref="follow.userFollowers({userId: vm.user._id})"
+                           ng-if="vm.user.followers.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                    </dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.FOLLOWING' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.following.length }}
+                        <a class="pull-right" ui-sref="follow.userFollowing({userId: vm.user._id})"
+                           ng-if="vm.user.following.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                    </dd>
+
+                    <li class="status-divider"></li>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
                     <dd class="h-line">
-                        <div class="list-all-ips">
-                            <span class="ip-item" ng-repeat="t in vm.user.signed_ip">{{t}}</span>
+                        <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                        <span>{{ vm.user.uploaded | bytes:2 }}</span>
+                        <span class="true_updown text-muted"
+                              ng-if="vm.user.true_uploaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_UPLOADED' | translate}}：{{ vm.user.true_uploaded | bytes:2 }}</span>
+
+                        <div class="pull-right" ng-if="vm.authentication.user.isOper">
+                            <button class="btn btn-default btn-xs btn-min-width-100"
+                                    uib-popover-template="vm.setUserUploadedPopover.templateUrl"
+                                    popover-title="{{vm.setUserUploadedPopover.title | translate}}"
+                                    popover-trigger="'outsideClick'"
+                                    popover-placement="top-right"
+                                    popover-is-open="vm.setUserUploadedPopover.isOpen"
+                                    popover-class="set-uploaded-popover"
+                                    ng-click="vm.setUserUploadedPopover.number = undefined;">
+                                +/-
+                            </button>
                         </div>
                     </dd>
 
-                    <dt class="h-line">{{ 'STATUS_FIELD.LEECHED_IP' | translate}}：</dt>
+                    <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
                     <dd class="h-line">
-                        <div class="list-all-ips">
-                            <span class="ip-item" ng-repeat="t in vm.user.leeched_ip">{{t}}</span>
+                        <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                        <span>{{ vm.user.downloaded | bytes:2 }}</span>
+                        <span class="true_updown text-muted"
+                              ng-if="vm.user.true_downloaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_DOWNLOADED' | translate}}：{{ vm.user.true_downloaded | bytes:2 }}</span>
+
+                        <div class="pull-right" ng-if="vm.authentication.user.isOper">
+                            <button class="btn btn-default btn-xs btn-min-width-100"
+                                    uib-popover-template="vm.setUserDownloadedPopover.templateUrl"
+                                    popover-title="{{vm.setUserDownloadedPopover.title | translate}}"
+                                    popover-trigger="'outsideClick'"
+                                    popover-placement="top-right"
+                                    popover-is-open="vm.setUserDownloadedPopover.isOpen"
+                                    popover-class="set-downloaded-popover"
+                                    ng-click="vm.setUserDownloadedPopover.number = undefined;">
+                                +/-
+                            </button>
                         </div>
                     </dd>
 
-                    <dt class="h-line">{{ 'STATUS_FIELD.BT_CLIENT' | translate}}：</dt>
-                    <dd class="h-line">
-                        <div class="list-all-clients">
-                            <span class="client-item" ng-repeat="t in vm.user.client_agent">{{t}}</span>
+                    <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
+                    <dd class="h-line"><span ng-class="vm.user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ vm.user.ratio | ratio}}</span></dd>
+
+                    <li class="status-divider"></li>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.uptotal }} <a class="pull-right" ui-sref="admin.user-uplist({userId: vm.user._id})"
+                                                                ng-if="vm.user.uptotal>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.seeded }} <a class="pull-right" ui-sref="admin.user-seeding({userId: vm.user._id})"
+                                                               ng-if="vm.user.seeded>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.leeched }} <a class="pull-right" ui-sref="admin.user-leeching({userId: vm.user._id})"
+                                                                ng-if="vm.user.leeched>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.finished }}</dd>
+
+                    <div ng-if="vm.user.hnr_warning>0 && vm.hnrConfig.enable">
+                        <dt class="h-line">{{ 'STATUS_FIELD.HNR_WARNING' | translate}}：</dt>
+                        <dd class="h-line">
+                            <span class="badge badge_danger">{{vm.user.hnr_warning}}</span>
+                            <a class="pull-right" ui-sref="admin.user-warning({userId: vm.user._id})"
+                               ng-if="vm.user.hnr_warning>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                        </dd>
+                    </div>
+
+                    <li class="status-divider"></li>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.FORUM_TOPICS' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.topics }}</dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.replies }}</dd>
+
+                    <li class="status-divider"></li>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.ADMIN_HISTORY' | translate}}：</dt>
+                    <dd class="h-line" ng-init="vm.getUserHistory()">
+                        <div class="form-control user-history padding-top-15 padding-bottom-15 margin-top-10 margin-bottom-10">
+                            <span ng-repeat="h in vm.historyList | orderBy: '-createdAt'" ng-bind-html="vm.getHistoryContent(h)"></span>
                         </div>
                     </dd>
-                </div>
 
-                <li class="status-divider"></li>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.FOLLOWERS' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.followers.length }}
-                    <a class="pull-right" ui-sref="follow.userFollowers({userId: vm.user._id})"
-                       ng-if="vm.user.followers.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
-                </dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.FOLLOWING' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.following.length }}
-                    <a class="pull-right" ui-sref="follow.userFollowing({userId: vm.user._id})"
-                       ng-if="vm.user.following.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
-                </dd>
-
-                <li class="status-divider"></li>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
-                <dd class="h-line">
-                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
-                    <span>{{ vm.user.uploaded | bytes:2 }}</span>
-                    <span class="true_updown text-muted"
-                          ng-if="vm.user.true_uploaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_UPLOADED' | translate}}：{{ vm.user.true_uploaded | bytes:2 }}</span>
-
-                    <div class="pull-right" ng-if="vm.authentication.user.isOper">
-                        <button class="btn btn-default btn-xs btn-width-100"
-                                uib-popover-template="vm.setUserUploadedPopover.templateUrl"
-                                popover-title="{{vm.setUserUploadedPopover.title | translate}}"
-                                popover-trigger="'outsideClick'"
-                                popover-placement="top-right"
-                                popover-is-open="vm.setUserUploadedPopover.isOpen"
-                                popover-class="set-uploaded-popover"
-                                ng-click="vm.setUserUploadedPopover.number = undefined;">
-                            +/-
-                        </button>
-                    </div>
-                </dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
-                <dd class="h-line">
-                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
-                    <span>{{ vm.user.downloaded | bytes:2 }}</span>
-                    <span class="true_updown text-muted"
-                          ng-if="vm.user.true_downloaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_DOWNLOADED' | translate}}：{{ vm.user.true_downloaded | bytes:2 }}</span>
-
-                    <div class="pull-right" ng-if="vm.authentication.user.isOper">
-                        <button class="btn btn-default btn-xs btn-width-100"
-                                uib-popover-template="vm.setUserDownloadedPopover.templateUrl"
-                                popover-title="{{vm.setUserDownloadedPopover.title | translate}}"
-                                popover-trigger="'outsideClick'"
-                                popover-placement="top-right"
-                                popover-is-open="vm.setUserDownloadedPopover.isOpen"
-                                popover-class="set-downloaded-popover"
-                                ng-click="vm.setUserDownloadedPopover.number = undefined;">
-                            +/-
-                        </button>
-                    </div>
-                </dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
-                <dd class="h-line"><span ng-class="vm.user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ vm.user.ratio | ratio}}</span></dd>
-
-                <li class="status-divider"></li>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.uptotal }} <a class="pull-right" ui-sref="admin.user-uplist({userId: vm.user._id})"
-                                                            ng-if="vm.user.uptotal>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
-                <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.seeded }} <a class="pull-right" ui-sref="admin.user-seeding({userId: vm.user._id})"
-                                                           ng-if="vm.user.seeded>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.leeched }} <a class="pull-right" ui-sref="admin.user-leeching({userId: vm.user._id})"
-                                                            ng-if="vm.user.leeched>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.finished }}</dd>
-
-                <div ng-if="vm.user.hnr_warning>0 && vm.hnrConfig.enable">
-                    <dt class="h-line">{{ 'STATUS_FIELD.HNR_WARNING' | translate}}：</dt>
+                    <dt class="h-line">{{ 'STATUS_FIELD.ADMIN_REMARKS' | translate}}：</dt>
                     <dd class="h-line">
-                        <span class="badge badge_danger">{{vm.user.hnr_warning}}</span>
-                        <a class="pull-right" ui-sref="admin.user-warning({userId: vm.user._id})"
-                           ng-if="vm.user.hnr_warning>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                        <div class="user-remarks padding-top-10 padding-bottom-10">
+                            <textarea class="form-control" ng-model="vm.user.remarks"></textarea>
+                            <button class="btn btn-default btn-min-width-100 margin-top-10"
+                                    ng-click="vm.saveRemarks()">
+                                {{'STATUS_FIELD.BTN_SAVE_REMARKS' | translate}}
+                            </button>
+                        </div>
                     </dd>
-                </div>
-
-                <li class="status-divider"></li>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.FORUM_TOPICS' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.topics }}</dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.replies }}</dd>
-
-                <li class="status-divider"></li>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.ADMIN_HISTORY' | translate}}：</dt>
-                <dd class="h-line" ng-init="vm.getUserHistory()">
-                    <div class="form-control user-history padding-top-15 padding-bottom-15 margin-top-10 margin-bottom-10">
-                        <p ng-repeat="h in vm.historyList | orderBy: '-createdAt'" ng-bind-html="vm.getHistoryContent(h)"></p>
-                    </div>
-                </dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.ADMIN_REMARKS' | translate}}：</dt>
-                <dd class="h-line">
-                    <div class="user-remarks padding-top-10 padding-bottom-10">
-                        <textarea class="form-control" ng-model="vm.user.remarks"></textarea>
-                        <button class="btn btn-default btn-width-100 margin-top-10"
-                                ng-click="vm.saveRemarks()">
-                            {{'STATUS_FIELD.BTN_SAVE_REMARKS' | translate}}
-                        </button>
-                    </div>
-                </dd>
-            </dl>
+                </dl>
+            </div>
         </div>
     </div>
 
+
+    <!-- =================================================================
+        side-overlay create maker
+    ================================================================== -->
     <div id="makerSlide" side-overlay="right" side-class="maker-side-overlay" side-opened="vm.onPopupMessageOpen();" side-close-on-esc side-modal>
         <div class="maker-popup">
             <h4 translate="ABOUT.FORM_MAKER_FOR" translate-values="{name: vm.user.displayName}"></h4>
@@ -338,14 +386,61 @@
         </div>
 
         <div class="bottom-control">
-            <button class="btn btn-success btn-width-100"
+            <button class="btn btn-success btn-min-width-100"
                     ng-disabled="!vm.maker.name || !vm.maker.desc"
                     ng-click="vm.createMakerGroup();">{{ 'BUTTON_SAVE' | translate }}
             </button>
-            <button class="btn btn-default btn-width-100" ng-click="vm.hideMakerPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
+            <button class="btn btn-default btn-min-width-100" ng-click="vm.hideMakerPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
         </div>
     </div>
 
+    <!-- =================================================================
+        side-overlay add medal
+    ================================================================== -->
+    <div id="medalsPopupSlide" side-overlay="top" side-class="medals-side-overlay" side-modal side-close-on-esc>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header"><h4 translate="MEDALS.SELECT_MEDAL_TO_USER" translate-values="{uname: vm.user.displayName}"></h4></div>
+                    <dl class="dl-horizontal">
+                        <div ng-repeat="(key,value) in vm.medals.types">
+                            <dt class="h-line">{{'MEDALS.CATS.'+key.toUpperCase() | translate}}:</dt>
+                            <dd>
+                                <div class="medal">
+                                    <div class="medal-item" ng-repeat="mt in vm.medals.items | where: {cats: key}"
+                                         ng-click="vm.addMedalToUser(mt)" ng-class="{'owner': vm.hasMedal(mt)}"
+                                         uib-tooltip="{{ 'MEDALS.DESC.'+mt.prefix.toUpperCase() | translate}}" tooltip-placement="top-center">
+                                        <i class="{{mt.faClass}} medal-bg" style="color:{{mt.bgColor}};"></i>
+                                        <i class="fa-inverse {{mt.iconClass}} medal-icon" style="font-size: {{mt.iconSize}}; top: {{mt.iconTop}}"></i>
+                                        <span class="fa-inverse medal-header" style="font-size: {{mt.textHeaderSize}}; top: {{mt.textHeaderTop}}" ng-if="mt.hasHeader">
+                                            {{'MEDALS.HEADERSTRING.'+mt.prefix.toUpperCase() | translate}}
+                                        </span>
+                                        <span class="fa-inverse medal-footer" style="font-size: {{mt.textFooterSize}}; bottom: {{mt.textFooterBottom}}" ng-if="mt.hasFooter">
+                                            {{'MEDALS.FOOTERSTRING.'+mt.prefix.toUpperCase() | translate}}
+                                        </span>
+                                        <i class="fa-inverse far fa-check-circle" style="display: none;"></i>
+                                    </div>
+                                </div>
+                            </dd>
+                        </div>
+                        <div class="margin-top-20">
+                            <dt class="h-line"></dt>
+                            <dd class="h-line">
+                                <button class="btn btn-default btn-min-width-100" ng-click="vm.hideMedalsPopup();">
+                                    {{ 'BUTTON_CLOSE' | translate }}
+                                </button>
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =================================================================
+        template set-user-score
+    ================================================================== -->
     <script type="text/ng-template" id="set-user-score.html">
         <form class="form-inline set-score-popover-form text-center">
             <div class="form-group">
@@ -356,6 +451,9 @@
         </form>
     </script>
 
+    <!-- =================================================================
+        template set-user-uploaded
+    ================================================================== -->
     <script type="text/ng-template" id="set-user-uploaded.html">
         <form class="form-inline set-uploaded-popover-form text-center">
             <div class="form-group">
@@ -366,6 +464,9 @@
         </form>
     </script>
 
+    <!-- =================================================================
+        template set-user-downloaded
+    ================================================================== -->
     <script type="text/ng-template" id="set-user-downloaded.html">
         <form class="form-inline set-downloaded-popover-form text-center">
             <div class="form-group">
@@ -376,6 +477,9 @@
         </form>
     </script>
 
+    <!-- =================================================================
+        template present-invitations
+    ================================================================== -->
     <script type="text/ng-template" id="present-invitations.html">
         <form class="set-invitations-popover">
             <div class="form-group">

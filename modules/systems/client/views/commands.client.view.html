@@ -6,7 +6,7 @@
     <ul class="list-group commands-list">
         <li class="list-group-item" id="{{cmd.eid}}" ng-repeat="cmd in vm.shellCommandConfig">
             <div>
-                <button class="btn btn-sm btn-success btn-width-100" ng-disabled="vm.shellIsRunning"
+                <button class="btn btn-sm btn-success btn-min-width-100" ng-disabled="vm.shellIsRunning"
                         ng-click="vm.runCommand(cmd.command, cmd.eid)">
                     <i class="fa fa-spinner fa-spin"
                        ng-if="vm.shellIsRunning && vm.runningId==cmd.eid"></i> {{'SYSTEMS.BTN_RUN_COMMAND' | translate}}
@@ -19,7 +19,7 @@
             <div class="cmd-desc">{{'SYSTEMS.CUSTOM_COMMAND' | translate}}</div>
             <div>
                 <input type="text" class="form-control cmd-name" ng-model="vm.customCommand" ng-keydown="vm.commandKeydown($event)">
-                <button class="btn btn-sm btn-success btn-width-100 margin-top-10" ng-disabled="vm.shellIsRunning"
+                <button class="btn btn-sm btn-success btn-min-width-100 margin-top-10" ng-disabled="vm.shellIsRunning"
                         ng-click="vm.runCommand(vm.customCommand, 'command-custom')">
                     <i class="fa fa-spinner fa-spin"
                        ng-if="vm.shellIsRunning && vm.runningId=='command-custom'"></i> {{'SYSTEMS.BTN_RUN_COMMAND' | translate}}

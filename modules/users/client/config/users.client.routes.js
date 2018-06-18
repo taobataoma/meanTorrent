@@ -124,7 +124,7 @@
       .state('status', {
         abstract: true,
         url: '/status',
-        templateUrl: '/modules/users/client/views/status/status.client.view.html',
+        template: '<ui-view/>',
         data: {
           roles: ['user', 'oper', 'admin']
         }
@@ -136,28 +136,35 @@
           pageTitle: 'PAGETITLE.STATUS_ACCOUNT'
         }
       })
-      .state('status.uploaded', {
+      .state('status.torrents', {
+        url: '/torrents',
+        templateUrl: '/modules/users/client/views/status/torrents.client.view.html',
+        data: {
+          pageTitle: 'PAGETITLE.STATUS_TORRENTS'
+        }
+      })
+      .state('status.torrents.uploaded', {
         url: '/uploaded',
         templateUrl: '/modules/users/client/views/status/uploaded.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.STATUS_UPLOADED'
         }
       })
-      .state('status.seeding', {
+      .state('status.torrents.seeding', {
         url: '/seeding',
         templateUrl: '/modules/users/client/views/status/seeding.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.STATUS_SEEDING'
         }
       })
-      .state('status.downloading', {
+      .state('status.torrents.downloading', {
         url: '/downloading',
         templateUrl: '/modules/users/client/views/status/downloading.client.view.html',
         data: {
           pageTitle: 'PAGETITLE.STATUS_DOWNLOADING'
         }
       })
-      .state('status.warning', {
+      .state('status.torrents.warning', {
         url: '/warning',
         templateUrl: '/modules/users/client/views/status/warning.client.view.html',
         data: {

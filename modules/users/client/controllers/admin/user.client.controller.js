@@ -7,11 +7,11 @@
 
   UserController.$inject = ['$scope', '$state', '$window', 'Authentication', 'userResolve', 'Notification', 'NotifycationService', 'MeanTorrentConfig',
     'AdminService', 'ScoreLevelService', 'DebugConsoleService', 'TorrentGetInfoServices', 'SideOverlay', 'MakerGroupService', '$filter', '$translate',
-    'marked', 'ModalConfirmService'];
+    'marked', 'ModalConfirmService', 'MedalsService', 'MedalsInfoServices', 'localStorageService'];
 
   function UserController($scope, $state, $window, Authentication, user, Notification, NotifycationService, MeanTorrentConfig,
                           AdminService, ScoreLevelService, mtDebug, TorrentGetInfoServices, SideOverlay, MakerGroupService, $filter, $translate,
-                          marked, ModalConfirmService) {
+                          marked, ModalConfirmService, MedalsService, MedalsInfoServices, localStorageService) {
     var vm = this;
     vm.TGI = TorrentGetInfoServices;
     vm.authentication = Authentication;
@@ -30,9 +30,14 @@
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
     vm.inputLengthConfig = MeanTorrentConfig.meanTorrentConfig.inputLength;
     vm.inviteConfig = MeanTorrentConfig.meanTorrentConfig.invite;
+    vm.medalsConfig = MeanTorrentConfig.meanTorrentConfig.medals;
+    vm.homeConfig = MeanTorrentConfig.meanTorrentConfig.home;
 
     vm.searchTags = [];
     vm.maker = {};
+
+    angular.element(document).ready(function () {
+    });
 
     vm.setUserScorePopover = {
       title: 'SCORE_TITLE',
@@ -63,6 +68,14 @@
     };
 
     mtDebug.info(vm.user);
+
+    /**
+     * initTopBackground
+     */
+    vm.initTopBackground = function () {
+      var url = localStorageService.get('body_background_image') || vm.homeConfig.bodyBackgroundImage;
+      $('.backdrop').css('backgroundImage', 'url("' + url + '")');
+    };
 
     /**
      * $watch 'vm.user'
@@ -535,6 +548,92 @@
 
       var res = time + ' - ' + con;
       return marked(res, {sanitize: false});
+    };
+
+    /**
+     * addMedal
+     * @param evt
+     */
+    vm.addMedal = function (evt) {
+      SideOverlay.open(evt, 'medalsPopupSlide');
+
+      vm.medals = MedalsInfoServices.getMedalsAdminHelp();
+    };
+
+    /**
+     * hasMedal
+     * @param md
+     * @returns {boolean}
+     */
+    vm.hasMedal = function (md) {
+      var has = false;
+      angular.forEach(vm.userMedals, function (m) {
+        if (m.medalName === md.name) {
+          has = true;
+        }
+      });
+      return has;
+    };
+
+    /**
+     * hideMedalsPopup
+     */
+    vm.hideMedalsPopup = function () {
+      SideOverlay.close(null, 'medalsPopupSlide');
+    };
+
+    /**
+     * addMedalToUser
+     * @param md
+     */
+    vm.addMedalToUser = function (md) {
+      if (vm.hasMedal(md)) {
+        MedalsService.remove({
+          userId: vm.user._id,
+          medalName: md.name
+        }, function (res) {
+          vm.removeMedalFromUserLocalMedals(res);
+          vm.getUserHistory();
+          NotifycationService.showSuccessNotify('MEDALS.REMOVE_SUCCESSFULLY');
+        }, function (res) {
+          NotifycationService.showErrorNotify(res.data.message, 'MEDALS.REMOVE_FAILED');
+        });
+      } else {
+        MedalsService.update({
+          userId: vm.user._id,
+          medalName: md.name
+        }, function (res) {
+          vm.userMedals.push(res);
+          vm.userMedals = MedalsInfoServices.mergeMedalsProperty(vm.userMedals);
+          vm.getUserHistory();
+          NotifycationService.showSuccessNotify('MEDALS.ADD_SUCCESSFULLY');
+        }, function (res) {
+          NotifycationService.showErrorNotify(res.data.message, 'MEDALS.ADD_FAILED');
+        });
+      }
+    };
+
+    /**
+     * removeMedalFromUserLocalMedals
+     * @param md
+     */
+    vm.removeMedalFromUserLocalMedals = function (md) {
+      angular.forEach(vm.userMedals, function (m) {
+        if (m.medalName === md.medalName) {
+          vm.userMedals.splice(vm.userMedals.indexOf(m), 1);
+        }
+      });
+    };
+
+    /**
+     * getUserMedals
+     */
+    vm.getUserMedals = function () {
+      MedalsService.query({
+        userId: vm.user._id
+      }, function (medals) {
+        vm.userMedals = MedalsInfoServices.mergeMedalsProperty(medals);
+      });
     };
   }
 }());

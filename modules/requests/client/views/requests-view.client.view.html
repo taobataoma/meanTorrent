@@ -3,20 +3,20 @@
         <div class="container">
             <div class="padding-top-30 padding-bottom-30 text-center">
                 <div class="btn-group requests-group">
-                    <a class="btn btn-default btn-width-180"
+                    <a class="btn btn-default btn-min-width-180"
                        ui-sref="requests.list">
                         {{'REQUESTS.NAV_LIST' | translate}}
                     </a>
-                    <a class="btn btn-default btn-width-180"
+                    <a class="btn btn-default btn-min-width-180"
                        ui-sref="requests.add">
                         {{'REQUESTS.NAV_ADD' | translate}}
                     </a>
                     <div class="clearfix visible-xxs-block "></div>
-                    <a class="btn btn-default btn-width-180"
+                    <a class="btn btn-default btn-min-width-180"
                        ui-sref="requests.my">
                         {{'REQUESTS.NAV_MY' | translate}}
                     </a>
-                    <a class="btn btn-default btn-width-180"
+                    <a class="btn btn-default btn-min-width-180"
                        ui-sref="requests.res">
                         {{'REQUESTS.NAV_RES' | translate}}
                     </a>
@@ -75,8 +75,8 @@
                                                     </div>
                                                 </h4>
                                             </td>
-                                            <td class="col-md-1 td-v-middle text-center width-80">{{'MENU_TORRENTS_SUB.'+vm.request.type.toUpperCase() | translate}}</td>
-                                            <td class="col-md-1 td-v-middle text-center width-80">
+                                            <td class="col-md-1 td-v-middle text-center min-width-80">{{'MENU_TORRENTS_SUB.'+vm.request.type.toUpperCase() | translate}}</td>
+                                            <td class="col-md-1 td-v-middle text-center min-width-80">
                                                 {{vm.request.createdAt | life }}
                                                 <div>
                                                     <span class="badge badge_danger"
@@ -84,14 +84,14 @@
                                                     <span class="badge badge_success" ng-if="vm.request.accept">Finished</span>
                                                 </div>
                                             </td>
-                                            <td class="col-md-1 td-v-middle text-center width-80">{{vm.request.rewards}}</td>
-                                            <td class="col-md-1 td-v-middle text-center width-60">
+                                            <td class="col-md-1 td-v-middle text-center min-width-80">{{vm.request.rewards}}</td>
+                                            <td class="col-md-1 td-v-middle text-center min-width-60">
                                                 <a href="#" ng-click="vm.scrollToElement('#top_of_responses');">{{vm.request.torrents.length}}</a>
                                             </td>
-                                            <td class="col-md-1 td-v-middle text-center width-60">
+                                            <td class="col-md-1 td-v-middle text-center min-width-60">
                                                 <a href="#" ng-click="vm.scrollToElement('#top_of_comments');">{{vm.request.comments.length}}</a>
                                             </td>
-                                            <td class="col-md-1 td-v-middle text-center width-80">
+                                            <td class="col-md-1 td-v-middle text-center min-width-80">
                                                 <span user-info="vm.request.user" info-name></span>
                                             </td>
                                         </tr>
@@ -108,22 +108,22 @@
                                                     <fieldset ng-disabled="vm.request.accept || vm.isExpired(vm.request);">
                                                         <a ui-sref="torrents.uploads({reqId: vm.request._id})"
                                                            ng-if="!vm.isCurrentUserOwner()"
-                                                           class="btn btn-success btn-width-100">
+                                                           class="btn btn-success btn-min-width-100">
                                                             {{ 'DO_UPLOAD' | translate}}
                                                         </a>
-                                                        <button class="btn btn-default btn-width-100"
+                                                        <button class="btn btn-default btn-min-width-100"
                                                                 ng-if="vm.isCurrentUserOwner() || vm.user.isOper"
                                                                 ng-click="vm.beginEditMakerDesc(vm.request)">
                                                             {{ 'REQUESTS.BTN_EDIT_DESC' | translate}}
                                                         </button>
                                                     </fieldset>
-                                                    <button class="btn btn-default btn-width-100"
+                                                    <button class="btn btn-default btn-min-width-100"
                                                             ng-disabled="vm.request.accept"
                                                             ng-if="vm.isCurrentUserOwner() || vm.user.isOper"
                                                             ng-click="vm.removeRequest();">
                                                         {{ 'BTN_REMOVE' | translate}}
                                                     </button>
-                                                    <btn class="btn btn-default btn-width-100"
+                                                    <btn class="btn btn-default btn-min-width-100"
                                                          ng-click="vm.scrollToElement('#top_of_new_comment');">
                                                         {{ 'REQUESTS.BTN_COMMENT' | translate}}
                                                     </btn>
@@ -304,7 +304,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-sm-6 text-right">
-                                                <button class="btn btn-warning btn-width-80" translate="SUBMIT_CANCEL"
+                                                <button class="btn btn-warning btn-min-width-80" translate="SUBMIT_CANCEL"
                                                         ng-click="vm.submitInit();"></button>
                                                 <button class="btn btn-success"
                                                         translate="{{vm.comment.action == 'reply' ? 'SUBMIT_REPLY' : 'SUBMIT_COMMENT'}}"

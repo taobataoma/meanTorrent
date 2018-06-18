@@ -50,7 +50,9 @@
     MENU_ADMIN_TICKETS: 'Support Services Center',
     MENU_USERS_ADMIN: 'Manage Users',
     MENU_UPLOAD: 'Upload',
+    MENU_MEDALS: 'Medals',
     MENU_FORUMS: 'Forums',
+    MENU_MORE: 'More',
     MENU_REQUESTS: 'Requests',
     MENU_ABOUT: 'About',
     MENU_ABOUT_MANUAL: 'User Manual',
@@ -90,6 +92,7 @@
     MENU_MY_INVITE: 'My Invitations',
     MENU_MY_DATA_CENTER: 'Data center',
     MENU_ACCOUNT_STATUS: 'Account Status',
+    MENU_TORRENTS_STATUS: 'Torrents Status',
     EDIT_PROFILE: 'Edit Profile',
     EDIT_PROFILE_PIC: 'Edit Profile Picture',
     EDIT_SIGNATURE: 'Edit Signature Of Forum',
@@ -250,6 +253,7 @@
       VIP: 'Vip',
       VIP_DONATE: 'Vip Donate',
       VIP_RULES: 'Vip Rules',
+      MEDALS: 'Medals Wall',
       FORUM: 'Forum',
       REQUESTS: 'Requests',
       REQUESTS_MY: 'My Requests',
@@ -278,6 +282,7 @@
       MESSAGES_BOX: 'Message Box',
       MESSAGES_SEND: 'Send Message',
       STATUS_ACCOUNT: 'Account Status',
+      STATUS_TORRENTS: 'Torrents Status',
       STATUS_UPLOADED: 'Uploaded',
       STATUS_SEEDING: 'Seeding',
       STATUS_LEECHING: 'Leeching',
@@ -876,6 +881,7 @@
     BUTTON_SELECT_PICTURE: 'Select Picture',
     BUTTON_USE_THIS_PICTURE: 'Use This Picture',
     BUTTON_CANCEL: 'Cancel',
+    BUTTON_CLOSE: 'Close',
     BUTTON_SAVE: 'Save',
     BUTTON_SET: 'Set',
     BUTTON_OK: 'Ok',
@@ -975,7 +981,7 @@
     },
 
     //user status
-    STATUS_ACCOUNT: 'Account Status',
+    STATUS_ACCOUNT: 'My Account Status',
     STATUS_UPLOADED: 'Uploaded torrents',
     STATUS_SEEDING: 'Seeding torrents',
     STATUS_DOWNLOADING: 'Downloading torrents',
@@ -1004,6 +1010,7 @@
       BTN_VIEW_USER_DATA_CENTER: 'Data Center',
       BTN_EDIT: 'Edit',
       BTN_REMOVE: 'Remove',
+      BTN_ADD_MEDAL: 'Add Medal',
       PICTURE: 'Profile picture',
       RESET_DEFAULT_PICTURE: 'Reset to default picture',
       ADD_VIP_MONTHS: '+ VIP a month',
@@ -1227,6 +1234,8 @@
     USER_UPLOADED_FLAG: '{{name}} uploaded',
     USER_DOWNLOADED_FLAG: '{{name}} downloaded',
     USER_SCORE_LEVEL: '{{name}} score level',
+    USER_RATIO_FLAG: '{{name}} ratio',
+    USER_MEDAL_FLAG: '{{name}} medal',
 
     //traces
     ADMIN_TRACES_LIST: 'Traces List',
@@ -1472,6 +1481,115 @@
       }
     },
 
+    // medals wall
+    MEDALS: {
+      MEDALS_TITLE: 'Medals Wall',
+      TYPES_COUNT: 'Medals type count',
+      MEDALS_OPENED_COUNT: 'Medals opened count',
+      MEDALS_AWARD_COUNT: 'Medals award count',
+      SELECT_MEDAL_TO_USER: 'Please select a medal transfer to user - {{uname}}',
+      ADD_SUCCESSFULLY: 'Add medal to user successfully',
+      ADD_FAILED: 'Add medal to user failed',
+      REMOVE_SUCCESSFULLY: 'Remove medal to user successfully',
+      REMOVE_FAILED: 'Remove medal to user failed',
+      MEDALS_OVERVIEW: 'The medal is the identity of the users identity and contribution to the site. The medal is awarded in three ways: system automatic help, administrator help, and user self help. The self help medal requires the user to self-request according to the corresponding conditions. Different medals have different system treatments, and the site will also hold a variety of events for users of different medal groups from time to time.',
+      CMD_LIST_USER: 'List users',
+      CMD_REQUEST: 'Request',
+      HELP_CONDITION: 'Condition',
+      OWNED_USERS: 'Owned users',
+      USERS_IS_LOADING: 'Loading uses, please wait ...',
+      USERS_IS_EMPTY: 'Has no anybody owned this medal',
+      REQUEST_CONFIRM_CANCEL: 'Cancel',
+      REQUEST_CONFIRM_OK: 'OK',
+      REQUEST_CONFIRM_HEADER_TEXT: 'Request medal',
+      REQUEST_CONFIRM_BODY_TEXT: 'Are you sure want to request this medal with score {{score}} ?',
+      REQUEST_SUCCESSFULLY: 'Request medal successfully',
+      REQUEST_ERROR: 'Request medal failed',
+      AWARD_AT: 'Award at',
+      CATS: {
+        WORKERS: 'Workers medals',
+        USERS: 'Users medals',
+        VIP: 'VIP medals',
+        EVENTS: 'Events medals',
+        COMMEMORATIVE: 'Commemorative Medals'
+      },
+      PASSHELP: {
+        SYS: 'System automatic help',
+        ADMIN: 'Administrator help',
+        SELF: 'User self help'
+      },
+      DESC: {
+        ROOT: 'Root Administrator Medal',
+        NETWORK_ADMIN: 'Network Administrator Medal',
+        SUPPORT_ADMIN: 'Support Administrator Medal',
+        FORUM_ADMIN: 'Forums Administrator Medal',
+        RESOURCE_ADMIN: 'Resources Administrator Medal',
+        AMBASSADOR: 'Site Ambassador Medal',
+        FORUM_MODERATORS: 'Forum Moderators Medal',
+        MAKER_FOUNDER: 'Resource Group Founder Medal',
+        UPLOADER: 'Resource Uploader Medal',
+        RETIREE: 'Site Retiree Medal',
+
+        BEAUTY_3000: 'Beauty Children User Medal',
+        ROAM: 'Roaming Safe User Medal',
+        NO_EXAMINATION: 'No Examination User Medal',
+        SLUGGER: 'Site Slugger User Medal',
+        ELDER: 'Site Elder User Medal',
+
+        FOREVER_VIP: 'Forever VIP Medal',
+        YEARLY_VIP: 'Yearly VIP Medal',
+        MONTHLY_VIP: 'Monthly VIP Medal',
+        GUEST_VIP: 'Guest VIP Medal',
+
+        SITE_BEGIN: 'Site Begin Medal',
+        FOR_ONE_YEARS: 'Site One Year Medal',
+        FOR_TWO_YEARS: 'Site Two Years Medal',
+
+        EVENT_NAME: 'Special Event Medal'
+      },
+      FOOTERSTRING: {
+        ROOT: 'ROOT',
+        NETWORK_ADMIN: 'NA',
+        SUPPORT_ADMIN: 'SA',
+        FORUM_ADMIN: 'FA',
+        RESOURCE_ADMIN: 'RA',
+        AMBASSADOR: 'AMB',
+        FORUM_MODERATORS: 'FM',
+        MAKER_FOUNDER: 'MGF',
+        UPLOADER: 'UPER',
+        RETIREE: 'RET',
+
+        BEAUTY_3000: 'BEAUTY',
+        ROAM: 'ROAM',
+        NO_EXAMINATION: 'NOEXAM',
+        SLUGGER: 'SLUGGER',
+        ELDER: 'ELDER',
+
+        FOREVER_VIP: 'VIP',
+        YEARLY_VIP: 'VIP',
+        MONTHLY_VIP: 'VIP',
+        GUEST_VIP: 'VIP',
+
+        SITE_BEGIN: 'YEARS',
+        FOR_ONE_YEARS: 'YEARS',
+        FOR_TWO_YEARS: 'YEARS',
+
+        EVENT_NAME: '2018'
+      },
+      HEADERSTRING: {
+        FOREVER_VIP: 'F',
+        YEARLY_VIP: 'Y',
+        MONTHLY_VIP: 'M',
+        GUEST_VIP: 'G',
+
+        SITE_BEGIN: '0',
+        FOR_ONE_YEARS: '1',
+        FOR_TWO_YEARS: '2',
+
+        EVENT_NAME: 'EVE'
+      }
+    },
+
     // data center
     DATA_CENTER: {
       ITEM_SCORE: 'Score data analysis',
@@ -1518,6 +1636,7 @@
       REQUEST_ACCEPT_TO: 'Your response of request was accepted <a href=/requests/{{rid}}>{{rid}}</a>',
       SCORE_EXCHANGE_INVITATION: 'Exchange an invitation',
       SCORETO_REMOVE_WARNING: 'Remove a H&R warning <a href=/torrents/{{tid}}>{{tid}}</a>',
+      SCORETO_REQUEST_MEDAL: 'Request medal: {{medalDesc | translate}}',
       ACTIVE_IDLE_ACCOUNT: 'Active account idle status',
       DAILY_CHECK_IN: 'Daily check in',
       SEED_TIMED: 'Torrent seeding timed increased score <a href=/torrents/{{tid}}>{{tid}}</a>',
@@ -1531,7 +1650,7 @@
       BAD_REQUEST: 'Bad Request',
       FORBIDDEN: 'Forbidden',
       MADE_BAD_REQUEST: 'You made a bad request',
-      NOT_AUTHORIZED_THIS: 'You are not authorized to access this resource',
+      NOT_AUTHORIZED_THIS: 'You are not authorized to access this resource, if your session or cookie is expired, please <a href="/authentication/signin">sign in</a>.',
       NOT_FOUND: 'Not Found',
       PAGE_NOT_FOUND: 'Page Or Resources Not Found',
       ACCESS_DENY: 'Your current IP is restricted to access this resource，For more help, please contact our {{sNameDesc | translate}} by <strong><a href="/messages/send?to={{sName}}">Message</a></strong> or <strong><a href="mailto:{{sMail}}">Email</a></strong>.'
@@ -1833,6 +1952,8 @@
       ADMIN_PRESENT_USER_INVITATIONS: '`{{by.displayName}}` present `{{numbers}}` official invitations, expires `{{days}}` days',
       ADMIN_REMOVE_USER_HNR_WARNING: '`{{by.displayName}}` remove H&R warning, complete id: `{{complete}}`',
       ADMIN_CREATE_USER_MAKER_GROUP: '`{{by.displayName}}` create user maker group: `-={{name}}=-`',
+      ADMIN_ADD_USER_MEDAL: '`{{by.displayName}}` add user medal: `{{medalName}}`',
+      ADMIN_REMOVE_USER_MEDAL: '`{{by.displayName}}` remove user medal: `{{medalName}}`',
       ADMIN_BAN_USER_INVITER: '`{{by.displayName}}` update account status to: `{{status}}`, reason: invited user [{{uname}}] was banned because [{{reason | translate}}]'
     },
 
@@ -1875,7 +1996,9 @@
       UPLOAD_ACCESS_DENY: 'System only accepts resources group to upload torrents',
       READ_TORRENT_FILE_FAILD: 'The torrent file parsing error. Please check your torrent file to check if some of the necessary information is missing',
       MOVE_TORRENT_FILE_ERROR: 'The torrent file was moved incorrectly. Please do not repeat the submit operation quickly or the uploaded torrent file is missing.',
-      YOU_ALREADY_CHECK_IN: 'You already checked in today'
+      YOU_ALREADY_CHECK_IN: 'You already checked in today',
+      USER_ALREADY_HAS_THIS_MEDAL: 'This user already has this medal',
+      USER_HAS_NOT_THIS_MEDAL: 'This user has not this medal'
     },
 
     //server message string, content string support markdown and emoji

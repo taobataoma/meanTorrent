@@ -1,214 +1,258 @@
 <section ng-controller="StatusController as vm">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <span class="sm-show">
-                <h4 class="margin-bottom-30">
-                    {{'STATUS_ACCOUNT' | translate}}:
-                    <span>
-
-                    </span>
-                </h4>
-            </span>
-
-            <div class="user-cmd text-right">
-                <a class="btn btn-default btn-width-80" ui-sref="settings.profile">
-                    {{ 'EDIT_PROFILE' | translate }}
-                </a>
-                <a class="btn btn-default btn-width-80" ui-sref="vip.rules" ng-if="!vm.user.isVip">
-                    {{ 'VIP.DONATE_VIP' | translate }}
-                </a>
-                <a class="btn btn-primary btn-width-80" ui-sref="admin.user({userId: vm.user._id})" ng-if="vm.user.isOper">
-                    {{ 'STATUS_FIELD.BTN_MANAGE' | translate}}
-                </a>
-            </div>
-
-            <div class="alert alert-warning text-center" role="alert" ng-if="vm.user.hnr_warning>0 && vm.hnrConfig.enable">
-                <span translate="WARNING_TOOLTIP" translate-values="{wnumber: vm.user.hnr_warning}"></span>
-                <a ui-sref="status.warning">{{'WARNING_DETAIL_LINK' | translate}}</a>
-            </div>
-
-            <dl class="dl-horizontal dl-hover margin-top-20 margin-bottom-20">
-                <dt class="h-line">{{ 'STATUS_FIELD.PICTURE' | translate}}：</dt>
-                <dd class="h-line">
-                    <img class="status-avatar" ng-src="{{vm.user.profileImageURL}}">
-                </dd>
-
-                <dt class="h-line">ID：</dt>
-                <dd class="h-line">
-                    <mark>{{ vm.user._id }}</mark>
-                </dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.USERNAME' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.username }}</dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}：</dt>
-                <dd class="h-line">
-                    {{ vm.user.displayName }}
-                    <span class="vip-flag" ng-if="vm.user.isVip">
-                        <kbd>VIP</kbd>
-                    </span>
-                </dd>
-
-                <div ng-if="vm.user.invited_by">
-                    <dt class="h-line">{{ 'STATUS_FIELD.INVITED_BY' | translate}}：</dt>
-                    <dd class="h-line">
-                        <span user-info="vm.user.invited_by" info-name></span>
-                        <!--<span message-to="vm.user.invited_by" to-class="message-to-icon"></span>-->
-                    </dd>
+    <div class="backdrop attachment-scroll" ng-init="vm.getMyMedals(); vm.initTopBackground()">
+        <div class="filter">
+            <div class="container medals-user-top">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span user-info="vm.user" info-class="user-avatar" info-avatar></span>
+                        <ul class="list-unstyled user-data">
+                            <li class="margin-bottom-10">
+                                <span class="h3 user-name">{{'STATUS_ACCOUNT' | translate}}</span>
+                            </li>
+                            <li>
+                                <span vip-flag="vm.user" vip-class="user-vip"></span>
+                                <span score-level-curr="vm.user" class="user-level"></span>
+                                <span class="user-ud-text"><span up-down-flag="vm.user" up-down-class="user-up-down"></span></span>
+                                <span class="user-ratio"><span ratio-flag="vm.user" ratio-flag-class="user-ratio-flag"></span></span>
+                                <span class="user-medals-count"><span medal-flag="vm.user" medal-count="{{vm.userMedals.length}}" medal-flag-class="user-medal-flag"></span></span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.EMAIL' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.email }}</dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.PASSKEY' | translate}}：</dt>
-                <dd class="h-line">
-                    <mark>{{ vm.user.passkey }}</mark>
-                </dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.ROLE' | translate}}：</dt>
-                <dd class="h-line">
-                    <mark>{{ vm.user.roles[0] }}</mark>
-                </dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.MAKER' | translate}}：</dt>
-                <dd class="h-line">
-                    <span class="maker-list" ng-repeat="m in vm.user.makers">
-                          <span maker-info="m"></span>
-                    </span>
-                    <span ng-if="vm.user.makers.length==0">-</span>
-                </dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.STATUS' | translate}}：</dt>
-                <dd class="h-line">
-                    <span ng-class="{'span-banned': vm.user.status != 'normal'}">{{ 'STATUS_FIELD.' + vm.user.status.toUpperCase() | translate }}</span>
-
-                    <div class="pull-right"
-                         ng-if="vm.user.status == 'idle'">
-                        <button class="btn btn-default btn-xs width-100" ng-click="vm.unIdle(); "
-                                style="cursor: pointer">{{ 'STATUS_FIELD.ACTIVE' | translate }}
-                        </button>
+                <div class="row" ng-if="vm.userMedals && vm.userMedals.length>0">
+                    <div class="col-sm-12">
+                        <div class="user-medals-list margin-top-10">
+                            <div class="medal">
+                                <div class="medal-item medal-2x" ng-repeat="mt in vm.userMedals"
+                                     uib-tooltip="{{ 'MEDALS.DESC.'+mt.prefix.toUpperCase() | translate}}" tooltip-placement="top-center">
+                                    <i class="{{mt.faClass}} medal-bg dark-shadow" style="color:{{mt.bgColor}};"></i>
+                                    <i class="fa-inverse {{mt.iconClass}} medal-icon" style="font-size: {{mt.iconSize}}; top: {{mt.iconTop}}"></i>
+                                    <span class="fa-inverse medal-header" style="font-size: {{mt.textHeaderSize}}; top: {{mt.textHeaderTop}}" ng-if="mt.hasHeader">
+                                        {{'MEDALS.HEADERSTRING.'+mt.prefix.toUpperCase() | translate}}
+                                    </span>
+                                    <span class="fa-inverse medal-footer" style="font-size: {{mt.textFooterSize}}; bottom: {{mt.textFooterBottom}}" ng-if="mt.hasFooter">
+                                        {{'MEDALS.FOOTERSTRING.'+mt.prefix.toUpperCase() | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </dd>
+                </div>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
-                <dd class="h-line">
-                    <span class="text-score">{{ vm.user.score | number: 2 }}</span> <span score-level-curr="vm.user"></span> <a
-                        class="pull-right" ui-sref="score.detail">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
-                </dd>
+                <div class="margin-top-20 text-right">
+                    <a class="btn btn-min-width-120 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                       ui-sref="status.torrents.uploaded">
+                        {{ 'MENU_TORRENTS_STATUS' | translate }}
+                    </a>
+                    <a class="btn btn-min-width-120 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                       ui-sref="settings.profile">
+                        {{ 'EDIT_PROFILE' | translate }}
+                    </a>
+                    <a class="btn btn-min-width-120 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                       ui-sref="vip.rules" ng-if="!vm.user.isVip">
+                        {{ 'VIP.DONATE_VIP' | translate }}
+                    </a>
+                    <a class="btn btn-min-width-120 margin-top-5" mouse-enter-toggle-class="btn-default" base-class="btn-mt-o"
+                       ui-sref="admin.user({userId: vm.user._id})" ng-if="vm.user.isOper">
+                        {{ 'STATUS_FIELD.BTN_MANAGE' | translate}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <li class="status-divider"></li>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="alert alert-warning text-center margin-top-20" role="alert" ng-if="vm.user.hnr_warning>0 && vm.hnrConfig.enable">
+                    <span translate="WARNING_TOOLTIP" translate-values="{wnumber: vm.user.hnr_warning}"></span>
+                    <a ui-sref="status.torrents.warning">{{'WARNING_DETAIL_LINK' | translate}}</a>
+                </div>
 
-                <div ng-show="vm.user.isVip">
-                    <dt class="h-line">{{ 'STATUS_FIELD.VIP_START_AT' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.vip_start_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+                <dl class="dl-horizontal dl-hover margin-top-20 margin-bottom-20">
+                    <dt class="h-line">{{ 'STATUS_FIELD.PICTURE' | translate}}：</dt>
+                    <dd class="h-line">
+                        <img class="status-avatar" ng-src="{{vm.user.profileImageURL}}">
+                    </dd>
 
-                    <dt class="h-line">{{ 'STATUS_FIELD.VIP_END_AT' | translate}}：</dt>
-                    <dd class="h-line">{{ vm.user.vip_end_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+                    <dt class="h-line">ID：</dt>
+                    <dd class="h-line">
+                        <mark>{{ vm.user._id }}</mark>
+                    </dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.USERNAME' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.username }}</dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}：</dt>
+                    <dd class="h-line">
+                        {{ vm.user.displayName }}
+                        <span class="vip-flag" ng-if="vm.user.isVip">
+                            <kbd>VIP</kbd>
+                        </span>
+                    </dd>
+
+                    <div ng-if="vm.user.invited_by">
+                        <dt class="h-line">{{ 'STATUS_FIELD.INVITED_BY' | translate}}：</dt>
+                        <dd class="h-line">
+                            <span user-info="vm.user.invited_by" info-name></span>
+                            <!--<span message-to="vm.user.invited_by" to-class="message-to-icon"></span>-->
+                        </dd>
+                    </div>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.EMAIL' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.email }}</dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.PASSKEY' | translate}}：</dt>
+                    <dd class="h-line">
+                        <mark>{{ vm.user.passkey }}</mark>
+                    </dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.ROLE' | translate}}：</dt>
+                    <dd class="h-line">
+                        <mark>{{ vm.user.roles[0] }}</mark>
+                    </dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.MAKER' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span class="maker-list" ng-repeat="m in vm.user.makers">
+                              <span maker-info="m"></span>
+                        </span>
+                        <span ng-if="vm.user.makers.length==0">-</span>
+                    </dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.STATUS' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span ng-class="{'span-banned': vm.user.status != 'normal'}">{{ 'STATUS_FIELD.' + vm.user.status.toUpperCase() | translate }}</span>
+
+                        <div class="pull-right"
+                             ng-if="vm.user.status == 'idle'">
+                            <button class="btn btn-default btn-xs min-width-100" ng-click="vm.unIdle(); "
+                                    style="cursor: pointer">{{ 'STATUS_FIELD.ACTIVE' | translate }}
+                            </button>
+                        </div>
+                    </dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.SCORE' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span class="text-score">{{ vm.user.score | number: 2 }}</span> <span score-level-curr="vm.user"></span> <a
+                            class="pull-right" ui-sref="score.detail">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                    </dd>
 
                     <li class="status-divider"></li>
-                </div>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.SIGNUP_DATE' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.created | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+                    <div ng-show="vm.user.isVip">
+                        <dt class="h-line">{{ 'STATUS_FIELD.VIP_START_AT' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.vip_start_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.LATEST_SIGNED_TIME' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.last_signed | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+                        <dt class="h-line">{{ 'STATUS_FIELD.VIP_END_AT' | translate}}：</dt>
+                        <dd class="h-line">{{ vm.user.vip_end_at | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.LATEST_REFRESH_TIME' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.refreshat | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.CURR_SIGNED_IP' | translate}}：</dt>
-                <dd class="h-line text-mt">{{ vm.user.curr_signed_ip }}</dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.CURR_LEECHED_IP' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.curr_leeched_ip }}</dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.SIGNED_IP' | translate}}：</dt>
-                <dd class="h-line">
-                    <div class="list-all-ips">
-                        <span class="ip-item" ng-repeat="t in vm.user.signed_ip">{{t}}</span>
+                        <li class="status-divider"></li>
                     </div>
-                </dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.LEECHED_IP' | translate}}：</dt>
-                <dd class="h-line">
-                    <div class="list-all-ips">
-                        <span class="ip-item" ng-repeat="t in vm.user.leeched_ip">{{t}}</span>
-                    </div>
-                </dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.SIGNUP_DATE' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.created | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.BT_CLIENT' | translate}}：</dt>
-                <dd class="h-line">
-                    <div class="list-all-clients">
-                        <span class="client-item" ng-repeat="t in vm.user.client_agent">{{t}}</span>
-                    </div>
-                </dd>
-                <li class="status-divider"></li>
+                    <dt class="h-line">{{ 'STATUS_FIELD.LATEST_SIGNED_TIME' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.last_signed | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.MY_FOLLOWERS' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.followers.length }}
-                    <a class="pull-right" ui-sref="follow.followers" ng-if="vm.user.followers.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
-                </dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.LATEST_REFRESH_TIME' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.refreshat | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.MY_FOLLOWING' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.following.length }}
-                    <a class="pull-right" ui-sref="follow.following" ng-if="vm.user.following.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
-                </dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.CURR_SIGNED_IP' | translate}}：</dt>
+                    <dd class="h-line text-mt">{{ vm.user.curr_signed_ip }}</dd>
 
-                <li class="status-divider"></li>
+                    <dt class="h-line">{{ 'STATUS_FIELD.CURR_LEECHED_IP' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.curr_leeched_ip }}</dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
-                <dd class="h-line">
-                    <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
-                    {{ vm.user.uploaded | bytes:2 }}
-                    <span class="true_updown text-muted"
-                          ng-if="vm.user.true_uploaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_UPLOADED' | translate}}：{{ vm.user.true_uploaded | bytes:2 }}</span>
-                </dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
-                <dd class="h-line">
-                    <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
-                    {{ vm.user.downloaded | bytes:2 }}
-                    <span class="true_updown text-muted"
-                          ng-if="vm.user.true_downloaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_DOWNLOADED' | translate}}：{{ vm.user.true_downloaded | bytes:2 }}</span>
-                </dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
-                <dd class="h-line"><span ng-class="vm.user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ vm.user.ratio | ratio}}</span></dd>
-
-                <li class="status-divider"></li>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.uptotal }} <a class="pull-right" ui-sref="status.uploaded"
-                                                            ng-if="vm.user.uptotal>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.seeded }} <a class="pull-right" ui-sref="status.seeding"
-                                                           ng-if="vm.user.seeded>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.leeched }} <a class="pull-right" ui-sref="status.downloading"
-                                                            ng-if="vm.user.leeched>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
-
-                <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.finished }}</dd>
-
-                <div ng-if="vm.user.hnr_warning>0 && vm.hnrConfig.enable">
-                    <dt class="h-line">{{ 'STATUS_FIELD.HNR_WARNING' | translate}}：</dt>
+                    <dt class="h-line">{{ 'STATUS_FIELD.SIGNED_IP' | translate}}：</dt>
                     <dd class="h-line">
-                        <span class="badge badge_danger">{{vm.user.hnr_warning}}</span>
-                        <a class="pull-right" ui-sref="status.warning" ng-if="vm.user.hnr_warning>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                        <div class="list-all-ips">
+                            <span class="ip-item" ng-repeat="t in vm.user.signed_ip">{{t}}</span>
+                        </div>
                     </dd>
-                </div>
 
-                <li class="status-divider"></li>
+                    <dt class="h-line">{{ 'STATUS_FIELD.LEECHED_IP' | translate}}：</dt>
+                    <dd class="h-line">
+                        <div class="list-all-ips">
+                            <span class="ip-item" ng-repeat="t in vm.user.leeched_ip">{{t}}</span>
+                        </div>
+                    </dd>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.FORUM_TOPICS' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.topics }}</a></dd>
+                    <dt class="h-line">{{ 'STATUS_FIELD.BT_CLIENT' | translate}}：</dt>
+                    <dd class="h-line">
+                        <div class="list-all-clients">
+                            <span class="client-item" ng-repeat="t in vm.user.client_agent">{{t}}</span>
+                        </div>
+                    </dd>
+                    <li class="status-divider"></li>
 
-                <dt class="h-line">{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：</dt>
-                <dd class="h-line">{{ vm.user.replies }}</a></dd>
-            </dl>
+                    <dt class="h-line">{{ 'STATUS_FIELD.MY_FOLLOWERS' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.followers.length }}
+                        <a class="pull-right" ui-sref="follow.followers" ng-if="vm.user.followers.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                    </dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.MY_FOLLOWING' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.following.length }}
+                        <a class="pull-right" ui-sref="follow.following" ng-if="vm.user.following.length>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                    </dd>
+
+                    <li class="status-divider"></li>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.UPLOADED' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span class="glyphicon glyphicon-arrow-up torrent-up"></span>
+                        {{ vm.user.uploaded | bytes:2 }}
+                        <span class="true_updown text-muted"
+                              ng-if="vm.user.true_uploaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_UPLOADED' | translate}}：{{ vm.user.true_uploaded | bytes:2 }}</span>
+                    </dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.DOWNLOADED' | translate}}：</dt>
+                    <dd class="h-line">
+                        <span class="glyphicon glyphicon-arrow-down torrent-down"></span>
+                        {{ vm.user.downloaded | bytes:2 }}
+                        <span class="true_updown text-muted"
+                              ng-if="vm.user.true_downloaded>0">|&emsp;{{ 'STATUS_FIELD.TRUE_DOWNLOADED' | translate}}：{{ vm.user.true_downloaded | bytes:2 }}</span>
+                    </dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.RATIO' | translate}}：</dt>
+                    <dd class="h-line"><span ng-class="vm.user.ratio == 0 ? 'ratio-warning' : 'ratio-normal' ">{{ vm.user.ratio | ratio}}</span></dd>
+
+                    <li class="status-divider"></li>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.UPTOTAL' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.uptotal }} <a class="pull-right" ui-sref="status.torrents.uploaded"
+                                                                ng-if="vm.user.uptotal>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.SEEDED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.seeded }} <a class="pull-right" ui-sref="status.torrents.seeding"
+                                                               ng-if="vm.user.seeded>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.LEECHED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.leeched }} <a class="pull-right" ui-sref="status.torrents.downloading"
+                                                                ng-if="vm.user.leeched>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a></dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.FINISHED' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.finished }}</dd>
+
+                    <div ng-if="vm.user.hnr_warning>0 && vm.hnrConfig.enable">
+                        <dt class="h-line">{{ 'STATUS_FIELD.HNR_WARNING' | translate}}：</dt>
+                        <dd class="h-line">
+                            <span class="badge badge_danger">{{vm.user.hnr_warning}}</span>
+                            <a class="pull-right" ui-sref="status.torrents.warning" ng-if="vm.user.hnr_warning>0">{{ 'STATUS_FIELD.DETAIL' | translate }}</a>
+                        </dd>
+                    </div>
+
+                    <li class="status-divider"></li>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.FORUM_TOPICS' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.topics }}</a></dd>
+
+                    <dt class="h-line">{{ 'STATUS_FIELD.FORUM_REPLIES' | translate}}：</dt>
+                    <dd class="h-line">{{ vm.user.replies }}</a></dd>
+                </dl>
+            </div>
         </div>
     </div>
 </section>

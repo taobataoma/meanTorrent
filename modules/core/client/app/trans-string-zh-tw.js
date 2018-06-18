@@ -50,7 +50,9 @@
     MENU_ADMIN_TICKETS: '客戶服務中心',
     MENU_USERS_ADMIN: '用戶管理',
     MENU_UPLOAD: '發布',
+    MENU_MEDALS: '勳章',
     MENU_FORUMS: '論壇',
+    MENU_MORE: '更多',
     MENU_REQUESTS: '求種',
     MENU_ABOUT: '關於',
     MENU_ABOUT_MANUAL: '用戶手冊',
@@ -90,6 +92,7 @@
     MENU_MY_INVITE: '我的邀請',
     MENU_MY_DATA_CENTER: '數據中心',
     MENU_ACCOUNT_STATUS: '帳戶狀態',
+    MENU_TORRENTS_STATUS: '種子狀態',
     EDIT_PROFILE: '修改個人資訊',
     EDIT_PROFILE_PIC: '修改個人頭像',
     EDIT_SIGNATURE: '修改論壇簽名',
@@ -250,6 +253,7 @@
       VIP: 'Vip',
       VIP_DONATE: '捐贈VIP',
       VIP_RULES: 'Vip用戶協議',
+      MEDALS: '勳章牆',
       FORUM: '論壇',
       REQUESTS: '求種',
       REQUESTS_MY: '我的求種',
@@ -278,6 +282,7 @@
       MESSAGES_BOX: '站內訊息',
       MESSAGES_SEND: '傳送訊息',
       STATUS_ACCOUNT: '帳戶狀態',
+      STATUS_TORRENTS: '種子狀態',
       STATUS_UPLOADED: '我的種子',
       STATUS_SEEDING: '正在做種',
       STATUS_LEECHING: '正在下載',
@@ -876,6 +881,7 @@
     BUTTON_SELECT_PICTURE: '選擇圖片',
     BUTTON_USE_THIS_PICTURE: '應用圖片',
     BUTTON_CANCEL: '取消',
+    BUTTON_CLOSE: '關閉',
     BUTTON_SAVE: '儲存',
     BUTTON_SET: '設定',
     BUTTON_OK: '確定',
@@ -975,7 +981,7 @@
     },
 
     //user status
-    STATUS_ACCOUNT: '帳戶狀態',
+    STATUS_ACCOUNT: '我的帳戶狀態',
     STATUS_UPLOADED: '我上傳的種子',
     STATUS_SEEDING: '正在做種的種子',
     STATUS_DOWNLOADING: '正在下載的種子',
@@ -1004,6 +1010,7 @@
       BTN_VIEW_USER_DATA_CENTER: '數據中心',
       BTN_EDIT: '編輯',
       BTN_REMOVE: '刪除',
+      BTN_ADD_MEDAL: '頒發勳章',
       PICTURE: '頭像',
       RESET_DEFAULT_PICTURE: '重置為預設圖片',
       ADD_VIP_MONTHS: '+ VIP一個月',
@@ -1227,6 +1234,8 @@
     USER_UPLOADED_FLAG: '{{name}} 的上傳量',
     USER_DOWNLOADED_FLAG: '{{name}} 的下載量',
     USER_SCORE_LEVEL: '{{name}} 的積分等級',
+    USER_RATIO_FLAG: '{{name}} 的分享率',
+    USER_MEDAL_FLAG: '{{name}} 的勳章總數',
 
     //traces
     ADMIN_TRACES_LIST: '系統日誌',
@@ -1472,6 +1481,115 @@
       }
     },
 
+    // medals wall
+    MEDALS: {
+      MEDALS_TITLE: '勳章牆',
+      TYPES_COUNT: '勳章類型',
+      MEDALS_OPENED_COUNT: '勳章開放數',
+      MEDALS_AWARD_COUNT: '勳章頒發數',
+      SELECT_MEDAL_TO_USER: '請選擇要頒發的勳章 - {{uname}}',
+      ADD_SUCCESSFULLY: '給用戶添加勳章成功',
+      ADD_FAILED: '給用戶添加勳章失敗',
+      REMOVE_SUCCESSFULLY: '移除用戶勳章成功',
+      REMOVE_FAILED: '移除用戶勳章失敗',
+      MEDALS_OVERVIEW: '勳章是用戶身份及為站點所做的貢獻的標識，勳章頒發分為系統自動頒發、管理員幫助頒發與用戶自助頒發三種，自助頒發的勳章需要用戶自已根據相應的條件自助申領。不同的勳章對應有不同的系統待遇，站點也會不定期的針對不同的勳章群體用戶舉辦豐富多樣的活動，敬請大家期待。',
+      CMD_LIST_USER: '查看用戶',
+      CMD_REQUEST: '申請勳章',
+      HELP_CONDITION: '申請條件',
+      OWNED_USERS: '擁有用戶',
+      USERS_IS_LOADING: '正在裝載用戶列表，請稍候...',
+      USERS_IS_EMPTY: '還沒有任何用戶擁有此勳章',
+      REQUEST_CONFIRM_CANCEL: '取消',
+      REQUEST_CONFIRM_OK: '確定',
+      REQUEST_CONFIRM_HEADER_TEXT: '申請勳章',
+      REQUEST_CONFIRM_BODY_TEXT: '您確定要使用 {{score}} 積分來申請這枚勳章嗎?',
+      REQUEST_SUCCESSFULLY: '勳章申請成功',
+      REQUEST_ERROR: '勳章申請失敗',
+      AWARD_AT: '授於',
+      CATS: {
+        WORKERS: '工作人員類勳章',
+        USERS: '用戶類勳章',
+        VIP: 'VIP 類勳章',
+        EVENTS: '特別事件類勳章',
+        COMMEMORATIVE: '站點紀念類勳章'
+      },
+      PASSHELP: {
+        SYS: '系統自動頒發',
+        ADMIN: '管理員頒發',
+        SELF: '用戶自助申請'
+      },
+      DESC: {
+        ROOT: '系統管理員勳章',
+        NETWORK_ADMIN: '網站管理員勳章',
+        SUPPORT_ADMIN: '客戶服務管理員勳章',
+        FORUM_ADMIN: '論壇管理員勳章',
+        RESOURCE_ADMIN: '資源管理員勳章',
+        AMBASSADOR: '網站外交大使勳章',
+        FORUM_MODERATORS: '論壇版主勳章',
+        MAKER_FOUNDER: '資源發布組組長勳章',
+        UPLOADER: '資源發布專員勳章',
+        RETIREE: '網站退休工作人員勳章',
+
+        BEAUTY_3000: '佳麗三千后宮勳章',
+        ROAM: '雲遊四方保號勳章',
+        NO_EXAMINATION: '網站免考用戶勳章',
+        SLUGGER: '網站種子用戶勳章',
+        ELDER: '網站元老用戶勳章',
+
+        FOREVER_VIP: '終身 VIP 勳章',
+        YEARLY_VIP: '年度 VIP 勳章',
+        MONTHLY_VIP: '月度 VIP 勳章',
+        GUEST_VIP: '來賓 VIP 勳章',
+
+        SITE_BEGIN: '網站開張紀念勳章',
+        FOR_ONE_YEARS: '網站1週年紀念勳章',
+        FOR_TWO_YEARS: '網站2週年紀念勳章',
+
+        EVENT_NAME: '特別活動勳章'
+      },
+      FOOTERSTRING: {
+        ROOT: '站長',
+        NETWORK_ADMIN: '站長',
+        SUPPORT_ADMIN: '客服',
+        FORUM_ADMIN: '論壇',
+        RESOURCE_ADMIN: '資源',
+        AMBASSADOR: '使臣',
+        FORUM_MODERATORS: '版主',
+        MAKER_FOUNDER: '組長',
+        UPLOADER: '發布',
+        RETIREE: '退休',
+
+        BEAUTY_3000: '佳麗',
+        ROAM: '雲遊',
+        NO_EXAMINATION: '免考',
+        SLUGGER: '種子',
+        ELDER: '元老',
+
+        FOREVER_VIP: 'VIP',
+        YEARLY_VIP: 'VIP',
+        MONTHLY_VIP: 'VIP',
+        GUEST_VIP: 'VIP',
+
+        SITE_BEGIN: '週年',
+        FOR_ONE_YEARS: '週年',
+        FOR_TWO_YEARS: '週年',
+
+        EVENT_NAME: '2018'
+      },
+      HEADERSTRING: {
+        FOREVER_VIP: '終',
+        YEARLY_VIP: '年',
+        MONTHLY_VIP: '月',
+        GUEST_VIP: '賓',
+
+        SITE_BEGIN: '0',
+        FOR_ONE_YEARS: '1',
+        FOR_TWO_YEARS: '2',
+
+        EVENT_NAME: '活動'
+      }
+    },
+
     // data center
     DATA_CENTER: {
       ITEM_SCORE: '積分數據分析',
@@ -1518,6 +1636,7 @@
       REQUEST_ACCEPT_TO: '您的響應被求種請求者接受 <a href=/requests/{{rid}}>{{rid}}</a>',
       SCORE_EXCHANGE_INVITATION: '兌換了一張邀請函',
       SCORETO_REMOVE_WARNING: '移除了一個 H&R 警告 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      SCORETO_REQUEST_MEDAL: '申請勳章: {{medalDesc | translate}}',
       ACTIVE_IDLE_ACCOUNT: '重新激活帳戶狀態',
       DAILY_CHECK_IN: '每日簽到',
       SEED_TIMED: '做種時間獲得的積分 <a href=/torrents/{{tid}}>{{tid}}</a>',
@@ -1531,7 +1650,7 @@
       BAD_REQUEST: '請求錯誤',
       FORBIDDEN: '請求禁止',
       MADE_BAD_REQUEST: '您發起了一個無效的請求',
-      NOT_AUTHORIZED_THIS: '您無權訪問此資源',
+      NOT_AUTHORIZED_THIS: '您無權訪問此資源，如果您的 session 或 cookie 已過期，請 <a href="/authentication/signin">重新登錄</a>。',
       NOT_FOUND: '無法訪問',
       PAGE_NOT_FOUND: '沒有找到頁面或資源',
       ACCESS_DENY: '您的當前IP被限制訪問此資源，如需幫助請給{{sNameDesc | translate}}傳送 <strong><a href="/messages/send?to={{sName}}">訊息</a></strong> 或 <strong><a href="mailto:{{sMail}}">郵件</a></strong>.'
@@ -1833,6 +1952,8 @@
       ADMIN_PRESENT_USER_INVITATIONS: '`{{by.displayName}}` 贈送 `{{numbers}}` 個官方邀請函, 有效期 `{{days}}` 天',
       ADMIN_REMOVE_USER_HNR_WARNING: '`{{by.displayName}}` 移除 H&R 警告, complete id: `{{complete}}`',
       ADMIN_CREATE_USER_MAKER_GROUP: '`{{by.displayName}}` 創建用戶資源小組: `-={{name}}=-`',
+      ADMIN_ADD_USER_MEDAL: '`{{by.displayName}}` 添加用戶勳章: `{{medalName}}`',
+      ADMIN_REMOVE_USER_MEDAL: '`{{by.displayName}}` 移除用戶勳章: `{{medalName}}`',
       ADMIN_BAN_USER_INVITER: '`{{by.displayName}}` 改變帳戶狀態為: `{{status}}`, 理由: 邀請的用戶[{{uname}}]因為[{{reason | translate}}]被禁止'
     },
 
@@ -1875,7 +1996,9 @@
       UPLOAD_ACCESS_DENY: '當前系統只接受資源製作小組上傳種子',
       READ_TORRENT_FILE_FAILD: '種子檔案解析錯誤，請檢查您的種子檔案，看是否缺少某些必要資訊',
       MOVE_TORRENT_FILE_ERROR: '種子檔案移動錯誤，請不要快速重複進行提交操作或者上傳的種子檔案已丟失',
-      YOU_ALREADY_CHECK_IN: '您今天已經完成簽到了，不能重復簽到喔！'
+      YOU_ALREADY_CHECK_IN: '您今天已經完成簽到了，不能重復簽到喔！',
+      USER_ALREADY_HAS_THIS_MEDAL: '該用戶已經擁有了這枚勳章',
+      USER_HAS_NOT_THIS_MEDAL: '該用戶還沒有這枚勳章'
     },
 
     //server message string, content string support markdown and emoji

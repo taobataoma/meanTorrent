@@ -6,10 +6,10 @@
     .controller('UserInfoController', UserInfoController);
 
   UserInfoController.$inject = ['$scope', '$rootScope', '$state', 'Authentication', 'userResolve', 'ScoreLevelService', '$timeout', 'MeanTorrentConfig', 'UsersService',
-    'DebugConsoleService', 'NotifycationService'];
+    'DebugConsoleService', 'NotifycationService', 'localStorageService', 'MedalsService', 'MedalsInfoServices'];
 
   function UserInfoController($scope, $rootScope, $state, Authentication, user, ScoreLevelService, $timeout, MeanTorrentConfig, UsersService,
-                              mtDebug, NotifycationService) {
+                              mtDebug, NotifycationService, localStorageService, MedalsService, MedalsInfoServices) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -20,8 +20,17 @@
     vm.isContextUserSelf = isContextUserSelf;
     vm.scoreLevelData = ScoreLevelService.getScoreLevelJson(vm.user.score);
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
+    vm.homeConfig = MeanTorrentConfig.meanTorrentConfig.home;
 
     mtDebug.info(user);
+
+    /**
+     * initTopBackground
+     */
+    vm.initTopBackground = function () {
+      var url = localStorageService.get('body_background_image') || vm.homeConfig.bodyBackgroundImage;
+      $('.backdrop').css('backgroundImage', 'url("' + url + '")');
+    };
 
     /**
      * messageTo
@@ -89,6 +98,17 @@
       function onError(response) {
         NotifycationService.showErrorNotify(response.data.message, 'UNFOLLOW_ERROR');
       }
+    };
+
+    /**
+     * getUserMedals
+     */
+    vm.getUserMedals = function () {
+      MedalsService.query({
+        userId: vm.user._id
+      }, function (medals) {
+        vm.userMedals = MedalsInfoServices.mergeMedalsProperty(medals);
+      });
     };
   }
 }());

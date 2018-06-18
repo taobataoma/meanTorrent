@@ -1,7 +1,7 @@
 <section class="container padding-top-10" ng-controller="ForumsAdminController as vm" ng-init="vm.init();">
     <div class="row margin-top-20 forum-list">
         <div class="col-md-10 col-md-offset-1">
-            <button class="btn btn-success btn-width-100" ng-click="vm.popupCreateForum($event)">　　{{ 'FORUMS.BTN_ADD_FORUM' | translate }}　　</button>
+            <button class="btn btn-success btn-min-width-100" ng-click="vm.popupCreateForum($event)">　　{{ 'FORUMS.BTN_ADD_FORUM' | translate }}　　</button>
         </div>
 
         <div class="col-sm-10 col-sm-offset-1 margin-top-30">
@@ -112,17 +112,17 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
-                        <button type="submit" class="btn btn-success btn-width-100"
+                        <button type="submit" class="btn btn-success btn-min-width-100"
                                 ng-click="vm.createNewForum();"
                                 ng-hide="vm.isEdit"
                                 ng-disabled="!vm.forum.name || !vm.forum.desc ">{{'FORUMS.BTN_ADD' | translate}}
                         </button>
-                        <button type="submit" class="btn btn-success btn-width-100"
+                        <button type="submit" class="btn btn-success btn-min-width-100"
                                 ng-click="vm.editForum();"
                                 ng-show="vm.isEdit"
                                 ng-disabled="!vm.forum.name || !vm.forum.desc ">{{'FORUMS.BTN_EDIT' | translate}}
                         </button>
-                        <button type="submit" class="btn btn-success btn-width-100"
+                        <button type="submit" class="btn btn-success btn-min-width-100"
                                 ng-click="vm.deleteForum();"
                                 ng-show="vm.isEdit"
                                 ng-disabled="!vm.forum.name || !vm.forum.desc ">{{'FORUMS.BTN_DELETE' | translate}}
@@ -140,7 +140,7 @@
                        placeholder="{{ 'STATUS_FIELD.USERNAME' | translate }}" autofocus>
             </div>
             <div class="margin-top-10">
-                <button class="btn btn-default btn-width-80" ng-disabled="!vm.addModeratorPopover.username"
+                <button class="btn btn-default btn-min-width-80" ng-disabled="!vm.addModeratorPopover.username"
                         ng-click="vm.addModerator();">{{ 'FORUMS.BTN_ADD' | translate }}
                 </button>
             </div>

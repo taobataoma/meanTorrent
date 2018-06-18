@@ -50,7 +50,9 @@
     MENU_ADMIN_TICKETS: '客户服务中心',
     MENU_USERS_ADMIN: '用户管理',
     MENU_UPLOAD: '发布',
+    MENU_MEDALS: '勋章',
     MENU_FORUMS: '论坛',
+    MENU_MORE: '更多',
     MENU_REQUESTS: '求种',
     MENU_ABOUT: '关于',
     MENU_ABOUT_MANUAL: '用户手册',
@@ -90,6 +92,7 @@
     MENU_MY_INVITE: '我的邀请',
     MENU_MY_DATA_CENTER: '数据中心',
     MENU_ACCOUNT_STATUS: '帐户状态',
+    MENU_TORRENTS_STATUS: '种子状态',
     EDIT_PROFILE: '修改个人信息',
     EDIT_PROFILE_PIC: '修改个人头像',
     EDIT_SIGNATURE: '修改论坛签名',
@@ -250,6 +253,7 @@
       VIP: 'Vip',
       VIP_DONATE: '捐赠VIP',
       VIP_RULES: 'Vip用户协议',
+      MEDALS: '勋章墙',
       FORUM: '论坛',
       REQUESTS: '求种',
       REQUESTS_MY: '我的求种',
@@ -278,6 +282,7 @@
       MESSAGES_BOX: '站内消息',
       MESSAGES_SEND: '发送消息',
       STATUS_ACCOUNT: '帐户状态',
+      STATUS_TORRENTS: '种子状态',
       STATUS_UPLOADED: '我的种子',
       STATUS_SEEDING: '正在做种',
       STATUS_LEECHING: '正在下载',
@@ -876,6 +881,7 @@
     BUTTON_SELECT_PICTURE: '选择图片',
     BUTTON_USE_THIS_PICTURE: '应用图片',
     BUTTON_CANCEL: '取消',
+    BUTTON_CLOSE: '关闭',
     BUTTON_SAVE: '保存',
     BUTTON_SET: '设置',
     BUTTON_OK: '确定',
@@ -975,7 +981,7 @@
     },
 
     //user status
-    STATUS_ACCOUNT: '帐户状态',
+    STATUS_ACCOUNT: '我的帐户状态',
     STATUS_UPLOADED: '我上传的种子',
     STATUS_SEEDING: '正在做种的种子',
     STATUS_DOWNLOADING: '正在下载的种子',
@@ -1004,6 +1010,7 @@
       BTN_VIEW_USER_DATA_CENTER: '数据中心',
       BTN_EDIT: '编辑',
       BTN_REMOVE: '删除',
+      BTN_ADD_MEDAL: '颁发勋章',
       PICTURE: '头像',
       RESET_DEFAULT_PICTURE: '重置为默认图片',
       ADD_VIP_MONTHS: '+ VIP一个月',
@@ -1227,6 +1234,8 @@
     USER_UPLOADED_FLAG: '{{name}} 的上传量',
     USER_DOWNLOADED_FLAG: '{{name}} 的下载量',
     USER_SCORE_LEVEL: '{{name}} 的积分等级',
+    USER_RATIO_FLAG: '{{name}} 的分享率',
+    USER_MEDAL_FLAG: '{{name}} 的勋章总数',
 
     //traces
     ADMIN_TRACES_LIST: '系统日志',
@@ -1472,6 +1481,115 @@
       }
     },
 
+    // medals wall
+    MEDALS: {
+      MEDALS_TITLE: '勋章墙',
+      TYPES_COUNT: '勋章类型',
+      MEDALS_OPENED_COUNT: '勋章开放数',
+      MEDALS_AWARD_COUNT: '勋章颁发数',
+      SELECT_MEDAL_TO_USER: '请选择要颁发的勋章 - {{uname}}',
+      ADD_SUCCESSFULLY: '给用户添加勋章成功',
+      ADD_FAILED: '给用户添加勋章失败',
+      REMOVE_SUCCESSFULLY: '移除用户勋章成功',
+      REMOVE_FAILED: '移除用户勋章失败',
+      MEDALS_OVERVIEW: '勋章是用户身份及为站点所做的贡献的标识，勋章颁发分为系统自动颁发、管理员帮助颁发与用户自助颁发三种，自助颁发的勋章需要用户自已根据相应的条件自助申领。不同的勋章对应有不同的系统待遇，站点也会不定期的针对不同的勋章群体用户举办丰富多样的活动，敬请大家期待。',
+      CMD_LIST_USER: '查看用户',
+      CMD_REQUEST: '申请勋章',
+      HELP_CONDITION: '申请条件',
+      OWNED_USERS: '拥有用户',
+      USERS_IS_LOADING: '正在装载用户列表，请稍候...',
+      USERS_IS_EMPTY: '还没有任何用户拥有此勋章',
+      REQUEST_CONFIRM_CANCEL: '取消',
+      REQUEST_CONFIRM_OK: '确定',
+      REQUEST_CONFIRM_HEADER_TEXT: '申请勋章',
+      REQUEST_CONFIRM_BODY_TEXT: '您确定要使用 {{score}} 积分来申请这枚勋章吗?',
+      REQUEST_SUCCESSFULLY: '勋章申请成功',
+      REQUEST_ERROR: '勋章申请失败',
+      AWARD_AT: '授于',
+      CATS: {
+        WORKERS: '工作人员类勋章',
+        USERS: '用户类勋章',
+        VIP: 'VIP 类勋章',
+        EVENTS: '特别事件类勋章',
+        COMMEMORATIVE: '站点纪念类勋章'
+      },
+      PASSHELP: {
+        SYS: '系统自动颁发',
+        ADMIN: '管理员颁发',
+        SELF: '用户自助申请'
+      },
+      DESC: {
+        ROOT: '系统管理员勋章',
+        NETWORK_ADMIN: '网站管理员勋章',
+        SUPPORT_ADMIN: '客户服务管理员勋章',
+        FORUM_ADMIN: '论坛管理员勋章',
+        RESOURCE_ADMIN: '资源管理员勋章',
+        AMBASSADOR: '网站外交大使勋章',
+        FORUM_MODERATORS: '论坛版主勋章',
+        MAKER_FOUNDER: '资源发布组组长勋章',
+        UPLOADER: '资源发布专员勋章',
+        RETIREE: '网站退休工作人员勋章',
+
+        BEAUTY_3000: '佳丽三千后宫勋章',
+        ROAM: '云游四方保号勋章',
+        NO_EXAMINATION: '网站免考用户勋章',
+        SLUGGER: '网站种子用户勋章',
+        ELDER: '网站元老用户勋章',
+
+        FOREVER_VIP: '终身 VIP 勋章',
+        YEARLY_VIP: '年度 VIP 勋章',
+        MONTHLY_VIP: '月度 VIP 勋章',
+        GUEST_VIP: '来宾 VIP 勋章',
+
+        SITE_BEGIN: '网站开张纪念勋章',
+        FOR_ONE_YEARS: '网站1周年纪念勋章',
+        FOR_TWO_YEARS: '网站2周年纪念勋章',
+
+        EVENT_NAME: '特别活动勋章'
+      },
+      FOOTERSTRING: {
+        ROOT: '站长',
+        NETWORK_ADMIN: '站长',
+        SUPPORT_ADMIN: '客服',
+        FORUM_ADMIN: '论坛',
+        RESOURCE_ADMIN: '资源',
+        AMBASSADOR: '使臣',
+        FORUM_MODERATORS: '版主',
+        MAKER_FOUNDER: '组长',
+        UPLOADER: '发布',
+        RETIREE: '退休',
+
+        BEAUTY_3000: '佳丽',
+        ROAM: '云游',
+        NO_EXAMINATION: '免考',
+        SLUGGER: '种子',
+        ELDER: '元老',
+
+        FOREVER_VIP: 'VIP',
+        YEARLY_VIP: 'VIP',
+        MONTHLY_VIP: 'VIP',
+        GUEST_VIP: 'VIP',
+
+        SITE_BEGIN: '周年',
+        FOR_ONE_YEARS: '周年',
+        FOR_TWO_YEARS: '周年',
+
+        EVENT_NAME: '2018'
+      },
+      HEADERSTRING: {
+        FOREVER_VIP: '终',
+        YEARLY_VIP: '年',
+        MONTHLY_VIP: '月',
+        GUEST_VIP: '宾',
+
+        SITE_BEGIN: '0',
+        FOR_ONE_YEARS: '1',
+        FOR_TWO_YEARS: '2',
+
+        EVENT_NAME: '活动'
+      }
+    },
+
     // data center
     DATA_CENTER: {
       ITEM_SCORE: '积分数据分析',
@@ -1518,6 +1636,7 @@
       REQUEST_ACCEPT_TO: '您的响应被求种请求者接受 <a href=/requests/{{rid}}>{{rid}}</a>',
       SCORE_EXCHANGE_INVITATION: '兑换了一张邀请函',
       SCORETO_REMOVE_WARNING: '移除了一个 H&R 警告 <a href=/torrents/{{tid}}>{{tid}}</a>',
+      SCORETO_REQUEST_MEDAL: '申请勋章: {{medalDesc | translate}}',
       ACTIVE_IDLE_ACCOUNT: '重新激活帐户状态',
       DAILY_CHECK_IN: '每日签到',
       SEED_TIMED: '做种时间获得的积分 <a href=/torrents/{{tid}}>{{tid}}</a>',
@@ -1531,7 +1650,7 @@
       BAD_REQUEST: '请求错误',
       FORBIDDEN: '请求禁止',
       MADE_BAD_REQUEST: '您发起了一个无效的请求',
-      NOT_AUTHORIZED_THIS: '您无权访问此资源',
+      NOT_AUTHORIZED_THIS: '您无权访问此资源，如果您的 session 或 cookie 已过期，请 <a href="/authentication/signin">重新登录</a>。',
       NOT_FOUND: '无法访问',
       PAGE_NOT_FOUND: '没有找到页面或资源',
       ACCESS_DENY: '您的当前IP被限制访问此资源，如需帮助请给{{sNameDesc | translate}}发送 <strong><a href="/messages/send?to={{sName}}">消息</a></strong> 或 <strong><a href="mailto:{{sMail}}">邮件</a></strong>.'
@@ -1833,6 +1952,8 @@
       ADMIN_PRESENT_USER_INVITATIONS: '`{{by.displayName}}` 赠送 `{{numbers}}` 个官方邀请函, 有效期 `{{days}}` 天',
       ADMIN_REMOVE_USER_HNR_WARNING: '`{{by.displayName}}` 移除 H&R 警告, complete id: `{{complete}}`',
       ADMIN_CREATE_USER_MAKER_GROUP: '`{{by.displayName}}` 创建用户资源小组: `-={{name}}=-`',
+      ADMIN_ADD_USER_MEDAL: '`{{by.displayName}}` 添加用户勋章: `{{medalName}}`',
+      ADMIN_REMOVE_USER_MEDAL: '`{{by.displayName}}` 移除用户勋章: `{{medalName}}`',
       ADMIN_BAN_USER_INVITER: '`{{by.displayName}}` 改变帐户状态为: `{{status}}`, 理由: 邀请的用户[{{uname}}]因为[{{reason | translate}}]被禁止'
     },
 
@@ -1875,7 +1996,9 @@
       UPLOAD_ACCESS_DENY: '当前系统只接受资源制作小组上传种子',
       READ_TORRENT_FILE_FAILD: '种子文件解析错误，请检查您的种子文件，看是否缺少某些必要信息',
       MOVE_TORRENT_FILE_ERROR: '种子文件移动错误，请不要快速重复进行提交操作或者上传的种子文件已丢失',
-      YOU_ALREADY_CHECK_IN: '您今天已经签过到了，不能重复签到'
+      YOU_ALREADY_CHECK_IN: '您今天已经签过到了，不能重复签到',
+      USER_ALREADY_HAS_THIS_MEDAL: '该用户已经拥有了这枚勋章',
+      USER_HAS_NOT_THIS_MEDAL: '该用户还没有这枚勋章'
     },
 
     //server message string, content string support markdown and emoji

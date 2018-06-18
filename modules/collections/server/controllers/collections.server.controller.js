@@ -65,7 +65,6 @@ exports.collectioninfo = function (req, res) {
   });
 };
 
-
 /**
  * Create an collection
  */

@@ -73,7 +73,7 @@
                         <div>
                             <dt class="h-line"></dt>
                             <dd class="h-line">
-                                <button type="submit" class="btn btn-success btn-width-100">{{ 'MESSAGES_SEND_BUTTON' | translate }}</button>
+                                <button type="submit" class="btn btn-success btn-min-width-100">{{ 'MESSAGES_SEND_BUTTON' | translate }}</button>
                             </dd>
                         </div>
                     </dl>
@@ -108,7 +108,7 @@
                     </thead>
                     <tbody>
                         <tr class="message-item" ng-repeat="m in vm.adminMessages">
-                            <td class="col-md-8 width-400">
+                            <td class="col-md-8 min-width-400">
                                 <div class="message-title-admin text-long">
                                     <span class="h4" ng-bind="m.title"></span>
                                     <span class="badge badge_danger" ng-if="m.mustRead">
@@ -123,16 +123,16 @@
                                           info-name></span> {{'MESSAGES_FIELD.INFO_SEND_AT' | translate}} {{m.createdat | date: 'yyyy-MM-dd HH:mm:ss' }}
                                 </p>
                             </td>
-                            <td class="col-md-1 td-v-middle text-center width-70">
+                            <td class="col-md-1 td-v-middle text-center min-width-70">
                                 <span ng-class="vm.getMessageClass(m);">{{m._readers.length}}</span>
                             </td>
-                            <td class="col-md-2 td-v-middle text-center width-140">
+                            <td class="col-md-2 td-v-middle text-center min-width-140">
                                 <span ng-class="vm.getMessageClass(m);">{{'MESSAGE_TYPE_' + m.type.toUpperCase() | translate}}</span>
                             </td>
                             <!--<td class="col-md-1 td-v-middle text-center width-80">-->
                             <!--<span ng-class="vm.getMessageClass(m);">{{m.createdat | life}}</span>-->
                             <!--</td>-->
-                            <td class="col-md-1 td-v-middle text-center width-70">
+                            <td class="col-md-1 td-v-middle text-center min-width-70">
                                 <input type="checkbox" class="tcheckbox" ng-model="vm.selected[m._id]"
                                        id="checkbox_{{m._id}}">
                                 </label>
@@ -144,7 +144,7 @@
 
             <div class="margin-top-20" ng-if="vm.adminMessages.length">
                 <div class="pull-right margin-top-20">
-                    <button class="btn btn-success btn-width-100" ng-click="vm.deleteSelected()">{{ 'BUTTON_MESSAGE_DELETE' | translate }}</button>
+                    <button class="btn btn-success btn-min-width-100" ng-click="vm.deleteSelected()">{{ 'BUTTON_MESSAGE_DELETE' | translate }}</button>
                 </div>
             </div>
         </div>

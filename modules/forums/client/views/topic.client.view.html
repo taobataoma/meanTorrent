@@ -29,9 +29,9 @@
                         </div>
                         <div class="box-post-btn">
                             <div ng-if="!vm.topic.readOnly || vm.canEdit(vm.topic) || vm.isOwner(vm.topic)">
-                                <a class="btn btn-success btn-width-100"
+                                <a class="btn btn-success btn-min-width-100"
                                    href="#" ng-click="vm.beginPostReply();">{{'FORUMS.BTN_POST_NEW_REPLY' | translate}}</a>
-                                <a class="btn btn-default btn-width-100"
+                                <a class="btn btn-default btn-min-width-100"
                                    href="#" ng-if="vm.canEdit(vm.topic) || vm.isOwner(vm.topic)"
                                    ng-click="vm.toggleReadonly(vm.topic);">{{ vm.topic.readOnly ? 'FORUMS.BTN_UNSET_READONLY' : 'FORUMS.BTN_SET_READONLY' | translate}}</a>
                             </div>
@@ -301,7 +301,7 @@
                                 {{ 'MARKDOWN_LINK' | translate }}
                             </a>
                         </div>
-                        <button type="submit" class="btn btn-success btn-width-100 pull-right">{{'FORUMS.BTN_SUBMIT_REPLY' | translate}}
+                        <button type="submit" class="btn btn-success btn-min-width-100 pull-right">{{'FORUMS.BTN_SUBMIT_REPLY' | translate}}
                         </button>
                     </form>
                 </div>

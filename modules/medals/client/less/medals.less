@@ -1,0 +1,324 @@
+@import (reference) "../../../core/client/less/mt-var.less";
+
+.medals-side-overlay {
+    top: 50px !important;
+}
+
+/* csslint ignore:start */
+.medal {
+    .medal-item {
+        width: 1.25em;
+        height: 1.25em;
+        font-size: 4em;
+        position: relative;
+        cursor: pointer;
+        display: inline-flex;
+        &:hover {
+            .medal-bg {
+                -webkit-text-stroke: 0.05em #fff;
+            }
+        }
+        &.owner {
+            .fa-check-circle {
+                display: block !important;
+                position: absolute;
+                font-size: 0.3em;
+                color: #006600;
+                top: 0.3em;
+                right: 0.3em;
+                text-shadow: 0 0 0.1em #fff, 0 0 0.1em #fff;
+            }
+        }
+        .medal-bg {
+            position: absolute;
+            margin: 0;
+            float: left;
+            //top: 0.5em;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            //filter: drop-shadow(5px 6px 5px rgba(153, 153, 153, 0.8));
+            //text-shadow: 0.1em 0.15em 0.5em #999, 0.01em 0.01em 0.1em #999;
+            text-shadow: 0.1em 0.1em 8px #999;
+            -webkit-text-stroke: 0.05em #e5e5e5;
+            &.dark-shadow {
+                //text-shadow: 0.1em 0.15em 0.5em #000, 0.01em 0.01em 0.1em #000 !important;
+                //text-shadow: 0.1em 0.1em 0.1em #2a2a2a, 0.1em 0.1em 0.1em #3a3a3a !important;
+                text-shadow: 0.1em 0.1em 8px #2a2a2a !important;
+            }
+        }
+        .medal-icon {
+            position: absolute;
+            margin: 0;
+            float: left;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .medal-header {
+            position: absolute;
+            margin: 0;
+            float: left;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .medal-footer {
+            position: absolute;
+            margin: 0;
+            float: left;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        &.medal-xxxxxs {
+            transform: scale(0.2);
+            margin: -0.48em -0.48em;
+        }
+        &.medal-xxxxs {
+            transform: scale(0.3);
+            margin: -0.42em -0.42em;
+        }
+        &.medal-xxxs {
+            transform: scale(0.4);
+            margin: -0.36em -0.36em;
+        }
+        &.medal-xxs {
+            transform: scale(0.5);
+            margin: -0.3em -0.3em;
+        }
+        &.medal-xs {
+            transform: scale(0.6);
+            margin: -0.24em -0.24em;
+        }
+        &.medal-sm {
+            transform: scale(0.7);
+            margin: -0.18em -0.18em;
+        }
+        &.medal-md {
+            transform: scale(0.8);
+            margin: -0.12em -0.12em;
+        }
+        &.medal-lg {
+            transform: scale(0.9);
+            margin: -0.06em -0.06em;
+        }
+        &.medal-1x {
+            transform: scale(1.1);
+            margin: 0.06em 0.06em;
+        }
+        &.medal-2x {
+            transform: scale(1.2);
+            margin: 0.12em 0.12em;
+        }
+        &.medal-3x {
+            transform: scale(1.3);
+            margin: 0.18em 0.18em;
+        }
+        &.medal-4x {
+            transform: scale(1.4);
+            margin: 0.24em 0.24em;
+        }
+        &.medal-5x {
+            transform: scale(1.5);
+            margin: 0.3em 0.3em;
+        }
+        &.medal-6x {
+            transform: scale(1.6);
+            margin: 0.36em 0.36em;
+        }
+        &.medal-7x {
+            transform: scale(1.7);
+            margin: 0.42em 0.42em;
+        }
+        &.medal-8x {
+            transform: scale(1.8);
+            margin: 0.48em 0.48em;
+        }
+        &.medal-9x {
+            transform: scale(1.9);
+            margin: 0.54em 0.54em;
+        }
+        &.medal-10x {
+            transform: scale(2);
+            margin: 0.6em 0.6em;
+        }
+        &.medal-11x {
+            transform: scale(2.1);
+            margin: 0.66em 0.66em;
+        }
+        &.medal-12x {
+            transform: scale(2.2);
+            margin: 0.72em 0.72em;
+        }
+        &.medal-13x {
+            transform: scale(2.3);
+            margin: 0.78em 0.78em;
+        }
+        &.medal-14x {
+            transform: scale(2.4);
+            margin: 0.8em 0.8em;
+        }
+        &.medal-15x {
+            transform: scale(2.5);
+            margin: 0.86em 0.86em;
+        }
+    }
+}
+
+/* csslint ignore:end */
+
+.medals-view-top {
+    .h3, h3 {
+        margin-top: 5px !important;
+    }
+    .medals-title {
+        color: #efefef;
+        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+    }
+    .medals-data {
+        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+        .fa, .far {
+            color: @mt-base-color !important;
+        }
+    }
+    .medal-overview {
+        font-size: 16px;
+        color: lighten(@gray-light, 20%);
+        text-shadow: 0 0 0.1em #000,-0 -0 0.1em #000;
+    }
+}
+
+.medals-list {
+    legend {
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    .medal-box {
+        padding: 10px 10px;
+        margin-bottom: 20px;
+        background-color: #4a4a4a;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        .medal-item {
+            .badge {
+                position: absolute;
+                top: 0.3em;
+                left: 0.3em;
+                box-shadow: 0 0 1px #fff;
+            }
+        }
+        .medal-info {
+            position: relative;
+            height: 100px;
+            text-align: right;
+            color: lighten(@gray-light, 20%);
+            float: right;
+            width: ~"calc(100% - 120px)";
+            text-shadow: 0 0 0.1em #2a2a2a,-0 -0 0.1em #2a2a2a;
+            p {
+                margin-bottom: 5px !important;
+            }
+            .desc {
+                font-size: 15px;
+                color: #f5f5f5;
+            }
+            .cmd {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                a {
+                    &:last-child {
+                        margin-left: 10px;
+                    }
+                    &:hover {
+                        text-decoration: none;
+                        color: @brand-info;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.medal-top-info {
+    color: lighten(@gray-light, 20%);
+    text-shadow: 0 0 0.1em #2a2a2a,-0 -0 0.1em #2a2a2a;
+    .desc {
+        font-size: 20px;
+        color: #f5f5f5;
+    }
+    .cmd {
+        margin-top: 10px;
+        a {
+            &:hover {
+                text-decoration: none;
+                color: @brand-info;
+            }
+        }
+    }
+    .info-item {
+        color: @mt-base-color;
+    }
+}
+
+.medal-users-list {
+    .user-item {
+        position: relative;
+        padding: 10px;
+        min-height: 94px;
+        margin: 10px 0;
+        border: solid 1px #3a3a3a;
+        background-color: #4a4a4a;
+        box-shadow: 2px 2px 5px rgba(32, 32, 32, 0.3);
+        a {
+            &:hover {
+                text-decoration: none;
+                color: @brand-info;
+            }
+        }
+        p {
+            margin: 0;
+        }
+        &:hover {
+            .btn-unfollow {
+                display: block;
+            }
+        }
+        .user-avatar {
+            float: left;
+            img {
+                width: 72px;
+                height: 72px;
+            }
+        }
+        .user-name {
+            margin-left: 10px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .user-vip, .user-level {
+            margin-left: 10px;
+        }
+        .user-up-down {
+            font-size: 12px;
+            margin-left: 10px;
+            .torrent-up {
+                color: #33CC00;
+            }
+            .torrent-down {
+                color: #FF3300;
+            }
+            .up-data, .down-data {
+                color: lighten(@gray-base, 60%);
+            }
+        }
+        .btn-unfollow {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .add-time {
+            margin-left: 10px;
+            font-size: 12px;
+            color: #888;
+        }
+    }
+}

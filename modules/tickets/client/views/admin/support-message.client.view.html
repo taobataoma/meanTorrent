@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
                             <tr class="ticket-item" ng-repeat="item in vm.pagedItems">
-                                <td class="col-md-2 td-v-middle width-150">
+                                <td class="col-md-2 td-v-middle min-width-150">
                                     <span user-info="item.from" info-class="ticket-avatar" info-avatar></span>
                                     <span user-info="item.from" info-name></span>
                                 </td>
@@ -45,8 +45,8 @@
                                     </div>
                                 </td>
                                 <td class="col-md-1 td-v-middle text-center">{{item._replies ? item._replies.length : 0}}</td>
-                                <td class="col-md-1 td-v-middle text-center width-100">{{item.createdAt | date:'MM-dd HH:mm'}}</td>
-                                <td class="col-md-1 td-v-middle text-center width-100">
+                                <td class="col-md-1 td-v-middle text-center min-width-100">{{item.createdAt | date:'MM-dd HH:mm'}}</td>
+                                <td class="col-md-1 td-v-middle text-center min-width-100">
                                     <span ng-if="item.updatedAt">
                                         {{item.updatedAt | date:'MM-dd HH:mm'}}
                                     </span>
@@ -59,7 +59,7 @@
                                     <span class="badge badge_default"
                                           ng-if="item.status=='solved'"> {{item.status}} </span>
                                 </td>
-                                <td class="col-md-1 td-v-middle text-center width-120">
+                                <td class="col-md-1 td-v-middle text-center min-width-120">
                                     <span user-info="item.handler" ng-if="item.handler" info-name></span>
                                     <a class="btn btn-success" ng-if="!item.handler" ng-click="vm.handleTicket(item)">{{'SUPPORT.LINK_HANDLE' | translate}}</a>
                                 </td>

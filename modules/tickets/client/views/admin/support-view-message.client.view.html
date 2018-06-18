@@ -42,9 +42,9 @@
                                  ng-bind-html="vm.getTicketContent(vm.ticket)">
                             </div>
                             <div class="ticket-buttons text-right" ng-if="vm.ticket.status!='solved'">
-                                <a class="btn btn-sm btn-width-100" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
+                                <a class="btn btn-sm btn-min-width-100" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
                                    ng-if="!vm.ticket.handler" ng-click="vm.handleTicket(vm.ticket)">{{'SUPPORT.LINK_HANDLE' | translate}}</a>
-                                <a class="btn btn-sm btn-width-100" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
+                                <a class="btn btn-sm btn-min-width-100" mouse-enter-toggle-class="btn-success" base-class="btn-mt-o"
                                    ng-if="vm.ticket.status!='solved'" ng-click="vm.solvedTicket(vm.ticket)">{{'SUPPORT.LINK_SOLVED' | translate}}</a>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                                 {{ 'MARKDOWN_LINK' | translate }}
                             </a>
                         </div>
-                        <button type="submit" class="btn btn-success btn-width-100 pull-right">{{'FORUMS.BTN_SUBMIT_REPLY' | translate}}
+                        <button type="submit" class="btn btn-success btn-min-width-100 pull-right">{{'FORUMS.BTN_SUBMIT_REPLY' | translate}}
                         </button>
                     </form>
                 </div>

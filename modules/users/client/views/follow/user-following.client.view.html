@@ -42,12 +42,12 @@
                                         <span up-down-flag="item" up-down-class="follow-up-down"></span>
                                     </span>
 
-                                    <a class="btn btn-default btn-sm btn-bold btn-width-80 btn-unfollow"
+                                    <a class="btn btn-default btn-sm btn-bold btn-min-width-80 btn-unfollow"
                                        ng-click="vm.followTo(item)"
                                        ng-if="!vm.isContextUserSelf(item) && !vm.inMyFollowing(item)">
                                         {{ 'STATUS_FIELD.BTN_FOLLOW' | translate}}
                                     </a>
-                                    <a class="btn btn-default btn-sm btn-bold btn-width-80 btn-unfollow"
+                                    <a class="btn btn-default btn-sm btn-bold btn-min-width-80 btn-unfollow"
                                        ng-click="vm.unFollowTo(item)"
                                        ng-if="!vm.isContextUserSelf(item) && vm.inMyFollowing(item)">
                                         {{ 'STATUS_FIELD.BTN_UNFOLLOW' | translate}}

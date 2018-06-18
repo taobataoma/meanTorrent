@@ -124,23 +124,23 @@
     /**
      * $scope.$watch($('#nav-top-menu').width())
      */
-    $scope.$watch(function () {
-      return $('#nav-top-menu').width();
-    }, function (newVal, oldVal) {
-      if (newVal) {
-        if (window.outerWidth > 767 && window.outerWidth < 992) { //sm screen
-          if (newVal > 540) {
-            $('a[ui-sref="chat"]').css('display', 'none');
-          }
-        } else if (window.outerWidth > 991 && window.outerWidth < 1200) { //md screen
-          if (newVal > 580) {
-            $('a[ui-sref="chat"]').css('display', 'none');
-          }
-        } else {
-          $('a[ui-sref="chat"]').css('display', 'block');
-        }
-      }
-    });
+    // $scope.$watch(function () {
+    //   return $('#nav-top-menu').width();
+    // }, function (newVal, oldVal) {
+    //   if (newVal) {
+    //     if (window.outerWidth > 767 && window.outerWidth < 992) { //sm screen
+    //       if (newVal > 540) {
+    //         $('a[ui-sref="chat"]').css('display', 'none');
+    //       }
+    //     } else if (window.outerWidth > 991 && window.outerWidth < 1200) { //md screen
+    //       if (newVal > 580) {
+    //         $('a[ui-sref="chat"]').css('display', 'none');
+    //       }
+    //     } else {
+    //       $('a[ui-sref="chat"]').css('display', 'block');
+    //     }
+    //   }
+    // });
 
     /**
      * auth-user-changed

@@ -42,8 +42,8 @@
                                     </div>
                                 </td>
                                 <td class="col-md-1 td-v-middle text-center">{{item.replies ? item.replies.length : 0}}</td>
-                                <td class="col-md-1 td-v-middle text-center width-100">{{item.createdAt | life}}</td>
-                                <td class="col-md-1 td-v-middle text-center width-100">
+                                <td class="col-md-1 td-v-middle text-center min-width-100">{{item.createdAt | life}}</td>
+                                <td class="col-md-1 td-v-middle text-center min-width-100">
                                     <span ng-if="item.updatedAt">
                                         {{item.updatedAt | life}}
                                     </span>
@@ -56,7 +56,7 @@
                                     <span class="badge badge_default"
                                           ng-if="item.status=='solved'"> {{item.status}} </span>
                                 </td>
-                                <td class="col-md-2 td-v-middle text-center width-150">
+                                <td class="col-md-2 td-v-middle text-center min-width-150">
                                     <span user-info="item.handler" info-name></span>
                                 </td>
                             </tr>

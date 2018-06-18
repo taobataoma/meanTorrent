@@ -242,7 +242,7 @@
                                             ng-click="vm.beginSaveScreenshots()">
                                         {{'SAVE_THIS_SCREENSHOTS' | translate}}
                                     </button>
-                                    <button class="btn btn-xs btn-mt-o margin-top-15 btn-width-80" mouse-enter-toggle-class="btn-mt-o-success"
+                                    <button class="btn btn-xs btn-mt-o margin-top-15 btn-min-width-80" mouse-enter-toggle-class="btn-mt-o-success"
                                             base-class="btn-mt-o-primary"
                                             ng-if="vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
                                             ng-click="vm.CancelScreenshots()">
@@ -449,15 +449,15 @@
         </div>
         <div class="img_nav text-center">
             <span class="img_page_info"></span>
-            <button class="btn btn-bold btn-width-120 btn-mt-o popup_img_preview_close" mouse-enter-toggle-class="btn-mt-o-light"
+            <button class="btn btn-bold btn-min-width-120 btn-mt-o popup_img_preview_close" mouse-enter-toggle-class="btn-mt-o-light"
                     base-class="btn-mt-o-success">
                 {{'BUTTON_MESSAGE_CLOSE' | translate}}
             </button>
-            <button class="btn btn-bold btn-width-120 btn-mt-o" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
+            <button class="btn btn-bold btn-min-width-120 btn-mt-o" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
                     ng-click="vm.previousImage()">
                 {{'PAGE_TEXT_PREVIOUS' | translate}}
             </button>
-            <button class="btn btn-bold btn-width-120 btn-mt-o" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
+            <button class="btn btn-bold btn-min-width-120 btn-mt-o" mouse-enter-toggle-class="btn-mt-o-light" base-class="btn-mt-o-primary"
                     ng-click="vm.nextImage()">
                 {{'PAGE_TEXT_NEXT' | translate}}
             </button>
@@ -471,7 +471,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="page-header"><h3>{{ 'ATTRIBUTE_TAGS' | translate}}</h3></div>
+                    <div class="page-header"><h4>{{ 'ATTRIBUTE_TAGS' | translate}}</h4></div>
                     <dl class="dl-horizontal">
                         <div ng-repeat="item in vm.resourcesTags.radio | filter:vm.torrentLocalInfo.torrent_type">
                             <dt class="h-line">{{ 'RESOURCESTAGS.'+item.name+'.SELF' | translate}}:</dt>
@@ -507,10 +507,10 @@
                         <div style="margin-top: 20px;">
                             <dt class="h-line"></dt>
                             <dd class="h-line">
-                                <button class="btn btn-success btn-width-100" ng-click="vm.setTorrentTags();">
+                                <button class="btn btn-success btn-min-width-100" ng-click="vm.setTorrentTags();">
                                     {{ 'BUTTON_SAVE' | translate }}
                                 </button>
-                                <button class="btn btn-default btn-width-100" ng-click="vm.hideTagsPopup();">
+                                <button class="btn btn-default btn-min-width-100" ng-click="vm.hideTagsPopup();">
                                     {{ 'BUTTON_CANCEL' | translate }}
                                 </button>
                             </dd>
@@ -563,11 +563,11 @@
         </div>
 
         <div class="bottom-control">
-            <button class="btn btn-success btn-width-100"
+            <button class="btn btn-success btn-min-width-100"
                     ng-disabled="!vm.collection.name || !vm.collection.overview"
                     ng-click="vm.saveCollection();">{{ 'BUTTON_SAVE' | translate }}
             </button>
-            <button class="btn btn-default btn-width-100" ng-click="vm.hideCollectionPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
+            <button class="btn btn-default btn-min-width-100" ng-click="vm.hideCollectionPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
         </div>
     </div>
 
@@ -607,11 +607,11 @@
         </div>
 
         <div class="bottom-control">
-            <button class="btn btn-success btn-width-100"
+            <button class="btn btn-success btn-min-width-100"
                     ng-disabled="!vm.collectionTorrent.cid"
                     ng-click="vm.saveInsertCollection();">{{ 'BUTTON_SAVE' | translate }}
             </button>
-            <button class="btn btn-default btn-width-100" ng-click="vm.hideCollectionInsertPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
+            <button class="btn btn-default btn-min-width-100" ng-click="vm.hideCollectionInsertPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
         </div>
     </div>
 
@@ -649,11 +649,11 @@
         </div>
 
         <div class="bottom-control">
-            <button class="btn btn-success btn-width-100"
+            <button class="btn btn-success btn-min-width-100"
                     ng-disabled="!vm.album.name || !vm.album.overview"
                     ng-click="vm.saveAlbum();">{{ 'BUTTON_SAVE' | translate }}
             </button>
-            <button class="btn btn-default btn-width-100" ng-click="vm.hideAlbumPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
+            <button class="btn btn-default btn-min-width-100" ng-click="vm.hideAlbumPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
         </div>
     </div>
 
@@ -698,11 +698,11 @@
         </div>
 
         <div class="bottom-control">
-            <button class="btn btn-success btn-width-100"
+            <button class="btn btn-success btn-min-width-100"
                     ng-disabled="!vm.albumTorrent.aid"
                     ng-click="vm.saveInsertAlbum();">{{ 'BUTTON_SAVE' | translate }}
             </button>
-            <button class="btn btn-default btn-width-100" ng-click="vm.hideAlbumInsertPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
+            <button class="btn btn-default btn-min-width-100" ng-click="vm.hideAlbumInsertPopup();">{{ 'BUTTON_CANCEL' | translate }}</button>
         </div>
     </div>
 
@@ -884,7 +884,7 @@
                                         ng-click="vm.updateTorrentNfo()">
                                     {{'SAVE_THIS_MEDIA_INFO' | translate}}
                                 </button>
-                                <button class="btn btn-xs margin-top-15 btn-width-80" mouse-enter-toggle-class="btn-mt-o-success"
+                                <button class="btn btn-xs margin-top-15 btn-min-width-80" mouse-enter-toggle-class="btn-mt-o-success"
                                         base-class="btn-mt-o-primary"
                                         ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
                                         ng-click="vm.CancelTorrentNfo()">
@@ -898,7 +898,7 @@
                 <dt class="h-line"></dt>
                 <dd class="h-line">
                     <div class="down-torrent">
-                        <button class="btn btn-success btn-width-100" ng-click="vm.DLS.downloadTorrent(vm.torrentLocalInfo._id)"
+                        <button class="btn btn-success btn-min-width-100" ng-click="vm.DLS.downloadTorrent(vm.torrentLocalInfo._id)"
                                 translate="DOWNLOAD_TORRENT"></button>
                         <span torrent-file-link-button="vm.torrentLocalInfo" torrent-user="vm.user" info-class="btn-default"></span>
                     </div>
@@ -1007,7 +1007,7 @@
                         ng-click="vm.beginSaveScreenshots()">
                     {{'SAVE_THIS_SCREENSHOTS' | translate}}
                 </button>
-                <button class="btn btn-xs btn-mt-o margin-top-15 btn-width-80" mouse-enter-toggle-class="btn-mt-o-success"
+                <button class="btn btn-xs btn-mt-o margin-top-15 btn-min-width-80" mouse-enter-toggle-class="btn-mt-o-success"
                         base-class="btn-mt-o-primary"
                         ng-if="vm.isEditScreenshots && (vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper)"
                         ng-click="vm.CancelScreenshots()">
