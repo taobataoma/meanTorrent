@@ -240,6 +240,7 @@ var UserSchema = new Schema({
   last_idled: {
     type: Date
   },
+  medals: [String],
   signed_ip: [String],
   leeched_ip: [String],
   curr_signed_ip: String,

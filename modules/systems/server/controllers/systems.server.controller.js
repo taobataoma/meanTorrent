@@ -20,6 +20,7 @@ var mtDebug = require(path.resolve('./config/lib/debug'));
 var announceConfig = config.meanTorrentConfig.announce;
 var historyConfig = config.meanTorrentConfig.history;
 var inviteConfig = config.meanTorrentConfig.invite;
+var examinationConfig = config.meanTorrentConfig.examination;
 
 /**
  * getSystemEnvConfigFiles
@@ -204,10 +205,11 @@ exports.initExaminationData = function (req, res) {
               created: {
                 $lt: Date.now() - announceConfig.downloadCheck.checkAfterSignupDays * 60 * 60 * 1000 * 24
               },
+              status: 'normal',
               isVip: false,
               isOper: false,
               isAdmin: false,
-              status: {$ne: 'inactive'}
+              medals: {$nin: [examinationConfig.exceptExaminationMedalName]}
             }, {examinationData: exami}, {multi: true}, function (err, num) {
               if (err) {
                 return res.status(422).send({

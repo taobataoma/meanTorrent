@@ -321,7 +321,7 @@ function checkUserAccountIdleStatus() {
       var safeScore = scoreLib.getScoreByLevel(signConfig.idle.notIdleSafeLevel);
 
       User.find({
-        status: {$ne: 'idle'},
+        status: 'normal',
         last_signed: {$lt: Date.now() - signConfig.idle.accountIdleForTime},
         score: {$lt: safeScore}
       }).exec(function (err, users) {

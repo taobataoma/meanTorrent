@@ -1382,19 +1382,20 @@ module.exports = {
      *
      * examination system settings
      *
-     * @incrementData:      examination requirements data settings
-     *      @upload:        increment uploaded data size
-     *      @upload_str:    string desc of @upload
-     *      @download:      increment downloaded data size
-     *      @download_str:  string desc of @download
-     *      @score:         increment score number
-     * @timeSet:            examination time settings
-     *      @startAt:       examination start time
-     *      @endAt:         examination end time
-     *      @noticeMsg:     notice translate string show at top of home
-     *      @noticeShowAt:  notice begin time to show
-     *      @timeFormats:   time string format
-     * @detailUrl:          detail info of examination, maybe a forum link url
+     * @incrementData:                examination requirements data settings
+     *      @upload:                  increment uploaded data size
+     *      @upload_str:              string desc of @upload
+     *      @download:                increment downloaded data size
+     *      @download_str:            string desc of @download
+     *      @score:                   increment score number
+     * @timeSet:                      examination time settings
+     *      @startAt:                 examination start time
+     *      @endAt:                   examination end time
+     *      @noticeMsg:               notice translate string show at top of home
+     *      @noticeShowAt:            notice begin time to show
+     *      @timeFormats:             time string format
+     * @exceptExaminationMedalName:   except examination user must have medal name of 'noExamination'
+     * @detailUrl:                    detail info of examination, maybe a forum link url
      * ------------------------------------------------------------------------------
      *  !IMPORTANT NOTE:
      *  IF YOU START A NEW EXAMINATION, PLEASE SETTING THESE CONFIGURE ITEMS,
@@ -1416,6 +1417,7 @@ module.exports = {
         noticeShowAt: '2018-01-28 00:00:00',
         timeFormats: 'YYYY-MM-DD HH:mm:ss'
       },
+      exceptExaminationMedalName: 'noExamination',
       detailUrl: '/forums/595c4491d5706705f67d93cf/59684780f928f42a9c79c613'
     },
 

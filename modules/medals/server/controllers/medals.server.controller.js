@@ -162,6 +162,10 @@ exports.requestMedal = function (req, res) {
             } else {
               res.json(newMedal);
 
+              // add medalName to user
+              user.update({
+                $addToSet: {medals: req.params.medalName}
+              }).exec();
               //score update
               var act = scoreConfig.action.scoreToRequestMedal;
               act.params = {
@@ -241,6 +245,10 @@ exports.addToUser = function (req, res) {
           } else {
             res.json(medal);
 
+            // add medalName to user
+            user.update({
+              $addToSet: {medals: req.params.medalName}
+            }).exec();
             //create trace log
             traceLogCreate(req, traceConfig.action.adminAddUserMedal, {
               user: user._id,
@@ -292,6 +300,10 @@ exports.removeFromUser = function (req, res) {
           } else {
             res.json(medal);
 
+            // add medalName to user
+            user.update({
+              $pull: {medals: req.params.medalName}
+            }).exec();
             //create trace log
             traceLogCreate(req, traceConfig.action.adminRemoveUserMedal, {
               user: user._id,
