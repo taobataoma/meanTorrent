@@ -92,6 +92,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 1. Add a reason when administrator to banned a user.
 1. Add a configure item to setting whether ban the users inviter when the user was banned. and you can setting whether ban the inviter when the inviter is a vip user.
 1. Check the un-reviewed new torrents and opened tickets status and show in top menu item.  
+1. New module of **Medal Center**, the medal is the identity of the users identity and contribution to the site.
 
 #### Chat room feature:
 1. Users name list
@@ -106,7 +107,6 @@ and [AngularJS](http://angularjs.org/) based applications.
 - Fetch service email box message into administrator group message box of site, oper and admin can select any item to handling.
 - Support service center client side logic and UI.
 - Site data line graph for admin
-- Medal center
 - Poll type topics support in forum.
 - More score get methods.
 - IRC chat
