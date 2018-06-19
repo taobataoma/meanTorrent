@@ -1236,6 +1236,8 @@
     USER_SCORE_LEVEL: '{{name}} 的積分等級',
     USER_RATIO_FLAG: '{{name}} 的分享率',
     USER_MEDAL_FLAG: '{{name}} 的勳章總數',
+    USER_SEEDING_FLAG: '{{name}} 的當前做種數',
+    USER_LEECHING_FLAG: '{{name}} 當前下載數',
 
     //traces
     ADMIN_TRACES_LIST: '系統日誌',

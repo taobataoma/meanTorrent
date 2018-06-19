@@ -1236,6 +1236,8 @@
     USER_SCORE_LEVEL: '{{name}} score level',
     USER_RATIO_FLAG: '{{name}} ratio',
     USER_MEDAL_FLAG: '{{name}} medal',
+    USER_SEEDING_FLAG: '{{name}} current seeding torrents',
+    USER_LEECHING_FLAG: '{{name}} current leeching torrents',
 
     //traces
     ADMIN_TRACES_LIST: 'Traces List',
