@@ -84,8 +84,16 @@
           rlevel: '@rlevel'
         },
         interceptor: {response: removeCache}
+      },
+      getTorrentCollections: {
+        method: 'GET',
+        url: '/api/collections/torrent/:torrentId',
+        isArray: true,
+        params: {
+          torrentId: '@torrentId'
+        },
+        cache: collectionsCache
       }
-
     });
 
     return collection;

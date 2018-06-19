@@ -606,6 +606,8 @@
     ENTER_RESOURCE_TITLE: '&bull; Please enter the resource main title and sub title',
     RESOURCE_TITLE: 'resource main title',
     RESOURCE_SUB_TITLE: 'resource sub title',
+    JOINED_COLLECTIONS: 'Joined collections',
+    JOINED_ALBUMS: 'Joined albums',
     SELECT_RESOURCE_IMAGE: '&bull; Please select resource cover image',
     ENTER_RESOURCE_DETAIL_INFO: '&bull; Please enter the resource detail info',
 

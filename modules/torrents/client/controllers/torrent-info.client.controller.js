@@ -176,9 +176,39 @@
         $('.backdrop').css('backgroundImage', 'url("' + vm.TGI.getTorrentBackdropImage(vm.torrentLocalInfo) + '")');
 
         vm.rating_vote = res.resource_detail_info.vote_average;
+
+        vm.getTorrentCollectionsInfo($stateParams.torrentId);
+        vm.getTorrentAlbumsInfo($stateParams.torrentId);
+
         vm.initTabLists();
         vm.commentBuildPager();
         vm.buildPeersPager();
+      });
+    };
+
+    /**
+     * getTorrentCollectionsInfo
+     * @param tid
+     */
+    vm.getTorrentCollectionsInfo = function (tid) {
+      CollectionsService.getTorrentCollections({
+        torrentId: tid
+      }, function (res) {
+        console.log(res);
+        vm.torrentCollectionsInfo = res;
+      });
+    };
+
+    /**
+     * getTorrentAlbumsInfo
+     * @param tid
+     */
+    vm.getTorrentAlbumsInfo = function (tid) {
+      AlbumsService.getTorrentAlbums({
+        torrentId: tid
+      }, function (res) {
+        console.log(res);
+        vm.torrentAlbumsInfo = res;
       });
     };
 

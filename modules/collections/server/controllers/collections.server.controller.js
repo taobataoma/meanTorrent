@@ -12,6 +12,7 @@ var path = require('path'),
   Maker = mongoose.model('Maker'),
   Torrent = mongoose.model('Torrent'),
   Collection = mongoose.model('Collection'),
+  objectId = require('mongodb').ObjectId,
   async = require('async'),
   tmdb = require('moviedb')(config.meanTorrentConfig.tmdbConfig.key),
   traceLogCreate = require(path.resolve('./config/lib/tracelog')).create,
@@ -297,6 +298,21 @@ exports.list = function (req, res) {
       return res.status(422).send(err);
     } else {
       res.json({rows: results[1], total: results[0]});
+    }
+  });
+};
+
+/**
+ * getTorrentCollections
+ * @param req
+ * @param res
+ */
+exports.getTorrentCollections = function (req, res) {
+  Collection.find({
+    torrents: {$in: [req.torrent._id]}
+  }, function (err, coll) {
+    if (coll) {
+      res.json(coll);
     }
   });
 };

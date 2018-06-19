@@ -18,6 +18,7 @@ exports.invokeRolesPolicies = function () {
         roles: ['admin', 'oper'],
         allows: [
           {resources: '/api/albums', permissions: '*'},
+          {resources: '/api/albums/torrent/:torrentId', permissions: '*'},
           {resources: '/api/albums/:albumId', permissions: '*'},
           {resources: '/api/albums/:albumId/insert/:torrentId', permissions: '*'},
           {resources: '/api/albums/:albumId/remove/:torrentId', permissions: '*'},
@@ -29,6 +30,7 @@ exports.invokeRolesPolicies = function () {
         roles: ['user'],
         allows: [
           {resources: '/api/albums', permissions: ['get']},
+          {resources: '/api/albums/torrent/:torrentId', permissions: ['get']},
           {resources: '/api/albums/:albumId', permissions: ['get']}
         ]
       },
@@ -36,6 +38,7 @@ exports.invokeRolesPolicies = function () {
         roles: ['guest'],
         allows: [
           {resources: '/api/albums', permissions: ['get']},
+          {resources: '/api/albums/torrent/:torrentId', permissions: ['get']},
           {resources: '/api/albums/:albumId', permissions: ['get']}
         ]
       }

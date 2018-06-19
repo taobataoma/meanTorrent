@@ -732,6 +732,30 @@
                           callback="onTorrentSubTitleEdited"></span>
                 </dd>
 
+                <div ng-if="vm.torrentCollectionsInfo.length>0">
+                    <dt class="h-line">{{ 'JOINED_COLLECTIONS' | translate}}：</dt>
+                    <dd class="h-line">
+                        <ul class="list-unstyled joined-coll-list">
+                            <li ng-repeat="coll in vm.torrentCollectionsInfo">
+                                <i class="fa fa-sitemap text-mt" aria-hidden="true"></i>
+                                <a ui-sref="collections.view({collectionId: m._id})">{{coll.name}} ({{coll.torrents.length}})</a>
+                            </li>
+                        </ul>
+                    </dd>
+                </div>
+
+                <div ng-if="vm.torrentAlbumsInfo.length>0">
+                    <dt class="h-line">{{ 'JOINED_ALBUMS' | translate}}：</dt>
+                    <dd class="h-line">
+                        <ul class="list-unstyled joined-album-list">
+                            <li ng-repeat="ab in vm.torrentAlbumsInfo">
+                                <i class="fab fa-readme text-mt" aria-hidden="true"></i>
+                                <a ui-sref="albums.view({albumId: ab._id})">{{ab.name}} ({{ab.torrents.length}})</a>
+                            </li>
+                        </ul>
+                    </dd>
+                </div>
+
                 <dt class="h-line">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}：</dt>
                 <dd class="h-line">
                     <span ng-if="!vm.torrentLocalInfo.isAnonymous" user-info="vm.torrentLocalInfo.user" info-name></span>
