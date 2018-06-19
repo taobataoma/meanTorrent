@@ -25,7 +25,8 @@
                         <div class="user-medals-list margin-top-10">
                             <div class="medal">
                                 <div class="medal-item medal-2x" ng-repeat="mt in vm.userMedals"
-                                     uib-tooltip="{{ 'MEDALS.DESC.'+mt.prefix.toUpperCase() | translate}}" tooltip-placement="top-center">
+                                     uib-tooltip-html="vm.getTooltipHtml(mt)"
+                                     tooltip-placement="top-center">
                                     <i class="{{mt.faClass}} medal-bg dark-shadow" style="color:{{mt.bgColor}};"></i>
                                     <i class="fa-inverse {{mt.iconClass}} medal-icon" style="font-size: {{mt.iconSize}}; top: {{mt.iconTop}}"></i>
                                     <span class="fa-inverse medal-header" style="font-size: {{mt.textHeaderSize}}; top: {{mt.textHeaderTop}}" ng-if="mt.hasHeader">

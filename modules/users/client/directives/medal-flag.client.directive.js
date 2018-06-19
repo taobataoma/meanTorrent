@@ -18,7 +18,7 @@
       scope.$watch(attrs.medalFlag, function (s) {
         if (s) {
           var user = s;
-          var number = attrs.medalCount;
+          var number = attrs.medalCount || 0;
           var title = $translate.instant('USER_MEDAL_FLAG', {name: user.displayName});
           var cls = attrs.medalFlagClass;
 

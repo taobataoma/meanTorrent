@@ -6,10 +6,10 @@
     .controller('UserInfoController', UserInfoController);
 
   UserInfoController.$inject = ['$scope', '$rootScope', '$state', 'Authentication', 'userResolve', 'ScoreLevelService', '$timeout', 'MeanTorrentConfig', 'UsersService',
-    'DebugConsoleService', 'NotifycationService', 'localStorageService', 'MedalsService', 'MedalsInfoServices'];
+    'DebugConsoleService', 'NotifycationService', 'localStorageService', 'MedalsService', 'MedalsInfoServices', '$filter', '$translate'];
 
   function UserInfoController($scope, $rootScope, $state, Authentication, user, ScoreLevelService, $timeout, MeanTorrentConfig, UsersService,
-                              mtDebug, NotifycationService, localStorageService, MedalsService, MedalsInfoServices) {
+                              mtDebug, NotifycationService, localStorageService, MedalsService, MedalsInfoServices, $filter, $translate) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -109,6 +109,22 @@
       }, function (medals) {
         vm.userMedals = MedalsInfoServices.mergeMedalsProperty(medals);
       });
+    };
+
+    /**
+     * getTooltipHtml
+     * @param mt
+     * @returns {string|Object}
+     */
+    vm.getTooltipHtml = function (mt) {
+      var h = $translate.instant('MEDALS.DESC.' + mt.prefix.toUpperCase());
+      h += '<br><span class="tooltip-award-at">';
+      h += $translate.instant('MEDALS.AWARD_AT');
+      h += ': ';
+      h += $filter('date')(mt.createdAt, 'yyyy-MM-dd HH:mm:ss');
+      h += '</span';
+
+      return h;
     };
   }
 }());
