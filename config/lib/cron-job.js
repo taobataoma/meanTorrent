@@ -322,19 +322,21 @@ function checkUserAccountIdleStatus() {
 
       User.find({
         status: 'normal',
+        isVip: false,
+        isOper: false,
+        isAdmin: false,
         last_signed: {$lt: Date.now() - signConfig.idle.accountIdleForTime},
-        score: {$lt: safeScore}
+        score: {$lt: safeScore},
+        medal: {$nin: signConfig.idle.unIdleMedalName}
       }).exec(function (err, users) {
         if (users) {
           users.forEach(function (u) {
-            if (!u.isOper && !u.isVip) {
-              u.update({
-                $set: {
-                  status: 'idle',
-                  last_idled: u.last_signed
-                }
-              }).exec();
-            }
+            u.update({
+              $set: {
+                status: 'idle',
+                last_idled: u.last_signed
+              }
+            }).exec();
           });
           mtDebug.debugGreen('checkUserAccountIdleStatus: ' + users.length + ' users!');
         }

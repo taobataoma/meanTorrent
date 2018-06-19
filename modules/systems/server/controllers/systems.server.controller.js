@@ -209,7 +209,7 @@ exports.initExaminationData = function (req, res) {
               isVip: false,
               isOper: false,
               isAdmin: false,
-              medals: {$nin: [examinationConfig.exceptExaminationMedalName]}
+              medals: {$nin: examinationConfig.exceptExaminationMedalName}
             }, {examinationData: exami}, {multi: true}, function (err, num) {
               if (err) {
                 return res.status(422).send({
