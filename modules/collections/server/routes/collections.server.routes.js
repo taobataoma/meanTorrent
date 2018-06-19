@@ -17,6 +17,9 @@ module.exports = function (app) {
     .get(collections.list)
     .post(collections.create);
 
+  app.route('/api/collections/torrent/:torrentId').all(collectionsPolicy.isAllowed)
+    .get(collections.getTorrentCollections);
+
   app.route('/api/collections/:collectionId').all(collectionsPolicy.isAllowed)
     .get(collections.read)
     .put(collections.update)

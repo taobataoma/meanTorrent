@@ -250,6 +250,21 @@ exports.list = function (req, res) {
 };
 
 /**
+ * getTorrentAlbums
+ * @param req
+ * @param res
+ */
+exports.getTorrentAlbums = function (req, res) {
+  Album.find({
+    torrents: {$in: [req.torrent._id]}
+  }, function (err, albums) {
+    if (albums) {
+      res.json(albums);
+    }
+  });
+};
+
+/**
  * Album middleware
  */
 exports.albumByID = function (req, res, next, id) {

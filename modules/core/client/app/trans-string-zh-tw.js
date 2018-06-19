@@ -601,6 +601,8 @@
     ENTER_RESOURCE_TITLE: '&bull; 請輸入資源標題與描述',
     RESOURCE_TITLE: '資源標題',
     RESOURCE_SUB_TITLE: '資源副標題',
+    JOINED_COLLECTIONS: '所屬系列',
+    JOINED_ALBUMS: '所屬專輯',
     SELECT_RESOURCE_IMAGE: '&bull; 請選擇資源封面圖片',
     ENTER_RESOURCE_DETAIL_INFO: '&bull; 請輸入資源詳細資訊',
 

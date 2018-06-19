@@ -77,8 +77,16 @@
           albumId: '@_id'
         },
         interceptor: {response: removeCache}
+      },
+      getTorrentAlbums: {
+        method: 'GET',
+        url: '/api/albums/torrent/:torrentId',
+        isArray: true,
+        params: {
+          torrentId: '@torrentId'
+        },
+        cache: albumsCache
       }
-
     });
 
     return album;

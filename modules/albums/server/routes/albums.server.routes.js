@@ -12,6 +12,9 @@ module.exports = function (app) {
     .get(albums.list)
     .post(albums.create);
 
+  app.route('/api/albums/torrent/:torrentId').all(albumsPolicy.isAllowed)
+    .get(albums.getTorrentAlbums);
+
   app.route('/api/albums/:albumId').all(albumsPolicy.isAllowed)
     .get(albums.read)
     .put(albums.update)

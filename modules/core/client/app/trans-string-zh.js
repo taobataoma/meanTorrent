@@ -601,6 +601,8 @@
     ENTER_RESOURCE_TITLE: '&bull; 请输入资源主副标题',
     RESOURCE_TITLE: '资源主标题',
     RESOURCE_SUB_TITLE: '资源副标题',
+    JOINED_COLLECTIONS: '所属系列',
+    JOINED_ALBUMS: '所属专辑',
     SELECT_RESOURCE_IMAGE: '&bull; 请选择资源封面图片',
     ENTER_RESOURCE_DETAIL_INFO: '&bull; 请输入资源详细信息',
 
