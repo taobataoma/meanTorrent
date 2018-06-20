@@ -360,7 +360,7 @@ module.exports = {
           hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
         },
         {
-          cats: 'workers', name: 'networkAdmin', prefix: 'NETWORK_ADMIN', faClass: 'fa fa-shield', iconClass: 'far fa-user-graduate',
+          cats: 'workers', name: 'networkAdmin', prefix: 'NETWORK_ADMIN', faClass: 'fa fa-shield', iconClass: 'far fa-user-secret',
           hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
         },
         {
@@ -449,7 +449,7 @@ module.exports = {
         },
 
         {
-          cats: 'events', name: 'eventName', prefix: 'EVENT_NAME', faClass: 'fa fa-hexagon',
+          cats: 'events', name: 'closeBeta', prefix: 'CLOSE_BETA', faClass: 'fa fa-hexagon',
           hasHeader: true, hasFooter: true, passHelp: 'admin', enable: true
         }
       ]

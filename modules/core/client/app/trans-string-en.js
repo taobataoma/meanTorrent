@@ -1549,10 +1549,10 @@
         FOR_ONE_YEARS: 'Site One Year Medal',
         FOR_TWO_YEARS: 'Site Two Years Medal',
 
-        EVENT_NAME: 'Special Event Medal'
+        CLOSE_BETA: 'Close beta medal'
       },
       FOOTERSTRING: {
-        ROOT: 'ROOT',
+        ROOT: 'SYS',
         NETWORK_ADMIN: 'NA',
         SUPPORT_ADMIN: 'SA',
         FORUM_ADMIN: 'FA',
@@ -1578,7 +1578,7 @@
         FOR_ONE_YEARS: 'YEARS',
         FOR_TWO_YEARS: 'YEARS',
 
-        EVENT_NAME: '2018'
+        CLOSE_BETA: '2018'
       },
       HEADERSTRING: {
         FOREVER_VIP: 'F',
@@ -1590,7 +1590,7 @@
         FOR_ONE_YEARS: '1',
         FOR_TWO_YEARS: '2',
 
-        EVENT_NAME: 'EVE'
+        CLOSE_BETA: 'BETA'
       }
     },
 

@@ -70,9 +70,12 @@
         if (m.name) {
           arr.push(m);
         } else {
-          arr.push(Object.assign(m, medals.find(function (item) {
+          var im = medals.find(function (item) {
             return item.name === m.medalName;
-          })));
+          });
+          if (im) {
+            arr.push(Object.assign(m, im));
+          }
         }
       });
       arr = fillMedalsProperty(arr);
@@ -114,8 +117,8 @@
             m.textFooterSize = '0.2em';
             break;
           case 'events':
-            m.textHeaderTop = '1.6em';
-            m.textHeaderSize = '0.3em';
+            m.textHeaderTop = '1.8em';
+            m.textHeaderSize = '0.25em';
             m.textFooterBottom = '0.5em';
             m.textFooterSize = '0.2em';
             break;

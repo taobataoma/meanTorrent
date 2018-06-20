@@ -1549,10 +1549,10 @@
         FOR_ONE_YEARS: '網站1週年紀念勳章',
         FOR_TWO_YEARS: '網站2週年紀念勳章',
 
-        EVENT_NAME: '特別活動勳章'
+        CLOSE_BETA: '網站內測勳章'
       },
       FOOTERSTRING: {
-        ROOT: '站長',
+        ROOT: '系統',
         NETWORK_ADMIN: '站長',
         SUPPORT_ADMIN: '客服',
         FORUM_ADMIN: '論壇',
@@ -1578,7 +1578,7 @@
         FOR_ONE_YEARS: '週年',
         FOR_TWO_YEARS: '週年',
 
-        EVENT_NAME: '2018'
+        CLOSE_BETA: '2018'
       },
       HEADERSTRING: {
         FOREVER_VIP: '終',
@@ -1590,7 +1590,7 @@
         FOR_ONE_YEARS: '1',
         FOR_TWO_YEARS: '2',
 
-        EVENT_NAME: '活動'
+        CLOSE_BETA: '內測'
       }
     },
 

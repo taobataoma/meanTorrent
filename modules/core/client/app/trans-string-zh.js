@@ -1549,10 +1549,10 @@
         FOR_ONE_YEARS: '网站1周年纪念勋章',
         FOR_TWO_YEARS: '网站2周年纪念勋章',
 
-        EVENT_NAME: '特别活动勋章'
+        CLOSE_BETA: '站点内测勋章'
       },
       FOOTERSTRING: {
-        ROOT: '站长',
+        ROOT: '系统',
         NETWORK_ADMIN: '站长',
         SUPPORT_ADMIN: '客服',
         FORUM_ADMIN: '论坛',
@@ -1578,7 +1578,7 @@
         FOR_ONE_YEARS: '周年',
         FOR_TWO_YEARS: '周年',
 
-        EVENT_NAME: '2018'
+        CLOSE_BETA: '2018'
       },
       HEADERSTRING: {
         FOREVER_VIP: '终',
@@ -1590,7 +1590,7 @@
         FOR_ONE_YEARS: '1',
         FOR_TWO_YEARS: '2',
 
-        EVENT_NAME: '活动'
+        CLOSE_BETA: '内测'
       }
     },
 
