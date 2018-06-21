@@ -2105,7 +2105,7 @@
     },
 
     SITE_NOTICE: {
-      GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快乐 2018**, **{{site_name}}** 新年促销活动已准备就绪, 促销活动类型为 <span class="sale_key">**{{sale_value}}**</span> , 活动将开始于 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 并持续 <span class="sale_key">**{{sale_days}}**</span> 天, 结束于 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 并感谢所有会员用户一直以来给予我们的帮助与支持!',
+      GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: 本站内测已一月有余，在管理组和各位小伙伴的积极参与下，我们决定本月26日正式上线运营，我们对参与内测的部分用户进行了奖励，请移步查看详细的 [开站公告及内测奖励名单](https://mine.pt/forums/5ae2f216b390dd39dd1287e0/5b2a7b7e7824db1ffb98a628)，**{{site_name}}** 在此公告期内实行全站免费，25号删档，26上午8点准时开站并逐步发放奖品，请大家奔走相告，并感谢所有用户一直以来给予我们的帮助与支持!',
       EXAMINATION_NOTICE: '### 重要通知! \n :radio: **{{site_name}}** 将从 **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** 到 **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}** 进行一次新的增量考核, 增量数据要求: 上传 **{{data_upload | bytes:2}}**, 下载 **{{data_download | bytes:2}}**, 积分 **{{data_score}}**, 请各位会员安排好自已的时间，并祝您顺利通过这次考核. 所有 **vip** 用户以及最近 **{{join_days}}** 天内注册的新用户免考, 考核未达标的用户帐号将会被禁止.<small>[更多详情请看这里]({{detail_url}}).</small>',
       EXAMINATION_STATUS: '### 考核状态信息: \n <dl class="dl-horizontal"><dt>考核时间区间:</dt><dd>{{examination_start_at | date: "yyyy-MM-dd HH:mm"}} - {{examination_end_at | date: "yyyy-MM-dd HH:mm"}}</dd><dt>增量上传数据:</dt><dd>{{data_upload | bytes:2}}, 已完成 {{finished_upload | bytes:2}}</dd><dt>增量下载数据:</dt><dd>{{data_download | bytes:2}}, 已完成 {{finished_download | bytes:2}}</dd><dt>增量积分:</dt><dd>{{data_score | score: 2}}, 已完成 {{finished_score | score: 2}}</dd><dt>当前考核状态:</dt><dd>{{data_status | translate}}</dd><dt></dt><dd><small>[更多详情]({{detail_url}})</small></dd></dl>',
       EXAMINATION_FINISHED: '已通过',
