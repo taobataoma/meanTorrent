@@ -127,8 +127,8 @@
     </td>
     <td class="col-md-1 td-v-middle text-center" ng-class="vm.state.current.name.startsWith('admin.torrents') ? 'td-admin-cmd' : 'td-uploader'">
         <div ng-if="vm.showByUser()">
-            <span ng-if="!item.isAnonymous" user-info="item.user" info-name></span>
-            <span ng-if="item.isAnonymous">{{ 'ANONYMOUS' | translate }}</span>
+            <span ng-if="!item.isAnonymous || vm.user.isOper" user-info="item.user" info-name></span>
+            <span ng-if="item.isAnonymous && !vm.user.isOper">{{ 'ANONYMOUS' | translate }}</span>
 
             <div maker-info="item.maker"></div>
             <!--<span vip-flag="item.user"></span>-->
