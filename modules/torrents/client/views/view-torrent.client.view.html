@@ -758,8 +758,8 @@
 
                 <dt class="h-line">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}：</dt>
                 <dd class="h-line">
-                    <span ng-if="!vm.torrentLocalInfo.isAnonymous" user-info="vm.torrentLocalInfo.user" info-name></span>
-                    <span ng-if="vm.torrentLocalInfo.isAnonymous">{{ 'ANONYMOUS' | translate }}</span>
+                    <span ng-if="!vm.torrentLocalInfo.isAnonymous || vm.user.isOper" user-info="vm.torrentLocalInfo.user" info-name></span>
+                    <span ng-if="vm.torrentLocalInfo.isAnonymous && !vm.user.isOper">{{ 'ANONYMOUS' | translate }}</span>
                     <span maker-info="vm.torrentLocalInfo.maker"></span>
                     <!--<span message-to="vm.torrentLocalInfo.user" to-class="message-to-icon"></span>-->
                     <span>&nbsp;{{'MESSAGES_FIELD.INFO_SEND_AT' | translate}}: {{vm.torrentLocalInfo.createdat | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
