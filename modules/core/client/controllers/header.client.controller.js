@@ -32,6 +32,7 @@
     vm.followMenu = menuService.getMenu('mt-user').items[2];
     vm.inviteMenu = menuService.getMenu('mt-invite').items[0];
     vm.dataCenterMenu = menuService.getMenu('mt-data-log');
+    vm.favoritesMenu = menuService.getMenu('mt-favorite');
     vm.authentication = Authentication;
     vm.isCollapsed = false;
     vm.menu = menuService.getMenu('topbar');
@@ -298,7 +299,6 @@
         MailTicketsService.getOpenedAllCount(function (data) {
           vm.ticketsCount = data.ticketsOpenedCount;
 
-          console.log(data);
           var ele = $('.header-dot-class-admin');
           if (ele) {
             if (vm.newTorrentCount <= 0 && vm.ticketsCount <= 0) {

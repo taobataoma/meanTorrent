@@ -1,4 +1,4 @@
-<section class="container padding-top-10" ng-controller="TorrentsController as vm" ng-init="vm.getResourceTopInfo();vm.torrentBuildPager();">
+<section class="container padding-top-10" ng-controller="TorrentsController as vm" ng-init="vm.getResourceTopInfo();vm.torrentBuildPager(); vm.getMyFavorites();">
     <div class="row" style="padding: 0 10px;">
         <div ng-repeat="item in vm.listTopInfo">
             <div data-ng-if="$index != 0 && $index % 2 == 0" class="clearfix visible-xs-block"></div>

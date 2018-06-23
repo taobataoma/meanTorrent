@@ -22,6 +22,7 @@ var path = require('path'),
   Forum = mongoose.model('Forum'),
   Topic = mongoose.model('Topic'),
   Request = mongoose.model('Request'),
+  Favorite = mongoose.model('Favorite'),
   objectId = require('mongodb').ObjectId,
   sharp = require('sharp'),
   fs = require('fs'),
@@ -1983,106 +1984,140 @@ exports.makeRss = function (req, res) {
   if (!req.passkeyuser) {
     res.end('user is not authorized');
   } else {
-    if (vip && !req.passkeyuser.isVip && !req.passkeyuser.isOper) {
-      res.end('You are not vip user!');
-    } else {
+    if (req.query.favorite === 'true') {
       if (req.query.limit !== undefined) {
         limit = parseInt(req.query.limit, 10);
       }
-      if (req.query.torrent_type !== undefined) {
-        stype = req.query.torrent_type;
-      }
-      if (req.query.torrent_release !== undefined) {
-        release = req.query.torrent_release;
-      }
-      if (req.query.torrent_hnr !== undefined) {
-        hnr = (req.query.torrent_hnr === 'true');
-      }
-      if (req.query.torrent_sale !== undefined) {
-        sale = (req.query.torrent_sale === 'true');
-      }
-
-      if (req.query.torrent_tags !== undefined) {
-        var tagsS = req.query.torrent_tags + '';
-        var tagsT = tagsS.split(',');
-
-        tagsT.forEach(function (it) {
-          tagsA.push(it + '');
-        });
-      }
-      if (req.query.keys !== undefined && req.query.keys.length > 0) {
-        var keysS = req.query.keys + '';
-        var keysT = keysS.split(' ');
-
-        keysT.forEach(function (it) {
-          if (!isNaN(it)) {
-            if (it > 1900 && it < 2050) {
-              release = it;
-            }
-          } else {
-            var ti = new RegExp(it, 'i');
-            keysA.push(ti);
-          }
-        });
-      }
-
-      var condition = {};
-      condition.torrent_status = status;
-      if (stype !== 'all') {
-        condition.torrent_type = stype;
-      }
-      if (hnr === true) {
-        condition.torrent_hnr = true;
-      }
-      if (sale === true) {
-        condition.torrent_sale_status = {
-          $ne: 'U1/D1'
-        };
-      }
-      if (vip === true) {
-        condition.torrent_vip = true;
-      } else {
-        condition.torrent_vip = false;
-      }
-
-      if (tagsA.length > 0) {
-        condition.torrent_tags = {$all: tagsA};
-      }
-      if (release !== undefined) {
-        condition['resource_detail_info.release_date'] = release;
-      }
-      if (keysA.length > 0) {
-        condition.$or = [
-          {torrent_filename: {'$all': keysA}},
-          {'resource_detail_info.title': {'$all': keysA}},
-          {'resource_detail_info.subtitle': {'$all': keysA}},
-          {'resource_detail_info.name': {'$all': keysA}},
-          {'resource_detail_info.original_title': {'$all': keysA}},
-          {'resource_detail_info.original_name': {'$all': keysA}}
-        ];
-      }
-
-      mtDebug.debugGreen(JSON.stringify(condition));
-      mtDebug.debugGreen(sort);
-
-
-      Torrent.find(condition)
-        .sort(sort)
-        .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
-        .populate('maker', 'name')
+      Favorite.find({
+        user: req.user._id
+      }, 'torrent')
+        .sort('-createdAt')
+        .populate({
+          path: 'torrent',
+          select: populateStrings.populate_torrent_string,
+          populate: [{
+            path: 'user',
+            select: 'username displayName profileImageURL isVip score uploaded downloaded'
+          }, {
+            path: 'maker',
+            select: 'name'
+          }]
+        })
         .limit(limit)
-        .exec(function (err, torrents) {
+        .exec(function (err, favs) {
           if (err) {
             return res.status(422).send({
               message: errorHandler.getErrorMessage(err)
             });
           } else {
-            mtRSS.sendRSS(req, res, torrents);
+            var arrFavs = favs.map(function (f) {
+              return f.torrent;
+            });
+            mtRSS.sendRSS(req, res, arrFavs);
           }
         });
+
+    } else {
+      if (vip && !req.passkeyuser.isVip && !req.passkeyuser.isOper) {
+        res.end('You are not vip user!');
+      } else {
+        if (req.query.limit !== undefined) {
+          limit = parseInt(req.query.limit, 10);
+        }
+        if (req.query.torrent_type !== undefined) {
+          stype = req.query.torrent_type;
+        }
+        if (req.query.torrent_release !== undefined) {
+          release = req.query.torrent_release;
+        }
+        if (req.query.torrent_hnr !== undefined) {
+          hnr = (req.query.torrent_hnr === 'true');
+        }
+        if (req.query.torrent_sale !== undefined) {
+          sale = (req.query.torrent_sale === 'true');
+        }
+
+        if (req.query.torrent_tags !== undefined) {
+          var tagsS = req.query.torrent_tags + '';
+          var tagsT = tagsS.split(',');
+
+          tagsT.forEach(function (it) {
+            tagsA.push(it + '');
+          });
+        }
+        if (req.query.keys !== undefined && req.query.keys.length > 0) {
+          var keysS = req.query.keys + '';
+          var keysT = keysS.split(' ');
+
+          keysT.forEach(function (it) {
+            if (!isNaN(it)) {
+              if (it > 1900 && it < 2050) {
+                release = it;
+              }
+            } else {
+              var ti = new RegExp(it, 'i');
+              keysA.push(ti);
+            }
+          });
+        }
+
+        var condition = {};
+        condition.torrent_status = status;
+        if (stype !== 'all') {
+          condition.torrent_type = stype;
+        }
+        if (hnr === true) {
+          condition.torrent_hnr = true;
+        }
+        if (sale === true) {
+          condition.torrent_sale_status = {
+            $ne: 'U1/D1'
+          };
+        }
+        if (vip === true) {
+          condition.torrent_vip = true;
+        } else {
+          condition.torrent_vip = false;
+        }
+
+        if (tagsA.length > 0) {
+          condition.torrent_tags = {$all: tagsA};
+        }
+        if (release !== undefined) {
+          condition['resource_detail_info.release_date'] = release;
+        }
+        if (keysA.length > 0) {
+          condition.$or = [
+            {torrent_filename: {'$all': keysA}},
+            {'resource_detail_info.title': {'$all': keysA}},
+            {'resource_detail_info.subtitle': {'$all': keysA}},
+            {'resource_detail_info.name': {'$all': keysA}},
+            {'resource_detail_info.original_title': {'$all': keysA}},
+            {'resource_detail_info.original_name': {'$all': keysA}}
+          ];
+        }
+
+        mtDebug.debugGreen(JSON.stringify(condition));
+        mtDebug.debugGreen(sort);
+
+
+        Torrent.find(condition)
+          .sort(sort)
+          .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
+          .populate('maker', 'name')
+          .limit(limit)
+          .exec(function (err, torrents) {
+            if (err) {
+              return res.status(422).send({
+                message: errorHandler.getErrorMessage(err)
+              });
+            } else {
+              mtRSS.sendRSS(req, res, torrents);
+            }
+          });
+      }
     }
   }
-
 };
 
 /**

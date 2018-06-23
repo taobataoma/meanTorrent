@@ -1,0 +1,84 @@
+<section ng-controller="FavoritesController as vm" ng-init="vm.initTopBackground(); vm.buildPager();">
+    <div class="backdrop attachment-scroll">
+        <div class="filter">
+            <div class="container favorites-view-top">
+                <div class="row margin-bottom-10">
+                    <div class="col-sm-12 favorite-title">
+                        <h3 class="margin-bottom-10" translate="MENU_MY_FAVORITE"></h3>
+                    </div>
+                    <div class="col-sm-12">
+                        <ul class="list-unstyled list-inline">
+                            <li><i class="fa fa-list text-mt"> {{'ALBUMS.FILES_NUMBERS' | translate}}: {{vm.filterLength}}</i>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="row margin-bottom-20">
+                    <div class="col-sm-12">
+                        <div class="favorite-overview" ng-bind-html="vm.getFavoritesOverviewContent()"></div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="favorite-rss-url" ng-init="vm.makeRSSAddress()">
+                            <i class="fa fa-rss-square color-mt-base" aria-hidden="true"
+                               uib-tooltip="{{ 'DESC_MAKE_RSS_URL' | translate}}"
+                               mt-scale-by-click="{scale: 2, duration: '.3s'}"
+                               mt-copy-to-clipboard="{{vm.rssUrl}}">
+                            </i>
+                            <a href="{{vm.rssUrl}}" target="_blank">{{vm.rssUrl}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container padding-top-20 padding-bottom-20">
+        <div class="row" id="top_of_favorites_list">
+            <div class="col-sm-12 text-center" ng-if="vm.resultMsg">
+                <div class="jumbotron">
+                    <i class="fa fa-users fa-2x text-muted" aria-hidden="true"></i>
+                    <h3>{{vm.resultMsg | translate}}</h3>
+                </div>
+            </div>
+            <div class="col-sm-12 torrent-list" ng-if="!vm.resultMsg">
+                <div class="pagination-div-top">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover tb-v-middle">
+                        <thead>
+                            <tr>
+                                <th class="td-width-0"></th>
+                                <th>{{ 'TABLE_FIELDS.INFO' | translate}}</th>
+                                <th>{{ 'TABLE_FIELDS.VOTES' | translate}}</th>
+                                <th class="text-center">{{ 'TABLE_FIELDS.LIFETIME' | translate}}</th>
+                                <th class="text-center">{{ 'TABLE_FIELDS.SIZE' | translate}}</th>
+                                <th>
+                                    <abbr title="{{ 'TABLE_FIELDS.ABBR_SEEDS_LEECHERS_FINISHED' | translate}}" class="initialism">
+                                        {{ 'TABLE_FIELDS.SEEDS_LEECHERS_FINISHED' | translate}}
+                                    </abbr>
+                                </th>
+                                <th class="text-center">{{ 'TABLE_FIELDS.PUBLISHER' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody torrent-list-item parent="vm" item="item.torrent" favorite-item="item" list="vm.pagedItems" ng-repeat="item in vm.pagedItems"></tbody>
+                    </table>
+                </div>
+                <div class="pagination-div-bottom">
+                    <ul uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.pageChanged()"
+                        first-text="{{ 'PAGE_TEXT_FIRST' | translate}}" previous-text="{{ 'PAGE_TEXT_PREVIOUS' | translate}}"
+                        next-text="{{ 'PAGE_TEXT_NEXT' | translate}}" last-text="{{ 'PAGE_TEXT_LAST' | translate}}">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

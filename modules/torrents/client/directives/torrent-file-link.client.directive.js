@@ -78,7 +78,7 @@
             var txt = $translate.instant('TORRENT_LABEL_LINK');
             var title = $translate.instant('COPY_LINK_TO_CLIPBOARD');
             var cls = attrs.infoClass;
-            var e = angular.element('<span class="label" ng-click="$event.stopPropagation();" mt-copy-to-clipboard="' + link + '">' + txt + '</span>');
+            var e = angular.element('<span class="label" ng-click="$event.stopPropagation();" mt-copy-to-clipboard="' + link + '"><i class="fa fa-copy margin-right-3"></i>' + txt + '</span>');
 
             if (e) {
               e.addClass(cls ? cls : '');

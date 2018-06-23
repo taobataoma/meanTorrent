@@ -54,7 +54,9 @@ body {
     white-space: nowrap;
     overflow: hidden;
     box-sizing: border-box;
-    max-width: 180px;
+    @media (min-width: @screen-sm-min) {
+        max-width: 180px;
+    }
     span {
         display: inline-block;
         padding-left: 100%; /* show the marquee just outside the paragraph */
@@ -965,6 +967,7 @@ body {
     left: 0;
     width: ~"calc(100% - 11px)";
     height: 100%;
+    max-height: 100px;
     .far {
         display: none;
         position: relative;

@@ -6,10 +6,10 @@
     .controller('TorrentsController', TorrentsController);
 
   TorrentsController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'Notification', 'TorrentsService', 'getStorageLangService',
-    'MeanTorrentConfig', 'DownloadService', '$window', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices', 'moment'];
+    'MeanTorrentConfig', 'DownloadService', '$window', 'DebugConsoleService', 'TorrentGetInfoServices', 'ResourcesTagsServices', 'moment', 'FavoritesService'];
 
   function TorrentsController($scope, $state, $translate, $timeout, Authentication, Notification, TorrentsService, getStorageLangService, MeanTorrentConfig,
-                              DownloadService, $window, mtDebug, TorrentGetInfoServices, ResourcesTagsServices, moment) {
+                              DownloadService, $window, mtDebug, TorrentGetInfoServices, ResourcesTagsServices, moment, FavoritesService) {
     var vm = this;
     vm.DLS = DownloadService;
     vm.TGI = TorrentGetInfoServices;
@@ -121,6 +121,32 @@
           });
         });
       }
+    };
+
+    /**
+     * getMyFavorites
+     */
+    vm.getMyFavorites = function () {
+      FavoritesService.query(function (res) {
+        mtDebug.info(res);
+        vm.myFavoritesList = res.rows;
+      });
+    };
+
+    /**
+     * inMyFavorites
+     * @param t
+     * @returns {boolean}
+     */
+    vm.inMyFavorites = function (t) {
+      var exist = false;
+      angular.forEach(vm.myFavoritesList, function (fav) {
+        if (fav.torrent._id === t._id) {
+          exist = true;
+        }
+      });
+
+      return exist;
     };
 
     /**

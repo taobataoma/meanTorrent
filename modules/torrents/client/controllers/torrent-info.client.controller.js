@@ -194,7 +194,6 @@
       CollectionsService.getTorrentCollections({
         torrentId: tid
       }, function (res) {
-        console.log(res);
         vm.torrentCollectionsInfo = res;
       });
     };
@@ -207,7 +206,6 @@
       AlbumsService.getTorrentAlbums({
         torrentId: tid
       }, function (res) {
-        console.log(res);
         vm.torrentAlbumsInfo = res;
       });
     };

@@ -93,6 +93,7 @@
     MENU_MY_DATA_CENTER: '数据中心',
     MENU_ACCOUNT_STATUS: '帐户状态',
     MENU_TORRENTS_STATUS: '种子状态',
+    MENU_MY_FAVORITE: '我的{{"FAVORITES.NAME" | translate}}',
     EDIT_PROFILE: '修改个人信息',
     EDIT_PROFILE_PIC: '修改个人头像',
     EDIT_SIGNATURE: '修改论坛签名',
@@ -1485,6 +1486,20 @@
       }
     },
 
+    // favorites
+    FAVORITES: {
+      NAME: '矿车',
+      DESC: '* 您的{{"FAVORITES.NAME" | translate}}相当于您的收藏夹，您只需要在种子列表页点击 [加入] 按钮将您喜欢的资源加入进来，系统会自动为您生一个RSS连接地址，如果您把下面这个地址加入到您的下载客户端并设置为自动下载，您的客户端会定时查询您的收藏并自动开始下载最新加入的种子。\n* 为节省系统资源，RSS只会向客户端返回最近加入的 {{rssNumber}} 条收藏记录，但服务器会保留您所有收藏条目，为您在系统更新后或数据丢失后的重新下载提供方便。请注意，此RSS地址包含您个人的敏感信息，请不要共享给其它人。',
+      TORRENT_TO_FAVORITE_TITLE: '添加种子到您的{{"FAVORITES.NAME" | translate}}',
+      TORRENT_REMOVE_FAVORITE_TITLE: '移出种子从您的{{"FAVORITES.NAME" | translate}}',
+      ADD_FAVORITE_SUCCESSFULLY: '添加种子到您的{{"FAVORITES.NAME" | translate}}成功',
+      ADD_FAVORITE_ERROR: '添加种子到您的{{"FAVORITES.NAME" | translate}}失败',
+      REMOVE_FAVORITE_SUCCESSFULLY: '从您的 {{"FAVORITES.NAME" | translate}} 中移除种子成功',
+      REMOVE_FAVORITE_ERROR: '从您的 {{"FAVORITES.NAME" | translate}} 中移除种子失败',
+      FAVORITES_IS_LOADING: '正在加载您的{{"FAVORITES.NAME" | translate}} ...',
+      FAVORITES_IS_EMPTY: '您的{{"FAVORITES.NAME" | translate}}里还没有任何资源'
+    },
+
     // medals wall
     MEDALS: {
       MEDALS_TITLE: '勋章墙',
@@ -2002,7 +2017,8 @@
       MOVE_TORRENT_FILE_ERROR: '种子文件移动错误，请不要快速重复进行提交操作或者上传的种子文件已丢失',
       YOU_ALREADY_CHECK_IN: '您今天已经签过到了，不能重复签到',
       USER_ALREADY_HAS_THIS_MEDAL: '该用户已经拥有了这枚勋章',
-      USER_HAS_NOT_THIS_MEDAL: '该用户还没有这枚勋章'
+      USER_HAS_NOT_THIS_MEDAL: '该用户还没有这枚勋章',
+      TORRENT_ALREADY_IN_FAVORITES: '该种子已经存在于你的收藏夹'
     },
 
     //server message string, content string support markdown and emoji

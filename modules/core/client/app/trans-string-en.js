@@ -93,6 +93,7 @@
     MENU_MY_DATA_CENTER: 'Data center',
     MENU_ACCOUNT_STATUS: 'Account Status',
     MENU_TORRENTS_STATUS: 'Torrents Status',
+    MENU_MY_FAVORITE: 'My {{"FAVORITES.NAME" | translate}}',
     EDIT_PROFILE: 'Edit Profile',
     EDIT_PROFILE_PIC: 'Edit Profile Picture',
     EDIT_SIGNATURE: 'Edit Signature Of Forum',
@@ -1485,6 +1486,20 @@
       }
     },
 
+    // favorites
+    FAVORITES: {
+      NAME: 'Favorites',
+      DESC: '* Your {{"FAVORITES.NAME" | translate}} is equivalent to your favorites, You only need click the Join button on the torrents list page to add your favorite resources, the system will automatically make an RSS connection address following, you can add this address into your download client and is set to download automatically, Your client will periodically query your collection and automatically start downloading the latest added torrents. \n* To save system resources, RSS will only return the most recently added {{rssNumber}} favorites to the client, but the server will keep all your favorites entries for you to facilitate the re-download after system update or data loss. Please note that this RSS address contains your personal sensitive information, please do not share it with others.',
+      TORRENT_TO_FAVORITE_TITLE: 'Add this torrent to your {{"FAVORITES.NAME" | translate}}',
+      TORRENT_REMOVE_FAVORITE_TITLE: 'Remove this torrent from your {{"FAVORITES.NAME" | translate}}',
+      ADD_FAVORITE_SUCCESSFULLY: 'Add torrent to your {{"FAVORITES.NAME" | translate}} successfully',
+      ADD_FAVORITE_ERROR: 'Add torrent to your {{"FAVORITES.NAME" | translate}} failed',
+      REMOVE_FAVORITE_SUCCESSFULLY: 'Remove torrent from your {{"FAVORITES.NAME" | translate}} successfully',
+      REMOVE_FAVORITE_ERROR: 'Remove torrent from your {{"FAVORITES.NAME" | translate}} failed',
+      FAVORITES_IS_LOADING: 'Loading data of your {{"FAVORITES.NAME" | translate}} ...',
+      FAVORITES_IS_EMPTY: 'Your {{"FAVORITES.NAME" | translate}} is empty'
+    },
+
     // medals wall
     MEDALS: {
       MEDALS_TITLE: 'Medals Wall',
@@ -2002,7 +2017,8 @@
       MOVE_TORRENT_FILE_ERROR: 'The torrent file was moved incorrectly. Please do not repeat the submit operation quickly or the uploaded torrent file is missing.',
       YOU_ALREADY_CHECK_IN: 'You already checked in today',
       USER_ALREADY_HAS_THIS_MEDAL: 'This user already has this medal',
-      USER_HAS_NOT_THIS_MEDAL: 'This user has not this medal'
+      USER_HAS_NOT_THIS_MEDAL: 'This user has not this medal',
+      TORRENT_ALREADY_IN_FAVORITES: 'This torrent already in your favorite list'
     },
 
     //server message string, content string support markdown and emoji

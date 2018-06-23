@@ -93,6 +93,7 @@
     MENU_MY_DATA_CENTER: '數據中心',
     MENU_ACCOUNT_STATUS: '帳戶狀態',
     MENU_TORRENTS_STATUS: '種子狀態',
+    MENU_MY_FAVORITE: '我的{{"FAVORITES.NAME" | translate}}',
     EDIT_PROFILE: '修改個人資訊',
     EDIT_PROFILE_PIC: '修改個人頭像',
     EDIT_SIGNATURE: '修改論壇簽名',
@@ -1485,6 +1486,20 @@
       }
     },
 
+    // favorites
+    FAVORITES: {
+      NAME: '礦車',
+      DESC: '* 您的{{"FAVORITES.NAME" | translate}}相當於您的收藏夾，您只需要在種子列表頁點擊 [加入] 按鈕將您喜歡的資源加入進來，系統會自動為您生一個RSS連接地址，如果您把下面這個地址加入到您的下載客戶端並設置為自動下載，您的客戶端會定時查詢您的收藏並自動開始下載最新加入的種子。 \n* 為節省系統資源，RSS只會向客戶端返回最近加入的 {{rssNumber}} 條收藏記錄，但服務器會保留您所有收藏條目，為您在系統更新後或數據丟失後的重新下載提供方便。請注意，此RSS地址包含您個人的敏感信息，請不要共享給其它人。',
+      TORRENT_TO_FAVORITE_TITLE: '添加種子到到您的{{"FAVORITES.NAME" | translate}}',
+      TORRENT_REMOVE_FAVORITE_TITLE: '移出種子從您的{{"FAVORITES.NAME" | translate}}',
+      ADD_FAVORITE_SUCCESSFULLY: '添加種子到您的{{"FAVORITES.NAME" | translate}}成功',
+      ADD_FAVORITE_ERROR: '添加種子到您的{{"FAVORITES.NAME" | translate}}失敗',
+      REMOVE_FAVORITE_SUCCESSFULLY: '從您的 {{"FAVORITES.NAME" | translate}} 中移除種子成功',
+      REMOVE_FAVORITE_ERROR: '從您的 {{"FAVORITES.NAME" | translate}} 中移除種子失敗',
+      FAVORITES_IS_LOADING: '正在加載您的{{"FAVORITES.NAME" | translate}} ...',
+      FAVORITES_IS_EMPTY: '您的{{"FAVORITES.NAME" | translate}}裡還沒有任何資源'
+    },
+
     // medals wall
     MEDALS: {
       MEDALS_TITLE: '勳章牆',
@@ -2002,7 +2017,8 @@
       MOVE_TORRENT_FILE_ERROR: '種子檔案移動錯誤，請不要快速重複進行提交操作或者上傳的種子檔案已丟失',
       YOU_ALREADY_CHECK_IN: '您今天已經完成簽到了，不能重復簽到喔！',
       USER_ALREADY_HAS_THIS_MEDAL: '該用戶已經擁有了這枚勳章',
-      USER_HAS_NOT_THIS_MEDAL: '該用戶還沒有這枚勳章'
+      USER_HAS_NOT_THIS_MEDAL: '該用戶還沒有這枚勳章',
+      TORRENT_ALREADY_IN_FAVORITES: '該種子已經存在於你的收藏夾'
     },
 
     //server message string, content string support markdown and emoji

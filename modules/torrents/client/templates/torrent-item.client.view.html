@@ -92,6 +92,12 @@
 
                     <span torrent-file-link-label="item" torrent-user="vm.user" info-class="label label-torrent-link"></span>
 
+                    <span torrent-to-favorite-label="item" torrent-user="vm.user" ng-click="vm.addTorrentToFavorite(item); $event.stopPropagation();"
+                          info-class="label label-torrent-link" ng-if="!vm.state.current.name.startsWith('favorites') && !parent.inMyFavorites(item)"></span>
+
+                    <span torrent-remove-from-favorite-label="item" torrent-user="vm.user" ng-click="vm.removeTorrentFromFavorite(item); $event.stopPropagation();"
+                          info-class="label label-torrent-link" ng-if="vm.state.current.name.startsWith('favorites')"></span>
+
                     <span class="label upload-by" ng-if="vm.showByLabel()">by:
                         <span ng-show="item.user.displayName">
                             <span user-info="item.user" info-name></span> <span maker-info="item.maker"></span>

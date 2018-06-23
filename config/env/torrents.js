@@ -708,6 +708,17 @@ module.exports = {
     },
 
     /**
+     * @favorites
+     *
+     * settings of my favorites
+     *
+     * @name:                         favorites name string of $translate
+     */
+    favorites: {
+      name: 'FAVORITES.FAVORITES_NAME'
+    },
+
+    /**
      * @inputLength
      *
      * input string length limit settings
@@ -1599,6 +1610,7 @@ module.exports = {
       topicsSearchPerPage: 20,
       torrentsPerPage: 20,
       torrentsCommentsPerPage: 20,
+      torrentsFavoritesPerPage: 20,
       makeGroupTorrentsPerPage: 20,
       albumTorrentsPerPage: 20,
       tracesPerPage: 30,
