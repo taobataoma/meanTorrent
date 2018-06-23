@@ -93,6 +93,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 1. Add a configure item to setting whether ban the users inviter when the user was banned. and you can setting whether ban the inviter when the inviter is a vip user.
 1. Check the un-reviewed new torrents and opened tickets status and show in top menu item.  
 1. New module of **Medal Center**, the medal is the identity of the users identity and contribution to the site.
+1. New module of **Favorites**, user can add any torrent into favorites and use the RSS url to download automatic.
 
 #### Chat room feature:
 1. Users name list
