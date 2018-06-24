@@ -270,6 +270,14 @@
               ele.css('display', 'block');
               if (vm.newTorrentCount > 0) {
                 ele.addClass('new-torrent');
+              } else {
+                ele.removeClass('new-torrent');
+              }
+
+              if (vm.ticketsCount > 0) {
+                ele.addClass('opened-tickets');
+              } else {
+                ele.removeClass('opened-tickets');
               }
             }
           }
@@ -280,6 +288,8 @@
               badgeEle.css('display', 'block');
               badgeEle.addClass('badge_info');
               badgeEle.html(vm.newTorrentCount);
+            } else {
+              badgeEle.css('display', 'none');
             }
           }
         });
@@ -305,8 +315,16 @@
               ele.css('display', 'none');
             } else {
               ele.css('display', 'block');
+              if (vm.newTorrentCount > 0) {
+                ele.addClass('new-torrent');
+              } else {
+                ele.removeClass('new-torrent');
+              }
+
               if (vm.ticketsCount > 0) {
                 ele.addClass('opened-tickets');
+              } else {
+                ele.removeClass('opened-tickets');
               }
             }
           }
@@ -317,6 +335,8 @@
               badgeEle.css('display', 'block');
               badgeEle.addClass('badge_danger');
               badgeEle.html(vm.ticketsCount);
+            } else {
+              badgeEle.css('display', 'none');
             }
           }
         });
