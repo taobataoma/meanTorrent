@@ -61,7 +61,7 @@
 
         <div ng-show="vm.selectedType" ng-include="vm.getIncludeUploadTemplateID(vm.selectedType);"></div>
 
-        <div class="row margin-bottom-40 margin-top-50" ng-show="vm.showAgreeAndSubmit || vm.customTorrent.detail">
+        <div class="row margin-bottom-40 margin-top-40" ng-show="vm.showAgreeAndSubmit || vm.customTorrent.detail">
             <div class="col-xs-12">
                 <legend class="small-legend" translate="SELECT_MAKER_GROUP"></legend>
                 <div class="col-xs-12 col-sm-6 col-md-4">
@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="col-md-12 col-sm-12 col-xs-12 margin-top-50"
+            <div class="col-md-12 col-sm-12 col-xs-12 margin-top-40"
                  ng-if="vm.selectedTypeRole(vm.selectedType)=='user' && (vm.user.isVip || vm.user.makers.length > 0 || vm.user.isOper)">
                 <legend class="small-legend" translate="SELECT_VIP_PROPERTY"></legend>
                 <div class="col-xs-12">
@@ -98,7 +98,7 @@
                 </div>
             </div>
 
-            <div class="col-md-12 col-sm-12 col-xs-12 margin-top-50">
+            <div class="col-md-12 col-sm-12 col-xs-12 margin-top-40">
                 <legend class="small-legend" translate="TORRENTS_SUBMIT_UPLOAD"></legend>
                 <div class="col-sm-6 col-sm-offset-3 text-center">
                     <label class="checkbox text-uppercase">
