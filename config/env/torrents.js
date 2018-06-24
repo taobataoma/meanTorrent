@@ -1479,7 +1479,7 @@ module.exports = {
      * @showMoreImagesOnTorrentDetailPage:    setting whether to show more images from tmdb on torrent detail page
      */
     tmdbConfig: {
-      key: 'this is access key from tmdb',
+      key: '7888f0042a366f63289ff571b68b7ce0',
       tmdbHome: 'https://www.themoviedb.org',
       tmdbMovieLinkUrl: 'https://www.themoviedb.org/movie/',
       tmdbTvserialLinkUrl: 'https://www.themoviedb.org/tv/',

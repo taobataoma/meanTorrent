@@ -24,6 +24,7 @@
     VALUE_SELECT_ALL: 'Select All',
     BTN_REMOVE: 'Remove',
     BTN_CONTINUE: 'Continue',
+    BTN_CANCEL: 'Cancel',
     VALUE_TRUE: 'true',
     VALUE_FALSE: 'false',
     VALUE_ON: 'on',
@@ -604,6 +605,8 @@
     ERROR_IMAGE_LINK_URL: 'Unavailable image link url address',
     FILE_TYPE_ERROR: 'File type that is not accepted',
 
+    REDUPLICATE_CHECK: '&bull; System checked we already have these version of this resource',
+    REDUPLICATE_TIP: 'Tip: The system detected other versions of the resource, Please confirm that you are submitting a better or non-repeating version, Otherwise, your submission may not be approved or deleted directly by the administrator, do you need to continue?',
     ENTER_RESOURCE_TITLE: '&bull; Please enter the resource main title and sub title',
     RESOURCE_TITLE: 'resource main title',
     RESOURCE_SUB_TITLE: 'resource sub title',

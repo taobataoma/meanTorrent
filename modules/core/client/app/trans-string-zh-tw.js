@@ -24,6 +24,7 @@
     VALUE_SELECT_ALL: '全選',
     BTN_REMOVE: '刪除',
     BTN_CONTINUE: '繼續',
+    BTN_CANCEL: '取消',
     VALUE_TRUE: '是',
     VALUE_FALSE: '否',
     VALUE_ON: '開',
@@ -604,6 +605,8 @@
     ERROR_IMAGE_LINK_URL: '不可用的圖片連接地址',
     FILE_TYPE_ERROR: '檔案類別不被接受',
 
+    REDUPLICATE_CHECK: '&bull; 系統檢查到該資源已有下列不同版本存在',
+    REDUPLICATE_TIP: '提示：系統檢測到資源的其它版本，請確認您提交的是更優質的或是不重複的版本，否則，您的提交可能不會被審核通過或被管理員直接刪除，您需要繼續嗎？',
     ENTER_RESOURCE_TITLE: '&bull; 請輸入資源標題與描述',
     RESOURCE_TITLE: '資源標題',
     RESOURCE_SUB_TITLE: '資源副標題',

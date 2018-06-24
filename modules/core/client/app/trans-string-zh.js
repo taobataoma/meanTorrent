@@ -24,6 +24,7 @@
     VALUE_SELECT_ALL: '全选',
     BTN_REMOVE: '删除',
     BTN_CONTINUE: '继续',
+    BTN_CANCEL: '取消',
     VALUE_TRUE: '是',
     VALUE_FALSE: '否',
     VALUE_ON: '开',
@@ -604,6 +605,8 @@
     ERROR_IMAGE_LINK_URL: '不可用的图片连接地址',
     FILE_TYPE_ERROR: '文件类型不被接受',
 
+    REDUPLICATE_CHECK: '&bull; 系统检测到该资源已有下列不同版本存在',
+    REDUPLICATE_TIP: '提示：系统检测到资源的其它版本，请确认您提交的是更优质的或是不重复的版本，否则，您的提交可能不会被审核通过或被管理员直接删除，您需要继续吗？',
     ENTER_RESOURCE_TITLE: '&bull; 请输入资源主副标题',
     RESOURCE_TITLE: '资源主标题',
     RESOURCE_SUB_TITLE: '资源副标题',

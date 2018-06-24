@@ -68,7 +68,28 @@ exports.movieinfo = function (req, res) {
     if (err) {
       res.status(900).send(err);
     } else {
-      res.json(info);
+      var condition = {
+        'resource_detail_info.id': parseInt(req.params.tmdbid, 10)
+      };
+
+      var sInfo = {
+        info: info
+      };
+
+      Torrent.find(condition, populateStrings.populate_torrent_string)
+        .sort('-createdat')
+        .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
+        .populate('maker', 'name')
+        .exec(function (err, torrents) {
+          if (err || !torrents) {
+            res.json(sInfo);
+          } else {
+            if (torrents) {
+              sInfo.torrents = torrents;
+              res.json(sInfo);
+            }
+          }
+        });
     }
   });
 };
@@ -125,7 +146,29 @@ exports.tvinfo = function (req, res) {
     if (err) {
       res.status(900).send(err);
     } else {
-      res.json(info);
+      var condition = {
+        'resource_detail_info.id': parseInt(req.params.tmdbid, 10)
+      };
+
+      var sInfo = {
+        info: info
+      };
+
+      Torrent.find(condition, populateStrings.populate_torrent_string)
+        .sort('-createdat')
+        .populate('user', 'username displayName profileImageURL isVip score uploaded downloaded')
+        .populate('maker', 'name')
+        .exec(function (err, torrents) {
+          if (err || !torrents) {
+            res.json(sInfo);
+          } else {
+            console.log(torrents);
+            if (torrents) {
+              sInfo.torrents = torrents;
+              res.json(sInfo);
+            }
+          }
+        });
     }
   });
 };

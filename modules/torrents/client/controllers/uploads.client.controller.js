@@ -7,12 +7,13 @@
 
   TorrentsUploadController.$inject = ['$scope', '$state', '$translate', '$timeout', 'Authentication', 'MeanTorrentConfig', 'Upload', 'Notification',
     'TorrentsService', 'getStorageLangService', '$filter', 'DownloadService', 'DebugConsoleService', 'NotifycationService', 'SideOverlay',
-    '$templateRequest', 'marked', '$rootScope', 'localStorageService'];
+    '$templateRequest', 'marked', '$rootScope', 'localStorageService', 'TorrentGetInfoServices'];
 
   function TorrentsUploadController($scope, $state, $translate, $timeout, Authentication, MeanTorrentConfig, Upload, Notification,
                                     TorrentsService, getStorageLangService, $filter, DownloadService, mtDebug, NotifycationService, SideOverlay,
-                                    $templateRequest, marked, $rootScope, localStorageService) {
+                                    $templateRequest, marked, $rootScope, localStorageService, TorrentGetInfoServices) {
     var vm = this;
+    vm.TGI = TorrentGetInfoServices;
     vm.announceConfig = MeanTorrentConfig.meanTorrentConfig.announce;
     vm.tmdbConfig = MeanTorrentConfig.meanTorrentConfig.tmdbConfig;
     vm.imdbConfig = MeanTorrentConfig.meanTorrentConfig.imdbConfig;
@@ -351,10 +352,13 @@
       vm.tmdb_info_ok = undefined;
 
       vm.inputedEpisodesError = undefined;
-      vm.inputedEpisodesOK = false;
+      vm.showEpisodesInput = false;
+      vm.showReduplicateCheck = false;
       vm.showResourceTitleInput = false;
       vm.showResourceScreenShots = false;
       vm.showResourcesTag = false;
+      vm.showVideoNfo = false;
+      vm.showAgreeAndSubmit = false;
 
       vm.movieinfo = undefined;
       vm.tvinfo = undefined;
@@ -363,9 +367,6 @@
       vm.tags = [];
       vm.videoNfo = '';
       vm.customTorrent = {};
-
-      vm.showVideoNfo = false;
-      vm.showAgreeAndSubmit = false;
 
       $rootScope.clearResourceImages();
     };
@@ -492,30 +493,30 @@
         return;
       }
 
-      vm.tmdb_isloading = true;
-      vm.tmdb_info_ok = undefined;
+      vm.initLoading();
+
       TorrentsService.getTMDBMovieInfo({
         tmdbid: tmdbid,
         language: getStorageLangService.getLang()
       }, function (res) {
-        vm.customTorrent.title = getFormattedResourceTitle(vm.torrentInfo.filename);
-        vm.customTorrent.subtitle = res.title;
+        mtDebug.info(res);
+        vm.movieinfo = res.info;
+        vm.ReduplicateTorrents = res.torrents;
 
         vm.tmdb_info_ok = true;
         vm.tmdb_isloading = false;
-        vm.showResourceTitleInput = true;
-        vm.showResourceScreenShots = true;
-        vm.showResourcesTag = true;
-        vm.showVideoNfo = true;
-        vm.showAgreeAndSubmit = true;
+
+        vm.movieinfo.release_date = $filter('date')(vm.movieinfo.release_date, 'yyyy');
+
         Notification.success({
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_ID_OK')
         });
 
-        mtDebug.info(res);
-        vm.movieinfo = res;
-
-        vm.movieinfo.release_date = $filter('date')(vm.movieinfo.release_date, 'yyyy');
+        if (res.torrents.length > 0) {
+          vm.showReduplicateCheck = true;
+        } else {
+          vm.reduplicateContinue();
+        }
       }, function (err) {
         vm.tmdb_info_ok = false;
         vm.tmdb_isloading = false;
@@ -524,6 +525,89 @@
         });
         angular.element('#tmdbid').focus();
       });
+    };
+
+    /**
+     * reduplicateContinue
+     */
+    vm.reduplicateContinue = function () {
+      if (vm.selectedType === 'movie') {
+        vm.customTorrent.title = getFormattedResourceTitle(vm.torrentInfo.filename);
+        vm.customTorrent.subtitle = vm.movieinfo.title;
+
+        vm.showResourceTitleInput = true;
+        vm.onCustomTitleChanged();
+      } else {
+        vm.customTorrent.title = getFormattedResourceTitle(vm.torrentInfo.filename);
+        vm.customTorrent.subtitle = vm.tvinfo.name;
+
+        vm.showResourceTitleInput = true;
+        vm.onCustomTitleChanged();
+
+        if (vm.tvinfo && parseInt(vm.tvinfo.number_of_seasons, 10) > 0) {
+          vm.selectedSeasons = '1';
+        }
+      }
+    };
+
+    /**
+     * onCustomTitleChanged
+     */
+    vm.onCustomTitleChanged = function () {
+      if (vm.selectedType === 'movie') {
+        if (vm.customTorrent.title && vm.customTorrent.subtitle) {
+          vm.showResourceScreenShots = true;
+          vm.showResourcesTag = true;
+          vm.showVideoNfo = true;
+          vm.showAgreeAndSubmit = true;
+        } else {
+          vm.showResourceScreenShots = false;
+          vm.showResourcesTag = false;
+          vm.showVideoNfo = false;
+          vm.showAgreeAndSubmit = false;
+        }
+      } else {
+        if (vm.customTorrent.title && vm.customTorrent.subtitle) {
+          vm.showEpisodesInput = true;
+        } else {
+          vm.showEpisodesInput = false;
+          vm.showResourceScreenShots = false;
+          vm.showResourcesTag = false;
+          vm.showVideoNfo = false;
+          vm.showAgreeAndSubmit = false;
+        }
+      }
+    };
+
+    /**
+     * initLoading
+     */
+    vm.initLoading = function () {
+      vm.tmdb_isloading = true;
+      vm.tmdb_info_ok = undefined;
+
+      vm.movieinfo = undefined;
+      vm.ReduplicateTorrents = undefined;
+
+      vm.showResourceScreenShots = false;
+      vm.showResourcesTag = false;
+      vm.showVideoNfo = false;
+      vm.showAgreeAndSubmit = false;
+      vm.showReduplicateCheck = false;
+      vm.showResourceTitleInput = false;
+
+      vm.inputedEpisodesError = undefined;
+      vm.showEpisodesInput = false;
+
+      $('#img-tmdb').attr('src', null);
+      vm.inputedEpisodes = undefined;
+    };
+
+    /**
+     * onCustomSubTitleChanged
+     */
+    vm.onCustomSubTitleChanged = function () {
+      vm.onCustomTitleChanged();
     };
 
     /**
@@ -539,14 +623,15 @@
         return;
       }
 
-      vm.tmdb_isloading = true;
-      vm.tmdb_info_ok = undefined;
+      vm.initLoading();
+
       TorrentsService.getTMDBTVInfo({
         tmdbid: tmdbid,
         language: getStorageLangService.getLang()
       }, function (res) {
-        vm.customTorrent.title = getFormattedResourceTitle(vm.torrentInfo.filename);
-        vm.customTorrent.subtitle = res.name;
+        mtDebug.info(res);
+        vm.tvinfo = res.info;
+        vm.ReduplicateTorrents = res.torrents;
 
         vm.tmdb_info_ok = true;
         vm.tmdb_isloading = false;
@@ -554,10 +639,10 @@
           message: '<i class="glyphicon glyphicon-ok"></i> ' + $translate.instant('TMDB_ID_OK')
         });
 
-        mtDebug.info(res);
-        vm.tvinfo = res;
-        if (parseInt(vm.tvinfo.number_of_seasons, 10) > 0) {
-          vm.selectedSeasons = '1';
+        if (res.torrents.length > 0) {
+          vm.showReduplicateCheck = true;
+        } else {
+          vm.reduplicateContinue();
         }
       }, function (err) {
         vm.tmdb_info_ok = false;
@@ -582,10 +667,8 @@
         return false;
       } else {
         vm.inputedEpisodesError = false;
-        vm.inputedEpisodesOK = true;
-        vm.showResourceScreenShots = true;
         vm.showResourcesTag = true;
-        vm.showResourceTitleInput = true;
+        vm.showResourceScreenShots = true;
         vm.showVideoNfo = true;
         vm.showAgreeAndSubmit = true;
       }
