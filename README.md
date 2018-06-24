@@ -94,6 +94,7 @@ and [AngularJS](http://angularjs.org/) based applications.
 1. Check the un-reviewed new torrents and opened tickets status and show in top menu item.  
 1. New module of **Medal Center**, the medal is the identity of the users identity and contribution to the site.
 1. New module of **Favorites**, user can add any torrent into favorites and use the RSS url to download automatic.
+1. Check the reduplicate resource torrents when user upload a torrent and show the tooltip message to uploader.
 
 #### Chat room feature:
 1. Users name list
