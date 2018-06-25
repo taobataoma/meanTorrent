@@ -653,7 +653,7 @@
           badges: []
         },
         {
-          icon: 'fa-file-alt',
+          icon: 'fa-image',
           title: $translate.instant('TAB_USER_SCREENSHOTS'),
           templateUrl: 'screenshots.html',
           ng_show: vm.showScreenshotsTab(),
@@ -665,7 +665,7 @@
           ]
         },
         {
-          icon: 'fa-image',
+          icon: 'fa-file-alt',
           title: $translate.instant('TAB_USER_SUBTITLE'),
           templateUrl: 'subtitleInfo.html',
           ng_show: vm.showSubtitleTab(),
