@@ -1549,8 +1549,11 @@
         FORUM_MODERATORS: 'Forum Moderators Medal',
         MAKER_FOUNDER: 'Resource Group Founder Medal',
         UPLOADER: 'Resource Uploader Medal',
+        SEEDER: 'Resource Seeder Medal',
+        SUBER: 'Resource Subtitles Medal',
         RETIREE: 'Site Retiree Medal',
 
+        QQ: 'QQ Group administrator Medal',
         BEAUTY_3000: 'Beauty Children User Medal',
         ROAM: 'Roaming Safe User Medal',
         NO_EXAMINATION: 'No Examination User Medal',
@@ -1578,8 +1581,11 @@
         FORUM_MODERATORS: 'FM',
         MAKER_FOUNDER: 'MGF',
         UPLOADER: 'UPER',
+        SEEDER: 'SDER',
+        SUBER: 'SUB',
         RETIREE: 'RET',
 
+        QQ: 'QQGroup',
         BEAUTY_3000: 'BEAUTY',
         ROAM: 'ROAM',
         NO_EXAMINATION: 'NOEXAM',

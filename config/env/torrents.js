@@ -393,10 +393,22 @@ module.exports = {
           hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
         },
         {
+          cats: 'workers', name: 'seeder', prefix: 'SEEDER', faClass: 'fa fa-shield', iconClass: 'far fa-user-clock',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
+          cats: 'workers', name: 'suber', prefix: 'SUBER', faClass: 'fa fa-shield', iconClass: 'far fa-user-cog',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
+        {
           cats: 'workers', name: 'retiree', prefix: 'RETIREE', faClass: 'fa fa-shield', iconClass: 'far fa-wheelchair',
           hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
         },
 
+        {
+          cats: 'users', name: 'qq', prefix: 'QQ', faClass: 'fa fa-ticket', iconClass: 'fab fa-qq',
+          hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true
+        },
         {
           cats: 'users', name: 'beauty3000', prefix: 'BEAUTY_3000', faClass: 'fa fa-ticket', iconClass: 'far fa-users',
           hasHeader: false, hasFooter: true, passHelp: 'admin', enable: true

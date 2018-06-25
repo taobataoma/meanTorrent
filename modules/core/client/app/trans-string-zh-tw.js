@@ -1549,8 +1549,11 @@
         FORUM_MODERATORS: '論壇版主勳章',
         MAKER_FOUNDER: '資源發布組組長勳章',
         UPLOADER: '資源發布專員勳章',
+        SEEDER: '資源保種專員勳章',
+        SUBER: '資源字幕專員勳章',
         RETIREE: '網站退休工作人員勳章',
 
+        QQ: 'QQ官群管理員勳章',
         BEAUTY_3000: '佳麗三千后宮勳章',
         ROAM: '雲遊四方保號勳章',
         NO_EXAMINATION: '網站免考用戶勳章',
@@ -1578,8 +1581,11 @@
         FORUM_MODERATORS: '版主',
         MAKER_FOUNDER: '組長',
         UPLOADER: '發布',
+        SEEDER: '保種',
+        SUBER: '字幕',
         RETIREE: '退休',
 
+        QQ: 'Q管',
         BEAUTY_3000: '佳麗',
         ROAM: '雲遊',
         NO_EXAMINATION: '免考',

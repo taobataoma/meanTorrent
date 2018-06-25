@@ -1549,8 +1549,11 @@
         FORUM_MODERATORS: '论坛版主勋章',
         MAKER_FOUNDER: '资源发布组组长勋章',
         UPLOADER: '资源发布专员勋章',
+        SEEDER: '资源保种专员勋章',
+        SUBER: '资源字幕专员勋章',
         RETIREE: '网站退休工作人员勋章',
 
+        QQ: 'QQ官群管理员勋章',
         BEAUTY_3000: '佳丽三千后宫勋章',
         ROAM: '云游四方保号勋章',
         NO_EXAMINATION: '网站免考用户勋章',
@@ -1578,8 +1581,11 @@
         FORUM_MODERATORS: '版主',
         MAKER_FOUNDER: '组长',
         UPLOADER: '发布',
+        SEEDER: '保种',
+        SUBER: '字幕',
         RETIREE: '退休',
 
+        QQ: 'Q管',
         BEAUTY_3000: '佳丽',
         ROAM: '云游',
         NO_EXAMINATION: '免考',
