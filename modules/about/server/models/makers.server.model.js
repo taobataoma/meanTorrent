@@ -19,7 +19,6 @@ var MakerSchema = new Schema({
   name: {
     type: String,
     unique: 'GROUP_NAME_ALREADY_EXISTS',
-    uppercase: true,
     trim: true,
     default: ''
   },

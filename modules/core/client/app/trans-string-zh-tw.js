@@ -764,7 +764,7 @@
       MAKER_CREATE_FAILED: '資源小組建立失敗',
       OPER_LIST: 'Admin & Oper 列表',
       OPER_LIST_TOOLTIP: '<h4>提示:</h4>下面列出的所有用戶都是 <strong>{{site}}</strong> 站點的 Administrator 或 Operator, 如果您需要幫助, 請給{{sNameDesc | translate}}傳送 <strong><a href="/messages/send?to={{sName}}">訊息</a></strong> 或 <strong><a href="mailto:{{sMail}}">郵件</a></strong> 或者向下面列出的管理員直接傳送站內訊息.',
-      MAKER_LIST_TOOLTIP: '下面列出的所有資源小組都是入駐 <strong>{{site}}</strong> 的官方小組, 感謝這些壓制小組對站點做出的貢獻, 如果您想加入其中的小組, 請向小組創始人傳送站內訊息並歡迎您成為其中的一份子.',
+      MAKER_LIST_TOOLTIP: '下面列出的所有資源小組都是入駐<strong>{{site}}</strong> 的官方小組, 感謝這些資源小組為站點做出的貢獻, 如果您也想加入我們的小組, 請向各小組創始人發送站內消息，我們熱忱地歡迎您成為其中的一份子.',
       GROUP_FOUNDER: '創始人: ',
       BTN_EDIT_DESC: '編輯簡介',
       BTN_ADD_USER: '新增新成員',
