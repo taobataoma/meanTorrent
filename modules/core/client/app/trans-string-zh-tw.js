@@ -2124,7 +2124,7 @@
     },
 
     SITE_NOTICE: {
-      GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: 本站內測已一月有餘，在管理組和各位小伙伴的積極參與下，我們決定本月26日正式上線運營，我們對參與內測的部分用戶進行了獎勵，請移步查看詳細的[開站公告及內測獎勵名單](https://mine.pt/forums/5ae2f216b390dd39dd1287e0/5b2a7b7e7824db1ffb98a628)，**{{site_name}}** 在此公告期內實行全站免費，25號刪檔，26上午8點準時開站並逐步發放獎品，請大家奔走相告，並感謝所有用戶一直以來給予我們的幫助與支持!',
+      GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快樂 2018**, **{{site_name}}** 新年促銷活動已準備就緒, 促銷活動類別為 <span class="sale_key">**{{sale_value}}**</span> , 活動將開始於 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 並持續 <span class="sale_key">**{{sale_days}}**</span> 天, 結束於 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 並感謝所有會員用戶一直以來給予我們的幫助與支援!',
       EXAMINATION_NOTICE: '### 重要通知! \n :radio: **{{site_name}}** 將從 **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** 到 **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}** 進行一次新的增量考核, 增量資料要求: 上傳 **{{data_upload | bytes:2}}**, 下載 **{{data_download | bytes:2}}**, 積分 **{{data_score}}**, 請各位會員安排好自已的時間，並祝您順利通過這次考核. 所有 **vip** 用戶以及最近 **{{join_days}}** 天內註冊的新用戶免考, 考核未達標的用戶帳號將會被禁止.<small>[更多詳情請看這裡]({{detail_url}}).</small>',
       EXAMINATION_STATUS: '### 考核狀態資訊: \n <dl class="dl-horizontal"><dt>考核時間區間:</dt><dd>{{examination_start_at | date: "yyyy-MM-dd HH:mm"}} - {{examination_end_at | date: "yyyy-MM-dd HH:mm"}}</dd><dt>增量上傳資料:</dt><dd>{{data_upload | bytes:2}}, 已完成 {{finished_upload | bytes:2}}</dd><dt>增量下載資料:</dt><dd>{{data_download | bytes:2}}, 已完成 {{finished_download | bytes:2}}</dd><dt>增量積分:</dt><dd>{{data_score | score: 2}}, 已完成 {{finished_score | score: 2}}</dd><dt>當前考核狀態:</dt><dd>{{data_status | translate}}</dd><dt></dt><dd><small>[更多詳情]({{detail_url}})</small></dd></dl>',
       EXAMINATION_FINISHED: '已通過',
