@@ -1337,7 +1337,7 @@ exports.announce = function (req, res) {
   function getPeers(count, peers) {
     var ps = [];
 
-    if (!req.seeder && event(query.event) !== EVENT_STOPPED && event(query.event) !== EVENT_COMPLETED) {
+    if (event(query.event) !== EVENT_STOPPED) {
       mtDebug.debugGreen('---------------GET PEERS LIST----------------', 'ANNOUNCE', true, req.passkeyuser);
       mtDebug.debugRed('want.count     = ' + count, 'ANNOUNCE', true, req.passkeyuser);
       mtDebug.debugRed('peers.length   = ' + peers.length, 'ANNOUNCE', true, req.passkeyuser);
