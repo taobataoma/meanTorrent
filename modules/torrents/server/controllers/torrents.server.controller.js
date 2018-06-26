@@ -2032,7 +2032,7 @@ exports.makeRss = function (req, res) {
         limit = parseInt(req.query.limit, 10);
       }
       Favorite.find({
-        user: req.user._id
+        user: req.passkeyuser._id
       }, 'torrent')
         .sort('-createdAt')
         .populate({
