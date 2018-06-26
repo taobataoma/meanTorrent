@@ -2129,7 +2129,7 @@
     },
 
     SITE_NOTICE: {
-      GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **新年快樂 2018**, **{{site_name}}** 新年促銷活動已準備就緒, 促銷活動類別為 <span class="sale_key">**{{sale_value}}**</span> , 活動將開始於 **{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 並持續 <span class="sale_key">**{{sale_days}}**</span> 天, 結束於 **{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 並感謝所有會員用戶一直以來給予我們的幫助與支援!',
+      GLOBAL_SALES_NOTICE: '### 重要通知! \n :radio: **開門大吉**, **{{site_name}}** 開門全免禮包已以準備就緒，全免級別為<span class="sale_key" >**{{sale_value}}**</span> , 活動將開始於**{{sale_start_at | date: "yyyy-MM-dd HH:mm"}}** 並持續<span class="sale_key" >**{{sale_days}}**</span> 天, 結束於**{{sale_end_at | date: "yyyy-MM-dd HH:mm"}}**, 並感謝所有會員用戶的加入並期待給予我們更多的幫助與支持!',
       EXAMINATION_NOTICE: '### 重要通知! \n :radio: **{{site_name}}** 將從 **{{examination_start_at | date: "yyyy-MM-dd HH:mm"}}** 到 **{{examination_end_at | date: "yyyy-MM-dd HH:mm"}}** 進行一次新的增量考核, 增量資料要求: 上傳 **{{data_upload | bytes:2}}**, 下載 **{{data_download | bytes:2}}**, 積分 **{{data_score}}**, 請各位會員安排好自已的時間，並祝您順利通過這次考核. 所有 **vip** 用戶以及最近 **{{join_days}}** 天內註冊的新用戶免考, 考核未達標的用戶帳號將會被禁止.<small>[更多詳情請看這裡]({{detail_url}}).</small>',
       EXAMINATION_STATUS: '### 考核狀態資訊: \n <dl class="dl-horizontal"><dt>考核時間區間:</dt><dd>{{examination_start_at | date: "yyyy-MM-dd HH:mm"}} - {{examination_end_at | date: "yyyy-MM-dd HH:mm"}}</dd><dt>增量上傳資料:</dt><dd>{{data_upload | bytes:2}}, 已完成 {{finished_upload | bytes:2}}</dd><dt>增量下載資料:</dt><dd>{{data_download | bytes:2}}, 已完成 {{finished_download | bytes:2}}</dd><dt>增量積分:</dt><dd>{{data_score | score: 2}}, 已完成 {{finished_score | score: 2}}</dd><dt>當前考核狀態:</dt><dd>{{data_status | translate}}</dd><dt></dt><dd><small>[更多詳情]({{detail_url}})</small></dd></dl>',
       EXAMINATION_FINISHED: '已通過',
