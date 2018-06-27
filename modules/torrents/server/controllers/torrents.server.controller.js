@@ -2238,7 +2238,9 @@ exports.siteInfo = function (req, res) {
       $group: {
         _id: null,
         uploaded: {$sum: '$uploaded'},
-        downloaded: {$sum: '$downloaded'}
+        downloaded: {$sum: '$downloaded'},
+        true_uploaded: {$sum: '$true_uploaded'},
+        true_downloaded: {$sum: '$true_downloaded'}
       }
     }]).exec(function (err, total) {
       if (err) {
@@ -2333,6 +2335,8 @@ exports.siteInfo = function (req, res) {
         totalLeechers: results[2][0] ? results[2][0].leechers : 0,
         totalUploaded: results[3][0] ? results[3][0].uploaded : 0,
         totalDownloaded: results[3][0] ? results[3][0].downloaded : 0,
+        totalTrueUploaded: results[3][0] ? results[3][0].true_uploaded : 0,
+        totalTrueDownloaded: results[3][0] ? results[3][0].true_downloaded : 0,
         totalForumTopics: results[4],
         totalForumReplies: results[5][0] ? results[5][0].replies : 0,
         totalVipUsers: results[6],
