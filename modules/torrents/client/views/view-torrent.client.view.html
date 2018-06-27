@@ -35,19 +35,27 @@
                         </div>
                         <div class="col-md-9 torrent-detail">
                             <dl class="dl-horizontal">
-                                <div ng-if="vm.TGI.getTorrentTitle(vm.torrentLocalInfo)">
-                                    <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
-                                    <dd class="h-line">{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}</dd>
+                                <div ng-if="vm.torrentLocalInfo.torrent_type=='movie' || vm.torrentLocalInfo.torrent_type=='tvserial'">
+                                    <div ng-if="vm.TGI.getTorrentTitle(vm.torrentLocalInfo)">
+                                        <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
+                                        <dd class="h-line">{{vm.TGI.getTorrentTitle(vm.torrentLocalInfo)}}</dd>
+                                    </div>
+
+                                    <div ng-if="vm.TGI.getTorrentOriginalTitle(vm.torrentLocalInfo)">
+                                        <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_TITLE' | translate}}：</dt>
+                                        <dd class="h-line">{{vm.TGI.getTorrentOriginalTitle(vm.torrentLocalInfo)}}</dd>
+                                    </div>
                                 </div>
 
-                                <div ng-if="vm.TGI.getTorrentOriginalTitle(vm.torrentLocalInfo)">
-                                    <dt class="h-line">{{ 'TMDB_FIELDS.ORIGINAL_TITLE' | translate}}：</dt>
-                                    <dd class="h-line">{{vm.TGI.getTorrentOriginalTitle(vm.torrentLocalInfo)}}</dd>
-                                </div>
-
-                                <div ng-if="vm.torrentLocalInfo.resource_detail_info.subtitle">
-                                    <dt class="h-line">{{ 'TMDB_FIELDS.SUB_TITLE' | translate}}：</dt>
-                                    <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.subtitle}}</dd>
+                                <div ng-if="vm.torrentLocalInfo.torrent_type!='movie' && vm.torrentLocalInfo.torrent_type!='tvserial'">
+                                    <div ng-if="vm.torrentLocalInfo.resource_detail_info.custom_title">
+                                        <dt class="h-line">{{ 'TMDB_FIELDS.TITLE' | translate}}：</dt>
+                                        <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.custom_title}}</dd>
+                                    </div>
+                                    <div ng-if="vm.torrentLocalInfo.resource_detail_info.custom_subtitle">
+                                        <dt class="h-line">{{ 'TMDB_FIELDS.SUB_TITLE' | translate}}：</dt>
+                                        <dd class="h-line">{{vm.torrentLocalInfo.resource_detail_info.custom_subtitle}}</dd>
+                                    </div>
                                 </div>
 
                                 <div ng-if="vm.torrentLocalInfo.resource_detail_info.artist">
