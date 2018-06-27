@@ -647,8 +647,8 @@ module.exports = {
           content: 'SEED_UP_DOWNLOAD',
           additionSize: 1024 * 1024 * 1024 * 10,  //10G
           additionSize_str: '10G',
-          perlSize: 1024 * 1024 * 1024,   //1G
-          perlSize_str: '1G',
+          perlSize: 1024 * 1024 * 1024 * 5,   //5G
+          perlSize_str: '5G',
 
           uploadValue: 1,
           uploadEnable: true,
@@ -665,7 +665,7 @@ module.exports = {
           content: 'SEED_TIMED',
           additionTime: 60 * 60 * 1000,
           additionTime_str: '1h',
-          timedValue: 0.5,
+          timedValue: 1,
           vipRatio: 1.5,
 
           enable: true

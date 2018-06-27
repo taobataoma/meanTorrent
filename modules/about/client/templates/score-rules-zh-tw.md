@@ -21,9 +21,9 @@
   Vip 使用者額外加成係數: %(scoreConfig.action.seedUpDownload.vipRatio).2f 倍。
 
   舉例: 
-    種子體積 40G, 則體積加成係數為 2, 假設本次上報上傳量為 10G 下載量為 15G, 則：
-    非 Vip 使用者獲得上傳積分: 2 * 1 * 10 = 20, 下載積分: 2 * 0.5 * 15 = 15。
-    Vip 使用者獲得上傳積分: 20 * 1.5 = 30, 下載積分: 15 * 1.5 = 22.5。
+    種子體積 40G, 則體積加成係數為 2, 假設本次上報上傳量為 20G 下載量為 10G, 則：
+    非 Vip 使用者獲得上傳積分: 2 * 1 * 4 = 8, 下載積分: 2 * 0.5 * 2 = 2。
+    Vip 使用者獲得上傳積分: 8 * 1.5 = 12, 下載積分: 2 * 1.5 = 3。
 ```
 * 種子發布者按 `%(scoreConfig.action.seedUpDownload.uploaderRatio).2f` 倍計算上傳量積分。
 * 在做種狀態下，將會獲得由保種時間帶來的保種積分, 每個種子每 `%(scoreConfig.action.seedTimed.additionTime_str)s` 獲得 `%(scoreConfig.action.seedTimed.timedValue).2f` 積分，Vip 使用者額外加成係數為 `%(scoreConfig.action.seedTimed.vipRatio).2f`。

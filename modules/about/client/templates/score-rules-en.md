@@ -21,9 +21,9 @@
   Vip user extra adition: ratio of %(scoreConfig.action.seedUpDownload.vipRatio).2f
 
   Examples: 
-    for 40G torrent, the size addition ratio is 2, announce uploaded 10G and downloaded 15G,
-    none vip user get uploaded scores: 2 * 1 * 10 = 20, downloaded scores: 2 * 0.5 * 15 = 15. 
-    vip user get uploaded scores: 20 * 1.5 = 30, downloaded scores: 15 * 1.5 = 22.5.
+    for 40G torrent, the size addition ratio is 2, announce uploaded 20G and downloaded 10G,
+    none vip user get uploaded scores: 2 * 1 * 4 = 8, downloaded scores: 2 * 0.5 * 2 = 2. 
+    vip user get uploaded scores: 8 * 1.5 = 12, downloaded scores: 2 * 1.5 = 3.
 ```
 * Seed uploaders calculate the upload scores of `* %(scoreConfig.action.seedUpDownload.uploaderRatio).2f`.
 * In the seeding state, the seeding scores will be get from the seeding time. For every seed, `%(scoreConfig.action.seedTimed.timedValue).2f` scores per `%(scoreConfig.action.seedTimed.additionTime_str)s`, vip user extra addition ratio is `%(scoreConfig.action.seedTimed.vipRatio).2f`.

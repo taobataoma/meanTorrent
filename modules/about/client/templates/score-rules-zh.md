@@ -21,9 +21,9 @@
   Vip 用户额外加成系数: %(scoreConfig.action.seedUpDownload.vipRatio).2f 倍。
 
   举例: 
-    种子体积 40G, 则体积加成系数为 2, 假设本次上报上传量为 10G 下载量为 15G, 则：
-    非 Vip 用户获得上传积分: 2 * 1 * 10 = 20, 下载积分: 2 * 0.5 * 15 = 15。
-    Vip 用户获得上传积分: 20 * 1.5 = 30, 下载积分: 15 * 1.5 = 22.5。
+    种子体积 40G, 则体积加成系数为 2, 假设本次上报上传量为 20G 下载量为 10G, 则：
+    非 Vip 用户获得上传积分: 2 * 1 * 4 = 8, 下载积分: 2 * 0.5 * 2 = 2。
+    Vip 用户获得上传积分: 8 * 1.5 = 12, 下载积分: 2 * 1.5 = 3。
 ```
 * 种子发布者按 `%(scoreConfig.action.seedUpDownload.uploaderRatio).2f` 倍计算上传量积分。
 * 在做种状态下，将会获得由保种时间带来的保种积分, 每个种子每 `%(scoreConfig.action.seedTimed.additionTime_str)s` 获得 `%(scoreConfig.action.seedTimed.timedValue).2f` 积分，Vip 用户额外加成系数为 `%(scoreConfig.action.seedTimed.vipRatio).2f`。
