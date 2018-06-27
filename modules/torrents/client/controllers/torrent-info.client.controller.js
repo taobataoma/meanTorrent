@@ -1255,6 +1255,23 @@
     };
 
     /**
+     * isOwnerPeer
+     * @param t, torrent
+     * @returns {boolean}
+     */
+    vm.isOwnerPeer = function (t, p) {
+      if (t) {
+        if (t.user._id === p.user._id) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    };
+
+    /**
      * canEdit
      * @returns {boolean}
      */
