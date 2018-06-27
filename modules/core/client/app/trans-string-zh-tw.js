@@ -371,6 +371,7 @@
     COPY_LINK_TEXT: '複製種子檔案地址',
     COPY_TO_CLIPBOARD_SUCCESSFULLY: '內容已複製到剪下板!',
     TORRENT_LABEL_LINK: '種子地址',
+    TORRENT_DOWNLOAD_LINK: '下載種子',
     PH_KEYWORD: '搜尋關鍵字',
     FILTER_KEYWORD: '過濾關鍵字',
     CLEAR_ALL_CONDITION: '清空所有條件',

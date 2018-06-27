@@ -371,6 +371,7 @@
     COPY_LINK_TEXT: 'Copy torrent file link',
     COPY_TO_CLIPBOARD_SUCCESSFULLY: 'Copy data to clipboard successfully!',
     TORRENT_LABEL_LINK: 'Torrent Link',
+    TORRENT_DOWNLOAD_LINK: 'Download torrent',
     PH_KEYWORD: 'Search keyword',
     FILTER_KEYWORD: 'filter keyword',
     CLEAR_ALL_CONDITION: 'Clear All Condition',

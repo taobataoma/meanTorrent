@@ -1206,7 +1206,7 @@
                             <td class="col-md-8 td-v-middle td-text-overflow">
                                 <div class="other-torrent-info">
                                     <div class="torrent-filename text-long"><a
-                                            ui-sref="torrents.view({torrentId: item._id})">{{item.torrent_filename}}</a></div>
+                                            ui-sref="torrents.view({torrentId: item._id})">{{vm.TGI.getTorrentCustomTitle(item)}}</a></div>
 
                                     <div class="list-all-tags margin-top-10">
                                         <span ng-if="vm.torrentLocalInfo.resource_detail_info.release_date">
@@ -1237,11 +1237,10 @@
                                                 {{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
                                             </span>
                                         </span>
-                                        <span class="label label-download text-uppercase"
-                                              title="{{ 'TITLE_ALT.DOWNLOAD_TORRENT' | translate}}"
-                                              ng-click="vm.DLS.downloadTorrent(item._id); $event.stopPropagation();">
-                                        <i class="glyphicon glyphicon-arrow-down"></i>
-                                    </span>
+
+                                        <span torrent-file-download-link="item" info-class="label label-torrent-link"></span>
+
+                                        <span torrent-file-link-label="item" torrent-user="vm.user" info-class="label label-torrent-link"></span>
                                     </div>
                                 </div>
                             </td>
@@ -1264,8 +1263,8 @@
                                 </p>
                             </td>
                             <td class="col-md-1 td-v-middle text-center td-uploader">
-                                <span ng-if="!item.isAnonymous" user-info="item.user" info-name></span>
-                                <span ng-if="item.isAnonymous">{{ 'ANONYMOUS' | translate }}</span>
+                                <span ng-if="!item.isAnonymous || vm.user.isOper" user-info="item.user" info-name></span>
+                                <span ng-if="item.isAnonymous && !vm.user.isOper">{{ 'ANONYMOUS' | translate }}</span>
 
                                 <div maker-info="item.maker"></div>
                             </td>

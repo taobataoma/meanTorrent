@@ -371,6 +371,7 @@
     COPY_LINK_TEXT: '复制种子文件地址',
     COPY_TO_CLIPBOARD_SUCCESSFULLY: '内容已复制到剪切板!',
     TORRENT_LABEL_LINK: '种子连接',
+    TORRENT_DOWNLOAD_LINK: '下载种子',
     PH_KEYWORD: '搜索关键字',
     FILTER_KEYWORD: '过滤关键字',
     CLEAR_ALL_CONDITION: '清空所有条件',
