@@ -1096,7 +1096,10 @@
                         <tr class="torrent-list-info" ng-repeat="item in vm.seederPagedItems"
                             ng-if="item.peer_status == 'seeder'">
                             <td class="text-center">
-                                <span user-info="item.user" info-name></span>
+                                <span ng-if="!vm.isOwner(vm.torrentLocalInfo)" user-info="item.user" info-name></span>
+                                <span ng-if="vm.isOwner(vm.torrentLocalInfo) && (!vm.torrentLocalInfo.isAnonymous || vm.user.isOper)" user-info="item.user" info-name></span>
+                                <span ng-if="vm.isOwner(vm.torrentLocalInfo) && (vm.torrentLocalInfo.isAnonymous && !vm.user.isOper)">{{ 'ANONYMOUS' | translate }}</span>
+
                                 <span ip-flag="item" class="peer-ip-flags" ip-class="ip-flags"></span>
                                 <!--<span vip-flag="item.user"></span>-->
                                 <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
@@ -1145,7 +1148,10 @@
                         <tr class="torrent-list-info" ng-repeat="item in vm.leecherPagedItems"
                             ng-if="item.peer_status == 'leecher'">
                             <td class="text-center">
-                                <span user-info="item.user" info-name></span>
+                                <span ng-if="!vm.isOwner(vm.torrentLocalInfo)" user-info="item.user" info-name></span>
+                                <span ng-if="vm.isOwner(vm.torrentLocalInfo) && (!vm.torrentLocalInfo.isAnonymous || vm.user.isOper)" user-info="item.user" info-name></span>
+                                <span ng-if="vm.isOwner(vm.torrentLocalInfo) && (vm.torrentLocalInfo.isAnonymous && !vm.user.isOper)">{{ 'ANONYMOUS' | translate }}</span>
+
                                 <span ip-flag="item" class="peer-ip-flags" ip-class="ip-flags"></span>
                                 <!--<span vip-flag="item.user"></span>-->
                                 <!--<span message-to="item.user" to-class="message-to-icon"></span>-->
