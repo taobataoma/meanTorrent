@@ -832,6 +832,14 @@
                                 {{ 'RESOURCESTAGS.' + vm.RTS.getTagTitle(t) + '.' + t.toUpperCase() | translate}}
                             </span>
                         </span>
+                        <span>
+                            <button class="btn btn-xs btn-owner-edit-tags" mouse-enter-toggle-class="btn-mt-o-success"
+                                    base-class="btn-mt-o-primary"
+                                    ng-if="vm.isOwner(vm.torrentLocalInfo) || vm.user.isOper"
+                                    ng-click="vm.editTags($event);">
+                                {{'ADMIN_BASIC_EDIT_TAGS' | translate}}
+                            </button>
+                        </span>
                     </div>
                 </dd>
 
