@@ -1029,8 +1029,13 @@ exports.deleteReply = function (req, res) {
       if (lastReply === r) {
         lastReply = topic._replies[topic._replies.length - 2];
       }
-      topic.lastReplyAt = lastReply.createdAt;
-      topic.lastUser = lastReply.user;
+      if (lastReply) {
+        topic.lastReplyAt = lastReply.createdAt;
+        topic.lastUser = lastReply.user;
+      } else {
+        topic.lastReplyAt = undefined;
+        topic.lastUser = undefined;
+      }
 
       topic.save(function (err) {
         if (err) {
