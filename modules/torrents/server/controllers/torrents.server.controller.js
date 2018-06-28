@@ -1468,7 +1468,7 @@ function announceTorrentToIRC(torrent, req) {
         torrent.torrent_seasons,
         torrent.torrent_episodes,
         torrent.torrent_sale_status,
-        appConfig.domain + '/api/torrents/download/' + torrent._id + '/' + torrent.user.passkey,
+        appConfig.domain + '/api/torrents/download/' + torrent._id,
         moment().format('YYYY-MM-DD HH:mm:ss')
       ]);
     } else {
@@ -1478,7 +1478,7 @@ function announceTorrentToIRC(torrent, req) {
         torrent.torrent_type,
         torrent.torrent_size,
         torrent.torrent_sale_status,
-        appConfig.domain + '/api/torrents/download/' + torrent._id + '/' + torrent.user.passkey,
+        appConfig.domain + '/api/torrents/download/' + torrent._id,
         moment().format('YYYY-MM-DD HH:mm:ss')
       ]);
     }
