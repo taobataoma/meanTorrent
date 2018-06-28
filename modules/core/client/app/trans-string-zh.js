@@ -1531,8 +1531,6 @@
       AWARD_AT: '授于',
       CATS: {
         WORKERS: '工作人员类勋章',
-        USERS: '用户类勋章',
-        VIP: 'VIP 类勋章',
         EVENTS: '特别事件类勋章',
         COMMEMORATIVE: '站点纪念类勋章'
       },
@@ -1543,78 +1541,16 @@
       },
       DESC: {
         ROOT: '系统管理员勋章',
-        NETWORK_ADMIN: '网站管理员勋章',
-        SUPPORT_ADMIN: '客户服务管理员勋章',
-        FORUM_ADMIN: '论坛管理员勋章',
-        RESOURCE_ADMIN: '资源管理员勋章',
-        AMBASSADOR: '网站外交大使勋章',
-        FORUM_MODERATORS: '论坛版主勋章',
-        MAKER_FOUNDER: '资源发布组组长勋章',
-        UPLOADER: '资源发布专员勋章',
-        SEEDER: '资源保种专员勋章',
-        SUBER: '资源字幕专员勋章',
-        RETIREE: '网站退休工作人员勋章',
-
-        QQ: 'QQ官群管理员勋章',
-        BEAUTY_3000: '佳丽三千后宫勋章',
-        ROAM: '云游四方保号勋章',
-        NO_EXAMINATION: '网站免考用户勋章',
-        SLUGGER: '网站种子用户勋章',
-        ELDER: '网站元老用户勋章',
-
-        FOREVER_VIP: '终身 VIP 勋章',
-        YEARLY_VIP: '年度 VIP 勋章',
-        MONTHLY_VIP: '月度 VIP 勋章',
-        GUEST_VIP: '来宾 VIP 勋章',
-
         SITE_BEGIN: '网站开张纪念勋章',
-        FOR_ONE_YEARS: '网站1周年纪念勋章',
-        FOR_TWO_YEARS: '网站2周年纪念勋章',
-
         CLOSE_BETA: '站点内测勋章'
       },
       FOOTERSTRING: {
         ROOT: '系统',
-        NETWORK_ADMIN: '站长',
-        SUPPORT_ADMIN: '客服',
-        FORUM_ADMIN: '论坛',
-        RESOURCE_ADMIN: '资源',
-        AMBASSADOR: '使臣',
-        FORUM_MODERATORS: '版主',
-        MAKER_FOUNDER: '组长',
-        UPLOADER: '发布',
-        SEEDER: '保种',
-        SUBER: '字幕',
-        RETIREE: '退休',
-
-        QQ: 'Q管',
-        BEAUTY_3000: '佳丽',
-        ROAM: '云游',
-        NO_EXAMINATION: '免考',
-        SLUGGER: '种子',
-        ELDER: '元老',
-
-        FOREVER_VIP: 'VIP',
-        YEARLY_VIP: 'VIP',
-        MONTHLY_VIP: 'VIP',
-        GUEST_VIP: 'VIP',
-
         SITE_BEGIN: '周年',
-        FOR_ONE_YEARS: '周年',
-        FOR_TWO_YEARS: '周年',
-
         CLOSE_BETA: '2018'
       },
       HEADERSTRING: {
-        FOREVER_VIP: '终',
-        YEARLY_VIP: '年',
-        MONTHLY_VIP: '月',
-        GUEST_VIP: '宾',
-
         SITE_BEGIN: '0',
-        FOR_ONE_YEARS: '1',
-        FOR_TWO_YEARS: '2',
-
         CLOSE_BETA: '内测'
       }
     },

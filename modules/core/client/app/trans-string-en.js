@@ -1531,8 +1531,6 @@
       AWARD_AT: 'Award at',
       CATS: {
         WORKERS: 'Workers medals',
-        USERS: 'Users medals',
-        VIP: 'VIP medals',
         EVENTS: 'Events medals',
         COMMEMORATIVE: 'Commemorative Medals'
       },
@@ -1543,78 +1541,16 @@
       },
       DESC: {
         ROOT: 'Root Administrator Medal',
-        NETWORK_ADMIN: 'Network Administrator Medal',
-        SUPPORT_ADMIN: 'Support Administrator Medal',
-        FORUM_ADMIN: 'Forums Administrator Medal',
-        RESOURCE_ADMIN: 'Resources Administrator Medal',
-        AMBASSADOR: 'Site Ambassador Medal',
-        FORUM_MODERATORS: 'Forum Moderators Medal',
-        MAKER_FOUNDER: 'Resource Group Founder Medal',
-        UPLOADER: 'Resource Uploader Medal',
-        SEEDER: 'Resource Seeder Medal',
-        SUBER: 'Resource Subtitles Medal',
-        RETIREE: 'Site Retiree Medal',
-
-        QQ: 'QQ Group administrator Medal',
-        BEAUTY_3000: 'Beauty Children User Medal',
-        ROAM: 'Roaming Safe User Medal',
-        NO_EXAMINATION: 'No Examination User Medal',
-        SLUGGER: 'Site Slugger User Medal',
-        ELDER: 'Site Elder User Medal',
-
-        FOREVER_VIP: 'Forever VIP Medal',
-        YEARLY_VIP: 'Yearly VIP Medal',
-        MONTHLY_VIP: 'Monthly VIP Medal',
-        GUEST_VIP: 'Guest VIP Medal',
-
         SITE_BEGIN: 'Site Begin Medal',
-        FOR_ONE_YEARS: 'Site One Year Medal',
-        FOR_TWO_YEARS: 'Site Two Years Medal',
-
         CLOSE_BETA: 'Close beta medal'
       },
       FOOTERSTRING: {
         ROOT: 'SYS',
-        NETWORK_ADMIN: 'NA',
-        SUPPORT_ADMIN: 'SA',
-        FORUM_ADMIN: 'FA',
-        RESOURCE_ADMIN: 'RA',
-        AMBASSADOR: 'AMB',
-        FORUM_MODERATORS: 'FM',
-        MAKER_FOUNDER: 'MGF',
-        UPLOADER: 'UPER',
-        SEEDER: 'SDER',
-        SUBER: 'SUB',
-        RETIREE: 'RET',
-
-        QQ: 'QQGroup',
-        BEAUTY_3000: 'BEAUTY',
-        ROAM: 'ROAM',
-        NO_EXAMINATION: 'NOEXAM',
-        SLUGGER: 'SLUGGER',
-        ELDER: 'ELDER',
-
-        FOREVER_VIP: 'VIP',
-        YEARLY_VIP: 'VIP',
-        MONTHLY_VIP: 'VIP',
-        GUEST_VIP: 'VIP',
-
         SITE_BEGIN: 'YEARS',
-        FOR_ONE_YEARS: 'YEARS',
-        FOR_TWO_YEARS: 'YEARS',
-
         CLOSE_BETA: '2018'
       },
       HEADERSTRING: {
-        FOREVER_VIP: 'F',
-        YEARLY_VIP: 'Y',
-        MONTHLY_VIP: 'M',
-        GUEST_VIP: 'G',
-
         SITE_BEGIN: '0',
-        FOR_ONE_YEARS: '1',
-        FOR_TWO_YEARS: '2',
-
         CLOSE_BETA: 'BETA'
       }
     },
