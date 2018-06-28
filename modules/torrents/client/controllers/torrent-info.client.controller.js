@@ -34,6 +34,7 @@
     vm.mediaInfoConfig = MeanTorrentConfig.meanTorrentConfig.mediaInfo;
     vm.hnrConfig = MeanTorrentConfig.meanTorrentConfig.hitAndRun;
     vm.torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    vm.collectionsConfig = MeanTorrentConfig.meanTorrentConfig.collections;
 
     vm.mediaInfoEditMode = false;
 

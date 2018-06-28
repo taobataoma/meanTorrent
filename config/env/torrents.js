@@ -334,6 +334,17 @@ module.exports = {
     },
 
     /**
+     * @collections
+     *
+     * settings of movie collections
+     *
+     * @enable:               setting enable status of movie collections function
+     */
+    collections: {
+      enable: true
+    },
+
+    /**
      * @medals
      *
      * settings of medals wall

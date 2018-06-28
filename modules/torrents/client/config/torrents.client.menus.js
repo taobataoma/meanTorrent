@@ -9,6 +9,7 @@
 
   function menuConfig(menuService, MeanTorrentConfig) {
     var torrentTypeConfig = MeanTorrentConfig.meanTorrentConfig.torrentType;
+    var collectionsConfig = MeanTorrentConfig.meanTorrentConfig.collections;
 
     menuService.addMenuItem('topbar', {
       title: 'MENU_TORRENTS',
@@ -48,7 +49,7 @@
           position: cfg.position
         });
 
-        if (cfg.value === 'movie') {
+        if (cfg.value === 'movie' && collectionsConfig.enable) {
           menuService.addSubMenuItem('topbar', 'torrents', {
             title: 'MENU_TORRENTS_SUB.MOVIE_COLLECTIONS',
             state: 'collections.list',

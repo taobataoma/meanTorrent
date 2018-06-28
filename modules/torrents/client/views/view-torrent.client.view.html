@@ -1097,7 +1097,8 @@
                             ng-if="item.peer_status == 'seeder'">
                             <td class="text-center">
                                 <span ng-if="!vm.isOwnerPeer(vm.torrentLocalInfo, item)" user-info="item.user" info-name></span>
-                                <span ng-if="vm.isOwnerPeer(vm.torrentLocalInfo, item) && (!vm.torrentLocalInfo.isAnonymous || vm.user.isOper)" user-info="item.user" info-name></span>
+                                <span ng-if="vm.isOwnerPeer(vm.torrentLocalInfo, item) && (!vm.torrentLocalInfo.isAnonymous || vm.user.isOper)" user-info="item.user"
+                                      info-name></span>
                                 <span ng-if="vm.isOwnerPeer(vm.torrentLocalInfo, item) && (vm.torrentLocalInfo.isAnonymous && !vm.user.isOper)">{{ 'ANONYMOUS' | translate }}</span>
 
                                 <span ip-flag="item" class="peer-ip-flags" ip-class="ip-flags"></span>
@@ -1149,7 +1150,8 @@
                             ng-if="item.peer_status == 'leecher'">
                             <td class="text-center">
                                 <span ng-if="!vm.isOwnerPeer(vm.torrentLocalInfo, item)" user-info="item.user" info-name></span>
-                                <span ng-if="vm.isOwnerPeer(vm.torrentLocalInfo, item) && (!vm.torrentLocalInfo.isAnonymous || vm.user.isOper)" user-info="item.user" info-name></span>
+                                <span ng-if="vm.isOwnerPeer(vm.torrentLocalInfo, item) && (!vm.torrentLocalInfo.isAnonymous || vm.user.isOper)" user-info="item.user"
+                                      info-name></span>
                                 <span ng-if="vm.isOwnerPeer(vm.torrentLocalInfo, item) && (vm.torrentLocalInfo.isAnonymous && !vm.user.isOper)">{{ 'ANONYMOUS' | translate }}</span>
 
                                 <span ip-flag="item" class="peer-ip-flags" ip-class="ip-flags"></span>
@@ -1380,7 +1382,7 @@
                     </button>
                 </dd>
 
-                <div class="margin-top-20" ng-if="vm.torrentLocalInfo.torrent_type=='movie' && vm.showCollectionCommand()">
+                <div class="margin-top-20" ng-if="vm.torrentLocalInfo.torrent_type=='movie' && vm.collectionsConfig.enable && vm.showCollectionCommand()">
                     <dt class="h-line">{{ 'ADMIN_COLLECTION_COMMAND' | translate}}:</dt>
                     <dd class="h-line">
                         <button class="btn btn-default btn-sm"
