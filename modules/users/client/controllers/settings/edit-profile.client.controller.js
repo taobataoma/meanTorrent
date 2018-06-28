@@ -5,12 +5,13 @@
     .module('users')
     .controller('EditProfileController', EditProfileController);
 
-  EditProfileController.$inject = ['$scope', '$http', '$location', 'UsersService', 'Authentication', 'Notification'];
+  EditProfileController.$inject = ['$scope', '$http', '$location', 'UsersService', 'Authentication', 'Notification', 'MeanTorrentConfig'];
 
-  function EditProfileController($scope, $http, $location, UsersService, Authentication, Notification) {
+  function EditProfileController($scope, $http, $location, UsersService, Authentication, Notification, MeanTorrentConfig) {
     var vm = this;
 
     vm.user = Authentication.user;
+    vm.signConfig = MeanTorrentConfig.meanTorrentConfig.sign;
     vm.updateUserProfile = updateUserProfile;
 
     // Update a user profile

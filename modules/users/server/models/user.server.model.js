@@ -76,7 +76,8 @@ var UserSchema = new Schema({
   },
   displayName: {
     type: String,
-    trim: true
+    trim: true,
+    maxlength: 16
   },
   email: {
     type: String,

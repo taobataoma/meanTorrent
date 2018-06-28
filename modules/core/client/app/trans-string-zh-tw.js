@@ -323,6 +323,7 @@
       P_REQUIRED: '密碼不能為空.',
       FORGOT_PASSWORD: '忘記了密碼?',
       DN_REQUIRED: '顯示暱稱不能為空.',
+      DN_MAX_LENGTH: '顯示暱稱長度不能超過 {{maxLength}} 字符',
       RO_REQUIRED: '角色不能為空.',
       SENDING_MAIL: '正在傳送驗證郵件，請稍等...',
       SIGNIN_ERROR: '登入失敗!',

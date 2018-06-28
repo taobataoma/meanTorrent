@@ -5,11 +5,13 @@
                 <div class="form-group" show-errors>
                     <label for="firstName">{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}</label>
                     <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName"
-                           placeholder="{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}"
+                           placeholder="{{ 'STATUS_FIELD.DISPLAY_NAME' | translate}}" ng-maxlength="vm.signConfig.displayNameMaxLength"
                            required autofocus>
 
                     <div ng-messages="vm.userForm.firstName.$error" role="alert">
                         <p class="help-block error-text" ng-message="required">{{ 'SIGN.DN_REQUIRED' | translate}}</p>
+                        <p class="help-block error-text" ng-message="maxlength" translate="SIGN.DN_MAX_LENGTH"
+                           translate-values="{maxLength: vm.signConfig.displayNameMaxLength}"></p>
                     </div>
                 </div>
                 <div class="form-group" show-errors>

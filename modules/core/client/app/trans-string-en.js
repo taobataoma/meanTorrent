@@ -323,6 +323,7 @@
       P_REQUIRED: 'Password is required.',
       FORGOT_PASSWORD: 'Forgot your password?',
       DN_REQUIRED: 'Display name is required.',
+      DN_MAX_LENGTH: 'Display name length do not more than {{maxLength}} characters',
       RO_REQUIRED: 'At least one role is required.',
       SENDING_MAIL: 'The authentication mail is being sent. Please wait a moment...',
       SIGNIN_ERROR: 'Signin Error!',
