@@ -45,10 +45,6 @@
   The basic ratio is %(scoreConfig.action.seedSeederAndLife.lifeBasicRatio).2f, increase %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f every day.
   For 10 days life ratio is 1.01, [100 days is 1.1], [200 days is 1.2] etc, the max ratio is %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f.
 ```
-* At the end of each month, the system will award scores to users who have successfully sent invitations. the score number limit is the percentage `%(scoreConfig.transferToInviter.transRatio)f` of the monthly got of the invited users, the current award function enable status is：
-```javascript
-scoreConfig.transferToInviter.enable = %(scoreConfig.transferToInviter.enable)s
-```
 
 &emsp;
 

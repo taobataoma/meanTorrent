@@ -1649,8 +1649,6 @@
     SCORE_LOG: {
       DEFAULT_ACTION: '未知事件獲得的積分',
       ADMIN_MODIFY: '管理員 <a href=/userinfo/{{uid}}>{{uname}}</a> 修改積分',
-      TRANSFER_SCORE_INTO_INVITER_FROM: '結算上個月的積分給您的邀請人 <a href=/userinfo/{{uid}}>{{uname}}</a>',
-      TRANSFER_SCORE_INTO_INVITER_TO: '系統發放被邀請用戶 <a href=/userinfo/{{uid}}>{{uname}}</a> 上個月的積分獎勵',
       UPLOAD_TORRENT: '上傳的種子被審核通過 <a href=/torrents/{{tid}}>{{tid}}</a>',
       UPLOAD_TORRENT_BE_DELETED: '上傳的種子被刪除 <a href=/torrents/{{tid}}>{{tid}}</a>',
       UPLOAD_TORRENT_BE_RECOMMEND: '上傳的種子被置頂 <a href=/torrents/{{tid}}>{{tid}}</a>',

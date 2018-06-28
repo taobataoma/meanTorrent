@@ -1649,8 +1649,6 @@
     SCORE_LOG: {
       DEFAULT_ACTION: 'Undefined events increased score',
       ADMIN_MODIFY: 'Administrator <a href=/userinfo/{{uid}}>{{uname}}</a> modify score',
-      TRANSFER_SCORE_INTO_INVITER_FROM: 'Transfer score of last month to your inviter <a href=/userinfo/{{uid}}>{{uname}}</a>',
-      TRANSFER_SCORE_INTO_INVITER_TO: 'The system increased the score reward of last month by invited user <a href=/userinfo/{{uid}}>{{uname}}</a>',
       UPLOAD_TORRENT: 'Uploaded torrent was reviewed <a href=/torrents/{{tid}}>{{tid}}</a>',
       UPLOAD_TORRENT_BE_DELETED: 'Uploaded torrent was deleted <a href=/torrents/{{tid}}>{{tid}}</a>',
       UPLOAD_TORRENT_BE_RECOMMEND: 'Uploaded torrent was recommended <a href=/torrents/{{tid}}>{{tid}}</a>',

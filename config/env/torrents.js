@@ -601,10 +601,6 @@ module.exports = {
      *
      * @levelStep:              value of each level step, default 500
      * @scoreLogDays:           setting of days to write score detail log to db, because the data is too more too big, do not to set a big value
-     * @transfer:               setting of transfer score to inviter per month
-     *        @enable:          setting whether to enable transfer
-     *        @deductFromUser:  setting whether deduct the score from user
-     *        @transRatio:      setting transfer ratio, the user`s score of this ratio will be subtract and add into the inviter`s account if the @deductFromUser is true
      * @action:                 score change action list
      *        @name:            action name
      *        @value:           action score value
@@ -614,17 +610,9 @@ module.exports = {
     score: {
       levelStep: 1000,
       scoreLogDays: 10,
-      transferToInviter: {
-        enable: true,
-        deductFromUser: false,
-        transRatio: 0.001
-      },
       action: {
         defaultAction: {name: 'defaultAction', content: 'DEFAULT_ACTION', value: 0, enable: true},
         adminModify: {name: 'adminModify', content: 'ADMIN_MODIFY', value: 0, enable: true},
-
-        transferScoreIntoInviterFrom: {name: 'transferScoreIntoInviterFrom', content: 'TRANSFER_SCORE_INTO_INVITER_FROM', value: 0, enable: true},
-        transferScoreIntoInviterTo: {name: 'transferScoreIntoInviterTo', content: 'TRANSFER_SCORE_INTO_INVITER_TO', value: 0, enable: true},
 
         uploadTorrent: {name: 'uploadTorrent', content: 'UPLOAD_TORRENT', value: 20, enable: true},
         uploadTorrentBeDeleted: {name: 'uploadTorrentBeDeleted', content: 'UPLOAD_TORRENT_BE_DELETED', value: -20, enable: true},

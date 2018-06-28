@@ -45,10 +45,6 @@
   加成基础系数为 %(scoreConfig.action.seedSeederAndLife.lifeBasicRatio).2f, 根据种子生命每天增加 %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f。
   如果种子生命(发布时间)为 10 天，则加成系数为 1.01, [100 天是 1.1], [200 天是 1.2], 以此类推，最大加成系数为 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f。
 ```
-* 系统在每个月底会对成功发送过邀请函的用户进行积分奖励，奖励额度为受邀请用户当月的进帐积分的 `%(scoreConfig.transferToInviter.transRatio)f` 倍，目前该奖励功能开关状态为：
-```javascript
-scoreConfig.transferToInviter.enable = %(scoreConfig.transferToInviter.enable)s
-```
 
 &emsp;
 

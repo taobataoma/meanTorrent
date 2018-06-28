@@ -45,10 +45,6 @@
   加成基礎係數為 %(scoreConfig.action.seedSeederAndLife.lifeBasicRatio).2f, 根據種子生命每天增加 %(scoreConfig.action.seedSeederAndLife.lifeCoefficientOfDay).3f。
   如果種子生命(釋出時間)為 10 天，則加成係數為 1.01, [100 天是 1.1], [200 天是 1.2], 以此類推，最大加成係數為 %(scoreConfig.action.seedSeederAndLife.lifeMaxRatio).2f。
 ```
-* 系統在每個月底會對成功發送過邀請函的用戶進行積分獎勵，獎勵額度為受邀請用戶當月的進帳積分的 `%(scoreConfig.transferToInviter.transRatio)f` 倍，目前該獎勵功能開關狀態為：
-```javascript
-scoreConfig.transferToInviter.enable = %(scoreConfig.transferToInviter.enable)s
-```
 
 &emsp;
 

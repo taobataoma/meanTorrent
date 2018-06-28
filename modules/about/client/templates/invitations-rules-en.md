@@ -23,10 +23,6 @@
 invite.banUserInviter = %(inviteConfig.banUserInviter)s
 ```
 1. If you have made outstanding contributions to the site, the site will occasionally send you a limited number of invitations to reward you for your contribution.
-1. At the end of each month, the system will award scores to users who have successfully sent invitations. the score number limit is the percentage `%(scoreConfig.transferToInviter.transRatio)f` of the monthly got of the invited users, the current award function enable status is：
-```javascript
-scoreConfig.transferToInviter.enable = %(scoreConfig.transferToInviter.enable)s
-```
 
 &emsp;
 

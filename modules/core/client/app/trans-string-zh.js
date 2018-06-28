@@ -1649,8 +1649,6 @@
     SCORE_LOG: {
       DEFAULT_ACTION: '未知事件获得的积分',
       ADMIN_MODIFY: '管理员 <a href=/userinfo/{{uid}}>{{uname}}</a> 修改积分',
-      TRANSFER_SCORE_INTO_INVITER_FROM: '结算上个月的积分给您的邀请人 <a href=/userinfo/{{uid}}>{{uname}}</a>',
-      TRANSFER_SCORE_INTO_INVITER_TO: '系统发放被邀请用户 <a href=/userinfo/{{uid}}>{{uname}}</a> 上个月的积分奖励',
       UPLOAD_TORRENT: '上传的种子被审核通过 <a href=/torrents/{{tid}}>{{tid}}</a>',
       UPLOAD_TORRENT_BE_DELETED: '上传的种子被删除 <a href=/torrents/{{tid}}>{{tid}}</a>',
       UPLOAD_TORRENT_BE_RECOMMEND: '上传的种子被置顶 <a href=/torrents/{{tid}}>{{tid}}</a>',

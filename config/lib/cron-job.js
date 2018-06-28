@@ -92,10 +92,6 @@ module.exports = function (app) {
     cronJobs.push(countUsersHnrWarning());
   }
 
-  if (scoreConfig.transferToInviter.enable) {
-    cronJobs.push(transferUserScoreToInviter());
-  }
-
   if (supportConfig.mailTicketSupportService) {
     cronJobs.push(listenServiceEmail());
   }
@@ -375,66 +371,6 @@ function countUsersHnrWarning() {
             });
           }
         });
-    },
-    start: false,
-    timeZone: appConfig.cronTimeZone
-  });
-
-  cronJob.start();
-
-  return cronJob;
-}
-
-/**
- * transferUserScoreToInviter
- */
-function transferUserScoreToInviter() {
-  var cronJob = new CronJob({
-    cronTime: '00 00 2 1 * *',
-    onTick: function () {
-      logger.info(chalk.green('transferUserScoreToInviter: process!'));
-
-      var mom = moment().utcOffset(appConfig.dbTimeZone);
-      var y = mom.get('year');
-      var m = mom.get('month') + 1;
-
-      UserMonthsLog.find({
-        year: y,
-        month: m - 1
-      }).populate({
-        path: 'user',
-        select: 'username displayName profileImageURL isVip score uploaded downloaded invited_by',
-        populate: {
-          path: 'invited_by',
-          select: 'username displayName profileImageURL isVip score uploaded downloaded'
-        }
-      }).exec(function (err, logs) {
-        if (logs) {
-          logs.forEach(function (l) {
-            if (l.score > 0 && l.user.invited_by) {
-              var transValue = Math.round(l.score * scoreConfig.transferToInviter.transRatio * 100) / 100;
-
-              if (transValue > 0) {
-                if (scoreConfig.transferToInviter.deductFromUser) {
-                  var actFrom = scoreConfig.action.transferScoreIntoInviterFrom;
-                  actFrom.params = {
-                    uid: l.user.invited_by._id,
-                    uname: l.user.invited_by.displayName
-                  };
-                  scoreUpdate(undefined, l.user, actFrom, -(transValue));
-                }
-
-                var actTo = scoreConfig.action.transferScoreIntoInviterTo;
-                actTo.params = {
-                  uid: l.user._id,
-                  uname: l.user.displayName
-                };
-                scoreUpdate(undefined, l.user.invited_by, actTo, transValue);
-              }
-            }
-          });
-        }
-      });
     },
     start: false,
     timeZone: appConfig.cronTimeZone
