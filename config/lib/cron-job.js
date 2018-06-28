@@ -322,8 +322,7 @@ function checkUserAccountIdleStatus() {
         isOper: false,
         isAdmin: false,
         last_signed: {$lt: Date.now() - signConfig.idle.accountIdleForTime},
-        score: {$lt: safeScore},
-        medal: {$nin: signConfig.idle.unIdleMedalName}
+        score: {$lt: safeScore}
       }).exec(function (err, users) {
         if (users) {
           users.forEach(function (u) {

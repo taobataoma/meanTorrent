@@ -407,7 +407,6 @@ module.exports = {
      *        @activeMoreScorePerDay:         idle more than one day need extra score
      *        @activeMoreScorePerLevel:       idle each level need extra score
      *        @notIdleSafeLevel:              safe lavel, more than this level account not to be idle status
-     *        @unIdleMedalName:               if user has these medal, the account do not to be idle status, value must be a Array
      */
     sign: {
       openSignup: true,
@@ -427,8 +426,7 @@ module.exports = {
         activeIdleAccountBasicScore: 50000,
         activeMoreScorePerDay: 100,
         activeMoreScorePerLevel: 1000,
-        notIdleSafeLevel: 30,
-        unIdleMedalName: ['roam']
+        notIdleSafeLevel: 30
       }
     },
 
@@ -1323,7 +1321,6 @@ module.exports = {
      *      @noticeMsg:               notice translate string show at top of home
      *      @noticeShowAt:            notice begin time to show
      *      @timeFormats:             time string format
-     * @exceptExaminationMedalName:   except examination user must have medal name of 'noExamination', value must is a Array
      * @detailUrl:                    detail info of examination, maybe a forum link url
      * ------------------------------------------------------------------------------
      *  !IMPORTANT NOTE:
@@ -1346,7 +1343,6 @@ module.exports = {
         noticeShowAt: '2018-01-28 00:00:00',
         timeFormats: 'YYYY-MM-DD HH:mm:ss'
       },
-      exceptExaminationMedalName: ['noExamination'],
       detailUrl: '/forums/595c4491d5706705f67d93cf/59684780f928f42a9c79c613'
     },
 

@@ -208,8 +208,7 @@ exports.initExaminationData = function (req, res) {
               status: 'normal',
               isVip: false,
               isOper: false,
-              isAdmin: false,
-              medals: {$nin: examinationConfig.exceptExaminationMedalName}
+              isAdmin: false
             }, {examinationData: exami}, {multi: true}, function (err, num) {
               if (err) {
                 return res.status(422).send({
