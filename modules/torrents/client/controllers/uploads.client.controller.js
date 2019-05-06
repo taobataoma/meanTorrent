@@ -58,7 +58,8 @@
      * #uploaded_popup.popup
      */
     $(document).ready(function () {
-      $('#uploaded_popup').popup({
+      vm.uploaded_popup = $('#uploaded_popup');
+      vm.uploaded_popup.popup({
         outline: false,
         focusdelay: 400,
         vertical: 'top',
@@ -928,7 +929,7 @@
       $rootScope.uploadPopupNotShowNextTime = localStorageService.get('upload_popup_not_show_next_time');
       if (!$rootScope.uploadPopupNotShowNextTime) {
         $timeout(function () {
-          $('#uploaded_popup').popup('show');
+          vm.uploaded_popup.popup('show');
         }, 10);
       } else {
         vm.downloadTorrent(vm.downloadingTorrent._id);
