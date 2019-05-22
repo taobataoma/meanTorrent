@@ -268,9 +268,9 @@
           }, function (res) {
             mtDebug.info(res);
             vm.album = res;
-            NotifycationService.showSuccessNotify('AlbumsService.REMOVE_SUCCESSFULLY');
+            NotifycationService.showSuccessNotify('ALBUMS.REMOVE_SUCCESSFULLY');
           }, function (res) {
-            NotifycationService.showErrorNotify(res.data.message, 'AlbumsService.REMOVE_FAILED');
+            NotifycationService.showErrorNotify(res.data.message, 'ALBUMS.REMOVE_FAILED');
           });
         });
     };
