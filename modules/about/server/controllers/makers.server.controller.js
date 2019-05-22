@@ -204,7 +204,7 @@ exports.rating = function (req, res) {
   });
   if (exist) {
     return res.status(422).send({
-      message: 'ALREADY_RATING'
+      message: 'ABOUT.ALREADY_RATING'
     });
   } else {
     maker._ratings.push(rat);

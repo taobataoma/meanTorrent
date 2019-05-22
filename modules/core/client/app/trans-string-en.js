@@ -782,6 +782,7 @@
       DELETE_FAILED: 'Resources group deleted failed',
       RATING_SUCCESSFULLY: 'Rating for resources group successfully',
       RATING_FAILED: 'Rating for resources group failed',
+      ALREADY_RATING: 'You already rated for the resources group before',
       ADD_MEMBER_TITLE: 'Add Member',
       ADD_MEMBER_SUCCESSFULLY: 'Add group member successfully',
       ADD_MEMBER_FAILED: 'Add group member failed',
