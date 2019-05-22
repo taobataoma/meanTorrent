@@ -782,6 +782,7 @@
       DELETE_FAILED: '資源小組刪除失敗',
       RATING_SUCCESSFULLY: '為資源小組評分成功',
       RATING_FAILED: '為資源小組評分失敗',
+      ALREADY_RATING: '您先前已為此小組評分',
       ADD_MEMBER_TITLE: '新增小組成員',
       ADD_MEMBER_SUCCESSFULLY: '新增小組成員成功',
       ADD_MEMBER_FAILED: '新增小組成員失敗',

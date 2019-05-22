@@ -782,6 +782,7 @@
       DELETE_FAILED: '资源小组删除失败',
       RATING_SUCCESSFULLY: '为资源小组评分成功',
       RATING_FAILED: '为资源小组评分失败',
+      ALREADY_RATING: '您先前已为此小组评分',
       ADD_MEMBER_TITLE: '添加小组成员',
       ADD_MEMBER_SUCCESSFULLY: '添加小组成员成功',
       ADD_MEMBER_FAILED: '添加小组成员失败',
