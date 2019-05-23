@@ -103,8 +103,8 @@
     MANAGE_SOCIAL_ACCOUNTS: 'Manage Social Accounts',
 
     //HomeController & home views
-    LOADING_TOP: 'Loading recommended info, please waiting...',
-    TOP_TORRENTS_INFO_ERROR: 'Get top torrents list info failed',
+    LOADING_TOP: 'Loading recommended info, please wait a moment...',
+    TOP_TORRENTS_INFO_ERROR: 'Top torrents info retrieval failed',
     NEWEST_MOVIE_LIST: 'Newest Movie Torrents',
     NEWEST_TV_LIST: 'Newest TV Serial Torrents',
     NEWEST_MUSIC_LIST: 'Newest Music Torrents',
@@ -155,13 +155,13 @@
 
     //element title/alt
     TITLE_ALT: {
-      SEEDS: 'Seeds users',
-      LEECHERS: 'Leechers users',
-      FINISHED: 'Finished users',
+      SEEDS: 'Seeds',
+      LEECHERS: 'Leechers',
+      FINISHED: 'Finished',
       IMDB_VOTES: 'IMDB Votes',
       MORE_TAGS: 'Show More Search Tags',
       RESET_TAGS: 'Reset All Search Tags',
-      DOWNLOAD_TORRENT: 'Doanload the torrent'
+      DOWNLOAD_TORRENT: 'Doanload torrent'
     },
 
     //table fields
@@ -379,7 +379,7 @@
     MORE_TAGS: 'More Tags',
     CA_RESET: 'Reset',
     TORRENT_DOWNLOAD_ERROR: 'Torrent file download failed',
-    TORRENTS_DOWNLOAD_SUCCESSFULLY: 'Torrents file download successfully',
+    TORRENTS_DOWNLOAD_SUCCESSFULLY: 'Torrent file download successful',
 
     //torrent info
     UNIT_MILLION: 'million',
@@ -430,10 +430,10 @@
     SUBTITLE_LIST: 'Subtitle list',
     SUBTITLE_RULES: {
       0: 'If the torrent has no subtitle files, you have the following actions.',
-      1: 'Please note the filename format, such as: <mark>Sing.2016.3D.HKG.BluRay.1080p.AVC.Atmos.TrueHD7.1-MTeam.chs&eng.srt</mark>'
+      1: 'Please note the filename format, such as: <mark>Movie (20XX) RESp.eng/chi.srt/ass</mark> or <mark>Sing.2016.3D.HKG.BluRay.1080p.AVC.Atmos.TrueHD7.1-MTeam.chs&eng.srt</mark>'
     },
     MY_TORRENT_RULES: {
-      0: 'This torrent file is uploaded by yourself, you have actions bellow.',
+      0: 'This torrent file is uploaded by you, you have actions bellow.',
       1: 'For additional assistance, please contact our {{sNameDesc | translate}} by <strong><a href="/messages/send?to={{sName}}">Message</a></strong> or <strong><a href="mailto:{{sMail}}">Email</a></strong>.'
     },
     TORRENT_SEED_USERS: 'Seed Users',
@@ -443,13 +443,13 @@
     SUBTITLE_DELETE_ICON_TITLE: 'Delete this subtitle',
     SUBTITLE_CONFIRM_OK: 'Delete',
     SUBTITLE_CONFIRM_CANCEL: 'Cancel',
-    SUBTITLE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
+    SUBTITLE_CONFIRM_HEADER_TEXT: 'Confirm Deletion',
     SUBTITLE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this subtitle?',
     SUBTITLE_DOWNLOAD_SUCCESSFULLY: 'Subtitle file download successfully',
     SUBTITLE_DOWNLOAD_ERROR: 'Subtitle file download failed',
     SUBTITLE_DELETE_SUCCESSFULLY: 'Subtitle file delete successfully',
-    SUBTITLE_DELETE_ERROR: 'Subtitle file delete failed',
-    OTHER_TORRENT_LIST_TITLE: 'This resources has {{x}} other version torrent, you can view or download from here:',
+    SUBTITLE_DELETE_ERROR: 'Subtitle file deletion failed',
+    OTHER_TORRENT_LIST_TITLE: 'This resources has {{x}} other versions, you can view or download from here:',
 
     ADMIN_BASIC_COMMAND: 'Basic Command',
     ADMIN_BASIC_REVIEWED: 'Review',
@@ -482,7 +482,7 @@
 
     TORRENT_DELETE_CONFIRM_OK: 'Delete',
     TORRENT_DELETE_CONFIRM_CANCEL: 'Cancel',
-    TORRENT_DELETE_CONFIRM_HEADER_TEXT: 'Delete Confirm',
+    TORRENT_DELETE_CONFIRM_HEADER_TEXT: 'Confirm Deletion',
     TORRENT_DELETE_CONFIRM_BODY_TEXT: 'Are you sure want to delete this torrent?',
     TORRENT_DELETE_SUCCESSFULLY: 'Torrent delete successfully',
     TORRENT_DELETE_ERROR: 'Torrent delete failed',
@@ -571,13 +571,13 @@
     SELECT_RESULT_ITEM: 'Select an item of result:',
     RESULT_TOO_MORE: 'Result too more, some items can not be show, please add more keywords and search again',
     PLACE_HOLDER_SEARCH: 'Search keys',
-    TMDB_ID_OK: 'TMDB ID is ok! Get info successfully',
+    TMDB_ID_OK: 'TMDB ID retrival successful',
     TMDB_ID_ERROR: 'TMDB ID is error! Get info failed',
     TMDB_ID_REQUIRED: 'Please enter TMDB ID',
     TMDB_RESOURCE_INFO: '&bull; The resource info from TMDB',
-    TMDB_IS_LOADING: 'Loading the resource info, please wait...',
+    TMDB_IS_LOADING: 'Loading resource info, please wait...',
     SELECT_SE: '&bull; Please select number of seasons and input number of episodes',
-    SELECT_TAGS: '&bull; Please select any tags for the resources',
+    SELECT_TAGS: '&bull; Please select any tags for the resource',
     SELECT_SCREEN_SHOTS: '&bull; Please select any screenshots for the resources',
     ENTER_VIDEO_NFO: '&bull; Please enter video and audio NFO',
     SELECT_MAKER_GROUP: '&bull; Please select resources group upload from and anonymous option',
@@ -587,7 +587,7 @@
     IS_VIP_RESOURCES: 'set VIP property of this torrent',
     IS_VIP_RESOURCES_TIP: 'TIP: If this is a VIP resource, please select the button below and the system will automatically assign this resource to the VIP zone.',
     ANONYMOUS: 'Anonymous',
-    TORRENTS_SUBMIT_UPLOAD: '&bull; Agree the rules and submit your resources',
+    TORRENTS_SUBMIT_UPLOAD: '&bull; Agree the rules and submit your resource',
     SUBMIT_BUTTON: 'OK, SUBMIT NOW',
     CANCEL_BUTTON: 'NO, CANCEL IT',
     AGREE_RULES: 'I agree and already read all the rules, <a href="/about/manual/userRules">read here</a>',
@@ -903,7 +903,7 @@
     CAPTION_REQUIRED_VERIFY_PASSWORD: 'Verify your new password.',
     CAPTION_PASSWORD_NOT_MATCH: 'Passwords do not match.',
     CURRENT_PASSKEY: 'Current Passkey: <mark class="text-danger">{{passkey}}</mark>',
-    RESET_PASSKEY_NOTE: 'NOTE: If you reset your passkey, you must re-download all torrent file, and re-add to your download client, then it can download or upload.',
+    RESET_PASSKEY_NOTE: 'NOTE: Your passkey is unique, if you reset your passkey, you must re-download all torrent files, and re-add them to your download client.',
     RESET_PASSKEY_CONFIRM_OK: 'Reset',
     RESET_PASSKEY_CONFIRM_CANCEL: 'Cancel',
     RESET_PASSKEY_CONFIRM_HEADER_TEXT: 'Reset Passkey',
@@ -1260,7 +1260,7 @@
 
     //chat view
     CHAT_USERS_LIST: 'Users List',
-    CHAT_WELCOME: 'Welcome to join the chat room, please follow the chat rules, and have a good time!',
+    CHAT_WELCOME: 'Welcome to the chat room, please follow the rules, and have a good time!',
     CHAT_PLACEHOLDER_INPUT: 'input message and press enter, support emoji images by colon',
     CHAT_USER_JOIN: 'is now connected and join the room.',
     CHAT_USER_QUIT: 'is now disconnect and quit the room.',
@@ -1271,8 +1271,8 @@
     CHAT_FONT_BOLD: 'Font Bold',
     CHAT_FONT_ITALIC: 'Font Italic',
     CHAT_BAN_KICK: 'Kick out and ban IP',
-    CHAT_BAN_KICK_REASON: 'you are not grateful at here',
-    CHAT_BAN_KICK_MESSAGE: '{{who}} was kicked and ban by {{by}} ({{reason}})',
+    CHAT_BAN_KICK_REASON: 'You are not grateful at here, pls contant site management.',
+    CHAT_BAN_KICK_MESSAGE: '{{who}} was kicked or ban by {{by}} ({{reason}})',
 
     CHAT_CONFIRM_BAN_OK: 'Ban & Kick',
     CHAT_CONFIRM_BAN_CANCEL: 'Cancel',
