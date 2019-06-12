@@ -1530,6 +1530,10 @@ exports.delete = function (req, res) {
   Subtitle.remove({
     torrent: torrent._id
   }).exec();
+  //remove all favorites of the torrent
+  Favorite.remove({
+    torrent: torrent._id
+  }).exec();
   //update maker torrent count
   if (torrent.maker) {
     torrent.maker.update({
