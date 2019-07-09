@@ -1936,7 +1936,7 @@ exports.list = function (req, res) {
       {
         '$project': isHome ? populateStrings.populate_torrent_object_is_home : populateStrings.populate_torrent_object
       }
-    ]);
+    ]).allowDiskUse(true);
 
     if (limit === 0) {
       var i = query._pipeline.length;
