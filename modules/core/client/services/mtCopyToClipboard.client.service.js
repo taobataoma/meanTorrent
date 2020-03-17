@@ -13,7 +13,9 @@ angular
     return function (toCopy) {
       textarea.val(toCopy);
       body.append(textarea);
+      textarea[0].readOnly = true;
       textarea[0].select();
+      textarea[0].setSelectionRange(0, 99999);
 
       document.execCommand('copy');
 
